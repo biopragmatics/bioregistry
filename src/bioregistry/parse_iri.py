@@ -94,8 +94,8 @@ def curie_from_iri(
 
 
 @lru_cache(1)
-def _get_default_prefix_list() -> curies.Converter:
-    return curies.Converter.from_reverse_prefix_map(manager.get_reverse_prefix_map())
+def _get_converter() -> curies.Converter:
+    return manager.get_converter()
 
 
 def parse_iri(
@@ -178,7 +178,7 @@ def parse_iri(
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if prefix_map is None:
-        return _get_default_prefix_list().parse_uri(iri)
+        return _get_converter().parse_uri(iri)
 
     warnings.warn(
         "Parsing without a pre-compiled `curies.Converter` class is very slow. "

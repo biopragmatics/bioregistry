@@ -1,19 +1,18 @@
 aberowl:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: missing
     description: required
-    example: irrelevant
-    fair: true
-    fair_note: null
+    example: present
     homepage: required
     license: missing
     name: required
     pattern: missing
-    provider: irrelevant
+    provider: present
     search: true
     synonyms: missing
     version: present
+  bibtex: Hoehndorf2015
   contact:
     email: ali.syed@kaust.edu.sa
     github: aliraza995
@@ -28,11 +27,14 @@ aberowl:
   example: CHEBI
   governance:
     accepts_external_contributions: false
+    code_repository: null
     comments: null
     curates: false
     curation: import
-    imports: false
-    public_version_control: false
+    data_repository: null
+    imports: true
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: n/a
     scope: bio-ontologies
     status: active
@@ -41,24 +43,29 @@ aberowl:
   name: AberOWL
   prefix: aberowl
   provider_uri_format: http://aber-owl.net/ontology/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   resolver_type: lookup
   resolver_uri_format: http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>
+  search_uri_format: http://aber-owl.net/#/$1/Ontologies
 agroportal:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: present
     description: required
-    example: irrelevant
-    fair: false
-    fair_note: The API for AgroPortal requires authentication
+    example: present
     homepage: required
     license: present
     name: required
     pattern: missing
-    provider: irrelevant
-    search: false
+    provider: required
+    search: true
     synonyms: missing
     version: present
+  bibtex: Jonquet2018
   contact:
     email: clement.jonquet@inrae.fr
     github: jonquet
@@ -68,11 +75,14 @@ agroportal:
   example: ENVO
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: private
     scope: agro-ontologies
     status: active
@@ -81,14 +91,18 @@ agroportal:
   name: AgroPortal
   prefix: agroportal
   provider_uri_format: http://agroportal.lirmm.fr/ontologies/$1
+  qualities:
+    automatable_download: true
+    bulk_data: false
+    no_authentication: false
+    structured_data: true
+  resolver_type: lookup
 biocontext:
   availability:
     alternate_providers: missing
     contact: missing
     description: missing
     example: missing
-    fair: true
-    fair_note: null
     homepage: missing
     license: missing
     name: missing
@@ -97,6 +111,7 @@ biocontext:
     search: false
     synonyms: missing
     version: missing
+  bibtex: biocontext
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -107,11 +122,14 @@ biocontext:
   example: CHEBI
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/prefixcommons/biocontext
     comments: null
     curates: true
     curation: open-review
+    data_repository: https://github.com/prefixcommons/biocontext
     imports: false
-    public_version_control: true
+    issue_tracker: https://github.com/prefixcommons/biocontext/issues
+    public_version_controlled_data: true
     review_team: inferrable
     scope: internal
     status: active
@@ -120,14 +138,17 @@ biocontext:
   name: BioContext
   prefix: biocontext
   provider_uri_format: https://bioregistry.io/metaregistry/biocontext/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
 biolink:
   availability:
     alternate_providers: missing
     contact: missing
     description: missing
     example: missing
-    fair: true
-    fair_note: null
     homepage: missing
     license: present
     name: required
@@ -136,6 +157,7 @@ biolink:
     search: false
     synonyms: missing
     version: missing
+  bibtex: Unni2022
   bioregistry_prefix: biolink
   contact:
     email: deepak.unni3@lbl.gov
@@ -147,11 +169,14 @@ biolink:
   example: doi
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/biolink/biolink-model
     comments: null
     curates: true
     curation: open-review
+    data_repository: https://github.com/biolink/biolink-model
     imports: false
-    public_version_control: true
+    issue_tracker: https://github.com/biolink/biolink-model/issues
+    public_version_controlled_data: true
     review_team: inferrable
     scope: internal
     status: active
@@ -159,23 +184,27 @@ biolink:
   license: Apache 2.0
   name: Biolink Model Registry
   prefix: biolink
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   short_name: Biolink
 bioportal:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: present
     description: required
-    example: irrelevant
-    fair: false
-    fair_note: The API for BioPortal requires authentication
+    example: present
     homepage: required
     license: missing
     name: required
     pattern: missing
-    provider: irrelevant
-    search: false
+    provider: required
+    search: true
     synonyms: missing
     version: required
+  bibtex: Whetzel2011
   bioregistry_prefix: bioportal
   contact:
     email: jgraybeal@stanford.edu
@@ -187,11 +216,14 @@ bioportal:
   example: CHEBI
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: https://github.com/ncbo/bioportal-project/issues
+    public_version_controlled_data: false
     review_team: private
     scope: bio-ontologies
     status: active
@@ -200,6 +232,12 @@ bioportal:
   name: BioPortal Prefixes
   prefix: bioportal
   provider_uri_format: https://bioportal.bioontology.org/ontologies/$1
+  qualities:
+    automatable_download: true
+    bulk_data: false
+    no_authentication: false
+    structured_data: true
+  resolver_type: lookup
   short_name: BioPortal
 bioregistry:
   availability:
@@ -207,8 +245,6 @@ bioregistry:
     contact: present
     description: required
     example: required
-    fair: true
-    fair_note: null
     homepage: required
     license: present
     name: required
@@ -217,6 +253,7 @@ bioregistry:
     search: true
     synonyms: present
     version: present
+  bibtex: Hoyt2022
   bioregistry_prefix: bioregistry
   contact:
     email: cthoyt@gmail.com
@@ -229,11 +266,14 @@ bioregistry:
   example: chebi
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/biopragmatics/bioregistry
     comments: null
     curates: true
     curation: open-review
+    data_repository: https://github.com/biopragmatics/bioregistry
     imports: true
-    public_version_control: true
+    issue_tracker: https://github.com/biopragmatics/bioregistry/issues
+    public_version_controlled_data: true
     review_team: public
     scope: life sciences
     status: active
@@ -242,6 +282,11 @@ bioregistry:
   name: Bioregistry
   prefix: bioregistry
   provider_uri_format: https://bioregistry.io/registry/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   resolver_type: resolver
   resolver_uri_format: https://bioregistry.io/$1:$2
 cellosaurus:
@@ -250,8 +295,6 @@ cellosaurus:
     contact: missing
     description: missing
     example: missing
-    fair: true
-    fair_note: Data is available but requires custom parser
     homepage: required
     license: missing
     name: required
@@ -260,6 +303,7 @@ cellosaurus:
     search: false
     synonyms: missing
     version: missing
+  bibtex: Bairoch2018
   bioregistry_prefix: cellosaurus.resource
   contact:
     email: Amos.Bairoch@sib.swiss
@@ -270,11 +314,14 @@ cellosaurus:
   example: 4DN
   governance:
     accepts_external_contributions: false
+    code_repository: null
     comments: null
     curates: true
     curation: private
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: n/a
     scope: internal
     status: active
@@ -282,6 +329,11 @@ cellosaurus:
   license: CC BY 4.0
   name: Cellosaurus Registry
   prefix: cellosaurus
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   short_name: Cellosaurus
 cheminf:
   availability:
@@ -289,8 +341,6 @@ cheminf:
     contact: missing
     description: missing
     example: missing
-    fair: false
-    fair_note: No additional metadata included besides name in ontology
     homepage: missing
     license: missing
     name: required
@@ -299,6 +349,7 @@ cheminf:
     search: false
     synonyms: missing
     version: missing
+  bibtex: Hastings2011
   bioregistry_prefix: cheminf
   contact:
     email: egon.willighagen@gmail.com
@@ -309,11 +360,14 @@ cheminf:
   example: '000140'
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/semanticchemistry/semanticchemistry
     comments: null
     curates: true
     curation: open-review
+    data_repository: https://github.com/semanticchemistry/semanticchemistry
     imports: false
-    public_version_control: true
+    issue_tracker: https://github.com/semanticchemistry/semanticchemistry/issues
+    public_version_controlled_data: true
     review_team: inferrable
     scope: chemistry
     status: unresponsive
@@ -322,23 +376,28 @@ cheminf:
   name: Chemical Information Ontology
   prefix: cheminf
   provider_uri_format: https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  resolver_type: lookup
   short_name: CHEMINF
 cropoct:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: missing
     description: missing
-    example: irrelevant
-    fair: true
-    fair_note: null
-    homepage: irrelevant*
+    example: present
+    homepage: required
     license: missing
     name: required
     pattern: missing
-    provider: irrelevant
+    provider: required
     search: true
     synonyms: missing
     version: missing
+  bibtex: Arnaud2020
   contact:
     email: e.arnaud@cgiar.org
     github: elizabetharnaud
@@ -352,11 +411,14 @@ cropoct:
   example: CO_010
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: https://github.com/EBISPOT/OLS/issues
+    public_version_controlled_data: false
     review_team: public
     scope: agro-ontologies
     status: active
@@ -365,23 +427,29 @@ cropoct:
   name: Crop Ontology Curation Tool
   prefix: cropoct
   provider_uri_format: https://www.cropontology.org/ontology/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  resolver_type: lookup
+  resolver_uri_format: https://cropontology.org/term/$1:$2
   short_name: CropOCT
 ecoportal:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: present
     description: required
-    example: irrelevant
-    fair: false
-    fair_note: The API for EcoPortal requires authentication
+    example: present
     homepage: present
     license: present
     name: required
     pattern: missing
-    provider: irrelevant
-    search: false
+    provider: present
+    search: true
     synonyms: missing
     version: present
+  bibtex: Kechagioglou2021
   contact:
     email: xeni.kechagioglou@lifewatch.eu
     github: xeniacs
@@ -392,11 +460,14 @@ ecoportal:
   example: ALIENSPECIES
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: private
     scope: eco-ontologies
     status: active
@@ -405,22 +476,27 @@ ecoportal:
   name: EcoPortal
   prefix: ecoportal
   provider_uri_format: http://ecoportal.lifewatch.eu/ontologies/$1
+  qualities:
+    automatable_download: true
+    bulk_data: false
+    no_authentication: false
+    structured_data: true
+  resolver_type: lookup
 edam:
   availability:
     alternate_providers: missing
     contact: missing
     description: missing
     example: missing
-    fair: true
-    fair_note: null
     homepage: missing
     license: missing
     name: required
     pattern: missing
     provider: missing
-    search: false
+    search: true
     synonyms: missing
     version: missing
+  bibtex: Ison2013
   bioregistry_prefix: edam.data
   contact:
     email: matus.kalas@uib.no
@@ -437,19 +513,27 @@ edam:
   example: '1004'
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/edamontology/edamontology
     comments: null
     curates: true
     curation: community
+    data_repository: https://github.com/edamontology/edamontology
     imports: false
-    public_version_control: true
+    issue_tracker: https://github.com/edamontology/edamontology/issues
+    public_version_controlled_data: true
     review_team: inferrable
     scope: Life Sciences
     status: active
   homepage: ' http://edamontology.org'
-  license: CC BY 4.0-SA
+  license: CC BY-SA 4.0
   name: EDAM Ontology
   prefix: edam
   provider_uri_format: http://edamontology.org/data_$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   short_name: EDAM
 fairsharing:
   availability:
@@ -457,8 +541,6 @@ fairsharing:
     contact: required
     description: required
     example: missing
-    fair: false
-    fair_note: The API for FAIRsharing requires authentication
     homepage: required
     license: missing
     name: required
@@ -467,6 +549,7 @@ fairsharing:
     search: true
     synonyms: missing
     version: missing
+  bibtex: Sansone2019
   bioregistry_prefix: fairsharing
   contact:
     email: allyson.lister@oerc.ox.ac.uk
@@ -478,11 +561,14 @@ fairsharing:
   example: FAIRsharing.62qk8w
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: private
     scope: life sciences
     status: active
@@ -492,14 +578,17 @@ fairsharing:
   name: FAIRSharing
   prefix: fairsharing
   provider_uri_format: https://fairsharing.org/$1
+  qualities:
+    automatable_download: true
+    bulk_data: false
+    no_authentication: false
+    structured_data: true
 go:
   availability:
     alternate_providers: present
     contact: missing
     description: present
     example: present
-    fair: true
-    fair_note: null
     homepage: present
     license: missing
     name: required
@@ -508,6 +597,7 @@ go:
     search: false
     synonyms: missing
     version: missing
+  bibtex: TheGeneOntologyConsortium2019
   bioregistry_prefix: go.resource
   contact:
     email: cjmungall@lbl.gov
@@ -519,11 +609,14 @@ go:
   example: CHEBI
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/geneontology/go-site
     comments: null
     curates: true
     curation: open-review
+    data_repository: https://github.com/geneontology/go-site
     imports: false
-    public_version_control: true
+    issue_tracker: https://github.com/geneontology/go-site/issues
+    public_version_controlled_data: true
     review_team: inferrable
     scope: internal
     status: inactive
@@ -531,15 +624,18 @@ go:
   license: CC BY 4.0
   name: Gene Ontology Registry
   prefix: go
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   short_name: GO
 hl7:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: present
     description: present
     example: missing
-    fair: false
-    fair_note: There are no download links nor API endpoints
     homepage: present
     license: missing
     name: required
@@ -548,6 +644,7 @@ hl7:
     search: false
     synonyms: missing
     version: missing
+  bibtex: Bender2013
   bioregistry_prefix: oid
   contact:
     email: ted@tklein.com
@@ -558,11 +655,14 @@ hl7:
   example: 2.16.840.1.113883.6.88
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: n/a
     scope: general
     status: active
@@ -571,6 +671,11 @@ hl7:
   name: HL7 External Code Systems
   prefix: hl7
   provider_uri_format: http://www.oid-info.com/get/$1
+  qualities:
+    automatable_download: false
+    bulk_data: false
+    no_authentication: true
+    structured_data: true
   short_name: HL7
 miriam:
   availability:
@@ -578,8 +683,6 @@ miriam:
     contact: missing
     description: required
     example: required
-    fair: true
-    fair_note: null
     homepage: required
     license: missing
     name: required
@@ -588,6 +691,7 @@ miriam:
     search: true
     synonyms: missing
     version: missing
+  bibtex: Juty2012
   bioregistry_prefix: miriam
   contact:
     email: hhe@ebi.ac.uk
@@ -601,11 +705,14 @@ miriam:
   example: chebi
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/identifiers-org/cloud-satellite-web-spa
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: https://github.com/identifiers-org/identifiers-org.github.io/issues
+    public_version_controlled_data: false
     review_team: private
     scope: life sciences
     status: unresponsive
@@ -615,6 +722,11 @@ miriam:
   name: Identifiers.org
   prefix: miriam
   provider_uri_format: https://registry.identifiers.org/registry/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   resolver_type: resolver
   resolver_uri_format: https://identifiers.org/$1:$2
 n2t:
@@ -623,8 +735,6 @@ n2t:
     contact: missing
     description: required
     example: required
-    fair: true
-    fair_note: null
     homepage: required
     license: missing
     name: required
@@ -633,6 +743,7 @@ n2t:
     search: false
     synonyms: present
     version: missing
+  bibtex: Wimalaratne2018
   bioregistry_prefix: n2t
   contact:
     email: jak@ucop.edu
@@ -645,11 +756,14 @@ n2t:
   example: chebi
   governance:
     accepts_external_contributions: false
+    code_repository: null
     comments: null
     curates: false
     curation: import
+    data_repository: null
     imports: true
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: n/a
     scope: life sciences
     status: active
@@ -659,6 +773,11 @@ n2t:
   name: Name-to-Thing
   prefix: n2t
   provider_uri_format: 'https://n2t.net/$1:'
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   resolver_type: resolver
   resolver_uri_format: https://n2t.net/$1:$2
   short_name: N2T
@@ -668,8 +787,6 @@ ncbi:
     contact: missing
     description: missing
     example: required
-    fair: false
-    fair_note: Requires web scraping
     homepage: required
     license: missing
     name: required
@@ -678,6 +795,7 @@ ncbi:
     search: false
     synonyms: missing
     version: missing
+  bibtex: Clark2016
   bioregistry_prefix: ncbi.resource
   contact:
     email: gb-admin@ncbi.nlm.nih.gov
@@ -689,11 +807,14 @@ ncbi:
   example: ECOCYC
   governance:
     accepts_external_contributions: false
+    code_repository: null
     comments: null
     curates: true
     curation: private
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: n/a
     scope: internal
     status: inactive
@@ -701,6 +822,11 @@ ncbi:
   license: See https://github.com/biopragmatics/bioregistry/issues/342
   name: National Center for Biotechnology Information Registry
   prefix: ncbi
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: false
   short_name: NCBI
 obofoundry:
   availability:
@@ -708,16 +834,15 @@ obofoundry:
     contact: required
     description: required
     example: missing
-    fair: true
-    fair_note: null
     homepage: required
     license: required
     name: required
     pattern: missing
     provider: missing
-    search: false
+    search: true
     synonyms: missing
     version: missing
+  bibtex: Jackson2021
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -729,11 +854,14 @@ obofoundry:
   example: chebi
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/OBOFoundry/OBOFoundry.github.io
     comments: null
     curates: true
     curation: open-review
+    data_repository: https://github.com/OBOFoundry/OBOFoundry.github.io
     imports: false
-    public_version_control: true
+    issue_tracker: https://github.com/OBOFoundry/OBOFoundry.github.io/issues
+    public_version_controlled_data: true
     review_team: public
     scope: bio-ontologies
     status: active
@@ -743,24 +871,28 @@ obofoundry:
   name: OBO Foundry
   prefix: obofoundry
   provider_uri_format: http://www.obofoundry.org/ontology/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   resolver_type: resolver
   resolver_uri_format: http://purl.obolibrary.org/obo/$1_$2
 ols:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: present
     description: required
-    example: irrelevant
-    fair: true
-    fair_note: null
+    example: present
     homepage: present
     license: required
     name: required
     pattern: missing
-    provider: irrelevant
+    provider: present
     search: true
     synonyms: missing
     version: present
+  bibtex: Cote2006a
   contact:
     email: henriette007@ebi.ac.uk
     github: henrietteharmse
@@ -771,11 +903,14 @@ ols:
   example: chebi
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/EBISPOT/OLS
     comments: Accepts suggestions through the OLS issue tracker at https://github.com/EBISPOT/OLS/issues
     curates: false
     curation: import
-    imports: false
-    public_version_control: false
+    data_repository: https://github.com/EBISPOT/OLS
+    imports: true
+    issue_tracker: https://github.com/EBISPOT/OLS/issues/
+    public_version_controlled_data: true
     review_team: inferrable
     scope: bio-ontologies
     status: active
@@ -785,23 +920,28 @@ ols:
   name: Ontology Lookup Service
   prefix: ols
   provider_uri_format: https://www.ebi.ac.uk/ols/ontologies/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  resolver_type: lookup
   short_name: OLS
 ontobee:
   availability:
-    alternate_providers: irrelevant
+    alternate_providers: missing
     contact: required
     description: required
-    example: irrelevant
-    fair: false
-    fair_note: No API available, data download requires web scraping
+    example: present
     homepage: required
     license: missing
     name: required
     pattern: missing
-    provider: irrelevant
+    provider: present
     search: false
     synonyms: missing
     version: missing
+  bibtex: Ong2017
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -811,12 +951,15 @@ ontobee:
     query, integration, and analysis.
   example: AGRO
   governance:
-    accepts_external_contributions: false
+    accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: false
     curation: import
-    imports: false
-    public_version_control: false
+    data_repository: null
+    imports: true
+    issue_tracker: https://github.com/OntoZoo/ontobee/issues
+    public_version_controlled_data: false
     review_team: n/a
     scope: bio-ontologies
     status: active
@@ -825,6 +968,11 @@ ontobee:
   name: OntoBee
   prefix: ontobee
   provider_uri_format: http://www.ontobee.org/ontology/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: false
   resolver_type: lookup
   resolver_uri_format: http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2
 prefixcc:
@@ -833,8 +981,6 @@ prefixcc:
     contact: missing
     description: missing
     example: missing
-    fair: true
-    fair_note: null
     homepage: missing
     license: missing
     name: missing
@@ -853,12 +999,15 @@ prefixcc:
   example: foaf
   governance:
     accepts_external_contributions: true
+    code_repository: https://github.com/cygri/prefix.cc/
     comments: null
     curates: true
     curation: community
+    data_repository: null
     imports: false
-    public_version_control: true
-    review_team: n/a
+    issue_tracker: https://github.com/cygri/prefix.cc/issues
+    public_version_controlled_data: false
+    review_team: democratic
     scope: general
     status: active
   homepage: https://prefix.cc/
@@ -866,14 +1015,17 @@ prefixcc:
   name: Prefix.cc
   prefix: prefixcc
   provider_uri_format: https://prefix.cc/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
 prefixcommons:
   availability:
-    alternate_providers: required
+    alternate_providers: present
     contact: missing
     description: present
     example: present
-    fair: true
-    fair_note: null
     homepage: present
     license: missing
     name: required
@@ -882,6 +1034,7 @@ prefixcommons:
     search: true
     synonyms: present
     version: missing
+  bibtex: prefixcommons
   bioregistry_prefix: prefixcommons
   contact:
     email: michel.dumontier@gmail.com
@@ -894,11 +1047,14 @@ prefixcommons:
   example: CHEBI
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: community
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: public
     scope: life sciences
     status: active
@@ -907,14 +1063,17 @@ prefixcommons:
   name: Prefix Commons
   prefix: prefixcommons
   provider_uri_format: https://prefixcommons.org/?q=$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
 re3data:
   availability:
     alternate_providers: missing
     contact: present
     description: required
     example: missing
-    fair: false
-    fair_note: The API for Re3data does not provide a bulk download
     homepage: required
     license: present
     name: required
@@ -934,19 +1093,27 @@ re3data:
   example: r3d100010772
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: opaque-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: private
     scope: general
     status: active
   homepage: https://www.re3data.org
-  license: CC 0
+  license: CC0
   name: Registry of Research Data Repositories
   prefix: re3data
   provider_uri_format: https://www.re3data.org/repository/$1
+  qualities:
+    automatable_download: true
+    bulk_data: false
+    no_authentication: true
+    structured_data: false
   short_name: re3data
 uniprot:
   availability:
@@ -954,8 +1121,6 @@ uniprot:
     contact: missing
     description: missing
     example: missing
-    fair: true
-    fair_note: null
     homepage: required
     license: missing
     name: required
@@ -964,6 +1129,7 @@ uniprot:
     search: true
     synonyms: missing
     version: missing
+  bibtex: Bateman2021
   bioregistry_prefix: uniprot.resource
   contact:
     email: agb@ebi.ac.uk
@@ -977,11 +1143,14 @@ uniprot:
   example: '0174'
   governance:
     accepts_external_contributions: false
+    code_repository: null
     comments: null
     curates: true
     curation: private
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: n/a
     scope: internal
     status: active
@@ -990,23 +1159,27 @@ uniprot:
   name: UniProt Cross-ref database
   prefix: uniprot
   provider_uri_format: https://www.uniprot.org/database/DB-$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   short_name: UniProt
 wikidata:
   availability:
     alternate_providers: present
-    contact: present*
+    contact: present
     description: required
     example: present
-    fair: true
-    fair_note: null
     homepage: present
-    license: present*
+    license: present
     name: required
     pattern: present
     provider: present
     search: true
     synonyms: missing
-    version: present*
+    version: present
+  bibtex: Waagmeester2020
   bioregistry_prefix: wikidata
   contact:
     email: info@wikidata.org
@@ -1018,11 +1191,14 @@ wikidata:
   example: P683
   governance:
     accepts_external_contributions: true
+    code_repository: null
     comments: null
     curates: true
     curation: open-review
+    data_repository: null
     imports: false
-    public_version_control: false
+    issue_tracker: null
+    public_version_controlled_data: false
     review_team: inferrable
     scope: general
     status: active
@@ -1032,4 +1208,9 @@ wikidata:
   name: Wikidata Property
   prefix: wikidata
   provider_uri_format: https://www.wikidata.org/wiki/Property:$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
   short_name: Wikidata

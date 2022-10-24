@@ -311,15 +311,15 @@
     "mappings": {
       "cellosaurus": "ABCD",
       "fairsharing": "FAIRsharing.Z8OKi5",
-      "uniprot": "ABCD"
+      "uniprot": "DB-0236"
     },
     "name": "AntiBodies Chemically Defined database",
     "uniprot": {
+      "abbreviation": "ABCD",
       "category": "Protocols and materials databases",
-      "identifier": "236",
-      "link_is_explicit": "true",
+      "homepage": "https://web.expasy.org/abcd",
       "name": "ABCD curated depository of sequenced antibodies",
-      "prefix": "ABCD",
+      "prefix": "DB-0236",
       "uri_format": "https://web.expasy.org/cgi-bin/abcd/search_abcd.pl?input=$1"
     },
     "uri_format": "https://web.expasy.org/abcd/ABCD_$1"
@@ -1332,7 +1332,7 @@
         "email": "AGROVOC@fao.org",
         "name": "AGROVOC"
       },
-      "description": "Since the early 1980's, the Food and Agriculture Organization of the United Nations (FAO) has coordinated AGROVOC, a valuable tool for data to be classified homogeneously, facilitating interoperability and reuse. AGROVOC is a multilingual and controlled vocabulary designed to cover concepts and terminology under FAO's areas of interest.",
+      "description": "An RDF vocabulary for describing the basic structure and content of concept schemes such as thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', other types of controlled vocabulary, and also concept schemes embedded in glossaries and terminologies., An RDF vocabulary extending SKOS and allowing the description and linking of lexical entities.",
       "example_uri": "http://aims.fao.org/aos/agrovoc/c_38445",
       "homepage": "http://www.fao.org/agrovoc/",
       "license": "CC-BY IGO 3.0",
@@ -1527,7 +1527,7 @@
       "miriam": "allergome",
       "n2t": "allergome",
       "prefixcommons": "allergome",
-      "uniprot": "Allergome"
+      "uniprot": "DB-0160"
     },
     "miriam": {
       "deprecated": false,
@@ -1582,11 +1582,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "Allergome",
       "category": "Protein family/group databases",
-      "identifier": "160",
-      "link_is_explicit": "true",
+      "homepage": "http://www.allergome.org/",
       "name": "Allergome; a platform for allergen knowledge",
-      "prefix": "Allergome",
+      "prefix": "DB-0160",
+      "publications": [
+        {
+          "doi": "10.1007/s11882-009-0055-9",
+          "pubmed": "19671381"
+        }
+      ],
       "uri_format": "http://www.allergome.org/script/dettaglio.php?id_molecule=$1"
     }
   },
@@ -2213,7 +2219,7 @@
   "apo": {
     "aberowl": {
       "description": "A structured controlled vocabulary for the phenotypes of Ascomycete fungi",
-      "download_owl": "http://aber-owl.net/media/ontologies/APO/40/apo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/APO/41/apo.owl",
       "homepage": "http://www.yeastgenome.org/",
       "name": "Ascomycete phenotype ontology",
       "prefix": "APO"
@@ -2221,8 +2227,8 @@
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
-      "prefix": "YPO",
-      "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
+      "prefix": "APO",
+      "uri_format": "http://purl.obolibrary.org/obo/APO_$1"
     },
     "bioportal": {
       "contact": {
@@ -2250,7 +2256,7 @@
     },
     "mappings": {
       "aberowl": "APO",
-      "biocontext": "YPO",
+      "biocontext": "APO",
       "bioportal": "APO",
       "fairsharing": "FAIRsharing.dyqz3y",
       "obofoundry": "apo",
@@ -2458,7 +2464,7 @@
       "n2t": "arachnoserver",
       "prefixcommons": "arachnoserver",
       "re3data": "r3d100012902",
-      "uniprot": "ArachnoServer"
+      "uniprot": "DB-0145"
     },
     "miriam": {
       "deprecated": false,
@@ -2527,12 +2533,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "ArachnoServer",
       "category": "Organism-specific databases",
-      "identifier": "145",
-      "link_is_explicit": "true",
-      "name": "ArachnoServer: Spider toxin database",
-      "prefix": "ArachnoServer",
-      "uri_format": "http://www.arachnoserver.org"
+      "homepage": "http://www.arachnoserver.org",
+      "name": "ArachnoServer",
+      "prefix": "DB-0145",
+      "publications": [
+        {
+          "doi": "10.1093/bioinformatics/btx661",
+          "pubmed": "29069336"
+        }
+      ]
     }
   },
   "araport": {
@@ -2540,7 +2551,7 @@
     "homepage": "https://www.araport.org/",
     "mappings": {
       "ncbi": "Araport",
-      "uniprot": "Araport"
+      "uniprot": "DB-0221"
     },
     "name": "Arabidopsis Information Portal",
     "ncbi": {
@@ -2550,11 +2561,17 @@
       "prefix": "Araport"
     },
     "uniprot": {
+      "abbreviation": "Araport",
       "category": "Organism-specific databases",
-      "identifier": "221",
-      "link_is_explicit": "true",
+      "homepage": "https://bar.utoronto.ca/thalemine/begin.do",
       "name": "Arabidopsis Information Portal",
-      "prefix": "Araport",
+      "prefix": "DB-0221",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gku1200",
+          "pubmed": "25414324"
+        }
+      ],
       "uri_format": "https://bar.utoronto.ca/thalemine/portal.do?externalids=$1"
     },
     "uri_format": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
@@ -3355,13 +3372,22 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "WHO ATC, Anatomical Therapeutic Chemical classification. The classification system divides drugs into different groups according to the organ or system on which they act and/or their therapeutic and chemical characteristics. It contains several subsets.",
+      "homepage": "http://www.who-umc.org/",
+      "name": "WHO Anatomical Therapeutic Chemical classification",
+      "organization": "World Health Organization",
+      "preferred_prefix": "whoATC",
+      "prefix": "2.16.840.1.113883.6.73",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "ATC",
       "biocontext": "ATC",
       "bioportal": "ATC",
       "edam": "3103",
       "fairsharing": "FAIRsharing.1a27h8",
-      "hl7": "whoATC",
+      "hl7": "2.16.840.1.113883.6.73",
       "miriam": "atc",
       "n2t": "atc",
       "prefixcommons": "atc",
@@ -4070,6 +4096,33 @@
     "synonyms": [
       "BAO"
     ]
+  },
+  "bartoc": {
+    "contact": {
+      "email": "andreas.ledl1@fhnw.ch",
+      "name": "Andreas Ledl",
+      "orcid": "0000-0002-0629-0446"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO).",
+    "example": "241",
+    "homepage": "https://bartoc.org",
+    "license": "PDDL 1.0",
+    "mappings": {
+      "wikidata": "P2689"
+    },
+    "name": "Basic Register of Thesauri, Ontologies & Classifications",
+    "pattern": "^[1-9][0-9]*$",
+    "repository": "https://github.com/gbv/bartoc.org",
+    "uri_format": "https://bartoc.org/en/node/$1",
+    "wikidata": {
+      "prefix": "P2689"
+    }
   },
   "bbkg": {
     "mappings": {
@@ -5282,7 +5335,7 @@
       "n2t": "bindingdb",
       "prefixcommons": "bindingdb",
       "re3data": "r3d100012074",
-      "uniprot": "BindingDB"
+      "uniprot": "DB-0127"
     },
     "miriam": {
       "deprecated": false,
@@ -5347,11 +5400,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "BindingDB",
       "category": "Chemistry databases",
-      "identifier": "127",
-      "link_is_explicit": "true",
+      "homepage": "https://www.bindingdb.org/",
       "name": "BindingDB database of measured binding affinities",
-      "prefix": "BindingDB",
+      "prefix": "DB-0127",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkv1072",
+          "pubmed": "26481362"
+        }
+      ],
       "uri_format": "https://www.bindingdb.org/uniprot/$1"
     }
   },
@@ -5452,7 +5511,7 @@
       "miriam": "biocyc",
       "n2t": "biocyc",
       "prefixcommons": "biocyc",
-      "uniprot": "BioCyc"
+      "uniprot": "DB-0005"
     },
     "miriam": {
       "deprecated": false,
@@ -5503,11 +5562,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "BioCyc",
       "category": "Enzyme and pathway databases",
-      "identifier": "5",
-      "link_is_explicit": "true",
+      "homepage": "https://www.biocyc.org/",
       "name": "BioCyc Collection of Pathway/Genome Databases",
-      "prefix": "BioCyc",
+      "prefix": "DB-0005",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkv1164",
+          "pubmed": "26527732"
+        }
+      ],
       "uri_format": "https://biocyc.org/getid?id=$1"
     }
   },
@@ -5541,7 +5606,7 @@
       "n2t": "biogrid",
       "prefixcommons": "biogrid",
       "re3data": "r3d100010350",
-      "uniprot": "BioGRID"
+      "uniprot": "DB-0184"
     },
     "miriam": {
       "deprecated": false,
@@ -5612,11 +5677,17 @@
     },
     "twitter": "biogrid",
     "uniprot": {
+      "abbreviation": "BioGRID",
       "category": "Protein-protein interaction databases",
-      "identifier": "184",
-      "link_is_explicit": "true",
+      "homepage": "https://thebiogrid.org/",
       "name": "The Biological General Repository for Interaction Datasets (BioGRID)",
-      "prefix": "BioGRID",
+      "prefix": "DB-0184",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkq1116",
+          "pubmed": "21071413"
+        }
+      ],
       "uri_format": "https://thebiogrid.org/$1"
     }
   },
@@ -6226,6 +6297,11 @@
       "prefix": "BIOPORTAL",
       "uri_format": "http://identifiers.org/bioportal/$1"
     },
+    "example_extras": [
+      "SEPIO",
+      "pseudo",
+      "FBBi"
+    ],
     "fairsharing": {
       "abbreviation": "BioPortal",
       "description": "BioPortal is a library of biomedical ontologies and terminologies developed in Web Ontology Language (OWL), Resource Description Framework (RDF)(S), Open Biological and Biomedical Ontologies (OBO) format, and Protégé frames and Rich Release Format. BioPortal groups ontologies by domain to aid discoverability and allows users to browse, search and visualize the content of ontologies. BioPortal also provides ontology recommendation, text annotation, ontology mapping, and a reference index to resources like PubMed.",
@@ -6267,6 +6343,7 @@
       "prefix": "bioportal",
       "uri_format": "http://bioportal.bioontology.org/ontologies/$1"
     },
+    "pattern": "^(\\d+)|(\\w+)$",
     "prefixcommons": {
       "description": "BioPortal is an open repository of biomedical ontologies that provides access via Web services and Web browsers to ontologies developed in OWL, RDF, OBO format and Protege frames. BioPortal functionality includes the ability to browse, search and visualize ontologies.",
       "example": "1046",
@@ -7120,7 +7197,7 @@
     "mappings": {
       "fairsharing": "FAIRsharing.p06nme",
       "miriam": "bmrb",
-      "uniprot": "BMRB"
+      "uniprot": "DB-0256"
     },
     "miriam": {
       "deprecated": false,
@@ -7135,11 +7212,17 @@
       "uri_format": "http://rest.bmrb.wisc.edu/bmrb/$1/html"
     },
     "uniprot": {
+      "abbreviation": "BMRB",
       "category": "3D structure databases",
-      "identifier": "256",
-      "link_is_explicit": "true",
+      "homepage": "https://bmrb.io/",
       "name": "Biological Magnetic Resonance Data Bank",
-      "prefix": "BMRB",
+      "prefix": "DB-0256",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkm957",
+          "pubmed": "17984079"
+        }
+      ],
       "uri_format": "https://bmrb.io/data_library/summary/protein.php?uniprot=$1"
     }
   },
@@ -7292,8 +7375,7 @@
       "miriam": "brenda",
       "n2t": "brenda",
       "prefixcommons": "brenda",
-      "re3data": "r3d100010616",
-      "uniprot": "BRENDA"
+      "re3data": "r3d100010616"
     },
     "miriam": {
       "deprecated": false,
@@ -7356,14 +7438,6 @@
         "omics": "02681",
         "scr": "002997"
       }
-    },
-    "uniprot": {
-      "category": "Enzyme and pathway databases",
-      "identifier": "131",
-      "link_is_explicit": "true",
-      "name": "BRENDA Comprehensive Enzyme Information System",
-      "prefix": "BRENDA",
-      "uri_format": "https://www.brenda-enzymes.org/enzyme.php?ecno=%s&UniProtAcc=%u&OrganismID=%d"
     }
   },
   "brenda.ligand": {
@@ -7811,7 +7885,8 @@
       "pattern": "^\\d+$",
       "prefix": "bugbase.expt",
       "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view"
-    }
+    },
+    "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1"
   },
   "bugbase.protocol": {
     "biocontext": {
@@ -7846,7 +7921,8 @@
       "pattern": "^\\d+$",
       "prefix": "bugbase.protocol",
       "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?protocol_id=$1&amp;action=view"
-    }
+    },
+    "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1"
   },
   "bykdb": {
     "biocontext": {
@@ -8680,7 +8756,7 @@
       "miriam": "cazy",
       "n2t": "cazy",
       "prefixcommons": "cazy",
-      "uniprot": "CAZy"
+      "uniprot": "DB-0136"
     },
     "miriam": {
       "deprecated": false,
@@ -8730,11 +8806,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "CAZy",
       "category": "Protein family/group databases",
-      "identifier": "136",
-      "link_is_explicit": "true",
+      "homepage": "http://www.cazy.org/",
       "name": "Carbohydrate-Active enZymes",
-      "prefix": "CAZy",
+      "prefix": "DB-0136",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkt1178",
+          "pubmed": "24270786"
+        }
+      ],
       "uri_format": "http://www.cazy.org/fam/$1.html"
     }
   },
@@ -8835,7 +8917,7 @@
       "miriam": "ccds",
       "n2t": "ccds",
       "prefixcommons": "ccds",
-      "uniprot": "CCDS"
+      "uniprot": "DB-0187"
     },
     "miriam": {
       "deprecated": false,
@@ -8885,11 +8967,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "CCDS",
       "category": "Sequence databases",
-      "identifier": "187",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ncbi.nlm.nih.gov/CCDS",
       "name": "The Consensus CDS (CCDS) project",
-      "prefix": "CCDS",
+      "prefix": "DB-0187",
+      "publications": [
+        {
+          "doi": "10.1101/gr.080531.108",
+          "pubmed": "19498102"
+        }
+      ],
       "uri_format": "https://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&GO=MainBrowse&DATA=$1"
     }
   },
@@ -9223,7 +9311,7 @@
       "n2t": "cdd",
       "ncbi": "CDD",
       "prefixcommons": "cdd",
-      "uniprot": "CDD"
+      "uniprot": "DB-0214"
     },
     "miriam": {
       "deprecated": false,
@@ -9279,11 +9367,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "CDD",
       "category": "Family and domain databases",
-      "identifier": "214",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ncbi.nlm.nih.gov/cdd",
       "name": "Conserved Domains Database",
-      "prefix": "CDD",
+      "prefix": "DB-0214",
+      "publications": [
+        {
+          "doi": "doi",
+          "pubmed": "25414356"
+        }
+      ],
       "uri_format": "https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=$1"
     }
   },
@@ -9833,7 +9927,7 @@
       "n2t": "cgd",
       "ncbi": "CGD",
       "prefixcommons": "cgd",
-      "uniprot": "CGD"
+      "uniprot": "DB-0126"
     },
     "miriam": {
       "deprecated": false,
@@ -9890,11 +9984,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "CGD",
       "category": "Organism-specific databases",
-      "identifier": "126",
-      "link_is_explicit": "true",
+      "homepage": "http://www.candidagenome.org/",
       "name": "Candida Genome Database",
-      "prefix": "CGD",
+      "prefix": "DB-0126",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkw924",
+          "pubmed": "27738138"
+        }
+      ],
       "uri_format": "http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1"
     }
   },
@@ -10090,7 +10190,7 @@
       "homepage": "http://www.ebi.ac.uk/chebi",
       "name": "Chemical Entities of Biological Interest Ontology",
       "prefix": "CHEBI",
-      "version": "213"
+      "version": "214"
     },
     "cellosaurus": {
       "category": "Chemistry resources",
@@ -10387,7 +10487,7 @@
       "miriam": "chembl",
       "prefixcommons": "chembl",
       "re3data": "r3d100010539",
-      "uniprot": "ChEMBL"
+      "uniprot": "DB-0174"
     },
     "miriam": {
       "deprecated": false,
@@ -10433,11 +10533,17 @@
       "chembl"
     ],
     "uniprot": {
+      "abbreviation": "ChEMBL",
       "category": "Chemistry databases",
-      "identifier": "174",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ebi.ac.uk/chembldb",
       "name": "ChEMBL database of bioactive drug-like small molecules",
-      "prefix": "ChEMBL",
+      "prefix": "DB-0174",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkr777",
+          "pubmed": "21948594"
+        }
+      ],
       "uri_format": "https://www.ebi.ac.uk/chembldb/target/inspect/$1"
     }
   },
@@ -11294,7 +11400,7 @@
       "homepage": "https://github.com/cido-ontology/cido",
       "name": "CIDO: Ontology of Coronavirus Infectious Disease",
       "prefix": "cido",
-      "version": "1.0.326"
+      "version": "1.0.337"
     },
     "ontobee": {
       "library": "Library",
@@ -12088,12 +12194,21 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "ClinVar processes submissions reporting variants found in patient samples, assertions made regarding their clinical significance, information about the submitter, and other supporting data. The alleles described in submissions are mapped to reference sequences, and reported according to the HGVS standard. The ClinVar records have a field for Allele ID and for Variant ID. All simple variants have an Allele ID. At present, all complex  and most simple variants also have a Variant ID, and by the end of 2016, all variants will have a variant ID. This coding system uses the variant ID as the code and the variant name ( field TBD) from the \"variant_summary\" file as the code print string. The \"variant_summary\" file caries more than 20 fields , including the seperate components of the variant nane, the cytogenomic locatiaon, the genomic reference etc. Many of these attributes have been indexed to assist users and applications that need to find the  ID for a particular variant. ",
+      "homepage": "https://lhncbc.nlm.nih.gov/",
+      "name": "ClinVar Variant ID",
+      "organization": "National Lister Hill Center of Biomedical Communications, National Library of Medicine",
+      "preferred_prefix": "clinVar-V",
+      "prefix": "2.16.840.1.113883.6.319",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "ClinVar",
       "biolink": "CLINVAR",
       "cellosaurus": "ClinVar",
       "fairsharing": "FAIRsharing.wx5r6f",
-      "hl7": "clinVar-V",
+      "hl7": "2.16.840.1.113883.6.319",
       "miriam": "clinvar",
       "n2t": "clinvar",
       "re3data": "r3d100013331",
@@ -12528,16 +12643,8 @@
       "uri_format": "http://purl.obolibrary.org/obo/CMO_$1"
     },
     "bioportal": {
-      "contact": {
-        "email": "akwitek@mcw.edu",
-        "name": "Anne Kwitek"
-      },
-      "description": "The Clinical Measurement Ontology is designed to be used to standardize morphological and physiological measurement records generated from clinical and model organism research and health programs.",
-      "homepage": "https://rgd.mcw.edu/rgdweb/ontology/search.html",
       "name": "Clinical Measurement Ontology",
-      "prefix": "CMO",
-      "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "2.172"
+      "prefix": "CMO"
     },
     "example": "0001350",
     "fairsharing": {
@@ -14908,7 +15015,7 @@
       "miriam": "complexportal",
       "n2t": "complexportal",
       "re3data": "r3d100013295",
-      "uniprot": "ComplexPortal",
+      "uniprot": "DB-0228",
       "wikidata": "P7718"
     },
     "miriam": {
@@ -14950,11 +15057,17 @@
       "ComplexPortal"
     ],
     "uniprot": {
+      "abbreviation": "ComplexPortal",
       "category": "Protein-protein interaction databases",
-      "identifier": "228",
-      "link_is_explicit": "true",
-      "name": "ComplexPortal: manually curated resource of macromolecular complexes",
-      "prefix": "ComplexPortal",
+      "homepage": "https://www.ebi.ac.uk/complexportal/",
+      "name": "ComplexPortal",
+      "prefix": "DB-0228",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gku975",
+          "pubmed": "25313161"
+        }
+      ],
       "uri_format": "https://www.ebi.ac.uk/complexportal/complex/$1"
     },
     "wikidata": {
@@ -15120,7 +15233,7 @@
       "fairsharing": "FAIRsharing.y00hz4",
       "miriam": "conoserver",
       "n2t": "conoserver",
-      "uniprot": "ConoServer"
+      "uniprot": "DB-0156"
     },
     "miriam": {
       "deprecated": false,
@@ -15146,11 +15259,17 @@
     },
     "name": "ConoServer",
     "uniprot": {
+      "abbreviation": "ConoServer",
       "category": "Organism-specific databases",
-      "identifier": "156",
-      "link_is_explicit": "true",
-      "name": "ConoServer: Cone snail toxin database",
-      "prefix": "ConoServer",
+      "homepage": "http://www.conoserver.org/",
+      "name": "ConoServer",
+      "prefix": "DB-0156",
+      "publications": [
+        {
+          "doi": "10.1093/bioinformatics/btm596",
+          "pubmed": "18065428"
+        }
+      ],
       "uri_format": "http://www.conoserver.org/?page=card&table=protein&id=$1"
     }
   },
@@ -15326,7 +15445,7 @@
       "miriam": "corum",
       "n2t": "corum",
       "prefixcommons": "corum",
-      "uniprot": "CORUM"
+      "uniprot": "DB-0224"
     },
     "miriam": {
       "deprecated": false,
@@ -15364,11 +15483,17 @@
       "uri_format": "http://mips.helmholtz-muenchen.de/genre/proj/corum/complexdetails.html?id=$1"
     },
     "uniprot": {
+      "abbreviation": "CORUM",
       "category": "Protein-protein interaction databases",
-      "identifier": "224",
-      "link_is_explicit": "true",
+      "homepage": "http://mips.helmholtz-muenchen.de/corum/",
       "name": "CORUM comprehensive resource of mammalian protein complexes",
-      "prefix": "CORUM",
+      "prefix": "DB-0224",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky973",
+          "pubmed": "30357367"
+        }
+      ],
       "uri_format": "http://mips.helmholtz-muenchen.de/corum/#?uniprotID=$1"
     }
   },
@@ -15615,7 +15740,8 @@
       "homepage": "http://www.gramene.org/plant_ontology/",
       "name": "Cereal Plant Gross Anatomy",
       "prefix": "gro"
-    }
+    },
+    "preferred_prefix": "CGPA"
   },
   "cpt": {
     "aberowl": {
@@ -16478,7 +16604,8 @@
       "biocontext": "CTD.GENE",
       "biolink": "CTD.GENE",
       "miriam": "ctd.gene",
-      "n2t": "ctd.gene"
+      "n2t": "ctd.gene",
+      "uniprot": "DB-0140"
     },
     "miriam": {
       "deprecated": false,
@@ -16503,7 +16630,21 @@
       "uri_format": "http://ctdbase.org/detail.go?type=gene&acc=$1"
     },
     "part_of": "ctd",
-    "provides": "ncbigene"
+    "provides": "ncbigene",
+    "uniprot": {
+      "abbreviation": "CTD",
+      "category": "Organism-specific databases",
+      "homepage": "https://ctdbase.org/",
+      "name": "Comparative Toxicogenomics Database",
+      "prefix": "DB-0140",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkaa891",
+          "pubmed": "33068428"
+        }
+      ],
+      "uri_format": "https://ctdbase.org/detail.go?type=gene&db=GENE&acc=$1"
+    }
   },
   "cteno": {
     "aberowl": {
@@ -17607,7 +17748,7 @@
       "ncbi": "dbSNP",
       "prefixcommons": "dbsnp",
       "re3data": "r3d100010652",
-      "uniprot": "dbSNP"
+      "uniprot": "DB-0013"
     },
     "miriam": {
       "deprecated": false,
@@ -17686,12 +17827,18 @@
       }
     },
     "uniprot": {
+      "abbreviation": "dbSNP",
       "category": "Genetic variation databases",
-      "identifier": "13",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ncbi.nlm.nih.gov/snp/",
       "name": "Database of single nucleotide polymorphism",
-      "prefix": "dbSNP",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=$1"
+      "prefix": "DB-0013",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkl1031",
+          "pubmed": "17170002"
+        }
+      ],
+      "uri_format": "https://www.ncbi.nlm.nih.gov/snp/$1"
     }
   },
   "dbvar.study": {
@@ -18441,7 +18588,7 @@
       "miriam": "depod",
       "n2t": "depod",
       "re3data": "r3d100011936",
-      "uniprot": "DEPOD"
+      "uniprot": "DB-0190"
     },
     "miriam": {
       "deprecated": false,
@@ -18481,11 +18628,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "DEPOD",
       "category": "PTM databases",
-      "identifier": "190",
-      "link_is_explicit": "true",
+      "homepage": "http://depod.bioss.uni-freiburg.de",
       "name": "DEPOD human dephosphorylation database",
-      "prefix": "DEPOD",
+      "prefix": "DB-0190",
+      "publications": [
+        {
+          "doi": "doi",
+          "pubmed": "31836896"
+        }
+      ],
       "uri_format": "http://depod.bioss.uni-freiburg.de/showp.php?name=$1"
     }
   },
@@ -18726,10 +18879,19 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "Coded concepts defined in PS 3.16 Digital Imaging andCommunications in Medicine (DICOM): Part 16: Content Mapping Resource,Annex D: DICOM Controlled Terminology Definition",
+      "homepage": "http://medical.nema.org/",
+      "name": "DICOM Controlled Terminology",
+      "organization": "DICOM Standards Committee",
+      "preferred_prefix": "DCM",
+      "prefix": "1.2.840.10008.2.16.4",
+      "status": "Complete"
+    },
     "mappings": {
       "bioportal": "DCM",
       "fairsharing": "FAIRsharing.b7z8by",
-      "hl7": "DCM",
+      "hl7": "1.2.840.10008.2.16.4",
       "ols": "dicom"
     },
     "ols": {
@@ -18781,7 +18943,7 @@
       "ncbi": "dictyBase",
       "prefixcommons": "dictybase",
       "re3data": "r3d100010586",
-      "uniprot": "dictyBase"
+      "uniprot": "DB-0015"
     },
     "name": "dictyBase",
     "ncbi": {
@@ -18821,12 +18983,17 @@
       "dictyBase"
     ],
     "uniprot": {
+      "abbreviation": "dictyBase",
       "category": "Organism-specific databases",
-      "comment": "Replacement for DictyBase",
-      "identifier": "15",
-      "link_is_explicit": "true",
+      "homepage": "http://dictybase.org/",
       "name": "Dictyostelium discoideum online informatics resource",
-      "prefix": "dictyBase",
+      "prefix": "DB-0015",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gks1064",
+          "pubmed": "23172289"
+        }
+      ],
       "uri_format": "http://dictybase.org/db/cgi-bin/gene_page.pl?primary_id=$1"
     }
   },
@@ -19145,7 +19312,7 @@
       "miriam": "dip",
       "n2t": "dip",
       "prefixcommons": "dip",
-      "uniprot": "DIP"
+      "uniprot": "DB-0016"
     },
     "miriam": {
       "deprecated": false,
@@ -19195,11 +19362,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "DIP",
       "category": "Protein-protein interaction databases",
-      "identifier": "16",
-      "link_is_explicit": "true",
+      "homepage": "https://dip.doe-mbi.ucla.edu/",
       "name": "Database of interacting proteins",
-      "prefix": "DIP",
+      "prefix": "DB-0016",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkh086",
+          "pubmed": "14681454"
+        }
+      ],
       "uri_format": "https://dip.doe-mbi.ucla.edu/dip/Browse.cgi?ID=$1"
     }
   },
@@ -19338,7 +19511,7 @@
       "n2t": "disprot",
       "prefixcommons": "disprot",
       "re3data": "r3d100010561",
-      "uniprot": "DisProt"
+      "uniprot": "DB-0017"
     },
     "miriam": {
       "deprecated": false,
@@ -19401,11 +19574,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "DisProt",
       "category": "Family and domain databases",
-      "identifier": "17",
-      "link_is_explicit": "true",
+      "homepage": "https://disprot.org",
       "name": "Database of protein disorder",
-      "prefix": "DisProt",
+      "prefix": "DB-0017",
+      "publications": [
+        {
+          "doi": "10.1093/bioinformatics/bth476",
+          "pubmed": "15310560"
+        }
+      ],
       "uri_format": "https://disprot.org/$1"
     }
   },
@@ -19424,7 +19603,8 @@
       "prefix": "disprot.region",
       "sampleId": "DP00086r013",
       "uri_format": "https://www.disprot.org/$1"
-    }
+    },
+    "part_of": "disprot"
   },
   "dlxb": {
     "mappings": {
@@ -19888,8 +20068,8 @@
       "download": "http://purl.obolibrary.org/obo/doid.owl",
       "name": "Human Disease Ontology",
       "prefix": "doid",
-      "version": "2022-06-07",
-      "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2022-06-07/doid.owl"
+      "version": "2022-09-29",
+      "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2022-09-29/doid.owl"
     },
     "ontobee": {
       "library": "Foundry",
@@ -20033,7 +20213,7 @@
     ],
     "wikidata": {
       "database": "Q5282129",
-      "database.homepage": "http://disease-ontology.org/",
+      "database.homepage": "https://disease-ontology.org/",
       "database.label": "Disease Ontology",
       "description": "identifier in the Disease Ontology database",
       "homepage": "http://disease-ontology.org",
@@ -20266,7 +20446,7 @@
       "homepage": "http://purl.obolibrary.org/obo/fbcv",
       "name": "Drosophila Phenotype Ontology",
       "prefix": "DPO",
-      "version": "2022-08-11"
+      "version": "2022-10-20"
     },
     "comment": "DPO is a subset of terms from FBcv",
     "mappings": {
@@ -20539,7 +20719,7 @@
       "homepage": "https://github.com/ufbmi/dron",
       "name": "The Drug Ontology",
       "prefix": "DRON",
-      "version": "2022-10-02"
+      "version": "2022-10-22"
     },
     "download_json": "http://purl.obolibrary.org/obo/dron.json",
     "download_obo": "http://purl.obolibrary.org/obo/dron.obo",
@@ -20730,7 +20910,7 @@
       "n2t": "drugbank",
       "prefixcommons": "drugbank",
       "re3data": "r3d100010544",
-      "uniprot": "DrugBank",
+      "uniprot": "DB-0019",
       "wikidata": "P715"
     },
     "miriam": {
@@ -20826,11 +21006,17 @@
       "DrugBank"
     ],
     "uniprot": {
+      "abbreviation": "DrugBank",
       "category": "Chemistry databases",
-      "identifier": "19",
-      "link_is_explicit": "true",
+      "homepage": "https://www.drugbank.ca/",
       "name": "Drug and drug target database",
-      "prefix": "DrugBank",
+      "prefix": "DB-0019",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkj067",
+          "pubmed": "16381955"
+        }
+      ],
       "uri_format": "https://www.drugbank.ca/drugs/$1"
     },
     "wikidata": {
@@ -20957,7 +21143,7 @@
     "mappings": {
       "biolink": "DrugCentral",
       "fairsharing": "FAIRsharing.3me82d",
-      "uniprot": "DrugCentral"
+      "uniprot": "DB-0239"
     },
     "name": "Drug Central",
     "pattern": "^\\d+$",
@@ -20965,11 +21151,17 @@
       "Drug_Central"
     ],
     "uniprot": {
+      "abbreviation": "DrugCentral",
       "category": "Chemistry databases",
-      "identifier": "239",
-      "link_is_explicit": "true",
+      "homepage": "https://drugcentral.org/",
       "name": "DrugCentral",
-      "prefix": "DrugCentral",
+      "prefix": "DB-0239",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky963",
+          "pubmed": "30371892"
+        }
+      ],
       "uri_format": "https://drugcentral.org/target/$1"
     },
     "uri_format": "http://drugcentral.org/drugcard/$1"
@@ -21469,6 +21661,7 @@
       "miriam": "ec-code",
       "n2t": "ec-code",
       "prefixcommons": "intenz",
+      "uniprot": "DB-0024",
       "wikidata": "P591"
     },
     "miriam": {
@@ -21547,6 +21740,20 @@
       "ec-code",
       "intenz"
     ],
+    "uniprot": {
+      "abbreviation": "ENZYME",
+      "category": "Enzyme and pathway databases",
+      "homepage": "https://enzyme.expasy.org/",
+      "name": "Enzyme nomenclature database",
+      "prefix": "DB-0024",
+      "publications": [
+        {
+          "doi": "10.1093/nar/28.1.304",
+          "pubmed": "10592255"
+        }
+      ],
+      "uri_format": "https://enzyme.expasy.org/EC/$1"
+    },
     "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1",
     "wikidata": {
       "prefix": "P591"
@@ -21638,7 +21845,7 @@
       "n2t": "echobase",
       "prefixcommons": "echobase",
       "re3data": "r3d100011646",
-      "uniprot": "EchoBASE"
+      "uniprot": "DB-0020"
     },
     "miriam": {
       "deprecated": false,
@@ -21702,11 +21909,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "EchoBASE",
       "category": "Organism-specific databases",
-      "identifier": "20",
-      "link_is_explicit": "true",
+      "homepage": "https://www.york.ac.uk/res/thomas/",
       "name": "EchoBASE - an integrated post-genomic database for E. coli",
-      "prefix": "EchoBASE",
+      "prefix": "DB-0020",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gki028",
+          "pubmed": "15608209"
+        }
+      ],
       "uri_format": "https://www.york.ac.uk/res/thomas/Gene.cfm?recordID=$1"
     }
   },
@@ -21757,8 +21970,8 @@
   "eco": {
     "aberowl": {
       "description": "An ontology for experimental and other evidence statements.",
-      "download_owl": "http://aber-owl.net/media/ontologies/ECO/105/eco.owl",
-      "homepage": "https://github.com/evidenceontology/evidenceontology/",
+      "download_owl": "http://aber-owl.net/media/ontologies/ECO/106/eco.owl",
+      "homepage": "https://www.evidenceontology.org",
       "name": "Evidence ontology",
       "prefix": "ECO"
     },
@@ -22754,7 +22967,7 @@
       "prefix": "EFO",
       "publication": "https://doi.org/10.1093/bioinformatics/btq099",
       "repository": "https://github.com/EBISPOT/efo",
-      "version": "3.46.0"
+      "version": "3.47.0"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -22777,7 +22990,7 @@
       "homepage": "http://www.ebi.ac.uk/efo",
       "name": "Experimental Factor Ontology",
       "prefix": "EFO",
-      "version": "3.46.0"
+      "version": "3.47.0"
     },
     "cellosaurus": {
       "category": "Experimental variables resources",
@@ -22862,8 +23075,8 @@
       "homepage": "http://www.ebi.ac.uk/efo",
       "name": "Experimental Factor Ontology",
       "prefix": "efo",
-      "version": "3.45.0",
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.45.0/efo.owl"
+      "version": "3.47.0",
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.47.0/efo.owl"
     },
     "ontobee": {
       "library": "Not Specified/No",
@@ -23000,7 +23213,7 @@
       "miriam": "eggnog",
       "n2t": "eggnog",
       "prefixcommons": "eggnog",
-      "uniprot": "eggNOG"
+      "uniprot": "DB-0152"
     },
     "miriam": {
       "deprecated": false,
@@ -23047,15 +23260,7 @@
         "title": "eggNOG v2.0: extending the evolutionary genealogy of genes with enhanced non-supervised orthologous groups, species and functional annotations.",
         "year": 2009
       }
-    ],
-    "uniprot": {
-      "category": "Phylogenomic databases",
-      "identifier": "152",
-      "link_is_explicit": "true",
-      "name": "evolutionary genealogy of genes: Non-supervised Orthologous Groups",
-      "prefix": "eggNOG",
-      "uri_format": "http://eggnogdb.embl.de/#/app/results?seqid=%u&target_nogs=%s"
-    }
+    ]
   },
   "ehda": {
     "aberowl": {
@@ -23311,7 +23516,7 @@
       "fairsharing": "FAIRsharing.rj3kj5",
       "miriam": "elm",
       "n2t": "elm",
-      "uniprot": "ELM"
+      "uniprot": "DB-0223"
     },
     "miriam": {
       "deprecated": false,
@@ -23337,11 +23542,17 @@
     },
     "name": "Eukaryotic Linear Motif Resource",
     "uniprot": {
+      "abbreviation": "ELM",
       "category": "Protein-protein interaction databases",
-      "identifier": "223",
-      "link_is_explicit": "true",
+      "homepage": "http://elm.eu.org/",
       "name": "The Eukaryotic Linear Motif resource for Functional Sites in Proteins",
-      "prefix": "ELM",
+      "prefix": "DB-0223",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz1030",
+          "pubmed": "31680160"
+        }
+      ],
       "uri_format": "http://elm.eu.org/instances.html?q=$1"
     }
   },
@@ -23605,7 +23816,8 @@
       "go": "ENA",
       "miriam": "ena.embl",
       "n2t": "ena.embl",
-      "prefixcommons": "ena"
+      "prefixcommons": "ena",
+      "uniprot": "DB-0022"
     },
     "miriam": {
       "deprecated": false,
@@ -23653,6 +23865,20 @@
     "synonyms": [
       "ena"
     ],
+    "uniprot": {
+      "abbreviation": "EMBL",
+      "category": "Sequence databases",
+      "homepage": "https://www.ebi.ac.uk/ena",
+      "name": "EMBL nucleotide sequence database",
+      "prefix": "DB-0022",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkaa1028",
+          "pubmed": "33175160"
+        }
+      ],
+      "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
+    },
     "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
   },
   "encode": {
@@ -23842,7 +24068,7 @@
       "ncbi": "ENSEMBL",
       "prefixcommons": "ensembl",
       "re3data": "r3d100010228",
-      "uniprot": "Ensembl",
+      "uniprot": "DB-0023",
       "wikidata": "P594"
     },
     "miriam": {
@@ -23965,11 +24191,17 @@
       "Ensembl"
     ],
     "uniprot": {
+      "abbreviation": "Ensembl",
       "category": "Genome annotation databases",
-      "identifier": "23",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ensembl.org/",
       "name": "Ensembl eukaryotic genome annotation project",
-      "prefix": "Ensembl",
+      "prefix": "DB-0023",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz966",
+          "pubmed": "31691826"
+        }
+      ],
       "uri_format": "https://www.ensembl.org/id/$1"
     },
     "wikidata": {
@@ -24010,7 +24242,7 @@
       "n2t": "ensembl.bacteria",
       "prefixcommons": "ensembl.bacteria",
       "re3data": "r3d100011195",
-      "uniprot": "EnsemblBacteria"
+      "uniprot": "DB-0147"
     },
     "miriam": {
       "deprecated": false,
@@ -24034,6 +24266,7 @@
       "prefix": "ensembl.bacteria",
       "uri_format": "https://bacteria.ensembl.org/id/$1"
     },
+    "part_of": "ensembl",
     "prefixcommons": {
       "description": "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with bacterial genomes.",
       "example": "EBESCT00000015660",
@@ -24074,11 +24307,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "EnsemblBacteria",
       "category": "Genome annotation databases",
-      "identifier": "147",
-      "link_is_explicit": "true",
+      "homepage": "https://bacteria.ensembl.org/",
       "name": "Ensembl bacterial and archaeal genome annotation project",
-      "prefix": "EnsemblBacteria",
+      "prefix": "DB-0147",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz890",
+          "pubmed": "31598706"
+        }
+      ],
       "uri_format": "http://www.ensemblgenomes.org/id/$1"
     }
   },
@@ -24114,7 +24353,7 @@
       "n2t": "ensembl.fungi",
       "prefixcommons": "ensembl.fungi",
       "re3data": "r3d100011196",
-      "uniprot": "EnsemblFungi"
+      "uniprot": "DB-0148"
     },
     "miriam": {
       "deprecated": false,
@@ -24138,6 +24377,7 @@
       "prefix": "ensembl.fungi",
       "uri_format": "https://fungi.ensembl.org/id/$1"
     },
+    "part_of": "ensembl",
     "prefixcommons": {
       "description": "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with bacterial genomes.",
       "example": "CADAFLAT00006211",
@@ -24166,11 +24406,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "EnsemblFungi",
       "category": "Genome annotation databases",
-      "identifier": "148",
-      "link_is_explicit": "true",
+      "homepage": "https://fungi.ensembl.org/",
       "name": "Ensembl fungal genome annotation project",
-      "prefix": "EnsemblFungi",
+      "prefix": "DB-0148",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz890",
+          "pubmed": "31598706"
+        }
+      ],
       "uri_format": "http://www.ensemblgenomes.org/id/$1"
     }
   },
@@ -24206,7 +24452,7 @@
       "n2t": "ensembl.metazoa",
       "prefixcommons": "ensembl.metazoa",
       "re3data": "r3d100011198",
-      "uniprot": "EnsemblMetazoa"
+      "uniprot": "DB-0149"
     },
     "miriam": {
       "deprecated": false,
@@ -24258,11 +24504,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "EnsemblMetazoa",
       "category": "Genome annotation databases",
-      "identifier": "149",
-      "link_is_explicit": "true",
+      "homepage": "https://metazoa.ensembl.org/",
       "name": "Ensembl metazoan genome annotation project",
-      "prefix": "EnsemblMetazoa",
+      "prefix": "DB-0149",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz890",
+          "pubmed": "31598706"
+        }
+      ],
       "uri_format": "http://www.ensemblgenomes.org/id/$1"
     }
   },
@@ -24928,7 +25180,7 @@
       "miriam": "epd",
       "n2t": "epd",
       "ncbi": "EPD",
-      "uniprot": "EPD"
+      "uniprot": "DB-0205"
     },
     "miriam": {
       "deprecated": false,
@@ -24959,11 +25211,17 @@
       "prefix": "EPD"
     },
     "uniprot": {
+      "abbreviation": "EPD",
       "category": "Proteomic databases",
-      "identifier": "205",
-      "link_is_explicit": "true",
+      "homepage": "https://www.peptracker.com/epd/analytics/",
       "name": "Encyclopedia of Proteome Dynamics",
-      "prefix": "EPD",
+      "prefix": "DB-0205",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkx807",
+          "pubmed": "28981707"
+        }
+      ],
       "uri_format": "https://www.peptracker.com/epd/analytics/?protein_id=$1"
     }
   },
@@ -25924,6 +26182,9 @@
       "prefix": "FAIRSHARING",
       "uri_format": "http://identifiers.org/fairsharing/$1"
     },
+    "example_extras": [
+      "FAIRsharing.CugtbQ"
+    ],
     "fairsharing": {
       "abbreviation": "FAIRsharing",
       "description": "FAIRsharing is a FAIR-supporting resource that provides an informative and educational registry on data standards, databases, repositories and policy, alongside search and visualization tools and services that interoperate with other FAIR-enabling resources. FAIRsharing guides consumers to discover, select and use standards, databases, repositories and policy with confidence, and producers to make their resources more discoverable, more widely adopted and cited. Each record in FAIRsharing is curated in collaboration with the maintainers of the resource themselves, ensuring that the metadata in the FAIRsharing registry is accurate and timely. Every record is manually reviewed at least once a year. Records can be collated into collections, based on a project, society or organisation, or Recommendations, where they are collated around a policy, such as a journal or funder data policy.",
@@ -25969,6 +26230,7 @@
       "prefix": "fairsharing",
       "uri_format": "https://fairsharing.org/$1"
     },
+    "pattern": "^(bsg-[dscp]?\\d{6})|(FAIRsharing\\.\\w+)$",
     "re3data": {
       "description": "FAIRsharing is a web-based, searchable portal of three interlinked registries, containing both in-house and crowdsourced manually curated descriptions of standards, databases and data policies, combined with an integrated view across all three types of resource. By registering your resource on FAIRsharing, you not only gain credit for your work, but you increase its visibility outside of your direct domain, so reducing the potential for unnecessary reinvention and proliferation of standards and databases.",
       "homepage": "https://fairsharing.org/",
@@ -26292,7 +26554,7 @@
       "homepage": "http://purl.obolibrary.org/obo/fbbt",
       "name": "Drosophila Gross Anatomy Ontology",
       "prefix": "FB-BT",
-      "version": "fbbt/releases/2022-08-11"
+      "version": "fbbt/releases/2022-10-19"
     },
     "example": "00007294",
     "fairsharing": {
@@ -26475,7 +26737,7 @@
       "homepage": "http://purl.obolibrary.org/obo/fbcv",
       "name": "FlyBase Controlled Vocabulary",
       "prefix": "FB-CV",
-      "version": "2022-08-11"
+      "version": "2022-10-20"
     },
     "download_obo": "https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo",
     "example": "0000586",
@@ -26594,7 +26856,7 @@
       "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
       "name": "Drosophila Development Ontology",
       "prefix": "FB-DV",
-      "version": "fbdv/releases/2022-08-17"
+      "version": "fbdv/releases/2022-10-19"
     },
     "example": "00000000",
     "fairsharing": {
@@ -26863,7 +27125,7 @@
   "fideo": {
     "aberowl": {
       "description": "Food-Drug interactions automatically extracted from scientific literature",
-      "download_owl": "http://aber-owl.net/media/ontologies/FIDEO/2/fideo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FIDEO/3/fideo.owl",
       "homepage": "https://gitub.u-bordeaux.fr/erias/fideo",
       "name": "Food Interactions with Drugs Evidence Ontology",
       "prefix": "FIDEO"
@@ -27368,7 +27630,7 @@
       "ncbi": "FLYBASE",
       "prefixcommons": "flybase",
       "re3data": "r3d100010591",
-      "uniprot": "FlyBase",
+      "uniprot": "DB-0026",
       "wikidata": "P3852"
     },
     "miriam": {
@@ -27381,13 +27643,6 @@
       "pattern": "^FB\\w{2}\\d{7}$",
       "prefix": "fb",
       "providers": [
-        {
-          "code": "bioentitylink",
-          "description": "FlyBase through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "FlyBase through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-        },
         {
           "code": "agr",
           "description": "FlyBase through the Alliance of Genome Resources",
@@ -27456,13 +27711,18 @@
       "FlyBase"
     ],
     "uniprot": {
+      "abbreviation": "FlyBase",
       "category": "Organism-specific databases",
-      "comment": "Replacement for DMAP",
-      "identifier": "26",
-      "link_is_explicit": "true",
+      "homepage": "https://flybase.org/",
       "name": "Drosophila genome database",
-      "prefix": "FlyBase",
-      "uri_format": "http://flybase.org/reports/$1.html"
+      "prefix": "DB-0026",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1003",
+          "pubmed": "30364959"
+        }
+      ],
+      "uri_format": "https://flybase.org/reports/$1.html"
     },
     "uri_format": "https://flybase.org/reports/$1",
     "wikidata": {
@@ -28822,7 +29082,7 @@
   "fypo": {
     "aberowl": {
       "description": "FYPO is a formal ontology of phenotypes observed in fission yeast.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FYPO/430/fypo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FYPO/431/fypo.owl",
       "homepage": "https://github.com/pombase/fypo",
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO"
@@ -28848,7 +29108,7 @@
       "homepage": "https://github.com/pombase/fypo",
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO",
-      "version": "2022-08-31"
+      "version": "2022-10-13"
     },
     "download_json": "http://purl.obolibrary.org/obo/fypo.json",
     "download_obo": "http://purl.obolibrary.org/obo/fypo.obo",
@@ -29485,7 +29745,7 @@
       "miriam": "genatlas",
       "n2t": "genatlas",
       "prefixcommons": "genatlas",
-      "uniprot": "GenAtlas"
+      "uniprot": "DB-0027"
     },
     "miriam": {
       "deprecated": false,
@@ -29535,10 +29795,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "GenAtlas",
       "category": "Organism-specific databases",
-      "identifier": "27",
-      "name": "GenAtlas: human gene database",
-      "prefix": "GenAtlas",
+      "homepage": "http://genatlas.medecine.univ-paris5.fr/",
+      "name": "GenAtlas",
+      "prefix": "DB-0027",
+      "publications": [
+        {
+          "doi": "10.1016/s0764-4469(99)80021-3",
+          "pubmed": "9835018"
+        }
+      ],
       "uri_format": "http://genatlas.medecine.univ-paris5.fr/fiche.php?symbol=$1"
     }
   },
@@ -29604,7 +29871,7 @@
       "go": "GenBank",
       "prefixcommons": "genbank",
       "re3data": "r3d100010528",
-      "uniprot": "GenBank"
+      "uniprot": "DB-0028"
     },
     "name": "GenBank",
     "prefixcommons": {
@@ -29638,10 +29905,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "GenBank",
       "category": "Sequence databases",
-      "identifier": "28",
+      "homepage": "https://www.ncbi.nlm.nih.gov/",
       "name": "GenBank nucleotide sequence database",
-      "prefix": "GenBank",
+      "prefix": "DB-0028",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkl1031",
+          "pubmed": "17170002"
+        }
+      ],
       "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
     },
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucleotide/$1"
@@ -29672,7 +29946,7 @@
       "n2t": "genecards",
       "prefixcommons": "genecards",
       "re3data": "r3d100012015",
-      "uniprot": "GeneCards"
+      "uniprot": "DB-0030"
     },
     "miriam": {
       "deprecated": false,
@@ -29739,11 +30013,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "GeneCards",
       "category": "Organism-specific databases",
-      "identifier": "30",
-      "link_is_explicit": "true",
-      "name": "GeneCards: human genes, protein and diseases",
-      "prefix": "GeneCards",
+      "homepage": "https://www.genecards.org/",
+      "name": "GeneCards",
+      "prefix": "DB-0030",
+      "publications": [
+        {
+          "doi": "10.1093/bioinformatics/18.11.1542",
+          "pubmed": "12424129"
+        }
+      ],
       "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
     }
   },
@@ -29787,7 +30067,6 @@
       "ncbi": "GeneDB",
       "prefixcommons": "genedb",
       "re3data": "r3d100010626",
-      "uniprot": "GeneDB",
       "wikidata": "P3382"
     },
     "miriam": {
@@ -29855,14 +30134,6 @@
         "nif": "0000-02880",
         "scr": "002774"
       }
-    },
-    "uniprot": {
-      "category": "Genome annotation databases",
-      "identifier": "199",
-      "link_is_explicit": "true",
-      "name": "GeneDB pathogen genome database from Sanger Institute",
-      "prefix": "GeneDB",
-      "uri_format": "https://www.genedb.org/gene/$1"
     },
     "wikidata": {
       "database": "Q5531047",
@@ -30036,7 +30307,7 @@
       "miriam": "genetree",
       "n2t": "genetree",
       "prefixcommons": "genetree",
-      "uniprot": "GeneTree"
+      "uniprot": "DB-0162"
     },
     "miriam": {
       "deprecated": false,
@@ -30086,11 +30357,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "GeneTree",
       "category": "Phylogenomic databases",
-      "identifier": "162",
-      "link_is_explicit": "true",
+      "homepage": "https://ensemblgenomes.org",
       "name": "Ensembl GeneTree",
-      "prefix": "GeneTree",
+      "prefix": "DB-0162",
+      "publications": [
+        {
+          "doi": "10.1093/database/bav096",
+          "pubmed": "26896847"
+        }
+      ],
       "uri_format": "http://www.ensemblgenomes.org/id-genetree/$1"
     }
   },
@@ -30117,7 +30394,7 @@
       "fairsharing": "FAIRsharing.t3snf",
       "miriam": "genewiki",
       "n2t": "genewiki",
-      "uniprot": "GeneWiki"
+      "uniprot": "DB-0180"
     },
     "miriam": {
       "deprecated": false,
@@ -30141,12 +30418,19 @@
       "prefix": "genewiki",
       "uri_format": "http://plugins.biogps.org/cgi-bin/wp.cgi?id=$1"
     },
+    "provides": "ncbigene",
     "uniprot": {
+      "abbreviation": "GeneWiki",
       "category": "Miscellaneous databases",
-      "identifier": "180",
-      "link_is_explicit": "true",
+      "homepage": "https://en.wikipedia.org/wiki/Portal:Gene_Wiki",
       "name": "The Gene Wiki collection of pages on human genes and proteins",
-      "prefix": "GeneWiki",
+      "prefix": "DB-0180",
+      "publications": [
+        {
+          "doi": "10.1371/journal.pbio.0060175",
+          "pubmed": "18613750"
+        }
+      ],
       "uri_format": "https://en.wikipedia.org/wiki/$1"
     }
   },
@@ -31200,15 +31484,21 @@
     "homepage": "https://glygen.org/glycan/",
     "mappings": {
       "fairsharing": "FAIRsharing.aI1J5W",
-      "uniprot": "GlyGen"
+      "uniprot": "DB-0254"
     },
     "name": "Computational and Informatics Resources for Glycoscience",
     "uniprot": {
+      "abbreviation": "GlyGen",
       "category": "PTM databases",
-      "identifier": "254",
-      "link_is_explicit": "true",
-      "name": "GlyGen: Computational and Informatics Resources for Glycoscience",
-      "prefix": "GlyGen",
+      "homepage": "https://glygen.org",
+      "name": "GlyGen",
+      "prefix": "DB-0254",
+      "publications": [
+        {
+          "doi": "10.1093/glycob/cwz080",
+          "pubmed": "31616925"
+        }
+      ],
       "uri_format": "https://glygen.org/protein/$1#glycosylation"
     },
     "uri_format": "https://glygen.org/glycan/$1"
@@ -31640,7 +31930,7 @@
   "go": {
     "aberowl": {
       "description": "An ontology for describing the function of genes and gene products",
-      "download_owl": "http://aber-owl.net/media/ontologies/GO/1772/go.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/GO/1773/go.owl",
       "homepage": "http://geneontology.org/",
       "name": "Gene Ontology",
       "prefix": "GO"
@@ -31658,7 +31948,7 @@
       "prefix": "GO",
       "publication": "http://geneontology.org/page/publications",
       "repository": "https://sourceforge.net/projects/geneontology/",
-      "version": "2022-09-19"
+      "version": "2022-10-07"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -31671,7 +31961,7 @@
       "homepage": "http://www.geneontology.org",
       "name": "Gene Ontology",
       "prefix": "GO",
-      "version": "2022-09-19"
+      "version": "2022-10-07"
     },
     "edam": {
       "description": "An identifier of a concept from The Gene Ontology.",
@@ -31767,7 +32057,7 @@
       "ols": "go",
       "ontobee": "GO",
       "prefixcommons": "go",
-      "uniprot": "GO",
+      "uniprot": "DB-0037",
       "wikidata": "P686"
     },
     "miriam": {
@@ -31993,11 +32283,17 @@
       "gomfid"
     ],
     "uniprot": {
+      "abbreviation": "GO",
       "category": "Ontologies",
-      "identifier": "37",
-      "link_is_explicit": "true",
+      "homepage": "http://geneontology.org/",
       "name": "Gene Ontology",
-      "prefix": "GO",
+      "prefix": "DB-0037",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1055",
+          "pubmed": "30395331"
+        }
+      ],
       "uri_format": "https://www.ebi.ac.uk/QuickGO/term/$1"
     },
     "wikidata": {
@@ -32060,7 +32356,8 @@
       "prefix": "go.ref",
       "uri_format": "http://www.geneontology.org/cgi-bin/references.cgi#$1"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/README.md#goref$1"
   },
   "go.resource": {
     "contributor": {
@@ -32489,7 +32786,7 @@
       "miriam": "gpcrdb",
       "n2t": "gpcrdb",
       "prefixcommons": "gpcrdb",
-      "uniprot": "GPCRDB"
+      "uniprot": "DB-0038"
     },
     "miriam": {
       "deprecated": false,
@@ -32540,10 +32837,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "GPCRDB",
       "category": "Protein family/group databases",
-      "identifier": "38",
+      "homepage": "https://gpcrdb.org",
       "name": "Information system for G protein-coupled receptors (GPCRs)",
-      "prefix": "GPCRDB",
+      "prefix": "DB-0038",
+      "publications": [
+        {
+          "doi": "10.1093/nar/29.1.346",
+          "pubmed": "11125133"
+        }
+      ],
       "uri_format": "https://gpcrdb.org/protein/$1/"
     },
     "uri_format": "https://gpcrdb.org/protein/$1"
@@ -33639,7 +33943,7 @@
       "miriam": "hamap",
       "n2t": "hamap",
       "prefixcommons": "hamap",
-      "uniprot": "HAMAP"
+      "uniprot": "DB-0041"
     },
     "miriam": {
       "deprecated": false,
@@ -33676,11 +33980,17 @@
       "uri_format": "http://us.expasy.org/unirule/$1"
     },
     "uniprot": {
+      "abbreviation": "HAMAP",
       "category": "Family and domain databases",
-      "identifier": "41",
-      "link_is_explicit": "true",
+      "homepage": "https://hamap.expasy.org/",
       "name": "HAMAP database of protein families",
-      "prefix": "HAMAP",
+      "prefix": "DB-0041",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gku1002",
+          "pubmed": "25348399"
+        }
+      ],
       "uri_format": "https://hamap.expasy.org/signature/$1"
     }
   },
@@ -33991,8 +34301,8 @@
       "download": "https://raw.githubusercontent.com/ebi-ait/ontology/master/hcao.owl",
       "name": "Human Cell Atlas Ontology",
       "prefix": "hcao",
-      "version": "2022-06-22",
-      "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-22/hcao.owl"
+      "version": "2022-10-18",
+      "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-10-18/hcao.owl"
     }
   },
   "hcpcs": {
@@ -34302,7 +34612,7 @@
       "n2t": "hgnc",
       "ncbi": "HGNC",
       "prefixcommons": "hgnc",
-      "uniprot": "HGNC",
+      "uniprot": "DB-0042",
       "wikidata": "P354"
     },
     "miriam": {
@@ -34384,12 +34694,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "HGNC",
       "category": "Organism-specific databases",
-      "comment": "Replacement for Genew",
-      "identifier": "42",
-      "link_is_explicit": "true",
+      "homepage": "https://www.genenames.org/",
       "name": "Human Gene Nomenclature Database",
-      "prefix": "HGNC",
+      "prefix": "DB-0042",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkaa980",
+          "pubmed": "33152070"
+        }
+      ],
       "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"
     },
     "wikidata": {
@@ -34835,7 +35150,7 @@
       "miriam": "hogenom",
       "n2t": "hogenom",
       "prefixcommons": "hogenom",
-      "uniprot": "HOGENOM"
+      "uniprot": "DB-0044"
     },
     "miriam": {
       "deprecated": false,
@@ -34886,11 +35201,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "HOGENOM",
       "category": "Phylogenomic databases",
-      "identifier": "44",
-      "link_is_explicit": "true",
+      "homepage": "http://hogenom.univ-lyon1.fr/",
       "name": "The HOGENOM Database of Homologous Genes from Fully Sequenced Organisms",
-      "prefix": "HOGENOM",
+      "prefix": "DB-0044",
+      "publications": [
+        {
+          "doi": "10.1101/gr.10.3.379",
+          "pubmed": "10720578"
+        }
+      ],
       "uri_format": "http://hogenom.univ-lyon1.fr/query_sequence?seq=$1"
     }
   },
@@ -35193,7 +35514,7 @@
       "pubmed_ids": [
         "21097890"
       ],
-      "uri_format": "http://www.ncbi.nlm.nih.gov/homologene/[?id]"
+      "uri_format": "http://www.ncbi.nlm.nih.gov/homologene/$1"
     },
     "publications": [
       {
@@ -35563,7 +35884,7 @@
       "miriam": "hpa",
       "n2t": "hpa",
       "prefixcommons": "hpa",
-      "uniprot": "HPA"
+      "uniprot": "DB-0046"
     },
     "miriam": {
       "deprecated": false,
@@ -35612,11 +35933,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "HPA",
       "category": "Organism-specific databases",
-      "identifier": "46",
-      "link_is_explicit": "true",
+      "homepage": "https://www.proteinatlas.org/",
       "name": "Human Protein Atlas",
-      "prefix": "HPA",
+      "prefix": "DB-0046",
+      "publications": [
+        {
+          "doi": "10.1126/science.1260419",
+          "pubmed": "25613900"
+        }
+      ],
       "uri_format": "https://www.proteinatlas.org/$1"
     }
   },
@@ -36184,7 +36511,7 @@
       "miriam": "huge",
       "n2t": "huge",
       "prefixcommons": "huge",
-      "uniprot": "HUGE"
+      "uniprot": "DB-0049"
     },
     "miriam": {
       "deprecated": false,
@@ -36236,10 +36563,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "HUGE",
       "category": "Organism-specific databases",
-      "identifier": "49",
+      "homepage": "http://www.kazusa.or.jp/huge/",
       "name": "Human Unidentified Gene-Encoded large proteins database",
-      "prefix": "HUGE",
+      "prefix": "DB-0049",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkh035",
+          "pubmed": "14681467"
+        }
+      ],
       "uri_format": "http://www.kazusa.or.jp/huge/gfpage/$1"
     },
     "uri_format": "https://www.kazusa.or.jp/huge/gfpage/$1"
@@ -36938,11 +37272,11 @@
   "icdo": {
     "aberowl": {
       "description": "A biomedical ontology for logical representation of the terms and relations related to the International Classification of Diseases (ICD)",
-      "download_owl": "http://aber-owl.net/media/ontologies/ICDO/10/icdo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/ICDO/11/icdo.owl",
       "homepage": "https://github.com/icdo/ICDO",
       "name": "International Classification of Diseases Ontology",
       "prefix": "ICDO",
-      "version": "1.0.77"
+      "version": "1.0.297"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -37429,7 +37763,7 @@
       "fairsharing": "FAIRsharing.h3y42f",
       "miriam": "ideal",
       "n2t": "ideal",
-      "uniprot": "IDEAL"
+      "uniprot": "DB-0251"
     },
     "miriam": {
       "deprecated": false,
@@ -37455,12 +37789,18 @@
     },
     "name": "Intrinsically Disordered proteins with Extensive Annotations and Literature",
     "uniprot": {
+      "abbreviation": "IDEAL",
       "category": "Family and domain databases",
-      "identifier": "251",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ideal-db.org/",
       "name": "Intrinsically Disordered proteins with Extensive Annotations and Literature",
-      "prefix": "IDEAL",
-      "uri_format": "http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=$1"
+      "prefix": "DB-0251",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkt1010",
+          "pubmed": "24178034"
+        }
+      ],
+      "uri_format": "https://www.ideal-db.org/ideal.php?id=$1"
     }
   },
   "ido": {
@@ -39315,7 +39655,7 @@
       "n2t": "intact",
       "prefixcommons": "intact",
       "re3data": "r3d100010671",
-      "uniprot": "IntAct"
+      "uniprot": "DB-0051"
     },
     "miriam": {
       "deprecated": false,
@@ -39376,11 +39716,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "IntAct",
       "category": "Protein-protein interaction databases",
-      "identifier": "51",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ebi.ac.uk/intact/",
       "name": "Protein interaction database and analysis system",
-      "prefix": "IntAct",
+      "prefix": "DB-0051",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkt1115",
+          "pubmed": "24234451"
+        }
+      ],
       "uri_format": "https://www.ebi.ac.uk/intact/interactors/id:$1*"
     }
   },
@@ -39527,7 +39873,7 @@
       "obofoundry": "ipr",
       "prefixcommons": "interpro",
       "re3data": "r3d100010798",
-      "uniprot": "InterPro",
+      "uniprot": "DB-0052",
       "wikidata": "P2926"
     },
     "miriam": {
@@ -39628,11 +39974,17 @@
       "InterPro"
     ],
     "uniprot": {
+      "abbreviation": "InterPro",
       "category": "Family and domain databases",
-      "identifier": "52",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ebi.ac.uk/interpro/",
       "name": "Integrated resource of protein families, domains and functional sites",
-      "prefix": "InterPro",
+      "prefix": "DB-0052",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkaa977",
+          "pubmed": "33156333"
+        }
+      ],
       "uri_format": "https://www.ebi.ac.uk/interpro/entry/$1"
     },
     "wikidata": {
@@ -40265,6 +40617,7 @@
       "go": "IUPHAR_RECEPTOR",
       "miriam": "iuphar.receptor",
       "n2t": "iuphar.receptor",
+      "uniprot": "DB-0182",
       "wikidata": "P5458"
     },
     "miriam": {
@@ -40294,6 +40647,20 @@
       "IUPHAR_GPCR",
       "IUPHARobj"
     ],
+    "uniprot": {
+      "abbreviation": "GuidetoPHARMACOLOGY",
+      "category": "Chemistry databases",
+      "homepage": "https://www.guidetopharmacology.org",
+      "name": "IUPHAR/BPS Guide to PHARMACOLOGY",
+      "prefix": "DB-0182",
+      "publications": [
+        {
+          "doi": "10.1111/j.1476-5381.2012.02141.x",
+          "pubmed": "23003568"
+        }
+      ],
+      "uri_format": "https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
+    },
     "wikidata": {
       "database": "Q17091219",
       "database.homepage": "http://www.guidetopharmacology.org",
@@ -40754,7 +41121,7 @@
       "go": "KEGG",
       "miriam": "kegg",
       "n2t": "kegg",
-      "uniprot": "KEGG"
+      "uniprot": "DB-0053"
     },
     "miriam": {
       "deprecated": false,
@@ -40782,11 +41149,17 @@
       "KEGG"
     ],
     "uniprot": {
+      "abbreviation": "KEGG",
       "category": "Genome annotation databases",
-      "identifier": "53",
-      "link_is_explicit": "true",
-      "name": "KEGG: Kyoto Encyclopedia of Genes and Genomes",
-      "prefix": "KEGG",
+      "homepage": "https://www.genome.jp/kegg/",
+      "name": "KEGG",
+      "prefix": "DB-0053",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkw1092",
+          "pubmed": "27899662"
+        }
+      ],
       "uri_format": "https://www.genome.jp/dbget-bin/www_bget?$1"
     }
   },
@@ -43460,7 +43833,7 @@
       "ncbi": "MaizeGDB",
       "prefixcommons": "maizegdb",
       "re3data": "r3d100010795",
-      "uniprot": "MaizeGDB"
+      "uniprot": "DB-0058"
     },
     "miriam": {
       "deprecated": false,
@@ -43538,12 +43911,17 @@
       "MaizeGDB"
     ],
     "uniprot": {
+      "abbreviation": "MaizeGDB",
       "category": "Organism-specific databases",
-      "comment": "Replacement for MaizeDB",
-      "identifier": "58",
-      "link_is_explicit": "true",
+      "homepage": "https://www.maizegdb.org/",
       "name": "Maize Genetics and Genomics Database",
-      "prefix": "MaizeGDB",
+      "prefix": "DB-0058",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkl1048",
+          "pubmed": "17202174"
+        }
+      ],
       "uri_format": "https://www.maizegdb.org/data_center/gene_product?id=$1"
     }
   },
@@ -43770,7 +44148,7 @@
       "fairsharing": "FAIRsharing.LYsiMd",
       "miriam": "massive",
       "n2t": "massive",
-      "uniprot": "MassIVE"
+      "uniprot": "DB-0241"
     },
     "miriam": {
       "deprecated": false,
@@ -43804,11 +44182,17 @@
       "uri_format": "https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=$1"
     },
     "uniprot": {
+      "abbreviation": "MassIVE",
       "category": "Proteomic databases",
-      "identifier": "241",
-      "link_is_explicit": "true",
+      "homepage": "https://massive.ucsd.edu/",
       "name": "MassIVE - Mass Spectrometry Interactive Virtual Environment",
-      "prefix": "MassIVE",
+      "prefix": "DB-0241",
+      "publications": [
+        {
+          "doi": "10.1016/j.cels.2018.08.004",
+          "pubmed": "30172843"
+        }
+      ],
       "uri_format": "https://massive.ucsd.edu/ProteoSAFe/protein_explorer.jsp?libraries=2&protein_name=$1"
     }
   },
@@ -44293,12 +44677,21 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "MedDRA is a five-level hierarchy of terms.  MedDRA was developed as an ICH initiative and is maintained and distributed by the MedDRA Maintenance and Support Services Organization (MSSO).\tVersions \u0013 Versions are released twice per year and are identified by 2 numbers separated by a decimal point (e.g., 7.0, 7.1, 8.0, and 8.1).  \u001c.0\u001d releases may contain changes to the hierarchy.  \u001c.1\u001d releases will only contain additions, moves, and modifications of medical concept terms (Preferred Terms) and coding level terms (Lowest Level Terms).\tConcepts \u0013 Concepts are represented by a MedDRA code and a MedDRA term name.  The MedDRA code is an eight digit numeric code.  MedDRA codes are unique and are never reused.  The MedDRA term name is a 100 character alphanumeric field used to describe the concept or term.\tHierarchies \u0013 MedDRA is structured as a five level hierarchy.  System Organ Classes (SOCs) are the broadest terms (e.g., Cardiac disorders, Investigations).  The lowest level of the terminology is the Lowest Level Term (LLT) level.  There are 26 SOCs and over 60,000 LLTs",
+      "homepage": "www.meddramsso.com",
+      "name": "MedDRA",
+      "organization": "MedDRA MSSO/ Northrop Grumman,MedDRA MSSO/ Northrop Grumman",
+      "preferred_prefix": "mdr",
+      "prefix": "2.16.840.1.113883.6.163",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "MEDDRA",
       "biocontext": "MEDDRA",
       "bioportal": "MEDDRA",
       "fairsharing": "FAIRsharing.ad3137",
-      "hl7": "mdr",
+      "hl7": "2.16.840.1.113883.6.163",
       "miriam": "meddra",
       "n2t": "meddra",
       "wikidata": "P3201"
@@ -44553,8 +44946,7 @@
       "go": "MEROPS",
       "miriam": "merops.inhibitor",
       "n2t": "merops.inhibitor",
-      "prefixcommons": "merops",
-      "uniprot": "MEROPS"
+      "prefixcommons": "merops"
     },
     "miriam": {
       "deprecated": false,
@@ -44619,14 +45011,6 @@
     "synonyms": [
       "merops.inhibitor"
     ],
-    "uniprot": {
-      "category": "Protein family/group databases",
-      "identifier": "59",
-      "link_is_explicit": "true",
-      "name": "MEROPS protease database",
-      "prefix": "MEROPS",
-      "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
-    },
     "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "merops.family": {
@@ -45945,7 +46329,7 @@
       "n2t": "mgi",
       "ncbi": "MGI",
       "prefixcommons": "mgi",
-      "uniprot": "MGI",
+      "uniprot": "DB-0060",
       "wikidata": "P671"
     },
     "miriam": {
@@ -45958,13 +46342,6 @@
       "pattern": "^MGI:\\d+$",
       "prefix": "mgi",
       "providers": [
-        {
-          "code": "bioentitylink",
-          "description": "MGD through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "MGD through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/MGI:$1"
-        },
         {
           "code": "agr",
           "description": "MGI through the Alliance of Genome Resources",
@@ -46038,12 +46415,17 @@
       "MGI"
     ],
     "uniprot": {
+      "abbreviation": "MGI",
       "category": "Organism-specific databases",
-      "comment": "Replacement for MGD",
-      "identifier": "60",
-      "link_is_explicit": "true",
+      "homepage": "http://www.informatics.jax.org/",
       "name": "Mouse genome database (MGD) from Mouse Genome Informatics (MGI)",
-      "prefix": "MGI",
+      "prefix": "DB-0060",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1056",
+          "pubmed": "30407599"
+        }
+      ],
       "uri_format": "http://www.informatics.jax.org/marker/$1"
     },
     "wikidata": {
@@ -46767,7 +47149,7 @@
       "miriam": "mint",
       "n2t": "mint",
       "prefixcommons": "mint",
-      "uniprot": "MINT"
+      "uniprot": "DB-0158"
     },
     "miriam": {
       "deprecated": false,
@@ -46828,11 +47210,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "MINT",
       "category": "Protein-protein interaction databases",
-      "identifier": "158",
-      "link_is_explicit": "true",
+      "homepage": "https://mint.bio.uniroma2.it/",
       "name": "Molecular INTeraction database",
-      "prefix": "MINT",
+      "prefix": "DB-0158",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkr930",
+          "pubmed": "22096227"
+        }
+      ],
       "uri_format": "https://mint.bio.uniroma2.it/cgi-bin/protein.py?id=$1"
     },
     "uri_format": "https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-$1"
@@ -46936,7 +47324,8 @@
       "prefix": "mir",
       "uri_format": "https://identifiers.org/registry?query=\"MIR:$1\""
     },
-    "pattern": "^\\d{8}$"
+    "pattern": "^\\d{8}$",
+    "uri_format": "https://registry.identifiers.org/registry?query=MIR:$1"
   },
   "mirbase": {
     "biocontext": {
@@ -47226,6 +47615,7 @@
       "sampleId": "pubmed",
       "uri_format": "https://registry.identifiers.org/registry/$1"
     },
+    "pattern": "^[0-9a-z_:\\.-]+$",
     "synonyms": [
       "identifiers.namespace"
     ]
@@ -47770,7 +48160,7 @@
       "name": "Measurement Method Ontology",
       "prefix": "MMO",
       "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "2.89"
+      "version": "2.90"
     },
     "example": "0000574",
     "fairsharing": {
@@ -48261,7 +48651,7 @@
       "fairsharing": "FAIRsharing.jwra3e",
       "miriam": "mobidb",
       "n2t": "mobidb",
-      "uniprot": "MobiDB"
+      "uniprot": "DB-0183"
     },
     "miriam": {
       "deprecated": false,
@@ -48287,10 +48677,17 @@
     },
     "provides": "uniprot",
     "uniprot": {
+      "abbreviation": "MobiDB",
       "category": "Family and domain databases",
-      "identifier": "183",
-      "name": "MobiDB: a database of protein disorder and mobility annotations",
-      "prefix": "MobiDB",
+      "homepage": "https://mobidb.bio.unipd.it/",
+      "name": "MobiDB",
+      "prefix": "DB-0183",
+      "publications": [
+        {
+          "doi": "10.1093/bioinformatics/bts327",
+          "pubmed": "29136219"
+        }
+      ],
       "uri_format": "https://mobidb.bio.unipd.it/entries/$1"
     }
   },
@@ -48659,7 +49056,7 @@
   "mondo": {
     "aberowl": {
       "description": "A global community effort to harmonize multiple disease resources to yield a coherent merged ontology.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MONDO/71/mondo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MONDO/72/mondo.owl",
       "homepage": "https://monarch-initiative.github.io/mondo",
       "name": "Mondo Disease Ontology",
       "prefix": "MONDO"
@@ -48680,7 +49077,7 @@
       "name": "Mondo Disease Ontology",
       "prefix": "MONDO",
       "publication": "https://mondo.monarchinitiative.org/pages/resources/",
-      "version": "releases/2022-10-03"
+      "version": "releases/2022-10-11"
     },
     "download_obo": "http://purl.obolibrary.org/obo/mondo.obo",
     "example": "0000001",
@@ -48736,8 +49133,8 @@
       "homepage": "http://obofoundry.org/ontology/mondo.html",
       "name": "Mondo Disease Ontology",
       "prefix": "mondo",
-      "version": "2022-08-01",
-      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2022-08-01/mondo.owl"
+      "version": "2022-10-11",
+      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2022-10-11/mondo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -48855,10 +49252,43 @@
       "uri_format": "https://morpheus.gitlab.io/models/$1"
     }
   },
+  "mosaic": {
+    "contact": {
+      "email": "brycemecum@gmail.com",
+      "github": "amoeba",
+      "name": "Bryce Mecum",
+      "orcid": "0000-0002-0381-3766"
+    },
+    "contributor": {
+      "email": "j.harry.caufield@gmail.com",
+      "github": "caufieldjh",
+      "name": "Harry Caufield",
+      "orcid": "0000-0001-5705-7831"
+    },
+    "description": "An ontology used to describe data resources in the Arctic Data Center (https://arcticdata.io).",
+    "download_owl": "https://ontologies.dataone.org/MOSAiC.owl",
+    "example": "00005643",
+    "github_request_issue": 636,
+    "homepage": "https://ontologies.dataone.org/MOSAiC.html",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "bioportal": "MOSAIC"
+    },
+    "name": "MOSAiC Ontology",
+    "pattern": "^\\d{8}$",
+    "repository": "https://github.com/DataONEorg/sem-prov-ontologies",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://purl.dataone.org/odo/MOSAIC_$1"
+  },
   "mp": {
     "aberowl": {
       "description": "Standard terms for annotating mammalian phenotypic data.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MP/85/mp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MP/86/mp.owl",
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "Mammalian Phenotype Ontology",
       "prefix": "MP"
@@ -48878,7 +49308,7 @@
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "Mammalian Phenotype Ontology",
       "prefix": "MP",
-      "version": "2022-09-29"
+      "version": "2022-10-11"
     },
     "fairsharing": {
       "abbreviation": "MP",
@@ -49925,7 +50355,7 @@
       "n2t": "myco.tuber",
       "ncbi": "TubercuList",
       "prefixcommons": "tuberculist",
-      "uniprot": "TubercuList"
+      "uniprot": "DB-0106"
     },
     "miriam": {
       "deprecated": false,
@@ -49973,11 +50403,17 @@
       "TubercuList"
     ],
     "uniprot": {
+      "abbreviation": "TubercuList",
       "category": "Organism-specific databases",
-      "identifier": "106",
-      "link_is_explicit": "true",
+      "homepage": "https://mycobrowser.epfl.ch/",
       "name": "Mycobacterium tuberculosis strain H37Rv genome database",
-      "prefix": "TubercuList",
+      "prefix": "DB-0106",
+      "publications": [
+        {
+          "doi": "10.1016/j.tube.2010.09.006",
+          "pubmed": "20980200"
+        }
+      ],
       "uri_format": "https://mycobrowser.epfl.ch/genes/$1"
     }
   },
@@ -50830,18 +51266,28 @@
       ],
       "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
     },
+    "hl7": {
+      "description": "Because not all genes have HGNC names and codes, NCBI has created gene IDs that cover the genes that are not registered by HGNC. When applicable, this variable identifies the gene on which the variant is located. The gene identifier is also carried in the transcript reference sequence database, and is part of a full HGVS expression.",
+      "homepage": "https://lhncbc.nlm.nih.gov/",
+      "name": "NCBI Gene Code",
+      "organization": "Lister Hill National Center for Biomedical Communications",
+      "preferred_prefix": "geneCodeNCBI",
+      "prefix": "2.16.840.1.113883.6.340",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "NCBIGene",
       "biolink": "NCBIGene",
       "edam": "1027",
       "fairsharing": "FAIRsharing.5h3maw",
       "go": "NCBIGene",
-      "hl7": "geneCodeNCBI",
+      "hl7": "2.16.840.1.113883.6.340",
       "miriam": "ncbigene",
       "n2t": "ncbigene",
       "ncbi": "GeneID",
       "prefixcommons": "ncbigene",
       "re3data": "r3d100010650",
+      "uniprot": "DB-0118",
       "wikidata": "P351"
     },
     "miriam": {
@@ -50954,6 +51400,20 @@
       "entrez",
       "entrez gene/locuslink"
     ],
+    "uniprot": {
+      "abbreviation": "GeneID",
+      "category": "Genome annotation databases",
+      "homepage": "https://www.ncbi.nlm.nih.gov/gene",
+      "name": "Database of genes from NCBI RefSeq genomes",
+      "prefix": "DB-0118",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkq1237",
+          "pubmed": "21115458"
+        }
+      ],
+      "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
+    },
     "wikidata": {
       "database": "Q1345229",
       "database.homepage": "http://www.ncbi.nlm.nih.gov/gquery/",
@@ -50987,6 +51447,7 @@
       "prefix": "NCBI_gi",
       "uri_format": "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"
     },
+    "has_canonical": "genbank",
     "homepage": "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/",
     "mappings": {
       "biocontext": "NCBIGI",
@@ -51165,6 +51626,13 @@
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1"
     },
+    "hl7": {
+      "description": "NCBI Taxonomy. National Center for Biotechnology Information, National Library of Medicine, Bethesda, MD, 2001. http://www.ncbi.nlm.nih.gov/Taxonomy/",
+      "name": "Taxonomy from NCBI",
+      "preferred_prefix": "NCBI",
+      "prefix": "2.16.840.1.113883.6.205",
+      "status": "Pending"
+    },
     "mappings": {
       "aberowl": "NCBITAXON",
       "agroportal": "NCBITAXON",
@@ -51174,14 +51642,14 @@
       "edam": "1179",
       "fairsharing": "FAIRsharing.fj07xj",
       "go": "taxon",
-      "hl7": "NCBI",
+      "hl7": "2.16.840.1.113883.6.205",
       "miriam": "taxonomy",
       "n2t": "taxonomy",
       "ncbi": "taxon",
       "obofoundry": "ncbitaxon",
       "ols": "ncbitaxon",
       "ontobee": "NCBITaxon",
-      "prefixcommons": "uniprot.taxonomy",
+      "prefixcommons": "taxonomy",
       "re3data": "r3d100010415",
       "wikidata": "P685"
     },
@@ -51288,22 +51756,30 @@
     },
     "pattern": "^\\d+$",
     "prefixcommons": {
-      "description": "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined.",
+      "bioportal": "1132",
+      "description": "The NCBI taxonomy database contains the names of all organisms that are represented in the genetic databases with at least one nucleotide or protein sequence.",
       "example": "9606",
-      "homepage": "http://www.uniprot.org/taxonomy/",
+      "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
       "keywords": [
         "DNA",
         "protein",
         "structure",
         "classification"
       ],
-      "name": "Uniprot Taxonomy",
+      "name": "NCBI Taxonomy",
       "pattern": "^\\d+$",
-      "prefix": "uniprot.taxonomy",
+      "prefix": "taxonomy",
       "synonyms": [
-        "newt"
+        "taxid",
+        "taxon",
+        "ncbitaxon",
+        "ncbitaxonomy",
+        "newt",
+        "taxman",
+        "ncbi_taxid",
+        "ncbi_taxon_id"
       ],
-      "uri_format": "http://www.uniprot.org/taxonomy/$1"
+      "uri_format": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1"
     },
     "providers": [
       {
@@ -52417,7 +52893,7 @@
       "fairsharing": "FAIRsharing.62evqh",
       "miriam": "nextprot",
       "n2t": "nextprot",
-      "uniprot": "neXtProt"
+      "uniprot": "DB-0161"
     },
     "miriam": {
       "deprecated": false,
@@ -52446,11 +52922,17 @@
     ],
     "twitter": "neXtProt_news",
     "uniprot": {
+      "abbreviation": "neXtProt",
       "category": "Organism-specific databases",
-      "identifier": "161",
-      "link_is_explicit": "true",
+      "homepage": "https://www.nextprot.org/",
       "name": "neXtProt; the human protein knowledge platform",
-      "prefix": "neXtProt",
+      "prefix": "DB-0161",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkw1062",
+          "pubmed": "27899619"
+        }
+      ],
       "uri_format": "https://www.nextprot.org/entry/$1"
     },
     "wikidata": {
@@ -55321,7 +55803,7 @@
       "homepage": "https://purl.obolibrary.org/obo/ohd/home",
       "name": "The Oral Health and Disease Ontology",
       "prefix": "OHD",
-      "version": "2016-06-27"
+      "version": "2022-10-10"
     },
     "example": "0000006",
     "fairsharing": {
@@ -55366,7 +55848,7 @@
       "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology"
     },
     "ols": {
-      "description": "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records.",
+      "description": "The Oral Health and Disease Ontology is used for representing the diagnosis and treatment of dental maladies.",
       "download": "http://purl.obolibrary.org/obo/ohd.owl",
       "homepage": "https://purl.obolibrary.org/obo/ohd/home",
       "name": "Oral Health and Disease Ontology",
@@ -56045,7 +56527,7 @@
       "n2t": "mim",
       "ncbi": "MIM",
       "prefixcommons": "omim",
-      "uniprot": "MIM",
+      "uniprot": "DB-0062",
       "wikidata": "P492"
     },
     "miriam": {
@@ -56160,11 +56642,17 @@
       "mim"
     ],
     "uniprot": {
+      "abbreviation": "MIM",
       "category": "Organism-specific databases",
-      "identifier": "62",
-      "link_is_explicit": "true",
+      "homepage": "https://www.omim.org/",
       "name": "Online Mendelian Inheritance in Man (OMIM)",
-      "prefix": "MIM",
+      "prefix": "DB-0062",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gku1205",
+          "pubmed": "25428349"
+        }
+      ],
       "uri_format": "https://www.omim.org/entry/$1"
     },
     "uri_format": "https://omim.org/MIM:$1",
@@ -57781,7 +58269,7 @@
       "miriam": "orphanet",
       "n2t": "orphanet",
       "prefixcommons": "orphanet",
-      "uniprot": "Orphanet",
+      "uniprot": "DB-0068",
       "wikidata": "P1550"
     },
     "miriam": {
@@ -57844,11 +58332,11 @@
       "ORPHA"
     ],
     "uniprot": {
+      "abbreviation": "Orphanet",
       "category": "Organism-specific databases",
-      "identifier": "68",
-      "link_is_explicit": "true",
+      "homepage": "https://www.orpha.net/consor/cgi-bin/index.php",
       "name": "Orphanet; a database dedicated to information on rare diseases and orphan drugs",
-      "prefix": "Orphanet",
+      "prefix": "DB-0068",
       "uri_format": "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=$1"
     },
     "wikidata": {
@@ -58078,7 +58566,7 @@
       "miriam": "orthodb",
       "n2t": "orthodb",
       "prefixcommons": "orthodb",
-      "uniprot": "OrthoDB"
+      "uniprot": "DB-0143"
     },
     "miriam": {
       "deprecated": false,
@@ -58130,11 +58618,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "OrthoDB",
       "category": "Phylogenomic databases",
-      "identifier": "143",
-      "link_is_explicit": "true",
+      "homepage": "https://www.orthodb.org",
       "name": "Database of Orthologous Groups",
-      "prefix": "OrthoDB",
+      "prefix": "DB-0143",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1053",
+          "pubmed": "30395283"
+        }
+      ],
       "uri_format": "https://www.orthodb.org/?query=$1"
     }
   },
@@ -58710,7 +59204,8 @@
       "biolink": "PANTHER.FAMILY",
       "go": "PANTHER",
       "miriam": "panther.family",
-      "n2t": "panther.family"
+      "n2t": "panther.family",
+      "uniprot": "DB-0069"
     },
     "miriam": {
       "deprecated": false,
@@ -58734,7 +59229,21 @@
       "prefix": "panther.family",
       "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
     },
-    "part_of": "panther"
+    "part_of": "panther",
+    "uniprot": {
+      "abbreviation": "PANTHER",
+      "category": "Family and domain databases",
+      "homepage": "http://www.pantherdb.org/",
+      "name": "The PANTHER Classification System",
+      "prefix": "DB-0069",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1038",
+          "pubmed": "30407594"
+        }
+      ],
+      "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
+    }
   },
   "panther.node": {
     "biocontext": {
@@ -58987,7 +59496,7 @@
       "n2t": "pathwaycommons",
       "prefixcommons": "pathwaycommons",
       "re3data": "r3d100012731",
-      "uniprot": "PathwayCommons"
+      "uniprot": "DB-0253"
     },
     "miriam": {
       "deprecated": false,
@@ -59039,11 +59548,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "PathwayCommons",
       "category": "Enzyme and pathway databases",
-      "identifier": "253",
-      "link_is_explicit": "true",
+      "homepage": "http://www.pathwaycommons.org",
       "name": "Pathway Commons web resource for biological pathway data",
-      "prefix": "PathwayCommons",
+      "prefix": "DB-0253",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkq1039",
+          "pubmed": "21071392"
+        }
+      ],
       "uri_format": "http://apps.pathwaycommons.org/search?q=$1"
     }
   },
@@ -59527,7 +60042,7 @@
       "name": "Provisional Cell Ontology",
       "prefix": "PCL",
       "publication": "https://doi.org/10.1101/2021.10.10.463703",
-      "version": "2022-09-02"
+      "version": "2022-10-19"
     },
     "example": "0011124",
     "fairsharing": {
@@ -59795,7 +60310,7 @@
       "ncbi": "PDB",
       "prefixcommons": "pdbj",
       "re3data": "r3d100010910",
-      "uniprot": "RCSB-PDB",
+      "uniprot": "DB-0172",
       "wikidata": "P638"
     },
     "miriam": {
@@ -59899,11 +60414,18 @@
       "wwpdb"
     ],
     "uniprot": {
+      "abbreviation": "PDBj",
       "category": "3D structure databases",
-      "identifier": "171",
-      "name": "Protein Data Bank RCSB",
-      "prefix": "RCSB-PDB",
-      "uri_format": "https://www.rcsb.org/structure/$1"
+      "homepage": "https://pdbj.org/",
+      "name": "Protein Data Bank Japan",
+      "prefix": "DB-0172",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkr811",
+          "pubmed": "21976737"
+        }
+      ],
+      "uri_format": "https://pdbj.org/mine/summary/$1"
     },
     "wikidata": {
       "database": "Q766195",
@@ -60498,7 +61020,7 @@
       "n2t": "peptideatlas",
       "prefixcommons": "peptideatlas",
       "re3data": "r3d100010889",
-      "uniprot": "PeptideAtlas"
+      "uniprot": "DB-0071"
     },
     "miriam": {
       "deprecated": false,
@@ -60562,11 +61084,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "PeptideAtlas",
       "category": "Proteomic databases",
-      "identifier": "71",
-      "link_is_explicit": "true",
+      "homepage": "http://www.peptideatlas.org",
       "name": "PeptideAtlas",
-      "prefix": "PeptideAtlas",
+      "prefix": "DB-0071",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkj040",
+          "pubmed": "16381952"
+        }
+      ],
       "uri_format": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/Search?action=GO&search_key=$1"
     }
   },
@@ -60634,7 +61162,7 @@
       "miriam": "peroxibase",
       "n2t": "peroxibase",
       "prefixcommons": "peroxibase",
-      "uniprot": "PeroxiBase"
+      "uniprot": "DB-0072"
     },
     "miriam": {
       "deprecated": false,
@@ -60684,11 +61212,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "PeroxiBase",
       "category": "Protein family/group databases",
-      "identifier": "72",
-      "link_is_explicit": "true",
+      "homepage": "http://peroxibase.toulouse.inra.fr/",
       "name": "PeroxiBase, a peroxidase database",
-      "prefix": "PeroxiBase",
+      "prefix": "DB-0072",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gks1083",
+          "pubmed": "23180785"
+        }
+      ],
       "uri_format": "http://peroxibase.toulouse.inra.fr/display_perox/view_perox/$1"
     }
   },
@@ -60744,7 +61278,7 @@
       "n2t": "pfam",
       "ncbi": "PFAM",
       "prefixcommons": "pfam",
-      "uniprot": "Pfam",
+      "uniprot": "DB-0073",
       "wikidata": "P3519"
     },
     "miriam": {
@@ -60863,11 +61397,17 @@
       "PF"
     ],
     "uniprot": {
+      "abbreviation": "Pfam",
       "category": "Family and domain databases",
-      "identifier": "73",
-      "link_is_explicit": "true",
+      "homepage": "https://pfam.xfam.org/",
       "name": "Pfam protein domain database",
-      "prefix": "Pfam",
+      "prefix": "DB-0073",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky995",
+          "pubmed": "30357350"
+        }
+      ],
       "uri_format": "https://pfam.xfam.org/family/$1"
     },
     "uri_format": "https://www.ebi.ac.uk/interpro/entry/pfam/$1",
@@ -61288,6 +61828,7 @@
       "miriam": "pharmgkb.gene",
       "n2t": "pharmgkb.gene",
       "prefixcommons": "pharmgkb.gene",
+      "uniprot": "DB-0074",
       "wikidata": "P7001"
     },
     "miriam": {
@@ -61336,6 +61877,20 @@
         "year": 2011
       }
     ],
+    "uniprot": {
+      "abbreviation": "PharmGKB",
+      "category": "Organism-specific databases",
+      "homepage": "https://www.pharmgkb.org/",
+      "name": "The Pharmacogenetics and Pharmacogenomics Knowledge Base",
+      "prefix": "DB-0074",
+      "publications": [
+        {
+          "doi": "10.1385/1-59259-957-5:179",
+          "pubmed": "16100408"
+        }
+      ],
+      "uri_format": "https://www.pharmgkb.org/gene/$1"
+    },
     "wikidata": {
       "prefix": "P7001"
     }
@@ -61834,7 +62389,7 @@
       "miriam": "phylomedb",
       "n2t": "phylomedb",
       "prefixcommons": "phylomedb",
-      "uniprot": "PhylomeDB"
+      "uniprot": "DB-0144"
     },
     "miriam": {
       "deprecated": false,
@@ -61873,7 +62428,7 @@
       "pubmed_ids": [
         "17962297"
       ],
-      "uri_format": "http://phylomedb.org/?seqid=$d"
+      "uri_format": "http://phylomedb.org/?seqid=$1"
     },
     "publications": [
       {
@@ -61885,11 +62440,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "PhylomeDB",
       "category": "Phylogenomic databases",
-      "identifier": "144",
-      "link_is_explicit": "true",
+      "homepage": "http://phylomedb.org/",
       "name": "Database for complete collections of gene phylogenies",
-      "prefix": "PhylomeDB",
+      "prefix": "DB-0144",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkt1177",
+          "pubmed": "24275491"
+        }
+      ],
       "uri_format": "http://phylomedb.org/search_phylome/?seqid=$1"
     }
   },
@@ -62215,7 +62776,7 @@
       "miriam": "pirsf",
       "n2t": "pirsf",
       "prefixcommons": "pirsf",
-      "uniprot": "PIRSF"
+      "uniprot": "DB-0079"
     },
     "miriam": {
       "deprecated": false,
@@ -62265,11 +62826,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "PIRSF",
       "category": "Family and domain databases",
-      "identifier": "79",
-      "link_is_explicit": "true",
+      "homepage": "https://proteininformationresource.org/pirwww/dbinfo/pirsf.shtml",
       "name": "PIRSF; a whole-protein classification database",
-      "prefix": "PIRSF",
+      "prefix": "DB-0079",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkh097",
+          "pubmed": "14681371"
+        }
+      ],
       "uri_format": "https://proteininformationresource.org/cgi-bin/ipcSF?id=$1"
     }
   },
@@ -63466,7 +64033,7 @@
       "ncbi": "PomBase",
       "prefixcommons": "pombase",
       "re3data": "r3d100011478",
-      "uniprot": "PomBase",
+      "uniprot": "DB-0031",
       "wikidata": "P6245"
     },
     "miriam": {
@@ -63538,12 +64105,17 @@
       "PomBase"
     ],
     "uniprot": {
+      "abbreviation": "PomBase",
       "category": "Organism-specific databases",
-      "comment": "Replacement for GeneDB_Spombe",
-      "identifier": "31",
-      "link_is_explicit": "true",
+      "homepage": "https://www.pombase.org/",
       "name": "Schizosaccharomyces pombe database",
-      "prefix": "PomBase",
+      "prefix": "DB-0031",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky961",
+          "pubmed": "30321395"
+        }
+      ],
       "uri_format": "https://www.pombase.org/gene/$1"
     },
     "wikidata": {
@@ -63902,7 +64474,7 @@
       "ols": "pr",
       "ontobee": "PR",
       "prefixcommons": "pr",
-      "uniprot": "PRO",
+      "uniprot": "DB-0181",
       "wikidata": "P4926"
     },
     "miriam": {
@@ -64038,11 +64610,17 @@
       "PRO"
     ],
     "uniprot": {
+      "abbreviation": "PRO",
       "category": "Miscellaneous databases",
-      "identifier": "181",
-      "link_is_explicit": "true",
+      "homepage": "https://proconsortium.org/",
       "name": "Protein Ontology",
-      "prefix": "PRO",
+      "prefix": "DB-0181",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkt1173",
+          "pubmed": "24270789"
+        }
+      ],
       "uri_format": "https://proconsortium.org/app/entry/$1"
     },
     "wikidata": {
@@ -64081,13 +64659,7 @@
       "prefix": "PRIDE",
       "uri_format": "http://identifiers.org/pride/$1"
     },
-    "cellosaurus": {
-      "category": "Proteomic databases",
-      "homepage": "https://www.ebi.ac.uk/pride/archive/",
-      "name": "PRoteomics IDEntifications archive",
-      "prefix": "PRIDE",
-      "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
-    },
+    "example": "0000006",
     "fairsharing": {
       "abbreviation": "PRIDE",
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence.",
@@ -64102,13 +64674,12 @@
     "mappings": {
       "aberowl": "PRIDE",
       "biocontext": "PRIDE",
-      "cellosaurus": "PRIDE",
       "fairsharing": "FAIRsharing.e1byny",
       "miriam": "pride",
       "n2t": "pride",
       "ols": "pride",
       "prefixcommons": "pride",
-      "uniprot": "PRIDE"
+      "uniprot": "DB-0130"
     },
     "miriam": {
       "deprecated": false,
@@ -64139,6 +64710,7 @@
       "name": "PRIDE Controlled Vocabulary",
       "prefix": "pride"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence.",
       "example": "1",
@@ -64187,13 +64759,20 @@
     ],
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "uniprot": {
+      "abbreviation": "PRIDE",
       "category": "Proteomic databases",
-      "identifier": "130",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ebi.ac.uk/pride",
       "name": "PRoteomics IDEntifications database",
-      "prefix": "PRIDE",
+      "prefix": "DB-0130",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1106",
+          "pubmed": "30395289"
+        }
+      ],
       "uri_format": "https://www.ebi.ac.uk/pride/searchSummary.do?queryTypeSelected=identification%20accession%20number&identificationAccessionNumber=$1"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1"
   },
   "pride.project": {
     "biocontext": {
@@ -64202,8 +64781,16 @@
       "prefix": "PRIDE.PROJECT",
       "uri_format": "http://identifiers.org/pride.project/$1"
     },
+    "cellosaurus": {
+      "category": "Proteomic databases",
+      "homepage": "https://www.ebi.ac.uk/pride/archive/",
+      "name": "PRoteomics IDEntifications archive",
+      "prefix": "PRIDE",
+      "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
+    },
     "mappings": {
       "biocontext": "PRIDE.PROJECT",
+      "cellosaurus": "PRIDE",
       "miriam": "pride.project",
       "n2t": "pride.project"
     },
@@ -64269,7 +64856,7 @@
       "go": "PRINTS",
       "miriam": "prints",
       "n2t": "prints",
-      "uniprot": "PRINTS"
+      "uniprot": "DB-0082"
     },
     "miriam": {
       "deprecated": false,
@@ -64294,12 +64881,17 @@
       "uri_format": "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off"
     },
     "uniprot": {
+      "abbreviation": "PRINTS",
       "category": "Family and domain databases",
-      "comment": "Replacement for PRINT",
-      "identifier": "82",
-      "link_is_explicit": "true",
+      "homepage": "http://www.bioinf.manchester.ac.uk/dbbrowser/PRINTS/",
       "name": "Protein Motif fingerprint database; a protein domain database",
-      "prefix": "PRINTS",
+      "prefix": "DB-0082",
+      "publications": [
+        {
+          "doi": "10.1093/database/bas019",
+          "pubmed": "22508994"
+        }
+      ],
       "uri_format": "http://umber.sbs.man.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&prints_accn=$1"
     }
   },
@@ -64632,7 +65224,7 @@
       "miriam": "prosite",
       "n2t": "prosite",
       "prefixcommons": "prosite",
-      "uniprot": "PROSITE",
+      "uniprot": "DB-0084",
       "wikidata": "P4355"
     },
     "miriam": {
@@ -64687,11 +65279,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "PROSITE",
       "category": "Family and domain databases",
-      "identifier": "84",
-      "link_is_explicit": "true",
+      "homepage": "https://prosite.expasy.org/",
       "name": "PROSITE; a protein domain and family database",
-      "prefix": "PROSITE",
+      "prefix": "DB-0084",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gks1067",
+          "pubmed": "23161676"
+        }
+      ],
       "uri_format": "https://prosite.expasy.org/doc/$1"
     },
     "wikidata": {
@@ -65257,7 +65855,8 @@
       "prefix": "psipar",
       "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:$1"
   },
   "pso": {
     "aberowl": {
@@ -66548,7 +67147,7 @@
       "homepage": "https://github.com/Radiobiology-Informatics-Consortium/RBO/tree/master/src/ontology",
       "name": "Radiation Biology Ontology",
       "prefix": "RBO",
-      "version": "2022-10-06"
+      "version": "2022-10-20"
     },
     "example": "00000105",
     "example_extras": [
@@ -66812,7 +67411,6 @@
       "n2t": "reactome",
       "prefixcommons": "reactome",
       "re3data": "r3d100010861",
-      "uniprot": "Reactome",
       "wikidata": "P3937"
     },
     "miriam": {
@@ -66898,15 +67496,6 @@
       "RE",
       "REACT"
     ],
-    "uniprot": {
-      "category": "Enzyme and pathway databases",
-      "comment": "Replacement for GK",
-      "identifier": "88",
-      "link_is_explicit": "true",
-      "name": "Reactome - a knowledgebase of biological pathways and processes",
-      "prefix": "Reactome",
-      "uri_format": "https://www.reactome.org/PathwayBrowser/#%s&FLG=%u"
-    },
     "wikidata": {
       "database": "Q2134522",
       "database.homepage": "http://www.reactome.org/",
@@ -66915,7 +67504,7 @@
       "homepage": "http://www.reactome.org/",
       "name": "Reactome ID",
       "prefix": "P3937",
-      "uri_format": "http://identifiers.org/reactome:$1"
+      "uri_format": "https://reactome.org/content/detail/$1"
     }
   },
   "reaxys": {
@@ -66986,7 +67575,7 @@
       "n2t": "rebase",
       "prefixcommons": "rebase",
       "re3data": "r3d100012171",
-      "uniprot": "REBASE"
+      "uniprot": "DB-0089"
     },
     "miriam": {
       "deprecated": false,
@@ -67054,11 +67643,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "REBASE",
       "category": "Protein family/group databases",
-      "identifier": "89",
-      "link_is_explicit": "true",
+      "homepage": "http://rebase.neb.com/rebase/rebase.html",
       "name": "Restriction enzymes and methylases database",
-      "prefix": "REBASE",
+      "prefix": "DB-0089",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gku1046",
+          "pubmed": "25378308"
+        }
+      ],
       "uri_format": "http://rebase.neb.com/rebase/enz/$1.html"
     }
   },
@@ -67133,7 +67728,7 @@
       "miriam": "refseq",
       "n2t": "refseq",
       "prefixcommons": "refseq",
-      "uniprot": "RefSeq"
+      "uniprot": "DB-0117"
     },
     "miriam": {
       "deprecated": false,
@@ -67174,7 +67769,7 @@
       "pubmed_ids": [
         "17130148"
       ],
-      "uri_format": "http://www.ncbi.nlm.nih.gov/nuccore/[?id]"
+      "uri_format": "http://www.ncbi.nlm.nih.gov/nuccore/$1"
     },
     "publications": [
       {
@@ -67192,11 +67787,17 @@
       "REFSEQ_PROT"
     ],
     "uniprot": {
+      "abbreviation": "RefSeq",
       "category": "Sequence databases",
-      "identifier": "117",
-      "link_is_explicit": "true",
+      "homepage": "https://www.ncbi.nlm.nih.gov/refseq/",
       "name": "NCBI Reference Sequences",
-      "prefix": "RefSeq",
+      "prefix": "DB-0117",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkv1189",
+          "pubmed": "26553804"
+        }
+      ],
       "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
     }
   },
@@ -67750,7 +68351,7 @@
       "n2t": "rgd",
       "ncbi": "RGD",
       "prefixcommons": "rgd",
-      "uniprot": "RGD",
+      "uniprot": "DB-0091",
       "wikidata": "P3853"
     },
     "miriam": {
@@ -67822,12 +68423,18 @@
     ],
     "twitter": "ratgenome",
     "uniprot": {
+      "abbreviation": "RGD",
       "category": "Organism-specific databases",
-      "identifier": "91",
-      "link_is_explicit": "true",
-      "name": "Rat genome database",
-      "prefix": "RGD",
-      "uri_format": "http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=$1"
+      "homepage": "https://rgd.mcw.edu/",
+      "name": "Rat Genome Database",
+      "prefix": "DB-0091",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz1041",
+          "pubmed": "31713623"
+        }
+      ],
+      "uri_format": "https://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
     },
     "wikidata": {
       "database": "Q7295410",
@@ -68841,7 +69448,7 @@
       "miriam": "rouge",
       "n2t": "rouge",
       "prefixcommons": "rouge",
-      "uniprot": "Rouge"
+      "uniprot": "DB-0092"
     },
     "miriam": {
       "deprecated": false,
@@ -68880,10 +69487,17 @@
       "uri_format": "http://www.kazusa.or.jp/rouge/gfpage/$1/"
     },
     "uniprot": {
+      "abbreviation": "Rouge",
       "category": "Organism-specific databases",
-      "identifier": "92",
+      "homepage": "http://www.kazusa.or.jp/rouge/",
       "name": "Rodent Unidentified Gene-Encoded large proteins database",
-      "prefix": "Rouge",
+      "prefix": "DB-0092",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkh035",
+          "pubmed": "14681467"
+        }
+      ],
       "uri_format": "http://www.kazusa.or.jp/rouge/gfpage/$1"
     },
     "uri_format": "https://www.kazusa.or.jp/rouge/gfpage/$1"
@@ -68963,7 +69577,7 @@
       "name": "Rat Strain Ontology",
       "prefix": "RS",
       "publication": "http://www.ncbi.nlm.nih.gov/pubmed/23603846",
-      "version": "6.174"
+      "version": "6.176"
     },
     "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/rat_strain/rat_strain.obo",
     "download_owl": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/rat_strain/rat_strain.owl",
@@ -69521,7 +70135,7 @@
       "n2t": "sabiork.reaction",
       "prefixcommons": "sabiork.reaction",
       "re3data": "r3d100011052",
-      "uniprot": "SABIO-RK"
+      "uniprot": "DB-0177"
     },
     "miriam": {
       "deprecated": false,
@@ -69580,11 +70194,17 @@
       "SABIO-RK"
     ],
     "uniprot": {
+      "abbreviation": "SABIO-RK",
       "category": "Enzyme and pathway databases",
-      "identifier": "177",
-      "link_is_explicit": "true",
-      "name": "SABIO-RK: Biochemical Reaction Kinetics Database",
-      "prefix": "SABIO-RK",
+      "homepage": "http://sabiork.h-its.org/",
+      "name": "SABIO-RK",
+      "prefix": "DB-0177",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkr1046",
+          "pubmed": "22102587"
+        }
+      ],
       "uri_format": "http://sabiork.h-its.org/newSearch?q=UniProtKB_AC:$1"
     },
     "uri_format": "http://sabiork.h-its.org/reacdetails.jsp?reactid=$1"
@@ -69715,7 +70335,7 @@
       "miriam": "sasbdb",
       "n2t": "sasbdb",
       "re3data": "r3d100012273",
-      "uniprot": "SASBDB"
+      "uniprot": "DB-0258"
     },
     "miriam": {
       "deprecated": false,
@@ -69753,11 +70373,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "SASBDB",
       "category": "3D structure databases",
-      "identifier": "258",
-      "link_is_explicit": "true",
+      "homepage": "https://www.sasbdb.org/",
       "name": "Small Angle Scattering Biological Data Bank",
-      "prefix": "SASBDB",
+      "prefix": "DB-0258",
+      "publications": [
+        {
+          "doi": "10.1002/pro.3731",
+          "pubmed": "31576635"
+        }
+      ],
       "uri_format": "https://www.sasbdb.org/uniprot/$1/"
     }
   },
@@ -70827,7 +71453,7 @@
       "n2t": "sgd",
       "ncbi": "SGD",
       "prefixcommons": "sgd",
-      "uniprot": "SGD",
+      "uniprot": "DB-0095",
       "wikidata": "P3406"
     },
     "miriam": {
@@ -70846,13 +71472,6 @@
           "homepage": "http://sgd.bio2rdf.org/fct",
           "name": "Bio2RDF",
           "uri_format": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
-        },
-        {
-          "code": "bioentitylink",
-          "description": "SGD through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "SGD through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
         },
         {
           "code": "agr",
@@ -70909,11 +71528,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "SGD",
       "category": "Organism-specific databases",
-      "identifier": "95",
-      "link_is_explicit": "true",
+      "homepage": "https://www.yeastgenome.org/",
       "name": "Saccharomyces Genome Database",
-      "prefix": "SGD",
+      "prefix": "DB-0095",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkr1029",
+          "pubmed": "22110037"
+        }
+      ],
       "uri_format": "https://www.yeastgenome.org/locus/$1"
     },
     "wikidata": {
@@ -71567,7 +72192,7 @@
     "mappings": {
       "fairsharing": "FAIRsharing.ss78t4",
       "miriam": "signor",
-      "uniprot": "SIGNOR"
+      "uniprot": "DB-0206"
     },
     "miriam": {
       "deprecated": false,
@@ -71586,11 +72211,17 @@
       "SIGNOR"
     ],
     "uniprot": {
+      "abbreviation": "SIGNOR",
       "category": "Enzyme and pathway databases",
-      "identifier": "206",
-      "link_is_explicit": "true",
+      "homepage": "https://signor.uniroma2.it/",
       "name": "SIGNOR Signaling Network Open Resource",
-      "prefix": "SIGNOR",
+      "prefix": "DB-0206",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkv1048",
+          "pubmed": "26467481"
+        }
+      ],
       "uri_format": "https://signor.uniroma2.it/relation_result.php?id=$1"
     }
   },
@@ -71970,7 +72601,7 @@
       "miriam": "smart",
       "n2t": "smart",
       "prefixcommons": "smart",
-      "uniprot": "SMART"
+      "uniprot": "DB-0097"
     },
     "miriam": {
       "deprecated": false,
@@ -72021,11 +72652,17 @@
       }
     ],
     "uniprot": {
+      "abbreviation": "SMART",
       "category": "Family and domain databases",
-      "identifier": "97",
-      "link_is_explicit": "true",
+      "homepage": "http://smart.embl.de/",
       "name": "Simple Modular Architecture Research Tool; a protein domain database",
-      "prefix": "SMART",
+      "prefix": "DB-0097",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkx922",
+          "pubmed": "29040681"
+        }
+      ],
       "uri_format": "http://smart.embl.de/smart/do_annotation.pl?DOMAIN=$1"
     }
   },
@@ -73542,7 +74179,7 @@
       "n2t": "string",
       "prefixcommons": "string",
       "re3data": "r3d100010604",
-      "uniprot": "STRING"
+      "uniprot": "DB-0141"
     },
     "miriam": {
       "deprecated": false,
@@ -73618,11 +74255,17 @@
       }
     },
     "uniprot": {
+      "abbreviation": "STRING",
       "category": "Protein-protein interaction databases",
-      "identifier": "141",
-      "link_is_explicit": "true",
-      "name": "STRING: functional protein association networks",
-      "prefix": "STRING",
+      "homepage": "https://string-db.org/",
+      "name": "STRING",
+      "prefix": "DB-0141",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1131",
+          "pubmed": "30476243"
+        }
+      ],
       "uri_format": "https://string-db.org/network/$1"
     }
   },
@@ -73905,7 +74548,7 @@
       "miriam": "supfam",
       "n2t": "supfam",
       "prefixcommons": "superfamily",
-      "uniprot": "SUPFAM"
+      "uniprot": "DB-0155"
     },
     "miriam": {
       "deprecated": false,
@@ -73949,11 +74592,17 @@
       "uri_format": "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?sunid=$1"
     },
     "uniprot": {
+      "abbreviation": "SUPFAM",
       "category": "Family and domain databases",
-      "identifier": "155",
-      "link_is_explicit": "true",
+      "homepage": "https://supfam.org",
       "name": "Superfamily database of structural and functional annotation",
-      "prefix": "SUPFAM",
+      "prefix": "DB-0155",
+      "publications": [
+        {
+          "doi": "10.1006/jmbi.2001.5080",
+          "pubmed": "11697912"
+        }
+      ],
       "uri_format": "https://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1"
     }
   },
@@ -74118,7 +74767,7 @@
       "miriam": "slm",
       "n2t": "swisslipid",
       "re3data": "r3d100012603",
-      "uniprot": "SwissLipids",
+      "uniprot": "DB-0197",
       "wikidata": "P8691"
     },
     "miriam": {
@@ -74165,11 +74814,17 @@
       "swisslipids"
     ],
     "uniprot": {
+      "abbreviation": "SwissLipids",
       "category": "Chemistry databases",
-      "identifier": "197",
-      "link_is_explicit": "true",
+      "homepage": "https://www.swisslipids.org",
       "name": "SwissLipids knowledge resource for lipid biology",
-      "prefix": "SwissLipids",
+      "prefix": "DB-0197",
+      "publications": [
+        {
+          "doi": "10.1093/bioinformatics/btv285",
+          "pubmed": "25943471"
+        }
+      ],
       "uri_format": "https://www.swisslipids.org/#/entity/$1/"
     },
     "uri_format": "https://www.swisslipids.org/#/entity/SLM:$1",
@@ -74254,7 +74909,7 @@
       "name": "Software Ontology",
       "prefix": "SWO",
       "publication": "https://doi.org/10.1186/2041-1480-5-25",
-      "version": "1.7"
+      "version": "2022-10-11"
     },
     "download_json": "https://github.com/allysonlister/swo/raw/master/release/swo.json",
     "download_obo": "https://github.com/allysonlister/swo/raw/master/release/swo.obo",
@@ -74296,6 +74951,7 @@
       "deprecated": false,
       "description": "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community.",
       "domain": "information technology",
+      "download.json": "http://purl.obolibrary.org/obo/swo.json",
       "download.owl": "http://purl.obolibrary.org/obo/swo.owl",
       "homepage": "https://github.com/allysonlister/swo",
       "license": "CC BY 4.0",
@@ -75276,7 +75932,7 @@
       "miriam": "tcdb",
       "n2t": "tcdb",
       "prefixcommons": "tcdb",
-      "uniprot": "TCDB",
+      "uniprot": "DB-0135",
       "wikidata": "P7260"
     },
     "miriam": {
@@ -75334,11 +75990,17 @@
       "TC"
     ],
     "uniprot": {
+      "abbreviation": "TCDB",
       "category": "Protein family/group databases",
-      "identifier": "135",
-      "link_is_explicit": "true",
+      "homepage": "http://www.tcdb.org/",
       "name": "Transport Classification Database",
-      "prefix": "TCDB",
+      "prefix": "DB-0135",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkv1103",
+          "pubmed": "19022853"
+        }
+      ],
       "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
     },
     "wikidata": {
@@ -75986,7 +76648,7 @@
     ],
     "wikidata": {
       "database": "Q2300489",
-      "database.homepage": "http://www.tolweb.org/",
+      "database.homepage": "http://tolweb.org/tree/phylogeny.html",
       "database.label": "Tree of Life Web Project",
       "description": "identifier in the Tree of Life Web Project",
       "homepage": "https://tolweb.org",
@@ -76349,8 +77011,8 @@
       "uri_format": "http://www.treebase.org/treebase-web/search/study/summary.html?id=$1"
     },
     "re3data": {
-      "description": "<<< !!!The website use an authentication. Repository isn't accessible!!! >>> TreeBASE is a repository of phylogenetic information, specifically user-submitted phylogenetic trees and the data used to generate them. TreeBASE accepts all types of phylogenetic data (e.g., trees of species, trees of populations, trees of genes) representing all biotic taxa. Data in TreeBASE are exposed to the public if they are used in a publication that is in press or published in a peer-reviewed scientific journal, book, conference proceedings, or thesis. Data used in publications that are in preparation or in review can be submitted to TreeBASE but are only available to the authors, publication editors, or reviewers using a special access code.",
-      "homepage": "https://www.treebase.org",
+      "description": "TreeBASE is a repository of phylogenetic information, specifically user-submitted phylogenetic trees and the data used to generate them. TreeBASE accepts all types of phylogenetic data (e.g., trees of species, trees of populations, trees of genes) representing all biotic taxa. Data in TreeBASE are exposed to the public if they are used in a publication that is in press or published in a peer-reviewed scientific journal, book, conference proceedings, or thesis. Data used in publications that are in preparation or in review can be submitted to TreeBASE but are only available to the authors, publication editors, or reviewers using a special access code.",
+      "homepage": "https://www.treebase.org/treebase-web/home.html",
       "name": "TreeBASE",
       "prefix": "r3d100010170",
       "synonyms": [
@@ -76375,7 +77037,7 @@
       "miriam": "treefam",
       "n2t": "treefam",
       "prefixcommons": "treefam",
-      "uniprot": "TreeFam"
+      "uniprot": "DB-0185"
     },
     "miriam": {
       "deprecated": false,
@@ -76413,11 +77075,17 @@
       "uri_format": "http://www.treefam.org/cgi-bin/TFinfo.pl?ac=$1"
     },
     "uniprot": {
+      "abbreviation": "TreeFam",
       "category": "Phylogenomic databases",
-      "identifier": "185",
-      "link_is_explicit": "true",
+      "homepage": "http://www.treefam.org",
       "name": "TreeFam database of animal gene trees",
-      "prefix": "TreeFam",
+      "prefix": "DB-0185",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkt1055",
+          "pubmed": "24194607"
+        }
+      ],
       "uri_format": "http://www.treefam.org/family/$1"
     }
   },
@@ -77103,16 +77771,22 @@
     "homepage": "https://genome.ucsc.edu/",
     "mappings": {
       "biocontext": "UCSC",
-      "uniprot": "UCSC",
+      "uniprot": "DB-0139",
       "wikidata": "P2576"
     },
     "name": "UCSC Genome Browser",
     "uniprot": {
+      "abbreviation": "UCSC",
       "category": "Genome annotation databases",
-      "identifier": "139",
-      "link_is_explicit": "true",
+      "homepage": "https://genome.ucsc.edu/",
       "name": "UCSC genome browser",
-      "prefix": "UCSC",
+      "prefix": "DB-0139",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1095",
+          "pubmed": "30407534"
+        }
+      ],
       "uri_format": "https://genome.ucsc.edu/cgi-bin/hgLinkIn?resource=uniprot&id=$1"
     },
     "wikidata": {
@@ -77333,10 +78007,19 @@
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
     },
     "part_of": "umbbd",
+    "providers": [
+      {
+        "code": "eawag",
+        "description": "Graphical depiction of pathway",
+        "homepage": "http://eawag-bbd.ethz.ch",
+        "name": "Pathway map diagram",
+        "uri_format": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
+      }
+    ],
     "synonyms": [
       "UM-BBD_pathwayID"
     ],
-    "uri_format": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
+    "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
   },
   "umbbd.reaction": {
     "biocontext": {
@@ -78063,6 +78746,30 @@
       "uri_format": "https://www.uniprot.org/uniprot/$1"
     }
   },
+  "uniprot.arba": {
+    "contributor": {
+      "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
+      "name": "Chris Mungall",
+      "orcid": "0000-0002-6601-2165"
+    },
+    "description": "Association-Rule-Based Annotator (ARBA), a multiclass, self-training annotation system for automatic classification and annotation of UniProtKB proteins. This replaces the previous rule-based SAAS system.",
+    "example": "ARBA00000001",
+    "github_request_issue": 620,
+    "homepage": "https://www.uniprot.org/arba",
+    "name": "Association-Rule-Based Annotator",
+    "pattern": "^ARBA\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "arba"
+    ],
+    "uri_format": "https://www.uniprot.org/arba/$1"
+  },
   "uniprot.chain": {
     "mappings": {
       "miriam": "uniprot.chain"
@@ -78175,7 +78882,8 @@
     ],
     "synonyms": [
       "UPISO"
-    ]
+    ],
+    "uri_format": "http://purl.uniprot.org/isoforms/$1"
   },
   "uniprot.journal": {
     "contributor": {
@@ -78290,9 +78998,6 @@
     "description": "UniProt provides proteome sets of proteins whose genomes have been completely sequenced.",
     "example": "UP000005640",
     "homepage": "https://www.uniprot.org/proteomes",
-    "mappings": {
-      "uniprot": "Proteomes"
-    },
     "name": "UniProt Proteomes",
     "part_of": "uniprot",
     "pattern": "^UP\\d{9}$",
@@ -78305,14 +79010,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "uniprot": {
-      "category": "Miscellaneous databases",
-      "identifier": "191",
-      "link_is_explicit": "true",
-      "name": "Proteomes",
-      "prefix": "Proteomes",
-      "uri_format": "https://www.uniprot.org/proteomes/$1"
-    }
+    "uri_format": "https://www.uniprot.org/proteomes/$1"
   },
   "uniprot.ptm": {
     "contributor": {
@@ -78357,6 +79055,10 @@
     "name": "UniProt Resource",
     "part_of": "uniprot",
     "pattern": "^DB-\\d{4}$",
+    "synonyms": [
+      "uniprot.database",
+      "uniprot.db"
+    ],
     "uri_format": "https://www.uniprot.org/database/$1"
   },
   "uniprot.tissue": {
@@ -78411,12 +79113,21 @@
     "name": "UniProt Variants",
     "part_of": "uniprot",
     "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "expasy",
+        "description": "Expasy external page for protein variant",
+        "homepage": "https://web.expasy.org/variant_pages",
+        "name": "ExPaSy",
+        "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
+      }
+    ],
     "synonyms": [
       "SP_VAR",
       "UPVAR",
       "UniProtKB_VAR"
     ],
-    "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
+    "uri_format": "http://purl.uniprot.org/annotation/VAR_$1"
   },
   "uniref": {
     "edam": {
@@ -78538,7 +79249,7 @@
       "name": "NCBI UniSTS",
       "pattern": "^\\d+$",
       "prefix": "unists",
-      "uri_format": "http://www.ncbi.nlm.nih.gov/genome/sts/sts.cgi?uid=[?id]"
+      "uri_format": "http://www.ncbi.nlm.nih.gov/genome/sts/sts.cgi?uid=$1"
     }
   },
   "unite": {
@@ -78879,8 +79590,7 @@
       "obofoundry": "upa",
       "ols": "upa",
       "ontobee": "UPA",
-      "prefixcommons": "unipathway",
-      "uniprot": "UniPathway"
+      "prefixcommons": "unipathway"
     },
     "obofoundry": {
       "contact": "Anne.Morgat@sib.swiss",
@@ -78949,14 +79659,6 @@
       "unipathway",
       "unipathway.pathway"
     ],
-    "uniprot": {
-      "category": "Enzyme and pathway databases",
-      "identifier": "170",
-      "link_is_explicit": "true",
-      "name": "UniPathway: a resource for the exploration and annotation of metabolic pathways",
-      "prefix": "UniPathway",
-      "uri_format": "http://www.unipathway.org?upid=%s&entryac=%u"
-    },
     "wikidata": {
       "database": "Q85719315"
     }
@@ -79935,7 +80637,7 @@
       "fairsharing": "FAIRsharing.5NhJFK",
       "miriam": "vgnc",
       "ncbi": "VGNC",
-      "uniprot": "VGNC"
+      "uniprot": "DB-0226"
     },
     "miriam": {
       "deprecated": false,
@@ -79957,11 +80659,17 @@
     },
     "pattern": "^\\d{1,9}$",
     "uniprot": {
+      "abbreviation": "VGNC",
       "category": "Organism-specific databases",
-      "identifier": "226",
-      "link_is_explicit": "true",
+      "homepage": "https://vertebrate.genenames.org/",
       "name": "Vertebrate Gene Nomenclature Database",
-      "prefix": "VGNC",
+      "prefix": "DB-0226",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkaa980",
+          "pubmed": "33152070"
+        }
+      ],
       "uri_format": "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1"
     }
   },
@@ -80273,7 +80981,8 @@
         "nlx": "144372",
         "scr": "006563"
       }
-    }
+    },
+    "uri_format": "http://viralzone.expasy.org/all_by_protein/$1"
   },
   "virsirna": {
     "biocontext": {
@@ -81342,7 +82051,7 @@
       "homepage": "http://www.wormbase.org/",
       "name": "C. elegans Phenotype Vocabulary",
       "prefix": "WB-PHENOTYPE",
-      "version": "releases/2022-09-21"
+      "version": "2022-10-21"
     },
     "example": "0000983",
     "fairsharing": {
@@ -82005,7 +82714,7 @@
       "ncbi": "WormBase",
       "prefixcommons": "wormbase",
       "re3data": "r3d100010424",
-      "uniprot": "WormBase",
+      "uniprot": "DB-0110",
       "wikidata": "P3860"
     },
     "miriam": {
@@ -82018,13 +82727,6 @@
       "pattern": "^WB[A-Z][a-z]+\\d+$",
       "prefix": "wb",
       "providers": [
-        {
-          "code": "bioentitylink",
-          "description": "WormBase through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "WormBase through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-        },
         {
           "code": "agr",
           "description": "WormBase through the Alliance of Genome Resources",
@@ -82111,11 +82813,17 @@
       "wormbase"
     ],
     "uniprot": {
+      "abbreviation": "WormBase",
       "category": "Organism-specific databases",
-      "identifier": "110",
-      "link_is_explicit": "true",
+      "homepage": "https://www.wormbase.org/",
       "name": "WormBase",
-      "prefix": "WormBase",
+      "prefix": "DB-0110",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkz920",
+          "pubmed": "31642470"
+        }
+      ],
       "uri_format": "https://wormbase.org/db/seq/protein?name=$1;class=CDS"
     },
     "wikidata": {
@@ -82412,7 +83120,7 @@
       "name": "Experimental Conditions Ontology",
       "prefix": "XCO",
       "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "4.116"
+      "version": "4.117"
     },
     "example": "0000780",
     "fairsharing": {
@@ -82579,7 +83287,7 @@
       "ncbi": "Xenbase",
       "prefixcommons": "xenbase",
       "re3data": "r3d100011331",
-      "uniprot": "Xenbase"
+      "uniprot": "DB-0129"
     },
     "miriam": {
       "deprecated": false,
@@ -82653,11 +83361,17 @@
       "Xenbase"
     ],
     "uniprot": {
+      "abbreviation": "Xenbase",
       "category": "Organism-specific databases",
-      "identifier": "129",
-      "link_is_explicit": "true",
+      "homepage": "https://www.xenbase.org/",
       "name": "Xenopus laevis and tropicalis biology and genomics resource",
-      "prefix": "Xenbase",
+      "prefix": "DB-0129",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkx936",
+          "pubmed": "29059324"
+        }
+      ],
       "uri_format": "https://www.xenbase.org/gene/showgene.do?method=display&geneId=$1"
     },
     "uri_format": "https://www.xenbase.org/entry/$1"
@@ -83128,11 +83842,18 @@
     "uri_format": "http://www.ymdb.ca/compounds/$1"
   },
   "ypo": {
-    "has_canonical": "apo",
+    "biocontext": {
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "YPO",
+      "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
+    },
     "mappings": {
+      "biocontext": "YPO",
       "obofoundry": "ypo",
       "ols": "ypo"
     },
+    "name": "Yeast Phenotype Ontology",
     "obofoundry": {
       "contact": "cherry@genome.stanford.edu",
       "contact.label": "Mike Cherry",
@@ -83142,7 +83863,8 @@
       "homepage": "http://www.yeastgenome.org/",
       "name": "Yeast phenotypes",
       "prefix": "ypo"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
   },
   "yrcpdr": {
     "biocontext": {
@@ -83536,7 +84258,7 @@
       "n2t": "zfin",
       "ncbi": "ZFIN",
       "prefixcommons": "zfin",
-      "uniprot": "ZFIN",
+      "uniprot": "DB-0113",
       "wikidata": "P3870"
     },
     "miriam": {
@@ -83549,13 +84271,6 @@
       "pattern": "^ZDB\\-\\w+\\-\\d+\\-\\d+$",
       "prefix": "zfin",
       "providers": [
-        {
-          "code": "bioentitylink",
-          "description": "ZFIN through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "ZFIN through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-        },
         {
           "code": "agr",
           "description": "ZFIN through the Alliance of Genome Resources",
@@ -83613,11 +84328,17 @@
       "ZFIN"
     ],
     "uniprot": {
+      "abbreviation": "ZFIN",
       "category": "Organism-specific databases",
-      "identifier": "113",
-      "link_is_explicit": "true",
+      "homepage": "https://zfin.org/",
       "name": "Zebrafish Information Network genome database",
-      "prefix": "ZFIN",
+      "prefix": "DB-0113",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1090",
+          "pubmed": "30407545"
+        }
+      ],
       "uri_format": "https://zfin.org/$1"
     },
     "wikidata": {

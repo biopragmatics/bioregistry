@@ -560,7 +560,7 @@ bioregistry:allergome a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.w6cxgb,
         prefixcommons:allergome,
         miriam:allergome,
-        uniprot.resource:Allergome ;
+        uniprot.resource:DB-0160 ;
     foaf:homepage "http://www.allergome.org/"^^xsd:string ;
     bioregistry.schema:0000005 "1948"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.allergome.org/script/dettaglio.php?id_molecule=$1"^^xsd:string ;
@@ -720,6 +720,24 @@ bioregistry:apid.interactions a bioregistry.schema:0000001 ;
     bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
+bioregistry:apo a bioregistry.schema:0000001 ;
+    rdfs:label "Ascomycete phenotype ontology" ;
+    dc:description "A structured controlled vocabulary for the phenotypes of Ascomycete fungi."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:APO,
+        obofoundry:apo,
+        ontobee:APO,
+        bioportal:APO,
+        biocontext:APO,
+        fairsharing:FAIRsharing.dyqz3y,
+        ols:apo ;
+    foaf:homepage "http://www.yeastgenome.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000184"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.yeastgenome.org/observable/APO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-5472-917X .
+
 bioregistry:arachnoserver a bioregistry.schema:0000001 ;
     rdfs:label "ArachnoServer" ;
     dc:description "ArachnoServer (www.arachnoserver.org) is a manually curated database providing information on the sequence, structure and biological activity of protein toxins from spider venoms. It include a molecular target ontology designed specifically for venom toxins, as well as current and historic taxonomic information."^^xsd:string ;
@@ -731,7 +749,7 @@ bioregistry:arachnoserver a bioregistry.schema:0000001 ;
         prefixcommons:arachnoserver,
         miriam:arachnoserver,
         re3data:r3d100012902,
-        uniprot.resource:ArachnoServer ;
+        uniprot.resource:DB-0145 ;
     foaf:homepage "http://www.arachnoserver.org/"^^xsd:string ;
     bioregistry.schema:0000005 "AS000060"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.arachnoserver.org/toxincard.html?id=$1"^^xsd:string ;
@@ -743,7 +761,7 @@ bioregistry:araport a bioregistry.schema:0000001 ;
     dc:description "Website with general information about Arabidopsis and functionalities such as a genomic viewer"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch ncbi.resource:Araport,
-        uniprot.resource:Araport ;
+        uniprot.resource:DB-0221 ;
     foaf:homepage "https://www.araport.org/"^^xsd:string ;
     bioregistry.schema:0000005 "AT1G01010"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"^^xsd:string ;
@@ -898,7 +916,7 @@ bioregistry:atc a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ATC,
         edam.data:3103,
-        oid:whoATC,
+        oid:2.16.840.1.113883.6.73,
         bioportal:ATC,
         biocontext:ATC,
         n2t:atc,
@@ -1319,7 +1337,7 @@ bioregistry:bindingdb a bioregistry.schema:0000001 ;
         prefixcommons:bindingdb,
         miriam:bindingdb,
         re3data:r3d100012074,
-        uniprot.resource:BindingDB ;
+        uniprot.resource:DB-0127 ;
     foaf:homepage "https://www.bindingdb.org"^^xsd:string ;
     bioregistry.schema:0000005 "e999"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.bindingdb.org/compact/$1"^^xsd:string ;
@@ -1362,7 +1380,7 @@ bioregistry:biocyc a bioregistry.schema:0000001 ;
         n2t:biocyc,
         prefixcommons:biocyc,
         miriam:biocyc,
-        uniprot.resource:BioCyc ;
+        uniprot.resource:DB-0005 ;
     foaf:homepage "http://biocyc.org"^^xsd:string ;
     bioregistry.schema:0000005 "ECOLI:CYT-D-UBIOX-CPLX"^^xsd:string ;
     bioregistry.schema:0000006 "http://biocyc.org/getid?id=$1"^^xsd:string ;
@@ -1494,7 +1512,7 @@ bioregistry:bioportal a bioregistry.schema:0000001 ;
     foaf:homepage "http://bioportal.bioontology.org/"^^xsd:string ;
     bioregistry.schema:0000005 "1046"^^xsd:string ;
     bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(\\d+)|(\\w+)$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:bioproject a bioregistry.schema:0000001 ;
@@ -1658,8 +1676,7 @@ bioregistry:brenda a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.etp533,
         prefixcommons:brenda,
         miriam:brenda,
-        re3data:r3d100010616,
-        uniprot.resource:BRENDA ;
+        re3data:r3d100010616 ;
     foaf:homepage "https://www.brenda-enzymes.org/"^^xsd:string ;
     bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.brenda-enzymes.org/php/result_flat.php4?ecno=$1"^^xsd:string ;
@@ -1712,7 +1729,7 @@ bioregistry:bugbase.expt a bioregistry.schema:0000001 ;
         miriam:bugbase.expt ;
     foaf:homepage "http://bugs.sgul.ac.uk/E-BUGS"^^xsd:string ;
     bioregistry.schema:0000005 "288"^^xsd:string ;
-    bioregistry.schema:0000006 "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view"^^xsd:string ;
+    bioregistry.schema:0000006 "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -1725,7 +1742,7 @@ bioregistry:bugbase.protocol a bioregistry.schema:0000001 ;
         miriam:bugbase.protocol ;
     foaf:homepage "http://bugs.sgul.ac.uk/E-BUGS"^^xsd:string ;
     bioregistry.schema:0000005 "67"^^xsd:string ;
-    bioregistry.schema:0000006 "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?protocol_id=$1&amp;action=view"^^xsd:string ;
+    bioregistry.schema:0000006 "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -1844,7 +1861,7 @@ bioregistry:cazy a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.ntyq70,
         prefixcommons:cazy,
         miriam:cazy,
-        uniprot.resource:CAZy ;
+        uniprot.resource:DB-0136 ;
     foaf:homepage "http://www.cazy.org/"^^xsd:string ;
     bioregistry.schema:0000005 "GT10"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.cazy.org/$1.html"^^xsd:string ;
@@ -1884,7 +1901,7 @@ bioregistry:ccds a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.46s4nt,
         prefixcommons:ccds,
         miriam:ccds,
-        uniprot.resource:CCDS ;
+        uniprot.resource:DB-0187 ;
     foaf:homepage "http://www.ncbi.nlm.nih.gov/CCDS/"^^xsd:string ;
     bioregistry.schema:0000005 "CCDS13573.1"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=$1"^^xsd:string ;
@@ -1941,7 +1958,7 @@ bioregistry:cdd a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.ea287c,
         prefixcommons:cdd,
         miriam:cdd,
-        uniprot.resource:CDD ;
+        uniprot.resource:DB-0214 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/sites/entrez?db=cdd"^^xsd:string ;
     bioregistry.schema:0000005 "cd00400"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=$1"^^xsd:string ;
@@ -2031,7 +2048,7 @@ bioregistry:cgd a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.j7j53,
         prefixcommons:cgd,
         miriam:cgd,
-        uniprot.resource:CGD ;
+        uniprot.resource:DB-0126 ;
     foaf:homepage "http://www.candidagenome.org/"^^xsd:string ;
     bioregistry.schema:0000005 "CAL0003079"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1"^^xsd:string ;
@@ -2850,7 +2867,7 @@ bioregistry:conoserver a bioregistry.schema:0000001 ;
         n2t:conoserver,
         fairsharing:FAIRsharing.y00hz4,
         miriam:conoserver,
-        uniprot.resource:ConoServer ;
+        uniprot.resource:DB-0156 ;
     foaf:homepage "http://www.conoserver.org/"^^xsd:string ;
     bioregistry.schema:0000005 "2639"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.conoserver.org/?page=card&table=protein&id=$1"^^xsd:string ;
@@ -2895,7 +2912,7 @@ bioregistry:corum a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.ohbpNw,
         prefixcommons:corum,
         miriam:corum,
-        uniprot.resource:CORUM ;
+        uniprot.resource:DB-0224 ;
     foaf:homepage "https://mips.helmholtz-muenchen.de/genre/proj/corum/"^^xsd:string ;
     bioregistry.schema:0000005 "100"^^xsd:string ;
     bioregistry.schema:0000006 "https://mips.helmholtz-muenchen.de/corum/?id=$1"^^xsd:string ;
@@ -3393,7 +3410,7 @@ bioregistry:depod a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.q9j2e3,
         miriam:depod,
         re3data:r3d100011936,
-        uniprot.resource:DEPOD ;
+        uniprot.resource:DB-0190 ;
     foaf:homepage "http://www.depod.bioss.uni-freiburg.de"^^xsd:string ;
     bioregistry.schema:0000005 "PTPN1"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.depod.bioss.uni-freiburg.de/showp.php?gene=$1"^^xsd:string ;
@@ -3545,7 +3562,7 @@ bioregistry:dip a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.qje0v8,
         prefixcommons:dip,
         miriam:dip,
-        uniprot.resource:DIP ;
+        uniprot.resource:DB-0016 ;
     foaf:homepage "https://dip.doe-mbi.ucla.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "DIP-743N"^^xsd:string ;
     bioregistry.schema:0000006 "https://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$1"^^xsd:string ;
@@ -3576,35 +3593,6 @@ bioregistry:disdriv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
-
-bioregistry:disprot a bioregistry.schema:0000001 ;
-    rdfs:label "DisProt" ;
-    dc:description "DisProt is a database of intrinsically disordered proteins and protein disordered regions, manually curated from literature."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2723,
-        biocontext:DISPROT,
-        n2t:disprot,
-        fairsharing:FAIRsharing.dt9z89,
-        prefixcommons:disprot,
-        miriam:disprot,
-        re3data:r3d100010561,
-        uniprot.resource:DisProt ;
-    foaf:homepage "https://disprot.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "DP00003"^^xsd:string ;
-    bioregistry.schema:0000006 "https://disprot.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^DP\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:disprot.region a bioregistry.schema:0000001 ;
-    rdfs:label "DisProt region" ;
-    dc:description "DisProt is a database of intrisically disordered proteins and protein disordered regions, manually curated from literature."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:disprot.region ;
-    foaf:homepage "https://www.disprot.org"^^xsd:string ;
-    bioregistry.schema:0000005 "DP00086r013"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.disprot.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^DP\\d{5}r\\d{3}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:dommino a bioregistry.schema:0000001 ;
     rdfs:label "Database of Macromolecular Interactions" ;
@@ -3679,7 +3667,7 @@ bioregistry:echobase a bioregistry.schema:0000001 ;
         prefixcommons:echobase,
         miriam:echobase,
         re3data:r3d100011646,
-        uniprot.resource:EchoBASE ;
+        uniprot.resource:DB-0020 ;
     foaf:homepage "http://www.york.ac.uk/"^^xsd:string ;
     bioregistry.schema:0000005 "EB0170"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=$1"^^xsd:string ;
@@ -3787,7 +3775,7 @@ bioregistry:eggnog a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.j1wj7d,
         prefixcommons:eggnog,
         miriam:eggnog,
-        uniprot.resource:eggNOG ;
+        uniprot.resource:DB-0152 ;
     foaf:homepage "http://eggnog.embl.de/version_3.0/"^^xsd:string ;
     bioregistry.schema:0000005 "veNOG12876"^^xsd:string ;
     bioregistry.schema:0000006 "http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=$1"^^xsd:string ;
@@ -3834,7 +3822,7 @@ bioregistry:elm a bioregistry.schema:0000001 ;
         n2t:elm,
         fairsharing:FAIRsharing.rj3kj5,
         miriam:elm,
-        uniprot.resource:ELM ;
+        uniprot.resource:DB-0223 ;
     foaf:homepage "http://elm.eu.org/"^^xsd:string ;
     bioregistry.schema:0000005 "CLV_MEL_PAP_1"^^xsd:string ;
     bioregistry.schema:0000006 "http://elm.eu.org/elms/elmPages/$1.html"^^xsd:string ;
@@ -3905,41 +3893,6 @@ bioregistry:enm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Haralambos Sarimveis" ] .
 
-bioregistry:ensembl.bacteria a bioregistry.schema:0000001 ;
-    rdfs:label "Ensembl Bacteria" ;
-    dc:description "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with bacterial genomes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ENSEMBL.BACTERIA,
-        n2t:ensembl.bacteria,
-        fairsharing:FAIRsharing.zsgmvd,
-        prefixcommons:ensembl.bacteria,
-        miriam:ensembl.bacteria,
-        re3data:r3d100011195,
-        uniprot.resource:EnsemblBacteria ;
-    foaf:homepage "https://bacteria.ensembl.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "MU9_3181"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bacteria.ensembl.org/id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((EB\\w+)|([A-Z0-9]+\\_[A-Z0-9]+))$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:ensembl.fungi a bioregistry.schema:0000001 ;
-    rdfs:label "Ensembl Fungi, the Ensembl database for accessing genome-scale data from fungi." ;
-    dc:description "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with fungal genomes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ENSEMBL.FUNGI,
-        go.resource:EnsemblFungi,
-        n2t:ensembl.fungi,
-        fairsharing:FAIRsharing.bg5xqs,
-        prefixcommons:ensembl.fungi,
-        miriam:ensembl.fungi,
-        re3data:r3d100011196,
-        uniprot.resource:EnsemblFungi ;
-    foaf:homepage "https://fungi.ensembl.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "CADAFLAT00006211"^^xsd:string ;
-    bioregistry.schema:0000006 "https://fungi.ensembl.org/id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z-a-z0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:ensembl.metazoa a bioregistry.schema:0000001 ;
     rdfs:label "Ensembl Metazoa, the Ensembl database for accessing genome-scale data from non-vertebrate metazoa." ;
     dc:description "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with metazoa genomes."^^xsd:string ;
@@ -3951,7 +3904,7 @@ bioregistry:ensembl.metazoa a bioregistry.schema:0000001 ;
         prefixcommons:ensembl.metazoa,
         miriam:ensembl.metazoa,
         re3data:r3d100011198,
-        uniprot.resource:EnsemblMetazoa ;
+        uniprot.resource:DB-0149 ;
     foaf:homepage "https://metazoa.ensembl.org/"^^xsd:string ;
     bioregistry.schema:0000005 "FBtr0084214"^^xsd:string ;
     bioregistry.schema:0000006 "https://metazoa.ensembl.org/id/$1"^^xsd:string ;
@@ -4020,7 +3973,7 @@ bioregistry:epd a bioregistry.schema:0000001 ;
         ncbi.resource:EPD,
         fairsharing:FAIRsharing.sym4ne,
         miriam:epd,
-        uniprot.resource:EPD ;
+        uniprot.resource:DB-0205 ;
     foaf:homepage "http://epd.vital-it.ch/"^^xsd:string ;
     bioregistry.schema:0000005 "TA_H3"^^xsd:string ;
     bioregistry.schema:0000006 "http://epd.vital-it.ch/cgi-bin/query_result.pl?out_format=NICE&Entry_0=$1"^^xsd:string ;
@@ -4217,7 +4170,7 @@ bioregistry:fairsharing a bioregistry.schema:0000001 ;
     foaf:homepage "https://fairsharing.org/"^^xsd:string ;
     bioregistry.schema:0000005 "bsg-000052"^^xsd:string ;
     bioregistry.schema:0000006 "https://fairsharing.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^bsg-[dscp]?\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(bsg-[dscp]?\\d{6})|(FAIRsharing\\.\\w+)$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:fao a bioregistry.schema:0000001 ;
@@ -4660,7 +4613,7 @@ bioregistry:genatlas a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.pmg2vd,
         prefixcommons:genatlas,
         miriam:genatlas,
-        uniprot.resource:GenAtlas ;
+        uniprot.resource:DB-0027 ;
     foaf:homepage "http://genatlas.medecine.univ-paris5.fr/"^^xsd:string ;
     bioregistry.schema:0000005 "HBB"^^xsd:string ;
     bioregistry.schema:0000006 "http://genatlas.medecine.univ-paris5.fr/fiche.php?symbol=$1"^^xsd:string ;
@@ -4677,7 +4630,7 @@ bioregistry:genecards a bioregistry.schema:0000001 ;
         prefixcommons:genecards,
         miriam:genecards,
         re3data:r3d100012015,
-        uniprot.resource:GeneCards ;
+        uniprot.resource:DB-0030 ;
     foaf:homepage "http://www.genecards.org/"^^xsd:string ;
     bioregistry.schema:0000005 "ABL1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"^^xsd:string ;
@@ -4697,7 +4650,6 @@ bioregistry:genedb a bioregistry.schema:0000001 ;
         prefixcommons:genedb,
         miriam:genedb,
         re3data:r3d100010626,
-        uniprot.resource:GeneDB,
         wikidata:P3382 ;
     foaf:homepage "https://www.genedb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "LinJ.20.0070"^^xsd:string ;
@@ -4728,7 +4680,7 @@ bioregistry:genetree a bioregistry.schema:0000001 ;
         n2t:genetree,
         prefixcommons:genetree,
         miriam:genetree,
-        uniprot.resource:GeneTree ;
+        uniprot.resource:DB-0162 ;
     foaf:homepage "http://www.ensembl.org/"^^xsd:string ;
     bioregistry.schema:0000005 "ENSGT00550000074763"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ensembl.org/Multi/GeneTree/Image?db=core;gt=$1"^^xsd:string ;
@@ -4743,11 +4695,12 @@ bioregistry:genewiki a bioregistry.schema:0000001 ;
         n2t:genewiki,
         fairsharing:FAIRsharing.t3snf,
         miriam:genewiki,
-        uniprot.resource:GeneWiki ;
+        uniprot.resource:DB-0180 ;
     foaf:homepage "http://en.wikipedia.org/wiki/Gene_Wiki"^^xsd:string ;
     bioregistry.schema:0000005 "1017"^^xsd:string ;
     bioregistry.schema:0000006 "http://plugins.biogps.org/cgi-bin/wp.cgi?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:ncbigene ;
     bioregistry.schema:0000012 false .
 
 bioregistry:geno a bioregistry.schema:0000001 ;
@@ -5065,7 +5018,7 @@ bioregistry:go.ref a bioregistry.schema:0000001 ;
         miriam:go_ref ;
     foaf:homepage "http://www.geneontology.org/cgi-bin/references.cgi"^^xsd:string ;
     bioregistry.schema:0000005 "0000041"^^xsd:string ;
-    bioregistry.schema:0000006 "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/goref-$1.md"^^xsd:string ;
+    bioregistry.schema:0000006 "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/README.md#goref$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -5128,7 +5081,7 @@ bioregistry:gpcrdb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.e4n3an,
         prefixcommons:gpcrdb,
         miriam:gpcrdb,
-        uniprot.resource:GPCRDB ;
+        uniprot.resource:DB-0038 ;
     foaf:homepage "http://www.gpcrdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "RL3R1_HUMAN"^^xsd:string ;
     bioregistry.schema:0000006 "https://gpcrdb.org/protein/$1"^^xsd:string ;
@@ -5404,7 +5357,7 @@ bioregistry:hamap a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.63m4ss,
         prefixcommons:hamap,
         miriam:hamap,
-        uniprot.resource:HAMAP ;
+        uniprot.resource:DB-0041 ;
     foaf:homepage "https://hamap.expasy.org/"^^xsd:string ;
     bioregistry.schema:0000005 "MF_01400"^^xsd:string ;
     bioregistry.schema:0000006 "https://hamap.expasy.org/unirule/$1"^^xsd:string ;
@@ -5579,7 +5532,7 @@ bioregistry:hogenom a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.qe8tz8,
         prefixcommons:hogenom,
         miriam:hogenom,
-        uniprot.resource:HOGENOM ;
+        uniprot.resource:DB-0044 ;
     foaf:homepage "http://pbil.univ-lyon1.fr/databases/hogenom/"^^xsd:string ;
     bioregistry.schema:0000005 "HBG284870"^^xsd:string ;
     bioregistry.schema:0000006 "http://pbil.univ-lyon1.fr/cgi-bin/view-tree.pl?db=HOGENOM5&query=$1"^^xsd:string ;
@@ -5683,7 +5636,7 @@ bioregistry:hpa a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.j0t0pe,
         prefixcommons:hpa,
         miriam:hpa,
-        uniprot.resource:HPA ;
+        uniprot.resource:DB-0046 ;
     foaf:homepage "http://www.proteinatlas.org/"^^xsd:string ;
     bioregistry.schema:0000005 "ENSG00000026508"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.proteinatlas.org/$1"^^xsd:string ;
@@ -5797,7 +5750,7 @@ bioregistry:huge a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.zx2ztd,
         prefixcommons:huge,
         miriam:huge,
-        uniprot.resource:HUGE ;
+        uniprot.resource:DB-0049 ;
     foaf:homepage "http://www.kazusa.or.jp/huge/"^^xsd:string ;
     bioregistry.schema:0000005 "KIAA0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.kazusa.or.jp/huge/gfpage/$1"^^xsd:string ;
@@ -5876,7 +5829,7 @@ bioregistry:ideal a bioregistry.schema:0000001 ;
         n2t:ideal,
         fairsharing:FAIRsharing.h3y42f,
         miriam:ideal,
-        uniprot.resource:IDEAL ;
+        uniprot.resource:DB-0251 ;
     foaf:homepage "https://www.ideal-db.org"^^xsd:string ;
     bioregistry.schema:0000005 "IID00001"^^xsd:string ;
     bioregistry.schema:0000006 "http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=$1"^^xsd:string ;
@@ -6135,7 +6088,7 @@ bioregistry:intact a bioregistry.schema:0000001 ;
         prefixcommons:intact,
         miriam:intact,
         re3data:r3d100010671,
-        uniprot.resource:IntAct ;
+        uniprot.resource:DB-0051 ;
     foaf:homepage "https://www.ebi.ac.uk/intact/"^^xsd:string ;
     bioregistry.schema:0000005 "EBI-2307691"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/intact/interaction/$1"^^xsd:string ;
@@ -6182,7 +6135,7 @@ bioregistry:interpro a bioregistry.schema:0000001 ;
         prefixcommons:interpro,
         miriam:interpro,
         re3data:r3d100010798,
-        uniprot.resource:InterPro,
+        uniprot.resource:DB-0052,
         wikidata:P2926 ;
     foaf:homepage "http://www.ebi.ac.uk/interpro/index.html"^^xsd:string ;
     bioregistry.schema:0000005 "IPR016380"^^xsd:string ;
@@ -6334,6 +6287,7 @@ bioregistry:iuphar.receptor a bioregistry.schema:0000001 ;
         go.resource:IUPHAR_RECEPTOR,
         n2t:iuphar.receptor,
         miriam:iuphar.receptor,
+        uniprot.resource:DB-0182,
         wikidata:P5458 ;
     foaf:homepage "http://www.guidetopharmacology.org/targets.jsp"^^xsd:string ;
     bioregistry.schema:0000005 "101"^^xsd:string ;
@@ -6725,7 +6679,7 @@ bioregistry:maizegdb.locus a bioregistry.schema:0000001 ;
         prefixcommons:maizegdb,
         miriam:maizegdb.locus,
         re3data:r3d100010795,
-        uniprot.resource:MaizeGDB ;
+        uniprot.resource:DB-0058 ;
     foaf:homepage "http://www.maizegdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "25011"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1"^^xsd:string ;
@@ -6838,7 +6792,7 @@ bioregistry:meddra a bioregistry.schema:0000001 ;
     dc:description "The Medical Dictionary for Regulatory Activities (MedDRA) was developed by the International Council for Harmonisation of Technical Requirements for Registration of Pharmaceuticals for Human Use (ICH)to provide a standardised medical terminology to facilitate sharing of regulatory information internationally for medical products used by humans. It is used within regulatory processes, safety monitoring, as well as for marketing activities. Products covered by the scope of MedDRA include pharmaceuticals, biologics, vaccines and drug-device combination products. The MedDRA dictionary is organized by System Organ Class (SOC), divided into High-Level Group Terms (HLGT), High-Level Terms (HLT), Preferred Terms (PT) and finally into Lowest Level Terms (LLT)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MEDDRA,
-        oid:mdr,
+        oid:2.16.840.1.113883.6.163,
         bioportal:MEDDRA,
         biocontext:MEDDRA,
         n2t:meddra,
@@ -6895,8 +6849,7 @@ bioregistry:merops.entry a bioregistry.schema:0000001 ;
         n2t:merops.inhibitor,
         fairsharing:FAIRsharing.2s4n8r,
         prefixcommons:merops,
-        miriam:merops.inhibitor,
-        uniprot.resource:MEROPS ;
+        miriam:merops.inhibitor ;
     foaf:homepage "http://merops.sanger.ac.uk/index.htm"^^xsd:string ;
     bioregistry.schema:0000005 "I31.952"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"^^xsd:string ;
@@ -7121,7 +7074,7 @@ bioregistry:mgi a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.fcwyhz,
         prefixcommons:mgi,
         miriam:mgi,
-        uniprot.resource:MGI,
+        uniprot.resource:DB-0060,
         wikidata:P671 ;
     foaf:homepage "http://www.informatics.jax.org/"^^xsd:string ;
     bioregistry.schema:0000005 "6017782"^^xsd:string ;
@@ -7284,7 +7237,7 @@ bioregistry:mint a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.2bdvmk,
         prefixcommons:mint,
         miriam:mint,
-        uniprot.resource:MINT ;
+        uniprot.resource:DB-0158 ;
     foaf:homepage "https://mint.bio.uniroma2.it"^^xsd:string ;
     bioregistry.schema:0000005 "6978836"^^xsd:string ;
     bioregistry.schema:0000006 "https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-$1"^^xsd:string ;
@@ -7314,7 +7267,7 @@ bioregistry:mir a bioregistry.schema:0000001 ;
         miriam:mir ;
     foaf:homepage "https://registry.identifiers.org/registry"^^xsd:string ;
     bioregistry.schema:0000005 "00100037"^^xsd:string ;
-    bioregistry.schema:0000006 "https://registry.identifiers.org/registry?query=\"MIR:$1\""^^xsd:string ;
+    bioregistry.schema:0000006 "https://registry.identifiers.org/registry?query=MIR:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -7595,7 +7548,7 @@ bioregistry:mobidb a bioregistry.schema:0000001 ;
         n2t:mobidb,
         fairsharing:FAIRsharing.jwra3e,
         miriam:mobidb,
-        uniprot.resource:MobiDB ;
+        uniprot.resource:DB-0183 ;
     foaf:homepage "http://mobidb.bio.unipd.it"^^xsd:string ;
     bioregistry.schema:0000005 "P10636"^^xsd:string ;
     bioregistry.schema:0000006 "https://mobidb.org/$1"^^xsd:string ;
@@ -7866,7 +7819,7 @@ bioregistry:myco.tuber a bioregistry.schema:0000001 ;
         ncbi.resource:TubercuList,
         prefixcommons:tuberculist,
         miriam:myco.tuber,
-        uniprot.resource:TubercuList ;
+        uniprot.resource:DB-0106 ;
     foaf:homepage "http://tuberculist.epfl.ch/"^^xsd:string ;
     bioregistry.schema:0000005 "Rv1908c"^^xsd:string ;
     bioregistry.schema:0000006 "http://tuberculist.epfl.ch/quicksearch.php?gene+name=$1"^^xsd:string ;
@@ -8118,7 +8071,7 @@ bioregistry:nextprot a bioregistry.schema:0000001 ;
         n2t:nextprot,
         fairsharing:FAIRsharing.62evqh,
         miriam:nextprot,
-        uniprot.resource:neXtProt ;
+        uniprot.resource:DB-0161 ;
     foaf:homepage "https://www.nextprot.org/"^^xsd:string ;
     bioregistry.schema:0000005 "NX_O00165"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.nextprot.org/db/entry/$1"^^xsd:string ;
@@ -8817,7 +8770,7 @@ bioregistry:orphanet a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.6bd5k6,
         prefixcommons:orphanet,
         miriam:orphanet,
-        uniprot.resource:Orphanet,
+        uniprot.resource:DB-0068,
         wikidata:P1550 ;
     foaf:homepage "http://www.orpha.net/consor/"^^xsd:string ;
     bioregistry.schema:0000005 "85163"^^xsd:string ;
@@ -8869,7 +8822,7 @@ bioregistry:orthodb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.x989d5,
         prefixcommons:orthodb,
         miriam:orthodb,
-        uniprot.resource:OrthoDB ;
+        uniprot.resource:DB-0143 ;
     foaf:homepage "https://www.orthodb.org"^^xsd:string ;
     bioregistry.schema:0000005 "Q9P0K8"^^xsd:string ;
     bioregistry.schema:0000006 "http://cegg.unige.ch/orthodb/results?searchtext=$1"^^xsd:string ;
@@ -9029,7 +8982,7 @@ bioregistry:pathwaycommons a bioregistry.schema:0000001 ;
         prefixcommons:pathwaycommons,
         miriam:pathwaycommons,
         re3data:r3d100012731,
-        uniprot.resource:PathwayCommons ;
+        uniprot.resource:DB-0253 ;
     foaf:homepage "http://www.pathwaycommons.org/pc/"^^xsd:string ;
     bioregistry.schema:0000005 "485991"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.pathwaycommons.org/pc/record2.do?id=$1"^^xsd:string ;
@@ -9145,7 +9098,7 @@ bioregistry:peptideatlas a bioregistry.schema:0000001 ;
         prefixcommons:peptideatlas,
         miriam:peptideatlas,
         re3data:r3d100010889,
-        uniprot.resource:PeptideAtlas ;
+        uniprot.resource:DB-0071 ;
     foaf:homepage "http://www.peptideatlas.org/"^^xsd:string ;
     bioregistry.schema:0000005 "PAp00000009"^^xsd:string ;
     bioregistry.schema:0000006 "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/Summarize_Peptide?query=QUERY&searchForThis=$1"^^xsd:string ;
@@ -9171,7 +9124,7 @@ bioregistry:peroxibase a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.z1czxj,
         prefixcommons:peroxibase,
         miriam:peroxibase,
-        uniprot.resource:PeroxiBase ;
+        uniprot.resource:DB-0072 ;
     foaf:homepage "http://peroxibase.toulouse.inra.fr/"^^xsd:string ;
     bioregistry.schema:0000005 "5282"^^xsd:string ;
     bioregistry.schema:0000006 "http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id=$1"^^xsd:string ;
@@ -9190,7 +9143,7 @@ bioregistry:pfam a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.y3scf6,
         prefixcommons:pfam,
         miriam:pfam,
-        uniprot.resource:Pfam,
+        uniprot.resource:DB-0073,
         wikidata:P3519 ;
     foaf:homepage "https://pfam.xfam.org/"^^xsd:string ;
     bioregistry.schema:0000005 "PF11779"^^xsd:string ;
@@ -9359,7 +9312,7 @@ bioregistry:phylomedb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.7hxxc4,
         prefixcommons:phylomedb,
         miriam:phylomedb,
-        uniprot.resource:PhylomeDB ;
+        uniprot.resource:DB-0144 ;
     foaf:homepage "http://phylomedb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "Phy000CLXM_RAT"^^xsd:string ;
     bioregistry.schema:0000006 "http://phylomedb.org/?seqid=$1"^^xsd:string ;
@@ -9435,7 +9388,7 @@ bioregistry:pirsf a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.vssch2,
         prefixcommons:pirsf,
         miriam:pirsf,
-        uniprot.resource:PIRSF ;
+        uniprot.resource:DB-0079 ;
     foaf:homepage "https://pir.georgetown.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "PIRSF000100"^^xsd:string ;
     bioregistry.schema:0000006 "https://pir.georgetown.edu/cgi-bin/ipcSF?id=$1"^^xsd:string ;
@@ -9622,7 +9575,7 @@ bioregistry:pombase a bioregistry.schema:0000001 ;
         prefixcommons:pombase,
         miriam:pombase,
         re3data:r3d100011478,
-        uniprot.resource:PomBase,
+        uniprot.resource:DB-0031,
         wikidata:P6245 ;
     foaf:homepage "https://www.pombase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "SPCC13B11.01"^^xsd:string ;
@@ -9654,6 +9607,7 @@ bioregistry:pride.project a bioregistry.schema:0000001 ;
     dc:description "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:PRIDE.PROJECT,
+        cellosaurus.resource:PRIDE,
         n2t:pride.project,
         miriam:pride.project ;
     foaf:homepage "https://www.ebi.ac.uk/pride/"^^xsd:string ;
@@ -9729,7 +9683,7 @@ bioregistry:prosite a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.vwc6bd,
         prefixcommons:prosite,
         miriam:prosite,
-        uniprot.resource:PROSITE,
+        uniprot.resource:DB-0084,
         wikidata:P4355 ;
     foaf:homepage "https://www.expasy.org/prosite/"^^xsd:string ;
     bioregistry.schema:0000005 "PS00001"^^xsd:string ;
@@ -9842,7 +9796,7 @@ bioregistry:psipar a bioregistry.schema:0000001 ;
         miriam:psipar ;
     foaf:homepage "https://www.psidev.info/psi-par"^^xsd:string ;
     bioregistry.schema:0000005 "0116"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true .
 
@@ -9962,7 +9916,6 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
         miriam:reactome,
         cheminf:000411,
         re3data:r3d100010861,
-        uniprot.resource:Reactome,
         wikidata:P3937 ;
     foaf:homepage "https://www.reactome.org/"^^xsd:string ;
     bioregistry.schema:0000005 "R-BTA-418592"^^xsd:string ;
@@ -9982,7 +9935,7 @@ bioregistry:rebase a bioregistry.schema:0000001 ;
         prefixcommons:rebase,
         miriam:rebase,
         re3data:r3d100012171,
-        uniprot.resource:REBASE ;
+        uniprot.resource:DB-0089 ;
     foaf:homepage "http://rebase.neb.com/rebase/"^^xsd:string ;
     bioregistry.schema:0000005 "101"^^xsd:string ;
     bioregistry.schema:0000006 "http://rebase.neb.com/rebase/enz/$1.html"^^xsd:string ;
@@ -10081,7 +10034,7 @@ bioregistry:rgd a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.pfg82t,
         prefixcommons:rgd,
         miriam:rgd,
-        uniprot.resource:RGD,
+        uniprot.resource:DB-0091,
         wikidata:P3853 ;
     foaf:homepage "http://rgd.mcw.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "7499841"^^xsd:string ;
@@ -10298,7 +10251,7 @@ bioregistry:rouge a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.vdbagq,
         prefixcommons:rouge,
         miriam:rouge,
-        uniprot.resource:Rouge ;
+        uniprot.resource:DB-0092 ;
     foaf:homepage "http://www.kazusa.or.jp/rouge/"^^xsd:string ;
     bioregistry.schema:0000005 "mKIAA4200"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.kazusa.or.jp/rouge/gfpage/$1"^^xsd:string ;
@@ -10422,7 +10375,7 @@ bioregistry:sabiork.reaction a bioregistry.schema:0000001 ;
         prefixcommons:sabiork.reaction,
         miriam:sabiork.reaction,
         re3data:r3d100011052,
-        uniprot.resource:SABIO-RK ;
+        uniprot.resource:DB-0177 ;
     foaf:homepage "http://sabiork.h-its.org/"^^xsd:string ;
     bioregistry.schema:0000005 "75"^^xsd:string ;
     bioregistry.schema:0000006 "http://sabiork.h-its.org/reacdetails.jsp?reactid=$1"^^xsd:string ;
@@ -10454,7 +10407,7 @@ bioregistry:sasbdb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.i1F3Hb,
         miriam:sasbdb,
         re3data:r3d100012273,
-        uniprot.resource:SASBDB ;
+        uniprot.resource:DB-0258 ;
     foaf:homepage "http://www.sasbdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "SASDAX8"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.sasbdb.org/data/$1"^^xsd:string ;
@@ -10625,7 +10578,7 @@ bioregistry:sgd a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.pzvw40,
         prefixcommons:sgd,
         miriam:sgd,
-        uniprot.resource:SGD,
+        uniprot.resource:DB-0095,
         wikidata:P3406 ;
     foaf:homepage "https://www.yeastgenome.org/"^^xsd:string ;
     bioregistry.schema:0000005 "S000002493"^^xsd:string ;
@@ -10804,7 +10757,7 @@ bioregistry:smart a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.hsbpq3,
         prefixcommons:smart,
         miriam:smart,
-        uniprot.resource:SMART ;
+        uniprot.resource:DB-0097 ;
     foaf:homepage "http://smart.embl-heidelberg.de/"^^xsd:string ;
     bioregistry.schema:0000005 "SM00015"^^xsd:string ;
     bioregistry.schema:0000006 "http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$1"^^xsd:string ;
@@ -10993,7 +10946,7 @@ The interactions include direct (physical) and indirect (functional) association
         prefixcommons:string,
         miriam:string,
         re3data:r3d100010604,
-        uniprot.resource:STRING ;
+        uniprot.resource:DB-0141 ;
     foaf:homepage "http://string.embl.de/"^^xsd:string ;
     bioregistry.schema:0000005 "P53350"^^xsd:string ;
     bioregistry.schema:0000006 "http://string.embl.de/interactions/$1"^^xsd:string ;
@@ -11056,7 +11009,7 @@ bioregistry:supfam a bioregistry.schema:0000001 ;
         n2t:supfam,
         prefixcommons:superfamily,
         miriam:supfam,
-        uniprot.resource:SUPFAM ;
+        uniprot.resource:DB-0155 ;
     foaf:homepage "http://supfam.org/SUPERFAMILY/"^^xsd:string ;
     bioregistry.schema:0000005 "SSF57615"^^xsd:string ;
     bioregistry.schema:0000006 "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1"^^xsd:string ;
@@ -11101,7 +11054,7 @@ bioregistry:swisslipid a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.pxr7x2,
         miriam:slm,
         re3data:r3d100012603,
-        uniprot.resource:SwissLipids,
+        uniprot.resource:DB-0197,
         wikidata:P8691 ;
     foaf:homepage "http://www.swisslipids.org/#/"^^xsd:string ;
     bioregistry.schema:0000005 "000000341"^^xsd:string ;
@@ -11298,7 +11251,7 @@ bioregistry:tcdb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.p3bzqb,
         prefixcommons:tcdb,
         miriam:tcdb,
-        uniprot.resource:TCDB,
+        uniprot.resource:DB-0135,
         wikidata:P7260 ;
     foaf:homepage "https://www.tcdb.org"^^xsd:string ;
     bioregistry.schema:0000005 "5.A.1.1.1"^^xsd:string ;
@@ -11470,7 +11423,7 @@ bioregistry:treefam a bioregistry.schema:0000001 ;
         n2t:treefam,
         prefixcommons:treefam,
         miriam:treefam,
-        uniprot.resource:TreeFam ;
+        uniprot.resource:DB-0185 ;
     foaf:homepage "http://www.treefam.org/"^^xsd:string ;
     bioregistry.schema:0000005 "TF101014"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.treefam.org/family/$1"^^xsd:string ;
@@ -11892,7 +11845,7 @@ bioregistry:vgnc a bioregistry.schema:0000001 ;
         ncbi.resource:VGNC,
         fairsharing:FAIRsharing.5NhJFK,
         miriam:vgnc,
-        uniprot.resource:VGNC ;
+        uniprot.resource:DB-0226 ;
     foaf:homepage "https://vertebrate.genenames.org"^^xsd:string ;
     bioregistry.schema:0000005 "3792"^^xsd:string ;
     bioregistry.schema:0000006 "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1"^^xsd:string ;
@@ -12225,7 +12178,7 @@ bioregistry:xenbase a bioregistry.schema:0000001 ;
         prefixcommons:xenbase,
         miriam:xenbase,
         re3data:r3d100011331,
-        uniprot.resource:Xenbase ;
+        uniprot.resource:DB-0129 ;
     foaf:homepage "https://www.xenbase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "XB-GENE-922462"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.xenbase.org/entry/$1"^^xsd:string ;
@@ -12315,14 +12268,14 @@ bioregistry:yid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ypo a bioregistry.schema:0000001 ;
-    rdfs:label "Yeast phenotypes" ;
+    rdfs:label "Yeast Phenotype Ontology" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:ypo,
+        biocontext:YPO,
         ols:ypo ;
     foaf:homepage "http://www.yeastgenome.org/"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/YPO_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000016 bioregistry:apo ;
     bioregistry.schema:0000019 orcid:0000-0001-9163-5180 .
 
 bioregistry:yrcpdr a bioregistry.schema:0000001 ;
@@ -12363,7 +12316,7 @@ bioregistry:zfin a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.ybxnhg,
         prefixcommons:zfin,
         miriam:zfin,
-        uniprot.resource:ZFIN,
+        uniprot.resource:DB-0113,
         wikidata:P3870 ;
     foaf:homepage "http://zfin.org"^^xsd:string ;
     bioregistry.schema:0000005 "ZDB-GENE-041118-11"^^xsd:string ;
@@ -12496,6 +12449,8 @@ orcid:0000-0002-0142-5591 rdfs:label "Citlalli Mejía-Almonte" .
 orcid:0000-0002-0341-4888 rdfs:label "Federica Quaglia" .
 
 orcid:0000-0002-0358-0130 rdfs:label "Martin Ramirez" .
+
+orcid:0000-0002-0629-0446 rdfs:label "Andreas Ledl" .
 
 orcid:0000-0002-0831-6427 rdfs:label "Karen Eilbeck" .
 
@@ -14200,6 +14155,8 @@ obofoundry:zfs dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:zp dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
+oid:1.2.840.10008.2.16.4 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
 oid:2.16.840.1.113883.5.1105 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.5.1107 dcterms:isPartOf bioregistry.metaresource:hl7 .
@@ -14216,6 +14173,8 @@ oid:2.16.840.1.113883.6.126 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.128 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
+oid:2.16.840.1.113883.6.163 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
 oid:2.16.840.1.113883.6.173 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.174 dcterms:isPartOf bioregistry.metaresource:hl7 .
@@ -14225,6 +14184,8 @@ oid:2.16.840.1.113883.6.175 dcterms:isPartOf bioregistry.metaresource:hl7 .
 oid:2.16.840.1.113883.6.177 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.2 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.205 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.206 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
@@ -14248,7 +14209,11 @@ oid:2.16.840.1.113883.6.284 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.3 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
+oid:2.16.840.1.113883.6.319 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
 oid:2.16.840.1.113883.6.339 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.340 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.344 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
@@ -14268,6 +14233,8 @@ oid:2.16.840.1.113883.6.62 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.69 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
+oid:2.16.840.1.113883.6.73 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
 oid:2.16.840.1.113883.6.77 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.8 dcterms:isPartOf bioregistry.metaresource:hl7 .
@@ -14279,18 +14246,6 @@ oid:2.16.840.1.113883.6.88 dcterms:isPartOf bioregistry.metaresource:hl7 .
 oid:2.16.840.1.113883.6.90 dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 oid:2.16.840.1.113883.6.96 dcterms:isPartOf bioregistry.metaresource:hl7 .
-
-oid:DCM dcterms:isPartOf bioregistry.metaresource:hl7 .
-
-oid:NCBI dcterms:isPartOf bioregistry.metaresource:hl7 .
-
-oid:clinVar-V dcterms:isPartOf bioregistry.metaresource:hl7 .
-
-oid:geneCodeNCBI dcterms:isPartOf bioregistry.metaresource:hl7 .
-
-oid:mdr dcterms:isPartOf bioregistry.metaresource:hl7 .
-
-oid:whoATC dcterms:isPartOf bioregistry.metaresource:hl7 .
 
 ontobee:AEO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
@@ -15409,6 +15364,8 @@ biocontext:APD dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:APHIDBASE.TRANSCRIPT dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:APID.INTERACTIONS dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:APO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:ARACHNOSERVER dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -19221,7 +19178,7 @@ bioregistry:abcd a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch cellosaurus.resource:ABCD,
         fairsharing:FAIRsharing.Z8OKi5,
-        uniprot.resource:ABCD ;
+        uniprot.resource:DB-0236 ;
     foaf:homepage "https://web.expasy.org/abcd/"^^xsd:string ;
     bioregistry.schema:0000005 "AD834"^^xsd:string ;
     bioregistry.schema:0000006 "https://web.expasy.org/abcd/ABCD_$1"^^xsd:string ;
@@ -19346,24 +19303,6 @@ bioregistry:amphx a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0001-7577-5028 .
 
-bioregistry:apo a bioregistry.schema:0000001 ;
-    rdfs:label "Ascomycete phenotype ontology" ;
-    dc:description "A structured controlled vocabulary for the phenotypes of Ascomycete fungi."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:APO,
-        obofoundry:apo,
-        ontobee:APO,
-        bioportal:APO,
-        biocontext:YPO,
-        fairsharing:FAIRsharing.dyqz3y,
-        ols:apo ;
-    foaf:homepage "http://www.yeastgenome.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000184"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.yeastgenome.org/observable/APO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-5472-917X .
-
 bioregistry:apollosv a bioregistry.schema:0000001 ;
     rdfs:label "Apollo Structured Vocabulary" ;
     dc:description "Defines terms and relations necessary for interoperation between epidemic models and public health application software that interface with these models"^^xsd:string ;
@@ -19460,6 +19399,19 @@ bioregistry:bams a bioregistry.schema:0000001 ;
     foaf:homepage "https://bams1.org"^^xsd:string ;
     bioregistry.schema:0000012 true .
 
+bioregistry:bartoc a bioregistry.schema:0000001 ;
+    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
+    dc:description """The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.
+The main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P2689 ;
+    foaf:homepage "https://bartoc.org"^^xsd:string ;
+    bioregistry.schema:0000005 "241"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9][0-9]*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
+
 bioregistry:bco a bioregistry.schema:0000001 ;
     rdfs:label "Biological Collections Ontology" ;
     dc:description "An ontology to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys."^^xsd:string ;
@@ -19522,7 +19474,7 @@ bioregistry:biogrid a bioregistry.schema:0000001 ;
         prefixcommons:biogrid,
         miriam:biogrid,
         re3data:r3d100010350,
-        uniprot.resource:BioGRID ;
+        uniprot.resource:DB-0184 ;
     foaf:homepage "http://thebiogrid.org/"^^xsd:string ;
     bioregistry.schema:0000005 "31623"^^xsd:string ;
     bioregistry.schema:0000006 "http://thebiogrid.org/$1"^^xsd:string ;
@@ -19649,7 +19601,7 @@ bioregistry:bmrb a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.p06nme,
         miriam:bmrb,
-        uniprot.resource:BMRB ;
+        uniprot.resource:DB-0256 ;
     foaf:homepage "http://www.bmrb.wisc.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "15000"^^xsd:string ;
     bioregistry.schema:0000006 "http://rest.bmrb.wisc.edu/bmrb/$1/html"^^xsd:string ;
@@ -20139,7 +20091,7 @@ bioregistry:complexportal a bioregistry.schema:0000001 ;
         n2t:complexportal,
         miriam:complexportal,
         re3data:r3d100013295,
-        uniprot.resource:ComplexPortal,
+        uniprot.resource:DB-0228,
         wikidata:P7718 ;
     foaf:homepage "https://www.ebi.ac.uk/complexportal"^^xsd:string ;
     bioregistry.schema:0000005 "CPX-263"^^xsd:string ;
@@ -20294,7 +20246,8 @@ bioregistry:ctd.gene a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:CTD.GENE,
         biolink:CTD.GENE,
         n2t:ctd.gene,
-        miriam:ctd.gene ;
+        miriam:ctd.gene,
+        uniprot.resource:DB-0140 ;
     foaf:homepage "http://ctdbase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "101"^^xsd:string ;
     bioregistry.schema:0000006 "http://ctdbase.org/detail.go?type=gene&acc=$1"^^xsd:string ;
@@ -20448,7 +20401,7 @@ bioregistry:dicom a bioregistry.schema:0000001 ;
     rdfs:label "DICOM Controlled Terminology" ;
     dc:description "DICOM Controlled Terminology"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch oid:DCM,
+    skos:exactMatch oid:1.2.840.10008.2.16.4,
         bioportal:DCM,
         fairsharing:FAIRsharing.b7z8by,
         ols:dicom ;
@@ -20506,6 +20459,37 @@ bioregistry:diseasesdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1784"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.diseasesdatabase.com/ddb$1.htm"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:disprot a bioregistry.schema:0000001 ;
+    rdfs:label "DisProt" ;
+    dc:description "DisProt is a database of intrinsically disordered proteins and protein disordered regions, manually curated from literature."^^xsd:string ;
+    dcterms:hasPart bioregistry:disprot.region ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2723,
+        biocontext:DISPROT,
+        n2t:disprot,
+        fairsharing:FAIRsharing.dt9z89,
+        prefixcommons:disprot,
+        miriam:disprot,
+        re3data:r3d100010561,
+        uniprot.resource:DB-0017 ;
+    foaf:homepage "https://disprot.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "DP00003"^^xsd:string ;
+    bioregistry.schema:0000006 "https://disprot.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DP\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:disprot.region a bioregistry.schema:0000001 ;
+    rdfs:label "DisProt region" ;
+    dc:description "DisProt is a database of intrisically disordered proteins and protein disordered regions, manually curated from literature."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:disprot ;
+    skos:exactMatch miriam:disprot.region ;
+    foaf:homepage "https://www.disprot.org"^^xsd:string ;
+    bioregistry.schema:0000005 "DP00086r013"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.disprot.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DP\\d{5}r\\d{3}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dlx dcterms:hasPart bioregistry:dlxb,
@@ -20688,7 +20672,7 @@ bioregistry:drugcentral a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biolink:DrugCentral,
         fairsharing:FAIRsharing.3me82d,
-        uniprot.resource:DrugCentral ;
+        uniprot.resource:DB-0239 ;
     foaf:homepage "http://drugcentral.org"^^xsd:string ;
     bioregistry.schema:0000005 "307"^^xsd:string ;
     bioregistry.schema:0000006 "http://drugcentral.org/drugcard/$1"^^xsd:string ;
@@ -20897,25 +20881,41 @@ bioregistry:emolecules a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:ensembl a bioregistry.schema:0000001 ;
-    rdfs:label "Ensembl Gene" ;
-    dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2610,
-        biocontext:ENSEMBL,
-        go.resource:ENSEMBL,
-        n2t:ensembl,
-        ncbi.resource:ENSEMBL,
-        fairsharing:FAIRsharing.fx0mw7,
-        prefixcommons:ensembl,
-        miriam:ensembl,
-        re3data:r3d100010228,
-        uniprot.resource:Ensembl,
-        wikidata:P594 ;
-    foaf:homepage "https://www.ensembl.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "ENSG00000139618"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ensembl.org/id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$"^^xsd:string ;
+bioregistry:ensembl.bacteria a bioregistry.schema:0000001 ;
+    rdfs:label "Ensembl Bacteria" ;
+    dc:description "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with bacterial genomes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:ensembl ;
+    skos:exactMatch biocontext:ENSEMBL.BACTERIA,
+        n2t:ensembl.bacteria,
+        fairsharing:FAIRsharing.zsgmvd,
+        prefixcommons:ensembl.bacteria,
+        miriam:ensembl.bacteria,
+        re3data:r3d100011195,
+        uniprot.resource:DB-0147 ;
+    foaf:homepage "https://bacteria.ensembl.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "MU9_3181"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bacteria.ensembl.org/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^((EB\\w+)|([A-Z0-9]+\\_[A-Z0-9]+))$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:ensembl.fungi a bioregistry.schema:0000001 ;
+    rdfs:label "Ensembl Fungi, the Ensembl database for accessing genome-scale data from fungi." ;
+    dc:description "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with fungal genomes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:ensembl ;
+    skos:exactMatch biocontext:ENSEMBL.FUNGI,
+        go.resource:EnsemblFungi,
+        n2t:ensembl.fungi,
+        fairsharing:FAIRsharing.bg5xqs,
+        prefixcommons:ensembl.fungi,
+        miriam:ensembl.fungi,
+        re3data:r3d100011196,
+        uniprot.resource:DB-0148 ;
+    foaf:homepage "https://fungi.ensembl.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "CADAFLAT00006211"^^xsd:string ;
+    bioregistry.schema:0000006 "https://fungi.ensembl.org/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z-a-z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:enzo a bioregistry.schema:0000001 ;
@@ -21374,7 +21374,7 @@ bioregistry:glygen a bioregistry.schema:0000001 ;
     dc:description "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. GlyGen retrieves information from multiple international data sources and integrates and harmonizes this data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.aI1J5W,
-        uniprot.resource:GlyGen ;
+        uniprot.resource:DB-0254 ;
     foaf:homepage "https://glygen.org/glycan/"^^xsd:string ;
     bioregistry.schema:0000005 "G24361QY"^^xsd:string ;
     bioregistry.schema:0000006 "https://glygen.org/glycan/$1"^^xsd:string ;
@@ -21599,7 +21599,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.amcv1e,
         prefixcommons:hgnc,
         miriam:hgnc,
-        uniprot.resource:HGNC,
+        uniprot.resource:DB-0042,
         wikidata:P354 ;
     foaf:homepage "http://www.genenames.org"^^xsd:string ;
     bioregistry.schema:0000005 "16793"^^xsd:string ;
@@ -22308,7 +22308,7 @@ bioregistry:massive a bioregistry.schema:0000001 ;
         n2t:massive,
         fairsharing:FAIRsharing.LYsiMd,
         miriam:massive,
-        uniprot.resource:MassIVE ;
+        uniprot.resource:DB-0241 ;
     foaf:homepage "https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp"^^xsd:string ;
     bioregistry.schema:0000005 "MSV000082131"^^xsd:string ;
     bioregistry.schema:0000006 "https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=$1"^^xsd:string ;
@@ -22623,7 +22623,8 @@ bioregistry:ncbigi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "568815597"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000016 bioregistry:genbank .
 
 bioregistry:ndc a bioregistry.schema:0000001 ;
     rdfs:label "National Drug Code" ;
@@ -22877,7 +22878,7 @@ bioregistry:oba a bioregistry.schema:0000001 ;
 
 bioregistry:ohd a bioregistry.schema:0000001 ;
     rdfs:label "Oral Health and Disease Ontology" ;
-    dc:description "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records."^^xsd:string ;
+    dc:description "The Oral Health and Disease Ontology is used for representing the diagnosis and treatment of dental maladies."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:OHD,
         obofoundry:ohd,
@@ -23056,7 +23057,8 @@ bioregistry:panther.family a bioregistry.schema:0000001 ;
         biolink:PANTHER.FAMILY,
         go.resource:PANTHER,
         n2t:panther.family,
-        miriam:panther.family ;
+        miriam:panther.family,
+        uniprot.resource:DB-0069 ;
     foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "PTHR12345"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.pantherdb.org/panther/family.do?clsAccession=$1"^^xsd:string ;
@@ -23267,6 +23269,7 @@ bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
         n2t:pharmgkb.gene,
         prefixcommons:pharmgkb.gene,
         miriam:pharmgkb.gene,
+        uniprot.resource:DB-0074,
         wikidata:P7001 ;
     foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "PA131"^^xsd:string ;
@@ -23372,17 +23375,16 @@ bioregistry:pride a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:PRIDE,
         biocontext:PRIDE,
-        cellosaurus.resource:PRIDE,
         n2t:pride,
         fairsharing:FAIRsharing.e1byny,
         prefixcommons:pride,
         miriam:pride,
         ols:pride,
-        uniprot.resource:PRIDE ;
+        uniprot.resource:DB-0130 ;
     foaf:homepage "https://github.com/PRIDE-Utilities/pride-ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/pride/archive/assays/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "0000006"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PRIDE_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:prints a bioregistry.schema:0000001 ;
@@ -23394,7 +23396,7 @@ bioregistry:prints a bioregistry.schema:0000001 ;
         n2t:prints,
         fairsharing:FAIRsharing.h8r843,
         miriam:prints,
-        uniprot.resource:PRINTS ;
+        uniprot.resource:DB-0082 ;
     foaf:homepage "http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/"^^xsd:string ;
     bioregistry.schema:0000005 "PR00001"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off"^^xsd:string ;
@@ -23556,7 +23558,7 @@ bioregistry:refseq a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.4jg0qw,
         prefixcommons:refseq,
         miriam:refseq,
-        uniprot.resource:RefSeq ;
+        uniprot.resource:DB-0117 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/projects/RefSeq/"^^xsd:string ;
     bioregistry.schema:0000005 "NP_012345"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/protein/$1"^^xsd:string ;
@@ -23788,7 +23790,7 @@ bioregistry:signor a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.ss78t4,
         miriam:signor,
-        uniprot.resource:SIGNOR ;
+        uniprot.resource:DB-0206 ;
     foaf:homepage "https://signor.uniroma2.it/"^^xsd:string ;
     bioregistry.schema:0000005 "SIGNOR-C41"^^xsd:string ;
     bioregistry.schema:0000006 "https://signor.uniroma2.it/relation_result.php?id=$1"^^xsd:string ;
@@ -24057,7 +24059,7 @@ bioregistry:ucsc a bioregistry.schema:0000001 ;
     dc:description "The UCSC Genome Browser is an on-line, and downloadable, genome browser hosted by the University of California, Santa Cruz (UCSC).[2][3][4] It is an interactive website offering access to genome sequence data from a variety of vertebrate and invertebrate species and major model organisms, integrated with a large collection of aligned annotations."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:UCSC,
-        uniprot.resource:UCSC,
+        uniprot.resource:DB-0139,
         wikidata:P2576 ;
     foaf:homepage "https://genome.ucsc.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "uc001rvw.5"^^xsd:string ;
@@ -24090,7 +24092,7 @@ bioregistry:umbbd.pathway a bioregistry.schema:0000001 ;
         miriam:umbbd.pathway ;
     foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
     bioregistry.schema:0000005 "ala"^^xsd:string ;
-    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/$1/$1_map.html"^^xsd:string ;
+    bioregistry.schema:0000006 "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -24164,6 +24166,17 @@ bioregistry:unii a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:uniprot.arba a bioregistry.schema:0000001 ;
+    rdfs:label "Association-Rule-Based Annotator" ;
+    dc:description "Association-Rule-Based Annotator (ARBA), a multiclass, self-training annotation system for automatic classification and annotation of UniProtKB proteins. This replaces the previous rule-based SAAS system."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.uniprot.org/arba"^^xsd:string ;
+    bioregistry.schema:0000005 "ARBA00000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/arba/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^ARBA\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:uniprot.chain a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Chain" ;
     dc:description "This collection is a subset of UniProtKB that provides a means to reference the proteolytic cleavage products of a precursor protein."^^xsd:string ;
@@ -24186,7 +24199,7 @@ bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
         miriam:uniprot.isoform ;
     foaf:homepage "http://www.uniprot.org/"^^xsd:string ;
     bioregistry.schema:0000005 "Q5BJF6-3"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.uniprot.org/uniprot/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.uniprot.org/isoforms/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\-\\d+)$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -24256,8 +24269,7 @@ bioregistry:upa a bioregistry.schema:0000001 ;
         biocontext:UNIPATHWAY,
         go.resource:UniPathway,
         prefixcommons:unipathway,
-        ols:upa,
-        uniprot.resource:UniPathway ;
+        ols:upa ;
     foaf:homepage "https://github.com/geneontology/unipathway"^^xsd:string ;
     bioregistry.schema:0000005 "UCR00513"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1"^^xsd:string ;
@@ -24340,7 +24352,7 @@ bioregistry:viralzone a bioregistry.schema:0000001 ;
         re3data:r3d100013314 ;
     foaf:homepage "http://www.expasy.org/viralzone/"^^xsd:string ;
     bioregistry.schema:0000005 "992"^^xsd:string ;
-    bioregistry.schema:0000006 "http://viralzone.expasy.org/all_by_protein/$1.html"^^xsd:string ;
+    bioregistry.schema:0000006 "http://viralzone.expasy.org/all_by_protein/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -26395,6 +26407,8 @@ prefixcommons:tair.protein dcterms:isPartOf bioregistry.metaresource:prefixcommo
 
 prefixcommons:tao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:taxonomy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:taxrank dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:tcdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -26424,8 +26438,6 @@ prefixcommons:unipathway dcterms:isPartOf bioregistry.metaresource:prefixcommons
 prefixcommons:uniprot dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:uniprot.kw dcterms:isPartOf bioregistry.metaresource:prefixcommons .
-
-prefixcommons:uniprot.taxonomy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:unists dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -28941,197 +28953,199 @@ re3data:r3d100013638 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100013668 dcterms:isPartOf bioregistry.metaresource:re3data .
 
-uniprot.resource:ABCD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0005 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Allergome dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0013 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:ArachnoServer dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0015 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Araport dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0016 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:BMRB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0017 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:BRENDA dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0019 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:BindingDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0020 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:BioCyc dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0022 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:BioGRID dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0023 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:CAZy dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0024 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:CCDS dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0026 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:CDD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0027 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:CGD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0028 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:CORUM dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0030 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:ChEMBL dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0031 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:ComplexPortal dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0037 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:ConoServer dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0038 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:DEPOD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0041 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:DIP dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0042 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:DisProt dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0044 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:DrugBank dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0046 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:DrugCentral dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0049 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:ELM dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0051 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:EPD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0052 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:EchoBASE dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0053 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Ensembl dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0058 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:EnsemblBacteria dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0060 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:EnsemblFungi dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0062 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:EnsemblMetazoa dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0068 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:FlyBase dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0069 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GO dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0071 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GPCRDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0072 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GenAtlas dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0073 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GenBank dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0074 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GeneCards dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0079 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GeneDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0082 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GeneTree dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0084 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GeneWiki dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0089 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:GlyGen dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0091 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:HAMAP dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0092 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:HGNC dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0095 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:HOGENOM dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0097 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:HPA dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0106 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:HUGE dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0110 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:IDEAL dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0113 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:IntAct dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0117 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:InterPro dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0118 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:KEGG dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0126 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MEROPS dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0127 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MGI dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0129 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MIM dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0130 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MINT dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0135 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MaizeGDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0136 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MassIVE dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0139 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:MobiDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0140 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Orphanet dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0141 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:OrthoDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0143 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PIRSF dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0144 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PRIDE dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0145 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PRINTS dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0147 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PRO dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0148 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PROSITE dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0149 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PathwayCommons dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0152 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PeptideAtlas dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0155 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PeroxiBase dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0156 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Pfam dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0158 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PhylomeDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0160 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PomBase dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0161 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Proteomes dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0162 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:RCSB-PDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0172 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:REBASE dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0174 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:RGD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0177 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Reactome dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0180 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:RefSeq dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0181 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Rouge dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0182 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SABIO-RK dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0183 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SASBDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0184 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SGD dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0185 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SIGNOR dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0187 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SMART dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0190 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:STRING dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0197 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SUPFAM dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0205 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:SwissLipids dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0206 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:TCDB dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0214 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:TreeFam dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0221 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:TubercuList dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0223 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:UCSC dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0224 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:UniPathway dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0226 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:VGNC dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0228 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:WormBase dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0236 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:Xenbase dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0239 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:ZFIN dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0241 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:dbSNP dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0251 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:dictyBase dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0253 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:eggNOG dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0254 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:neXtProt dcterms:isPartOf bioregistry.metaresource:uniprot .
+uniprot.resource:DB-0256 dcterms:isPartOf bioregistry.metaresource:uniprot .
+
+uniprot.resource:DB-0258 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 wikidata:P1294 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -29192,6 +29206,8 @@ wikidata:P2410 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P2576 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P267 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P2689 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2796 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -29485,7 +29501,7 @@ bioregistry:clinvar a bioregistry.schema:0000001 ;
     dc:description "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Variant identifier."^^xsd:string ;
     dcterms:hasPart bioregistry:clinvar.record ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch oid:clinVar-V,
+    skos:exactMatch oid:2.16.840.1.113883.6.319,
         biocontext:ClinVar,
         biolink:CLINVAR,
         cellosaurus.resource:ClinVar,
@@ -29611,7 +29627,7 @@ bioregistry:dbsnp a bioregistry.schema:0000001 ;
         prefixcommons:dbsnp,
         miriam:dbsnp,
         re3data:r3d100010652,
-        uniprot.resource:dbSNP ;
+        uniprot.resource:DB-0013 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/snp/"^^xsd:string ;
     bioregistry.schema:0000005 "rs121909098"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/snp/$1"^^xsd:string ;
@@ -29704,7 +29720,7 @@ bioregistry:dictybase a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.4shj9c,
         prefixcommons:dictybase,
         re3data:r3d100010586,
-        uniprot.resource:dictyBase ;
+        uniprot.resource:DB-0015 ;
     foaf:homepage "http://dictybase.org"^^xsd:string ;
     bioregistry.schema:0000005 "DDB0191090"^^xsd:string ;
     bioregistry.schema:0000006 "http://dictybase.org/gene/$1"^^xsd:string ;
@@ -29804,6 +29820,7 @@ bioregistry:eccode a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.q1fdkc,
         prefixcommons:intenz,
         miriam:ec-code,
+        uniprot.resource:DB-0024,
         wikidata:P591 ;
     foaf:homepage "https://www.ebi.ac.uk/intenz/"^^xsd:string ;
     bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
@@ -29897,7 +29914,8 @@ bioregistry:ena.embl a bioregistry.schema:0000001 ;
         n2t:ena.embl,
         fairsharing:FAIRsharing.dj8nt8,
         prefixcommons:ena,
-        miriam:ena.embl ;
+        miriam:ena.embl,
+        uniprot.resource:DB-0022 ;
     foaf:homepage "https://www.ebi.ac.uk/ena/"^^xsd:string ;
     bioregistry.schema:0000005 "BN000065"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ena/browser/view/$1"^^xsd:string ;
@@ -30049,23 +30067,6 @@ bioregistry:frapo a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.sparontologies.net/ontologies/frapo"^^xsd:string ;
     bioregistry.schema:0000005 "Grant"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/cerif/frapo/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:genbank a bioregistry.schema:0000001 ;
-    rdfs:label "GenBank" ;
-    dc:description "GenBank ® is the NIH genetic sequence database, an annotated collection of all publicly available DNA sequences (Nucleic Acids Research, 2013 Jan;41(D1):D36-42)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2292,
-        biocontext:GenBank,
-        go.resource:GenBank,
-        fairsharing:FAIRsharing.9kahy4,
-        prefixcommons:genbank,
-        cheminf:000304,
-        re3data:r3d100010528,
-        uniprot.resource:GenBank ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/"^^xsd:string ;
-    bioregistry.schema:0000005 "U49845"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/nucleotide/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:gsso a bioregistry.schema:0000001 ;
@@ -30492,7 +30493,7 @@ bioregistry:miriam a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.ebi.ac.uk"^^xsd:string ;
     bioregistry.schema:0000005 "pubmed"^^xsd:string ;
     bioregistry.schema:0000006 "https://registry.identifiers.org/registry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[a-z_\\.]+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9a-z_:\\.-]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:molbase.sheffield a bioregistry.schema:0000001 ;
@@ -30566,28 +30567,6 @@ bioregistry:ms a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:pato,
         bioregistry:uo ;
     bioregistry.schema:0000019 orcid:0000-0002-1767-2343 .
-
-bioregistry:ncbigene a bioregistry.schema:0000001 ;
-    rdfs:label "Entrez Gene" ;
-    dc:description "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1027,
-        oid:geneCodeNCBI,
-        biocontext:NCBIGene,
-        biolink:NCBIGene,
-        go.resource:NCBIGene,
-        n2t:ncbigene,
-        ncbi.resource:GeneID,
-        fairsharing:FAIRsharing.5h3maw,
-        prefixcommons:ncbigene,
-        miriam:ncbigene,
-        re3data:r3d100010650,
-        wikidata:P351 ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/gene"^^xsd:string ;
-    bioregistry.schema:0000005 "100010"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/gene/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:ncbiprotein a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Protein" ;
@@ -30886,7 +30865,7 @@ bioregistry:omim a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.b084yh,
         prefixcommons:omim,
         miriam:mim,
-        uniprot.resource:MIM,
+        uniprot.resource:DB-0062,
         wikidata:P492 ;
     foaf:homepage "https://omim.org/"^^xsd:string ;
     bioregistry.schema:0000005 "603903"^^xsd:string ;
@@ -31511,7 +31490,6 @@ bioregistry:uniprot.proteome a bioregistry.schema:0000001 ;
     dc:description "UniProt provides proteome sets of proteins whose genomes have been completely sequenced."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
-    skos:exactMatch uniprot.resource:Proteomes ;
     foaf:homepage "https://www.uniprot.org/proteomes"^^xsd:string ;
     bioregistry.schema:0000005 "UP000005640"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/proteomes/$1"^^xsd:string ;
@@ -31548,7 +31526,7 @@ bioregistry:uniprot.var a bioregistry.schema:0000001 ;
         bioregistry:uniprot ;
     foaf:homepage "https://web.expasy.org/variant_pages"^^xsd:string ;
     bioregistry.schema:0000005 "068078"^^xsd:string ;
-    bioregistry.schema:0000006 "https://web.expasy.org/variant_pages/VAR_$1.html"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.uniprot.org/annotation/VAR_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -31632,7 +31610,7 @@ bioregistry:wormbase a bioregistry.schema:0000001 ;
         prefixcommons:wormbase,
         miriam:wb,
         re3data:r3d100010424,
-        uniprot.resource:WormBase,
+        uniprot.resource:DB-0110,
         wikidata:P3860 ;
     foaf:homepage "https://www.wormbase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "WBGene00000001"^^xsd:string ;
@@ -31749,7 +31727,7 @@ bioregistry:chembl a bioregistry.schema:0000001 ;
         miriam:chembl,
         cheminf:000412,
         re3data:r3d100010539,
-        uniprot.resource:ChEMBL ;
+        uniprot.resource:DB-0174 ;
     foaf:homepage "https://www.ebi.ac.uk/chembl"^^xsd:string ;
     bioregistry.schema:0000005 "CHEMBL4303805"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/chembl/entity/$1"^^xsd:string ;
@@ -31904,6 +31882,29 @@ bioregistry:ehdaa2 a bioregistry.schema:0000001 ;
         bioregistry:cl ;
     bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ] .
 
+bioregistry:ensembl a bioregistry.schema:0000001 ;
+    rdfs:label "Ensembl Gene" ;
+    dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
+    dcterms:hasPart bioregistry:ensembl.bacteria,
+        bioregistry:ensembl.fungi ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2610,
+        biocontext:ENSEMBL,
+        go.resource:ENSEMBL,
+        n2t:ensembl,
+        ncbi.resource:ENSEMBL,
+        fairsharing:FAIRsharing.fx0mw7,
+        prefixcommons:ensembl,
+        miriam:ensembl,
+        re3data:r3d100010228,
+        uniprot.resource:DB-0023,
+        wikidata:P594 ;
+    foaf:homepage "https://www.ensembl.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "ENSG00000139618"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ensembl.org/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:fbcv a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Controlled Vocabulary" ;
     dc:description "A miscellaneous ontology of terms used for curation in FlyBase, including the DPO."^^xsd:string ;
@@ -31925,6 +31926,23 @@ bioregistry:fbcv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ontoavida ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 .
+
+bioregistry:genbank a bioregistry.schema:0000001 ;
+    rdfs:label "GenBank" ;
+    dc:description "GenBank ® is the NIH genetic sequence database, an annotated collection of all publicly available DNA sequences (Nucleic Acids Research, 2013 Jan;41(D1):D36-42)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2292,
+        biocontext:GenBank,
+        go.resource:GenBank,
+        fairsharing:FAIRsharing.9kahy4,
+        prefixcommons:genbank,
+        cheminf:000304,
+        re3data:r3d100010528,
+        uniprot.resource:DB-0028 ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/"^^xsd:string ;
+    bioregistry.schema:0000005 "U49845"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/nucleotide/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:hp a bioregistry.schema:0000001 ;
     rdfs:label "Human Phenotype Ontology" ;
@@ -31997,6 +32015,29 @@ bioregistry:nbo a bioregistry.schema:0000001 ;
         bioregistry:pcl,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
+
+bioregistry:ncbigene a bioregistry.schema:0000001 ;
+    rdfs:label "Entrez Gene" ;
+    dc:description "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1027,
+        oid:2.16.840.1.113883.6.340,
+        biocontext:NCBIGene,
+        biolink:NCBIGene,
+        go.resource:NCBIGene,
+        n2t:ncbigene,
+        ncbi.resource:GeneID,
+        fairsharing:FAIRsharing.5h3maw,
+        prefixcommons:ncbigene,
+        miriam:ncbigene,
+        re3data:r3d100010650,
+        uniprot.resource:DB-0118,
+        wikidata:P351 ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/gene"^^xsd:string ;
+    bioregistry.schema:0000005 "100010"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:oae a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Adverse Events" ;
@@ -32076,7 +32117,7 @@ bioregistry:pdb a bioregistry.schema:0000001 ;
         prefixcommons:pdbj,
         miriam:pdb,
         re3data:r3d100010910,
-        uniprot.resource:RCSB-PDB,
+        uniprot.resource:DB-0172,
         wikidata:P638 ;
     foaf:homepage "https://www.wwpdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "2gc4"^^xsd:string ;
@@ -32203,7 +32244,7 @@ bioregistry:drugbank a bioregistry.schema:0000001 ;
         miriam:drugbank,
         cheminf:000406,
         re3data:r3d100010544,
-        uniprot.resource:DrugBank,
+        uniprot.resource:DB-0019,
         wikidata:P715 ;
     foaf:homepage "http://www.drugbank.ca"^^xsd:string ;
     bioregistry.schema:0000005 "DB14938"^^xsd:string ;
@@ -32460,7 +32501,7 @@ bioregistry:flybase a bioregistry.schema:0000001 ;
         prefixcommons:flybase,
         miriam:fb,
         re3data:r3d100010591,
-        uniprot.resource:FlyBase,
+        uniprot.resource:DB-0026,
         wikidata:P3852 ;
     foaf:homepage "http://flybase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "FBgn0011293"^^xsd:string ;
@@ -32639,7 +32680,7 @@ bioregistry:pr a bioregistry.schema:0000001 ;
         prefixcommons:pr,
         miriam:pr,
         ols:pr,
-        uniprot.resource:PRO,
+        uniprot.resource:DB-0181,
         wikidata:P4926 ;
     foaf:homepage "http://proconsortium.org"^^xsd:string ;
     bioregistry.schema:0000005 "000000024"^^xsd:string ;
@@ -33101,6 +33142,7 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
 orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
     dcterms:contributor bioregistry:glycosciencesdb,
         bioregistry:insdc.run,
+        bioregistry:uniprot.arba,
         bioregistry:wwf.ecoregion .
 
 bioregistry:agro a bioregistry.schema:0000001 ;
@@ -33209,7 +33251,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         agroportal:NCBITAXON,
         edam.data:1179,
         obofoundry:ncbitaxon,
-        oid:NCBI,
+        oid:2.16.840.1.113883.6.205,
         ontobee:NCBITaxon,
         bioportal:NCBITAXON,
         biocontext:TAXONOMY,
@@ -33218,7 +33260,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         n2t:taxonomy,
         ncbi.resource:taxon,
         fairsharing:FAIRsharing.fj07xj,
-        prefixcommons:uniprot.taxonomy,
+        prefixcommons:taxonomy,
         miriam:taxonomy,
         ols:ncbitaxon,
         re3data:r3d100010415,
@@ -33270,7 +33312,7 @@ bioregistry:kegg a bioregistry.schema:0000001 ;
         n2t:kegg,
         miriam:kegg,
         cheminf:000409,
-        uniprot.resource:KEGG ;
+        uniprot.resource:DB-0053 ;
     foaf:homepage "http://www.kegg.jp/"^^xsd:string ;
     bioregistry.schema:0000005 "hsa00190"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.kegg.jp/entry/$1"^^xsd:string ;
@@ -33334,7 +33376,7 @@ bioregistry:go a bioregistry.schema:0000001 ;
         prefixcommons:go,
         miriam:go,
         ols:go,
-        uniprot.resource:GO,
+        uniprot.resource:DB-0037,
         wikidata:P686 ;
     foaf:homepage "http://geneontology.org/"^^xsd:string ;
     bioregistry.schema:0000005 "0032571"^^xsd:string ;
@@ -33748,6 +33790,7 @@ bioregistry.metaresource:cropoct a bioregistry.schema:0000002 ;
     foaf:homepage "https://www.cropontology.org" ;
     bioregistry.schema:0000005 "CO_010" ;
     bioregistry.schema:0000006 "https://www.cropontology.org/ontology/$1" ;
+    bioregistry.schema:0000007 "https://cropontology.org/term/$1:$2" ;
     bioregistry.schema:0000019 orcid:0000-0002-6020-5919 .
 
 bioregistry:ro a bioregistry.schema:0000001 ;
@@ -33811,7 +33854,8 @@ bioregistry:ro a bioregistry.schema:0000001 ;
 bioregistry.metaresource:hl7 a bioregistry.schema:0000002 ;
     rdfs:label "HL7 External Code Systems" ;
     dc:description "HL7 External Code Systems are stored within the greater OID system" ;
-    dcterms:hasPart oid:2.16.840.1.113883.5.1105,
+    dcterms:hasPart oid:1.2.840.10008.2.16.4,
+        oid:2.16.840.1.113883.5.1105,
         oid:2.16.840.1.113883.5.1107,
         oid:2.16.840.1.113883.6.1,
         oid:2.16.840.1.113883.6.116,
@@ -33819,11 +33863,13 @@ bioregistry.metaresource:hl7 a bioregistry.schema:0000002 ;
         oid:2.16.840.1.113883.6.120,
         oid:2.16.840.1.113883.6.126,
         oid:2.16.840.1.113883.6.128,
+        oid:2.16.840.1.113883.6.163,
         oid:2.16.840.1.113883.6.173,
         oid:2.16.840.1.113883.6.174,
         oid:2.16.840.1.113883.6.175,
         oid:2.16.840.1.113883.6.177,
         oid:2.16.840.1.113883.6.2,
+        oid:2.16.840.1.113883.6.205,
         oid:2.16.840.1.113883.6.206,
         oid:2.16.840.1.113883.6.208,
         oid:2.16.840.1.113883.6.209,
@@ -33835,7 +33881,9 @@ bioregistry.metaresource:hl7 a bioregistry.schema:0000002 ;
         oid:2.16.840.1.113883.6.283,
         oid:2.16.840.1.113883.6.284,
         oid:2.16.840.1.113883.6.3,
+        oid:2.16.840.1.113883.6.319,
         oid:2.16.840.1.113883.6.339,
+        oid:2.16.840.1.113883.6.340,
         oid:2.16.840.1.113883.6.344,
         oid:2.16.840.1.113883.6.347,
         oid:2.16.840.1.113883.6.4,
@@ -33845,22 +33893,93 @@ bioregistry.metaresource:hl7 a bioregistry.schema:0000002 ;
         oid:2.16.840.1.113883.6.61,
         oid:2.16.840.1.113883.6.62,
         oid:2.16.840.1.113883.6.69,
+        oid:2.16.840.1.113883.6.73,
         oid:2.16.840.1.113883.6.77,
         oid:2.16.840.1.113883.6.8,
         oid:2.16.840.1.113883.6.86,
         oid:2.16.840.1.113883.6.88,
         oid:2.16.840.1.113883.6.90,
-        oid:2.16.840.1.113883.6.96,
-        oid:DCM,
-        oid:NCBI,
-        oid:clinVar-V,
-        oid:geneCodeNCBI,
-        oid:mdr,
-        oid:whoATC ;
+        oid:2.16.840.1.113883.6.96 ;
     foaf:homepage "http://www.oid-info.com/get/2.16.840.1.113883.6" ;
     bioregistry.schema:0000005 "2.16.840.1.113883.6.88" ;
     bioregistry.schema:0000006 "http://www.oid-info.com/get/$1" ;
     bioregistry.schema:0000019 [ rdfs:label "W. Ted Klein" ] .
+
+bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
+    rdfs:label "AgroPortal" ;
+    dc:description "A vocabulary and ontology repository for agronomy and related domains." ;
+    dcterms:hasPart agroportal:AGRO,
+        agroportal:AGROVOC,
+        agroportal:ATOL,
+        agroportal:BCO,
+        agroportal:BFO,
+        agroportal:CDAO,
+        agroportal:CL,
+        agroportal:CO_320,
+        agroportal:CO_321,
+        agroportal:CO_322,
+        agroportal:CO_323,
+        agroportal:CO_324,
+        agroportal:CO_325,
+        agroportal:CO_327,
+        agroportal:CO_330,
+        agroportal:CO_331,
+        agroportal:CO_333,
+        agroportal:CO_334,
+        agroportal:CO_335,
+        agroportal:CO_336,
+        agroportal:CO_337,
+        agroportal:CO_338,
+        agroportal:CO_339,
+        agroportal:CO_340,
+        agroportal:CO_341,
+        agroportal:CO_343,
+        agroportal:CO_345,
+        agroportal:CO_346,
+        agroportal:CO_347,
+        agroportal:CO_348,
+        agroportal:CO_350,
+        agroportal:CO_356,
+        agroportal:CO_357,
+        agroportal:CO_358,
+        agroportal:CO_359,
+        agroportal:CO_360,
+        agroportal:CO_365,
+        agroportal:CO_366,
+        agroportal:EDAM,
+        agroportal:EFO,
+        agroportal:ENVO,
+        agroportal:EO,
+        agroportal:EOL,
+        agroportal:FALDO,
+        agroportal:FLOPO,
+        agroportal:FOBI,
+        agroportal:FOODEX2,
+        agroportal:FOODON,
+        agroportal:GEMET,
+        agroportal:GO,
+        agroportal:LBO,
+        agroportal:LPT,
+        agroportal:NCBITAXON,
+        agroportal:OM,
+        agroportal:PATO,
+        agroportal:PCO,
+        agroportal:PECO,
+        agroportal:PO,
+        agroportal:PPO,
+        agroportal:PR,
+        agroportal:RO,
+        agroportal:SDGIO,
+        agroportal:SIO,
+        agroportal:SO,
+        agroportal:STY,
+        agroportal:TO,
+        agroportal:VARIO,
+        agroportal:VT ;
+    foaf:homepage "http://agroportal.lirmm.fr" ;
+    bioregistry.schema:0000005 "ENVO" ;
+    bioregistry.schema:0000006 "http://agroportal.lirmm.fr/ontologies/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-2404-1582 .
 
 orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
     dcterms:contributor bioregistry:4dn.replicate,
@@ -33872,6 +33991,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:asrp,
         bioregistry:bactibase,
         bioregistry:bams,
+        bioregistry:bartoc,
         bioregistry:bcrc,
         bioregistry:beiresources,
         bioregistry:bel,
@@ -34211,82 +34331,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:xuo,
         bioregistry:ymdb .
 
-bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
-    rdfs:label "AgroPortal" ;
-    dc:description "A vocabulary and ontology repository for agronomy and related domains." ;
-    dcterms:hasPart agroportal:AGRO,
-        agroportal:AGROVOC,
-        agroportal:ATOL,
-        agroportal:BCO,
-        agroportal:BFO,
-        agroportal:CDAO,
-        agroportal:CL,
-        agroportal:CO_320,
-        agroportal:CO_321,
-        agroportal:CO_322,
-        agroportal:CO_323,
-        agroportal:CO_324,
-        agroportal:CO_325,
-        agroportal:CO_327,
-        agroportal:CO_330,
-        agroportal:CO_331,
-        agroportal:CO_333,
-        agroportal:CO_334,
-        agroportal:CO_335,
-        agroportal:CO_336,
-        agroportal:CO_337,
-        agroportal:CO_338,
-        agroportal:CO_339,
-        agroportal:CO_340,
-        agroportal:CO_341,
-        agroportal:CO_343,
-        agroportal:CO_345,
-        agroportal:CO_346,
-        agroportal:CO_347,
-        agroportal:CO_348,
-        agroportal:CO_350,
-        agroportal:CO_356,
-        agroportal:CO_357,
-        agroportal:CO_358,
-        agroportal:CO_359,
-        agroportal:CO_360,
-        agroportal:CO_365,
-        agroportal:CO_366,
-        agroportal:EDAM,
-        agroportal:EFO,
-        agroportal:ENVO,
-        agroportal:EO,
-        agroportal:EOL,
-        agroportal:FALDO,
-        agroportal:FLOPO,
-        agroportal:FOBI,
-        agroportal:FOODEX2,
-        agroportal:FOODON,
-        agroportal:GEMET,
-        agroportal:GO,
-        agroportal:LBO,
-        agroportal:LPT,
-        agroportal:NCBITAXON,
-        agroportal:OM,
-        agroportal:PATO,
-        agroportal:PCO,
-        agroportal:PECO,
-        agroportal:PO,
-        agroportal:PPO,
-        agroportal:PR,
-        agroportal:RO,
-        agroportal:SDGIO,
-        agroportal:SIO,
-        agroportal:SO,
-        agroportal:STY,
-        agroportal:TO,
-        agroportal:VARIO,
-        agroportal:VT ;
-    foaf:homepage "http://agroportal.lirmm.fr" ;
-    bioregistry.schema:0000005 "ENVO" ;
-    bioregistry.schema:0000006 "http://agroportal.lirmm.fr/ontologies/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0002-2404-1582 .
-
 bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
     rdfs:label "National Center for Biotechnology Information Registry" ;
     dc:description "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources" ;
@@ -34470,102 +34514,103 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
 bioregistry.metaresource:uniprot a bioregistry.schema:0000002 ;
     rdfs:label "UniProt Cross-ref database" ;
     dc:description "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources." ;
-    dcterms:hasPart uniprot.resource:ABCD,
-        uniprot.resource:Allergome,
-        uniprot.resource:ArachnoServer,
-        uniprot.resource:Araport,
-        uniprot.resource:BMRB,
-        uniprot.resource:BRENDA,
-        uniprot.resource:BindingDB,
-        uniprot.resource:BioCyc,
-        uniprot.resource:BioGRID,
-        uniprot.resource:CAZy,
-        uniprot.resource:CCDS,
-        uniprot.resource:CDD,
-        uniprot.resource:CGD,
-        uniprot.resource:CORUM,
-        uniprot.resource:ChEMBL,
-        uniprot.resource:ComplexPortal,
-        uniprot.resource:ConoServer,
-        uniprot.resource:DEPOD,
-        uniprot.resource:DIP,
-        uniprot.resource:DisProt,
-        uniprot.resource:DrugBank,
-        uniprot.resource:DrugCentral,
-        uniprot.resource:ELM,
-        uniprot.resource:EPD,
-        uniprot.resource:EchoBASE,
-        uniprot.resource:Ensembl,
-        uniprot.resource:EnsemblBacteria,
-        uniprot.resource:EnsemblFungi,
-        uniprot.resource:EnsemblMetazoa,
-        uniprot.resource:FlyBase,
-        uniprot.resource:GO,
-        uniprot.resource:GPCRDB,
-        uniprot.resource:GenAtlas,
-        uniprot.resource:GenBank,
-        uniprot.resource:GeneCards,
-        uniprot.resource:GeneDB,
-        uniprot.resource:GeneTree,
-        uniprot.resource:GeneWiki,
-        uniprot.resource:GlyGen,
-        uniprot.resource:HAMAP,
-        uniprot.resource:HGNC,
-        uniprot.resource:HOGENOM,
-        uniprot.resource:HPA,
-        uniprot.resource:HUGE,
-        uniprot.resource:IDEAL,
-        uniprot.resource:IntAct,
-        uniprot.resource:InterPro,
-        uniprot.resource:KEGG,
-        uniprot.resource:MEROPS,
-        uniprot.resource:MGI,
-        uniprot.resource:MIM,
-        uniprot.resource:MINT,
-        uniprot.resource:MaizeGDB,
-        uniprot.resource:MassIVE,
-        uniprot.resource:MobiDB,
-        uniprot.resource:Orphanet,
-        uniprot.resource:OrthoDB,
-        uniprot.resource:PIRSF,
-        uniprot.resource:PRIDE,
-        uniprot.resource:PRINTS,
-        uniprot.resource:PRO,
-        uniprot.resource:PROSITE,
-        uniprot.resource:PathwayCommons,
-        uniprot.resource:PeptideAtlas,
-        uniprot.resource:PeroxiBase,
-        uniprot.resource:Pfam,
-        uniprot.resource:PhylomeDB,
-        uniprot.resource:PomBase,
-        uniprot.resource:Proteomes,
-        uniprot.resource:RCSB-PDB,
-        uniprot.resource:REBASE,
-        uniprot.resource:RGD,
-        uniprot.resource:Reactome,
-        uniprot.resource:RefSeq,
-        uniprot.resource:Rouge,
-        uniprot.resource:SABIO-RK,
-        uniprot.resource:SASBDB,
-        uniprot.resource:SGD,
-        uniprot.resource:SIGNOR,
-        uniprot.resource:SMART,
-        uniprot.resource:STRING,
-        uniprot.resource:SUPFAM,
-        uniprot.resource:SwissLipids,
-        uniprot.resource:TCDB,
-        uniprot.resource:TreeFam,
-        uniprot.resource:TubercuList,
-        uniprot.resource:UCSC,
-        uniprot.resource:UniPathway,
-        uniprot.resource:VGNC,
-        uniprot.resource:WormBase,
-        uniprot.resource:Xenbase,
-        uniprot.resource:ZFIN,
-        uniprot.resource:dbSNP,
-        uniprot.resource:dictyBase,
-        uniprot.resource:eggNOG,
-        uniprot.resource:neXtProt ;
+    dcterms:hasPart uniprot.resource:DB-0005,
+        uniprot.resource:DB-0013,
+        uniprot.resource:DB-0015,
+        uniprot.resource:DB-0016,
+        uniprot.resource:DB-0017,
+        uniprot.resource:DB-0019,
+        uniprot.resource:DB-0020,
+        uniprot.resource:DB-0022,
+        uniprot.resource:DB-0023,
+        uniprot.resource:DB-0024,
+        uniprot.resource:DB-0026,
+        uniprot.resource:DB-0027,
+        uniprot.resource:DB-0028,
+        uniprot.resource:DB-0030,
+        uniprot.resource:DB-0031,
+        uniprot.resource:DB-0037,
+        uniprot.resource:DB-0038,
+        uniprot.resource:DB-0041,
+        uniprot.resource:DB-0042,
+        uniprot.resource:DB-0044,
+        uniprot.resource:DB-0046,
+        uniprot.resource:DB-0049,
+        uniprot.resource:DB-0051,
+        uniprot.resource:DB-0052,
+        uniprot.resource:DB-0053,
+        uniprot.resource:DB-0058,
+        uniprot.resource:DB-0060,
+        uniprot.resource:DB-0062,
+        uniprot.resource:DB-0068,
+        uniprot.resource:DB-0069,
+        uniprot.resource:DB-0071,
+        uniprot.resource:DB-0072,
+        uniprot.resource:DB-0073,
+        uniprot.resource:DB-0074,
+        uniprot.resource:DB-0079,
+        uniprot.resource:DB-0082,
+        uniprot.resource:DB-0084,
+        uniprot.resource:DB-0089,
+        uniprot.resource:DB-0091,
+        uniprot.resource:DB-0092,
+        uniprot.resource:DB-0095,
+        uniprot.resource:DB-0097,
+        uniprot.resource:DB-0106,
+        uniprot.resource:DB-0110,
+        uniprot.resource:DB-0113,
+        uniprot.resource:DB-0117,
+        uniprot.resource:DB-0118,
+        uniprot.resource:DB-0126,
+        uniprot.resource:DB-0127,
+        uniprot.resource:DB-0129,
+        uniprot.resource:DB-0130,
+        uniprot.resource:DB-0135,
+        uniprot.resource:DB-0136,
+        uniprot.resource:DB-0139,
+        uniprot.resource:DB-0140,
+        uniprot.resource:DB-0141,
+        uniprot.resource:DB-0143,
+        uniprot.resource:DB-0144,
+        uniprot.resource:DB-0145,
+        uniprot.resource:DB-0147,
+        uniprot.resource:DB-0148,
+        uniprot.resource:DB-0149,
+        uniprot.resource:DB-0152,
+        uniprot.resource:DB-0155,
+        uniprot.resource:DB-0156,
+        uniprot.resource:DB-0158,
+        uniprot.resource:DB-0160,
+        uniprot.resource:DB-0161,
+        uniprot.resource:DB-0162,
+        uniprot.resource:DB-0172,
+        uniprot.resource:DB-0174,
+        uniprot.resource:DB-0177,
+        uniprot.resource:DB-0180,
+        uniprot.resource:DB-0181,
+        uniprot.resource:DB-0182,
+        uniprot.resource:DB-0183,
+        uniprot.resource:DB-0184,
+        uniprot.resource:DB-0185,
+        uniprot.resource:DB-0187,
+        uniprot.resource:DB-0190,
+        uniprot.resource:DB-0197,
+        uniprot.resource:DB-0205,
+        uniprot.resource:DB-0206,
+        uniprot.resource:DB-0214,
+        uniprot.resource:DB-0221,
+        uniprot.resource:DB-0223,
+        uniprot.resource:DB-0224,
+        uniprot.resource:DB-0226,
+        uniprot.resource:DB-0228,
+        uniprot.resource:DB-0236,
+        uniprot.resource:DB-0239,
+        uniprot.resource:DB-0241,
+        uniprot.resource:DB-0251,
+        uniprot.resource:DB-0253,
+        uniprot.resource:DB-0254,
+        uniprot.resource:DB-0256,
+        uniprot.resource:DB-0258 ;
     foaf:homepage "https://www.uniprot.org/database/" ;
     bioregistry.schema:0000005 "0174" ;
     bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1" ;
@@ -34798,137 +34843,6 @@ bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://edamontology.org/data_$1" ;
     bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
-bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
-    rdfs:label "Wikidata Property" ;
-    dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
-    dcterms:hasPart wikidata:P1294,
-        wikidata:P1391,
-        wikidata:P1550,
-        wikidata:P1554,
-        wikidata:P1578,
-        wikidata:P1579,
-        wikidata:P1690,
-        wikidata:P1692,
-        wikidata:P1693,
-        wikidata:P1748,
-        wikidata:P1832,
-        wikidata:P1929,
-        wikidata:P1930,
-        wikidata:P2057,
-        wikidata:P2062,
-        wikidata:P2063,
-        wikidata:P2064,
-        wikidata:P2084,
-        wikidata:P2106,
-        wikidata:P2115,
-        wikidata:P2153,
-        wikidata:P2158,
-        wikidata:P2275,
-        wikidata:P231,
-        wikidata:P233,
-        wikidata:P234,
-        wikidata:P235,
-        wikidata:P2410,
-        wikidata:P2576,
-        wikidata:P267,
-        wikidata:P2796,
-        wikidata:P2870,
-        wikidata:P2871,
-        wikidata:P2892,
-        wikidata:P2926,
-        wikidata:P299,
-        wikidata:P305,
-        wikidata:P3088,
-        wikidata:P3117,
-        wikidata:P3151,
-        wikidata:P3201,
-        wikidata:P3289,
-        wikidata:P3345,
-        wikidata:P3382,
-        wikidata:P3406,
-        wikidata:P351,
-        wikidata:P3519,
-        wikidata:P352,
-        wikidata:P354,
-        wikidata:P3590,
-        wikidata:P3636,
-        wikidata:P3841,
-        wikidata:P3852,
-        wikidata:P3853,
-        wikidata:P3860,
-        wikidata:P3870,
-        wikidata:P3890,
-        wikidata:P3937,
-        wikidata:P4229,
-        wikidata:P4317,
-        wikidata:P4355,
-        wikidata:P4394,
-        wikidata:P4495,
-        wikidata:P4537,
-        wikidata:P4616,
-        wikidata:P486,
-        wikidata:P4901,
-        wikidata:P492,
-        wikidata:P4926,
-        wikidata:P493,
-        wikidata:P494,
-        wikidata:P496,
-        wikidata:P5221,
-        wikidata:P5270,
-        wikidata:P5299,
-        wikidata:P5458,
-        wikidata:P5501,
-        wikidata:P557,
-        wikidata:P563,
-        wikidata:P5683,
-        wikidata:P5806,
-        wikidata:P591,
-        wikidata:P592,
-        wikidata:P593,
-        wikidata:P594,
-        wikidata:P595,
-        wikidata:P6049,
-        wikidata:P6245,
-        wikidata:P638,
-        wikidata:P652,
-        wikidata:P661,
-        wikidata:P662,
-        wikidata:P663,
-        wikidata:P665,
-        wikidata:P6689,
-        wikidata:P671,
-        wikidata:P675,
-        wikidata:P6778,
-        wikidata:P683,
-        wikidata:P685,
-        wikidata:P686,
-        wikidata:P698,
-        wikidata:P699,
-        wikidata:P7001,
-        wikidata:P715,
-        wikidata:P7260,
-        wikidata:P7333,
-        wikidata:P7471,
-        wikidata:P7718,
-        wikidata:P7720,
-        wikidata:P7807,
-        wikidata:P7963,
-        wikidata:P8121,
-        wikidata:P815,
-        wikidata:P830,
-        wikidata:P842,
-        wikidata:P846,
-        wikidata:P850,
-        wikidata:P8656,
-        wikidata:P8691,
-        wikidata:P9157,
-        wikidata:P932,
-        wikidata:P938 ;
-    foaf:homepage "https://www.wikidata.org" ;
-    bioregistry.schema:0000005 "P683" ;
-    bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
-    bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ] .
-
 bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
     rdfs:label "Registry of Research Data Repositories" ;
     dc:description "Re3data is a global registry of research data repositories that covers research data repositories from different academic disciplines." ;
@@ -35060,6 +34974,138 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
     bioregistry.schema:0000005 "r3d100010772" ;
     bioregistry.schema:0000006 "https://www.re3data.org/repository/$1" ;
     bioregistry.schema:0000019 orcid:0000-0003-4221-7956 .
+
+bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
+    rdfs:label "Wikidata Property" ;
+    dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
+    dcterms:hasPart wikidata:P1294,
+        wikidata:P1391,
+        wikidata:P1550,
+        wikidata:P1554,
+        wikidata:P1578,
+        wikidata:P1579,
+        wikidata:P1690,
+        wikidata:P1692,
+        wikidata:P1693,
+        wikidata:P1748,
+        wikidata:P1832,
+        wikidata:P1929,
+        wikidata:P1930,
+        wikidata:P2057,
+        wikidata:P2062,
+        wikidata:P2063,
+        wikidata:P2064,
+        wikidata:P2084,
+        wikidata:P2106,
+        wikidata:P2115,
+        wikidata:P2153,
+        wikidata:P2158,
+        wikidata:P2275,
+        wikidata:P231,
+        wikidata:P233,
+        wikidata:P234,
+        wikidata:P235,
+        wikidata:P2410,
+        wikidata:P2576,
+        wikidata:P267,
+        wikidata:P2689,
+        wikidata:P2796,
+        wikidata:P2870,
+        wikidata:P2871,
+        wikidata:P2892,
+        wikidata:P2926,
+        wikidata:P299,
+        wikidata:P305,
+        wikidata:P3088,
+        wikidata:P3117,
+        wikidata:P3151,
+        wikidata:P3201,
+        wikidata:P3289,
+        wikidata:P3345,
+        wikidata:P3382,
+        wikidata:P3406,
+        wikidata:P351,
+        wikidata:P3519,
+        wikidata:P352,
+        wikidata:P354,
+        wikidata:P3590,
+        wikidata:P3636,
+        wikidata:P3841,
+        wikidata:P3852,
+        wikidata:P3853,
+        wikidata:P3860,
+        wikidata:P3870,
+        wikidata:P3890,
+        wikidata:P3937,
+        wikidata:P4229,
+        wikidata:P4317,
+        wikidata:P4355,
+        wikidata:P4394,
+        wikidata:P4495,
+        wikidata:P4537,
+        wikidata:P4616,
+        wikidata:P486,
+        wikidata:P4901,
+        wikidata:P492,
+        wikidata:P4926,
+        wikidata:P493,
+        wikidata:P494,
+        wikidata:P496,
+        wikidata:P5221,
+        wikidata:P5270,
+        wikidata:P5299,
+        wikidata:P5458,
+        wikidata:P5501,
+        wikidata:P557,
+        wikidata:P563,
+        wikidata:P5683,
+        wikidata:P5806,
+        wikidata:P591,
+        wikidata:P592,
+        wikidata:P593,
+        wikidata:P594,
+        wikidata:P595,
+        wikidata:P6049,
+        wikidata:P6245,
+        wikidata:P638,
+        wikidata:P652,
+        wikidata:P661,
+        wikidata:P662,
+        wikidata:P663,
+        wikidata:P665,
+        wikidata:P6689,
+        wikidata:P671,
+        wikidata:P675,
+        wikidata:P6778,
+        wikidata:P683,
+        wikidata:P685,
+        wikidata:P686,
+        wikidata:P698,
+        wikidata:P699,
+        wikidata:P7001,
+        wikidata:P715,
+        wikidata:P7260,
+        wikidata:P7333,
+        wikidata:P7471,
+        wikidata:P7718,
+        wikidata:P7720,
+        wikidata:P7807,
+        wikidata:P7963,
+        wikidata:P8121,
+        wikidata:P815,
+        wikidata:P830,
+        wikidata:P842,
+        wikidata:P846,
+        wikidata:P850,
+        wikidata:P8656,
+        wikidata:P8691,
+        wikidata:P9157,
+        wikidata:P932,
+        wikidata:P938 ;
+    foaf:homepage "https://www.wikidata.org" ;
+    bioregistry.schema:0000005 "P683" ;
+    bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
+    bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ] .
 
 bioregistry.metaresource:go a bioregistry.schema:0000002 ;
     rdfs:label "Gene Ontology Registry" ;
@@ -36952,6 +36998,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:tair.locus,
         prefixcommons:tair.protein,
         prefixcommons:tao,
+        prefixcommons:taxonomy,
         prefixcommons:taxrank,
         prefixcommons:tcdb,
         prefixcommons:teddy,
@@ -36967,7 +37014,6 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:unipathway,
         prefixcommons:uniprot,
         prefixcommons:uniprot.kw,
-        prefixcommons:uniprot.taxonomy,
         prefixcommons:unists,
         prefixcommons:unite,
         prefixcommons:uo,
@@ -39076,6 +39122,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:APD,
         biocontext:APHIDBASE.TRANSCRIPT,
         biocontext:APID.INTERACTIONS,
+        biocontext:APO,
         biocontext:ARACHNOSERVER,
         biocontext:ARDB,
         biocontext:ARK,
@@ -39969,6 +40016,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bactibase,
         bioregistry:bams,
         bioregistry:bao,
+        bioregistry:bartoc,
         bioregistry:bbkg,
         bioregistry:bbtp,
         bioregistry:bcgo,
@@ -41302,6 +41350,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:unipathway.compound,
         bioregistry:unipathway.reaction,
         bioregistry:uniprot,
+        bioregistry:uniprot.arba,
         bioregistry:uniprot.chain,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.isoform,
