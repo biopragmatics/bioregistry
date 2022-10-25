@@ -4,7 +4,6 @@
 
 import json
 import logging
-import re
 import unittest
 from collections import defaultdict
 from textwrap import dedent
@@ -63,7 +62,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_prefixes(self):
         """Check prefixes aren't malformed."""
-        pattern = re.compile(r"^[a-z0-9_]+(\.[a-z0-9_]+)?$")
+        pattern = self.registry["bioregistry"].get_pattern_re()
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertEqual(prefix, resource.prefix)
