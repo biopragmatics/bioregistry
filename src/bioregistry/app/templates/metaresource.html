@@ -38,6 +38,15 @@
             <dl>
                 <dt>Metaprefix</dt>
                 <dd><code>{{ metaprefix }}</code></dd>
+                {% if entry.bioregistry_prefix and metaprefix != entry.bioregistry_prefix %}
+                <dt>Bioregistry Prefix</dt>
+                <dd>
+                    For this registry, the metaprefix (i.e., the key for the registry)
+                    is not the same as the Bioregistry prefix. Follow this link for additional
+                    information.
+                </dd>
+                <dd>{{ utils.render_prefix(entry.bioregistry_prefix) }}</dd>
+                {% endif %}
                 <dt>Links</dt>
                 <dd>
                     {% if homepage %}
