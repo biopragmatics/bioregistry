@@ -131,7 +131,8 @@ def _main():  # noqa:C901
             )
 
         if not resource.publications and not new_publications:
-            raise ValueError(f"error on {resource.prefix}")
+            tqdm.write(f"error on {resource.prefix}")
+            continue
         _pubs = [
             *(new_publications or []),
             *(resource.publications or []),
