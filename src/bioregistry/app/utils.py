@@ -83,6 +83,9 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
 
     :param manager_: A manager
     :param q: The query string
+    :param url_prefix:
+        The explicit URL prefix. If not used, relative paths are generated. Introduced to
+        solve https://github.com/biopragmatics/bioregistry/issues/596.
     :return: A dictionary with the autocomplete results.
 
     Before completion is of prefix:
@@ -107,7 +110,7 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
     """  # noqa: E501
     if url_prefix is None:
-        url_prefix = ''
+        url_prefix = ""
     url_prefix = url_prefix.rstrip().rstrip("/")
 
     if ":" not in q:
