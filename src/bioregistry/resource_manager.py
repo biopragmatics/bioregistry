@@ -467,12 +467,17 @@ class Manager:
         for record in self.get_curies_records(include_prefixes=include_prefixes, strict=strict):
             rv[record.uri_prefix] = record.prefix
             for uri_prefix in record.uri_prefix_synonyms:
-                if uri_prefix in rv:
+                if uri_prefix not in rv:
+                    rv[uri_prefix] = record.prefix
+                elif rv[uri_prefix] == record.prefix:
+                    # no big deal, it's a trivial duplicate
+                    # FIXME this shouldn't happen, though
+                    pass
+                else:
                     logger.warning(
-                        f"duplicate secondary URI prefix {uri_prefix} in {record.prefix} that "
+                        f"non-trivial duplicate secondary URI prefix {uri_prefix} in {record.prefix} that "
                         f"already appeared in {rv[uri_prefix]}"
                     )
-                rv[uri_prefix] = record.prefix
                 for synonym in (record.prefix, *record.prefix_synonyms):
                     rv[f"{synonym}:"] = record.prefix
 
