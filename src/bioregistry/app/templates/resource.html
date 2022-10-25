@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ name }}{% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -26,17 +26,9 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
+                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}
-                        {% if deprecated %}
-                            <span class="badge badge-warning" style="display: inline-block;">
-                                Deprecated <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% elif provides %}
-                            <span class="badge badge-danger" style="display: inline-block;">
-                                Provider <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% endif %}
+                        {{ utils.render_resource_warnings(resource) }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -49,7 +41,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.resource", prefix=prefix, format=key) }}">
+                                   href="{{ url_for("metaregistry_api.resource", prefix=prefix, format=key) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -105,9 +97,19 @@
                     </dt>
                     <dd>{{ version }}</dd>
                 {% endif %}
+                {% set resource_license = resource.get_license() %}
+                {% if resource_license %}
+                    <dt>
+                        License
+                        <a type="button" data-toggle="modal" data-target="#license-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
+                    <dd>{{ resource_license }}</dd>
+                {% endif %}
                 <dt>
                     Links
-                    {% if homepage or obo_download or owl_download or json_download %}
+                    {% if homepage or obo_download or owl_download or json_download or rdf_download %}
                     <a type="button" data-toggle="modal" data-target="#links-modal">
                         <i class="far fa-question-circle"></i>
                     </a>
@@ -139,6 +141,16 @@
                     {% if json_download %}
                         <a class="badge badge-pill badge-light" href="{{ json_download }}">
                             OBO JSON <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if rdf_download %}
+                        <a class="badge badge-pill badge-light" href="{{ rdf_download }}">
+                            RDF <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if resource.github_request_issue %}
+                        <a class="badge badge-pill badge-light" href="https://github.com/biopragmatics/bioregistry/issues/{{ resource.github_request_issue }}">
+                            <i class="fas fa-info-circle"></i> Request Discussion
                         </a>
                     {% endif %}
                     {% if twitter %}
@@ -178,17 +190,17 @@
                 <dt>Example Local Unique Identifier{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example %}
-                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
+                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
                         {% if providers %}
                         &nbsp;
-                        <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                        <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
                         {% endif %}
                         {% for extra_example in example_extras %}
                             <br />
-                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
+                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
                             {% if providers %}
                                 &nbsp;
-                                <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                                <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
                             {% endif %}
                         {% endfor %}
                     {% elif has_no_terms %}
@@ -213,10 +225,10 @@
                 <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example_curie %}
-                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
                         {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
                             <br />
-                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
+                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
                         {% endfor %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
@@ -230,37 +242,39 @@
                         The legacy MIRIAM standard for generating CURIEs with this resource
                         includes the <code>namespaceEmbeddedInLUI</code> as true. The actual
                         part that gets prefixed before the local unique identifier regex,
-                        otherwise known as the banana, is <code>{{ banana if banana else prefix.upper() }}:</code>.
+                        otherwise known as the banana, is
+                        <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}</code>.
                         Therefore, you might see local unique identifiers written out as CURIEs.
                     </dd>
                 {% endif %}
 
                 {% set publications = resource.get_publications() %}
-                {% if resource.references or publications%}
+                {% if publications %}
+                    <dt>Publications</dt>
+                    <dd>
+                        {% if publications | length == 1 %}
+                            {{ utils.render_publication(publications[0]) }}
+                        {% else %}
+                            <ul>
+                                {% for publication in publications %}
+                                    <li>{{ utils.render_publication(publication) }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                {% endif %}
+                {% if resource.references %}
                     <dt>References</dt>
                     <dd>
-                        <ul>
-                            {% for publication in publications or [] %}
-                                <li>
-                                    <span class="badge badge-info">Publication</span>
-                                    <a href="{{ publication.id }}">{{ publication.title }}</a>
-                                </li>
-                            {% endfor %}
-                            {% for reference in resource.references or [] %}
-                                <li>
-                                    {% if reference.startswith("https://twitter.com") %}
-                                        <span class="badge badge-info">Tweet</span>
-                                    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
-                                        <span class="badge badge-info">GitHub Issue</span>
-                                    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
-                                        <span class="badge badge-info">GitHub PR</span>
-                                    {% else %}
-                                        <span class="badge badge-info">Other</span>
-                                    {% endif %}
-                                    <a href="{{ reference }}">{{ reference }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% if resource.references | length == 1 %}
+                            {{ utils.render_reference(resource.references[0]) }}
+                        {% else %}
+                            <ul>
+                                {% for reference in resource.references %}
+                                    <li>{{ utils.render_reference(reference) }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if resource.contributor or resource.contributor_extras %}
@@ -269,12 +283,12 @@
                         <ul>
                             {% if resource.contributor %}
                                 <li>
-                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
                                 </li>
                             {% endif %}
                             {% for contributor in resource.contributor_extras or [] %}
                                 <li>
-                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('ui.contributor', orcid=contributor.orcid)) }}
+                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -283,7 +297,7 @@
                 {% if resource.reviewer %}
                     <dt>Reviewer</dt>
                     <dd>
-                        {{ utils.render_author(resource.reviewer, link=url_for('ui.contributor', orcid=resource.reviewer.orcid)) }}
+                        {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
                 {% endif %}
             </dl>
@@ -302,10 +316,10 @@
                         Provides
                     </dt>
                     <dd>
-                        <a href="{{ url_for("ui.resource", prefix=provides) }}"
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=provides) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
-                           title="{{ bioregistry.get_name(provides) }}">
-                            {{ bioregistry.get_preferred_prefix(provides) or provides }}
+                           title="{{ manager.get_name(provides) }}">
+                            {{ manager.get_preferred_prefix(provides) or provides }}
                         </a>
                     </dd>
                 {% endif %}
@@ -315,10 +329,10 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in provided_by %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -328,11 +342,15 @@
                         Part Of
                     </dt>
                     <dd>
-                        <a href="{{ url_for("ui.resource", prefix=part_of) }}"
+                        {% if manager.get_name(part_of) %}
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
-                           title="{{ bioregistry.get_name(part_of) }}">
-                            {{ bioregistry.get_preferred_prefix(part_of) or part_of }}
+                           title="{{ manager.get_name(part_of) }}">
+                            {{ manager.get_preferred_prefix(part_of) or part_of }}
                         </a>
+                        {% else %}
+                        <span class="badge badge-pill badge-light">{{ part_of }} (not directly registered)</span>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if has_parts %}
@@ -341,10 +359,10 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in has_parts %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -354,51 +372,51 @@
                         Has Canonical
                     </dt>
                     <dd>
-                        <a href="{{ url_for("ui.resource", prefix=has_canonical) }}"
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=has_canonical) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
-                           title="{{ bioregistry.get_name(has_canonical) }}">
-                            {{ bioregistry.get_preferred_prefix(has_canonical) or has_canonical }}
+                           title="{{ manager.get_name(has_canonical) }}">
+                            {{ manager.get_preferred_prefix(has_canonical) or has_canonical }}
                         </a>
                     </dd>
                 {% endif %}
                 {% if canonical_for %}
                     <dt>
-                        Canonical For
+                        Canonical For ({{ canonical_for | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in canonical_for %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -417,7 +435,8 @@
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
-                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code>.
+                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code> with
+                    {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
             <table class="table table-hover table-striped">
@@ -464,7 +483,7 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    <code>{{ prefix }}:{{ example }}</code> is used to demonstrate the provides available for
+                    {{ utils.code_curie(prefix, example) }} is used to demonstrate the provides available for
                     <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>
@@ -493,7 +512,7 @@
                 <tbody>
                 {% for provider in extra_providers %}
                     <tr>
-                        <td>{{ provider.code }}</td>
+                        <td><code>{{ provider.code }}</code></td>
                         <td>{{ provider.name }}</td>
                         {% set url = provider.resolve(example) %}
                         <td><a href="{{ url }}">{{ url }}</a></td>
@@ -549,6 +568,25 @@
     </div>
     {% endif %}
 
+    {% if resource_license %}
+    <div class="modal fade" id="license-modal" tabindex="-1" role="dialog" aria-labelledby="licenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="licenseModalLabel">Programmatic Access to License</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Get the license:</p>
+                    {{ utils.code_example(prefix, "get_license", resource_license) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="modal fade" id="links-modal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -578,6 +616,10 @@
                     {% if json_download %}
                         <p>Get the JSON download link:</p>
                         {{ utils.code_example(prefix, "get_json_download", json_download) }}
+                    {% endif %}
+                    {% if rdf_download %}
+                        <p>Get the RDF download link:</p>
+                        {{ utils.code_example(prefix, "get_rdf_download", rdf_download) }}
                     {% endif %}
                 </div>
             </div>

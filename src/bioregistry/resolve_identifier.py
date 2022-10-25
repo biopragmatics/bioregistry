@@ -9,7 +9,10 @@ from .resolve import get_resource
 from .resource_manager import manager
 
 __all__ = [
-    "is_known_identifier",
+    "is_valid_curie",
+    "is_standardizable_curie",
+    "is_valid_identifier",
+    "is_standardizable_identifier",
     "get_providers",
     "get_providers_list",
     "get_identifiers_org_iri",
@@ -26,32 +29,160 @@ __all__ = [
 ]
 
 
-def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
-    """Check that an identifier can be normalized and also matches a prefix's local unique identifier pattern.
+def is_valid_curie(curie: str) -> bool:
+    """Check if a CURIE is standardized and valid.
 
-    :param prefix: The prefix in the CURIE
-    :param identifier: The identifier in the CURIE
-    :return: Whether this identifier passes validation, after normalization
+    :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
+    :return:
+        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+        regular expression pattern for identifiers.
 
-    >>> is_known_identifier("chebi", "1234")
+    Standard CURIE
+    >>> is_valid_curie("go:0000001")
     True
-    >>> is_known_identifier("chebi", "CHEBI:12345")
-    True
-    >>> is_known_identifier("chebi", "CHEBI:ABCD")
+
+    Not a standard CURIE (i.e., no colon)
+    >>> is_valid_curie("0000001")
+    False
+    >>> is_valid_curie("GO_0000001")
+    False
+    >>> is_valid_curie("PTM-0001")
+    False
+
+    Non-standardized prefix
+    >>> is_valid_curie("GO:0000001")
+    False
+
+    Incorrect identifier
+    >>> is_valid_curie("go:0001")
+    False
+
+    Banana scenario
+    >>> is_valid_curie("go:GO:0000001")
+    False
+
+    Unknown prefix
+    >>> is_valid_curie("xxx:yyy")
     False
     """
-    resource = get_resource(prefix)
-    if resource is None:
-        return None
-    return resource.is_known_identifier(identifier)
+    return manager.is_valid_curie(curie)
 
 
-def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
+def is_standardizable_curie(curie: str) -> bool:
+    """Check if a CURIE is validatable, but not necessarily standardized.
+
+    :param curie: A compact URI
+    :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+        then validated.
+
+    Standard CURIE
+    >>> is_standardizable_curie("go:0000001")
+    True
+
+    Not a standard CURIE (i.e., no colon)
+    >>> is_standardizable_curie("0000001")
+    False
+    >>> is_standardizable_curie("GO_0000001")
+    False
+    >>> is_standardizable_curie("PTM-0001")
+    False
+
+    Non-standardized prefix
+    >>> is_standardizable_curie("GO:0000001")
+    True
+
+    Incorrect identifier
+    >>> is_standardizable_curie("go:0001")
+    False
+
+    Banana scenario
+    >>> is_standardizable_curie("go:GO:0000001")
+    True
+
+    Unknown prefix
+    >>> is_standardizable_curie("xxx:yyy")
+    False
+    """
+    return manager.is_standardizable_curie(curie)
+
+
+def is_valid_identifier(prefix: str, identifier: str) -> bool:
+    """Check if the pre-parsed CURIE is standardized valid.
+
+    :param prefix: The prefix from a compact URI
+    :param identifier: The local unique identifer from a compact URI
+    :return:
+        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+        regular expression pattern for identifiers.
+
+    .. seealso:: The :func:`is_standardizable_identifier` performs normalization before checking validity
+
+    Standard CURIE
+    >>> is_valid_identifier("go", "0000001")
+    True
+
+    Non-standardized prefix
+    >>> is_valid_identifier("GO", "0000001")
+    False
+
+    Incorrect identifier
+    >>> is_valid_identifier("go", "0001")
+    False
+
+    Banana scenario
+    >>> is_valid_identifier("go", "GO:0000001")
+    False
+
+    Unknown prefix
+    >>> is_valid_identifier("xxx", "yyy")
+    False
+    """
+    return manager.is_valid_identifier(prefix, identifier)
+
+
+def is_standardizable_identifier(prefix: str, identifier: str) -> bool:
+    """Check if the identifier is standardizable.
+
+    :param prefix: The prefix from a compact URI
+    :param identifier: The local unique identifer from a compact URI
+    :return:
+        If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+        then validated.
+
+    .. seealso:: The :func:`is_valid_identifier` does not perform normalization before checking validity
+
+    Standard CURIE
+    >>> is_standardizable_identifier("go", "0000001")
+    True
+
+    Non-standardized prefix
+    >>> is_standardizable_identifier("GO", "0000001")
+    True
+
+    Incorrect identifier
+    >>> is_standardizable_identifier("go", "0001")
+    False
+
+    Banana scenario
+    >>> is_standardizable_identifier("go", "GO:0000001")
+    True
+
+    Unknown prefix
+    >>> is_standardizable_identifier("xxx", "yyy")
+    False
+    """
+    return manager.is_standardizable_identifier(prefix, identifier)
+
+
+def miriam_standardize_identifier(prefix: str, identifier: str) -> Optional[str]:
     """Normalize the identifier with the appropriate banana.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A normalize identifier, possibly with banana/redundant prefix added
+    :return: A normalize identifier, possibly with banana/redundant prefix added.
+        Returns none if the prefix doesn't map to MIRIAM.
 
     Examples with explicitly annotated bananas:
 
@@ -64,11 +195,16 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Examples with bananas from OBO:
     >>> import bioregistry as br
-    >>> assert "FBbt" == br.get_banana('fbbt')
-    >>> miriam_standardize_identifier('fbbt', '00007294')
-    'FBbt:00007294'
-    >>> miriam_standardize_identifier('fbbt', 'FBbt:00007294')
-    'FBbt:00007294'
+    >>> assert "GO" == br.get_banana('go')
+    >>> miriam_standardize_identifier('go', '0000001')
+    'GO:0000001'
+    >>> miriam_standardize_identifier('go', 'GO:0000001')
+    'GO:0000001'
+    >>> assert "VariO" == br.get_banana('vario')
+    >>> miriam_standardize_identifier('vario', '0000001')
+    'VariO:0000001'
+    >>> miriam_standardize_identifier('vario', 'VariO:0000001')
+    'VariO:0000001'
 
     Examples from OBO Foundry:
     >>> miriam_standardize_identifier('chebi', '1234')
@@ -76,7 +212,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
     >>> miriam_standardize_identifier('chebi', 'CHEBI:1234')
     'CHEBI:1234'
 
-     Examples outside of OBO:
+    Examples outside of OBO:
     >>> miriam_standardize_identifier('mgi', '6017782')
     'MGI:6017782'
     >>> miriam_standardize_identifier('mgi', 'MGI:6017782')
@@ -86,6 +222,24 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
     'SLM:000000341'
     >>> miriam_standardize_identifier('swisslipid', 'SLM:000000341')
     'SLM:000000341'
+
+    Special cases with underscore-delimited bananas
+    >>> miriam_standardize_identifier('cellosaurus', '0001')
+    'CVCL_0001'
+    >>> miriam_standardize_identifier('cellosaurus', 'CVCL_0001')
+    'CVCL_0001'
+    >>> miriam_standardize_identifier('ro', '0000001')
+    'RO_0000001'
+    >>> miriam_standardize_identifier('ro', 'RO_0000001')
+    'RO_0000001'
+    >>> miriam_standardize_identifier('geogeo', '000000001')
+    'GEO_000000001'
+    >>> miriam_standardize_identifier('geogeo', 'GEO_000000001')
+    'GEO_000000001'
+    >>> miriam_standardize_identifier('biomodels.kisao', '0000057')
+    'KISAO_0000057'
+    >>> miriam_standardize_identifier('biomodels.kisao', 'KISAO_0000057')
+    'KISAO_0000057'
 
     Standard:
 
@@ -136,6 +290,10 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     'https://identifiers.org/CHEBI:24867'
     >>> get_identifiers_org_iri("interpro", "IPR016380")
     'https://identifiers.org/interpro:IPR016380'
+    >>> get_identifiers_org_iri("cellosaurus", "0001")
+    'https://identifiers.org/cellosaurus:CVCL_0001'
+    >>> get_identifiers_org_iri("biomodels.kisao", "0000057")
+    'https://identifiers.org/biomodels.kisao:KISAO_0000057'
     """
     return manager.get_miriam_iri(prefix, identifier)
 
@@ -255,6 +413,7 @@ def get_iri(
     priority: Optional[Sequence[str]] = None,
     prefix_map: Optional[Mapping[str, str]] = None,
     use_bioregistry_io: bool = True,
+    provider: Optional[str] = None,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible.
 
@@ -275,6 +434,7 @@ def get_iri(
         6. BioPortal (``bioportal``)
     :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+    :param provider: The provider code to use for a custom provider
     :return: The best possible IRI that can be generated based on the priority list.
 
     A pre-parse CURIE can be given as the first two arguments
@@ -304,6 +464,10 @@ def get_iri(
     'http://purl.obolibrary.org/obo/CHEBI_24867'
     >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
     'https://example.org/lipidmaps/1234'
+
+    A custom provider is given, which makes the Bioregistry very extensible
+    >>> get_iri("chebi:24867", provider="chebi-img")
+    'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
     """
     return manager.get_iri(
         prefix=prefix,
@@ -311,6 +475,7 @@ def get_iri(
         priority=priority,
         prefix_map=prefix_map,
         use_bioregistry_io=use_bioregistry_io,
+        provider=provider,
     )
 
 
@@ -340,7 +505,5 @@ def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional
     'https://n2t.net/hgnc:16793'
     >>> get_formatted_iri("obofoundry", "fbbt", "00007294")
     'http://purl.obolibrary.org/obo/FBbt_00007294'
-    >>> get_formatted_iri("scholia", "lipidmaps", "00000052")
-    'https://scholia.toolforge.org/lipidmaps/00000052'
     """
     return manager.get_formatted_iri(metaprefix=metaprefix, prefix=prefix, identifier=identifier)

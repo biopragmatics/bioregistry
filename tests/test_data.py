@@ -9,15 +9,17 @@ from collections import defaultdict
 from textwrap import dedent
 from typing import Mapping
 
+import curies
+
 import bioregistry
-from bioregistry import Resource
-from bioregistry.constants import BIOREGISTRY_PATH
-from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
+from bioregistry import Resource, manager
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.license_standardizer import REVERSE_LICENSES
-from bioregistry.schema.utils import EMAIL_RE
+from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
+from bioregistry.resolve import get_obo_context_prefix_map
+from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, curie_to_str, extended_encoder
+from bioregistry.utils import _norm, extended_encoder
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +31,12 @@ class TestRegistry(unittest.TestCase):
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
+
+    def test_schema(self):
+        """Test the schema is up-to-date."""
+        actual = SCHEMA_PATH.read_text()
+        expected = json.dumps(get_json_schema(), indent=2)
+        self.assertEqual(expected, actual)
 
     def test_lint(self):
         """Test that the lint command was run.
@@ -60,6 +68,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
+                self.assertNotIn(":", prefix)
 
     def test_valid_integration_annotations(self):
         """Test that the integration keys are valid."""
@@ -210,7 +219,14 @@ class TestRegistry(unittest.TestCase):
             if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIn("$1", uri_format, msg=f"{prefix} format does not have a $1")
+                self.assertTrue(
+                    any(
+                        uri_format.startswith(protocol + "://")
+                        for protocol in ["http", "https", "ftp", "s3"]
+                    ),
+                    msg=f"{prefix} URI format dos not start with a valid protocol",
+                )
+                self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
 
     def test_uri_format_uniqueness(self):
         """Test URI format uniqueness."""
@@ -265,27 +281,34 @@ class TestRegistry(unittest.TestCase):
     def test_curie_patterns(self):
         """Test that all examples can validate against the CURIE pattern."""
         for prefix, entry in self.registry.items():
-            curie_pattern = bioregistry.get_curie_pattern(prefix)
-            lui_example = entry.get_example()
-            if curie_pattern is None or lui_example is None:
-                continue
-            pp = bioregistry.get_preferred_prefix(prefix)
-            curie_example = curie_to_str(pp or prefix, lui_example)
-            with self.subTest(prefix=prefix):
-                self.assertRegex(
-                    curie_example,
-                    curie_pattern,
-                    msg=dedent(
-                        f"""
-                prefix: {prefix}
-                preferred prefix: {pp}
-                example LUI: {lui_example}
-                example CURIE: {curie_example}
-                pattern for LUI: {bioregistry.get_pattern(prefix)}
-                pattern for CURIE: {curie_pattern}
-                """
-                    ),
-                )
+            for use_preferred in (True, False):
+                curie_example = entry.get_example_curie(use_preferred=use_preferred)
+                curie_pattern = bioregistry.get_curie_pattern(prefix, use_preferred=use_preferred)
+                if curie_pattern is None or curie_example is None:
+                    continue
+                with self.subTest(prefix=prefix, use_preferred=use_preferred):
+                    self.assertRegex(
+                        curie_example,
+                        curie_pattern,
+                        msg=dedent(
+                            f"""
+                    prefix: {prefix}
+                    preferred prefix: {entry.get_preferred_prefix()}
+                    example CURIE: {curie_example}
+                    pattern for LUI: {bioregistry.get_pattern(prefix)}
+                    pattern for CURIE: {curie_pattern}
+                    """
+                        ),
+                    )
+
+    def test_pattern_with_banana(self):
+        """Test getting patterns with bananas."""
+        resource = self.registry["chebi"]
+        self.assertEqual(
+            "^CHEBI:\\d+$",
+            resource.get_pattern_with_banana(),
+        )
+        self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
     def test_examples(self):
         """Test examples for the required conditions.
@@ -325,12 +348,12 @@ class TestRegistry(unittest.TestCase):
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    self.assert_canonical(prefix, example)
+                    self.assert_is_valid_identifier(prefix, example)
 
-    def assert_canonical(self, prefix: str, example: str) -> None:
+    def assert_is_valid_identifier(self, prefix: str, example: str) -> None:
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
-        canonical = entry.is_canonical_identifier(example)
+        canonical = entry.is_valid_identifier(example)
         self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}: {example}")
 
     def test_extra_examples(self):
@@ -350,7 +373,7 @@ class TestRegistry(unittest.TestCase):
                     self.assertNotEqual(
                         primary_example, example, msg="extra example matches primary example"
                     )
-                    self.assert_canonical(prefix, example)
+                    self.assert_is_valid_identifier(prefix, example)
 
             self.assertEqual(
                 len(entry.example_extras),
@@ -419,14 +442,13 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertIsNone(bioregistry.is_known_identifier("nope", ...))
+        self.assertFalse(bioregistry.is_standardizable_identifier("nope", ...))
         self.assertIsNone(bioregistry.get_default_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))
         self.assertIsNone(bioregistry.get_bioportal_iri("nope", ...))
         self.assertIsNone(bioregistry.get_bioportal_iri("gmelin", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_iri("pid.pathway", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("gmelin", ...))
         self.assertIsNone(bioregistry.get_iri("gmelin", ...))
 
@@ -446,27 +468,27 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi")
+        s = resource_to_rdf_str("chebi", manager=manager)
         self.assertIsInstance(s, str)
 
-    @unittest.skip(
-        """\
-        Not sure if this test makes sense - some of the resources, like
-        datanator_gene and datanator_metabolite are part of a larger resources,
-        but have their own well-defined endpoints.
-        """
-    )
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
         for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix) or bioregistry.get_provides_for(prefix):
                 continue
-            if resource.part_of is None:
+            if resource.part_of is None or resource.part_of == "pubchem":
                 continue
+
             with self.subTest(prefix=prefix):
-                self.assertIn(
-                    resource.part_of, self.registry, msg="super-resource is not a valid prefix"
-                )
+                norm_part_of = bioregistry.normalize_prefix(resource.part_of)
+                if norm_part_of is not None:
+                    self.assertEqual(
+                        norm_part_of, resource.part_of, msg="part_of is not standardized"
+                    )
+                # Some are not prefixes, e.g., datanator_gene, datanator_metabolite, ctd.
+                # self.assertIn(
+                #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
+                # )
 
     def test_provides(self):
         """Make sure all provides relations point to valid prefixes."""
@@ -538,6 +560,69 @@ class TestRegistry(unittest.TestCase):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
+    def test_records(self):
+        """Test generating records."""
+        records: Mapping[str, curies.Record] = {
+            record.prefix: record
+            for record in bioregistry.manager.get_curies_records(include_prefixes=True)
+        }
+
+        # This is a "provides" situation
+        self.assertNotIn("ctd.gene", set(records))
+        self.assertIn("ncbigene", set(records))
+        ncbigene_record = records["ncbigene"]
+        self.assertIsInstance(ncbigene_record, curies.Record)
+        self.assertEqual("ncbigene", ncbigene_record.prefix)
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/gene/", ncbigene_record.uri_prefix)
+        self.assertIn("EGID", ncbigene_record.prefix_synonyms)
+        self.assertIn("entrez", ncbigene_record.prefix_synonyms)
+        self.assertIn("https://bioregistry.io/ncbigene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("http://identifiers.org/ncbigene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn(
+            "https://scholia.toolforge.org/ncbi-gene/", ncbigene_record.uri_prefix_synonyms
+        )
+
+        # Test that all of the CTD gene stuff is rolled into NCBIGene because CTD gene provides for NCBI gene
+        self.assertIn("ctd.gene", ncbigene_record.prefix_synonyms)
+        self.assertIn("ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("http://identifiers.org/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("https://bioregistry.io/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn(
+            "https://ctdbase.org/detail.go?type=gene&acc=", ncbigene_record.uri_prefix_synonyms
+        )
+
+        # This is a "canonical" situation
+        self.assertIn("ena.embl", set(records))
+        record = records["ena.embl"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("ena.embl", record.prefix)
+        self.assertEqual("ena.embl", record.prefix)
+        self.assertIn("bioproject", record.prefix_synonyms)
+        self.assertIn("ena.embl:", record.uri_prefix_synonyms)
+        self.assertIn("bioproject:", record.uri_prefix_synonyms)
+
+        # part of but different stuff
+        self.assertNotIn("biogrid.interaction", records["biogrid"].prefix_synonyms)
+
+        self.assertIn("biogrid.interaction", set(records))
+        record = records["biogrid.interaction"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("biogrid.interaction", record.prefix)
+        self.assertEqual("https://thebiogrid.org/interaction/", record.uri_prefix)
+
+        # part of but same URIs
+        self.assertIn("kegg", set(records))
+        record = records["kegg"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("kegg", record.prefix)
+        self.assertIn("kegg.module", record.prefix_synonyms)
+        self.assertEqual("http://www.kegg.jp/entry/", record.uri_prefix)
+        self.assertIn("kegg:", record.uri_prefix_synonyms)
+        self.assertIn("kegg.module:", record.uri_prefix_synonyms)
+
+        # Make sure sure primary URI prefix gets upgraded properly from vz -> canonical for -> viralzone
+        self.assertIn("http://viralzone.expasy.org/", records["viralzone"].uri_prefix_synonyms)
+
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""
         priorities = [
@@ -562,11 +647,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_obo_prefix_map(self):
         """Test the integrity of the OBO prefix map."""
-        obofoundry_prefix_map = get_obofoundry_prefix_map()
+        obofoundry_prefix_map = get_obo_context_prefix_map()
         self.assert_no_idot(obofoundry_prefix_map)
         self.assertIn("FlyBase", set(obofoundry_prefix_map))
 
-        self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+        self.assert_no_idot(get_obo_context_prefix_map(include_synonyms=True))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
@@ -587,7 +672,7 @@ class TestRegistry(unittest.TestCase):
             if pp is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(prefix.replace(".", ""), _norm(pp))
+                self.assertEqual(prefix.replace(".", "").replace("_", ""), _norm(pp))
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
@@ -595,11 +680,26 @@ class TestRegistry(unittest.TestCase):
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
         for prefix, resource in self.registry.items():
-            if not resource.mappings:
-                continue
             with self.subTest(prefix=prefix):
-                for metaprefix in resource.mappings:
+                for metaprefix in resource.mappings or {}:
                     self.assertIn(metaprefix, self.metaregistry)
+                for metaprefix in self.metaregistry:
+                    d = getattr(resource, metaprefix, None)
+                    if not d:
+                        continue
+                    prefix = d.get("prefix")
+                    if prefix is None:
+                        if metaprefix == "wikidata":
+                            # FIXME make separate field for these
+                            self.assertTrue("paper" in d or "database" in d)
+                        else:
+                            self.fail()
+                    else:
+                        self.assertIsNotNone(
+                            resource.mappings,
+                            msg=f"did not find {metaprefix} mapping in {prefix} in {d}",
+                        )
+                        self.assertIn(metaprefix, set(resource.mappings))
 
     def test_provider_codes(self):
         """Make sure provider codes are unique."""
@@ -609,7 +709,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 for provider in resource.providers:
                     self.assertNotEqual(provider.code, prefix)
-                    self.assertNotIn(provider.code, resource.get_mappings())
+                    self.assertNotIn(provider.code, self.metaregistry)
                     self.assertNotIn(provider.code, {"custom", "default"})
 
     def test_namespace_in_lui(self):
@@ -634,6 +734,12 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
 
+        for prefix, resource in self.registry.items():
+            if resource.license is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(standardize_license(resource.license), resource.license)
+
     def test_contributors(self):
         """Check contributors have minimal metadata."""
         for prefix, resource in self.registry.items():
@@ -649,6 +755,17 @@ class TestRegistry(unittest.TestCase):
                     self.assertIsNotNone(contributor.name)
                     self.assertIsNotNone(contributor.orcid)
                     self.assertIsNotNone(contributor.github)
+
+    def test_no_contributor_duplicates(self):
+        """Test that the contributor doesn't show up in the contributor extras."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if not resource.contributor or not resource.contributor_extras:
+                    continue
+                for contributor in resource.contributor_extras:
+                    self.assertNotEqual(
+                        resource.contributor.orcid, contributor.orcid, msg="Duplicated contributor"
+                    )
 
     def test_reviewers(self):
         """Check reviewers have minimal metadata."""
@@ -680,6 +797,7 @@ class TestRegistry(unittest.TestCase):
             "prefix",
             "pattern",
             "paper",
+            "description",
             "homepage",
             "name",
             "uri_format",
@@ -739,3 +857,88 @@ class TestRegistry(unittest.TestCase):
                     prefix in set(self.registry),
                     msg=f"mismatches.json has invalid prefix: {prefix}",
                 )
+
+    def test_request_issue(self):
+        """Check all prefixes with a request issue have a reviewer."""
+        for prefix, resource in self.registry.items():
+            if resource.github_request_issue is None:
+                continue
+            with self.subTest(prefix=prefix):
+                if resource.contributor.github != "cthoyt":
+                    # needed to bootstrap records before there was more governance in place
+                    self.assertIsNotNone(resource.reviewer)
+                self.assertNotIn(
+                    f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
+                    resource.references or [],
+                    msg="Reference to GitHub request issue should be in its dedicated field.",
+                )
+
+    def test_publications(self):
+        """Test references and publications are sorted right."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if resource.references:
+                    for reference in resource.references:
+                        self.assertNotIn("doi", reference)
+                        self.assertNotIn("pubmed", reference)
+                        self.assertNotIn("pmc", reference)
+                        self.assertNotIn("arxiv", reference)
+                if resource.publications:
+                    for publication in resource.publications:
+                        self.assertIsNotNone(
+                            publication.title,
+                            msg="Manually curated publication is missing a title. Please run the "
+                            "publication clean-up script `python -m bioregistry.curation.clean_publications` "
+                            "to automatically retrieve the title.",
+                        )
+                        self.assertLessEqual(
+                            1,
+                            sum(
+                                (
+                                    publication.doi is not None,
+                                    publication.pubmed is not None,
+                                    publication.pmc is not None,
+                                )
+                            ),
+                        )
+                        if publication.doi:
+                            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+                            self.assertEqual(publication.doi.lower(), publication.doi)
+
+                    # Test no duplicates
+                    index = defaultdict(lambda: defaultdict(list))
+                    for publication in resource.publications:
+                        for key, value in publication.dict().items():
+                            if key in {"title", "year"} or value is None:
+                                continue
+                            index[key][value].append(publication)
+                    for citation_prefix, citation_identifier_dict in index.items():
+                        for citation_identifier, values in citation_identifier_dict.items():
+                            self.assertEqual(
+                                1,
+                                len(values),
+                                msg=f"[{prefix}] duplication on {citation_prefix}:{citation_identifier}",
+                            )
+
+    def test_mapping_patterns(self):
+        """Test mappings correspond to valid identifiers."""
+        k = {}
+        for metaprefix, registry in self.metaregistry.items():
+            if registry.bioregistry_prefix:
+                resource = self.registry[registry.bioregistry_prefix]
+            elif registry.prefix in self.registry:
+                resource = self.registry[registry.prefix]
+            else:
+                continue
+            pattern = resource.get_pattern_re()
+            if pattern is None:
+                continue
+            k[metaprefix] = pattern
+
+        for prefix, resource in self.registry.items():
+            for metaprefix, metaidentifier in resource.get_mappings().items():
+                pattern = k.get(metaprefix)
+                if pattern is None:
+                    continue
+                with self.subTest(prefix=prefix, metaprefix=metaprefix):
+                    self.assertRegex(metaidentifier, pattern)

@@ -13,7 +13,7 @@ import requests
 from tqdm import tqdm
 
 from bioregistry.constants import EXTERNAL
-from bioregistry.utils import removeprefix
+from bioregistry.utils import removeprefix, removesuffix
 
 __all__ = [
     "get_fairsharing",
@@ -67,6 +67,7 @@ KEEP = {
     "name",
     "prefix",
     "subjects",
+    "publications",
 }
 
 
@@ -129,18 +130,33 @@ class FairsharingClient:
         else:
             tqdm.write(f"DOI has unexpected prefix: {record['doi']}")
 
+        for suf in [
+            " CT",
+            " CV",
+            "Controlled Vocabulary",
+            " Terminology",
+            " Ontology",
+            " Thesaurus",
+            " Vocabulary",
+            " Taxonomy",
+        ]:
+            record["abbreviation"] = removesuffix(record["abbreviation"], suf)
+
         record["description"] = removeprefix(
             record.get("description"), "This FAIRsharing record describes: "
         )
         record["name"] = removeprefix(record.get("name"), "FAIRsharing record for: ")
+        record["publications"] = [
+            {k: publication[k] for k in ("doi", "pubmed_id", "title")}
+            for publication in record.get("publications", [])
+            if publication.get("doi") or publication.get("pubmed_id")
+        ]
         # for key in [
         #     "created-at",
         #     "domains",  # maybe use later
-        #     "subjects",  # maybe use later
         #     "legacy-ids",
         #     "fairsharing-licence",  # redundant across all records
         #     "licence-links",
-        #     "publications",
         #     "taxonomies",
         #     "updated-at",
         #     "url-for-logo",

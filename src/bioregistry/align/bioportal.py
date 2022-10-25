@@ -2,35 +2,47 @@
 
 """Align the BioPortal with the Bioregistry."""
 
-from typing import Any, Dict, Sequence
-
 from bioregistry.align.utils import Aligner
-from bioregistry.external.bioportal import get_bioportal
+from bioregistry.external.bioportal import get_agroportal, get_bioportal, get_ecoportal
 
 __all__ = [
+    # Base class
+    "OntoPortalAligner",
+    # Concrete classes
     "BioPortalAligner",
+    "AgroPortalAligner",
+    "EcoPortalAligner",
 ]
 
 
-class BioPortalAligner(Aligner):
+class OntoPortalAligner(Aligner):
+    """Aligner for OntoPortal."""
+
+    curation_header = ("name", "homepage", "description")
+
+
+class BioPortalAligner(OntoPortalAligner):
     """Aligner for BioPortal."""
 
     key = "bioportal"
     getter = get_bioportal
-    curation_header = ("name",)
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
-        """Prepare BioPortal data to be added to the Bioregistry for each BioPortal registry entry."""
-        return {
-            "name": external_entry["name"].strip(),
-        }
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned BioPortal registry entries."""
-        return [
-            external_entry["name"].strip(),
-        ]
+class EcoPortalAligner(OntoPortalAligner):
+    """Aligner for EcoPortal."""
+
+    key = "ecoportal"
+    getter = get_ecoportal
+
+
+class AgroPortalAligner(OntoPortalAligner):
+    """Aligner for AgroPortal."""
+
+    key = "agroportal"
+    getter = get_agroportal
 
 
 if __name__ == "__main__":
+    EcoPortalAligner.align()
+    AgroPortalAligner.align()
     BioPortalAligner.align()

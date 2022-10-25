@@ -13,12 +13,14 @@ import yaml
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry.constants import DOCS_DATA
+from bioregistry.constants import DOCS_DATA, EXTERNAL
 from bioregistry.resolve import get_external
 
 __all__ = [
     "export_warnings",
 ]
+
+CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
 
 ENTRIES = sorted(
     (prefix, resource.dict(exclude_none=True))
@@ -63,15 +65,29 @@ def export_warnings():
     )
     missing_pattern = _g(lambda prefix: bioregistry.get_pattern(prefix) is None)
     missing_format_url = _g(lambda prefix: bioregistry.get_uri_format(prefix) is None)
-    missing_example = _g(lambda prefix: bioregistry.get_example(prefix) is None)
+    missing_example = _g(
+        lambda prefix: bioregistry.get_example(prefix) is None
+        and not bioregistry.has_no_terms(prefix)
+        and bioregistry.get_provides_for(prefix) is None
+    )
 
-    with open(os.path.join(DOCS_DATA, "curation.yml"), "w") as file:
+    prefix_xrefs = [
+        {
+            "metaprefix": metaprefix,
+            "name": registry.get_short_name(),
+        }
+        for metaprefix, registry in sorted(bioregistry.read_metaregistry().items())
+        if EXTERNAL.joinpath(metaprefix, "curation.tsv").is_file()
+    ]
+
+    with CURATIONS_PATH.open("w") as file:
         yaml.safe_dump(
             {
                 "wikidata": missing_wikidata_database,
                 "pattern": missing_pattern,
                 "formatter": missing_format_url,
                 "example": missing_example,
+                "prefix_xrefs": prefix_xrefs
                 # "unparsable": unparsable,
             },
             file,

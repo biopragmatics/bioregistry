@@ -91,3 +91,6 @@ class TestContexts(unittest.TestCase):
     Invalid prefixes: {", ".join(sorted(invalid_custom_prefixes))}
 """,
             )
+
+            for blacklist_prefix in context.blacklist or []:
+                self.assertIn(blacklist_prefix, self.valid_prefixes)

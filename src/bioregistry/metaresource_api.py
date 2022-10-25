@@ -4,9 +4,8 @@
 
 from typing import Optional
 
-from .resolve_identifier import get_providers
+from .resource_manager import manager
 from .schema import Registry
-from .schema_utils import read_metaregistry
 
 __all__ = [
     "get_registry",
@@ -22,15 +21,12 @@ __all__ = [
 
 def get_registry(metaprefix: str) -> Optional[Registry]:
     """Get the metaregistry entry for the given prefix."""
-    return read_metaregistry().get(metaprefix)
+    return manager.get_registry(metaprefix)
 
 
 def get_registry_name(metaprefix: str) -> Optional[str]:
     """Get the metaregistry name for the given prefix, if it's available."""
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.name
+    return manager.get_registry_name(metaprefix)
 
 
 def get_registry_short_name(metaprefix: str) -> Optional[str]:
@@ -55,10 +51,7 @@ def get_registry_homepage(metaprefix: str) -> Optional[str]:
     >>> get_registry_homepage('missing')
     None
     """
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.homepage
+    return manager.get_registry_homepage(metaprefix)
 
 
 def get_registry_description(metaprefix: str) -> Optional[str]:
@@ -73,10 +66,7 @@ def get_registry_description(metaprefix: str) -> Optional[str]:
     >>> get_registry_description('missing')
     None
     """
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.description
+    return manager.get_registry_description(metaprefix)
 
 
 def get_registry_example(metaprefix: str) -> Optional[str]:
@@ -89,15 +79,9 @@ def get_registry_example(metaprefix: str) -> Optional[str]:
 
 def get_registry_provider_uri_format(metaprefix: str, prefix: str) -> Optional[str]:
     """Get the URL for the resource inside registry, if available."""
-    entry = get_registry(metaprefix)
-    if entry is None:
-        return None
-    return entry.get_provider_uri_format(prefix)
+    return manager.get_registry_provider_uri_format(metaprefix, prefix)
 
 
 def get_registry_uri(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
     """Get the URL to resolve the given prefix/identifier pair with the given resolver."""
-    providers = get_providers(prefix, identifier)
-    if not providers:
-        return None
-    return providers.get(metaprefix)
+    return manager.get_registry_uri(metaprefix, prefix, identifier)

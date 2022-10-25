@@ -9,7 +9,7 @@ import click
 import requests
 from tqdm import tqdm
 
-import bioregistry
+from bioregistry import curie_to_str, manager
 
 SLASH_URL_ENCODED = "%2F"
 
@@ -24,14 +24,14 @@ def main(url: str, local: bool):
         url = "http://localhost:5000"
     click.echo(f"Testing resolution API on {url}")
     failure = False
-    prefixes = tqdm(bioregistry.read_registry())
+    it = tqdm(manager.registry.items())
 
-    for prefix in prefixes:
-        identifier = bioregistry.get_example(prefix)
+    for prefix, resource in it:
+        identifier = resource.get_example()
         if identifier is None:
             continue
-        prefixes.set_postfix({"prefix": prefix})
-        req_url = f"{url}/{prefix}:{identifier}"
+        it.set_postfix({"prefix": prefix})
+        req_url = f"{url}/{curie_to_str(prefix, identifier)}"
         res = requests.get(req_url, allow_redirects=False)
         log = partial(_log, req_url=req_url)
         if res.status_code == 302:  # redirect
@@ -39,13 +39,13 @@ def main(url: str, local: bool):
         elif res.status_code != 404:
             text = res.text.splitlines()[3][len("<p>") : -len("</p>")]
             log(f"HTTP {res.status_code}: {res.reason} {text}", fg="red")
-        elif not bioregistry.get_providers(prefix, identifier):
+        elif not manager.get_providers(prefix, identifier):
             continue
         elif "/" in identifier or SLASH_URL_ENCODED in identifier:
             log("contains slash 🎩 🎸", fg="red")
-        elif not bioregistry.is_known_identifier(prefix, identifier):
-            pattern = bioregistry.get_pattern(prefix)
-            if bioregistry.get_banana(prefix):
+        elif not manager.is_standardizable_identifier(prefix, identifier):
+            pattern = resource.get_pattern()
+            if resource.get_banana():
                 log(f"banana {pattern} 🍌", fg="red")
             else:
                 log(f"invalid example does not match pattern {pattern}", fg="red")

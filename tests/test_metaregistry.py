@@ -5,6 +5,7 @@
 import unittest
 
 import bioregistry
+from bioregistry import manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -66,20 +67,15 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIn("$2", registry.resolver_uri_format)
                     self.assertIsNotNone(registry.resolver_type)
                     self.assertIn(registry.resolver_type, {"lookup", "resolver"})
-                else:
-                    self.assertIsNone(registry.resolver_type)
 
                 invalid_keys = set(registry.dict()).difference(Registry.__fields__)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
-                if not registry.availability.fair:
-                    self.assertIsNone(
-                        registry.download,
-                        msg="If bulk download available, resource should be annotated as FAIR",
-                    )
-                    self.assertIsNotNone(
-                        registry.availability.fair_note,
-                        msg="All non-FAIR resources require an explanation",
-                    )
+                self.assertIsNotNone(registry.qualities)
+                self.assertIsInstance(registry.qualities.bulk_data, bool)
+
+                if registry.governance.public_version_controlled_data:
+                    self.assertIsNotNone(registry.governance.data_repository)
+                    self.assertIsNotNone(registry.governance.issue_tracker)
 
     def test_get_registry(self):
         """Test getting a registry."""
@@ -124,5 +120,5 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = metaresource_to_rdf_str("uniprot")
+        s = metaresource_to_rdf_str("uniprot", manager=manager)
         self.assertIsInstance(s, str)

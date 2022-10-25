@@ -11,6 +11,8 @@ import bioregistry
 from bioregistry.constants import (
     TABLES_GOVERNANCE_LATEX_PATH,
     TABLES_GOVERNANCE_TSV_PATH,
+    TABLES_METADATA_LATEX_PATH,
+    TABLES_METADATA_TSV_PATH,
     TABLES_SUMMARY_LATEX_PATH,
 )
 from bioregistry.summary import BioregistrySummary
@@ -19,19 +21,27 @@ __all__ = [
     "export_tables",
 ]
 
+# YES = "✓"
+YES = "Y"
+# MAYBE = "●"
+MAYBE = "o"
+NO = ""
+
+#: This is Table S2 in the paper
 GOVERNANCE_COLUMNS = [
-    "Name",
+    "Registry",
     "Scope",
     "Status",
     "Imports External Prefixes",
     "Curates Novel Prefixes",
     "Accepts External Contributions",
-    "Uses Public Version Control",
+    "Public Version Control",
+    "Public Issue Tracker",
     "Has Public Review Team",
 ]
 
 
-def _render_bool(x: bool, true_value: str = "✓", false_value: str = "") -> str:
+def _render_bool(x: bool, true_value: str = YES, false_value: str = NO) -> str:
     return true_value if x else false_value
 
 
@@ -41,22 +51,113 @@ def _replace_na(s: str) -> str:
     return s
 
 
-def _governance_df() -> pd.DataFrame:
+def _short_name_bibtex(registry) -> str:
+    name = registry.get_short_name()
+    return f"{name}~\\cite{{{registry.bibtex}}}" if registry.bibtex else name
+
+
+schema_status_map = {
+    True: YES,
+    False: NO,
+    "required": YES,
+    "required*": f"{YES}*",
+    "present": MAYBE,
+    "present*": f"{MAYBE}*",
+    "missing": NO,
+}
+
+
+def _sort_key(registry):
+    if registry.prefix == "bioregistry":
+        return 0, registry.prefix
+    return 1, registry.prefix
+
+
+def _get_governance_df() -> pd.DataFrame:
     rows = []
-    for registry in bioregistry.read_metaregistry().values():
+    keep_metaprefixes = set(bioregistry.count_mappings())
+    for registry in sorted(bioregistry.read_metaregistry().values(), key=_sort_key):
+        if registry.prefix not in keep_metaprefixes:
+            continue
         rows.append(
             (
-                registry.get_short_name(),
+                _short_name_bibtex(registry),
                 registry.governance.scope.title(),
                 registry.governance.status.title(),
                 _render_bool(registry.governance.imports),
                 _render_bool(registry.governance.curates),
                 _render_bool(registry.governance.accepts_external_contributions),
-                _render_bool(registry.governance.public_version_control),
+                _render_bool(registry.governance.public_version_controlled_data),
+                _render_bool(registry.governance.issue_tracker is not None),
                 registry.governance.review_team_icon,
             )
         )
     return pd.DataFrame(rows, columns=GOVERNANCE_COLUMNS)
+
+
+#: This is Table 2 in the paper
+DATA_MODEL_CAPABILITIES = [
+    ("", "Registry"),
+    ("Metadata Model", "Name"),
+    ("Metadata Model", "Homepage"),
+    ("Metadata Model", "Desc."),
+    ("Metadata Model", "Example ID"),
+    ("Metadata Model", "ID Pattern"),
+    ("Metadata Model", "Provider"),
+    ("Metadata Model", "Alt. Providers"),
+    ("Metadata Model", "Alt. Prefixes"),
+    ("Metadata Model", "License"),
+    ("Metadata Model", "Version"),
+    ("Metadata Model", "Contact"),
+    ("Capabilities and Qualities", "Structured Data"),
+    ("Capabilities and Qualities", "Bulk Data"),
+    ("Capabilities and Qualities", "No Auth. for Data"),
+    ("Capabilities and Qualities", "Permissive License"),
+    ("Capabilities and Qualities", "Prefix Search"),
+    ("Capabilities and Qualities", "Prefix Provider"),
+    ("Capabilities and Qualities", "Resolve CURIEs"),
+    ("Capabilities and Qualities", "Lookup CURIEs"),
+]
+
+
+def _get_metadata_df() -> pd.DataFrame:
+    rows = []
+    keep_metaprefixes = set(bioregistry.count_mappings())
+    for registry in sorted(bioregistry.read_metaregistry().values(), key=_sort_key):
+        if registry.prefix not in keep_metaprefixes:
+            continue
+        rows.append(
+            (
+                _short_name_bibtex(registry),
+                *(
+                    schema_status_map[t]
+                    for t in (
+                        # Data Model
+                        registry.availability.name,
+                        registry.availability.homepage,
+                        registry.availability.description,
+                        registry.availability.example,
+                        registry.availability.pattern,
+                        registry.availability.provider,
+                        registry.availability.alternate_providers,
+                        registry.availability.synonyms,
+                        registry.availability.license,
+                        registry.availability.version,
+                        registry.availability.contact,
+                        # Qualities and Capabilities
+                        registry.qualities.structured_data,
+                        registry.qualities.bulk_data,
+                        registry.qualities.no_authentication,
+                        registry.has_permissive_license,
+                        registry.availability.search,
+                        registry.is_prefix_provider,
+                        registry.is_resolver,
+                        registry.is_lookup,
+                    )
+                ),
+            )
+        )
+    return pd.DataFrame(rows, columns=pd.MultiIndex.from_tuples(DATA_MODEL_CAPABILITIES))
 
 
 @click.command()
@@ -66,13 +167,14 @@ def export_tables():
     1. TODO: Export data model comparison, see also https://bioregistry.io/related#data-models
     2. Export governance comparison, see also https://bioregistry.io/related#governance
     """
-    df = _governance_df()
-    df.to_csv(TABLES_GOVERNANCE_TSV_PATH, sep="\t", index=False)
+    governance_df = _get_governance_df()
+    governance_df.to_csv(TABLES_GOVERNANCE_TSV_PATH, sep="\t", index=False)
     TABLES_GOVERNANCE_LATEX_PATH.write_text(
-        df.to_latex(
+        governance_df.to_latex(
             index=False,
             bold_rows=True,
             label="tab:registry-comparison-governance",
+            escape=False,
             caption=dedent(
                 """\
                A survey of registries' governance and maintenance models. The scope column describes the
@@ -94,6 +196,32 @@ def export_tables():
             )
             .strip()
             .replace("\n", " "),
+        ),
+        encoding="utf-8",
+    )
+
+    metadata_df = _get_metadata_df()
+    metadata_df.to_csv(TABLES_METADATA_TSV_PATH, sep="\t", index=False)
+    metadata_caption = dedent(
+        f"""\
+        An overview on registries covering biomedical ontologies, controlled vocabularies, and databases.
+        A {YES} means the field is required. A {MAYBE} means it is part of the schema, but not required or incomplete
+        on some entries. A blank cell means that it is not part of the metadata schema. The FAIR column denotes that a
+        structured dump of the data is easily findable, accessible, and in a structured format in bulk. For
+        lookup services, some fields (i.e., Example ID, Default Provider, Alternate Providers) are omitted
+        because inclusion would be redundant. The search column means there is a URL into which a search
+        query can be formatted to show a list of results. The provider column means there is a URL into
+        which a prefix can be formatted to show a dedicated page for its metadata.
+    """
+    )
+    # TODO move remark about non-english language registries in the OntoPortal Alliance
+    TABLES_METADATA_LATEX_PATH.write_text(
+        metadata_df.to_latex(
+            index=False,
+            bold_rows=True,
+            escape=False,
+            label="tab:registry-comparison-governance",
+            caption=metadata_caption.strip().replace("\n", " "),
         ),
         encoding="utf-8",
     )

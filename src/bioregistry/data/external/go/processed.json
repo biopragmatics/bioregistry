@@ -2143,6 +2143,7 @@
       {
         "example_id": "MEROPS:A08.001",
         "example_url": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=A08.001",
+        "id_syntax": "^[SCTAGMNU]\\d{2}\\.([AB]\\d{2}|\\d{3}|[A-Z]{3})$",
         "type_id": "PR:000000001",
         "type_name": "protein",
         "url_syntax": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=[example_id]"
@@ -2159,8 +2160,17 @@
       {
         "example_id": "MEROPS_fam:M18",
         "example_url": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=M18",
+        "id_syntax": "^[SCTAGMNU]\\d+$",
         "type_id": "BET:0000000",
         "type_name": "entity",
+        "url_syntax": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=[example_id]"
+      },
+      {
+        "example_id": "MEROPS_fam:M18",
+        "example_url": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=M18",
+        "id_syntax": "^[SCTAGMNU]\\d+$",
+        "type_id": "NCIT:C20130",
+        "type_name": "protein family",
         "url_syntax": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=[example_id]"
       }
     ],
@@ -2908,23 +2918,23 @@
     "entity_types": [
       {
         "example_id": "Pfam:PF00046",
-        "example_url": "https://pfam.xfam.org/family/PF00069",
+        "example_url": "https://www.ebi.ac.uk/interpro/entry/pfam/PF00069",
         "id_syntax": "PF[0-9]{5}",
         "type_id": "SO:0000110",
         "type_name": "sequence feature",
-        "url_syntax": "https://pfam.xfam.org/family/[example_id]"
+        "url_syntax": "https://www.ebi.ac.uk/interpro/entry/pfam/[example_id]"
       },
       {
         "example_id": "Pfam:PF00046",
-        "example_url": "https://pfam.xfam.org/family/PF00069",
+        "example_url": "https://www.ebi.ac.uk/interpro/entry/pfam/PF00069",
         "id_syntax": "PF[0-9]{5}",
         "type_id": "SO:0000839",
         "type_name": "polypeptide region",
-        "url_syntax": "https://pfam.xfam.org/family/[example_id]"
+        "url_syntax": "https://www.ebi.ac.uk/interpro/entry/pfam/[example_id]"
       }
     ],
     "generic_urls": [
-      "http://pfam.xfam.org"
+      "https://www.ebi.ac.uk/interpro/entry/pfam"
     ],
     "name": "Pfam database of protein families"
   },
@@ -2979,7 +2989,7 @@
       {
         "example_id": "PF3D7_1467300",
         "example_url": "https://plasmodb.org/plasmo/app/record/gene/PF3D7_1467300",
-        "id_syntax": "PF3D7_[0-9]{7})",
+        "id_syntax": "PF3D7_[0-9]{7}",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "https://plasmodb.org/plasmo/app/record/gene/[example_id]"
@@ -4236,35 +4246,35 @@
     "entity_types": [
       {
         "example_id": "Xenbase:XB-GENE-6255962",
-        "example_url": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=XB-GENE-6255962",
+        "example_url": "http://www.xenbase.org/entry/XB-GENE-6255962",
         "id_syntax": "XB-(GENE|LINE|TRANSGENE|MORPHOLINO)-[0-9]+",
         "type_id": "SO:0000704",
         "type_name": "gene",
-        "url_syntax": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=[example_id]"
+        "url_syntax": "http://www.xenbase.org/entry/[example_id]"
       },
       {
         "example_id": "Xenbase:XB-MORPHOLINO-17250301",
-        "example_url": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=XB-MORPHOLINO-17250301",
+        "example_url": "http://www.xenbase.org/entry/XB-MORPHOLINO-17250301",
         "id_syntax": "XB-(GENE|LINE|TRANSGENE|MORPHOLINO)-[0-9]+",
         "type_id": "SO:0000034",
         "type_name": "morpholino oligo",
-        "url_syntax": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=[example_id]"
+        "url_syntax": "http://www.xenbase.org/entry/[example_id]"
       },
       {
         "example_id": "Xenbase:XB-TRANSGENE-17326811",
-        "example_url": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=XB-TRANSGENE-17326811",
+        "example_url": "http://www.xenbase.org/entry/XB-TRANSGENE-17326811",
         "id_syntax": "XB-(GENE|LINE|TRANSGENE|MORPHOLINO)-[0-9]+",
         "type_id": "SO:0000902",
         "type_name": "transgene",
-        "url_syntax": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=[example_id]"
+        "url_syntax": "http://www.xenbase.org/entry/[example_id]"
       },
       {
         "example_id": "Xenbase:XB-LINE-1248",
-        "example_url": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=XB-LINE-1248",
+        "example_url": "http://www.xenbase.org/entry/XB-LINE-1248",
         "id_syntax": "XB-(GENE|LINE|TRANSGENE|MORPHOLINO)-[0-9]+",
         "type_id": "EFO:0005135",
         "type_name": "strain",
-        "url_syntax": "http://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=[example_id]"
+        "url_syntax": "http://www.xenbase.org/entry/[example_id]"
       }
     ],
     "generic_urls": [

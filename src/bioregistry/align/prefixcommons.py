@@ -2,7 +2,7 @@
 
 """Align Prefix Commons with the Bioregistry."""
 
-from typing import Sequence
+from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.prefixcommons import get_prefixcommons
@@ -10,6 +10,12 @@ from bioregistry.external.prefixcommons import get_prefixcommons
 __all__ = [
     "PrefixCommonsAligner",
 ]
+
+SKIP = {
+    "redidb": "Website is dead",
+    "trnadbce": "Website is password protected",
+    "pogs_plantrbp": "Website is dead",
+}
 
 
 class PrefixCommonsAligner(Aligner):
@@ -19,23 +25,26 @@ class PrefixCommonsAligner(Aligner):
     getter = get_prefixcommons
     curation_header = (
         "name",
-        "miriam",
-        "bioportal",
+        "synonyms",
         "description",
         "example",
         "pattern",
         "uri_format",
     )
+    alt_keys_match = "synonyms"
     # TODO consider updating
     include_new = False
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get skip prefixes."""
+        return SKIP
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
         return [
             external_entry["name"],
-            external_entry.get("miriam", ""),
-            external_entry.get("bioportal", ""),
-            external_entry.get("description", ""),
+            ", ".join(external_entry.get("synonyms", [])),
+            external_entry.get("description", "").replace('"', ""),
             external_entry.get("example", ""),
             external_entry.get("pattern", ""),
             external_entry.get("uri_format", ""),
@@ -43,4 +52,4 @@ class PrefixCommonsAligner(Aligner):
 
 
 if __name__ == "__main__":
-    PrefixCommonsAligner.align()
+    PrefixCommonsAligner.align(force_download=False)

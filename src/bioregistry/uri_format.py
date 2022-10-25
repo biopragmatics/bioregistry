@@ -8,7 +8,7 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-from typing import List, Mapping, Optional, Sequence, Tuple
+from typing import Collection, Mapping, Optional, Sequence
 
 from .resource_manager import manager
 
@@ -17,7 +17,6 @@ __all__ = [
     "get_uri_prefix",
     "get_prefix_map",
     "get_pattern_map",
-    "get_prefix_list",
 ]
 
 
@@ -76,6 +75,7 @@ def get_prefix_map(
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
     use_preferred: bool = False,
+    blacklist: Optional[Collection[str]] = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their URI prefixes.
 
@@ -84,6 +84,7 @@ def get_prefix_map(
         the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+    :param blacklist: Prefixes to skip
     :return: A mapping from prefixes to URI prefixes.
     """
     return manager.get_prefix_map(
@@ -91,6 +92,7 @@ def get_prefix_map(
         include_synonyms=include_synonyms,
         remapping=remapping,
         use_preferred=use_preferred,
+        blacklist=blacklist,
     )
 
 
@@ -99,6 +101,7 @@ def get_pattern_map(
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
     use_preferred: bool = False,
+    blacklist: Optional[Collection] = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their regular expression patterns.
 
@@ -106,15 +109,12 @@ def get_pattern_map(
         the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+    :param blacklist: Prefixes to skip
     :return: A mapping from prefixes to regular expression pattern strings.
     """
     return manager.get_pattern_map(
         include_synonyms=include_synonyms,
         remapping=remapping,
         use_preferred=use_preferred,
+        blacklist=blacklist,
     )
-
-
-def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:
-    """Get the default priority prefix list."""
-    return manager.get_prefix_list(**kwargs)
