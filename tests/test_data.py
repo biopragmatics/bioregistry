@@ -887,9 +887,10 @@ class TestRegistry(unittest.TestCase):
                     for publication in resource.publications:
                         self.assertIsNotNone(
                             publication.title,
-                            msg="Manually curated publication is missing a title. Please run the "
-                            "publication clean-up script `python -m bioregistry.curation.clean_publications` "
-                            "to automatically retrieve the title.",
+                            msg=f"Manually curated publication {publication} is missing a title. Please run the "
+                            "publication clean-up script `python -m bioregistry.curation.enrich_publications` "
+                            "to automatically retrieve the title or `python -m bioregistry.curation.clean_publications`"
+                            " to prune it.",
                         )
                         self.assertLessEqual(
                             1,
