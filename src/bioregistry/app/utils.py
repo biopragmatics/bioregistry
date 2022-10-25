@@ -92,12 +92,12 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
 
     >>> from bioregistry import manager
     >>> _autocomplete(manager, 'cheb')
-    {'query': 'cheb', 'results': ['chebi'], 'success': True, 'reason': 'searched prefix', 'url': None}
+    {'query': 'cheb', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
     >>> _autocomplete(manager, 'chebi')
-    {'query': 'chebi', 'results': ['chebi'], 'success': True, 'reason': 'matched prefix', 'url': 'https://bioregistry.io/chebi'}
+    {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
 
     Not matching the pattern:
 
@@ -107,7 +107,7 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     Matching the pattern:
 
     >>> _autocomplete(manager, 'chebi:1234')
-    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
+    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
     """  # noqa: E501
     if url_prefix is None:
         url_prefix = ""
@@ -129,8 +129,8 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
             url=url,
         )
     prefix, identifier = q.split(":", 1)
-    norm_prefix = manager_.normalize_prefix(prefix)
-    if norm_prefix is None:
+    resource = manager_.get_resource(prefix)
+    if resource is None:
         return dict(
             query=q,
             prefix=prefix,
@@ -142,11 +142,13 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     if pattern is None:
         success = True
         reason = "no pattern"
-        url = manager_.get_bioregistry_iri(prefix, identifier)
-    elif manager_.is_standardizable_identifier(prefix, identifier):
+        norm_id = resource.standardize_identifier(identifier)
+        url = f"{url_prefix}/{resource.get_curie(norm_id)}"
+    elif resource.is_standardizable_identifier(identifier):
         success = True
         reason = "passed validation"
-        url = manager_.get_bioregistry_iri(prefix, identifier)
+        norm_id = resource.standardize_identifier(identifier)
+        url = f"{url_prefix}/{resource.get_curie(norm_id)}"
     else:
         success = False
         reason = "failed validation"
