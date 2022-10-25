@@ -94,6 +94,33 @@
     "preferred_prefix": "4dn.replicate",
     "uri_format": "https://data.4dnucleome.org/experiment-set-replicates/$1"
   },
+  "aaindex": {
+    "description": "Identifier of an entry from the AAindex database.",
+    "example": "BUNA790102",
+    "homepage": "http://www.genome.ad.jp/aaindex/",
+    "mappings": {
+      "edam": "1128",
+      "prefixcommons": "aaindex"
+    },
+    "name": "AAindex",
+    "preferred_prefix": "aaindex",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "17998252",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.genome.jp/dbget-bin/www_bget?aaindex:$1"
+  },
   "aao": {
     "contact": {
       "email": "david.c.blackburn@gmail.com",
@@ -103,6 +130,7 @@
     },
     "deprecated": true,
     "description": "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon.",
+    "example": "0000138",
     "homepage": "http://github.com/seger/aao",
     "mappings": {
       "biocontext": "AAO",
@@ -111,7 +139,7 @@
       "prefixcommons": "aao"
     },
     "name": "Amphibian gross anatomy",
-    "no_own_terms": true,
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "AAO",
     "publications": [
       {
@@ -667,6 +695,23 @@
     ],
     "uri_format": "http://aims.fao.org/aos/agrovoc/c_$1"
   },
+  "agsd": {
+    "description": "The Animal Genome Size Database (AGSD) is a comprehensive catalogue of animal genome size data where haploid DNA contents (C-values, in picograms) are currently available for 4972 species (3231 vertebrates and 1741 non-vertebrates) based on 6518 records from 669 published sources.",
+    "example": "4779",
+    "homepage": "http://www.genomesize.com",
+    "mappings": {
+      "prefixcommons": "agsd"
+    },
+    "name": "Animal Genome Size Database",
+    "preferred_prefix": "agsd",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.genomesize.com/result_species.php?id=$1"
+  },
   "aism": {
     "appears_in": [
       "colao",
@@ -706,6 +751,34 @@
     "repository": "https://github.com/insect-morphology/aism",
     "uri_format": "http://purl.obolibrary.org/obo/AISM_$1",
     "version": "2022-06-27"
+  },
+  "alfred": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "ALFRED has been designed to make allele frequency data on anthropologically defined human population samples readily available to the scientific community and to link these polymorphism data to the molecular genetics-human genome databases.",
+    "example": "LO362836C",
+    "homepage": "http://alfred.med.yale.edu",
+    "mappings": {
+      "prefixcommons": "alfred"
+    },
+    "name": "The ALlele FREquency Database",
+    "preferred_prefix": "alfred",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "12519999",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://alfred.med.yale.edu/alfred/recordinfo.asp?UNID=$1"
   },
   "allergome": {
     "description": "Allergome is a repository of data related to all IgE-binding compounds. Its purpose is to collect a list of allergenic sources and molecules by using the widest selection criteria and sources.",
@@ -756,6 +829,32 @@
       "Alzforum_mut"
     ],
     "uri_format": "https://www.alzforum.org/mutations/$1"
+  },
+  "alzgene": {
+    "description": "The AlzGene database provides a comprehensive, unbiased and regularly updated field synopsis of genetic association studies performed in Alzheimer’s disease. In addition, hundreds of up-to-date meta-analyses are available for all eligible polymorphisms with sufficient data.",
+    "example": "88",
+    "homepage": "http://www.alzgene.org",
+    "mappings": {
+      "prefixcommons": "alzgene"
+    },
+    "name": "Alzheimer Gene Database",
+    "preferred_prefix": "alzgene",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "17192785",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.alzgene.org/geneoverview.asp?geneid=$1"
   },
   "amoebadb": {
     "description": "AmoebaDB is one of the databases that can be accessed through the EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens of the genera Cryptosporidium, Giardia, Leishmania, Neospora, Plasmodium, Toxoplasma, Trichomonas and Trypanosoma. While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an entry point to all these resources, and the opportunity to leverage orthology for searches across genera.",
@@ -1127,6 +1226,32 @@
     "preferred_prefix": "araport",
     "uri_format": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
   },
+  "archdb": {
+    "description": "ArchDB is a compilation of structural classifications of loops extracted from known protein structures. Loops in ArchDB have been classified using an improved version (Espadaler et al.) of the original ArchType program published in 1997 by Oliva et al..",
+    "example": "39421",
+    "homepage": "http://sbi.imim.es/archdb",
+    "mappings": {
+      "prefixcommons": "archdb"
+    },
+    "name": "ArchDB",
+    "preferred_prefix": "archdb",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "24265221",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://sbi.imim.es/cgi-bin/archdb//loops.pl?loop=$1"
+  },
   "ardb": {
     "description": "The Antibiotic Resistance Genes Database (ARDB) is a manually curated database which characterises genes involved in antibiotic resistance. Each gene and resistance type is annotated with information, including resistance profile, mechanism of action, ontology, COG and CDD annotations, as well as external links to sequence and protein databases. This collection references resistance genes.",
     "example": "CAE46076",
@@ -1418,6 +1543,36 @@
       }
     ],
     "uri_format": "http://asrp.cgrb.oregonstate.edu/db/sRNAdisplay.html?ASRP_id=$1"
+  },
+  "astd": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "Identifier of an object from the ASTD database.",
+    "example": "ENSG00000136147",
+    "homepage": "http://www.ebi.ac.uk/astd/",
+    "mappings": {
+      "edam": "2367",
+      "prefixcommons": "astd"
+    },
+    "name": "ASTD",
+    "preferred_prefix": "astd",
+    "provides": "ensembl",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "19059335",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.ebi.ac.uk/astd/geneview.html?acc=$1"
   },
   "atc": {
     "contact": {
@@ -2095,7 +2250,8 @@
     "mappings": {
       "biocontext": "BGEE.GENE",
       "miriam": "bgee.gene",
-      "n2t": "bgee.gene"
+      "n2t": "bgee.gene",
+      "prefixcommons": "bgee"
     },
     "name": "Bgee gene",
     "pattern": "^[A-Za-z]+\\d+$",
@@ -2249,6 +2405,7 @@
   "bind": {
     "deprecated": true,
     "description": "Accession number of an entry from the BIND database.",
+    "example": "98346",
     "homepage": "http://bind.ca",
     "mappings": {
       "biocontext": "BIND",
@@ -2449,6 +2606,23 @@
     "preferred_prefix": "biolink",
     "uri_format": "https://w3id.org/biolink/vocab/$1"
   },
+  "biomagresbank": {
+    "description": "A repository for Data from NMR Spectroscopy on Proteins, Peptides, and Nucleic Acids.",
+    "example": "10046",
+    "homepage": "http://www.bmrb.wisc.edu/",
+    "mappings": {
+      "prefixcommons": "biomagresbank"
+    },
+    "name": "BioMagResBank",
+    "preferred_prefix": "biomagresbank",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.bmrb.wisc.edu/data_library/generate_summary.php?bmrbId=$1"
+  },
   "biominder": {
     "description": "Database of the dielectric properties of biological tissues.",
     "example": "aef4c195-9cf9-46db-a12a-7cfd1ff3eec3",
@@ -2632,6 +2806,25 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "bionumbers",
     "uri_format": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=$1"
+  },
+  "biopixie": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "bioPIXIE is a novel system for biological data integration and visualization. It allows you to discover interaction networks and pathways in which your gene(s) (e.g. BNI1, YFL039C) of interest participate.",
+    "example": "12",
+    "homepage": "http://pixie.princeton.edu/pixie/",
+    "mappings": {
+      "prefixcommons": "biopixie"
+    },
+    "name": "biological Process Inference from eXperimental Interaction Evidence/Microarray Experiment Functional Integration Technology",
+    "preferred_prefix": "biopixie",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://avis.princeton.edu/pixie/viewgraph.php?graphID=$1"
   },
   "bioportal": {
     "description": "BioPortal is an open repository of biomedical ontologies that provides access via Web services and Web browsers to ontologies developed in OWL, RDF, OBO format and Protégé frames. BioPortal functionality includes the ability to browse, search and visualize ontologies.",
@@ -4451,6 +4644,36 @@
     "twitter": "chebit",
     "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
     "version": "211"
+  },
+  "chembank": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "ChemBank is a public, web-based informatics environment created by the Broad Institute's Chemical Biology Program and funded in large part by the National Cancer Institute's Initiative for Chemical Genetics (ICG).",
+    "example": "1000000",
+    "homepage": "http://chembank.broad.harvard.edu",
+    "mappings": {
+      "biocontext": "CHEMBANK",
+      "biolink": "ChemBank",
+      "prefixcommons": "chembank"
+    },
+    "name": "ChemBank",
+    "preferred_prefix": "chembank",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "17947324",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1"
   },
   "chembl": {
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
@@ -6333,6 +6556,24 @@
     "uri_format": "http://purl.obolibrary.org/obo/COLAO_$1",
     "version": "2022-06-18"
   },
+  "collagenmutdb": {
+    "description": "This database aims to record all published accounts of variants resulting in osteogenesis imperfecta. Such variants occur in the COL1A1, COL1A2, CRTAP, FKBP10, LEPRE1 and PPIB genes.",
+    "example": "COL3A1",
+    "homepage": "http://www.le.ac.uk/genetics/collagen/",
+    "mappings": {
+      "prefixcommons": "cmd"
+    },
+    "name": "Collagen Mutation Database",
+    "preferred_prefix": "collagenmutdb",
+    "provides": "hgnc.symbol",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://eds.gene.le.ac.uk/home.php?select_db=$1"
+  },
   "colonatlas": {
     "description": "Cell line databases/resources",
     "example": "ALA",
@@ -6441,7 +6682,8 @@
       "biocontext": "COMPULYEAST",
       "fairsharing": "FAIRsharing.rbjs3e",
       "miriam": "compulyeast",
-      "n2t": "compulyeast"
+      "n2t": "compulyeast",
+      "prefixcommons": "compluyeast2dpage"
     },
     "name": "Compluyeast-2D-DB",
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$",
@@ -6714,25 +6956,6 @@
     "pattern": "^([A-H,Y]|[A-H, Y]\\d{2}|[A-H, Y]\\d{2}[A-Z]|[A-H, Y]\\d{2}[A-Z]\\d{1,3}|[A-H, Y]\\d{2}[A-Z]\\d{1,3}(\\/)?\\d{2,})$",
     "preferred_prefix": "cpc",
     "uri_format": "https://worldwide.espacenet.com/classification?locale=en_EP#!/CPC=$1"
-  },
-  "cpga": {
-    "contact": {
-      "email": "po-discuss@plantontology.org",
-      "github": null,
-      "name": "Plant Ontology Administrators",
-      "orcid": null
-    },
-    "deprecated": true,
-    "description": "A structured controlled vocabulary for the anatomy of Graminae. Please note that this ontology has now been superseded by the Plant Ontology.",
-    "homepage": "http://www.gramene.org/plant_ontology/",
-    "mappings": {
-      "biocontext": "gro.cpga",
-      "bioportal": "GRO-CPGA",
-      "obofoundry": "gro"
-    },
-    "name": "Cereal Plant Gross Anatomy",
-    "preferred_prefix": "CGPA",
-    "uri_format": "http://purl.obolibrary.org/obo/GRO_$1"
   },
   "cpt": {
     "contact": {
@@ -7223,6 +7446,24 @@
     "pattern": "^[A-Za-z_0-9]+$",
     "preferred_prefix": "cubedb",
     "uri_format": "http://epsf.bmad.bii.a-star.edu.sg/cube/db/data/$1/"
+  },
+  "cutg": {
+    "description": "Codon usage in individual genes has been calculated using the nucleotide sequence data obtained from the GenBank Genetic Sequence Database.  The compilation of codon usage is synchronized with each major release of GenBank.",
+    "example": "9606",
+    "homepage": "http://www.kazusa.or.jp/codon/",
+    "mappings": {
+      "prefixcommons": "cutg"
+    },
+    "name": "Codon Usage Tabulated from GenBank",
+    "preferred_prefix": "cutg",
+    "provides": "ncbitaxon",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.kazusa.or.jp/codon/cgi-bin/showcodon.cgi?species=$1"
   },
   "cvdo": {
     "contact": {
@@ -11142,6 +11383,23 @@
     "uri_format": "http://purl.obolibrary.org/obo/ERO_$1",
     "version": "2016-07-27"
   },
+  "eropmoscow": {
+    "description": "EROP-Moscow is a curated oligopeptide (2-50 amino acid residues) sequence database which strives to provide a high level of annotations (such as descriptions of the structure of an oligopeptide, its source and function, post-translational modifications, etc.).",
+    "example": "E00002",
+    "homepage": "http://erop.inbi.ras.ru",
+    "mappings": {
+      "prefixcommons": "eropmoscow"
+    },
+    "name": "Endogenous Regulatory OligoPeptide knowledgebase-Moscow",
+    "preferred_prefix": "eropmoscow",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://erop.inbi.ras.ru/result2.php?PepName=$1"
+  },
   "erv": {
     "description": "Endogenous retroviruses (ERVs) are common in vertebrate genomes; a typical mammalian genome contains tens to hundreds of thousands of ERV elements. Most ERVs are evolutionarily old and have accumulated multiple mutations, playing important roles in physiology and disease processes. The Human Endogenous Retrovirus Database (hERV) is compiled from the human genome nucleotide sequences obtained from Human Genome Projects, and screens those sequences for hERVs, whilst continuously improving classification and characterization of retroviral families. It provides access to individual reconstructed HERV elements, their sequence, structure and features.",
     "example": "THE1B",
@@ -11155,6 +11413,23 @@
     "pattern": "^[A-Za-z0-9\\-\\_]+$",
     "preferred_prefix": "erv",
     "uri_format": "https://herv.img.cas.cz/s/$1"
+  },
+  "esldb": {
+    "description": "eSLDB is a database of protein subcellular localization annotation for eukaryotic organisms. It contains experimental annotations derived from primary protein databases, homology based annotations and computational predictions.",
+    "example": "HS000015122",
+    "homepage": "http://gpcr.biocomp.unibo.it/esldb",
+    "mappings": {
+      "prefixcommons": "esldb"
+    },
+    "name": "eukaryotic Subcellular Localization database",
+    "preferred_prefix": "esldb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://gpcr.biocomp.unibo.it/cgi-bin/predictors/esldb/dettagli.cgi?codice=$1"
   },
   "estdab": {
     "comment": "Website is dead",
@@ -11197,6 +11472,23 @@
     "pattern": "^\\d{4}\\-\\d{6}\\-\\d{2}$",
     "preferred_prefix": "euclinicaltrials",
     "uri_format": "https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1"
+  },
+  "eugenes": {
+    "description": "euGenes provides a common summary of gene and genomic information from eukaryotic organism databases including gene symbol and full name, chromosome, genetic and molecular map information, Gene Ontology (Function/Location/Process) and gene homology, product information.",
+    "example": "MGgn0008978",
+    "homepage": "http://eugenes.org/",
+    "mappings": {
+      "prefixcommons": "eugenes"
+    },
+    "name": "Eukaryotic Genes",
+    "preferred_prefix": "eugenes",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://eugenes.org:7072/.bin/fbidq.html?$1"
   },
   "eupath": {
     "appears_in": [
@@ -11262,6 +11554,8 @@
       "orcid": null
     },
     "deprecated": true,
+    "description": "Provides structured controlled vocabularies for the annotation of expressed sequences with respect to anatomical system, cell type, developmental stage, experimental technique, microarray platform, pathology, pooling, tissue preparation and treatment.",
+    "example": "EV_0100011",
     "homepage": "http://www.evocontology.org/",
     "mappings": {
       "biocontext": "EV",
@@ -12065,6 +12359,23 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "flybrain.ndb",
     "uri_format": "https://flybrain-ndb.virtualflybrain.org/fmi/xsl/browserecord.xsl@-lay=NDB&Accession+number.op=eq&Accession+number=$1&-find=-find.html"
+  },
+  "flymine.chromosome": {
+    "description": "FlyMine is an integrated database of genomic, expression and protein data for Drosophila, Anopheles and C. elegans. Integrating data makes it possible to run sophisticated data mining queries that span domains of biological knowledge.",
+    "example": "1047874",
+    "homepage": "http://www.flymine.org/",
+    "mappings": {
+      "prefixcommons": "flymine"
+    },
+    "name": "FlyMine Chromosome Band",
+    "preferred_prefix": "flymine.chromosome",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.flymine.org/flymine/report/ChromosomeBand/$1"
   },
   "fma": {
     "banana": "FMA",
@@ -13054,6 +13365,25 @@
     "preferred_prefix": "genbank",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucleotide/$1"
   },
+  "gendis": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "Genomic Distribution of structural Superfamilies identifies and classifies evolutionary related proteins at the superfamily level in whole genome databases.",
+    "example": "46946",
+    "homepage": "http://caps.ncbs.res.in/gendis/home.html",
+    "mappings": {
+      "prefixcommons": "gendis"
+    },
+    "name": "Genomic Distribution of structural Superfamilies",
+    "preferred_prefix": "gendis",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/gendis/sf.cgi?code=$1"
+  },
   "genecards": {
     "description": "The GeneCards human gene database stores gene related transcriptomic, genetic, proteomic, functional and disease information. It uses standard nomenclature and approved gene symbols. GeneCards presents a complete summary for each human gene.",
     "example": "ABL1",
@@ -13080,6 +13410,23 @@
       }
     ],
     "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
+  },
+  "genecards.geneloc": {
+    "description": "GeneLoc presents an integrated map for each human chromosome, based on data integrated by the GeneLoc algorithm. GeneLoc includes further links to GeneCards, NCBI's Human Genome Sequencing, UniGene, and mapping resources",
+    "example": "17503",
+    "homepage": "http://genecards.weizmann.ac.il/geneloc/",
+    "mappings": {
+      "prefixcommons": "geneloc"
+    },
+    "name": "Gene Location",
+    "preferred_prefix": "genecards.geneloc",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://genecards.weizmann.ac.il/geneloc-bin/marker_cards.pl?id=$1"
   },
   "genedb": {
     "deprecated": true,
@@ -13567,6 +13914,23 @@
     "pattern": "^EP\\d{4}$",
     "preferred_prefix": "glycoepitope",
     "uri_format": "https://www.glycoepitope.jp/epitopes/$1"
+  },
+  "glycomapsdb": {
+    "description": "A database of GlycoMaps containing 2585 conformational maps.",
+    "example": "6819",
+    "homepage": "http://www.glycosciences.de/modeling/glycomapsdb/",
+    "mappings": {
+      "prefixcommons": "glycomapsdb"
+    },
+    "name": "GlycoMapsDB",
+    "preferred_prefix": "glycomapsdb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.glycosciences.de/modeling/glycomapsdb/showdetails.php?mapid=$1"
   },
   "glycomedb": {
     "comment": "this is exactly the same as glytoucan. Idk why there are two different ones",
@@ -14389,18 +14753,32 @@
   },
   "gramene.growthstage": {
     "banana": "GRO",
+    "contact": {
+      "email": "po-discuss@plantontology.org",
+      "github": null,
+      "name": "Plant Ontology Administrators",
+      "orcid": null
+    },
+    "deprecated": true,
     "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This collection refers to growth stage ontology information in Gramene.",
     "example": "0007133",
-    "homepage": "http://www.gramene.org/",
+    "homepage": "http://www.gramene.org/plant_ontology/",
     "mappings": {
       "biocontext": "GRAMENE.GROWTHSTAGE",
+      "bioportal": "GRO-CPGA",
       "miriam": "gramene.growthstage",
-      "n2t": "gramene.growthstage"
+      "n2t": "gramene.growthstage",
+      "obofoundry": "gro",
+      "prefixcommons": "gramene.po"
     },
     "name": "Gramene Growth Stage Ontology",
     "namespace_in_lui": true,
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "gramene.growthstage",
+    "preferred_prefix": "GRO",
+    "synonyms": [
+      "cpga",
+      "gro-cpga"
+    ],
     "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "gramene.protein": {
@@ -14458,8 +14836,10 @@
     "uri_format": "http://www.gramene.org/db/literature/pub_search?ref_id=$1"
   },
   "gramene.taxonomy": {
+    "banana": "GR_tax",
+    "banana_peel": ":",
     "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This datatype refers to taxonomic information in Gramene.",
-    "example": "GR_tax:013681",
+    "example": "013681",
     "homepage": "http://www.gramene.org/",
     "mappings": {
       "biocontext": "GRAMENE.TAXONOMY",
@@ -14467,9 +14847,9 @@
       "n2t": "gramene.taxonomy"
     },
     "name": "Gramene Taxonomy",
-    "pattern": "^GR\\_tax\\:\\d+$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "gramene.taxonomy",
-    "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
+    "uri_format": "https://archive.gramene.org/db/ontology/search?id=GR_tax:$1"
   },
   "grassbase": {
     "contributor": {
@@ -14531,6 +14911,23 @@
     "pattern": "^grid\\.[0-9]+\\.[a-f0-9]{1,2}$",
     "preferred_prefix": "grid",
     "uri_format": "https://www.grid.ac/institutes/$1"
+  },
+  "grin": {
+    "description": "GRIN provides National Genetic Resources Program (NGRP) personnel and germplasm users continuous access to databases for the maintenance of passport, characterization, evaluation, inventory, and distribution data important for the effective management and utilization of national germplasm collections.",
+    "example": "159787",
+    "homepage": "http://www.ars-grin.gov/",
+    "mappings": {
+      "prefixcommons": "grin"
+    },
+    "name": "Germplasm Resources Information Network",
+    "preferred_prefix": "grin",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.ars.usda.gov/research/publications/publications.htm?seq_no_115=$1"
   },
   "grin.taxonomy": {
     "description": "GRIN (Germplasm Resources Information Network) Taxonomy for Plants provides information on scientific and common names, classification, distribution, references, and economic impact.",
@@ -14784,6 +15181,58 @@
     "preferred_prefix": "HABRONATTUS",
     "uri_format": "http://purl.obolibrary.org/obo/HABRONATTUS_$1"
   },
+  "hagr.genage": {
+    "description": "GenAge is a database of human and model organism genes related to longevity and aging, maintained by the Human Ageing Genomics Resources (HAGR) group.",
+    "example": "0001",
+    "homepage": "http://genomics.senescence.info/genes/",
+    "mappings": {
+      "prefixcommons": "genage"
+    },
+    "name": "The Ageing Gene Database",
+    "preferred_prefix": "hagr.genage",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "23193293",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://genomics.senescence.info/genes/details.php?id=$1"
+  },
+  "hagr.gendr": {
+    "description": "GenDR is a database of genes associated with dietary restriction (DR). GenDR includes two datasets: 1) genes inferred from experiments in model organisms in which genetic manipulations cancel out or disrupt the life-extending effects of DR; 2) genes robustly altered due to DR, derived from a meta-analysis of microarray DR studies in mammals",
+    "example": "2",
+    "homepage": "http://genomics.senescence.info/diet/",
+    "mappings": {
+      "prefixcommons": "gendr"
+    },
+    "name": "The Dietary Restriction Gene Database",
+    "preferred_prefix": "hagr.gendr",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "22912585",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://genomics.senescence.info/diet/details.php?id=$1"
+  },
   "hamap": {
     "description": "HAMAP is a system that identifies and semi-automatically annotates proteins that are part of well-conserved and orthologous microbial families or subfamilies. These are used to build rules which are used to propagate annotations to member bacterial, archaeal and plastid-encoded protein entries.",
     "example": "MF_01400",
@@ -14912,6 +15361,23 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "HBA",
     "uri_format": "https://biopragmatics.github.io/providers/hba/$1"
+  },
+  "hbvar": {
+    "description": "This is a relational database of information about hemoglobin variants and mutations that cause thalassemia.",
+    "example": "2526",
+    "homepage": "http://globin.cse.psu.edu/globin/hbvar",
+    "mappings": {
+      "prefixcommons": "hbvar"
+    },
+    "name": "A Database of Human Hemoglobin Variants and Thalassemias",
+    "preferred_prefix": "hbvar",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://globin.bx.psu.edu/cgi-bin/hbvar/query_vars3?mode=output&display_format=page&i=$1"
   },
   "hc.din": {
     "contributor": {
@@ -16274,33 +16740,134 @@
     ],
     "uri_format": "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"
   },
+  "iceberg.cime": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "ICEs have also been reported capable to mobilize other genetic elements, such as the chromosome-borne integrative and mobilizable elements (IMEs), cis-mobilizable elements (CIMEs), plasmids and etc. IMEs and CIMEs are also important vehicles for the spread of antiobiotic resistances and virulence factors. However, unlike ICE, IMEs and CIMEs are commonly devoid of conjugal apparatus, thus have to hijack the machinery of other conjugative elements.",
+    "example": "6",
+    "homepage": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_CIME.php?type=alpha&alpha=100",
+    "name": "ICEberg cis-integrative and mobilizable element",
+    "part_of": "iceberg",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "iceberg.cime",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gky1123",
+        "pmc": "PMC6323972",
+        "pubmed": "30407568",
+        "title": "ICEberg 2.0: an updated database of bacterial integrative and conjugative elements",
+        "year": 2019
+      },
+      {
+        "doi": "10.1093/nar/gkr846",
+        "pmc": "PMC3244999",
+        "pubmed": "22009673",
+        "title": "ICEberg: a web-based resource for integrative and conjugative elements found in Bacteria",
+        "year": 2012
+      }
+    ],
+    "uri_format": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page_CIME.php?cime_id=$1_CIME"
+  },
   "iceberg.element": {
     "description": "ICEberg (Integrative and conjugative elements) is a database of integrative and conjugative elements (ICEs) found in bacteria. ICEs are conjugative self-transmissible elements that can integrate into and excise from a host chromosome, and can carry likely virulence determinants, antibiotic-resistant factors and/or genes coding for other beneficial traits. It contains details of ICEs found in representatives bacterial species, and which are organised as families. This collection references ICE elements.",
     "example": "100",
-    "homepage": "http://db-mml.sjtu.edu.cn/ICEberg/",
+    "homepage": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_result.php?type=alpha&alpha=100",
     "mappings": {
       "biocontext": "ICEBERG.ELEMENT",
       "miriam": "iceberg.element",
       "n2t": "iceberg.element"
     },
-    "name": "ICEberg element",
+    "name": "ICEberg integrative and conjugative element",
+    "part_of": "iceberg",
     "pattern": "^\\d+$",
     "preferred_prefix": "iceberg.element",
-    "uri_format": "http://db-mml.sjtu.edu.cn/ICEberg/feature_page.php?ice_id=$1"
+    "publications": [
+      {
+        "doi": "10.1093/nar/gky1123",
+        "pmc": "PMC6323972",
+        "pubmed": "30407568",
+        "title": "ICEberg 2.0: an updated database of bacterial integrative and conjugative elements",
+        "year": 2019
+      },
+      {
+        "doi": "10.1093/nar/gkr846",
+        "pmc": "PMC3244999",
+        "pubmed": "22009673",
+        "title": "ICEberg: a web-based resource for integrative and conjugative elements found in Bacteria",
+        "year": 2012
+      }
+    ],
+    "synonyms": [
+      "iceberg.ice"
+    ],
+    "uri_format": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page.php?ice_id=$1"
   },
   "iceberg.family": {
     "description": "ICEberg (Integrative and conjugative elements) is a database of integrative and conjugative elements (ICEs) found in bacteria. ICEs are conjugative self-transmissible elements that can integrate into and excise from a host chromosome, and can carry likely virulence determinants, antibiotic-resistant factors and/or genes coding for other beneficial traits. It contains details of ICEs found in representatives bacterial species, and which are organised as families. This collection references ICE families.",
     "example": "1",
-    "homepage": "http://db-mml.sjtu.edu.cn/ICEberg/",
+    "homepage": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_fam.php",
     "mappings": {
       "biocontext": "ICEBERG.FAMILY",
       "miriam": "iceberg.family",
       "n2t": "iceberg.family"
     },
     "name": "ICEberg family",
+    "part_of": "iceberg",
     "pattern": "^\\d+$",
     "preferred_prefix": "iceberg.family",
-    "uri_format": "http://db-mml.sjtu.edu.cn/ICEberg/browse_result.php?type=fam&fam_id=$1"
+    "publications": [
+      {
+        "doi": "10.1093/nar/gky1123",
+        "pmc": "PMC6323972",
+        "pubmed": "30407568",
+        "title": "ICEberg 2.0: an updated database of bacterial integrative and conjugative elements",
+        "year": 2019
+      },
+      {
+        "doi": "10.1093/nar/gkr846",
+        "pmc": "PMC3244999",
+        "pubmed": "22009673",
+        "title": "ICEberg: a web-based resource for integrative and conjugative elements found in Bacteria",
+        "year": 2012
+      }
+    ],
+    "uri_format": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_result.php?type=fam&fam_id=$1"
+  },
+  "iceberg.ime": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "ICEs have also been reported capable to mobilize other genetic elements, such as the chromosome-borne integrative and mobilizable elements (IMEs), cis-mobilizable elements (CIMEs), plasmids and etc. IMEs and CIMEs are also important vehicles for the spread of antiobiotic resistances and virulence factors. However, unlike ICE, IMEs and CIMEs are commonly devoid of conjugal apparatus, thus have to hijack the machinery of other conjugative elements.",
+    "example": "1",
+    "homepage": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_IME.php?type=alpha&alpha=100",
+    "name": "ICEberg integrative and mobilizable element",
+    "part_of": "iceberg",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "iceberg.ime",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gky1123",
+        "pmc": "PMC6323972",
+        "pubmed": "30407568",
+        "title": "ICEberg 2.0: an updated database of bacterial integrative and conjugative elements",
+        "year": 2019
+      },
+      {
+        "doi": "10.1093/nar/gkr846",
+        "pmc": "PMC3244999",
+        "pubmed": "22009673",
+        "title": "ICEberg: a web-based resource for integrative and conjugative elements found in Bacteria",
+        "year": 2012
+      }
+    ],
+    "uri_format": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page_IME.php?ime_id=$1_IME"
   },
   "iceo": {
     "contact": {
@@ -16667,7 +17234,8 @@
     "homepage": "https://www.lji.org/",
     "mappings": {
       "fairsharing": "FAIRsharing.c886cd",
-      "miriam": "iedb"
+      "miriam": "iedb",
+      "prefixcommons": "tied"
     },
     "name": "Immune Epitope Database",
     "pattern": "^[0-9]+$",
@@ -16701,6 +17269,7 @@
   },
   "iev": {
     "deprecated": true,
+    "description": "The Event Ontology is an ontology of pathways. It classifies pathways, sub-pathways and other biological phenomena to form a DAG structure.",
     "example": "0000000",
     "homepage": "http://www.inoh.org",
     "mappings": {
@@ -16972,6 +17541,25 @@
     ],
     "uri_format": "http://www.imgt.org/ligmdb/view?id=$1"
   },
+  "imotdb": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "The interacting motif database or iMOTdb , lists interacting motifs thatare identified for all structural entries in the PDB. The conserved patterns or finger prints are identified for individual structural entries and also grouped together for reporting the common motifs shared among all superfamily members.",
+    "example": "53784",
+    "homepage": "http://caps.ncbs.res.in/imotdb/",
+    "mappings": {
+      "prefixcommons": "imotdb"
+    },
+    "name": "Database of Spatially Interacting Motifs in Proteins",
+    "preferred_prefix": "imotdb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/imotdb/imotdb.cgi?sfcode=$1"
+  },
   "imr": {
     "contact": {
       "email": "curator@inoh.org",
@@ -16980,6 +17568,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "description": "MoleculeRole Ontology is an ontology for proteins/chemicals. It is used to annotate protein family names, generic/concrete protein names and chemical names in the INOH pathway data.",
     "example": "0000001",
     "homepage": "http://www.inoh.org",
     "mappings": {
@@ -17177,6 +17766,24 @@
       "INN_ID"
     ],
     "uri_format": "https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1"
+  },
+  "innatedb": {
+    "description": "InnateDB is a publicly available database of the genes, proteins, experimentally-verified interactions and signaling pathways involved in the innate immune response of humans and mice to microbial infection. The database covers the innate immunity interactome by integrating known interactions and pathways from major public databases.",
+    "example": "20021",
+    "homepage": "http://www.innatedb.ca/",
+    "mappings": {
+      "prefixcommons": "innatedb",
+      "re3data": "r3d100010676"
+    },
+    "name": "A Knowledge Resource for Innate Immunity Interactions and Pathways",
+    "preferred_prefix": "innatedb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.innatedb.ca/getGeneCard.do?id=$1"
   },
   "ino": {
     "contact": {
@@ -17449,6 +18056,23 @@
     "preferred_prefix": "intact.molecule",
     "uri_format": "https://www.ebi.ac.uk/intact/search?query=$1"
   },
+  "interfil": {
+    "description": "The Intermediate Filament Database functions as a continuously updated review of the intermediate filament field and it is hoped that users will contribute to the development and expansion of the database on a regular basis. Contributions may include novel variants, new patients with previously discovered sequence and allelic variants.",
+    "example": "NM_006262",
+    "homepage": "http://www.interfil.org",
+    "mappings": {
+      "prefixcommons": "interfil"
+    },
+    "name": "Human Intermediate Filament Database",
+    "preferred_prefix": "interfil",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.interfil.org/details.php?id=$1"
+  },
   "interlex": {
     "description": "InterLex is a dynamic lexicon, initially built on the foundation of NeuroLex (PMID: 24009581), of biomedical terms and common data elements designed to help improve the way that biomedical scientists communicate about their data, so that information systems can find data more easily and provide more powerful means of integrating data across distributed resources and datasets. InterLex allows for the association of data fields and data values to common data elements and terminologies enabling the crowdsourcing of data-terminology mappings within and across communities. InterLex provides a stable layer on top of the many other existing terminologies, lexicons, ontologies, and common data element collections and provides a set of inter-lexical and inter-data-lexical mappings. ",
     "example": "0101963",
@@ -17570,6 +18194,23 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "irefweb",
     "uri_format": "http://wodaklab.org/iRefWeb/interaction/show/$1"
+  },
+  "iresite": {
+    "description": "The IRESite database presents information about the experimentally studied IRES (Internal Ribosome Entry Site) segments. IRES regions are known to attract eukaryotic ribosomal translation initiation complex and thus promote translation initiation independently of the presence of the commonly utilized 5'-terminal 7mG cap structure.",
+    "example": "322",
+    "homepage": "http://www.iresite.org",
+    "mappings": {
+      "prefixcommons": "iresite"
+    },
+    "name": "Database of experimentally verified IRES structures",
+    "preferred_prefix": "iresite",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.iresite.org/IRESite_web.php?page=view&entry_id=$1"
   },
   "iro": {
     "contributor": {
@@ -19008,6 +19649,32 @@
     "preferred_prefix": "lonza",
     "uri_format": "https://knowledge.lonza.com/cell?id=$1"
   },
+  "loqate": {
+    "description": "The data presented here is a result of systematically tracking the localization and abundance of 5330 yeast proteins at single-cell resolution under three different stress conditions (DTT, H2O2 and nitrogen starvation) using the GFP-tagged yeast library",
+    "example": "1001",
+    "homepage": "http://www.weizmann.ac.il/molgen/loqate/",
+    "mappings": {
+      "prefixcommons": "loqate"
+    },
+    "name": "The localization and quantitation atlas of the yeast proteome",
+    "preferred_prefix": "loqate",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "24150937",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.weizmann.ac.il/molgen/loqate/gene/view/$1"
+  },
   "lotus": {
     "comment": "IDs are actually leading to the structural part of LOTUS only, which might change in the future. Will adapt the regexp in case.",
     "contact": {
@@ -19280,6 +19947,23 @@
     "uri_format": "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1",
     "version": "2020-08-24"
   },
+  "mampol": {
+    "description": "The Mammalia Polymorphism Database is a secondary database designed to provide a collection of all the existing polymorphic sequences in the MammaliaOnline query interfaces facilitate data interrogation by different polymorphism parameter values and keyword queries (based on SQL searches).",
+    "example": "MAMpol005339",
+    "homepage": "http://mampol.uab.es",
+    "mappings": {
+      "prefixcommons": "mampol"
+    },
+    "name": "Mammalia Polymorphism Database",
+    "preferred_prefix": "mampol",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://mampol.uab.es/cgi-bin/MamPol_s2.pl?Accession=$1"
+  },
   "mao": {
     "contact": {
       "email": "julie@igbmc.u-strasbg.fr",
@@ -19288,6 +19972,8 @@
       "orcid": null
     },
     "deprecated": true,
+    "description": "An ontology for data retrieval and exchange in the fields of multiple DNA/RNA  alignment, protein sequence and protein structure alignment.",
+    "example": "MAO:0000061",
     "homepage": "http://www-igbmc.u-strasbg.fr/BioInfo/MAO/mao.html",
     "mappings": {
       "biocontext": "MAO",
@@ -20057,6 +20743,23 @@
     "preferred_prefix": "metlin",
     "uri_format": "http://metlin.scripps.edu/metabo_info.php?molid=$1"
   },
+  "metnetdb": {
+    "description": "The MetNet database (MetNetDB) contains information on networks of metabolic and regulatory and interactions in Arabidopsis. Types of interactions in MetNetDB include transcription, translation, protein modification, assembly, allosteric regulation, translocation from one subcellular compartment to another.",
+    "example": "377369",
+    "homepage": "http://www.metnetdb.org/MetNet_db.htm",
+    "mappings": {
+      "prefixcommons": "metnetdb"
+    },
+    "name": "Metabolic Network Exchange Database",
+    "preferred_prefix": "metnetdb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://metnetonline.org/browse_pathway2.php?pthID=$1"
+  },
   "mex": {
     "description": "A public place to process, interpret and share GC/MS metabolomics datasets.",
     "example": "36",
@@ -20159,6 +20862,8 @@
     "description": "A structured controlled vocabulary of the anatomy and development of the Japanese medaka fish, <i>Oryzias latipes</i>.",
     "download_obo": "http://aber-owl.net/media/ontologies/MFO/14/mfo.obo",
     "download_owl": "http://purl.obolibrary.org/obo/mfo.owl",
+    "example": "MFO_0000001",
+    "homepage": "http://ani.embl.de:8080/mepd/",
     "mappings": {
       "aberowl": "MFO",
       "biocontext": "MFO",
@@ -20978,7 +21683,8 @@
       "biocontext": "MMMP:BIOMAPS",
       "biolink": "mmmp.biomaps",
       "miriam": "mmmp:biomaps",
-      "n2t": "biomaps"
+      "n2t": "biomaps",
+      "prefixcommons": "mmmp"
     },
     "name": "Melanoma Molecular Map Project Biomaps",
     "pattern": "^\\d+$",
@@ -21103,6 +21809,23 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "mmrrc",
     "uri_format": "http://www.mmrrc.org/catalog/getSDS.php?mmrrc_id=$1"
+  },
+  "mmsinc": {
+    "description": "MMSsINC is a database of commercially-available compounds for virtual screening and chemoinformatic applications. MMsINC contains over 4 million non-redundant chemical compounds in 3D formats.",
+    "example": "MMs00000001",
+    "homepage": "http://mms.dsfarm.unipd.it/MMsINC",
+    "mappings": {
+      "prefixcommons": "mmsinc"
+    },
+    "name": "MMsINC",
+    "preferred_prefix": "mmsinc",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://mms.dsfarm.unipd.it/mmsinc/search/molecule.php?mmscode=$1"
   },
   "mmsl": {
     "contributor": {
@@ -21349,6 +22072,23 @@
     "preferred_prefix": "molmedb",
     "uri_format": "https://molmedb.upol.cz/mol/$1"
   },
+  "molmovdb": {
+    "description": "The Molecular Movements Database lists motions in proteins and other macromolecules. It is arranged around a multi-level classification scheme and includes motions of loops, domains, and subunits.",
+    "example": "f665230-5267",
+    "homepage": "http://bioinfo.mbb.yale.edu/MolMovDB/",
+    "mappings": {
+      "prefixcommons": "molmovdb"
+    },
+    "name": "Database of Macromolecular Movements",
+    "preferred_prefix": "molmovdb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.molmovdb.org/cgi-bin/morph.cgi?ID=$1"
+  },
   "mondo": {
     "contact": {
       "email": "nicole@tislab.org",
@@ -21430,6 +22170,41 @@
     "pattern": "^M[0-9]{4,}$",
     "preferred_prefix": "morpheus",
     "uri_format": "https://morpheus.gitlab.io/models/$1"
+  },
+  "mosaic": {
+    "contact": {
+      "email": "brycemecum@gmail.com",
+      "github": "amoeba",
+      "name": "Bryce Mecum",
+      "orcid": "0000-0002-0381-3766"
+    },
+    "contributor": {
+      "email": "j.harry.caufield@gmail.com",
+      "github": "caufieldjh",
+      "name": "Harry Caufield",
+      "orcid": "0000-0001-5705-7831"
+    },
+    "description": "An ontology used to describe data resources in the Arctic Data Center (https://arcticdata.io).",
+    "download_owl": "https://ontologies.dataone.org/MOSAiC.owl",
+    "example": "00005643",
+    "github_request_issue": 636,
+    "homepage": "https://ontologies.dataone.org/MOSAiC.html",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "aberowl": "MOSAIC",
+      "bioportal": "MOSAIC"
+    },
+    "name": "MOSAiC Ontology",
+    "pattern": "^\\d{8}$",
+    "preferred_prefix": "mosaic",
+    "repository": "https://github.com/DataONEorg/sem-prov-ontologies",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://purl.dataone.org/odo/MOSAIC_$1"
   },
   "mp": {
     "appears_in": [
@@ -21721,6 +22496,23 @@
     "repository": "https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO",
     "uri_format": "http://purl.obolibrary.org/obo/MSIO_$1",
     "version": "1.0.1"
+  },
+  "mtbd": {
+    "description": "The Mouse Tumor Biology (MTB) Database supports the use of the mouse as a model system of hereditary cancer by providing electronic access to Information on endogenous spontaneous and induced tumors in mice, including tumor frequency & latency data, information on genetically defined mice (inbred, hybrid, mutant, and genetically engineered strains of mice) in which tumors arise, and information on genetic factors associated with tumor susceptibility in mice and somatic genetic-mutations observed in the tumors.",
+    "example": "1374",
+    "homepage": "http://tumor.informatics.jax.org",
+    "mappings": {
+      "prefixcommons": "mtbd"
+    },
+    "name": "Mouse Tumor Biology Database",
+    "preferred_prefix": "mtbd",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://tumor.informatics.jax.org/mtbwi/strainDetails.do?key=$1"
   },
   "multicellds": {
     "contributor": {
@@ -22733,6 +23525,25 @@
     ],
     "uri_format": "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"
   },
+  "nembase": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "NEMBASE is a comprehensive Nematode Transcriptome Database. NEMBASE4 includes robust protein predictions (NemPep4), and protein families for 63 nematode species, over 600,000 ESTs and over 250,000 proteins.",
+    "example": "NBC00001",
+    "homepage": "http://www.nematodes.org",
+    "mappings": {
+      "prefixcommons": "nembase"
+    },
+    "name": "Nematode & Neglected Genomics",
+    "preferred_prefix": "nembase",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.nematodes.org/nembase4/cluster.php?cluster=$1"
+  },
   "nemo": {
     "contact": {
       "email": "gfrishkoff@gsu.edu",
@@ -23661,6 +24472,26 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://drs.microbiomedata.org/objects/$1"
+  },
+  "nmpdr": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "The NMPDR provided curated annotations in an environment for comparative analysis of genomes and biological subsystems, with an emphasis on the food-borne pathogens Campylobacter, Listeria, Staphylococcus, Streptococcus, and Vibrio; as well as the STD pathogens Chlamydiaceae, Haemophilus, Mycoplasma, Neisseria, Treponema, and Ureaplasma.",
+    "example": "fig|306254.1.peg.183",
+    "homepage": "http://www.nmpdr.org",
+    "mappings": {
+      "ncbi": "NMPDR",
+      "prefixcommons": "nmpdr"
+    },
+    "name": "National Microbial Pathogen Data Resource",
+    "preferred_prefix": "nmpdr",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.nmpdr.org/FIG/wiki/rest.cgi/NmpdrPlugin/SeedViewer?page=Annotation;feature=$1"
   },
   "nmr": {
     "banana": "NMR",
@@ -26026,6 +26857,25 @@
     "preferred_prefix": "paleodb",
     "uri_format": "http://fossilworks.org/?a=taxonInfo&taxon_no=$1"
   },
+  "pandit": {
+    "description": "PANDIT is a collection of multiple sequence alignments and phylogenetic trees covering many common protein domains.",
+    "example": "PF00004",
+    "homepage": "http://www.ebi.ac.uk/goldman-srv/pandit",
+    "mappings": {
+      "prefixcommons": "pandit",
+      "re3data": "r3d100011232"
+    },
+    "name": "Protein and Associated NucleotideDomains with Inferred Trees",
+    "preferred_prefix": "pandit",
+    "provides": "pfam",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=$1"
+  },
   "panorama": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -26157,6 +27007,40 @@
     "pattern": "^(SMP|PW)\\d+$",
     "preferred_prefix": "pathbank",
     "uri_format": "https://pathbank.org/view/$1"
+  },
+  "pathguide": {
+    "description": "Pathguide contains information about 325 biological related resources and molecular interaction related resources.",
+    "example": "49",
+    "homepage": "http://pathguide.org",
+    "mappings": {
+      "prefixcommons": "pathguide"
+    },
+    "name": "Pathguide",
+    "preferred_prefix": "pathguide",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.pathguide.org/fullrecord.php?organisms=all&availability=all&standards=all&order=alphabetic&DBID=$1"
+  },
+  "pathoplant": {
+    "description": "PathoPlant® is a database on plant-pathogen interactions and components of signal transduction pathways related to plant pathogenesis. PathoPlant® also harbors gene expression data from Arabidopsis thaliana microarray experiments to enable searching for specific genes regulated upon pathogen infection or elicitor treatment.",
+    "example": "MO000027",
+    "homepage": "http://www.pathoplant.de",
+    "mappings": {
+      "prefixcommons": "pathoplant"
+    },
+    "name": "PathoPlant®",
+    "preferred_prefix": "pathoplant",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.pathoplant.de/detail.php?accNo=$1"
   },
   "pathwaycommons": {
     "description": "Pathway Commons is a convenient point of access to biological pathway information collected from public pathway databases, which you can browse or search. It is a collection of publicly available pathways from multiple organisms that provides researchers with convenient access to a comprehensive collection of pathways from multiple sources represented in a common language.",
@@ -26626,6 +27510,25 @@
     ],
     "uri_format": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1"
   },
+  "pdbsum": {
+    "description": "PDBsum provides an at-a-glance overview of every macromolecular structure deposited in the Protein Data Bank (PDB), giving schematic diagrams of the molecules in each structure and of the interactions between them.",
+    "example": "1kfv",
+    "homepage": "http://www.ebi.ac.uk/pdbsum",
+    "mappings": {
+      "prefixcommons": "pdbsum",
+      "uniprot": "DB-0119"
+    },
+    "name": "PDBsum; at-a-glance overview of macromolecular structures",
+    "preferred_prefix": "pdbsum",
+    "provides": "pdb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.ebi.ac.uk/pdbsum/$1"
+  },
   "pdc.study": {
     "contributor": {
       "email": "benjamin_gyori@hms.harvard.edu",
@@ -26813,6 +27716,25 @@
     "pattern": "^N:package:[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$",
     "preferred_prefix": "pennsieve",
     "uri_format": "https://discover.pennsieve.io/package/$1"
+  },
+  "pepbank": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "PepBank is a database of peptides based on sequence text mining and public peptide data sources. Only peptides that are 20 amino acids or shorter are stored. Only peptides with available sequences are stored.",
+    "example": "21877",
+    "homepage": "http://pepbank.mgh.harvard.edu/",
+    "mappings": {
+      "prefixcommons": "pepbank"
+    },
+    "name": "PepBank Peptide Database",
+    "preferred_prefix": "pepbank",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://pepbank.mgh.harvard.edu/interactions/details/$1"
   },
   "peptideatlas": {
     "description": "The PeptideAtlas Project provides a publicly accessible database of peptides identified in tandem mass spectrometry proteomics studies and software tools.",
@@ -27267,6 +28189,33 @@
     ],
     "uri_format": "http://www.pharmgkb.org/pathway/$1"
   },
+  "pharmvar": {
+    "description": "The Pharmacogene Variation (PharmVar) Consortium is the new home for PGx gene nomenclature serving as a centralized ‘Next-Generation’ Pharmacogene Variation data repository.  The major focus of PharmVar is to catalogue allelic variation of genes impacting drug metabolism, disposition and response and provide a unifying designation system (nomenclature) for the global pharmacogenetic/genomic community. Efforts are synchronized between PharmVar, the Pharmacogenomic KnowledgeBase, and the Clinical Pharmacogenetic Implementation Consortium.",
+    "example": "CYP2A6",
+    "homepage": "https://www.pharmvar.org",
+    "mappings": {
+      "prefixcommons": "pharmvar"
+    },
+    "name": "Pharmacogene Variation Consortium",
+    "preferred_prefix": "pharmvar",
+    "provides": "hgnc.symbol",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "29134625",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.pharmvar.org/gene/$1"
+  },
   "phenolexplorer": {
     "description": "Phenol-Explorer is an electronic database on polyphenol content in foods. Polyphenols form a wide group of natural antioxidants present in a large number of foods and beverages. They contribute to food characteristics such as taste, colour or shelf-life. They also participate in the prevention of several major chronic diseases such as cardiovascular diseases, diabetes, cancers, neurodegenerative diseases or osteoporosis.",
     "example": "75",
@@ -27495,6 +28444,23 @@
       "JGI Phytozome"
     ],
     "uri_format": "http://www.phytozome.net/genePage.php?crown&method=0&search=1&detail=1&searchText=locusname:$1"
+  },
+  "pibase": {
+    "description": "PIBASE is a collection of all protein structural interfaces extracted from the Protein Data Bank and PQS structure databases. Both chain-chain and domain-domain (SCOP and CATH definitions) interfaces are detected.",
+    "example": "21692",
+    "homepage": "http://salilab.org/pibase",
+    "mappings": {
+      "prefixcommons": "pibase"
+    },
+    "name": "Database of structurally defined protein interfaces",
+    "preferred_prefix": "pibase",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://modbase.compbio.ucsf.edu/pibase-cgi/get_details.pl?object_type=complexes&bdp_id=$1"
   },
   "pictar": {
     "contributor": {
@@ -28509,6 +29475,7 @@
     "deprecated": true,
     "description": "A comprehensive proteomics data and process provenance ontology.",
     "download_owl": "http://aber-owl.net/media/ontologies/PROPREO/2/propreo.owl",
+    "example": "protein",
     "homepage": "http://lsdis.cs.uga.edu/projects/glycomics/propreo/",
     "mappings": {
       "aberowl": "PROPREO",
@@ -28573,6 +29540,25 @@
       }
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/sites/entrez?Db=proteinclusters&Cmd=DetailsSearch&Term=$1"
+  },
+  "protcom": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "This database is a collection of protein-protein homo- and hetero-complexes as well as domain-domain structures. This issue of the database contains 17.024 entries (as of October 2007) of which 1350 are two-chain protein hetero-complexes, 7773 homodimers and 1589 are one-chain proteins parsed into two domains (domain structures).",
+    "example": "12e8LH",
+    "homepage": "http://www.ces.clemson.edu/compbio/protcom",
+    "mappings": {
+      "prefixcommons": "protcom"
+    },
+    "name": "Database of protein-protein complexes",
+    "preferred_prefix": "protcom",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.ces.clemson.edu/compbio/protcom/print_file.cgi?pdbid=$1"
   },
   "proteomicsdb.peptide": {
     "comment": "The fact that this has .peptide as a subspace is a bit of a misnomer. Its original registration with MIRIAM uses a subview over the protein to point to peptides, but the identifiers in this semantic space seem to be about proteins.",
@@ -29374,12 +30360,35 @@
     "example": "Os01t0883800-02",
     "homepage": "https://rapdb.dna.affrc.go.jp/",
     "mappings": {
-      "miriam": "rapdb.transcript"
+      "go": "RAP-DB",
+      "miriam": "rapdb.transcript",
+      "ncbi": "RAP-DB",
+      "prefixcommons": "rapdb"
     },
     "name": "RAP-DB Transcript",
     "pattern": "^Os\\S+t\\d{7}-\\d{2}$",
     "preferred_prefix": "rapdb.transcript",
     "uri_format": "https://rapdb.dna.affrc.go.jp/viewer/gene_detail/irgsp1?name=$1"
+  },
+  "ratmap": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "The Rat Genome Database RatMap is focused on presenting rat genes, DNA-markers, QTL:s etc that is localized to chromosome. The database is dedicated to rat gene nomenclature and should be consulted for queries in such matters",
+    "example": "5",
+    "homepage": "http://ratmap.org",
+    "mappings": {
+      "ncbi": "RATMAP",
+      "prefixcommons": "ratmap"
+    },
+    "name": "Rat Genome Database",
+    "preferred_prefix": "ratmap",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://ratmap.org/Showgene.php?gene_stable_id=$1"
   },
   "rbk": {
     "description": "(Re)Building a Kidney is an NIDDK-funded consortium of research projects working to optimize approaches for the isolation, expansion, and differentiation of appropriate kidney cell types and their integration into complex structures that replicate human kidney function.",
@@ -29644,6 +30653,25 @@
     "name": "Human Plasma Membrane Receptome Families",
     "preferred_prefix": "receptome.family",
     "uri_format": "http://www.receptome.org/families/Frameset_family.asp?ProtType=Receptor&FamId=$1"
+  },
+  "redfly": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "REDflyis a curated collection of known Drosophila transcriptional cis-regulatory modules (CRMs) and transcription factor binding sites (TFBSs).",
+    "example": "8",
+    "homepage": "http://redfly.ccr.buffalo.edu",
+    "mappings": {
+      "prefixcommons": "redfly"
+    },
+    "name": "Regulatory Elements Database for Drosophila",
+    "preferred_prefix": "redfly",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://redfly.ccr.buffalo.edu/?content=/view_detail.php&crm_id=$1"
   },
   "refseq": {
     "contributor_extras": [
@@ -29922,6 +30950,34 @@
     "preferred_prefix": "rfc",
     "uri_format": "https://tools.ietf.org/rfc/rfc$1"
   },
+  "rgap": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "This website provides genome sequence from the Nipponbare subspecies of rice and annotation of the 12 rice chromosomes. These data are available through search pages and the Genome Browser that provides an integrated display of annotation data.",
+    "example": "LOC_Os02g13300",
+    "homepage": "http://rice.plantbiology.msu.edu/",
+    "mappings": {
+      "prefixcommons": "rgap"
+    },
+    "name": "Rice Genome Annotation Project",
+    "preferred_prefix": "rgap",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "17145706",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=$1"
+  },
   "rgd": {
     "description": "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes.",
     "example": "7499841",
@@ -30061,6 +31117,23 @@
     ],
     "uri_format": "https://www.ribocentre.org/docs/$1"
   },
+  "ricecyc": {
+    "description": "RiceCyc is a catalog of known and/or predicted biochemical pathways from rice (Oryza sativa). Pathways and genes presented in this catalog are primarily based on the annotations carried out by Gramene database project",
+    "example": "PWY-1042",
+    "homepage": "http://www.gramene.org/pathway/ricecyc.html",
+    "mappings": {
+      "prefixcommons": "ricecyc"
+    },
+    "name": "Rice Metabolic Pathways",
+    "preferred_prefix": "ricecyc",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://pathway.gramene.org/RICE/NEW-IMAGE?type=PATHWAY&object=$1"
+  },
   "ricegap": {
     "description": "The objective of this project is to provide high quality annotation for the rice genome Oryza sativa spp japonica cv Nipponbare. All genes are annotated with functional annotation including expression data, gene ontologies, and tagged lines.",
     "example": "LOC_Os02g13300",
@@ -30157,6 +31230,23 @@
     "preferred_prefix": "rism",
     "uri_format": "https://rism.online/$1"
   },
+  "rna_sstrand": {
+    "description": "RNA STRAND contains known RNA secondary structures of any type and organism. The ultimate goal of this database is to incorporate a comprehensive collection of known RNA secondary structures, and to provide the scientific community with simple yet powerful ways of analysing, searching and updating the proposed database.",
+    "example": "CRW_00469",
+    "homepage": "http://www.rnasoft.ca/sstrand",
+    "mappings": {
+      "prefixcommons": "rna_sstrand"
+    },
+    "name": "RNA SSTRAND",
+    "preferred_prefix": "rna_sstrand",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.rnasoft.ca/sstrand/show_results.php?molecule_ID=$1"
+  },
   "rnacentral": {
     "description": "RNAcentral is a public resource that offers integrated access to a comprehensive and up-to-date set of non-coding RNA sequences provided by a collaborating group of Expert Databases.",
     "example": "URS0000759CF4",
@@ -30177,6 +31267,23 @@
       "LNCRNADB"
     ],
     "uri_format": "https://rnacentral.org/rna/$1"
+  },
+  "rnajunction": {
+    "description": "Within this database you will to able to find more than 12,000 extracted three-dimensional junction and kissing loop structures as well as detailed annotations for each.",
+    "example": "8668",
+    "homepage": "http://rnajunction.abcc.ncifcrf.gov",
+    "mappings": {
+      "prefixcommons": "rnajunction"
+    },
+    "name": "Database of RNA Junctions and Kissing loop Structures",
+    "preferred_prefix": "rnajunction",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://rnajunction.ncifcrf.gov/JunctionPage.php?jid=$1"
   },
   "rnaloops": {
     "contact": {
@@ -30379,6 +31486,37 @@
     ],
     "uri_format": "http://purl.obolibrary.org/obo/RO_$1",
     "version": "2022-05-23"
+  },
+  "roleo": {
+    "banana": "RoleO",
+    "banana_peel": "_",
+    "comment": "This resource doesn't exist on the web anymore",
+    "contact": {
+      "email": "yongqunh@med.umich.edu",
+      "github": null,
+      "name": "Oliver He",
+      "orcid": null
+    },
+    "deprecated": true,
+    "description": "The Role Ontology (RoleO) is a ontology in the domain of role classification. RoleO aims to standardize role classification and support computer-assisted reasoning. RoleO is a community-based ontology, and its development follows the OBO Foundry principles.",
+    "download_owl": "http://aber-owl.net/media/ontologies/ROLEO/1/roleo.owl",
+    "example": "0000002",
+    "homepage": "https://github.com/roleontology/roleo",
+    "mappings": {
+      "aberowl": "ROLEO",
+      "bioportal": "ROLEO",
+      "prefixcommons": "roleo"
+    },
+    "name": "Role Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "RoleO",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/RoleO_$1"
   },
   "ror": {
     "description": "ROR (Research Organization Registry) is a global, community-led registry\nof open persistent identifiers for research organizations. ROR is jointly\noperated by California Digital Library, Crossref, and Datacite.",
@@ -30611,6 +31749,23 @@
       "RXCUI"
     ],
     "uri_format": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1"
+  },
+  "s_mart_db": {
+    "description": "S/MARt DB collects information about scaffold/matrix attached regions and the nuclear matrix proteins that are supposed be involved in the interaction of these elements with the nuclear matrix.",
+    "example": "SM0000020",
+    "homepage": "http://smartdb.bioinf.med.uni-goettingen.de/",
+    "mappings": {
+      "prefixcommons": "s_mart_db"
+    },
+    "name": "The S/MAR transaction DataBase",
+    "preferred_prefix": "s_mart_db",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://smartdb.bioinf.med.uni-goettingen.de/cgi-bin/SMARtDB/getSMAR.cgi?$1"
   },
   "sabiork.compound": {
     "description": "SABIO-RK is a relational database system that contains information about biochemical reactions, their kinetic equations with their parameters, and the experimental conditions under which these parameters were measured. The compound data set provides information regarding the reactions in which a compound participates as substrate, product or modifier (e.g. inhibitor, cofactor), and links to further information.",
@@ -31070,6 +32225,25 @@
     "repository": "https://github.com/sparontologies/scoro",
     "uri_format": "http://purl.org/spar/scoro/$1"
   },
+  "scpd": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "Database containing promotor sequences found in Saccharomyces cerevisiae.",
+    "example": "CDC2",
+    "homepage": "http://rulai.cshl.edu/SCPD/",
+    "mappings": {
+      "prefixcommons": "scpd"
+    },
+    "name": "Saccharomyces cerevisiae promoter database",
+    "preferred_prefix": "scpd",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://rulai.cshl.edu/cgi-bin/SCPD/getgene2?$1"
+  },
   "scr": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -31102,6 +32276,23 @@
     "pattern": "^\\w+$",
     "preferred_prefix": "scretf",
     "uri_format": "http://stormo.wustl.edu/ScerTF/details/$1"
+  },
+  "sdap": {
+    "description": "SDAP is a Web server that integrates a database of allergenic proteins with various bioinformatics tools for performing structural studies related to allergens and characterization of their epitopes.",
+    "example": "610",
+    "homepage": "http://fermi.utmb.edu/SDAP",
+    "mappings": {
+      "prefixcommons": "sdap"
+    },
+    "name": "Structural Database of Allergenic Proteins",
+    "preferred_prefix": "sdap",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://fermi.utmb.edu/cgi-bin/SDAP/sdap_02?dB_Type=0&allid=$1"
   },
   "sdbs": {
     "description": "The Spectral Database for Organic Compounds (SDBS) is an integrated spectral database system for organic compounds. It provides access to 6 different types of spectra for each compound, including Mass spectrum (EI-MS), a Fourier transform infrared spectrum (FT-IR), and NMR spectra.",
@@ -31572,6 +32763,25 @@
     "name": "Shape Expression Vocabulary",
     "preferred_prefix": "shex",
     "uri_format": "http://www.w3.org/ns/shex#$1"
+  },
+  "shibase": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "The database focuses on the comparative genomics of Shigella and provides a way to summarize large volumes of genomic and comparison data in a visually intuitive format.",
+    "example": "SDY2614",
+    "homepage": "http://www.mgc.ac.cn/ShiBASE/",
+    "mappings": {
+      "prefixcommons": "shibase"
+    },
+    "name": "ShiBASE",
+    "preferred_prefix": "shibase",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.mgc.ac.cn/cgi-bin/ShiBASE/ShiBASE_query.cgi?synonym=$1"
   },
   "sibo": {
     "contact": {
@@ -32066,6 +33276,25 @@
     "provides": "dbsnp",
     "uri_format": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
   },
+  "snp500cancer": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "The goal of the SNP500Cancer project is to resequence 102 reference samples to find known or newly discovered single nucleotide polymorphisms (SNPs) which are of immediate importance to molecular epidemiology studies in cancer.",
+    "example": "TP53-47",
+    "homepage": "http://snp500cancer.nci.nih.gov",
+    "mappings": {
+      "prefixcommons": "snp500cancer"
+    },
+    "name": "SNP500Cancer",
+    "preferred_prefix": "snp500cancer",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://snp500cancer.nci.nih.gov/snp.cfm?both_snp_id=$1"
+  },
   "so": {
     "appears_in": [
       "pcl"
@@ -32178,6 +33407,25 @@
     "homepage": "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf",
     "name": "Span",
     "preferred_prefix": "span"
+  },
+  "spbase": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "SpBase, is designed to present the results of the genome sequencing project for the purple sea urchin. THe sequences and annotations emerging from this effort are organized in a database that provides the research community access to those data not normally presented through NCBI and other large databases.",
+    "example": "SPU_000001",
+    "homepage": "http://spbase.org",
+    "mappings": {
+      "prefixcommons": "spbase"
+    },
+    "name": "SpBase",
+    "preferred_prefix": "spbase",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.spbase.org/SpBase/search/viewAnnoGeneInfo.php?spu_id=$1"
   },
   "spd": {
     "contact": {
@@ -32309,6 +33557,25 @@
     "preferred_prefix": "splash",
     "uri_format": "http://mona.fiehnlab.ucdavis.edu/#/spectra/splash/$1"
   },
+  "splicenest": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "SpliceNest [1] is a web based graphical tool to explore gene structure, including alternative splicing, based on a mapping on the EST consensus sequences (contigs) from GeneNest [2] to the complete human genome.",
+    "example": "Hs635",
+    "homepage": "http://splicenest.molgen.mpg.de/",
+    "mappings": {
+      "prefixcommons": "splicenest"
+    },
+    "name": "SpliceNest",
+    "preferred_prefix": "splicenest",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://splicenest.molgen.mpg.de/cgi-bin/splicegraph.cgi?cluster=$1"
+  },
   "spp": {
     "description": "The Signaling Pathways Project is an integrated 'omics knowledgebase based upon public, manually curated transcriptomic and cistromic (ChIP-Seq) datasets involving genetic and small molecule manipulations of cellular receptors, enzymes and transcription factors. Our goal is to create a resource where scientists can routinely generate research hypotheses or validate bench data relevant to cellular signaling pathways.",
     "example": "10.1621/vwN2g2HaX3",
@@ -32398,6 +33665,25 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "ssbd.project",
     "uri_format": "https://ssbd.riken.jp/database/project/$1"
+  },
+  "sstoss": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "SSToSS is a database which provides sequence-structural templates of single member protein domain superfamilies like PASS2. Sequence-structural templates are recognized by considering the content and overlap of sequence similarity and structural parameters like, solvent inaccessibility, secondary structural content, hydrogen bonding and spatial packing of the residues among the protein of single member superfamilies.",
+    "example": "01.01.005",
+    "homepage": "http://caps.ncbs.res.in/SSTOSS/index.htm",
+    "mappings": {
+      "prefixcommons": "sstoss"
+    },
+    "name": "Sequence-Structural Templates of Single-member Superfamilies",
+    "preferred_prefix": "sstoss",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/SSTOSS/sstoss.cgi?code=$1"
   },
   "stap": {
     "description": "STAP (Statistical Torsional Angles Potentials) was developed since, according to several studies, some nuclear magnetic resonance (NMR) structures are of lower quality, are less reliable and less suitable for structural analysis than high-resolution X-ray crystallographic structures. The refined NMR solution structures (statistical torsion angle potentials; STAP) in the database are refined from the Protein Data Bank (PDB).",
@@ -33239,6 +34525,25 @@
     "preferred_prefix": "tcb",
     "uri_format": "https://www.pirbright.ac.uk/node/$1"
   },
+  "tccd": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "Cell Cycle Database is a collection of genes and proteins involved in human and yeast cell cycle",
+    "example": "TP53",
+    "homepage": "http://www.itb.cnr.it/cellcycle",
+    "mappings": {
+      "prefixcommons": "tccd"
+    },
+    "name": "The Cell Cycle DB",
+    "preferred_prefix": "tccd",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.itb.cnr.it/cellcycle/gene_rep.php?gene_name=$1"
+  },
   "tcdb": {
     "description": "The database details a comprehensive  IUBMB approved classification system for membrane transport proteins known as the Transporter Classification (TC) system. The TC system is analogous to the Enzyme Commission (EC) system for classification of enzymes, but incorporates phylogenetic information additionally.",
     "example": "5.A.1.1.1",
@@ -33679,6 +34984,23 @@
     "uri_format": "http://purl.obolibrary.org/obo/TRANS_$1",
     "version": "2020-08-04"
   },
+  "transportdb": {
+    "description": "TransportDB is a relational database describing the predicted cytoplasmic membrane transport protein complement for organisms whose complete genome sequence are available.",
+    "example": "MMP0523",
+    "homepage": "http://www.membranetransport.org",
+    "mappings": {
+      "prefixcommons": "transportdb"
+    },
+    "name": "TransportDB",
+    "preferred_prefix": "transportdb",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.membranetransport.org/protein.php?pOID=mmar1&pSynonym=$1"
+  },
   "transyt": {
     "description": "The Transport Systems Tracker (TranSyT) is a tool to identify transport systems and the compounds carried across membranes.",
     "example": "TR0000001",
@@ -33690,6 +35012,25 @@
     "pattern": "^T[A-Z]\\d{7}$",
     "preferred_prefix": "transyt",
     "uri_format": "https://transyt.bio.di.uminho.pt/reactions/$1"
+  },
+  "tred": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "Transcriptional Regulatory Element Database (TRED) has been built in response to increasing needs of an integrated repository for both cis- and trans- regulatory elements in mammals, and the lack of such resources at present.",
+    "example": "21552",
+    "homepage": "http://rulai.cshl.edu/TRED",
+    "mappings": {
+      "prefixcommons": "tred"
+    },
+    "name": "Transcriptional Regulatory Element Database",
+    "preferred_prefix": "tred",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://rulai.cshl.edu/cgi-bin/TRED/tred.cgi?process=geneInfo&gid=$1"
   },
   "treebase": {
     "description": "TreeBASE is a relational database designed to manage and explore information on phylogenetic relationships. It includes phylogenetic trees and data matrices, together with information about the relevant publication, taxa, morphological and sequence-based characters, and published analyses. Data in TreeBASE are exposed to the public if they are used in a publication that is in press or published in a peer-reviewed scientific journal, etc.",
@@ -33756,6 +35097,25 @@
     "pattern": "^\\w+(\\.)?\\w+(\\.)?\\w+$",
     "preferred_prefix": "tritrypdb",
     "uri_format": "http://tritrypdb.org/tritrypdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1"
+  },
+  "trnadbce": {
+    "comment": "requires authentication to access",
+    "description": "The tRNA Gene DataBase Curated by Experts \"tRNADB-CE\" was constructed by analyzing 927 complete and 1301 draft genomes of Bacteria and Archaea, 171 complete virus genomes, 121 complete chloroplast genomes, 12 complete eukaryote (Plant and Fungi) genomes and approximately 230 million DNA sequence entries that originated from environmental metagenomic clones.",
+    "example": "265912",
+    "homepage": "http://trna.nagahama-i-bio.ac.jp",
+    "mappings": {
+      "prefixcommons": "trnadbce"
+    },
+    "name": "tRNA Gene Database",
+    "preferred_prefix": "trnadbce",
+    "proprietary": true,
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://trna.nagahama-i-bio.ac.jp/cgi-bin/trnadb/whole_detail.cgi?SID=$1"
   },
   "ttd.drug": {
     "description": "The Therapeutic Target Database (TTD) is designed to provide information about the known therapeutic protein and nucleic acid targets described in the literature, the targeted disease conditions, the pathway information and the corresponding drugs/ligands directed at each of these targets. Cross-links to other databases allow the access to information about the sequence, 3D structure, function, nomenclature, drug/ligand binding properties, drug usage and effects, and related literature for each target.",
@@ -35456,6 +36816,24 @@
     "preferred_prefix": "viralzone",
     "uri_format": "http://viralzone.expasy.org/all_by_protein/$1"
   },
+  "virmirdb": {
+    "description": "A database containing predicted viral miRNA candidate hairpins.",
+    "example": "11002",
+    "homepage": "http://alk.ibms.sinica.edu.tw",
+    "mappings": {
+      "prefixcommons": "virmirdb"
+    },
+    "name": "Vir-Mir db",
+    "preferred_prefix": "virmirdb",
+    "provides": "ncbitaxon",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://alk.ibms.sinica.edu.tw/cgi-bin/miRNA/virus.cgi?tax_id=$1"
+  },
   "virsirna": {
     "description": "The VIRsiRNA database contains details of siRNA/shRNA which target viral genome regions. It provides efficacy information where available, as well as the siRNA sequence, viral target and subtype, as well as the target genomic region.",
     "example": "virsi1909",
@@ -35469,6 +36847,33 @@
     "pattern": "^virsi\\d+$",
     "preferred_prefix": "virsirna",
     "uri_format": "http://crdd.osdd.net/servers/virsirnadb/record.php?details=$1"
+  },
+  "virushostdb": {
+    "description": "Virus-Host DB organizes data about the relationships between viruses and their hosts, represented in the form of pairs of NCBI taxonomy IDs for viruses and their hosts.  Virus-Host DB covers viruses with complete genomes stored in 1) NCBI/RefSeq and 2) GenBank whose accession numbers are listed in EBI Genomes. The host information is collected from RefSeq, GenBank (in free text format), UniProt, ViralZone, and manually curated with additional information obtained by literature surveys.",
+    "example": "438782",
+    "homepage": "https://www.genome.jp/virushostdb/",
+    "mappings": {
+      "prefixcommons": "virushostdb"
+    },
+    "name": "Virus-HostDB",
+    "preferred_prefix": "virushostdb",
+    "provides": "ncbitaxon",
+    "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "26938550",
+        "title": null,
+        "year": null
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.genome.jp/virushostdb/$1"
   },
   "vmc": {
     "deprecated": true,
@@ -35605,6 +37010,7 @@
     "description": "Vertebrate skeletal anatomy ontology.",
     "download_obo": "http://aber-owl.net/media/ontologies/VSAO/20/vsao.obo",
     "download_owl": "http://purl.obolibrary.org/obo/vsao.owl",
+    "example": "VSAO_0000183",
     "homepage": "https://www.nescent.org/phenoscape/Main_Page",
     "mappings": {
       "aberowl": "VSAO",
@@ -36196,6 +37602,26 @@
     "preferred_prefix": "worfdb",
     "uri_format": "http://worfdb.dfci.harvard.edu/index.php?search_type=name&page=showresultrc&race_query=$1"
   },
+  "world2dpage": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "A public repository, standards compliant, for proteomics image data published in the literature. This repository currently contains data from 16 published articles, putting together 22 reference maps for 15 species, totalizing nearly 4'400 identified spots.",
+    "example": "0020",
+    "homepage": "http://world-2dpage.expasy.org/repository/",
+    "mappings": {
+      "prefixcommons": "world2dpage",
+      "uniprot": "DB-0121"
+    },
+    "name": "The World-2DPAGE database",
+    "preferred_prefix": "world2dpage",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://world-2dpage.expasy.org/repository/$1"
+  },
   "wormbase": {
     "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
     "example": "WBGene00000001",
@@ -36658,6 +38084,23 @@
     "preferred_prefix": "yeastintron",
     "uri_format": "http://intron.ucsc.edu/cgi-bin/yeast4.3/intronreports.pl?outputformat=full&amp;orfName=$1"
   },
+  "yeastract": {
+    "description": "YEASTRACT (Yeast Search for Transcriptional Regulators And Consensus Tracking) is a curated repository of more than 48333 regulatory associations between transcription factors (TF) and target genes in Saccharomyces cerevisiae, based on more than 1200 bibliographic references.",
+    "example": "YBR125c",
+    "homepage": "http://www.yeastract.com",
+    "mappings": {
+      "prefixcommons": "yeastract"
+    },
+    "name": "Yeast Searching for Transcriptional Regulators and Consensus Tracking",
+    "preferred_prefix": "yeastract",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.yeastract.com/view.php?existing=locus&orfname=$1"
+  },
   "yetfasco": {
     "description": "The Yeast Transcription Factor Specificity Compendium (YeTFasCO) is a database of transcription factor specificities for the yeast Saccharomyces cerevisiae in Position Frequency Matrix (PFM) or Position Weight Matrix (PWM) formats.",
     "example": "YOR172W_571.0",
@@ -36671,6 +38114,26 @@
     "pattern": "^\\w+\\_\\d+(\\.\\d+)?$",
     "preferred_prefix": "yetfasco",
     "uri_format": "http://yetfasco.ccbr.utoronto.ca/showPFM.php?mot=$1"
+  },
+  "ygob": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
+    "description": "YGOB is an online tool for visualising the syntenic context of any gene from several yeast genomes.",
+    "example": "ADH1",
+    "homepage": "http://wolfe.gen.tcd.ie/ygob",
+    "mappings": {
+      "prefixcommons": "ygob"
+    },
+    "name": "Yeast Genome Order Browser",
+    "preferred_prefix": "ygob",
+    "provides": "hgnc.symbol",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://wolfe.gen.tcd.ie/cgi/browser/ygob.pl?gene=$1"
   },
   "yid": {
     "description": "The YEast Intron Database (version 3) contains information on the spliceosomal introns of the yeast Saccharomyces cerevisiae. It includes expression data that relates to the efficiency of splicing relative to other processes in strains of yeast lacking nonessential splicing factors.  The data are displayed on each intron page. An updated version of the database is available through [MIR:00000521].",
@@ -36745,7 +38208,9 @@
       "orcid": "0000-0002-9316-2919"
     },
     "deprecated": true,
+    "description": "Maize gross anatomy",
     "download_obo": "http://aber-owl.net/media/ontologies/ZEA/2/zea.obo",
+    "example": "ZEA_0015177",
     "homepage": "http://www.maizemap.org/",
     "mappings": {
       "aberowl": "ZEA",

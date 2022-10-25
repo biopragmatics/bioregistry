@@ -203,7 +203,14 @@
     }
   },
   "aaindex": {
+    "edam": {
+      "description": "Identifier of an entry from the AAindex database.",
+      "name": "AAindex",
+      "obsolete": false,
+      "prefix": "1128"
+    },
     "mappings": {
+      "edam": "1128",
       "prefixcommons": "aaindex"
     },
     "prefixcommons": {
@@ -623,7 +630,7 @@
   "ado": {
     "aberowl": {
       "description": "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining.",
-      "download_owl": "http://aber-owl.net/media/ontologies/ADO/4/ado.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/ADO/5/ado.owl",
       "homepage": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
       "name": "Alzheimer's Disease Ontology",
       "prefix": "ADO"
@@ -3453,7 +3460,14 @@
   "astd": {
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
+    "edam": {
+      "description": "Identifier of an object from the ASTD database.",
+      "name": "ASTD",
+      "obsolete": false,
+      "prefix": "2367"
+    },
     "mappings": {
+      "edam": "2367",
       "prefixcommons": "astd"
     },
     "prefixcommons": {
@@ -10399,7 +10413,7 @@
   "chebi": {
     "aberowl": {
       "description": "A structured classification of molecular entities of biological interest focusing on 'small' chemical compounds.",
-      "download_owl": "http://aber-owl.net/media/ontologies/CHEBI/174/chebi.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/CHEBI/175/chebi.owl",
       "homepage": "http://www.ebi.ac.uk/chebi",
       "name": "Chemical Entities of Biological Interest",
       "prefix": "CHEBI"
@@ -10690,9 +10704,23 @@
     }
   },
   "chembank": {
+    "biocontext": {
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "CHEMBANK",
+      "uri_format": "http://identifiers.org/chembank/$1"
+    },
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ChemBank",
+      "uri_format": "http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1"
+    },
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
     "mappings": {
+      "biocontext": "CHEMBANK",
+      "biolink": "ChemBank",
       "prefixcommons": "chembank"
     },
     "prefixcommons": {
@@ -20721,7 +20749,7 @@
   "dpo": {
     "aberowl": {
       "description": "An ontology of commonly encountered and/or high level Drosophila phenotypes.",
-      "download_owl": "http://aber-owl.net/media/ontologies/DPO/22/dpo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/DPO/23/dpo.owl",
       "homepage": "http://purl.obolibrary.org/obo/fbcv",
       "name": "Drosophila Phenotype Ontology",
       "prefix": "DPO"
@@ -20988,7 +21016,7 @@
   "dron": {
     "aberowl": {
       "description": "An ontology to support comparative effectiveness researchers studying claims data.",
-      "download_owl": "http://aber-owl.net/media/ontologies/DRON/17/dron.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/DRON/18/dron.owl",
       "homepage": "https://github.com/ufbmi/dron",
       "name": "The Drug Ontology",
       "prefix": "DRON"
@@ -26896,7 +26924,7 @@
   "fbbt": {
     "aberowl": {
       "description": "An ontology representing the gross anatomy of Drosophila melanogaster.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBBT/30/fbbt.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FBBT/31/fbbt.owl",
       "homepage": "http://purl.obolibrary.org/obo/fbbt",
       "name": "Drosophila gross anatomy",
       "prefix": "FBBT"
@@ -27079,7 +27107,7 @@
   "fbcv": {
     "aberowl": {
       "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBCV/23/fbcv.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FBCV/24/fbcv.owl",
       "homepage": "http://purl.obolibrary.org/obo/fbcv",
       "name": "FlyBase Controlled Vocabulary",
       "prefix": "FBCV"
@@ -27198,7 +27226,7 @@
   "fbdv": {
     "aberowl": {
       "description": "A structured controlled vocabulary of the development of Drosophila melanogaster.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBDV/25/fbdv.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FBDV/26/fbdv.owl",
       "homepage": "http://purl.obolibrary.org/obo/fbdv",
       "name": "Drosophila development",
       "prefix": "FBDV"
@@ -27487,7 +27515,7 @@
   "fideo": {
     "aberowl": {
       "description": "Food-Drug interactions automatically extracted from scientific literature",
-      "download_owl": "http://aber-owl.net/media/ontologies/FIDEO/3/fideo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FIDEO/4/fideo.owl",
       "homepage": "https://gitub.u-bordeaux.fr/erias/fideo",
       "name": "Food Interactions with Drugs Evidence Ontology",
       "prefix": "FIDEO"
@@ -28616,7 +28644,7 @@
   "foodon": {
     "aberowl": {
       "description": "A broadly scoped ontology representing entities which bear a “food role”. It encompasses materials in natural ecosystems and agriculture that are consumed by humans and domesticated animals. This includes any generic (unbranded) raw or processed food material found in processing plants, markets, stores or food distribution points. FoodOn also imports nutritional component and dietary pattern terms from other OBO Foundry ontologies to support interoperability in diet and nutrition research",
-      "download_owl": "http://aber-owl.net/media/ontologies/FOODON/68/foodon.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FOODON/69/foodon.owl",
       "homepage": "https://foodon.org/",
       "name": "Food Ontology",
       "prefix": "FOODON"
@@ -39863,7 +39891,8 @@
   },
   "innatedb": {
     "mappings": {
-      "prefixcommons": "innatedb"
+      "prefixcommons": "innatedb",
+      "re3data": "r3d100010676"
     },
     "prefixcommons": {
       "description": "InnateDB is a publicly available database of the genes, proteins, experimentally-verified interactions and signaling pathways involved in the innate immune response of humans and mice to microbial infection. The database covers the innate immunity interactome by integrating known interactions and pathways from major public databases.",
@@ -39882,6 +39911,20 @@
         "innatedb allergy"
       ],
       "uri_format": "http://www.innatedb.ca/getGeneCard.do?id=$1"
+    },
+    "re3data": {
+      "description": "InnateDB is a publicly available database of the genes, proteins, experimentally-verified interactions and signaling pathways involved in the innate immune response of humans, mice and bovines to microbial infection. The database captures an improved coverage of the innate immunity interactome by integrating known interactions and pathways from major public databases together with manually-curated data into a centralised resource. The database can be mined as a knowledgebase or used with our integrated bioinformatics and visualization tools for the systems level analysis of the innate immune response.",
+      "homepage": "https://www.innatedb.com/",
+      "name": "InnateDB",
+      "prefix": "r3d100010676",
+      "synonyms": [
+        "A Knowlede Resource for Innate Immunity Interactions & Pathways"
+      ],
+      "xrefs": {
+        "fairsharing": "FAIRsharing.rb2drw",
+        "nif": "0000-20808",
+        "scr": "006714"
+      }
     },
     "reviewer": {
       "email": "cthoyt@gmail.com",
@@ -44188,7 +44231,7 @@
       "homepage": "https://www.animalgenome.org/bioinfo/projects/lpt/",
       "name": "Livestock Product Trait Ontology",
       "prefix": "LPT",
-      "version": "3.3"
+      "version": "4.1"
     },
     "contact": {
       "email": "caripark@iastate.edu",
@@ -48987,7 +49030,7 @@
       "name": "Measurement Method Ontology",
       "prefix": "MMO",
       "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "2.90"
+      "version": "2.91"
     },
     "example": "0000574",
     "fairsharing": {
@@ -50130,6 +50173,25 @@
     }
   },
   "mosaic": {
+    "aberowl": {
+      "description": "Ontology to support Semantic Annotation of MOSAiC datasets housed in the Arctic Data Center (https://arcticdata.io).",
+      "download_owl": "http://aber-owl.net/media/ontologies/MOSAIC/4/mosaic.owl",
+      "homepage": "https://github.com/DataONEorg/sem-prov-ontologies",
+      "name": "The MOSAiC Ontology",
+      "prefix": "MOSAIC",
+      "version": "Version 1.0.1"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "mecum@nceas.ucsb.edu",
+        "name": "Bryce Mecum"
+      },
+      "description": "Ontology to support Semantic Annotation of MOSAiC datasets housed in the Arctic Data Center (https://arcticdata.io).",
+      "homepage": "https://github.com/DataONEorg/sem-prov-ontologies",
+      "name": "The MOSAiC Ontology",
+      "prefix": "MOSAIC",
+      "version": "Version 1.0.1"
+    },
     "contact": {
       "email": "brycemecum@gmail.com",
       "github": "amoeba",
@@ -50149,6 +50211,7 @@
     "homepage": "https://ontologies.dataone.org/MOSAiC.html",
     "license": "CC BY 4.0",
     "mappings": {
+      "aberowl": "MOSAIC",
       "bioportal": "MOSAIC"
     },
     "name": "MOSAiC Ontology",
@@ -50165,7 +50228,7 @@
   "mp": {
     "aberowl": {
       "description": "Standard terms for annotating mammalian phenotypic data.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MP/86/mp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MP/87/mp.owl",
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "Mammalian Phenotype Ontology",
       "prefix": "MP"
@@ -50185,7 +50248,7 @@
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "Mammalian Phenotype Ontology",
       "prefix": "MP",
-      "version": "2022-10-11"
+      "version": "2022-10-19"
     },
     "fairsharing": {
       "abbreviation": "MP",
@@ -50616,7 +50679,7 @@
   "mro": {
     "aberowl": {
       "description": "An ontology for Major Histocompatibility Complex (MHC) restriction in experiments",
-      "download_owl": "http://aber-owl.net/media/ontologies/MRO/47/mro.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MRO/48/mro.owl",
       "homepage": "https://github.com/IEDB/MRO",
       "name": "MHC Restriction Ontology",
       "prefix": "MRO"
@@ -54739,7 +54802,14 @@
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
     "mappings": {
+      "ncbi": "NMPDR",
       "prefixcommons": "nmpdr"
+    },
+    "ncbi": {
+      "example": "fig|306254.1.peg.183",
+      "homepage": "http://www.nmpdr.org",
+      "name": "National Microbial Pathogen Data Resource",
+      "prefix": "NMPDR"
     },
     "prefixcommons": {
       "description": "The NMPDR provided curated annotations in an environment for comparative analysis of genomes and biological subsystems, with an emphasis on the food-borne pathogens Campylobacter, Listeria, Staphylococcus, Streptococcus, and Vibrio; as well as the STD pathogens Chlamydiaceae, Haemophilus, Mycoplasma, Neisseria, Treponema, and Ureaplasma.",
@@ -56735,8 +56805,8 @@
   },
   "ohd": {
     "aberowl": {
-      "description": "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records.",
-      "download_owl": "http://aber-owl.net/media/ontologies/OHD/2/ohd.owl",
+      "description": "The Oral Health and Disease Ontology is used for representing the diagnosis and treatment of dental maladies.",
+      "download_owl": "http://aber-owl.net/media/ontologies/OHD/3/ohd.owl",
       "homepage": "https://purl.obolibrary.org/obo/ohd/home",
       "name": "Oral Health and Disease Ontology",
       "prefix": "OHD"
@@ -57935,7 +58005,7 @@
   "omp": {
     "aberowl": {
       "description": "An ontology of phenotypes covering microbes",
-      "download_owl": "http://aber-owl.net/media/ontologies/OMP/52/omp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/OMP/53/omp.owl",
       "homepage": "http://microbialphenotypes.org",
       "name": "Ontology of Microbial Phenotypes",
       "prefix": "OMP"
@@ -60107,7 +60177,8 @@
   },
   "pandit": {
     "mappings": {
-      "prefixcommons": "pandit"
+      "prefixcommons": "pandit",
+      "re3data": "r3d100011232"
     },
     "prefixcommons": {
       "description": "PANDIT is a collection of multiple sequence alignments and phylogenetic trees covering many common protein domains.",
@@ -60124,6 +60195,19 @@
       "uri_format": "http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=$1"
     },
     "provides": "pfam",
+    "re3data": {
+      "description": ">>>!!!<<<Efforts to obtain renewed funding after 2008 were unfortunately not successful.  PANDIT has therefore been frozen since November 2008, and its data are not updated since September 2005 when version 17.0 was released (corresponding to Pfam 17.0).  The existing data and website remain available from these pages, and should remain stable and, we hope, useful. >>>!!!<<< PANDIT is a collection of multiple sequence alignments and phylogenetic trees. It contains corresponding amino acid and nucleotide sequence alignments, with trees inferred from each alignment. PANDIT is based on the Pfam database (Protein families database of alignments and HMMs), and includes the seed amino acid alignments of most families in the Pfam-A database. DNA sequences for as many members of each family as possible are extracted from the EMBL Nucleotide Sequence Database and aligned according to the amino acid alignment. PANDIT also contains a further copy of the amino acid alignments, restricted to the sequences for which DNA sequences were found.",
+      "homepage": "https://www.ebi.ac.uk/research/goldman/software/pandit",
+      "name": "PANDIT",
+      "prefix": "r3d100011232",
+      "synonyms": [
+        "Protein and Associated Nucleotide Domains with Inferred Trees"
+      ],
+      "xrefs": {
+        "nif": "0000-03241",
+        "scr": "003321"
+      }
+    },
     "reviewer": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -61061,7 +61145,7 @@
   "pcl": {
     "aberowl": {
       "description": "Cell types that are provisionally defined by experimental techniques such as single cell or single nucleus transcriptomics rather than a straightforward & coherent set of properties.",
-      "download_owl": "http://aber-owl.net/media/ontologies/PCL/19/pcl.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/PCL/20/pcl.owl",
       "homepage": "https://github.com/obophenotype/provisional_cell_ontology",
       "name": "Provisional Cell Ontology",
       "prefix": "PCL"
@@ -61623,7 +61707,8 @@
   },
   "pdbsum": {
     "mappings": {
-      "prefixcommons": "pdbsum"
+      "prefixcommons": "pdbsum",
+      "uniprot": "DB-0119"
     },
     "prefixcommons": {
       "description": "PDBsum provides an at-a-glance overview of every macromolecular structure deposited in the Protein Data Bank (PDB), giving schematic diagrams of the molecules in each structure and of the interactions between them.",
@@ -61645,6 +61730,20 @@
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
+    },
+    "uniprot": {
+      "abbreviation": "PDBsum",
+      "category": "3D structure databases",
+      "homepage": "https://www.ebi.ac.uk/pdbsum/",
+      "name": "PDBsum; at-a-glance overview of macromolecular structures",
+      "prefix": "DB-0119",
+      "publications": [
+        {
+          "doi": "10.1002/pro.3289",
+          "pubmed": "28875543"
+        }
+      ],
+      "uri_format": "https://www.ebi.ac.uk/pdbsum/$1"
     }
   },
   "pdc.study": {
@@ -67754,7 +67853,7 @@
       "name": "Pathway Ontology",
       "prefix": "PW",
       "publication": "http://rgd.mcw.edu/wg/home/pathway2/molecular-pathways/#pwrpubs",
-      "version": "7.63"
+      "version": "7.64"
     },
     "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo",
     "example": "0000423",
@@ -68214,32 +68313,6 @@
     "uri_format": "https://radlex.org/RID/$1",
     "version": "4.1"
   },
-  "rapdb": {
-    "comment": "This resource doesn't exist on the web anymore",
-    "deprecated": true,
-    "mappings": {
-      "prefixcommons": "rapdb"
-    },
-    "prefixcommons": {
-      "description": "The Rice Annotation Project (RAP) was conceptualized upon the completion of the rice genome sequencing in 2004 with the aim of providing the scientific community with an accurate and timely annotation of the rice genome sequence.",
-      "example": "Os01g0102600",
-      "homepage": "http://rapdb.dna.affrc.go.jp/",
-      "keywords": [
-        "genome",
-        "DNA"
-      ],
-      "name": "The Rice Annotation Project Database",
-      "pattern": "^[A-Z,0-9]+$",
-      "prefix": "rapdb",
-      "uri_format": "http://rapdb.dna.affrc.go.jp/viewer/gbrowse_details/build5?name=[$1"
-    },
-    "reviewer": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    }
-  },
   "rapdb.locus": {
     "mappings": {
       "miriam": "rapdb.locus"
@@ -68262,7 +68335,10 @@
   },
   "rapdb.transcript": {
     "mappings": {
-      "miriam": "rapdb.transcript"
+      "go": "RAP-DB",
+      "miriam": "rapdb.transcript",
+      "ncbi": "RAP-DB",
+      "prefixcommons": "rapdb"
     },
     "miriam": {
       "deprecated": false,
@@ -68281,7 +68357,13 @@
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
     "mappings": {
+      "ncbi": "RATMAP",
       "prefixcommons": "ratmap"
+    },
+    "ncbi": {
+      "example": "5",
+      "name": "Rat Genome Database",
+      "prefix": "RATMAP"
     },
     "prefixcommons": {
       "description": "The Rat Genome Database RatMap is focused on presenting rat genes, DNA-markers, QTL:s etc that is localized to chromosome. The database is dedicated to rat gene nomenclature and should be consulted for queries in such matters",
@@ -68356,7 +68438,7 @@
   "rbo": {
     "aberowl": {
       "description": "RBO is an ontology for the effects of radiation on biota in terrestrial and space environments.",
-      "download_owl": "http://aber-owl.net/media/ontologies/RBO/19/rbo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/RBO/20/rbo.owl",
       "homepage": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
       "name": "Radiation Biology Ontology",
       "prefix": "RBO"
@@ -70754,12 +70836,33 @@
     }
   },
   "roleo": {
+    "aberowl": {
+      "description": "The Role Ontology (RoleO) is a ontology in the domain of role classification. RoleO aims to standardize role classification and support computer-assisted reasoning. RoleO is a community-based ontology, and its development follows the OBO Foundry principles.",
+      "download_owl": "http://aber-owl.net/media/ontologies/ROLEO/1/roleo.owl",
+      "homepage": "http://sourceforge.net/projects/roleo",
+      "name": "Role Ontology",
+      "prefix": "ROLEO",
+      "version": "Vision Release; 1.0.11"
+    },
     "banana": "RoleO",
     "banana_peel": "_",
+    "bioportal": {
+      "contact": {
+        "email": "yongqunh@med.umich.edu",
+        "name": "Oliver He"
+      },
+      "description": "The Role Ontology (RoleO) is an ontology in the domain of role classification. RoleO aims to standardize role classification and support computer-assisted reasoning. RoleO development follows the OBO Foundry principles. RoleO has represented all the occupations defined in the Standard Occupational Classification (SOC) System from the USA Bureau of Labor Statistics.",
+      "homepage": "https://github.com/roleontology/roleo",
+      "name": "Role Ontology",
+      "prefix": "ROLEO",
+      "version": "Vision Release: 1.0.16"
+    },
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
     "example": "0000002",
     "mappings": {
+      "aberowl": "ROLEO",
+      "bioportal": "ROLEO",
       "prefixcommons": "roleo"
     },
     "pattern": "^\\d{7}$",
@@ -70964,7 +71067,7 @@
       "name": "Rat Strain Ontology",
       "prefix": "RS",
       "publication": "http://www.ncbi.nlm.nih.gov/pubmed/23603846",
-      "version": "6.176"
+      "version": "6.177"
     },
     "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/rat_strain/rat_strain.obo",
     "download_owl": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/rat_strain/rat_strain.owl",
@@ -76481,7 +76584,7 @@
   "swo": {
     "aberowl": {
       "description": "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SWO/30/swo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SWO/31/swo.owl",
       "homepage": "https://github.com/allysonlister/swo",
       "name": "Software ontology",
       "prefix": "SWO"
@@ -76640,7 +76743,7 @@
   "symp": {
     "aberowl": {
       "description": "An ontology of disease symptoms, with symptoms encompasing perceived changes in function, sensations or appearance reported by a patient indicative of a disease.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SYMP/38/symp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SYMP/39/symp.owl",
       "homepage": "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page",
       "name": "Symptom Ontology",
       "prefix": "SYMP"
@@ -78436,7 +78539,7 @@
   "trans": {
     "aberowl": {
       "description": "An ontology representing the disease transmission process during which the pathogen is transmitted directly or indirectly from its natural reservoir, a susceptible host or source to a new host.",
-      "download_owl": "http://aber-owl.net/media/ontologies/TRANS/4/trans.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/TRANS/5/trans.owl",
       "homepage": "https://github.com/DiseaseOntology/PathogenTransmissionOntology",
       "name": "Pathogen Transmission Ontology",
       "prefix": "TRANS"
@@ -81090,7 +81193,7 @@
   "uo": {
     "aberowl": {
       "description": "Metrical units for use in conjunction with PATO",
-      "download_owl": "http://aber-owl.net/media/ontologies/UO/57/uo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/UO/58/uo.owl",
       "homepage": "https://github.com/bio-ontology-research-group/unit-ontology",
       "name": "Units of measurement ontology",
       "prefix": "UO"
@@ -83650,7 +83753,7 @@
   "wbls": {
     "aberowl": {
       "description": "A structured controlled vocabulary of the development of <i>Caenorhabditis elegans</i>.",
-      "download_owl": "http://aber-owl.net/media/ontologies/WBLS/24/wbls.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/WBLS/25/wbls.owl",
       "homepage": "https://github.com/obophenotype/c-elegans-development-ontology",
       "name": "C. elegans development ontology",
       "prefix": "WBLS"
@@ -83783,7 +83886,7 @@
   "wbphenotype": {
     "aberowl": {
       "description": "A structured controlled vocabulary of <i>Caenorhabditis elegans</i> phenotypes",
-      "download_owl": "http://aber-owl.net/media/ontologies/WBPHENOTYPE/68/wbphenotype.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/WBPHENOTYPE/69/wbphenotype.owl",
       "homepage": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
       "name": "C. elegans phenotype",
       "prefix": "WBPHENOTYPE"
@@ -84423,7 +84526,8 @@
     "comment": "This resource doesn't exist on the web anymore",
     "deprecated": true,
     "mappings": {
-      "prefixcommons": "world2dpage"
+      "prefixcommons": "world2dpage",
+      "uniprot": "DB-0121"
     },
     "prefixcommons": {
       "description": "A public repository, standards compliant, for proteomics image data published in the literature. This repository currently contains data from 16 published articles, putting together 22 reference maps for 15 species, totalizing nearly 4'400 identified spots.",
@@ -84444,6 +84548,20 @@
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
+    },
+    "uniprot": {
+      "abbreviation": "World-2DPAGE",
+      "category": "2D gel databases",
+      "homepage": "https://world-2dpage.expasy.org/repository/",
+      "name": "The World-2DPAGE database",
+      "prefix": "DB-0121",
+      "publications": [
+        {
+          "doi": "10.1016/j.jprot.2008.02.005",
+          "pubmed": "18617148"
+        }
+      ],
+      "uri_format": "https://world-2dpage.expasy.org/repository/$1"
     }
   },
   "wormbase": {
@@ -84899,7 +85017,7 @@
       "name": "Experimental Conditions Ontology",
       "prefix": "XCO",
       "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "4.117"
+      "version": "4.118"
     },
     "example": "0000780",
     "fairsharing": {
