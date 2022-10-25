@@ -84,12 +84,11 @@ whose memberships and duties are described in the
 
 ### 🫀 Health Report
 
-[![Health Report](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml)
-
 The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
-it checks that the homepages are still available and that each provider URL is still able to resolve. The
-tests fail if even a single metadata is out of place, so don't be frightened that this badge is almost always
-red.
+it checks that the homepages are still available and that each provider URL is still able to resolve.
+
+It has a dedicated [dashboard](https://biopragmatics.github.io/bioregistry/health) that is not part of the main
+Bioregistry site.
 
 ### ♻️ Update
 

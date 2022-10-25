@@ -9,14 +9,15 @@ from collections import defaultdict
 from textwrap import dedent
 from typing import Mapping
 
+import curies
+
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
-from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, extended_encoder
 
@@ -559,6 +560,69 @@ class TestRegistry(unittest.TestCase):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
+    def test_records(self):
+        """Test generating records."""
+        records: Mapping[str, curies.Record] = {
+            record.prefix: record
+            for record in bioregistry.manager.get_curies_records(include_prefixes=True)
+        }
+
+        # This is a "provides" situation
+        self.assertNotIn("ctd.gene", set(records))
+        self.assertIn("ncbigene", set(records))
+        ncbigene_record = records["ncbigene"]
+        self.assertIsInstance(ncbigene_record, curies.Record)
+        self.assertEqual("ncbigene", ncbigene_record.prefix)
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/gene/", ncbigene_record.uri_prefix)
+        self.assertIn("EGID", ncbigene_record.prefix_synonyms)
+        self.assertIn("entrez", ncbigene_record.prefix_synonyms)
+        self.assertIn("https://bioregistry.io/ncbigene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("http://identifiers.org/ncbigene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn(
+            "https://scholia.toolforge.org/ncbi-gene/", ncbigene_record.uri_prefix_synonyms
+        )
+
+        # Test that all of the CTD gene stuff is rolled into NCBIGene because CTD gene provides for NCBI gene
+        self.assertIn("ctd.gene", ncbigene_record.prefix_synonyms)
+        self.assertIn("ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("http://identifiers.org/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("https://bioregistry.io/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn(
+            "https://ctdbase.org/detail.go?type=gene&acc=", ncbigene_record.uri_prefix_synonyms
+        )
+
+        # This is a "canonical" situation
+        self.assertIn("ena.embl", set(records))
+        record = records["ena.embl"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("ena.embl", record.prefix)
+        self.assertEqual("ena.embl", record.prefix)
+        self.assertIn("bioproject", record.prefix_synonyms)
+        self.assertIn("ena.embl:", record.uri_prefix_synonyms)
+        self.assertIn("bioproject:", record.uri_prefix_synonyms)
+
+        # part of but different stuff
+        self.assertNotIn("biogrid.interaction", records["biogrid"].prefix_synonyms)
+
+        self.assertIn("biogrid.interaction", set(records))
+        record = records["biogrid.interaction"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("biogrid.interaction", record.prefix)
+        self.assertEqual("https://thebiogrid.org/interaction/", record.uri_prefix)
+
+        # part of but same URIs
+        self.assertIn("kegg", set(records))
+        record = records["kegg"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("kegg", record.prefix)
+        self.assertIn("kegg.module", record.prefix_synonyms)
+        self.assertEqual("http://www.kegg.jp/entry/", record.uri_prefix)
+        self.assertIn("kegg:", record.uri_prefix_synonyms)
+        self.assertIn("kegg.module:", record.uri_prefix_synonyms)
+
+        # Make sure sure primary URI prefix gets upgraded properly from vz -> canonical for -> viralzone
+        self.assertIn("http://viralzone.expasy.org/", records["viralzone"].uri_prefix_synonyms)
+
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""
         priorities = [
@@ -608,7 +672,7 @@ class TestRegistry(unittest.TestCase):
             if pp is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(prefix.replace(".", ""), _norm(pp))
+                self.assertEqual(prefix.replace(".", "").replace("_", ""), _norm(pp))
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
@@ -669,6 +733,12 @@ class TestRegistry(unittest.TestCase):
         for key, values in REVERSE_LICENSES.items():
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
+
+        for prefix, resource in self.registry.items():
+            if resource.license is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(standardize_license(resource.license), resource.license)
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -815,7 +885,12 @@ class TestRegistry(unittest.TestCase):
                         self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
-                        self.assertIsNotNone(publication.title)
+                        self.assertIsNotNone(
+                            publication.title,
+                            msg="Manually curated publication is missing a title. Please run the "
+                            "publication clean-up script `python -m bioregistry.curation.clean_publications` "
+                            "to automatically retrieve the title.",
+                        )
                         self.assertLessEqual(
                             1,
                             sum(
@@ -834,15 +909,36 @@ class TestRegistry(unittest.TestCase):
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
                         for key, value in publication.dict().items():
-                            if key == "title" or value is None:
+                            if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)
                     for citation_prefix, citation_identifier_dict in index.items():
-                        if citation_prefix == "year":
-                            continue
                         for citation_identifier, values in citation_identifier_dict.items():
                             self.assertEqual(
                                 1,
                                 len(values),
                                 msg=f"[{prefix}] duplication on {citation_prefix}:{citation_identifier}",
                             )
+
+    def test_mapping_patterns(self):
+        """Test mappings correspond to valid identifiers."""
+        k = {}
+        for metaprefix, registry in self.metaregistry.items():
+            if registry.bioregistry_prefix:
+                resource = self.registry[registry.bioregistry_prefix]
+            elif registry.prefix in self.registry:
+                resource = self.registry[registry.prefix]
+            else:
+                continue
+            pattern = resource.get_pattern_re()
+            if pattern is None:
+                continue
+            k[metaprefix] = pattern
+
+        for prefix, resource in self.registry.items():
+            for metaprefix, metaidentifier in resource.get_mappings().items():
+                pattern = k.get(metaprefix)
+                if pattern is None:
+                    continue
+                with self.subTest(prefix=prefix, metaprefix=metaprefix):
+                    self.assertRegex(metaidentifier, pattern)

@@ -15,7 +15,7 @@ import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.constants import EXTERNAL
+from bioregistry.constants import EMAIL_RE, EXTERNAL
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
@@ -39,6 +39,7 @@ class OntoPortalClient:
     directory: Path = field(init=False)
     raw_path: Path = field(init=False)
     processed_path: Path = field(init=False)
+    max_workers: int = 2
 
     def __post_init__(self):
         self.directory = EXTERNAL.joinpath(self.metaprefix)
@@ -70,7 +71,9 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        records = thread_map(self._preprocess, records, unit="ontology", max_workers=3)
+        records = thread_map(
+            self._preprocess, records, unit="ontology", max_workers=self.max_workers
+        )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
@@ -117,9 +120,15 @@ class OntoPortalClient:
         if license_stub:
             record["license"] = standardize_license(license_stub)
 
-        contacts = res_json.get("contact", [])
+        contacts = [
+            {k: v.strip() for k, v in contact.items()} for contact in res_json.get("contact", [])
+        ]
+        contacts = [contact for contact in contacts if EMAIL_RE.match(contact.get("email", ""))]
         if contacts:
-            record["contact"] = {k: v.strip() for k, v in contacts[0].items() if k != "id"}
+            contact = contacts[0]
+            # TODO consider sorting contacts in a canonical order?
+            # contact = min(contacts, key=lambda c: len(c["email"]))
+            record["contact"] = {k: v for k, v in contact.items() if k != "id"}
 
         return {k: v for k, v in record.items() if v}
 
