@@ -25,7 +25,7 @@
 @prefix ols: <https://www.ebi.ac.uk/ols/ontologies/> .
 @prefix ontobee: <http://www.ontobee.org/ontology/> .
 @prefix orcid: <https://orcid.org/> .
-@prefix prefixcommons: <https://prefixcommons.org/?q=> .
+@prefix prefixcommons: <https://registry.bio2kg.org/resource/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix re3data: <https://www.re3data.org/repository/> .
@@ -7133,8 +7133,7 @@ bioregistry:medlineplus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "002804"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "NLM Customer Service" ] .
+    bioregistry.schema:0000012 false .
 
 bioregistry:merops.entry a bioregistry.schema:0000001 ;
     rdfs:label "MEROPS Entry" ;
@@ -10310,7 +10309,7 @@ bioregistry:rapdb.locus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:rapdb.transcript a bioregistry.schema:0000001 ;
-    rdfs:label "RAP-DB Transcript" ;
+    rdfs:label "Rice annotation Project database" ;
     dc:description "Rice Annotation Project Database (RAP-DB) is a primary rice (Oryza sativa) annotation database established in 2004 upon the completion of the Oryza sativa ssp. japonica cv. Nipponbare genome sequencing by the International Rice Genome Sequencing Project. RAP-DB provides comprehensive resources (e.g. genome annotation, gene expression, DNA markers, genetic diversity, etc.) for biological and agricultural research communities. This collection provides transcript information in RAP-DB."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch go.resource:RAP-DB,
@@ -13695,6 +13694,8 @@ aberowl:MIRNAO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:MIRO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+aberowl:MIXS dcterms:isPartOf bioregistry.metaresource:aberowl .
+
 aberowl:MMO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:MMUSDV dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -15752,6 +15753,8 @@ bioportal:MIAPA dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:MIRNAO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:MIRO dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:MIXS dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:MMO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -23218,6 +23221,19 @@ bioregistry:mirte a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.russelllab.org/miRNAs/"^^xsd:string ;
     bioregistry.schema:0000005 "miR-1"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:mixs a bioregistry.schema:0000001 ;
+    rdfs:label "GSC Minimal Information about any Sequence" ;
+    dc:description "The GSC family of minimum information standards (checklists) – Minimum Information about any (x) Sequence (MIxS). MIxS identifiers are for terms describing an aspect of an environmental sample."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:MIXS,
+        bioportal:MIXS ;
+    foaf:homepage "https://gensc.org/mixs/"^^xsd:string ;
+    bioregistry.schema:0000005 "ph_regm"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Ramona Walls" ] ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:mmsl a bioregistry.schema:0000001 ;
     rdfs:label "Multum MediSource Lexicon" ;
@@ -34127,6 +34143,7 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
 orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
     dcterms:contributor bioregistry:glycosciencesdb,
         bioregistry:insdc.run,
+        bioregistry:mixs,
         bioregistry:uniprot.arba,
         bioregistry:wwf.ecoregion .
 
@@ -37196,6 +37213,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:MIAPA,
         bioportal:MIRNAO,
         bioportal:MIRO,
+        bioportal:MIXS,
         bioportal:MMO,
         bioportal:MMUSDV,
         bioportal:MO,
@@ -37526,6 +37544,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:MICRO,
         aberowl:MIRNAO,
         aberowl:MIRO,
+        aberowl:MIXS,
         aberowl:MMO,
         aberowl:MMUSDV,
         aberowl:MO,
@@ -37689,7 +37708,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
 
 bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
     rdfs:label "Prefix Commons" ;
-    dc:description "A registry of commonly used prefixes in the life sciences and linked data" ;
+    dc:description "A registry of commonly used prefixes in the life sciences and linked data. The source data for this registry is a spreadsheet on Google called the Life Science Registry. This registry was previously known as Prefix Commons and was available at https://prefixcommons.org." ;
     dcterms:hasPart prefixcommons:3dmet,
         prefixcommons:4dn,
         prefixcommons:aaindex,
@@ -38115,9 +38134,9 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:zea,
         prefixcommons:zfa,
         prefixcommons:zfin ;
-    foaf:homepage "https://prefixcommons.org" ;
+    foaf:homepage "https://registry.bio2kg.org" ;
     bioregistry.schema:0000005 "CHEBI" ;
-    bioregistry.schema:0000006 "https://prefixcommons.org/?q=$1" ;
+    bioregistry.schema:0000006 "https://registry.bio2kg.org/resource/$1" ;
     bioregistry.schema:0000019 orcid:0000-0003-4727-9435 .
 
 bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
@@ -41929,6 +41948,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:miro,
         bioregistry:mirtarbase,
         bioregistry:mirte,
+        bioregistry:mixs,
         bioregistry:mlc,
         bioregistry:mmdb,
         bioregistry:mmmp.biomaps,
