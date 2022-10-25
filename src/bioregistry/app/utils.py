@@ -9,7 +9,6 @@ import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
 
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL
 from bioregistry.resource_manager import Manager
 from bioregistry.schema import Resource, sanitize_model
 from bioregistry.utils import curie_to_str, extended_encoder
@@ -79,7 +78,7 @@ def _search(manager_: Manager, q: str) -> List[Tuple[str, str]]:
     return sorted(results)
 
 
-def _autocomplete(manager_: Manager, q: str) -> Mapping[str, Any]:
+def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -> Mapping[str, Any]:
     r"""Run the autocomplete algorithm.
 
     :param manager_: A manager
@@ -107,11 +106,15 @@ def _autocomplete(manager_: Manager, q: str) -> Mapping[str, Any]:
     >>> _autocomplete(manager, 'chebi:1234')
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
     """  # noqa: E501
+    if url_prefix is None:
+        url_prefix = ''
+    url_prefix = url_prefix.rstrip().rstrip("/")
+
     if ":" not in q:
         url: Optional[str]
         if q in manager_.registry:
             reason = "matched prefix"
-            url = f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{q}"
+            url = f"{url_prefix}/{q}"
         else:
             reason = "searched prefix"
             url = None
