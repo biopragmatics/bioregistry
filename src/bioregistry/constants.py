@@ -4,6 +4,7 @@
 
 import os
 import pathlib
+import re
 
 import pystow
 
@@ -103,6 +104,9 @@ IDOT_BROKEN = {
     "oma.hog",
     "mir",  # Added on 2021-10-08
     "storedb",  # Added on 2021-10-12
+    "miriam.collection",  # Added on 2022-09-17
+    "miriam.resource",  # Added on 2022-09-17
+    "psipar",  # Added on 2022-09-17
 }
 
 URI_FORMAT_KEY = "uri_format"
@@ -135,3 +139,7 @@ SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
 CH_BASE = "https://cthoyt.com/obo-community-health"
 HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
 EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
+
+# not a perfect email regex, but close enough
+EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$"
+EMAIL_RE = re.compile(EMAIL_RE_STR)

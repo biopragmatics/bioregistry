@@ -802,6 +802,10 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
     Parse OBO PURL curies
     >>> parse_curie('GO_1234', sep="_")
     ('go', '1234')
+
+    Banana with no peel:
+    >>> parse_curie("omim.ps:PS12345")
+    ('omim.ps', '12345')
     """
     return manager.parse_curie(curie, sep=sep)
 

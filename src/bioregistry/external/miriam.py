@@ -18,6 +18,14 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 MIRIAM_URL = "https://registry.api.identifiers.org/resolutionApi/getResolverDataset"
+SKIP = {
+    "merops",
+    "hgnc.family",
+    # Appear to be unreleased records
+    "f82a1a",
+    "4503",
+    "6vts",
+}
 
 
 def get_miriam(force_download: bool = False):
@@ -30,7 +38,12 @@ def get_miriam(force_download: bool = False):
     with RAW_PATH.open() as file:
         data = json.load(file)
 
-    rv = {record["prefix"]: _process(record) for record in data["payload"]["namespaces"]}
+    rv = {
+        record["prefix"]: _process(record)
+        for record in data["payload"]["namespaces"]
+        # records whose prefixes start with `dg.` appear to be unreleased
+        if not record["prefix"].startswith("dg.") and record["prefix"] not in SKIP
+    }
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
@@ -81,10 +94,10 @@ def _process(record):
     return rv
 
 
-#: These provider codes are handled by the Bioregistry's metaregistry
 SKIP_PROVIDERS = {
-    "ols",
-    "bptl",
+    "ols",  # handled by the Bioregistry's metaregistry
+    "bptl",  # handled by the Bioregistry's metaregistry
+    "bioentitylink",
 }
 
 

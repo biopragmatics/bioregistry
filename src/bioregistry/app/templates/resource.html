@@ -249,33 +249,32 @@
                 {% endif %}
 
                 {% set publications = resource.get_publications() %}
-                {% if resource.references or publications%}
+                {% if publications %}
+                    <dt>Publications</dt>
+                    <dd>
+                        {% if publications | length == 1 %}
+                            {{ utils.render_publication(publications[0]) }}
+                        {% else %}
+                            <ul>
+                                {% for publication in publications %}
+                                    <li>{{ utils.render_publication(publication) }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                {% endif %}
+                {% if resource.references %}
                     <dt>References</dt>
                     <dd>
-                        <ul>
-                            {% for publication in publications or [] %}
-                                <li>
-                                    <span class="badge badge-info">Publication</span>
-                                    <a href="{{ publication.get_url() }}">{{ publication.title or publication.get_url() }}</a>
-                                </li>
-                            {% endfor %}
-                            {% for reference in resource.references or [] %}
-                                <li>
-                                    {% if reference.startswith("https://twitter.com") %}
-                                        <span class="badge badge-info">Tweet</span>
-                                    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
-                                        <span class="badge badge-info">GitHub Issue</span>
-                                    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
-                                        <span class="badge badge-info">GitHub PR</span>
-                                    {% elif reference.startswith("https://doi.org/") %}
-                                        <span class="badge badge-info">DOI</span>
-                                    {% else %}
-                                        <span class="badge badge-info">Other</span>
-                                    {% endif %}
-                                    <a href="{{ reference }}">{{ reference }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% if resource.references | length == 1 %}
+                            {{ utils.render_reference(resource.references[0]) }}
+                        {% else %}
+                            <ul>
+                                {% for reference in resource.references %}
+                                    <li>{{ utils.render_reference(reference) }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if resource.contributor or resource.contributor_extras %}
@@ -343,11 +342,15 @@
                         Part Of
                     </dt>
                     <dd>
+                        {% if manager.get_name(part_of) %}
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(part_of) }}">
                             {{ manager.get_preferred_prefix(part_of) or part_of }}
                         </a>
+                        {% else %}
+                        <span class="badge badge-pill badge-light">{{ part_of }} (not directly registered)</span>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if has_parts %}

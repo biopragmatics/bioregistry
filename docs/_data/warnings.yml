@@ -22,6 +22,11 @@ wrong_patterns:
   miriam: ^TEDDY_\d{7}$
   name: Terminology for Description of Dynamics
   prefix: biomodels.teddy
+- correct: ^(\d+)|(\w+)$
+  homepage: http://bioportal.bioontology.org/
+  miriam: ^\d+$
+  name: BioPortal
+  prefix: bioportal
 - correct: ^[-A-Za-z0-9\_]*$
   homepage: https://bio.tools/
   miriam: ^[A-Za-z0-9\_]*$
@@ -62,6 +67,11 @@ wrong_patterns:
   miriam: ^did:[a-z0-9]+:[A-Za-z0-9.\-:]+$
   name: Decentralized Identifier
   prefix: did
+- correct: ^10.\d{2,9}/.*$
+  homepage: https://www.doi.org/
+  miriam: ^(doi\:)?\d{2}\.\d{4}.*$
+  name: Digital Object Identifier
+  prefix: doi
 - correct: ^\d+$
   homepage: http://www.disease-ontology.org
   miriam: ^DOID:\d+$
@@ -92,6 +102,11 @@ wrong_patterns:
   miriam: ^(P)?EO\:\d{7}$
   name: Plant Environment Ontology
   prefix: eo
+- correct: ^(bsg-[dscp]?\d{6})|(FAIRsharing\.\w+)$
+  homepage: https://fairsharing.org/
+  miriam: ^bsg-[dscp]?\d{6}$
+  name: FAIRsharing
+  prefix: fairsharing
 - correct: ^\d+$
   homepage: http://si.washington.edu/projects/fma
   miriam: ^FMA:\d+$
@@ -138,25 +153,50 @@ wrong_patterns:
   name: Google Patents
   prefix: google.patent
 - correct: ^\d{7}$
-  homepage: http://www.gramene.org/
+  homepage: http://www.gramene.org/plant_ontology/
   miriam: ^GRO\:\d+$
   name: Gramene Growth Stage Ontology
   prefix: gramene.growthstage
+- correct: ^\d+$
+  homepage: http://www.gramene.org/
+  miriam: ^GR\_tax\:\d+$
+  name: Gramene Taxonomy
+  prefix: gramene.taxonomy
 - correct: ^\d{6}$
   homepage: https://gsso.research.cchmc.org/
   miriam: ^GSSO:\d{6}$
   name: Gender, Sex, and Sexual Orientation Ontology
   prefix: gsso
+- correct: ^\d{1,5}$
+  homepage: http://www.genenames.org
+  miriam: ^((HGNC|hgnc):)?\d{1,5}$
+  name: HUGO Gene Nomenclature Committee
+  prefix: hgnc
 - correct: ^\d{7}$
   homepage: http://www.human-phenotype-ontology.org/
   miriam: ^HP:\d{7}$
   name: Human Phenotype Ontology
   prefix: hp
+- correct: ^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\.[0-9]))?))$
+  homepage: https://icd.who.int/browse10
+  miriam: ^[A-Z]\d+(\.[-\d+])?$
+  name: International Classification of Diseases, 10th Revision
+  prefix: icd10
+- correct: ^\d+(-\d+)?$
+  homepage: https://www.imexconsortium.org/
+  miriam: ^IM-\d+(-?)(\d+?)$
+  name: International Molecular Exchange
+  prefix: imex
 - correct: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   homepage: http://lincsportal.ccs.miami.edu/cells/
   miriam: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
   name: LINCS Cell
   prefix: lincs.cell
+- correct: ^\d+$
+  homepage: http://www.lrg-sequence.org/
+  miriam: ^LRG_\d+$
+  name: Locus Reference Genomic
+  prefix: lrg
 - correct: ^\d+$
   homepage: https://github.com/obophenotype/mouse-anatomy-ontology
   miriam: ^MA:\d+$
@@ -192,11 +232,31 @@ wrong_patterns:
   miriam: ^MI:\d{4}$
   name: Molecular Interactions Controlled Vocabulary
   prefix: mi
+- correct: ^\d{1,7}$
+  homepage: https://mint.bio.uniroma2.it
+  miriam: ^MINT\-\d{1,7}$
+  name: Molecular Interaction Database
+  prefix: mint
 - correct: ^\d{8}$
   homepage: https://registry.identifiers.org/registry
   miriam: ^MIR:\d{8}$
   name: Identifiers.org Registry
   prefix: mir
+- correct: ^[0-9a-z_:\.-]+$
+  homepage: https://www.ebi.ac.uk
+  miriam: ^[a-z_\.]+$
+  name: Identifiers.org namespace
+  prefix: miriam
+- correct: ^000\d{5}$
+  homepage: https://www.ebi.ac.uk/miriam/
+  miriam: ^MIR:000\d{5}$
+  name: MIRIAM Registry collection
+  prefix: miriam.collection
+- correct: ^001\d{5}$
+  homepage: https://www.ebi.ac.uk/miriam/
+  miriam: ^MIR:001\d{5}$
+  name: MIRIAM Legacy Registry Identifier
+  prefix: miriam.resource
 - correct: ^\d{5}$
   homepage: http://www.psidev.info/MOD
   miriam: ^MOD:\d{5}
@@ -288,6 +348,16 @@ wrong_patterns:
   name: Protein Ontology
   prefix: pr
 - correct: ^\d{7}$
+  homepage: https://github.com/PRIDE-Utilities/pride-ontology
+  miriam: ^\d+$
+  name: PRIDE Controlled Vocabulary
+  prefix: pride
+- correct: ^\d+$
+  homepage: https://www.psidev.info/psi-par
+  miriam: ^PAR:\d+$
+  name: Protein Affinity Reagents
+  prefix: psipar
+- correct: ^\d{7}$
   homepage: http://rgd.mcw.edu/rgdweb/ontology/search.html
   miriam: ^PW:\d{7}$
   name: Pathway ontology
@@ -372,3 +442,8 @@ wrong_patterns:
   miriam: ^VariO:\d+$
   name: Variation Ontology
   prefix: vario
+- correct: ^\d{1,9}$
+  homepage: https://vertebrate.genenames.org
+  miriam: ^((VGNC|vgnc):)?\d{1,9}$
+  name: Vertebrate Gene Nomenclature Committee
+  prefix: vgnc

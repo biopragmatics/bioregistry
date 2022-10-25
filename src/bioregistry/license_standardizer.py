@@ -17,9 +17,12 @@ __all__ = [
 
 def standardize_license(license_str: Optional[str]) -> Optional[str]:
     """Standardize a license string."""
-    if license_str is None:
+    if license_str is None or not license_str.strip():
         return None
-    return LICENSES.get(license_str.rstrip("/"), license_str)
+    license_str = license_str.strip().rstrip("/")
+    if not license_str:
+        return None
+    return LICENSES.get(license_str, license_str)
 
 
 #: https://creativecommons.org/licenses/by/3.0/
@@ -58,8 +61,30 @@ CC_BY_SA_2 = "CC BY-SA 2.0"
 #: https://creativecommons.org/licenses/by/1.0/
 CC_BY_1 = "CC BY 1.0"
 
+#: https://opensource.org/licenses/W3C
+W3C = "W3C"
+
+CC_BY_3_IGO = "CC-BY-3.0-IGO"
+
+#: https://creativecommons.org/licenses/by/2.5/
+CC_BY_25 = "CC BY 2.5"
+
 REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
     None: ["None", "license", "unspecified"],
+    CC_BY_25: [
+        "https://creativecommons.org/licenses/by/2.5/",
+        "https://creativecommons.org/licenses/by/2.5/dk",
+    ],
+    CC_BY_3_IGO: [
+        CC_BY_3_IGO,
+        "https://spdx.org/licenses/CC-BY-3.0-IGO.html",
+        "https://creativecommons.org/licenses/by/3.0/igo/legalcode",
+        "https://creativecommons.org/licenses/by/3.0/igo",
+    ],
+    W3C: [
+        W3C,
+        "http://www.opensource.org/licenses/W3C",
+    ],
     CC_BY_4: [
         "CC-BY-4.0",
         "CC-BY 4.0",
@@ -68,6 +93,7 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "http://creativecommons.org/licenses/by/4.0",
         "https://creativecommons.org/licenses/by/4.0/",
         "http://creativecommons.org/licenses/by/4.0/",
+        "http://creativecommons.org/licenses/by/4.0/legalcode",
         "url: http://creativecommons.org/licenses/by/4.0",
         "SWO is provided under a Creative Commons Attribution 4.0 International"
         " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).",

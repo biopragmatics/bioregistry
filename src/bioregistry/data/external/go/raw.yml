@@ -1487,7 +1487,7 @@
   entity_types:
     - type_name: protein
       type_id: PR:000000001
-      id_syntax: '^[SCTAGMNU]\d+\.\d+$'
+      id_syntax: '^[SCTAGMNU]\d{2}\.([AB]\d{2}|\d{3}|[A-Z]{3})$'
       url_syntax: https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=[example_id]
       example_id: MEROPS:A08.001
       example_url: https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=A08.001
@@ -1814,20 +1814,20 @@
   name: Pfam database of protein families
   description: Pfam is a collection of protein families represented by sequence alignments and hidden Markov models (HMMs)
   generic_urls:
-    - http://pfam.xfam.org
+    - https://www.ebi.ac.uk/interpro/entry/pfam
   entity_types:
     - type_name: sequence feature
       type_id: SO:0000110
       id_syntax: PF[0-9]{5}
-      url_syntax: https://pfam.xfam.org/family/[example_id]
+      url_syntax: https://www.ebi.ac.uk/interpro/entry/pfam/[example_id]
       example_id: Pfam:PF00046
-      example_url: https://pfam.xfam.org/family/PF00069
+      example_url: https://www.ebi.ac.uk/interpro/entry/pfam/PF00069
     - type_name: polypeptide region
       type_id: SO:0000839
       id_syntax: PF[0-9]{5}
-      url_syntax: https://pfam.xfam.org/family/[example_id]
+      url_syntax: https://www.ebi.ac.uk/interpro/entry/pfam/[example_id]
       example_id: Pfam:PF00046
-      example_url: https://pfam.xfam.org/family/PF00069
+      example_url: https://www.ebi.ac.uk/interpro/entry/pfam/PF00069
 - database: PharmGKB
   name: Pharmacogenetics and Pharmacogenomics Knowledge Base
   generic_urls:

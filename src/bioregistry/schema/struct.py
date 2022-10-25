@@ -8,7 +8,6 @@ import logging
 import pathlib
 import re
 import textwrap
-from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -31,10 +30,9 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import curie_to_str, removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -49,6 +47,7 @@ __all__ = [
     "Collection",
     "Registry",
     "Context",
+    "Publication",
     "get_json_schema",
 ]
 
@@ -102,6 +101,7 @@ URI_FORMAT_PATHS = [
     ("wikidata", URI_FORMAT_KEY),
     ("uniprot", URI_FORMAT_KEY),
     ("cellosaurus", URI_FORMAT_KEY),
+    ("prefixcommons", URI_FORMAT_KEY),
 ]
 
 
@@ -200,6 +200,7 @@ class Publication(BaseModel):
         title="PMC", description="The PubMed Central identifier for the article"
     )
     title: Optional[str] = Field(description="The title of the article")
+    year: Optional[int] = Field(description="The year the article was published")
 
     def key(self) -> Tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -509,6 +510,8 @@ class Resource(BaseModel):
     edam: Optional[Mapping[str, Any]]
     #: External data from re3data
     re3data: Optional[Mapping[str, Any]]
+    #: External data from hl7
+    hl7: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -643,7 +646,6 @@ class Resource(BaseModel):
 
     def get_synonyms(self) -> Set[str]:
         """Get synonyms."""
-        # TODO aggregate even more from xrefs
         return set(self.synonyms or {})
 
     def get_preferred_prefix(self) -> Optional[str]:
@@ -692,7 +694,23 @@ class Resource(BaseModel):
         """Get the name for the given prefix, it it's available."""
         return self.get_prefix_key(
             "name",
-            ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam", "cellosaurus"),
+            (
+                "obofoundry",
+                "ols",
+                "wikidata",
+                "go",
+                "ncbi",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
+                "miriam",
+                "n2t",
+                "cellosaurus",
+                "cropoct",
+                "cheminf",
+                "edam",
+                "prefixcommons",
+            ),
         )
 
     def get_description(self, use_markdown: bool = False) -> Optional[str]:
@@ -704,7 +722,22 @@ class Resource(BaseModel):
             return markupsafe.Markup(markdown(self.description))
         rv = self.get_prefix_key(
             "description",
-            ("miriam", "ols", "obofoundry", "wikidata", "fairsharing", "aberowl", "bioportal"),
+            (
+                "miriam",
+                "n2t",
+                "ols",
+                "obofoundry",
+                "wikidata",
+                "fairsharing",
+                "aberowl",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
+                "cropoct",
+                "cheminf",
+                "edam",
+                "prefixcommons",
+            ),
         )
         if rv is not None:
             return rv
@@ -732,6 +765,7 @@ class Resource(BaseModel):
         pattern = self.get_pattern()
         if pattern is None:
             return None
+        # FIXME cache this
         return re.compile(pattern)
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
@@ -818,7 +852,21 @@ class Resource(BaseModel):
         """Return the homepage, if available."""
         return self.get_prefix_key(
             "homepage",
-            ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
+            (
+                "obofoundry",
+                "ols",
+                "miriam",
+                "n2t",
+                "wikidata",
+                "go",
+                "ncbi",
+                "cellosaurus",
+                "cropoct",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
+                "prefixcommons",
+            ),
         )
 
     def get_repository(self) -> Optional[str]:
@@ -849,14 +897,21 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
+        >>> get_resource("vandf").get_contact_email()
+        'michael.lincoln@med.va.gov'
         """
         if self.contact and self.contact.email:
             return self.contact.email
         # FIXME if contact is not none but email is, this will have a problem after
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
-        if rv and not EMAIL_RE.match(rv):
+        if rv:
+            if EMAIL_RE.match(rv):
+                return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
+        rv = (self.bioportal or {}).get("contact", {}).get("email")
+        if rv:
+            return rv
         return rv
 
     def get_contact_name(self) -> Optional[str]:
@@ -869,11 +924,16 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
+        >>> get_resource("vandf").get_contact_name()
+        'Michael Lincoln'
         """
         if self.contact and self.contact.name:
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
+        rv = (self.bioportal or {}).get("contact", {}).get("name")
+        if rv:
+            return rv
         return None
 
     def get_contact_github(self) -> Optional[str]:
@@ -918,10 +978,10 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
-        # TODO go through more external data looking for this
-        example = self.get_external("ncbi").get("example")
-        if example is not None:
-            return example
+        for metaprefix in ["ncbi", "n2t", "prefixcommons"]:
+            example = self.get_external(metaprefix).get("example")
+            if example is not None:
+                return example
         return None
 
     def get_examples(self) -> List[str]:
@@ -944,6 +1004,13 @@ class Resource(BaseModel):
         if example is None:
             return None
         return self.get_curie(example, use_preferred=use_preferred)
+
+    def get_example_iri(self) -> Optional[str]:
+        """Get an example IRI."""
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_default_uri(example)
 
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
@@ -973,16 +1040,18 @@ class Resource(BaseModel):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(Publication(pubmed=pubmed, title=title, doi=None, pmc=None))
+                    publications.append(
+                        Publication(pubmed=pubmed, title=title, doi=None, pmc=None, year=None)
+                    )
                 elif url.startswith("https://doi.org/"):
                     doi = url[len("https://doi.org/") :]
                     publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None)
+                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
                     )
                 elif url.startswith("https://www.medrxiv.org/content/"):
                     doi = url[len("https://www.medrxiv.org/content/") :]
                     publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None)
+                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
                     )
                 elif url.startswith("https://zenodo.org/record/"):
                     continue
@@ -994,14 +1063,24 @@ class Resource(BaseModel):
             for publication in self.fairsharing.get("publications", []):
                 pubmed = publication.get("pubmed_id")
                 doi = publication.get("doi")
+                if doi:
+                    doi = removeprefix(doi.lower(), "https://doi.org/")
                 title = publication.get("title")
                 if pubmed or doi:
                     publications.append(
-                        Publication(pubmed=pubmed, doi=doi and doi.lower(), title=title, pmc=None)
+                        Publication(
+                            pubmed=pubmed and str(pubmed),
+                            doi=doi,
+                            title=title,
+                            pmc=None,
+                            year=None,
+                        )
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(Publication(pubmed=pubmed, doi=None, pmc=None, title=None))
+                publications.append(
+                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
+                )
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
@@ -1237,6 +1316,18 @@ class Resource(BaseModel):
         "prefixcommons",
     )
 
+    def get_priority_prefix(self, priority: Optional[Sequence[str]] = None) -> str:
+        """Get a prioritized prefix."""
+        if not priority:
+            return self.prefix
+        mappings = self.get_mappings()
+        for metaprefix in priority:
+            if metaprefix == "preferred" and self.preferred_prefix:
+                return self.preferred_prefix
+            if metaprefix in mappings:
+                return mappings[metaprefix]
+        return self.prefix
+
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available.
 
@@ -1284,31 +1375,38 @@ class Resource(BaseModel):
 
         :param priority: The prioirty order for :func:`get_format`.
         :return: The URI prefix. Similar to what's returned by :func:`get_uri_format`, but
-            it MUST have only one ``$1`` and end with ``$1`` to use thie function.
+            it MUST have only one ``$1`` and end with ``$1`` to use the function.
 
         >>> import bioregistry
         >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        # TODO shorten this with similar logic to get_uri_format
-        fmt = self.get_uri_format(priority=priority)
-        if fmt is None:
+        uri_format = self.get_uri_format(priority=priority)
+        if uri_format is None:
             logging.debug("term missing formatter: %s", self.name)
             return None
-        count = fmt.count("$1")
+        return self._clip_uri_format(uri_format)
+
+    def _clip_uri_format(self, uri_format: str) -> Optional[str]:
+        count = uri_format.count("$1")
         if 0 == count:
-            logging.debug("formatter missing $1: %s", self.name)
+            logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
             return None
-        if fmt.count("$1") != 1:
-            logging.debug("formatter has multiple $1: %s", self.name)
+        if uri_format.count("$1") != 1:
+            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, self.get_name())
             return None
-        if not fmt.endswith("$1"):
-            logging.debug("formatter does not end with $1: %s", self.name)
+        if not uri_format.endswith("$1"):
+            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, self.get_name())
             return None
-        return fmt[: -len("$1")]
+        return uri_format[: -len("$1")]
+
+    def get_uri_prefixes(self) -> Set[str]:
+        """Get the set of all URI prefixes."""
+        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+        return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
     def get_uri_formats(self) -> Set[str]:
-        """Get all URI prefixes."""
+        """Get the set of all URI format strings."""
         uri_formats = itt.chain.from_iterable(
             _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
         )
@@ -1365,13 +1463,10 @@ class Resource(BaseModel):
         _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
         return curie_to_str(_p, identifier)
 
-    def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+    def standardize_identifier(self, identifier: str) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
-            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
-            is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
         Examples with explicitly annotated bananas:
@@ -1406,11 +1501,12 @@ class Resource(BaseModel):
         """
         banana = self.get_banana()
         peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}"
-        if banana and identifier.startswith(prebanana):
+        prebanana = f"{banana}{peel}".casefold()
+        icf = identifier.casefold()
+        if banana and icf.startswith(prebanana):
             return identifier[len(prebanana) :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
-            return identifier[len(prefix) + 1 :]
+        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+            return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
@@ -1488,14 +1584,14 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
-            return None
+            return True
         return pattern.fullmatch(identifier) is not None
 
-    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
         return self.is_valid_identifier(self.standardize_identifier(identifier))
 
@@ -1587,7 +1683,7 @@ class Resource(BaseModel):
         """Get the license for the resource."""
         if self.license:
             return self.license
-        for metaprefix in ("obofoundry", "ols"):
+        for metaprefix in ("obofoundry", "ols", "bioportal"):
             license_value = standardize_license(self.get_external(metaprefix).get("license"))
             if license_value is not None:
                 return license_value
@@ -1620,9 +1716,7 @@ class Resource(BaseModel):
         return markupsafe.Markup(rv)
 
 
-SchemaStatus = Literal[
-    "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"
-]
+SchemaStatus = Literal["required", "required*", "present", "present*", "missing"]
 schema_status_map = {
     True: "🟢",
     False: "🔴",
@@ -1631,8 +1725,6 @@ schema_status_map = {
     "present": "🟡",
     "present*": "🟡*",
     "missing": "🔴",
-    "irrelevant": "⚪",
-    "irrelevant*": "⚪*",
 }
 schema_score_map = {
     "required": 3,
@@ -1640,8 +1732,6 @@ schema_score_map = {
     "present": 1,
     "present*": 2,
     "missing": -1,
-    "irrelevant": 0,
-    "irrelevant*": 0,
 }
 
 
@@ -1649,86 +1739,185 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
-    curates: bool = Field(description="Does the registry curate novel prefixes?")
+    curates: bool = Field(
+        description="This field denotes if the registry's maintainers and "
+        "potentially contributors curate novel prefixes."
+    )
     imports: bool = Field(
-        description="Does the registry import and align prefixes from other registries?"
+        description="This field denotes if the registry imports and aligns prefixes from other registries."
     )
     scope: str = Field(
-        description="What is the scope of prefixes which the registry covers? For example,"
+        description="This field denotes the scope of prefixes which the registry covers. For example,"
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
         " and some are general purpose."
     )
     comments: Optional[str]
     accepts_external_contributions: bool = Field(
-        description="Does the registry (in theory) accept external contributions, either via suggestion or"
-        " proactive improvement? This field does not pass judgement on the difficult of this"
+        description="This field denotes if the registry (in theory) accepts external contributions, either via "
+        "suggestion or proactive improvement. This field does not pass judgement on the difficult of this"
         " process from the perspective of the submitter nor the responsiveness of the registry."
         " This field does not consider the ability for insiders (i.e., people with private relationships"
         " to the maintainers) to affect change."
     )
-    public_version_control: bool = Field(
-        description="Does the registry store its data/code in publicly available version control"
-        " system, such as GitHub or GitLab? Currently there is no resource that does one but not"
-        " the other, so this is grouped (for now)."
+    public_version_controlled_data: bool = Field(
+        title="Public Version-Controlled Data",
+        description="This field denotes if the registry stores its data in publicly available version control"
+        " system, such as GitHub or GitLab",
     )
-    review_team: Literal["public", "inferrable", "private", "n/a"] = Field(
-        description="Are the reviewers for external contributions known? If there's a well-defined,"
-        " maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading"
-        " the commit history on a version control system, then it can be marked as inferrable. A closed"
+    data_repository: Optional[str] = Field(
+        description="This field denotes the address of the registry's data version control repository."
+    )
+    code_repository: Optional[str] = Field(
+        description="This field denotes the address of the registry's code version control repository."
+    )
+    review_team: Literal["public", "inferrable", "private", "democratic", "n/a"] = Field(
+        description="This field denotes if the registry's reviewers/moderators for external contributions known? If "
+        "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
+        "reading the commit history on a version control system, then it can be marked as inferrable. A closed"
         " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
-        " accept external contributions can be marked with N/A."
+        " accept external contributions can be marked with N/A. An unmoderated regitry like Prefix.cc is marked with "
+        " 'democratic'."
     )
     status: Literal["active", "unresponsive", "inactive"] = Field(
-        description="What is the status of the repository? An active repository is still being maintained and also"
-        " is responsive to external requests for improvement. An unresponsive repository is still being maintained"
-        " in some capacity but is not responsive to external requests for improvement. An inactive repository is"
-        " no longer being proactively maintained (though may receive occasional patches)."
+        description="This field denotes the maitenance status of the repository. An active repository is still being "
+        "maintained and also is responsive to external requests for improvement. An unresponsive repository is still "
+        "being maintained in some capacity but is not responsive to external requests for improvement. An inactive "
+        "repository is no longer being proactively maintained (though may receive occasional patches)."
+    )
+    issue_tracker: Optional[str] = Field(
+        description="This field denotes the public issue tracker for issues related to the code and data of the "
+        "repository."
     )
 
     @property
     def review_team_icon(self) -> str:
         """Get an icon for the review team."""
         if self.review_team == "public":
-            return "✓"
+            return "Y"
         elif self.review_team == "inferrable":
-            return "✓*"
+            return "Y*"
         elif self.review_team == "private":
-            return "✗"
+            return "x"
         else:
             return ""
+
+    def score(self) -> int:
+        """Get the governance score."""
+        _r = {"public": 2, "inferrable": 1, "private": 0, "n/a": 0, "democratic": 2}
+        return sum(
+            [
+                self.accepts_external_contributions,
+                self.public_version_controlled_data,
+                self.code_repository is not None,
+                self.data_repository is not None,
+                _r[self.review_team],
+                self.status == "active",
+                self.issue_tracker is not None,
+                -1 if self.scope == "internal" else 0,
+            ]
+        )
+
+
+class RegistryQualities(BaseModel):
+    """Qualities about a registry."""
+
+    structured_data: bool = Field(
+        description="This field denotes if the registry provides structured access to its data? For example,"
+        " this can be through an API (e.g., FAIRsharing, OLS) or a bulk download (e.g., OBO Foundry) in a "
+        "structured file format. A counter-example is a site that must be scraped to acquire its content "
+        "(e.g, the NCBI GenBank)."
+    )
+    bulk_data: bool = Field(
+        description="This field denotes if the registry provides a bulk dump of its data? For example,"
+        " the OBO Foundry provides its bulk data in a file and Identifiers.org provides its bulk data in"
+        " an API endpoint. A counterexample is FAIRsharing, which requires slow, expensive pagination"
+        " through its data. Another counterexample is HL7 which requires manually navigating a form to"
+        " download its content. While GenBank is not structured, it is still bulk downloadable."
+    )
+    no_authentication: bool = Field(
+        description="This field denotes if the registry provides access to its data without an API key? For example,"
+        " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
+    )
+    automatable_download: bool = Field(
+        default=True,
+        description="This field denotes if the registry makes its data available downloadable in an automated way?"
+        "This includes websites that have bulk downloads, paginated API downloads, or even require scraping."
+        "A counter example is HL7, whose download can not be automated due to the need to interact with a web"
+        " form.",
+    )
+
+    def score(self) -> int:
+        """Score qualities of a registry."""
+        return sum(
+            [
+                self.structured_data,
+                self.bulk_data,
+                self.no_authentication,
+                self.automatable_download,
+            ]
+        )
 
 
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
-    name: SchemaStatus  # type:ignore
-    homepage: SchemaStatus  # type:ignore
-    description: SchemaStatus  # type:ignore
-    example: SchemaStatus  # type:ignore
-    pattern: SchemaStatus  # type:ignore
-    provider: SchemaStatus  # type:ignore
-    alternate_providers: SchemaStatus  # type:ignore
-    synonyms: SchemaStatus  # type:ignore
-    license: SchemaStatus  # type:ignore
-    version: SchemaStatus  # type:ignore
-    contact: SchemaStatus  # type:ignore
+    name: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if a name is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    homepage: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if a homepage is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    description: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if a description is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    example: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if an example local unique identifier is "
+        "required, optional, or never captured for each record in the registry."
+    )
+    pattern: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if a regular expression pattern for matching "
+        "local unique identifiers is required, optional, or never captured for each record in the registry."
+    )
+    provider: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if a URI format string for converting local "
+        "unique identifiers into URIs is required, optional, or never captured for each record in the registry."
+    )
+    alternate_providers: Literal["present", "missing"] = Field(
+        description="This field denotes if additional/secondary URI format strings "
+        "for converting local unique identifiers into URIs is required, optional, or never captured for "
+        "each record in the registry."
+    )
+    synonyms: Literal["present", "missing"] = Field(
+        description="This field denotes if alternative prefixes (e.g., taxonomy for NCBITaxon) "
+        "is required, optional, or never captured for each record in the registry."
+    )
+    license: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if capturing the data license is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    version: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if capturing the current data version is required, "
+        "optional, or never captured for each record in the registry."
+    )
+    contact: SchemaStatus = Field(  # type:ignore
+        description="This field denotes if capturing the primary responsible person's contact "
+        "information (e.g., name, ORCID, email) is required, optional, or never captured for each "
+        "record in the registry."
+    )
     search: bool = Field(
         ...,
-        description="Does this registry provide a URL into which a search"
-        " query can be formatted to show a list of results?",
-    )
-    fair: bool = Field(
-        ...,
-        description="Does this registry provide a structured bulk dump of its prefixes, records,"
-        " and all associated metadata in an easily findable and accessible manner?",
-    )
-    fair_note: Optional[str] = Field(
-        description="Explanation for why data isn't FAIR",
+        title="Prefix Search",
+        description="This field denotes if the registry provides either a dedicated page for searching for prefixes "
+        "(e.g. AberOWL has a dedicated search page) OR a contextual search (e.g., AgroPortal "
+        "has a prefix search built in its homepage).",
     )
 
     def score(self) -> int:
         """Calculate a score for the metadata availability in the registry."""
-        return (self.search + 2 * self.fair) + sum(
+        return sum(
             schema_score_map[x]
             for x in [
                 self.name,
@@ -1760,8 +1949,12 @@ class Registry(BaseModel):
     description: str = Field(..., description="A full description of the registry.")
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     example: str = Field(..., description="An example prefix inside the registry.")
+    bibtex: Optional[str] = Field(description="Citation key used in BibTex for this registry.")
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
+    )
+    qualities: RegistryQualities = Field(
+        ..., description="A structured description of the registry's qualities"
     )
     governance: RegistryGovernance = Field(
         ..., description="A structured description of the governance for the registry"
@@ -1771,6 +1964,9 @@ class Registry(BaseModel):
     )
     provider_uri_format: Optional[str] = Field(
         description="A URL with a $1 for a prefix to resolve in the registry"
+    )
+    search_uri_format: Optional[str] = Field(
+        description="A URL with a $1 for a prefix or string for searching for prefixes"
     )
     resolver_uri_format: Optional[str] = Field(
         description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry"
@@ -1795,11 +1991,15 @@ class Registry(BaseModel):
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
         return (
-            int(self.provider_uri_format is not None)
-            + int(self.resolver_uri_format is not None)
-            + int(self.download is not None)
-            + int(self.contact is not None)
-        ) + self.availability.score()
+            (
+                int(self.provider_uri_format is not None)
+                + int(self.resolver_uri_format is not None)
+                + int(self.download is not None)
+                + int(self.contact is not None)
+            )
+            + self.availability.score()
+            + self.qualities.score()
+        )
 
     def get_provider_uri_prefix(self) -> str:
         """Get provider URI prefix.
@@ -1912,12 +2112,28 @@ class Registry(BaseModel):
     @property
     def is_resolver(self) -> bool:
         """Check if it is a resolver."""
-        return self.resolver_uri_format is not None and self.resolver_type != "lookup"
+        return self.resolver_type == "resolver"
 
     @property
     def is_lookup(self) -> bool:
         """Check if it is a lookup service."""
-        return self.resolver_uri_format is not None and self.resolver_type == "lookup"
+        return self.resolver_type == "lookup"
+
+    @property
+    def has_permissive_license(self) -> bool:
+        """Check if the registry has a permissive license."""
+        return self.license in {"CC BY 4.0", "CC0", "CC BY 3.0"}
+
+    @property
+    def is_prefix_provider(self) -> bool:
+        """Check if the registry is a prefix provider."""
+        return self.provider_uri_format is not None
+
+    def get_quality_score(self) -> int:
+        """Get the quality score for this registry."""
+        return self.qualities.score() + sum(
+            [self.availability.search, self.is_prefix_provider, self.has_permissive_license]
+        )
 
 
 class Collection(BaseModel):
@@ -2190,48 +2406,14 @@ def _get(resource, key):
     return x or ""
 
 
-def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
+
+
+def deduplicate_publications(publications: Iterable[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    d = defaultdict(list)
-
-    # Index mappings
-    doi_to_pmid = {}
-    pmid_to_doi = {}
-    doi_to_pmc = {}
-    pmc_to_doi = {}
-    pmid_to_pmc = {}
-    pmc_to_pmid = {}
-    for p in publications:
-        if p.doi and p.pubmed:
-            doi_to_pmid[p.doi] = p.pubmed
-            pmid_to_doi[p.pubmed] = p.doi
-        if p.doi and p.pmc:
-            doi_to_pmc[p.doi] = p.pmc
-            pmc_to_doi[p.pmc] = p.doi
-        if p.pubmed and p.pmc:
-            pmid_to_pmc[p.pubmed] = p.pmc
-            pmc_to_pmid[p.pmc] = p.pubmed
-    for p in publications:
-        # apply mappings
-        if p.doi and not p.pubmed:
-            p.pubmed = doi_to_pmid.get(p.doi)
-        if p.pubmed and not p.doi:
-            p.doi = pmid_to_doi.get(p.pubmed)
-        if p.doi and not p.pmc:
-            p.pmc = doi_to_pmc.get(p.doi)
-        if p.pubmed and not p.pmc:
-            p.pmc = pmid_to_pmc.get(p.pubmed)
-        # todo not exhaustive, doesn't account for multi-hop mappings
-        d[p.key()].append(p)
-
-    for vs in d.values():
-        try:
-            title = next(v.title for v in vs if v.title)
-        except StopIteration:
-            continue
-        else:
-            vs[0].title = title
-    return [v[0] for _, v in sorted(d.items())]
+    records = [publication.dict(exclude_none=True) for publication in publications]
+    records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)
+    return [Publication(**record) for record in records_deduplicated]
 
 
 def main():

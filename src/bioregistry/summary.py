@@ -8,6 +8,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import click
+from more_click import force_option
 
 from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
@@ -97,7 +98,7 @@ class BioregistrySummary:
         )
 
     @classmethod
-    def make(cls):
+    def make(cls, force_download: bool = False):
         """Instantiate the class."""
         registry = manager.registry
 
@@ -141,7 +142,10 @@ class BioregistrySummary:
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
             number_mismatches_curated=sum(len(v) for v in manager.mismatches.values()),
-            external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
+            external_sizes={
+                metaprefix: len(getter(force_download=force_download))
+                for metaprefix, _, getter in GETTERS
+            },
             number_collections=len(manager.collections),
             number_contexts=len(manager.contexts),
             number_direct_contributors=len(manager.read_contributors(direct_only=True)),
@@ -186,11 +190,14 @@ class MappingBurdenSummary:
         )
 
     @classmethod
-    def make(cls):
+    def make(cls, force_download: bool = False):
         """Instantiate the class."""
         from bioregistry.external import GETTERS
 
-        registry_to_prefixes = {metaprefix: set(getter()) for metaprefix, _, getter in GETTERS}
+        registry_to_prefixes = {
+            metaprefix: set(getter(force_download=force_download))
+            for metaprefix, _, getter in GETTERS
+        }
 
         total_pairwise_upper_bound = sum(
             len(x) * len(y) for x, y in combinations(registry_to_prefixes.values(), 2)
@@ -224,7 +231,8 @@ class MappingBurdenSummary:
 
 @click.command()
 @click.option("--split-lines", is_flag=True)
-def _main(split_lines: bool):
+@force_option
+def _main(split_lines: bool, force: bool):
     if split_lines:
         from textwrap import fill as _fill
     else:
@@ -232,8 +240,8 @@ def _main(split_lines: bool):
         def _fill(_s):  # type:ignore
             return _s
 
-    click.echo(_fill(MappingBurdenSummary.make().get_text()) + "\n")
-    s = BioregistrySummary.make()
+    click.echo(_fill(MappingBurdenSummary.make(force_download=force).get_text()) + "\n")
+    s = BioregistrySummary.make(force_download=force)
     click.echo(_fill(s.get_text()) + "\n")
     click.echo(s.get_table_text())
 
