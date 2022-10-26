@@ -119,8 +119,8 @@ def get_records(  # noqa: C901
     primary_prefixes: Dict[str, str] = {
         resource.prefix: (
             remapping[resource.prefix]
-            if remapping.get(resource.prefix) else
-            resource.get_priority_prefix(priority=prefix_priority)
+            if remapping.get(resource.prefix)
+            else resource.get_priority_prefix(priority=prefix_priority)
         )
         for resource in resource_dict.values()
     }

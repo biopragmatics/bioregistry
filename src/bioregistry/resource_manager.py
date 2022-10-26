@@ -4,7 +4,7 @@
 
 import logging
 import typing
-from collections import ChainMap, Counter, defaultdict
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -378,6 +378,9 @@ class Manager:
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
@@ -421,8 +424,8 @@ class Manager:
         uri_prefix_priority: Optional[Sequence[str]] = None,
         include_prefixes: bool = False,
         strict: bool = False,
-        blacklist: Optional[typing.Collection[str]] = None,
         remapping: Optional[Mapping[str, str]] = None,
+        blacklist: Optional[typing.Collection[str]] = None,
     ) -> List[curies.Record]:
         """Get a list of records for all resources in this manager.
 
@@ -438,6 +441,7 @@ class Manager:
         :param strict:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
+        :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
         :param blacklist:
             A collection of prefixes to skip
 
@@ -519,7 +523,7 @@ class Manager:
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             remapping=remapping,
-            blacklist=blacklist
+            blacklist=blacklist,
         )
         rv = {}
         for record in records:
