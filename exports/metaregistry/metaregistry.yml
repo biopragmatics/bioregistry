@@ -1042,7 +1042,9 @@ prefixcommons:
     name: Michel Dumontier
     orcid: 0000-0003-4727-9435
   description: A registry of commonly used prefixes in the life sciences and linked
-    data
+    data. The source data for this registry is a spreadsheet on Google called the
+    Life Science Registry. This registry was previously known as Prefix Commons and
+    was available at https://prefixcommons.org.
   download: https://raw.githubusercontent.com/prefixcommons/data-ingest/master/yml/lsregistry.yml
   example: CHEBI
   governance:
@@ -1058,11 +1060,11 @@ prefixcommons:
     review_team: public
     scope: life sciences
     status: active
-  homepage: https://prefixcommons.org
-  license: missing
+  homepage: https://registry.bio2kg.org
+  license: Public Domain
   name: Prefix Commons
   prefix: prefixcommons
-  provider_uri_format: https://prefixcommons.org/?q=$1
+  provider_uri_format: https://registry.bio2kg.org/resource/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1082,6 +1084,7 @@ re3data:
     search: true
     synonyms: missing
     version: missing
+  bibtex: Pampel2013
   bioregistry_prefix: re3data
   contact:
     email: mwitt@purdue.edu
