@@ -371,9 +371,9 @@ class Manager:
     def get_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
@@ -381,12 +381,11 @@ class Manager:
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
         it = self._iter_pattern_map(
-            include_synonyms=include_synonyms, use_preferred=use_preferred, blacklist=blacklist
+            include_synonyms=include_synonyms, prefix_priority=prefix_priority, blacklist=blacklist
         )
         if not remapping:
             return dict(it)
@@ -395,21 +394,18 @@ class Manager:
     def _iter_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
         blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
+        for resource in self.registry.values():
+            if resource.prefix in blacklist:
                 continue
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
+            prefix = resource.get_priority_prefix(priority=prefix_priority)
             yield prefix, pattern
             if include_synonyms:
                 for synonym in resource.get_synonyms():
@@ -501,7 +497,6 @@ class Manager:
         prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
@@ -510,14 +505,9 @@ class Manager:
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
-        if use_preferred:
-            if prefix_priority is not None:
-                raise ValueError
-            prefix_priority = ["preferred", "default"]
         records = self.get_curies_records(
             prefix_priority=prefix_priority,
             uri_prefix_priority=priority,
@@ -1293,13 +1283,12 @@ class Manager:
             priority=context.uri_prefix_priority,
             prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
             blacklist=context.blacklist,
         )
-        # TODO deal with prefix priority
         prescriptive_pattern_map = self.get_pattern_map(
+            remapping=context.prefix_remapping,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
+            prefix_priority=context.prefix_priority,
             blacklist=context.blacklist,
         )
         return prescriptive_prefix_map, prescriptive_pattern_map

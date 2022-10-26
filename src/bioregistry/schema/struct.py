@@ -1325,8 +1325,12 @@ class Resource(BaseModel):
             return self.prefix
         mappings = self.get_mappings()
         for metaprefix in priority:
-            if metaprefix == "preferred" and self.preferred_prefix:
-                return self.preferred_prefix
+            if metaprefix == "default":
+                return self.prefix
+            if metaprefix == "preferred":
+                preferred_prefix = self.get_preferred_prefix()
+                if preferred_prefix:
+                    return preferred_prefix
             if metaprefix in mappings:
                 return mappings[metaprefix]
         return self.prefix
