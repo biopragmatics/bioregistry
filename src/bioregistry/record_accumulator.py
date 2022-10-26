@@ -4,6 +4,7 @@ import itertools as itt
 import logging
 from collections import defaultdict
 from typing import (
+    Collection,
     DefaultDict,
     Dict,
     Iterable,
@@ -100,19 +101,27 @@ def get_records(  # noqa: C901
     uri_prefix_priority: Optional[Sequence[str]] = None,
     include_prefixes: bool = False,
     strict: bool = False,
+    blacklist: Optional[Collection[str]] = None,
+    remapping: Optional[Mapping[str, str]] = None,
 ) -> List[curies.Record]:
     """Generate records from resources."""
+    blacklist = set(blacklist or []).union(prefix_blacklist)
+    remapping = dict(remapping or {})
     resource_dict: Mapping[str, Resource] = {
         resource.prefix: resource
         for resource in resources
-        if resource.get_uri_prefix() and resource.prefix not in prefix_blacklist
+        if resource.get_uri_prefix() and resource.prefix not in blacklist
     }
     primary_uri_prefixes: Dict[str, str] = {
         resource.prefix: cast(str, resource.get_uri_prefix(priority=uri_prefix_priority))
         for resource in resource_dict.values()
     }
     primary_prefixes: Dict[str, str] = {
-        resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
+        resource.prefix: (
+            remapping[resource.prefix]
+            if remapping.get(resource.prefix) else
+            resource.get_priority_prefix(priority=prefix_priority)
+        )
         for resource in resource_dict.values()
     }
     secondary_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
