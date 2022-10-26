@@ -61,7 +61,7 @@ class TestContexts(unittest.TestCase):
             remapping = context.prefix_remapping or {}
             _valid_remapping_prefixes = set(
                 bioregistry.get_prefix_map(
-                    priority=context.uri_prefix_priority,
+                    uri_prefix_priority=context.uri_prefix_priority,
                     use_preferred=context.use_preferred,
                 )
             )
@@ -72,7 +72,7 @@ class TestContexts(unittest.TestCase):
             _valid_custom_prefixes = set(
                 bioregistry.get_prefix_map(
                     remapping=remapping,
-                    priority=context.uri_prefix_priority,
+                    uri_prefix_priority=context.uri_prefix_priority,
                     use_preferred=context.use_preferred,
                 )
             )

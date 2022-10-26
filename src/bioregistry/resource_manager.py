@@ -427,9 +427,11 @@ class Manager:
         """Get a list of records for all resources in this manager.
 
         :param prefix_priority:
-            The order of metaprefixes (or "preferred") for choosing a primary prefix
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param uri_prefix_priority:
-            The order of metaprefixes for choosing the primary URI prefix
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be
             used to parse both URIs and CURIEs
@@ -493,7 +495,7 @@ class Manager:
     def get_prefix_map(
         self,
         *,
-        priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
         prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
@@ -501,7 +503,12 @@ class Manager:
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
-        :param priority: A priority list for how to generate URI prefixes.
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
@@ -510,7 +517,7 @@ class Manager:
         """
         records = self.get_curies_records(
             prefix_priority=prefix_priority,
-            uri_prefix_priority=priority,
+            uri_prefix_priority=uri_prefix_priority,
             remapping=remapping,
             blacklist=blacklist
         )
@@ -1280,7 +1287,7 @@ class Manager:
         )
         prescriptive_prefix_map = self.get_prefix_map(
             remapping=context.prefix_remapping,
-            priority=context.uri_prefix_priority,
+            uri_prefix_priority=context.uri_prefix_priority,
             prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
             blacklist=context.blacklist,

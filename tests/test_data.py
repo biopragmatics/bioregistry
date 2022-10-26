@@ -637,7 +637,7 @@ class TestRegistry(unittest.TestCase):
         for lead in priorities:
             priority = [lead, *(x for x in priorities if x != lead)]
             with self.subTest(priority=",".join(priority)):
-                prefix_map = bioregistry.get_prefix_map(priority=priority)
+                prefix_map = bioregistry.get_prefix_map(uri_prefix_priority=priority)
                 self.assertIsNotNone(prefix_map)
 
     def test_default_prefix_map_no_miriam(self):

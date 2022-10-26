@@ -71,7 +71,8 @@ def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
 def get_prefix_map(
     *,
-    priority: Optional[Sequence[str]] = None,
+    prefix_priority: Optional[Sequence[str]] = None,
+    uri_prefix_priority: Optional[Sequence[str]] = None,
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
     use_preferred: bool = False,
@@ -79,7 +80,7 @@ def get_prefix_map(
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their URI prefixes.
 
-    :param priority: A priority list for how to generate URI prefix.
+    :param uri_prefix_priority: A priority list for how to generate URI prefix.
     :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
         the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
@@ -88,7 +89,8 @@ def get_prefix_map(
     :return: A mapping from prefixes to URI prefixes.
     """
     return manager.get_prefix_map(
-        priority=priority,
+        prefix_priority=prefix_priority,
+        uri_prefix_priority=uri_prefix_priority,
         include_synonyms=include_synonyms,
         remapping=remapping,
         use_preferred=use_preferred,

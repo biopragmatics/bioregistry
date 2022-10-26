@@ -18,15 +18,15 @@ class TestResourceManager(unittest.TestCase):
     def test_prefix_map_preferred(self):
         """Test using preferred prefixes in the prefix map."""
         prefix_map = self.manager.get_prefix_map(
-            priority=["obofoundry", "default"],
-            use_preferred=True,
+            prefix_priority=["preferred", "default"],
+            uri_prefix_priority=["obofoundry", "default"],
         )
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
 
         prefix_map = bioregistry.get_prefix_map(
-            priority=["obofoundry", "default"],
-            use_preferred=True,
+            uri_prefix_priority=["obofoundry", "default"],
+            prefix_priority=["preferred", "default"],
         )
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
