@@ -22503,6 +22503,12 @@
       "name": "Evidence ontology",
       "prefix": "ECO"
     },
+    "bartoc": {
+      "description": "The Evidence Ontology (ECO) describes types of scientific evidence within the realm of biological research that can arise from laboratory experiments, computational methods, manual literature curation, and other means. Researchers can use these types of evidence to support assertions about things (such as scientific conclusions, gene annotations, or other statements of fact) that result from scientific research. ECO comprises two high-level classes, evidence and assertion method, where evidence is defined as “a type of information that is used to support an assertion,” and assertion method is defined as “a means by which a statement is made about an entity.” Together evidence and assertion method can be combined to describe both the support for an assertion and whether that assertion was made by a human being or a computer. However, ECO can not be used to make the assertion itself; for that, one would use another ontology, free text description, or other means. ECO was originally created around the year 2000 to support gene product annotation by the Gene Ontology.",
+      "homepage": "http://code.google.com/p/evidenceontology/",
+      "name": "Evidence Codes Ontology",
+      "prefix": "1028"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -22558,6 +22564,7 @@
     },
     "mappings": {
       "aberowl": "ECO",
+      "bartoc": "1028",
       "biocontext": "ECO",
       "bioportal": "ECO",
       "fairsharing": "FAIRsharing.wvpgwn",
@@ -46330,6 +46337,12 @@
       "prefix": "MESH",
       "version": "2016AB"
     },
+    "bartoc": {
+      "description": "MeSH is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. MeSH descriptors are arranged in both an alphabetic and a hierarchical structure. At the most general level of the hierarchical structure are very broad headings such as 'Anatomy' or 'Mental Disorders'. More specific headings are found at more narrow levels of the twelve-level hierarchy, such as 'Ankle' and 'Conduct Disorder'. There are 26,142 descriptors in 2011 MeSH. There are also over 177,000 entry terms that assist in finding the most appropriate MeSH Heading, for example, 'Vitamin C' is an entry term to 'Ascorbic Acid'. In addition to these headings, there are more than 199,000 headings called Supplementary Concept Records (formerly Supplementary Chemical Records) within a separate thesaurus. The MeSH thesaurus is used by NLM for indexing articles from 5,400 of the world's leading biomedical journals for the MEDLINE®/PubMED® database. It is also used for the NLM-produced database that includes cataloging of books, documents, and audiovisuals acquired by the Library. Each bibliographic reference is associated with a set of MeSH terms that describe the content of the item. Similarly, search queries use MeSH vocabulary to find items on a desired topic.",
+      "homepage": "http://www.nlm.nih.gov/mesh/",
+      "name": "Medical Subject Headings",
+      "prefix": "391"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -46410,6 +46423,7 @@
     "license": "CC0 1.0",
     "mappings": {
       "aberowl": "MESH",
+      "bartoc": "391",
       "biocontext": "MESH",
       "biolink": "MESH",
       "bioportal": "MESH",

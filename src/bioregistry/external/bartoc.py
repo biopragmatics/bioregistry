@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
+
+"""Download the BARTOC registry."""
+
 import json
+from typing import Any, Mapping
 
 import requests
 
@@ -11,8 +16,15 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
-def get_bartoc(force_download: bool = True):
-    """Download BARTOC."""
+def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
+    """Get the BARTOC registry.
+
+    :param force_download: If true, forces download. If false and the file
+        is already cached, reuses it.
+    :returns: The BARTOC registry
+
+    .. seealso:: https://bartoc.org/
+    """
     if PROCESSED_PATH.is_file() and not force_download:
         return json.loads(PROCESSED_PATH.read_text())
     rv = {}
@@ -35,6 +47,14 @@ def _process_bartoc_record(record):
     pattern = record.get("notationPattern")
     if pattern:
         rv["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
+
+    for identifier in record.get("identifier", []):
+        if identifier.startswith("http://www.wikidata.org/entity/"):
+            rv["wikidata"] = identifier[len("http://www.wikidata.org/entity/"):]
+
+    abbreviations = record.get("notation")
+    if abbreviations:
+        rv["abbreviations"] = abbreviations
 
     for license_dict in record.get("license", []):
         license_key = standardize_license(license_dict["uri"])
