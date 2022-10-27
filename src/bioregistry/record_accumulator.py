@@ -47,7 +47,9 @@ prefix_resource_blacklist = {
     ("uberon", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
     ("ncbigene", "https://en.wikipedia.org/wiki/"),  # probably from wikigene?
     ("ncbigene", "http://en.wikipedia.org/wiki/"),
-    ("wbphenotype", "http://www.wormbase.org/get?name=$1"),
+    ("wbphenotype", "http://www.wormbase.org/get?name=$1"), # wrong in GO
+    ("uniprot.isoform", "http://www.uniprot.org/uniprot/$1"), # wrong in miriam
+    ("uniprot.isoform", "http://purl.uniprot.org/uniprot/$1"), # wrong in miriam
 }
 
 
@@ -71,7 +73,6 @@ def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], 
 
 def _iterate_prefix_prefix(resource: Resource, *extras: str):
     prefixes_ = [
-        resource.prefix,
         resource.prefix,
         *resource.get_synonyms(),
         resource.get_preferred_prefix(),
