@@ -46,6 +46,7 @@ logger = logging.getLogger(__name__)
 
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = "silver"
+BAR_SKIP = {"re3data", "bartoc"}
 
 
 class RegistryInfo(typing.NamedTuple):
@@ -367,7 +368,7 @@ def compare():  # noqa:C901
 
     fig, _axes = plot_coverage_gains(overlaps=overlaps)
     _save(fig, name="bioregistry_coverage_bar", png=paper, pdf=paper)
-    return
+
     fig, axes = plot_overlap_venn_diagrams(
         keys=registry_infos, overlaps=overlaps, watermark=watermark
     )
@@ -489,6 +490,8 @@ def plot_coverage_overlaps(*, overlaps):
 
     rows = []
     for metaprefix, data in overlaps.items():
+        if metaprefix in BAR_SKIP:
+            continue
         br, external = data[REMAPPED_KEY], data[REMAPPED_VALUE]
         rows.append(
             (
@@ -562,10 +565,9 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
 
     sns.set_style("white")
 
-    skip = {"re3data"}
     rows = []
     for metaprefix, data in overlaps.items():
-        if metaprefix in skip:
+        if metaprefix in BAR_SKIP:
             continue
         # Get the set of remapped bioregistry prefixes
         bioregistry_prefixes = data[REMAPPED_KEY]
@@ -682,7 +684,7 @@ def plot_xrefs(registry_infos, watermark: bool):
         data=xrefs_df,
         x="frequency",
         y="count",
-        ci=None,
+        errorbar=None,
         palette=xrefs_colors,
         alpha=1.0,
         ax=ax,
