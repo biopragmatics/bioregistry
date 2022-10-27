@@ -48,7 +48,9 @@ prefix_resource_blacklist = {
     ("ncbigene", "https://en.wikipedia.org/wiki/"),  # probably from wikigene?
     ("ncbigene", "http://en.wikipedia.org/wiki/"),
     ("wbphenotype", "http://www.wormbase.org/get?name="),  # wrong in GO
-    ("wbphenotype", "http://www.wormbase.org/get?name="),  # wrong in GO
+    ("wbphenotype", "https://www.wormbase.org/get?name="),  # wrong in GO
+    ("wbls", "http://www.wormbase.org/get?name="),  # wrong in GO
+    ("wbls", "https://www.wormbase.org/get?name="),  # wrong in GO
     ("uniprot.isoform", "http://www.uniprot.org/uniprot/"),  # wrong in miriam
     ("uniprot.isoform", "https://www.uniprot.org/uniprot/"),  # wrong in miriam
     ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
