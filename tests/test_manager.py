@@ -15,6 +15,13 @@ class TestResourceManager(unittest.TestCase):
         """Set up the test case with a resource manager."""
         self.manager = Manager()
 
+    def test_prefix_map(self):
+        """Test getting a prefix map."""
+        prefix_map = self.manager.get_prefix_map()
+        # Non-obo, but need to check it works right
+        self.assertIn("uniprot.isoform", prefix_map)
+        self.assertEqual("http://purl.uniprot.org/isoforms/", prefix_map["uniprot.isoform"])
+
     def test_prefix_map_preferred(self):
         """Test using preferred prefixes in the prefix map."""
         prefix_map = self.manager.get_prefix_map(
