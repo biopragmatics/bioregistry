@@ -5,6 +5,7 @@
 from class_resolver import ClassResolver
 
 from .aberowl import AberOWLAligner
+from .bartoc import BartocAligner
 from .biocontext import BioContextAligner
 from .biolink import BiolinkAligner
 from .bioportal import (
@@ -60,6 +61,7 @@ __all__ = [
     "EDAMAligner",
     "Re3dataAligner",
     "HL7Aligner",
+    "BartocAligner",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(

@@ -11,20 +11,21 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
-def get_bartoc(force: bool = True):
-    if PROCESSED_PATH.is_file() and not force:
+def get_bartoc(force_download: bool = True):
+    """Download BARTOC."""
+    if PROCESSED_PATH.is_file() and not force_download:
         return json.loads(PROCESSED_PATH.read_text())
     rv = {}
     for line in requests.get(URL).iter_lines():
         record = json.loads(line)
-        record = process_record(record)
+        record = _process_bartoc_record(record)
         rv[record["prefix"]] = record
 
     PROCESSED_PATH.write_text(json.dumps(rv, indent=2, ensure_ascii=False, sort_keys=True))
     return rv
 
 
-def process_record(record):
+def _process_bartoc_record(record):
     rv = {
         "prefix": record["uri"][len("http://bartoc.org/en/node/") :],
         "description": record.get("definition", {}).get("en", [""])[0].strip('"').strip(),
