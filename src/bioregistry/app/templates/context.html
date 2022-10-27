@@ -69,8 +69,6 @@
                 <dd>
                     <span class="badge badge-pill badge-{% if entry.include_synonyms %}success{% else %}light{% endif %}"
                           data-toggle="tooltip" title="{{ schema.include_synonyms.description }}">Synonyms</span>
-                    <span class="badge badge-pill badge-{% if entry.use_preferred %}success{% else %}light{% endif %}"
-                          data-toggle="tooltip" title="{{ schema.use_preferred.description }}">Preferred Prefixes</span>
                 </dd>
                 {% if entry.prefix_priority %}
                     <dt>Prefix Priority</dt>
