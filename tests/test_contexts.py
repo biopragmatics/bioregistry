@@ -6,6 +6,7 @@ import json
 import unittest
 
 import bioregistry
+from bioregistry import manager
 from bioregistry.constants import CONTEXTS_PATH
 from bioregistry.utils import extended_encoder
 
@@ -36,6 +37,17 @@ class TestContexts(unittest.TestCase):
         )
         self.assertEqual(linted_text, text)
 
+    def test_obo_context(self):
+        """Test the OBO context map."""
+        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=False)
+        self.assertIn("KISAO", prefix_map)
+        self.assertNotIn("biomodels.kisao", prefix_map)
+        self.assertIn("FBcv", prefix_map)
+
+        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
+        self.assertIn("KISAO", prefix_map)
+        self.assertIn("biomodels.kisao", prefix_map)
+
     def test_data(self):
         """Test the data integrity."""
         for key, context in self.contexts.items():
@@ -62,7 +74,6 @@ class TestContexts(unittest.TestCase):
             _valid_remapping_prefixes = set(
                 bioregistry.get_prefix_map(
                     uri_prefix_priority=context.uri_prefix_priority,
-                    use_preferred=context.use_preferred,
                 )
             )
             for prefix in remapping:
@@ -73,7 +84,6 @@ class TestContexts(unittest.TestCase):
                 bioregistry.get_prefix_map(
                     remapping=remapping,
                     uri_prefix_priority=context.uri_prefix_priority,
-                    use_preferred=context.use_preferred,
                 )
             )
             invalid_custom_prefixes = {
