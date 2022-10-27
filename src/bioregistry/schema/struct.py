@@ -2248,16 +2248,14 @@ class Context(BaseModel):
             This ordering of metaprefixes (i.e., prefixes for registries)
             is used to determine the priority of which registry's prefixes are used.
             By default, the canonical Bioregistry prefixes are highest priority.
+            Add in "preferred" for explicitly using preferred prefixes or "default" for
+            explicitly using Bioregistry canonical prefixes.
         """
         ),
     )
     include_synonyms: bool = Field(
         False,
         description="Should synonyms be included in the prefix map?",
-    )
-    use_preferred: bool = Field(
-        False,
-        description="Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
     )
     uri_prefix_priority: Optional[List[str]] = Field(
         ...,
