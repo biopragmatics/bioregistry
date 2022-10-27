@@ -78,9 +78,9 @@ class TestContexts(unittest.TestCase):
                 self.assertRegex(maintainer.orcid, "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$")
 
             for metaprefix in context.uri_prefix_priority or []:
-                self.assertIn(metaprefix, self.valid_metaprefixes)
+                self.assertIn(metaprefix, self.valid_metaprefixes.union({"default"}))
             for metaprefix in context.prefix_priority or []:
-                self.assertIn(metaprefix, self.valid_metaprefixes)
+                self.assertIn(metaprefix, self.valid_metaprefixes.union({"obofoundry.preferred", "preferred", "default"}))
             remapping = context.prefix_remapping or {}
             _valid_remapping_prefixes = set(
                 bioregistry.get_prefix_map(

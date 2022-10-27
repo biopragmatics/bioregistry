@@ -15,6 +15,26 @@ class TestResourceManager(unittest.TestCase):
         """Set up the test case with a resource manager."""
         self.manager = Manager()
 
+    def test_get_records(self):
+        """Test getting records."""
+        resource = self.manager.registry["uniprot.isoform"]
+        self.assertEqual("uniprot.isoform", resource.get_priority_prefix())
+
+        prefixes = {
+            resource.prefix
+            for resource in self.manager.registry.values()
+            if resource.get_uri_prefix()
+        }
+        self.assertIn(
+            "uniprot.isoform",
+            prefixes,
+            msg="uniprot.isoform isn't registered with a URI prefix properly",
+        )
+
+        records = self.manager.get_curies_records()
+        prefixes = {record.prefix for record in records}
+        self.assertIn("uniprot.isoform", prefixes)
+
     def test_prefix_map(self):
         """Test getting a prefix map."""
         prefix_map = self.manager.get_prefix_map()
