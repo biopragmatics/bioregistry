@@ -15,6 +15,7 @@ class BartocAligner(Aligner):
 
     key = "bartoc"
     getter = get_bartoc
+    alt_key_match = "abbreviation"
     curation_header = ["name", "homepage", "description"]
 
 

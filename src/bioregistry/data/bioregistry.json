@@ -808,6 +808,12 @@
       "name": "Anatomical Entity Ontology",
       "prefix": "AEO"
     },
+    "bartoc": {
+      "abbreviation": "AEO",
+      "description": "The AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology, to about 160 classes using the is_a relationship; it thus provides a detailed type classification for tissues. The ~100 new classes were chosen for their use in categorizing the major vertebrate and invertebrate anatomy ontologies at a granularity adequate for tissues of a single cell type.\n\nThe AEO is intended to be useful in increasing the amount of knowledge in anatomy ontologies, facilitating annotation and enabling interoperability across anatomy ontologies.\n\nAn important subcategory of the AEO is simple tissue (a synonym of the CARO portion of tissue), a recognisable anatomical entity composed predominantly to a single cell type. CARO had a only few epithelial classes here and these are inadequate for capturing the richness of anatomical tissue knowledge. The AEO has ~70 simple tissues and these are linked to their cell types (~100) as detailed in the cell type ontology through a has_part relationship. The AEO thus includes a subset of the cell type ontology.\n\nThe AEO has been refined through its use in annotating the ~2500 terms of the new version of the Ontology of Developing Human Anatomy and, while this has improved the ontology, it may have given it a mammalian bias.\n\nThe ontology can be used to classify most organisms as its terms are appropriate for most plant and fungal tissues. I plan to improve the ontology to include more non-animal anatomical terms.",
+      "name": "Ontology of Anatomical Entities",
+      "prefix": "181"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -846,6 +852,7 @@
     },
     "mappings": {
       "aberowl": "AEO",
+      "bartoc": "181",
       "biocontext": "AEO",
       "bioportal": "AEO",
       "fairsharing": "FAIRsharing.93ee19",
@@ -3560,6 +3567,13 @@
       "prefix": "ATC",
       "version": "2016AB"
     },
+    "bartoc": {
+      "abbreviation": "ATC",
+      "description": "In the Anatomical Therapeutic Chemical (ATC) classification system, the active substances are divided into different groups according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. Drugs are classified in groups at five different levels. The drugs are divided into fourteen main groups (1st level), with pharmacological/therapeutic subgroups (2nd level).  The 3rd and 4th levels are chemical/pharmacological/therapeutic subgroups and the 5th level is the chemical substance. The 2nd, 3rd and 4th levels are often used to identify pharmacological subgroups when that is considered more appropriate than therapeutic or chemical subgroups.",
+      "name": "Anatomical Therapeutic Chemical Classification System",
+      "prefix": "449",
+      "wikidata": "Q192093"
+    },
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
@@ -3619,6 +3633,7 @@
     },
     "mappings": {
       "aberowl": "ATC",
+      "bartoc": "449",
       "biocontext": "ATC",
       "bioportal": "ATC",
       "edam": "3103",
@@ -9845,6 +9860,14 @@
     "appears_in": [
       "ohd"
     ],
+    "bartoc": {
+      "abbreviation": "CDT",
+      "description": "The Code on Dental Procedures and Nomenclature is used to provide for the efficient processing of dental claims, and to populate an Electronic Health Record.",
+      "homepage": "http://www.ada.org/en/publications/cdt",
+      "license": "http://rightsstatements.org/vocab/InC/1.0",
+      "name": "Code on Dental Procedures and Nomenclature",
+      "prefix": "20299"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -9863,6 +9886,7 @@
     },
     "homepage": "https://www.ada.org/publications/CDT",
     "mappings": {
+      "bartoc": "20299",
       "hl7": "2.16.840.1.113883.6.116"
     },
     "name": "Current Dental Terminology",
@@ -10527,6 +10551,14 @@
       "name": "Chemical Entities of Biological Interest",
       "prefix": "CHEBI"
     },
+    "bartoc": {
+      "abbreviation": "ChEBI",
+      "description": "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on ‘small’ chemical compounds. The term ‘molecular entity’ refers to any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer, etc., identifiable as a separately distinguishable entity. The molecular entities in question are either products of nature or synthetic products used to intervene in the processes of living organisms. ChEBI incorporates an ontological classification, whereby the relationships between molecular entities or classes of entities and their parents and/or children are specified.",
+      "homepage": "http://www.ebi.ac.uk/chebi/",
+      "name": "Chemical Entities of Biological Interest",
+      "prefix": "558",
+      "wikidata": "Q902623"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -10613,6 +10645,7 @@
     },
     "mappings": {
       "aberowl": "CHEBI",
+      "bartoc": "558",
       "biocontext": "CHEBI",
       "bioportal": "CHEBI",
       "cellosaurus": "ChEBI",
@@ -20392,6 +20425,14 @@
       "name": "Human Disease Ontology",
       "prefix": "DOID"
     },
+    "bartoc": {
+      "abbreviation": "DO",
+      "description": "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts through collaborative efforts of researchers at Northwestern University, Center for Genetic Medicine and the University of Maryland School of Medicine, Institute for Genome Sciences.\n\nThe Disease Ontology semantically integrates disease and medical vocabularies through extensive cross mapping of DO terms to MeSH, ICD, NCI’s thesaurus, SNOMED and OMIM.",
+      "homepage": "http://disease-ontology.org/",
+      "name": "Disease Ontology",
+      "prefix": "576",
+      "wikidata": "Q5282129"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -20498,6 +20539,7 @@
     },
     "mappings": {
       "aberowl": "DOID",
+      "bartoc": "576",
       "biocontext": "DOID",
       "bioportal": "DOID",
       "fairsharing": "FAIRsharing.8b6wfq",
@@ -24147,6 +24189,13 @@
       "name": "Mouse Developmental Anatomy Ontology",
       "prefix": "EMAPA"
     },
+    "bartoc": {
+      "abbreviation": "EMAPA",
+      "description": "The ontology of mouse developmental anatomy was originally developed by Jonathan Bard and his colleagues as part of the Edinburgh Mouse Atlas Project (EMAP) (http://www.emouseatlas.org) in order to provide a structured controlled vocabulary of stage-specific anatomical structures for the developing laboratory mouse.\n\nThe developmental mouse anatomy ontology has subsequently been substantially extended and refined in a collaborative effort between EMAP and the Gene Expression Database (GXD) project, part of the Mouse Genome Informatics (MGI) resource at The Jackson Laboratory. Both GXD and the Edinburgh Mouse Atlas of Gene Expression (EMAGE) database project currently use this anatomy ontology to describe patterns of gene expression in the mouse embryo.\n\nPrevious versions, such as the one posted on the OBO Foundry site under the filename EMAP.obo, listed the anatomical entities for each developmental stage (Theiler Stages 1 through 26) separately. Stage-specific instances were presented as uniparental hierarchical trees organized using part-of relationships only (i.e. as a strict partonomy). These hierarchies have been used for annotation of expression in both the EMAGE and GXD databases, and the associated identifiers for the stage-specific instances are preserved.",
+      "homepage": "http://www.obofoundry.org/wiki/index.php/EMAPA:Main_Page",
+      "name": "Ontology of Mouse Developmental Anatomy",
+      "prefix": "549"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -24182,6 +24231,7 @@
     },
     "mappings": {
       "aberowl": "EMAPA",
+      "bartoc": "549",
       "biocontext": "EMAPA",
       "bioportal": "EMAPA",
       "fairsharing": "FAIRsharing.j0fa1d",
@@ -28462,6 +28512,14 @@
       "name": "Foundational Model of Anatomy Ontology (subset)",
       "prefix": "FMA"
     },
+    "bartoc": {
+      "abbreviation": "FMA",
+      "description": "The Foundational Model of Anatomy Ontology (FMA) is an evolving computer-based knowledge source for biomedical informatics; it is concerned with the representation of classes or types and relationships necessary for the symbolic representation of the phenotypic structure of the human body in a form that is understandable to humans and is also navigable, parseable and interpretable by machine-based systems. Specifically, the FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy. Its ontological framework can be applied and extended to all other species.",
+      "homepage": "http://sig.biostr.washington.edu/projects/fm/",
+      "name": "Foundational Model of Anatomy",
+      "prefix": "571",
+      "wikidata": "Q1406710"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -28527,6 +28585,7 @@
     },
     "mappings": {
       "aberowl": "FMA",
+      "bartoc": "571",
       "biocontext": "FMA",
       "bioportal": "FMA",
       "edam": "1182",
@@ -30409,6 +30468,15 @@
       "repository": "http://www.eionet.europa.eu/gemet/en/exports/rdf/latest",
       "version": "4.2.3"
     },
+    "bartoc": {
+      "abbreviation": "GEMET",
+      "description": "The basic idea for the development of GEMET was to use the best of the presently available excellent multilingual thesauri, in order to save time, energy and funds. GEMET was conceived as a 'general' thesaurus, aimed to define a common general language, a core of general terminology for the environment. Specific thesauri and descriptor systems (e.g. on Nature Conservation, on Wastes, on Energy, etc.) have been excluded from the first step of development of the thesaurus and have been taken into account only for their structure and upper level terminology. The merging has been performed both on conceptual and formal basis. Coinciding concepts in the different thesauri have been identified and scored. Like in other multilingual thesauri, e. g. Infoterra EnVoc, a neutral alphanumerical notation allows the identification of a concept independently on the user's language.\n\nThe links with the original thesauri are ensured by the respective identifiers or code notations. Following the identification of the coinciding concepts, a selection was made by the experts of the National Focal Points of the organisations involved. The resulting 6.562 terms have been arranged in a classification scheme made of 3 super-groups, 30 groups plus 5 accessory, instrumental groups. Each descriptor has been arranged in a hierarchical structure headed by a Top Term. The level of poly-hierarchy, i.e. the allocation of a descriptor to more than one group, has been kept to a minimum. Further, to allow a thematic retrieval of terms thematically related but scattered in different groups, a set of 40 themes have been agreed upon with the EEA and each descriptor has been assigned to as many themes as necessary. Thus, the user can access the thesaurus through the group- hierarchical list, through the thematic list or through the alphabetical list. As a complement to the hierarchical 'vertical' relations, an exhaustive series of strong 'horizontal' relations between terms (RT, Related Terms) have been introduced. A progressive Line Number has been assigned to each descriptor of the systematic list, in order to help the user of the lists to identify the descriptor in the different lists. The Line Number is merely a neutral identifier for the present version. The GEMET size, formerly figured at about 200000 descriptors, rose to more than 5.000 in the course of merging, due to the limited overlapping between the different thesauri, to constraints of the selection work carried out by the parental organisations and to a few new additions, mainly from CDS indexing work. The present version 2001* of GEMET is the result of a close collaboration between CNR and UBA under contract and supervision of the ETC/CDS. It presents 5.298 descriptors, including 109 Top Terms, and 1.264 synonyms in English. The 5.524 terms belonging to the parental thesauri and not included in GEMET, constitute an accessory alphabetical list of free terms. GEMET has been developed as an indexing, retrieval and control tool for the European Topic Centre on Catalogue of Data Sources (ETC/CDS) and the European Environment Agency (EEA), Copenhagen.",
+      "homepage": "http://www.eionet.europa.eu/gemet/",
+      "license": "CC BY 3.0",
+      "name": "General Multilingual Environmental Thesaurus",
+      "prefix": "16",
+      "wikidata": "Q1485161"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -30419,7 +30487,8 @@
     "example": "627",
     "homepage": "https://www.eionet.europa.eu/gemet/en/themes/",
     "mappings": {
-      "agroportal": "GEMET"
+      "agroportal": "GEMET",
+      "bartoc": "16"
     },
     "name": "General Multilingual Environmental Thesaurus",
     "pattern": "^\\d+$",
@@ -32768,6 +32837,14 @@
       "repository": "https://sourceforge.net/projects/geneontology/",
       "version": "2022-10-07"
     },
+    "bartoc": {
+      "abbreviation": "GO",
+      "description": "The Gene Ontology project is a major bioinformatics initiative with the aim of standardizing the representation of gene and gene product attributes across species and databases. The project provides a controlled vocabulary of terms for describing gene product characteristics and gene product annotation data from GO Consortium members, as well as tools to access and process this data.",
+      "homepage": "http://www.geneontology.org/",
+      "name": "Gene Ontology",
+      "prefix": "572",
+      "wikidata": "Q135085"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -32862,6 +32939,7 @@
     "mappings": {
       "aberowl": "GO",
       "agroportal": "GO",
+      "bartoc": "572",
       "biocontext": "GO",
       "bioportal": "GO",
       "edam": "1176",
@@ -37754,6 +37832,14 @@
       "prefix": "ICD10",
       "version": "2016AB"
     },
+    "bartoc": {
+      "abbreviation": "ICD",
+      "description": "The International Classification of Diseases (ICD) is the standard diagnostic tool for epidemiology, health management and clinical purposes. This includes the analysis of the general health situation of population groups. It is used to monitor the incidence and prevalence of diseases and other health problems. It is used to classify diseases and other health problems recorded on many types of health and vital records including death certificates and health records. In addition to enabling the storage and retrieval of diagnostic information for clinical, epidemiological and quality purposes, these records also provide the basis for the compilation of national mortality and morbidity statistics by WHO Member States. It is used for reimbursement and resource allocation decision-making by countries. ICD-10 was endorsed by the Forty-third World Health Assembly in May 1990 and came into use in WHO Member States as from 1994. The 11th revision of the classification has already started and will continue until 2015.",
+      "homepage": "https://www.who.int/standards/classifications/classification-of-diseases",
+      "name": "International Statistical Classification of Diseases",
+      "prefix": "447",
+      "wikidata": "Q50018"
+    },
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
@@ -37843,6 +37929,7 @@
     "homepage": "https://icd.who.int/browse10",
     "mappings": {
       "aberowl": "ICD10",
+      "bartoc": "447",
       "biocontext": "ICD",
       "biolink": "ICD10",
       "bioportal": "ICD10",
@@ -38299,6 +38386,14 @@
       "prefix": "ICDO",
       "version": "1.0.297"
     },
+    "bartoc": {
+      "abbreviation": "ICD-O",
+      "description": "Used principally in tumour or cancer registries for coding the site (topography) and the histology (morphology) of neoplasms, usually obtained from a pathology report.\n\nA multi-axial classification of the site, morphology, behaviour, and grading of neoplasms. The topography axis uses the ICD-10 classification of malignant neoplasms (except those categories which relate to secondary neoplasms and to specified morphological types of tumours) for all types of tumours, thereby providing greater site detail for non-malignant tumours than is provided in ICD-10. In contrast to ICD-10, the ICD-O includes topography for sites of haematopoietic and reticuloendothelial tumours. The morphology axis provides five-digit codes ranging from M-8000/0 to M-9989/3. The first four digits indicate the specific histological term. The fifth digit after the slash (/) is the behaviour code, which indicates whether a tumour is malignant, benign, in situ, or uncertain (whether benign or malignant). A separate one-digit code is also provided for histologic grading (differentiation).",
+      "homepage": "http://www.who.int/classifications/icd/adaptations/oncology/",
+      "name": "International Classification of Diseases for Oncology",
+      "prefix": "445",
+      "wikidata": "Q1430635"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -38319,6 +38414,7 @@
     "homepage": "https://www.who.int/classifications/icd/adaptations/oncology/en/",
     "mappings": {
       "aberowl": "ICDO",
+      "bartoc": "445",
       "hl7": "2.16.840.1.113883.6.43",
       "prefixcommons": "icdo",
       "wikidata": "P563"
@@ -46338,10 +46434,12 @@
       "version": "2016AB"
     },
     "bartoc": {
+      "abbreviation": "MeSH",
       "description": "MeSH is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. MeSH descriptors are arranged in both an alphabetic and a hierarchical structure. At the most general level of the hierarchical structure are very broad headings such as 'Anatomy' or 'Mental Disorders'. More specific headings are found at more narrow levels of the twelve-level hierarchy, such as 'Ankle' and 'Conduct Disorder'. There are 26,142 descriptors in 2011 MeSH. There are also over 177,000 entry terms that assist in finding the most appropriate MeSH Heading, for example, 'Vitamin C' is an entry term to 'Ascorbic Acid'. In addition to these headings, there are more than 199,000 headings called Supplementary Concept Records (formerly Supplementary Chemical Records) within a separate thesaurus. The MeSH thesaurus is used by NLM for indexing articles from 5,400 of the world's leading biomedical journals for the MEDLINE®/PubMED® database. It is also used for the NLM-produced database that includes cataloging of books, documents, and audiovisuals acquired by the Library. Each bibliographic reference is associated with a set of MeSH terms that describe the content of the item. Similarly, search queries use MeSH vocabulary to find items on a desired topic.",
       "homepage": "http://www.nlm.nih.gov/mesh/",
       "name": "Medical Subject Headings",
-      "prefix": "391"
+      "prefix": "391",
+      "wikidata": "Q199897"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -54854,6 +54952,15 @@
     ]
   },
   "nlm": {
+    "bartoc": {
+      "abbreviation": "NLM",
+      "description": "The NLM Classification covers the field of medicine and related sciences. The scheme is a system of classification intended to be used for the shelf arrangement of all library materials, regardless of format. Designed as a broad classification, it is suitable for both large and small library collections and may be adapted to handle specialized collections of any size. The NLM Classification is a system of mixed notation patterned after the Library of Congress (LC) Classification where alphabetical letters which denote broad subject categories are further subdivided by numbers. The NLM Classification utilizes schedules QS-QZ and W-WZ, permanently excluded from the LC Classification Schedules and is intended to be used with the LC schedules which supplement the NLM Classification for subjects bordering on medicine and for general reference materials. The LC schedules for Human Anatomy (QM), Microbiology (QR), and Medicine (R) are not used at all by the National Library of Medicine since they overlap the NLM Classification. The headings for the individual schedules are given in brief form (e.g., WE - Musculoskeletal System; WG - Cardiovascular System) and together they provide an outline of the subjects that constitute the NLM Classification. These headings are interpreted broadly and include the physiological system, the specialty or specialties connected with them, the regions of the body chiefly concerned and subordinate related fields. The Classification is hierarchical, and within each schedule, division by organ usually has priority. Each main schedule, as well as some sections within a schedule, begins with a group of form numbers ranging generally from 1-49 which are used to classify materials by publication type, e.g., dictionaries, atlases, laboratory manuals, etc. The main schedules QS-QZ, W-WY, and WZ (excluding WZ 220-270) are used to classify works published after 1913; the 19th century schedule is used for works published 1801-1913; and WZ 220-270 is used to provide century groupings for works published before 1801 and Americana. Geographic subdivision is provided for certain subjects in the NLM schedules by the application of Table G notations.",
+      "homepage": "http://www.nlm.nih.gov/class/",
+      "name": "National Library of Medicine Classification",
+      "pattern": "^[A-Z]+ [0-9]+(.[0-9](.[A-Z0-9]+)?)?$",
+      "prefix": "528",
+      "wikidata": "Q986957"
+    },
     "biolink": {
       "is_identifiers": false,
       "is_obo": false,
@@ -54870,6 +54977,7 @@
     "example": "101775319",
     "homepage": "https://www.ncbi.nlm.nih.gov/nlmcatalog",
     "mappings": {
+      "bartoc": "528",
       "biolink": "NLMID"
     },
     "name": "National Library of Medicine Catalog",
@@ -68806,6 +68914,13 @@
       "prefix": "QUDT",
       "version": "$Id: OSG_qudt-(v1.1).ttl 4989 2011-06-01 21:56:40Z RalphHodgson $"
     },
+    "bartoc": {
+      "abbreviation": "QUDT",
+      "description": "QUDT is more than a set of vocabularies representing the various quantity and unit standards:\n\nMain QUDT Ontology\nQUDT Datatype Ontology\nQUDT Units Vocabulary\nQUDT QuantityKinds Vocabulary\nQUDT DimensionVectors Vocabulary\nQUDT Physical Constants Vocabulary\nQUDT Systems of Units Vocabulary",
+      "homepage": "http://qudt.org/",
+      "name": "Quantities, Units, Dimensions and Types",
+      "prefix": "18206"
+    },
     "biolink": {
       "is_identifiers": false,
       "is_obo": false,
@@ -68841,6 +68956,7 @@
     "homepage": "https://qudt.org",
     "mappings": {
       "aberowl": "QUDT",
+      "bartoc": "18206",
       "biolink": "qud",
       "bioportal": "QUDT",
       "fairsharing": "FAIRsharing.d3pqw7"
@@ -78768,6 +78884,15 @@
     ]
   },
   "tgn": {
+    "bartoc": {
+      "abbreviation": "TGN",
+      "description": "TGN is a structured vocabulary currently containing around 1,106,000 names and other information about places. Names for a place may include names in the vernacular language, English, other languages, historical names, names and in natural order and inverted order. Among these names, one is flagged as the preferred name. TGN is a thesaurus, compliant with ISO and NISO standards for thesaurus construction; it contains hierarchical, equivalence, and associative relationships. Note that TGN is not a GIS (Geographic Information System). While many records in TGN include coordinates, these coordinates are approximate and are intended for reference only. The focus of each TGN record is a place. There are around 912,000 places in the TGN. In the database, each place record (also called a subject) is identified by a unique numeric ID. Linked to the record for the place are names, the place's parent or position in the hierarchy, other relationships, geographic coordinates, notes, sources for the data, and place types, which are terms describing the role of the place (e.g., inhabited place and state capital). The temporal coverage of the TGN ranges from prehistory to the present and the scope is global. The TGN is a hierarchical database; its trees branch from a root called Top of the TGN hierarchies (Subject_ID: 1000000). Currently there are two TGN facets, World and Extraterrestrial Places. Under the facet World, places are arranged in hierarchies generally representing the current political and physical world, although some historical nations and empires are also included. There may be multiple broader contexts, making the TGN polyhierarchical. The primary users of the Getty vocabularies include museums, art libraries, archives, visual resource collection catalogers, bibliographic projects concerned with art, researchers in art and art history, and the information specialists who are dealing with the needs of these users. In addition, a significant number of users of the Getty vocabularies are students or members of the general public.",
+      "homepage": "http://www.getty.edu/research/tools/vocabularies/tgn/",
+      "license": "http://www.opendatacommons.org/licenses/by/1.0",
+      "name": "Getty Thesaurus of Geographic Names",
+      "prefix": "109",
+      "wikidata": "Q1520117"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -78777,6 +78902,9 @@
     "deprecated": true,
     "example": "1023371",
     "homepage": "https://www.getty.edu/research/tools/vocabularies/tgn/",
+    "mappings": {
+      "bartoc": "109"
+    },
     "name": "Getty Thesaurus of Geographic Names",
     "pattern": "^\\d+$",
     "references": [
@@ -80403,6 +80531,14 @@
     }
   },
   "ucum": {
+    "bartoc": {
+      "abbreviation": "UCUM",
+      "description": "The Unified Code for Units of Measure is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business. The purpose is to facilitate unambiguous electronic communication of quantities together with their units. The focus is on electronic communication, as opposed to communication between humans. A typical application of The Unified Code for Units of Measure are electronic data interchange (EDI) protocols, but there is nothing that prevents it from being used in other types of machine communication. How does it relate?\n\nThe Unified Code for Units of Measure is inspired by and heavily based on ISO 2955-1983, ANSI X3.50-1986, and HL7's extensions called ISO+. The respective ISO and ANSI standards are both entitled Representation of [...] units in systems with limited character sets where ISO 2955 refers to SI and other units provided by ISO 1000-1981, while ANSI X3.50 extends ISO 2955 to include U.S. customary units. Because these standards carry the restriction of limited character sets in their names they seem to be of less value today where graphical user interface and laser printers are in wide-spread use, which is why the european standard ENV 12435 in its clause 7.3 declares ISO 2955 obsolete.\n\nENV 12435 is dedicated exclusively to the communication of measurements between humans in display and print, and does not provide codes that can be used in communication between systems. It does not even provide a specification that would allow communication of units from one system to the screen or printer of another system. The issue about displaying units in the common style defined by the 9th Conférence Générale des Poids et Mesures (CGPM) in 1947 is not just the character set. Although The Unicode Standard and its predecessor ISO/IEC 10646 is the richest character set ever it is still not enough to specify the presentation of units because there are important typographical details such as superscripts, subscripts, roman and italics.",
+      "homepage": "http://unitsofmeasure.org/",
+      "name": "Unified Code for Units of Measure",
+      "prefix": "1895",
+      "wikidata": "Q2494286"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -80465,6 +80601,7 @@
     },
     "homepage": "https://ucum.org",
     "mappings": {
+      "bartoc": "1895",
       "fairsharing": "FAIRsharing.27w8k0",
       "hl7": "2.16.840.1.113883.6.8"
     },
@@ -80727,6 +80864,14 @@
     ]
   },
   "umls": {
+    "bartoc": {
+      "abbreviation": "UMLS",
+      "description": "The Unified Medical Language System (UMLS) is a compendium of many controlled vocabularies in the biomedical sciences.",
+      "homepage": "https://www.nlm.nih.gov/research/umls/index.html",
+      "name": "Unified Medical Language System",
+      "prefix": "20052",
+      "wikidata": "Q455338"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": false,
@@ -80751,6 +80896,7 @@
     },
     "homepage": "https://www.nlm.nih.gov/research/umls",
     "mappings": {
+      "bartoc": "20052",
       "biocontext": "UMLS",
       "edam": "1181",
       "hl7": "2.16.840.1.113883.6.86",
@@ -83355,7 +83501,18 @@
     ]
   },
   "viaf": {
+    "bartoc": {
+      "abbreviation": "VIAF",
+      "description": "The Virtual International Authority File (VIAF) is an international service designed to provide convenient access to the world's major name authority files. Its creators envision the VIAF as a building block for the Semantic Web to enable switching of the displayed form of names for persons to the preferred language and script of the Web user. VIAF began as a joint project with the Library of Congress (LC), the Deutsche Nationalbibliothek (DNB), the Bibliothèque nationale de France (BNF) and OCLC. It has, over the past decade, become a cooperative effort involving an expanding number of other national libraries and other agencies. (...)\n\nVIAF helps to make library authority files less expensive to maintain and more generally useful to the library domain and beyond. To achieve this, VIAF matches and links the authority files of national libraries and groups all authority records for a given entity into a merged 'super' authority record that brings together the different names for that entity. By linking disparate names for the same person or organization, VIAF provides a convenient means for a wider community of libraries and other agencies to repurpose bibliographic data produced by libraries serving different language communities.",
+      "homepage": "http://viaf.org/",
+      "license": "http://www.opendatacommons.org/licenses/by/1.0",
+      "name": "Virtual International Authority File",
+      "pattern": "^[1-9]\\d(\\d{0,7}|\\d{17,20})]$",
+      "prefix": "2053",
+      "wikidata": "Q54919"
+    },
     "mappings": {
+      "bartoc": "2053",
       "miriam": "viaf",
       "n2t": "viaf"
     },
@@ -84892,6 +85049,16 @@
     }
   },
   "wikidata": {
+    "bartoc": {
+      "abbreviation": "WD",
+      "description": "Wikidata is a free linked database that can be read and edited by both humans and machines. Wikidata acts as central storage for the structured data of its Wikimedia sister projects including Wikipedia, Wikivoyage, Wikisource, and others. Wikidata also provides support to many other sites and services beyond just Wikimedia projects! The content of Wikidata is available under a free license, exported using standard formats, and can be interlinked to other open data sets on the linked data web.",
+      "homepage": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+      "license": "CC0 1.0",
+      "name": "Wikidata",
+      "pattern": "^Q[0-9]+$",
+      "prefix": "1940",
+      "wikidata": "Q2013"
+    },
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
@@ -84926,6 +85093,7 @@
       ]
     },
     "mappings": {
+      "bartoc": "1940",
       "biocontext": "WIKIDATA",
       "biolink": "WIKIDATA",
       "cellosaurus": "Wikidata",
@@ -85620,6 +85788,15 @@
     }
   },
   "worms": {
+    "bartoc": {
+      "abbreviation": "WoRMS",
+      "description": "The aim of a World Register of Marine Species (WoRMS) is to provide an authoritative and comprehensive list of names of marine organisms, including information on synonymy. While highest priority goes to valid names, other names in use are included so that this register can serve as a guide to interpret taxonomic literature. The content of WoRMS is controlled by taxonomic experts, not by database managers. WoRMS has an editorial management system where each taxonomic group is represented by an expert who has the authority over the content, and is responsible for controlling the quality of the information. Each of these main taxonomic editors can invite several specialists of smaller groups within their area of responsibility to join them. This register of marine species grew out of the European Register of Marine Species (ERMS), and its combination with several other species registers maintained at the Flanders Marine Institute (VLIZ). Rather than building separate registers for all projects, and to make sure taxonomy used in these different projects is consistent, VLIZ developed a consolidated database called ‘Aphia’. A list of marine species registers included in Aphia is available below. MarineSpecies.org is the web interface for this database. The WoRMS is an idea that is being developed, and will combine information from Aphia with other authoritative marine species lists which are maintained by others (e.g. AlgaeBase, FishBase, Hexacorallia, NeMys). Resources to build MarineSpecies.org and Aphia were provided mainly by the EU Network of Excellence ‘Marine Biodiversity and Ecosystem Functioning’ (MarBEF), and also by the EU funded Species 2000 Europe and ERMS projects. Intellectual property rights of the European part of the register is managed through the Society for the Management of Electronic Biodiversity Data (SMEBD). Similar solutions are now being investigated for the other parts of the register. Aphia contains valid species names, synonyms and vernacular names, and extra information such as literature and biogeographic data. Besides species names, Aphia also contains the higher classification in which each scientific name is linked to its parent taxon. The classification used is a ‘compromise’ between established systems and recent changes. Its aim is to aid data management, rather than suggest any taxonomic or phylogenetic opinion on species relationships. Keeping WoRMS up-to-date is a continuous process. New information is entered daily by the taxonomic editors and by the members of our data management team. Often data also come in from contributions of large datasets, such as global or regional species lists. No database of this size is without errors and omissions. We can’t promise to make no errors, but we do promise to follow up and give feedback on any communications pointing out errors. Feedback is very welcome!",
+      "homepage": "http://www.marinespecies.org/",
+      "license": "CC BY 3.0",
+      "name": "World Register of Marine Species",
+      "prefix": "720",
+      "wikidata": "Q604063"
+    },
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
@@ -85647,6 +85824,7 @@
       ]
     },
     "mappings": {
+      "bartoc": "720",
       "biocontext": "WORMS",
       "fairsharing": "FAIRsharing.7g1bzj",
       "miriam": "worms",
@@ -85716,6 +85894,13 @@
       "name": "Xenopus Anatomy Ontology",
       "prefix": "XAO"
     },
+    "bartoc": {
+      "abbreviation": "XAO",
+      "description": "The Xenopus Anatomical Ontology describes Xenopus anatomy and development as a controlled vocabulary of terms, organized in a graphical structure. Tissues are shown as being part of other tissues and the timing of their development is indicated by start and end stages. The lineage of tissues is represented by develops from relationships between different tissues at different developmental stages. Many items have been classified according to the Common Anatomy Reference Ontology. The ontology is listed at the Open Biomedical Ontologies (OBO Foundry).",
+      "homepage": "http://xenbase.org/anatomy/xao.do?method=display",
+      "name": "Xenopus Anatomical Ontology",
+      "prefix": "581"
+    },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -85761,6 +85946,7 @@
     },
     "mappings": {
       "aberowl": "XAO",
+      "bartoc": "581",
       "biocontext": "XAO",
       "bioportal": "XAO",
       "fairsharing": "FAIRsharing.17zapb",

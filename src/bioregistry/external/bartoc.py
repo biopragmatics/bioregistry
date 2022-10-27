@@ -6,6 +6,7 @@ import json
 from typing import Any, Mapping
 
 import requests
+from tqdm import tqdm
 
 from bioregistry.constants import EXTERNAL
 from bioregistry.license_standardizer import standardize_license
@@ -38,15 +39,16 @@ def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
 
 
 def _process_bartoc_record(record):
+    prefix = record["uri"][len("http://bartoc.org/en/node/"):]
     rv = {
-        "prefix": record["uri"][len("http://bartoc.org/en/node/") :],
+        "prefix": prefix,
         "description": record.get("definition", {}).get("en", [""])[0].strip('"').strip(),
-        "homepage": record.get("url"),
-        "name": record.get("prefLabel", {}).get("en"),
+        "homepage": record.get("url", "").strip(),
+        "name": record.get("prefLabel", {}).get("en", "").strip(),
     }
     pattern = record.get("notationPattern")
     if pattern:
-        rv["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
+        rv["pattern"] = "^" + pattern.strip().lstrip("^").rstrip("$") + "$"
 
     for identifier in record.get("identifier", []):
         if identifier.startswith("http://www.wikidata.org/entity/"):
@@ -54,10 +56,15 @@ def _process_bartoc_record(record):
 
     abbreviations = record.get("notation")
     if abbreviations:
-        rv["abbreviations"] = abbreviations
+        if len(abbreviations) > 1:
+            tqdm.write(f"[bartoc:{prefix}] got multiple abbr.: {abbreviations}")
+        abbreviation = abbreviations[0].strip()
+        if " " in abbreviation:
+            tqdm.write(f"[bartoc:{prefix}] space in abbr.: {abbreviation}")
+        rv["abbreviation"] = abbreviation
 
     for license_dict in record.get("license", []):
-        license_key = standardize_license(license_dict["uri"])
+        license_key = standardize_license(license_dict["uri"].strip())
         if license_key:
             rv["license"] = license_key
 
