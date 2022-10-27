@@ -1321,16 +1321,23 @@ class Resource(BaseModel):
         "prefixcommons",
     )
 
-    def get_priority_prefix(self, priority: Optional[Sequence[str]] = None) -> str:
+    def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
         """Get a prioritized prefix."""
-        if not priority:
+        if priority is None:
             return self.prefix
+        if isinstance(priority, str):
+            priority = [priority]
         mappings = self.get_mappings()
+        _default = {"default", "bioregistry"}
         for metaprefix in priority:
-            if metaprefix == "default":
+            if metaprefix in _default:
                 return self.prefix
             if metaprefix == "preferred":
                 preferred_prefix = self.get_preferred_prefix()
+                if preferred_prefix:
+                    return preferred_prefix
+            if metaprefix == "obofoundry.preferred":
+                preferred_prefix = self.get_obo_preferred_prefix()
                 if preferred_prefix:
                     return preferred_prefix
             if metaprefix in mappings:

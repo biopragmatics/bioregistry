@@ -39,14 +39,25 @@ class TestContexts(unittest.TestCase):
 
     def test_obo_context(self):
         """Test the OBO context map."""
+        p = "http://purl.obolibrary.org/obo"
         prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=False)
+
         self.assertIn("KISAO", prefix_map)
-        self.assertNotIn("biomodels.kisao", prefix_map)
+        self.assertEqual(f"{p}/KISAO_", prefix_map["KISAO"])
         self.assertIn("FBcv", prefix_map)
+        self.assertEqual(f"{p}/FBcv_", prefix_map["FBcv"])
+        self.assertIn("GEO", prefix_map)
+        self.assertEqual(f"{p}/GEO_", prefix_map["GEO"])
+
+        self.assertNotIn("biomodels.kisao", prefix_map)
 
         prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
         self.assertIn("KISAO", prefix_map)
-        self.assertIn("biomodels.kisao", prefix_map)
+        self.assertIn(
+            "biomodels.kisao",
+            prefix_map,
+            msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
+        )
 
     def test_data(self):
         """Test the data integrity."""

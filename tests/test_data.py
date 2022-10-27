@@ -665,6 +665,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
+        self.assertEqual("GO", self.registry["go"].get_preferred_prefix())
+        self.assertEqual("AAO", self.registry["aao"].get_preferred_prefix())
+        self.assertEqual("NCBITaxon", self.registry["ncbitaxon"].get_preferred_prefix())
+        self.assertEqual("MGI", self.registry["mgi"].get_preferred_prefix())
+
         for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix):
                 continue
@@ -676,6 +681,22 @@ class TestRegistry(unittest.TestCase):
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
+
+    def test_priority_prefix(self):
+        """Test getting priority prefixes."""
+        resource = self.registry["go"]
+        self.assertEqual("go", resource.get_priority_prefix())
+        self.assertEqual("go", resource.get_priority_prefix("default"))
+        self.assertEqual("go", resource.get_priority_prefix("bioregistry"))
+        self.assertEqual("go", resource.get_priority_prefix("obofoundry"))
+        self.assertEqual("GO", resource.get_priority_prefix("preferred"))
+
+        resource = self.registry["biomodels.kisao"]
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix())
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix("default"))
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix("bioregistry"))
+        self.assertEqual("kisao", resource.get_priority_prefix("obofoundry"))
+        self.assertEqual("KISAO", resource.get_priority_prefix("preferred"))
 
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
