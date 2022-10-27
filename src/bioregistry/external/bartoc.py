@@ -52,7 +52,7 @@ def _process_bartoc_record(record):
 
     for identifier in record.get("identifier", []):
         if identifier.startswith("http://www.wikidata.org/entity/"):
-            rv["wikidata"] = identifier[len("http://www.wikidata.org/entity/") :]
+            rv["wikidata_database"] = identifier[len("http://www.wikidata.org/entity/") :]
 
     abbreviations = record.get("notation")
     if abbreviations:
