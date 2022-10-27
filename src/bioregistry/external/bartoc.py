@@ -1,7 +1,9 @@
-import requests
 import json
-from bioregistry.license_standardizer import standardize_license
+
+import requests
+
 from bioregistry.constants import EXTERNAL
+from bioregistry.license_standardizer import standardize_license
 
 DIRECTORY = EXTERNAL / "bartoc"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -24,7 +26,7 @@ def get_bartoc(force: bool = True):
 
 def process_record(record):
     rv = {
-        "prefix": record["uri"][len("http://bartoc.org/en/node/"):],
+        "prefix": record["uri"][len("http://bartoc.org/en/node/") :],
         "description": record.get("definition", {}).get("en", [""])[0].strip('"').strip(),
         "homepage": record.get("url"),
         "name": record.get("prefLabel", {}).get("en"),
@@ -41,5 +43,5 @@ def process_record(record):
     return {k: v for k, v in rv.items() if k and v}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_bartoc()
