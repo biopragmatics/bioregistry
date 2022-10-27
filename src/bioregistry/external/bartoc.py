@@ -39,7 +39,7 @@ def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
 
 
 def _process_bartoc_record(record):
-    prefix = record["uri"][len("http://bartoc.org/en/node/"):]
+    prefix = record["uri"][len("http://bartoc.org/en/node/") :]
     rv = {
         "prefix": prefix,
         "description": record.get("definition", {}).get("en", [""])[0].strip('"').strip(),
@@ -52,7 +52,7 @@ def _process_bartoc_record(record):
 
     for identifier in record.get("identifier", []):
         if identifier.startswith("http://www.wikidata.org/entity/"):
-            rv["wikidata"] = identifier[len("http://www.wikidata.org/entity/"):]
+            rv["wikidata"] = identifier[len("http://www.wikidata.org/entity/") :]
 
     abbreviations = record.get("notation")
     if abbreviations:
