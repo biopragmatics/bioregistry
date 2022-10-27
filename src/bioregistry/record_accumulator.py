@@ -47,6 +47,7 @@ prefix_resource_blacklist = {
     ("uberon", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
     ("ncbigene", "https://en.wikipedia.org/wiki/"),  # probably from wikigene?
     ("ncbigene", "http://en.wikipedia.org/wiki/"),
+    ("wbphenotype", "http://www.wormbase.org/get?name=$1"),
 }
 
 

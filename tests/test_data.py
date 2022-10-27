@@ -696,7 +696,8 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual("biomodels.kisao", resource.get_priority_prefix("default"))
         self.assertEqual("biomodels.kisao", resource.get_priority_prefix("bioregistry"))
         self.assertEqual("kisao", resource.get_priority_prefix("obofoundry"))
-        self.assertEqual("KISAO", resource.get_priority_prefix("preferred"))
+        self.assertEqual("KISAO", resource.get_priority_prefix("obofoundry.preferred"))
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix("preferred"))
 
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
