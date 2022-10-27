@@ -36404,6 +36404,7 @@
       "biocontext": "HOMD.TAXON",
       "miriam": "homd.taxon",
       "n2t": "homd.taxon",
+      "ncbi": "HOMD",
       "prefixcommons": "homd.taxon"
     },
     "miriam": {
@@ -36427,6 +36428,12 @@
       "pattern": "^\\d+$",
       "prefix": "homd.taxon",
       "uri_format": "http://www.homd.org/modules.php?op=modload&name=HOMD&file=index&oraltaxonid=$1&view=dynamic"
+    },
+    "ncbi": {
+      "example": "tax_078",
+      "homepage": "http://www.homd.org/",
+      "name": "Human Oral Microbiome Database",
+      "prefix": "HOMD"
     },
     "prefixcommons": {
       "description": "The Human Oral Microbiome Database (HOMD) provides a site-specific comprehensive database for the more than 600 prokaryote species that are present in the human oral cavity. It contains genomic information based on a curated 16S rRNA gene-based provisional naming scheme, and taxonomic information. This datatype contains taxonomic information.",
@@ -37032,7 +37039,8 @@
     "mappings": {
       "biocontext": "HPM.PROTEIN",
       "miriam": "hpm.protein",
-      "n2t": "hpm.protein"
+      "n2t": "hpm.protein",
+      "ncbi": "HPM"
     },
     "miriam": {
       "deprecated": false,
@@ -37055,6 +37063,12 @@
       "pattern": "^\\d+$",
       "prefix": "hpm.protein",
       "uri_format": "http://www.humanproteomemap.org/protein.php?hpm_id=$1"
+    },
+    "ncbi": {
+      "example": "8106",
+      "homepage": "http://www.humanproteomemap.org/",
+      "name": "Human Proteome Map",
+      "prefix": "HPM"
     }
   },
   "hprd": {
@@ -52939,9 +52953,15 @@
     "homepage": "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/",
     "mappings": {
       "biocontext": "NCBIGI",
-      "go": "NCBI_gi"
+      "go": "NCBI_gi",
+      "ncbi": "GI"
     },
     "name": "GenInfo Identifier",
+    "ncbi": {
+      "example": "1234567890",
+      "name": "GenInfo identifier, used as a unique sequence identifier for nucleotide and proteins",
+      "prefix": "GI"
+    },
     "pattern": "^\\d+$",
     "references": [
       "https://www.ncbi.nlm.nih.gov/Sitemap/sequenceIDs.html",
