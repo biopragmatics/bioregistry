@@ -1,5 +1,6 @@
 @prefix aberowl: <http://aber-owl.net/ontology/> .
 @prefix agroportal: <http://agroportal.lirmm.fr/ontologies/> .
+@prefix bartoc: <https://bartoc.org/en/node/> .
 @prefix biocontext: <https://bioregistry.io/metaregistry/biocontext/> .
 @prefix biolink: <https://bioregistry.io/metaregistry/biolink/> .
 @prefix bioportal: <https://bioportal.bioontology.org/ontologies/> .
@@ -991,6 +992,7 @@ bioregistry:atc a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:ATC,
         edam.data:3103,
         oid:2.16.840.1.113883.6.73,
+        bartoc:449,
         bioportal:ATC,
         biocontext:ATC,
         n2t:atc,
@@ -3805,6 +3807,7 @@ bioregistry:eco a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:ECO,
         obofoundry:eco,
         ontobee:ECO,
+        bartoc:1028,
         bioportal:ECO,
         biocontext:ECO,
         go.resource:ECO,
@@ -3974,6 +3977,7 @@ bioregistry:emapa a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:EMAPA,
         obofoundry:emapa,
         ontobee:EMAPA,
+        bartoc:549,
         bioportal:EMAPA,
         biocontext:EMAPA,
         go.resource:EMAPA,
@@ -4500,6 +4504,7 @@ bioregistry:fma a bioregistry.schema:0000001 ;
         obofoundry:fma,
         oid:2.16.840.1.113883.6.119,
         ontobee:FMA,
+        bartoc:571,
         bioportal:FMA,
         biocontext:FMA,
         go.resource:FMA,
@@ -5823,11 +5828,12 @@ bioregistry:homd.seq a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:homd.taxon a bioregistry.schema:0000001 ;
-    rdfs:label "HOMD Taxonomy" ;
+    rdfs:label "Human Oral Microbiome Database" ;
     dc:description "The Human Oral Microbiome Database (HOMD) provides a site-specific comprehensive database for the more than 600 prokaryote species that are present in the human oral cavity. It contains genomic information based on a curated 16S rRNA gene-based provisional naming scheme, and taxonomic information. This datatype contains taxonomic information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:HOMD.TAXON,
         n2t:homd.taxon,
+        ncbi.resource:HOMD,
         prefixcommons:homd.taxon,
         miriam:homd.taxon ;
     foaf:homepage "http://www.homd.org/index.php"^^xsd:string ;
@@ -5919,11 +5925,12 @@ bioregistry:hpm.peptide a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:hpm.protein a bioregistry.schema:0000001 ;
-    rdfs:label "Human Proteome Map Protein" ;
+    rdfs:label "Human Proteome Map" ;
     dc:description "The Human Proteome Map (HPM) portal integrates the peptide sequencing result from the draft map of the human proteome project. The project was based on LC-MS/MS by utilizing of high resolution and high accuracy Fourier transform mass spectrometry. The HPM contains direct evidence of translation of a number of protein products derived from human genes, based on peptide identifications of multiple organs/tissues and cell types from individuals with clinically defined healthy tissues. The HPM portal provides data on individual proteins, as well as on individual peptide spectra. This collection references proteins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:HPM.PROTEIN,
         n2t:hpm.protein,
+        ncbi.resource:HPM,
         miriam:hpm.protein ;
     foaf:homepage "http://www.humanproteomemap.org/index.php"^^xsd:string ;
     bioregistry.schema:0000005 "1968"^^xsd:string ;
@@ -12530,7 +12537,8 @@ bioregistry:viaf a bioregistry.schema:0000001 ;
     rdfs:label "Virtual International Authority File" ;
     dc:description "The VIAF® (Virtual International Authority File) combines multiple name authority files into a single OCLC-hosted name authority service. The goal of the service is to lower the cost and increase the utility of library authority files by matching and linking widely-used authority files and making that information available on the Web."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:viaf,
+    skos:exactMatch bartoc:2053,
+        n2t:viaf,
         miriam:viaf ;
     foaf:homepage "http://viaf.org"^^xsd:string ;
     bioregistry.schema:0000005 "75121530"^^xsd:string ;
@@ -12848,7 +12856,8 @@ bioregistry:worms a bioregistry.schema:0000001 ;
     rdfs:label "World Register of Marine Species" ;
     dc:description "The World Register of Marine Species (WoRMS) provides an authoritative and comprehensive list of names of marine organisms. It includes synonyms for valid taxonomic names allowing a more complete interpretation of taxonomic literature. The content of WoRMS is administered by taxonomic experts."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:WORMS,
+    skos:exactMatch bartoc:720,
+        biocontext:WORMS,
         n2t:worms,
         fairsharing:FAIRsharing.7g1bzj,
         miriam:worms,
@@ -13171,8 +13180,6 @@ orcid:0000-0002-0341-4888 rdfs:label "Federica Quaglia" .
 orcid:0000-0002-0358-0130 rdfs:label "Martin Ramirez" .
 
 orcid:0000-0002-0381-3766 rdfs:label "Bryce Mecum" .
-
-orcid:0000-0002-0629-0446 rdfs:label "Andreas Ledl" .
 
 orcid:0000-0002-0831-6427 rdfs:label "Karen Eilbeck" .
 
@@ -15410,6 +15417,52 @@ ontobee:ZFS dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:ZP dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:miRNAO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+bartoc:1028 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:109 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:16 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:181 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:18206 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:1895 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:1940 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:20052 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:20299 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:2053 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:391 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:445 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:447 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:449 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:509 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:528 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:549 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:558 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:571 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:572 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:576 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:581 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:720 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bioportal:ABA-AMB dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -19799,6 +19852,8 @@ ncbi.resource:Fungorum dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:GABI dcterms:isPartOf bioregistry.metaresource:ncbi .
 
+ncbi.resource:GI dcterms:isPartOf bioregistry.metaresource:ncbi .
+
 ncbi.resource:GO dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:GOA dcterms:isPartOf bioregistry.metaresource:ncbi .
@@ -19812,6 +19867,10 @@ ncbi.resource:GeneID dcterms:isPartOf bioregistry.metaresource:ncbi .
 ncbi.resource:Greengenes dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:HGNC dcterms:isPartOf bioregistry.metaresource:ncbi .
+
+ncbi.resource:HOMD dcterms:isPartOf bioregistry.metaresource:ncbi .
+
+ncbi.resource:HPM dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:HSSP dcterms:isPartOf bioregistry.metaresource:ncbi .
 
@@ -19956,6 +20015,7 @@ bioregistry:aeo a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:AEO,
         obofoundry:aeo,
         ontobee:AEO,
+        bartoc:181,
         bioportal:AEO,
         biocontext:AEO,
         fairsharing:FAIRsharing.93ee19,
@@ -20507,7 +20567,8 @@ bioregistry:cdt a bioregistry.schema:0000001 ;
     rdfs:label "Current Dental Terminology" ;
     dc:description "The Code on Dental Procedures and Nomenclature (the CDT Code) assures consistency in documenting dental treatment."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch oid:2.16.840.1.113883.6.116 ;
+    skos:exactMatch oid:2.16.840.1.113883.6.116,
+        bartoc:20299 ;
     foaf:homepage "https://www.ada.org/publications/CDT"^^xsd:string ;
     bioregistry.schema:0000005 "1000001"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -22018,7 +22079,8 @@ bioregistry:gemet a bioregistry.schema:0000001 ;
     rdfs:label "General Multilingual Environmental Thesaurus" ;
     dc:description "The European Environment Information and Observation Network (Eionet) is a partnership network of the European Environment Agency (EEA) and its 38 member and cooperating countries. The EEA is responsible for developing Eionet and coordinating its activities together with National Focal Points (NFPs) in the countries. This terminology supports those efforts."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch agroportal:GEMET ;
+    skos:exactMatch agroportal:GEMET,
+        bartoc:16 ;
     foaf:homepage "https://www.eionet.europa.eu/gemet/en/themes/"^^xsd:string ;
     bioregistry.schema:0000005 "627"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.eionet.europa.eu/gemet/en/concept/$1"^^xsd:string ;
@@ -23408,7 +23470,8 @@ bioregistry:ncbigi a bioregistry.schema:0000001 ;
     dc:description "A GI number (for GenInfo Identifier, sometimes written in lower case, _gi_) is a simple series of digits that are assigned consecutively to each sequence record processed by NCBI. The GI number bears no resemblance to the Version number of the sequence record. Each time a sequence record is changed, it is assigned a new GI number."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:NCBIGI,
-        go.resource:NCBI_gi ;
+        go.resource:NCBI_gi,
+        ncbi.resource:GI ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/"^^xsd:string ;
     bioregistry.schema:0000005 "568815597"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"^^xsd:string ;
@@ -23552,7 +23615,8 @@ bioregistry:nlm a bioregistry.schema:0000001 ;
     rdfs:label "National Library of Medicine Catalog" ;
     dc:description "Bibliographic data for all the journals, books, audiovisuals, computer software, electronic resources and other materials that are in the library's holdings."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:NLMID ;
+    skos:exactMatch bartoc:528,
+        biolink:NLMID ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/nlmcatalog"^^xsd:string ;
     bioregistry.schema:0000005 "101775319"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/nlmcatalog/$1"^^xsd:string ;
@@ -24772,6 +24836,7 @@ bioregistry:tfclass a bioregistry.schema:0000001 ;
 bioregistry:tgn a bioregistry.schema:0000001 ;
     rdfs:label "Getty Thesaurus of Geographic Names" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bartoc:109 ;
     foaf:homepage "https://www.getty.edu/research/tools/vocabularies/tgn/"^^xsd:string ;
     bioregistry.schema:0000005 "1023371"^^xsd:string ;
     bioregistry.schema:0000006 "http://vocab.getty.edu/page/tgn/$1"^^xsd:string ;
@@ -24942,6 +25007,7 @@ bioregistry:umls a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1181,
         oid:2.16.840.1.113883.6.86,
+        bartoc:20052,
         biocontext:UMLS,
         n2t:umls,
         miriam:umls,
@@ -25273,7 +25339,8 @@ bioregistry:wikidata a bioregistry.schema:0000001 ;
     dc:description "Wikidata is a collaboratively edited knowledge base operated by the Wikimedia Foundation. It is intended to provide a common source of certain types of data which can be used by Wikimedia projects such as Wikipedia. Wikidata functions as a document-oriented database, centred on individual items. Items represent topics, for which basic information is stored that identifies each topic."^^xsd:string ;
     dcterms:hasPart bioregistry:wikidata.property ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:WIKIDATA,
+    skos:exactMatch bartoc:1940,
+        biocontext:WIKIDATA,
         biolink:WIKIDATA,
         cellosaurus.resource:Wikidata,
         n2t:wikidata,
@@ -25305,6 +25372,7 @@ bioregistry:xao a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:XAO,
         obofoundry:xao,
         ontobee:XAO,
+        bartoc:581,
         bioportal:XAO,
         biocontext:XAO,
         fairsharing:FAIRsharing.17zapb,
@@ -26548,6 +26616,8 @@ orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" .
 orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" .
 
 orcid:0000-0001-9950-5209 rdfs:label "Richard Cyganiak" .
+
+orcid:0000-0002-0629-0446 rdfs:label "Andreas Ledl" .
 
 orcid:0000-0002-0851-6883 rdfs:label "Jennifer C. Giron",
         "Jennifer C. Girón" .
@@ -31130,6 +31200,7 @@ Note that the WHO version of ICD-10 is distinct from the ICD-10-CM (Clinical Mod
     skos:exactMatch aberowl:ICD10,
         edam.data:2611,
         oid:2.16.840.1.113883.6.3,
+        bartoc:447,
         bioportal:ICD10,
         biocontext:ICD,
         biolink:ICD10,
@@ -31212,6 +31283,7 @@ bioregistry:icdo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ICDO,
         oid:2.16.840.1.113883.6.43,
+        bartoc:445,
         prefixcommons:icdo,
         wikidata:P563 ;
     foaf:homepage "https://www.who.int/classifications/icd/adaptations/oncology/en/"^^xsd:string ;
@@ -31422,6 +31494,7 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:MESH,
         edam.data:1177,
         oid:2.16.840.1.113883.6.177,
+        bartoc:391,
         bioportal:MESH,
         biocontext:MESH,
         biolink:MESH,
@@ -32103,6 +32176,7 @@ bioregistry:qudt a bioregistry.schema:0000001 ;
     dc:description "Ontologies that aim to provide semantic specifications for units of measure, quantity kind, dimensions and data types."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:QUDT,
+        bartoc:18206,
         bioportal:QUDT,
         biolink:qud,
         fairsharing:FAIRsharing.d3pqw7 ;
@@ -32424,6 +32498,7 @@ bioregistry:ucum a bioregistry.schema:0000001 ;
     dc:description "Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch oid:2.16.840.1.113883.6.8,
+        bartoc:1895,
         fairsharing:FAIRsharing.27w8k0 ;
     foaf:homepage "https://ucum.org"^^xsd:string ;
     bioregistry.schema:0000005 "aBq"^^xsd:string ;
@@ -32761,6 +32836,7 @@ bioregistry:doid a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:DOID,
         obofoundry:doid,
         ontobee:DOID,
+        bartoc:576,
         bioportal:DOID,
         biocontext:DOID,
         n2t:doid,
@@ -34326,6 +34402,7 @@ bioregistry:go a bioregistry.schema:0000001 ;
         obofoundry:go,
         oid:2.16.840.1.113883.6.128,
         ontobee:GO,
+        bartoc:572,
         bioportal:GO,
         biocontext:GO,
         go.resource:GO,
@@ -34438,6 +34515,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         obofoundry:ncbitaxon,
         oid:2.16.840.1.113883.6.205,
         ontobee:NCBITaxon,
+        bartoc:509,
         bioportal:NCBITAXON,
         biocontext:TAXONOMY,
         cellosaurus.resource:NCBI_TaxID,
@@ -34544,6 +34622,7 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
         edam.data:1174,
         obofoundry:chebi,
         ontobee:CHEBI,
+        bartoc:558,
         bioportal:CHEBI,
         biocontext:CHEBI,
         cellosaurus.resource:ChEBI,
@@ -34619,6 +34698,37 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
+
+bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
+    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
+    dc:description "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)." ;
+    dcterms:hasPart bartoc:1028,
+        bartoc:109,
+        bartoc:16,
+        bartoc:181,
+        bartoc:18206,
+        bartoc:1895,
+        bartoc:1940,
+        bartoc:20052,
+        bartoc:20299,
+        bartoc:2053,
+        bartoc:391,
+        bartoc:445,
+        bartoc:447,
+        bartoc:449,
+        bartoc:509,
+        bartoc:528,
+        bartoc:549,
+        bartoc:558,
+        bartoc:571,
+        bartoc:572,
+        bartoc:576,
+        bartoc:581,
+        bartoc:720 ;
+    foaf:homepage "https://bartoc.org/" ;
+    bioregistry.schema:0000005 "241" ;
+    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Protein" ;
@@ -35006,6 +35116,7 @@ bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
         ncbi.resource:FLYBASE,
         ncbi.resource:Fungorum,
         ncbi.resource:GABI,
+        ncbi.resource:GI,
         ncbi.resource:GO,
         ncbi.resource:GOA,
         ncbi.resource:GRIN,
@@ -35013,6 +35124,8 @@ bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
         ncbi.resource:GeneID,
         ncbi.resource:Greengenes,
         ncbi.resource:HGNC,
+        ncbi.resource:HOMD,
+        ncbi.resource:HPM,
         ncbi.resource:HSSP,
         <https://bioregistry.io/metaregistry/ncbi/IMGT/HLA>,
         <https://bioregistry.io/metaregistry/ncbi/IMGT/LIGM>,
