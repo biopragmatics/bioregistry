@@ -977,7 +977,7 @@
         },
         "prefix_priority": {
           "title": "Prefix Priority",
-          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority.",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority. Add in \"preferred\" for explicitly using preferred prefixes or \"default\" for explicitly using Bioregistry canonical prefixes.",
           "type": "array",
           "items": {
             "type": "string"
@@ -986,12 +986,6 @@
         "include_synonyms": {
           "title": "Include Synonyms",
           "description": "Should synonyms be included in the prefix map?",
-          "default": false,
-          "type": "boolean"
-        },
-        "use_preferred": {
-          "title": "Use Preferred",
-          "description": "Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
           "default": false,
           "type": "boolean"
         },

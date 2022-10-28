@@ -4,7 +4,7 @@
 
 import logging
 import typing
-from collections import ChainMap, Counter, defaultdict
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -371,22 +371,24 @@ class Manager:
     def get_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
         it = self._iter_pattern_map(
-            include_synonyms=include_synonyms, use_preferred=use_preferred, blacklist=blacklist
+            include_synonyms=include_synonyms, prefix_priority=prefix_priority, blacklist=blacklist
         )
         if not remapping:
             return dict(it)
@@ -395,21 +397,18 @@ class Manager:
     def _iter_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
         blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
+        for resource in self.registry.values():
+            if resource.prefix in blacklist:
                 continue
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
+            prefix = resource.get_priority_prefix(priority=prefix_priority)
             yield prefix, pattern
             if include_synonyms:
                 for synonym in resource.get_synonyms():
@@ -425,19 +424,26 @@ class Manager:
         uri_prefix_priority: Optional[Sequence[str]] = None,
         include_prefixes: bool = False,
         strict: bool = False,
+        remapping: Optional[Mapping[str, str]] = None,
+        blacklist: Optional[typing.Collection[str]] = None,
     ) -> List[curies.Record]:
         """Get a list of records for all resources in this manager.
 
         :param prefix_priority:
-            The order of metaprefixes (or "preferred") for choosing a primary prefix
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param uri_prefix_priority:
-            The order of metaprefixes for choosing the primary URI prefix
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be
             used to parse both URIs and CURIEs
         :param strict:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
+        :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+        :param blacklist:
+            A collection of prefixes to skip
 
         :returns: A list of records for :class:`curies.Converter`
         """
@@ -452,6 +458,8 @@ class Manager:
             uri_prefix_priority=uri_prefix_priority,
             include_prefixes=include_prefixes,
             strict=strict,
+            blacklist=blacklist,
+            remapping=remapping,
         )
 
     def get_reverse_prefix_map(
@@ -491,61 +499,39 @@ class Manager:
     def get_prefix_map(
         self,
         *,
-        priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
-        :param priority: A priority list for how to generate URI prefixes.
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
-        it = self._iter_prefix_map(
-            priority=priority,
-            include_synonyms=include_synonyms,
-            use_preferred=use_preferred,
+        records = self.get_curies_records(
+            prefix_priority=prefix_priority,
+            uri_prefix_priority=uri_prefix_priority,
+            remapping=remapping,
             blacklist=blacklist,
         )
-        if not remapping:
-            return dict(it)
-        return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
-
-    def _iter_prefix_map(
-        self,
-        *,
-        priority: Optional[Sequence[str]] = None,
-        include_synonyms: bool = False,
-        use_preferred: bool = False,
-        blacklist: Optional[typing.Collection[str]] = None,
-    ) -> Iterable[Tuple[str, str]]:
-        blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
-                continue
-            uri_prefix = resource.get_uri_prefix(priority=priority)
-            if uri_prefix is None:
-                continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
-            yield prefix, uri_prefix
+        rv = {}
+        for record in records:
+            rv[record.prefix] = record.uri_prefix
             if include_synonyms:
-                for synonym in resource.get_synonyms():
-                    yield synonym, uri_prefix
-
-    def get_prefix_list(self, **kwargs) -> List[Tuple[str, str]]:
-        """Get the default priority prefix list."""
-        #: A prefix map in reverse sorted order based on length of the URI prefix
-        #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-        return prepare_prefix_list(self.get_prefix_map(**kwargs))
+                for prefix in record.prefix_synonyms:
+                    rv[prefix] = record.uri_prefix
+        return rv
 
     def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
@@ -1300,29 +1286,20 @@ class Manager:
         context = self.get_context(key)
         if context is None:
             raise KeyError
-        remapping = dict(
-            ChainMap(
-                *(
-                    self.get_registry_map(metaprefix)
-                    for metaprefix in context.prefix_priority or []
-                ),
-                context.prefix_remapping or {},
-            )
-        )
         include_synonyms = (
             include_synonyms if include_synonyms is not None else context.include_synonyms
         )
         prescriptive_prefix_map = self.get_prefix_map(
-            remapping=remapping,
-            priority=context.uri_prefix_priority,
+            remapping=context.prefix_remapping,
+            uri_prefix_priority=context.uri_prefix_priority,
+            prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
             blacklist=context.blacklist,
         )
         prescriptive_pattern_map = self.get_pattern_map(
-            remapping=remapping,
+            remapping=context.prefix_remapping,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
+            prefix_priority=context.prefix_priority,
             blacklist=context.blacklist,
         )
         return prescriptive_prefix_map, prescriptive_pattern_map

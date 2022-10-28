@@ -1321,14 +1321,25 @@ class Resource(BaseModel):
         "prefixcommons",
     )
 
-    def get_priority_prefix(self, priority: Optional[Sequence[str]] = None) -> str:
+    def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
         """Get a prioritized prefix."""
-        if not priority:
+        if priority is None:
             return self.prefix
+        if isinstance(priority, str):
+            priority = [priority]
         mappings = self.get_mappings()
+        _default = {"default", "bioregistry"}
         for metaprefix in priority:
-            if metaprefix == "preferred" and self.preferred_prefix:
-                return self.preferred_prefix
+            if metaprefix in _default:
+                return self.prefix
+            if metaprefix == "preferred":
+                preferred_prefix = self.get_preferred_prefix()
+                if preferred_prefix:
+                    return preferred_prefix
+            if metaprefix == "obofoundry.preferred":
+                preferred_prefix = self.get_obo_preferred_prefix()
+                if preferred_prefix:
+                    return preferred_prefix
             if metaprefix in mappings:
                 return mappings[metaprefix]
         return self.prefix
@@ -2244,16 +2255,14 @@ class Context(BaseModel):
             This ordering of metaprefixes (i.e., prefixes for registries)
             is used to determine the priority of which registry's prefixes are used.
             By default, the canonical Bioregistry prefixes are highest priority.
+            Add in "preferred" for explicitly using preferred prefixes or "default" for
+            explicitly using Bioregistry canonical prefixes.
         """
         ),
     )
     include_synonyms: bool = Field(
         False,
         description="Should synonyms be included in the prefix map?",
-    )
-    use_preferred: bool = Field(
-        False,
-        description="Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
     )
     uri_prefix_priority: Optional[List[str]] = Field(
         ...,

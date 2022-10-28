@@ -374,7 +374,7 @@ prefix_map = get_prefix_map()
 
 # Prioritize OBO prefixes over bioregistry
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-prefix_map = get_prefix_map(priority=priority)
+prefix_map = get_prefix_map(uri_prefix_priority=priority)
 
 # Provide custom remapping that doesn't have prioritization logic
 remapping = {"chebi": "CHEBI"}
