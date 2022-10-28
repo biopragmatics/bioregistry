@@ -1329,7 +1329,7 @@ class Resource(BaseModel):
     def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
         """Get a prioritized prefix.
 
-        :param prefix_priority:
+        :param priority:
             A metaprefix or list of metaprefixes used to choose a prioritized prefix.
             Some special values that are not themselves metaprefixes are allowed from
             the following list:
