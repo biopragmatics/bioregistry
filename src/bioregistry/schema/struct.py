@@ -1236,6 +1236,10 @@ class Resource(BaseModel):
             return None
         return f"{miriam_url_prefix}$1"
 
+    def get_legacy_miriam_uri_format(self) -> Optional[str]:
+        """Get the legacy Identifiers.org URI format string for this entry, if possible."""
+        return self.get_miriam_uri_format(legacy_protocol=True, legacy_delimiter=True)
+
     def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
         n2t_prefix = self.get_mapped_prefix("n2t")
@@ -1307,6 +1311,7 @@ class Resource(BaseModel):
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
+        "miriam.legacy": get_legacy_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
     }
@@ -1322,7 +1327,20 @@ class Resource(BaseModel):
     )
 
     def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
-        """Get a prioritized prefix."""
+        """Get a prioritized prefix.
+
+        :param priority:
+            A metaprefix or list of metaprefixes used to choose a prioritized prefix.
+            Some special values that are not themselves metaprefixes are allowed from
+            the following list:
+
+            - "default": corresponds to the bioregistry prefix
+            - "bioregistry.upper": an uppercase transform of the canonical bioregistry prefix
+            - "preferred": a preferred prefix, typically includes stylization in capitalization
+            - "obofoundry.preferred": the preferred prefix annotated in OBO Foundry
+        :returns:
+            The prioritized prefix for this record
+        """
         if priority is None:
             return self.prefix
         if isinstance(priority, str):
@@ -1332,6 +1350,8 @@ class Resource(BaseModel):
         for metaprefix in priority:
             if metaprefix in _default:
                 return self.prefix
+            if metaprefix == "bioregistry.upper":
+                return self.prefix.upper()
             if metaprefix == "preferred":
                 preferred_prefix = self.get_preferred_prefix()
                 if preferred_prefix:
