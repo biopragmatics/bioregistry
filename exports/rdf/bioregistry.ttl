@@ -12751,6 +12751,47 @@ bioregistry:wbbt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8151-7479 .
 
+bioregistry:wbls a bioregistry.schema:0000001 ;
+    rdfs:label "C. elegans development ontology" ;
+    dc:description "Ontology about the development and life stages of the C. elegans"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:WBLS,
+        obofoundry:wbls,
+        ontobee:WBLS,
+        bioportal:WB-LS,
+        biocontext:WBLS,
+        biolink:WBls,
+        go.resource:WBls,
+        fairsharing:FAIRsharing.sm90nh,
+        prefixcommons:wbls,
+        ols:wbls ;
+    foaf:homepage "https://github.com/obophenotype/c-elegans-development-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000690"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.wormbase.org/get?name=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9076-6015 .
+
+bioregistry:wbphenotype a bioregistry.schema:0000001 ;
+    rdfs:label "C. elegans phenotype" ;
+    dc:description "Ontology about C. elegans and other nematode phenotypes"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:WBPHENOTYPE,
+        obofoundry:wbphenotype,
+        ontobee:WBPhenotype,
+        bioportal:WB-PHENOTYPE,
+        biocontext:WBPhenotype,
+        go.resource:WBPhenotype,
+        fairsharing:FAIRsharing.agvc7y,
+        prefixcommons:wbphenotype,
+        ols:wbphenotype ;
+    foaf:homepage "https://github.com/obophenotype/c-elegans-phenotype-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000983"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/WBPhenotype_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9076-6015 .
+
 bioregistry:wicell a bioregistry.schema:0000001 ;
     rdfs:label "WiCell Research Institute Cell Collection" ;
     dc:description "Cell line collections"^^xsd:string ;
@@ -12837,6 +12878,28 @@ bioregistry:world2dpage a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://world-2dpage.expasy.org/repository/$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:wormbase a bioregistry.schema:0000001 ;
+    rdfs:label "WormBase database of nematode biology" ;
+    dc:description "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1805,
+        biocontext:WormBase,
+        biolink:WBVocab,
+        go.resource:WB_REF,
+        n2t:wb,
+        ncbi.resource:WormBase,
+        fairsharing:FAIRsharing.zx1td8,
+        prefixcommons:wormbase,
+        miriam:wb,
+        re3data:r3d100010424,
+        uniprot.resource:DB-0110,
+        wikidata:P3860 ;
+    foaf:homepage "https://www.wormbase.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "WBGene00000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.wormbase.org/get?name=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^WB[A-Z][a-z]+\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:wormpep a bioregistry.schema:0000001 ;
     rdfs:label "Wormpep" ;
@@ -24397,8 +24460,7 @@ bioregistry:rdo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "9002859"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.semanticweb.org/mca/ontologies/2018/8/untitled-ontology-47#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Archana Patel" ] .
+    bioregistry.schema:0000012 false .
 
 bioregistry:reaxys a bioregistry.schema:0000001 ;
     rdfs:label "Reaxys" ;
@@ -25280,49 +25342,6 @@ bioregistry:vuid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "4007166"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:wbls a bioregistry.schema:0000001 ;
-    rdfs:label "C. elegans development ontology" ;
-    dc:description "Ontology about the development and life stages of the C. elegans"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:wormbase ;
-    skos:exactMatch aberowl:WBLS,
-        obofoundry:wbls,
-        ontobee:WBLS,
-        bioportal:WB-LS,
-        biocontext:WBLS,
-        biolink:WBls,
-        go.resource:WBls,
-        fairsharing:FAIRsharing.sm90nh,
-        prefixcommons:wbls,
-        ols:wbls ;
-    foaf:homepage "https://github.com/obophenotype/c-elegans-development-ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000690"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.wormbase.org/get?name=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-9076-6015 .
-
-bioregistry:wbphenotype a bioregistry.schema:0000001 ;
-    rdfs:label "C. elegans phenotype" ;
-    dc:description "Ontology about C. elegans and other nematode phenotypes"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:wormbase ;
-    skos:exactMatch aberowl:WBPHENOTYPE,
-        obofoundry:wbphenotype,
-        ontobee:WBPhenotype,
-        bioportal:WB-PHENOTYPE,
-        biocontext:WBPhenotype,
-        go.resource:WBPhenotype,
-        fairsharing:FAIRsharing.agvc7y,
-        prefixcommons:wbphenotype,
-        ols:wbphenotype ;
-    foaf:homepage "https://github.com/obophenotype/c-elegans-phenotype-ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000983"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.wormbase.org/get?name=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-9076-6015 .
 
 bioregistry:wgs84 a bioregistry.schema:0000001 ;
     rdfs:label "WGS84 Geo Positioning" ;
@@ -32651,30 +32670,6 @@ Wikidata acts as central storage for the structured data of its Wikimedia sister
     bioregistry.schema:0000005 "P4355"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^P\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:wormbase a bioregistry.schema:0000001 ;
-    rdfs:label "WormBase database of nematode biology" ;
-    dc:description "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities."^^xsd:string ;
-    dcterms:hasPart bioregistry:wbls,
-        bioregistry:wbphenotype ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1805,
-        biocontext:WormBase,
-        biolink:WBVocab,
-        go.resource:WB_REF,
-        n2t:wb,
-        ncbi.resource:WormBase,
-        fairsharing:FAIRsharing.zx1td8,
-        prefixcommons:wormbase,
-        miriam:wb,
-        re3data:r3d100010424,
-        uniprot.resource:DB-0110,
-        wikidata:P3860 ;
-    foaf:homepage "https://www.wormbase.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "WBGene00000001"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.wormbase.org/get?name=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^WB[A-Z][a-z]+\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:xco a bioregistry.schema:0000001 ;
