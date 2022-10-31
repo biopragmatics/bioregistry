@@ -443,8 +443,10 @@
                 <thead class="table-">
                 <tr>
                     <th scope="col">Registry Name</th>
-                    <th scope="col">Metaprefix</th>
+                    <th scope="col">Registry Metaprefix</th>
                     <th scope="col">External Prefix</th>
+                    {# <th scope="col">External Name</th> #}
+                    <th scope="col">Curate</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -469,6 +471,14 @@
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
                                     <i class="fas fa-info-circle"></i></span>
                             {% endif %}
+                        </td>
+                        {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
+                        <td>
+                            <a data-toggle="tooltip" data-html="true"
+                               title="Report misalignment between {{ name }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
+                               href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
+                                <i class="fas fa-thumbs-down"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
