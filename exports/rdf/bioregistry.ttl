@@ -1479,7 +1479,7 @@ bioregistry:biolink a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://w3id.org/biolink/vocab/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Chris Mungall" ] .
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
 bioregistry:biomagresbank a bioregistry.schema:0000001 ;
     rdfs:label "BioMagResBank" ;
@@ -2438,7 +2438,7 @@ bioregistry:cmpo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.ebi.ac.uk/cmpo/CMPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Simon Jupp" ] .
+    bioregistry.schema:0000019 orcid:0000-0002-0643-3144 .
 
 bioregistry:co_320 a bioregistry.schema:0000001 ;
     rdfs:label "Rice ontology" ;
@@ -7089,7 +7089,7 @@ bioregistry:mdm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://medical-data-models.org/forms/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Bernd Müller" ] .
+    bioregistry.schema:0000019 orcid:0000-0003-3062-8192 .
 
 bioregistry:meddra a bioregistry.schema:0000001 ;
     rdfs:label "Medical Dictionary for Regulatory Activities Terminology" ;
@@ -9140,6 +9140,7 @@ bioregistry:orphanet a bioregistry.schema:0000001 ;
     dc:description "Orphanet is a reference portal for information on rare diseases and orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of patients with rare diseases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:Orphanet,
+        biolink:orphanet,
         n2t:orphanet,
         fairsharing:FAIRsharing.6bd5k6,
         prefixcommons:orphanet,
@@ -10360,7 +10361,8 @@ bioregistry:re3data a bioregistry.schema:0000001 ;
     rdfs:label "re3data" ;
     dc:description "Re3data is a global registry of research data repositories that covers research data repositories from different academic disciplines."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:re3data ;
+    skos:exactMatch bartoc:822,
+        miriam:re3data ;
     foaf:homepage "https://datacite.org"^^xsd:string ;
     bioregistry.schema:0000005 "r3d100010772"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.re3data.org/repository/$1"^^xsd:string ;
@@ -11282,7 +11284,7 @@ bioregistry:sio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/sio/terms?short_form=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Michel Dumontier" ] .
+    bioregistry.schema:0000019 orcid:0000-0003-4727-9435 .
 
 bioregistry:sisu a bioregistry.schema:0000001 ;
     rdfs:label "Sequencing Initiative Suomi" ;
@@ -12835,7 +12837,7 @@ bioregistry:wikipathways a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.wikipathways.org/instance/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^WP\\d{1,5}(\\_r\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Egon Willighagen" ] .
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
 bioregistry:wikipedia.en a bioregistry.schema:0000001 ;
     rdfs:label "Wikipedia" ;
@@ -13244,6 +13246,8 @@ orcid:0000-0002-0358-0130 rdfs:label "Martin Ramirez" .
 
 orcid:0000-0002-0381-3766 rdfs:label "Bryce Mecum" .
 
+orcid:0000-0002-0643-3144 rdfs:label "Simon Jupp" .
+
 orcid:0000-0002-0831-6427 rdfs:label "Karen Eilbeck" .
 
 orcid:0000-0002-1142-3063 rdfs:label "Andrew G. McArthur" .
@@ -13300,6 +13304,8 @@ orcid:0000-0002-5892-6506 rdfs:label "Nathan Baker" .
 orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" .
 
 orcid:0000-0002-6379-8932 rdfs:label "Laurel Cooper" .
+
+orcid:0000-0002-6450-7041 rdfs:label "Dan Brickley" .
 
 orcid:0000-0002-6982-4660 rdfs:label "Alex Bateman" .
 
@@ -13401,6 +13407,8 @@ orcid:0000-0003-2699-3066 rdfs:label "Meghan Balk" ;
         bioregistry:noaa,
         bioregistry:otol .
 
+orcid:0000-0003-3062-8192 rdfs:label "Bernd Müller" .
+
 orcid:0000-0003-3248-7899 rdfs:label "Sabine Oesterle" .
 
 orcid:0000-0003-3499-8262 rdfs:label "Alejandra Gonzalez-Beltran" .
@@ -13414,8 +13422,6 @@ orcid:0000-0003-4312-9552 rdfs:label "Daniel C. Berrios" .
 orcid:0000-0003-4494-839X rdfs:label "Xeni Kechagioglou" .
 
 orcid:0000-0003-4606-0597 rdfs:label "Sue Bello" .
-
-orcid:0000-0003-4727-9435 rdfs:label "Michel Dumontier" .
 
 orcid:0000-0003-4871-5569 rdfs:label "Rebecca Jackson" .
 
@@ -13934,8 +13940,6 @@ aberowl:RADLEX dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:RBO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:RDFS dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:RDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:REPRODUCE-ME dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -15527,6 +15531,8 @@ bartoc:581 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bartoc:720 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
+bartoc:822 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
 bioportal:ABA-AMB dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:ADO dcterms:isPartOf bioregistry.metaresource:bioportal .
@@ -16042,8 +16048,6 @@ bioportal:RADLEX dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:RBO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:RDFS dcterms:isPartOf bioregistry.metaresource:bioportal .
-
-bioportal:RDO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:REPRODUCE-ME dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -17871,6 +17875,8 @@ biolink:CTD.GENE dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:ChemBank dcterms:isPartOf bioregistry.metaresource:biolink .
 
+biolink:ComplexPortal dcterms:isPartOf bioregistry.metaresource:biolink .
+
 biolink:DrugCentral dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:ECTO dcterms:isPartOf bioregistry.metaresource:biolink .
@@ -18030,6 +18036,8 @@ biolink:ncats.bioplanet dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:ncats.drug dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:oboformat dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:orphanet dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:pav dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -20959,6 +20967,7 @@ bioregistry:complexportal a bioregistry.schema:0000001 ;
     dc:description "A database that describes manually curated macromolecular complexes and provides links to details about these complexes in other databases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:COMPLEXPORTAL,
+        biolink:ComplexPortal,
         go.resource:ComplexPortal,
         n2t:complexportal,
         miriam:complexportal,
@@ -23358,7 +23367,7 @@ bioregistry:mixs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "ph_regm"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Ramona Walls" ] ;
+    bioregistry.schema:0000019 orcid:0000-0001-8815-0078 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:mmsl a bioregistry.schema:0000001 ;
@@ -24451,17 +24460,14 @@ bioregistry:rcb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:rdo a bioregistry.schema:0000001 ;
-    rdfs:label "RGD Disease_Ontology" ;
+    rdfs:label "RGD Disease Ontology" ;
     dc:description "Ontologies of diseases that integrates many types of data for Rattus Norvegicus, Homo Sapiens, Mus Musculus and other organisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:RDO,
-        bioportal:RDO ;
     foaf:homepage "https://ratmine.mcw.edu/ontology/disease/"^^xsd:string ;
     bioregistry.schema:0000005 "9002859"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.semanticweb.org/mca/ontologies/2018/8/untitled-ontology-47#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Archana Patel" ] .
+    bioregistry.schema:0000012 false .
 
 bioregistry:reaxys a bioregistry.schema:0000001 ;
     rdfs:label "Reaxys" ;
@@ -24513,7 +24519,7 @@ bioregistry:reo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/REO_$11"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Matthew Brush" ] .
+    bioregistry.schema:0000019 orcid:0000-0002-1048-5019 .
 
 bioregistry:resid a bioregistry.schema:0000001 ;
     rdfs:label "Protein covalent bond" ;
@@ -26631,6 +26637,8 @@ fairsharing:FAIRsharing.zx2ztd dcterms:isPartOf bioregistry.metaresource:fairsha
 
 orcid:0000-0001-6512-3296 rdfs:label "Peter Midford" .
 
+orcid:0000-0001-9052-2854 rdfs:label "Kim Durante" .
+
 orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" .
 
 orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" .
@@ -26641,8 +26649,6 @@ orcid:0000-0002-0629-0446 rdfs:label "Andreas Ledl" .
 
 orcid:0000-0002-0851-6883 rdfs:label "Jennifer C. Giron",
         "Jennifer C. Girón" .
-
-orcid:0000-0002-1048-5019 rdfs:label "Matthew Brush" .
 
 orcid:0000-0002-1118-1738 rdfs:label "John Beverly" .
 
@@ -26686,6 +26692,8 @@ orcid:0000-0003-2826-6444 rdfs:label "Amos Bairoch" .
 orcid:0000-0003-3162-7490 rdfs:label "Wasila Dahdul" .
 
 orcid:0000-0003-3604-3785 rdfs:label "Dongsheng Cao" .
+
+orcid:0000-0003-4727-9435 rdfs:label "Michel Dumontier" .
 
 prefixcommons:3dmet dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -30698,7 +30706,7 @@ bioregistry:dc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "contributor"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/dc/elements/1.1/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Kim Durante" ] .
+    bioregistry.schema:0000019 orcid:0000-0001-9052-2854 .
 
 bioregistry:dcat a bioregistry.schema:0000001 ;
     rdfs:label "Data Catalog" ;
@@ -30713,7 +30721,7 @@ bioregistry:dcat a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Dataset"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/dcat#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "kdurante" ] .
+    bioregistry.schema:0000019 orcid:0000-0001-9052-2854 .
 
 bioregistry:dcterms a bioregistry.schema:0000001 ;
     rdfs:label "Dublin Core Metadata Vocabulary" ;
@@ -32720,14 +32728,12 @@ orcid:0000-0001-5208-3432 rdfs:label "Nicole Vasilevsky" .
 orcid:0000-0001-6330-7526 rdfs:label "Val Wood" ;
     dcterms:contributor bioregistry:fyeco .
 
-orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" .
-
-orcid:0000-0001-8815-0078 rdfs:label "Ramona Walls" .
-
 orcid:0000-0001-9896-3531 rdfs:label "Alpha Tom Kodamullil",
         "Dr. Alpha Tom Kodamullil" .
 
 orcid:0000-0002-0956-8634 rdfs:label "Terry Hayamizu" .
+
+orcid:0000-0002-1048-5019 rdfs:label "Matthew Brush" .
 
 orcid:0000-0002-1595-3213 rdfs:label "Philip Strömert" ;
     dcterms:contributor bioregistry:aeon .
@@ -33195,7 +33201,7 @@ bioregistry:rdfs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "label"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2000/01/rdf-schema#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Dan Brickley" ] .
+    bioregistry.schema:0000019 orcid:0000-0002-6450-7041 .
 
 bioregistry:stato a bioregistry.schema:0000001 ;
     rdfs:label "The Statistical Methods Ontology" ;
@@ -33237,6 +33243,10 @@ bioregistry:storedb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 orcid:0000-0001-5985-7429 rdfs:label "Colin Batchelor" .
+
+orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" .
+
+orcid:0000-0001-8815-0078 rdfs:label "Ramona Walls" .
 
 orcid:0000-0002-8688-6599 rdfs:label "Jim Balhoff" .
 
@@ -34213,13 +34223,6 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
         bioregistry:xco ;
     bioregistry.schema:0000019 orcid:0000-0002-2908-3327 .
 
-orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
-    dcterms:contributor bioregistry:glycosciencesdb,
-        bioregistry:insdc.run,
-        bioregistry:mixs,
-        bioregistry:uniprot.arba,
-        bioregistry:wwf.ecoregion .
-
 bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
     dc:description "AgrO is an ontlogy for representing agronomic practices, techniques, variables and related entities"^^xsd:string ;
@@ -34317,6 +34320,13 @@ bioregistry:mco a bioregistry.schema:0000001 ;
         bioregistry:uberon,
         bioregistry:zeco ;
     bioregistry.schema:0000019 orcid:0000-0002-0142-5591 .
+
+orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
+    dcterms:contributor bioregistry:glycosciencesdb,
+        bioregistry:insdc.run,
+        bioregistry:mixs,
+        bioregistry:uniprot.arba,
+        bioregistry:wwf.ecoregion .
 
 bioregistry:kegg a bioregistry.schema:0000001 ;
     rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
@@ -34695,37 +34705,6 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
 
-bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
-    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
-    dc:description "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)." ;
-    dcterms:hasPart bartoc:1028,
-        bartoc:109,
-        bartoc:16,
-        bartoc:181,
-        bartoc:18206,
-        bartoc:1895,
-        bartoc:1940,
-        bartoc:20052,
-        bartoc:20299,
-        bartoc:2053,
-        bartoc:391,
-        bartoc:445,
-        bartoc:447,
-        bartoc:449,
-        bartoc:509,
-        bartoc:528,
-        bartoc:549,
-        bartoc:558,
-        bartoc:571,
-        bartoc:572,
-        bartoc:576,
-        bartoc:581,
-        bartoc:720 ;
-    foaf:homepage "https://bartoc.org/" ;
-    bioregistry.schema:0000005 "241" ;
-    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
-
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Protein" ;
     dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
@@ -34757,6 +34736,38 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
+    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
+    dc:description "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)." ;
+    dcterms:hasPart bartoc:1028,
+        bartoc:109,
+        bartoc:16,
+        bartoc:181,
+        bartoc:18206,
+        bartoc:1895,
+        bartoc:1940,
+        bartoc:20052,
+        bartoc:20299,
+        bartoc:2053,
+        bartoc:391,
+        bartoc:445,
+        bartoc:447,
+        bartoc:449,
+        bartoc:509,
+        bartoc:528,
+        bartoc:549,
+        bartoc:558,
+        bartoc:571,
+        bartoc:572,
+        bartoc:576,
+        bartoc:581,
+        bartoc:720,
+        bartoc:822 ;
+    foaf:homepage "https://bartoc.org/" ;
+    bioregistry.schema:0000005 "241" ;
+    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
 
 bioregistry:uberon a bioregistry.schema:0000001 ;
     rdfs:label "Uber Anatomy Ontology" ;
@@ -35188,6 +35199,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:CTD.DISEASE,
         biolink:CTD.GENE,
         biolink:ChemBank,
+        biolink:ComplexPortal,
         biolink:DrugCentral,
         biolink:ECTO,
         biolink:EDAM-DATA,
@@ -35268,6 +35280,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:ncats.bioplanet,
         biolink:ncats.drug,
         biolink:oboformat,
+        biolink:orphanet,
         biolink:pav,
         biolink:prov,
         biolink:qud,
@@ -37409,7 +37422,6 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:RADLEX,
         bioportal:RBO,
         bioportal:RDFS,
-        bioportal:RDO,
         bioportal:REPRODUCE-ME,
         bioportal:RETO,
         bioportal:REX,
@@ -37739,7 +37751,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:RADLEX,
         aberowl:RBO,
         aberowl:RDFS,
-        aberowl:RDO,
         aberowl:REPRODUCE-ME,
         aberowl:RETO,
         aberowl:REX,
