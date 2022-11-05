@@ -61,7 +61,7 @@ that's required to go with a given prefix.
 6. New prefixes must be lowercase. However, lexical variants can be stored as
    synonyms for reference (e.g., FBbt).
 7. New prefixes must validate against the following regular expression:
-   ^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$
+   `^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$`
 8. New prefixes must pass all metadata checks, which are canonically defined by
    the quality assurance workflow.
 
@@ -95,6 +95,8 @@ https://github.com/biopragmatics/bioregistry/issues/158.
    would be better.
 5. Prefixes should not end in "O" for "Ontology", "T" for "Terminology" or any
    letters denoting related words about vocabularies
+6. New prefixes should not end with "ID" as a way to signify that the prefix is used for
+   identifiers, like in `doid` for the Disease Ontology or `caid` for ClinGen Canonical Allele identifier.
 
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
