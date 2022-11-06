@@ -16475,7 +16475,7 @@ biocontext:CUBEDB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:CVDO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:ClinVar dcterms:isPartOf bioregistry.metaresource:biocontext .
+biocontext:ClinVarVariant dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:Coriell dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -20852,6 +20852,7 @@ bioregistry:clingene a bioregistry.schema:0000001 ;
     foaf:homepage "https://reg.clinicalgenome.org"^^xsd:string ;
     bioregistry.schema:0000005 "CA981206459"^^xsd:string ;
     bioregistry.schema:0000006 "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^CA\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:clinicaltrials a bioregistry.schema:0000001 ;
@@ -30565,7 +30566,7 @@ bioregistry:clinvar a bioregistry.schema:0000001 ;
     dcterms:hasPart bioregistry:clinvar.record ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch oid:2.16.840.1.113883.6.319,
-        biocontext:ClinVar,
+        biocontext:ClinVarVariant,
         biolink:CLINVAR,
         cellosaurus.resource:ClinVar,
         n2t:clinvar,
@@ -40466,7 +40467,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:CTENO,
         biocontext:CUBEDB,
         biocontext:CVDO,
-        biocontext:ClinVar,
+        biocontext:ClinVarVariant,
         biocontext:Coriell,
         biocontext:D1ID,
         biocontext:DAILYMED,

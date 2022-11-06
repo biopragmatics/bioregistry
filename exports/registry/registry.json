@@ -5478,6 +5478,14 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "sierra-moxon",
+        "name": "Sierra Moxon",
+        "orcid": "0000-0002-8719-7760"
+      }
+    ],
     "description": "The allele registry provides and maintains identifiers for genetic variants",
     "example": "CA981206459",
     "homepage": "https://reg.clinicalgenome.org",
@@ -5485,7 +5493,14 @@
       "biolink": "CAID"
     },
     "name": "ClinGen Allele Registry",
+    "pattern": "^CA\\d+$",
     "preferred_prefix": "clingene",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/647"
+    ],
+    "synonyms": [
+      "CAID"
+    ],
     "uri_format": "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"
   },
   "clinicaltrials": {
@@ -5517,7 +5532,7 @@
     "example": "12345",
     "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
     "mappings": {
-      "biocontext": "ClinVar",
+      "biocontext": "ClinVarVariant",
       "biolink": "CLINVAR",
       "cellosaurus": "ClinVar",
       "fairsharing": "FAIRsharing.wx5r6f",
@@ -5530,6 +5545,10 @@
     "name": "ClinVar Variation",
     "pattern": "^\\d+$",
     "preferred_prefix": "clinvar",
+    "synonyms": [
+      "clinvar.variant",
+      "clinvar.variation"
+    ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1"
   },
   "clinvar.record": {
