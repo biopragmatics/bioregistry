@@ -104,6 +104,8 @@ from .resolve_identifier import (  # noqa:F401
     is_standardizable_identifier,
     is_valid_curie,
     is_valid_identifier,
+    miriam_standardize_identifier,
+    standardize_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
 from .schema.struct import (  # noqa:F401
