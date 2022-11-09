@@ -281,6 +281,18 @@ Review of removals of existing records is handled by the Bioregistry Review
 Team, whose membership and conduct is described in the Bioregistry's
 [Project Governance](GOVERNANCE.md).
 
+## Adding a new Registry
+
+New registries can be added by anyone, similarly to prefixes, but there is a lot more required curation.
+See the source [metaregistry.json](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/metaregistry.json)
+file for inspiration. Entries in this file should follow the schema defined by the 
+[`Registry` pydantic model class](https://bioregistry.readthedocs.io/en/latest/api/bioregistry.Registry.html#bioregistry.Registry).
+See also the corresponding entry in the Bioregistry's [JSON schema](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/schema/schema.json)
+
+While not strictly required, it's also useful for each registry to add a corresponding getter script and aligner
+class in `bioregistry.external` and `bioregistry.align`, respectively. See examples there, or get in touch on the
+issue tracker for help.
+
 ## Code Contribution
 
 This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
