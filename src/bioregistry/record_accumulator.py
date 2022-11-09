@@ -195,7 +195,7 @@ def get_records(  # noqa: C901
             secondary_uri_prefixes[prefix].add(uri_prefix)
 
     def _add_prefix_prefixes(
-        primary_prefix: str, resource: Resource, target_prefix: str = None
+        primary_prefix: str, resource: Resource, target_prefix: Optional[str] = None
     ) -> None:
         if target_prefix is None:
             target_prefix = resource.prefix
