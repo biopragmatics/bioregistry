@@ -1732,6 +1732,15 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
     "prefix": "col",
+    "providers": [
+      {
+        "code": "col",
+        "description": "The Catalogue of Life website providing a view onto the latest release of the COL Checklist.",
+        "homepage": "https://www.catalogueoflife.org",
+        "name": "Catalogue of Life (COL)",
+        "uri_format": "https://www.catalogueoflife.org/data/taxon/$1"
+      }
+    ],
     "sampleId": "4QHKG",
     "uri_format": "https://www.checklistbank.org/dataset/3LR/taxon/$1"
   },
@@ -3542,9 +3551,9 @@
     "id": "00000830",
     "name": "GlycoNAVI",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^GN_[A-Za-z0-9]+$",
+    "pattern": "^GN_[A-Za-z]*[_]*[A-Za-z0-9-:_]+$",
     "prefix": "glyconavi",
-    "sampleId": "GN_G03681DA",
+    "sampleId": "GN_GlyTouCan_G03681DA",
     "uri_format": "https://glyconavi.org/hub/?id=$1"
   },
   "glycopost": {
@@ -8641,14 +8650,14 @@
   "sbo": {
     "deprecated": false,
     "description": "The goal of the Systems Biology Ontology is to develop controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modeling. SBO is a project of the BioModels.net effort.",
-    "homepage": "https://www.ebi.ac.uk/sbo/",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/sbo",
     "id": "00000024",
     "name": "Systems Biology Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^SBO:\\d{7}$",
     "prefix": "sbo",
     "sampleId": "0000262",
-    "uri_format": "https://www.ebi.ac.uk/sbo/main/SBO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1"
   },
   "scop": {
     "deprecated": false,

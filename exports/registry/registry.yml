@@ -2502,7 +2502,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/46/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/49/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   mappings:
@@ -4228,21 +4228,29 @@ cemo:
     common ontological model to make epidemiological quantitative data for monitoring
     the covid-19 outbreak machine-readable and interoperable to facilitate its exchange,
     integration and analysis, to eventually support evidence-based rapid response.
+  download_json: https://raw.githubusercontent.com/cthoyt/covid19-epidemiology-ontology/add-artifacts/owl/cemo.json
   download_owl: https://raw.githubusercontent.com/NuriaQueralt/covid19-epidemiology-ontology/main/owl/cemo.owl
-  example: length_of_intensive_care_unit_(icu)_stay
+  example: secondary_attack_rate
   github_request_issue: 593
   homepage: https://github.com/NuriaQueralt/covid19-epidemiology-ontology
   license: CC0 1.0
   name: The COVID-19 epidemiology and monitoring ontology
-  pattern: ^[()0-9a-z_-]+$
+  pattern: ^[0-9a-z_-]+$
   preferred_prefix: cemo
+  providers:
+  - code: obo
+    description: This represents misconfigured base IRIs, even though this ontology
+      isn't an OBO Foundry ontology
+    homepage: http://purl.obolibrary.org/obo/
+    name: Legacy OBO PURL
+    uri_format: http://purl.obolibrary.org/obo/cemo.owl#$1
   repository: https://github.com/NuriaQueralt/covid19-epidemiology-ontology
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  uri_format: http://purl.obolibrary.org/obo/cemo.owl#$1
+  uri_format: https://biopragmatics.github.io/providers/cemo/$1
 ceph:
   contact:
     email: cjmungall@lbl.gov
@@ -13594,7 +13602,7 @@ glyconavi:
     of glycans, 3D structures of glycans and complex glycoconjugates, and the "GlycoNAVI
     tools" such as editing of 2D structures of glycans, glycan structure viewers,
     and conversion tools.
-  example: GN_G03681DA
+  example: GN_GlyTouCan_G03681DA
   example_extras:
   - GN_GlyTouCan_G03681DA
   homepage: https://www.noguchi.or.jp/
@@ -16295,7 +16303,7 @@ icdo:
   description: The International Classification of Diseases for Oncology (ICD-O) is
     a domain-specific extension of the International Statistical Classification of
     Diseases and Related Health Problems for tumor diseases
-  download_owl: http://aber-owl.net/media/ontologies/ICDO/11/icdo.owl
+  download_owl: http://aber-owl.net/media/ontologies/ICDO/12/icdo.owl
   example: 9861/3
   homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
   mappings:
@@ -31046,7 +31054,7 @@ sbo:
     title: Model storage, exchange and integration.
     year: 2006
   repository: https://github.com/EBI-BioModels/SBO
-  uri_format: https://www.ebi.ac.uk/sbo/main/SBO:$1
+  uri_format: https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1
   version: '2021-08-28'
 scdo:
   contact:

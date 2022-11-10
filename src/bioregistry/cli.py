@@ -93,10 +93,10 @@ def update(ctx: click.Context):
 
     try:
         from . import upload_ndex
-    except ImportError:
-        click.secho("Could not import ndex")
-    else:
+
         ctx.invoke(upload_ndex.main)
+    except ImportError:
+        click.secho("Could not import ndex", fg="red")
 
 
 if __name__ == "__main__":
