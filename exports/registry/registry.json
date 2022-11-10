@@ -14298,7 +14298,6 @@
     "uri_format": "http://www.glycosciences.de/modeling/glycomapsdb/showdetails.php?mapid=$1"
   },
   "glycomedb": {
-    "comment": "this is exactly the same as glytoucan. Idk why there are two different ones",
     "description": "GlycomeDB is the result of a systematic data integration effort, and provides an overview of all carbohydrate structures available in public databases, as well as cross-links.",
     "example": "G77500AY",
     "has_canonical": "glytoucan",
@@ -14328,7 +14327,7 @@
   },
   "glyconavi": {
     "description": "GlycoNAVI is a website for carbohydrate research. It consists of the \"GlycoNAVI Database\" that provides information such as existence ratios and names of glycans, 3D structures of glycans and complex glycoconjugates, and the \"GlycoNAVI tools\" such as editing of 2D structures of glycans, glycan structure viewers, and conversion tools.",
-    "example": "GN_GlyTouCan_G03681DA",
+    "example": "GN_G03681DA",
     "example_extras": [
       "GN_GlyTouCan_G03681DA"
     ],
@@ -37327,13 +37326,15 @@
     "mappings": {
       "aberowl": "VBO",
       "obofoundry": "vbo",
+      "ols": "vbo",
       "ontobee": "VBO"
     },
     "name": "Vertebrate Breed Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "VBO",
     "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
-    "uri_format": "http://purl.obolibrary.org/obo/VBO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
+    "version": "2022-09-22"
   },
   "vbrc": {
     "description": "The VBRC provides bioinformatics resources to support scientific research directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae, Flaviviridae, Paramyxoviridae, Poxviridae, and Togaviridae families. The Center consists of a relational database and web application that support the data storage, annotation, analysis, and information exchange goals of this work. Each data release contains the complete genomic sequences for all viral pathogens and related strains that are available for species in the above-named families. In addition to sequence data, the VBRC provides a curation for each virus species, resulting in a searchable, comprehensive mini-review of gene function relating genotype to biological phenotype, with special emphasis on pathogenesis.",

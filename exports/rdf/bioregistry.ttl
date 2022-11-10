@@ -5093,7 +5093,7 @@ bioregistry:glyconavi a bioregistry.schema:0000001 ;
     skos:exactMatch fairsharing:FAIRsharing.wvp1t7,
         miriam:glyconavi ;
     foaf:homepage "https://www.noguchi.or.jp/"^^xsd:string ;
-    bioregistry.schema:0000005 "GN_GlyTouCan_G03681DA"^^xsd:string ;
+    bioregistry.schema:0000005 "GN_G03681DA"^^xsd:string ;
     bioregistry.schema:0000006 "https://glyconavi.org/hub/?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^GN_[A-Za-z0-9_:]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -25265,7 +25265,8 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:VBO,
         obofoundry:vbo,
-        ontobee:VBO ;
+        ontobee:VBO,
+        ols:vbo ;
     foaf:homepage "https://github.com/monarch-initiative/vertebrate-breed-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000038"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VBO_$1"^^xsd:string ;
@@ -29734,6 +29735,8 @@ ols:upa dcterms:isPartOf bioregistry.metaresource:ols .
 ols:upheno dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:vario dcterms:isPartOf bioregistry.metaresource:ols .
+
+ols:vbo dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:vido dcterms:isPartOf bioregistry.metaresource:ols .
 
@@ -37155,6 +37158,7 @@ bioregistry.metaresource:ols a bioregistry.schema:0000002 ;
         ols:upa,
         ols:upheno,
         ols:vario,
+        ols:vbo,
         ols:vido,
         ols:vo,
         ols:vt,
