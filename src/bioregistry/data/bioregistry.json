@@ -10188,13 +10188,23 @@
       "orcid": "0000-0001-9439-5346"
     },
     "description": "The covid-19 epidemiology and monitoring ontology (cemo) provides a common ontological model to make epidemiological quantitative data for monitoring the covid-19 outbreak machine-readable and interoperable to facilitate its exchange, integration and analysis, to eventually support evidence-based rapid response.",
+    "download_json": "https://raw.githubusercontent.com/cthoyt/covid19-epidemiology-ontology/add-artifacts/owl/cemo.json",
     "download_owl": "https://raw.githubusercontent.com/NuriaQueralt/covid19-epidemiology-ontology/main/owl/cemo.owl",
-    "example": "length_of_intensive_care_unit_(icu)_stay",
+    "example": "secondary_attack_rate",
     "github_request_issue": 593,
     "homepage": "https://github.com/NuriaQueralt/covid19-epidemiology-ontology",
     "license": "CC0 1.0",
     "name": "The COVID-19 epidemiology and monitoring ontology",
-    "pattern": "^[()0-9a-z_-]+$",
+    "pattern": "^[0-9a-z_-]+$",
+    "providers": [
+      {
+        "code": "obo",
+        "description": "This represents misconfigured base IRIs, even though this ontology isn't an OBO Foundry ontology",
+        "homepage": "http://purl.obolibrary.org/obo/",
+        "name": "Legacy OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/cemo.owl#$1"
+      }
+    ],
     "repository": "https://github.com/NuriaQueralt/covid19-epidemiology-ontology",
     "reviewer": {
       "email": "cthoyt@gmail.com",
@@ -10202,7 +10212,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "uri_format": "http://purl.obolibrary.org/obo/cemo.owl#$1"
+    "uri_format": "https://biopragmatics.github.io/providers/cemo/$1"
   },
   "ceph": {
     "aberowl": {
