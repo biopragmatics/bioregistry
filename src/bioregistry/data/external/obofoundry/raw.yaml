@@ -276,6 +276,10 @@ ontologies:
   products:
   - id: bco.owl
     ontology_purl: http://purl.obolibrary.org/obo/bco.owl
+  publications:
+  - id: https://doi.org/10.1371/journal.pone.0089606
+    title: 'Semantics in Support of Biodiversity Knowledge Discovery: An Introduction
+      to the Biological Collections Ontology and Related Ontologies'
   repository: https://github.com/BiodiversityOntologies/bco
   tags:
   - biodiversity collections
@@ -413,9 +417,9 @@ ontologies:
   id: caro
   layout: ontology_detail
   license:
-    label: CC BY 3.0
+    label: CC BY 4.0
     logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: https://creativecommons.org/licenses/by/3.0/
+    url: https://creativecommons.org/licenses/by/4.0/
   ontology_purl: http://purl.obolibrary.org/obo/caro.owl
   preferredPrefix: CARO
   products:
@@ -702,6 +706,10 @@ ontologies:
   products:
   - id: cido.owl
     ontology_purl: http://purl.obolibrary.org/obo/cido.owl
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/36271389
+    title: 'A comprehensive update on CIDO: the community-based coronavirus infectious
+      disease ontology'
   repository: https://github.com/cido-ontology/cido
   title: Coronavirus Infectious Disease Ontology
   tracker: https://github.com/cido-ontology/cido/issues
@@ -727,6 +735,10 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/cio.owl
   - id: cio.obo
     ontology_purl: http://purl.obolibrary.org/obo/cio.obo
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/25957950
+    title: 'The Confidence Information Ontology: a step towards a standard for asserting
+      confidence in annotations'
   repository: https://github.com/BgeeDB/confidence-information-ontology
   title: Confidence Information Ontology
   tracker: https://github.com/BgeeDB/confidence-information-ontology
@@ -751,6 +763,7 @@ ontologies:
   - id: pr
   - id: ro
   - id: uberon
+  depicted_by: /images/CL-logo.jpg
   description: The Cell Ontology is a structured controlled vocabulary for cell types
     in animals.
   domain: anatomy and development
@@ -1035,7 +1048,7 @@ ontologies:
   description: COB brings together key terms from a wide range of OBO projects to
     improve interoperability.
   domain: upper
-  homepage: https://github.com/OBOFoundry/COB
+  homepage: https://obofoundry.org/COB/
   id: cob
   layout: ontology_detail
   license:
@@ -1609,8 +1622,9 @@ ontologies:
   description: An ontology for experimental and other evidence statements.
   domain: investigations
   funded_by:
-  - http://www.nsf.gov/awardsearch/showAward?AWD_ID=1458400
-  homepage: https://github.com/evidenceontology/evidenceontology/
+  - id: https://www.nsf.gov/awardsearch/showAward?AWD_ID=1458400
+    title: NSF ABI-1458400
+  homepage: https://www.evidenceontology.org
   id: eco
   jobs:
   - id: https://travis-ci.org/evidenceontology/evidenceontology
@@ -1629,6 +1643,7 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/eco.obo
   publications:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/30407590
+    preferred: true
     title: 'ECO, the Evidence & Conclusion Ontology: community standard for evidence
       information.'
   - id: https://www.ncbi.nlm.nih.gov/pubmed/25052702
@@ -1807,6 +1822,18 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/emapa.owl
   - id: emapa.obo
     ontology_purl: http://purl.obolibrary.org/obo/emapa.obo
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/9651497
+    title: An internet-accessible database of mouse developmental anatomy based on
+      a systematic nomenclature
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/23972281
+    title: 'EMAP/EMAPA ontology of mouse developmental anatomy: 2013 update'
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/26208972
+    title: 'Mouse Anatomy Ontologies: Enhancements and Tools for Exploring and Integrating
+      Biomedical Data'
+  - id: https://doi.org/10.1016/B978-0-12-800043-4.00023-3
+    title: 'Textual Anatomics: the Mouse Developmental Anatomy Ontology and the Gene
+      Expression Database for Mouse Development (GXD)'
   repository: https://github.com/obophenotype/mouse-anatomy-ontology
   taxon:
     id: NCBITaxon:10088
@@ -1826,7 +1853,7 @@ ontologies:
     path: .
     system: git
   contact:
-    email: p.buttigieg@gmail.com
+    email: pier.buttigieg@awi.de
     github: pbuttigieg
     label: Pier Luigi Buttigieg
     orcid: 0000-0002-4366-3088
@@ -1839,19 +1866,19 @@ ontologies:
   - id: po
   - id: ro
   - id: uberon
-  depicted_by: /logos/envo.png
-  description: Ontology of environmental features and habitats
+  depicted_by: /images/envo.png
+  description: An ontology of environmental systems, components, and processes.
   domain: environment
   homepage: http://environmentontology.org/
   id: envo
   jobs:
-  - id: https://travis-ci.org/EnvironmentOntology/envo
-    type: travis-ci
+  - id: https://github.com/EnvironmentOntology/envo/blob/master/.github/workflows/qc.yml
+    type: github-action
   layout: ontology_detail
   license:
-    label: CC BY 3.0
-    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: http://creativecommons.org/licenses/by/3.0/
+    label: CC0 1.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/cc-zero.png
+    url: http://creativecommons.org/publicdomain/zero/1.0/
   ontology_purl: http://purl.obolibrary.org/obo/envo.owl
   page: https://github.com/EnvironmentOntology/envo
   preferredPrefix: ENVO
@@ -1876,9 +1903,10 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/envo/subsets/EnvO-Lite-GSC.obo
     title: GSC Lite subset of ENVO
   publications:
-  - id: https://www.ncbi.nlm.nih.gov/pubmed/24330602
+  - id: https://doi.org/10.1186/2041-1480-4-43
+    preferred: true
     title: 'The environment ontology: contextualising biological and biomedical entities'
-  - id: https://www.ncbi.nlm.nih.gov/pubmed/27664130
+  - id: https://doi.org/10.1186/s13326-016-0097-6
     title: 'The environment ontology in 2016: bridging domains with increased scope,
       semantic density, and interoperation'
   repository: https://github.com/EnvironmentOntology/envo
@@ -2129,6 +2157,7 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/fbbt/fbbt-simple.obo
   publications:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/24139062
+    preferred: true
     title: The Drosophila anatomy ontology
   - id: https://www.ncbi.nlm.nih.gov/pubmed/22402613
     title: A strategy for building neuroanatomy ontologies
@@ -2957,6 +2986,9 @@ ontologies:
   products:
   - id: hom.owl
     ontology_purl: http://purl.obolibrary.org/obo/hom.owl
+  publications:
+  - id: https://doi.org/10.1016/j.tig.2009.12.012
+    title: An ontology to clarify homology-related concepts
   repository: https://github.com/BgeeDB/homology-ontology
   title: Homology Ontology
   tracker: https://github.com/BgeeDB/homology-ontology/issues
@@ -3116,6 +3148,10 @@ ontologies:
   products:
   - id: iceo.owl
     ontology_purl: http://purl.obolibrary.org/obo/iceo.owl
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/35058462
+    title: ICEO, a biological ontology for representing and analyzing bacterial integrative
+      and conjugative elements
   repository: https://github.com/ontoice/ICEO
   title: Integrative and Conjugative Element Ontology
   tracker: https://github.com/ontoice/ICEO/issues
@@ -3174,6 +3210,9 @@ ontologies:
   products:
   - id: ido.owl
     ontology_purl: http://purl.obolibrary.org/obo/ido.owl
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/34275487
+    title: The Infectious Disease Ontology in the age of COVID-19
   repository: https://github.com/infectious-disease-ontology/infectious-disease-ontology
   taxon:
     id: NCBITaxon:9606
@@ -3200,6 +3239,10 @@ ontologies:
   products:
   - id: ino.owl
     ontology_purl: http://purl.obolibrary.org/obo/ino.owl
+  publications:
+  - id: https://doi.org/10.1186/2041-1480-6-2
+    title: Development and application of an Interaction Network Ontology for literature
+      mining of vaccine-associated gene-gene interactions
   repository: https://github.com/INO-ontology/ino
   title: Interaction Network Ontology
   tracker: https://github.com/INO-ontology/ino/issues
@@ -3590,6 +3633,10 @@ ontologies:
   products:
   - id: miapa.owl
     ontology_purl: http://purl.obolibrary.org/obo/miapa.owl
+  publications:
+  - id: https://doi.org/10.1089/omi.2006.10.231
+    title: 'Taking the First Steps towards a Standard for Reporting on Phylogenies:
+      Minimum Information about a Phylogenetic Analysis (MIAPA)'
   releases: https://github.com/evoinfo/miapa/releases
   repository: https://github.com/evoinfo/miapa
   title: MIAPA Ontology
@@ -3792,6 +3839,7 @@ ontologies:
     label: Metazoa
   title: Mondo Disease Ontology
   tracker: https://github.com/monarch-initiative/mondo/issues
+  twitter: MonarchInit
   usages:
   - description: Mondo is used by the Monarch Initiative for disease annotations.
     examples:
@@ -4262,8 +4310,8 @@ ontologies:
     encodes the goverened rules of nomenclature.
   domain: information
   funded_by:
-  - NSF-ABI-1356381
-  - Species File Group
+  - id: https://www.nsf.gov/awardsearch/showAward?AWD_ID=1356381
+    title: NSF ABI-1356381
   homepage: https://github.com/SpeciesFileGroup/nomen
   id: nomen
   label: NOMEN
@@ -4633,8 +4681,8 @@ ontologies:
     github: wdduncan
     label: Bill Duncan
     orcid: 0000-0001-9625-1899
-  description: The Oral Health and Disease Ontology was created, initially, to represent
-    the content of dental practice health records.
+  description: The Oral Health and Disease Ontology is used for representing the diagnosis
+    and treatment of dental maladies.
   domain: health
   homepage: https://purl.obolibrary.org/obo/ohd/home
   id: ohd
@@ -4651,6 +4699,10 @@ ontologies:
   - id: ohd/dev/ohd.owl
     ontology_purl: http://purl.obolibrary.org/obo/ohd/dev/ohd.owl
     title: OHD dev
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/32819435
+    title: Structuring, reuse and analysis of electronic dental data using the Oral
+      Health and Disease Ontology
   repository: https://github.com/oral-health-and-disease-ontologies/ohd-ontology
   title: Oral Health and Disease Ontology
   tracker: https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues
@@ -4705,6 +4757,10 @@ ontologies:
   products:
   - id: ohpi.owl
     ontology_purl: http://purl.obolibrary.org/obo/ohpi.owl
+  publications:
+  - id: https://www.ncbi.nlm.nih.gov/pubmed/30365026
+    title: 'Victors: a web-based knowledge base of virulence factors in human and
+      animal pathogens'
   repository: https://github.com/OHPI/ohpi
   title: Ontology of Host Pathogen Interactions
   tracker: https://github.com/OHPI/ohpi/issues
@@ -4819,6 +4875,9 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/omp.owl
   - id: omp.obo
     ontology_purl: http://purl.obolibrary.org/obo/omp.obo
+  publications:
+  - id: https://doi.org/10.1186/s12866-014-0294-3
+    title: An ontology for microbial phenotypes
   repository: https://github.com/microbialphenotypes/OMP-ontology
   title: Ontology of Microbial Phenotypes
   tracker: https://github.com/microbialphenotypes/OMP-ontology/issues
@@ -6250,9 +6309,6 @@ ontologies:
   title: The Statistical Methods Ontology
   tracker: https://github.com/ISA-tools/stato/issues
 - activity_status: active
-  build:
-    method: owl2obo
-    source_url: https://raw.githubusercontent.com/allysonlister/swo/master/release/swo_inferred.owl
   contact:
     email: allyson.lister@oerc.ox.ac.uk
     github: allysonlister
@@ -6275,6 +6331,8 @@ ontologies:
   products:
   - id: swo.owl
     ontology_purl: http://purl.obolibrary.org/obo/swo.owl
+  - id: swo.json
+    ontology_purl: http://purl.obolibrary.org/obo/swo.json
   publications:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/25068035
     title: 'The Software Ontology (SWO): a resource for reproducibility in biomedical
@@ -6332,6 +6390,64 @@ ontologies:
     - description: symptoms of human diseases
       url: http://www.disease-ontology.org/?id=DOID:0060164
     user: http://www.disease-ontology.org
+- activity_status: active
+  contact:
+    email: allyson.lister@oerc.ox.ac.uk
+    github: allysonlister
+    label: Allyson Lister
+    orcid: 0000-0002-7702-4495
+  description: A terminology for the skills necessary to make data FAIR and to keep
+    it FAIR.
+  domain: information
+  homepage: https://github.com/terms4fairskills/FAIRterminology
+  id: t4fs
+  layout: ontology_detail
+  license:
+    label: CC BY 4.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
+    url: https://creativecommons.org/licenses/by/4.0/
+  ontology_purl: http://purl.obolibrary.org/obo/t4fs.owl
+  preferredPrefix: T4FS
+  products:
+  - id: t4fs.owl
+    ontology_purl: http://purl.obolibrary.org/obo/t4fs.owl
+  - id: t4fs.obo
+    ontology_purl: http://purl.obolibrary.org/obo/t4fs.obo
+  - id: t4fs.json
+    ontology_purl: http://purl.obolibrary.org/obo/t4fs.json
+  - id: t4fs-community.owl
+    ontology_purl: http://purl.obolibrary.org/obo/t4fs-community.owl
+    title: This community view of T4FS makes the ontology available in OWL without
+      upper-level ontology (ULO) terms to give the user community a simpler view of
+      the term hierarchy.
+  - id: t4fs-community.obo
+    ontology_purl: http://purl.obolibrary.org/obo/t4fs-community.obo
+    title: This community view of T4FS makes the ontology available in OBO format
+      without upper-level ontology (ULO) terms to give the user community a simpler
+      view of the term hierarchy.
+  - id: t4fs-community.json
+    ontology_purl: http://purl.obolibrary.org/obo/t4fs-community.json
+    title: This community view of T4FS makes the ontology available in JSON format
+      without upper-level ontology (ULO) terms to give the user community a simpler
+      view of the term hierarchy.
+  publications:
+  - id: https://doi.org/10.5281/zenodo.4705219
+    title: 'EOSC Co-creation funded project 074: Delivery of a proof of concept for
+      terms4FAIRskills: Technical report'
+  repository: https://github.com/terms4fairskills/FAIRterminology
+  title: terms4FAIRskills
+  tracker: https://github.com/terms4fairskills/FAIRterminology/issues
+  usages:
+  - description: Semaphora integrates terms4FAIRskills, allowing users to annotate
+      training materials with the ontology.
+    user: http://t4fs.esciencedatafactory.com/
+  - description: FAIRassist is designed to offer personalised guidance to all stakeholders
+      to enable the discovery of standards and repositories in FAIRsharing, which
+      should be used to make data FAIR, as well as to signpost FAIR assessment resources.
+    user: https://fairassist.org
+  - description: FAIRsFAIR Competence Centre (project wp6) will provide a platform
+      for training materials resulting from project training activities, annot
+    user: https://www.fairsfair.eu/
 - activity_status: active
   build:
     checkout: git clone https://github.com/phenoscape/taxrank.git
@@ -6588,10 +6704,14 @@ ontologies:
     multiple species-specific ontologies
   domain: anatomy and development
   funded_by:
-  - NIH R24OD011883
-  - NIH R01HG004838
-  - NIH P41HG002273
-  - NSF DEB-0956049
+  - id: https://taggs.hhs.gov/Detail/AwardDetail?arg_AwardNum=R24OD011883&arg_ProgOfficeCode=205
+    title: NIH R24-OD011883
+  - id: https://grantome.com/grant/NIH/R01-HG004838
+    title: NIH R01-HG004838
+  - id: https://taggs.hhs.gov/Detail/AwardDetail?arg_AwardNum=P41HG002273&arg_ProgOfficeCode=55
+    title: NIH P41-HG002273
+  - id: https://www.nsf.gov/awardsearch/showAward?AWD_ID=0956049
+    title: NSF DEB-0956049
   homepage: http://uberon.org
   id: uberon
   label: Uberon
@@ -6852,6 +6972,48 @@ ontologies:
         phenotypes to genotypes across species '
     type: analysis
     user: https://monarchinitiative.org/
+- activity_status: active
+  contact:
+    email: Sabrina@tislab.org
+    github: sabrinatoro
+    label: Sabrina Toro
+    orcid: 0000-0002-4142-7153
+  dependencies:
+  - id: ncbitaxon
+  description: Vertebrate Breed Ontology is an ontology created to serve as a single
+    computable resource for vertebrate breed names.
+  domain: organisms
+  homepage: https://github.com/monarch-initiative/vertebrate-breed-ontology
+  id: vbo
+  layout: ontology_detail
+  license:
+    label: CC BY 4.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
+    url: https://creativecommons.org/licenses/by/4.0/
+  ontology_purl: http://purl.obolibrary.org/obo/vbo.owl
+  preferredPrefix: VBO
+  products:
+  - id: vbo.owl
+    name: Vertebrate Breed Ontology main release in OWL format
+    ontology_purl: http://purl.obolibrary.org/obo/vbo.owl
+  - id: vbo.obo
+    name: Vertebrate Breed Ontology additional release in OBO format
+    ontology_purl: http://purl.obolibrary.org/obo/vbo.obo
+  - id: vbo.json
+    name: Vertebrate Breed Ontology additional release in OBOJSon format
+    ontology_purl: http://purl.obolibrary.org/obo/vbo.json
+  - id: vbo/vbo-base.owl
+    name: Vertebrate Breed Ontology main release in OWL format
+    ontology_purl: http://purl.obolibrary.org/obo/vbo/vbo-base.owl
+  - id: vbo/vbo-base.obo
+    name: Vertebrate Breed Ontology additional release in OBO format
+    ontology_purl: http://purl.obolibrary.org/obo/vbo/vbo-base.obo
+  - id: vbo/vbo-base.json
+    name: Vertebrate Breed Ontology additional release in OBOJSon format
+    ontology_purl: http://purl.obolibrary.org/obo/vbo/vbo-base.json
+  repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
+  title: Vertebrate Breed Ontology
+  tracker: https://github.com/monarch-initiative/vertebrate-breed-ontology/issues
 - activity_status: active
   build:
     source_url: https://raw.githubusercontent.com/vaccineontology/VO/master/src/VO_merged.owl
@@ -7583,8 +7745,10 @@ ontologies:
     and their outputs
   domain: simulation
   funded_by:
-  - NIH P41EB023912
-  - NIH R35GM119771
+  - id: https://grantome.com/search?q=P41EB023912
+    title: NIH P41EB023912
+  - id: https://grantome.com/search?q=R35GM119771
+    title: NIH R35GM119771
   homepage: https://github.com/SED-ML/KiSAO
   id: kisao
   layout: ontology_detail
@@ -7747,6 +7911,7 @@ ontologies:
     email: null
     label: chEBI
   description: An ontology of physico-chemical methods and properties.
+  domain: chemistry and biochemistry
   homepage: http://www.ebi.ac.uk/chebi
   id: fix
   in_foundry: false
@@ -7787,6 +7952,7 @@ ontologies:
     source_url: http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/physicochemical/rex.obo
   description: An ontology of physico-chemical processes, i.e. physico-chemical changes
     occurring in course of time.
+  domain: chemistry and biochemistry
   id: rex
   layout: ontology_detail
   ontology_purl: http://purl.obolibrary.org/obo/rex.owl
@@ -7833,6 +7999,7 @@ ontologies:
     label: Mauno Vihinen
   description: Variation Ontology, VariO, is an ontology for standardized, systematic
     description of effects, consequences and mechanisms of variations.
+  domain: biological systems
   homepage: http://variationontology.org
   id: vario
   layout: ontology_detail
@@ -7995,6 +8162,7 @@ ontologies:
     label: Lynn Schriml
     orcid: 0000-0001-8910-9851
   description: A gazetteer constructed on ontological principles
+  domain: environment
   homepage: http://environmentontology.github.io/gaz/
   id: gaz
   layout: ontology_detail
@@ -8180,6 +8348,7 @@ ontologies:
   contact:
     email: david.c.blackburn@gmail.com
     label: David Blackburn
+  domain: anatomy and development
   homepage: http://github.com/seger/aao
   id: aao
   is_obsolete: true
@@ -8193,6 +8362,7 @@ ontologies:
   contact:
     email: adw_geeks@umich.edu
     label: Animal Diversity Web technical staff
+  domain: organisms
   homepage: http://www.animaldiversity.org
   id: adw
   is_obsolete: true
@@ -8226,6 +8396,7 @@ ontologies:
   contact:
     email: david.c.blackburn@gmail.com
     label: David Blackburn
+  domain: organisms
   homepage: http://www.amphibanat.org
   id: ato
   is_obsolete: true
@@ -8241,6 +8412,7 @@ ontologies:
     label: Jie Zheng
     orcid: 0000-0002-2999-0103
   description: An application ontology built for beta cell genomics studies.
+  domain: anatomy and development
   homepage: https://github.com/obi-bcgo/bcgo
   id: bcgo
   in_foundry: false
@@ -8281,6 +8453,7 @@ ontologies:
   contact:
     email: vlee@ebi.ac.uk
     label: Vivian Lee
+  domain: chemistry and biochemistry
   homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   id: bootstrep
   is_obsolete: true
@@ -8292,6 +8465,7 @@ ontologies:
     email: engelsta@ohsu.edu
     label: Mark Engelstad
     orcid: 0000-0001-5889-4463
+  domain: health
   homepage: https://code.google.com/p/craniomaxillofacial-ontology/
   id: cmf
   is_obsolete: true
@@ -8302,6 +8476,7 @@ ontologies:
     email: Lindsay.Cowell@utsouthwestern.edu
     label: Lindsay Cowell
     orcid: 0000-0003-1617-8244
+  domain: anatomy and development
   homepage: http://www.dukeontologygroup.org/Projects.html
   id: dc_cl
   is_obsolete: true
@@ -8339,6 +8514,7 @@ ontologies:
   contact:
     email: J.Bard@ed.ac.uk
     label: Jonathan Bard
+  domain: anatomy and development
   homepage: http://genex.hgu.mrc.ac.uk/
   id: ehda
   is_obsolete: true
@@ -8352,6 +8528,7 @@ ontologies:
   contact:
     email: J.Bard@ed.ac.uk
     label: Jonathan Bard
+  domain: anatomy and development
   homepage: null
   id: ehdaa
   is_obsolete: true
@@ -8439,6 +8616,7 @@ ontologies:
     source_url: http://purl.obolibrary.org/obo/epo.owl
   description: An ontology designed to support the semantic annotation of epidemiology
     resources
+  domain: health
   homepage: https://code.google.com/p/epidemiology-ontology/
   id: epo
   in_foundry: false
@@ -8477,6 +8655,7 @@ ontologies:
   contact:
     email: evoc@sanbi.ac.za
     label: eVOC mailing list
+  domain: anatomy and development
   homepage: http://www.evocontology.org/
   id: ev
   is_obsolete: true
@@ -8530,6 +8709,7 @@ ontologies:
   contact:
     email: po-discuss@plantontology.org
     label: Plant Ontology Administrators
+  domain: anatomy and development
   homepage: http://www.gramene.org/plant_ontology/
   id: gro
   is_obsolete: true
@@ -8540,6 +8720,7 @@ ontologies:
     email: peteremidford@yahoo.com
     label: Peter Midford
     orcid: 0000-0001-6512-3296
+  domain: organisms
   homepage: http://www.mesquiteproject.org/ontology/Habronattus/index.html
   id: habronattus
   is_obsolete: true
@@ -8550,6 +8731,7 @@ ontologies:
     insert_ontology_id: true
     method: obo2owl
     source_url: http://download.baderlab.org/INOH/ontologies/EventOntology_172.obo
+  domain: chemistry and biochemistry
   homepage: http://www.inoh.org
   id: iev
   is_obsolete: true
@@ -8563,6 +8745,7 @@ ontologies:
   contact:
     email: curator@inoh.org
     label: INOH curators
+  domain: chemistry and biochemistry
   homepage: http://www.inoh.org
   id: imr
   is_obsolete: true
@@ -8572,6 +8755,7 @@ ontologies:
   contact:
     email: interhelp@ebi.ac.uk
     label: InterPro Help
+  domain: chemistry and biochemistry
   homepage: http://www.ebi.ac.uk/interpro/index.html
   id: ipr
   is_obsolete: true
@@ -8598,6 +8782,7 @@ ontologies:
     email: peteremidford@yahoo.com
     label: Peter Midford
     orcid: 0000-0001-6512-3296
+  domain: organisms
   homepage: http://www.mesquiteproject.org/ontology/Loggerhead/index.html
   id: loggerhead
   is_obsolete: true
@@ -8607,6 +8792,7 @@ ontologies:
   contact:
     email: julie@igbmc.u-strasbg.fr
     label: Julie Thompson
+  domain: chemistry and biochemistry
   homepage: http://www-igbmc.u-strasbg.fr/BioInfo/MAO/mao.html
   id: mao
   is_obsolete: true
@@ -8616,6 +8802,7 @@ ontologies:
   contact:
     email: j.bard@ed.ac.uk
     label: Jonathan Bard
+  domain: anatomy and development
   homepage: null
   id: mat
   is_obsolete: true
@@ -8644,6 +8831,7 @@ ontologies:
     email: topalis@imbb.forth.gr
     label: Pantelis Topalis
   description: An application ontology for use with miRNA databases.
+  domain: chemistry and biochemistry
   homepage: http://code.google.com/p/mirna-ontology/
   id: mirnao
   is_obsolete: true
@@ -8679,6 +8867,7 @@ ontologies:
     email: smtifahim@gmail.com
     label: Fahim Imam
   description: Neuronal cell types
+  domain: anatomy and development
   homepage: http://neuinfo.org/
   id: nif_cell
   is_obsolete: true
@@ -8689,6 +8878,7 @@ ontologies:
   contact:
     email: smtifahim@gmail.com
     label: Fahim Imam
+  domain: health
   homepage: http://neuinfo.org/
   id: nif_dysfunction
   is_obsolete: true
@@ -8699,6 +8889,7 @@ ontologies:
   contact:
     email: smtifahim@gmail.com
     label: Fahim Imam
+  domain: anatomy and development
   homepage: http://neuinfo.org/
   id: nif_grossanatomy
   is_obsolete: true
@@ -8729,6 +8920,7 @@ ontologies:
     email: cjmungall@lbl.gov
     label: Chris Mungall
     orcid: 0000-0002-6601-2165
+  domain: upper
   homepage: http://www.obofoundry.org/ro
   id: obo_rel
   is_obsolete: true
@@ -8743,6 +8935,7 @@ ontologies:
     orcid: 0000-0002-5379-5359
   description: An ontology that formalizes the genomic element by defining an upper
     class genetic interval
+  domain: chemistry and biochemistry
   homepage: https://code.google.com/p/ontology-for-genetic-interval/
   id: ogi
   is_obsolete: true
@@ -8781,6 +8974,7 @@ ontologies:
     github: jaiswalp
     label: Pankaj Jaiswal
     orcid: 0000-0002-1005-8383
+  domain: anatomy and development
   homepage: http://www.plantontology.org
   id: pao
   is_obsolete: true
@@ -8793,6 +8987,7 @@ ontologies:
   contact:
     email: henrich@embl.de
     label: Thorsten Heinrich
+  domain: anatomy and development
   homepage: http://4dx.embl.de/platy
   id: pd_st
   is_obsolete: true
@@ -8806,6 +9001,7 @@ ontologies:
   contact:
     email: po-discuss@plantontology.org
     label: Plant Ontology Administrators
+  domain: anatomy and development
   homepage: http://www.plantontology.org
   id: pgdso
   is_obsolete: true
@@ -8818,6 +9014,7 @@ ontologies:
   contact:
     email: mb4@sanger.ac.uk
     label: Matt Berriman
+  domain: anatomy and development
   homepage: http://www.sanger.ac.uk/Users/mb4/PLO/
   id: plo
   is_obsolete: true
@@ -8827,6 +9024,7 @@ ontologies:
   contact:
     email: satya30@uga.edu
     label: Satya S. Sahoo
+  domain: chemistry and biochemistry
   homepage: http://lsdis.cs.uga.edu/projects/glycomics/propreo/
   id: propreo
   is_obsolete: true
@@ -8849,6 +9047,7 @@ ontologies:
   contact:
     email: slarson@ncmir.ucsd.edu
     label: Stephen Larson
+  domain: anatomy and development
   homepage: http://ccdb.ucsd.edu/CCDBWebSite/sao.html
   id: sao
   is_obsolete: true
@@ -8884,6 +9083,7 @@ ontologies:
   contact:
     email: Adrien.Coulet@loria.fr
     label: Adrien Coulet
+  domain: chemistry and biochemistry
   homepage: http://www.loria.fr/~coulet/sopharm2.0_description.php
   id: sopharm
   is_obsolete: true
@@ -8896,6 +9096,7 @@ ontologies:
   contact:
     email: pierre.sprumont@unifr.ch
     label: Pierre Sprumont
+  domain: anatomy and development
   homepage: null
   id: tahe
   is_obsolete: true
@@ -8908,6 +9109,7 @@ ontologies:
   contact:
     email: pierre.sprumont@unifr.ch
     label: Pierre Sprumont
+  domain: health
   homepage: null
   id: tahh
   is_obsolete: true
@@ -8949,6 +9151,7 @@ ontologies:
   title: Teleost Anatomy Ontology
 - activity_status: inactive
   depicted_by: http://bgee.org/img/logo/bgee13_logo.png
+  domain: anatomy and development
   id: vhog
   is_obsolete: true
   layout: ontology_detail
@@ -8985,6 +9188,7 @@ ontologies:
     email: cherry@genome.stanford.edu
     label: Mike Cherry
     orcid: 0000-0001-9163-5180
+  domain: phenotype
   homepage: http://www.yeastgenome.org/
   id: ypo
   is_obsolete: true
@@ -8999,6 +9203,7 @@ ontologies:
     email: Leszek@missouri.edu
     label: Leszek Vincent
     orcid: 0000-0002-9316-2919
+  domain: anatomy and development
   homepage: http://www.maizemap.org/
   id: zea
   is_obsolete: true

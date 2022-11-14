@@ -142,6 +142,17 @@
     "propPattern": "[1-9]\\d*"
   },
   {
+    "database": "Q111694088",
+    "databaseHomepage": "http://woodyplants.cals.cornell.edu/home",
+    "databaseLabel": "Woody Plants Database",
+    "prop": "P11082",
+    "propDescription": "identifier for a cultivar in the Woody Plants Database",
+    "propFormat": "http://woodyplants.cals.cornell.edu/cultivar/$1",
+    "propHomepage": "http://woodyplants.cals.cornell.edu/home",
+    "propLabel": "Woody Plants Database cultivar ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
     "database": "Q25489909",
     "databaseHomepage": "http://www.wildflowers.co.il",
     "databaseLabel": "Wildflowers of Palestine",
@@ -183,6 +194,20 @@
     "prop": "P2410",
     "propDescription": "describes in which biological pathways a biological entity occurs",
     "propFormat": "https://www.wikipathways.org/instance/$1",
+    "propFormatRDF": "http://identifiers.org/wikipathways/$1",
+    "propHomepage": "http://www.wikipathways.org",
+    "propLabel": "WikiPathways ID",
+    "propMiriam": "wikipathways",
+    "propPattern": "WP\\d{1,4}"
+  },
+  {
+    "database": "Q7999828",
+    "databaseHomepage": "https://www.wikipathways.org/",
+    "databaseLabel": "WikiPathways",
+    "databaseMiriam": "wikipathways",
+    "prop": "P2410",
+    "propDescription": "describes in which biological pathways a biological entity occurs",
+    "propFormat": "https://new.wikipathways.org/pathways/$1",
     "propFormatRDF": "http://identifiers.org/wikipathways/$1",
     "propHomepage": "http://www.wikipathways.org",
     "propLabel": "WikiPathways ID",
@@ -331,6 +356,17 @@
     "propPattern": "\\d{4}"
   },
   {
+    "database": "Q24170711",
+    "databaseHomepage": "https://www.ebi.ac.uk/unichem/",
+    "databaseLabel": "UniChem",
+    "prop": "P11089",
+    "propDescription": "identifier of a compound in the UniChem database",
+    "propFormat": "https://www.ebi.ac.uk/unichem/compoundsources?type=uci&compound=$1",
+    "propHomepage": "https://chembl.gitbook.io/unichem/downloads",
+    "propLabel": "UniChem compound ID",
+    "propPattern": "\\d+"
+  },
+  {
     "database": "Q2578548",
     "databaseHomepage": "https://www.tropicos.org",
     "databaseLabel": "Tropicos",
@@ -345,7 +381,7 @@
     "databaseHomepage": "https://www.tropicos.org",
     "databaseLabel": "Tropicos",
     "prop": "P4904",
-    "propDescription": "identifer for a journal or other publication in Tropicos",
+    "propDescription": "identifier for a journal or other publication in Tropicos",
     "propFormat": "http://legacy.tropicos.org/Publication/$1",
     "propHomepage": "http://www.tropicos.org/ReferenceSearch.aspx",
     "propLabel": "Tropicos publication ID",
@@ -353,7 +389,7 @@
   },
   {
     "database": "Q2300489",
-    "databaseHomepage": "http://www.tolweb.org/",
+    "databaseHomepage": "http://tolweb.org/tree/phylogeny.html",
     "databaseLabel": "Tree of Life Web Project",
     "prop": "P5221",
     "propDescription": "identifier in the Tree of Life Web Project",
@@ -364,7 +400,7 @@
   },
   {
     "database": "Q2300489",
-    "databaseHomepage": "http://www.tolweb.org/",
+    "databaseHomepage": "http://tolweb.org/tree/phylogeny.html",
     "databaseLabel": "Tree of Life Web Project",
     "prop": "P9169",
     "propDescription": "identifier for a contributor to the Tree of Life Web Project",
@@ -498,7 +534,7 @@
     "databaseHomepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
     "databaseLabel": "Taxonomy database of the U.S. National Center for Biotechnology Information",
     "prop": "P685",
-    "propDescription": "identifer for a taxon in the Taxonomy Database by the National Center for Biotechnology Information",
+    "propDescription": "identifier for a taxon in the Taxonomy Database by the National Center for Biotechnology Information",
     "propFormat": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
     "propFormatRDF": "http://purl.uniprot.org/taxonomy/$1",
     "propHomepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
@@ -657,7 +693,7 @@
   {
     "database": "Q3460832",
     "databaseHomepage": "http://www.yeastgenome.org",
-    "databaseLabel": "Saccharomyces Genome Database",
+    "databaseLabel": "SGD",
     "databaseMiriam": "sgd",
     "prop": "P3406",
     "propDescription": "identifier for a genetic element in the Saccharomyces Genome Database",
@@ -773,7 +809,7 @@
     "databaseMiriam": "reactome",
     "prop": "P3937",
     "propDescription": "Identifier used in Reactome to uniquely identify a biological pathway",
-    "propFormat": "http://identifiers.org/reactome:$1",
+    "propFormat": "https://reactome.org/content/detail/$1",
     "propHomepage": "http://www.reactome.org/",
     "propLabel": "Reactome ID"
   },
@@ -784,7 +820,7 @@
     "databaseMiriam": "reactome",
     "prop": "P3937",
     "propDescription": "Identifier used in Reactome to uniquely identify a biological pathway",
-    "propFormat": "http://identifiers.org/reactome:$1",
+    "propFormat": "https://reactome.org/content/detail/$1",
     "propHomepage": "http://www.reactome.org/",
     "propLabel": "Reactome ID"
   },
@@ -869,7 +905,7 @@
   },
   {
     "database": "Q55118584",
-    "databaseHomepage": "http://pir.georgetown.edu/pro",
+    "databaseHomepage": "http://proconsortium.org",
     "databaseLabel": "Protein Ontology",
     "prop": "P4926",
     "propDescription": "Identifier for an entry in the PRotein Ontology (PRO)",
@@ -880,7 +916,7 @@
   },
   {
     "database": "Q55118584",
-    "databaseHomepage": "http://pir.georgetown.edu/pro",
+    "databaseHomepage": "http://proconsortium.org",
     "databaseLabel": "Protein Ontology",
     "prop": "P4926",
     "propDescription": "Identifier for an entry in the PRotein Ontology (PRO)",
@@ -1003,6 +1039,17 @@
     "propHomepage": "http://phasmida.speciesfile.org/HomePage/Phasmida/HomePage.aspx",
     "propLabel": "Phasmida Species File ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q18392556",
+    "databaseHomepage": "https://www.pharmgkb.org/",
+    "databaseLabel": "PharmGKB",
+    "prop": "P7001",
+    "propDescription": "unique identifier for an entity in the PharmGKB knowledgebase",
+    "propFormat": "https://www.pharmgkb.org/accession/$1",
+    "propHomepage": "https://www.pharmgkb.org/",
+    "propLabel": "PharmGKB ID",
+    "propPattern": "PA[1-9]\\d*"
   },
   {
     "database": "Q906796",
@@ -1155,6 +1202,17 @@
     "propPattern": "\\d{6}"
   },
   {
+    "database": "Q241953",
+    "databaseHomepage": "https://www.omim.org",
+    "databaseLabel": "Online Mendelian Inheritance in Man",
+    "databaseMiriam": "omim",
+    "prop": "P492",
+    "propDescription": "Online \"Mendelian Inheritance in Man\" catalogue codes for diseases, genes, or phenotypes",
+    "propFormat": "https://omim.org/OMIM:$1",
+    "propLabel": "OMIM ID",
+    "propPattern": "\\d{6}"
+  },
+  {
     "database": "Q3349966",
     "databaseLabel": "Oiseaux.net",
     "prop": "P6025",
@@ -1270,7 +1328,7 @@
     "propFormat": "https://www.wildflower.org/plants/result.php?id_plant=$1",
     "propHomepage": "https://www.wildflower.org/plants/index.php",
     "propLabel": "Native Plants Database ID",
-    "propPattern": "[A-Z]{4,5}[1-9]?"
+    "propPattern": "[A-Za-z]{4,5}[1-9]?"
   },
   {
     "database": "Q5152005",
@@ -1505,22 +1563,22 @@
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9503",
-    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/sp/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/",
-    "propLabel": "MyBIS species ID",
+    "prop": "P9552",
+    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/pa/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
+    "propLabel": "MyBIS protected area ID",
     "propPattern": "[1-9]\\d*"
   },
   {
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9552",
-    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/pa/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
-    "propLabel": "MyBIS protected area ID",
+    "prop": "P9503",
+    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/sp/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/",
+    "propLabel": "MyBIS species ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -1544,6 +1602,15 @@
     "propHomepage": "https://especes-envahissantes-outremer.fr/base-especes-exotiques-envahissantes/",
     "propLabel": "Esp\u00e8ces Envahissantes Outre-mer ID",
     "propPattern": "[a-z]+(\\-[a-z]+)*"
+  },
+  {
+    "database": "Q6595107",
+    "databaseHomepage": "https://www.bacterio.net",
+    "databaseLabel": "LPSN",
+    "prop": "P1991",
+    "propDescription": "URL for the website List of Prokaryotic names with Standing in Nomenclature (LPSN)",
+    "propHomepage": "https://lpsn.dsmz.de/",
+    "propLabel": "LPSN URL"
   },
   {
     "database": "Q909442",
@@ -1647,8 +1714,8 @@
   },
   {
     "database": "Q16335166",
-    "databaseHomepage": "http://www.ebi.ac.uk/miriam/main/mdb?section=intro",
-    "databaseLabel": "Identifiers.org Registry",
+    "databaseHomepage": "https://identifiers.org",
+    "databaseLabel": "Identifiers.org",
     "prop": "P4793",
     "propDescription": "code used in front of an identifier, as supported by identifiers.org and n2t.net",
     "propFormat": "https://registry.identifiers.org/registry/$1",
@@ -1732,30 +1799,6 @@
     "propPattern": "[1-9]\\d*"
   },
   {
-    "database": "Q17027854",
-    "databaseHomepage": "http://www.human-phenotype-ontology.org/",
-    "databaseLabel": "Human Phenotype Ontology",
-    "databaseMiriam": "hp",
-    "prop": "P3841",
-    "propDescription": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
-    "propFormat": "https://hpo.jax.org/app/browse/term/$1",
-    "propHomepage": "http://human-phenotype-ontology.github.io/about.html",
-    "propLabel": "Human Phenotype Ontology ID",
-    "propPattern": "HP:[0-9]{7}"
-  },
-  {
-    "database": "Q17027854",
-    "databaseHomepage": "https://hpo.jax.org/app/",
-    "databaseLabel": "Human Phenotype Ontology",
-    "databaseMiriam": "hp",
-    "prop": "P3841",
-    "propDescription": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
-    "propFormat": "https://hpo.jax.org/app/browse/term/$1",
-    "propHomepage": "http://human-phenotype-ontology.github.io/about.html",
-    "propLabel": "Human Phenotype Ontology ID",
-    "propPattern": "HP:[0-9]{7}"
-  },
-  {
     "database": "Q5937262",
     "databaseHomepage": "https://hmdb.ca",
     "databaseLabel": "Human Metabolome Database",
@@ -1768,7 +1811,7 @@
   },
   {
     "database": "Q468215",
-    "databaseHomepage": "http://www.ncbi.nlm.nih.gov/homologene",
+    "databaseHomepage": "https://www.ncbi.nlm.nih.gov/homologene",
     "databaseLabel": "HomoloGene",
     "databaseMiriam": "homologene",
     "prop": "P593",
@@ -2206,7 +2249,7 @@
     "databaseMiriam": "ensembl",
     "prop": "P705",
     "propDescription": "identifier for a protein issued by Ensembl database",
-    "propFormat": "http://identifiers.org/ensembl/$1",
+    "propFormat": "https://www.ensembl.org/id/$1",
     "propLabel": "Ensembl protein ID",
     "propPattern": "(ENS(MNE|MUS|RNO|DAR)?(P|G)\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)|FBpp\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}[A-C][A-Z]))*(\\.\\d{1,2}[a-z]?)+"
   },
@@ -2373,18 +2416,6 @@
     "propFormat": "https://doris.ffessm.fr/ref/specie/$1",
     "propLabel": "DORIS ID",
     "propPattern": "[1-9]\\d*"
-  },
-  {
-    "database": "Q5282129",
-    "databaseHomepage": "http://disease-ontology.org/",
-    "databaseLabel": "Disease Ontology",
-    "prop": "P699",
-    "propDescription": "identifier in the Disease Ontology database",
-    "propFormat": "http://www.disease-ontology.org/?id=$1",
-    "propHomepage": "http://disease-ontology.org",
-    "propLabel": "Disease Ontology ID",
-    "propMiriam": "doid",
-    "propPattern": "DOID:([0-9]{7}|[1-9][0-9]{0,4})"
   },
   {
     "database": "Q5282129",
@@ -2565,23 +2596,23 @@
   },
   {
     "database": "Q24691710",
-    "databaseHomepage": "https://web.expasy.org/cellosaurus/",
+    "databaseHomepage": "https://www.cellosaurus.org/",
     "databaseLabel": "Cellosaurus",
     "databaseMiriam": "cellosaurus",
     "prop": "P3289",
     "propDescription": "Cellosaurus cell line identifier",
-    "propFormat": "https://web.expasy.org/cellosaurus/$1",
+    "propFormat": "https://www.cellosaurus.org/$1",
     "propLabel": "Cellosaurus ID",
     "propPattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]"
   },
   {
     "database": "Q24691710",
-    "databaseHomepage": "https://web.expasy.org/cellosaurus/",
+    "databaseHomepage": "https://www.cellosaurus.org/",
     "databaseLabel": "Cellosaurus",
     "databaseMiriam": "cellosaurus",
     "prop": "P3289",
     "propDescription": "Cellosaurus cell line identifier",
-    "propFormat": "https://web.expasy.org/cellosaurus/$1",
+    "propFormat": "https://www.cellosaurus.org/$1",
     "propLabel": "Cellosaurus ID",
     "propPattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]"
   },
@@ -2601,8 +2632,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2612,8 +2643,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2623,8 +2654,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2634,8 +2665,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2645,8 +2676,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2656,8 +2687,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2667,8 +2698,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2678,8 +2709,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2689,8 +2720,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2700,8 +2731,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2711,8 +2742,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2722,8 +2753,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home_eng.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2733,8 +2764,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2744,8 +2775,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2755,8 +2786,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2766,8 +2797,8 @@
     "databaseLabel": "Catalogue of Life in Taiwan",
     "prop": "P3088",
     "propDescription": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "propFormat": "http://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
-    "propHomepage": "http://taibnet.sinica.edu.tw/home.php",
+    "propFormat": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "propHomepage": "https://taibnet.sinica.edu.tw/home_eng.php",
     "propLabel": "Catalogue of Life in Taiwan ID",
     "propPattern": "([1-9]\\d{5})"
   },
@@ -2968,6 +2999,17 @@
     "propLabel": "Bioweb Ecuador ID"
   },
   {
+    "database": "Q113580292",
+    "databaseHomepage": "https://bison-m.org/",
+    "databaseLabel": "Biota Information System of New Mexico",
+    "prop": "P11076",
+    "propDescription": "identifier for an animal species in the Biota Information System of New Mexico",
+    "propFormat": "https://bison-m.org/booklet.aspx?SpeciesID=$1",
+    "propHomepage": "https://bison-m.org/",
+    "propLabel": "Biota Information System of New Mexico species ID",
+    "propPattern": "\\d{6}"
+  },
+  {
     "database": "Q48814267",
     "databaseHomepage": "http://www.bmrb.wisc.edu/",
     "databaseLabel": "Biological Magnetic Resonance Data Bank",
@@ -2980,12 +3022,33 @@
   },
   {
     "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P687",
+    "propDescription": "identifier for a page in the Biodiversity Heritage Library (BHL)",
+    "propFormat": "https://biodiversitylibrary.org/page/$1",
+    "propLabel": "BHL page ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
     "databaseHomepage": "https://www.biodiversitylibrary.org/",
     "databaseLabel": "Biodiversity Heritage Library",
     "prop": "P687",
-    "propDescription": "identifier in the Biodiversity Heritage Library (BHL)",
+    "propDescription": "identifier for a page in the Biodiversity Heritage Library (BHL)",
     "propFormat": "https://biodiversitylibrary.org/page/$1",
     "propLabel": "BHL page ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P4081",
+    "propDescription": "identifier for an author (\"creator\") in the Biodiversity Heritage Library database",
+    "propFormat": "https://www.biodiversitylibrary.org/creator/$1",
+    "propHomepage": "http://www.biodiversitylibrary.org/",
+    "propLabel": "BHL creator ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -3001,12 +3064,33 @@
   },
   {
     "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P4327",
+    "propDescription": "identifier for a journal or book (\"bibliography\") in the Biodiversity Heritage Library (BHL)",
+    "propFormat": "https://www.biodiversitylibrary.org/bibliography/$1",
+    "propLabel": "BHL bibliography ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
     "databaseHomepage": "https://www.biodiversitylibrary.org/",
     "databaseLabel": "Biodiversity Heritage Library",
     "prop": "P4327",
     "propDescription": "identifier for a journal or book (\"bibliography\") in the Biodiversity Heritage Library (BHL)",
     "propFormat": "https://www.biodiversitylibrary.org/bibliography/$1",
     "propLabel": "BHL bibliography ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P6535",
+    "propDescription": "identifier of a part-work, in the BHL database",
+    "propFormat": "https://www.biodiversitylibrary.org/part/$1",
+    "propHomepage": "http://www.biodiversitylibrary.org/part/$1",
+    "propLabel": "BHL part ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -3019,6 +3103,16 @@
     "propHomepage": "http://www.biodiversitylibrary.org/part/$1",
     "propLabel": "BHL part ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P8724",
+    "propDescription": "identifier for a scientific name in the Biodiversity Heritage Library",
+    "propFormat": "https://www.biodiversitylibrary.org/name/$1",
+    "propHomepage": "https://www.biodiversitylibrary.org/advsearch",
+    "propLabel": "BHL name ID"
   },
   {
     "database": "Q172266",
@@ -3053,17 +3147,7 @@
   },
   {
     "database": "Q25349390",
-    "databaseHomepage": "http://bacdive.dsmz.de/",
-    "databaseLabel": "BacDive",
-    "prop": "P2946",
-    "propDescription": "identifier for a microorganism, in the BacDive database",
-    "propFormat": "https://bacdive.dsmz.de/strain/$1",
-    "propLabel": "BacDive ID",
-    "propPattern": "\\d{1,6}"
-  },
-  {
-    "database": "Q25349390",
-    "databaseHomepage": "https://bacdive.dsmz.de/",
+    "databaseHomepage": "https://bacdive.dsmz.de",
     "databaseLabel": "BacDive",
     "prop": "P2946",
     "propDescription": "identifier for a microorganism, in the BacDive database",
@@ -3073,8 +3157,8 @@
   },
   {
     "database": "Q4836352",
-    "databaseHomepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
-    "databaseLabel": "BRENDA tissue ontology",
+    "databaseHomepage": "https://www.brenda-enzymes.org",
+    "databaseLabel": "BRENDA Tissue Ontology",
     "databaseMiriam": "bto",
     "prop": "P5501",
     "propDescription": "identifier in the Brenda Tissue Ontology",
@@ -3209,7 +3293,7 @@
     "prop": "P4024",
     "propDescription": "identifier for a taxon in the Animal Diversity Web database",
     "propFormat": "https://animaldiversity.org/accounts/$1/",
-    "propHomepage": "http://animaldiversity.org",
+    "propHomepage": "https://animaldiversity.org/",
     "propLabel": "ADW taxon ID",
     "propMiriam": "adw"
   },

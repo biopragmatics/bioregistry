@@ -125,6 +125,39 @@
     "prefix": "P10907",
     "uri_format": "https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=$1"
   },
+  "P11076": {
+    "database": "Q113580292",
+    "database.homepage": "https://bison-m.org/",
+    "database.label": "Biota Information System of New Mexico",
+    "description": "identifier for an animal species in the Biota Information System of New Mexico",
+    "homepage": "https://bison-m.org/",
+    "name": "Biota Information System of New Mexico species ID",
+    "pattern": "\\d{6}",
+    "prefix": "P11076",
+    "uri_format": "https://bison-m.org/booklet.aspx?SpeciesID=$1"
+  },
+  "P11082": {
+    "database": "Q111694088",
+    "database.homepage": "http://woodyplants.cals.cornell.edu/home",
+    "database.label": "Woody Plants Database",
+    "description": "identifier for a cultivar in the Woody Plants Database",
+    "homepage": "http://woodyplants.cals.cornell.edu/home",
+    "name": "Woody Plants Database cultivar ID",
+    "pattern": "[1-9]\\d*",
+    "prefix": "P11082",
+    "uri_format": "http://woodyplants.cals.cornell.edu/cultivar/$1"
+  },
+  "P11089": {
+    "database": "Q24170711",
+    "database.homepage": "https://www.ebi.ac.uk/unichem/",
+    "database.label": "UniChem",
+    "description": "identifier of a compound in the UniChem database",
+    "homepage": "https://chembl.gitbook.io/unichem/downloads",
+    "name": "UniChem compound ID",
+    "pattern": "\\d+",
+    "prefix": "P11089",
+    "uri_format": "https://www.ebi.ac.uk/unichem/compoundsources?type=uci&compound=$1"
+  },
   "P1391": {
     "database": "Q1860469",
     "database.homepage": "http://www.indexfungorum.org/",
@@ -233,6 +266,15 @@
     "name": "ClinVar Variation ID",
     "prefix": "P1929",
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1/"
+  },
+  "P1991": {
+    "database": "Q6595107",
+    "database.homepage": "https://www.bacterio.net",
+    "database.label": "LPSN",
+    "description": "URL for the website List of Prokaryotic names with Standing in Nomenclature (LPSN)",
+    "homepage": "https://lpsn.dsmz.de/",
+    "name": "LPSN URL",
+    "prefix": "P1991"
   },
   "P1992": {
     "database": "Q20644485",
@@ -386,7 +428,7 @@
     "name": "WikiPathways ID",
     "pattern": "WP\\d{1,4}",
     "prefix": "P2410",
-    "uri_format": "https://www.wikipathways.org/index.php/Pathway:$1"
+    "uri_format": "https://new.wikipathways.org/pathways/$1"
   },
   "P2426": {
     "database": "Q8043516",
@@ -520,7 +562,7 @@
   },
   "P2946": {
     "database": "Q25349390",
-    "database.homepage": "http://bacdive.dsmz.de/",
+    "database.homepage": "https://bacdive.dsmz.de",
     "database.label": "BacDive",
     "description": "identifier for a microorganism, in the BacDive database",
     "name": "BacDive ID",
@@ -555,11 +597,11 @@
     "database.homepage": "https://taibnet.sinica.edu.tw/home.php",
     "database.label": "Catalogue of Life in Taiwan",
     "description": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
-    "homepage": "http://taibnet.sinica.edu.tw/home.php",
+    "homepage": "https://taibnet.sinica.edu.tw/home.php",
     "name": "Catalogue of Life in Taiwan ID",
     "pattern": "([1-9]\\d{5})",
     "prefix": "P3088",
-    "uri_format": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1"
+    "uri_format": "https://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1"
   },
   "P3099": {
     "database": "Q1809095",
@@ -614,14 +656,14 @@
   },
   "P3289": {
     "database": "Q24691710",
-    "database.homepage": "https://web.expasy.org/cellosaurus/",
+    "database.homepage": "https://www.cellosaurus.org/",
     "database.label": "Cellosaurus",
     "database.miriam": "cellosaurus",
     "description": "Cellosaurus cell line identifier",
     "name": "Cellosaurus ID",
     "pattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]",
     "prefix": "P3289",
-    "uri_format": "https://web.expasy.org/cellosaurus/$1"
+    "uri_format": "https://www.cellosaurus.org/$1"
   },
   "P3322": {
     "database": "Q24053150",
@@ -681,7 +723,7 @@
   "P3406": {
     "database": "Q3460832",
     "database.homepage": "http://www.yeastgenome.org",
-    "database.label": "Saccharomyces Genome Database",
+    "database.label": "SGD",
     "database.miriam": "sgd",
     "description": "identifier for a genetic element in the Saccharomyces Genome Database",
     "homepage": "http://www.yeastgenome.org",
@@ -795,18 +837,6 @@
     "prefix": "P3746",
     "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
   },
-  "P3841": {
-    "database": "Q17027854",
-    "database.homepage": "http://www.human-phenotype-ontology.org/",
-    "database.label": "Human Phenotype Ontology",
-    "database.miriam": "hp",
-    "description": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
-    "homepage": "http://human-phenotype-ontology.github.io/about.html",
-    "name": "Human Phenotype Ontology ID",
-    "pattern": "HP:[0-9]{7}",
-    "prefix": "P3841",
-    "uri_format": "https://hpo.jax.org/app/browse/term/$1"
-  },
   "P3852": {
     "database": "Q3074571",
     "database.homepage": "https://flybase.org/",
@@ -861,7 +891,7 @@
     "homepage": "http://www.reactome.org/",
     "name": "Reactome ID",
     "prefix": "P3937",
-    "uri_format": "http://identifiers.org/reactome:$1"
+    "uri_format": "https://reactome.org/content/detail/$1"
   },
   "P4018": {
     "database": "Q3519804",
@@ -878,7 +908,7 @@
     "database.homepage": "https://animaldiversity.org",
     "database.label": "Animal Diversity Web",
     "description": "identifier for a taxon in the Animal Diversity Web database",
-    "homepage": "http://animaldiversity.org",
+    "homepage": "https://animaldiversity.org/",
     "miriam": "adw",
     "name": "ADW taxon ID",
     "prefix": "P4024",
@@ -886,7 +916,7 @@
   },
   "P4081": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier for an author (\"creator\") in the Biodiversity Heritage Library database",
     "homepage": "http://www.biodiversitylibrary.org/",
@@ -951,7 +981,7 @@
   },
   "P4327": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier for a journal or book (\"bibliography\") in the Biodiversity Heritage Library (BHL)",
     "name": "BHL bibliography ID",
@@ -1067,8 +1097,8 @@
   },
   "P4793": {
     "database": "Q16335166",
-    "database.homepage": "http://www.ebi.ac.uk/miriam/main/mdb?section=intro",
-    "database.label": "Identifiers.org Registry",
+    "database.homepage": "https://identifiers.org",
+    "database.label": "Identifiers.org",
     "description": "code used in front of an identifier, as supported by identifiers.org and n2t.net",
     "miriam": "mir",
     "name": "identifiers.org prefix",
@@ -1121,7 +1151,7 @@
     "database": "Q2578548",
     "database.homepage": "https://www.tropicos.org",
     "database.label": "Tropicos",
-    "description": "identifer for a journal or other publication in Tropicos",
+    "description": "identifier for a journal or other publication in Tropicos",
     "homepage": "http://www.tropicos.org/ReferenceSearch.aspx",
     "name": "Tropicos publication ID",
     "pattern": "[1-9]\\d*",
@@ -1137,11 +1167,11 @@
     "name": "OMIM ID",
     "pattern": "\\d{6}",
     "prefix": "P492",
-    "uri_format": "https://omim.org/entry/$1"
+    "uri_format": "https://omim.org/OMIM:$1"
   },
   "P4926": {
     "database": "Q55118584",
-    "database.homepage": "http://pir.georgetown.edu/pro",
+    "database.homepage": "http://proconsortium.org",
     "database.label": "Protein Ontology",
     "description": "Identifier for an entry in the PRotein Ontology (PRO)",
     "homepage": "https://pir.georgetown.edu/pro/pro.shtml",
@@ -1261,7 +1291,7 @@
   },
   "P5221": {
     "database": "Q2300489",
-    "database.homepage": "http://www.tolweb.org/",
+    "database.homepage": "http://tolweb.org/tree/phylogeny.html",
     "database.label": "Tree of Life Web Project",
     "description": "identifier in the Tree of Life Web Project",
     "homepage": "https://tolweb.org",
@@ -1327,8 +1357,8 @@
   },
   "P5501": {
     "database": "Q4836352",
-    "database.homepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
-    "database.label": "BRENDA tissue ontology",
+    "database.homepage": "https://www.brenda-enzymes.org",
+    "database.label": "BRENDA Tissue Ontology",
     "database.miriam": "bto",
     "description": "identifier in the Brenda Tissue Ontology",
     "homepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
@@ -1371,7 +1401,7 @@
   },
   "P593": {
     "database": "Q468215",
-    "database.homepage": "http://www.ncbi.nlm.nih.gov/homologene",
+    "database.homepage": "https://www.ncbi.nlm.nih.gov/homologene",
     "database.label": "HomoloGene",
     "database.miriam": "homologene",
     "description": "identifier in the\u00a0HomoloGene database",
@@ -1981,7 +2011,7 @@
   },
   "P6535": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier of a part-work, in the BHL database",
     "homepage": "http://www.biodiversitylibrary.org/part/$1",
@@ -2097,7 +2127,7 @@
     "database": "Q13711410",
     "database.homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
     "database.label": "Taxonomy database of the U.S. National Center for Biotechnology Information",
-    "description": "identifer for a taxon in the Taxonomy Database by the National Center for Biotechnology Information",
+    "description": "identifier for a taxon in the Taxonomy Database by the National Center for Biotechnology Information",
     "format.rdf": "http://purl.uniprot.org/taxonomy/$1",
     "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
     "name": "NCBI taxonomy ID",
@@ -2128,9 +2158,9 @@
   },
   "P687": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
-    "description": "identifier in the Biodiversity Heritage Library (BHL)",
+    "description": "identifier for a page in the Biodiversity Heritage Library (BHL)",
     "name": "BHL page ID",
     "pattern": "[1-9]\\d*",
     "prefix": "P687",
@@ -2149,7 +2179,7 @@
   },
   "P699": {
     "database": "Q5282129",
-    "database.homepage": "http://disease-ontology.org/",
+    "database.homepage": "https://disease-ontology.org/",
     "database.label": "Disease Ontology",
     "description": "identifier in the Disease Ontology database",
     "homepage": "http://disease-ontology.org",
@@ -2158,6 +2188,17 @@
     "pattern": "DOID:([0-9]{7}|[1-9][0-9]{0,4})",
     "prefix": "P699",
     "uri_format": "http://www.disease-ontology.org/?id=$1"
+  },
+  "P7001": {
+    "database": "Q18392556",
+    "database.homepage": "https://www.pharmgkb.org/",
+    "database.label": "PharmGKB",
+    "description": "unique identifier for an entity in the PharmGKB knowledgebase",
+    "homepage": "https://www.pharmgkb.org/",
+    "name": "PharmGKB ID",
+    "pattern": "PA[1-9]\\d*",
+    "prefix": "P7001",
+    "uri_format": "https://www.pharmgkb.org/accession/$1"
   },
   "P704": {
     "database": "Q1344256",
@@ -2180,7 +2221,7 @@
     "name": "Ensembl protein ID",
     "pattern": "(ENS(MNE|MUS|RNO|DAR)?(P|G)\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)|FBpp\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}[A-C][A-Z]))*(\\.\\d{1,2}[a-z]?)+",
     "prefix": "P705",
-    "uri_format": "http://identifiers.org/ensembl/$1"
+    "uri_format": "https://www.ensembl.org/id/$1"
   },
   "P715": {
     "database": "Q1122544",
@@ -2386,7 +2427,7 @@
     "description": "identifier for a taxon in the Native Plants Database, on the Lady Bird Johnson Wildflower Center website",
     "homepage": "https://www.wildflower.org/plants/index.php",
     "name": "Native Plants Database ID",
-    "pattern": "[A-Z]{4,5}[1-9]?",
+    "pattern": "[A-Za-z]{4,5}[1-9]?",
     "prefix": "P8660",
     "uri_format": "https://www.wildflower.org/plants/result.php?id_plant=$1"
   },
@@ -2424,7 +2465,7 @@
   },
   "P8724": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier for a scientific name in the Biodiversity Heritage Library",
     "homepage": "https://www.biodiversitylibrary.org/advsearch",
@@ -2473,7 +2514,7 @@
   },
   "P9169": {
     "database": "Q2300489",
-    "database.homepage": "http://www.tolweb.org/",
+    "database.homepage": "http://tolweb.org/tree/phylogeny.html",
     "database.label": "Tree of Life Web Project",
     "description": "identifier for a contributor to the Tree of Life Web Project",
     "homepage": "http://www.tolweb.org/onlinecontributors/app?page=PeopleList&service=external&sp=1",

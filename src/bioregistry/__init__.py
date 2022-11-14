@@ -31,7 +31,9 @@ from .resolve import (  # noqa:F401
     get_contact_github,
     get_contact_name,
     get_contact_orcid,
+    get_converter,
     get_curie_pattern,
+    get_default_converter,
     get_default_format,
     get_depends_on,
     get_description,
@@ -100,9 +102,12 @@ from .resolve_identifier import (  # noqa:F401
     get_ols_iri,
     get_providers,
     get_providers_list,
-    is_known_identifier,
+    is_standardizable_curie,
+    is_standardizable_identifier,
     is_valid_curie,
     is_valid_identifier,
+    miriam_standardize_identifier,
+    standardize_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
 from .schema.struct import (  # noqa:F401
@@ -126,6 +131,7 @@ from .schema_utils import (  # noqa:F401
     write_registry,
 )
 from .uri_format import (  # noqa:F401
+    get_extended_prefix_map,
     get_pattern_map,
     get_prefix_map,
     get_uri_format,

@@ -4,7 +4,7 @@
 
 import logging
 import typing
-from collections import ChainMap, Counter, defaultdict
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -21,6 +21,8 @@ from typing import (
     Union,
     cast,
 )
+
+import curies
 
 from .constants import (
     BIOREGISTRY_REMOTE_URL,
@@ -227,7 +229,7 @@ class Manager:
         if not norm_prefix:
             return None, None
         resource = self.registry[norm_prefix]
-        norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
+        norm_identifier = resource.standardize_identifier(identifier)
         return norm_prefix, norm_identifier
 
     @lru_cache(maxsize=None)  # noqa:B019
@@ -369,22 +371,24 @@ class Manager:
     def get_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
         it = self._iter_pattern_map(
-            include_synonyms=include_synonyms, use_preferred=use_preferred, blacklist=blacklist
+            include_synonyms=include_synonyms, prefix_priority=prefix_priority, blacklist=blacklist
         )
         if not remapping:
             return dict(it)
@@ -393,84 +397,141 @@ class Manager:
     def _iter_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
         blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
+        for resource in self.registry.values():
+            if resource.prefix in blacklist:
                 continue
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
+            prefix = resource.get_priority_prefix(priority=prefix_priority)
             yield prefix, pattern
             if include_synonyms:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
+    def get_converter(self, **kwargs) -> curies.Converter:
+        """Get a converter from this manager."""
+        return curies.Converter(records=self.get_curies_records(**kwargs))
+
+    def get_curies_records(
+        self,
+        prefix_priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
+        include_prefixes: bool = False,
+        strict: bool = False,
+        remapping: Optional[Mapping[str, str]] = None,
+        blacklist: Optional[typing.Collection[str]] = None,
+    ) -> List[curies.Record]:
+        """Get a list of records for all resources in this manager.
+
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
+        :param include_prefixes: Should prefixes be included with colon delimiters?
+            Setting this to true makes an "omni"-reverse prefix map that can be
+            used to parse both URIs and CURIEs
+        :param strict:
+            If true, errors on URI prefix collisions. If false, sends logging
+            and skips them.
+        :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+        :param blacklist:
+            A collection of prefixes to skip
+
+        :returns: A list of records for :class:`curies.Converter`
+        """
+        from .record_accumulator import get_records
+
+        resources = [
+            resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
+        ]
+        return get_records(
+            resources,
+            prefix_priority=prefix_priority,
+            uri_prefix_priority=uri_prefix_priority,
+            include_prefixes=include_prefixes,
+            strict=strict,
+            blacklist=blacklist,
+            remapping=remapping,
+        )
+
+    def get_reverse_prefix_map(
+        self, include_prefixes: bool = False, strict: bool = False
+    ) -> Mapping[str, str]:
+        """Get a reverse prefix map, pointing to canonical prefixes."""
+        from .record_accumulator import _iterate_prefix_prefix
+
+        rv: Dict[str, str] = {
+            "http://purl.obolibrary.org/obo/": "obo",
+            "https://purl.obolibrary.org/obo/": "obo",
+        }
+        for record in self.get_curies_records(include_prefixes=include_prefixes, strict=strict):
+            rv[record.uri_prefix] = record.prefix
+            for uri_prefix in record.uri_prefix_synonyms:
+                if uri_prefix not in rv:
+                    rv[uri_prefix] = record.prefix
+                elif rv[uri_prefix] == record.prefix:
+                    # no big deal, it's a trivial duplicate
+                    # FIXME this shouldn't happen, though
+                    pass
+                else:
+                    logger.warning(
+                        f"non-trivial duplicate secondary URI prefix {uri_prefix} in {record.prefix} that "
+                        f"already appeared in {rv[uri_prefix]}"
+                    )
+                for synonym in (record.prefix, *record.prefix_synonyms):
+                    rv[f"{synonym}:"] = record.prefix
+
+        for resource in self.registry.values():
+            if not resource.get_uri_prefix():
+                for pp in _iterate_prefix_prefix(resource):
+                    rv[pp] = resource.prefix
+
+        return rv
+
     def get_prefix_map(
         self,
         *,
-        priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
-        :param priority: A priority list for how to generate URI prefixes.
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
-        it = self._iter_prefix_map(
-            priority=priority,
-            include_synonyms=include_synonyms,
-            use_preferred=use_preferred,
+        records = self.get_curies_records(
+            prefix_priority=prefix_priority,
+            uri_prefix_priority=uri_prefix_priority,
+            remapping=remapping,
             blacklist=blacklist,
         )
-        if not remapping:
-            return dict(it)
-        return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
-
-    def _iter_prefix_map(
-        self,
-        *,
-        priority: Optional[Sequence[str]] = None,
-        include_synonyms: bool = False,
-        use_preferred: bool = False,
-        blacklist: Optional[typing.Collection[str]] = None,
-    ) -> Iterable[Tuple[str, str]]:
-        blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
-                continue
-            uri_prefix = resource.get_uri_prefix(priority=priority)
-            if uri_prefix is None:
-                continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
-            yield prefix, uri_prefix
+        rv = {}
+        for record in records:
+            rv[record.prefix] = record.uri_prefix
             if include_synonyms:
-                for synonym in resource.get_synonyms():
-                    yield synonym, uri_prefix
-
-    def get_prefix_list(self, **kwargs) -> List[Tuple[str, str]]:
-        """Get the default priority prefix list."""
-        #: A prefix map in reverse sorted order based on length of the URI prefix
-        #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-        return prepare_prefix_list(self.get_prefix_map(**kwargs))
+                for prefix in record.prefix_synonyms:
+                    rv[prefix] = record.uri_prefix
+        return rv
 
     def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
@@ -509,11 +570,12 @@ class Manager:
 
     def _rasterized_registry(self) -> Mapping[str, Resource]:
         return {
-            prefix: self._rasterized_resource(prefix, resource)
+            prefix: self.rasterized_resource(prefix, resource)
             for prefix, resource in self.registry.items()
         }
 
-    def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
+    def rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
+        """Rasterize a resource."""
         return Resource(
             prefix=resource.prefix,
             preferred_prefix=resource.get_preferred_prefix() or prefix,
@@ -533,6 +595,7 @@ class Manager:
             # Registry properties
             example=resource.get_example(),
             example_extras=resource.example_extras,
+            example_decoys=resource.example_decoys,
             uri_format=resource.get_uri_format(),
             providers=resource.get_extra_providers(),
             # Comments
@@ -546,7 +609,10 @@ class Manager:
             # Provenance
             contact=resource.get_contact(),
             contributor=resource.contributor,
+            contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
+            twitter=resource.get_twitter(),
+            github_request_issue=resource.github_request_issue,
             # Ontology Relations
             part_of=resource.part_of,
             provides=resource.provides,
@@ -1048,25 +1114,85 @@ class Manager:
             rv["bioregistry"] = len(self.registry)
         return rv
 
-    def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
-        """Check if the identifier is valid."""
-        resource = self.get_resource(prefix)
+    def is_valid_identifier(self, prefix: str, identifier: str) -> bool:
+        """Check if the pre-parsed CURIE is standardized valid.
+
+        :param prefix: The prefix from a compact URI
+        :param identifier: The local unique identifer from a compact URI
+        :return:
+            If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+            canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+            regular expression pattern for identifiers.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_valid_identifier("go", "0000001")
+        True
+
+        Non-standardized prefix
+        >>> manager.is_valid_identifier("GO", "0000001")
+        False
+
+        Incorrect identifier
+        >>> manager.is_valid_identifier("go", "0001")
+        False
+
+        Banana scenario
+        >>> manager.is_valid_identifier("go", "GO:0000001")
+        False
+
+        Unknown prefix
+        >>> manager.is_valid_identifier("xxx", "yyy")
+        False
+        """
+        resource = self.registry.get(prefix)
         if resource is None:
-            return None
+            return False
         return resource.is_valid_identifier(identifier)
 
-    def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
-        """Check if the identifier is standardizable."""
+    def is_standardizable_identifier(self, prefix: str, identifier: str) -> bool:
+        """Check if the identifier is standardizable.
+
+        :param prefix: The prefix from a compact URI
+        :param identifier: The local unique identifer from a compact URI
+        :return:
+            If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+            then validated.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_standardizable_identifier("go", "0000001")
+        True
+
+        Non-standardized prefix
+        >>> manager.is_standardizable_identifier("GO", "0000001")
+        True
+
+        Incorrect identifier
+        >>> manager.is_standardizable_identifier("go", "0001")
+        False
+
+        Banana scenario
+        >>> manager.is_standardizable_identifier("go", "GO:0000001")
+        True
+
+        Unknown prefix
+        >>> manager.is_standardizable_identifier("xxx", "yyy")
+        False
+        """
         resource = self.get_resource(prefix)
         if resource is None:
-            return None
+            return False
         return resource.is_standardizable_identifier(identifier)
 
-    def is_valid_curie(self, curie: str) -> Optional[bool]:
-        """Check if a CURIE is valid.
+    def is_valid_curie(self, curie: str) -> bool:
+        """Check if a CURIE is standardized and valid.
 
-        :param curie: A compact URI
-        :return: If the CURIE is standardized in both syntax and semantics.
+        :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
+        :return:
+            If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+            canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+            regular expression pattern for identifiers.
 
         Standard CURIE
         >>> from bioregistry import manager
@@ -1101,16 +1227,14 @@ class Manager:
             prefix, identifier = curie.split(":", 1)
         except ValueError:
             return False
-        norm_prefix = self.normalize_prefix(prefix)
-        if norm_prefix != prefix:
-            return False
-        return self.registry[norm_prefix].is_valid_identifier(identifier)
+        return self.is_valid_identifier(prefix, identifier)
 
-    def is_standardizable_curie(self, curie: str) -> Optional[bool]:
+    def is_standardizable_curie(self, curie: str) -> bool:
         """Check if a CURIE is validatable, but not necessarily standardized.
 
         :param curie: A compact URI
-        :return: If the CURIE is standardized in both syntax and semantics.
+        :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+            then validated.
 
         Standard CURIE
         >>> from bioregistry import manager
@@ -1141,10 +1265,11 @@ class Manager:
         >>> manager.is_standardizable_curie("xxx:yyy")
         False
         """
-        norm_curie = self.normalize_curie(curie)
-        if norm_curie is None:
+        try:
+            prefix, identifier = curie.split(":", 1)
+        except ValueError:
             return False
-        return self.is_valid_curie(norm_curie)
+        return self.is_standardizable_identifier(prefix, identifier)
 
     def get_context(self, key: str) -> Optional[Context]:
         """Get a prescriptive context.
@@ -1161,29 +1286,20 @@ class Manager:
         context = self.get_context(key)
         if context is None:
             raise KeyError
-        remapping = dict(
-            ChainMap(
-                *(
-                    self.get_registry_map(metaprefix)
-                    for metaprefix in context.prefix_priority or []
-                ),
-                context.prefix_remapping or {},
-            )
-        )
         include_synonyms = (
             include_synonyms if include_synonyms is not None else context.include_synonyms
         )
         prescriptive_prefix_map = self.get_prefix_map(
-            remapping=remapping,
-            priority=context.uri_prefix_priority,
+            remapping=context.prefix_remapping,
+            uri_prefix_priority=context.uri_prefix_priority,
+            prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
             blacklist=context.blacklist,
         )
         prescriptive_pattern_map = self.get_pattern_map(
-            remapping=remapping,
+            remapping=context.prefix_remapping,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
+            prefix_priority=context.prefix_priority,
             blacklist=context.blacklist,
         )
         return prescriptive_prefix_map, prescriptive_pattern_map

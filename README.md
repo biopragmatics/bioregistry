@@ -84,12 +84,11 @@ whose memberships and duties are described in the
 
 ### 🫀 Health Report
 
-[![Health Report](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml)
-
 The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
-it checks that the homepages are still available and that each provider URL is still able to resolve. The
-tests fail if even a single metadata is out of place, so don't be frightened that this badge is almost always
-red.
+it checks that the homepages are still available and that each provider URL is still able to resolve.
+
+It has a dedicated [dashboard](https://biopragmatics.github.io/bioregistry/health) that is not part of the main
+Bioregistry site.
 
 ### ♻️ Update
 
@@ -251,8 +250,10 @@ assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/
 assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
 ```
 
-You can add to (or override) the default prefix map from the Bioregistry by
-passing a dictionary with the `prefix_map` keyword:
+> **Warning**
+> The following functionality is deprecated.
+> You can add to (or override) the default prefix map from the Bioregistry by
+> passing a dictionary with the `prefix_map` keyword:
 
 ```python
 from bioregistry import curie_from_iri, parse_iri
@@ -373,7 +374,7 @@ prefix_map = get_prefix_map()
 
 # Prioritize OBO prefixes over bioregistry
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-prefix_map = get_prefix_map(priority=priority)
+prefix_map = get_prefix_map(uri_prefix_priority=priority)
 
 # Provide custom remapping that doesn't have prioritization logic
 remapping = {"chebi": "CHEBI"}

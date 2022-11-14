@@ -5,6 +5,7 @@
 from typing import Callable, List, Tuple
 
 from .aberowl import get_aberowl
+from .bartoc import get_bartoc
 from .biocontext import get_biocontext
 from .biolink import get_biolink
 from .bioportal import get_agroportal, get_bioportal, get_ecoportal
@@ -14,6 +15,7 @@ from .cropoct import get_cropoct
 from .edam import get_edam
 from .fairsharing import get_fairsharing
 from .go import get_go
+from .hl7 import get_hl7
 from .miriam import get_miriam
 from .n2t import get_n2t
 from .ncbi import get_ncbi
@@ -46,6 +48,8 @@ __all__ = [
     "get_wikidata",
     "get_edam",
     "get_re3data",
+    "get_hl7",
+    "get_bartoc",
 ]
 
 GETTERS: List[Tuple[str, str, Callable]] = [
@@ -71,4 +75,6 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("cropoct", "CropOCT", get_cropoct),
     ("edam", "EDAM", get_edam),
     ("re3data", "re3data", get_re3data),
+    ("hl7", "HL7", get_hl7),
+    ("bartoc", "BARTOC", get_bartoc),
 ]

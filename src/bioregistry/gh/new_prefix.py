@@ -36,16 +36,18 @@ MAPPING = {
     "Redundant Prefix in Regular Expression Pattern": "banana",
     "Provider Format URL": URI_FORMAT_KEY,  # old
     "URI Format String": URI_FORMAT_KEY,
-    "Contact": "contact",
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
     "Contributor GitHub": "contributor_github",
+    "Contributor Email": "contributor_email",
     "Contact ORCiD": "contact_orcid",
     "Contact Name": "contact_name",
     "Contact Email": "contact_email",
     "Contact GitHub": "contact_github",
     "Wikidata Property": "wikidata_prefix",
+    "License": "license",
+    "Repository": "repository",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
@@ -72,7 +74,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     )
     rv: Dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
-        prefix = resource_data.pop("prefix")
+        prefix = resource_data.pop("prefix").lower()
         contributor = Author(
             name=resource_data.pop("contributor_name"),
             orcid=_pop_orcid(resource_data),
@@ -87,9 +89,9 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         if contact_orcid:
             contact = Author(
                 name=contact_name,
-                orcid=contact_orcid,
+                orcid=_trim_orcid(contact_orcid),
                 email=contact_email,
-                contact_github=contact_github,
+                github=contact_github,
             )
         else:
             contact = None
@@ -108,7 +110,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
 
         # Capitalize the description
-        resource_data["description"] = resource_data["description"].capitalize()
+        resource_data["description"] = resource_data["description"]
 
         # Ensure the pattern is delimited properly
         pattern = resource_data.get("pattern")
@@ -135,12 +137,16 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     return rv
 
 
-def _pop_orcid(d) -> str:
-    orcid = d.pop("contributor_orcid")
+def _pop_orcid(data: Dict[str, str]) -> str:
+    orcid = data.pop("contributor_orcid")
+    return _trim_orcid(orcid)
+
+
+def _trim_orcid(orcid: str) -> str:
     if orcid.startswith(ORCID_HTTP_PREFIX):
-        orcid = orcid[len(ORCID_HTTP_PREFIX) :]
-    elif orcid.startswith(ORCID_HTTPS_PREFIX):
-        orcid = orcid[len(ORCID_HTTPS_PREFIX) :]
+        return orcid[len(ORCID_HTTP_PREFIX) :]
+    if orcid.startswith(ORCID_HTTPS_PREFIX):
+        return orcid[len(ORCID_HTTPS_PREFIX) :]
     return orcid
 
 

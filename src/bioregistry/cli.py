@@ -40,7 +40,10 @@ def download():
 
 @main.command()
 @click.option("--skip-fairsharing", is_flag=True)
-def align(skip_fairsharing: bool):
+@click.option("--skip-re3data", is_flag=True)
+@click.option("--skip-slow", is_flag=True)
+@click.option("--no-force", is_flag=True)
+def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force: bool):
     """Align all external registries."""
     try:
         from .align import aligner_resolver
@@ -53,16 +56,18 @@ def align(skip_fairsharing: bool):
         return sys.exit(1)
 
     pre_digests = get_hexdigests()
-    aligners = (
-        [cls for cls in aligner_resolver if cls.key != "fairsharing"]
-        if skip_fairsharing
-        else aligner_resolver
-    )
 
-    for aligner_cls in aligners:
+    skip = set()
+    if skip_fairsharing or skip_slow:
+        skip.add("fairsharing")
+    if skip_re3data or skip_slow:
+        skip.add("re3data")
+    for aligner_cls in aligner_resolver:
+        if aligner_cls.key in skip:
+            continue
         secho(f"Aligning {aligner_cls.key}")
         try:
-            aligner_cls.align()
+            aligner_cls.align(force_download=not no_force)
         except (IOError, OLSBroken) as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
@@ -88,10 +93,10 @@ def update(ctx: click.Context):
 
     try:
         from . import upload_ndex
-    except ImportError:
-        click.secho("Could not import ndex")
-    else:
+
         ctx.invoke(upload_ndex.main)
+    except ImportError:
+        click.secho("Could not import ndex", fg="red")
 
 
 if __name__ == "__main__":

@@ -97,6 +97,16 @@
                     </dt>
                     <dd>{{ version }}</dd>
                 {% endif %}
+                {% set resource_license = resource.get_license() %}
+                {% if resource_license %}
+                    <dt>
+                        License
+                        <a type="button" data-toggle="modal" data-target="#license-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
+                    <dd>{{ resource_license }}</dd>
+                {% endif %}
                 <dt>
                     Links
                     {% if homepage or obo_download or owl_download or json_download or rdf_download %}
@@ -239,33 +249,32 @@
                 {% endif %}
 
                 {% set publications = resource.get_publications() %}
-                {% if resource.references or publications%}
+                {% if publications %}
+                    <dt>Publications</dt>
+                    <dd>
+                        {% if publications | length == 1 %}
+                            {{ utils.render_publication(publications[0]) }}
+                        {% else %}
+                            <ul>
+                                {% for publication in publications %}
+                                    <li>{{ utils.render_publication(publication) }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                {% endif %}
+                {% if resource.references %}
                     <dt>References</dt>
                     <dd>
-                        <ul>
-                            {% for publication in publications or [] %}
-                                <li>
-                                    <span class="badge badge-info">Publication</span>
-                                    <a href="{{ publication.get_url() }}">{{ publication.title or publication.get_url() }}</a>
-                                </li>
-                            {% endfor %}
-                            {% for reference in resource.references or [] %}
-                                <li>
-                                    {% if reference.startswith("https://twitter.com") %}
-                                        <span class="badge badge-info">Tweet</span>
-                                    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
-                                        <span class="badge badge-info">GitHub Issue</span>
-                                    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
-                                        <span class="badge badge-info">GitHub PR</span>
-                                    {% elif reference.startswith("https://doi.org/") %}
-                                        <span class="badge badge-info">DOI</span>
-                                    {% else %}
-                                        <span class="badge badge-info">Other</span>
-                                    {% endif %}
-                                    <a href="{{ reference }}">{{ reference }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% if resource.references | length == 1 %}
+                            {{ utils.render_reference(resource.references[0]) }}
+                        {% else %}
+                            <ul>
+                                {% for reference in resource.references %}
+                                    <li>{{ utils.render_reference(reference) }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if resource.contributor or resource.contributor_extras %}
@@ -333,11 +342,15 @@
                         Part Of
                     </dt>
                     <dd>
+                        {% if manager.get_name(part_of) %}
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(part_of) }}">
                             {{ manager.get_preferred_prefix(part_of) or part_of }}
                         </a>
+                        {% else %}
+                        <span class="badge badge-pill badge-light">{{ part_of }} (not directly registered)</span>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if has_parts %}
@@ -430,8 +443,10 @@
                 <thead class="table-">
                 <tr>
                     <th scope="col">Registry Name</th>
-                    <th scope="col">Metaprefix</th>
+                    <th scope="col">Registry Metaprefix</th>
                     <th scope="col">External Prefix</th>
+                    {# <th scope="col">External Name</th> #}
+                    <th scope="col">Curate</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -456,6 +471,14 @@
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
                                     <i class="fas fa-info-circle"></i></span>
                             {% endif %}
+                        </td>
+                        {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
+                        <td style="text-align: center;">
+                            <a data-toggle="tooltip" data-html="true"
+                               title="Report misalignment between {{ name }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
+                               href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
+                                <i class="fas fa-pen"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -549,6 +572,25 @@
                 <div class="modal-body">
                     <p>Get the version:</p>
                     {{ utils.code_example(prefix, "get_version", version) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if resource_license %}
+    <div class="modal fade" id="license-modal" tabindex="-1" role="dialog" aria-labelledby="licenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="licenseModalLabel">Programmatic Access to License</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Get the license:</p>
+                    {{ utils.code_example(prefix, "get_license", resource_license) }}
                 </div>
             </div>
         </div>

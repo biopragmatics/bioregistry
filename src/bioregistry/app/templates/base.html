@@ -68,26 +68,74 @@
                     {% if config.METAREGISTRY_FIRST_PARTY %}
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.summary") }}">Summary</a>
                     {% else %}
-                    <a class="dropdown-item" target="_blank" href="https://bioregistry.io/summary">Summary (External)</a>
+                    <a class="dropdown-item" target="_blank" href="https://bioregistry.io/summary">
+                        Summary <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
                     {% endif %}
-                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.usage") }}">Programmatic Usage</a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/glossary/">
+                        Glossary <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/datamodel/">
+                        Data Model <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
                     {% if config.METAREGISTRY_FIRST_PARTY %}
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Maitenance</h6>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/health/">
+                        Health Report <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
                     {% endif %}
-                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.related") }}">Related</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Attribution</h6>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.related") }}">Related Work</a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.contributors") }}">Contributors</a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.acknowledgements") }}">How to Cite and Acknowledge</a>
                     <!--<div class="dropdown-divider"></div>-->
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Workshops</h6>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2021.html">
+                        WPCI 2021 <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
                 </div>
             </li>
             {% if config.METAREGISTRY_FIRST_PARTY %}
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('metaregistry_ui.download') }}">Downloads</a>
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contribute
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <h6 class="dropdown-header">Project Info</h6>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">
+                        Contribution Guidelines <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">
+                        Code of Conduct <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">
+                        Project Governance <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Getting Started</h6>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/curation/">
+                        Good First Contributions <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <!--<div class="dropdown-divider"></div>-->
+                </div>
             </li>
             {% endif %}
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Access
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if config.METAREGISTRY_FIRST_PARTY %}
+                    <a class="dropdown-item" href="{{ url_for('metaregistry_ui.download') }}">Downloads</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="{{ url_for('flasgger.apidocs') }}">API Documentation</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.usage") }}">Programmatic Usage Guide</a>
+                </div>
             </li>
         </ul>
         {% if config.METAREGISTRY_VERSION %}

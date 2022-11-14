@@ -2,10 +2,10 @@
 
 """Functionality for parsing IRIs."""
 
-from functools import lru_cache
+import warnings
 from typing import List, Mapping, Optional, Tuple, Union
 
-from .resolve import get_preferred_prefix, parse_curie
+from .resolve import get_default_converter, get_preferred_prefix, parse_curie
 from .resource_manager import prepare_prefix_list
 from .uri_format import get_prefix_map
 from .utils import curie_to_str
@@ -90,11 +90,6 @@ def curie_from_iri(
     return curie_to_str(prefix, identifier)
 
 
-@lru_cache(1)
-def _get_default_prefix_list():
-    return ensure_prefix_list()
-
-
 def parse_iri(
     iri: str,
     *,
@@ -167,13 +162,23 @@ def parse_iri(
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_list)
     ('chebi', '1234')
 
+    Corner cases:
+
+    >>> parse_iri("https://omim.org/MIM:PS214100")
+    ('omim.ps', '214100')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if prefix_map is None:
-        return _parse_iri(iri, _get_default_prefix_list())
+        return get_default_converter().parse_uri(iri)
+
+    warnings.warn(
+        "Parsing without a pre-compiled `curies.Converter` class is very slow. "
+        "This functionality will be removed from the Bioregistry in a future version.",
+    )
+    # TODO remove this and update all relevant docstrings and README
     if isinstance(prefix_map, list):
         return _parse_iri(iri, prefix_map)
-
     prefix_list = ensure_prefix_list(prefix_map)
     return _parse_iri(iri, prefix_list)
 

@@ -89,6 +89,18 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
+def write_mismatches(mismatches: Mapping[str, Mapping[str, str]]) -> None:
+    """Read the mismatches as JSON."""
+    MISMATCH_PATH.write_text(
+        json.dumps(
+            mismatches,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+        )
+    )
+
+
 @lru_cache(maxsize=1)
 def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
