@@ -7,6 +7,8 @@ import typing
 from functools import lru_cache
 from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
+import curies
+
 from .resource_manager import manager
 from .schema import Attributable, Resource
 
@@ -965,3 +967,14 @@ def get_obo_context_prefix_map(include_synonyms: bool = False) -> Mapping[str, s
 def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     return manager.read_contributors(direct_only=direct_only)
+
+
+def get_converter(**kwargs) -> curies.Converter:
+    """Get a converter from this manager."""
+    return manager.get_converter(**kwargs)
+
+
+@lru_cache(1)
+def get_default_converter() -> curies.Converter:
+    """Get a converter from this manager."""
+    return manager.get_converter()

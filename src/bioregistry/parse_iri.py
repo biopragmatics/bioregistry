@@ -3,13 +3,10 @@
 """Functionality for parsing IRIs."""
 
 import warnings
-from functools import lru_cache
 from typing import List, Mapping, Optional, Tuple, Union
 
-import curies
-
-from .resolve import get_preferred_prefix, parse_curie
-from .resource_manager import manager, prepare_prefix_list
+from .resolve import get_default_converter, get_preferred_prefix, parse_curie
+from .resource_manager import prepare_prefix_list
 from .uri_format import get_prefix_map
 from .utils import curie_to_str
 
@@ -93,11 +90,6 @@ def curie_from_iri(
     return curie_to_str(prefix, identifier)
 
 
-@lru_cache(1)
-def _get_converter() -> curies.Converter:
-    return manager.get_converter()
-
-
 def parse_iri(
     iri: str,
     *,
@@ -178,7 +170,7 @@ def parse_iri(
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if prefix_map is None:
-        return _get_converter().parse_uri(iri)
+        return get_default_converter().parse_uri(iri)
 
     warnings.warn(
         "Parsing without a pre-compiled `curies.Converter` class is very slow. "
