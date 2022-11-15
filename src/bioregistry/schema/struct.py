@@ -899,8 +899,6 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
-        >>> get_resource("vandf").get_contact_email()
-        'michael.lincoln@med.va.gov'
         """
         if self.contact and self.contact.email:
             return self.contact.email
