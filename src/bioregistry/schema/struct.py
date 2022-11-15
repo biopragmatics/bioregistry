@@ -924,8 +924,6 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
-        >>> get_resource("vandf").get_contact_name()
-        'Michael Lincoln'
         """
         if self.contact and self.contact.name:
             return self.contact.name
