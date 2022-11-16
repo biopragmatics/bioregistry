@@ -1004,7 +1004,8 @@ bioregistry:atc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "A10BA02"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.whocc.no/atc_ddd_index/?code=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z](\\d+([A-Z]{1,2}(\\d+)?)?)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "WHO Collaborating Centre for Drug Statistics Methodology" ] .
 
 bioregistry:atcvet a bioregistry.schema:0000001 ;
     rdfs:label "Anatomical Therapeutic Chemical Vetinary" ;
@@ -1186,7 +1187,8 @@ bioregistry:bcio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "040000"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/BCI-ontology#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Sergio José Rodríguez Méndez" ] .
 
 bioregistry:bcrj a bioregistry.schema:0000001 ;
     rdfs:label "Banco de Celulas do Rio de Janeiro" ;
@@ -3054,7 +3056,8 @@ bioregistry:covid19 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "SFB_COVID19_MW286762"^^xsd:string ;
     bioregistry.schema:0000006 "https://covid19.sfb.uit.no/api/records/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+_COVID19_[-\\w]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Dylan McGagh" ] .
 
 bioregistry:covoc a bioregistry.schema:0000001 ;
     rdfs:label "CoVoc Coronavirus Vocabulary" ;
@@ -3136,7 +3139,8 @@ bioregistry:cryoem a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000052"^^xsd:string ;
     bioregistry.schema:0000006 "http://scipion.i2pc.es/ontology/CRYOEM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Carlos Oscar Sorzano" ] .
 
 bioregistry:cryptodb a bioregistry.schema:0000001 ;
     rdfs:label "CryptoDB" ;
@@ -3931,7 +3935,7 @@ bioregistry:ehdaa a bioregistry.schema:0000001 ;
         bioportal:EHDAA,
         biocontext:EHDAA,
         prefixcommons:ehdaa ;
-    foaf:homepage "http://genex.hgu.mrc.ac.uk/"^^xsd:string ;
+    foaf:homepage "http://obofoundry.org/ontology/ehdaa.html"^^xsd:string ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EHDAA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -4015,7 +4019,8 @@ bioregistry:enm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "8000221"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.enanomapper.org/onto/ENM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Haralambos Sarimveis" ] .
 
 bioregistry:ensembl.metazoa a bioregistry.schema:0000001 ;
     rdfs:label "Ensembl Metazoa, the Ensembl database for accessing genome-scale data from non-vertebrate metazoa." ;
@@ -4108,10 +4113,8 @@ bioregistry:epo a bioregistry.schema:0000001 ;
     rdfs:label "Epidemiology Ontology" ;
     dc:description "An ontology designed to support the semantic annotation of epidemiology resources"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:EPO,
-        obofoundry:epo,
+    skos:exactMatch obofoundry:epo,
         ontobee:EPO,
-        bioportal:EPO,
         biocontext:EPO ;
     foaf:homepage "https://code.google.com/p/epidemiology-ontology/"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EPO_$1"^^xsd:string ;
@@ -4129,7 +4132,8 @@ bioregistry:epso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000400"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.case.edu/EpilepsyOntology.owl#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Satya Sahoo" ] .
 
 bioregistry:erm a bioregistry.schema:0000001 ;
     rdfs:label "European Registry of Materials" ;
@@ -4967,7 +4971,8 @@ bioregistry:gexo a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.3e0sn4,
         ols:gexo ;
     foaf:homepage "http://www.semantic-systems-biology.org/apo"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Vladimir Mironov" ] .
 
 bioregistry:giardiadb a bioregistry.schema:0000001 ;
     rdfs:label "GiardiaDB" ;
@@ -5438,9 +5443,11 @@ bioregistry:gro a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:GRO,
         bioportal:GRO ;
+    foaf:homepage "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html"^^xsd:string ;
     bioregistry.schema:0000005 "Lipid"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.bootstrep.eu/ontology/GRO#$1"^^xsd:string ;
-    bioregistry.schema:0000012 true .
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "Vivian Lee" ] .
 
 bioregistry:grsdb a bioregistry.schema:0000001 ;
     rdfs:label "G-Rich Sequences Database" ;
@@ -6985,7 +6992,8 @@ bioregistry:mamo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000026"^^xsd:string ;
     bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true .
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "mamo-ontology-discuss" ] .
 
 bioregistry:mampol a bioregistry.schema:0000001 ;
     rdfs:label "Mammalia Polymorphism Database" ;
@@ -7130,7 +7138,8 @@ bioregistry:medlineplus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "002804"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "NLM Customer Service" ] .
 
 bioregistry:merops.entry a bioregistry.schema:0000001 ;
     rdfs:label "MEROPS Entry" ;
@@ -8338,7 +8347,8 @@ bioregistry:nemo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "smp-m3w9hbe"^^xsd:string ;
     bioregistry.schema:0000006 "https://assets.nemoarchive.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[a-z]{3}-[a-km-z0-9]{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Gwen Frishkoff" ] .
 
 bioregistry:neuromorpho a bioregistry.schema:0000001 ;
     rdfs:label "NeuroMorpho" ;
@@ -10439,7 +10449,8 @@ bioregistry:reproduceme a bioregistry.schema:0000001 ;
     foaf:homepage "https://w3id.org/reproduceme/research"^^xsd:string ;
     bioregistry.schema:0000005 "MicrobeamManipulation"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/reproduceme#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Sheeba Samuel" ] .
 
 bioregistry:reto a bioregistry.schema:0000001 ;
     rdfs:label "Regulation of Transcription Ontology" ;
@@ -10742,11 +10753,12 @@ bioregistry:roleo a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:ROLEO,
         bioportal:ROLEO,
         prefixcommons:roleo ;
-    foaf:homepage "http://sourceforge.net/projects/roleo"^^xsd:string ;
+    foaf:homepage "https://github.com/roleontology/roleo"^^xsd:string ;
     bioregistry.schema:0000005 "0000002"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/RoleO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "Oliver He" ] ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:ror a bioregistry.schema:0000001 ;
@@ -12518,7 +12530,8 @@ bioregistry:vhog a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000411"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VHOG_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true .
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "Bgee team" ] .
 
 bioregistry:viaf a bioregistry.schema:0000001 ;
     rdfs:label "Virtual International Authority File" ;
@@ -12670,7 +12683,8 @@ bioregistry:vso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000041"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Albert Goldfain" ] .
 
 bioregistry:vto a bioregistry.schema:0000001 ;
     rdfs:label "Vertebrate Taxonomy Ontology" ;
@@ -13337,6 +13351,8 @@ orcid:0000-0002-7696-731X rdfs:label "Liliana Andres Hernandez" .
 
 orcid:0000-0002-8151-7479 rdfs:label "Raymond Lee" .
 
+orcid:0000-0002-8169-9049 rdfs:label "Tiffany J. Callahan" .
+
 orcid:0000-0002-8374-1941 rdfs:label "Miguel A. Fortuna" .
 
 orcid:0000-0002-8424-0604 rdfs:label "Donny Winston" ;
@@ -13582,8 +13598,6 @@ aberowl:EO dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:EOL dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:EPIO dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:EPO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:EPSO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -14288,6 +14302,8 @@ edam.data:2298 dcterms:isPartOf bioregistry.metaresource:edam .
 edam.data:2302 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2309 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2314 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2325 dcterms:isPartOf bioregistry.metaresource:edam .
 
@@ -15698,8 +15714,6 @@ bioportal:ENVO dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:EOL dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:EPIO dcterms:isPartOf bioregistry.metaresource:bioportal .
-
-bioportal:EPO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:EPSO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -21642,7 +21656,8 @@ bioregistry:ecg a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "000000159"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.cvrgrid.org/files/ECGOntologyv1.owl#ECG_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Raimond L. Winslow, PhD & Stephen Granite" ] .
 
 bioregistry:ecn a bioregistry.schema:0000001 ;
     rdfs:label "European Community number" ;
@@ -21833,7 +21848,8 @@ bioregistry:eol a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001927"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/obo/owlEOL_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "LeBail Pierre-Yves" ] .
 
 bioregistry:eolife a bioregistry.schema:0000001 ;
     rdfs:label "Encyclopedia of Life" ;
@@ -22478,7 +22494,8 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "16793"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Dr. Elspeth Bruford" ] .
 
 bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     rdfs:label "HGNC Gene Group" ;
@@ -23531,7 +23548,8 @@ bioregistry:ncbigi a bioregistry.schema:0000001 ;
     rdfs:label "GenInfo Identifier" ;
     dc:description "A GI number (for GenInfo Identifier, sometimes written in lower case, _gi_) is a simple series of digits that are assigned consecutively to each sequence record processed by NCBI. The GI number bears no resemblance to the Version number of the sequence record. Each time a sequence record is changed, it is assigned a new GI number."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NCBIGI,
+    skos:exactMatch edam.data:2314,
+        biocontext:NCBIGI,
         go.resource:NCBI_gi,
         ncbi.resource:GI ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/"^^xsd:string ;
@@ -24224,7 +24242,8 @@ bioregistry:phenx a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "130502"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.phenxtoolkit.org/protocols/view/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "PhenX Admin" ] .
 
 bioregistry:phipo a bioregistry.schema:0000001 ;
     rdfs:label "Pathogen Host Interaction Phenotype Ontology" ;
@@ -24680,6 +24699,18 @@ bioregistry:sdis a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sdis/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^D\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:seinet a bioregistry.schema:0000001 ;
+    rdfs:label "Southwestern Environmental Information Network" ;
+    dc:description "A vocabulary about species to support the environmental research community in Arizona and New Mexico"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P6209 ;
+    foaf:homepage "https://swbiodiversity.org/seinet/index.php"^^xsd:string ;
+    bioregistry.schema:0000005 "762"^^xsd:string ;
+    bioregistry.schema:0000006 "https://swbiodiversity.org/seinet/taxa/index.php?taxon=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0002-8169-9049 .
 
 bioregistry:sfam a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Families" ;
@@ -25235,7 +25266,8 @@ bioregistry:vandf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "4019477"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.bioontology.org/ontology/VANDF/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Michael Lincoln" ] .
 
 bioregistry:vbo a bioregistry.schema:0000001 ;
     rdfs:label "Vertebrate Breed Ontology" ;
@@ -30376,6 +30408,8 @@ wikidata:P595 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P6049 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P6209 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P6245 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P638 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -31027,7 +31061,8 @@ bioregistry:faldo a bioregistry.schema:0000001 ;
     foaf:homepage "http://biohackathon.org/resource/faldo"^^xsd:string ;
     bioregistry.schema:0000005 "ForwardStrandPosition"^^xsd:string ;
     bioregistry.schema:0000006 "http://biohackathon.org/resource/faldo#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "FALDO group" ] .
 
 bioregistry:fbrf a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Reference Report" ;
@@ -31062,7 +31097,8 @@ bioregistry:foaf a bioregistry.schema:0000001 ;
     foaf:homepage "http://xmlns.com/foaf/spec/"^^xsd:string ;
     bioregistry.schema:0000005 "familyName"^^xsd:string ;
     bioregistry.schema:0000006 "http://xmlns.com/foaf/0.1/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Rafael Gonçalves" ] .
 
 bioregistry:fobi a bioregistry.schema:0000001 ;
     rdfs:label "Food-Biomarker Ontology" ;
@@ -31674,7 +31710,8 @@ bioregistry:ndfrt a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT"^^xsd:string ;
     bioregistry.schema:0000005 "N0000001662"^^xsd:string ;
     bioregistry.schema:0000006 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Michael J. Lincoln MD" ] .
 
 bioregistry:nif.ext a bioregistry.schema:0000001 ;
     rdfs:label "NIF Standard Ontology: External" ;
@@ -35537,6 +35574,7 @@ bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
         edam.data:2298,
         edam.data:2302,
         edam.data:2309,
+        edam.data:2314,
         edam.data:2325,
         edam.data:2326,
         edam.data:2343,
@@ -35708,6 +35746,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P594,
         wikidata:P595,
         wikidata:P6049,
+        wikidata:P6209,
         wikidata:P6245,
         wikidata:P638,
         wikidata:P652,
@@ -36175,6 +36214,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:scoro,
         bioregistry:scr,
         bioregistry:sdis,
+        bioregistry:seinet,
         bioregistry:sfam,
         bioregistry:shacl,
         bioregistry:shex,
@@ -37247,7 +37287,6 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:ENVO,
         bioportal:EOL,
         bioportal:EPIO,
-        bioportal:EPO,
         bioportal:EPSO,
         bioportal:ERO,
         bioportal:EUPATH,
@@ -37575,7 +37614,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:EO,
         aberowl:EOL,
         aberowl:EPIO,
-        aberowl:EPO,
         aberowl:EPSO,
         aberowl:ERO,
         aberowl:EUPATH,
@@ -42486,6 +42524,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:seed,
         bioregistry:seed.compound,
         bioregistry:seed.reaction,
+        bioregistry:seinet,
         bioregistry:sep,
         bioregistry:sepio,
         bioregistry:sfam,
