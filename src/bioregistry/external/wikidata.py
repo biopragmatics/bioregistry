@@ -5,6 +5,7 @@
 import json
 import logging
 from textwrap import dedent
+from typing import Dict
 
 import click
 
@@ -26,10 +27,10 @@ logger = logging.getLogger(__name__)
 QUERY = dedent(
     """\
     SELECT DISTINCT
-      (?prop AS ?prefix) 
+      (?prop AS ?prefix)
       ?propLabel
       ?propDescription
-      ?miriam 
+      ?miriam
       ?pattern
       (GROUP_CONCAT(DISTINCT ?homepage_; separator='\\t') AS ?homepage)
       (GROUP_CONCAT(DISTINCT ?format_; separator='\\t') AS ?uri_format)
@@ -38,26 +39,26 @@ QUERY = dedent(
       (GROUP_CONCAT(DISTINCT ?example_; separator='\\t') AS ?example)
       (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_name)
     WHERE {
-      VALUES ?category { 
+      VALUES ?category {
         wd:Q21294996  # chemistry
         wd:Q22988603  # biology
       }
       ?prop wdt:P31/wdt:P279+ ?category .
-      BIND( SUBSTR(STR(?prop), 32) AS ?propStr ) 
-      OPTIONAL { ?prop wdt:P1793 ?pattern } .
-      OPTIONAL { ?prop wdt:P4793 ?miriam } .
-      
-      OPTIONAL { ?prop wdt:P1813 ?short_name_ . }
-      OPTIONAL { ?prop wdt:P1896 ?homepage_ . }
-      OPTIONAL { ?prop wdt:P1630 ?format_ } .
-      OPTIONAL { ?prop wdt:P1921 ?format_rdf_ } .
-      OPTIONAL { ?prop wdt:P1629 ?database_ } .
-      OPTIONAL { 
-        ?prop p:P1855 ?statement . 
-        ?statement ?propQualifier ?example_ . 
+      BIND( SUBSTR(STR(?prop), 32) AS ?propStr )
+      OPTIONAL { ?prop wdt:P1793 ?pattern }
+      OPTIONAL { ?prop wdt:P4793 ?miriam }
+
+      OPTIONAL { ?prop wdt:P1813 ?short_name_ }
+      OPTIONAL { ?prop wdt:P1896 ?homepage_ }
+      OPTIONAL { ?prop wdt:P1630 ?format_ }
+      OPTIONAL { ?prop wdt:P1921 ?format_rdf_ }
+      OPTIONAL { ?prop wdt:P1629 ?database_ }
+      OPTIONAL {
+        ?prop p:P1855 ?statement .
+        ?statement ?propQualifier ?example_ .
         FILTER (STRSTARTS(STR(?propQualifier), "http://www.wikidata.org/prop/qualifier/"))
         FILTER (?propStr = SUBSTR(STR(?propQualifier), 40))
-      } .
+      }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
     }
     GROUP BY ?prop ?propLabel ?propDescription ?miriam ?pattern
@@ -73,7 +74,7 @@ CANONICAL_DATABASES = {
     "P4168": "Q112783946",  # Immune epitope database
 }
 
-CANONICAL_HOMEPAGES = {}
+CANONICAL_HOMEPAGES: Dict[str, str] = {}
 CANONICAL_URI_FORMATS = {
     "P830": "https://eol.org/pages/$1",
     "P2085": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1",
@@ -106,8 +107,7 @@ def _get_wikidata():
     for bindings in query_wikidata(QUERY):
         examples = bindings.get("example", {}).get("value", "").split("\t")
         if examples and all(
-            example.startswith("http://www.wikidata.org/entity/")
-            for example in examples
+            example.startswith("http://www.wikidata.org/entity/") for example in examples
         ):
             # This is a relationship
             continue
@@ -121,7 +121,14 @@ def _get_wikidata():
         prefix = bindings["prefix"] = removeprefix(
             bindings["prefix"], "http://www.wikidata.org/entity/"
         )
-        for key in ["homepage", "uri_format_rdf", URI_FORMAT_KEY, "database", "example", "short_name"]:
+        for key in [
+            "homepage",
+            "uri_format_rdf",
+            URI_FORMAT_KEY,
+            "database",
+            "example",
+            "short_name",
+        ]:
             if key in bindings:
                 bindings[key] = tuple(
                     sorted(

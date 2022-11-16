@@ -197,6 +197,7 @@ class Aligner:
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
         :return: A sequence of cells to add to the curation table.
+        :raises TypeError: If an invalid value is encountered
 
         The default implementation of this function iterates over all of the keys
         in the class variable :data:`curation_header` and looks inside each record

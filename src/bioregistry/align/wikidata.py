@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """Align Wikidata with the Bioregistry."""
+
 from typing import Mapping
 
 from bioregistry.align.utils import Aligner
@@ -53,6 +54,7 @@ SKIP = {
     "Q111831044": "should not be annotated like a property",
 }
 
+
 class WikidataAligner(Aligner):
     """Aligner for Wikidata properties."""
 
@@ -63,6 +65,7 @@ class WikidataAligner(Aligner):
     def get_skip(self) -> Mapping[str, str]:
         """Get entries to skip."""
         return SKIP
+
 
 if __name__ == "__main__":
     WikidataAligner.align()
