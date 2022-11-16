@@ -104,6 +104,14 @@ def _get_wikidata():
     """Iterate over Wikidata properties connected to biological databases."""
     rv = {}
     for bindings in query_wikidata(QUERY):
+        examples = bindings.get("example", {}).get("value", "").split("\t")
+        if examples and all(
+            example.startswith("http://www.wikidata.org/entity/")
+            for example in examples
+        ):
+            # This is a relationship
+            continue
+
         bindings = {
             RENAMES.get(key, key): value["value"]
             for key, value in bindings.items()
@@ -121,7 +129,6 @@ def _get_wikidata():
                         for value in bindings[key].split("\t")
                     )
                 )
-        rv[prefix] = bindings
 
         for key, canonicals in [
             ("database", CANONICAL_DATABASES),
@@ -138,6 +145,8 @@ def _get_wikidata():
                 bindings[key] = values[0]
             else:
                 bindings[key] = canonicals[prefix]
+
+        rv[prefix] = bindings
 
     return rv
 
