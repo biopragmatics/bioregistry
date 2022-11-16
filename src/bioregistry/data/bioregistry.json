@@ -41631,7 +41631,8 @@
     },
     "mappings": {
       "fairsharing": "FAIRsharing.67sssf",
-      "miriam": "ilx"
+      "miriam": "ilx",
+      "wikidata": "P696"
     },
     "miriam": {
       "deprecated": false,
@@ -41660,7 +41661,19 @@
     ],
     "synonyms": [
       "ILX"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q3875032",
+      "description": "identifier in the Interlex database (used to be Neurolex)",
+      "example": [
+        "nlx_anat_090801",
+        "sao1103104164"
+      ],
+      "homepage": "http://interlex.org",
+      "name": "Interlex ID",
+      "pattern": "^[0-9A-Za-z_]+$",
+      "prefix": "P696"
+    }
   },
   "interpro": {
     "biocontext": {
@@ -54569,7 +54582,8 @@
       "biocontext": "NDC",
       "hl7": "2.16.840.1.113883.6.69",
       "miriam": "ndc",
-      "n2t": "ndc"
+      "n2t": "ndc",
+      "wikidata": "P3640"
     },
     "miriam": {
       "deprecated": false,
@@ -54601,6 +54615,17 @@
       "pattern": "^\\d+\\-\\d+\\-\\d+",
       "prefix": "ndc",
       "uri_format": "http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1"
+    },
+    "wikidata": {
+      "database": "Q6972354",
+      "description": "pharmaceutical code issued by the Food and Drug Administration for every drug product (formulation) on the U.S. market. Includes a labeler code, product code and package code, unique for every drug product.",
+      "example": [
+        "50242-090"
+      ],
+      "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html",
+      "name": "National Drug Code",
+      "prefix": "P3640",
+      "uri_format": "https://ndclist.com/ndc/$1"
     }
   },
   "nddf": {
@@ -70557,7 +70582,8 @@
       "n2t": "rebase",
       "prefixcommons": "rebase",
       "re3data": "r3d100012171",
-      "uniprot": "DB-0089"
+      "uniprot": "DB-0089",
+      "wikidata": "P4866"
     },
     "miriam": {
       "deprecated": false,
@@ -70644,6 +70670,17 @@
         }
       ],
       "uri_format": "http://rebase.neb.com/rebase/enz/$1.html"
+    },
+    "wikidata": {
+      "database": "Q7301611",
+      "description": "ID in REBASE (Restriction Enzyme Database)",
+      "example": [
+        "993"
+      ],
+      "name": "REBASE Enzyme Number",
+      "pattern": "^[1-9]\\d*$",
+      "prefix": "P4866",
+      "uri_format": "http://rebase.neb.com/cgi-bin/reb_get.pl?enzname=$1"
     }
   },
   "receptome.family": {
