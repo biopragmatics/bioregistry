@@ -1453,7 +1453,8 @@
     "mappings": {
       "agroportal": "AGROVOC",
       "ecoportal": "AGROVOC",
-      "fairsharing": "FAIRsharing.anpj91"
+      "fairsharing": "FAIRsharing.anpj91",
+      "wikidata": "P8061"
     },
     "name": "Agronomy Vocabulary",
     "pattern": "^[a-z0-9]+$",
@@ -1479,7 +1480,19 @@
       "http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_lod.nt.zip",
       "https://en.wikipedia.org/wiki/AGROVOC"
     ],
-    "uri_format": "http://aims.fao.org/aos/agrovoc/c_$1"
+    "uri_format": "http://aims.fao.org/aos/agrovoc/c_$1",
+    "wikidata": {
+      "database": "Q292649",
+      "description": "identifier for a subject in AGROVOC thesaurus",
+      "example": [
+        "c_00824893",
+        "c_10",
+        "c_33507"
+      ],
+      "name": "AGROVOC ID",
+      "prefix": "P8061",
+      "uri_format": "http://aims.fao.org/aos/agrovoc/$1"
+    }
   },
   "agsd": {
     "mappings": {
@@ -12258,7 +12271,8 @@
   },
   "civic.vid": {
     "mappings": {
-      "miriam": "civic.vid"
+      "miriam": "civic.vid",
+      "wikidata": "P3329"
     },
     "miriam": {
       "deprecated": false,
@@ -12271,6 +12285,18 @@
       "prefix": "civic.vid",
       "sampleId": "12",
       "uri_format": "https://civicdb.org/links/variant/$1"
+    },
+    "wikidata": {
+      "database": "Q27612411",
+      "description": "identifier used in the CIViC database to identify specific variant",
+      "example": [
+        "12"
+      ],
+      "homepage": "https://civic.genome.wustl.edu/#/home",
+      "name": "CIViC variant ID",
+      "pattern": "[1-9]\\d*",
+      "prefix": "P3329",
+      "uri_format": "https://civic.genome.wustl.edu/links/variants/$1"
     }
   },
   "cl": {
@@ -22794,13 +22820,25 @@
     "example": "200-003-9",
     "homepage": "https://echa.europa.eu/information-on-chemicals",
     "mappings": {
-      "cheminf": "000447"
+      "cheminf": "000447",
+      "wikidata": "P232"
     },
     "pattern": "^\\d{3}-\\d{3}-\\d$",
     "references": [
       "https://github.com/biopragmatics/bioregistry/issues/257",
       "https://en.wikipedia.org/wiki/European_Community_number"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q201132",
+      "description": "identifier for a chemical compound per EINECS or ELINCS",
+      "example": [
+        "200-001-8",
+        "200-578-6"
+      ],
+      "name": "EC number",
+      "pattern": "(\\d{3}-){2}\\d",
+      "prefix": "P232"
+    }
   },
   "eco": {
     "aberowl": {
@@ -49997,7 +50035,8 @@
       "biocontext": "MIRTARBASE",
       "fairsharing": "FAIRsharing.f0bxfg",
       "miriam": "mirtarbase",
-      "n2t": "mirtarbase"
+      "n2t": "mirtarbase",
+      "wikidata": "P2646"
     },
     "miriam": {
       "deprecated": false,
@@ -50019,6 +50058,18 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^MIRT\\d{6}$",
       "prefix": "mirtarbase",
+      "uri_format": "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1"
+    },
+    "wikidata": {
+      "database": "Q6826951",
+      "description": "identifier for the mirTarBase database, a database for microRNAs and their targets",
+      "example": [
+        "MIRT000312"
+      ],
+      "homepage": "http://mirtarbase.mbc.nctu.edu.tw/php/download.php",
+      "name": "mirTarBase ID",
+      "pattern": "MIRT\\d{6}",
+      "prefix": "P2646",
       "uri_format": "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1"
     }
   },
@@ -84927,7 +84978,8 @@
       "obofoundry": "vo",
       "ols": "vo",
       "ontobee": "VO",
-      "prefixcommons": "vo"
+      "prefixcommons": "vo",
+      "wikidata": "P1928"
     },
     "obofoundry": {
       "appears_in": [
@@ -85010,7 +85062,19 @@
         "title": "Bioinformatics analysis of Brucella vaccines and vaccine targets using VIOLIN.",
         "year": 2010
       }
-    ]
+    ],
+    "wikidata": {
+      "database": "Q55118646",
+      "description": "identifier in the Vaccine Ontology database",
+      "example": [
+        "VO_0000455",
+        "VO_0000867",
+        "VO_0011559"
+      ],
+      "name": "Vaccine Ontology ID",
+      "prefix": "P1928",
+      "uri_format": "http://purl.obolibrary.org/obo/$1"
+    }
   },
   "void": {
     "biocontext": {
