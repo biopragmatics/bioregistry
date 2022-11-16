@@ -2035,9 +2035,11 @@
     ],
     "wikidata": {
       "database": "Q2507304",
-      "database.homepage": "http://www.antweb.org/",
-      "database.label": "AntWeb",
       "description": "identifier for a taxon in the AntWeb database",
+      "example": [
+        "Haidomyrmex",
+        "Zatania electra"
+      ],
       "homepage": "https://www.antweb.org",
       "name": "AntWeb ID",
       "pattern": "[A-Z][a-z]+( [a-z]+){0,2}",
@@ -3708,7 +3710,17 @@
       "ATTC"
     ],
     "wikidata": {
-      "prefix": "P267"
+      "database": "Q192093",
+      "description": "therapeutic chemical identification code per ATC",
+      "example": [
+        "A02BC04",
+        "D08AX08"
+      ],
+      "homepage": "https://www.whocc.no/",
+      "name": "ATC code",
+      "pattern": "[A-V]([0-9][0-9]([A-Z]([A-Z]([0-9][0-9])?)?)?)[0-9]",
+      "prefix": "P267",
+      "uri_format": "https://www.whocc.no/atc_ddd_index/?code=$1"
     }
   },
   "atcc": {
@@ -7617,7 +7629,8 @@
       "miriam": "bold.taxonomy",
       "n2t": "bold.taxonomy",
       "ncbi": "BOLD",
-      "prefixcommons": "bold"
+      "prefixcommons": "bold",
+      "wikidata": "P3606"
     },
     "miriam": {
       "deprecated": false,
@@ -7673,7 +7686,18 @@
         "title": "bold: The Barcode of Life Data System (http://www.barcodinglife.org).",
         "year": 2007
       }
-    ]
+    ],
+    "wikidata": {
+      "database": "Q16934719",
+      "description": "identifier for a taxon in boldsystems.org",
+      "example": [
+        "286001",
+        "38074"
+      ],
+      "name": "BOLD Systems taxon ID",
+      "prefix": "P3606",
+      "uri_format": "http://www.boldsystems.org/index.php/TaxBrowser_TaxonPage?taxid=$1"
+    }
   },
   "bootstrep": {
     "biocontext": {
@@ -8207,9 +8231,11 @@
     ],
     "wikidata": {
       "database": "Q4836352",
-      "database.homepage": "https://www.brenda-enzymes.org",
-      "database.label": "BRENDA Tissue Ontology",
       "description": "identifier in the Brenda Tissue Ontology",
+      "example": [
+        "BTO:0000562",
+        "BTO:0001172"
+      ],
       "homepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
       "name": "Brenda Tissue Ontology ID",
       "pattern": "BTO:\\d+",
@@ -8823,7 +8849,17 @@
       "cas_id"
     ],
     "wikidata": {
-      "prefix": "P231"
+      "database": "Q102507",
+      "description": "identifier for a chemical substance or compound per Chemical Abstract Service's Registry database",
+      "example": [
+        "1474034-05-3",
+        "15307-86-5"
+      ],
+      "homepage": "https://scifinder.cas.org",
+      "name": "CAS Registry Number",
+      "pattern": "[1-9]\\d{1,6}-\\d{2}-\\d",
+      "prefix": "P231",
+      "uri_format": "https://commonchemistry.cas.org/detail?cas_rn=$1"
     }
   },
   "casspc": {
@@ -10134,10 +10170,12 @@
     "twitter": "cellosaurus",
     "uri_format": "https://www.cellosaurus.org/CVCL_$1",
     "wikidata": {
-      "database": "Q24691710",
-      "database.homepage": "https://www.cellosaurus.org/",
-      "database.label": "Cellosaurus",
+      "database": "Q21014462",
       "description": "Cellosaurus cell line identifier",
+      "example": [
+        "CVCL_0030",
+        "CVCL_0440"
+      ],
       "name": "Cellosaurus ID",
       "pattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]",
       "prefix": "P3289",
@@ -10862,16 +10900,22 @@
     ],
     "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
     "wikidata": {
-      "database": "Q902623",
-      "database.homepage": "http://www.ebi.ac.uk/chebi",
-      "database.label": "ChEBI",
+      "database": "Q55118295",
       "description": "identifier from database and ontology of molecular entities focused on 'small' chemical compounds",
-      "format.rdf": "http://purl.obolibrary.org/obo/CHEBI_$1",
+      "example": [
+        "18153",
+        "27518",
+        "28969"
+      ],
       "homepage": "https://www.ebi.ac.uk/chebi",
+      "miriam": "chebi",
       "name": "ChEBI ID",
       "pattern": "\\d+",
       "prefix": "P683",
-      "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1"
+      "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
+      "uri_format_rdf": [
+        "http://purl.obolibrary.org/obo/CHEBI_$1"
+      ]
     }
   },
   "chembank": {
@@ -11110,15 +11154,20 @@
     "pattern": "^CHEMBL\\d+$",
     "wikidata": {
       "database": "Q6120337",
-      "database.homepage": "http://www.ebi.ac.uk/chembl",
-      "database.label": "ChEMBL",
       "description": "identifier from a chemical database of bioactive molecules with drug-like properties",
-      "format.rdf": "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1",
+      "example": [
+        "CHEMBL113",
+        "CHEMBL1200604",
+        "CHEMBL417016"
+      ],
       "homepage": "https://www.ebi.ac.uk/chembl",
       "name": "ChEMBL ID",
       "pattern": "CHEMBL\\d+",
       "prefix": "P592",
-      "uri_format": "https://www.ebi.ac.uk/chembl/compound_report_card/$1/"
+      "uri_format": "https://www.ebi.ac.uk/chembl/compound_report_card/$1/",
+      "uri_format_rdf": [
+        "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1"
+      ]
     }
   },
   "chembl.target": {
@@ -11579,15 +11628,20 @@
     ],
     "wikidata": {
       "database": "Q2311683",
-      "database.homepage": "https://www.chemspider.com/",
-      "database.label": "ChemSpider",
       "description": "identifier in a free chemical database, owned by the Royal Society of Chemistry",
-      "format.rdf": "http://rdf.chemspider.com/$1",
+      "example": [
+        "10189562",
+        "1086",
+        "3953"
+      ],
       "homepage": "https://www.chemspider.com/",
       "name": "ChemSpider ID",
       "pattern": "[1-9]\\d*",
       "prefix": "P661",
-      "uri_format": "https://www.chemspider.com/Chemical-Structure.$1.html"
+      "uri_format": "https://www.chemspider.com/Chemical-Structure.$1.html",
+      "uri_format_rdf": [
+        "http://rdf.chemspider.com/$1"
+      ]
     }
   },
   "chickenqtldb": {
@@ -12418,12 +12472,23 @@
     ],
     "wikidata": {
       "database": "Q55118285",
-      "database.label": "Cell Ontology",
+      "description": "ID in the Cell Ontology",
+      "example": [
+        "CL_0000148",
+        "CL_0000232",
+        "CL_0000235",
+        "CL_0000540",
+        "CL_0002328"
+      ],
       "homepage": "http://www.ontobee.org/ontology/CL",
+      "miriam": "cl",
       "name": "Cell Ontology ID",
       "pattern": "CL_[0-9]{7}",
       "prefix": "P7963",
-      "uri_format": "http://purl.obolibrary.org/obo/$1"
+      "uri_format": "http://purl.obolibrary.org/obo/$1",
+      "uri_format_rdf": [
+        "http://purl.obolibrary.org/obo/$1"
+      ]
     }
   },
   "clao": {
@@ -12608,7 +12673,8 @@
       "biocontext": "CLINICALTRIALS",
       "miriam": "clinicaltrials",
       "n2t": "clinicaltrials",
-      "prefixcommons": "clinicaltrials"
+      "prefixcommons": "clinicaltrials",
+      "wikidata": "P3098"
     },
     "miriam": {
       "deprecated": false,
@@ -12654,7 +12720,22 @@
         "name": "Smart Patients",
         "uri_format": "https://www.smartpatients.com/trials/$1"
       }
-    ]
+    ],
+    "synonyms": [
+      "clinicaltrial"
+    ],
+    "wikidata": {
+      "database": "Q106892809",
+      "description": "identifier in the ClinicalTrials.gov database",
+      "example": [
+        "NCT00243178",
+        "NCT04315948"
+      ],
+      "name": "ClinicalTrials.gov ID",
+      "pattern": "NCT(\\d{8})",
+      "prefix": "P3098",
+      "uri_format": "https://clinicaltrials.gov/show/$1"
+    }
   },
   "clinvar": {
     "biocontext": {
@@ -12749,9 +12830,10 @@
     ],
     "wikidata": {
       "database": "Q20023123",
-      "database.homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
-      "database.label": "ClinVar",
       "description": "identifier in the ClinVar database for human genomic variation",
+      "example": [
+        "7105"
+      ],
       "homepage": "https://www.ncbi.nlm.nih.gov/clinvar/",
       "name": "ClinVar Variation ID",
       "prefix": "P1929",
@@ -12995,7 +13077,16 @@
       "CLO"
     ],
     "wikidata": {
-      "prefix": "P2158"
+      "database": "Q21039006",
+      "description": "identifier for the Cell Line Ontology which describes anatomic origin and nature of eukaryotic cell lines",
+      "example": [
+        "CLO_0007043"
+      ],
+      "homepage": "http://www.clo-ontology.org/",
+      "name": "Cell Line Ontology ID",
+      "pattern": "CLO_\\d{7}",
+      "prefix": "P2158",
+      "uri_format": "http://purl.obolibrary.org/obo/$1"
     }
   },
   "cls": {
@@ -15320,10 +15411,12 @@
     },
     "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
     "wikidata": {
-      "database": "Q26218155",
-      "database.homepage": "https://taibnet.sinica.edu.tw/home.php",
-      "database.label": "Catalogue of Life in Taiwan",
+      "database": "Q25924335",
       "description": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
+      "example": [
+        "421738",
+        "431472"
+      ],
       "homepage": "https://taibnet.sinica.edu.tw/home.php",
       "name": "Catalogue of Life in Taiwan ID",
       "pattern": "([1-9]\\d{5})",
@@ -15662,7 +15755,20 @@
       "uri_format": "https://comptox.epa.gov/dashboard/$1"
     },
     "wikidata": {
-      "prefix": "P3117"
+      "database": "Q54774134",
+      "description": "DSSTox substance identifier (DTXSID) used in the Environmental Protection Agency CompTox Dashboard",
+      "example": [
+        "DTXSID3039242",
+        "DTXSID5020108",
+        "DTXSID6046761",
+        "DTXSID7020182",
+        "DTXSID8031865",
+        "DTXSID9020112"
+      ],
+      "name": "DSSTox substance ID",
+      "pattern": "DTXSID\\d{7,9}",
+      "prefix": "P3117",
+      "uri_format": "https://comptox.epa.gov/dashboard/chemical/details/$1"
     }
   },
   "compulyeast": {
@@ -20098,7 +20204,16 @@
     "uri_format": "https://www.diseasesdatabase.com/ddb$1.htm",
     "wikidata": {
       "database": "Q213103",
-      "prefix": "P557"
+      "description": "identifier sourced on the Diseases Database",
+      "example": [
+        "10166",
+        "8664"
+      ],
+      "homepage": "http://www.diseasesdatabase.com",
+      "name": "DiseasesDB",
+      "pattern": "\\d{2,5}",
+      "prefix": "P557",
+      "uri_format": "http://www.diseasesdatabase.com/ddb$1.htm"
     }
   },
   "disprot": {
@@ -20844,10 +20959,13 @@
     ],
     "wikidata": {
       "database": "Q5282129",
-      "database.homepage": "https://disease-ontology.org/",
-      "database.label": "Disease Ontology",
       "description": "identifier in the Disease Ontology database",
+      "example": [
+        "DOID:769",
+        "DOID:8778"
+      ],
       "homepage": "http://disease-ontology.org",
+      "miriam": "doid",
       "name": "Disease Ontology ID",
       "pattern": "DOID:([0-9]{7}|[1-9][0-9]{0,4})",
       "prefix": "P699",
@@ -21652,9 +21770,11 @@
     },
     "wikidata": {
       "database": "Q1122544",
-      "database.homepage": "http://www.drugbank.ca/",
-      "database.label": "DrugBank",
       "description": "identifier in the bioinformatics and cheminformatics database from the University of Alberta",
+      "example": [
+        "00126",
+        "CAT005101"
+      ],
       "homepage": "https://www.drugbank.ca",
       "name": "DrugBank ID",
       "pattern": "(SALT\\d{1}|CAT\\d{1})?\\d{5}",
@@ -21818,7 +21938,21 @@
       ],
       "uri_format": "https://drugcentral.org/target/$1"
     },
-    "uri_format": "http://drugcentral.org/drugcard/$1"
+    "uri_format": "http://drugcentral.org/drugcard/$1",
+    "wikidata": {
+      "database": "Q27697289",
+      "description": "ID of a chemical compound in DrugCentral",
+      "example": [
+        "158",
+        "21",
+        "947"
+      ],
+      "homepage": "https://drugcentral.org/",
+      "name": "DrugCentral ID",
+      "pattern": "\\d+",
+      "prefix": "P11198",
+      "uri_format": "https://drugcentral.org/drugcard/$1"
+    }
   },
   "dsm4": {
     "contributor": {
@@ -21850,7 +21984,19 @@
     "pattern": "^\\d+\\.\\d+$",
     "synonyms": [
       "dsm-iv"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q3078495",
+      "description": "identifier for a mental disorder in the 4th edition of Diagnostic and Statistical Manual of Mental Disorders",
+      "example": [
+        "291.89",
+        "315.1"
+      ],
+      "homepage": "https://en.wikipedia.org/wiki/DSM-IV_codes",
+      "name": "DSM-IV classification",
+      "pattern": "\\d+\\.\\d+",
+      "prefix": "P663"
+    }
   },
   "dsm5": {
     "contributor": {
@@ -21882,7 +22028,17 @@
     ],
     "synonyms": [
       "dsm-v"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q3064664",
+      "description": "identifier for a mental disorder in the 5th edition of Diagnostic and Statistical Manual of Mental Disorders",
+      "example": [
+        "312.33"
+      ],
+      "name": "DSM-5 classification",
+      "pattern": "\\d\\d\\d\\.\\d\\d",
+      "prefix": "P1930"
+    }
   },
   "dsmz": {
     "cellosaurus": {
@@ -22425,7 +22581,17 @@
     },
     "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1",
     "wikidata": {
-      "prefix": "P591"
+      "database": "Q741108",
+      "description": "classification scheme for enzymes",
+      "example": [
+        "1.1.1.1",
+        "2.7.3.2"
+      ],
+      "homepage": "http://www.chem.qmul.ac.uk/iubmb/enzyme/",
+      "name": "EC enzyme number",
+      "pattern": "\\d\\.\\d{1,2}\\.\\d{1,2}\\.\\d{1,3}",
+      "prefix": "P591",
+      "uri_format": "http://enzyme.expasy.org/EC/$1"
     }
   },
   "ecg": {
@@ -24938,15 +25104,22 @@
     },
     "wikidata": {
       "database": "Q1344256",
-      "database.homepage": "http://www.ensembl.org/",
-      "database.label": "Ensembl genome database project",
       "description": "identifier for a gene as per the Ensembl (European Bioinformatics Institute and the Wellcome Trust Sanger Institute) database",
-      "format.rdf": "http://rdf.ebi.ac.uk/resource/ensembl/$1",
+      "example": [
+        "ENSG00000115414",
+        "ENSG00000198125",
+        "ENSMUSG00000018893",
+        "ENSMUSG00000026193",
+        "ENSRNOG00000014288"
+      ],
       "homepage": "https://www.ensembl.org",
       "name": "Ensembl gene ID",
       "pattern": "(ENS(|MUS|RNO)G\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)",
       "prefix": "P594",
-      "uri_format": "https://identifiers.org/ensembl/$1"
+      "uri_format": "https://identifiers.org/ensembl/$1",
+      "uri_format_rdf": [
+        "http://rdf.ebi.ac.uk/resource/ensembl/$1"
+      ]
     }
   },
   "ensembl.bacteria": {
@@ -25880,14 +26053,19 @@
     "uri_format": "https://eol.org/pages/$1",
     "wikidata": {
       "database": "Q82486",
-      "database.homepage": "https://eol.org",
-      "database.label": "Encyclopedia of Life",
       "description": "eol.org item reference number",
+      "example": [
+        "1044544",
+        "110747",
+        "1174823",
+        "20831",
+        "327419"
+      ],
       "homepage": "http://eol.org/api/docs/pages",
       "name": "Encyclopedia of Life ID",
       "pattern": "[1-9]\\d{0,7}",
       "prefix": "P830",
-      "uri_format": "https://eol.org/ar/pages/$1"
+      "uri_format": "https://eol.org/pages/$1"
     }
   },
   "epcc": {
@@ -28041,7 +28219,16 @@
     "uri_format": "https://www.fishbase.ca/summary/$1",
     "wikidata": {
       "database": "Q837101",
-      "prefix": "P938"
+      "description": "identifier for a species in FishBase",
+      "example": [
+        "1234",
+        "19053",
+        "5918"
+      ],
+      "name": "FishBase species ID",
+      "pattern": "[1-9]\\d{0,4}",
+      "prefix": "P938",
+      "uri_format": "https://www.fishbase.ca/summary/$1"
     }
   },
   "fivestars": {
@@ -28563,10 +28750,12 @@
     "uri_format": "https://flybase.org/reports/$1",
     "wikidata": {
       "database": "Q3074571",
-      "database.homepage": "https://flybase.org/",
-      "database.label": "FlyBase",
       "description": "Identifier for a gene in the FlyBase database of Drosophila genes and genomes",
+      "example": [
+        "FBgn0000490"
+      ],
       "homepage": "http://flybase.org/",
+      "miriam": "fb",
       "name": "FlyBase Gene ID",
       "pattern": "FBgn\\d{7}",
       "prefix": "P3852",
@@ -29332,10 +29521,12 @@
     },
     "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
     "wikidata": {
-      "database": "Q796451",
-      "database.homepage": "http://www.fossilworks.org",
-      "database.label": "Fossilworks",
+      "database": "Q17073815",
       "description": "identifier for an animal, plant, or microorganism in the Fossilworks database",
+      "example": [
+        "40565",
+        "49734"
+      ],
       "homepage": "http://www.fossilworks.org",
       "name": "Fossilworks taxon ID",
       "pattern": "([1-9]\\d{0,5})",
@@ -29887,9 +30078,12 @@
     "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1",
     "wikidata": {
       "database": "Q1860469",
-      "database.homepage": "http://www.indexfungorum.org/",
-      "database.label": "Index Fungorum",
       "description": "identifier for a fungus taxon in Index Fungorum",
+      "example": [
+        "154022",
+        "17030",
+        "90345"
+      ],
       "name": "Index Fungorum ID",
       "pattern": "[1-9]\\d{0,5}|",
       "prefix": "P1391",
@@ -30226,7 +30420,16 @@
     ],
     "uri_format": "https://rarediseases.info.nih.gov/diseases/$1/index",
     "wikidata": {
-      "prefix": "P4317"
+      "database": "Q47517289",
+      "description": "identifier for a rare disease in the United States National Institutes of Health's Genetic and Rare Diseases (GARD) Information Center database",
+      "example": [
+        "12136"
+      ],
+      "homepage": "https://rarediseases.info.nih.gov/diseases/",
+      "name": "GARD rare disease ID",
+      "pattern": "[1-9]\\d*",
+      "prefix": "P4317",
+      "uri_format": "https://rarediseases.info.nih.gov/diseases/$1/index"
     }
   },
   "gateway": {
@@ -30366,7 +30569,18 @@
     "twitter": "GBIF",
     "uri_format": "https://www.gbif.org/species/$1",
     "wikidata": {
-      "prefix": "P846"
+      "database": "Q1531570",
+      "description": "taxon identifier in GBIF",
+      "example": [
+        "1948418",
+        "3239598",
+        "4656467",
+        "5963040"
+      ],
+      "name": "GBIF taxon ID",
+      "pattern": "([1-9]\\d{0,8}|)",
+      "prefix": "P846",
+      "uri_format": "https://www.gbif.org/species/$1"
     }
   },
   "gc": {
@@ -32762,6 +32976,13 @@
       "https://en.wikipedia.org/wiki/Gmelin_database"
     ],
     "wikidata": {
+      "database": "Q18342506",
+      "description": "identifier for inorganic chemical compounds, in the Gmelin database",
+      "example": [
+        "1466"
+      ],
+      "name": "Gmelin number",
+      "pattern": "[1-9][0-9]{3,6}",
       "prefix": "P1578"
     }
   },
@@ -34249,9 +34470,10 @@
     "uri_format": "https://www.kew.org/data/grasses-db/www/$1",
     "wikidata": {
       "database": "Q19816560",
-      "database.homepage": "https://www.kew.org/data/grasses-db.html",
-      "database.label": "GrassBase",
       "description": "identifier in GrassBase - The Online World Grass Flora",
+      "example": [
+        "imp10873"
+      ],
       "homepage": "http://www.kew.org/data/grasses-syn/index.htm",
       "name": "GrassBase ID",
       "pattern": "(imp|gen){1}\\d{5}",
@@ -35904,7 +36126,18 @@
       "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"
     },
     "wikidata": {
-      "prefix": "P354"
+      "database": "Q1646383",
+      "description": "A unique ID provided by the HGNC for each gene with an approved symbol. HGNC IDs remain stable even if a name or symbol changes.",
+      "example": [
+        "108",
+        "9957"
+      ],
+      "homepage": "http://www.genenames.org/",
+      "miriam": "hgnc",
+      "name": "HGNC ID",
+      "pattern": "[1-9]\\d{0,4}",
+      "prefix": "P354",
+      "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:$1"
     }
   },
   "hgnc.genefamily": {
@@ -35977,7 +36210,8 @@
     "mappings": {
       "biocontext": "HGNC.SYMBOL",
       "miriam": "hgnc.symbol",
-      "n2t": "hgnc.symbol"
+      "n2t": "hgnc.symbol",
+      "wikidata": "P353"
     },
     "miriam": {
       "deprecated": false,
@@ -36023,7 +36257,21 @@
         "name": "OncoMX",
         "uri_format": "https://oncomx.org/searchview/?gene=$1"
       }
-    ]
+    ],
+    "wikidata": {
+      "database": "Q1646383",
+      "description": "The official gene symbol approved by the HGNC, which is typically a short form of the gene name.",
+      "example": [
+        "ACHE",
+        "RELN"
+      ],
+      "homepage": "http://www.genenames.org/",
+      "miriam": "hgnc.symbol",
+      "name": "HGNC gene symbol",
+      "pattern": "[A-Z][0-9A-Za-z]{0,13}@?(-[0-9A-Z][0-9A-Za-z]{0,6})*",
+      "prefix": "P353",
+      "uri_format": "https://www.genenames.org/tools/search/#!/all?query=$1"
+    }
   },
   "hinv.locus": {
     "biocontext": {
@@ -36280,9 +36528,11 @@
     ],
     "wikidata": {
       "database": "Q5937262",
-      "database.homepage": "https://hmdb.ca",
-      "database.label": "Human Metabolome Database",
       "description": "ID in Human Metabolome Database",
+      "example": [
+        "HMDB0002111",
+        "HMDB0034235"
+      ],
       "name": "Human Metabolome Database ID",
       "pattern": "HMDB\\d+",
       "prefix": "P2057",
@@ -36737,9 +36987,12 @@
     ],
     "wikidata": {
       "database": "Q468215",
-      "database.homepage": "https://www.ncbi.nlm.nih.gov/homologene",
-      "database.label": "HomoloGene",
       "description": "identifier in the HomoloGene database",
+      "example": [
+        "193",
+        "68068",
+        "732"
+      ],
       "homepage": "http://www.ncbi.nlm.nih.gov/homologene",
       "name": "HomoloGene ID",
       "pattern": "[1-9]\\d{0,5}",
@@ -37051,9 +37304,10 @@
     ],
     "wikidata": {
       "database": "Q17027854",
-      "database.homepage": "https://hpo.jax.org",
-      "database.label": "Human Phenotype Ontology",
       "description": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
+      "example": [
+        "HP:0003581"
+      ],
       "homepage": "http://human-phenotype-ontology.github.io/about.html",
       "name": "Human Phenotype Ontology ID",
       "pattern": "HP:[0-9]{7}",
@@ -37499,7 +37753,16 @@
     "pattern": "^\\d+$",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1",
     "wikidata": {
-      "prefix": "P2062"
+      "database": "Q5687720",
+      "description": "ID in Hazardous Substances Data Bank",
+      "example": [
+        "1112",
+        "8055"
+      ],
+      "name": "HSDB ID",
+      "pattern": "\\d+",
+      "prefix": "P2062",
+      "uri_format": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1"
     }
   },
   "hso": {
@@ -38155,7 +38418,17 @@
     ],
     "uri_format": "https://icd.who.int/browse10/2019/en#/$1",
     "wikidata": {
-      "prefix": "P494"
+      "database": "Q45127",
+      "description": "identifier in the ICD catalogue codes for diseases - Version 10",
+      "example": [
+        "J10",
+        "J11",
+        "R19.6"
+      ],
+      "name": "ICD-10",
+      "pattern": "[A-Z]\\d{2}(\\.\\d{1,2})?",
+      "prefix": "P494",
+      "uri_format": "https://icd.who.int/browse10/2019/en#/$1"
     }
   },
   "icd10cm": {
@@ -38240,7 +38513,15 @@
     ],
     "uri_format": "https://icd.codes/icd10cm/$1",
     "wikidata": {
-      "prefix": "P4229"
+      "database": "Q5969475",
+      "description": "identifier in the ICD-10-CM (International Classification of Diseases, 10th Revision, Clinical Modification)",
+      "example": [
+        "G47.52"
+      ],
+      "name": "ICD-10-CM",
+      "pattern": "[A-Z]\\d{2}(-[A-Z]\\d{2}|[.][A-Z\\d]+|)",
+      "prefix": "P4229",
+      "uri_format": "https://icdcodelookup.com/icd-10/codes/$1"
     }
   },
   "icd10pcs": {
@@ -38304,7 +38585,15 @@
     "name": "International Classification of Diseases, 10th Revision, Procedure Coding System",
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1",
     "wikidata": {
-      "prefix": "P1690"
+      "database": "Q9006342",
+      "description": "identifier in the ICD-10-PCS (Procedure Coding System, International Classification of Diseases, 10th revision)",
+      "example": [
+        "01N50ZZ",
+        "0SRD0JZ"
+      ],
+      "name": "ICD-10-PCS",
+      "prefix": "P1690",
+      "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1"
     }
   },
   "icd11": {
@@ -38351,7 +38640,17 @@
     ],
     "uri_format": "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1",
     "wikidata": {
-      "prefix": "P7807"
+      "database": "Q55695727",
+      "description": "identifier in ICD terminology of diseases - Version 11 (foundation ID) (not Mortality and Morbidity Statistics ID)",
+      "example": [
+        "402558626",
+        "698285441",
+        "784669405"
+      ],
+      "name": "ICD-11 (foundation)",
+      "pattern": "^[1-9]\\d*$",
+      "prefix": "P7807",
+      "uri_format": "https://icd.who.int/dev11/f/en#/http://id.who.int/icd/entity/$1"
     }
   },
   "icd9": {
@@ -38392,7 +38691,18 @@
     ],
     "uri_format": "http://www.icd9data.com/getICD9Code.ashx?icd9=$1",
     "wikidata": {
-      "prefix": "P493"
+      "database": "Q14067712",
+      "description": "identifier in the ICD catalogue codes for diseases – Version 9",
+      "example": [
+        "487",
+        "995.81",
+        "E950",
+        "V15.01"
+      ],
+      "name": "ICD-9",
+      "pattern": "(\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?",
+      "prefix": "P493",
+      "uri_format": "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"
     }
   },
   "icd9cm": {
@@ -38465,7 +38775,15 @@
     ],
     "uri_format": "http://icd9cm.chrisendres.com/index.php?action=search&srchtext=$1",
     "wikidata": {
-      "prefix": "P1692"
+      "database": "Q5737131",
+      "description": "identifier in the ICD adaption assigning diagnostic and procedure codes",
+      "example": [
+        "42"
+      ],
+      "name": "ICD-9-CM",
+      "pattern": "([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))",
+      "prefix": "P1692",
+      "uri_format": "http://icd9cm.chrisendres.com/index.php?action=search&srchtext=$1"
     }
   },
   "icdc": {
@@ -38563,7 +38881,16 @@
     ],
     "uri_format": "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1",
     "wikidata": {
-      "prefix": "P563"
+      "database": "Q1430635",
+      "description": "International Classification of Diseases for Oncology",
+      "example": [
+        "8561/0",
+        "M9860/3"
+      ],
+      "name": "ICD-O",
+      "pattern": "[8-9]\\d{3}(/[0-3])?",
+      "prefix": "P563",
+      "uri_format": "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"
     }
   },
   "iceberg.cime": {
@@ -40269,7 +40596,12 @@
     },
     "uri_format": "https://www.inaturalist.org/observations/$1",
     "wikidata": {
-      "prefix": "P5683"
+      "database": "Q16958215",
+      "description": "observation identifier in iNaturalist",
+      "name": "iNaturalist observation ID",
+      "pattern": "[1-9]\\d*",
+      "prefix": "P5683",
+      "uri_format": "https://www.inaturalist.org/observations/$1"
     }
   },
   "inaturalist.place": {
@@ -40307,7 +40639,20 @@
     },
     "name": "iNaturalist Taxonomy",
     "pattern": "^[1-9]\\d{0,6}$",
-    "uri_format": "https://www.inaturalist.org/taxa/$1"
+    "uri_format": "https://www.inaturalist.org/taxa/$1",
+    "wikidata": {
+      "database": "Q16958215",
+      "description": "identifier in iNaturalist",
+      "example": [
+        "1",
+        "21723",
+        "9999"
+      ],
+      "name": "iNaturalist taxon ID",
+      "pattern": "[1-9]\\d{0,6}",
+      "prefix": "P3151",
+      "uri_format": "https://www.inaturalist.org/taxa/$1"
+    }
   },
   "inaturalist.user": {
     "contributor": {
@@ -40395,7 +40740,17 @@
       "uri_format": "http://webbook.nist.gov/cgi/cbook.cgi?$1"
     },
     "wikidata": {
-      "prefix": "P234"
+      "database": "Q203250",
+      "description": "International Chemical Identifier",
+      "example": [
+        "InChI=1S/C10H9NO2/c12-10(13)5-7-6-11-9-4-2-1-3-8(7)9/h1-4,6,11H,5H2,(H,12,13)",
+        "InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H"
+      ],
+      "miriam": "inchi",
+      "name": "InChI",
+      "pattern": "InChI=1S?/([0-9]*[A-Z][ub]?[a-z]?[0-9]*\\.?)+(/[0-9A-Za-z+\\-(),.*;?]+)*",
+      "prefix": "P234",
+      "uri_format": "https://chemapps.stolaf.edu/jmol/jmol.php?&model=$1"
     }
   },
   "inchikey": {
@@ -40443,7 +40798,17 @@
       "uri_format": "http://cactus.nci.nih.gov/chemical/structure/$1/names"
     },
     "wikidata": {
-      "prefix": "P235"
+      "database": "Q21445422",
+      "description": "A hashed version of the full standard InChI - designed to create an identifier that encodes structural information and can also be practically used in web searching.",
+      "example": [
+        "LFQSCWFLJHTTHZ-UHFFFAOYSA-N",
+        "PCHJSUWPFVWCPO-UHFFFAOYSA-N"
+      ],
+      "miriam": "inchikey",
+      "name": "InChIKey",
+      "pattern": "[A-Z]{14}-[A-Z]{10}-[A-Z]",
+      "prefix": "P235",
+      "uri_format": "https://www.ncbi.nlm.nih.gov/sites/entrez?cmd=search&db=pccompound&term=%22$1%22%5BInChIKey%5D"
     }
   },
   "inhand": {
@@ -40507,6 +40872,22 @@
     ],
     "uri_format": "https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1",
     "wikidata": {
+      "database": "Q824258",
+      "description": "identifier for a drug",
+      "example": [
+        "amfetamine",
+        "amfétamine",
+        "anfetamina",
+        "anfetaminum",
+        "phencyclidinum",
+        "vemurafenibum",
+        "амфетамин",
+        "амфетамін",
+        "أمفيتامين",
+        "苯丙胺"
+      ],
+      "homepage": "http://www.who.int/medicines/services/inn/en/",
+      "name": "World Health Organisation  international non-proprietary name",
       "prefix": "P2275"
     }
   },
@@ -41373,7 +41754,15 @@
       "uri_format": "https://www.ebi.ac.uk/interpro/entry/$1"
     },
     "wikidata": {
-      "prefix": "P2926"
+      "description": "InterPro unique identifier",
+      "example": [
+        "IPR000455"
+      ],
+      "homepage": "https://www.ebi.ac.uk/interpro/",
+      "name": "InterPro ID",
+      "pattern": "IPR\\d{6}",
+      "prefix": "P2926",
+      "uri_format": "http://www.ebi.ac.uk/interpro/entry/$1"
     }
   },
   "ird.segment": {
@@ -41859,7 +42248,17 @@
     },
     "uri_format": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1",
     "wikidata": {
-      "prefix": "P815"
+      "database": "Q82575",
+      "description": "identifier for a taxon in the Integrated Taxonomic Information System",
+      "example": [
+        "160330",
+        "162003"
+      ],
+      "homepage": "https://www.itis.gov",
+      "name": "ITIS TSN",
+      "pattern": "[1-9]\\d{1,6}",
+      "prefix": "P815",
+      "uri_format": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1"
     }
   },
   "ito": {
@@ -41999,9 +42398,12 @@
     ],
     "wikidata": {
       "database": "Q17091219",
-      "database.homepage": "http://www.guidetopharmacology.org",
-      "database.label": "IUPHAR/BPS Guide to PHARMACOLOGY",
       "description": "ligand identifier of the Guide to Pharmacology database",
+      "example": [
+        "1627",
+        "2286",
+        "5"
+      ],
       "homepage": "https://www.guidetopharmacology.org/",
       "name": "Guide to Pharmacology Ligand ID",
       "pattern": "\\d{1,4}",
@@ -42082,9 +42484,12 @@
     },
     "wikidata": {
       "database": "Q17091219",
-      "database.homepage": "http://www.guidetopharmacology.org",
-      "database.label": "IUPHAR/BPS Guide to PHARMACOLOGY",
       "description": "target identifier of the Guide to Pharmacology database",
+      "example": [
+        "1",
+        "214",
+        "620"
+      ],
       "homepage": "https://www.guidetopharmacology.org/GRAC/",
       "name": "Guide to Pharmacology Target ID",
       "pattern": "[1-9]\\d{0,3}",
@@ -43492,15 +43897,20 @@
     ],
     "wikidata": {
       "database": "Q909442",
-      "database.homepage": "http://www.genome.jp/kegg/",
-      "database.label": "Kyoto Encyclopedia of Genes and Genomes",
       "description": "identifier from databases dealing with genomes, enzymatic pathways, and biological chemicals",
-      "format.rdf": "https://www.kegg.jp/entry/$1",
+      "example": [
+        "D00018",
+        "D05961"
+      ],
       "homepage": "https://www.kegg.jp/",
+      "miriam": "kegg",
       "name": "KEGG ID",
       "pattern": "[A-Z]\\d+",
       "prefix": "P665",
-      "uri_format": "https://www.kegg.jp/entry/$1"
+      "uri_format": "https://www.kegg.jp/entry/$1",
+      "uri_format_rdf": [
+        "https://www.kegg.jp/entry/$1"
+      ]
     }
   },
   "kerafast": {
@@ -43554,9 +43964,11 @@
     "name": "KNApSAcK",
     "wikidata": {
       "database": "Q20900436",
-      "database.homepage": "http://kanaya.naist.jp/KNApSAcK/",
-      "database.label": "KNApSAcK",
       "description": "identifier in the KNApSAcK Core System",
+      "example": [
+        "C00000001",
+        "C00035015"
+      ],
       "name": "KNApSAcK ID",
       "pattern": "C\\d{8}",
       "prefix": "P2064",
@@ -44578,7 +44990,16 @@
       "LIPID_MAPS_instance"
     ],
     "wikidata": {
-      "prefix": "P2063"
+      "database": "Q20968889",
+      "description": "identifier used in the LIPID MAPS database for lipids",
+      "example": [
+        "LMFA07010511",
+        "LMPR0102010003"
+      ],
+      "name": "LIPID MAPS ID",
+      "pattern": "LM[A-Z][A-Z]\\d+([A-Z][A-Z]?\\d+)?",
+      "prefix": "P2063",
+      "uri_format": "https://www.lipidmaps.org/data/structure/LMSDSearch.php?Mode=ProcessClassSearch&LMID=$1"
     }
   },
   "lipro": {
@@ -44746,7 +45167,8 @@
       "biolink": "LOINC",
       "bioportal": "LOINC",
       "fairsharing": "FAIRsharing.2mk2zb",
-      "hl7": "2.16.840.1.113883.6.1"
+      "hl7": "2.16.840.1.113883.6.1",
+      "wikidata": "P4338"
     },
     "name": "Logical Observation Identifiers Names and Codes",
     "publications": [
@@ -44774,7 +45196,23 @@
     "synonyms": [
       "LNC"
     ],
-    "uri_format": "https://loinc.org/$1"
+    "uri_format": "https://loinc.org/$1",
+    "wikidata": {
+      "database": "Q502480",
+      "description": "identifier for medical observations, measurements, and documents in the Regenstrief Institute's Logical Observation Identifiers Names and Codes (LOINC), a database of internationalized medical terminology",
+      "example": [
+        "41995-2",
+        "69723-5"
+      ],
+      "homepage": "https://loinc.org/",
+      "name": "LOINC ID",
+      "pattern": "\\d+-\\d",
+      "prefix": "P4338",
+      "uri_format": "https://loinc.org/$1",
+      "uri_format_rdf": [
+        "http://loinc.org/rdf/$1"
+      ]
+    }
   },
   "lonza": {
     "cellosaurus": {
@@ -45617,7 +46055,17 @@
     },
     "wikidata": {
       "database": "Q24088019",
-      "prefix": "P6689"
+      "description": "accession number for entries in the MassBank database (records of mass spectrometry)",
+      "example": [
+        "AU112601",
+        "EA030311",
+        "SMI00011"
+      ],
+      "homepage": "https://massbank.eu/",
+      "name": "MassBank accession ID",
+      "pattern": "^MSBNK-[A-Z0-9_]{1,32}-[A-Z0-9_]{1,64}$",
+      "prefix": "P6689",
+      "uri_format": "https://massbank.eu/MassBank/RecordDisplay?id=$1"
     }
   },
   "massive": {
@@ -46250,7 +46698,14 @@
       "Medical Dictionary for Regulatory Activities"
     ],
     "wikidata": {
-      "prefix": "P3201"
+      "database": "Q1539689",
+      "description": "identifier in the Medical Dictionary for Regulatory Activities",
+      "example": [
+        "10014021"
+      ],
+      "name": "Medical Dictionary for Regulatory Activities ID",
+      "prefix": "P3201",
+      "uri_format": "http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1"
     }
   },
   "medgen": {
@@ -46745,12 +47200,21 @@
     "uri_format": "https://meshb.nlm.nih.gov/record/ui?ui=$1",
     "wikidata": {
       "database": "Q199897",
-      "database.label": "Medical Subject Headings",
-      "homepage": "https://www.wikidata.org/wiki/Q6589563",
+      "description": "identifier for Descriptor or Supplementary concept in the Medical Subject Headings controlled vocabulary",
+      "example": [
+        "C004931",
+        "D008180",
+        "D014583"
+      ],
+      "homepage": "http://www.nlm.nih.gov",
+      "miriam": "mesh",
       "name": "MeSH descriptor ID",
       "pattern": "^[CD]\\w{6}(\\w{3}|)$",
       "prefix": "P486",
-      "uri_format": "http://id.nlm.nih.gov/mesh/$1"
+      "uri_format": "https://meshb.nlm.nih.gov/record/ui?ui=$1",
+      "uri_format_rdf": [
+        "http://id.nlm.nih.gov/mesh/$1"
+      ]
     }
   },
   "mesh.2012": {
@@ -46891,9 +47355,10 @@
     },
     "wikidata": {
       "database": "Q24174701",
-      "database.homepage": "http://www.ebi.ac.uk/metabolights",
-      "database.label": "MetaboLights",
       "description": "identifiers for compound entries in the MetaboLights databases.",
+      "example": [
+        "MTBLC17170"
+      ],
       "name": "MetaboLights Compound ID",
       "pattern": "MTBLC\\d+",
       "prefix": "P3890",
@@ -47986,9 +48451,12 @@
     },
     "wikidata": {
       "database": "Q1951035",
-      "database.homepage": "http://www.informatics.jax.org/",
-      "database.label": "Mouse Genome Informatics",
       "description": "identifier for a gene in the Mouse Genome Informatics database",
+      "example": [
+        "MGI:2148705",
+        "MGI:95674",
+        "MGI:96922"
+      ],
       "homepage": "http://www.informatics.jax.org/",
       "name": "Mouse Genome Informatics ID",
       "pattern": "MGI:\\d{1,7}",
@@ -50839,7 +51307,20 @@
     ],
     "twitter": "MonarchInit",
     "wikidata": {
-      "prefix": "P5270"
+      "database": "Q27468140",
+      "description": "identifier for a disease in the Monarch Disease Ontology",
+      "example": [
+        "MONDO:0005301",
+        "MONDO:0005344"
+      ],
+      "homepage": "https://github.com/monarch-initiative/mondo",
+      "name": "MonDO ID",
+      "pattern": "MONDO:([0-9]{1,7})",
+      "prefix": "P5270",
+      "short_name": [
+        "MONDO"
+      ],
+      "uri_format": "http://www.bioregistry.io/$1"
     }
   },
   "mop": {
@@ -53162,15 +53643,19 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
     },
     "wikidata": {
-      "database": "Q1345229",
-      "database.homepage": "http://www.ncbi.nlm.nih.gov/gquery/",
-      "database.label": "Entrez",
+      "database": "Q20641742",
       "description": "identifier for a gene per the NCBI Entrez database",
-      "format.rdf": "http://purl.uniprot.org/geneid/$1",
+      "example": [
+        "1017",
+        "1207170"
+      ],
       "name": "Entrez Gene ID",
       "pattern": "[1-9]\\d{0,8}",
       "prefix": "P351",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
+      "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1",
+      "uri_format_rdf": [
+        "http://purl.uniprot.org/geneid/$1"
+      ]
     }
   },
   "ncbigi": {
@@ -53608,15 +54093,19 @@
     ],
     "wikidata": {
       "database": "Q13711410",
-      "database.homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
-      "database.label": "Taxonomy database of the U.S. National Center for Biotechnology Information",
       "description": "identifier for a taxon in the Taxonomy Database by the National Center for Biotechnology Information",
-      "format.rdf": "http://purl.uniprot.org/taxonomy/$1",
+      "example": [
+        "9606",
+        "9986"
+      ],
       "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
       "name": "NCBI taxonomy ID",
       "pattern": "[1-9][0-9]{0,6}",
       "prefix": "P685",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1"
+      "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
+      "uri_format_rdf": [
+        "http://purl.uniprot.org/taxonomy/$1"
+      ]
     }
   },
   "ncim": {
@@ -53852,7 +54341,20 @@
     ],
     "wikidata": {
       "database": "Q19404626",
-      "prefix": "P1748"
+      "description": "identifier in the United States National Cancer Institute Thesaurus, vocabulary for clinical care, translational and basic research, etc",
+      "example": [
+        "C120871",
+        "C12431",
+        "C75016"
+      ],
+      "homepage": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&version=14.10d&code=C75016",
+      "name": "NCI Thesaurus ID",
+      "pattern": "C\\d{3,7}",
+      "prefix": "P1748",
+      "uri_format": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1",
+      "uri_format_rdf": [
+        "http://purl.obolibrary.org/obo/NCIT_$1"
+      ]
     }
   },
   "ncro": {
@@ -54172,7 +54674,15 @@
     "uri_format": "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1",
     "wikidata": {
       "database": "Q21008030",
-      "prefix": "P2115"
+      "description": "identifier for the National Drug File Reference Terminology",
+      "example": [
+        "N0000183250"
+      ],
+      "homepage": "https://rxnav.nlm.nih.gov/",
+      "name": "NDF-RT ID",
+      "pattern": "N[0-9]{10}",
+      "prefix": "P2115",
+      "uri_format": "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=$1"
     }
   },
   "nembase": {
@@ -54451,7 +54961,14 @@
     ],
     "uri_format": "http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=$1",
     "wikidata": {
-      "prefix": "P4394"
+      "database": "Q1773567",
+      "description": "numeric identifier of a brain structure in the BrainInfo (NeuroNames) database in plain mode",
+      "example": [
+        "300"
+      ],
+      "name": "NeuroNames ID (plain mode)",
+      "prefix": "P4394",
+      "uri_format": "http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=$1"
     }
   },
   "neurondb": {
@@ -55804,9 +56321,12 @@
     "uri_format": "https://www.fisheries.noaa.gov/species/$1",
     "wikidata": {
       "database": "Q57696082",
-      "database.homepage": "https://www.fisheries.noaa.gov/species-directory",
-      "database.label": "NOAA Fisheries Species Directory",
       "description": "identifier for a species on the NOAA Fisheries website",
+      "example": [
+        "alaska-snow-crab",
+        "blue-mussel",
+        "long-finned-pilot-whale"
+      ],
       "homepage": "https://www.fisheries.noaa.gov/species-directory",
       "name": "NOAA Fisheries Species Directory ID",
       "pattern": "[a-z]+(\\-[a-z]+)*",
@@ -58503,9 +59023,11 @@
     "uri_format": "https://omim.org/MIM:$1",
     "wikidata": {
       "database": "Q241953",
-      "database.homepage": "https://www.omim.org",
-      "database.label": "Online Mendelian Inheritance in Man",
       "description": "Online \"Mendelian Inheritance in Man\" catalogue codes for diseases, genes, or phenotypes",
+      "example": [
+        "143100",
+        "614371"
+      ],
       "name": "OMIM ID",
       "pattern": "\\d{6}",
       "prefix": "P492",
@@ -60192,10 +60714,12 @@
       "uri_format": "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=$1"
     },
     "wikidata": {
-      "database": "Q1515833",
-      "database.homepage": "http://www.orpha.net/consor/cgi-bin/index.php",
-      "database.label": "Orphanet",
+      "database": "Q1367466",
       "description": "identifier in the Orpha.net database (without ORPHA prefix)",
+      "example": [
+        "723",
+        "82038"
+      ],
       "homepage": "https://www.orpha.net",
       "name": "Orphanet ID",
       "pattern": "[1-9]\\d{0,5}",
@@ -60760,7 +61284,18 @@
     },
     "uri_format": "https://tree.opentreeoflife.org/taxonomy/browse?id=$1",
     "wikidata": {
-      "prefix": "P9157"
+      "database": "Q22661281",
+      "description": "identifier for an entity in Open Tree of Life, a comprehensive, dynamic and digitally-available tree of life by synthesizing published phylogenetic trees along with taxonomic data",
+      "example": [
+        "259588",
+        "309263",
+        "3905431"
+      ],
+      "homepage": "https://tree.opentreeoflife.org/opentree",
+      "name": "Open Tree of Life ID",
+      "pattern": "[1-9]\\d*",
+      "prefix": "P9157",
+      "uri_format": "https://tree.opentreeoflife.org/taxonomy/browse?id=$1"
     }
   },
   "ovae": {
@@ -62410,12 +62945,21 @@
     },
     "wikidata": {
       "database": "Q766195",
-      "database.label": "Protein Data Bank",
-      "homepage": "https://www.rcsb.org/",
+      "description": "identifier for 3D structural data as per the PDB (Protein Data Bank) database",
+      "example": [
+        "1XU7",
+        "4P38",
+        "4ZHD"
+      ],
+      "homepage": "http://www.ebi.ac.uk/pdbsum/",
+      "miriam": "pdb",
       "name": "PDB structure ID",
       "pattern": "[0-9][0-9A-Za-z]{3}",
       "prefix": "P638",
-      "uri_format": "https://rdf.wwpdb.org/pdb/$1"
+      "uri_format": "https://www.rcsb.org/structure/$1",
+      "uri_format_rdf": [
+        "https://rdf.wwpdb.org/pdb/$1"
+      ]
     }
   },
   "pdb-ccd": {
@@ -63491,10 +64035,12 @@
     "uri_format": "https://www.ebi.ac.uk/interpro/entry/pfam/$1",
     "wikidata": {
       "database": "Q906796",
-      "database.homepage": "http://pfam.xfam.org/",
-      "database.label": "Pfam",
       "description": "identifier in the Pfam database of protein families",
+      "example": [
+        "PF00439"
+      ],
       "homepage": "https://pfam.xfam.org/",
+      "miriam": "pfam",
       "name": "Pfam ID",
       "pattern": "(PF\\d{5}|CL\\d{4})",
       "prefix": "P3519",
@@ -66276,9 +66822,13 @@
     },
     "wikidata": {
       "database": "Q25304673",
-      "database.homepage": "https://www.pombase.org/",
-      "database.label": "PomBase",
       "description": "Identifier for a coding gene in the Schizosaccharomyces pombe model organism database PomBase",
+      "example": [
+        "SPAC24H6.05",
+        "SPAC2F7.03c",
+        "SPAC57A10.02",
+        "SPCC18B5.03"
+      ],
       "name": "PomBase systematic ID",
       "prefix": "P6245",
       "uri_format": "https://www.pombase.org/gene/$1"
@@ -67094,7 +67644,21 @@
     },
     "name": "Probes and Drugs",
     "pattern": "^PD\\d{6}$",
-    "uri_format": "https://www.probes-drugs.org/compound/$1"
+    "uri_format": "https://www.probes-drugs.org/compound/$1",
+    "wikidata": {
+      "database": "Q113999788",
+      "description": "ID of a chemical compound in Probes And Drugs",
+      "example": [
+        "PD000003",
+        "PD000100",
+        "PD000596"
+      ],
+      "homepage": "https://www.probes-drugs.org",
+      "name": "Probes And Drugs ID",
+      "pattern": "PD\\d{6}",
+      "prefix": "P11199",
+      "uri_format": "https://www.probes-drugs.org/compound/$1"
+    }
   },
   "probonto": {
     "biocontext": {
@@ -68412,15 +68976,21 @@
     "twitter": "pubchem",
     "wikidata": {
       "database": "Q278487",
-      "database.homepage": "http://pubchem.ncbi.nlm.nih.gov",
-      "database.label": "PubChem",
       "description": "identifier from database of chemical molecules and their activities in biological assays (Compound ID number)",
-      "format.rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1",
+      "example": [
+        "11125",
+        "5284603",
+        "5426"
+      ],
       "homepage": "http://pubchem.ncbi.nlm.nih.gov",
+      "miriam": "pubchem.compound",
       "name": "PubChem CID",
       "pattern": "[1-9]\\d{0,8}",
       "prefix": "P662",
-      "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1"
+      "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1",
+      "uri_format_rdf": [
+        "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1"
+      ]
     }
   },
   "pubchem.element": {
@@ -68524,15 +69094,19 @@
     "twitter": "pubchem",
     "wikidata": {
       "database": "Q278487",
-      "database.homepage": "http://pubchem.ncbi.nlm.nih.gov",
-      "database.label": "PubChem",
       "description": "substance (e.g. mixtures, undefined stereochemistry, ...) identifier in the PubChem database",
-      "format.rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1",
+      "example": [
+        "135307179"
+      ],
       "homepage": "https://www.ncbi.nlm.nih.gov/pcsubstance",
+      "miriam": "pubchem.substance",
       "name": "PubChem Substance ID (SID)",
       "pattern": "[1-9]\\d*",
       "prefix": "P2153",
-      "uri_format": "https://pubchem.ncbi.nlm.nih.gov/substance/$1"
+      "uri_format": "https://pubchem.ncbi.nlm.nih.gov/substance/$1",
+      "uri_format_rdf": [
+        "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1"
+      ]
     }
   },
   "publons.researcher": {
@@ -68729,7 +69303,19 @@
       "pmid"
     ],
     "wikidata": {
-      "prefix": "P698"
+      "database": "Q180686",
+      "description": "identifier for journal articles/abstracts in PubMed",
+      "example": [
+        "17246615",
+        "32768924",
+        "4388",
+        "823"
+      ],
+      "homepage": "https://pubmed.ncbi.nlm.nih.gov",
+      "name": "PubMed ID",
+      "pattern": "([1-3]\\d{7}|[1-9]\\d{0,6})",
+      "prefix": "P698",
+      "uri_format": "https://pubmed.ncbi.nlm.nih.gov/$1"
     }
   },
   "puro": {
@@ -69809,6 +70395,13 @@
       "Reaxys"
     ],
     "wikidata": {
+      "database": "Q4881266",
+      "description": "identifier for chemical substance in Reaxys",
+      "example": [
+        "635680"
+      ],
+      "name": "Reaxys registry number",
+      "pattern": "\\d+",
       "prefix": "P1579"
     }
   },
@@ -70801,9 +71394,10 @@
     },
     "wikidata": {
       "database": "Q7295410",
-      "database.homepage": "http://rgd.mcw.edu",
-      "database.label": "Rat genome database",
       "description": "Identifier for a genetic element in the Rat Genome Database",
+      "example": [
+        "1584682"
+      ],
       "homepage": "https://rgd.mcw.edu/",
       "name": "Rat Genome Database ID",
       "prefix": "P3853",
@@ -72442,7 +73036,13 @@
     "uri_format": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1",
     "wikidata": {
       "database": "Q7383767",
-      "prefix": "P3345"
+      "description": "identifier for the normalized clinical drug dictionary of the Unified Medical Language System",
+      "example": [
+        "221058"
+      ],
+      "name": "RxNorm ID",
+      "prefix": "P3345",
+      "uri_format": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1"
     }
   },
   "s_mart_db": {
@@ -73878,9 +74478,12 @@
     "uri_format": "https://swbiodiversity.org/seinet/taxa/index.php?taxon=$1",
     "wikidata": {
       "database": "Q59263290",
-      "database.homepage": "http://swbiodiversity.org/seinet/index.php",
-      "database.label": "SEINet",
       "description": "identifier for a species on the SEINet website",
+      "example": [
+        "1522",
+        "3314",
+        "762"
+      ],
       "homepage": "http://swbiodiversity.org/seinet/index.php",
       "name": "SEINet ID",
       "pattern": "[1-9]\\d*",
@@ -75391,7 +75994,17 @@
     },
     "name": "Simplified molecular-input line-entry system",
     "wikidata": {
-      "prefix": "P233"
+      "database": "Q466769",
+      "description": "Simplified Molecular Input Line Entry Specification (canonical format)",
+      "example": [
+        "CC2(C)C\\1CCC(C)/C=C/12",
+        "CCO",
+        "[Au]"
+      ],
+      "name": "canonical SMILES",
+      "pattern": "[A-Za-z0-9+\\-\\*=#$:().>/\\\\\\[\\]%]+",
+      "prefix": "P233",
+      "uri_format": "https://chemapps.stolaf.edu/jmol/jmol.php?model=$1"
     }
   },
   "smpdb": {
@@ -75664,12 +76277,20 @@
     ],
     "wikidata": {
       "database": "Q1753883",
-      "database.label": "SNOMED CT",
+      "description": "identifier in the SNOMED CT catalogue codes for diseases, symptoms and procedures",
+      "example": [
+        "267718000",
+        "464035001",
+        "64859006"
+      ],
       "homepage": "http://snomed.info/",
       "name": "SNOMED CT identifier",
       "pattern": "^[0-9]*$",
       "prefix": "P5806",
-      "uri_format": "http://snomed.info/id/$1"
+      "uri_format": "http://snomed.info/id/$1",
+      "uri_format_rdf": [
+        "http://snomed.info/id/$1"
+      ]
     }
   },
   "snornabase": {
@@ -76221,7 +76842,16 @@
       }
     ],
     "wikidata": {
-      "prefix": "P4537"
+      "database": "Q42404539",
+      "description": "identifier for the Spider Ontology which provides a controlled vocabulary for spider comparative biology including anatomical parts (e.g. leg, claw), behavior (e.g. courtship, combing) and products (i.g. silk, web, borrow)",
+      "example": [
+        "0000200",
+        "0000623"
+      ],
+      "miriam": "SPD",
+      "name": "Spider Ontology ID",
+      "prefix": "P4537",
+      "uri_format": "http://purl.obolibrary.org/obo/SPD_$1"
     }
   },
   "spdx": {
@@ -77640,9 +78270,11 @@
     "uri_format": "https://www.swisslipids.org/#/entity/SLM:$1",
     "wikidata": {
       "database": "Q41165322",
-      "database.homepage": "http://www.swisslipids.org/",
-      "database.label": "SwissLipids",
       "description": "identifier for lipids used by the SwissLipids database",
+      "example": [
+        "SLM:000000274",
+        "SLM:000000510"
+      ],
       "homepage": "https://www.swisslipids.org/#/",
       "name": "SwissLipids identifier",
       "prefix": "P8691",
@@ -77988,7 +78620,16 @@
       "SYMP"
     ],
     "wikidata": {
-      "prefix": "P8656"
+      "database": "Q81661810",
+      "description": "identifier in the Symptom Ontology",
+      "example": [
+        "0000007",
+        "0000099"
+      ],
+      "homepage": "https://github.com/DiseaseOntology/SymptomOntology",
+      "name": "Symptom Ontology ID",
+      "prefix": "P8656",
+      "uri_format": "https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1"
     }
   },
   "syoid": {
@@ -78877,6 +79518,9 @@
       "https://en.wikipedia.org/wiki/Terminologia_Embryologica"
     ],
     "wikidata": {
+      "database": "Q7702833",
+      "description": "standardized list of words used in the description of human embryologic and fetal structures",
+      "name": "Terminologia Embryologica",
       "prefix": "P1693"
     }
   },
@@ -79504,9 +80148,11 @@
     ],
     "wikidata": {
       "database": "Q2300489",
-      "database.homepage": "http://tolweb.org/tree/phylogeny.html",
-      "database.label": "Tree of Life Web Project",
       "description": "identifier in the Tree of Life Web Project",
+      "example": [
+        "16952",
+        "5838"
+      ],
       "homepage": "https://tolweb.org",
       "name": "Tree of Life Web Project ID",
       "pattern": "[1-9]\\d*",
@@ -80642,7 +81288,18 @@
       "Uberon"
     ],
     "wikidata": {
-      "prefix": "P1554"
+      "database": "Q7876491",
+      "description": "identifier from UBERON ontology (without prefix)",
+      "example": [
+        "0000033",
+        "0000057"
+      ],
+      "homepage": "http://uberon.github.io",
+      "miriam": "UBERON",
+      "name": "UBERON ID",
+      "pattern": "\\d{7}",
+      "prefix": "P1554",
+      "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1"
     }
   },
   "ubio.namebank": {
@@ -81148,7 +81805,18 @@
       "umls.cui"
     ],
     "wikidata": {
-      "prefix": "P2892"
+      "database": "Q455338",
+      "description": "NLM Unified Medical Language System (UMLS) controlled biomedical vocabulary unique identifier",
+      "example": [
+        "C1274928",
+        "C3192263"
+      ],
+      "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/",
+      "miriam": "umls",
+      "name": "UMLS CUI",
+      "pattern": "C\\w\\d{6}",
+      "prefix": "P2892",
+      "uri_format": "https://ncim-stage.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20Metathesaurus&code=$1"
     }
   },
   "umls.aui": {
@@ -81284,7 +81952,19 @@
     },
     "name": "Unique Ingredient Identifier",
     "wikidata": {
-      "prefix": "P652"
+      "database": "Q6593799",
+      "description": "identifier issued by the FDA / Unique Ingredient Identifier",
+      "example": [
+        "3XMK78S47O",
+        "97C5T2UQ7J",
+        "YKH834O4BH"
+      ],
+      "homepage": "http://fdasis.nlm.nih.gov/srs",
+      "miriam": "unii",
+      "name": "UNII",
+      "pattern": "[0-9A-Za-z]{10}",
+      "prefix": "P652",
+      "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
     }
   },
   "unimod": {
@@ -81704,15 +82384,20 @@
     ],
     "wikidata": {
       "database": "Q905695",
-      "database.homepage": "http://www.uniprot.org/",
-      "database.label": "UniProt",
       "description": "identifier for a protein per the UniProt database",
-      "format.rdf": "http://purl.uniprot.org/uniprot/$1",
+      "example": [
+        "P78509",
+        "Q8WZ42"
+      ],
       "homepage": "http://mygene.info",
+      "miriam": "uniprot",
       "name": "UniProt protein ID",
       "pattern": "([OPQ][0-9][A-Z0-9]|[A-NR-Z][0-9][A-Z])[A-Z0-9][A-Z0-9][0-9]([A-Z][A-Z0-9][A-Z0-9][0-9])?",
       "prefix": "P352",
-      "uri_format": "https://www.uniprot.org/uniprot/$1"
+      "uri_format": "https://www.uniprot.org/uniprot/$1",
+      "uri_format_rdf": [
+        "http://purl.uniprot.org/uniprot/$1"
+      ]
     }
   },
   "uniprot.arba": {
@@ -85964,7 +86649,15 @@
     },
     "wikidata": {
       "database": "Q3570042",
-      "prefix": "P3860"
+      "description": "Identifier for a genetic element in Wormbase",
+      "example": [
+        "WBGene00000898"
+      ],
+      "homepage": "http://www.wormbase.org",
+      "miriam": "wb",
+      "name": "Wormbase Gene ID",
+      "prefix": "P3860",
+      "uri_format": "http://www.wormbase.org/db/gene/gene?name=$1;class=Gene"
     }
   },
   "wormpep": {
@@ -86081,6 +86774,22 @@
       "pattern": "^\\d+$",
       "prefix": "worms",
       "uri_format": "http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1"
+    },
+    "wikidata": {
+      "database": "Q604063",
+      "description": "identifier in the World Register of Marine Species",
+      "example": [
+        "11",
+        "145548"
+      ],
+      "homepage": "https://www.marinespecies.org/aphia.php?p=search",
+      "name": "WoRMS-ID for taxa",
+      "pattern": "[1-9]\\d{0,6}",
+      "prefix": "P850",
+      "uri_format": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=$1",
+      "uri_format_rdf": [
+        "urn:lsid:marinespecies.org:taxname:$1"
+      ]
     }
   },
   "wwf.ecoregion": {
@@ -86247,7 +86956,14 @@
       }
     ],
     "wikidata": {
-      "prefix": "P4495"
+      "database": "Q42400040",
+      "description": "identifier for an anatomical structure in the Xenopus Anatomical Ontology, a controlled vocubulary for describing Xenopus anatomy and embryological development",
+      "example": [
+        "XAO_0000010"
+      ],
+      "name": "Xenopus Anatomical Ontology ID",
+      "prefix": "P4495",
+      "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1"
     }
   },
   "xco": {
@@ -87698,7 +88414,16 @@
       }
     },
     "wikidata": {
-      "prefix": "P2084"
+      "database": "Q8063109",
+      "description": "identifier for a chemical compound in the ZINC database",
+      "example": [
+        "1562396"
+      ],
+      "homepage": "http://zinc.docking.org/",
+      "name": "ZINC ID",
+      "pattern": "\\d{7,9}",
+      "prefix": "P2084",
+      "uri_format": "http://zinc.docking.org/substances/ZINC$1"
     }
   },
   "zp": {

@@ -204,7 +204,18 @@ class Aligner:
 
         .. note:: You don't need to pass the external ID. this will automatically be the first element.
         """  # noqa:DAR202
-        return [(external_entry.get(k) or "").strip() for k in self.curation_header]
+        rv = []
+        for k in self.curation_header:
+            value = external_entry.get(k)
+            if value is None:
+                rv.append("")
+            elif isinstance(value, str):
+                rv.append(value.strip())
+            elif isinstance(value, (list, tuple, set)):
+                rv.append("|".join(sorted(v.strip() for v in value)))
+            else:
+                raise TypeError
+        return rv
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(
