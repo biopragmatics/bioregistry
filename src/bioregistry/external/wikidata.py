@@ -153,6 +153,14 @@ def _get_wikidata():
             else:
                 bindings[key] = canonicals[prefix]
 
+        pattern = bindings.get("pattern")
+        if pattern:
+            if not pattern.startswith("^"):
+                pattern = "^" + pattern
+            if not pattern.endswith("$"):
+                pattern = pattern + "$"
+            bindings["pattern"] = pattern
+
         rv[prefix] = bindings
 
     return rv
