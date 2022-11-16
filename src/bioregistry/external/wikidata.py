@@ -4,11 +4,12 @@
 
 import json
 import logging
-from collections import defaultdict
 from textwrap import dedent
 
+import click
+
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
-from bioregistry.utils import query_wikidata
+from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
     "get_wikidata",
@@ -21,55 +22,62 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 logger = logging.getLogger(__name__)
 
-HEADER = {
-    # 'database',
-    "databaseLabel": "database.label",
-    "databaseMiriam": "database.miriam",
-    "databaseHomepage": "database.homepage",
-    "prop": "prefix",
-    "propLabel": "name",
-    "propDescription": "description",
-    "propMiriam": "miriam",
-    "propHomepage": "homepage",
-    "propFormat": URI_FORMAT_KEY,
-    "propFormatRDF": "format.rdf",
-    "propPattern": "pattern",
+#: A query to wikidata for properties related to chemistry, biology, and related
+QUERY = dedent(
+    """\
+    SELECT DISTINCT
+      (?prop AS ?prefix) 
+      ?propLabel
+      ?propDescription
+      ?miriam 
+      ?pattern
+      (GROUP_CONCAT(DISTINCT ?homepage_; separator='\\t') AS ?homepage)
+      (GROUP_CONCAT(DISTINCT ?format_; separator='\\t') AS ?uri_format)
+      (GROUP_CONCAT(DISTINCT ?format_rdf_; separator='\\t') AS ?uri_format_rdf)
+      (GROUP_CONCAT(DISTINCT ?database_; separator='\\t') AS ?database)
+      (GROUP_CONCAT(DISTINCT ?example_; separator='\\t') AS ?example)
+      (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_name)
+    WHERE {
+      VALUES ?category { 
+        wd:Q21294996  # chemistry
+        wd:Q22988603  # biology
+      }
+      ?prop wdt:P31/wdt:P279+ ?category .
+      BIND( SUBSTR(STR(?prop), 32) AS ?propStr ) 
+      OPTIONAL { ?prop wdt:P1793 ?pattern } .
+      OPTIONAL { ?prop wdt:P4793 ?miriam } .
+      
+      OPTIONAL { ?prop wdt:P1813 ?short_name_ . }
+      OPTIONAL { ?prop wdt:P1896 ?homepage_ . }
+      OPTIONAL { ?prop wdt:P1630 ?format_ } .
+      OPTIONAL { ?prop wdt:P1921 ?format_rdf_ } .
+      OPTIONAL { ?prop wdt:P1629 ?database_ } .
+      OPTIONAL { 
+        ?prop p:P1855 ?statement . 
+        ?statement ?propQualifier ?example_ . 
+        FILTER (STRSTARTS(STR(?propQualifier), "http://www.wikidata.org/prop/qualifier/"))
+        FILTER (?propStr = SUBSTR(STR(?propQualifier), 40))
+      } .
+      SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+    }
+    GROUP BY ?prop ?propLabel ?propDescription ?miriam ?pattern
+    ORDER BY ?prop
+    """
+)
+
+RENAMES = {"propLabel": "name", "propDescription": "description"}
+CANONICAL_DATABASES = {
+    "P6800": "Q87630124",  # -> NCBI Genome
+    "P627": "Q48268",  # -> International Union for Conservation of Nature
+    "P351": "Q1345229",  # NCBI Gene
+    "P4168": "Q112783946",  # Immune epitope database
 }
 
-
-def iter_results():
-    """Iterate over Wikidata properties connected to biological databases."""
-    query = dedent(
-        """\
-    SELECT
-        ?database ?databaseLabel ?databaseMiriam ?databaseHomepage
-        ?prop ?propLabel ?propDescription ?propMiriam ?propHomepage ?propFormat ?propFormatRDF ?propPattern
-        # ?propDatabase ?propDatabaseLabel
-    WHERE {
-        ?database wdt:P31 wd:Q4117139 .
-        ?database wdt:P1687 ?prop .
-        OPTIONAL { ?database wdt:P856 ?databaseHomepage } .
-        OPTIONAL { ?database wdt:P4793 ?databaseMiriam } .
-        OPTIONAL { ?prop wdt:P4793 ?propMiriam } .
-        OPTIONAL { ?prop wdt:P1630 ?propFormat } .
-        OPTIONAL { ?prop wdt:P1921 ?propFormatRDF } .
-        OPTIONAL { ?prop wdt:P1793 ?propPattern } .
-        OPTIONAL { ?prop wdt:P1896 ?propHomepage } .
-        OPTIONAL { ?prop wdt:P1629 ?propDatabase } .
-        SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
-    }
-    ORDER BY DESC(?databaseLabel)
-    """
-    )
-    # Q4117139 "biological database"
-    # P31 "instance of"
-    # P1687 "wikidata property" <- meta property
-    for bindings in query_wikidata(query):
-        for url in ["prop", "propDatabase", "database"]:
-            if url in bindings:
-                bindings[url]["value"] = bindings[url]["value"].split("/")[-1]
-        yield {key: value["value"] for key, value in bindings.items()}
-
+CANONICAL_HOMEPAGES = {}
+CANONICAL_URI_FORMATS = {
+    "P830": "https://eol.org/pages/$1",
+    "P2085": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1",
+}
 
 # Stuff with miriam IDs that shouldn't
 MIRIAM_BLACKLIST = {
@@ -92,72 +100,64 @@ MIRIAM_BLACKLIST = {
 }
 
 
+def _get_wikidata():
+    """Iterate over Wikidata properties connected to biological databases."""
+    rv = {}
+    for bindings in query_wikidata(QUERY):
+        bindings = {
+            RENAMES.get(key, key): value["value"]
+            for key, value in bindings.items()
+            if value["value"]
+        }
+
+        prefix = bindings["prefix"] = removeprefix(
+            bindings["prefix"], "http://www.wikidata.org/entity/"
+        )
+        for key in ["homepage", "uri_format_rdf", URI_FORMAT_KEY, "database", "example", "short_name"]:
+            if key in bindings:
+                bindings[key] = tuple(
+                    sorted(
+                        removeprefix(value, "http://www.wikidata.org/entity/")
+                        for value in bindings[key].split("\t")
+                    )
+                )
+        rv[prefix] = bindings
+
+        for key, canonicals in [
+            ("database", CANONICAL_DATABASES),
+            ("homepage", CANONICAL_HOMEPAGES),
+            ("uri_format", CANONICAL_URI_FORMATS),
+        ]:
+            values = bindings.get(key, [])
+            if not values:
+                pass
+            elif len(values) == 1:
+                bindings[key] = values[0]
+            elif prefix not in canonicals:
+                logger.warning(f"need to curate canonical {key} for {prefix}: {', '.join(values)}")
+                bindings[key] = values[0]
+            else:
+                bindings[key] = canonicals[prefix]
+
+    return rv
+
+
 def get_wikidata(force_download: bool = False):
     """Get the wikidata registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    data = list(iter_results())
+    data = _get_wikidata()
     with RAW_PATH.open("w") as file:
         json.dump(data, file, indent=2, sort_keys=True)
-
-    agg1 = defaultdict(list)
-    for record in data:
-        agg1[record["prop"]].append(record)
-
-    agg2 = {key: _aggregate(key, values) for key, values in agg1.items()}
-    rv = {key: _process(record) for key, record in agg2.items()}
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
-    return rv
+    return data
 
 
-CANONICAL_DATABASES = {
-    "P6800": "Q87630124",  # -> NCBI Genome
-    "P627": "Q48268",  # -> International Union for Conservation of Nature
-    "P351": "Q1345229",  # NCBI Gene
-    "P4168": "Q112783946",  # Immune epitope database
-}
-
-
-def _process(record):
-    return {HEADER.get(k, k): v for k, v in record.items()}
-
-
-def _aggregate(prop, records):
-    databases = {record["database"]: record["databaseLabel"] for record in records}
-    if len(databases) == 1:
-        canonical_database = list(databases)[0]
-    elif prop not in CANONICAL_DATABASES:
-        logger.warning(f"need to curate which is the canonical database for {prop}: {databases}")
-        canonical_database = list(databases)[0]
-    else:
-        canonical_database = CANONICAL_DATABASES[prop]
-
-    records = [
-        dict(record_tuple)
-        for record_tuple in sorted(
-            {
-                tuple(sorted(record.items()))
-                for record in records
-                if record["database"] == canonical_database and record["prop"] == prop
-            }
-        )
-    ]
-
-    if len(records) == 1:
-        return records[0]
-
-    # Throw my hands up in the air! It's probably just because of different URI formatters.
-    return records[0]
-
-
+@click.command()
 def _main():
-    import click
-
-    r = get_wikidata(force_download=True)
-    click.echo(f"Got {len(r)} records")
+    data = get_wikidata(force_download=True)
+    click.echo(f"Got {len(data):,} records")
 
 
 if __name__ == "__main__":
