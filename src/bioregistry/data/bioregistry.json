@@ -21471,6 +21471,23 @@
     },
     "part_of": "dragondb"
   },
+  "drduke": {
+    "mappings": {
+      "wikidata": "P10074"
+    },
+    "wikidata": {
+      "database": "Q48998259",
+      "description": "identifier for chemicals linked to information on occurrence in plants",
+      "example": [
+        "19",
+        "32"
+      ],
+      "homepage": "https://data.nal.usda.gov/system/files/Duke-Source-CSV.zip",
+      "name": "Dr. Duke's Phytochemical and Ethnobotanical Databases chemical ID",
+      "prefix": "P10074",
+      "uri_format": "https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1"
+    }
+  },
   "dron": {
     "aberowl": {
       "description": "An ontology to support comparative effectiveness researchers studying claims data.",
@@ -38635,6 +38652,7 @@
     }
   },
   "icd11": {
+    "comment": "The codes, such as RA00.0, need their own namespace.",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -38642,7 +38660,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease.",
-    "example": "RA01.0",
+    "example": "402558626",
     "fairsharing": {
       "abbreviation": "ICD 11",
       "description": "The International Classification of Diseases (ICD) was created to allow the recording, reporting and grouping of conditions and factors that influence health. It contains categories for diseases, health related conditions, and external causes of illness or death. The purpose of the ICD is to allow the systematic recording, analysis, interpretation and comparison of mortality and morbidity data collected in different countries or areas and at different times. The ICD is used to translate diagnoses of diseases and other health problems into an alphanumeric code, which allows storage, retrieval, and analysis of the data. The ICD has become the international standard diagnostic classification for all general epidemiological and many health management purposes. ICD-11 was released in 2018 to allow Member States to prepare for implementation, including translating ICD into their national languages. Member States will start reporting using ICD-11 on 1 January 2022.",
@@ -45209,6 +45227,7 @@
       "wikidata": "P4338"
     },
     "name": "Logical Observation Identifiers Names and Codes",
+    "pattern": "(\\d|\\w)+-\\d",
     "publications": [
       {
         "doi": "10.1016/s1386-5056(98)00089-6",
@@ -76026,7 +76045,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Documentation of SMILES (Simplified Molecular Input Line Entry System), a line notation (a typographical method using printable characters) for entering and representing molecules and reactions.",
-    "example": "COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1",
+    "example": "CC2(C)C\\1CCC(C)/C=C/12",
     "fairsharing": {
       "abbreviation": "SMILES",
       "description": "This format is an open specification version of the SMILES language, a typographical line notation for specifying chemical structure. It is hosted under the banner of the Blue Obelisk project, with the intent to solicit contributions and comments from the entire computational chemistry community.",

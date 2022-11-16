@@ -980,6 +980,9 @@ class Resource(BaseModel):
             example = self.get_external(metaprefix).get("example")
             if example is not None:
                 return example
+        wikidata_examples = self.get_external("wikidata").get("example", [])
+        if wikidata_examples:
+            return wikidata_examples[0]
         return None
 
     def get_examples(self) -> List[str]:
