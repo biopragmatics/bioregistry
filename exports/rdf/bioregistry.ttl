@@ -1742,14 +1742,15 @@ bioregistry:bitterdb.rec a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:bold.taxonomy a bioregistry.schema:0000001 ;
-    rdfs:label "Barcode of Life database" ;
+    rdfs:label "BOLD Systems taxon ID" ;
     dc:description "The Barcode of Life Data System (BOLD) is an informatics workbench aiding the acquisition, storage, analysis and publication of DNA barcode records. The associated taxonomy browser shows the progress of DNA barcoding and provides sample collection site distribution, and taxon occurence information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:BOLD.TAXONOMY,
         n2t:bold.taxonomy,
         ncbi.resource:BOLD,
         prefixcommons:bold,
-        miriam:bold.taxonomy ;
+        miriam:bold.taxonomy,
+        wikidata:P3606 ;
     foaf:homepage "http://www.boldsystems.org/"^^xsd:string ;
     bioregistry.schema:0000005 "27267"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.boldsystems.org/index.php/Taxbrowser_Taxonpage?taxid=$1"^^xsd:string ;
@@ -1918,7 +1919,7 @@ bioregistry:caps a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cas a bioregistry.schema:0000001 ;
-    rdfs:label "CAS Chemical Registry" ;
+    rdfs:label "CAS Registry Number" ;
     dc:description "CAS (Chemical Abstracts Service) is a division of the American Chemical Society and is the producer of comprehensive databases of chemical information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1002,
@@ -2343,10 +2344,11 @@ bioregistry:civic.tid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:civic.vid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Variant" ;
+    rdfs:label "CIViC variant ID" ;
     dc:description "CIViC variants are usually genomic alterations, including single nucleotide variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s such as amplification or deletion), structural variants (SVs such as translocations and inversions), and other events that differ from the “normal” genome. In some cases a CIViC variant may represent events of the transcriptome or proteome. For example, ‘expression’ or ‘over-expression’ is a valid variant. Regardless of the variant, it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional relevance that is clinical in nature to be entered in CIViC. i.e. There must be some rationale for why curation of this variant could ultimately aid clinical decision making."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.vid ;
+    skos:exactMatch miriam:civic.vid,
+        wikidata:P3329 ;
     foaf:homepage "https://civicdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "12"^^xsd:string ;
     bioregistry.schema:0000006 "https://civicdb.org/links/variant/$1"^^xsd:string ;
@@ -2956,7 +2958,7 @@ bioregistry:combine.specifications a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:comptox a bioregistry.schema:0000001 ;
-    rdfs:label "CompTox Chemistry Dashboard" ;
+    rdfs:label "DSSTox substance ID" ;
     dc:description "The Chemistry Dashboard is a part of a suite of databases and web applications developed by the US Environmental Protection Agency's Chemical Safety for Sustainability Research Program. These databases and apps support EPA's computational toxicology research efforts to develop innovative methods to change how chemicals are currently evaluated for potential health risks."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:COMPTOX,
@@ -3761,6 +3763,16 @@ bioregistry:dpv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:drduke a bioregistry.schema:0000001 ;
+    rdfs:label "Dr. Duke's Phytochemical and Ethnobotanical Databases chemical ID" ;
+    dc:description "identifier for chemicals linked to information on occurrence in plants"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P10074 ;
+    foaf:homepage "https://data.nal.usda.gov/system/files/Duke-Source-CSV.zip"^^xsd:string ;
+    bioregistry.schema:0000005 "19"^^xsd:string ;
+    bioregistry.schema:0000006 "https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:drsc a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila RNAi Screening Center" ;
     dc:description "The DRSC (Drosophila RNAi Screening Cente) tracks both production of reagents for RNA interference (RNAi) screening in Drosophila cells and RNAi screen results. It maintains a list of Drosophila gene names, identifiers, symbols and synonyms and provides  information for cell-based or in vivo RNAi reagents, other types of reagents, screen results, etc. corresponding for a given gene."^^xsd:string ;
@@ -4510,7 +4522,8 @@ bioregistry:fma a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.x56jsy,
         prefixcommons:fma,
         miriam:fma,
-        ols:fma ;
+        ols:fma,
+        wikidata:P1402 ;
     foaf:homepage "http://si.washington.edu/projects/fma"^^xsd:string ;
     bioregistry.schema:0000005 "63189"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/fma/terms?obo_id=FMA:$1"^^xsd:string ;
@@ -5423,14 +5436,15 @@ bioregistry:grin a bioregistry.schema:0000001 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:grin.taxonomy a bioregistry.schema:0000001 ;
-    rdfs:label "Germplasm Resources Information Network" ;
+    rdfs:label "GRIN URL" ;
     dc:description "GRIN (Germplasm Resources Information Network) Taxonomy for Plants provides information on scientific and common names, classification, distribution, references, and economic impact."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:GRIN.TAXONOMY,
         go.resource:GRIN,
         n2t:grin.taxonomy,
         ncbi.resource:GRIN,
-        miriam:grin.taxonomy ;
+        miriam:grin.taxonomy,
+        wikidata:P1421 ;
     foaf:homepage "http://www.ars-grin.gov/cgi-bin/npgs/html/index.pl?language=en"^^xsd:string ;
     bioregistry.schema:0000005 "19333"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1"^^xsd:string ;
@@ -6380,7 +6394,8 @@ bioregistry:interlex a bioregistry.schema:0000001 ;
     dc:description "InterLex is a dynamic lexicon, initially built on the foundation of NeuroLex (PMID: 24009581), of biomedical terms and common data elements designed to help improve the way that biomedical scientists communicate about their data, so that information systems can find data more easily and provide more powerful means of integrating data across distributed resources and datasets. InterLex allows for the association of data fields and data values to common data elements and terminologies enabling the crowdsourcing of data-terminology mappings within and across communities. InterLex provides a stable layer on top of the many other existing terminologies, lexicons, ontologies, and common data element collections and provides a set of inter-lexical and inter-data-lexical mappings. "^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.67sssf,
-        miriam:ilx ;
+        miriam:ilx,
+        wikidata:P696 ;
     foaf:homepage "https://www.fdilab.org"^^xsd:string ;
     bioregistry.schema:0000005 "0101963"^^xsd:string ;
     bioregistry.schema:0000006 "https://scicrunch.org/scicrunch/interlex/view/ilx_$1"^^xsd:string ;
@@ -6706,6 +6721,16 @@ bioregistry:lbo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2346-5201 .
 
+bioregistry:leafsnap a bioregistry.schema:0000001 ;
+    rdfs:label "Leafsnap ID" ;
+    dc:description "identifier for a tree species of the United States and Canada on the Leafsnap electronic field guide"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P10538 ;
+    foaf:homepage "http://leafsnap.com/"^^xsd:string ;
+    bioregistry.schema:0000005 "Amelanchier laevis"^^xsd:string ;
+    bioregistry.schema:0000006 "http://leafsnap.com/species/$1/"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:lei a bioregistry.schema:0000001 ;
     rdfs:label "Global LEI Index" ;
     dc:description "Established by the Financial Stability Board in June 2014, the Global Legal Entity Identifier Foundation (GLEIF) is tasked to support the implementation and use of the Legal Entity Identifier (LEI). The foundation is backed and overseen by the LEI Regulatory Oversight Committee, representing public authorities from around the globe that have come together to jointly drive forward transparency within the global financial markets. GLEIF is a supra-national not-for-profit organization headquartered in Basel, Switzerland."^^xsd:string ;
@@ -7020,7 +7045,7 @@ bioregistry:mao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Julie Thompson" ] .
 
 bioregistry:massbank a bioregistry.schema:0000001 ;
-    rdfs:label "MassBank" ;
+    rdfs:label "MassBank accession ID" ;
     dc:description "MassBank is a federated database of reference spectra from different instruments, including high-resolution mass spectra of small metabolites (<3000 Da)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:MASSBANK,
@@ -7103,7 +7128,7 @@ bioregistry:meddra a bioregistry.schema:0000001 ;
         wikidata:P3201 ;
     foaf:homepage "http://bioportal.bioontology.org/ontologies/MEDDRA"^^xsd:string ;
     bioregistry.schema:0000005 "10015919"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.bioontology.org/ontology/MEDDRA/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "MedDRA MSSO" ] .
@@ -7683,13 +7708,14 @@ bioregistry:miro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Christos (Kitsos) Louis" ] .
 
 bioregistry:mirtarbase a bioregistry.schema:0000001 ;
-    rdfs:label "miRTarBase" ;
+    rdfs:label "mirTarBase ID" ;
     dc:description "miRTarBase is a database of miRNA-target interactions (MTIs), collected manually from relevant literature, following Natural Language Processing of the text to identify research articles related to functional studies of miRNAs. Generally, the collected MTIs are validated experimentally by reporter assay, western blot, microarray and next-generation sequencing experiments."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:MIRTARBASE,
         n2t:mirtarbase,
         fairsharing:FAIRsharing.f0bxfg,
-        miriam:mirtarbase ;
+        miriam:mirtarbase,
+        wikidata:P2646 ;
     foaf:homepage "http://mirtarbase.mbc.nctu.edu.tw/"^^xsd:string ;
     bioregistry.schema:0000005 "MIRT000002"^^xsd:string ;
     bioregistry.schema:0000006 "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1"^^xsd:string ;
@@ -10387,7 +10413,7 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:rebase a bioregistry.schema:0000001 ;
-    rdfs:label "REBASE restriction enzyme database" ;
+    rdfs:label "REBASE Enzyme Number" ;
     dc:description "REBASE is a comprehensive database of information about restriction enzymes, DNA methyltransferases and related proteins involved in the biological process of restriction-modification (R-M). It contains fully referenced information about recognition and cleavage sites, isoschizomers, neoschizomers, commercial availability, methylation sensitivity, crystal and sequence data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:2325,
@@ -10398,7 +10424,8 @@ bioregistry:rebase a bioregistry.schema:0000001 ;
         prefixcommons:rebase,
         miriam:rebase,
         re3data:r3d100012171,
-        uniprot.resource:DB-0089 ;
+        uniprot.resource:DB-0089,
+        wikidata:P4866 ;
     foaf:homepage "http://rebase.neb.com/rebase/"^^xsd:string ;
     bioregistry.schema:0000005 "101"^^xsd:string ;
     bioregistry.schema:0000006 "http://rebase.neb.com/rebase/enz/$1.html"^^xsd:string ;
@@ -12206,6 +12233,17 @@ bioregistry:ubio.namebank a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:unichem a bioregistry.schema:0000001 ;
+    rdfs:label "UniChem compound ID" ;
+    dc:description "identifier of a compound in the UniChem database"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P11089 ;
+    foaf:homepage "https://chembl.gitbook.io/unichem/downloads"^^xsd:string ;
+    bioregistry.schema:0000005 "161671"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/unichem/compoundsources?type=uci&compound=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:unigene a bioregistry.schema:0000001 ;
     rdfs:label "UniGene" ;
     dc:description "A UniGene entry is a set of transcript sequences that appear to come from the same transcription locus (gene or expressed pseudogene), together with information on protein similarities, gene expression, cDNA clone reagents, and genomic location."^^xsd:string ;
@@ -12880,7 +12918,7 @@ bioregistry:world2dpage a bioregistry.schema:0000001 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:wormbase a bioregistry.schema:0000001 ;
-    rdfs:label "WormBase database of nematode biology" ;
+    rdfs:label "Wormbase Gene ID" ;
     dc:description "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1805,
@@ -12916,7 +12954,7 @@ bioregistry:wormpep a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:worms a bioregistry.schema:0000001 ;
-    rdfs:label "World Register of Marine Species" ;
+    rdfs:label "WoRMS-ID for taxa" ;
     dc:description "The World Register of Marine Species (WoRMS) provides an authoritative and comprehensive list of names of marine organisms. It includes synonyms for valid taxonomic names allowing a more complete interpretation of taxonomic literature. The content of WoRMS is administered by taxonomic experts."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch bartoc:720,
@@ -20154,7 +20192,8 @@ bioregistry:agrovoc a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:AGROVOC,
         ecoportal:AGROVOC,
-        fairsharing:FAIRsharing.anpj91 ;
+        fairsharing:FAIRsharing.anpj91,
+        wikidata:P8061 ;
     foaf:homepage "https://data.apps.fao.org/catalog/organization/agrovoc"^^xsd:string ;
     bioregistry.schema:0000005 "2842"^^xsd:string ;
     bioregistry.schema:0000006 "http://aims.fao.org/aos/agrovoc/c_$1"^^xsd:string ;
@@ -20861,13 +20900,14 @@ bioregistry:clingene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:clinicaltrials a bioregistry.schema:0000001 ;
-    rdfs:label "ClinicalTrials.gov" ;
+    rdfs:label "ClinicalTrials.gov ID" ;
     dc:description "ClinicalTrials.gov provides free access to information on clinical studies for a wide range of diseases and conditions. Studies listed in the database are conducted in 175 countries"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:CLINICALTRIALS,
         n2t:clinicaltrials,
         prefixcommons:clinicaltrials,
-        miriam:clinicaltrials ;
+        miriam:clinicaltrials,
+        wikidata:P3098 ;
     foaf:homepage "https://clinicaltrials.gov/"^^xsd:string ;
     bioregistry.schema:0000005 "NCT00222573"^^xsd:string ;
     bioregistry.schema:0000006 "https://clinicaltrials.gov/ct2/show/$1"^^xsd:string ;
@@ -21560,7 +21600,8 @@ bioregistry:drugcentral a bioregistry.schema:0000001 ;
     skos:exactMatch biolink:DrugCentral,
         fairsharing:FAIRsharing.3me82d,
         miriam:drugcentral,
-        uniprot.resource:DB-0239 ;
+        uniprot.resource:DB-0239,
+        wikidata:P11198 ;
     foaf:homepage "http://drugcentral.org"^^xsd:string ;
     bioregistry.schema:0000005 "307"^^xsd:string ;
     bioregistry.schema:0000006 "http://drugcentral.org/drugcard/$1"^^xsd:string ;
@@ -21660,10 +21701,11 @@ bioregistry:ecg a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Raimond L. Winslow, PhD & Stephen Granite" ] .
 
 bioregistry:ecn a bioregistry.schema:0000001 ;
-    rdfs:label "European Community number" ;
-    dc:description "A seven-digit identifier for chemical substances for regulatory purposes within the European Union."^^xsd:string ;
+    rdfs:label "EC number" ;
+    dc:description "identifier for a chemical compound per EINECS or ELINCS"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch cheminf:000447 ;
+    skos:exactMatch cheminf:000447,
+        wikidata:P232 ;
     foaf:homepage "https://echa.europa.eu/information-on-chemicals"^^xsd:string ;
     bioregistry.schema:0000005 "200-003-9"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{3}-\\d{3}-\\d$"^^xsd:string ;
@@ -23105,7 +23147,7 @@ bioregistry:linkml a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
 bioregistry:lipidmaps a bioregistry.schema:0000001 ;
-    rdfs:label "LIPID MAPS" ;
+    rdfs:label "LIPID MAPS ID" ;
     dc:description "The LIPID MAPS Lipid Classification System is comprised of eight lipid categories, each with its own subclassification hierarchy. All lipids in the LIPID MAPS Structure Database (LMSD) have been classified using this system and have been assigned LIPID MAPS ID's which reflects their position in the classification hierarchy."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:2625,
@@ -23566,7 +23608,8 @@ bioregistry:ndc a bioregistry.schema:0000001 ;
     skos:exactMatch oid:2.16.840.1.113883.6.69,
         biocontext:NDC,
         n2t:ndc,
-        miriam:ndc ;
+        miriam:ndc,
+        wikidata:P3640 ;
     foaf:homepage "http://www.accessdata.fda.gov/scripts/cder/ndc/"^^xsd:string ;
     bioregistry.schema:0000005 "0002-1975-61"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1"^^xsd:string ;
@@ -24361,6 +24404,7 @@ bioregistry:probesanddrugs a bioregistry.schema:0000001 ;
     rdfs:label "Probes and Drugs" ;
     dc:description "The Probes & Drugs portal (P&D) is a hub for the integration of high-quality bioactive compound sets enabling their analysis and comparison. Its main focus is on chemical probes and drugs but it also includes additional relevant sets from specialist databases/scientific publications, and vendor sets. Upon these, established bioactive chemistry sources (such as ChEMBL, BindingDB, Guide To Pharmacology, DrugCentral or DrugBank) are utilized for compounds' biological annotation."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P11199 ;
     foaf:homepage "https://www.probes-drugs.org"^^xsd:string ;
     bioregistry.schema:0000005 "PD000596"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.probes-drugs.org/compound/$1"^^xsd:string ;
@@ -24778,7 +24822,9 @@ bioregistry:smiles a bioregistry.schema:0000001 ;
     skos:exactMatch fairsharing:FAIRsharing.qv4b3c,
         wikidata:P233 ;
     foaf:homepage "https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html"^^xsd:string ;
-    bioregistry.schema:0000005 "COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1"^^xsd:string ;
+    bioregistry.schema:0000005 "CC2(C)C\\1CCC(C)/C=C/12"^^xsd:string ;
+    bioregistry.schema:0000006 "https://chemapps.stolaf.edu/jmol/jmol.php?model=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Za-z0-9+\\-\\*=#$:().>/\\\\\\[\\]%]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:snap a bioregistry.schema:0000001 ;
@@ -30232,9 +30278,23 @@ uniprot.resource:DB-0256 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:DB-0258 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
+wikidata:P10074 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P10538 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P11089 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P11198 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P11199 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P1294 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1391 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P1402 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P1421 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1550 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30253,6 +30313,8 @@ wikidata:P1693 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P1748 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1832 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P1928 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1929 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30280,6 +30342,8 @@ wikidata:P2275 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P231 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P232 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P233 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P234 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30289,6 +30353,8 @@ wikidata:P235 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P2410 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2576 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P2646 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P267 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30310,6 +30376,8 @@ wikidata:P305 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3088 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P3098 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P3117 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3151 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30317,6 +30385,8 @@ wikidata:P3151 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P3201 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3289 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P3329 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3345 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30330,11 +30400,17 @@ wikidata:P3519 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P352 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P353 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P354 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3590 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P3606 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P3636 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P3640 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3841 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30354,6 +30430,8 @@ wikidata:P4229 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4317 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P4338 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P4355 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4394 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30365,6 +30443,8 @@ wikidata:P4537 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P4616 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P486 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P4866 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4901 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30436,6 +30516,8 @@ wikidata:P685 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P686 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P696 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P698 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P699 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30455,6 +30537,8 @@ wikidata:P7720 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P7807 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P7963 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P8061 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P8121 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -31312,8 +31396,9 @@ bioregistry:icd11 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.97805c,
         wikidata:P7807 ;
     foaf:homepage "https://icd.who.int/"^^xsd:string ;
-    bioregistry.schema:0000005 "RA01.0"^^xsd:string ;
+    bioregistry.schema:0000005 "402558626"^^xsd:string ;
     bioregistry.schema:0000006 "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:icd9cm a bioregistry.schema:0000001 ;
@@ -31513,10 +31598,12 @@ bioregistry:loinc a bioregistry.schema:0000001 ;
         oid:2.16.840.1.113883.6.1,
         bioportal:LOINC,
         biolink:LOINC,
-        fairsharing:FAIRsharing.2mk2zb ;
+        fairsharing:FAIRsharing.2mk2zb,
+        wikidata:P4338 ;
     foaf:homepage "https://loinc.org/"^^xsd:string ;
     bioregistry.schema:0000005 "LL379-9"^^xsd:string ;
     bioregistry.schema:0000006 "https://loinc.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(\\d|\\w)+-\\d$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "LOINC Support" ] .
 
@@ -31710,6 +31797,7 @@ bioregistry:ndfrt a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT"^^xsd:string ;
     bioregistry.schema:0000005 "N0000001662"^^xsd:string ;
     bioregistry.schema:0000006 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^N[0-9]{10}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Michael J. Lincoln MD" ] .
 
@@ -32665,7 +32753,8 @@ bioregistry:vo a bioregistry.schema:0000001 ;
         biocontext:VO,
         fairsharing:FAIRsharing.zwtww5,
         prefixcommons:vo,
-        ols:vo ;
+        ols:vo,
+        wikidata:P1928 ;
     foaf:homepage "http://www.violinet.org/vaccineontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000093"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VO_$1"^^xsd:string ;
@@ -33044,6 +33133,7 @@ bioregistry:icd9 a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.cdc.gov/nchs/icd/icd9.htm"^^xsd:string ;
     bioregistry.schema:0000005 "277.9"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:iceberg dcterms:hasPart bioregistry:iceberg.cime,
@@ -33197,7 +33287,7 @@ bioregistry:plana a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-3528-5267 .
 
 bioregistry:pubmed a bioregistry.schema:0000001 ;
-    rdfs:label "PubMed" ;
+    rdfs:label "PubMed ID" ;
     dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1187,
@@ -33355,12 +33445,13 @@ bioregistry:ensembl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:hgnc.symbol a bioregistry.schema:0000001 ;
-    rdfs:label "HGNC Symbol" ;
+    rdfs:label "HGNC gene symbol" ;
     dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. This collection refers to records using the HGNC symbol."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:HGNC.SYMBOL,
         n2t:hgnc.symbol,
-        miriam:hgnc.symbol ;
+        miriam:hgnc.symbol,
+        wikidata:P353 ;
     foaf:homepage "https://www.genenames.org/"^^xsd:string ;
     bioregistry.schema:0000005 "DAPK1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genenames.org/cgi-bin/gene_symbol_report?match=$1"^^xsd:string ;
@@ -35655,139 +35746,6 @@ bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://edamontology.org/data_$1" ;
     bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
-bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
-    rdfs:label "Wikidata Property" ;
-    dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
-    dcterms:hasPart wikidata:P1294,
-        wikidata:P1391,
-        wikidata:P1550,
-        wikidata:P1554,
-        wikidata:P1578,
-        wikidata:P1579,
-        wikidata:P1690,
-        wikidata:P1692,
-        wikidata:P1693,
-        wikidata:P1748,
-        wikidata:P1832,
-        wikidata:P1929,
-        wikidata:P1930,
-        wikidata:P2057,
-        wikidata:P2062,
-        wikidata:P2063,
-        wikidata:P2064,
-        wikidata:P2084,
-        wikidata:P2106,
-        wikidata:P2115,
-        wikidata:P2153,
-        wikidata:P2158,
-        wikidata:P2275,
-        wikidata:P231,
-        wikidata:P233,
-        wikidata:P234,
-        wikidata:P235,
-        wikidata:P2410,
-        wikidata:P2576,
-        wikidata:P267,
-        wikidata:P2689,
-        wikidata:P2796,
-        wikidata:P2870,
-        wikidata:P2871,
-        wikidata:P2892,
-        wikidata:P2926,
-        wikidata:P299,
-        wikidata:P305,
-        wikidata:P3088,
-        wikidata:P3117,
-        wikidata:P3151,
-        wikidata:P3201,
-        wikidata:P3289,
-        wikidata:P3345,
-        wikidata:P3382,
-        wikidata:P3406,
-        wikidata:P351,
-        wikidata:P3519,
-        wikidata:P352,
-        wikidata:P354,
-        wikidata:P3590,
-        wikidata:P3636,
-        wikidata:P3841,
-        wikidata:P3852,
-        wikidata:P3853,
-        wikidata:P3860,
-        wikidata:P3870,
-        wikidata:P3890,
-        wikidata:P3937,
-        wikidata:P4229,
-        wikidata:P4317,
-        wikidata:P4355,
-        wikidata:P4394,
-        wikidata:P4495,
-        wikidata:P4537,
-        wikidata:P4616,
-        wikidata:P486,
-        wikidata:P4901,
-        wikidata:P492,
-        wikidata:P4926,
-        wikidata:P493,
-        wikidata:P494,
-        wikidata:P496,
-        wikidata:P5221,
-        wikidata:P5270,
-        wikidata:P5299,
-        wikidata:P5458,
-        wikidata:P5501,
-        wikidata:P557,
-        wikidata:P563,
-        wikidata:P5683,
-        wikidata:P5806,
-        wikidata:P591,
-        wikidata:P592,
-        wikidata:P593,
-        wikidata:P594,
-        wikidata:P595,
-        wikidata:P6049,
-        wikidata:P6209,
-        wikidata:P6245,
-        wikidata:P638,
-        wikidata:P652,
-        wikidata:P661,
-        wikidata:P662,
-        wikidata:P663,
-        wikidata:P665,
-        wikidata:P6689,
-        wikidata:P671,
-        wikidata:P675,
-        wikidata:P6778,
-        wikidata:P683,
-        wikidata:P685,
-        wikidata:P686,
-        wikidata:P698,
-        wikidata:P699,
-        wikidata:P7001,
-        wikidata:P715,
-        wikidata:P7260,
-        wikidata:P7333,
-        wikidata:P7471,
-        wikidata:P7718,
-        wikidata:P7720,
-        wikidata:P7807,
-        wikidata:P7963,
-        wikidata:P8121,
-        wikidata:P815,
-        wikidata:P830,
-        wikidata:P842,
-        wikidata:P846,
-        wikidata:P850,
-        wikidata:P8656,
-        wikidata:P8691,
-        wikidata:P9157,
-        wikidata:P932,
-        wikidata:P938 ;
-    foaf:homepage "https://www.wikidata.org" ;
-    bioregistry.schema:0000005 "P683" ;
-    bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
-    bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ] .
-
 bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
     rdfs:label "Registry of Research Data Repositories" ;
     dc:description "Re3data is a global registry of research data repositories that covers research data repositories from different academic disciplines." ;
@@ -36423,6 +36381,158 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
     foaf:homepage "http://geneontology.org/" ;
     bioregistry.schema:0000005 "CHEBI" ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
+
+bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
+    rdfs:label "Wikidata Property" ;
+    dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
+    dcterms:hasPart wikidata:P10074,
+        wikidata:P10538,
+        wikidata:P11089,
+        wikidata:P11198,
+        wikidata:P11199,
+        wikidata:P1294,
+        wikidata:P1391,
+        wikidata:P1402,
+        wikidata:P1421,
+        wikidata:P1550,
+        wikidata:P1554,
+        wikidata:P1578,
+        wikidata:P1579,
+        wikidata:P1690,
+        wikidata:P1692,
+        wikidata:P1693,
+        wikidata:P1748,
+        wikidata:P1832,
+        wikidata:P1928,
+        wikidata:P1929,
+        wikidata:P1930,
+        wikidata:P2057,
+        wikidata:P2062,
+        wikidata:P2063,
+        wikidata:P2064,
+        wikidata:P2084,
+        wikidata:P2106,
+        wikidata:P2115,
+        wikidata:P2153,
+        wikidata:P2158,
+        wikidata:P2275,
+        wikidata:P231,
+        wikidata:P232,
+        wikidata:P233,
+        wikidata:P234,
+        wikidata:P235,
+        wikidata:P2410,
+        wikidata:P2576,
+        wikidata:P2646,
+        wikidata:P267,
+        wikidata:P2689,
+        wikidata:P2796,
+        wikidata:P2870,
+        wikidata:P2871,
+        wikidata:P2892,
+        wikidata:P2926,
+        wikidata:P299,
+        wikidata:P305,
+        wikidata:P3088,
+        wikidata:P3098,
+        wikidata:P3117,
+        wikidata:P3151,
+        wikidata:P3201,
+        wikidata:P3289,
+        wikidata:P3329,
+        wikidata:P3345,
+        wikidata:P3382,
+        wikidata:P3406,
+        wikidata:P351,
+        wikidata:P3519,
+        wikidata:P352,
+        wikidata:P353,
+        wikidata:P354,
+        wikidata:P3590,
+        wikidata:P3606,
+        wikidata:P3636,
+        wikidata:P3640,
+        wikidata:P3841,
+        wikidata:P3852,
+        wikidata:P3853,
+        wikidata:P3860,
+        wikidata:P3870,
+        wikidata:P3890,
+        wikidata:P3937,
+        wikidata:P4229,
+        wikidata:P4317,
+        wikidata:P4338,
+        wikidata:P4355,
+        wikidata:P4394,
+        wikidata:P4495,
+        wikidata:P4537,
+        wikidata:P4616,
+        wikidata:P486,
+        wikidata:P4866,
+        wikidata:P4901,
+        wikidata:P492,
+        wikidata:P4926,
+        wikidata:P493,
+        wikidata:P494,
+        wikidata:P496,
+        wikidata:P5221,
+        wikidata:P5270,
+        wikidata:P5299,
+        wikidata:P5458,
+        wikidata:P5501,
+        wikidata:P557,
+        wikidata:P563,
+        wikidata:P5683,
+        wikidata:P5806,
+        wikidata:P591,
+        wikidata:P592,
+        wikidata:P593,
+        wikidata:P594,
+        wikidata:P595,
+        wikidata:P6049,
+        wikidata:P6209,
+        wikidata:P6245,
+        wikidata:P638,
+        wikidata:P652,
+        wikidata:P661,
+        wikidata:P662,
+        wikidata:P663,
+        wikidata:P665,
+        wikidata:P6689,
+        wikidata:P671,
+        wikidata:P675,
+        wikidata:P6778,
+        wikidata:P683,
+        wikidata:P685,
+        wikidata:P686,
+        wikidata:P696,
+        wikidata:P698,
+        wikidata:P699,
+        wikidata:P7001,
+        wikidata:P715,
+        wikidata:P7260,
+        wikidata:P7333,
+        wikidata:P7471,
+        wikidata:P7718,
+        wikidata:P7720,
+        wikidata:P7807,
+        wikidata:P7963,
+        wikidata:P8061,
+        wikidata:P8121,
+        wikidata:P815,
+        wikidata:P830,
+        wikidata:P842,
+        wikidata:P846,
+        wikidata:P850,
+        wikidata:P8656,
+        wikidata:P8691,
+        wikidata:P9157,
+        wikidata:P932,
+        wikidata:P938 ;
+    foaf:homepage "https://www.wikidata.org" ;
+    bioregistry.schema:0000005 "P683" ;
+    bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
+    bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ] .
 
 bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
     rdfs:label "OntoBee" ;
@@ -41597,6 +41707,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dragondb.dna,
         bioregistry:dragondb.locus,
         bioregistry:dragondb.protein,
+        bioregistry:drduke,
         bioregistry:dron,
         bioregistry:drsc,
         bioregistry:drugbank,
@@ -42002,6 +42113,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:labo,
         bioregistry:langual,
         bioregistry:lbo,
+        bioregistry:leafsnap,
         bioregistry:lei,
         bioregistry:lepao,
         bioregistry:lgai.cede,
@@ -42656,6 +42768,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:umbbd.rule,
         bioregistry:umls,
         bioregistry:umls.aui,
+        bioregistry:unichem,
         bioregistry:unigene,
         bioregistry:unii,
         bioregistry:unimod,

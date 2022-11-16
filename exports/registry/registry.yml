@@ -629,6 +629,7 @@ agrovoc:
     agroportal: AGROVOC
     ecoportal: AGROVOC
     fairsharing: FAIRsharing.anpj91
+    wikidata: P8061
   name: Agronomy Vocabulary
   pattern: ^[a-z0-9]+$
   preferred_prefix: agrovoc
@@ -3180,7 +3181,8 @@ bold.taxonomy:
     n2t: bold.taxonomy
     ncbi: BOLD
     prefixcommons: bold
-  name: Barcode of Life database
+    wikidata: P3606
+  name: BOLD Systems taxon ID
   pattern: ^\d+$
   preferred_prefix: bold.taxonomy
   publications:
@@ -3650,7 +3652,7 @@ cas:
     n2t: cas
     prefixcommons: cas
     wikidata: P231
-  name: CAS Chemical Registry
+  name: CAS Registry Number
   pattern: ^\d{1,7}\-\d{2}\-\d$
   preferred_prefix: cas
   providers:
@@ -5066,7 +5068,8 @@ civic.vid:
   homepage: https://civicdb.org/
   mappings:
     miriam: civic.vid
-  name: CIViC Variant
+    wikidata: P3329
+  name: CIViC variant ID
   pattern: ^[0-9]+$
   preferred_prefix: civic.vid
   uri_format: https://civicdb.org/links/variant/$1
@@ -5240,7 +5243,8 @@ clinicaltrials:
     miriam: clinicaltrials
     n2t: clinicaltrials
     prefixcommons: clinicaltrials
-  name: ClinicalTrials.gov
+    wikidata: P3098
+  name: ClinicalTrials.gov ID
   pattern: ^NCT\d{8}$
   preferred_prefix: clinicaltrials
   providers:
@@ -5250,6 +5254,8 @@ clinicaltrials:
     homepage: https://www.smartpatients.com
     name: Smart Patients
     uri_format: https://www.smartpatients.com/trials/$1
+  synonyms:
+  - clinicaltrial
   uri_format: https://clinicaltrials.gov/ct2/show/$1
 clinvar:
   description: ClinVar archives reports of relationships among medically important
@@ -6461,7 +6467,7 @@ comptox:
     miriam: comptox
     n2t: comptox
     wikidata: P3117
-  name: CompTox Chemistry Dashboard
+  name: DSSTox substance ID
   pattern: ^DTXSID\d+$
   preferred_prefix: comptox
   uri_format: https://comptox.epa.gov/dashboard/$1
@@ -9024,6 +9030,15 @@ dragondb.protein:
   pattern: ^\w+$
   preferred_prefix: dragondb.protein
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide
+drduke:
+  description: identifier for chemicals linked to information on occurrence in plants
+  example: '19'
+  homepage: https://data.nal.usda.gov/system/files/Duke-Source-CSV.zip
+  mappings:
+    wikidata: P10074
+  name: Dr. Duke's Phytochemical and Ethnobotanical Databases chemical ID
+  preferred_prefix: drduke
+  uri_format: https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1
 dron:
   appears_in:
   - scdo
@@ -9201,6 +9216,7 @@ drugcentral:
     fairsharing: FAIRsharing.3me82d
     miriam: drugcentral
     uniprot: DB-0239
+    wikidata: P11198
   name: Drug Central
   pattern: ^\d+$
   preferred_prefix: drugcentral
@@ -9616,13 +9632,13 @@ ecn:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: A seven-digit identifier for chemical substances for regulatory purposes
-    within the European Union.
+  description: identifier for a chemical compound per EINECS or ELINCS
   example: 200-003-9
   homepage: https://echa.europa.eu/information-on-chemicals
   mappings:
     cheminf: '000447'
-  name: European Community number
+    wikidata: P232
+  name: EC number
   pattern: ^\d{3}-\d{3}-\d$
   preferred_prefix: ecn
   references:
@@ -12096,6 +12112,7 @@ fma:
     ols: fma
     ontobee: FMA
     prefixcommons: fma
+    wikidata: P1402
   name: Foundational Model of Anatomy
   namespace_in_lui: true
   pattern: ^\d+$
@@ -14564,7 +14581,8 @@ grin.taxonomy:
     miriam: grin.taxonomy
     n2t: grin.taxonomy
     ncbi: GRIN
-  name: Germplasm Resources Information Network
+    wikidata: P1421
+  name: GRIN URL
   pattern: ^\d+$
   preferred_prefix: grin.taxonomy
   uri_format: http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1
@@ -15259,7 +15277,8 @@ hgnc.symbol:
     biocontext: HGNC.SYMBOL
     miriam: hgnc.symbol
     n2t: hgnc.symbol
-  name: HGNC Symbol
+    wikidata: P353
+  name: HGNC gene symbol
   pattern: ^[A-Za-z-0-9_]+(\@)?$
   preferred_prefix: hgnc.symbol
   providers:
@@ -16208,6 +16227,7 @@ icd10pcs:
   preferred_prefix: icd10pcs
   uri_format: https://www.findacode.com/code.php?set=ICD10PCS&c=$1
 icd11:
+  comment: The codes, such as RA00.0, need their own namespace.
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -16218,13 +16238,14 @@ icd11:
     codes for classifying diseases, including nuanced classifications of a wide variety
     of signs, symptoms, abnormal findings, complaints, social circumstances, and external
     causes of injury or disease.
-  example: RA01.0
+  example: '402558626'
   homepage: https://icd.who.int/
   mappings:
     fairsharing: FAIRsharing.97805c
     hl7: 2.16.840.1.113883.6.347
     wikidata: P7807
   name: International Classification of Diseases, 11th Revision
+  pattern: ^[1-9]\d*$
   preferred_prefix: icd11
   synonyms:
   - ICD-11
@@ -16245,6 +16266,7 @@ icd9:
     hl7: 2.16.840.1.113883.6.42
     wikidata: P493
   name: International Classification of Diseases, 9th Revision
+  pattern: ^(\d\d\d|V\d\d|E[8-9]\d\d)(\.\d{1,2})?$
   preferred_prefix: icd9
   synonyms:
   - ICD9
@@ -17595,6 +17617,7 @@ interlex:
   mappings:
     fairsharing: FAIRsharing.67sssf
     miriam: ilx
+    wikidata: P696
   name: InterLex
   pattern: ^[0-9]+$
   preferred_prefix: interlex
@@ -18620,6 +18643,16 @@ lbo:
   preferred_prefix: lbo
   repository: https://github.com/AnimalGenome/livestock-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/LBO_$1
+leafsnap:
+  description: identifier for a tree species of the United States and Canada on the
+    Leafsnap electronic field guide
+  example: Amelanchier laevis
+  homepage: http://leafsnap.com/
+  mappings:
+    wikidata: P10538
+  name: Leafsnap ID
+  preferred_prefix: leafsnap
+  uri_format: http://leafsnap.com/species/$1/
 lei:
   description: Established by the Financial Stability Board in June 2014, the Global
     Legal Entity Identifier Foundation (GLEIF) is tasked to support the implementation
@@ -18965,7 +18998,7 @@ lipidmaps:
     n2t: lipidmaps
     prefixcommons: lipidmaps
     wikidata: P2063
-  name: LIPID MAPS
+  name: LIPID MAPS ID
   pattern: ^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$
   preferred_prefix: lipidmaps
   providers:
@@ -19057,7 +19090,9 @@ loinc:
     bioportal: LOINC
     fairsharing: FAIRsharing.2mk2zb
     hl7: 2.16.840.1.113883.6.1
+    wikidata: P4338
   name: Logical Observation Identifiers Names and Codes
+  pattern: ^(\d|\w)+-\d$
   preferred_prefix: loinc
   publications:
   - doi: 10.1016/s1386-5056(98)00089-6
@@ -19422,7 +19457,7 @@ massbank:
     miriam: massbank
     n2t: massbank
     wikidata: P6689
-  name: MassBank
+  name: MassBank accession ID
   pattern: ^[A-Z]{2}[A-Z0-9][0-9]{5}$
   preferred_prefix: massbank
   providers:
@@ -19718,7 +19753,7 @@ meddra:
   - MeDRA
   - MedDRA
   - Medical Dictionary for Regulatory Activities
-  uri_format: http://purl.bioontology.org/ontology/MEDDRA/$1
+  uri_format: http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1
 medgen:
   description: MedGen is a portal for information about conditions and phenotypes
     related to Medical Genetics. Terms from multiple sources are aggregated into concepts,
@@ -20997,7 +21032,8 @@ mirtarbase:
     fairsharing: FAIRsharing.f0bxfg
     miriam: mirtarbase
     n2t: mirtarbase
-  name: miRTarBase
+    wikidata: P2646
+  name: mirTarBase ID
   pattern: ^MIRT\d{6}$
   preferred_prefix: mirtarbase
   uri_format: http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1
@@ -22756,6 +22792,7 @@ ndc:
     hl7: 2.16.840.1.113883.6.69
     miriam: ndc
     n2t: ndc
+    wikidata: P3640
   name: National Drug Code
   pattern: ^\d+\-\d+\-\d+$
   preferred_prefix: ndc
@@ -22836,6 +22873,7 @@ ndfrt:
     prefixcommons: ndfrt
     wikidata: P2115
   name: National Drug File - Reference Terminology
+  pattern: ^N[0-9]{10}$
   preferred_prefix: ndfrt
   publications:
   - doi: null
@@ -24606,6 +24644,11 @@ ogms:
   pattern: ^\d{7}$
   preferred_prefix: OGMS
   publications:
+  - doi: null
+    pmc: null
+    pubmed: '25991121'
+    title: Biomarkers in the Ontology for General Medical Science
+    year: null
   - doi: 10.1186/2041-1480-4-42
     pmc: PMC4028878
     pubmed: '24314207'
@@ -28498,6 +28541,8 @@ probesanddrugs:
   example: PD000596
   homepage: https://www.probes-drugs.org
   license: CC BY-SA 4.0
+  mappings:
+    wikidata: P11199
   name: Probes and Drugs
   pattern: ^PD\d{6}$
   preferred_prefix: probesanddrugs
@@ -29116,7 +29161,7 @@ pubmed:
     n2t: pubmed
     prefixcommons: pubmed
     wikidata: P698
-  name: PubMed
+  name: PubMed ID
   pattern: ^\d+$
   preferred_prefix: pubmed
   providers:
@@ -29699,7 +29744,8 @@ rebase:
     prefixcommons: rebase
     re3data: r3d100012171
     uniprot: DB-0089
-  name: REBASE restriction enzyme database
+    wikidata: P4866
+  name: REBASE Enzyme Number
   pattern: ^\d+$
   preferred_prefix: rebase
   publications:
@@ -32170,13 +32216,15 @@ smiles:
   description: Documentation of SMILES (Simplified Molecular Input Line Entry System),
     a line notation (a typographical method using printable characters) for entering
     and representing molecules and reactions.
-  example: COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1
+  example: CC2(C)C\1CCC(C)/C=C/12
   homepage: https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html
   mappings:
     fairsharing: FAIRsharing.qv4b3c
     wikidata: P233
   name: Simplified molecular-input line-entry system
+  pattern: ^[A-Za-z0-9+\-\*=#$:().>/\\\[\]%]+$
   preferred_prefix: smiles
+  uri_format: https://chemapps.stolaf.edu/jmol/jmol.php?model=$1
 smpdb:
   description: The Small Molecule Pathway Database (SMPDB) contains small molecule
     pathways found in humans, which are presented visually. All SMPDB pathways include
@@ -34575,6 +34623,16 @@ umls.aui:
   preferred_prefix: umls.aui
   synonyms:
   - UMLS_ICD9CM_2005_AUI
+unichem:
+  description: identifier of a compound in the UniChem database
+  example: '161671'
+  homepage: https://chembl.gitbook.io/unichem/downloads
+  mappings:
+    wikidata: P11089
+  name: UniChem compound ID
+  pattern: ^\d+$
+  preferred_prefix: unichem
+  uri_format: https://www.ebi.ac.uk/unichem/compoundsources?type=uci&compound=$1
 unigene:
   description: A UniGene entry is a set of transcript sequences that appear to come
     from the same transcription locus (gene or expressed pseudogene), together with
@@ -35899,6 +35957,7 @@ vo:
     ols: vo
     ontobee: VO
     prefixcommons: vo
+    wikidata: P1928
   name: Vaccine Ontology
   pattern: ^\d{7}$
   preferred_prefix: VO
@@ -36543,7 +36602,7 @@ wormbase:
     re3data: r3d100010424
     uniprot: DB-0110
     wikidata: P3860
-  name: WormBase database of nematode biology
+  name: Wormbase Gene ID
   pattern: ^WB[A-Z][a-z]+\d+$
   preferred_prefix: WormBase
   providers:
@@ -36606,7 +36665,7 @@ worms:
     miriam: worms
     n2t: worms
     wikidata: P850
-  name: World Register of Marine Species
+  name: WoRMS-ID for taxa
   pattern: ^\d+$
   preferred_prefix: worms
   uri_format: http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1
