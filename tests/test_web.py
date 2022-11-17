@@ -62,6 +62,12 @@ class TestWeb(unittest.TestCase):
             ["yaml", "json"],
         )
 
+        # test something that's wrong gives a proper error
+        with self.app.test_client() as client:
+            with self.subTest(fmt=None):
+                res = client.get("/api/registry/nope")
+                self.assertEqual(404, res.status_code)
+
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
         self.assert_endpoint(
