@@ -190,10 +190,10 @@ class TestWeb(unittest.TestCase):
         """Test banana redirects."""
         with self.app.test_client() as client:
             for prefix, identifier, norm_identifier, location in [
-                ("agrovoc", "c_1234", "1234", "http://aims.fao.org/aos/agrovoc/c_1234"),
-                ("agrovoc", "1234", "1234", "http://aims.fao.org/aos/agrovoc/c_1234"),
+                ("agrovoc", "c_2842", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+                ("agrovoc", "2842", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
             ]:
                 with self.subTest(prefix=prefix, identifier=identifier):
-                    res = client.get(f"{prefix}:{norm_identifier}")
+                    res = client.get(f"/{prefix}:{identifier}", follow_redirects=False)
                     self.assertEqual(302, res.status_code)
                     self.assertEqual(location, res.headers["Location"])
