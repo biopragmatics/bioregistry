@@ -662,7 +662,8 @@
     "mappings": {
       "agroportal": "AGROVOC",
       "ecoportal": "AGROVOC",
-      "fairsharing": "FAIRsharing.anpj91"
+      "fairsharing": "FAIRsharing.anpj91",
+      "wikidata": "P8061"
     },
     "name": "Agronomy Vocabulary",
     "pattern": "^[a-z0-9]+$",
@@ -2631,7 +2632,7 @@
       "orcid": "0000-0002-6601-2165"
     },
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/49/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/50/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
@@ -3357,9 +3358,10 @@
       "miriam": "bold.taxonomy",
       "n2t": "bold.taxonomy",
       "ncbi": "BOLD",
-      "prefixcommons": "bold"
+      "prefixcommons": "bold",
+      "wikidata": "P3606"
     },
-    "name": "Barcode of Life database",
+    "name": "BOLD Systems taxon ID",
     "pattern": "^\\d+$",
     "preferred_prefix": "bold.taxonomy",
     "publications": [
@@ -3853,7 +3855,7 @@
       "prefixcommons": "cas",
       "wikidata": "P231"
     },
-    "name": "CAS Chemical Registry",
+    "name": "CAS Registry Number",
     "pattern": "^\\d{1,7}\\-\\d{2}\\-\\d$",
     "preferred_prefix": "cas",
     "providers": [
@@ -5339,9 +5341,10 @@
     "example": "12",
     "homepage": "https://civicdb.org/",
     "mappings": {
-      "miriam": "civic.vid"
+      "miriam": "civic.vid",
+      "wikidata": "P3329"
     },
-    "name": "CIViC Variant",
+    "name": "CIViC variant ID",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.vid",
     "uri_format": "https://civicdb.org/links/variant/$1"
@@ -5417,7 +5420,7 @@
     ],
     "repository": "https://github.com/obophenotype/cell-ontology",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1",
-    "version": "2022-08-16"
+    "version": "2022-10-28"
   },
   "clao": {
     "contact": {
@@ -5522,9 +5525,10 @@
       "biocontext": "CLINICALTRIALS",
       "miriam": "clinicaltrials",
       "n2t": "clinicaltrials",
-      "prefixcommons": "clinicaltrials"
+      "prefixcommons": "clinicaltrials",
+      "wikidata": "P3098"
     },
-    "name": "ClinicalTrials.gov",
+    "name": "ClinicalTrials.gov ID",
     "pattern": "^NCT\\d{8}$",
     "preferred_prefix": "clinicaltrials",
     "providers": [
@@ -5535,6 +5539,9 @@
         "name": "Smart Patients",
         "uri_format": "https://www.smartpatients.com/trials/$1"
       }
+    ],
+    "synonyms": [
+      "clinicaltrial"
     ],
     "uri_format": "https://clinicaltrials.gov/ct2/show/$1"
   },
@@ -6804,7 +6811,7 @@
       "n2t": "comptox",
       "wikidata": "P3117"
     },
-    "name": "CompTox Chemistry Dashboard",
+    "name": "DSSTox substance ID",
     "pattern": "^DTXSID\\d+$",
     "preferred_prefix": "comptox",
     "uri_format": "https://comptox.epa.gov/dashboard/$1"
@@ -7067,7 +7074,9 @@
       "orcid": "0000-0002-4071-8397"
     },
     "description": "The COVID-19 Vocabulary (COVoc) is an ontology containing terms related to the research of the COVID-19 pandemic. This includes host organisms, pathogenicity, gene and gene products, barrier gestures, treatments and more.",
-    "download_owl": "http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl",
+    "download_json": "https://github.com/EBISPOT/covoc/releases/download/current/covoc.json",
+    "download_obo": "https://github.com/EBISPOT/covoc/releases/download/current/covoc.obo",
+    "download_owl": "https://github.com/EBISPOT/covoc/releases/download/current/covoc.owl",
     "example": "0010034",
     "homepage": "https://github.com/EBISPOT/covoc",
     "mappings": {
@@ -9060,7 +9069,7 @@
       }
     ],
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
-    "example": "10.1101/2022.07.08.499378",
+    "example": "10.1038/s41597-022-01807-3",
     "example_extras": [
       "10.21/FQSQT4T3",
       "10.1333/s00897980202a",
@@ -9479,6 +9488,17 @@
     "preferred_prefix": "dragondb.protein",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide"
   },
+  "drduke": {
+    "description": "identifier for chemicals linked to information on occurrence in plants",
+    "example": "19",
+    "homepage": "https://data.nal.usda.gov/system/files/Duke-Source-CSV.zip",
+    "mappings": {
+      "wikidata": "P10074"
+    },
+    "name": "Dr. Duke's Phytochemical and Ethnobotanical Databases chemical ID",
+    "preferred_prefix": "drduke",
+    "uri_format": "https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1"
+  },
   "dron": {
     "appears_in": [
       "scdo"
@@ -9672,7 +9692,8 @@
       "biolink": "DrugCentral",
       "fairsharing": "FAIRsharing.3me82d",
       "miriam": "drugcentral",
-      "uniprot": "DB-0239"
+      "uniprot": "DB-0239",
+      "wikidata": "P11198"
     },
     "name": "Drug Central",
     "pattern": "^\\d+$",
@@ -10146,13 +10167,14 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "A seven-digit identifier for chemical substances for regulatory purposes within the European Union.",
+    "description": "identifier for a chemical compound per EINECS or ELINCS",
     "example": "200-003-9",
     "homepage": "https://echa.europa.eu/information-on-chemicals",
     "mappings": {
-      "cheminf": "000447"
+      "cheminf": "000447",
+      "wikidata": "P232"
     },
-    "name": "European Community number",
+    "name": "EC number",
     "pattern": "^\\d{3}-\\d{3}-\\d$",
     "preferred_prefix": "ecn",
     "references": [
@@ -10193,6 +10215,13 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "ECO",
     "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "34986598",
+        "title": "ECO: the Evidence and Conclusion Ontology, an update for 2022.",
+        "year": null
+      },
       {
         "doi": "10.1093/nar/gky1036",
         "pmc": "PMC6323956",
@@ -10619,7 +10648,7 @@
     },
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by the EBI Functional Genomics Team.",
     "download_obo": "http://www.ebi.ac.uk/efo/efo.obo",
-    "download_owl": "http://www.ebi.ac.uk/efo/releases/v3.47.0/efo.owl",
+    "download_owl": "http://www.ebi.ac.uk/efo/efo.owl",
     "example": "0005147",
     "homepage": "http://www.ebi.ac.uk/efo",
     "mappings": {
@@ -10658,7 +10687,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo/",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.47.0"
+    "version": "3.48.0"
   },
   "ega.dataset": {
     "description": "The EGA is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects. The EGA contains exclusive data collected from individuals whose consent agreements authorize data release only for specific research use or to bona fide researchers. Strict protocols govern how information is managed, stored and distributed by the EGA project. This collection references 'Datasets'.",
@@ -11578,20 +11607,20 @@
     "uri_format": "http://purl.obolibrary.org/obo/EPIO_$1"
   },
   "epo": {
-    "contact": {
-      "email": "ferdinand.dhombres@inserm.fr",
-      "github": null,
-      "name": "Ferdinand Dhombres",
-      "orcid": null
-    },
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "djinnome",
+        "name": "Jeremy Zucker",
+        "orcid": "0000-0002-7276-9009"
+      }
+    ],
     "deprecated": true,
     "description": "An ontology designed to support the semantic annotation of epidemiology resources",
     "download_owl": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/epidemiology-ontology/epo.owl",
     "homepage": "https://code.google.com/p/epidemiology-ontology/",
     "mappings": {
-      "aberowl": "EPO",
       "biocontext": "EPO",
-      "bioportal": "EPO",
       "obofoundry": "epo",
       "ontobee": "EPO"
     },
@@ -12467,7 +12496,7 @@
     "name": "Food Interactions with Drugs Evidence Ontology",
     "pattern": "^\\d{8}$",
     "preferred_prefix": "FIDEO",
-    "repository": "https://github.com/getbordea/fideo",
+    "repository": "https://gitub.u-bordeaux.fr/erias/fideo",
     "uri_format": "http://purl.obolibrary.org/obo/FIDEO_$1"
   },
   "fishbase.species": {
@@ -12736,7 +12765,8 @@
       "obofoundry": "fma",
       "ols": "fma",
       "ontobee": "FMA",
-      "prefixcommons": "fma"
+      "prefixcommons": "fma",
+      "wikidata": "P1402"
     },
     "name": "Foundational Model of Anatomy",
     "namespace_in_lui": true,
@@ -15319,9 +15349,10 @@
       "go": "GRIN",
       "miriam": "grin.taxonomy",
       "n2t": "grin.taxonomy",
-      "ncbi": "GRIN"
+      "ncbi": "GRIN",
+      "wikidata": "P1421"
     },
-    "name": "Germplasm Resources Information Network",
+    "name": "GRIN URL",
     "pattern": "^\\d+$",
     "preferred_prefix": "grin.taxonomy",
     "uri_format": "http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1"
@@ -15812,7 +15843,7 @@
   },
   "hcao": {
     "description": "Application ontology for human cell types, anatomy and development stages for the Human Cell Atlas.",
-    "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-10-18/hcao.owl",
+    "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-11-15/hcao.owl",
     "homepage": "https://www.humancellatlas.org",
     "mappings": {
       "ols": "hcao"
@@ -15820,7 +15851,7 @@
     "name": "Human Cell Atlas Ontology",
     "no_own_terms": true,
     "preferred_prefix": "hcao",
-    "version": "2022-10-18"
+    "version": "2022-11-15"
   },
   "hcpcs": {
     "contact": {
@@ -16012,9 +16043,10 @@
     "mappings": {
       "biocontext": "HGNC.SYMBOL",
       "miriam": "hgnc.symbol",
-      "n2t": "hgnc.symbol"
+      "n2t": "hgnc.symbol",
+      "wikidata": "P353"
     },
-    "name": "HGNC Symbol",
+    "name": "HGNC gene symbol",
     "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
     "preferred_prefix": "hgnc.symbol",
     "providers": [
@@ -17035,6 +17067,7 @@
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1"
   },
   "icd11": {
+    "comment": "The codes, such as RA00.0, need their own namespace.",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -17042,7 +17075,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease.",
-    "example": "RA01.0",
+    "example": "402558626",
     "homepage": "https://icd.who.int/",
     "mappings": {
       "fairsharing": "FAIRsharing.97805c",
@@ -17050,6 +17083,7 @@
       "wikidata": "P7807"
     },
     "name": "International Classification of Diseases, 11th Revision",
+    "pattern": "^[1-9]\\d*$",
     "preferred_prefix": "icd11",
     "synonyms": [
       "ICD-11"
@@ -17072,6 +17106,7 @@
       "wikidata": "P493"
     },
     "name": "International Classification of Diseases, 9th Revision",
+    "pattern": "^(\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?$",
     "preferred_prefix": "icd9",
     "synonyms": [
       "ICD9",
@@ -18528,7 +18563,8 @@
     "homepage": "https://www.fdilab.org",
     "mappings": {
       "fairsharing": "FAIRsharing.67sssf",
-      "miriam": "ilx"
+      "miriam": "ilx",
+      "wikidata": "P696"
     },
     "name": "InterLex",
     "pattern": "^[0-9]+$",
@@ -19628,6 +19664,17 @@
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/LBO_$1"
   },
+  "leafsnap": {
+    "description": "identifier for a tree species of the United States and Canada on the Leafsnap electronic field guide",
+    "example": "Amelanchier laevis",
+    "homepage": "http://leafsnap.com/",
+    "mappings": {
+      "wikidata": "P10538"
+    },
+    "name": "Leafsnap ID",
+    "preferred_prefix": "leafsnap",
+    "uri_format": "http://leafsnap.com/species/$1/"
+  },
   "lei": {
     "description": "Established by the Financial Stability Board in June 2014, the Global Legal Entity Identifier Foundation (GLEIF) is tasked to support the implementation and use of the Legal Entity Identifier (LEI). The foundation is backed and overseen by the LEI Regulatory Oversight Committee, representing public authorities from around the globe that have come together to jointly drive forward transparency within the global financial markets. GLEIF is a supra-national not-for-profit organization headquartered in Basel, Switzerland.",
     "example": "HWUPKR0MPOU8FGXBT394",
@@ -19965,7 +20012,7 @@
       "prefixcommons": "lipidmaps",
       "wikidata": "P2063"
     },
-    "name": "LIPID MAPS",
+    "name": "LIPID MAPS ID",
     "pattern": "^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$",
     "preferred_prefix": "lipidmaps",
     "providers": [
@@ -20074,9 +20121,11 @@
       "biolink": "LOINC",
       "bioportal": "LOINC",
       "fairsharing": "FAIRsharing.2mk2zb",
-      "hl7": "2.16.840.1.113883.6.1"
+      "hl7": "2.16.840.1.113883.6.1",
+      "wikidata": "P4338"
     },
     "name": "Logical Observation Identifiers Names and Codes",
+    "pattern": "^(\\d|\\w)+-\\d$",
     "preferred_prefix": "loinc",
     "publications": [
       {
@@ -20477,7 +20526,7 @@
       "n2t": "massbank",
       "wikidata": "P6689"
     },
-    "name": "MassBank",
+    "name": "MassBank accession ID",
     "pattern": "^[A-Z]{2}[A-Z0-9][0-9]{5}$",
     "preferred_prefix": "massbank",
     "providers": [
@@ -20788,7 +20837,7 @@
       "MedDRA",
       "Medical Dictionary for Regulatory Activities"
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/MEDDRA/$1"
+    "uri_format": "http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1"
   },
   "medgen": {
     "description": "MedGen is a portal for information about conditions and phenotypes related to Medical Genetics. Terms from multiple sources are aggregated into concepts, each of which is assigned a unique identifier and a preferred name and symbol. The core content of the record may include names, identifiers used by other databases, mode of inheritance, clinical features, and map location of the loci affecting the disorder.",
@@ -22124,9 +22173,10 @@
       "biocontext": "MIRTARBASE",
       "fairsharing": "FAIRsharing.f0bxfg",
       "miriam": "mirtarbase",
-      "n2t": "mirtarbase"
+      "n2t": "mirtarbase",
+      "wikidata": "P2646"
     },
-    "name": "miRTarBase",
+    "name": "mirTarBase ID",
     "pattern": "^MIRT\\d{6}$",
     "preferred_prefix": "mirtarbase",
     "uri_format": "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1"
@@ -23708,6 +23758,7 @@
     "homepage": "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/",
     "mappings": {
       "biocontext": "NCBIGI",
+      "edam": "2314",
       "go": "NCBI_gi",
       "ncbi": "GI"
     },
@@ -23994,7 +24045,8 @@
       "biocontext": "NDC",
       "hl7": "2.16.840.1.113883.6.69",
       "miriam": "ndc",
-      "n2t": "ndc"
+      "n2t": "ndc",
+      "wikidata": "P3640"
     },
     "name": "National Drug Code",
     "pattern": "^\\d+\\-\\d+\\-\\d+$",
@@ -24081,6 +24133,7 @@
       "wikidata": "P2115"
     },
     "name": "National Drug File - Reference Terminology",
+    "pattern": "^N[0-9]{10}$",
     "preferred_prefix": "ndfrt",
     "publications": [
       {
@@ -25911,6 +25964,13 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "OGMS",
     "publications": [
+      {
+        "doi": null,
+        "pmc": null,
+        "pubmed": "25991121",
+        "title": "Biomarkers in the Ontology for General Medical Science",
+        "year": null
+      },
       {
         "doi": "10.1186/2041-1480-4-42",
         "pmc": "PMC4028878",
@@ -27920,7 +27980,7 @@
     ],
     "repository": "https://github.com/obophenotype/provisional_cell_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PCL_$1",
-    "version": "2022-04-27"
+    "version": "2022-10-19"
   },
   "pco": {
     "appears_in": [
@@ -30054,6 +30114,9 @@
     "example": "PD000596",
     "homepage": "https://www.probes-drugs.org",
     "license": "CC BY-SA 4.0",
+    "mappings": {
+      "wikidata": "P11199"
+    },
     "name": "Probes and Drugs",
     "pattern": "^PD\\d{6}$",
     "preferred_prefix": "probesanddrugs",
@@ -30694,7 +30757,7 @@
       "prefixcommons": "pubmed",
       "wikidata": "P698"
     },
-    "name": "PubMed",
+    "name": "PubMed ID",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubmed",
     "providers": [
@@ -31307,9 +31370,10 @@
       "n2t": "rebase",
       "prefixcommons": "rebase",
       "re3data": "r3d100012171",
-      "uniprot": "DB-0089"
+      "uniprot": "DB-0089",
+      "wikidata": "P4866"
     },
-    "name": "REBASE restriction enzyme database",
+    "name": "REBASE Enzyme Number",
     "pattern": "^\\d+$",
     "preferred_prefix": "rebase",
     "publications": [
@@ -33152,6 +33216,31 @@
     "preferred_prefix": "seed.reaction",
     "uri_format": "http://modelseed.org/biochem/reactions/$1"
   },
+  "seinet": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary about species to support the environmental research community in Arizona and New Mexico",
+    "example": "762",
+    "github_request_issue": 653,
+    "homepage": "https://swbiodiversity.org/seinet/index.php",
+    "mappings": {
+      "wikidata": "P6209"
+    },
+    "name": "Southwestern Environmental Information Network",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "seinet",
+    "reviewer": {
+      "email": null,
+      "github": "callahantiff",
+      "name": "Tiffany J. Callahan",
+      "orcid": "0000-0002-8169-9049"
+    },
+    "uri_format": "https://swbiodiversity.org/seinet/taxa/index.php?taxon=$1"
+  },
   "sep": {
     "contact": {
       "email": "psidev-gps-dev@lists.sourceforge.net",
@@ -33884,14 +33973,16 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Documentation of SMILES (Simplified Molecular Input Line Entry System), a line notation (a typographical method using printable characters) for entering and representing molecules and reactions.",
-    "example": "COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1",
+    "example": "CC2(C)C\\1CCC(C)/C=C/12",
     "homepage": "https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html",
     "mappings": {
       "fairsharing": "FAIRsharing.qv4b3c",
       "wikidata": "P233"
     },
     "name": "Simplified molecular-input line-entry system",
-    "preferred_prefix": "smiles"
+    "pattern": "^[A-Za-z0-9+\\-\\*=#$:().>/\\\\\\[\\]%]+$",
+    "preferred_prefix": "smiles",
+    "uri_format": "https://chemapps.stolaf.edu/jmol/jmol.php?model=$1"
   },
   "smpdb": {
     "description": "The Small Molecule Pathway Database (SMPDB) contains small molecule pathways found in humans, which are presented visually. All SMPDB pathways include information on the relevant organs, subcellular compartments, protein cofactors, protein locations, metabolite locations, chemical structures and protein quaternary structures. Accompanying data includes detailed descriptions and references, providing an overview of the pathway, condition or processes depicted in each diagram.",
@@ -34931,7 +35022,7 @@
     ],
     "repository": "https://github.com/allysonlister/swo",
     "uri_format": "http://purl.obolibrary.org/obo/SWO_$1",
-    "version": "1.7"
+    "version": "2022-10-11"
   },
   "swrl": {
     "contributor": {
@@ -36110,7 +36201,7 @@
     ],
     "twitter": "uberanat",
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2022-08-19"
+    "version": "2022-09-30"
   },
   "ubio.namebank": {
     "description": "NameBank is a \"biological name server\" focused on storing names and objectively-derived nomenclatural attributes. NameBank is a repository for all recorded names including scientific names, vernacular (or common names), misspelled names, as well as ad-hoc nomenclatural labels that may have limited context.",
@@ -36372,6 +36463,18 @@
     "synonyms": [
       "UMLS_ICD9CM_2005_AUI"
     ]
+  },
+  "unichem": {
+    "description": "identifier of a compound in the UniChem database",
+    "example": "161671",
+    "homepage": "https://chembl.gitbook.io/unichem/downloads",
+    "mappings": {
+      "wikidata": "P11089"
+    },
+    "name": "UniChem compound ID",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "unichem",
+    "uri_format": "https://www.ebi.ac.uk/unichem/compoundsources?type=uci&compound=$1"
   },
   "unigene": {
     "description": "A UniGene entry is a set of transcript sequences that appear to come from the same transcription locus (gene or expressed pseudogene), together with information on protein similarities, gene expression, cDNA clone reagents, and genomic location.",
@@ -37334,7 +37437,7 @@
     "preferred_prefix": "VBO",
     "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
-    "version": "2022-09-22"
+    "version": "2022-10-31"
   },
   "vbrc": {
     "description": "The VBRC provides bioinformatics resources to support scientific research directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae, Flaviviridae, Paramyxoviridae, Poxviridae, and Togaviridae families. The Center consists of a relational database and web application that support the data storage, annotation, analysis, and information exchange goals of this work. Each data release contains the complete genomic sequences for all viral pathogens and related strains that are available for species in the above-named families. In addition to sequence data, the VBRC provides a curation for each virus species, resulting in a searchable, comprehensive mini-review of gene function relating genotype to biological phenotype, with special emphasis on pathogenesis.",
@@ -37771,7 +37874,8 @@
       "obofoundry": "vo",
       "ols": "vo",
       "ontobee": "VO",
-      "prefixcommons": "vo"
+      "prefixcommons": "vo",
+      "wikidata": "P1928"
     },
     "name": "Vaccine Ontology",
     "pattern": "^\\d{7}$",
@@ -38469,7 +38573,7 @@
       "uniprot": "DB-0110",
       "wikidata": "P3860"
     },
-    "name": "WormBase database of nematode biology",
+    "name": "Wormbase Gene ID",
     "pattern": "^WB[A-Z][a-z]+\\d+$",
     "preferred_prefix": "WormBase",
     "providers": [
@@ -38546,7 +38650,7 @@
       "n2t": "worms",
       "wikidata": "P850"
     },
-    "name": "World Register of Marine Species",
+    "name": "WoRMS-ID for taxa",
     "pattern": "^\\d+$",
     "preferred_prefix": "worms",
     "uri_format": "http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1"

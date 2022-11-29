@@ -899,8 +899,6 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
-        >>> get_resource("vandf").get_contact_email()
-        'michael.lincoln@med.va.gov'
         """
         if self.contact and self.contact.email:
             return self.contact.email
@@ -926,8 +924,6 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
-        >>> get_resource("vandf").get_contact_name()
-        'Michael Lincoln'
         """
         if self.contact and self.contact.name:
             return self.contact.name
@@ -984,6 +980,9 @@ class Resource(BaseModel):
             example = self.get_external(metaprefix).get("example")
             if example is not None:
                 return example
+        wikidata_examples = self.get_external("wikidata").get("example", [])
+        if wikidata_examples:
+            return wikidata_examples[0]
         return None
 
     def get_examples(self) -> List[str]:

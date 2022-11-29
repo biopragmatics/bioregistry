@@ -130,8 +130,7 @@ prefixes:
   SEED.REACTION: 'https://modelseed.org/biochem/reactions/'
   SEMMEDDB: 'https://skr3.nlm.nih.gov/SemMedDB'
   SIO: 'http://semanticscience.org/resource/SIO_'
-  SNOMED: 'http://www.snomedbrowser.com/Codes/Details/'
-  SNOMEDCT: 'http://www.snomedbrowser.com/Codes/Details/'
+  SNOMEDCT: 'http://snomed.info/id/'
   SPDI: 'https://api.ncbi.nlm.nih.gov/variation/v0/spdi/'
   UBERGRAPH: 'http://translator.renci.org/ubergraph-axioms.ofn#'
   UBERON_CORE: 'http://purl.obolibrary.org/obo/uberon/core#'
@@ -603,22 +602,22 @@ slots:
       - IAO:0000136
       - RXNORM:has_tradename
 
-  exact_synonym:
+  exact synonym:
     is_a: synonym
     exact_mappings:
       - oboInOwl:hasExactSynonym
 
-  broad_synonym:
+  broad synonym:
     is_a: synonym
     exact_mappings:
       - oboInOwl:hasBroadSynonym
 
-  narrow_synonym:
+  narrow synonym:
     is_a: synonym
     exact_mappings:
       - oboInOwl:hasNarrowSynonym
 
-  related_synonym:
+  related synonym:
     is_a: synonym
     exact_mappings:
       - oboInOwl:hasRelatedSynonym
@@ -1465,7 +1464,7 @@ slots:
       - LOINC:analyzes
       - LOINC:measured_by
       - LOINC:property_of
-      - SEMMEDDB:measures
+      - SEMMEDDB:MEASURES
       - UMLS:measures
 
   catalyst qualifier:
@@ -1508,6 +1507,7 @@ slots:
     broad_mappings:
       - owl:topObjectProperty
     narrow_mappings:
+      - SEMMEDDB:ASSOCIATED_WITH
       - SEMMEDDB:compared_with
       - SEMMEDDB:higher_than
       - SEMMEDDB:lower_than
@@ -1650,8 +1650,6 @@ slots:
     symmetric: true
     domain: named thing
     range: named thing
-    exact_mappings:
-      - SEMMEDDB:associated_with
     narrow_mappings:
       - RO:0004029
       - SNOMEDCT:47429007
@@ -1701,8 +1699,7 @@ slots:
       - LOINC:has_class
     exact_mappings:
       - rdfs:subClassOf
-      - SEMMEDDB:IS_A
-      - SEMMEDDB:isa
+      - SEMMEDDB:ISA
       - WIKIDATA_PROPERTY:P279
       - CHEMBL.MECHANISM:subset_of
       - GO:isa
@@ -1748,7 +1745,7 @@ slots:
       - skos:exactMatch
       # Semantic Medline definition: "comparative predicate" where the equivalence could simply be functional
       # RTX suggests mapping this to proposed new "biolink:close_match" predicate instead
-      #- SEMMEDDB:SAME_AS
+      #- SEMMEDDB:same_as
       - WIKIDATA_PROPERTY:P2888
       - CHEMBL.MECHANISM:equivalent_to
       - MONDO:equivalentTo
@@ -1771,7 +1768,6 @@ slots:
     exact_mappings:
       - skos:closeMatch
       # Semantic Medline definition: "comparative predicate" where the equivalence could simply be functional
-      - SEMMEDDB:SAME_AS
       - SEMMEDDB:same_as
     narrow_mappings:
       - CHEBI:is_enantiomer_of
@@ -2049,8 +2045,8 @@ slots:
 
   contributor:
     is_a: related to at instance level
-    domain: information content entity
-    range: agent
+    domain: agent
+    range: information content entity
     comments:
       - This is a grouping for predicates relating entities to their associated contributors realizing them
     abstract: true
@@ -2060,8 +2056,8 @@ slots:
   has contributor:
     inverse: contributor
     is_a: related to at instance level
-    domain: agent
-    range: information content entity
+    domain: information content entity
+    range: agent
 
   provider:
     is_a: contributor
@@ -2071,12 +2067,12 @@ slots:
   has provider:
     inverse: provider
     is_a: has contributor
-    domain: agent
-    range: information content entity
+    domain: information content entity
+    range: agent
 
   publisher:
     is_a: contributor
-    domain: publication
+    domain: agent
     description: >-
       organization or person responsible for publishing books, periodicals, podcasts, games or software.
       Note that in the case of publications which have a containing "published in" node property, the publisher
@@ -2090,12 +2086,12 @@ slots:
   has publisher:
     is_a: has contributor
     inverse: publisher
-    domain: agent
-    range: publication
+    domain: publication
+    range: agent
 
   editor:
     is_a: contributor
-    domain: publication
+    domain: agent
     description: >-
       editor of a compiled work such as a book or a periodical (newspaper or an academic journal).
       Note that in the case of publications which have a containing "published in" node property, the editor
@@ -2108,12 +2104,12 @@ slots:
   has editor:
     inverse: editor
     is_a: has contributor
-    domain: agent
-    range: publication
+    domain: publication
+    range: agent
 
   author:
     is_a: contributor
-    domain: publication
+    domain: agent
     description: >-
       an instance of one (co-)creator primarily responsible for a written work
     exact_mappings:
@@ -2123,8 +2119,8 @@ slots:
   has author:
     inverse: author
     is_a: has contributor
-    domain: agent
-    range: publication
+    domain: publication
+    range: agent
 
   ## end of Publication related predicates
 
@@ -2149,7 +2145,6 @@ slots:
     range: named thing
 
   interacts with:
-    abstract: true
     domain: named thing
     range: named thing
     description: >-
@@ -2162,7 +2157,7 @@ slots:
       canonical_predicate: true
     exact_mappings:
       - RO:0002434
-      - SEMMEDDB:interacts_with
+      - SEMMEDDB:INTERACTS_WITH
     narrow_mappings:
       # RO terms RTX mapped to 'biolink:related_to' but which imply a chemical interaction
       - RO:0002103
@@ -2192,6 +2187,7 @@ slots:
       - CHEMBL.MECHANISM:sequestering_agent
       - CHEMBL.MECHANISM:substrate
       - DRUGBANK:target
+
     narrow_mappings:
       # Defined more narrowly as "substance interaction", thus specific applies to a subclass entities
       - DRUGBANK:drug-interaction
@@ -2271,10 +2267,9 @@ slots:
       - DRUGBANK:pathway
     exact_mappings:
       - SEMMEDDB:AFFECTS
-      - SEMMEDDB:affects
       - DGIdb:affects
     narrow_mappings:
-      - SEMMEDDB:administered_to
+      - SEMMEDDB:ADMINISTERED_TO
       - CTD:prediction_hypothesis
       - GOREL:0001006
       - CTD:inferred
@@ -2364,7 +2359,7 @@ slots:
       - SIO:001331 # diagnosis
     exact_mappings:
       - DrugCentral:5271
-      - SEMMEDDB:diagnoses
+      - SEMMEDDB:DIAGNOSES
 
   is diagnosed by:
     is_a: related to at instance level
@@ -2534,7 +2529,6 @@ slots:
       opposite_of: enables
     exact_mappings:
       - SEMMEDDB:DISRUPTS
-      - SEMMEDDB:disrupts
       - CHEMBL.MECHANISM:disrupting_agent
     narrow_mappings:
       - RO:0004024
@@ -2704,7 +2698,6 @@ slots:
       canonical_predicate: true
     exact_mappings:
       - SEMMEDDB:COEXISTS_WITH
-      - SEMMEDDB:coexists_with
     narrow_mappings:
       - BSPO:0000096
       - BSPO:0000097
@@ -2959,8 +2952,8 @@ slots:
     description: >-
       holds between a gene and a disease or phenotypic feature that the gene or its alleles/products may influence,
       contribute to, or correlate with
-    domain: gene
-    range: disease or phenotypic feature
+    domain: disease or phenotypic feature
+    range: gene
     annotations:
       canonical_predicate: true
     in_subset:
@@ -2979,8 +2972,8 @@ slots:
     aliases: [ 'disease associated with gene' ]
     description: >-
       holds between a gene and a disease or phenotypic feature that may be influenced, contribute to, or be correlated with the gene or its alleles/products
-    domain: disease or phenotypic feature
-    range: gene
+    domain: gene
+    range: disease or phenotypic feature
     in_subset:
       - translator_minimal
     inverse: gene associated with condition
@@ -3011,7 +3004,7 @@ slots:
       canonical_predicate: true
       opposite_of: prevents
     exact_mappings:
-      - SEMMEDDB:predisposes
+      - SEMMEDDB:PREDISPOSES
 
   has predisposing factor:
     is_a: risk affected by
@@ -3059,7 +3052,6 @@ slots:
       opposite_of: prevents
     exact_mappings:
       - SEMMEDDB:CAUSES
-      - SEMMEDDB:causes
       - WIKIDATA_PROPERTY:P1542
       - SNOMED:cause_of
       - RO:0003303
@@ -3154,7 +3146,7 @@ slots:
     exact_mappings:
       - RO:0003309
     broad_mappings:
-      - SEMMEDDB:complicates
+      - SEMMEDDB:COMPLICATES
 
   is exacerbated by:
     inverse: exacerbates
@@ -3182,7 +3174,6 @@ slots:
     exact_mappings:
       - DRUGBANK:treats
       - SEMMEDDB:TREATS
-      - SEMMEDDB:treats
       - WIKIDATA_PROPERTY:P2175
     narrow_mappings:
       # "is substance that treats" constrains statements to
@@ -3245,7 +3236,6 @@ slots:
       - translator_minimal
     exact_mappings:
       - SEMMEDDB:PREVENTS
-      - SEMMEDDB:prevents
     narrow_mappings:
       # more restricted case of a material entity mitigating a pathological process
       - RO:0002599
@@ -3468,10 +3458,8 @@ slots:
     narrow_mappings:
       # SemMedDb term 'OCCURS_IN' constrained to something (other than process) occurring in a group or population
       - SEMMEDDB:OCCURS_IN
-      - SEMMEDDB:occurs_in
       # SemMedDb term 'PROCESS_IN' constrained specifically to a process occurring in the object concept entity
       - SEMMEDDB:PROCESS_OF
-      - SEMMEDDB:process_of
       # Uberon term constrained to a 'site' as object concept
       - UBERON_CORE:site_of
       - LOINC:has_imaged_location
@@ -3557,7 +3545,6 @@ slots:
     exact_mappings:
       - RO:0001015
       - SEMMEDDB:LOCATION_OF
-      - SEMMEDDB:location_of
       - WIKIDATA_PROPERTY:P276
       # RTX tagged this as an inverse of biolink:located_in
       - FMA:location_of
@@ -3759,7 +3746,6 @@ slots:
     exact_mappings:
       - BFO:0000050
       - SEMMEDDB:PART_OF
-      - SEMMEDDB:part_of
       - WIKIDATA_PROPERTY:P361
       - FMA:part_of
       - RXNORM:constitutes
@@ -3824,8 +3810,8 @@ slots:
     is_a: has participant
     description: >-
       holds between a process and a continuant, where the continuant is an input into the process
-    domain: occurrent
-    range: biological process or activity
+    domain: biological process or activity
+    range: occurrent
     annotations:
       canonical_predicate: true
       opposite_of: has output
@@ -3837,7 +3823,6 @@ slots:
     exact_mappings:
       - RO:0002233
       - SEMMEDDB:USES
-      - SEMMEDDB:uses
     narrow_mappings:
       - LOINC:has_fragments_for_synonyms
       - LOINC:has_system
@@ -3855,8 +3840,8 @@ slots:
 
   is input of:
     is_a: participates in
-    domain: biological process or activity
-    range: occurrent
+    domain: occurrent
+    range: biological process or activity
     inverse: has input
     in_subset:
       - translator_minimal
@@ -3865,8 +3850,8 @@ slots:
     is_a: has participant
     description: >-
       holds between a process and a continuant, where the continuant is an output of the process
-    domain: occurrent
-    range: biological process or activity
+    domain: biological process or activity
+    range: occurrent
     annotations:
       canonical_predicate: true
       opposite_of: has input
@@ -3890,8 +3875,8 @@ slots:
 
   is output of:
     is_a: participates in
-    range: occurrent
-    domain: biological process or activity
+    domain: occurrent
+    range: biological process or activity
     inverse: has output
     in_subset:
       - translator_minimal
@@ -3900,7 +3885,7 @@ slots:
     is_a: related to at instance level
     description: >-
       holds between a process and a continuant, where the continuant is somehow involved in the process
-    domain: occurrent
+    domain: biological process or activity
     annotations:
       canonical_predicate: true
     in_subset:
@@ -3987,8 +3972,8 @@ slots:
       holds between a continuant and a process or function, where
       the continuant actively contributes to part or all of
       the process or function it realizes
-    domain: molecular activity
-    range: occurrent
+    domain: occurrent
+    range: molecular activity
     annotations:
       canonical_predicate: true
     in_subset:
@@ -4005,8 +3990,8 @@ slots:
 
   actively involves:
     is_a: has participant
-    domain: occurrent
-    range: molecular activity
+    domain: molecular activity
+    range: occurrent
     inverse: actively involved in
     exact_mappings:
       - RO:0002331
@@ -4064,7 +4049,7 @@ slots:
 
   derives into:
     is_a: related to at instance level
-    aliases: [ 'is normal cell origin of disease','may be normal cell origin of disease' ]
+    aliases: [ 'is normal cell origin of disease', 'may be normal cell origin of disease' ]
     description: >-
       holds between two distinct material entities, the old entity and
       the new entity, in which the new entity begins to exist when
@@ -4079,7 +4064,6 @@ slots:
     exact_mappings:
       - RO:0001001
       - SEMMEDDB:CONVERTS_TO
-      - SEMMEDDB:converts_to
       # RTX posted terms as inverse of 'biolink:derives_from'
       - FMA:derives
 
@@ -4256,7 +4240,6 @@ slots:
       - translator_minimal
     exact_mappings:
       - SEMMEDDB:MANIFESTATION_OF
-      - SEMMEDDB:manifestation_of
       - OMIM:manifestation_of
     broad_mappings:
       # Wikidata's definition is slightly broader: "inherent and characteristic embodiment of a given concept"
@@ -4304,7 +4287,6 @@ slots:
       - RO:0003000
       - WIKIDATA_PROPERTY:P1056
       - SEMMEDDB:PRODUCES
-      - SEMMEDDB:produces
     narrow_mappings:
       - NCIT:R29
       - SNOMED:has_process_output
@@ -4374,7 +4356,6 @@ slots:
     exact_mappings:
       - BFO:0000063
       - SEMMEDDB:PRECEDES
-      - SEMMEDDB:precedes
       - SNOMED:occurs_before
     broad_mappings:
       # the Wikidata definition is subtly broader, focusing on a series not strictly temporal in nature
@@ -4751,7 +4732,7 @@ slots:
     inverse: develops from
 
   in taxon:
-    aliases: [ 'instance of', 'is organism source of gene product', 'organism has gene', 'gene found in organism',' gene product has organism source' ]
+    aliases: [ 'instance of', 'is organism source of gene product', 'organism has gene', 'gene found in organism', 'gene product has organism source' ]
     is_a: related to at instance level
     domain: thing with taxon
     range: organism taxon
@@ -4798,7 +4779,7 @@ slots:
   association slot:
     abstract: true
     domain: association
-    aliases: [ 'edge property','statement property','node qualifier','edge qualifier','statement qualifier' ]
+    aliases: [ 'edge property', 'statement property', 'node qualifier', 'edge qualifier', 'statement qualifier' ]
     description: >-
       any slot that relates an association to another entity
 
@@ -7158,7 +7139,7 @@ classes:
       - model_organism_database
 
   cellular component:
-    aliases: [ 'cell component','cell part' ]
+    aliases: [ 'cell component', 'cell part' ]
     is_a: anatomical entity
     description: >-
       A location in or around a cell
@@ -7613,7 +7594,7 @@ classes:
       - has gene or gene product
 
   gene family:
-    aliases: [ 'orthogroup','protein family' ]
+    aliases: [ 'orthogroup', 'protein family' ]
     is_a: biological entity
     exact_mappings:
       - NCIT:C26004
@@ -7762,7 +7743,7 @@ classes:
       - model_organism_database
 
   snv:
-    aliases: [ 'single nucleotide variant','single nucleotide polymorphism', 'snp' ]
+    aliases: [ 'single nucleotide variant', 'single nucleotide polymorphism', 'snp' ]
     is_a: sequence variant
     description: >-
       SNVs are single nucleotide positions in genomic DNA at
@@ -7825,7 +7806,7 @@ classes:
       defined in the phenotypic abnormality sub-ontology, with respect
       to severity, laterality, and other aspects
     exact_mappings:
-      - HP:0012823
+
 
   clinical course:
     is_a: clinical attribute
@@ -8077,7 +8058,7 @@ classes:
 
   biotic exposure:
     is_a: attribute
-    aliases: [ 'viral exposure','bacterial exposure' ]
+    aliases: [ 'viral exposure', 'bacterial exposure' ]
     mixins:
       - exposure event
     description: >-
@@ -8992,6 +8973,8 @@ classes:
   entity to phenotypic feature association mixin:
     mixin: true
     is_a: entity to feature or disease qualifiers mixin
+    mixins:
+      - frequency quantifier
     defining_slots:
       - object
     slot_usage:
@@ -10241,7 +10224,6 @@ enums:
         close_mappings:
           - DGIdb:inhibitor
           - SEMMEDDB:INHIBITS
-          - SEMMEDDB:inhibits
         narrow_mappings:
           - DGIdb:blocker
           - DGIdb:channel_blocker
@@ -10354,7 +10336,7 @@ enums:
         is_a: activation
         close_mappings:
           - DGIdb:stimulator
-          - SEMMEDDB:stimulates
+          - SEMMEDDB:STIMULATES
           - DGIdb:stimulator
       releasing_activity:
         is_a: activation
@@ -10582,7 +10564,7 @@ enums:
           under this definition, hepatic necrosis would be unexpected (by virtue of greater severity) if the 
           investigator brochure referred only to elevated hepatic enzymes or hepatitis. Similarly, cerebral 
           thromboembolism and cerebral vasculitis would be unexpected (by virtue of greater specificity) if the 
-          investigator brochure listed only cerebral vascular accidents. 'Unexpected,' as used in this definition, 
+          investigator brochure listed only cerebral vascular accidents. 'Unexpected', as used in this definition, 
           also refers to adverse events or suspected adverse reactions that are mentioned in the investigator brochure
           as occurring with a class of drugs or as anticipated from the pharmacological properties of the drug, but 
           are not specifically mentioned as occurring with the particular drug under investigation.

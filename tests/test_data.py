@@ -354,7 +354,7 @@ class TestRegistry(unittest.TestCase):
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
         canonical = entry.is_valid_identifier(example)
-        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}: {example}")
+        self.assertTrue(canonical is None or canonical, msg=f"[{prefix}] invalid LUID: {example}")
 
     def test_extra_examples(self):
         """Test extra examples."""
@@ -810,41 +810,6 @@ class TestRegistry(unittest.TestCase):
                 )
                 self.assertIsNotNone(
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
-                )
-
-    def test_wikidata(self):
-        """Check wikidata prefixes are written properly."""
-        allowed = {
-            "database",
-            "prefix",
-            "pattern",
-            "paper",
-            "description",
-            "homepage",
-            "name",
-            "uri_format",
-            "database.label",
-            "format.rdf",
-            "database.homepage",
-        }
-        for prefix, resource in self.registry.items():
-            if not resource.wikidata:
-                continue
-            with self.subTest(prefix=prefix):
-                unexpected_keys = set(resource.wikidata) - allowed
-                self.assertFalse(
-                    unexpected_keys, msg=f"Unexpected keys in wikidata entry: {unexpected_keys}"
-                )
-                database = resource.wikidata.get("database")
-                self.assertTrue(
-                    database is None or database.startswith("Q"),
-                    msg=f"Wikidata database for {prefix} is malformed: {database}",
-                )
-
-                wikidata_property = resource.wikidata.get("prefix")
-                self.assertTrue(
-                    wikidata_property is None or wikidata_property.startswith("P"),
-                    msg=f"Wikidata property for {prefix} is malformed: {wikidata_property}",
                 )
 
     def test_wikidata_wrong_place(self):

@@ -79,6 +79,8 @@ def resource(prefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
+    if not isinstance(prefix, str):
+        return jsonify(query=prefix, message="Invalid prefix"), 404
     resource = manager.get_resource(prefix)
     assert resource is not None
     return _serialize_resource(resource)
