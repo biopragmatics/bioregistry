@@ -185,3 +185,15 @@ class TestWeb(unittest.TestCase):
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint)
                     self.assertEqual(302, res.status_code)
+
+    def test_banana_redirects(self):
+        """Test banana redirects."""
+        with self.app.test_client() as client:
+            for prefix, identifier, norm_identifier  in [
+                ("agrovoc", "c_1234", "1234"),
+            ]:
+                with self.subTest(prefix=prefix, identifier=identifier):
+                    res = client.get(f"{prefix}:{norm_identifier}")
+                    self.assertEqual(302, res.status_code)
+                    print(res)
+                    raise NotImplementedError(f"need to check the URL requested in the end is correct: {res.headers}")
