@@ -71,6 +71,8 @@ class TestResolve(unittest.TestCase):
             ("OMIMPS", "214100"),
             ("PS", "214100"),
             ("PS", "PS214100"),
+            ("agrovoc", "1234"),
+            ("agrovoc", "c_1234"),
         ]
         for prefix, resource in bioregistry.read_registry().items():
             if bioregistry.is_deprecated(prefix):

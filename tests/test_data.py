@@ -310,6 +310,13 @@ class TestRegistry(unittest.TestCase):
         )
         self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
+        resource = self.registry["agrovoc"]
+        self.assertEqual(
+            "^C_[a-z0-9]+$",
+            resource.get_pattern_with_banana(),
+        )
+        self.assertEqual("^(C_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+
     def test_examples(self):
         """Test examples for the required conditions.
 
@@ -930,3 +937,15 @@ class TestRegistry(unittest.TestCase):
                     continue
                 with self.subTest(prefix=prefix, metaprefix=metaprefix):
                     self.assertRegex(metaidentifier, pattern)
+
+    def test_standardize_identifier(self):
+        """Standardize the identifier."""
+        examples = [
+            ("agrovoc", "1234", "1234"),
+            ("agrovoc", "c_1234", "1234"),
+        ]
+        for prefix, identifier, norm_identifier in examples:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertEqual(
+                    norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
+                )
