@@ -312,10 +312,10 @@ class TestRegistry(unittest.TestCase):
 
         resource = self.registry["agrovoc"]
         self.assertEqual(
-            "^C_[a-z0-9]+$",
+            "^c_[a-z0-9]+$",
             resource.get_pattern_with_banana(),
         )
-        self.assertEqual("^(C_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+        self.assertEqual("^(c_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
 
     def test_examples(self):
         """Test examples for the required conditions.
