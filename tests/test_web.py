@@ -189,11 +189,19 @@ class TestWeb(unittest.TestCase):
     def test_banana_redirects(self):
         """Test banana redirects."""
         with self.app.test_client() as client:
-            for prefix, identifier, norm_identifier, location in [
-                ("agrovoc", "c_2842", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
-                ("agrovoc", "2842", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+            for prefix, identifier, location in [
+                ("agrovoc", "c_2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+                ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+                # Related to https://github.com/biopragmatics/bioregistry/issues/93, the app route is not greedy,
+                # so it parses on the rightmost colon.
+                # ("go", "0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
+                # ("go", "GO:0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
             ]:
                 with self.subTest(prefix=prefix, identifier=identifier):
                     res = client.get(f"/{prefix}:{identifier}", follow_redirects=False)
-                    self.assertEqual(302, res.status_code)
+                    self.assertEqual(
+                        302,
+                        res.status_code,
+                        msg=f"{prefix}\nHeaders: {res.headers}\nRequest: {res.request}",
+                    )
                     self.assertEqual(location, res.headers["Location"])
