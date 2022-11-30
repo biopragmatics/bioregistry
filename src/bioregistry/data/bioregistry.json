@@ -6062,7 +6062,7 @@
   "biolink": {
     "aberowl": {
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations",
-      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/50/biolink.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/52/biolink.owl",
       "homepage": "https://biolink.github.io/biolink-model/",
       "name": "Biolink Model",
       "prefix": "BIOLINK",
@@ -6455,16 +6455,8 @@
       "uri_format": "http://identifiers.org/biomodels.teddy/$1"
     },
     "bioportal": {
-      "contact": {
-        "email": "biomodels-net-support@lists.sf.net",
-        "name": "BioModels.net team"
-      },
-      "description": "The TErminology for the Description of DYnamics (TEDDY) project aims to provide an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems Biology and Synthetic Biology.",
-      "homepage": "http://teddyontology.sourceforge.net/",
       "name": "Terminology for the Description of Dynamics",
-      "prefix": "TEDDY",
-      "publication": "http://www.nature.com/msb/journal/v7/n1/full/msb201177.html",
-      "version": "rel-2014-04-24 (inferred)"
+      "prefix": "TEDDY"
     },
     "download_owl": "http://svn.code.sf.net/p/teddyontology/code/teddy/tags/current/teddy-inferred.owl",
     "example": "0000066",
@@ -47576,10 +47568,10 @@
       "uri_format": "http://identifiers.org/metacyc.reaction/$1"
     },
     "biolink": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
       "prefix": "metacyc.reaction",
-      "uri_format": "https://identifiers.org/metacyc.reaction:$1"
+      "uri_format": "http://identifiers.org/metacyc.reaction:$1"
     },
     "mappings": {
       "biocontext": "METACYC.REACTION",
@@ -57176,7 +57168,7 @@
       "homepage": "https://github.com/obophenotype/bio-attribute-ontology",
       "name": "Ontology of Biological Attributes",
       "prefix": "OBA",
-      "version": "2022-09-06"
+      "version": "2022-11-26"
     },
     "download_json": "http://purl.obolibrary.org/obo/oba.json",
     "example": "0000001",
@@ -69535,7 +69527,7 @@
       "name": "Pathway Ontology",
       "prefix": "PW",
       "publication": "http://rgd.mcw.edu/wg/home/pathway2/molecular-pathways/#pwrpubs",
-      "version": "7.68"
+      "version": "7.69"
     },
     "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo",
     "example": "0000423",
@@ -84649,11 +84641,11 @@
   "vido": {
     "aberowl": {
       "description": "The Virus Infectious Disease Ontology (IDO Virus) is an extension of the Infectious Disease Ontology (IDO). IDO Virus follows OBO Foundry guidelines, employs the Basic Formal Ontology as its starting point, and covers epidemiology, classification, pathogenesis, and treatment of terms used by Virologists, i.e. virus, prion, satellite, viroid, etc.",
-      "download_owl": "http://aber-owl.net/media/ontologies/VIDO/2/vido.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/VIDO/3/vido.owl",
       "homepage": "https://github.com/infectious-disease-ontology-extensions/ido-virus",
       "name": "Virus Infectious Disease Ontology",
       "prefix": "VIDO",
-      "version": "8-3-2020"
+      "version": "10-27-2022"
     },
     "bioportal": {
       "contact": {
@@ -85082,9 +85074,9 @@
     "example": "0000093",
     "fairsharing": {
       "abbreviation": "VO",
-      "description": "The Vaccine Ontology (VO) was created as part of an international community-based effort to represent vaccine knowledge and to support automated reasoning. VO describes the detailed classification and definitions of vaccine components and vaccine administration processes. The Vaccine Ontology is being used in a variety of applications by many user groups in academia and industry.",
+      "description": "The Vaccine Ontology (VO) was created as part of an international community-based effort to represent vaccine knowledge and to support automated reasoning. VO describes the detailed classification and definitions of vaccine components and vaccine administration processes. To ensure consistent representation of vaccine knowledge and to support automated reasoning, a community-based effort to develop the Vaccine Ontology (VO) has been initiated. This international collaborative VO development effort has been joined by many institutes and disciplines around the world. The Vaccine Ontology is also being used in a variety of applications by many user groups in academia and industry.",
       "id": "62",
-      "name": "Vaccine Ontology",
+      "name": "The Vaccine Ontology",
       "prefix": "FAIRsharing.zwtww5",
       "publications": [
         {
@@ -85096,9 +85088,15 @@
           "doi": "10.1186/2041-1480-3-17",
           "pubmed_id": 23256535,
           "title": "Ontology representation and analysis of vaccine formulation and administration and their effects on vaccine immune responses."
+        },
+        {
+          "doi": "10.2174/1381612826666201125112131",
+          "pubmed_id": 33238868,
+          "title": "Ontology-based Precision Vaccinology for Deep Mechanism Understanding and Precision Vaccine Development"
         }
       ],
       "subjects": [
+        "Pathobiochemistry",
         "Biomedical Science"
       ]
     },
