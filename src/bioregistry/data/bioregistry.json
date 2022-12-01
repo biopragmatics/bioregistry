@@ -18490,7 +18490,8 @@
       "ncbi": "dbSNP",
       "prefixcommons": "dbsnp",
       "re3data": "r3d100010652",
-      "uniprot": "DB-0013"
+      "uniprot": "DB-0013",
+      "wikidata": "P6861"
     },
     "miriam": {
       "deprecated": false,
@@ -18587,6 +18588,20 @@
           "pubmed": "17170002"
         }
       ],
+      "uri_format": "https://www.ncbi.nlm.nih.gov/snp/$1"
+    },
+    "wikidata": {
+      "database": "Q5243761",
+      "description": "identifier used in dbSNP to uniquely identify a genetic variant",
+      "example": [
+        "rs113488022",
+        "rs121913355",
+        "rs1488384581"
+      ],
+      "homepage": "https://civicdb.org/home",
+      "miriam": "dbsnp",
+      "name": "dbSNP Reference SNP number",
+      "prefix": "P6861",
       "uri_format": "https://www.ncbi.nlm.nih.gov/snp/$1"
     }
   },
@@ -22970,7 +22985,8 @@
       "obofoundry": "eco",
       "ols": "eco",
       "ontobee": "ECO",
-      "prefixcommons": "eco"
+      "prefixcommons": "eco",
+      "wikidata": "P3811"
     },
     "miriam": {
       "deprecated": false,
@@ -23086,7 +23102,15 @@
         "title": "An evidence ontology for use in pathway/genome databases.",
         "year": 2004
       }
-    ]
+    ],
+    "wikidata": {
+      "database": "Q28445410",
+      "description": "identifier in the Evidence & Conclusion Ontology for capturing evidence in biological research",
+      "homepage": "http://evidenceontology.org/",
+      "name": "Evidence & Conclusion Ontology ID",
+      "pattern": "^ECO:[0-9]{7}$",
+      "prefix": "P3811"
+    }
   },
   "ecocore": {
     "aberowl": {
@@ -29311,7 +29335,8 @@
       "biolink": "foodb.compound",
       "miriam": "foodb.compound",
       "n2t": "foodb.compound",
-      "re3data": "r3d100012152"
+      "re3data": "r3d100012152",
+      "wikidata": "P8117"
     },
     "miriam": {
       "deprecated": false,
@@ -29346,7 +29371,19 @@
     },
     "synonyms": [
       "foodb"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q16800711",
+      "description": "ID of chemical compound in FooDB",
+      "example": [
+        "FDB000082",
+        "FDB000316",
+        "FDB002100"
+      ],
+      "name": "FooDB compound ID",
+      "prefix": "P8117",
+      "uri_format": "https://foodb.ca/compounds/$1"
+    }
   },
   "foodb.food": {
     "biolink": {
@@ -31423,9 +31460,10 @@
     },
     "wikidata": {
       "database": "Q5531047",
-      "database.homepage": "http://www.genedb.org/",
-      "database.label": "GeneDB",
       "description": "gene identifier in GeneDB",
+      "example": [
+        "PF3D7_0531100"
+      ],
       "homepage": "http://www.genedb.org/",
       "name": "GeneDB ID",
       "prefix": "P3382",
@@ -33976,8 +34014,24 @@
     "example": "G02681",
     "homepage": "https://goldbook.iupac.org",
     "license": "CC BY 4.0-NC-ND",
+    "mappings": {
+      "wikidata": "P4732"
+    },
     "name": "IUPAC Gold Book Compendium of Chemical Terminology",
-    "uri_format": "https://goldbook.iupac.org/terms/view/$1"
+    "uri_format": "https://goldbook.iupac.org/terms/view/$1",
+    "wikidata": {
+      "database": "Q902163",
+      "description": "identifier of definition in ''Compendium of Chemical Terminology'' (''IUPAC GoldBook'')",
+      "example": [
+        "A00204",
+        "A00212"
+      ],
+      "homepage": "http://goldbook.iupac.org/",
+      "name": "IUPAC Gold Book ID",
+      "pattern": "^[A-Z]{1,2}\\d{5}$",
+      "prefix": "P4732",
+      "uri_format": "https://dx.doi.org/10.1351/goldbook.$1"
+    }
   },
   "google.book": {
     "contributor": {
@@ -49638,12 +49692,13 @@
     "uri_format": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=$1",
     "wikidata": {
       "database": "Q6826947",
-      "database.homepage": "http://www.mirbase.org",
-      "database.label": "miRBase",
       "description": "identifier for pre-miRNAs in miRBase, the reference database for microRNAs",
+      "example": [
+        "MI0000472"
+      ],
       "homepage": "http://www.mirbase.org/",
       "name": "miRBase pre-miRNA ID",
-      "pattern": "MI\\d{7}",
+      "pattern": "^MI\\d{7}$",
       "prefix": "P2870",
       "uri_format": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=$1"
     }
@@ -49724,12 +49779,13 @@
     "uri_format": "http://mirbase.org/cgi-bin/mature.pl?mature_acc=$1",
     "wikidata": {
       "database": "Q6826947",
-      "database.homepage": "http://www.mirbase.org",
-      "database.label": "miRBase",
       "description": "identifier for mature miRNAs in miRBase, the reference database for microRNAs",
+      "example": [
+        "MIMAT0000446"
+      ],
       "homepage": "http://www.mirbase.org/",
       "name": "miRBase mature miRNA ID",
-      "pattern": "MIMAT\\d{7}",
+      "pattern": "^MIMAT\\d{7}$",
       "prefix": "P2871",
       "uri_format": "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$1"
     }
@@ -56478,7 +56534,8 @@
     },
     "mappings": {
       "fairsharing": "FAIRsharing.nYaZ1N",
-      "miriam": "nmrshiftdb2"
+      "miriam": "nmrshiftdb2",
+      "wikidata": "P9405"
     },
     "miriam": {
       "deprecated": false,
@@ -56490,6 +56547,20 @@
       "pattern": "^[0-9]+$",
       "prefix": "nmrshiftdb2",
       "sampleId": "234",
+      "uri_format": "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"
+    },
+    "wikidata": {
+      "database": "Q24170714",
+      "description": "structure identifiers in the NMRShiftDB",
+      "example": [
+        "20143612",
+        "20188613",
+        "20213347"
+      ],
+      "homepage": "https://nmrshiftdb.nmr.uni-koeln.de/",
+      "name": "NMRShiftDB structure ID",
+      "pattern": "^\\d+$",
+      "prefix": "P9405",
       "uri_format": "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"
     }
   },
@@ -63312,7 +63383,17 @@
       "PDB_CHEM_ID"
     ],
     "wikidata": {
-      "prefix": "P3636"
+      "database": "Q766195",
+      "description": "identifier for small molecules and ligands in the Protein Data Bank (PDB)",
+      "example": [
+        "032"
+      ],
+      "homepage": "http://www.wwpdb.org/",
+      "miriam": "pdb.ligand",
+      "name": "PDB ligand ID",
+      "pattern": "^[A-Z0-9]{1,3}|PRD_[0-9]+$",
+      "prefix": "P3636",
+      "uri_format": "https://www.rcsb.org/ligand/$1"
     }
   },
   "pdbsum": {
@@ -64805,12 +64886,17 @@
     ],
     "wikidata": {
       "database": "Q18392556",
-      "database.homepage": "https://www.pharmgkb.org/",
-      "database.label": "PharmGKB",
       "description": "unique identifier for an entity in the PharmGKB knowledgebase",
+      "example": [
+        "PA134955224",
+        "PA356",
+        "PA443560",
+        "PA451581",
+        "PA451906"
+      ],
       "homepage": "https://www.pharmgkb.org/",
       "name": "PharmGKB ID",
-      "pattern": "PA[1-9]\\d*",
+      "pattern": "^PA[1-9]\\d*$",
       "prefix": "P7001",
       "uri_format": "https://www.pharmgkb.org/accession/$1"
     }
@@ -68258,11 +68344,12 @@
     },
     "wikidata": {
       "database": "Q899676",
-      "database.homepage": "http://prosite.expasy.org/",
-      "database.label": "PROSITE",
       "description": "identifier for a protein family, domain or functional site, in the PROSITE database",
+      "example": [
+        "PDOC00550"
+      ],
       "name": "PROSITE documentation ID",
-      "pattern": "PDOC\\d{5}",
+      "pattern": "^PDOC\\d{5}$",
       "prefix": "P4355",
       "uri_format": "https://prosite.expasy.org/$1"
     }
@@ -70586,9 +70673,10 @@
     ],
     "wikidata": {
       "database": "Q2134522",
-      "database.homepage": "http://www.reactome.org/",
-      "database.label": "Reactome",
       "description": "Identifier used in Reactome to uniquely identify a biological pathway",
+      "example": [
+        "R-HSA-71403"
+      ],
       "homepage": "http://www.reactome.org/",
       "name": "Reactome ID",
       "prefix": "P3937",
@@ -72162,7 +72250,8 @@
       "go": "RNAcentral",
       "miriam": "rnacentral",
       "n2t": "rnacentral",
-      "ncbi": "RNAcentral"
+      "ncbi": "RNAcentral",
+      "wikidata": "P8697"
     },
     "miriam": {
       "deprecated": false,
@@ -72194,7 +72283,19 @@
     },
     "synonyms": [
       "LNCRNADB"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q99839604",
+      "description": "An ID in the RNA central database",
+      "example": [
+        "URS0000413C32_559292",
+        "URS000080E36F_9606"
+      ],
+      "homepage": "https://rnacentral.org/",
+      "name": "RNACentral ID",
+      "prefix": "P8697",
+      "uri_format": "https://rnacentral.org/rna/$1"
+    }
   },
   "rnajunction": {
     "example": "8668",
@@ -75020,12 +75121,13 @@
     },
     "wikidata": {
       "database": "Q3460832",
-      "database.homepage": "http://www.yeastgenome.org",
-      "database.label": "SGD",
       "description": "identifier for a genetic element in the Saccharomyces Genome Database",
+      "example": [
+        "S000001582"
+      ],
       "homepage": "http://www.yeastgenome.org",
       "name": "Saccharomyces Genome Database ID",
-      "pattern": "S\\d{9}",
+      "pattern": "^S\\d{9}$",
       "prefix": "P3406",
       "uri_format": "http://www.yeastgenome.org/locus/$1/overview"
     }
@@ -79728,13 +79830,16 @@
       "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
     },
     "wikidata": {
-      "database": "Q142667",
-      "database.homepage": "http://www.tcdb.org/",
-      "database.label": "Transporter Classification database",
+      "database": "Q69255727",
       "description": "classifies transport proteins similar to how EC classifies enzymes",
+      "example": [
+        "1.A.1",
+        "2.A.1.1.28",
+        "3.A.3"
+      ],
       "homepage": "https://www.tcdb.org",
       "name": "Transporter Classification Database ID",
-      "pattern": "\\d|(\\d\\.[A-Z](\\.(\\d{1,3}){0,3}))",
+      "pattern": "^\\d|(\\d\\.[A-Z](\\.(\\d{1,3}){0,3}))$",
       "prefix": "P7260",
       "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
     }
@@ -81637,7 +81742,15 @@
       "uri_format": "https://genome.ucsc.edu/cgi-bin/hgLinkIn?resource=uniprot&id=$1"
     },
     "wikidata": {
-      "prefix": "P2576"
+      "database": "Q1047293",
+      "description": "identifier of a UCSC's release of a genome",
+      "example": [
+        "hg38"
+      ],
+      "homepage": "https://genome.ucsc.edu",
+      "name": "UCSC Genome Browser assembly ID",
+      "prefix": "P2576",
+      "uri_format": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=$1"
     }
   },
   "ucum": {
@@ -81771,7 +81884,16 @@
     ],
     "uri_format": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1",
     "wikidata": {
-      "prefix": "P8121"
+      "description": "ID for chemical compound in The University of Minnesota Biocatalysis/Biodegradation Database",
+      "example": [
+        "c0001",
+        "c0002",
+        "c0003"
+      ],
+      "homepage": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=allcomps",
+      "name": "UM-BBD compound ID",
+      "prefix": "P8121",
+      "uri_format": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1"
     }
   },
   "umbbd.enzyme": {
@@ -86566,15 +86688,19 @@
     "twitter": "WikiPathways",
     "wikidata": {
       "database": "Q7999828",
-      "database.homepage": "https://www.wikipathways.org/",
-      "database.label": "WikiPathways",
       "description": "describes in which biological pathways a biological entity occurs",
-      "format.rdf": "http://identifiers.org/wikipathways/$1",
+      "example": [
+        "WP2533"
+      ],
       "homepage": "http://www.wikipathways.org",
+      "miriam": "wikipathways",
       "name": "WikiPathways ID",
-      "pattern": "WP\\d{1,4}",
+      "pattern": "^WP\\d{1,4}$",
       "prefix": "P2410",
-      "uri_format": "https://new.wikipathways.org/pathways/$1"
+      "uri_format": "https://new.wikipathways.org/pathways/$1",
+      "uri_format_rdf": [
+        "http://identifiers.org/wikipathways/$1"
+      ]
     }
   },
   "wikipedia.en": {
@@ -88568,9 +88694,10 @@
     },
     "wikidata": {
       "database": "Q29128476",
-      "database.homepage": "https://zfin.org/",
-      "database.label": "Zebrafish Model Organism Database",
       "description": "identifier for a genetic element in the Zebrafish Model Organism Database",
+      "example": [
+        "ZDB-GENE-980526-388"
+      ],
       "homepage": "http://zfin.org",
       "name": "ZFIN Gene ID",
       "prefix": "P3870",
