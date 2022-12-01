@@ -333,6 +333,7 @@ def bibliometric_comparison():
     plt.xticks(rotation=45)
     fig.tight_layout()
     fig.savefig(DOCS_IMG.joinpath("bibliography_years.svg"), dpi=350)
+    fig.savefig(DOCS_IMG.joinpath("bibliography_years.png"), dpi=350)
 
 
 @click.command()
