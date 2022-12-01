@@ -20,3 +20,5 @@ scores for the remaining publications ([`predictions.tsv`](predictions.tsv)). Th
 
 For reference, the relative importance of each feature(i.e., word) is available in [`importances.tsv`](importances.tsv).
 This analysis can be re-run with `python -m bioregistry.analysis.title_tfidf`.
+A [presentation](https://bit.ly/wpci2022-bioregistry-maintenance) on this workflow was given at
+the [2022 Workshop on Prefixes, CURIEs, and IRIs](https://biopragmatics.github.io/workshops/WPCI2022).
