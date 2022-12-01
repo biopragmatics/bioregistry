@@ -3165,7 +3165,8 @@
       "biocontext": "ARXIV",
       "miriam": "arxiv",
       "n2t": "arxiv",
-      "prefixcommons": "arxiv"
+      "prefixcommons": "arxiv",
+      "wikidata": "P818"
     },
     "miriam": {
       "deprecated": false,
@@ -3216,7 +3217,20 @@
         "name": "ar5iv",
         "uri_format": "https://ar5iv.org/abs/$1"
       }
-    ]
+    ],
+    "wikidata": {
+      "database": "Q18920853",
+      "description": "identifier of a document in arXiv pre-print archive",
+      "example": [
+        "0806.2878",
+        "1109.1746"
+      ],
+      "homepage": "http://arxiv.org/abs/",
+      "name": "arXiv ID",
+      "pattern": "^(\\d{4}.\\d{4,5}|[a-z\\-]+(\\.[A-Z]{2})?\\/\\d{7})(v\\d+)?$",
+      "prefix": "P818",
+      "uri_format": "http://arxiv.org/abs/$1"
+    }
   },
   "asap": {
     "biocontext": {
@@ -6952,7 +6966,8 @@
     },
     "homepage": "https://biorxiv.org",
     "mappings": {
-      "go": "bioRxiv"
+      "go": "bioRxiv",
+      "wikidata": "P3951"
     },
     "name": "bioRxiv",
     "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6,8}(v\\d{1,3})?$",
@@ -6965,7 +6980,20 @@
         "uri_format": "https://scholia.toolforge.org/biorxiv/$1"
       }
     ],
-    "uri_format": "https://www.biorxiv.org/content/10.1101/$1"
+    "uri_format": "https://www.biorxiv.org/content/10.1101/$1",
+    "wikidata": {
+      "database": "Q19835482",
+      "description": "identifier of a document in BioRxiv, a preprint repository for the biological sciences launched in November 2013",
+      "example": [
+        "028522",
+        "2021.09.10.459803"
+      ],
+      "homepage": "http://biorxiv.org/search/limit_from:2010-01-01%20limit_to:2017-02-16%20numresults:10%20sort:relevance-rank%20format_result:standard",
+      "name": "BioRxiv ID",
+      "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6}$",
+      "prefix": "P3951",
+      "uri_format": "https://doi.org/10.1101/$1"
+    }
   },
   "biosample": {
     "biocontext": {
@@ -20569,7 +20597,8 @@
       "go": "DOI",
       "miriam": "doi",
       "n2t": "doi",
-      "prefixcommons": "doi"
+      "prefixcommons": "doi",
+      "wikidata": "P356"
     },
     "miriam": {
       "deprecated": false,
@@ -20642,7 +20671,10 @@
       "https://github.com/biopragmatics/bioregistry/issues/287",
       "https://github.com/biopragmatics/bioregistry/pull/316"
     ],
-    "uri_format": "https://doi.org/$1"
+    "uri_format": "https://doi.org/$1",
+    "wikidata": {
+      "prefix": "P356"
+    }
   },
   "doid": {
     "aberowl": {
@@ -29560,12 +29592,15 @@
     "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1",
     "wikidata": {
       "database": "Q796451",
-      "database.homepage": "http://www.fossilworks.org",
-      "database.label": "Fossilworks",
       "description": "identifier for a journal article in the Fossilworks database",
+      "example": [
+        "55763",
+        "61467",
+        "65044"
+      ],
       "homepage": "http://fossilworks.org",
       "name": "Fossilworks ID for this journal article",
-      "pattern": "\\d+",
+      "pattern": "^\\d+$",
       "prefix": "P7720",
       "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1"
     }
@@ -30050,7 +30085,8 @@
   },
   "funderregistry": {
     "mappings": {
-      "miriam": "funderregistry"
+      "miriam": "funderregistry",
+      "wikidata": "P356"
     },
     "miriam": {
       "deprecated": false,
@@ -30063,6 +30099,22 @@
       "prefix": "funderregistry",
       "sampleId": "100000001",
       "uri_format": "http://data.crossref.org/fundingdata/funder/10.13039/$1"
+    },
+    "wikidata": {
+      "database": "Q25670",
+      "description": "serial code used to uniquely identify digital objects like academic papers (use upper case letters only)",
+      "example": [
+        "10.12987/YALE/9780300197051.003.0010",
+        "10.1371/JOURNAL.PONE.0029797"
+      ],
+      "miriam": "doi",
+      "name": "DOI",
+      "pattern": "^(?i)10.\\d{4,9}/[-._;()/:A-Z0-9]+$",
+      "prefix": "P356",
+      "uri_format": "https://doi.org/$1",
+      "uri_format_rdf": [
+        "http://dx.doi.org/$1"
+      ]
     }
   },
   "fungidb": {
@@ -66296,7 +66348,16 @@
       "PMCID"
     ],
     "wikidata": {
-      "prefix": "P932"
+      "database": "Q11801904",
+      "description": "identifier for a scientific work issued by PubMed Central (without \"PMC\" prefix)",
+      "example": [
+        "1201091"
+      ],
+      "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
+      "name": "PMCID",
+      "pattern": "^[1-9]\\d{0,6}$",
+      "prefix": "P932",
+      "uri_format": "http://europepmc.org/articles/PMC$1"
     }
   },
   "pmdb": {
@@ -69258,6 +69319,21 @@
       "uri_format_rdf": [
         "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1"
       ]
+    }
+  },
+  "publons.publication": {
+    "mappings": {
+      "wikidata": "P3431"
+    },
+    "wikidata": {
+      "database": "Q18389628",
+      "description": "identifier for the defunct/merged Publons website; URL redirects to Web of Science's P8372 (WOSID)",
+      "example": [
+        "507568"
+      ],
+      "name": "Publons publication ID",
+      "prefix": "P3431",
+      "uri_format": "https://publons.com/publon/$1"
     }
   },
   "publons.researcher": {
@@ -88225,7 +88301,16 @@
     ],
     "uri_format": "https://zenodo.org/record/$1",
     "wikidata": {
-      "prefix": "P4901"
+      "database": "Q22661177",
+      "description": "ID of a work in Zenodo repository",
+      "example": [
+        "1038611",
+        "1481308"
+      ],
+      "name": "Zenodo ID",
+      "pattern": "^[1-9]\\d+$",
+      "prefix": "P4901",
+      "uri_format": "https://zenodo.org/record/$1"
     }
   },
   "zfa": {

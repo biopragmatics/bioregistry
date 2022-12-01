@@ -52,6 +52,8 @@ SKIP = {
     "P9107": "is a data property",
     "Q112586709": "should not be annotated like a property",
     "Q111831044": "should not be annotated like a property",
+    "P1104": "is a data property",
+    "P10676": "is a data property",
 }
 
 
