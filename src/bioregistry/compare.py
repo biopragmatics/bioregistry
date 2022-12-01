@@ -329,10 +329,11 @@ def bibliometric_comparison():
     sns.barplot(data=df, ax=ax, x="year", y="count")
     ax.set_ylabel("Publications")
     ax.set_xlabel("")
-    ax.set_title(f"Timeline of {len(publications):,} Publications")
+    ax.set_title(f"Timeline of First Publications for {len(publications):,} Prefixes")
     plt.xticks(rotation=45)
     fig.tight_layout()
     fig.savefig(DOCS_IMG.joinpath("bibliography_years.svg"), dpi=350)
+    fig.savefig(DOCS_IMG.joinpath("bibliography_years.png"), dpi=350)
 
 
 @click.command()
