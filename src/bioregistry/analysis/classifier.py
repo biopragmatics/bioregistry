@@ -11,14 +11,16 @@ from sklearn.metrics import matthews_corrcoef, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
+from tabulate import tabulate
 
 from bioregistry.bibliometrics import get_publications_df
+from bioregistry.constants import EXPORT_ANALYSES
 
 URL = (
     "https://docs.google.com/spreadsheets/d/e/"
     "2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=tsv"
 )
-MODULE = pystow.module("bioregistry", "analysis")
+MODULE = pystow.module("bioregistry", "analysis", "title_classifier")
 
 
 @click.command()
@@ -27,7 +29,7 @@ def main():
     click.echo("loading bioregistry publications")
     publication_df = get_publications_df()
     # TODO extend to documents with only a DOI
-    publication_df = publication_df[publication_df.pubmed.notna()]
+    publication_df = publication_df[publication_df.pubmed.notna() & publication_df.title.notna()]
     publication_df = publication_df[["pubmed", "title"]]
     publication_df["label"] = True
     click.echo(f"got {publication_df.shape[0]} publications from the bioregistry")
@@ -41,7 +43,7 @@ def main():
     df = pd.concat([curation_df, publication_df])
 
     click.echo("training tf-idf")
-    vectorizer = TfidfVectorizer()
+    vectorizer = TfidfVectorizer(stop_words="english")
     vectorizer.fit(df.title)
 
     click.echo("applying tf-idf")
@@ -65,6 +67,7 @@ def main():
     ]
 
     click.echo("scoring")
+    scores = []
     for clf in classifiers:
         clf.fit(x_train, y_train)
         y_pred = clf.predict(x_test)
@@ -73,8 +76,12 @@ def main():
             roc_auc = roc_auc_score(y_test, clf.predict_proba(x_test)[:, 1])
         except AttributeError:
             roc_auc = None
-        click.echo(f"{clf} mcc: {mcc:.2f}, auc-roc: {roc_auc if roc_auc else float('nan'):.2f}")
+
+        scores.append(
+            (clf.__class__.__name__, round(mcc, 2), round(roc_auc, 2) if roc_auc else float("nan"))
+        )
         # click.echo(confusion_matrix(y_test, y_pred))
+    click.echo(tabulate(scores, headers=["Classifier", "MCC", "AUC-ROC"]))
 
     clf = classifiers[0]  # use the random forest
     importances_df = (
@@ -87,6 +94,8 @@ def main():
         .sort_values("importance", ascending=False, key=abs)
         .round(4)
     )
+    click.echo(tabulate(importances_df.head(15), showindex=False, headers=importances_df.columns))
+
     importance_path = MODULE.join(name="importances.tsv")
     click.echo(f"writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
@@ -95,7 +104,7 @@ def main():
     novel_df = df[~annotation_idx][["pubmed", "title"]].copy()
     novel_df["score"] = clf.predict_proba(vectorizer.transform(novel_df.title))[:, 1]
     novel_df = novel_df.sort_values("score", ascending=False)
-    path = MODULE.join(name="results.tsv")
+    path = EXPORT_ANALYSES.joinpath("article_curation.tsv")
     click.echo(f"writing predicted scores to {path}")
     novel_df.to_csv(path, sep="\t", index=False)
 
