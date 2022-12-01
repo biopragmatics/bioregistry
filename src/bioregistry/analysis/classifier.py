@@ -16,6 +16,9 @@ from tabulate import tabulate
 from bioregistry.bibliometrics import get_publications_df
 from bioregistry.constants import EXPORT_ANALYSES
 
+DIRECTORY = EXPORT_ANALYSES.joinpath("title_tfidf")
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+
 URL = (
     "https://docs.google.com/spreadsheets/d/e/"
     "2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=tsv"
@@ -96,7 +99,7 @@ def main():
     )
     click.echo(tabulate(importances_df.head(15), showindex=False, headers=importances_df.columns))
 
-    importance_path = MODULE.join(name="importances.tsv")
+    importance_path = DIRECTORY.joinpath("importances.tsv")
     click.echo(f"writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
@@ -104,7 +107,7 @@ def main():
     novel_df = df[~annotation_idx][["pubmed", "title"]].copy()
     novel_df["score"] = clf.predict_proba(vectorizer.transform(novel_df.title))[:, 1]
     novel_df = novel_df.sort_values("score", ascending=False)
-    path = EXPORT_ANALYSES.joinpath("article_curation.tsv")
+    path = DIRECTORY.joinpath("predictions.tsv")
     click.echo(f"writing predicted scores to {path}")
     novel_df.to_csv(path, sep="\t", index=False)
 
