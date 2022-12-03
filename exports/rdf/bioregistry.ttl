@@ -3828,7 +3828,8 @@ bioregistry:eco a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.wvpgwn,
         prefixcommons:eco,
         miriam:eco,
-        ols:eco ;
+        ols:eco,
+        wikidata:P3811 ;
     foaf:homepage "https://www.evidenceontology.org"^^xsd:string ;
     bioregistry.schema:0000005 "0007807"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:$1"^^xsd:string ;
@@ -4532,14 +4533,15 @@ bioregistry:fma a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Onard Mejino" ] .
 
 bioregistry:foodb.compound a bioregistry.schema:0000001 ;
-    rdfs:label "FooDB Compound" ;
+    rdfs:label "FooDB compound ID" ;
     dc:description "FooDB is resource on food and its constituent compounds. It includes data on the compound’s nomenclature, its description, information on its structure, chemical class, its physico-chemical data, its food source(s), its color, its aroma, its taste, its physiological effect, presumptive health effects (from published studies), and concentrations in various foods. This collection references compounds."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:FOODB.COMPOUND,
         biolink:foodb.compound,
         n2t:foodb.compound,
         miriam:foodb.compound,
-        re3data:r3d100012152 ;
+        re3data:r3d100012152,
+        wikidata:P8117 ;
     foaf:homepage "https://foodb.ca/"^^xsd:string ;
     bioregistry.schema:0000005 "FDB002100"^^xsd:string ;
     bioregistry.schema:0000006 "http://foodb.ca/compounds/$1"^^xsd:string ;
@@ -4639,10 +4641,11 @@ bioregistry:funcbase.yeast a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:funderregistry a bioregistry.schema:0000001 ;
-    rdfs:label "FunderRegistry" ;
+    rdfs:label "DOI" ;
     dc:description "The Funder Registry is an open registry of persistent identifiers for grant-giving organizations around the world."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:funderregistry ;
+    skos:exactMatch miriam:funderregistry,
+        wikidata:P356 ;
     foaf:homepage "https://www.crossref.org/"^^xsd:string ;
     bioregistry.schema:0000005 "100000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://data.crossref.org/fundingdata/funder/10.13039/$1"^^xsd:string ;
@@ -8535,11 +8538,12 @@ bioregistry:nmr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Schober Daniel" ] .
 
 bioregistry:nmrshiftdb2 a bioregistry.schema:0000001 ;
-    rdfs:label "NMR Shift Database" ;
+    rdfs:label "NMRShiftDB structure ID" ;
     dc:description "NMR database for organic structures and their nuclear magnetic resonance (nmr) spectra. It allows for spectrum prediction (13C, 1H and other nuclei) as well as for searching spectra, structures and other properties."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.nYaZ1N,
-        miriam:nmrshiftdb2 ;
+        miriam:nmrshiftdb2,
+        wikidata:P9405 ;
     foaf:homepage "https://nmrshiftdb.nmr.uni-koeln.de"^^xsd:string ;
     bioregistry.schema:0000005 "234"^^xsd:string ;
     bioregistry.schema:0000006 "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"^^xsd:string ;
@@ -10273,6 +10277,16 @@ bioregistry:psipar a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true .
 
+bioregistry:publons.publication a bioregistry.schema:0000001 ;
+    rdfs:label "Publons publication ID" ;
+    dc:description "identifier for the defunct/merged Publons website; URL redirects to Web of Science's P8372 (WOSID)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P3431 ;
+    foaf:homepage "https://publons.com"^^xsd:string ;
+    bioregistry.schema:0000005 "507568"^^xsd:string ;
+    bioregistry.schema:0000006 "https://publons.com/publon/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:pw a bioregistry.schema:0000001 ;
     rdfs:label "Pathway ontology" ;
     dc:description "The Pathway Ontology captures information on biological networks, the relationships between netweorks and the alterations or malfunctioning of such networks within a hierarchical structure. The five main branches of the ontology are: classic metabolic pathways, regulatory, signaling, drug, and disease pathwaysfor complex human conditions."^^xsd:string ;
@@ -10712,7 +10726,7 @@ bioregistry:rna_sstrand a bioregistry.schema:0000001 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:rnacentral a bioregistry.schema:0000001 ;
-    rdfs:label "RNAcentral" ;
+    rdfs:label "RNACentral ID" ;
     dc:description "RNAcentral is a public resource that offers integrated access to a comprehensive and up-to-date set of non-coding RNA sequences provided by a collaborating group of Expert Databases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:3856,
@@ -10721,7 +10735,8 @@ bioregistry:rnacentral a bioregistry.schema:0000001 ;
         n2t:rnacentral,
         ncbi.resource:RNAcentral,
         fairsharing:FAIRsharing.KcCjL7,
-        miriam:rnacentral ;
+        miriam:rnacentral,
+        wikidata:P8697 ;
     foaf:homepage "https://rnacentral.org/"^^xsd:string ;
     bioregistry.schema:0000005 "URS0000759CF4"^^xsd:string ;
     bioregistry.schema:0000006 "https://rnacentral.org/rna/$1"^^xsd:string ;
@@ -20263,13 +20278,14 @@ bioregistry:aro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-1142-3063 .
 
 bioregistry:arxiv a bioregistry.schema:0000001 ;
-    rdfs:label "arXiv" ;
+    rdfs:label "arXiv ID" ;
     dc:description "arXiv is an e-print service in the fields of physics, mathematics, non-linear science, computer science, and quantitative biology."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:ARXIV,
         n2t:arxiv,
         prefixcommons:arxiv,
-        miriam:arxiv ;
+        miriam:arxiv,
+        wikidata:P818 ;
     foaf:homepage "https://arxiv.org/"^^xsd:string ;
     bioregistry.schema:0000005 "0807.4956v1"^^xsd:string ;
     bioregistry.schema:0000006 "https://arxiv.org/abs/$1"^^xsd:string ;
@@ -20460,7 +20476,8 @@ bioregistry:biorxiv a bioregistry.schema:0000001 ;
     rdfs:label "bioRxiv" ;
     dc:description "The bioRxiv is a preprint server for biology"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:bioRxiv ;
+    skos:exactMatch go.resource:bioRxiv,
+        wikidata:P3951 ;
     foaf:homepage "https://biorxiv.org"^^xsd:string ;
     bioregistry.schema:0000005 "2022.07.08.499378"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.biorxiv.org/content/10.1101/$1"^^xsd:string ;
@@ -22382,9 +22399,11 @@ bioregistry:goldbook a bioregistry.schema:0000001 ;
 
 Terminology definitions published by IUPAC are drafted by international committees of experts in the appropriate chemistry sub-disciplines, and ratified by IUPAC's Interdivisional Committee on Terminology, Nomenclature and Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved definitions are supplemented with some definitions from ISO and from the International Vocabulary of Basic and General Terms in Metrology; both these sources are recognised by IUPAC as authoritative. The result is a collection of nearly 7000 terms, with authoritative definitions, spanning the whole range of chemistry."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P4732 ;
     foaf:homepage "https://goldbook.iupac.org"^^xsd:string ;
     bioregistry.schema:0000005 "G02681"^^xsd:string ;
     bioregistry.schema:0000006 "https://goldbook.iupac.org/terms/view/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z]{1,2}\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:google.book a bioregistry.schema:0000001 ;
@@ -24113,7 +24132,7 @@ bioregistry:pdb-ccd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000016 bioregistry:pdb.ligand .
 
 bioregistry:pdb.ligand a bioregistry.schema:0000001 ;
-    rdfs:label "Protein Data Bank Ligand" ;
+    rdfs:label "PDB ligand ID" ;
     dc:description "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules. This collection references ligands."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:PDB.LIGAND,
@@ -30394,6 +30413,8 @@ wikidata:P3382 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3406 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P3431 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P351 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3519 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30412,6 +30433,8 @@ wikidata:P3636 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3640 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P3811 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P3841 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3852 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30425,6 +30448,8 @@ wikidata:P3870 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P3890 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3937 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P3951 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4229 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30441,6 +30466,8 @@ wikidata:P4495 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P4537 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4616 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P4732 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P486 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30516,6 +30543,8 @@ wikidata:P685 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P686 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P6861 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P696 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P698 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -30540,9 +30569,13 @@ wikidata:P7963 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P8061 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P8117 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P8121 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P815 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P818 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P830 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -30556,11 +30589,15 @@ wikidata:P8656 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P8691 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P8697 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P9157 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P932 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P938 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P9405 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 biocontext:GEO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -30784,7 +30821,7 @@ bioregistry:datacite a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Paul van Schayck" ] .
 
 bioregistry:dbsnp a bioregistry.schema:0000001 ;
-    rdfs:label "NCBI dbSNP" ;
+    rdfs:label "dbSNP Reference SNP number" ;
     dc:description "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1106,
@@ -30798,7 +30835,8 @@ bioregistry:dbsnp a bioregistry.schema:0000001 ;
         prefixcommons:dbsnp,
         miriam:dbsnp,
         re3data:r3d100010652,
-        uniprot.resource:DB-0013 ;
+        uniprot.resource:DB-0013,
+        wikidata:P6861 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/snp/"^^xsd:string ;
     bioregistry.schema:0000005 "rs121909098"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/snp/$1"^^xsd:string ;
@@ -30929,7 +30967,8 @@ bioregistry:doi a bioregistry.schema:0000001 ;
         n2t:doi,
         fairsharing:FAIRsharing.hFLKCn,
         prefixcommons:doi,
-        miriam:doi ;
+        miriam:doi,
+        wikidata:P356 ;
     foaf:homepage "https://www.doi.org/"^^xsd:string ;
     bioregistry.schema:0000005 "10.1038/s41597-022-01807-3"^^xsd:string ;
     bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
@@ -32183,7 +32222,7 @@ bioregistry:pesticides a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:pmc a bioregistry.schema:0000001 ;
-    rdfs:label "Pubmed Central" ;
+    rdfs:label "PMCID" ;
     dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:PMCID,
@@ -32649,7 +32688,7 @@ bioregistry:ucum a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
-    rdfs:label "UM-BBD Compound" ;
+    rdfs:label "UM-BBD compound ID" ;
     dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to compound information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:umbbd ;
@@ -32879,6 +32918,8 @@ orcid:0000-0002-7753-9042 rdfs:label "Mihail Anton" ;
 orcid:0000-0002-8457-6693 rdfs:label "Bjoern Peters" .
 
 orcid:0000-0003-1710-8256 rdfs:label "Christopher Mull" .
+
+wikidata:P356 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
     rdfs:label "EcoPortal" ;
@@ -36443,15 +36484,18 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P3345,
         wikidata:P3382,
         wikidata:P3406,
+        wikidata:P3431,
         wikidata:P351,
         wikidata:P3519,
         wikidata:P352,
         wikidata:P353,
         wikidata:P354,
+        wikidata:P356,
         wikidata:P3590,
         wikidata:P3606,
         wikidata:P3636,
         wikidata:P3640,
+        wikidata:P3811,
         wikidata:P3841,
         wikidata:P3852,
         wikidata:P3853,
@@ -36459,6 +36503,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P3870,
         wikidata:P3890,
         wikidata:P3937,
+        wikidata:P3951,
         wikidata:P4229,
         wikidata:P4317,
         wikidata:P4338,
@@ -36467,6 +36512,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P4495,
         wikidata:P4537,
         wikidata:P4616,
+        wikidata:P4732,
         wikidata:P486,
         wikidata:P4866,
         wikidata:P4901,
@@ -36505,6 +36551,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P683,
         wikidata:P685,
         wikidata:P686,
+        wikidata:P6861,
         wikidata:P696,
         wikidata:P698,
         wikidata:P699,
@@ -36518,17 +36565,21 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P7807,
         wikidata:P7963,
         wikidata:P8061,
+        wikidata:P8117,
         wikidata:P8121,
         wikidata:P815,
+        wikidata:P818,
         wikidata:P830,
         wikidata:P842,
         wikidata:P846,
         wikidata:P850,
         wikidata:P8656,
         wikidata:P8691,
+        wikidata:P8697,
         wikidata:P9157,
         wikidata:P932,
-        wikidata:P938 ;
+        wikidata:P938,
+        wikidata:P9405 ;
     foaf:homepage "https://www.wikidata.org" ;
     bioregistry.schema:0000005 "P683" ;
     bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
@@ -42537,6 +42588,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pubchem.compound,
         bioregistry:pubchem.element,
         bioregistry:pubchem.substance,
+        bioregistry:publons.publication,
         bioregistry:publons.researcher,
         bioregistry:pubmed,
         bioregistry:puro,

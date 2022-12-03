@@ -1415,9 +1415,10 @@
       "biocontext": "ARXIV",
       "miriam": "arxiv",
       "n2t": "arxiv",
-      "prefixcommons": "arxiv"
+      "prefixcommons": "arxiv",
+      "wikidata": "P818"
     },
-    "name": "arXiv",
+    "name": "arXiv ID",
     "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
     "preferred_prefix": "arxiv",
     "providers": [
@@ -3041,7 +3042,8 @@
     ],
     "homepage": "https://biorxiv.org",
     "mappings": {
-      "go": "bioRxiv"
+      "go": "bioRxiv",
+      "wikidata": "P3951"
     },
     "name": "bioRxiv",
     "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6,8}(v\\d{1,3})?$",
@@ -8001,9 +8003,10 @@
       "ncbi": "dbSNP",
       "prefixcommons": "dbsnp",
       "re3data": "r3d100010652",
-      "uniprot": "DB-0013"
+      "uniprot": "DB-0013",
+      "wikidata": "P6861"
     },
-    "name": "NCBI dbSNP",
+    "name": "dbSNP Reference SNP number",
     "pattern": "^rs\\d+$",
     "preferred_prefix": "dbsnp",
     "providers": [
@@ -9088,7 +9091,8 @@
       "go": "DOI",
       "miriam": "doi",
       "n2t": "doi",
-      "prefixcommons": "doi"
+      "prefixcommons": "doi",
+      "wikidata": "P356"
     },
     "name": "Digital Object Identifier",
     "pattern": "^10.\\d{2,9}/.*$",
@@ -10209,7 +10213,8 @@
       "obofoundry": "eco",
       "ols": "eco",
       "ontobee": "ECO",
-      "prefixcommons": "eco"
+      "prefixcommons": "eco",
+      "wikidata": "P3811"
     },
     "name": "Evidence ontology",
     "namespace_in_lui": true,
@@ -12911,9 +12916,10 @@
       "biolink": "foodb.compound",
       "miriam": "foodb.compound",
       "n2t": "foodb.compound",
-      "re3data": "r3d100012152"
+      "re3data": "r3d100012152",
+      "wikidata": "P8117"
     },
-    "name": "FooDB Compound",
+    "name": "FooDB compound ID",
     "pattern": "^FDB\\d+$",
     "preferred_prefix": "foodb.compound",
     "synonyms": [
@@ -13290,9 +13296,10 @@
     "example": "100000001",
     "homepage": "https://www.crossref.org/",
     "mappings": {
-      "miriam": "funderregistry"
+      "miriam": "funderregistry",
+      "wikidata": "P356"
     },
-    "name": "FunderRegistry",
+    "name": "DOI",
     "pattern": "^\\d{9,9}$",
     "preferred_prefix": "funderregistry",
     "uri_format": "http://data.crossref.org/fundingdata/funder/10.13039/$1"
@@ -14965,7 +14972,11 @@
     "example": "G02681",
     "homepage": "https://goldbook.iupac.org",
     "license": "CC BY 4.0-NC-ND",
+    "mappings": {
+      "wikidata": "P4732"
+    },
     "name": "IUPAC Gold Book Compendium of Chemical Terminology",
+    "pattern": "^[A-Z]{1,2}\\d{5}$",
     "preferred_prefix": "goldbook",
     "uri_format": "https://goldbook.iupac.org/terms/view/$1"
   },
@@ -25168,9 +25179,10 @@
     "homepage": "https://nmrshiftdb.nmr.uni-koeln.de",
     "mappings": {
       "fairsharing": "FAIRsharing.nYaZ1N",
-      "miriam": "nmrshiftdb2"
+      "miriam": "nmrshiftdb2",
+      "wikidata": "P9405"
     },
-    "name": "NMR Shift Database",
+    "name": "NMRShiftDB structure ID",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "nmrshiftdb2",
     "uri_format": "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"
@@ -28171,7 +28183,7 @@
       "prefixcommons": "pdbligand",
       "wikidata": "P3636"
     },
-    "name": "Protein Data Bank Ligand",
+    "name": "PDB ligand ID",
     "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "pdb.ligand",
     "providers": [
@@ -29519,7 +29531,7 @@
       "prefixcommons": "pmc",
       "wikidata": "P932"
     },
-    "name": "Pubmed Central",
+    "name": "PMCID",
     "pattern": "^PMC\\d+$",
     "preferred_prefix": "pmc",
     "providers": [
@@ -30723,6 +30735,17 @@
     ],
     "twitter": "pubchem",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/substance/$1"
+  },
+  "publons.publication": {
+    "description": "identifier for the defunct/merged Publons website; URL redirects to Web of Science's P8372 (WOSID)",
+    "example": "507568",
+    "homepage": "https://publons.com",
+    "mappings": {
+      "wikidata": "P3431"
+    },
+    "name": "Publons publication ID",
+    "preferred_prefix": "publons.publication",
+    "uri_format": "https://publons.com/publon/$1"
   },
   "publons.researcher": {
     "contributor": {
@@ -32027,9 +32050,10 @@
       "go": "RNAcentral",
       "miriam": "rnacentral",
       "n2t": "rnacentral",
-      "ncbi": "RNAcentral"
+      "ncbi": "RNAcentral",
+      "wikidata": "P8697"
     },
-    "name": "RNAcentral",
+    "name": "RNACentral ID",
     "pattern": "^URS[0-9A-F]{10}(\\_\\d+)?$",
     "preferred_prefix": "rnacentral",
     "synonyms": [
@@ -36330,7 +36354,7 @@
       "n2t": "umbbd.compound",
       "wikidata": "P8121"
     },
-    "name": "UM-BBD Compound",
+    "name": "UM-BBD compound ID",
     "part_of": "umbbd",
     "pattern": "^c\\d+$",
     "preferred_prefix": "umbbd.compound",

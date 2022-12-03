@@ -1319,7 +1319,8 @@ arxiv:
     miriam: arxiv
     n2t: arxiv
     prefixcommons: arxiv
-  name: arXiv
+    wikidata: P818
+  name: arXiv ID
   pattern: ^(\w+(\-\w+)?(\.\w+)?)?\d{4,7}(\.\d+(v\d+)?)?$
   preferred_prefix: arxiv
   providers:
@@ -2862,6 +2863,7 @@ biorxiv:
   homepage: https://biorxiv.org
   mappings:
     go: bioRxiv
+    wikidata: P3951
   name: bioRxiv
   pattern: ^(\d{4}\.\d{2}\.\d{2}\.)?\d{6,8}(v\d{1,3})?$
   preferred_prefix: biorxiv
@@ -7668,7 +7670,8 @@ dbsnp:
     prefixcommons: dbsnp
     re3data: r3d100010652
     uniprot: DB-0013
-  name: NCBI dbSNP
+    wikidata: P6861
+  name: dbSNP Reference SNP number
   pattern: ^rs\d+$
   preferred_prefix: dbsnp
   providers:
@@ -8676,6 +8679,7 @@ doi:
     miriam: doi
     n2t: doi
     prefixcommons: doi
+    wikidata: P356
   name: Digital Object Identifier
   pattern: ^10.\d{2,9}/.*$
   preferred_prefix: doi
@@ -9673,6 +9677,7 @@ eco:
     ols: eco
     ontobee: ECO
     prefixcommons: eco
+    wikidata: P3811
   name: Evidence ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -12243,7 +12248,8 @@ foodb.compound:
     miriam: foodb.compound
     n2t: foodb.compound
     re3data: r3d100012152
-  name: FooDB Compound
+    wikidata: P8117
+  name: FooDB compound ID
   pattern: ^FDB\d+$
   preferred_prefix: foodb.compound
   synonyms:
@@ -12618,7 +12624,8 @@ funderregistry:
   homepage: https://www.crossref.org/
   mappings:
     miriam: funderregistry
-  name: FunderRegistry
+    wikidata: P356
+  name: DOI
   pattern: ^\d{9,9}$
   preferred_prefix: funderregistry
   uri_format: http://data.crossref.org/fundingdata/funder/10.13039/$1
@@ -14214,7 +14221,10 @@ goldbook:
   example: G02681
   homepage: https://goldbook.iupac.org
   license: CC BY 4.0-NC-ND
+  mappings:
+    wikidata: P4732
   name: IUPAC Gold Book Compendium of Chemical Terminology
+  pattern: ^[A-Z]{1,2}\d{5}$
   preferred_prefix: goldbook
   uri_format: https://goldbook.iupac.org/terms/view/$1
 google.book:
@@ -23815,7 +23825,8 @@ nmrshiftdb2:
   mappings:
     fairsharing: FAIRsharing.nYaZ1N
     miriam: nmrshiftdb2
-  name: NMR Shift Database
+    wikidata: P9405
+  name: NMRShiftDB structure ID
   pattern: ^[0-9]+$
   preferred_prefix: nmrshiftdb2
   uri_format: https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1
@@ -26747,7 +26758,7 @@ pdb.ligand:
     n2t: pdb.ligand
     prefixcommons: pdbligand
     wikidata: P3636
-  name: Protein Data Bank Ligand
+  name: PDB ligand ID
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: pdb.ligand
   providers:
@@ -27999,7 +28010,7 @@ pmc:
     n2t: pmc
     prefixcommons: pmc
     wikidata: P932
-  name: Pubmed Central
+  name: PMCID
   pattern: ^PMC\d+$
   preferred_prefix: pmc
   providers:
@@ -29129,6 +29140,16 @@ pubchem.substance:
   - DSSTox_Generic_SID
   twitter: pubchem
   uri_format: https://pubchem.ncbi.nlm.nih.gov/substance/$1
+publons.publication:
+  description: identifier for the defunct/merged Publons website; URL redirects to
+    Web of Science's P8372 (WOSID)
+  example: '507568'
+  homepage: https://publons.com
+  mappings:
+    wikidata: P3431
+  name: Publons publication ID
+  preferred_prefix: publons.publication
+  uri_format: https://publons.com/publon/$1
 publons.researcher:
   contributor:
     email: cthoyt@gmail.com
@@ -30388,7 +30409,8 @@ rnacentral:
     miriam: rnacentral
     n2t: rnacentral
     ncbi: RNAcentral
-  name: RNAcentral
+    wikidata: P8697
+  name: RNACentral ID
   pattern: ^URS[0-9A-F]{10}(\_\d+)?$
   preferred_prefix: rnacentral
   synonyms:
@@ -34485,7 +34507,7 @@ umbbd.compound:
     miriam: umbbd.compound
     n2t: umbbd.compound
     wikidata: P8121
-  name: UM-BBD Compound
+  name: UM-BBD compound ID
   part_of: umbbd
   pattern: ^c\d+$
   preferred_prefix: umbbd.compound
