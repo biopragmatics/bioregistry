@@ -20,4 +20,4 @@ class MiriamAligner(Aligner):
 
 
 if __name__ == "__main__":
-    MiriamAligner.align()
+    MiriamAligner.cli()

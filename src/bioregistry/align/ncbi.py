@@ -29,4 +29,4 @@ class NcbiAligner(Aligner):
 
 
 if __name__ == "__main__":
-    NcbiAligner.align()
+    NcbiAligner.cli()

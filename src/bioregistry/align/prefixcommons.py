@@ -52,4 +52,4 @@ class PrefixCommonsAligner(Aligner):
 
 
 if __name__ == "__main__":
-    PrefixCommonsAligner.align(force_download=False)
+    PrefixCommonsAligner.cli()

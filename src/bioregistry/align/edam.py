@@ -31,4 +31,4 @@ class EDAMAligner(Aligner):
 
 
 if __name__ == "__main__":
-    EDAMAligner.align()
+    EDAMAligner.cli()

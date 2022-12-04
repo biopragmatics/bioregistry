@@ -70,4 +70,4 @@ class WikidataAligner(Aligner):
 
 
 if __name__ == "__main__":
-    WikidataAligner.align()
+    WikidataAligner.cli()
