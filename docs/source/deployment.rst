@@ -81,7 +81,7 @@ with the ``--registry`` flag from the command line.
 Custom configuration and branding
 ---------------------------------
 The Bioregistry can be configured in several ways, including replacing various text in
-the case of custom deployments. Please use good judgement with the following features t
+the case of custom deployments. Please use good judgement with the following features to
 best represent the Bioregistry project. The following table includes the keys that you
 can put in a configuration JSON file, an explanation of the keys, and suggestions on
 how to replace them.
@@ -116,8 +116,8 @@ you can use the ``--config config.json`` flag in the Python commands to run the 
 Running in the command line with Python
 ---------------------------------------
 The Bioregistry can be run from the Python shell directly following installation
-from the Python Package Index. This requires the ``registry.json`` and ``metaregistry.json``
-to be in the same directory, but any valid paths can be given.
+from the Python Package Index. This example assumes ``registry.json`
+is in the same directory, but any valid paths can be given.
 
 .. code-block:: shell
 
@@ -132,8 +132,8 @@ to be in the same directory, but any valid paths can be given.
 
 Running with Docker
 -------------------
-Create the following ``Dockerfile`` in the same directory as the custom registry,
-metaregistry, and other files.
+Create the following ``Dockerfile`` in the same directory as your ``registry.json``, ``config.json``,
+and any other custom files.
 
 .. code-block:: docker
 
@@ -141,14 +141,15 @@ metaregistry, and other files.
     FROM python:3.11-alpine
 
     COPY registry.json
-    COPY metaregistry.json
+    COPY config.json
 
     RUN python -m pip install gunicorn bioregistry[web]
     ENTRYPOINT python -m bioregistry web \
         --port 8766 --host "0.0.0.0" \
         --with-gunicorn --workers 4 \
         --base-url http://www.host.tld \
-        --registry registry.json
+        --registry registry.json \
+        --config config.json
 
 There are two options for running the ``Dockerfile``. The first option
 is by running the following two commands in the command line:
