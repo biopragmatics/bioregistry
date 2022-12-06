@@ -132,7 +132,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_registry(registry: Mapping[str, Resource], path: Optional[Path] = None) -> None:
+def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = None) -> None:
     """Write to the Bioregistry."""
     if path is None:
         path = BIOREGISTRY_PATH
