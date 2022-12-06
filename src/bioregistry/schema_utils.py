@@ -104,7 +104,11 @@ def write_mismatches(mismatches: Mapping[str, Mapping[str, str]]) -> None:
 @lru_cache(maxsize=1)
 def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
-    with open(COLLECTIONS_PATH, encoding="utf-8") as file:
+    return _collections_from_path(COLLECTIONS_PATH)
+
+
+def _collections_from_path(path: Union[str, Path]) -> Mapping[str, Collection]:
+    with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
         collection.identifier: collection
@@ -128,7 +132,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_registry(registry: Mapping[str, Resource], path: Optional[Path] = None) -> None:
+def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = None) -> None:
     """Write to the Bioregistry."""
     if path is None:
         path = BIOREGISTRY_PATH
@@ -225,7 +229,10 @@ def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, 
 
 def read_contexts() -> Mapping[str, Context]:
     """Get a mapping from context keys to contexts."""
-    return {
-        key: Context(**data)
-        for key, data in json.loads(CONTEXTS_PATH.read_text(encoding="utf-8")).items()
-    }
+    return _contexts_from_path(CONTEXTS_PATH)
+
+
+def _contexts_from_path(path: Union[str, Path]) -> Mapping[str, Context]:
+    with open(path, encoding="utf-8") as file:
+        data = json.load(file)
+    return {key: Context(**data) for key, data in data.items()}
