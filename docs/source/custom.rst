@@ -10,9 +10,7 @@ It can be installed and run interactively in the command line with the following
     python -m bioregistry web \
         --port 8766 --host "0.0.0.0" \
         --with-gunicorn --workers 4 \
-        --base-url http://www.host.tld \
-        --registry registry.json \
-        --metaregistry metaregistry.json
+        --base-url http://www.host.tld
 
 The Bioregistry is also containerized and pushed nightly to
 `Docker Hub <https://hub.docker.com/r/biopragmatics/bioregistry>`_.
@@ -22,6 +20,9 @@ You can pull then run the latest in the command line with the following commands
 
     docker pull biopragmatics/bioregistry:latest
     docker run --detach -i --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest
+
+Note that ``-p`` says what ports to remap. Note that the base Bioregistry image uses ``8766``
+as its port, so this is simply exposed via the same port.
 
 The following shell script can be used to automatically update the containerized deployment:
 
@@ -45,14 +46,15 @@ The following shell script can be used to automatically update the containerized
     # Run the start script
     docker run --detach -i --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest
 
-Deploying a Custom Bioregistry
+Deploying a custom Bioregistry
 ==============================
-This is a tutorial on how to run a custom instance of the Bioregistry.
+This is a tutorial on how to run a custom instance of the Bioregistry that contains custom content.
+If you don't need custom content, see the instructions above for deploying a vanilla copy of the Bioregistry.
 
-Custom Content
---------------
+Creating custom content
+-----------------------
 In the following example, a slimmed down registry is generated from the base
-Bioregistry. It's possible to add additional :class:`bioregistry.Resource`
+Bioregistry. It's also possible to add additional :class:`bioregistry.Resource`
 instances from arbitrary sources.
 
 .. code-block:: python
@@ -71,7 +73,10 @@ instances from arbitrary sources.
         path=Path.home().joinpath("Desktop", "registry.json"),
     )
 
-The same is possible for collections, contexts, and even the metaregistry.
+This script creates a new file that will be used when running the Bioregistry
+with the ``--registry`` flag from the command line.
+
+.. note:: The same is possible for collections, contexts, and even the metaregistry.
 
 Running in the command line with Python
 ---------------------------------------
@@ -86,8 +91,9 @@ to be in the same directory, but any valid paths can be given.
         --port 8766 --host "0.0.0.0" \
         --with-gunicorn --workers 4 \
         --base-url http://www.host.tld \
-        --registry registry.json \
-        --metaregistry metaregistry.json
+        --registry registry.json
+
+.. note:: This is the same as deploying the vanilla Bioregistry except the usage of ``--registry registry.json``
 
 Running with Docker
 -------------------
@@ -107,8 +113,7 @@ metaregistry, and other files.
         --port 8766 --host "0.0.0.0" \
         --with-gunicorn --workers 4 \
         --base-url http://www.host.tld \
-        --registry registry.json \
-        --metaregistry metaregistry.json
+        --registry registry.json
 
 There are two options for running the ``Dockerfile``. The first option
 is by running the following two commands in the command line:
