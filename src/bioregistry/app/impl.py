@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Mapping, Optional, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
 from flasgger import Swagger
 from flask import Flask
@@ -164,5 +164,5 @@ def get_app(
     app.register_blueprint(ui_blueprint)
 
     # Make manager available in all jinja templates
-    app.jinja_env.globals.update(manager=manager, curie_to_str=curie_to_str)
+    app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
     return app
