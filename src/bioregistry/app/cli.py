@@ -71,6 +71,10 @@ def web(
     app = get_app(
         manager=manager,
         config=config,
+        first_party=registry is None
+        and metaregistry is None
+        and collections is None
+        and contexts is None,
     )
     run_app(
         app=app,
