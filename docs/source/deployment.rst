@@ -92,7 +92,8 @@ how to replace them.
 | ``METAREGISTRY_TITLE``               | The title on the home page, defaults to "Bioregistry".   |
 +--------------------------------------+----------------------------------------------------------+
 | ``METAREGISTRY_HOST``                | The base URL for the service, defaults to                |
-|                                      | https://bioregistry.io.                                  |
+|                                      | https://bioregistry.io. If you use `--base-url` from the |
+|                                      | CLI, then you should still set this too.                 |
 +--------------------------------------+----------------------------------------------------------+
 | ``METAREGISTRY_HEADER``              | The header text on the home page. Can include arbitrary  |
 |                                      | HTML. Suggestions: use a ``<p class="lead">``.           |
