@@ -97,13 +97,11 @@ def get_app(
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
-
     if isinstance(config, (str, Path)):
         with open(config) as file:
             app.config.update(json.load(file))
     elif config is not None:
         app.config.update(config)
-
     app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
     app.config.setdefault("METAREGISTRY_HOST", "https://bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)

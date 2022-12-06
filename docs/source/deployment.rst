@@ -78,6 +78,39 @@ with the ``--registry`` flag from the command line.
 
 .. note:: The same is possible for collections, contexts, and even the metaregistry.
 
+Custom configuration and branding
+---------------------------------
+Various aspects of the text on the Bioregistry web application can be updated on custom
+deployments. Please use good judgement with the following features to best represent the
+Bioregistry project.
+
++--------------------------------------+----------------------------------------------------------+
+| Key                                  | Description                                              |
++======================================+==========================================================+
+| ``METAREGISTRY_TITLE``               | The title on the home page, defaults to "Bioregistry".   |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_HOST``                | The base URL for the service, defaults to                |
+|                                      | https://bioregistry.io.                                  |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_HEADER``              | The header text on the home page. Can include arbitrary  |
+|                                      | HTML. Suggestions: use a ``<p class="lead">``.           |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_FOOTER``              | The footer text that appears on all pages. Can include   |
+|                                      | arbitrary HTML.                                          |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_RESOURCES_SUBHEADER`` | The second paragraph on https://bioregistry.io/registry. |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_VERSION``             | The version to display in the top-right of each page     |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_EXAMPLE_PREFIX``      | An example prefix. Defaults to ``chebi``.                |
++--------------------------------------+----------------------------------------------------------+
+| ``METAREGISTRY_EXAMPLE_IDENTIFIER``  | An example local unique identifier to go with the        |
+|                                      | example prefix                                           |
++--------------------------------------+----------------------------------------------------------+
+
+Finally, after filling up a configuration JSON file and naming it something like ``config.json``,
+you can use the ``--config config.json`` flag in the Python commands to run the web service below.
+
 Running in the command line with Python
 ---------------------------------------
 The Bioregistry can be run from the Python shell directly following installation
