@@ -56,6 +56,7 @@ To install in development mode, use the following:
    alignment
    cli
    pandas
+   custom
 
 Indices and Tables
 ------------------

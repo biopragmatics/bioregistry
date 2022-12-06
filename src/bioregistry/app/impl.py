@@ -89,7 +89,12 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 def get_app(
     manager: Optional[Manager] = None, config: Union[None, str, Path, Mapping[str, Any]] = None
 ) -> Flask:
-    """Prepare the flask application."""
+    """Prepare the flask application.
+
+    :param manager: A pre-configured manager. If none given, uses the default manager.
+    :param config: Additional configuration to be passd to the flask application. See below.
+    :returns: An instantiated flask application
+    """
     app = Flask(__name__)
 
     if isinstance(config, (str, Path)):
