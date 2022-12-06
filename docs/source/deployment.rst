@@ -92,8 +92,8 @@ how to replace them.
 | ``METAREGISTRY_TITLE``               | The title on the home page, defaults to "Bioregistry".   |
 +--------------------------------------+----------------------------------------------------------+
 | ``METAREGISTRY_HOST``                | The base URL for the service, defaults to                |
-|                                      | https://bioregistry.io. If you use `--base-url` from the |
-|                                      | CLI, then you should still set this too.                 |
+|                                      | https://bioregistry.io. If you use ``--base-url`` from   |
+|                                      | the CLI, then you should still set this too.             |
 +--------------------------------------+----------------------------------------------------------+
 | ``METAREGISTRY_HEADER``              | The header text on the home page. Can include arbitrary  |
 |                                      | HTML. Suggestions: use a ``<p class="lead">``.           |
@@ -117,7 +117,7 @@ you can use the ``--config config.json`` flag in the Python commands to run the 
 Running in the command line with Python
 ---------------------------------------
 The Bioregistry can be run from the Python shell directly following installation
-from the Python Package Index. This example assumes ``registry.json`
+from the Python Package Index. This example assumes ``registry.json``
 is in the same directory, but any valid paths can be given.
 
 .. code-block:: shell
