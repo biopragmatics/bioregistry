@@ -1725,7 +1725,11 @@ class Resource(BaseModel):
         return None
 
     def get_license_url(self) -> Optional[str]:
-        raise NotImplementedError
+        """Get a license URL."""
+        spdx_id = self.get_license()
+        if spdx_id is None:
+            return None
+        return f'{BIOREGISTRY_REMOTE_URL}/spdx:{spdx_id}'
 
     def get_version(self) -> Optional[str]:
         """Get the version for the resource."""
@@ -1755,6 +1759,14 @@ class Resource(BaseModel):
 
     def get_bioschemas_jsonld(self):
         """Get the BioSchemas JSON-LD."""
+        identifiers = [
+            f"bioregistry:{self.prefix}",
+            *(
+                f"{metaprefix}:{metaidentifier}"
+                for metaprefix, metaidentifier in self.get_mappings().items()
+            )
+        ]
+
         rv = {
             "@context": "https://schema.org",
             "@type": "Dataset",
@@ -1762,9 +1774,7 @@ class Resource(BaseModel):
             "url": self.get_homepage(),
             "name": self.get_name(),
             "description": self.get_description(),
-            "identifier": [
-                f"bioregistry:{self.prefix}",
-            ],
+            "identifier": identifiers,
             "keywords": [],
         }
         version = self.get_version()
