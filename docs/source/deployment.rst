@@ -80,9 +80,11 @@ with the ``--registry`` flag from the command line.
 
 Custom configuration and branding
 ---------------------------------
-Various aspects of the text on the Bioregistry web application can be updated on custom
-deployments. Please use good judgement with the following features to best represent the
-Bioregistry project.
+The Bioregistry can be configured in several ways, including replacing various text in
+the case of custom deployments. Please use good judgement with the following features t
+best represent the Bioregistry project. The following table includes the keys that you
+can put in a configuration JSON file, an explanation of the keys, and suggestions on
+how to replace them.
 
 +--------------------------------------+----------------------------------------------------------+
 | Key                                  | Description                                              |
