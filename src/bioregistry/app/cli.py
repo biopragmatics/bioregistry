@@ -17,9 +17,6 @@ from more_click import (
     workers_option,
 )
 
-from .impl import get_app
-from ..resource_manager import Manager
-
 __all__ = [
     "web",
 ]
@@ -38,6 +35,13 @@ __all__ = [
 @click.option("--collections", type=Path, help="Path to a local collections file")
 @click.option("--contexts", type=Path, help="Path to a local contexts file")
 @click.option("--config", type=Path, help="Path to a configuration file")
+@click.option(
+    "--base-url",
+    type=str,
+    default="https://bioregistry.io",
+    show_default=True,
+    help="Base URL for app",
+)
 def web(
     host: str,
     port: str,
@@ -45,19 +49,24 @@ def web(
     workers: int,
     debug: bool,
     timeout: Optional[int],
-    registry: Optional[Path] = None,
-    metaregistry: Optional[Path] = None,
-    collections: Optional[Path] = None,
-    contexts: Optional[Path] = None,
-    config: Optional[Path] = None,
+    registry: Optional[Path],
+    metaregistry: Optional[Path],
+    collections: Optional[Path],
+    contexts: Optional[Path],
+    config: Optional[Path],
+    base_url: Optional[str],
 ):
     """Run the web application."""
+    from .impl import get_app
+    from ..resource_manager import Manager
+
     manager = Manager(
         registry=registry,
         metaregistry=metaregistry,
         collections=collections,
         contexts=contexts,
         # is being able to load custom mismatches necessary?
+        base_url=base_url,
     )
     app = get_app(
         manager=manager,

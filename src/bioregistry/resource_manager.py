@@ -101,6 +101,7 @@ class Manager:
         collections: Union[None, str, Path, Mapping[str, Collection]] = None,
         contexts: Union[None, str, Path, Mapping[str, Context]] = None,
         mismatches: Optional[Mapping[str, Mapping[str, str]]] = None,
+        base_url: Optional[str] = None,
     ):
         """Instantiate a registry manager.
 
@@ -109,7 +110,10 @@ class Manager:
         :param collections: A custom collections dictionary. If none, defaults to the Bioregistry's collections.
         :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         :param mismatches: A custom mismatches dictionary. If none, defaults to the Bioregistry's mismatches.
+        :param base_url: The base URL.
         """
+        self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
+
         if registry is None:
             self.registry = dict(read_registry())
         elif isinstance(registry, (str, Path)):
@@ -809,7 +813,7 @@ class Manager:
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
         if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
+        return f"{self.base_url}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
