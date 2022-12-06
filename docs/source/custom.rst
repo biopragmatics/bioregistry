@@ -71,6 +71,8 @@ instances from arbitrary sources.
         path=Path.home().joinpath("Desktop", "registry.json"),
     )
 
+The same is possible for collections, contexts, and even the metaregistry.
+
 Running in the command line with Python
 ---------------------------------------
 The Bioregistry can be run from the Python shell directly following installation
