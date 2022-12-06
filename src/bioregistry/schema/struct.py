@@ -1729,7 +1729,7 @@ class Resource(BaseModel):
         spdx_id = self.get_license()
         if spdx_id is None:
             return None
-        return f'{BIOREGISTRY_REMOTE_URL}/spdx:{spdx_id}'
+        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{spdx_id}"
 
     def get_version(self) -> Optional[str]:
         """Get the version for the resource."""
@@ -1764,7 +1764,7 @@ class Resource(BaseModel):
             *(
                 f"{metaprefix}:{metaidentifier}"
                 for metaprefix, metaidentifier in self.get_mappings().items()
-            )
+            ),
         ]
 
         rv = {
