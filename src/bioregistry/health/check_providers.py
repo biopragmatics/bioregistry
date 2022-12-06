@@ -93,7 +93,7 @@ class QueueTuple(NamedTuple):
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the provider health check script."""
     if HEALTH_YAML_PATH.is_file():
         database = Database(**yaml.safe_load(HEALTH_YAML_PATH.read_text()))

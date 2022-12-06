@@ -29,4 +29,4 @@ class CellosaurusAligner(Aligner):
 
 
 if __name__ == "__main__":
-    CellosaurusAligner.align()
+    CellosaurusAligner.cli()

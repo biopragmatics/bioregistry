@@ -343,11 +343,15 @@
                         Part Of
                     </dt>
                     <dd>
+                        {% if manager.get_name(part_of) %}
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(part_of) }}">
                             {{ manager.get_preferred_prefix(part_of) or part_of }}
                         </a>
+                        {% else %}
+                        <span class="badge badge-pill badge-light">{{ part_of }} (not directly registered)</span>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if has_parts %}
@@ -440,8 +444,10 @@
                 <thead class="table-">
                 <tr>
                     <th scope="col">Registry Name</th>
-                    <th scope="col">Metaprefix</th>
+                    <th scope="col">Registry Metaprefix</th>
                     <th scope="col">External Prefix</th>
+                    {# <th scope="col">External Name</th> #}
+                    <th scope="col">Curate</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -466,6 +472,14 @@
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
                                     <i class="fas fa-info-circle"></i></span>
                             {% endif %}
+                        </td>
+                        {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
+                        <td style="text-align: center;">
+                            <a data-toggle="tooltip" data-html="true"
+                               title="Report misalignment between {{ name }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
+                               href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
+                                <i class="fas fa-pen"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}

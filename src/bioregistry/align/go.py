@@ -83,4 +83,4 @@ class GoAligner(Aligner):
 
 
 if __name__ == "__main__":
-    GoAligner.align()
+    GoAligner.cli()

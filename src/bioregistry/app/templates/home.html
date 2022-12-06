@@ -2,17 +2,6 @@
 
 {% block title %}{{ config.METAREGISTRY_TITLE }}{% endblock %}
 
-{% block scripts %}
-    {{ super() }}
-    <script>
-        $(".basicAutoComplete").autoComplete({
-            resolverSettings: {
-                url: "{{ url_for('metaregistry_api.search') }}"
-            }
-        });
-    </script>
-{% endblock %}
-
 {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}
 
 {% block container %}
@@ -59,11 +48,13 @@
                         current_result.pattern }}</kbd>
                     </div>
                     <div v-if="result_has_options && options_are_worth_showing" class="option-box">
-                        <div v-for="option in result_options"
-                             class="option-line"
-                             @click="setUserInput">
-                            {{ option }}
-                        </div>
+                        <a v-for="option in result_options"
+                           class="option-line"
+                           style="display: block;"
+                           :href="'/' + option[0]"
+                        >
+                            {{ option[0] }} <span v-if="option[1]">({{ option[1] }})</span>
+                        </a>
                     </div>
                     <div v-else-if="options_are_worth_showing" class="option-line">
                         <i class="fas fa-exclamation-circle" style="color: goldenrod"></i> No results
@@ -216,14 +207,14 @@
                     }
 
                     // Get the suggestions from the server.
-                    console.log(`Getting autocomplete options for: "${this.user_input}".`);
+                    // console.log(`Getting autocomplete options for: "${this.user_input}".`);
                     const resp = await fetch(`${this.autocomplete_url}?q=${this.user_input}`);
                     if (resp.status !== 200) {
-                        console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
+                        console.log(`ERROR on input ${this.user_input}: ${resp.status}: ${resp.statusText}`);
                         this.error_message = "Unsuccessful response from the survey."
                     }
                     const resp_json = await resp.json();
-                    console.log(resp_json);
+                    // console.log(resp_json);
 
                     // Populate the results.
                     this.current_result = resp_json;
@@ -241,11 +232,6 @@
                     } else if (this.current_result.reason !== SEARCHED_PREFIX) {
                         this.last_yielding_result = null;
                     }
-                },
-
-                setUserInput: function (event) {
-                    this.user_input = event.target.innerText;
-                    this.getPrefix();
                 },
 
                 followLink: function () {

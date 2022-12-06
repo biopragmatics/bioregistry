@@ -37,6 +37,7 @@ from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
     Registry,
     RegistryGovernance,
+    RegistryQualities,
     RegistrySchema,
     get_json_schema,
     schema_status_map,
@@ -275,8 +276,8 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
-    norm_prefix = manager.normalize_prefix(prefix)
-    if norm_prefix is None:
+    _resource = manager.get_resource(prefix)
+    if _resource is None:
         return (
             render_template(
                 "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
@@ -284,10 +285,12 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
     if identifier is None:
-        return redirect(url_for("." + resource.__name__, prefix=norm_prefix))
+        return redirect(url_for("." + resource.__name__, prefix=_resource.prefix))
 
-    pattern = manager.get_pattern(prefix)
-    if pattern and not manager.is_standardizable_identifier(prefix, identifier):
+    identifier = _resource.standardize_identifier(identifier)
+
+    pattern = _resource.get_pattern()
+    if pattern and not _resource.is_valid_identifier(identifier):
         return (
             render_template(
                 "resolve_errors/invalid_identifier.html",
@@ -453,6 +456,7 @@ def related():
         registry_cls=Registry,
         registry_governance_cls=RegistryGovernance,
         registry_schema_cls=RegistrySchema,
+        registry_qualities_cls=RegistryQualities,
     )
 
 

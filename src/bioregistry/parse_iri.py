@@ -3,13 +3,10 @@
 """Functionality for parsing IRIs."""
 
 import warnings
-from functools import lru_cache
 from typing import List, Mapping, Optional, Tuple, Union
 
-import curies
-
-from .resolve import get_preferred_prefix, parse_curie
-from .resource_manager import manager, prepare_prefix_list
+from .resolve import get_default_converter, get_preferred_prefix, parse_curie
+from .resource_manager import prepare_prefix_list
 from .uri_format import get_prefix_map
 from .utils import curie_to_str
 
@@ -93,11 +90,6 @@ def curie_from_iri(
     return curie_to_str(prefix, identifier)
 
 
-@lru_cache(1)
-def _get_default_prefix_list() -> curies.Converter:
-    return curies.Converter.from_reverse_prefix_map(manager.get_reverse_prefix_map())
-
-
 def parse_iri(
     iri: str,
     *,
@@ -170,10 +162,15 @@ def parse_iri(
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_list)
     ('chebi', '1234')
 
+    Corner cases:
+
+    >>> parse_iri("https://omim.org/MIM:PS214100")
+    ('omim.ps', '214100')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if prefix_map is None:
-        return _get_default_prefix_list().parse_uri(iri)
+        return get_default_converter().parse_uri(iri)
 
     warnings.warn(
         "Parsing without a pre-compiled `curies.Converter` class is very slow. "

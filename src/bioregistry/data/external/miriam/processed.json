@@ -919,7 +919,7 @@
         "uri_format": "http://www.ncbi.nlm.nih.gov/biosample?term=$1"
       },
       {
-        "code": "CURATOR_REVIEW",
+        "code": "ddbj",
         "description": "BioSample at DNA Data Bank of Japan",
         "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
         "name": "BioSample at DNA Data Bank of Japan",
@@ -1639,6 +1639,18 @@
     "sampleId": "C0004828",
     "uri_format": "http://classyfire.wishartlab.com/tax_nodes/$1"
   },
+  "clb": {
+    "deprecated": false,
+    "description": "ChecklistBank is an index and repository for taxonomic and nomenclatural datasets",
+    "homepage": "https://www.checklistbank.org",
+    "id": "00000964",
+    "name": "ChecklistBank",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+(LR)?$",
+    "prefix": "clb",
+    "sampleId": "1010",
+    "uri_format": "https://www.checklistbank.org/dataset/$1"
+  },
   "cldb": {
     "deprecated": false,
     "description": "The Cell Line Data Base (CLDB) is a reference information source for human and animal cell lines. It provides the characteristics of the cell lines and their availability through  distributors, allowing cell line requests to be made from collections and laboratories.",
@@ -1710,6 +1722,27 @@
     "prefix": "clinvar.submitter",
     "sampleId": "26957",
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
+  },
+  "col": {
+    "deprecated": false,
+    "description": "Identifier of a taxon or synonym in the Catalogue of Life",
+    "homepage": "https://www.checklistbank.org",
+    "id": "00000969",
+    "name": "Catalogue of Life",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
+    "prefix": "col",
+    "providers": [
+      {
+        "code": "col",
+        "description": "The Catalogue of Life website providing a view onto the latest release of the COL Checklist.",
+        "homepage": "https://www.catalogueoflife.org",
+        "name": "Catalogue of Life (COL)",
+        "uri_format": "https://www.catalogueoflife.org/data/taxon/$1"
+      }
+    ],
+    "sampleId": "4QHKG",
+    "uri_format": "https://www.checklistbank.org/dataset/3LR/taxon/$1"
   },
   "combine.specifications": {
     "deprecated": false,
@@ -2510,6 +2543,18 @@
     "sampleId": "BE0000048",
     "uri_format": "http://www.drugbank.ca/biodb/bio_entities/$1"
   },
+  "drugcentral": {
+    "deprecated": false,
+    "description": "DrugCentral (http://drugcentral.org) is an open-access online drug compendium. DrugCentral integrates structure, bioactivity, regulatory, pharmacologic actions and indications for active pharmaceutical ingredients approved by FDA and other regulatory agencies. Monitoring of regulatory agencies for new drugs approvals ensures the resource is up-to-date. DrugCentral integrates content for active ingredients with pharmaceutical formulations, indexing drugs and drug label annotations, complementing similar resources available online. Its complementarity with other online resources is facilitated by cross referencing to external resources. At the molecular level, DrugCentral bridges drug-target interactions with pharmacological action and indications. The integration with FDA drug labels enables text mining applications for drug adverse events and clinical trial information. Chemical structure overlap between DrugCentral and five online drug resources, and the overlap between DrugCentral FDA-approved drugs and their presence in four different chemical collections, are discussed. DrugCentral can be accessed via the web application or downloaded in relational database format.",
+    "homepage": "http://www.unm.edu/",
+    "id": "00000966",
+    "name": "DrugCentral",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "drugcentral",
+    "sampleId": "257",
+    "uri_format": "https://drugcentral.org/drugcard/$1"
+  },
   "ec-code": {
     "deprecated": false,
     "description": "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions.",
@@ -3045,13 +3090,6 @@
     "prefix": "fb",
     "providers": [
       {
-        "code": "bioentitylink",
-        "description": "FlyBase through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "FlyBase through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-      },
-      {
         "code": "agr",
         "description": "FlyBase through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
@@ -3513,9 +3551,9 @@
     "id": "00000830",
     "name": "GlycoNAVI",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^GN_[A-Za-z0-9]+$",
+    "pattern": "^GN_[A-Za-z]*[_]*[A-Za-z0-9-:_]+$",
     "prefix": "glyconavi",
-    "sampleId": "GN_G03681DA",
+    "sampleId": "GN_GlyTouCan_G03681DA",
     "uri_format": "https://glyconavi.org/hub/?id=$1"
   },
   "glycopost": {
@@ -5745,13 +5783,6 @@
     "pattern": "^MGI:\\d+$",
     "prefix": "mgi",
     "providers": [
-      {
-        "code": "bioentitylink",
-        "description": "MGD through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "MGD through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/MGI:$1"
-      },
       {
         "code": "agr",
         "description": "MGI through the Alliance of Genome Resources",
@@ -8619,14 +8650,26 @@
   "sbo": {
     "deprecated": false,
     "description": "The goal of the Systems Biology Ontology is to develop controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modeling. SBO is a project of the BioModels.net effort.",
-    "homepage": "https://www.ebi.ac.uk/sbo/",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/sbo",
     "id": "00000024",
     "name": "Systems Biology Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^SBO:\\d{7}$",
     "prefix": "sbo",
     "sampleId": "0000262",
-    "uri_format": "https://www.ebi.ac.uk/sbo/main/SBO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1"
+  },
+  "sciflection": {
+    "deprecated": false,
+    "description": "Sciflection is a public repository for experiments and associated spectra, usually uploaded from Electronic Lab Notebooks, shared under FAIR conditions",
+    "homepage": "https://sciformation.com/sciflection.html",
+    "id": "00000973",
+    "name": "Sciflection",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "prefix": "sciflection",
+    "sampleId": "5ede4273-b26c-4ea4-adb7-3ce294ab3397",
+    "uri_format": "https://sciflection.com/$1"
   },
   "scop": {
     "deprecated": false,
@@ -8747,13 +8790,6 @@
         "homepage": "http://sgd.bio2rdf.org/fct",
         "name": "Bio2RDF",
         "uri_format": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
-      },
-      {
-        "code": "bioentitylink",
-        "description": "SGD through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "SGD through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
       },
       {
         "code": "agr",
@@ -8885,6 +8921,18 @@
     "prefix": "sitex",
     "sampleId": "1000",
     "uri_format": "http://www-bionet.sscc.ru/sitex/index.php?siteid=$1"
+  },
+  "skm": {
+    "deprecated": false,
+    "description": "Stress Knowledge Map (SKM, available at https://skm.nib.si) is a knowledge graph resulting from the integration of dispersed published information on plant molecular responses to biotic and abiotic stressors. ",
+    "homepage": "http://www.nib.si/eng/",
+    "id": "00000968",
+    "name": "Stress Knowledge Map",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^rx[0-9]{5}$",
+    "prefix": "skm",
+    "sampleId": "rx00408",
+    "uri_format": "https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary"
   },
   "slm": {
     "deprecated": false,
@@ -9964,13 +10012,6 @@
     "prefix": "wb",
     "providers": [
       {
-        "code": "bioentitylink",
-        "description": "WormBase through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "WormBase through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-      },
-      {
         "code": "agr",
         "description": "WormBase through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
@@ -10177,13 +10218,6 @@
     "pattern": "^ZDB\\-\\w+\\-\\d+\\-\\d+$",
     "prefix": "zfin",
     "providers": [
-      {
-        "code": "bioentitylink",
-        "description": "ZFIN through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "ZFIN through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-      },
       {
         "code": "agr",
         "description": "ZFIN through the Alliance of Genome Resources",

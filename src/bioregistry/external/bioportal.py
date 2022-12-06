@@ -39,6 +39,7 @@ class OntoPortalClient:
     directory: Path = field(init=False)
     raw_path: Path = field(init=False)
     processed_path: Path = field(init=False)
+    max_workers: int = 2
 
     def __post_init__(self):
         self.directory = EXTERNAL.joinpath(self.metaprefix)
@@ -70,7 +71,9 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        records = thread_map(self._preprocess, records, unit="ontology", max_workers=3)
+        records = thread_map(
+            self._preprocess, records, unit="ontology", max_workers=self.max_workers
+        )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 

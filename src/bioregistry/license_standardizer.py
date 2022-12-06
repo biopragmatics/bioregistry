@@ -33,6 +33,8 @@ CC_BY_SA_4 = "CC BY-SA 4.0"
 CC_BY_ND_4 = "CC BY-ND 4.0"
 #: https://creativecommons.org/licenses/by-nc-sa/4.0/
 CC_BY_NC_SA_4 = "CC BY-NC-SA 4.0"
+#: http://creativecommons.org/licenses/by-nc/4.0
+CC_BY_NC_4 = "CC BY-NC 4.0"
 
 CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC BY-SA"
@@ -44,12 +46,26 @@ CC_BY_SA_UNSPECIFIED = "CC BY-SA"
 #: https://creativecommons.org/publicdomain/zero/1.0/
 CC_0 = "CC0 1.0"
 
+#: https://creativecommons.org/publicdomain/mark/1.0/
+CC_MARK = "CC_MARK"
+
 ###################
 # LEGACY LICENSES #
 ###################
 
 #: https://creativecommons.org/licenses/by/3.0/
 CC_BY_3 = "CC BY 3.0"
+#: http://creativecommons.org/licenses/by-nd/3.0
+CC_BY_ND_3 = "CC BY-ND 3.0"
+#: http://creativecommons.org/licenses/by-nc-sa/3.0
+CC_BY_NC_SA_3 = "CC BY-NC-SA 3.0"
+#: http://creativecommons.org/licenses/by-nc-nd/3.0
+CC_BY_NC_ND_3 = "CC BY-NC-ND 3.0"
+#: http://creativecommons.org/licenses/by-sa/3.0
+CC_BY_SA_3 = "CC BY-SA 3.0"
+#: http://creativecommons.org/licenses/by-nc/3.0
+CC_BY_NC_3 = "CC BY-NC 3.0"
+
 #: https://creativecommons.org/licenses/by/2.0/
 CC_BY_2 = "CC BY 2.0"
 #: https://creativecommons.org/licenses/by-nc-sa/2.0/
@@ -122,7 +138,12 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "https://spdx.org/licenses/CC-BY-3.0",
         "https://spdx.org/licenses/CC-BY-3.0.html",
     ],
-    "CC-BY-2.0": [
+    CC_BY_ND_3: [
+        "CC BY-ND 3.0",
+        "http://creativecommons.org/licenses/by-nd/3.0",
+        "https://creativecommons.org/licenses/by-nd/3.0",
+    ],
+    CC_BY_2: [
         "CC-BY-2.0",
         "CC-BY 2.0",
         "CC BY 2.0",  # correct
@@ -148,6 +169,10 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "https://creativecommons.org/publicdomain/zero/1.0/",
         "https://spdx.org/licenses/CC0-1.0",
         "https://spdx.org/licenses/CC0-1.0.html",
+    ],
+    CC_MARK: [
+        "http://creativecommons.org/publicdomain/mark/1.0",
+        "https://creativecommons.org/publicdomain/mark/1.0",
     ],
     CC_BY_SA_4: [
         "http://creativecommons.org/licenses/by-sa/4.0",
@@ -198,6 +223,40 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "https://www.gnu.org/licenses/gpl-3.0.en.html",
         "https://www.gnu.org/licenses/gpl-3.0.en",
         "https://www.gnu.org/licenses/gpl-3.0",
+    ],
+    "ODBL": [
+        "http://opendatacommons.org/licenses/odbl/1.0",
+        "https://opendatacommons.org/licenses/odbl/1.0",
+    ],
+    CC_BY_NC_SA_3: [
+        "CC BY-NC-SA 3.0",
+        "http://creativecommons.org/licenses/by-nc-sa/3.0",
+        "https://creativecommons.org/licenses/by-nc-sa/3.0",
+    ],
+    CC_BY_NC_SA_4: [
+        CC_BY_NC_SA_4,
+        "http://creativecommons.org/licenses/by-nc-sa/4.0",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0",
+    ],
+    CC_BY_SA_3: [
+        CC_BY_SA_3,
+        "http://creativecommons.org/licenses/by-sa/3.0",
+        "https://creativecommons.org/licenses/by-sa/3.0",
+    ],
+    CC_BY_NC_ND_3: [
+        CC_BY_SA_3,
+        "http://creativecommons.org/licenses/by-nc-nd/3.0",
+        "https://creativecommons.org/licenses/by-nc-nd/3.0",
+    ],
+    CC_BY_NC_3: [
+        CC_BY_NC_3,
+        "http://creativecommons.org/licenses/by-nc/3.0",
+        "https://creativecommons.org/licenses/by-nc/3.0",
+    ],
+    CC_BY_NC_4: [
+        CC_BY_NC_4,
+        "http://creativecommons.org/licenses/by-nc/4.0",
+        "https://creativecommons.org/licenses/by-nc/4.0",
     ],
 }
 
