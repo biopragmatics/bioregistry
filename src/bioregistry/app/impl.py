@@ -1,13 +1,15 @@
 """App builder interface."""
 
+import json
+from pathlib import Path
 from textwrap import dedent
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping, Optional, Union
 
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 
-from bioregistry import Manager, curie_to_str, version
+from bioregistry import Manager, curie_to_str, resource_manager, version
 
 from .api import api_blueprint
 from .ui import ui_blueprint
@@ -84,13 +86,23 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
-def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any]] = None) -> Flask:
-    """Prepare the flask application."""
+def get_app(
+    manager: Optional[Manager] = None, config: Union[None, str, Path, Mapping[str, Any]] = None
+) -> Flask:
+    """Prepare the flask application.
+
+    :param manager: A pre-configured manager. If none given, uses the default manager.
+    :param config: Additional configuration to be passed to the flask application. See below.
+    :returns: An instantiated flask application
+    :raises ValueError: if there's an issue with the configuration's integrity
+    """
     app = Flask(__name__)
-    if config is not None:
+    if isinstance(config, (str, Path)):
+        with open(config) as file:
+            app.config.update(json.load(file))
+    elif config is not None:
         app.config.update(config)
     app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    app.config.setdefault("METAREGISTRY_HOST", "https://bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
     app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
@@ -99,8 +111,6 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
     app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
 
     if manager is None:
-        from .. import resource_manager
-
         manager = resource_manager.manager
         app.config.setdefault("METAREGISTRY_FIRST_PARTY", True)
     else:
@@ -133,12 +143,12 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
                     "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
                 },
             },
-            "host": app.config["METAREGISTRY_HOST"],
+            "host": manager.base_url,
             "tags": [
                 {
                     "name": "collections",
                     "externalDocs": {
-                        "url": f"{app.config['METAREGISTRY_HOST']}/collection/",
+                        "url": f"{manager.base_url}/collection/",
                     },
                 },
             ],

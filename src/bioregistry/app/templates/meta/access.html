@@ -31,22 +31,22 @@
         Get the whole registry:
     </p>
     <pre><code class="language-python">import requests
-res = requests.get('{{ config.METAREGISTRY_HOST }}/api/registry').json()</code></pre>
+res = requests.get('{{ manager.base_url }}/api/registry').json()</code></pre>
     <p>
         Just get metadata for {{ resource.get_name() }}:
     </p>
     <pre><code class="language-python">import requests
-res = requests.get('{{ config.METAREGISTRY_HOST }}/api/registry/{{ resource.prefix }}').json()</code></pre>
+res = requests.get('{{ manager.base_url }}/api/registry/{{ resource.prefix }}').json()</code></pre>
     <p>
         Get metadata about {{ resource.get_name() }} entry {{ resource.get_example() }}:
     </p>
     <pre><code
-            class="language-python">res = requests.get('{{ config.METAREGISTRY_HOST }}/api/reference/{{ resource.prefix }}:{{ resource.get_example() }}').json()</code></pre>
+            class="language-python">res = requests.get('{{ manager.base_url }}/api/reference/{{ resource.prefix }}:{{ resource.get_example() }}').json()</code></pre>
     <p>
         Search prefixes containing <code>{{ resource.prefix[:2] }}</code>:
     </p>
     <pre><code class="language-python">res = requests.get(
-    '{{ config.METAREGISTRY_HOST }}/api/search',
+    '{{ manager.base_url }}/api/search',
     params={'q': '{{ resource.prefix[:2] }}'},
 ).json()</code></pre>
     {#
