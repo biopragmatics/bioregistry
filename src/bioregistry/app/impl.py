@@ -92,8 +92,9 @@ def get_app(
     """Prepare the flask application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
-    :param config: Additional configuration to be passd to the flask application. See below.
+    :param config: Additional configuration to be passed to the flask application. See below.
     :returns: An instantiated flask application
+    :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
 
