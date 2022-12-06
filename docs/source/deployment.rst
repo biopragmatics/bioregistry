@@ -8,9 +8,17 @@ It can be installed and run interactively in the command line with the following
 
     python -m pip install --upgrade gunicorn bioregistry[web]
     python -m bioregistry web \
-        --port 8766 --host "0.0.0.0" \
         --with-gunicorn --workers 4 \
-        --base-url http://www.host.tld
+        --port 8766 \
+        --host "0.0.0.0" \
+        --base-url https://example.com
+
+.. note::
+
+    The Bioregistry uses port 8766 by default. Using ``0.0.0.0`` makes sure that this
+    works on a variety of systems, including docker, Mac, and Linux. The ``--base-url``
+    should correspond to the location through which the service is accessed. In this
+    example, https://example.com is used as the base.
 
 The Bioregistry is also containerized and pushed nightly to
 `Docker Hub <https://hub.docker.com/r/biopragmatics/bioregistry>`_.
@@ -122,9 +130,10 @@ is in the same directory, but any valid paths can be given.
 
     python -m pip install gunicorn bioregistry[web]
     python -m bioregistry web \
-        --port 8766 --host "0.0.0.0" \
         --with-gunicorn --workers 4 \
-        --base-url http://www.host.tld \
+        --port 8766 \
+        --host "0.0.0.0" \
+        --base-url https://example.com \
         --registry registry.json
 
 .. note:: This is the same as deploying the vanilla Bioregistry except the usage of ``--registry registry.json``
@@ -144,9 +153,10 @@ and any other custom files.
 
     RUN python -m pip install gunicorn bioregistry[web]
     ENTRYPOINT python -m bioregistry web \
-        --port 8766 --host "0.0.0.0" \
-        --with-gunicorn --workers 4 \
-        --base-url http://www.host.tld \
+        ---with-gunicorn --workers 4 \
+        --port 8766 \
+        --host "0.0.0.0" \
+        --base-url https://example.com \
         --registry registry.json \
         --config config.json
 
