@@ -9,7 +9,7 @@ from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 
-from bioregistry import Manager, curie_to_str, version
+from bioregistry import Manager, curie_to_str, resource_manager, version
 
 from .api import api_blueprint
 from .ui import ui_blueprint
@@ -108,8 +108,6 @@ def get_app(
     app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
 
     if manager is None:
-        from .. import resource_manager
-
         manager = resource_manager.manager
         app.config.setdefault("METAREGISTRY_FIRST_PARTY", True)
     else:
