@@ -1,7 +1,9 @@
 """App builder interface."""
 
+import json
+from pathlib import Path
 from textwrap import dedent
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping, Optional, Union
 
 from flasgger import Swagger
 from flask import Flask
@@ -84,11 +86,18 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
-def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any]] = None) -> Flask:
+def get_app(
+    manager: Optional[Manager] = None, config: Union[None, str, Path, Mapping[str, Any]] = None
+) -> Flask:
     """Prepare the flask application."""
     app = Flask(__name__)
-    if config is not None:
+
+    if isinstance(config, (str, Path)):
+        with open(config) as file:
+            app.config.update(json.load(file))
+    elif config is not None:
         app.config.update(config)
+
     app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
     app.config.setdefault("METAREGISTRY_HOST", "https://bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)

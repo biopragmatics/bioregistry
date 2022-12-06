@@ -42,6 +42,8 @@ from .schema import (
     sanitize_model,
 )
 from .schema_utils import (
+    _collections_from_path,
+    _contexts_from_path,
     _read_metaregistry,
     _registry_from_path,
     read_collections,
@@ -96,8 +98,8 @@ class Manager:
         self,
         registry: Union[None, str, Path, Mapping[str, Resource]] = None,
         metaregistry: Union[None, str, Path, Mapping[str, Registry]] = None,
-        collections: Optional[Mapping[str, Collection]] = None,
-        contexts: Optional[Mapping[str, Context]] = None,
+        collections: Union[None, str, Path, Mapping[str, Collection]] = None,
+        contexts: Union[None, str, Path, Mapping[str, Context]] = None,
         mismatches: Optional[Mapping[str, Mapping[str, str]]] = None,
     ):
         """Instantiate a registry manager.
@@ -122,8 +124,21 @@ class Manager:
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
-        self.collections = dict(read_collections() if collections is None else collections)
-        self.contexts = dict(read_contexts() if contexts is None else contexts)
+
+        if collections is None:
+            self.collections = dict(read_collections())
+        elif isinstance(collections, (str, Path)):
+            self.collections = dict(_collections_from_path(collections))
+        else:
+            self.collections = dict(collections)
+
+        if contexts is None:
+            self.contexts = dict(read_contexts())
+        elif isinstance(contexts, (str, Path)):
+            self.contexts = dict(_contexts_from_path(contexts))
+        else:
+            self.contexts = dict(contexts)
+
         self.mismatches = dict(read_mismatches() if mismatches is None else mismatches)
 
         canonical_for = defaultdict(list)
