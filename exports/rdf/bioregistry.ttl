@@ -343,7 +343,8 @@ bioregistry.schema:0000022 a rdf:Property ;
     rdfs:range bioregistry.schema:0000020 .
 
 orcid:0000-0001-5705-7831 rdfs:label "Harry Caufield" ;
-    dcterms:contributor bioregistry:mosaic .
+    dcterms:contributor bioregistry:hoip,
+        bioregistry:mosaic .
 
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
     dcterms:contributor bioregistry:openalex .
@@ -13145,8 +13146,7 @@ bioregistry:ypo a bioregistry.schema:0000001 ;
     rdfs:label "Yeast Phenotype Ontology" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:ypo,
-        biocontext:YPO,
-        ols:ypo ;
+        biocontext:YPO ;
     foaf:homepage "http://www.yeastgenome.org/"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/YPO_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
@@ -13462,8 +13462,6 @@ orcid:0000-0002-9553-7227 rdfs:label "G. Thomas Hayman" .
 
 orcid:0000-0002-9654-0073 rdfs:label "Bob Thacker" .
 
-orcid:0000-0002-9673-1283 rdfs:label "Yuki Yamagata" .
-
 orcid:0000-0002-9713-9994 rdfs:label "Mike Tyers" .
 
 orcid:0000-0003-0169-8159 rdfs:label "Núria Queralt Rosinach" .
@@ -13762,6 +13760,8 @@ aberowl:HAO dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:HCPCS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:HGNC dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:HOIP dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:HOM dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -15898,6 +15898,8 @@ bioportal:HAO dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:HCPCS dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:HGNC dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:HOIP dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:HOM dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -22672,6 +22674,20 @@ bioregistry:hog a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:hoip a bioregistry.schema:0000001 ;
+    rdfs:label "Homeostasis imbalance process ontology" ;
+    dc:description "An ontology of processes triggered by homeostatic imbalance, with a focus on COVID-19 infectious processes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:HOIP,
+        bioportal:HOIP ;
+    foaf:homepage "https://knowledge.brc.riken.jp/bioresource/ontology/HOIP"^^xsd:string ;
+    bioregistry.schema:0000005 "0040379"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.bioontology.org/ontology/HOIP/HOIP_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-9673-1283 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:hsdb a bioregistry.schema:0000001 ;
     rdfs:label "Hazardous Substances Data Bank" ;
     dc:description "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas."^^xsd:string ;
@@ -26842,6 +26858,8 @@ orcid:0000-0002-9551-6370 rdfs:label "Melanie Courtot" .
 
 orcid:0000-0002-9611-1279 rdfs:label "Erik Segerdell" .
 
+orcid:0000-0002-9673-1283 rdfs:label "Yuki Yamagata" .
+
 orcid:0000-0002-9900-7880 rdfs:label "Yvonne Bradford" .
 
 orcid:0000-0003-1617-8244 rdfs:label "Lindsay Cowell" .
@@ -29911,8 +29929,6 @@ ols:xl dcterms:isPartOf bioregistry.metaresource:ols .
 ols:xlmod dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:xpo dcterms:isPartOf bioregistry.metaresource:ols .
-
-ols:ypo dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:zeco dcterms:isPartOf bioregistry.metaresource:ols .
 
@@ -37591,7 +37607,6 @@ bioregistry.metaresource:ols a bioregistry.schema:0000002 ;
         ols:xl,
         ols:xlmod,
         ols:xpo,
-        ols:ypo,
         ols:zeco,
         ols:zfa,
         ols:zfs,
@@ -37730,6 +37745,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:HAO,
         bioportal:HCPCS,
         bioportal:HGNC,
+        bioportal:HOIP,
         bioportal:HOM,
         bioportal:HP_O,
         bioportal:HSAPDV,
@@ -38058,6 +38074,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:HAO,
         aberowl:HCPCS,
         aberowl:HGNC,
+        aberowl:HOIP,
         aberowl:HOM,
         aberowl:HP_O,
         aberowl:HSAPDV,
@@ -42277,6 +42294,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
         bioregistry:hogenom,
+        bioregistry:hoip,
         bioregistry:hom,
         bioregistry:homd.seq,
         bioregistry:homd.taxon,
