@@ -17,6 +17,7 @@ from more_click import force_option, verbose_option
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
+from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema import Author, Resource
 from bioregistry.schema_utils import add_resource
 from bioregistry.utils import removeprefix
@@ -109,13 +110,14 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
 
-        # Capitalize the description
-        resource_data["description"] = resource_data["description"]
-
         # Ensure the pattern is delimited properly
         pattern = resource_data.get("pattern")
         if pattern:
             resource_data["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
+
+        data_license = resource_data.get("license")
+        if data_license:
+            resource_data["license"] = standardize_license(data_license) or data_license
 
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue

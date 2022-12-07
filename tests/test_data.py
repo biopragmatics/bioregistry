@@ -767,7 +767,13 @@ class TestRegistry(unittest.TestCase):
             if resource.license is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(standardize_license(resource.license), resource.license)
+                standard_license = standardize_license(resource.license)
+                self.assertEqual(
+                    standard_license,
+                    resource.license,
+                    msg=f"manually curated license in {prefix} should be standardized"
+                    f" to SPDX identifier {standard_license}",
+                )
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
