@@ -31,6 +31,8 @@ BIOSCHEMAS = {
             "familyName": "Hoyt",
             "email": "cthoyt@gmail.com",
             "url": "https://cthoyt.com",
+            "name": "Charles Tapley Hoyt",
+            "orcid": "https://orcid.org/0000-0003-4423-4370",
             "@type": "Person",
         }
     ],
