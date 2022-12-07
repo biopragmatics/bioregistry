@@ -63,6 +63,12 @@
                     {% else %}
                         <span class="badge badge-pill badge-light text-muted">No Download Available</span>
                     {% endif %}
+
+                    <a class="badge badge-pill badge-light"
+                       title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
+                       href="{{ url_for("metaregistry_api.bioregistry_to_external_mapping", metaprefix=entry.prefix) }}">
+                        Download Prefix Mappings
+                    </a>
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>
