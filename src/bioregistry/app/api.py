@@ -86,7 +86,7 @@ def resource(prefix: str):
     return _serialize_resource(resource)
 
 
-@api_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
+@api_blueprint.route("/metaregistry/<metaprefix>/resolve/<metaidentifier>")
 def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
     """Get a resource by an external prefix.
 
