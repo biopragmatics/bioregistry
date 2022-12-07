@@ -12,6 +12,7 @@ from flask_bootstrap import Bootstrap4
 from bioregistry import curie_to_str, resource_manager, version
 
 from .api import api_blueprint
+from .constants import BIOSCHEMAS
 from .ui import ui_blueprint
 
 if TYPE_CHECKING:
@@ -118,6 +119,9 @@ def get_app(
     app.config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
 
     app.manager = manager or resource_manager.manager
+
+    if app.config.get("METAREGISTRY_FIRST_PARTY"):
+        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
     example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
     resource = app.manager.registry.get(example_prefix)
