@@ -34,6 +34,7 @@ PROVIDERS = {
     "siena2dpage": "uniprot",
     "phci2dpage": "uniprot",
     "reproduction2dpage": "uniprot",
+    "agbase": "uniprot",
     "asap_ii": "unigene",
     "snp2nmd": "dbsnp",
     "cangem": "ensembl",
@@ -55,6 +56,10 @@ PROVIDERS = {
     "mapu": "ipi",
     "sysbodyfluid": "ipi",
     "uniprot.taxonomy": "ncbitaxon",
+    "domine": "pfam",
+    "dima": "pfam",
+    "interdom": "pfam",
+    "sdr": "pfam",
 }
 
 
