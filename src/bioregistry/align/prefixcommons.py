@@ -28,6 +28,14 @@ PROVIDERS = {
     "supersite": "pdb",
     "pairsdb": "pdb",
     "icbs": "pdb",
+    "pdbbind": "pdb",
+    "pdb.tm": "pdb",
+    "ligasite": "pdb",
+    "firedb": "pdb",
+    "dali": "pdb",
+    "pisite": "pdb",
+    "procognate": "pdb",
+    "binding_moad": "pdb",
     "bhfucl": "uniprot",
     "2dbaseecoli": "uniprot",
     "swiss2dpage": "uniprot",
@@ -35,6 +43,7 @@ PROVIDERS = {
     "phci2dpage": "uniprot",
     "reproduction2dpage": "uniprot",
     "agbase": "uniprot",
+    "iproclass": "uniprot",
     "asap_ii": "unigene",
     "snp2nmd": "dbsnp",
     "cangem": "ensembl",
@@ -60,6 +69,8 @@ PROVIDERS = {
     "dima": "pfam",
     "interdom": "pfam",
     "sdr": "pfam",
+    "ipfam": "pfam",
+    "hupi": "hgnc.symbol",
 }
 
 
