@@ -69,6 +69,11 @@
                        href="{{ url_for("metaregistry_api.bioregistry_to_external_mapping", metaprefix=entry.prefix) }}">
                         Download Prefix Mappings
                     </a>
+                    <a class="badge badge-pill badge-light"
+                       title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
+                       href="{{ url_for("metaregistry_api.get_external_registry_slim", metaprefix=entry.prefix) }}">
+                        Download Slim Registry
+                    </a>
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>

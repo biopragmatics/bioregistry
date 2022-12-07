@@ -128,7 +128,7 @@ def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
 
 @api_blueprint.route("/metaregistry/<metaprefix>/mappings.json")
 def bioregistry_to_external_mapping(metaprefix: str):
-    """Get mappings between two external prefixes.
+    """Get mappings from the Bioregistry to an external registry.
 
     ---
     parameters:
@@ -141,6 +141,27 @@ def bioregistry_to_external_mapping(metaprefix: str):
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
     return jsonify(manager.get_registry_map(metaprefix))
+
+
+@api_blueprint.route("/metaregistry/<metaprefix>/registry_subset.json")
+def get_external_registry_slim(metaprefix: str):
+    """Get a slim, rasterized version of the Bioregistry for records in the external registry.
+
+    ---
+    parameters:
+    - name: metaprefix
+      in: path
+      description: The target metaprefix (e.g., bioportal)
+      required: true
+      type: string
+    """  # noqa:DAR101,DAR201
+    if metaprefix not in manager.metaregistry:
+        return abort(404, f"invalid metaprefix: {metaprefix}")
+    return sanitize_mapping({
+        prefix: manager.rasterized_resource(prefix, resource_)
+        for prefix, resource_ in manager.registry.items()
+        if metaprefix in resource_.get_mappings()
+    })
 
 
 def _serialize_resource(resource, rasterize: bool = False):
