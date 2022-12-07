@@ -24813,7 +24813,8 @@
     "mappings": {
       "biocontext": "EMAP",
       "bioportal": "EMAP",
-      "obofoundry": "emap"
+      "obofoundry": "emap",
+      "prefixcommons": "emap.ontology"
     },
     "obofoundry": {
       "contact": "Terry.Hayamizu@jax.org",
@@ -24828,7 +24829,22 @@
       "name": "Mouse gross anatomy and development, timed",
       "prefix": "emap"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "prefixcommons": {
+      "bioportal": "1010",
+      "description": "A structured controlled vocabulary of stage-specific anatomical structures of the mouse (Mus).",
+      "example": "EMAP_3",
+      "homepage": "http://genex.hgu.mrc.ac.uk/",
+      "keywords": [
+        "obo",
+        "anatomy",
+        "development",
+        "mouse"
+      ],
+      "name": "Mouse gross anatomy and development",
+      "pattern": "^EMAP_\\d+$",
+      "prefix": "emap.ontology"
+    }
   },
   "emapa": {
     "aberowl": {
@@ -35644,7 +35660,8 @@
     "mappings": {
       "biocontext": "GWASCENTRAL.STUDY",
       "miriam": "gwascentral.study",
-      "n2t": "gwascentral.study"
+      "n2t": "gwascentral.study",
+      "prefixcommons": "hgvbase"
     },
     "miriam": {
       "deprecated": false,
@@ -35667,6 +35684,19 @@
       "pattern": "^HGVST\\d+$",
       "prefix": "gwascentral.study",
       "uri_format": "https://www.gwascentral.org/study/$1"
+    },
+    "prefixcommons": {
+      "description": "HGVbase was set up in an effort to improve analysis of common human genetic polymorphism by maintaining a high-quality database of all publicly available genomic variation data (primarily SNPs). Currently maintained by an academic European consortium it contains close to 2 million non-redundant entries. Data is harvested from three main areas, (i) collaboration with other variation databases, (ii) extraction from scientific literature and (iii) submissions from various research groups.",
+      "example": "HGVST315",
+      "homepage": "http://hgvbase.cgb.ki.se",
+      "keywords": [
+        "gene",
+        "genome"
+      ],
+      "name": "Human Genome Variation Database: Genotype-to-Phenotype",
+      "pattern": "^HGVST\\d+$",
+      "prefix": "hgvbase",
+      "uri_format": "http://www.hgvbaseg2p.org/study/$1"
     }
   },
   "gxa.expt": {
@@ -42531,6 +42561,27 @@
       "uri_format": "http://www.ebi.ac.uk/interpro/entry/$1"
     }
   },
+  "ipi": {
+    "deprecated": true,
+    "mappings": {
+      "prefixcommons": "ipi"
+    },
+    "prefixcommons": {
+      "description": "IPI provides a top level guide to the main databases that describe the proteomes of higher eukaryotic organisms. IPI maintaisn a database of cross references between the primary data sources, it provides minimally redundant but complete sets of proteins for featured species, and it maintains stable and unique identifiers.",
+      "example": "IPI00000001",
+      "homepage": "http://www.ebi.ac.uk/IPI",
+      "keywords": [
+        "protein"
+      ],
+      "name": "International Protein Index",
+      "pattern": "^IPI\\d{8}$",
+      "prefix": "ipi",
+      "pubmed_ids": [
+        "15221759"
+      ],
+      "uri_format": "http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$1&format=default"
+    }
+  },
   "ird.segment": {
     "biocontext": {
       "is_identifiers": true,
@@ -43768,6 +43819,30 @@
         }
       ],
       "uri_format": "https://www.genome.jp/dbget-bin/www_bget?$1"
+    }
+  },
+  "kegg.brite": {
+    "mappings": {
+      "prefixcommons": "kegg.brite"
+    },
+    "part_of": "kegg",
+    "prefixcommons": {
+      "description": "KEGG BRITE is a collection of hierarchical classifications (see new hierarchies and last updates) representing our knowledge on various aspects of biological systems. In contrast to KEGG PATHWAY, which is limited to molecular interactions and reactions, KEGG BRITE incorporates many different types of relationships.",
+      "example": "ko00071",
+      "homepage": "http://www.genome.jp/kegg/brite.html",
+      "keywords": [
+        "pathway",
+        "classification",
+        "ontology"
+      ],
+      "name": "KEGG BRITE",
+      "pattern": "^[ko/br]\\d+$",
+      "prefix": "kegg.brite",
+      "synonyms": [
+        "br",
+        "brite"
+      ],
+      "uri_format": "http://www.genome.jp/kegg-bin/get_htext?-p+/kegg/brite/br+br$1"
     }
   },
   "kegg.compound": {
@@ -62617,6 +62692,7 @@
       "go": "PANTHER",
       "miriam": "panther.family",
       "n2t": "panther.family",
+      "prefixcommons": "panther",
       "uniprot": "DB-0069"
     },
     "miriam": {
@@ -62642,6 +62718,25 @@
       "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
     },
     "part_of": "panther",
+    "prefixcommons": {
+      "description": "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a unique resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence.",
+      "example": "PTHR12345",
+      "homepage": "http://www.pantherdb.org",
+      "keywords": [
+        "protein",
+        "classification",
+        "gene",
+        "pathway",
+        "ontology"
+      ],
+      "name": "Protein ANalysis THrough Evolutionary Relationships: Classification of Genes and Proteins",
+      "pattern": "^PTHR\\d{5}(\\:SF{1,3})?$",
+      "prefix": "panther",
+      "pubmed_ids": [
+        "12952881"
+      ],
+      "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
+    },
     "publications": [
       {
         "doi": "10.1093/nar/gky1038",
@@ -77936,7 +78031,7 @@
       "obofoundry": "spd",
       "ols": "spd",
       "ontobee": "SPD",
-      "prefixcommons": "spd",
+      "prefixcommons": "spdo",
       "wikidata": "P4537"
     },
     "obofoundry": {
@@ -77978,17 +78073,19 @@
     },
     "pattern": "^\\d{7}$",
     "prefixcommons": {
-      "description": "A collection of secreted proteins from Human, Mouse and Rat proteomes, which includes sequences from SwissProt, Trembl, Ensembl and Refseq.",
-      "example": "Q9UK53",
-      "homepage": "http://spd.cbi.pku.edu.cn",
+      "bioportal": "1091",
+      "description": "An ontology for spider comparative biology including anatomical parts (e.g. leg, claw), behavior (e.g. courtship, combing) and products (i.g. silk, web, borrow).",
+      "example": "SPD_0000464",
+      "homepage": "http://research.amnh.org/atol/files/",
       "keywords": [
-        "protein",
-        "structure"
+        "obo",
+        "anatomy",
+        "spider"
       ],
-      "name": "Secreted Protein Database",
-      "pattern": "^[A-Z]\\d+$",
-      "prefix": "spd",
-      "uri_format": "http://spd.cbi.pku.edu.cn/spd_pro.php?id=$1"
+      "name": "Spider Ontology",
+      "pattern": "^SPD_\\d{7}$",
+      "prefix": "spdo",
+      "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "publications": [
       {

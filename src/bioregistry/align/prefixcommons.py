@@ -16,6 +16,62 @@ SKIP = {
     "trnadbce": "Website is password protected",
     "pogs_plantrbp": "Website is dead",
 }
+PROVIDERS = {
+    "interpare": "pdb",
+    "consurfdb": "pdb",
+    "homstrad": "pdb",
+    "jail": "pdb",
+    "hotsprint": "pdb",
+    "lpfc": "pdb",
+    "pdbreprdb": "pdb",
+    "pdtd": "pdb",
+    "supersite": "pdb",
+    "pairsdb": "pdb",
+    "icbs": "pdb",
+    "pdbbind": "pdb",
+    "pdb.tm": "pdb",
+    "ligasite": "pdb",
+    "firedb": "pdb",
+    "dali": "pdb",
+    "pisite": "pdb",
+    "procognate": "pdb",
+    "binding_moad": "pdb",
+    "bhfucl": "uniprot",
+    "2dbaseecoli": "uniprot",
+    "swiss2dpage": "uniprot",
+    "siena2dpage": "uniprot",
+    "phci2dpage": "uniprot",
+    "reproduction2dpage": "uniprot",
+    "agbase": "uniprot",
+    "iproclass": "uniprot",
+    "asap_ii": "unigene",
+    "snp2nmd": "dbsnp",
+    "cangem": "ensembl",
+    "cisred": "ensembl",
+    "interferome": "ensembl",
+    "spliceinfo": "ensembl",
+    "piggis": "ensembl",
+    "corg": "ensembl",
+    "greglist": "ensembl",
+    "gxa": "ensembl",
+    "cyclebase": "ensembl",
+    "droid": "flybase",
+    "enzyme": "eccode",
+    "orenza": "eccode",
+    "explorenz": "eccode",
+    "fcp": "eccode",
+    "mousecyc": "mgi",
+    "imgt.3dstructuredb": "pdb",
+    "mapu": "ipi",
+    "sysbodyfluid": "ipi",
+    "uniprot.taxonomy": "ncbitaxon",
+    "domine": "pfam",
+    "dima": "pfam",
+    "interdom": "pfam",
+    "sdr": "pfam",
+    "ipfam": "pfam",
+    "hupi": "hgnc.symbol",
+}
 
 
 class PrefixCommonsAligner(Aligner):
@@ -37,7 +93,7 @@ class PrefixCommonsAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get skip prefixes."""
-        return SKIP
+        return {**SKIP, **PROVIDERS}
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
