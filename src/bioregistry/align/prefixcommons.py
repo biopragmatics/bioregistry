@@ -16,6 +16,40 @@ SKIP = {
     "trnadbce": "Website is password protected",
     "pogs_plantrbp": "Website is dead",
 }
+PROVIDERS = {
+    "interpare": "pdb",
+    "consurfdb": "pdb",
+    "homstrad": "pdb",
+    "jail": "pdb",
+    "hotsprint": "pdb",
+    "lpfc": "pdb",
+    "pdbreprdb": "pdb",
+    "pdtd": "pdb",
+    "supersite": "pdb",
+    "pairsdb": "pdb",
+    "icbs": "pdb",
+    "bhfucl": "uniprot",
+    "2dbaseecoli": "uniprot",
+    "swiss2dpage": "uniprot",
+    "asap_ii": "unigene",
+    "snp2nmd": "dbsnp",
+    "cangem": "ensembl",
+    "cisred": "ensembl",
+    "interferome": "ensembl",
+    "spliceinfo": "ensembl",
+    "piggis": "ensembl",
+    "corg": "ensembl",
+    "greglist": "ensembl",
+    "gxa": "ensembl",
+    "cyclebase": "ensembl",
+    "droid": "flybase",
+    "enzyme": "eccode",
+    "orenza": "eccode",
+    "explorenz": "eccode",
+    "fcp": "eccode",
+    "mousecyc": "mgi",
+    "imgt.3dstructuredb": "pdb",
+}
 
 
 class PrefixCommonsAligner(Aligner):
@@ -37,7 +71,7 @@ class PrefixCommonsAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get skip prefixes."""
-        return SKIP
+        return {**SKIP, **PROVIDERS}
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
