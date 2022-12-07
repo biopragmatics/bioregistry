@@ -31,6 +31,9 @@ PROVIDERS = {
     "bhfucl": "uniprot",
     "2dbaseecoli": "uniprot",
     "swiss2dpage": "uniprot",
+    "siena2dpage": "uniprot",
+    "phci2dpage": "uniprot",
+    "reproduction2dpage": "uniprot",
     "asap_ii": "unigene",
     "snp2nmd": "dbsnp",
     "cangem": "ensembl",
@@ -49,6 +52,9 @@ PROVIDERS = {
     "fcp": "eccode",
     "mousecyc": "mgi",
     "imgt.3dstructuredb": "pdb",
+    "mapu": "ipi",
+    "sysbodyfluid": "ipi",
+    "uniprot.taxonomy": "ncbitaxon",
 }
 
 

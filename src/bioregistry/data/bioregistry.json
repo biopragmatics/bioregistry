@@ -42531,6 +42531,27 @@
       "uri_format": "http://www.ebi.ac.uk/interpro/entry/$1"
     }
   },
+  "ipi": {
+    "deprecated": true,
+    "mappings": {
+      "prefixcommons": "ipi"
+    },
+    "prefixcommons": {
+      "description": "IPI provides a top level guide to the main databases that describe the proteomes of higher eukaryotic organisms. IPI maintaisn a database of cross references between the primary data sources, it provides minimally redundant but complete sets of proteins for featured species, and it maintains stable and unique identifiers.",
+      "example": "IPI00000001",
+      "homepage": "http://www.ebi.ac.uk/IPI",
+      "keywords": [
+        "protein"
+      ],
+      "name": "International Protein Index",
+      "pattern": "^IPI\\d{8}$",
+      "prefix": "ipi",
+      "pubmed_ids": [
+        "15221759"
+      ],
+      "uri_format": "http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$1&format=default"
+    }
+  },
   "ird.segment": {
     "biocontext": {
       "is_identifiers": true,
@@ -77936,7 +77957,7 @@
       "obofoundry": "spd",
       "ols": "spd",
       "ontobee": "SPD",
-      "prefixcommons": "spd",
+      "prefixcommons": "spdo",
       "wikidata": "P4537"
     },
     "obofoundry": {
@@ -77978,17 +77999,19 @@
     },
     "pattern": "^\\d{7}$",
     "prefixcommons": {
-      "description": "A collection of secreted proteins from Human, Mouse and Rat proteomes, which includes sequences from SwissProt, Trembl, Ensembl and Refseq.",
-      "example": "Q9UK53",
-      "homepage": "http://spd.cbi.pku.edu.cn",
+      "bioportal": "1091",
+      "description": "An ontology for spider comparative biology including anatomical parts (e.g. leg, claw), behavior (e.g. courtship, combing) and products (i.g. silk, web, borrow).",
+      "example": "SPD_0000464",
+      "homepage": "http://research.amnh.org/atol/files/",
       "keywords": [
-        "protein",
-        "structure"
+        "obo",
+        "anatomy",
+        "spider"
       ],
-      "name": "Secreted Protein Database",
-      "pattern": "^[A-Z]\\d+$",
-      "prefix": "spd",
-      "uri_format": "http://spd.cbi.pku.edu.cn/spd_pro.php?id=$1"
+      "name": "Spider Ontology",
+      "pattern": "^SPD_\\d{7}$",
+      "prefix": "spdo",
+      "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "publications": [
       {
