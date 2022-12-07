@@ -157,11 +157,13 @@ def get_external_registry_slim(metaprefix: str):
     """  # noqa:DAR101,DAR201
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
-    return sanitize_mapping({
-        prefix: manager.rasterized_resource(prefix, resource_)
-        for prefix, resource_ in manager.registry.items()
-        if metaprefix in resource_.get_mappings()
-    })
+    return sanitize_mapping(
+        {
+            prefix: manager.rasterized_resource(prefix, resource_)
+            for prefix, resource_ in manager.registry.items()
+            if metaprefix in resource_.get_mappings()
+        }
+    )
 
 
 def _serialize_resource(resource, rasterize: bool = False):
