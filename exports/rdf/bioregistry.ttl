@@ -3987,7 +3987,8 @@ bioregistry:emap a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:emap,
         bioportal:EMAP,
-        biocontext:EMAP ;
+        biocontext:EMAP,
+        prefixcommons:emap.ontology ;
     foaf:homepage "http://emouseatlas.org"^^xsd:string ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EMAP_$1"^^xsd:string ;
@@ -5553,6 +5554,7 @@ bioregistry:gwascentral.study a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:GWASCENTRAL.STUDY,
         n2t:gwascentral.study,
+        prefixcommons:hgvbase,
         miriam:gwascentral.study ;
     foaf:homepage "https://www.gwascentral.org/studies"^^xsd:string ;
     bioregistry.schema:0000005 "HGVST1828"^^xsd:string ;
@@ -6444,6 +6446,17 @@ bioregistry:interpro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^IPR\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "InterPro Help" ] .
+
+bioregistry:ipi a bioregistry.schema:0000001 ;
+    rdfs:label "International Protein Index" ;
+    dc:description "IPI provides a top level guide to the main databases that describe the proteomes of higher eukaryotic organisms. IPI maintaisn a database of cross references between the primary data sources, it provides minimally redundant but complete sets of proteins for featured species, and it maintains stable and unique identifiers."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:IPI,
+        prefixcommons:ipi ;
+    foaf:homepage "http://www.ebi.ac.uk/IPI"^^xsd:string ;
+    bioregistry.schema:0000005 "IPI00000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$1&format=default"^^xsd:string ;
+    bioregistry.schema:0000012 true .
 
 bioregistry:ird.segment a bioregistry.schema:0000001 ;
     rdfs:label "IRD Segment Sequence" ;
@@ -11500,7 +11513,7 @@ bioregistry:spd a bioregistry.schema:0000001 ;
         bioportal:SPD,
         biocontext:SPD,
         fairsharing:FAIRsharing.yecp83,
-        prefixcommons:spd,
+        prefixcommons:spdo,
         ols:spd,
         wikidata:P4537 ;
     foaf:homepage "http://research.amnh.org/atol/files/"^^xsd:string ;
@@ -17011,6 +17024,8 @@ biocontext:INTACT dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:INTACT.MOLECULE dcterms:isPartOf bioregistry.metaresource:biocontext .
 
+biocontext:IPI dcterms:isPartOf bioregistry.metaresource:biocontext .
+
 biocontext:IPR dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:IRD.SEGMENT dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -18030,6 +18045,8 @@ biolink:ICD10 dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:ICD9 dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:INO dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:KEGG.BRITE dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:KEGG.DGROUP dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -23029,6 +23046,18 @@ bioregistry:kclb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:kegg.brite a bioregistry.schema:0000001 ;
+    rdfs:label "KEGG BRITE" ;
+    dc:description "KEGG BRITE is a collection of hierarchical classifications (see new hierarchies and last updates) representing our knowledge on various aspects of biological systems. In contrast to KEGG PATHWAY, which is limited to molecular interactions and reactions, KEGG BRITE incorporates many different types of relationships."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:kegg ;
+    skos:exactMatch biolink:KEGG.BRITE,
+        prefixcommons:kegg.brite ;
+    foaf:homepage "http://www.genome.jp/kegg/brite.html"^^xsd:string ;
+    bioregistry.schema:0000005 "ko00071"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.genome.jp/kegg-bin/get_htext?-p+/kegg/brite/br+br$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:kegg.disease a bioregistry.schema:0000001 ;
     rdfs:label "KEGG Disease" ;
     dc:description "The KEGG DISEASE database is a collection of disease entries capturing knowledge on genetic and environmental perturbations. Each disease entry contains a list of known genetic factors (disease genes), environmental factors, diagnostic markers, and therapeutic drugs. Diseases are viewed as perturbed states of the molecular system, and drugs as perturbants to the molecular system."^^xsd:string ;
@@ -24141,6 +24170,7 @@ bioregistry:panther.family a bioregistry.schema:0000001 ;
         biolink:PANTHER.FAMILY,
         go.resource:PANTHER,
         n2t:panther.family,
+        prefixcommons:panther,
         miriam:panther.family,
         uniprot.resource:DB-0069 ;
     foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
@@ -27066,6 +27096,8 @@ prefixcommons:ehda dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:ehdaa dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:emap.ontology dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:ena dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:ensembl dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -27168,6 +27200,8 @@ prefixcommons:hdr dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:hgnc dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:hgvbase dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:hmdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:hogenom dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -27220,6 +27254,8 @@ prefixcommons:interfil dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:interpro dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:ipi dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:ird.segment dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:irefweb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -27239,6 +27275,8 @@ prefixcommons:jcsd dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:jcvi.genprop dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:jws dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:kegg.brite dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:kegg.compound dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -27389,6 +27427,8 @@ prefixcommons:otl dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:paleodb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:pandit dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:panther dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:pass2 dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -27582,7 +27622,7 @@ prefixcommons:so dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:spbase dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
-prefixcommons:spd dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+prefixcommons:spdo dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:spike dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -34687,38 +34727,6 @@ orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
         bioregistry:uniprot.arba,
         bioregistry:wwf.ecoregion .
 
-bioregistry:kegg a bioregistry.schema:0000001 ;
-    rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
-    dc:description "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies."^^xsd:string ;
-    dcterms:hasPart bioregistry:kegg.compound,
-        bioregistry:kegg.dgroup,
-        bioregistry:kegg.disease,
-        bioregistry:kegg.drug,
-        bioregistry:kegg.environ,
-        bioregistry:kegg.enzyme,
-        bioregistry:kegg.genes,
-        bioregistry:kegg.genome,
-        bioregistry:kegg.glycan,
-        bioregistry:kegg.ligand,
-        bioregistry:kegg.metagenome,
-        bioregistry:kegg.module,
-        bioregistry:kegg.orthology,
-        bioregistry:kegg.pathway,
-        bioregistry:kegg.rclass,
-        bioregistry:kegg.reaction ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:KEGG,
-        go.resource:KEGG,
-        n2t:kegg,
-        miriam:kegg,
-        cheminf:000409,
-        uniprot.resource:DB-0053 ;
-    foaf:homepage "http://www.kegg.jp/"^^xsd:string ;
-    bioregistry.schema:0000005 "hsa00190"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.kegg.jp/entry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([CHDEGTMKR]\\d+)|(\\w+:[\\w\\d\\.-]*)|([a-z]{3,5})|(\\w{2,4}\\d{5})$"^^xsd:string ;
-    bioregistry.schema:0000012 true .
-
 bioregistry:envo a bioregistry.schema:0000001 ;
     rdfs:label "Environment Ontology" ;
     dc:description "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations."^^xsd:string ;
@@ -34802,6 +34810,39 @@ bioregistry:go a bioregistry.schema:0000001 ;
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0001-6787-2901 .
+
+bioregistry:kegg a bioregistry.schema:0000001 ;
+    rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
+    dc:description "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies."^^xsd:string ;
+    dcterms:hasPart bioregistry:kegg.brite,
+        bioregistry:kegg.compound,
+        bioregistry:kegg.dgroup,
+        bioregistry:kegg.disease,
+        bioregistry:kegg.drug,
+        bioregistry:kegg.environ,
+        bioregistry:kegg.enzyme,
+        bioregistry:kegg.genes,
+        bioregistry:kegg.genome,
+        bioregistry:kegg.glycan,
+        bioregistry:kegg.ligand,
+        bioregistry:kegg.metagenome,
+        bioregistry:kegg.module,
+        bioregistry:kegg.orthology,
+        bioregistry:kegg.pathway,
+        bioregistry:kegg.rclass,
+        bioregistry:kegg.reaction ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:KEGG,
+        go.resource:KEGG,
+        n2t:kegg,
+        miriam:kegg,
+        cheminf:000409,
+        uniprot.resource:DB-0053 ;
+    foaf:homepage "http://www.kegg.jp/"^^xsd:string ;
+    bioregistry.schema:0000005 "hsa00190"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.kegg.jp/entry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([CHDEGTMKR]\\d+)|(\\w+:[\\w\\d\\.-]*)|([a-z]{3,5})|(\\w{2,4}\\d{5})$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
 
 bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
     rdfs:label "Chemical Information Ontology" ;
@@ -35590,6 +35631,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:ICD10,
         biolink:ICD9,
         biolink:INO,
+        biolink:KEGG.BRITE,
         biolink:KEGG.DGROUP,
         biolink:KEGG.ENZYME,
         biolink:KEGG.GENE,
@@ -38381,6 +38423,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:eggnog,
         prefixcommons:ehda,
         prefixcommons:ehdaa,
+        prefixcommons:emap.ontology,
         prefixcommons:ena,
         prefixcommons:ensembl,
         prefixcommons:ensembl.bacteria,
@@ -38432,6 +38475,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:hbvar,
         prefixcommons:hdr,
         prefixcommons:hgnc,
+        prefixcommons:hgvbase,
         prefixcommons:hmdb,
         prefixcommons:hogenom,
         prefixcommons:homd.seq,
@@ -38458,6 +38502,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:intenz,
         prefixcommons:interfil,
         prefixcommons:interpro,
+        prefixcommons:ipi,
         prefixcommons:ird.segment,
         prefixcommons:irefweb,
         prefixcommons:iresite,
@@ -38468,6 +38513,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:jcsd,
         prefixcommons:jcvi.genprop,
         prefixcommons:jws,
+        prefixcommons:kegg.brite,
         prefixcommons:kegg.compound,
         prefixcommons:kegg.disease,
         prefixcommons:kegg.drug,
@@ -38543,6 +38589,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:otl,
         prefixcommons:paleodb,
         prefixcommons:pandit,
+        prefixcommons:panther,
         prefixcommons:pass2,
         prefixcommons:pathguide,
         prefixcommons:pathoplant,
@@ -38639,7 +38686,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:snp500cancer,
         prefixcommons:so,
         prefixcommons:spbase,
-        prefixcommons:spd,
+        prefixcommons:spdo,
         prefixcommons:spike,
         prefixcommons:splicenest,
         prefixcommons:sprint,
@@ -41130,6 +41177,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:INSDC.SRA,
         biocontext:INTACT,
         biocontext:INTACT.MOLECULE,
+        biocontext:IPI,
         biocontext:IPR,
         biocontext:IRD.SEGMENT,
         biocontext:IREFWEB,
@@ -42378,6 +42426,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:interfil,
         bioregistry:interlex,
         bioregistry:interpro,
+        bioregistry:ipi,
         bioregistry:ird.segment,
         bioregistry:irefweb,
         bioregistry:iresite,
@@ -42403,6 +42452,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:kaggle,
         bioregistry:kclb,
         bioregistry:kegg,
+        bioregistry:kegg.brite,
         bioregistry:kegg.compound,
         bioregistry:kegg.dgroup,
         bioregistry:kegg.disease,
