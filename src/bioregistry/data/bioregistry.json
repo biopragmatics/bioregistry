@@ -2864,8 +2864,21 @@
       "prefix": "ARK",
       "uri_format": "http://identifiers.org/ark/$1"
     },
+    "fairsharing": {
+      "abbreviation": "ARK Identifier",
+      "description": "Archival Resource Keys (ARKs) serve as persistent identifiers, or stable, trusted references for information objects. Among other things, they aim to be web addresses (URLs) that don’t return 404 Page Not Found errors. The ARK Alliance is an open global community supporting the ARK infrastructure on behalf of research and scholarship. End users, especially researchers, rely on ARKs for long term access to the global scientific and cultural record. Since 2001 some 8.2 billion ARKs have been created by over 750 organizations — libraries, data centers, archives, museums, publishers, government agencies, and vendors. ARKs are open, mainstream, non-paywalled, decentralized persistent identifiers that researchers can begin to work with in a short time. They identify anything digital, physical, or abstract.",
+      "id": "317",
+      "name": "Archival Resource Key Identifier",
+      "prefix": "FAIRsharing.f928f1",
+      "publications": [],
+      "subjects": [
+        "Data Management",
+        "Subject Agnostic"
+      ]
+    },
     "mappings": {
       "biocontext": "ARK",
+      "fairsharing": "FAIRsharing.f928f1",
       "miriam": "ark",
       "n2t": "ark"
     },
@@ -8896,6 +8909,13 @@
       "id": "381",
       "name": "CAS Registry Number",
       "prefix": "FAIRsharing.r7Kwy7",
+      "publications": [
+        {
+          "doi": "10.1021/acs.jcim.2c00268",
+          "pubmed_id": null,
+          "title": "CAS Common Chemistry in 2021: Expanding Access to Trusted Chemical Information for the Scientific Community"
+        }
+      ],
       "subjects": [
         "Cheminformatics"
       ]
@@ -17210,6 +17230,28 @@
     },
     "deprecated": true,
     "example": "2004-2820",
+    "fairsharing": {
+      "abbreviation": "CRISP",
+      "description": "CRISP is a terminology used for indexing biomedical information. CRISP contains over 8,000 preferred terms that are grouped hierarchically into 11 domains.",
+      "id": "1049",
+      "name": "Computer Retrieval of Information on Scientific Projects Thesaurus",
+      "prefix": "FAIRsharing.1evfpc",
+      "publications": [
+        {
+          "doi": null,
+          "pubmed_id": 8718842,
+          "title": "Taking a bite out of CRISP. Strategies on using and conducting searches in the Computer Retrieval of Information on Scientific Projects database."
+        }
+      ],
+      "subjects": [
+        "Anatomy",
+        "Social Science",
+        "Medicine",
+        "Chemical Biology",
+        "Biomedical Science",
+        "Biology"
+      ]
+    },
     "hl7": {
       "description": "Computer Retrieval of Information on Scientific Projects (CRISP). Bethesda (MD): National Institutes of Health, Division of Research Grants, Research Documentation Section, 2004.   http://crisp.cit.nih.gov/The CRISP system has been replaced by the RePORT Expenditures and Results (RePORTER) query tool.",
       "homepage": "http://www.nih.gov/",
@@ -17223,6 +17265,7 @@
     "mappings": {
       "aberowl": "CRISP",
       "bioportal": "CRISP",
+      "fairsharing": "FAIRsharing.1evfpc",
       "hl7": "2.16.840.1.113883.6.120"
     },
     "name": "Computer Retrieval of Information on Science Projects Thesaurus",
@@ -20793,6 +20836,7 @@
       "id": "1332",
       "name": "Digital Object Identifier",
       "prefix": "FAIRsharing.hFLKCn",
+      "publications": [],
       "subjects": [
         "Knowledge and Information Systems"
       ]
@@ -22761,13 +22805,14 @@
       "3.1.26.n2"
     ],
     "fairsharing": {
-      "abbreviation": "IntEnz",
-      "description": "IntEnz is a freely available resource focused on enzyme nomenclature. IntEnz contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology (NC-IUBMB) on the nomenclature and classification of enzyme-catalysed reactions.",
-      "id": "1853",
-      "name": "Integrated relational Enzyme database",
-      "prefix": "FAIRsharing.q1fdkc",
+      "abbreviation": "EC Number",
+      "description": "In its report in 1961, the first Enzyme Commission devised a system for enzyme classification that also serves as a basis for assigning code numbers. These code numbers, prefixed by EC, contain four elements separated by points / full stops and are now widely in use. The first number shows to which of the six main divisions (classes) the enzyme belongs and therefore identifies the class of reaction catalysed. The second number indicates the subclass, and generally contains information about the type of compound or group involved. The third figure gives the sub-subclass, which further specifies the type of reaction involved. The fourth figure is the serial number of the enzyme in its sub-subclass.",
+      "id": "1071",
+      "name": "Enzyme Commission Number",
+      "prefix": "FAIRsharing.rfLD2u",
+      "publications": [],
       "subjects": [
-        "Bioinformatics",
+        "Biochemistry",
         "Enzymology"
       ]
     },
@@ -22781,7 +22826,7 @@
       "bartoc": "671",
       "biocontext": "EC-CODE",
       "edam": "1011",
-      "fairsharing": "FAIRsharing.q1fdkc",
+      "fairsharing": "FAIRsharing.rfLD2u",
       "go": "EC",
       "miriam": "ec-code",
       "n2t": "ec-code",
@@ -26776,8 +26821,27 @@
       "orcid": "0000-0001-7542-0286"
     },
     "download_rdf": "https://nanocommons.github.io/identifiers/registry",
+    "fairsharing": {
+      "abbreviation": "ERM Identifier",
+      "description": "Identifier project to uniquely identify nanomaterials, allowing them to identify materials in experimental designs, data, reports, project deliverables, and scholarly publications.",
+      "id": "816",
+      "name": "European Registry of Materials Identifier",
+      "prefix": "FAIRsharing.c26a4e",
+      "publications": [
+        {
+          "doi": "10.1186/s13321-022-00614-7",
+          "pubmed_id": null,
+          "title": "European Registry of Materials: global, unique identifiers for (undisclosed) nanomaterials"
+        }
+      ],
+      "subjects": [
+        "Nanotechnology",
+        "Materials Informatics"
+      ]
+    },
     "mappings": {
       "cheminf": "000569",
+      "fairsharing": "FAIRsharing.c26a4e",
       "miriam": "erm",
       "n2t": "erm"
     },
@@ -40697,10 +40761,11 @@
   "igsn": {
     "fairsharing": {
       "abbreviation": "IGSN",
-      "description": "IGSN is a globally unique and persistent identifier for material samples. The IGSN registration service will facilitate the discovery, access, and sharing of samples, ensure preservation and access of sample data, aid identification of samples in the literature, and advance the exchange of digital sample data among interoperable data systems.",
+      "description": "The IGSN ID is a globally unique and persistent identifier for physical samples. An IGSN ID can be applied to an individual sample, an aggregation of samples, or to a feature-of-interest (the real-world feature that the sample is taken from). The IGSN registration service will facilitate the discovery, access, and sharing of samples, ensure preservation and access of sample data, aid identification of samples in the literature, and advance the exchange of digital sample data among interoperable data systems.  From 2021, IGSN IDs are functionally DOIs and are registered with metadata encoded in the DataCite Metadata Schema.",
       "id": "51",
       "name": "International GeoSample Number",
       "prefix": "FAIRsharing.Yvc76F",
+      "publications": [],
       "subjects": [
         "Geochemistry",
         "Hydrogeology",
@@ -41448,6 +41513,23 @@
       "id": "1477",
       "name": "IUPAC International Chemical Identifier",
       "prefix": "FAIRsharing.ddk9t9",
+      "publications": [
+        {
+          "doi": "https://doi.org/10.1186/s13321-015-0068-4",
+          "pubmed_id": 26136848,
+          "title": "InChI, the IUPAC International Chemical Identifier"
+        },
+        {
+          "doi": "10.1007/s10822-015-9854-3",
+          "pubmed_id": 26081259,
+          "title": "Many InChIs and quite some feat"
+        },
+        {
+          "doi": "10.1186/s13321-021-00517-z",
+          "pubmed_id": null,
+          "title": "InChI version 1.06: now more than 99.99% reliable"
+        }
+      ],
       "subjects": [
         "Knowledge and Information Systems",
         "Cheminformatics",
@@ -53716,8 +53798,28 @@
       "prefix": "MZSPEC",
       "uri_format": "http://identifiers.org/mzspec/$1"
     },
+    "fairsharing": {
+      "abbreviation": "USI",
+      "description": "The Universal Spectrum Identifier is multi-part key identifier for identifying mass spectra contained in public data repositories, primarily focused on proteomics. The USI provides a standardized mechanism for encoding a virtual path to any single mass spectrum generated by a mass spectrometer contained/deposited to public proteomics dataset repositories for enabling greater transparency of spectral evidence. With more than 1 billion USI identifications from over 3 billion spectra already available through ProteomeXchange repositories, Universal Spectrum Identifier encodes the dataset, the MS Run, the scan number and the proposed peptidoform and charge of the ions responsible for the spectrum.\n\nExample USI: \"mzspec:PXD000966:CPTAC_CompRef_00_iTRAQ_05_2Feb12_Cougar_11-10-09.mzML:scan:12298:[iTRAQ4plex]-LHFFM[Oxidation]PGFAPLTSR/3\"\n",
+      "id": "3888",
+      "name": "HUPO-PSI Universal Spectrum Identifier",
+      "prefix": "FAIRsharing.b549b8",
+      "publications": [
+        {
+          "doi": "10.1038/s41592-021-01184-6",
+          "pubmed_id": 34183830,
+          "title": "Universal Spectrum Identifier for mass spectra"
+        }
+      ],
+      "subjects": [
+        "Data Governance",
+        "Proteomics",
+        "Metabolomics"
+      ]
+    },
     "mappings": {
       "biocontext": "MZSPEC",
+      "fairsharing": "FAIRsharing.b549b8",
       "miriam": "mzspec",
       "n2t": "mzspec"
     },
@@ -61432,10 +61534,22 @@
       "prefix": "ORCID",
       "uri_format": "https://orcid.org/$1"
     },
+    "fairsharing": {
+      "abbreviation": "ORCID iD Identifier Schema",
+      "description": "The ORCID Identifier Schema is an https URI with a 16-digit number that is compatible with the ISO Standard (ISO 27729), also known as the International Standard Name Identifier (ISNI), e.g. https://orcid.org/0000-0001-2345-6789 Initially ORCID iDs will be randomly assigned by the ORCID Registry from a block of numbers that will not conflict with ISNI-formatted numbers assigned in other ways. ORCID iDs always require all 16 digits of the identifier; they can not be shortened to remove leading zeros if they exist. No information about a person is encoded in the ORCID iD. The identifiers were designed to be usable in situations where personally-identifiable information should/can not be shared. Also, since the ORCID iD is designed to be a career-long identifier, no information that can change over a person's career is embedded in the iD, e.g., country, institution, field of study.",
+      "id": "715",
+      "name": "Open Researcher and Contributor iD Identifier Schema",
+      "prefix": "FAIRsharing.OrNi1L",
+      "publications": [],
+      "subjects": [
+        "Knowledge and Information Systems"
+      ]
+    },
     "mappings": {
       "bartoc": "2021",
       "biocontext": "ORCID",
       "biolink": "ORCID",
+      "fairsharing": "FAIRsharing.OrNi1L",
       "miriam": "orcid",
       "n2t": "orcid",
       "wikidata": "P496"
@@ -73837,13 +73951,41 @@
     },
     "fairsharing": {
       "abbreviation": "RRID",
-      "description": "The Resource Identification Initiative (#RRID) is designed to help researchers sufficiently cite the key resources used to produce the scientific findings reported in the biomedical literature. In addition to being unique, RRID’s meet three key criteria, they are: - Machine readable - Free to generate and access - Consistent across publishers and journals",
+      "description": "Research Resource Identifiers (#RRID) are ID numbers assigned to help researchers cite key resources (antibodies, model organisms and software projects) in the biomedical literature to improve transparency of research methods. \n",
       "id": "538",
-      "name": "Research Resource Identifiers",
+      "name": "Research Resource Identifier",
       "prefix": "FAIRsharing.ATwSZG",
+      "publications": [
+        {
+          "doi": "10.12688/f1000research.6555.2",
+          "pubmed_id": 26594330,
+          "title": "The Resource Identification Initiative: A cultural shift in publishing."
+        },
+        {
+          "doi": "10.1016/j.neuron.2016.04.030",
+          "pubmed_id": 27151636,
+          "title": "RRIDs: A Simple Step toward Improving Reproducibility through Rigor and Transparency of Experimental Methods."
+        },
+        {
+          "doi": "10.1002/cne.23913",
+          "pubmed_id": 26599696,
+          "title": "The Resource Identification Initiative: A Cultural Shift in Publishing."
+        },
+        {
+          "doi": "10.7717/peerj.148",
+          "pubmed_id": 24032093,
+          "title": "On the reproducibility of science: unique identification of research resources in the biomedical literature."
+        },
+        {
+          "doi": "10.1038/nmeth.3995",
+          "pubmed_id": 27595404,
+          "title": "A proposal for validation of antibodies."
+        }
+      ],
       "subjects": [
         "Chemistry",
         "Life Science",
+        "Computer Science",
         "Biomedical Science"
       ]
     },
