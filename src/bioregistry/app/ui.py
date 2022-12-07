@@ -4,6 +4,7 @@
 
 import datetime
 import itertools as itt
+import json
 import platform
 from collections import defaultdict
 from operator import attrgetter
@@ -427,6 +428,7 @@ def home():
     example_prefix = current_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
     example_identifier = manager.get_example(example_prefix)
     example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
+    bioschemas = current_app.config.get("METAREGISTRY_BIOSCHEMAS")
     return render_template(
         "home.html",
         example_url=example_url,
@@ -436,6 +438,7 @@ def home():
         metaregistry_size=len(manager.metaregistry),
         collections_size=len(manager.collections),
         contributors_size=len(manager.read_contributors()),
+        bioschemas=json.dumps(bioschemas) if bioschemas else None,
     )
 
 
