@@ -30,6 +30,7 @@ RECORDS_URL = f"{BASE_URL}/fairsharing_records"
 
 ALLOWED_TYPES = {
     "terminology_artefact",
+    "identifier_schema",
     # "knowledgebase",
     # "knowledgebase_and_repository",
     # "repository",
