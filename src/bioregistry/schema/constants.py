@@ -12,10 +12,10 @@ from rdflib.term import Node
 __all__ = [
     "bioregistry_schema_terms",
     # Namespaces
-    "bioregistry_collection",
-    "bioregistry_resource",
-    "bioregistry_metaresource",
-    "bioregistry_schema",
+    "BR_COLLECTION",
+    "BR_RESOURCE",
+    "BR_METARESOURCE",
+    "BR_SCHEMA",
     "orcid",
 ]
 
@@ -218,15 +218,15 @@ bioregistry_schema_extras = [
     ("0000001", DCTERMS.contributor, "contributor", "0000020"),  # author creator of resource
     ("0000001", SKOS.exactMatch, "exact match", "0000001"),  # resource equivalence
 ]
-bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
-bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
-bioregistry_metaresource = rdflib.namespace.Namespace("https://bioregistry.io/metaregistry/")
-bioregistry_schema = rdflib.namespace.ClosedNamespace(
+BR_COLLECTION = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
+BR_RESOURCE = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
+BR_METARESOURCE = rdflib.namespace.Namespace("https://bioregistry.io/metaregistry/")
+BR_SCHEMA = rdflib.namespace.ClosedNamespace(
     uri=URIRef("https://bioregistry.io/schema/#"),
     terms=[term.identifier for term in bioregistry_schema_terms],
 )
 bioregistry_class_to_id: Mapping[str, URIRef] = {
-    term.label: bioregistry_schema[term.identifier]
+    term.label: BR_SCHEMA[term.identifier]
     for term in bioregistry_schema_terms
     if term.type == "Class"
 }
@@ -236,12 +236,12 @@ orcid = rdflib.namespace.Namespace("https://orcid.org/")
 def get_schema_rdf() -> rdflib.Graph:
     """Get the Bioregistry schema as an RDF graph."""
     graph = rdflib.Graph()
-    graph.bind("bioregistry.schema", bioregistry_schema)
-    graph.bind("bioregistry.collection", bioregistry_collection)
-    graph.bind("bioregistry", bioregistry_resource)
+    graph.bind("bioregistry.schema", BR_SCHEMA)
+    graph.bind("bioregistry.collection", BR_COLLECTION)
+    graph.bind("bioregistry", BR_RESOURCE)
     graph.bind("dcterms", DCTERMS)
     for term in bioregistry_schema_terms:
-        node = bioregistry_schema[term.identifier]
+        node = BR_SCHEMA[term.identifier]
         if isinstance(term, ClassTerm):
             graph.add((node, RDF.type, RDFS.Class))
         elif isinstance(term, PropertyTerm):
@@ -253,7 +253,7 @@ def get_schema_rdf() -> rdflib.Graph:
                 if isinstance(object_node, Node):
                     graph.add((node, property_node, object_node))
                 elif isinstance(object_node, str):
-                    graph.add((node, property_node, bioregistry_schema[object_node]))
+                    graph.add((node, property_node, BR_SCHEMA[object_node]))
                 else:
                     raise TypeError(term)
         else:

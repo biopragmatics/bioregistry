@@ -30,10 +30,16 @@ from .utils import (
     _get_resource_mapping_rows,
     _get_resource_providers,
     _normalize_prefix_or_404,
+    serialize,
 )
 from .. import version
 from ..constants import NDEX_UUID
-from ..schema import Context
+from ..export.rdf_export import (
+    collection_to_rdf_str,
+    metaresource_to_rdf_str,
+    resource_to_rdf_str,
+)
+from ..schema import Context, sanitize_mapping
 from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
     Registry,
@@ -69,15 +75,25 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the registry page."""
-    registry = manager.registry
-    if request.args.get("novel") in {"true", "t"}:
-        registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
-    return render_template(
-        "resources.html",
-        formats=FORMATS,
-        markdown=markdown,
-        registry=registry,
-    )
+    if request.accept_mimetypes.accept_json:
+        return jsonify(sanitize_mapping(manager.registry))
+
+    if "application/ld+json" in request.accept_mimetypes:
+        raise NotImplementedError
+
+    elif request.accept_mimetypes.accept_html:
+        registry = manager.registry
+        if request.args.get("novel") in {"true", "t"}:
+            registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
+        return render_template(
+            "resources.html",
+            formats=FORMATS,
+            markdown=markdown,
+            registry=registry,
+        )
+
+    else:
+        return abort(400)
 
 
 @ui_blueprint.route("/metaregistry/")
@@ -110,54 +126,70 @@ def resource(prefix: str):
     _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
-    example = _resource.get_example()
-    example_curie = _resource.get_example_curie()
-    example_extras = _resource.example_extras or []
-    example_curie_extras = [_resource.get_curie(example_extra) for example_extra in example_extras]
-    return render_template(
-        "resource.html",
-        zip=zip,
-        bioregistry=bioregistry,
-        markdown=markdown,
-        prefix=prefix,
-        resource=_resource,
-        name=manager.get_name(prefix),
-        example=example,
-        example_extras=example_extras,
-        example_curie=example_curie,
-        example_curie_extras=example_curie_extras,
-        mappings=_get_resource_mapping_rows(_resource),
-        synonyms=_resource.get_synonyms(),
-        homepage=_resource.get_homepage(),
-        repository=_resource.get_repository(),
-        pattern=manager.get_pattern(prefix),
-        curie_pattern=manager.get_curie_pattern(prefix),
-        version=_resource.get_version(),
-        has_no_terms=manager.has_no_terms(prefix),
-        obo_download=_resource.get_download_obo(),
-        owl_download=_resource.get_download_owl(),
-        json_download=_resource.get_download_obograph(),
-        rdf_download=_resource.get_download_rdf(),
-        namespace_in_lui=_resource.get_namespace_in_lui(),
-        deprecated=manager.is_deprecated(prefix),
-        contact=_resource.get_contact(),
-        banana=_resource.get_banana(),
-        description=manager.get_description(prefix, use_markdown=True),
-        appears_in=manager.get_appears_in(prefix),
-        depends_on=manager.get_depends_on(prefix),
-        has_canonical=manager.get_has_canonical(prefix),
-        canonical_for=manager.get_canonical_for(prefix),
-        provides=manager.get_provides_for(prefix),
-        provided_by=manager.get_provided_by(prefix),
-        part_of=manager.get_part_of(prefix),
-        has_parts=manager.get_has_parts(prefix),
-        providers=None if example is None else _get_resource_providers(prefix, example),
-        formats=[
-            *FORMATS,
-            ("RDF (turtle)", "turtle"),
-            ("RDF (JSON-LD)", "jsonld"),
-        ],
-    )
+
+    if request.accept_mimetypes.accept_json:
+        return jsonify(
+            prefix=_resource.prefix, **_resource.dict(exclude_unset=True, exclude_none=True)
+        )
+
+    elif "text/turtle" in request.accept_mimetypes:
+        return resource_to_rdf_str(_resource, manager=manager, fmt="turtle")
+
+    elif request.accept_mimetypes.accept_html:
+
+        example = _resource.get_example()
+        example_curie = _resource.get_example_curie()
+        example_extras = _resource.example_extras or []
+        example_curie_extras = [
+            _resource.get_curie(example_extra) for example_extra in example_extras
+        ]
+        return render_template(
+            "resource.html",
+            zip=zip,
+            bioregistry=bioregistry,
+            markdown=markdown,
+            prefix=prefix,
+            resource=_resource,
+            name=manager.get_name(prefix),
+            example=example,
+            example_extras=example_extras,
+            example_curie=example_curie,
+            example_curie_extras=example_curie_extras,
+            mappings=_get_resource_mapping_rows(_resource),
+            synonyms=_resource.get_synonyms(),
+            homepage=_resource.get_homepage(),
+            repository=_resource.get_repository(),
+            pattern=manager.get_pattern(prefix),
+            curie_pattern=manager.get_curie_pattern(prefix),
+            version=_resource.get_version(),
+            has_no_terms=manager.has_no_terms(prefix),
+            obo_download=_resource.get_download_obo(),
+            owl_download=_resource.get_download_owl(),
+            json_download=_resource.get_download_obograph(),
+            rdf_download=_resource.get_download_rdf(),
+            namespace_in_lui=_resource.get_namespace_in_lui(),
+            deprecated=manager.is_deprecated(prefix),
+            contact=_resource.get_contact(),
+            banana=_resource.get_banana(),
+            description=manager.get_description(prefix, use_markdown=True),
+            appears_in=manager.get_appears_in(prefix),
+            depends_on=manager.get_depends_on(prefix),
+            has_canonical=manager.get_has_canonical(prefix),
+            canonical_for=manager.get_canonical_for(prefix),
+            provides=manager.get_provides_for(prefix),
+            provided_by=manager.get_provided_by(prefix),
+            part_of=manager.get_part_of(prefix),
+            has_parts=manager.get_has_parts(prefix),
+            providers=None if example is None else _get_resource_providers(prefix, example),
+            formats=[
+                *FORMATS,
+                ("RDF (turtle)", "turtle"),
+                ("RDF (JSON-LD)", "jsonld"),
+            ],
+        )
+
+    else:
+        return abort(400)
 
 
 @ui_blueprint.route("/metaregistry/<metaprefix>")

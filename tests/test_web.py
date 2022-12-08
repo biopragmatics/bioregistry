@@ -5,6 +5,8 @@
 import unittest
 from typing import List
 
+import rdflib
+
 from bioregistry.app.impl import get_app
 
 
@@ -67,6 +69,25 @@ class TestWeb(unittest.TestCase):
             with self.subTest(fmt=None):
                 res = client.get("/api/registry/nope")
                 self.assertEqual(404, res.status_code)
+
+    def test_ui_resource_json(self):
+        """Test the UI resource with content negotiation."""
+        with self.app.test_client() as client:
+            res = client.get("/registry/chebi", headers={"Accept": "application/json"})
+            self.assertEqual(200, res.status_code)
+            self.assertEqual({"application/json"}, {t for t, _ in res.request.accept_mimetypes})
+            j = res.get_json()
+            self.assertIn("prefix", j)
+            self.assertEqual("chebi", j["prefix"])
+
+    def test_ui_resource_rdf(self):
+        """Test the UI resource with content negotiation."""
+        with self.app.test_client() as client:
+            res = client.get("/registry/chebi", headers={"Accept": "text/turtle"})
+            self.assertEqual(200, res.status_code)
+            self.assertEqual({"text/turtle"}, {t for t, _ in res.request.accept_mimetypes})
+            g = rdflib.Graph()
+            g.parse(res.text, format="turtle")
 
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
