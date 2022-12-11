@@ -154,23 +154,6 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     )
 
 
-def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
-    prefix = _normalize_prefix_or_404(prefix)
-    if not manager.is_standardizable_identifier(prefix, identifier):
-        return abort(
-            404,
-            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
-        )
-    providers = manager.get_providers(prefix, identifier)
-    if not providers:
-        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
-
-    return dict(
-        query=dict(prefix=prefix, identifier=identifier),
-        providers=providers,
-    )
-
-
 def jsonify(data):
     """Dump data as JSON, like like :func:`flask.jsonify`."""
     return current_app.response_class(

@@ -2,9 +2,8 @@
 
 """FastAPI blueprint and routes."""
 
-from typing import List, Mapping, Optional, Protocol, Set
+from typing import List, Mapping, Optional, Set
 
-import rdflib
 import yaml
 from fastapi import APIRouter, Header, HTTPException, Path, Request
 from fastapi.responses import Response
@@ -127,8 +126,11 @@ def get_metaresources(request: Request):
 
 
 METAPREFIX_PATH = Path(
-        title="Metaprefix", description="The Bioregistry metaprefix for the external registry", example="n2t"
-    )
+    title="Metaprefix",
+    description="The Bioregistry metaprefix for the external registry",
+    example="n2t",
+)
+
 
 @new_api_blueprint.get(
     "/metaregistry/{metaprefix}",
@@ -328,4 +330,36 @@ def get_contributor(
         prefix_contacts=sorted(read_prefix_contacts(manager.registry).get(orcid, [])),
         registries=sorted(read_registry_contributions(manager.metaregistry).get(orcid, [])),
         collections=sorted(read_collections_contributions(manager.collections).get(orcid, [])),
+    )
+
+
+class Reference(BaseModel):
+    prefix: str
+    identifier: str
+
+
+class IdentifierResponse(BaseModel):
+    query: Reference
+    providers: Mapping[str, str]
+
+
+@new_api_blueprint.get("/reference/{prefix}:{identifier}", response_model=IdentifierResponse)
+def reference(request: Request, prefix: str, identifier: str):
+    """Look up information on the reference."""
+    resource = request.app.manager.get_resource(prefix)
+    if resource is None:
+        raise HTTPException(404, f"invalid prefix: {prefix}")
+
+    if not resource.is_standardizable_identifier(identifier):
+        raise HTTPException(
+            404,
+            f"invalid identifier: {resource.get_curie(identifier)} for pattern {resource.get_pattern(prefix)}",
+        )
+    providers = resource.get_providers(identifier)
+    if not providers:
+        raise HTTPException(404, f"no providers available for {resource.get_curie(identifier)}")
+
+    return IdentifierResponse(
+        query=Reference(prefix=prefix, identifier=identifier),
+        providers=providers,
     )

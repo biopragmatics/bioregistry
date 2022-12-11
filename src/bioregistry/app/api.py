@@ -5,50 +5,13 @@
 from flask import Blueprint, abort, jsonify, request
 
 from .proxies import manager
-from .utils import (
-    _autocomplete,
-    _get_identifier,
-    _search,
-    serialize,
-)
+from .utils import _autocomplete, _search
 
 __all__ = [
     "api_blueprint",
 ]
 
 api_blueprint = Blueprint("metaregistry_api", __name__, url_prefix="/api")
-
-
-@api_blueprint.route("/reference/<prefix>:<identifier>")
-def reference(prefix: str, identifier: str):
-    """Look up information on the reference.
-
-    ---
-    tags:
-    - reference
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: efo
-    - name: identifier
-      in: path
-      description: The identifier for the entry
-      required: true
-      type: string
-      example: 0000311
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    return serialize(_get_identifier(prefix, identifier))
 
 
 @api_blueprint.route("/search")
