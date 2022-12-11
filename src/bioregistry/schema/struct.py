@@ -921,7 +921,7 @@ class Resource(BaseModel):
             return None
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
-                return
+                continue
             rv = ext.get("contact", {}).get("email")
             if rv:
                 return rv
@@ -946,7 +946,7 @@ class Resource(BaseModel):
             return self.obofoundry["contact.label"]
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
-                return
+                continue
             rv = ext.get("contact", {}).get("name")
             if rv:
                 return rv
