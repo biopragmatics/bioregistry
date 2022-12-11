@@ -25,7 +25,7 @@ from markdown import markdown
 
 import bioregistry
 
-from .proxies import manager
+from .proxies import fastapi_url_for, manager
 from .utils import _get_resource_providers, _normalize_prefix_or_404, serialize
 from .. import version
 from ..constants import NDEX_UUID
@@ -70,25 +70,15 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the registry page."""
-    if request.accept_mimetypes.accept_json:
-        return jsonify(sanitize_mapping(manager.registry))
-
-    if "application/ld+json" in request.accept_mimetypes:
-        raise NotImplementedError
-
-    elif request.accept_mimetypes.accept_html:
-        registry = manager.registry
-        if request.args.get("novel") in {"true", "t"}:
-            registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
-        return render_template(
-            "resources.html",
-            formats=FORMATS,
-            markdown=markdown,
-            registry=registry,
-        )
-
-    else:
-        return abort(400)
+    registry = manager.registry
+    if request.args.get("novel") in {"true", "t"}:
+        registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
+    return render_template(
+        "resources.html",
+        formats=FORMATS,
+        markdown=markdown,
+        registry=registry,
+    )
 
 
 @ui_blueprint.route("/metaregistry/")
@@ -121,13 +111,6 @@ def resource(prefix: str):
     _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
-    if request.accept_mimetypes.accept_json:
-        return jsonify(
-            prefix=_resource.prefix, **_resource.dict(exclude_unset=True, exclude_none=True)
-        )
-    if "text/turtle" in request.accept_mimetypes:
-        return resource_to_rdf_str(_resource, manager=manager, fmt="turtle")
-
     example = _resource.get_example()
     example_curie = _resource.get_example_curie()
     example_extras = _resource.example_extras or []

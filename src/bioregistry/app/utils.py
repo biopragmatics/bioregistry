@@ -12,12 +12,12 @@ from flask import abort, current_app, redirect, render_template, request, url_fo
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
-from bioregistry.schema import Resource, sanitize_model
-from bioregistry.utils import curie_to_str, extended_encoder
+from bioregistry.schema import sanitize_model
+from bioregistry.utils import extended_encoder
 
 from .proxies import manager
-from .. import Resource
 from ..export.rdf_export import resource_to_rdf_str
+from ..schema import Resource
 from ..utils import _norm
 
 

@@ -10,13 +10,12 @@ from fastapi.responses import Response
 from pydantic import BaseModel
 
 from bioregistry import Collection, Context, Registry, Resource
-from bioregistry.export.rdf_export import resource_to_rdf_str
+from bioregistry.export.rdf_export import (
+    collection_to_rdf_str,
+    metaresource_to_rdf_str,
+    resource_to_rdf_str,
+)
 from bioregistry.schema import Attributable, sanitize_model
-
-__all__ = [
-    "new_api_blueprint",
-]
-
 from bioregistry.schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
@@ -24,6 +23,10 @@ from bioregistry.schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+
+__all__ = [
+    "new_api_blueprint",
+]
 
 new_api_blueprint = APIRouter(
     prefix="/api",
@@ -52,16 +55,6 @@ RDF_MEDIA_TYPES = {
     "application/rdf+xml": "xml",
     "text/n3": "n3",
 }
-
-
-def get_resource_rdf_response(request: Request, resource: Resource, media_type) -> Response:
-    """Get a response from dumping a resource to RDF."""
-    return Response(
-        resource_to_rdf_str(
-            resource, fmt=RDF_MEDIA_TYPES[media_type], encoding="utf-8", manager=request.app.manager
-        ),
-        media_type=media_type,
-    )
 
 
 @new_api_blueprint.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
@@ -106,10 +99,14 @@ def get_resource(
     if accept == "application/json":
         return resource
     elif accept == "application/yaml":
-        print("preparing yaml response")
         return YAMLResponse(resource)
     elif accept in RDF_MEDIA_TYPES:
-        return get_resource_rdf_response(resource=resource, request=request, media_type=accept)
+        return Response(
+            resource_to_rdf_str(
+                resource, fmt=RDF_MEDIA_TYPES[accept], encoding="utf-8", manager=request.app.manager
+            ),
+            media_type=accept,
+        )
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
@@ -137,16 +134,42 @@ METAPREFIX_PATH = Path(
     response_model=Registry,
     tags=["metaresource"],
     description="Get a metaresource representing a registry.",
+    responses={
+        200: {
+            "content": {
+                "application/yaml": {},
+                **{k: {} for k in RDF_MEDIA_TYPES},
+            },
+        },
+    },
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
 )
 def get_metaresource(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
+    accept: Optional[str] = Header(default="application/json"),
 ):
     """Get all registries."""
     metaresource = request.app.manager.get_registry(metaprefix)
     if metaresource is None:
         raise HTTPException(status_code=404, detail=f"Registry not found: {metaprefix}")
-    return metaresource
+    if accept == "application/json":
+        return metaresource
+    elif accept == "application/yaml":
+        return YAMLResponse(metaresource)
+    elif accept in RDF_MEDIA_TYPES:
+        return Response(
+            metaresource_to_rdf_str(
+                metaresource,
+                fmt=RDF_MEDIA_TYPES[accept],
+                encoding="utf-8",
+                manager=request.app.manager,
+            ),
+            media_type=accept,
+        )
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 @new_api_blueprint.get(
@@ -167,7 +190,7 @@ def get_external_registry_slim(
     }
 
 
-class MappingResposneMeta(BaseModel):
+class MappingResponseMeta(BaseModel):
     len_overlap: int
     source: str
     target: str
@@ -178,7 +201,7 @@ class MappingResposneMeta(BaseModel):
 
 
 class MappingResponse(BaseModel):
-    meta: MappingResposneMeta
+    meta: MappingResponseMeta
     mappings: Mapping[str, str]
 
 
@@ -214,7 +237,7 @@ def get_metaresource_external_mappings(
             target_only.add(mp2_prefix)
 
     return MappingResponse(
-        meta=MappingResposneMeta(
+        meta=MappingResponseMeta(
             len_overlap=len(rv),
             source=metaprefix,
             target=target,
@@ -261,7 +284,21 @@ def get_collections(request: Request):
     return request.app.manager.collections
 
 
-@new_api_blueprint.get("/collection/{identifier}", response_model=Collection, tags=["collection"])
+@new_api_blueprint.get(
+    "/collection/{identifier}",
+    response_model=Collection,
+    tags=["collection"],
+    responses={
+        200: {
+            "content": {
+                "application/yaml": {},
+                **{k: {} for k in RDF_MEDIA_TYPES},
+            },
+        },
+    },
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
+)
 def get_collection(
     request: Request,
     identifier: str = Path(
@@ -269,12 +306,28 @@ def get_collection(
         description="The 7-digit collection identifier",
         example="0000001",
     ),
+    accept: Optional[str] = Header(default="application/json"),
 ):
     """Get a collection."""
     collection = request.app.manager.collections.get(identifier)
     if collection is None:
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
-    return collection
+    if accept == "application/json":
+        return collection
+    elif accept == "application/yaml":
+        return YAMLResponse(collection)
+    elif accept in RDF_MEDIA_TYPES:
+        return Response(
+            collection_to_rdf_str(
+                collection,
+                fmt=RDF_MEDIA_TYPES[accept],
+                encoding="utf-8",
+                manager=request.app.manager,
+            ),
+            media_type=accept,
+        )
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 @new_api_blueprint.get("/context", response_model=Mapping[str, Context], tags=["context"])

@@ -104,27 +104,33 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
 
 
 def collection_to_rdf_str(
-    data: Union[str, Collection], manager: Manager, fmt: Optional[str] = None
-) -> str:
+    collection: Union[str, Collection],
+    manager: Manager,
+    fmt: Optional[str] = None,
+    encoding: Optional[str] = None,
+) -> Union[str, bytes]:
     """Get a collection as an RDF string."""
-    if isinstance(data, str):
-        data = manager.collections.get(data)  # type: ignore
-        if data is None:
+    if isinstance(collection, str):
+        collection = manager.collections.get(collection)  # type: ignore
+        if collection is None:
             raise KeyError
-    graph, _ = _add_collection(cast(Collection, data), manager=manager)
-    return graph.serialize(format=fmt or "turtle")
+    graph, _ = _add_collection(collection, manager=manager)
+    return graph.serialize(format=fmt or "turtle", encoding=encoding)
 
 
 def metaresource_to_rdf_str(
-    data: Union[str, Registry], manager: Manager, fmt: Optional[str] = None
+    registry: Union[str, Registry],
+    manager: Manager,
+    fmt: Optional[str] = None,
+    encoding: Optional[str] = None,
 ) -> str:
     """Get a collection as an RDF string."""
-    if isinstance(data, str):
-        data = manager.get_registry(data)  # type: ignore
-        if data is None:
+    if isinstance(registry, str):
+        registry = manager.get_registry(registry)  # type: ignore
+        if registry is None:
             raise KeyError
-    graph, _ = _add_metaresource(cast(Registry, data), manager=manager)
-    return graph.serialize(format=fmt or "turtle")
+    graph, _ = _add_metaresource(registry, manager=manager)
+    return graph.serialize(format=fmt or "turtle", encoding=encoding)
 
 
 def resource_to_rdf_str(
