@@ -9,8 +9,9 @@ import json
 from typing import Any, MutableMapping, Optional
 
 from fairsharing_client import load_fairsharing
-from bioregistry.license_standardizer import standardize_license
+
 from bioregistry.constants import EXTERNAL
+from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
 __all__ = [
