@@ -863,11 +863,12 @@ class Resource(BaseModel):
                 "go",
                 "ncbi",
                 "cellosaurus",
+                "prefixcommons",
+                "fairsharing",
                 "cropoct",
                 "bioportal",
                 "agroportal",
                 "ecoportal",
-                "prefixcommons",
             ),
         )
 
@@ -875,7 +876,7 @@ class Resource(BaseModel):
         """Return the repository, if available."""
         if self.repository:
             return self.repository
-        return self.get_prefix_key("repository", "obofoundry")
+        return self.get_prefix_key("repository", ("obofoundry", "fairsharing"))
 
     def get_contact(self) -> Optional[Attributable]:
         """Get the contact, if available."""
@@ -909,9 +910,12 @@ class Resource(BaseModel):
                 return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
-        rv = (self.bioportal or {}).get("contact", {}).get("email")
-        if rv:
-            return rv
+        for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
+            if not ext:
+                return
+            rv = self.fairsharing.get("contact", {}).get("email")
+            if rv:
+                return rv
         return rv
 
     def get_contact_name(self) -> Optional[str]:
@@ -929,9 +933,12 @@ class Resource(BaseModel):
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
-        rv = (self.bioportal or {}).get("contact", {}).get("name")
-        if rv:
-            return rv
+        for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
+            if not ext:
+                return
+            rv = self.fairsharing.get("contact", {}).get("name")
+            if rv:
+                return rv
         return None
 
     def get_contact_github(self) -> Optional[str]:
@@ -966,6 +973,10 @@ class Resource(BaseModel):
             return self.contact.orcid
         if self.obofoundry and "contact.orcid" in self.obofoundry:
             return self.obofoundry["contact.orcid"]
+        if self.fairsharing and "contact" in self.fairsharing:
+            rv = self.fairsharing["contact"].get("orcid")
+            if rv:
+                return rv
         return None
 
     def get_example(self) -> Optional[str]:
@@ -1091,8 +1102,10 @@ class Resource(BaseModel):
         """Get the Twitter handle for ther resource."""
         if self.twitter:
             return self.twitter
-        if self.obofoundry:
-            return self.obofoundry.get("twitter")
+        if self.obofoundry and "twitter" in self.obofoundry:
+            return self.obofoundry["twitter"]
+        if self.fairsharing and "twitter" in self.fairsharing:
+            return self.fairsharing["twitter"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
