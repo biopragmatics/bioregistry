@@ -879,7 +879,14 @@ class Resource(BaseModel):
         return self.get_prefix_key("repository", ("obofoundry", "fairsharing"))
 
     def get_contact(self) -> Optional[Attributable]:
-        """Get the contact, if available."""
+        """Get the contact, if available.
+
+        :returns: A contact
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("frapo").get_contact().email
+        'silvio.peroni@unibo.it'
+        """
         name = self.get_contact_name()
         if name is None:
             return None
