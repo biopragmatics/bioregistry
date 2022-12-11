@@ -5,14 +5,17 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
-from flasgger import Swagger
+from fastapi import FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
+from bioregistry.utils import removeprefix
 
 from .api import api_blueprint
 from .constants import BIOSCHEMAS
+from .new_api import new_api_blueprint
 from .ui import ui_blueprint
 
 if TYPE_CHECKING:
@@ -94,8 +97,8 @@ def get_app(
     manager: Optional["bioregistry.Manager"] = None,
     config: Union[None, str, Path, Mapping[str, Any]] = None,
     first_party: bool = True,
-) -> Flask:
-    """Prepare the flask application.
+):
+    """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
     :param config: Additional configuration to be passed to the flask application. See below.
@@ -103,28 +106,83 @@ def get_app(
     :returns: An instantiated flask application
     :raises ValueError: if there's an issue with the configuration's integrity
     """
-    app = Flask(__name__)
     if isinstance(config, (str, Path)):
         with open(config) as file:
-            app.config.update(json.load(file))
-    elif config is not None:
-        app.config.update(config)
-    app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
-    app.config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    app.config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+            config = json.load(file)
+    elif config is None:
+        config = {}
 
-    app.manager = manager or resource_manager.manager
+    if manager is None:
+        manager = resource_manager.manager
 
-    if app.config.get("METAREGISTRY_FIRST_PARTY"):
-        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
+    config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
+    config.setdefault("METAREGISTRY_DESCRIPTION", "A service for resolving CURIEs")
+    config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
+    config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_VERSION", version.get_version())
+    config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    config.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    config.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    config.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    config.setdefault(
+        "METAREGISTRY_LICENSE_URL", "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE"
+    )
 
-    example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
-    resource = app.manager.registry.get(example_prefix)
+    tags_metadata = [
+        {
+            "name": "collection",
+            "description": "Fit-for-purpose lists of prefixes",
+            "externalDocs": {
+                "description": f"{config['METAREGISTRY_TITLE']} Collection Catalog",
+                "url": f"{manager.base_url}/collection/",
+            },
+        },
+        {
+            "name": "resource",
+            "description": "Identifier resources in the registry",
+            "externalDocs": {
+                "description": f"{config['METAREGISTRY_TITLE']} Resource Catalog",
+                "url": f"{manager.base_url}/registry/",
+            },
+        },
+        {
+            "name": "metaresource",
+            "description": "Resources representing registries",
+            "externalDocs": {
+                "description": f"{config['METAREGISTRY_TITLE']} Registry Catalog",
+                "url": f"{manager.base_url}/metaregistry/",
+            },
+        },
+    ]
+
+    fast_api = FastAPI(
+        openapi_tags=tags_metadata,
+        title=config["METAREGISTRY_TITLE"],
+        description=config["METAREGISTRY_DESCRIPTION"],
+        contact={
+            "name": config["METAREGISTRY_CONTACT_NAME"],
+            "email": config["METAREGISTRY_CONTACT_EMAIL"],
+        },
+        license_info={
+            "name": config["METAREGISTRY_LICENSE_NAME"],
+            "url": config["METAREGISTRY_LICENSE_URL"],
+        },
+    )
+    fast_api.manager = manager
+    fast_api.include_router(new_api_blueprint)
+
+    flask_app = Flask(__name__)
+    flask_app.config.update(config)
+    flask_app.manager = manager
+
+    if flask_app.config.get("METAREGISTRY_FIRST_PARTY"):
+        flask_app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
+
+    example_prefix = flask_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
+    resource = manager.registry.get(example_prefix)
     if resource is None:
         raise ValueError(
             f"{example_prefix} is not available as a prefix. Set a different METAREGISTRY_EXAMPLE_PREFIX"
@@ -134,39 +192,19 @@ def get_app(
     if resource.get_uri_format() is None:
         raise ValueError("Must use an example prefix with a URI format")
 
-    Swagger.DEFAULT_CONFIG.update(
-        {
-            "info": {
-                "title": app.config["METAREGISTRY_TITLE"],
-                "description": "A service for resolving CURIEs",
-                "contact": {
-                    "responsibleDeveloper": "Charles Tapley Hoyt",
-                    "email": "cthoyt@gmail.com",
-                },
-                "version": "1.0",
-                "license": {
-                    "name": "Code available under the MIT License",
-                    "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
-                },
-            },
-            "host": app.manager.base_url,
-            "tags": [
-                {
-                    "name": "collections",
-                    "externalDocs": {
-                        "url": f"{app.manager.base_url}/collection/",
-                    },
-                },
-            ],
-        }
-    )
+    # "host": removeprefix(removeprefix(manager.base_url, "https://"), "http://"),
 
-    Swagger(app)
-    Bootstrap4(app)
+    Bootstrap4(flask_app)
 
-    app.register_blueprint(api_blueprint)
-    app.register_blueprint(ui_blueprint)
+    flask_app.register_blueprint(api_blueprint)
+    flask_app.register_blueprint(ui_blueprint)
 
     # Make manager available in all jinja templates
-    app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
-    return app
+    flask_app.jinja_env.globals.update(
+        manager=manager,
+        curie_to_str=curie_to_str,
+        fastapi=fast_api,
+    )
+
+    fast_api.mount("/", WSGIMiddleware(flask_app))
+    return fast_api

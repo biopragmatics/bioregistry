@@ -26,12 +26,7 @@ from markdown import markdown
 import bioregistry
 
 from .proxies import manager
-from .utils import (
-    _get_resource_mapping_rows,
-    _get_resource_providers,
-    _normalize_prefix_or_404,
-    serialize,
-)
+from .utils import _get_resource_providers, _normalize_prefix_or_404, serialize
 from .. import version
 from ..constants import NDEX_UUID
 from ..export.rdf_export import (
@@ -126,70 +121,71 @@ def resource(prefix: str):
     _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
-
     if request.accept_mimetypes.accept_json:
         return jsonify(
             prefix=_resource.prefix, **_resource.dict(exclude_unset=True, exclude_none=True)
         )
-
-    elif "text/turtle" in request.accept_mimetypes:
+    if "text/turtle" in request.accept_mimetypes:
         return resource_to_rdf_str(_resource, manager=manager, fmt="turtle")
 
-    elif request.accept_mimetypes.accept_html:
-
-        example = _resource.get_example()
-        example_curie = _resource.get_example_curie()
-        example_extras = _resource.example_extras or []
-        example_curie_extras = [
-            _resource.get_curie(example_extra) for example_extra in example_extras
-        ]
-        return render_template(
-            "resource.html",
-            zip=zip,
-            bioregistry=bioregistry,
-            markdown=markdown,
-            prefix=prefix,
-            resource=_resource,
-            name=manager.get_name(prefix),
-            example=example,
-            example_extras=example_extras,
-            example_curie=example_curie,
-            example_curie_extras=example_curie_extras,
-            mappings=_get_resource_mapping_rows(_resource),
-            synonyms=_resource.get_synonyms(),
-            homepage=_resource.get_homepage(),
-            repository=_resource.get_repository(),
-            pattern=manager.get_pattern(prefix),
-            curie_pattern=manager.get_curie_pattern(prefix),
-            version=_resource.get_version(),
-            has_no_terms=manager.has_no_terms(prefix),
-            obo_download=_resource.get_download_obo(),
-            owl_download=_resource.get_download_owl(),
-            json_download=_resource.get_download_obograph(),
-            rdf_download=_resource.get_download_rdf(),
-            namespace_in_lui=_resource.get_namespace_in_lui(),
-            deprecated=manager.is_deprecated(prefix),
-            contact=_resource.get_contact(),
-            banana=_resource.get_banana(),
-            description=manager.get_description(prefix, use_markdown=True),
-            appears_in=manager.get_appears_in(prefix),
-            depends_on=manager.get_depends_on(prefix),
-            has_canonical=manager.get_has_canonical(prefix),
-            canonical_for=manager.get_canonical_for(prefix),
-            provides=manager.get_provides_for(prefix),
-            provided_by=manager.get_provided_by(prefix),
-            part_of=manager.get_part_of(prefix),
-            has_parts=manager.get_has_parts(prefix),
-            providers=None if example is None else _get_resource_providers(prefix, example),
-            formats=[
-                *FORMATS,
-                ("RDF (turtle)", "turtle"),
-                ("RDF (JSON-LD)", "jsonld"),
-            ],
-        )
-
-    else:
-        return abort(400)
+    example = _resource.get_example()
+    example_curie = _resource.get_example_curie()
+    example_extras = _resource.example_extras or []
+    example_curie_extras = [_resource.get_curie(example_extra) for example_extra in example_extras]
+    return render_template(
+        "resource.html",
+        zip=zip,
+        bioregistry=bioregistry,
+        markdown=markdown,
+        prefix=prefix,
+        resource=_resource,
+        name=manager.get_name(prefix),
+        example=example,
+        example_extras=example_extras,
+        example_curie=example_curie,
+        example_curie_extras=example_curie_extras,
+        mappings=[
+            dict(
+                metaprefix=metaprefix,
+                metaresource=manager.get_registry(metaprefix),
+                xref=xref,
+                homepage=manager.get_registry_homepage(metaprefix),
+                name=manager.get_registry_name(metaprefix),
+                uri=manager.get_registry_provider_uri_format(metaprefix, xref),
+            )
+            for metaprefix, xref in _resource.get_mappings().items()
+        ],
+        synonyms=_resource.get_synonyms(),
+        homepage=_resource.get_homepage(),
+        repository=_resource.get_repository(),
+        pattern=manager.get_pattern(prefix),
+        curie_pattern=manager.get_curie_pattern(prefix),
+        version=_resource.get_version(),
+        has_no_terms=manager.has_no_terms(prefix),
+        obo_download=_resource.get_download_obo(),
+        owl_download=_resource.get_download_owl(),
+        json_download=_resource.get_download_obograph(),
+        rdf_download=_resource.get_download_rdf(),
+        namespace_in_lui=_resource.get_namespace_in_lui(),
+        deprecated=manager.is_deprecated(prefix),
+        contact=_resource.get_contact(),
+        banana=_resource.get_banana(),
+        description=manager.get_description(prefix, use_markdown=True),
+        appears_in=manager.get_appears_in(prefix),
+        depends_on=manager.get_depends_on(prefix),
+        has_canonical=manager.get_has_canonical(prefix),
+        canonical_for=manager.get_canonical_for(prefix),
+        provides=manager.get_provides_for(prefix),
+        provided_by=manager.get_provided_by(prefix),
+        part_of=manager.get_part_of(prefix),
+        has_parts=manager.get_has_parts(prefix),
+        providers=None if example is None else _get_resource_providers(prefix, example),
+        formats=[
+            *FORMATS,
+            ("RDF (turtle)", "turtle"),
+            ("RDF (JSON-LD)", "jsonld"),
+        ],
+    )
 
 
 @ui_blueprint.route("/metaregistry/<metaprefix>")

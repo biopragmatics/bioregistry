@@ -224,7 +224,6 @@ class Resource(BaseModel):
     prefix: str = Field(
         ...,
         description="The prefix for this resource",
-        exclude=True,
         integration_status="required",
     )
     name: Optional[str] = Field(

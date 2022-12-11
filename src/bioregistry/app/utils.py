@@ -3,8 +3,10 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
+from functools import partial
+from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
+import flask
 import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
@@ -14,6 +16,8 @@ from bioregistry.schema import Resource, sanitize_model
 from bioregistry.utils import curie_to_str, extended_encoder
 
 from .proxies import manager
+from .. import Resource
+from ..export.rdf_export import resource_to_rdf_str
 from ..utils import _norm
 
 
@@ -40,20 +44,6 @@ def _get_resource_providers(
             )
         )
     return rv
-
-
-def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
-    return [
-        dict(
-            metaprefix=metaprefix,
-            metaresource=manager.get_registry(metaprefix),
-            xref=xref,
-            homepage=manager.get_registry_homepage(metaprefix),
-            name=manager.get_registry_name(metaprefix),
-            uri=manager.get_registry_provider_uri_format(metaprefix, xref),
-        )
-        for metaprefix, xref in resource.get_mappings().items()
-    ]
 
 
 def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
@@ -204,14 +194,44 @@ def _get_format(default: str = "json") -> str:
     return request.args.get("format", default=default)
 
 
-def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None):
+def serialize(
+    data: Any,
+    serializers: Optional[
+        Sequence[Tuple[str, str, Callable[[Resource], Union[str, bytes]]]]
+    ] = None,
+) -> flask.Response:
     """Serialize either as JSON or YAML."""
     fmt = _get_format()
     if fmt == "json":
-        return jsonify(data)
+        return jsonify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
     elif fmt in {"yaml", "yml"}:
-        return yamlify(data)
+        return yamlify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
     for name, mimetype, func in serializers or []:
         if fmt == name:
             return current_app.response_class(func(data), mimetype=mimetype)
     return abort(404, f"invalid format: {fmt}")
+
+
+def serialize_resource(resource: Resource, rasterize: bool = False) -> flask.Response:
+    """Serialize a resource"""
+    if rasterize:
+        resource = manager.rasterized_resource(resource)
+    return serialize(
+        resource,
+        serializers=[
+            ("turtle", "text/plain", partial(resource_to_rdf_str, manager=manager, fmt="turtle")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(resource_to_rdf_str, manager=manager, fmt="json-ld"),
+            ),
+        ],
+    )

@@ -3,7 +3,6 @@
 """Export the Bioregistry to RDF."""
 
 import logging
-from io import BytesIO
 from typing import Any, Callable, List, Optional, Tuple, Union, cast
 
 import click
@@ -26,10 +25,10 @@ from bioregistry.schema.constants import (
     BR_METARESOURCE,
     BR_RESOURCE,
     BR_SCHEMA,
-    orcid,
     get_schema_rdf,
+    orcid,
 )
-from bioregistry.schema.struct import Collection, Registry
+from bioregistry.schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -113,7 +112,7 @@ def collection_to_rdf_str(
         if data is None:
             raise KeyError
     graph, _ = _add_collection(cast(Collection, data), manager=manager)
-    return _graph_str(graph, fmt=fmt)
+    return graph.serialize(format=fmt or "turtle")
 
 
 def metaresource_to_rdf_str(
@@ -125,21 +124,21 @@ def metaresource_to_rdf_str(
         if data is None:
             raise KeyError
     graph, _ = _add_metaresource(cast(Registry, data), manager=manager)
-    return _graph_str(graph, fmt=fmt)
+    return graph.serialize(format=fmt or "turtle")
 
 
-def resource_to_rdf_str(data, manager: Manager, fmt: Optional[str] = None) -> str:
+def resource_to_rdf_str(
+    resource: Union[str, Resource],
+    manager: Manager,
+    fmt: Optional[str] = None,
+    encoding: Optional[str] = None,
+) -> Union[str, bytes]:
     """Get a collection as an RDF string."""
-    if isinstance(data, str):
-        data = {"prefix": data, **manager.get_resource(data).dict()}  # type: ignore
-    graph = _add_resource(data, manager=manager)
-    return _graph_str(graph, fmt=fmt)
-
-
-def _graph_str(graph: rdflib.Graph, fmt: Optional[str] = None) -> str:
-    stream = BytesIO()
-    graph.serialize(stream, format=fmt or "turtle")
-    return stream.getvalue().decode("utf8")
+    if isinstance(resource, str):
+        resource = manager.get_resource(resource)
+    graph = _graph(manager=manager)
+    _add_resource(resource, manager=manager, graph=graph)
+    return graph.serialize(format=fmt or "turtle", encoding=encoding)
 
 
 def _add_metaresources(*, manager: Manager, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
@@ -161,8 +160,8 @@ def _add_collections(*, graph: Optional[rdflib.Graph] = None, manager: Manager) 
 def _add_resources(*, graph: Optional[rdflib.Graph] = None, manager: Manager) -> rdflib.Graph:
     if graph is None:
         graph = _graph(manager=manager)
-    for prefix, data in manager.registry.items():
-        _add_resource(graph=graph, manager=manager, data={"prefix": prefix, **data.dict()})
+    for prefix, resource in manager.registry.items():
+        _add_resource(graph=graph, manager=manager, resource=resource)
     return graph
 
 
@@ -197,51 +196,47 @@ def _get_resource_functions(
     ]
 
 
-def _add_resource(data, *, manager: Manager, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
-    if graph is None:
-        graph = _graph(manager=manager)
-    prefix = data["prefix"]
-    resource = manager.get_resource(prefix)
-    if resource is None:
-        logger.warning("Could not look up prefix: %s", prefix)
-        return graph
-    node = cast(URIRef, BR_RESOURCE[prefix])
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
+    node = cast(URIRef, BR_RESOURCE[resource.prefix])
     graph.add((node, RDF.type, BR_SCHEMA["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
     graph.add((node, DCTERMS.isPartOf, BR_METARESOURCE["bioregistry"]))
     graph.add((BR_METARESOURCE["bioregistry"], DCTERMS.hasPart, node))
 
     for predicate, func, datatype in _get_resource_functions(manager):
-        value = func(prefix)
+        value = func(resource.prefix)
         if not isinstance(predicate, URIRef):
             predicate = BR_SCHEMA[predicate]
         if value is not None:
             graph.add((node, predicate, Literal(value, datatype=datatype)))
 
-    download = data.get("download")
+    download = (
+        resource.get_download_owl()
+        or resource.get_download_obo()
+        or resource.get_download_obograph()
+    )
     if download:
-        graph.add((node, BR_SCHEMA["0000010"], Literal(download)))
+        graph.add((node, BR_SCHEMA["0000010"], URIRef(download)))
 
     # Ontological relationships
 
-    for depends_on in manager.get_depends_on(prefix) or []:
+    for depends_on in manager.get_depends_on(resource.prefix) or []:
         graph.add((node, BR_SCHEMA["0000017"], BR_RESOURCE[depends_on]))
 
-    for appears_in in manager.get_appears_in(prefix) or []:
+    for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, BR_SCHEMA["0000018"], BR_RESOURCE[appears_in]))
 
-    part_of = manager.get_part_of(prefix)
+    part_of = manager.get_part_of(resource.prefix)
     if part_of:
         graph.add((node, DCTERMS.isPartOf, BR_RESOURCE[part_of]))
         graph.add((BR_RESOURCE[part_of], DCTERMS.hasPart, node))
 
-    provides = manager.get_provides_for(prefix)
+    provides = manager.get_provides_for(resource.prefix)
     if provides:
         graph.add((node, BR_SCHEMA["0000011"], BR_RESOURCE[provides]))
 
-    canonical = manager.get_has_canonical(prefix)
-    if canonical:
-        graph.add((node, BR_SCHEMA["0000016"], BR_RESOURCE[canonical]))
+    if resource.has_canonical:
+        graph.add((node, BR_SCHEMA["0000016"], BR_RESOURCE[resource.has_canonical]))
 
     contact = resource.get_contact()
     if contact is not None:
@@ -279,8 +274,6 @@ def _add_resource(data, *, manager: Manager, graph: Optional[rdflib.Graph] = Non
                 NAMESPACES[metaprefix][metaidentifier],
             )
         )
-
-    return graph
 
 
 if __name__ == "__main__":
