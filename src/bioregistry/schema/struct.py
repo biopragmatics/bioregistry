@@ -900,6 +900,8 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
+        >>> get_resource("frapo").get_contact_email()
+        'silvio.peroni@unibo.it'
         """
         if self.contact and self.contact.email:
             return self.contact.email
@@ -913,7 +915,7 @@ class Resource(BaseModel):
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
                 return
-            rv = self.fairsharing.get("contact", {}).get("email")
+            rv = ext.get("contact", {}).get("email")
             if rv:
                 return rv
         return rv
@@ -928,6 +930,8 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
+        >>> get_resource("frapo").get_contact_name()
+        'Silvio Peroni'
         """
         if self.contact and self.contact.name:
             return self.contact.name
@@ -936,7 +940,7 @@ class Resource(BaseModel):
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
                 return
-            rv = self.fairsharing.get("contact", {}).get("name")
+            rv = ext.get("contact", {}).get("name")
             if rv:
                 return rv
         return None
@@ -968,13 +972,15 @@ class Resource(BaseModel):
         '0000-0003-4423-4370'
         >>> get_resource("aero").get_contact_orcid()
         '0000-0002-9551-6370'
+        >>> get_resource("frapo").get_contact_orcid()
+        '0000-0003-0530-4305'
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
         if self.obofoundry and "contact.orcid" in self.obofoundry:
             return self.obofoundry["contact.orcid"]
-        if self.fairsharing and "contact" in self.fairsharing:
-            rv = self.fairsharing["contact"].get("orcid")
+        if self.fairsharing:
+            rv = self.fairsharing.get("contact", {}).get("orcid")
             if rv:
                 return rv
         return None
