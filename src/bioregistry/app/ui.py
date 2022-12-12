@@ -71,6 +71,8 @@ def resources():
     registry = manager.registry
     if request.args.get("novel") in {"true", "t"}:
         registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
+    if not request.accept_mimetypes.accept_html:
+        raise NotImplementedError
     return render_template(
         "resources.html",
         formats=FORMATS,
@@ -82,6 +84,8 @@ def resources():
 @ui_blueprint.route("/metaregistry/")
 def metaresources():
     """Serve the metaregistry page."""
+    if not request.accept_mimetypes.accept_html:
+        raise NotImplementedError
     return render_template(
         "metaresources.html",
         rows=manager.metaregistry.values(),
@@ -92,6 +96,8 @@ def metaresources():
 @ui_blueprint.route("/collection/")
 def collections():
     """Serve the collections page."""
+    if not request.accept_mimetypes.accept_html:
+        raise NotImplementedError
     return render_template(
         "collections.html",
         rows=manager.collections.items(),
@@ -241,6 +247,8 @@ def collection(identifier: str):
 @ui_blueprint.route("/context/")
 def contexts():
     """Serve the contexts page."""
+    if not request.accept_mimetypes.accept_html:
+        raise NotImplementedError
     return render_template(
         "contexts.html",
         rows=manager.contexts.items(),

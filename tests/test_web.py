@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """Test for web."""
-
+import json
 import unittest
 from typing import List
 
@@ -89,6 +89,8 @@ class TestWeb(unittest.TestCase):
             res = client.get("/registry/chebi", headers={"Accept": "text/turtle"})
             self.assertEqual(200, res.status_code)
             self.assertEqual({"text/turtle"}, {t for t, _ in res.request.accept_mimetypes})
+            with self.assertRaises(ValueError, msg="result was return as JSON"):
+                json.loads(res.text)
             g = rdflib.Graph()
             g.parse(res.text, format="turtle")
 
