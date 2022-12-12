@@ -2139,19 +2139,23 @@ class Registry(BaseModel):
         from rdflib import Literal
         from rdflib.namespace import DC, FOAF, RDF, RDFS
 
-        from .constants import BR_METARESOURCE, BR_SCHEMA, bioregistry_class_to_id
+        from .constants import (
+            bioregistry_class_to_id,
+            bioregistry_metaresource,
+            bioregistry_schema,
+        )
 
-        node = BR_METARESOURCE.term(self.prefix)
+        node = bioregistry_metaresource.term(self.prefix)
         graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
         graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
         graph.add((node, FOAF["homepage"], Literal(self.homepage)))
-        graph.add((node, BR_SCHEMA["0000005"], Literal(self.example)))
+        graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
         if self.provider_uri_format:
-            graph.add((node, BR_SCHEMA["0000006"], Literal(self.provider_uri_format)))
+            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_uri_format)))
         if self.resolver_uri_format:
-            graph.add((node, BR_SCHEMA["0000007"], Literal(self.resolver_uri_format)))
-        graph.add((node, BR_SCHEMA["0000019"], self.contact.add_triples(graph)))
+            graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
+        graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
     def get_code_link(self) -> Optional[str]:
@@ -2230,9 +2234,13 @@ class Collection(BaseModel):
         from rdflib import Literal
         from rdflib.namespace import DC, DCTERMS, RDF, RDFS
 
-        from .constants import BR_COLLECTION, BR_RESOURCE, bioregistry_class_to_id
+        from .constants import (
+            bioregistry_class_to_id,
+            bioregistry_collection,
+            bioregistry_resource,
+        )
 
-        node = BR_COLLECTION.term(self.identifier)
+        node = bioregistry_collection.term(self.identifier)
         graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
         graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
@@ -2242,7 +2250,7 @@ class Collection(BaseModel):
             graph.add((node, DC.creator, author_node))
 
         for resource in self.resources:
-            graph.add((node, DCTERMS.hasPart, BR_RESOURCE[resource]))
+            graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
 
         return node
 

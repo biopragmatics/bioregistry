@@ -21,10 +21,10 @@ from bioregistry.constants import (
     SCHEMA_TURTLE_PATH,
 )
 from bioregistry.schema.constants import (
-    BR_COLLECTION,
-    BR_METARESOURCE,
-    BR_RESOURCE,
-    BR_SCHEMA,
+    bioregistry_collection,
+    bioregistry_metaresource,
+    bioregistry_resource,
+    bioregistry_schema,
     get_schema_rdf,
     orcid,
 )
@@ -81,10 +81,10 @@ def _graph(manager: Manager) -> rdflib.Graph:
 
 
 def _bind(graph: rdflib.Graph, manager: Manager) -> None:
-    graph.namespace_manager.bind("bioregistry", BR_RESOURCE)
-    graph.namespace_manager.bind("bioregistry.metaresource", BR_METARESOURCE)
-    graph.namespace_manager.bind("bioregistry.collection", BR_COLLECTION)
-    graph.namespace_manager.bind("bioregistry.schema", BR_SCHEMA)
+    graph.namespace_manager.bind("bioregistry", bioregistry_resource)
+    graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
+    graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
+    graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
     graph.namespace_manager.bind("orcid", orcid)
     graph.namespace_manager.bind("foaf", FOAF)
     graph.namespace_manager.bind("dc", DC)
@@ -172,16 +172,16 @@ def _get_resource_functions(
 
 
 def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
-    node = cast(URIRef, BR_RESOURCE[resource.prefix])
-    graph.add((node, RDF.type, BR_SCHEMA["0000001"]))
+    node = cast(URIRef, bioregistry_resource[resource.prefix])
+    graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
-    graph.add((node, DCTERMS.isPartOf, BR_METARESOURCE["bioregistry"]))
-    graph.add((BR_METARESOURCE["bioregistry"], DCTERMS.hasPart, node))
+    graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
+    graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
 
     for predicate, func, datatype in _get_resource_functions(manager):
         value = func(resource.prefix)
         if not isinstance(predicate, URIRef):
-            predicate = BR_SCHEMA[predicate]
+            predicate = bioregistry_schema[predicate]
         if value is not None:
             graph.add((node, predicate, Literal(value, datatype=datatype)))
 
@@ -191,35 +191,37 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
         or resource.get_download_obograph()
     )
     if download:
-        graph.add((node, BR_SCHEMA["0000010"], URIRef(download)))
+        graph.add((node, bioregistry_schema["0000010"], URIRef(download)))
 
     # Ontological relationships
 
     for depends_on in manager.get_depends_on(resource.prefix) or []:
-        graph.add((node, BR_SCHEMA["0000017"], BR_RESOURCE[depends_on]))
+        graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
 
     for appears_in in manager.get_appears_in(resource.prefix) or []:
-        graph.add((node, BR_SCHEMA["0000018"], BR_RESOURCE[appears_in]))
+        graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
     part_of = manager.get_part_of(resource.prefix)
     if part_of:
-        graph.add((node, DCTERMS.isPartOf, BR_RESOURCE[part_of]))
-        graph.add((BR_RESOURCE[part_of], DCTERMS.hasPart, node))
+        graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
+        graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
 
     provides = manager.get_provides_for(resource.prefix)
     if provides:
-        graph.add((node, BR_SCHEMA["0000011"], BR_RESOURCE[provides]))
+        graph.add((node, bioregistry_schema["0000011"], bioregistry_resource[provides]))
 
     if resource.has_canonical:
-        graph.add((node, BR_SCHEMA["0000016"], BR_RESOURCE[resource.has_canonical]))
+        graph.add(
+            (node, bioregistry_schema["0000016"], bioregistry_resource[resource.has_canonical])
+        )
 
     contact = resource.get_contact()
     if contact is not None:
         contact_node = contact.add_triples(graph)
-        graph.add((node, BR_SCHEMA["0000019"], contact_node))
+        graph.add((node, bioregistry_schema["0000019"], contact_node))
     if resource.reviewer is not None and resource.reviewer.orcid:
         reviewer_node = resource.reviewer.add_triples(graph)
-        graph.add((node, BR_SCHEMA["0000021"], reviewer_node))
+        graph.add((node, bioregistry_schema["0000021"], reviewer_node))
     if resource.contributor is not None and resource.contributor.orcid:
         contributor_node = resource.contributor.add_triples(graph)
         graph.add((contributor_node, DCTERMS.contributor, node))
@@ -239,12 +241,12 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
             (
                 NAMESPACES[metaprefix][metaidentifier],
                 DCTERMS.isPartOf,
-                BR_METARESOURCE[metaresource.prefix],
+                bioregistry_metaresource[metaresource.prefix],
             )
         )
         graph.add(
             (
-                BR_METARESOURCE[metaresource.prefix],
+                bioregistry_metaresource[metaresource.prefix],
                 DCTERMS.hasPart,
                 NAMESPACES[metaprefix][metaidentifier],
             )
