@@ -141,7 +141,7 @@ class Attributable(BaseModel):
         :returns: The RDF node representing this author using an ORCiD URI.
         """
         from rdflib import BNode, Literal
-        from rdflib.namespace import RDFS
+        from rdflib.namespace import FOAF, RDFS
 
         if not self.orcid:
             node = BNode()
@@ -150,6 +150,8 @@ class Attributable(BaseModel):
 
             node = orcid.term(self.orcid)
         graph.add((node, RDFS["label"], Literal(self.name)))
+        if self.email:
+            graph.add((node, FOAF.mbox, Literal(self.email)))
         return node
 
 

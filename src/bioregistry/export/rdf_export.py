@@ -9,9 +9,10 @@ import click
 import rdflib
 from rdflib import Literal, Namespace
 from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
-from rdflib.term import Node, URIRef
+from rdflib.term import URIRef
 
-from bioregistry import Manager, manager
+import bioregistry
+from bioregistry import Manager
 from bioregistry.constants import (
     RDF_JSONLD_PATH,
     RDF_NT_PATH,
@@ -21,6 +22,7 @@ from bioregistry.constants import (
     SCHEMA_TURTLE_PATH,
 )
 from bioregistry.schema.constants import (
+    _add_schema,
     bioregistry_collection,
     bioregistry_metaresource,
     bioregistry_resource,
@@ -32,7 +34,9 @@ from bioregistry.schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
-NAMESPACES = {_ns: Namespace(_uri) for _ns, _uri in manager.get_internal_prefix_map().items()}
+NAMESPACES = {
+    _ns: Namespace(_uri) for _ns, _uri in bioregistry.manager.get_internal_prefix_map().items()
+}
 NAMESPACE_WARNINGS = set()
 
 
@@ -76,11 +80,6 @@ def export_rdf():
 
 def _graph(manager: Manager) -> rdflib.Graph:
     graph = rdflib.Graph()
-    _bind(graph=graph, manager=manager)
-    return graph
-
-
-def _bind(graph: rdflib.Graph, manager: Manager) -> None:
     graph.namespace_manager.bind("bioregistry", bioregistry_resource)
     graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
     graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
@@ -90,84 +89,66 @@ def _bind(graph: rdflib.Graph, manager: Manager) -> None:
     graph.namespace_manager.bind("dc", DC)
     graph.namespace_manager.bind("dcterms", DCTERMS)
     graph.namespace_manager.bind("skos", SKOS)
+    graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)
+    return graph
 
 
 def get_full_rdf(manager: Manager) -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph(manager=manager)
+    _add_schema(graph)
     for registry in manager.metaregistry.values():
-        _add_metaresource(graph=graph, registry=registry)
+        registry.add_triples(graph)
     for collection in manager.collections.values():
-        _add_collection(graph=graph, data=collection)
+        collection.add_triples(graph)
     for resource in manager.registry.values():
         _add_resource(graph=graph, manager=manager, resource=resource)
     return graph
 
 
 def collection_to_rdf_str(
-    collection: Union[str, Collection],
+    collection: Collection,
     manager: Manager,
     fmt: Optional[str] = None,
-    encoding: Optional[str] = None,
-) -> Union[str, bytes]:
+) -> str:
     """Get a collection as an RDF string."""
-    if isinstance(collection, str):
-        collection = manager.collections[collection]
     graph = _graph(manager=manager)
-    _add_collection(cast(Collection, collection), graph=graph)
-    return graph.serialize(format=fmt or "turtle", encoding=encoding)
+    collection.add_triples(graph)
+    return graph.serialize(format=fmt or "turtle")
 
 
 def metaresource_to_rdf_str(
-    registry: Union[str, Registry],
+    registry: Registry,
     manager: Manager,
     fmt: Optional[str] = None,
-    encoding: Optional[str] = None,
 ) -> str:
     """Get a collection as an RDF string."""
-    if isinstance(registry, str):
-        registry = manager.metaregistry[registry]
     graph = _graph(manager=manager)
-    _add_metaresource(cast(Registry, registry), graph=graph)
-    return graph.serialize(format=fmt or "turtle", encoding=encoding)
+    registry.add_triples(graph)
+    return graph.serialize(format=fmt or "turtle")
 
 
 def resource_to_rdf_str(
-    resource: Union[str, Resource],
+    resource: Resource,
     manager: Manager,
     fmt: Optional[str] = None,
-    encoding: Optional[str] = None,
-) -> Union[str, bytes]:
+) -> str:
     """Get a collection as an RDF string."""
-    if isinstance(resource, str):
-        resource = manager.registry[resource]
     graph = _graph(manager=manager)
-    _add_resource(cast(Resource, resource), manager=manager, graph=graph)
-    return graph.serialize(format=fmt or "turtle", encoding=encoding)
+    _add_resource(resource, manager=manager, graph=graph)
+    return graph.serialize(format=fmt or "turtle")
 
 
-def _add_collection(data: Collection, *, graph: rdflib.Graph) -> Tuple[rdflib.Graph, Node]:
-    node = data.add_triples(graph)
-    return graph, node
-
-
-def _add_metaresource(registry: Registry, *, graph: rdflib.Graph) -> Tuple[rdflib.Graph, Node]:
-    node = registry.add_triples(graph)
-    return graph, node
-
-
-def _get_resource_functions(
-    manager: Manager,
-) -> List[Tuple[Union[str, URIRef], Callable[[str], Any], URIRef]]:
+def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resource], Any], URIRef]]:
     return [
-        ("0000008", manager.get_pattern, XSD.string),
-        ("0000006", manager.get_uri_format, XSD.string),
-        ("0000005", manager.get_example, XSD.string),
-        ("0000012", manager.is_deprecated, XSD.boolean),
-        (DC.description, manager.get_description, XSD.string),
-        (FOAF.homepage, manager.get_homepage, XSD.string),
+        ("0000008", Resource.get_pattern, XSD.string),
+        ("0000006", Resource.get_uri_format, XSD.string),
+        ("0000005", Resource.get_example, XSD.string),
+        ("0000012", Resource.is_deprecated, XSD.boolean),
+        (DC.description, Resource.get_description, XSD.string),
+        (FOAF.homepage, Resource.get_homepage, XSD.string),
     ]
 
 
@@ -178,8 +159,8 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
     graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
     graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
 
-    for predicate, func, datatype in _get_resource_functions(manager):
-        value = func(resource.prefix)
+    for predicate, func, datatype in _get_resource_functions():
+        value = func(resource)
         if not isinstance(predicate, URIRef):
             predicate = bioregistry_schema[predicate]
         if value is not None:

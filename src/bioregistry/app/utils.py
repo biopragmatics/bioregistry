@@ -9,7 +9,14 @@ from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 import flask
 import yaml
 from fastapi import HTTPException
-from flask import abort, current_app, redirect, render_template, request, url_for
+from flask import (
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
