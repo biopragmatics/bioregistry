@@ -74,6 +74,22 @@
                        href="{{ fastapi.url_path_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
                         Download Slim Registry
                     </a>
+                    <span class="dropdown">
+                        <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                            External Mappings <i class="bi bi-caret-down-fill"></i>
+                        </span>
+                        <span class="dropdown-menu">
+                            {% for mp2, mr2 in manager.metaregistry.items() %}
+                            {% if mp2 != entry.prefix and mp2 != "bioregistry" %}
+                            <a class="dropdown-item"
+                               href="{{ fastapi.url_path_for("get_metaresource_external_mappings", metaprefix=entry.prefix, target=mp2) }}">
+                                {{ mr2.get_short_name() }}
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        </span>
+                    </span>
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>
