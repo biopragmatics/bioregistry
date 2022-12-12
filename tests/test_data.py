@@ -10,6 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import curies
+import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -475,8 +476,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi", manager=manager)
+        resource = manager.registry["chebi"]
+        s = resource_to_rdf_str(resource, manager=manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)
 
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""

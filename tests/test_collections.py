@@ -6,6 +6,8 @@ import logging
 import unittest
 from collections import Counter
 
+import rdflib
+
 from bioregistry import manager
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
@@ -70,5 +72,8 @@ class TestCollections(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = collection_to_rdf_str("0000001", manager=self.manager)
+        collection = manager.collections["0000001"]
+        s = collection_to_rdf_str(collection, manager=self.manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)
