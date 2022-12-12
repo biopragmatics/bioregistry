@@ -89,6 +89,9 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
         for contact in metadata.get("contacts", [])
         if contact.get("contact_orcid")  # make sure ORCID is available
     ]
+    for contact in contacts:
+        if "orcid" in contact:
+            contact["orcid"] = contact["orcid"].replace(" ", "")
     if contacts:
         rv["contact"] = contacts[0]
 
