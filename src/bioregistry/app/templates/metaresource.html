@@ -74,6 +74,22 @@
                        href="{{ url_for("metaregistry_api.get_external_registry_slim", metaprefix=entry.prefix) }}">
                         Download Slim Registry
                     </a>
+                    <span class="dropdown">
+                        <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                            External Mappings <i class="bi bi-caret-down-fill"></i>
+                        </span>
+                        <span class="dropdown-menu">
+                            {% for target, target_registry in manager.metaregistry.items() %}
+                            {% if target != entry.prefix and target != "bioregistry" %}
+                            <a class="dropdown-item"
+                               href="{{ url_for("metaregistry_api.mapping", source=entry.prefix, target=target) }}">
+                                {{ target_registry.get_short_name() }}
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        </span>
+                    </span>
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>
