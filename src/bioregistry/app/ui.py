@@ -24,9 +24,14 @@ from flask import (
 from markdown import markdown
 
 from .proxies import manager
-from .utils import _get_resource_providers, _normalize_prefix_or_404
+from .utils import _get_resource_providers, _normalize_prefix_or_404, serialize_model
 from .. import version
 from ..constants import NDEX_UUID
+from ..export.rdf_export import (
+    collection_to_rdf_str,
+    metaresource_to_rdf_str,
+    resource_to_rdf_str,
+)
 from ..schema import Context
 from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
@@ -104,6 +109,9 @@ def resource(prefix: str):
     _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
+    if not request.accept_mimetypes.accept_html:
+        return serialize_model(_resource, resource_to_rdf_str)
+
     example = _resource.get_example()
     example_curie = _resource.get_example_curie()
     example_extras = _resource.example_extras or []
@@ -169,6 +177,8 @@ def metaresource(metaprefix: str):
     entry = manager.metaregistry.get(metaprefix)
     if entry is None:
         return abort(404, f"Invalid metaprefix: {metaprefix}")
+    if not request.accept_mimetypes.accept_html:
+        return serialize_model(entry, metaresource_to_rdf_str)
 
     example_identifier = manager.get_example(entry.example)
     return render_template(
@@ -213,6 +223,9 @@ def collection(identifier: str):
     entry = manager.collections.get(identifier)
     if entry is None:
         return abort(404, f"Invalid collection: {identifier}")
+    if not request.accept_mimetypes.accept_html:
+        return serialize_model(entry, collection_to_rdf_str)
+
     return render_template(
         "collection.html",
         identifier=identifier,

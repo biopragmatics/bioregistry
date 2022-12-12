@@ -3,6 +3,7 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
+from functools import partial
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
@@ -180,11 +181,37 @@ def yamlify(data):
 def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None) -> Response:
     """Serialize either as JSON or YAML."""
     fmt = request.args.get("format", default="json")
+    # TODO hack in header checking here
     if fmt == "json":
-        return jsonify(data)
+        return jsonify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
     elif fmt in {"yaml", "yml"}:
-        return yamlify(data)
+        return yamlify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
     for name, mimetype, func in serializers or []:
         if fmt == name:
             return current_app.response_class(func(data), mimetype=mimetype)
     return abort(404, f"invalid format: {fmt}")
+
+
+def serialize_model(entry: BaseModel, func) -> Response:
+    """Serialize a model."""
+    return serialize(
+        entry,
+        serializers=[
+            ("turtle", "text/turtle", partial(func, manager=manager, fmt="turtle")),
+            ("n3", "text/n3", partial(func, manager=manager, fmt="n3")),
+            ("rdf", "application/rdf+xml", partial(func, manager=manager, fmt="xml")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(func, manager=manager, fmt="json-ld"),
+            ),
+        ],
+    )
