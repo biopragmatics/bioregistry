@@ -7,13 +7,7 @@ from functools import partial
 from flask import Blueprint, abort, jsonify, request
 
 from .proxies import manager
-from .utils import (
-    _autocomplete,
-    _get_identifier,
-    _normalize_prefix_or_404,
-    _search,
-    serialize,
-)
+from .utils import _autocomplete, _normalize_prefix_or_404, _search, serialize
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -27,6 +21,7 @@ from ..schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+from ..utils import curie_to_str
 
 __all__ = [
     "api_blueprint",
@@ -384,7 +379,22 @@ def reference(prefix: str, identifier: str):
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(_get_identifier(prefix, identifier))
+    prefix = _normalize_prefix_or_404(prefix)
+    if not manager.is_standardizable_identifier(prefix, identifier):
+        return abort(
+            404,
+            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
+        )
+    providers = manager.get_providers(prefix, identifier)
+    if not providers:
+        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
+
+    return serialize(
+        dict(
+            query=dict(prefix=prefix, identifier=identifier),
+            providers=providers,
+        )
+    )
 
 
 @api_blueprint.route("/contributors")

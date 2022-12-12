@@ -18,8 +18,8 @@ from flask import (
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
-from bioregistry.schema import Resource, sanitize_model
-from bioregistry.utils import curie_to_str, extended_encoder
+from bioregistry.schema import sanitize_model
+from bioregistry.utils import extended_encoder
 
 from .proxies import manager
 from ..utils import _norm
@@ -48,20 +48,6 @@ def _get_resource_providers(
             )
         )
     return rv
-
-
-def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
-    return [
-        dict(
-            metaprefix=metaprefix,
-            metaresource=manager.get_registry(metaprefix),
-            xref=xref,
-            homepage=manager.get_registry_homepage(metaprefix),
-            name=manager.get_registry_name(metaprefix),
-            uri=manager.get_registry_provider_uri_format(metaprefix, xref),
-        )
-        for metaprefix, xref in resource.get_mappings().items()
-    ]
 
 
 def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
@@ -169,23 +155,6 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
         success=success,
         reason=reason,
         url=url,
-    )
-
-
-def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
-    prefix = _normalize_prefix_or_404(prefix)
-    if not manager.is_standardizable_identifier(prefix, identifier):
-        return abort(
-            404,
-            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
-        )
-    providers = manager.get_providers(prefix, identifier)
-    if not providers:
-        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
-
-    return dict(
-        query=dict(prefix=prefix, identifier=identifier),
-        providers=providers,
     )
 
 

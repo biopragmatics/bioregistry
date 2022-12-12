@@ -23,14 +23,8 @@ from flask import (
 )
 from markdown import markdown
 
-import bioregistry
-
 from .proxies import manager
-from .utils import (
-    _get_resource_mapping_rows,
-    _get_resource_providers,
-    _normalize_prefix_or_404,
-)
+from .utils import _get_resource_providers, _normalize_prefix_or_404
 from .. import version
 from ..constants import NDEX_UUID
 from ..schema import Context
@@ -117,7 +111,6 @@ def resource(prefix: str):
     return render_template(
         "resource.html",
         zip=zip,
-        bioregistry=bioregistry,
         markdown=markdown,
         prefix=prefix,
         resource=_resource,
@@ -126,7 +119,17 @@ def resource(prefix: str):
         example_extras=example_extras,
         example_curie=example_curie,
         example_curie_extras=example_curie_extras,
-        mappings=_get_resource_mapping_rows(_resource),
+        mappings=[
+            dict(
+                metaprefix=metaprefix,
+                metaresource=manager.get_registry(metaprefix),
+                xref=xref,
+                homepage=manager.get_registry_homepage(metaprefix),
+                name=manager.get_registry_name(metaprefix),
+                uri=manager.get_registry_provider_uri_format(metaprefix, xref),
+            )
+            for metaprefix, xref in _resource.get_mappings().items()
+        ],
         synonyms=_resource.get_synonyms(),
         homepage=_resource.get_homepage(),
         repository=_resource.get_repository(),
@@ -398,7 +401,6 @@ def contributor(orcid: str):
         return abort(404)
     return render_template(
         "contributor.html",
-        bioregistry=bioregistry,
         contributor=author,
         collections=sorted(
             (collection_id, manager.collections.get(collection_id))
