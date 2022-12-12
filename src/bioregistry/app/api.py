@@ -15,7 +15,7 @@ from bioregistry.export.rdf_export import (
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
-from bioregistry.schema import Attributable, sanitize_model
+from bioregistry.schema import Attributable, sanitize_mapping
 from bioregistry.schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
@@ -70,12 +70,7 @@ def get_resources(
     if accept == "application/json":
         return request.app.manager.registry
     elif accept == "application/yaml":
-        return YAMLResponse(
-            {
-                prefix: sanitize_model(resource)
-                for prefix, resource in request.app.manager.registry.items()
-            }
-        )
+        return YAMLResponse(sanitize_mapping(request.app.manager.registry))
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -143,12 +138,7 @@ def get_metaresources(
     if accept == "application/json":
         return request.app.manager.metaregistry
     elif accept == "application/yaml":
-        return YAMLResponse(
-            {
-                metaprefix: sanitize_model(registry)
-                for metaprefix, registry in request.app.manager.metaregistry.items()
-            }
-        )
+        return YAMLResponse(sanitize_mapping(request.app.manager.metaregistry))
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -226,6 +216,8 @@ def get_external_registry_slim(
 
 
 class MappingResponseMeta(BaseModel):
+    """A response describing the overlap between two external registries."""
+
     len_overlap: int
     source: str
     target: str
@@ -236,6 +228,8 @@ class MappingResponseMeta(BaseModel):
 
 
 class MappingResponse(BaseModel):
+    """A response describing the overlap between two registries and their mapping."""
+
     meta: MappingResponseMeta
     mappings: Mapping[str, str]
 
@@ -328,12 +322,7 @@ def get_collections(
     if accept == "application/json":
         return request.app.manager.collections
     elif accept == "application/yaml":
-        return YAMLResponse(
-            {
-                prefix: sanitize_model(collection)
-                for prefix, collection in request.app.manager.collections.items()
-            }
-        )
+        return YAMLResponse(sanitize_mapping(request.app.manager.collections))
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -391,9 +380,19 @@ def get_collection(
 
 
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
-def get_contexts(request: Request):
+def get_contexts(
+    request: Request,
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
+):
     """Get all context."""
-    return request.app.manager.contexts
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return request.app.manager.contexts
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(request.app.manager.contexts))
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 @api_router.get("/context/{identifier}", response_model=Context, tags=["context"])
@@ -409,12 +408,25 @@ def get_context(
 
 
 @api_router.get("/contributors", response_model=Mapping[str, Attributable], tags=["contributor"])
-def get_contributors(request: Request):
+def get_contributors(
+    request: Request,
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
+):
     """Get all context."""
-    return request.app.manager.read_contributors()
+    contributors = request.app.manager.read_contributors()
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return contributors
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(contributors))
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 class ContributorResponse(BaseModel):
+    """A response with information about a contributor."""
+
     contributor: Attributable
     prefix_contributions: Set[str]
     prefix_reviews: Set[str]
@@ -443,11 +455,15 @@ def get_contributor(
 
 
 class Reference(BaseModel):
+    """A reference to a prefix and local unique identifier."""
+
     prefix: str
     identifier: str
 
 
 class IdentifierResponse(BaseModel):
+    """A response for looking up a reference."""
+
     query: Reference
     providers: Mapping[str, str]
 

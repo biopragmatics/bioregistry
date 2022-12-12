@@ -21,7 +21,6 @@ class TestWeb(unittest.TestCase):
 
     def test_ui(self):
         """Test user-facing pages don't error."""
-
         for endpoint in [
             "",
             "registry",
@@ -90,7 +89,7 @@ class TestWeb(unittest.TestCase):
             with self.assertRaises(ValueError, msg="result was return as JSON"):
                 json.loads(res.text)
             g = rdflib.Graph()
-            g.parse(res.text, format="turtle")
+            g.parse(res.text.encode("utf-8"), format="turtle")
 
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
