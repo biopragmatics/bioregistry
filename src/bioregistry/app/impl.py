@@ -131,14 +131,6 @@ def get_app(
 
     tags_metadata = [
         {
-            "name": "collection",
-            "description": "Fit-for-purpose lists of prefixes",
-            "externalDocs": {
-                "description": f"{config['METAREGISTRY_TITLE']} Collection Catalog",
-                "url": f"{manager.base_url}/collection/",
-            },
-        },
-        {
             "name": "resource",
             "description": "Identifier resources in the registry",
             "externalDocs": {
@@ -152,6 +144,14 @@ def get_app(
             "externalDocs": {
                 "description": f"{config['METAREGISTRY_TITLE']} Registry Catalog",
                 "url": f"{manager.base_url}/metaregistry/",
+            },
+        },
+        {
+            "name": "collection",
+            "description": "Fit-for-purpose lists of prefixes",
+            "externalDocs": {
+                "description": f"{config['METAREGISTRY_TITLE']} Collection Catalog",
+                "url": f"{manager.base_url}/collection/",
             },
         },
     ]

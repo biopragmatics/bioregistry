@@ -251,7 +251,7 @@ def get_metaresource_external_mappings(
     )
 
 
-@api_router.get("/metaregistry/{metaprefix}/mappings.json", response_model=Mapping[str, str])
+@api_router.get("/metaregistry/{metaprefix}/mappings.json", response_model=Mapping[str, str], tags=["metaresource"])
 def bioregistry_to_external_mapping(request: Request, metaprefix: str = METAPREFIX_PATH):
     """Get mappings from the Bioregistry to an external registry."""
     if metaprefix not in request.app.manager.metaregistry:
@@ -393,8 +393,8 @@ class IdentifierResponse(BaseModel):
     providers: Mapping[str, str]
 
 
-@api_router.get("/reference/{prefix}:{identifier}", response_model=IdentifierResponse)
-def reference(request: Request, prefix: str, identifier: str):
+@api_router.get("/reference/{prefix}:{identifier}", response_model=IdentifierResponse, tags=["reference"])
+def get_reference(request: Request, prefix: str, identifier: str):
     """Look up information on the reference."""
     resource = request.app.manager.get_resource(prefix)
     if resource is None:
@@ -415,7 +415,7 @@ def reference(request: Request, prefix: str, identifier: str):
     )
 
 
-@api_router.get("/context.jsonld")
+@api_router.get("/context.jsonld", tags=["resource"])
 def generate_context_json_ld(
     request: Request,
     prefix: List[str] = Query(description="The prefix for the entry. Can be given multiple."),
@@ -449,25 +449,16 @@ def generate_context_json_ld(
     )
 
 
-@api_router.get("/autocomplete")
+@api_router.get("/autocomplete", tags=["search"])
 def autocomplete(
     request: Request,
     q: str = Query(description="A query for the prefix"),
 ):
-    """Complete a resolution query.
-
-    ---
-    parameters:
-    - name: q
-      in: query
-      description: The prefix for the entry
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
+    """Complete a resolution query."""
     return JSONResponse(_autocomplete(request.app.manager, q))
 
 
-@api_router.get("/search")
+@api_router.get("/search", tags=["search"])
 def search(
     request: Request,
     q: str = Query(description="A query for the prefix"),
