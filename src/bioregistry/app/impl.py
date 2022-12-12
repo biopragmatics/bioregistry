@@ -11,11 +11,9 @@ from flask_bootstrap import Bootstrap4
 from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
-from bioregistry.utils import removeprefix
 
-from .api import api_blueprint
 from .constants import BIOSCHEMAS
-from .new_api import new_api_blueprint
+from .new_api import api_router
 from .ui import ui_blueprint
 
 if TYPE_CHECKING:
@@ -172,7 +170,7 @@ def get_app(
         },
     )
     fast_api.manager = manager
-    fast_api.include_router(new_api_blueprint)
+    fast_api.include_router(api_router)
 
     flask_app = Flask(__name__)
     flask_app.config.update(config)
@@ -196,7 +194,6 @@ def get_app(
 
     Bootstrap4(flask_app)
 
-    flask_app.register_blueprint(api_blueprint)
     flask_app.register_blueprint(ui_blueprint)
 
     # Make manager available in all jinja templates

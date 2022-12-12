@@ -5,11 +5,12 @@
 from typing import List, Mapping, Optional, Set
 
 import yaml
-from fastapi import APIRouter, Header, HTTPException, Path, Request
-from fastapi.responses import Response
+from fastapi import APIRouter, Header, HTTPException, Path, Query, Request
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
 
 from bioregistry import Collection, Context, Registry, Resource
+from bioregistry.app.utils import _autocomplete, _search
 from bioregistry.export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -25,10 +26,10 @@ from bioregistry.schema_utils import (
 )
 
 __all__ = [
-    "new_api_blueprint",
+    "api_router",
 ]
 
-new_api_blueprint = APIRouter(
+api_router = APIRouter(
     prefix="/api",
 )
 
@@ -57,7 +58,7 @@ RDF_MEDIA_TYPES = {
 }
 
 
-@new_api_blueprint.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
+@api_router.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
 def get_resources(request: Request, accept: Optional[str] = Header(default="application/json")):
     """Get all resources."""
     if accept == "application/json":
@@ -69,7 +70,7 @@ def get_resources(request: Request, accept: Optional[str] = Header(default="appl
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/registry/{prefix}",
     response_model=Resource,
     tags=["resource"],
@@ -111,7 +112,7 @@ def get_resource(
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/metaregistry",
     response_model=Mapping[str, Registry],
     tags=["metaresource"],
@@ -129,7 +130,7 @@ METAPREFIX_PATH = Path(
 )
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/metaregistry/{metaprefix}",
     response_model=Registry,
     tags=["metaresource"],
@@ -172,7 +173,7 @@ def get_metaresource(
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/metaregistry/{metaprefix}/registry_subset.json",
     response_model=Mapping[str, Resource],
     tags=["metaresource"],
@@ -205,7 +206,7 @@ class MappingResponse(BaseModel):
     mappings: Mapping[str, str]
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/metaregistry/{metaprefix}/mapping/{target}",
     response_model=MappingResponse,
     tags=["metaresource"],
@@ -250,7 +251,7 @@ def get_metaresource_external_mappings(
     )
 
 
-@new_api_blueprint.get("/metaregistry/{metaprefix}/mappings.json", response_model=Mapping[str, str])
+@api_router.get("/metaregistry/{metaprefix}/mappings.json", response_model=Mapping[str, str])
 def bioregistry_to_external_mapping(request: Request, metaprefix: str = METAPREFIX_PATH):
     """Get mappings from the Bioregistry to an external registry."""
     if metaprefix not in request.app.manager.metaregistry:
@@ -258,7 +259,7 @@ def bioregistry_to_external_mapping(request: Request, metaprefix: str = METAPREF
     return request.app.manager.get_registry_map(metaprefix)
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/metaregistry/{metaprefix}/redirect/{metaidentifier}",
     tags=["metaresource"],
 )
@@ -278,13 +279,13 @@ def get_metaresource_redirect(
     # return serialize_resource(resource, rasterize=True)
 
 
-@new_api_blueprint.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
+@api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
 def get_collections(request: Request):
     """Get all collections."""
     return request.app.manager.collections
 
 
-@new_api_blueprint.get(
+@api_router.get(
     "/collection/{identifier}",
     response_model=Collection,
     tags=["collection"],
@@ -330,13 +331,13 @@ def get_collection(
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@new_api_blueprint.get("/context", response_model=Mapping[str, Context], tags=["context"])
+@api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
 def get_contexts(request: Request):
     """Get all context."""
     return request.app.manager.contexts
 
 
-@new_api_blueprint.get("/context/{identifier}", response_model=Context, tags=["context"])
+@api_router.get("/context/{identifier}", response_model=Context, tags=["context"])
 def get_context(
     request: Request,
     identifier: str = Path(title="Context Key", description="The context key", example="obo"),
@@ -348,9 +349,7 @@ def get_context(
     return context
 
 
-@new_api_blueprint.get(
-    "/contributors", response_model=Mapping[str, Attributable], tags=["contributor"]
-)
+@api_router.get("/contributors", response_model=Mapping[str, Attributable], tags=["contributor"])
 def get_contributors(request: Request):
     """Get all context."""
     return request.app.manager.read_contributors()
@@ -365,9 +364,7 @@ class ContributorResponse(BaseModel):
     collections: Set[str]
 
 
-@new_api_blueprint.get(
-    "/contributor/{orcid}", response_model=ContributorResponse, tags=["contributor"]
-)
+@api_router.get("/contributor/{orcid}", response_model=ContributorResponse, tags=["contributor"])
 def get_contributor(
     request: Request, orcid: str = Path(title="Open Researcher and Contributor Identifier")
 ):
@@ -396,7 +393,7 @@ class IdentifierResponse(BaseModel):
     providers: Mapping[str, str]
 
 
-@new_api_blueprint.get("/reference/{prefix}:{identifier}", response_model=IdentifierResponse)
+@api_router.get("/reference/{prefix}:{identifier}", response_model=IdentifierResponse)
 def reference(request: Request, prefix: str, identifier: str):
     """Look up information on the reference."""
     resource = request.app.manager.get_resource(prefix)
@@ -416,3 +413,64 @@ def reference(request: Request, prefix: str, identifier: str):
         query=Reference(prefix=prefix, identifier=identifier),
         providers=providers,
     )
+
+
+@api_router.get("/context.jsonld")
+def generate_context_json_ld(
+    request: Request,
+    prefix: List[str] = Query(description="The prefix for the entry. Can be given multiple."),
+):
+    """Generate an *ad-hoc* context JSON-LD file from the given parameters.
+
+    You can either give prefixes as a comma-separated list like:
+
+    https://bioregistry.io/api/context.jsonld?prefix=go,doid,oa
+
+    or you can use multiple entries for "prefix" like:
+
+    https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
+    """  # noqa:DAR101,DAR201
+    manager = request.app.manager
+    prefix_map = {}
+    for arg in prefix:
+        for prefix in arg.split(","):
+            prefix = manager.normalize_prefix(prefix.strip())
+            if prefix is None:
+                continue
+            uri_prefix = manager.get_uri_prefix(prefix)
+            if uri_prefix is None:
+                continue
+            prefix_map[prefix] = uri_prefix
+
+    return JSONResponse(
+        {
+            "@context": prefix_map,
+        }
+    )
+
+
+@api_router.get("/autocomplete")
+def autocomplete(
+    request: Request,
+    q: str = Query(description="A query for the prefix"),
+):
+    """Complete a resolution query.
+
+    ---
+    parameters:
+    - name: q
+      in: query
+      description: The prefix for the entry
+      required: true
+      type: string
+    """  # noqa:DAR101,DAR201
+    return JSONResponse(_autocomplete(request.app.manager, q))
+
+
+@api_router.get("/search")
+def search(
+    request: Request,
+    q: str = Query(description="A query for the prefix"),
+):
+    """Search for a prefix."""
+    return JSONResponse(_search(request.app.manager, q))
