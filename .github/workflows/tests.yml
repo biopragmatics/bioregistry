@@ -24,13 +24,13 @@ jobs:
           pip install --upgrade pip setuptools wheel
           pip install tox
       - name: Check manifest
-        run: tox run -e manifest
+        run: tox -e manifest
       - name: Check code quality with flake8
-        run: tox run -e flake8
+        run: tox -e flake8
       - name: Check package metadata with Pyroma
-        run: tox run -e pyroma
+        run: tox -e pyroma
       - name: Check static typing with MyPy
-        run: tox run -e mypy
+        run: tox -e mypy
   docs:
     name: Documentation
     runs-on: ubuntu-latest
@@ -48,11 +48,11 @@ jobs:
           pip install --upgrade pip setuptools wheel
           pip install tox
       - name: Check RST conformity with doc8
-        run: tox run -e doc8
+        run: tox -e doc8
       - name: Check docstring coverage
-        run: tox run -e docstr-coverage
+        run: tox -e docstr-coverage
       - name: Check documentation build with Sphinx
-        run: tox run -e docs-test
+        run: tox -e docs-test
   tests:
     name: Tests
     runs-on: ${{ matrix.os }}
@@ -72,10 +72,10 @@ jobs:
           pip install "tox<4.0.0"
       - name: Test with pytest
         run:
-          tox run -e py
+          tox -e py
       - name: Doctests
         run:
-          tox run -e doctests
+          tox -e doctests
       - name: Upload coverage report to codecov
         uses: codecov/codecov-action@v1
         if: success()
