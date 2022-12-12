@@ -67,8 +67,11 @@
                                         {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
-                                    for
-                                    <a href="{{ url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid) }}">{{ resource.contributor.name }}</a>
+                                    {% if resource.contributor and resource.contributor.orcid %}
+                                    for <a href="{{ url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid) }}">
+                                        {{ resource.contributor.name }}
+                                    </a>
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
