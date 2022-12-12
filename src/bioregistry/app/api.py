@@ -10,7 +10,6 @@ from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
 
 from bioregistry import Collection, Context, Registry, Resource
-from bioregistry.app.utils import _autocomplete, _search
 from bioregistry.export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -24,6 +23,8 @@ from bioregistry.schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+
+from .utils import FORMAT_MAP, RDF_MEDIA_TYPES, _autocomplete, _handle_formats, _search
 
 __all__ = [
     "api_router",
@@ -50,46 +51,6 @@ class YAMLResponse(Response):
             allow_unicode=True,
             indent=2,
         ).encode("utf-8")
-
-
-RDF_MEDIA_TYPES = {
-    "text/turtle": "turtle",
-    "application/ld+json": "json-ld",
-    "application/rdf+xml": "xml",
-    "text/n3": "n3",
-}
-FORMAT_MAP = {
-    "json": "application/json",
-    "yml": "application/yaml",
-    "yaml": "application/yaml",
-    "turtle": "text/turtle",
-    "jsonld": "application/ld+json",
-    "json-ld": "application/ld+json",
-    "rdf": "application/rdf+xml",
-    "n3": "text/n3",
-}
-
-
-def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
-    if fmt:
-        if fmt not in FORMAT_MAP:
-            raise HTTPException(
-                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
-            )
-        fmt = FORMAT_MAP[fmt]
-    if accept == "*/*":
-        accept = None
-    if accept and fmt:
-        if accept != fmt:
-            raise HTTPException(
-                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
-            )
-        return accept
-    if accept:
-        return accept
-    if fmt:
-        return fmt
-    return "application/json"
 
 
 ACCEPT_HEADER = Header(default=None)
@@ -408,6 +369,8 @@ def get_collection(
     collection = request.app.manager.collections.get(identifier)
     if collection is None:
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+    if accept == "x-bioregistry-context" or format == "context":
+        return JSONResponse(collection.as_context_jsonld())
     accept = _handle_formats(accept, format)
     if accept == "application/json":
         return collection
@@ -494,7 +457,8 @@ class IdentifierResponse(BaseModel):
 )
 def get_reference(request: Request, prefix: str, identifier: str):
     """Look up information on the reference."""
-    resource = request.app.manager.get_resource(prefix)
+    manager = request.app.manager
+    resource = manager.get_resource(prefix)
     if resource is None:
         raise HTTPException(404, f"invalid prefix: {prefix}")
 
@@ -503,7 +467,8 @@ def get_reference(request: Request, prefix: str, identifier: str):
             404,
             f"invalid identifier: {resource.get_curie(identifier)} for pattern {resource.get_pattern(prefix)}",
         )
-    providers = resource.get_providers(identifier)
+
+    providers = manager.get_providers(resource.prefix, identifier)
     if not providers:
         raise HTTPException(404, f"no providers available for {resource.get_curie(identifier)}")
 

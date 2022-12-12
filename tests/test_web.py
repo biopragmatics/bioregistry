@@ -21,38 +21,36 @@ class TestWeb(unittest.TestCase):
 
     def test_ui(self):
         """Test user-facing pages don't error."""
-        with self.app.test_client() as client:
-            for endpoint in [
-                "",
-                "registry",
-                "registry/chebi",
-                "metaregistry",
-                "metaregistry/miriam",
-                "metaregistry/miriam/chebi",
-                # "metaregistry/miriam/chebi:24867",  # FIXME this resolves, test elsewhere
-                "reference/chebi:24867",
-                "collection",
-                "collection/0000001",
-                "context",
-                "context/obo",
-                "contributors",
-                "contributor/0000-0003-4423-4370",
-                # Meta pages
-                "download",
-                "summary",
-                "usage",
-                "schema",
-                "sustainability",
-                "related",
-                "acknowledgements",
-                # API
-                "apidocs",
-            ]:
-                with self.subTest(endpoint=endpoint):
-                    res = client.get(endpoint, follow_redirects=True)
-                    self.assertEqual(
-                        200, res.status_code, msg=f"Failed on {endpoint}\n\n{res.text}"
-                    )
+
+        for endpoint in [
+            "",
+            "registry",
+            "registry/chebi",
+            "metaregistry",
+            "metaregistry/miriam",
+            "metaregistry/miriam/chebi",
+            # "metaregistry/miriam/chebi:24867",  # FIXME this resolves, test elsewhere
+            "reference/chebi:24867",
+            "collection",
+            "collection/0000001",
+            "context",
+            "context/obo",
+            "contributor",
+            "contributor/0000-0003-4423-4370",
+            # Meta pages
+            "download",
+            "summary",
+            "usage",
+            "schema",
+            "sustainability",
+            "related",
+            "acknowledgements",
+            # API
+            "apidocs",
+        ]:
+            with self.subTest(endpoint=endpoint), self.app.test_client() as client:
+                res = client.get(endpoint, follow_redirects=True)
+                self.assertEqual(200, res.status_code, msg=f"Failed on {endpoint}\n\n{res.text}")
 
     def test_api_registry(self):
         """Test the registry endpoint."""
@@ -146,7 +144,7 @@ class TestWeb(unittest.TestCase):
     def test_api_contributors(self):
         """Test the contributors endpoint."""
         self.assert_endpoint(
-            "/api/contributor",
+            "/api/contributors",
             ["json", "yaml"],
         )
 

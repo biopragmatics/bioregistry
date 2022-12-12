@@ -8,6 +8,7 @@ from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import flask
 import yaml
+from fastapi import HTTPException
 from flask import abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
 
@@ -172,10 +173,6 @@ def yamlify(data):
     )
 
 
-def _get_format(default: str = "json") -> str:
-    return request.args.get("format", default=default)
-
-
 def serialize(
     data: Any,
     serializers: Optional[
@@ -183,23 +180,30 @@ def serialize(
     ] = None,
 ) -> flask.Response:
     """Serialize either as JSON or YAML."""
-    fmt = _get_format()
-    if fmt == "json":
+    fmt = request.args.get("format")
+    if fmt and fmt not in FORMAT_MAP:
+        abort(400, f"invalid format: {fmt}")
+    accept = _handle_formats(
+        str(request.accept_mimetypes),
+        fmt,
+    )
+
+    if accept == "application/json":
         return jsonify(
             data.dict(exclude_unset=True, exclude_none=True)
             if isinstance(data, BaseModel)
             else data
         )
-    elif fmt in {"yaml", "yml"}:
+    elif accept == "application/yaml":
         return yamlify(
             data.dict(exclude_unset=True, exclude_none=True)
             if isinstance(data, BaseModel)
             else data
         )
-    for name, mimetype, func in serializers or []:
-        if fmt == name:
+    for _name, mimetype, func in serializers or []:
+        if accept == mimetype:
             return current_app.response_class(func(data), mimetype=mimetype)
-    return abort(404, f"invalid format: {fmt}")
+    return abort(400, f"invalid format: {fmt}")
 
 
 def serialize_model(entry: BaseModel, func):
@@ -217,3 +221,43 @@ def serialize_model(entry: BaseModel, func):
             ),
         ],
     )
+
+
+def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
+    if fmt:
+        if fmt not in FORMAT_MAP:
+            raise HTTPException(
+                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
+            )
+        fmt = FORMAT_MAP[fmt]
+    if accept == "*/*":
+        accept = None
+    if accept and fmt:
+        if accept != fmt:
+            raise HTTPException(
+                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
+            )
+        return accept
+    if accept:
+        return accept
+    if fmt:
+        return fmt
+    return "application/json"
+
+
+RDF_MEDIA_TYPES = {
+    "text/turtle": "turtle",
+    "application/ld+json": "json-ld",
+    "application/rdf+xml": "xml",
+    "text/n3": "n3",
+}
+FORMAT_MAP = {
+    "json": "application/json",
+    "yml": "application/yaml",
+    "yaml": "application/yaml",
+    "turtle": "text/turtle",
+    "jsonld": "application/ld+json",
+    "json-ld": "application/ld+json",
+    "rdf": "application/rdf+xml",
+    "n3": "text/n3",
+}
