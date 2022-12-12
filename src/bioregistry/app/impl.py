@@ -95,12 +95,14 @@ def get_app(
     manager: Optional["bioregistry.Manager"] = None,
     config: Union[None, str, Path, Mapping[str, Any]] = None,
     first_party: bool = True,
+    return_flask: bool = False,
 ):
     """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
     :param config: Additional configuration to be passed to the flask application. See below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
+    :param return_flask: Return the encased flask app, use for testing purposes.
     :returns: An instantiated flask application
     :raises ValueError: if there's an issue with the configuration's integrity
     """
@@ -206,4 +208,6 @@ def get_app(
     )
 
     fast_api.mount("/", WSGIMiddleware(flask_app))
+    if return_flask:
+        return fast_api, flask_app
     return fast_api

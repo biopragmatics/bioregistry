@@ -16,7 +16,6 @@ from bioregistry.schema import sanitize_model
 from bioregistry.utils import extended_encoder
 
 from .proxies import manager
-from ..export.rdf_export import resource_to_rdf_str
 from ..schema import Resource
 from ..utils import _norm
 
@@ -203,18 +202,18 @@ def serialize(
     return abort(404, f"invalid format: {fmt}")
 
 
-def serialize_resource(resource: Resource, rasterize: bool = False) -> flask.Response:
-    """Serialize a resource."""
-    if rasterize:
-        resource = manager.rasterized_resource(resource)
+def serialize_model(entry: BaseModel, func):
+    """Serialize a model."""
     return serialize(
-        resource,
+        entry,
         serializers=[
-            ("turtle", "text/plain", partial(resource_to_rdf_str, manager=manager, fmt="turtle")),
+            ("turtle", "text/turtle", partial(func, manager=manager, fmt="turtle")),
+            ("n3", "text/n3", partial(func, manager=manager, fmt="n3")),
+            ("rdf", "application/rdf+xml", partial(func, manager=manager, fmt="xml")),
             (
                 "jsonld",
                 "application/ld+json",
-                partial(resource_to_rdf_str, manager=manager, fmt="json-ld"),
+                partial(func, manager=manager, fmt="json-ld"),
             ),
         ],
     )

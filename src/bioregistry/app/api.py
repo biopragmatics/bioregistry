@@ -2,7 +2,7 @@
 
 """FastAPI blueprint and routes."""
 
-from typing import List, Mapping, Optional, Set
+from typing import Any, List, Mapping, Optional, Set
 
 import yaml
 from fastapi import APIRouter, Header, HTTPException, Path, Query, Request
@@ -39,12 +39,14 @@ class YAMLResponse(Response):
 
     media_type = "application/yaml"
 
-    def render(self, content: BaseModel) -> bytes:
-        return yaml.safe_dump(
-            content.dict(
+    def render(self, content: Any) -> bytes:
+        if isinstance(content, BaseModel):
+            content = content.dict(
                 exclude_none=True,
                 exclude_unset=True,
-            ),
+            )
+        return yaml.safe_dump(
+            content,
             allow_unicode=True,
             indent=2,
         ).encode("utf-8")
@@ -56,16 +58,65 @@ RDF_MEDIA_TYPES = {
     "application/rdf+xml": "xml",
     "text/n3": "n3",
 }
+FORMAT_MAP = {
+    "json": "application/json",
+    "yml": "application/yaml",
+    "yaml": "application/yaml",
+    "turtle": "text/turtle",
+    "jsonld": "application/ld+json",
+    "json-ld": "application/ld+json",
+    "rdf": "application/rdf+xml",
+    "n3": "text/n3",
+}
+
+
+def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
+    if fmt:
+        if fmt not in FORMAT_MAP:
+            raise HTTPException(
+                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
+            )
+        fmt = FORMAT_MAP[fmt]
+    if accept == "*/*":
+        accept = None
+    if accept and fmt:
+        if accept != fmt:
+            raise HTTPException(
+                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
+            )
+        return accept
+    if accept:
+        return accept
+    if fmt:
+        return fmt
+    return "application/json"
+
+
+ACCEPT_HEADER = Header(default=None)
+FORMAT_QUERY = Query(
+    title="Format", default=None, description=f"The return format, one of: {list(FORMAT_MAP)}"
+)
 
 
 @api_router.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
-def get_resources(request: Request, accept: Optional[str] = Header(default="application/json")):
+def get_resources(
+    request: Request,
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
+):
     """Get all resources."""
+    accept = _handle_formats(accept, format)
     if accept == "application/json":
         return request.app.manager.registry
     elif accept == "application/yaml":
-        x = {k: sanitize_model(resource) for k, resource in request.app.manager.registry.items()}
-        return yaml.safe_dump(x, allow_unicode=True)
+        return YAMLResponse(
+            {
+                prefix: sanitize_model(resource)
+                for prefix, resource in request.app.manager.registry.items()
+            }
+        )
+    elif accept in RDF_MEDIA_TYPES:
+        raise NotImplementedError
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
@@ -90,16 +141,19 @@ def get_resource(
     prefix: str = Path(
         title="Prefix", description="The Bioregistry prefix for the entry", example="doid"
     ),
-    accept: Optional[str] = Header(default="application/json"),
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
 ):
     """Get a resource."""
     resource = request.app.manager.get_resource(prefix)
     if resource is None:
         raise HTTPException(status_code=404, detail=f"Prefix not found: {prefix}")
     resource = request.app.manager.rasterized_resource(resource)
+
+    accept = _handle_formats(accept, format)
     if accept == "application/json":
         return resource
-    elif accept == "application/yaml":
+    elif accept == "application/yaml" or format in {"yaml", "yml"}:
         return YAMLResponse(resource)
     elif accept in RDF_MEDIA_TYPES:
         return Response(
@@ -118,9 +172,26 @@ def get_resource(
     tags=["metaresource"],
     description="Get all metaresource representing registries.",
 )
-def get_metaresources(request: Request):
+def get_metaresources(
+    request: Request,
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
+):
     """Get all registries."""
-    return request.app.manager.metaregistry
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return request.app.manager.metaregistry
+    elif accept == "application/yaml":
+        return YAMLResponse(
+            {
+                metaprefix: sanitize_model(registry)
+                for metaprefix, registry in request.app.manager.metaregistry.items()
+            }
+        )
+    elif accept in RDF_MEDIA_TYPES:
+        raise NotImplementedError
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 METAPREFIX_PATH = Path(
@@ -149,12 +220,14 @@ METAPREFIX_PATH = Path(
 def get_metaresource(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
-    accept: Optional[str] = Header(default="application/json"),
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
 ):
     """Get all registries."""
     metaresource = request.app.manager.get_registry(metaprefix)
     if metaresource is None:
         raise HTTPException(status_code=404, detail=f"Registry not found: {metaprefix}")
+    accept = _handle_formats(accept, format)
     if accept == "application/json":
         return metaresource
     elif accept == "application/yaml":
@@ -284,9 +357,26 @@ def get_metaresource_redirect(
 
 
 @api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
-def get_collections(request: Request):
+def get_collections(
+    request: Request,
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
+):
     """Get all collections."""
-    return request.app.manager.collections
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return request.app.manager.collections
+    elif accept == "application/yaml":
+        return YAMLResponse(
+            {
+                prefix: sanitize_model(collection)
+                for prefix, collection in request.app.manager.collections.items()
+            }
+        )
+    elif accept in RDF_MEDIA_TYPES:
+        raise NotImplementedError
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 @api_router.get(
@@ -311,12 +401,14 @@ def get_collection(
         description="The 7-digit collection identifier",
         example="0000001",
     ),
-    accept: Optional[str] = Header(default="application/json"),
+    accept: Optional[str] = ACCEPT_HEADER,
+    format: Optional[str] = FORMAT_QUERY,
 ):
     """Get a collection."""
     collection = request.app.manager.collections.get(identifier)
     if collection is None:
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+    accept = _handle_formats(accept, format)
     if accept == "application/json":
         return collection
     elif accept == "application/yaml":
