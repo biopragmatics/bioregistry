@@ -221,24 +221,15 @@ def serialize_model(entry: BaseModel, func) -> Response:
 
 def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
     if fmt:
-        if fmt not in FORMAT_MAP:
-            return abort(
-                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
-            )
-        fmt = FORMAT_MAP[fmt]
-    if accept == "*/*":
-        accept = None
-    if accept and fmt:
-        if accept != fmt:
-            return abort(
-                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
-            )
+        rv = FORMAT_MAP.get(fmt)
+        if rv:
+            return rv
+        return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+    if accept in FORMAT_MAP.values():
         return accept
-    if accept:
-        return accept
-    if fmt:
-        return fmt
-    return "application/json"
+    if "*/*" in accept:
+        return "application/json"
+    return abort(400, f"bad accept header: {accept}")
 
 
 FORMAT_MAP = {

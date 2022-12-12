@@ -46,10 +46,11 @@ class TestWeb(unittest.TestCase):
                 "acknowledgements",
                 # API
                 "apidocs",
+                "api/collection/0000001.context.jsonld"
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
-                    self.assertEqual(200, res.status_code)
+                    self.assertEqual(200, res.status_code, msg=f"Endpoint: {endpoint}\n\n{res.text}")
 
     def test_api_registry(self):
         """Test the registry endpoint."""
@@ -113,6 +114,38 @@ class TestWeb(unittest.TestCase):
             ["json", "yaml", "turtle", "jsonld"],
         )
 
+    def test_ui_registry_rdf(self):
+        """Test the UI registry with content negotiation."""
+        metaprefix = "miriam"
+        for accept, format in [
+            ("text/turtle", "turtle"),
+            ("text/n3", "n3"),
+            ("application/ld+json", "jsonld"),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/metaregistry/{metaprefix}", headers={"Accept": accept})
+                self.assertEqual(
+                    200,
+                    res.status_code,
+                    msg=f"Failed on {metaprefix} to accept {accept} ({format})",
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                if format == "jsonld":
+                    continue
+                with self.assertRaises(ValueError, msg="result was return as JSON"):
+                    json.loads(res.text)
+                g = rdflib.Graph()
+                g.parse(data=res.text, format=format)
+
+                # Check for single prefix
+                results = list(
+                    g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000002> }")
+                )
+                self.assertEqual(1, len(results))
+                self.assertEqual(
+                    f"https://bioregistry.io/metaregistry/{metaprefix}", str(results[0][0])
+                )
+
     def test_api_reference(self):
         """Test the reference endpoint."""
         self.assert_endpoint(
@@ -131,8 +164,40 @@ class TestWeb(unittest.TestCase):
         """Test the collection endpoint."""
         self.assert_endpoint(
             "/api/collection/0000001",
-            ["json", "yaml", "turtle", "jsonld", "context"],
+            ["json", "yaml", "turtle", "jsonld"],
         )
+
+    def test_ui_collection_rdf(self):
+        """Test the UI registry with content negotiation."""
+        identifier = "0000001"
+        for accept, format in [
+            ("text/turtle", "turtle"),
+            ("text/n3", "n3"),
+            ("application/ld+json", "jsonld"),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
+                self.assertEqual(
+                    200,
+                    res.status_code,
+                    msg=f"Failed on {identifier} to accept {accept} ({format})",
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                if format == "jsonld":
+                    continue
+                with self.assertRaises(ValueError, msg="result was return as JSON"):
+                    json.loads(res.text)
+                g = rdflib.Graph()
+                g.parse(data=res.text, format=format)
+
+                # Check for single prefix
+                results = list(
+                    g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000003> }")
+                )
+                self.assertEqual(1, len(results))
+                self.assertEqual(
+                    f"https://bioregistry.io/collection/{identifier}", str(results[0][0])
+                )
 
     def test_api_contexts(self):
         """Test the contexts endpoint."""
