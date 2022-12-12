@@ -12,8 +12,8 @@ from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
 
-from .constants import BIOSCHEMAS
 from .api import api_router
+from .constants import BIOSCHEMAS
 from .ui import ui_blueprint
 
 if TYPE_CHECKING:
@@ -106,26 +106,28 @@ def get_app(
     """
     if isinstance(config, (str, Path)):
         with open(config) as file:
-            config = json.load(file)
+            conf = json.load(file)
     elif config is None:
-        config = {}
+        conf = {}
+    else:
+        conf = config
 
     if manager is None:
         manager = resource_manager.manager
 
-    config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    config.setdefault("METAREGISTRY_DESCRIPTION", "A service for resolving CURIEs")
-    config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
-    config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
-    config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
-    config.setdefault("METAREGISTRY_VERSION", version.get_version())
-    config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
-    config.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
-    config.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
-    config.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
-    config.setdefault(
+    conf.setdefault("METAREGISTRY_TITLE", "Bioregistry")
+    conf.setdefault("METAREGISTRY_DESCRIPTION", "A service for resolving CURIEs")
+    conf.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
+    conf.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_VERSION", version.get_version())
+    conf.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    conf.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    conf.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    conf.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    conf.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    conf.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    conf.setdefault(
         "METAREGISTRY_LICENSE_URL", "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE"
     )
 
@@ -134,7 +136,7 @@ def get_app(
             "name": "resource",
             "description": "Identifier resources in the registry",
             "externalDocs": {
-                "description": f"{config['METAREGISTRY_TITLE']} Resource Catalog",
+                "description": f"{conf['METAREGISTRY_TITLE']} Resource Catalog",
                 "url": f"{manager.base_url}/registry/",
             },
         },
@@ -142,7 +144,7 @@ def get_app(
             "name": "metaresource",
             "description": "Resources representing registries",
             "externalDocs": {
-                "description": f"{config['METAREGISTRY_TITLE']} Registry Catalog",
+                "description": f"{conf['METAREGISTRY_TITLE']} Registry Catalog",
                 "url": f"{manager.base_url}/metaregistry/",
             },
         },
@@ -150,7 +152,7 @@ def get_app(
             "name": "collection",
             "description": "Fit-for-purpose lists of prefixes",
             "externalDocs": {
-                "description": f"{config['METAREGISTRY_TITLE']} Collection Catalog",
+                "description": f"{conf['METAREGISTRY_TITLE']} Collection Catalog",
                 "url": f"{manager.base_url}/collection/",
             },
         },
@@ -158,22 +160,22 @@ def get_app(
 
     fast_api = FastAPI(
         openapi_tags=tags_metadata,
-        title=config["METAREGISTRY_TITLE"],
-        description=config["METAREGISTRY_DESCRIPTION"],
+        title=conf["METAREGISTRY_TITLE"],
+        description=conf["METAREGISTRY_DESCRIPTION"],
         contact={
-            "name": config["METAREGISTRY_CONTACT_NAME"],
-            "email": config["METAREGISTRY_CONTACT_EMAIL"],
+            "name": conf["METAREGISTRY_CONTACT_NAME"],
+            "email": conf["METAREGISTRY_CONTACT_EMAIL"],
         },
         license_info={
-            "name": config["METAREGISTRY_LICENSE_NAME"],
-            "url": config["METAREGISTRY_LICENSE_URL"],
+            "name": conf["METAREGISTRY_LICENSE_NAME"],
+            "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
     fast_api.manager = manager
     fast_api.include_router(api_router)
 
     flask_app = Flask(__name__)
-    flask_app.config.update(config)
+    flask_app.config.update(conf)
     flask_app.manager = manager
 
     if flask_app.config.get("METAREGISTRY_FIRST_PARTY"):

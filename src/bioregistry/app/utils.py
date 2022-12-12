@@ -204,7 +204,7 @@ def serialize(
 
 
 def serialize_resource(resource: Resource, rasterize: bool = False) -> flask.Response:
-    """Serialize a resource"""
+    """Serialize a resource."""
     if rasterize:
         resource = manager.rasterized_resource(resource)
     return serialize(

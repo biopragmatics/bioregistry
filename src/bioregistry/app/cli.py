@@ -6,14 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 import click
-from more_click import (
-    flask_debug_option,
-    host_option,
-    port_option,
-    run_app,
-    verbose_option,
-    workers_option,
-)
+from more_click import host_option, port_option, verbose_option
 
 __all__ = [
     "web",
@@ -23,9 +16,7 @@ __all__ = [
 @click.command()
 @host_option
 @port_option
-@workers_option
 @verbose_option
-@flask_debug_option
 @click.option("--registry", type=Path, help="Path to a local registry file")
 @click.option("--metaregistry", type=Path, help="Path to a local metaregistry file")
 @click.option("--collections", type=Path, help="Path to a local collections file")
@@ -41,8 +32,6 @@ __all__ = [
 def web(
     host: str,
     port: str,
-    workers: int,
-    debug: bool,
     registry: Optional[Path],
     metaregistry: Optional[Path],
     collections: Optional[Path],

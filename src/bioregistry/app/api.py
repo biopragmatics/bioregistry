@@ -251,7 +251,11 @@ def get_metaresource_external_mappings(
     )
 
 
-@api_router.get("/metaregistry/{metaprefix}/mappings.json", response_model=Mapping[str, str], tags=["metaresource"])
+@api_router.get(
+    "/metaregistry/{metaprefix}/mappings.json",
+    response_model=Mapping[str, str],
+    tags=["metaresource"],
+)
 def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PATH):
     """Get mappings from the Bioregistry to an external registry."""
     if metaprefix not in request.app.manager.metaregistry:
@@ -393,7 +397,9 @@ class IdentifierResponse(BaseModel):
     providers: Mapping[str, str]
 
 
-@api_router.get("/reference/{prefix}:{identifier}", response_model=IdentifierResponse, tags=["reference"])
+@api_router.get(
+    "/reference/{prefix}:{identifier}", response_model=IdentifierResponse, tags=["reference"]
+)
 def get_reference(request: Request, prefix: str, identifier: str):
     """Look up information on the reference."""
     resource = request.app.manager.get_resource(prefix)
@@ -432,15 +438,15 @@ def generate_context_json_ld(
     """  # noqa:DAR101,DAR201
     manager = request.app.manager
     prefix_map = {}
-    for arg in prefix:
-        for prefix in arg.split(","):
-            prefix = manager.normalize_prefix(prefix.strip())
-            if prefix is None:
+    for value in prefix:
+        for prefix_ in value.split(","):
+            prefix_ = manager.normalize_prefix(prefix_.strip())
+            if prefix_ is None:
                 continue
-            uri_prefix = manager.get_uri_prefix(prefix)
+            uri_prefix = manager.get_uri_prefix(prefix_)
             if uri_prefix is None:
                 continue
-            prefix_map[prefix] = uri_prefix
+            prefix_map[prefix_] = uri_prefix
 
     return JSONResponse(
         {

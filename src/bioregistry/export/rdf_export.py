@@ -97,9 +97,12 @@ def _bind(graph: rdflib.Graph, manager: Manager) -> None:
 def get_full_rdf(manager: Manager) -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph(manager=manager)
-    _add_metaresources(graph=graph, manager=manager)
-    _add_collections(graph=graph, manager=manager)
-    _add_resources(graph=graph, manager=manager)
+    for registry in manager.metaregistry.values():
+        _add_metaresource(graph=graph, registry=registry)
+    for collection in manager.collections.values():
+        _add_collection(graph=graph, data=collection)
+    for resource in manager.registry.values():
+        _add_resource(graph=graph, manager=manager, resource=resource)
     return graph
 
 
@@ -111,10 +114,9 @@ def collection_to_rdf_str(
 ) -> Union[str, bytes]:
     """Get a collection as an RDF string."""
     if isinstance(collection, str):
-        collection = manager.collections.get(collection)  # type: ignore
-        if collection is None:
-            raise KeyError
-    graph, _ = _add_collection(collection, manager=manager)
+        collection = manager.collections[collection]
+    graph = _graph(manager=manager)
+    _add_collection(cast(Collection, collection), graph=graph)
     return graph.serialize(format=fmt or "turtle", encoding=encoding)
 
 
@@ -126,10 +128,9 @@ def metaresource_to_rdf_str(
 ) -> str:
     """Get a collection as an RDF string."""
     if isinstance(registry, str):
-        registry = manager.get_registry(registry)  # type: ignore
-        if registry is None:
-            raise KeyError
-    graph, _ = _add_metaresource(registry, manager=manager)
+        registry = manager.metaregistry[registry]
+    graph = _graph(manager=manager)
+    _add_metaresource(cast(Registry, registry), graph=graph)
     return graph.serialize(format=fmt or "turtle", encoding=encoding)
 
 
@@ -141,51 +142,19 @@ def resource_to_rdf_str(
 ) -> Union[str, bytes]:
     """Get a collection as an RDF string."""
     if isinstance(resource, str):
-        resource = manager.get_resource(resource)
+        resource = manager.registry[resource]
     graph = _graph(manager=manager)
-    _add_resource(resource, manager=manager, graph=graph)
+    _add_resource(cast(Resource, resource), manager=manager, graph=graph)
     return graph.serialize(format=fmt or "turtle", encoding=encoding)
 
 
-def _add_metaresources(*, manager: Manager, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
-    if graph is None:
-        graph = _graph(manager=manager)
-    for data in manager.metaregistry.values():
-        _add_metaresource(graph=graph, data=data, manager=manager)
-    return graph
-
-
-def _add_collections(*, graph: Optional[rdflib.Graph] = None, manager: Manager) -> rdflib.Graph:
-    if graph is None:
-        graph = _graph(manager=manager)
-    for collection in manager.collections.values():
-        _add_collection(graph=graph, data=collection, manager=manager)
-    return graph
-
-
-def _add_resources(*, graph: Optional[rdflib.Graph] = None, manager: Manager) -> rdflib.Graph:
-    if graph is None:
-        graph = _graph(manager=manager)
-    for prefix, resource in manager.registry.items():
-        _add_resource(graph=graph, manager=manager, resource=resource)
-    return graph
-
-
-def _add_collection(
-    data: Collection, *, graph: Optional[rdflib.Graph] = None, manager
-) -> Tuple[rdflib.Graph, Node]:
-    if graph is None:
-        graph = _graph(manager=manager)
+def _add_collection(data: Collection, *, graph: rdflib.Graph) -> Tuple[rdflib.Graph, Node]:
     node = data.add_triples(graph)
     return graph, node
 
 
-def _add_metaresource(
-    data: Registry, *, graph: Optional[rdflib.Graph] = None, manager: Manager
-) -> Tuple[rdflib.Graph, Node]:
-    if graph is None:
-        graph = _graph(manager=manager)
-    node = data.add_triples(graph)
+def _add_metaresource(registry: Registry, *, graph: rdflib.Graph) -> Tuple[rdflib.Graph, Node]:
+    node = registry.add_triples(graph)
     return graph, node
 
 
