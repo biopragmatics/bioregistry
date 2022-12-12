@@ -41,6 +41,7 @@ class YAMLResponse(Response):
     media_type = "application/yaml"
 
     def render(self, content: Any) -> bytes:
+        """Render content as YAML."""
         if isinstance(content, BaseModel):
             content = content.dict(
                 exclude_none=True,
@@ -289,26 +290,6 @@ def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PAT
     if metaprefix not in request.app.manager.metaregistry:
         raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
     return request.app.manager.get_registry_map(metaprefix)
-
-
-@api_router.get(
-    "/metaregistry/{metaprefix}/redirect/{metaidentifier}",
-    tags=["metaresource"],
-)
-def get_metaresource_redirect(
-    request: Request,
-    metaprefix: str = METAPREFIX_PATH,
-    metaidentifier: str = Path(description="The prefix inside the external registry"),
-):
-    raise NotImplementedError
-    # if metaprefix not in manager.metaregistry:
-    #     return abort(404, f"invalid metaprefix: {metaprefix}")
-    # prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
-    # if not prefix:
-    #     return abort(404, f"invalid metaidentifier: {metaidentifier}")
-    # resource = manager.get_resource(prefix)
-    # assert resource is not None
-    # return serialize_resource(resource, rasterize=True)
 
 
 @api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
