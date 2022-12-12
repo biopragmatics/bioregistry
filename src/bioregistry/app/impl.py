@@ -13,7 +13,7 @@ from starlette.middleware.wsgi import WSGIMiddleware
 from bioregistry import curie_to_str, resource_manager, version
 
 from .constants import BIOSCHEMAS
-from .new_api import api_router
+from .api import api_router
 from .ui import ui_blueprint
 
 if TYPE_CHECKING:

@@ -252,7 +252,7 @@ def get_metaresource_external_mappings(
 
 
 @api_router.get("/metaregistry/{metaprefix}/mappings.json", response_model=Mapping[str, str], tags=["metaresource"])
-def bioregistry_to_external_mapping(request: Request, metaprefix: str = METAPREFIX_PATH):
+def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PATH):
     """Get mappings from the Bioregistry to an external registry."""
     if metaprefix not in request.app.manager.metaregistry:
         raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
