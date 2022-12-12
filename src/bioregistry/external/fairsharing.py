@@ -98,9 +98,14 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
         if support_link["type"] == "Github":
             rv["repository"] = support_link["url"]
 
-    for license_link in metadata.get("licence_links", []):
-        license_standard = standardize_license(license_link.get("url"))
-        if license_standard:
+    for license_link in record.get("licence_links", []):
+        url = license_link.get("licence_url")
+        if not url:
+            continue
+        license_standard = standardize_license(url)
+        if license_standard == url:
+            continue  # TODO curate additional normalizations
+        else:
             rv["license"] = license_standard
 
     return rv
