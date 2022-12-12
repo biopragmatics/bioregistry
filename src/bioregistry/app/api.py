@@ -159,7 +159,7 @@ def get_external_registry_slim(metaprefix: str):
         return abort(404, f"invalid metaprefix: {metaprefix}")
     return sanitize_mapping(
         {
-            prefix: manager.rasterized_resource(prefix, resource_)
+            prefix: manager.rasterized_resource(resource_)
             for prefix, resource_ in manager.registry.items()
             if metaprefix in resource_.get_mappings()
         }
@@ -168,7 +168,7 @@ def get_external_registry_slim(metaprefix: str):
 
 def _serialize_resource(resource, rasterize: bool = False):
     if rasterize:
-        resource = manager.rasterized_resource(resource.prefix, resource)
+        resource = manager.rasterized_resource(resource)
     data = dict(prefix=resource.prefix, **resource.dict(exclude_unset=True, exclude_none=True))
     return serialize(
         data,

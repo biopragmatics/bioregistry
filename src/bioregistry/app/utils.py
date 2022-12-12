@@ -6,7 +6,15 @@ import json
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
-from flask import abort, current_app, redirect, render_template, request, url_for
+from flask import (
+    Response,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
@@ -200,13 +208,9 @@ def yamlify(data):
     )
 
 
-def _get_format(default: str = "json") -> str:
-    return request.args.get("format", default=default)
-
-
-def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None):
+def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None) -> Response:
     """Serialize either as JSON or YAML."""
-    fmt = _get_format()
+    fmt = request.args.get("format", default="json")
     if fmt == "json":
         return jsonify(data)
     elif fmt in {"yaml", "yml"}:
