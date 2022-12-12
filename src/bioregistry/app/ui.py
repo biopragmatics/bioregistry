@@ -167,6 +167,7 @@ def resource(prefix: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -204,6 +205,7 @@ def metaresource(metaprefix: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -236,6 +238,7 @@ def collection(identifier: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
             ("Context JSON-LD", "context"),
         ],
     )

@@ -2,8 +2,11 @@
 
 """Test for web."""
 
+import json
 import unittest
 from typing import List
+
+import rdflib
 
 from bioregistry.app.impl import get_app
 
@@ -67,6 +70,34 @@ class TestWeb(unittest.TestCase):
             with self.subTest(fmt=None):
                 res = client.get("/api/registry/nope")
                 self.assertEqual(404, res.status_code)
+
+    def test_ui_resource_rdf(self):
+        """Test the UI resource with content negotiation."""
+        prefix = "3dmet"
+        for accept, format in [
+            ("text/turtle", "turtle"),
+            ("text/n3", "n3"),
+            ("application/ld+json", "jsonld"),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/registry/{prefix}", headers={"Accept": accept})
+                self.assertEqual(
+                    200, res.status_code, msg=f"Failed on {prefix} to accept {accept} ({format})"
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                if format == "jsonld":
+                    continue
+                with self.assertRaises(ValueError, msg="result was return as JSON"):
+                    json.loads(res.text)
+                g = rdflib.Graph()
+                g.parse(data=res.text, format=format)
+
+                # Check for single prefix
+                results = list(
+                    g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
+                )
+                self.assertEqual(1, len(results))
+                self.assertEqual(f"https://bioregistry.io/registry/{prefix}", str(results[0][0]))
 
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""

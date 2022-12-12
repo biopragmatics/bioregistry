@@ -180,24 +180,26 @@ def yamlify(data):
 
 def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None) -> Response:
     """Serialize either as JSON or YAML."""
-    fmt = request.args.get("format", default="json")
-    # TODO hack in header checking here
-    if fmt == "json":
+    accept = _handle_formats(
+        str(request.accept_mimetypes),
+        request.args.get("format"),
+    )
+    if accept == "application/json":
         return jsonify(
             data.dict(exclude_unset=True, exclude_none=True)
             if isinstance(data, BaseModel)
             else data
         )
-    elif fmt in {"yaml", "yml"}:
+    elif accept in "application/yaml":
         return yamlify(
             data.dict(exclude_unset=True, exclude_none=True)
             if isinstance(data, BaseModel)
             else data
         )
-    for name, mimetype, func in serializers or []:
-        if fmt == name:
+    for _name, mimetype, func in serializers or []:
+        if accept == mimetype:
             return current_app.response_class(func(data), mimetype=mimetype)
-    return abort(404, f"invalid format: {fmt}")
+    return abort(404, f"unhandled media type: {accept}")
 
 
 def serialize_model(entry: BaseModel, func) -> Response:
@@ -215,3 +217,37 @@ def serialize_model(entry: BaseModel, func) -> Response:
             ),
         ],
     )
+
+
+def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
+    if fmt:
+        if fmt not in FORMAT_MAP:
+            return abort(
+                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
+            )
+        fmt = FORMAT_MAP[fmt]
+    if accept == "*/*":
+        accept = None
+    if accept and fmt:
+        if accept != fmt:
+            return abort(
+                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
+            )
+        return accept
+    if accept:
+        return accept
+    if fmt:
+        return fmt
+    return "application/json"
+
+
+FORMAT_MAP = {
+    "json": "application/json",
+    "yml": "application/yaml",
+    "yaml": "application/yaml",
+    "turtle": "text/turtle",
+    "jsonld": "application/ld+json",
+    "json-ld": "application/ld+json",
+    "rdf": "application/rdf+xml",
+    "n3": "text/n3",
+}
