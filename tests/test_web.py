@@ -7,7 +7,9 @@ import unittest
 from typing import List
 
 import rdflib
+import yaml
 
+from bioregistry import Collection, Manager
 from bioregistry.app.impl import get_app
 
 
@@ -17,6 +19,7 @@ class TestWeb(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case with an app."""
         self.app = get_app()
+        self.manager = Manager()
 
     def test_ui(self):
         """Test user-facing pages don't error."""
@@ -52,7 +55,9 @@ class TestWeb(unittest.TestCase):
                     self.assertEqual(
                         200, res.status_code, msg=f"Endpoint: {endpoint}\n\n{res.text}"
                     )
-                    with self.assertRaises(ValueError, msg=f"Content should not be JSON-parsable. Endpoint: {endpoint}"):
+                    with self.assertRaises(
+                        ValueError, msg=f"Content should not be JSON-parsable. Endpoint: {endpoint}"
+                    ):
                         json.loads(res.text)
 
     def test_api_registry(self):
@@ -174,6 +179,23 @@ class TestWeb(unittest.TestCase):
             res = client.get("api/collection/0000001.context.jsonld").json
             self.assertIn("@context", res)
             self.assertIn("biostudies", res["@context"])
+
+    def test_ui_collection_json(self):
+        identifier = "0000001"
+        for accept, loads in [
+            ("application/json", json.loads),
+            ("application/yaml", yaml.safe_load),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
+                self.assertEqual(
+                    200,
+                    res.status_code,
+                    msg=f"Failed on {identifier} to accept {accept} ({format})",
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                collection = Collection(**loads(res.text))
+                self.assertEqual(self.manager.collections[identifier], collection)
 
     def test_ui_collection_rdf(self):
         """Test the UI registry with content negotiation."""
