@@ -14,7 +14,7 @@ from .utils import (
     serialize,
     serialize_model,
 )
-from .. import Collection, Registry, Resource
+from .. import Collection, Registry
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,

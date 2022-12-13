@@ -247,7 +247,6 @@ def collection(identifier: str):
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
             ("RDF (n3)", "n3"),
-            ("Context JSON-LD", "context"),
         ],
     )
 
