@@ -24,7 +24,12 @@ from flask import (
 from markdown import markdown
 
 from .proxies import manager
-from .utils import _get_resource_providers, _normalize_prefix_or_404, serialize_model
+from .utils import (
+    _get_resource_providers,
+    _normalize_prefix_or_404,
+    get_accept_media_type,
+    serialize_model,
+)
 from .. import version
 from ..constants import NDEX_UUID
 from ..export.rdf_export import (
@@ -71,8 +76,6 @@ def resources():
     registry = manager.registry
     if request.args.get("novel") in {"true", "t"}:
         registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
-    if not request.accept_mimetypes.accept_html:
-        raise NotImplementedError
     return render_template(
         "resources.html",
         formats=FORMATS,
@@ -84,8 +87,6 @@ def resources():
 @ui_blueprint.route("/metaregistry/")
 def metaresources():
     """Serve the metaregistry page."""
-    if not request.accept_mimetypes.accept_html:
-        raise NotImplementedError
     return render_template(
         "metaresources.html",
         rows=manager.metaregistry.values(),
@@ -96,8 +97,6 @@ def metaresources():
 @ui_blueprint.route("/collection/")
 def collections():
     """Serve the collections page."""
-    if not request.accept_mimetypes.accept_html:
-        raise NotImplementedError
     return render_template(
         "collections.html",
         rows=manager.collections.items(),
@@ -115,8 +114,10 @@ def resource(prefix: str):
     _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
-    if not request.accept_mimetypes.accept_html:
-        return serialize_model(_resource, resource_to_rdf_str)
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        return serialize_model(_resource, resource_to_rdf_str, negotiate=True)
+
     example = _resource.get_example()
     example_curie = _resource.get_example_curie()
     example_extras = _resource.example_extras or []
@@ -172,6 +173,7 @@ def resource(prefix: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -182,8 +184,10 @@ def metaresource(metaprefix: str):
     entry = manager.metaregistry.get(metaprefix)
     if entry is None:
         return abort(404, f"Invalid metaprefix: {metaprefix}")
-    if not request.accept_mimetypes.accept_html:
-        return serialize_model(entry, metaresource_to_rdf_str)
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
+
     example_identifier = manager.get_example(entry.example)
     return render_template(
         "metaresource.html",
@@ -208,6 +212,7 @@ def metaresource(metaprefix: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -227,8 +232,10 @@ def collection(identifier: str):
     entry = manager.collections.get(identifier)
     if entry is None:
         return abort(404, f"Invalid collection: {identifier}")
-    if not request.accept_mimetypes.accept_html:
-        return serialize_model(entry, collection_to_rdf_str)
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        return serialize_model(entry, collection_to_rdf_str, negotiate=True)
+
     return render_template(
         "collection.html",
         identifier=identifier,
@@ -239,7 +246,7 @@ def collection(identifier: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
-            #  ("Context JSON-LD", "context"), FIXME
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -247,8 +254,6 @@ def collection(identifier: str):
 @ui_blueprint.route("/context/")
 def contexts():
     """Serve the contexts page."""
-    if not request.accept_mimetypes.accept_html:
-        raise NotImplementedError
     return render_template(
         "contexts.html",
         rows=manager.contexts.items(),
