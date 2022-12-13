@@ -3,6 +3,7 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
+from functools import partial
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
@@ -177,14 +178,75 @@ def yamlify(data):
     )
 
 
-def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None) -> Response:
+def serialize(
+    data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None, negotiate: bool = False
+) -> Response:
     """Serialize either as JSON or YAML."""
-    fmt = request.args.get("format", default="json")
-    if fmt == "json":
-        return jsonify(data)
-    elif fmt in {"yaml", "yml"}:
-        return yamlify(data)
-    for name, mimetype, func in serializers or []:
-        if fmt == name:
+    if negotiate:
+        accept = get_accept_media_type()
+    else:
+        accept = FORMAT_MAP[request.args.get("format", "json")]
+    if accept == "application/json":
+        return jsonify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
+    elif accept in "application/yaml":
+        return yamlify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
+    for _name, mimetype, func in serializers or []:
+        if accept == mimetype:
             return current_app.response_class(func(data), mimetype=mimetype)
-    return abort(404, f"invalid format: {fmt}")
+    return abort(404, f"unhandled media type: {accept}")
+
+
+def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:
+    """Serialize a model."""
+    return serialize(
+        entry,
+        negotiate=negotiate,
+        serializers=[
+            ("turtle", "text/turtle", partial(func, manager=manager, fmt="turtle")),
+            ("n3", "text/n3", partial(func, manager=manager, fmt="n3")),
+            ("rdf", "application/rdf+xml", partial(func, manager=manager, fmt="xml")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(func, manager=manager, fmt="json-ld"),
+            ),
+        ],
+    )
+
+
+def get_accept_media_type() -> str:
+    """Get accept type."""
+    fmt = request.args.get("format")
+    if fmt is not None:
+        rv = FORMAT_MAP.get(fmt)
+        if rv:
+            return rv
+        return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+
+    # If accept is specifically set to one of the special quanties, then use it.
+    accept = str(request.accept_mimetypes)
+    if accept in FORMAT_MAP.values():
+        return accept
+
+    # Otherwise, return HTML
+    return "text/html"
+
+
+FORMAT_MAP = {
+    "json": "application/json",
+    "yml": "application/yaml",
+    "yaml": "application/yaml",
+    "turtle": "text/turtle",
+    "jsonld": "application/ld+json",
+    "json-ld": "application/ld+json",
+    "rdf": "application/rdf+xml",
+    "n3": "text/n3",
+}
