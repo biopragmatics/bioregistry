@@ -224,20 +224,20 @@ def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response
 
 def get_accept_media_type() -> str:
     """Get accept type."""
-    accept = str(request.accept_mimetypes)
     fmt = request.args.get("format")
     if fmt is not None:
         rv = FORMAT_MAP.get(fmt)
         if rv:
             return rv
         return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
-    if not accept:
-        return "text/html"
+
+    # If accept is specifically set to one of the special quanties, then use it.
+    accept = str(request.accept_mimetypes)
     if accept in FORMAT_MAP.values():
         return accept
-    if "*/*" in accept:
-        return "application/json"
-    return abort(400, f"Unhandled headr: Accept: {accept}")
+
+    # Otherwise, return HTML
+    return "text/html"
 
 
 FORMAT_MAP = {

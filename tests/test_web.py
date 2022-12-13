@@ -46,13 +46,14 @@ class TestWeb(unittest.TestCase):
                 "acknowledgements",
                 # API
                 "apidocs",
-                "api/collection/0000001.context.jsonld",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
                     self.assertEqual(
                         200, res.status_code, msg=f"Endpoint: {endpoint}\n\n{res.text}"
                     )
+                    with self.assertRaises(ValueError, msg=f"Content should not be JSON-parsable. Endpoint: {endpoint}"):
+                        json.loads(res.text)
 
     def test_api_registry(self):
         """Test the registry endpoint."""
@@ -168,6 +169,11 @@ class TestWeb(unittest.TestCase):
             "/api/collection/0000001",
             ["json", "yaml", "turtle", "jsonld"],
         )
+
+        with self.app.test_client() as client:
+            res = client.get("api/collection/0000001.context.jsonld").json
+            self.assertIn("@context", res)
+            self.assertIn("biostudies", res["@context"])
 
     def test_ui_collection_rdf(self):
         """Test the UI registry with content negotiation."""
