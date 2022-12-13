@@ -181,6 +181,7 @@ class TestWeb(unittest.TestCase):
             self.assertIn("biostudies", res["@context"])
 
     def test_ui_collection_json(self):
+        """Test the UI registry with content negotiation for json/yaml."""
         identifier = "0000001"
         for accept, loads in [
             ("application/json", json.loads),

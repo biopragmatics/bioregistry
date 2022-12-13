@@ -85,7 +85,8 @@ def resource(prefix: str):
         return jsonify(query=prefix, message="Invalid prefix"), 404
     resource = manager.get_resource(prefix)
     assert resource is not None
-    return _serialize_resource(resource)
+    # TODO rasterize?
+    return serialize_model(resource, resource_to_rdf_str)
 
 
 @api_blueprint.route("/metaregistry/<metaprefix>/resolve/<metaidentifier>")
@@ -125,7 +126,8 @@ def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
         return abort(404, f"invalid metaidentifier: {metaidentifier}")
     resource = manager.get_resource(prefix)
     assert resource is not None
-    return _serialize_resource(resource, rasterize=True)
+    resource = manager.rasterized_resource(resource)
+    return serialize_model(resource, resource_to_rdf_str)
 
 
 @api_blueprint.route("/metaregistry/<metaprefix>/mappings.json")
@@ -166,12 +168,6 @@ def get_external_registry_slim(metaprefix: str):
             if metaprefix in resource_.get_mappings()
         }
     )
-
-
-def _serialize_resource(resource: Resource, rasterize: bool = False):
-    if rasterize:
-        resource = manager.rasterized_resource(resource)
-    return serialize_model(resource, resource_to_rdf_str)
 
 
 @api_blueprint.route("/metaregistry")
