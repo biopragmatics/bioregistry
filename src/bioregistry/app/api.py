@@ -2,6 +2,8 @@
 
 """API blueprint and routes."""
 
+from typing import cast
+
 from flask import Blueprint, abort, jsonify, request
 
 from .proxies import manager
@@ -12,7 +14,7 @@ from .utils import (
     serialize,
     serialize_model,
 )
-from .. import Resource
+from .. import Collection, Registry, Resource
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -216,9 +218,9 @@ def metaresource(metaprefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     data = manager.metaregistry.get(metaprefix)
-    if not data:
+    if data is None:
         abort(404, f"Invalid metaprefix: {metaprefix}")
-    return serialize_model(data, metaresource_to_rdf_str)
+    return serialize_model(cast(Registry, data), metaresource_to_rdf_str)
 
 
 @api_blueprint.route("/collections")
@@ -268,7 +270,7 @@ def collection(identifier: str):
     if not data:
         abort(404, f"Invalid collection: {identifier}")
     # ("context", "application/ld+json", Collection.as_context_jsonld_str),
-    return serialize_model(data, collection_to_rdf_str)
+    return serialize_model(cast(Collection, data), collection_to_rdf_str)
 
 
 @api_blueprint.route("/collection/<identifier>.context.jsonld")
@@ -295,9 +297,9 @@ def collection_context(identifier: str):
         enum: [json, yaml, context, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     data = manager.collections.get(identifier)
-    if not data:
+    if data is None:
         abort(404, f"Invalid collection: {identifier}")
-    return jsonify(data.as_context_jsonld())
+    return jsonify(cast(Collection, data).as_context_jsonld())
 
 
 @api_blueprint.route("/contexts")

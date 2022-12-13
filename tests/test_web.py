@@ -46,11 +46,13 @@ class TestWeb(unittest.TestCase):
                 "acknowledgements",
                 # API
                 "apidocs",
-                "api/collection/0000001.context.jsonld"
+                "api/collection/0000001.context.jsonld",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
-                    self.assertEqual(200, res.status_code, msg=f"Endpoint: {endpoint}\n\n{res.text}")
+                    self.assertEqual(
+                        200, res.status_code, msg=f"Endpoint: {endpoint}\n\n{res.text}"
+                    )
 
     def test_api_registry(self):
         """Test the registry endpoint."""

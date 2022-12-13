@@ -178,12 +178,14 @@ def yamlify(data):
     )
 
 
-def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None) -> Response:
+def serialize(
+    data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None, negotiate: bool = False
+) -> Response:
     """Serialize either as JSON or YAML."""
-    accept = _handle_formats(
-        str(request.accept_mimetypes),
-        request.args.get("format"),
-    )
+    if negotiate:
+        accept = get_accept_media_type()
+    else:
+        accept = FORMAT_MAP[request.args.get("format", "json")]
     if accept == "application/json":
         return jsonify(
             data.dict(exclude_unset=True, exclude_none=True)
@@ -202,10 +204,11 @@ def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] =
     return abort(404, f"unhandled media type: {accept}")
 
 
-def serialize_model(entry: BaseModel, func) -> Response:
+def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:
     """Serialize a model."""
     return serialize(
         entry,
+        negotiate=negotiate,
         serializers=[
             ("turtle", "text/turtle", partial(func, manager=manager, fmt="turtle")),
             ("n3", "text/n3", partial(func, manager=manager, fmt="n3")),
@@ -219,17 +222,22 @@ def serialize_model(entry: BaseModel, func) -> Response:
     )
 
 
-def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
-    if fmt:
+def get_accept_media_type() -> str:
+    """Get accept type."""
+    accept = str(request.accept_mimetypes)
+    fmt = request.args.get("format")
+    if fmt is not None:
         rv = FORMAT_MAP.get(fmt)
         if rv:
             return rv
         return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+    if not accept:
+        return "text/html"
     if accept in FORMAT_MAP.values():
         return accept
     if "*/*" in accept:
         return "application/json"
-    return abort(400, f"bad accept header: {accept}")
+    return abort(400, f"Unhandled headr: Accept: {accept}")
 
 
 FORMAT_MAP = {
