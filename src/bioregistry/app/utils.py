@@ -250,10 +250,3 @@ FORMAT_MAP = {
     "rdf": "application/rdf+xml",
     "n3": "text/n3",
 }
-
-RDF_MEDIA_TYPES = {
-    "text/turtle": "turtle",
-    "application/ld+json": "json-ld",
-    "application/rdf+xml": "xml",
-    "text/n3": "n3",
-}

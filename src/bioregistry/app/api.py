@@ -24,7 +24,7 @@ from bioregistry.schema_utils import (
     read_registry_contributions,
 )
 
-from .utils import FORMAT_MAP, RDF_MEDIA_TYPES, _autocomplete, _search
+from .utils import FORMAT_MAP, _autocomplete, _search
 
 __all__ = [
     "api_router",
@@ -58,6 +58,12 @@ ACCEPT_HEADER = Header(default=None)
 FORMAT_QUERY = Query(
     title="Format", default=None, description=f"The return format, one of: {list(FORMAT_MAP)}"
 )
+RDF_MEDIA_TYPES = {
+    "text/turtle": "turtle",
+    "application/ld+json": "json-ld",
+    "application/rdf+xml": "xml",
+    "text/n3": "n3",
+}
 
 
 def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
