@@ -24,7 +24,7 @@ from bioregistry.schema_utils import (
     read_registry_contributions,
 )
 
-from .utils import FORMAT_MAP, RDF_MEDIA_TYPES, _autocomplete, _handle_formats, _search
+from .utils import FORMAT_MAP, RDF_MEDIA_TYPES, _autocomplete, _search
 
 __all__ = [
     "api_router",
@@ -58,6 +58,28 @@ ACCEPT_HEADER = Header(default=None)
 FORMAT_QUERY = Query(
     title="Format", default=None, description=f"The return format, one of: {list(FORMAT_MAP)}"
 )
+
+
+def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
+    if fmt:
+        if fmt not in FORMAT_MAP:
+            raise HTTPException(
+                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
+            )
+        fmt = FORMAT_MAP[fmt]
+    if accept == "*/*":
+        accept = None
+    if accept and fmt:
+        if accept != fmt:
+            raise HTTPException(
+                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
+            )
+        return accept
+    if accept:
+        return accept
+    if fmt:
+        return fmt
+    return "application/json"
 
 
 @api_router.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
@@ -114,9 +136,7 @@ def get_resource(
         return YAMLResponse(resource)
     elif accept in RDF_MEDIA_TYPES:
         return Response(
-            resource_to_rdf_str(
-                resource, fmt=RDF_MEDIA_TYPES[accept], encoding="utf-8", manager=request.app.manager
-            ),
+            resource_to_rdf_str(resource, fmt=RDF_MEDIA_TYPES[accept], manager=request.app.manager),
             media_type=accept,
         )
     else:
@@ -189,7 +209,6 @@ def get_metaresource(
             metaresource_to_rdf_str(
                 metaresource,
                 fmt=RDF_MEDIA_TYPES[accept],
-                encoding="utf-8",
                 manager=request.app.manager,
             ),
             media_type=accept,
@@ -351,7 +370,6 @@ def get_collection(
             collection_to_rdf_str(
                 collection,
                 fmt=RDF_MEDIA_TYPES[accept],
-                encoding="utf-8",
                 manager=request.app.manager,
             ),
             media_type=accept,
