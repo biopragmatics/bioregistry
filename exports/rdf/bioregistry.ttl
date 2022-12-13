@@ -583,7 +583,8 @@ bioregistry:agsd a bioregistry.schema:0000001 ;
     dc:description "A comprehensive catalogue of animal genome size data where haploid DNA contents (C-values, in picograms) are currently available for 4972 species (3231 vertebrates and 1741 non-vertebrates) based on 6518 records from 669 published sources."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.efp5v2,
-        prefixcommons:agsd ;
+        prefixcommons:agsd,
+        re3data:r3d100012517 ;
     foaf:homepage "http://www.genomesize.com"^^xsd:string ;
     bioregistry.schema:0000005 "4779"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.genomesize.com/result_species.php?id=$1"^^xsd:string ;
@@ -3861,6 +3862,7 @@ bioregistry:dip a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.qje0v8,
         prefixcommons:dip,
         miriam:dip,
+        re3data:r3d100010670,
         uniprot.resource:DB-0016 ;
     foaf:homepage "https://dip.doe-mbi.ucla.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "DIP-743N"^^xsd:string ;
@@ -23183,7 +23185,8 @@ bioregistry:geo a bioregistry.schema:0000001 ;
         n2t:geo,
         fairsharing:FAIRsharing.5hc8vt,
         prefixcommons:geo,
-        miriam:geo ;
+        miriam:geo,
+        re3data:r3d100010283 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/geo/"^^xsd:string ;
     bioregistry.schema:0000005 "GDS1234"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=$1"^^xsd:string ;
@@ -25608,6 +25611,7 @@ bioregistry:refseq a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.4jg0qw,
         prefixcommons:refseq,
         miriam:refseq,
+        re3data:r3d100010285,
         uniprot.resource:DB-0117 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/projects/RefSeq/"^^xsd:string ;
     bioregistry.schema:0000005 "NP_012345"^^xsd:string ;
@@ -31094,6 +31098,10 @@ re3data:r3d100010245 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100010266 dcterms:isPartOf bioregistry.metaresource:re3data .
 
+re3data:r3d100010283 dcterms:isPartOf bioregistry.metaresource:re3data .
+
+re3data:r3d100010285 dcterms:isPartOf bioregistry.metaresource:re3data .
+
 re3data:r3d100010350 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100010372 dcterms:isPartOf bioregistry.metaresource:re3data .
@@ -31158,6 +31166,8 @@ re3data:r3d100010666 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100010669 dcterms:isPartOf bioregistry.metaresource:re3data .
 
+re3data:r3d100010670 dcterms:isPartOf bioregistry.metaresource:re3data .
+
 re3data:r3d100010671 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100010672 dcterms:isPartOf bioregistry.metaresource:re3data .
@@ -31196,6 +31206,8 @@ re3data:r3d100010891 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100010906 dcterms:isPartOf bioregistry.metaresource:re3data .
 
+re3data:r3d100010910 dcterms:isPartOf bioregistry.metaresource:re3data .
+
 re3data:r3d100010912 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100010921 dcterms:isPartOf bioregistry.metaresource:re3data .
@@ -31213,8 +31225,6 @@ re3data:r3d100011046 dcterms:isPartOf bioregistry.metaresource:re3data .
 re3data:r3d100011049 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100011052 dcterms:isPartOf bioregistry.metaresource:re3data .
-
-re3data:r3d100011104 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100011166 dcterms:isPartOf bioregistry.metaresource:re3data .
 
@@ -31327,6 +31337,8 @@ re3data:r3d100012457 dcterms:isPartOf bioregistry.metaresource:re3data .
 re3data:r3d100012458 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100012461 dcterms:isPartOf bioregistry.metaresource:re3data .
+
+re3data:r3d100012517 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100012575 dcterms:isPartOf bioregistry.metaresource:re3data .
 
@@ -34310,8 +34322,7 @@ orcid:0000-0002-1171-9876 rdfs:label "Martin Kuiper" ;
 
 orcid:0000-0002-1595-3213 rdfs:label "Philip Strömert" ;
     dcterms:contributor bioregistry:aeon ;
-    foaf:mbox "Philip.Stroemert@tib.eu",
-        "philip.stroemert@tib.eu" .
+    foaf:mbox "Philip.Stroemert@tib.eu" .
 
 orcid:0000-0002-2061-091X rdfs:label "George Gkoutos" ;
     foaf:mbox "g.gkoutos@bham.ac.uk",
@@ -35002,7 +35013,7 @@ bioregistry:pdb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.rs2815,
         prefixcommons:pdbj,
         miriam:pdb,
-        re3data:r3d100011104,
+        re3data:r3d100010910,
         uniprot.resource:DB-0172,
         wikidata:P638 ;
     foaf:homepage "https://www.wwpdb.org/"^^xsd:string ;
@@ -38027,6 +38038,8 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100010229,
         re3data:r3d100010245,
         re3data:r3d100010266,
+        re3data:r3d100010283,
+        re3data:r3d100010285,
         re3data:r3d100010350,
         re3data:r3d100010372,
         re3data:r3d100010375,
@@ -38059,6 +38072,7 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100010652,
         re3data:r3d100010666,
         re3data:r3d100010669,
+        re3data:r3d100010670,
         re3data:r3d100010671,
         re3data:r3d100010672,
         re3data:r3d100010676,
@@ -38078,6 +38092,7 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100010889,
         re3data:r3d100010891,
         re3data:r3d100010906,
+        re3data:r3d100010910,
         re3data:r3d100010912,
         re3data:r3d100010921,
         re3data:r3d100010931,
@@ -38087,7 +38102,6 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100011046,
         re3data:r3d100011049,
         re3data:r3d100011052,
-        re3data:r3d100011104,
         re3data:r3d100011166,
         re3data:r3d100011195,
         re3data:r3d100011196,
@@ -38144,6 +38158,7 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100012457,
         re3data:r3d100012458,
         re3data:r3d100012461,
+        re3data:r3d100012517,
         re3data:r3d100012575,
         re3data:r3d100012603,
         re3data:r3d100012626,
