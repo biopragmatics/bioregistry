@@ -59,6 +59,10 @@ BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 
 #: Search string for skipping formatters containing this
 IDOT_SKIP = "identifiers.org"
+ORCID_TO_GITHUB = {
+    "0000-0003-0530-4305": "essepuntato",
+    "0000-0002-9903-4248": "mbaudis",
+}
 
 
 def _uri_sort(uri):
@@ -969,6 +973,11 @@ class Resource(BaseModel):
             return self.contact.github
         if self.obofoundry and "contact.github" in self.obofoundry:
             return self.obofoundry["contact.github"]
+
+        # Manually curated upgrade map. TODO externalize this
+        orcid = self.get_contact_orcid()
+        if orcid and orcid in ORCID_TO_GITHUB:
+            return ORCID_TO_GITHUB[orcid]
         return None
 
     def get_contact_orcid(self) -> Optional[str]:
