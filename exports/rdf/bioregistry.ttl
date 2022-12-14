@@ -7333,9 +7333,9 @@ bioregistry:massbank a bioregistry.schema:0000001 ;
         miriam:massbank,
         wikidata:P6689 ;
     foaf:homepage "http://www.massbank.jp"^^xsd:string ;
-    bioregistry.schema:0000005 "PB000166"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.massbank.jp/RecordDisplay?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z]{2}[A-Z0-9][0-9]{5}$"^^xsd:string ;
+    bioregistry.schema:0000005 "MSBNK-IPB_Halle-PB000166"^^xsd:string ;
+    bioregistry.schema:0000006 "https://massbank.jp/RecordDisplay?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mat a bioregistry.schema:0000001 ;
@@ -14296,6 +14296,9 @@ orcid:0000-0003-3562-7869 rdfs:label "General Enquiries" ;
 
 orcid:0000-0003-3781-6962 rdfs:label "Meng LIU" ;
     foaf:mbox "liumeng94@sjtu.edu.cn" .
+
+orcid:0000-0003-3889-2879 rdfs:label "Kristian Axelsen" ;
+    foaf:mbox "kristian.axelsen@sib.swiss" .
 
 orcid:0000-0003-4028-811X rdfs:label "Josh Moore" ;
     foaf:mbox "j.a.moore@dundee.ac.uk" .
@@ -32378,11 +32381,12 @@ bioregistry:eccode a bioregistry.schema:0000001 ;
         re3data:r3d100010803,
         uniprot.resource:DB-0024,
         wikidata:P591 ;
-    foaf:homepage "https://www.ebi.ac.uk/intenz/"^^xsd:string ;
+    foaf:homepage "https://www.enzyme-database.org/"^^xsd:string ;
     bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3889-2879 .
 
 bioregistry:ecmdb a bioregistry.schema:0000001 ;
     rdfs:label "E. coli Metabolite Database" ;

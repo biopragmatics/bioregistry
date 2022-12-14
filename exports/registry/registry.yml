@@ -10479,6 +10479,11 @@ ecao:
   uri_format: http://purl.obolibrary.org/obo/ECAO_$1
   version: '2020-05-22'
 eccode:
+  contact:
+    email: kristian.axelsen@sib.swiss
+    github: kaxelsen
+    name: Kristian Axelsen
+    orcid: 0000-0003-3889-2879
   description: The Enzyme Classification contains the recommendations of the Nomenclature
     Committee of the International Union of Biochemistry and Molecular Biology on
     the nomenclature and classification of enzyme-catalysed reactions.
@@ -10498,7 +10503,7 @@ eccode:
   - 2.3.1
   - 2.3.1.n12
   - 3.1.26.n2
-  homepage: https://www.ebi.ac.uk/intenz/
+  homepage: https://www.enzyme-database.org/
   mappings:
     bartoc: '671'
     biocontext: EC-CODE
@@ -10541,6 +10546,8 @@ eccode:
     pubmed: '10592255'
     title: The ENZYME database in 2000.
     year: 2000
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/681
   synonyms:
   - EC
   - EC number
@@ -22060,7 +22067,7 @@ massbank:
   description: MassBank is a federated database of reference spectra from different
     instruments, including high-resolution mass spectra of small metabolites (<3000
     Da).
-  example: PB000166
+  example: MSBNK-IPB_Halle-PB000166
   homepage: http://www.massbank.jp
   mappings:
     biocontext: MASSBANK
@@ -22069,10 +22076,10 @@ massbank:
     n2t: massbank
     wikidata: P6689
   name: MassBank accession ID
-  pattern: ^[A-Z]{2}[A-Z0-9][0-9]{5}$
+  pattern: ^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$
   preferred_prefix: massbank
   providers:
-  - code: CURATOR_REVIEW
+  - code: massbankeu
     description: MassBank in Europe
     homepage: https://massbank.eu/
     name: MassBank in Europe
@@ -22085,7 +22092,7 @@ massbank:
       sciences.'
     year: null
   repository: https://github.com/MassBank
-  uri_format: http://www.massbank.jp/RecordDisplay?id=$1
+  uri_format: https://massbank.jp/RecordDisplay?id=$1
 massive:
   contact:
     email: miw023@ucsd.edu
