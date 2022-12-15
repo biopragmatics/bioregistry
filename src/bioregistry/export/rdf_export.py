@@ -22,6 +22,8 @@ from bioregistry.constants import (
     SCHEMA_TURTLE_PATH,
 )
 from bioregistry.schema.constants import (
+    IDOT,
+    OBOINOWL,
     _add_schema,
     bioregistry_collection,
     bioregistry_metaresource,
@@ -29,8 +31,6 @@ from bioregistry.schema.constants import (
     bioregistry_schema,
     get_schema_rdf,
     orcid,
-    IDOT,
-    OBOINOWL,
 )
 from bioregistry.schema.struct import Collection, Registry, Resource
 

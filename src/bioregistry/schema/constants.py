@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Mapping, Optional, Union
 
 import rdflib.namespace
-from rdflib import DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, Literal, URIRef, OWL
+from rdflib import DCTERMS, FOAF, OWL, RDF, RDFS, SKOS, XSD, Literal, URIRef
 from rdflib.term import Node
 
 __all__ = [
@@ -83,7 +83,7 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
-        xref=IDOT["accessPattern"]
+        xref=IDOT["accessPattern"],
     ),
     PropertyTerm(
         "0000007",
@@ -228,7 +228,7 @@ bioregistry_schema_terms = [
         range=XSD.string,
         xref=IDOT["alternatePrefix"],
         parent=OBOINOWL["hasExactSynonym"],
-    )
+    ),
 ]
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
