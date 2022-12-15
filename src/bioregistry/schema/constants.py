@@ -43,6 +43,10 @@ class PropertyTerm(Term):
 
     domain: Union[str, Node]
     range: Union[str, Node]
+    xref: Optional[URIRef] = None
+
+
+idot = rdflib.Namespace("http://identifiers.org/idot/")
 
 
 bioregistry_schema_terms = [
@@ -67,6 +71,7 @@ bioregistry_schema_terms = [
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
+        xref=idot["exampleIdentifier"],
     ),
     PropertyTerm(
         "0000006",
@@ -76,6 +81,7 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
+        xref=idot["accessPattern"]
     ),
     PropertyTerm(
         "0000007",
@@ -93,6 +99,7 @@ bioregistry_schema_terms = [
         "The pattern for identifiers in the given resource",
         domain="0000001",
         range=XSD.string,
+        xref=idot["identifierPattern"],
     ),
     # PropertyTerm(
     #     "0000009",
