@@ -366,6 +366,13 @@ class Manager:
             return None
         return entry.get_synonyms()
 
+    def get_keywords(self, prefix: str) -> Optional[Set[str]]:
+        """Get keywords associated with a given prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_keywords()
+
     def get_example(self, prefix: str) -> Optional[str]:
         """Get an example identifier, if it's available."""
         entry = self.get_resource(prefix)
@@ -605,6 +612,7 @@ class Manager:
             version=resource.get_version(),
             synonyms=resource.get_synonyms(),
             repository=resource.get_repository(),
+            keywords=resource.get_keywords(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),

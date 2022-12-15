@@ -8,7 +8,7 @@ from typing import Any, Callable, List, Optional, Tuple, Union, cast
 import click
 import rdflib
 from rdflib import Literal, Namespace
-from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, DCAT
+from rdflib.namespace import DC, DCAT, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import URIRef
 
 import bioregistry

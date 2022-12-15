@@ -879,21 +879,21 @@ class Resource(BaseModel):
             ),
         )
 
-    def get_keywords(self) -> List[str]:
+    def get_keywords(self) -> Set[str]:
         """Get keywords."""
-        r = []
+        keywords = []
         if self.keywords:
-            r.extend(self.keywords)
+            keywords.extend(self.keywords)
         if self.prefixcommons:
-            r.extend(self.prefixcommons.get("keywords", []))
+            keywords.extend(self.prefixcommons.get("keywords", []))
         if self.fairsharing:
-            r.extend(self.fairsharing.get("subjects", []))
+            keywords.extend(self.fairsharing.get("subjects", []))
         if self.obofoundry:
-            r.append("obo")
-            r.append("ontology")
+            keywords.append("obo")
+            keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
-            r.append("ontology")
-        return sorted({x.lower() for x in r})
+            keywords.append("ontology")
+        return {keyword.lower() for keyword in keywords}
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
