@@ -22,6 +22,8 @@ from bioregistry.constants import (
     SCHEMA_TURTLE_PATH,
 )
 from bioregistry.schema.constants import (
+    IDOT,
+    OBOINOWL,
     _add_schema,
     bioregistry_collection,
     bioregistry_metaresource,
@@ -90,6 +92,8 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("dcterms", DCTERMS)
     graph.namespace_manager.bind("skos", SKOS)
     graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
+    graph.namespace_manager.bind("idot", IDOT)
+    graph.namespace_manager.bind("oboinowl", OBOINOWL)
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)
     return graph
@@ -158,6 +162,8 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
     graph.add((node, RDFS.label, Literal(resource.get_name())))
     graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
     graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
+    for synonym in resource.get_synonyms():
+        graph.add((node, bioregistry_schema["0000023"], Literal(synonym)))
 
     for predicate, func, datatype in _get_resource_functions():
         value = func(resource)
