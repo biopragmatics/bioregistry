@@ -571,7 +571,8 @@ bioregistry:agricola a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:AGRICOLA,
         go.resource:AGRICOLA_ID,
         n2t:agricola,
-        miriam:agricola ;
+        miriam:agricola,
+        uniprot.resource:DB-0266 ;
     foaf:homepage "http://agricola.nal.usda.gov/"^^xsd:string ;
     bioregistry.schema:0000005 "50018"^^xsd:string ;
     bioregistry.schema:0000006 "https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=$1"^^xsd:string ;
@@ -31627,6 +31628,8 @@ uniprot.resource:DB-0256 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:DB-0258 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
+uniprot.resource:DB-0266 dcterms:isPartOf bioregistry.metaresource:uniprot .
+
 wikidata:P10074 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P10538 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -37227,7 +37230,8 @@ bioregistry.metaresource:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:DB-0253,
         uniprot.resource:DB-0254,
         uniprot.resource:DB-0256,
-        uniprot.resource:DB-0258 ;
+        uniprot.resource:DB-0258,
+        uniprot.resource:DB-0266 ;
     foaf:homepage "https://www.uniprot.org/database/" ;
     bioregistry.schema:0000005 "0174" ;
     bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1" ;
