@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% set twitter = resource.get_twitter() %}
+{% set keywords = resource.get_keywords() %}
 
 {% block container %}
     <div class="card">
@@ -85,6 +86,14 @@
                     <dd>
                         {% for synonym in synonyms %}
                             <span class="badge badge-light">{{ synonym }}</span>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if keywords %}
+                    <dt>Keywords</dt>
+                    <dd>
+                        {% for keyword in keywords %}
+                            <span class="badge badge-light">{{ keyword }}</span>
                         {% endfor %}
                     </dd>
                 {% endif %}

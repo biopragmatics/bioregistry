@@ -8,7 +8,7 @@ from typing import Any, Callable, List, Optional, Tuple, Union, cast
 import click
 import rdflib
 from rdflib import Literal, Namespace
-from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
+from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, DCAT
 from rdflib.term import URIRef
 
 import bioregistry
@@ -87,6 +87,7 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("orcid", orcid)
     graph.namespace_manager.bind("foaf", FOAF)
     graph.namespace_manager.bind("dc", DC)
+    graph.namespace_manager.bind("dcat", DCAT)
     graph.namespace_manager.bind("dcterms", DCTERMS)
     graph.namespace_manager.bind("skos", SKOS)
     graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
@@ -158,6 +159,8 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
     graph.add((node, RDFS.label, Literal(resource.get_name())))
     graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
     graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
+    for keyword in resource.get_keywords():
+        graph.add((node, DCAT.keyword, Literal(keyword)))
 
     for predicate, func, datatype in _get_resource_functions():
         value = func(resource)
