@@ -44,9 +44,11 @@ class PropertyTerm(Term):
     domain: Union[str, Node]
     range: Union[str, Node]
     xref: Optional[URIRef] = None
+    parent: Optional[URIRef] = None
 
 
-idot = rdflib.Namespace("http://identifiers.org/idot/")
+IDOT = rdflib.Namespace("http://identifiers.org/idot/")
+OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
 
 
 bioregistry_schema_terms = [
@@ -71,7 +73,7 @@ bioregistry_schema_terms = [
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
-        xref=idot["exampleIdentifier"],
+        xref=IDOT["exampleIdentifier"],
     ),
     PropertyTerm(
         "0000006",
@@ -81,7 +83,7 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
-        xref=idot["accessPattern"]
+        xref=IDOT["accessPattern"]
     ),
     PropertyTerm(
         "0000007",
@@ -99,7 +101,7 @@ bioregistry_schema_terms = [
         "The pattern for identifiers in the given resource",
         domain="0000001",
         range=XSD.string,
-        xref=idot["identifierPattern"],
+        xref=IDOT["identifierPattern"],
     ),
     # PropertyTerm(
     #     "0000009",
@@ -217,6 +219,16 @@ bioregistry_schema_terms = [
         domain="0000002",
         range="0000020",
     ),
+    PropertyTerm(
+        "0000023",
+        "Property",
+        "has alternative prefix",
+        "An alternative or synonymous prefix",
+        domain="0000001",
+        range=XSD.string,
+        xref=IDOT["alternatePrefix"],
+        parent=OBOINOWL["hasExactSynonym"],
+    )
 ]
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
@@ -247,6 +259,11 @@ def get_schema_rdf() -> rdflib.Graph:
     graph.bind("bioregistry.collection", bioregistry_collection)
     graph.bind("bioregistry", bioregistry_resource)
     graph.bind("dcterms", DCTERMS)
+    graph.bind("owl", OWL)
+    graph.bind("idot", IDOT)
+    graph.bind("foaf", FOAF)
+    graph.bind("skos", SKOS)
+    graph.bind("oboinowl", OBOINOWL)
     _add_schema(graph)
     return graph
 
@@ -262,6 +279,8 @@ def _add_schema(graph):
             graph.add((node, RDF.type, RDF.Property))
             if term.xref is not None:
                 graph.add((node, OWL.equivalentProperty, term.xref))
+            if term.parent is not None:
+                graph.add((node, RDFS.subPropertyOf, term.parent))
             for property_node, object_node in (
                 (RDFS.domain, term.domain),
                 (RDFS.range, term.range),
@@ -276,6 +295,7 @@ def _add_schema(graph):
             raise TypeError(term)
         graph.add((node, RDFS.label, Literal(term.label)))
         graph.add((node, DCTERMS.description, Literal(term.description)))
+
     return graph
 
 
