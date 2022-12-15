@@ -4,9 +4,10 @@ import time
 from statistics import mean
 from typing import Iterable, Tuple
 
+import click
 import matplotlib.pyplot as plt
 import seaborn as sns
-from tqdm import tqdm
+from tqdm import tqdm, trange
 
 import bioregistry
 from bioregistry import manager
@@ -39,7 +40,10 @@ def iter_uris() -> Iterable[Tuple[str, str, str, str]]:
                     yield prefix, extra_example, metaprefix, url
 
 
-def main(rebuild: bool = False, epochs: int = 10):
+@click.command()
+@click.option("--rebuild", is_flag=True)
+@click.option("--replicates", type=int, default=10)
+def main(rebuild: bool, replicates: int):
     """Test parsing IRIs."""
     uris = get_uris(rebuild=rebuild)
 
@@ -47,17 +51,20 @@ def main(rebuild: bool = False, epochs: int = 10):
     bioregistry.parse_iri("https://bioregistry.io/DRON:00023232")
 
     times = []
-    for _ in range(epochs):
+    for _ in trange(replicates, desc="Test parsing URIs", unit="replicate"):
         for _, _, _, url in tqdm(uris, unit_scale=True, unit="URI"):
             start = time.time()
             bioregistry.parse_iri(url)
             times.append(time.time() - start)
 
-    fig, ax = plt.subplots()
     mean_time = mean(times)
+    title = f"Bioregistry URI Parsing Benchmark\nAverage: {round(1 / mean_time):,} URI/s"
+    click.echo(title)
+
+    fig, ax = plt.subplots()
     sns.histplot(data=times, ax=ax, log_scale=True)
     ax.set_xlabel("Time (seconds)")
-    ax.set_title(f"Bioregistry URI Parsing Benchmark\nAverage: {round(1 / mean_time):,} URI/s")
+    ax.set_title(title)
     fig.savefig(URI_PARSING_SVG_PATH)
 
 
