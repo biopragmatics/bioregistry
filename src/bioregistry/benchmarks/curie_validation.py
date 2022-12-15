@@ -97,7 +97,10 @@ def main(rebuild: bool, replicates: int):
 
     df = pd.DataFrame(rows_, columns=["time", "label"])
     m = df["time"].mean()
-    title = f"Bioregistry CURIE Validation Benchmark\nAverage: {round(1 / m):,} CURIE/s, Errors: {failures // replicates}"
+    title = (
+        f"Bioregistry CURIE Validation Benchmark\nAverage: {round(1 / m):,} CURIE/s, "
+        f"Errors: {failures // replicates}"
+    )
     click.echo(title)
 
     fig, ax = plt.subplots()
