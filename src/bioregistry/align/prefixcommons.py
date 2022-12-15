@@ -15,7 +15,7 @@ SKIP = {
     "redidb": "Website is dead",
     "trnadbce": "Website is password protected",
     "pogs_plantrbp": "Website is dead",
-    "smr": "no evidence of it existing"
+    "smr": "no evidence of it existing",
 }
 PROVIDERS = {
     "homeodomain_resource": "hdr",
