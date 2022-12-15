@@ -381,6 +381,7 @@ class Resource(BaseModel):
     """
         ),
     )
+    keywords: Optional[List[str]] = Field(description="A list of keywords for the resource")
     references: Optional[List[str]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
@@ -877,6 +878,22 @@ class Resource(BaseModel):
                 "ecoportal",
             ),
         )
+
+    def get_keywords(self) -> Set[str]:
+        """Get keywords."""
+        keywords = []
+        if self.keywords:
+            keywords.extend(self.keywords)
+        if self.prefixcommons:
+            keywords.extend(self.prefixcommons.get("keywords", []))
+        if self.fairsharing:
+            keywords.extend(self.fairsharing.get("subjects", []))
+        if self.obofoundry:
+            keywords.append("obo")
+            keywords.append("ontology")
+        if self.get_download_obo() or self.get_download_owl() or self.bioportal:
+            keywords.append("ontology")
+        return {keyword.lower() for keyword in keywords}
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""

@@ -559,3 +559,14 @@ def highlights_twitter():
 def highlights_relations():
     """Render the relations highlights page."""
     return render_template("highlights/relations.html")
+
+
+@ui_blueprint.route("/highlights/keywords")
+def highlights_keywords():
+    """Render the keywords highlights page."""
+    keyword_to_prefix = defaultdict(list)
+    for resource in manager.registry.values():
+        for keyword in resource.get_keywords():
+            keyword_to_prefix[keyword].append(resource)
+
+    return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
