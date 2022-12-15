@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Mapping, Optional, Union
 
 import rdflib.namespace
-from rdflib import DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, Literal, URIRef
+from rdflib import DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, Literal, URIRef, OWL
 from rdflib.term import Node
 
 __all__ = [
@@ -256,8 +256,12 @@ def _add_schema(graph):
         node = bioregistry_schema[term.identifier]
         if isinstance(term, ClassTerm):
             graph.add((node, RDF.type, RDFS.Class))
+            if term.xref is not None:
+                graph.add((node, OWL.equivalentClass, term.xref))
         elif isinstance(term, PropertyTerm):
             graph.add((node, RDF.type, RDF.Property))
+            if term.xref is not None:
+                graph.add((node, OWL.equivalentProperty, term.xref))
             for property_node, object_node in (
                 (RDFS.domain, term.domain),
                 (RDFS.range, term.range),
