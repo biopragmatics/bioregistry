@@ -227,7 +227,7 @@ class Aligner:
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(
-            self.external_registry.items(), key=lambda s: s[0].casefold()
+            self.external_registry.items(), key=lambda s: (s[0].casefold(), s[0])
         ):
             if external_id in self.skip_external:
                 continue
