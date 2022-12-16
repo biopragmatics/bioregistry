@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 43.0
- Last update: 22-September-2022
+ Version: 44.0
+ Last update: 15-December-2022
 
 ----------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -91,7 +91,7 @@ Where : Resource_abbrev is one of: ChEBI|NCBI_TaxID|NCIt|PubChem
 
 The "Sequence variation" CC topic has 4 subtopics:
 
-Format: CC   Sequence variation: Gene amplification; Resource_abbrev; %s; Gene_name; Duplication|Triplication; Zygosity=Zyg_value [; Note=Free_text] (Sources).
+Format: CC   Sequence variation: Gene amplification; Resource_abbrev; %s; Gene_name; Amplification_type; Zygosity=Zyg_value [; Note=Free_text] (Sources).
 Format: CC   Sequence variation: Gene deletion; Resource_abbrev; %s; Gene_name; Zygosity=Zyg_value [; Note=Free_text] (Sources).
 Format: CC   Sequence variation: Gene fusion; Resource_abbrev; %s; Gene_name + Resource_abbrev; %s; Gene_name; Names(s)=Name1[, Name2][, NameX] [; Note=Free_text] (Sources).
 Format: CC   Sequence variation: Mutation; Resource_abbrev; %s; Gene_name; Mutation_type; Mutation_description [; ClinVar=%s|dbSNP=%s]; Zygosity=Zyg_value [; Note=Free_text] (Sources).
@@ -99,7 +99,8 @@ Format: CC   Sequence variation: Mutation; Resource_abbrev; %s; Gene_name; Mutat
 Where:
 
 Resource_abbrev is one of: HGNC|MGI|RGD|UniProtKB|VGNC
-Mutation_type is one of: Simple|Simple_corrected|Simple_edited|Repeat_expansion|Repeat_expansion_corrected|Unexplicit|Unexplicit_corrected|None_reported
+Amplification_type is one of: Duplication|Triplication|Quadruplication|Extensive
+Mutation_type is one of: Simple|Simple_corrected|Simple_edited|Repeat_expansion|Repeat_expansion_corrected|Repeat_expansion_edited|Unexplicit|Unexplicit_corrected|Unexplicit_edited|None_reported
 Mutation_description is: the description of the mutation using, when possible the HGVS nomenclature.
 Zyg_value is one of: Hemizygous|Heteroplasmic|Heterozygous|Homoplasmic|Homozygous|Mosaic|Unspecified|-
 
@@ -370,6 +371,13 @@ Server: https://cancer.sanger.ac.uk/cell_lines
 Db_URL: https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=%s
 Term. : No
 Cat   : Cell line databases/resources
+//
+Abbrev: dbGAP
+Name  : Database of Genotypes and Phenotypes
+Server: https://www.ncbi.nlm.nih.gov/gap/
+Db_URL: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=%s
+Term. : No
+Cat   : Sequence databases
 //
 Abbrev: dbMHC
 Name  : dbMHC database
@@ -805,7 +813,7 @@ Cat   : Cell line collections
 Abbrev: NRFC
 Name  : National Repository of Fish Cell Line
 Server: https://mail.nbfgr.res.in/nrfc/
-Db_URL: https://mail.nbfgr.res.in/nrfc/celldetail.php?id=%s
+Db_URL: None
 Term. : No
 Cat   : Cell line collections
 //
@@ -856,6 +864,13 @@ Name  : PubChem compound database
 Server: https://pubchem.ncbi.nlm.nih.gov
 Db_URL: https://pubchem.ncbi.nlm.nih.gov/compound/%s
 Term. : Yes
+Cat   : Chemistry resources
+//
+Abbrev: PubChem_Cell_line
+Name  : PubChem compound database; cell line pages
+Server: https://pubchem.ncbi.nlm.nih.gov
+Db_URL: https://pubchem.ncbi.nlm.nih.gov/cell/%s
+Term. : No
 Cat   : Chemistry resources
 //
 Abbrev: PubMed
