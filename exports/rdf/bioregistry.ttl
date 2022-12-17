@@ -262,6 +262,65 @@ bioregistry.collection:0000009 a bioregistry.schema:0000003 ;
         bioregistry:ucum,
         bioregistry:unii .
 
+bioregistry.collection:0000010 a bioregistry.schema:0000003 ;
+    rdfs:label "Global Biodata Coalition - Global Core Biodata Resources" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description """The [Global Biodata Coalition](https://globalbiodata.org) released a [curated list](https://globalbiodata.org/scientific-activities/global-core-biodata-resources/) of 37 life sciences databases in December 2022 that they consider as having significant importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)). While it's not a primary goal of the Bioregistry to cover life science databases (other resources like Wikidata and [FAIRsharing](https://fairsharing.org) already do an excellent job of this), many notable databases induce one or more semantic spaces that are relevant for curation and prefix assignment in the Bioregistry. Therefore, a large number of the resources in this list correspond 1-to-1 with prefixes in the Bioregistry, a small number (e.g., Orphanet, CIViC, PharmGKB) correspond to multiple prefixes, some have a complicated relationship with many-to-1 relationships to prefixes (DNA Data Bank of Japan, European Nucleotide Archive), and some constitute databases that simply reuse other key vocabularies (e.g., STRING reuses UniProt, GWAS Catalog reuses dbSNP and EFO). Among the databases that don't induce semantic spaces or have simple relationships to prefixes are:
+
+- [Clinical Genome Resource](https://www.clinicalgenome.org/)
+- [DNA Data Bank of Japan](https://www.ddbj.nig.ac.jp/)
+- [GENCODE](https://www.gencodegenes.org/)
+- [gnomAD](https://gnomad.broadinstitute.org/)
+- [GWAS Catalog](https://www.ebi.ac.uk/gwas/)
+- [STRING](https://string-db.org/)""" ;
+    dcterms:hasPart bioregistry:agrkb,
+        bioregistry:bacdive,
+        bioregistry:brenda,
+        bioregistry:brenda.ligand,
+        bioregistry:brenda.ligandgroup,
+        bioregistry:bto,
+        bioregistry:chebi,
+        bioregistry:chembl,
+        bioregistry:civic.aid,
+        bioregistry:civic.did,
+        bioregistry:civic.eid,
+        bioregistry:civic.gid,
+        bioregistry:civic.sid,
+        bioregistry:civic.tid,
+        bioregistry:civic.vid,
+        bioregistry:ecocyc,
+        bioregistry:ena.embl,
+        bioregistry:ensembl,
+        bioregistry:eupath,
+        bioregistry:flybase,
+        bioregistry:gbif,
+        bioregistry:go,
+        bioregistry:hgnc,
+        bioregistry:interpro,
+        bioregistry:mgi,
+        bioregistry:orphanet,
+        bioregistry:orphanet.ordo,
+        bioregistry:panther.family,
+        bioregistry:panther.node,
+        bioregistry:panther.pathway,
+        bioregistry:panther.pthcmp,
+        bioregistry:pdb,
+        bioregistry:pharmgkb.disease,
+        bioregistry:pharmgkb.drug,
+        bioregistry:pharmgkb.gene,
+        bioregistry:pharmgkb.pathways,
+        bioregistry:pmc,
+        bioregistry:pombase,
+        bioregistry:px,
+        bioregistry:reactome,
+        bioregistry:rgd,
+        bioregistry:rhea,
+        bioregistry:sgd,
+        bioregistry:ucsc,
+        bioregistry:uniprot,
+        bioregistry:wormbase,
+        bioregistry:zfin .
+
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
     dc:description "A web-developer centric archive of prefixes and URI prefixes" ;
@@ -1226,24 +1285,6 @@ bioregistry:autdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z]+[A-Z-0-9]{2,}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:bacdive a bioregistry.schema:0000001 ;
-    rdfs:label "Bacterial Diversity Metadatabase" ;
-    dc:description "BacDive—the Bacterial Diversity Metadatabase merges detailed strain-linked information on the different aspects of bacterial and archaeal biodiversity."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:bacdive,
-        fairsharing:FAIRsharing.aSszvY,
-        miriam:bacdive,
-        re3data:r3d100013060 ;
-    dcat:keyword "biodiversity",
-        "life science",
-        "microbiology" ;
-    foaf:homepage "https://bacdive.dsmz.de/"^^xsd:string ;
-    bioregistry.schema:0000005 "131392"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bacdive.dsmz.de/strain/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-7805-0660 .
-
 bioregistry:bacmap.biog a bioregistry.schema:0000001 ;
     rdfs:label "BacMap Biography" ;
     dc:description "BacMap is an electronic, interactive atlas of fully sequenced bacterial genomes. It contains labeled, zoomable and searchable chromosome maps for sequenced prokaryotic (archaebacterial and eubacterial) species. Each map can be zoomed to the level of individual genes and each gene is hyperlinked to a richly annotated gene card. All bacterial genome maps are supplemented with separate prophage genome maps as well as separate tRNA and rRNA maps. Each bacterial chromosome entry in BacMap contains graphs and tables on a variety of gene and protein statistics. Likewise, every bacterial species entry contains a bacterial 'biography' card, with taxonomic details, phenotypic details, textual descriptions and images. This collection references 'biography' information."^^xsd:string ;
@@ -2015,25 +2056,6 @@ bioregistry:bootstrep a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Vivian Lee" ;
             foaf:mbox "vlee@ebi.ac.uk" ] .
 
-bioregistry:brenda a bioregistry.schema:0000001 ;
-    rdfs:label "BRENDA, The Comprehensive Enzyme Information System" ;
-    dc:description "BRENDA is a collection of enzyme functional data available to the scientific community. Data on enzyme function are extracted directly from the primary literature The database covers information on classification and nomenclature, reaction and specificity, functional parameters, occurrence, enzyme structure and stability, mutants and enzyme engineering, preparation and isolation, the application of enzymes, and ligand-related data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:BRENDA,
-        go.resource:BRENDA,
-        n2t:brenda,
-        fairsharing:FAIRsharing.etp533,
-        prefixcommons:brenda,
-        miriam:brenda,
-        re3data:r3d100010616 ;
-    dcat:keyword "enzyme",
-        "life science" ;
-    foaf:homepage "https://www.brenda-enzymes.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.brenda-enzymes.org/php/result_flat.php4?ecno=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((\\d+\\.-\\.-\\.-)|(\\d+\\.\\d+\\.-\\.-)|(\\d+\\.\\d+\\.\\d+\\.-)|(\\d+\\.\\d+\\.\\d+\\.\\d+))$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:broad a bioregistry.schema:0000001 ;
     rdfs:label "Broad Fungal Genome Initiative" ;
     dc:description "Magnaporthe grisea, the causal agent of rice blast disease, is one of the most devasting threats to food security worldwide and is a model organism for studying fungal phytopathogenicity and host-parasite interactions. The Magnaporthe comparative genomics database provides accesses to multiple fungal genomes from the Magnaporthaceae family to facilitate the comparative analysis. As part of the Broad Fungal Genome Initiative, the Magnaporthe comparative project includes the finished M. oryzae (formerly M. grisea) genome, as well as the draft assemblies of Gaeumannomyces graminis var. tritici and M. poae."^^xsd:string ;
@@ -2046,37 +2068,6 @@ bioregistry:broad a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.broadinstitute.org/annotation/genome/magnaporthe_grisea/GeneDetails.html?sp=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^S\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:bto a bioregistry.schema:0000001 ;
-    rdfs:label "BRENDA tissue / enzyme source" ;
-    dc:description "The Brenda tissue ontology is a structured controlled vocabulary eastablished to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:BTO,
-        obofoundry:bto,
-        ontobee:BTO,
-        bioportal:BTO,
-        biocontext:BTO,
-        cellosaurus.resource:BTO,
-        go.resource:BTO,
-        n2t:bto,
-        fairsharing:FAIRsharing.1414v8,
-        prefixcommons:bto,
-        miriam:bto,
-        ols:bto,
-        wikidata:P5501 ;
-    dcat:keyword "enzymology",
-        "life science",
-        "obo",
-        "ontology",
-        "tissue" ;
-    foaf:homepage "http://www.brenda-enzymes.org"^^xsd:string ;
-    bioregistry.schema:0000005 "0000590"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/bto/terms?obo_id=BTO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:bto.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-9117-7909 ;
-    bioregistry.schema:0000023 "BTO" .
 
 bioregistry:bugbase.expt a bioregistry.schema:0000001 ;
     rdfs:label "BugBase Expt" ;
@@ -2625,84 +2616,6 @@ bioregistry:cio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 obo:cio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
-
-bioregistry:civic.aid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Assertion" ;
-    dc:description "A CIViC assertion classifies the clinical significance of a variant-disease relationship under recognized guidelines. The CIViC Assertion (AID) summarizes a collection of Evidence Items (EIDs) that covers predictive/therapeutic, diagnostic, prognostic or predisposing clinical information for a variant in a specific cancer context. CIViC currently has two main types of Assertions: those based on variants of primarily somatic origin (predictive/therapeutic, prognostic, and diagnostic) and those based on variants of primarily germline origin (predisposing). When the number and quality of Predictive, Prognostic, Diagnostic or Predisposing Evidence Items (EIDs) in CIViC sufficiently cover what is known for a particular variant and cancer type, then a corresponding assertion be created in CIViC."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.aid ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "3"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/assertions/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:civic.did a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Disease" ;
-    dc:description "Within the CIViC database, the disease should be the cancer or cancer subtype that is a result of the described variant. The disease selected should be as specific as possible should reflect the disease type used in the source that supports the evidence statement."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.did ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "46"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/diseases/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:civic.eid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Evidence" ;
-    dc:description "Evidence Items are the central building block of the Clinical Interpretation of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece of information that has been manually curated from trustable medical literature about a Variant or genomic ‘event’ that has implications in cancer Predisposition, Diagnosis (aka molecular classification), Prognosis, Predictive response to therapy, Oncogenicity or protein Function. For example, an Evidence Item might describe a line of evidence supporting the notion that tumors with a somatic BRAF V600 mutation generally respond well to the drug dabrafenib. A Variant may be a single nucleotide substitution, a small insertion or deletion, an RNA gene fusion, a chromosomal rearrangement, an RNA expression pattern (e.g. over-expression), etc. Each clinical Evidence statement corresponds to a single citable Source (a publication or conference abstract)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.eid ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "1199"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/evidence/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:civic.gid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Gene" ;
-    dc:description "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene’s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.gid ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "272"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/gene/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:civic.sid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Source" ;
-    dc:description "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.sid ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "62"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/sources/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:civic.tid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Therapy" ;
-    dc:description "Therapies (often drugs) in CIViC are associated with Predictive Evidence Types, which describe sensitivity, resistance or adverse response to therapies when a given variant is present. The Therapy field may also be used to describe more general treatment types and regimes, such as FOLFOX or Radiation, as long as the literature derived Evidence Item makes a scientific association between the Therapy (treatment type) and the presence of the variant."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.tid ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "14"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/drugs/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:civic.vid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC variant ID" ;
-    dc:description "CIViC variants are usually genomic alterations, including single nucleotide variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s such as amplification or deletion), structural variants (SVs such as translocations and inversions), and other events that differ from the “normal” genome. In some cases a CIViC variant may represent events of the transcriptome or proteome. For example, ‘expression’ or ‘over-expression’ is a valid variant. Regardless of the variant, it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional relevance that is clinical in nature to be entered in CIViC. i.e. There must be some rationale for why curation of this variant could ultimately aid clinical decision making."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:civic.vid,
-        wikidata:P3329 ;
-    foaf:homepage "https://civicdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "12"^^xsd:string ;
-    bioregistry.schema:0000006 "https://civicdb.org/links/variant/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:classyfire a bioregistry.schema:0000001 ;
     rdfs:label "ClassyFire" ;
@@ -4518,20 +4431,6 @@ bioregistry:eco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 obo:eco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-7628-5565 .
-
-bioregistry:ecocyc a bioregistry.schema:0000001 ;
-    rdfs:label "EcoCyc" ;
-    dc:description "EcoCyc is a scientific database for the bacterium Escherichia coli K-12 MG1655. The EcoCyc project performs literature-based curation of its genome, and of transcriptional regulation, transporters, and metabolic pathways."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:EcoCyc,
-        ncbi.resource:ECOCYC,
-        fairsharing:FAIRsharing.65dmtr,
-        re3data:r3d100011277 ;
-    dcat:keyword "biology" ;
-    foaf:homepage "http://ecocyc.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "AICARTRANSIMPCYCLO-CPLX"^^xsd:string ;
-    bioregistry.schema:0000006 "https://biocyc.org/gene?id=$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:ecogene a bioregistry.schema:0000001 ;
     rdfs:label "Database of Escherichia coli Sequence and Function" ;
@@ -7563,40 +7462,6 @@ bioregistry:interlex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "ILX" .
 
-bioregistry:interpro a bioregistry.schema:0000001 ;
-    rdfs:label "InterPro" ;
-    dc:description "InterPro is a database of protein families, domains and functional sites in which identifiable features found in known proteins can be applied to unknown protein sequences."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1133,
-        obofoundry:ipr,
-        biocontext:IPR,
-        biolink:interpro,
-        go.resource:InterPro,
-        n2t:interpro,
-        ncbi.resource:InterPro,
-        fairsharing:FAIRsharing.pda11d,
-        prefixcommons:interpro,
-        miriam:interpro,
-        re3data:r3d100010798,
-        uniprot.resource:DB-0052,
-        wikidata:P2926 ;
-    dcat:keyword "bioinformatics",
-        "biology",
-        "domain",
-        "obo",
-        "ontology",
-        "protein" ;
-    foaf:homepage "http://www.ebi.ac.uk/interpro/index.html"^^xsd:string ;
-    bioregistry.schema:0000005 "IPR016380"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/interpro/entry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^IPR\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "InterPro Help" ;
-            foaf:mbox "interhelp@ebi.ac.uk" ] ;
-    bioregistry.schema:0000023 "IP",
-        "IPR",
-        "InterPro" .
-
 bioregistry:ipi a bioregistry.schema:0000001 ;
     rdfs:label "International Protein Index" ;
     dc:description "IPI provides a top level guide to the main databases that describe the proteomes of higher eukaryotic organisms. IPI maintaisn a database of cross references between the primary data sources, it provides minimally redundant but complete sets of proteins for featured species, and it maintains stable and unique identifiers."^^xsd:string ;
@@ -8758,35 +8623,6 @@ bioregistry:mge a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "aclame" .
-
-bioregistry:mgi a bioregistry.schema:0000001 ;
-    rdfs:label "Mouse Genome Informatics" ;
-    dc:description "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:3274,
-        biocontext:MGI,
-        cellosaurus.resource:MGI,
-        go.resource:MGI,
-        n2t:mgi,
-        ncbi.resource:MGI,
-        fairsharing:FAIRsharing.fcwyhz,
-        prefixcommons:mgi,
-        miriam:mgi,
-        re3data:r3d100010266,
-        uniprot.resource:DB-0060,
-        wikidata:P671 ;
-    dcat:keyword "expression",
-        "life science",
-        "ontology and terminology",
-        "phenotype",
-        "sequence" ;
-    foaf:homepage "http://www.informatics.jax.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "6017782"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.informatics.jax.org/accession/MGI:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "MGD",
-        "MGI" .
 
 bioregistry:mgnify.proj a bioregistry.schema:0000001 ;
     rdfs:label "MGnify Project" ;
@@ -10832,56 +10668,6 @@ bioregistry:ornaseq a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8034-7685 .
 
-bioregistry:orphanet a bioregistry.schema:0000001 ;
-    rdfs:label "Orphanet" ;
-    dc:description "Orphanet is a reference portal for information on rare diseases and orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of patients with rare diseases."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:Orphanet,
-        biolink:orphanet,
-        n2t:orphanet,
-        fairsharing:FAIRsharing.6bd5k6,
-        prefixcommons:orphanet,
-        miriam:orphanet,
-        uniprot.resource:DB-0068,
-        wikidata:P1550 ;
-    dcat:keyword "disease",
-        "drug",
-        "human",
-        "life science",
-        "ontology and terminology" ;
-    foaf:homepage "http://www.orpha.net/consor/"^^xsd:string ;
-    bioregistry.schema:0000005 "85163"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "ORPHA" .
-
-bioregistry:orphanet.ordo a bioregistry.schema:0000001 ;
-    rdfs:label "Orphanet Rare Disease Ontology" ;
-    dc:description """The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\r
-It integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10)."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:ordo,
-        bioportal:ORDO,
-        biocontext:ORPHANET.ORDO,
-        biolink:ORPHA,
-        cellosaurus.resource:ORDO,
-        n2t:orphanet.ordo,
-        fairsharing:FAIRsharing.pbbnwa,
-        miriam:orphanet.ordo,
-        ols:ordo ;
-    dcat:keyword "biomedical science",
-        "health science",
-        "ontology" ;
-    foaf:homepage "https://www.ebi.ac.uk/ols/ontologies/ordo"^^xsd:string ;
-    bioregistry.schema:0000005 "C023"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.orpha.net/ORDO/Orphanet_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^C?\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.orphadata.org/data/ORDO/ordo_orphanet.owl> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0003-4308-6337 ;
-    bioregistry.schema:0000023 "ordo" .
-
 bioregistry:orth a bioregistry.schema:0000001 ;
     rdfs:label "Orthology Ontology" ;
     dc:description "The need of a common ontology for describing orthology information in biological research communities has led to the creation of the Orthology Ontology (ORTH). ORTH ontology is designed to describe sequence homology data available in multiple orthology databases on the Web (e.g.: OMA, OrthoDB, HieranoiDB, and etc.). By sequence homology data, we mostly mean gene region, gene and protein centric orthology, paralogy, and xenology information. Depending on the database, the homology information is structured in different ways. ORTH ontology accommodates these disparate data structures namely Hierarchical Orthologous Group (HOG), cluster of homologous sequences and homologous-pairwise relations between sequences. In addition to the specific ORTH terms, this specification includes terms of the imported ontologies (e.g. Semanticscience Integrated Ontology, SIO) which are pertinents to represent the information from various orthology databases in a homogeneous way."^^xsd:string ;
@@ -11386,60 +11172,6 @@ bioregistry:pgx a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-9903-4248 ;
     bioregistry.schema:0000023 "Progenetix" .
 
-bioregistry:pharmgkb.disease a bioregistry.schema:0000001 ;
-    rdfs:label "PharmGKB Disease" ;
-    dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2651,
-        biocontext:PHARMGKB.DISEASE,
-        n2t:pharmgkb.disease,
-        prefixcommons:pharmgkb.disease,
-        miriam:pharmgkb.disease,
-        wikidata:P7001 ;
-    dcat:keyword "pharmacogenomics" ;
-    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PA447218"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pharmgkb.org/disease/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pharmgkb.drug a bioregistry.schema:0000001 ;
-    rdfs:label "PharmGKB Drug" ;
-    dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2652,
-        biocontext:PHARMGKB.DRUG,
-        n2t:pharmgkb.drug,
-        prefixcommons:pharmgkb.drug,
-        miriam:pharmgkb.drug,
-        wikidata:P7001 ;
-    dcat:keyword "drug",
-        "pharmacogenomics" ;
-    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PA448710"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pharmgkb.org/drug/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pharmgkb.pathways a bioregistry.schema:0000001 ;
-    rdfs:label "PharmGKB" ;
-    dc:description """The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \r
-PharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2650,
-        biocontext:PHARMGKB.PATHWAYS,
-        n2t:pharmgkb.pathways,
-        prefixcommons:pharmgkb.pathways,
-        miriam:pharmgkb.pathways,
-        wikidata:P7001 ;
-    dcat:keyword "pathway",
-        "pharmacogenomics" ;
-    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PA146123006"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pharmgkb.org/pathway/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:pharmvar a bioregistry.schema:0000001 ;
     rdfs:label "Pharmacogene Variation Consortium" ;
     dc:description "The Pharmacogene Variation (PharmVar) Consortium is the new home for PGx gene nomenclature serving as a centralized ‘Next-Generation’ Pharmacogene Variation data repository.  The major focus of PharmVar is to catalogue allelic variation of genes impacting drug metabolism, disposition and response and provide a unifying designation system (nomenclature) for the global pharmacogenetic/genomic community. Efforts are synchronized between PharmVar, the Pharmacogenomic KnowledgeBase, and the Clinical Pharmacogenetic Implementation Consortium."^^xsd:string ;
@@ -11860,29 +11592,6 @@ bioregistry:polbase a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Za-z-0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pombase a bioregistry.schema:0000001 ;
-    rdfs:label "PomBase" ;
-    dc:description "PomBase is a model organism database established to provide access to molecular data and biological information for the fission yeast Schizosaccharomyces pombe. It encompasses annotation of genomic sequence and features, comprehensive manual literature curation and genome-wide data sets."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PomBase,
-        biolink:PomBase,
-        go.resource:PomBase,
-        n2t:pombase,
-        ncbi.resource:PomBase,
-        fairsharing:FAIRsharing.8jsya3,
-        prefixcommons:pombase,
-        miriam:pombase,
-        re3data:r3d100011478,
-        uniprot.resource:DB-0031,
-        wikidata:P6245 ;
-    dcat:keyword "life science" ;
-    foaf:homepage "https://www.pombase.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "SPCC13B11.01"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.pombase.org/gene/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^S\\w+(\\.)?\\w+(\\.)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "PomBase" .
-
 bioregistry:ppo a bioregistry.schema:0000001 ;
     rdfs:label "Plant Phenology Ontology" ;
     dc:description "An ontology for describing the phenology of individual plants and populations of plants, and for integrating plant phenological data across sources and scales."^^xsd:string ;
@@ -12185,19 +11894,6 @@ bioregistry:pw a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9553-7227 .
 
-bioregistry:px a bioregistry.schema:0000001 ;
-    rdfs:label "ProteomeXchange" ;
-    dc:description "The ProteomeXchange provides a single point of submission of Mass Spectrometry (MS) proteomics data for the main existing proteomics repositories, and encourages the data exchange between them for optimal data dissemination."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PX,
-        n2t:px,
-        miriam:px ;
-    foaf:homepage "http://www.proteomexchange.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PXD000500"^^xsd:string ;
-    bioregistry.schema:0000006 "http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(R)?PXD\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:pypi a bioregistry.schema:0000001 ;
     rdfs:label "PyPI" ;
     dc:description "The Python Package Index (PyPI) is a repository for Python packages."^^xsd:string ;
@@ -12294,30 +11990,6 @@ bioregistry:re3data a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.re3data.org/repository/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^r3d\\d{9,9}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:reactome a bioregistry.schema:0000001 ;
-    rdfs:label "Reactome" ;
-    dc:description "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1155,
-        biocontext:REACTOME,
-        go.resource:Reactome,
-        n2t:reactome,
-        prefixcommons:reactome,
-        miriam:reactome,
-        cheminf:000411,
-        re3data:r3d100010861,
-        wikidata:P3937 ;
-    dcat:keyword "human",
-        "pathway",
-        "reaction" ;
-    foaf:homepage "https://www.reactome.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "R-BTA-418592"^^xsd:string ;
-    bioregistry.schema:0000006 "https://reactome.org/content/detail/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "RE",
-        "REACT" .
 
 bioregistry:rebase a bioregistry.schema:0000001 ;
     rdfs:label "REBASE Enzyme Number" ;
@@ -12461,44 +12133,6 @@ bioregistry:rgap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
-bioregistry:rgd a bioregistry.schema:0000001 ;
-    rdfs:label "Rat Genome Database" ;
-    dc:description "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:RGD,
-        edam.data:2620,
-        bioportal:RGD,
-        biocontext:RGD,
-        cellosaurus.resource:RGD,
-        go.resource:RGD,
-        n2t:rgd,
-        ncbi.resource:RGD,
-        fairsharing:FAIRsharing.pfg82t,
-        prefixcommons:rgd,
-        miriam:rgd,
-        re3data:r3d100010417,
-        uniprot.resource:DB-0091,
-        wikidata:P3853 ;
-    dcat:keyword "biomedical science",
-        "comparative genomics",
-        "dna",
-        "gene",
-        "genome",
-        "genomics",
-        "molecular medicine",
-        "ontology",
-        "phenomics",
-        "quantitative genetics",
-        "translational medicine",
-        "veterinary medicine" ;
-    foaf:homepage "http://rgd.mcw.edu/"^^xsd:string ;
-    bioregistry.schema:0000005 "7499841"^^xsd:string ;
-    bioregistry.schema:0000006 "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{4,}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-6443-9376 ;
-    bioregistry.schema:0000023 "RGD" .
-
 bioregistry:rgd.qtl a bioregistry.schema:0000001 ;
     rdfs:label "Rat Genome Database qTL" ;
     dc:description "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references quantitative trait loci (qTLs), providing phenotype and disease descriptions, mapping, and strain information as well as links to markers and candidate genes."^^xsd:string ;
@@ -12524,32 +12158,6 @@ bioregistry:rgd.strain a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://rgd.mcw.edu/rgdweb/report/strain/main.html?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:rhea a bioregistry.schema:0000001 ;
-    rdfs:label "Rhea, the Annotated Reactions Database" ;
-    dc:description """ Rhea is an expert-curated knowledgebase of chemical and transport reactions of biological interest. Enzyme-catalyzed and spontaneously occurring reactions are curated from peer-reviewed literature and represented in a computationally tractable manner by using the ChEBI (Chemical Entities of Biological Interest) ontology to describe reaction participants.
-
-Rhea covers the reactions described by the IUBMB Enzyme Nomenclature as well as many additional reactions and can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analyses. Rhea is the standard for enzyme and transporter annotation in UniProtKB."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2644,
-        biocontext:RHEA,
-        go.resource:RHEA,
-        n2t:rhea,
-        fairsharing:FAIRsharing.pn1sr5,
-        prefixcommons:rhea,
-        miriam:rhea,
-        re3data:r3d100010891 ;
-    dcat:keyword "biochemistry",
-        "life science",
-        "reaction",
-        "small molecule" ;
-    foaf:homepage "https://www.rhea-db.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "12345"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.rhea-db.org/rhea/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-1216-2969 ;
-    bioregistry.schema:0000023 "RHEA" .
 
 bioregistry:ricecyc a bioregistry.schema:0000001 ;
     rdfs:label "Rice Metabolic Pathways" ;
@@ -13201,34 +12809,6 @@ bioregistry:sepio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 obo:sepio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1048-5019 .
-
-bioregistry:sgd a bioregistry.schema:0000001 ;
-    rdfs:label "Saccharomyces Genome Database" ;
-    dc:description "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2632,
-        biocontext:SGD,
-        go.resource:SGD,
-        n2t:sgd,
-        ncbi.resource:SGD,
-        fairsharing:FAIRsharing.pzvw40,
-        prefixcommons:sgd,
-        miriam:sgd,
-        re3data:r3d100010419,
-        uniprot.resource:DB-0095,
-        wikidata:P3406 ;
-    dcat:keyword "epigenetics",
-        "eukaryotic",
-        "genome",
-        "life science",
-        "nucleotide",
-        "proteomics",
-        "transcriptomics" ;
-    foaf:homepage "https://www.yeastgenome.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "S000002493"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.yeastgenome.org/locus/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((S\\d+$)|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?))$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:sgd.pathways a bioregistry.schema:0000001 ;
     rdfs:label "Saccharomyces genome database pathways" ;
@@ -15352,35 +14932,6 @@ bioregistry:world2dpage a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
-bioregistry:wormbase a bioregistry.schema:0000001 ;
-    rdfs:label "Wormbase Gene ID" ;
-    dc:description "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1805,
-        biocontext:WormBase,
-        biolink:WBVocab,
-        go.resource:WB_REF,
-        n2t:wb,
-        ncbi.resource:WormBase,
-        fairsharing:FAIRsharing.zx1td8,
-        prefixcommons:wormbase,
-        miriam:wb,
-        re3data:r3d100010424,
-        uniprot.resource:DB-0110,
-        wikidata:P3860 ;
-    dcat:keyword "anatomy",
-        "gene",
-        "genome",
-        "life science" ;
-    foaf:homepage "https://www.wormbase.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "WBGene00000001"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.wormbase.org/get?name=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^WB[A-Z][a-z]+\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "WB_REF",
-        "wb",
-        "wormbase" .
-
 bioregistry:wormpep a bioregistry.schema:0000001 ;
     rdfs:label "Wormpep" ;
     dc:description "Wormpep contains the predicted proteins from the Caenorhabditis elegans genome sequencing project."^^xsd:string ;
@@ -15618,35 +15169,6 @@ bioregistry:zea a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/ZEA/2/zea.obo> ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-9316-2919 .
-
-bioregistry:zfin a bioregistry.schema:0000001 ;
-    rdfs:label "Zebrafish Information Network Gene" ;
-    dc:description "ZFIN serves as the zebrafish model organism database. This collection references all zebrafish biological entities in ZFIN."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ZFIN,
-        go.resource:ZFIN,
-        n2t:zfin,
-        ncbi.resource:ZFIN,
-        fairsharing:FAIRsharing.ybxnhg,
-        prefixcommons:zfin,
-        miriam:zfin,
-        re3data:r3d100010421,
-        uniprot.resource:DB-0113,
-        wikidata:P3870 ;
-    dcat:keyword "animal physiology",
-        "developmental biology",
-        "gene",
-        "genetics",
-        "genome",
-        "genomics",
-        "zebrafish" ;
-    foaf:homepage "http://zfin.org"^^xsd:string ;
-    bioregistry.schema:0000005 "ZDB-GENE-041118-11"^^xsd:string ;
-    bioregistry.schema:0000006 "http://zfin.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^ZDB\\-\\w+\\-\\d+\\-\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-5831-7439 ;
-    bioregistry.schema:0000023 "ZFIN" .
 
 bioregistry:zfs a bioregistry.schema:0000001 ;
     rdfs:label "Zebrafish developmental stages ontology" ;
@@ -23101,29 +22623,6 @@ bioregistry:agilent.probe a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^A_\\d+_.+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:agrkb a bioregistry.schema:0000001 ;
-    rdfs:label "Alliance of Genome Resources Knowledge Base" ;
-    dc:description """The [Alliance of Genome Resources](https://www.alliancegenome.org/about-us) creates identifiers for several biological entity types including genes, other sequence features, constructs, morpholinos, TALENs, CRISPRs, variants, alleles, genotypes, strains, environments and experiments, phenotype annotations, expression annotations, disease annotations, interactions, and variant annotations.
-
-The Alliance of Genome Resources was founded by the following Model Organism databases and the Gene Ontology Consortium and distributes high-quality, curated knowledge about several model organisms in a single, unified location:
-
-- [ZFIN](https://zfin.org) - Zebrafish Information Network
-- [WormBase](https://wormbase.org)
-- [MGI](https://www.mgi.org) - Mouse Genome Informatics
-- [RGD](https://rgd.mcw.edu) - Rat Genome Database
-- [SGD](https://www.yeastgenome.org) - Saccharomyces Genome Database
-- [FlyBase](https://flybase.org)
-- [Xenbase](https://www.xenbase.org)"""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:AGRKB ;
-    foaf:homepage "https://www.alliancegenome.org"^^xsd:string ;
-    bioregistry.schema:0000005 "100000000000001"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.alliancegenome.org/accession/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[1-9][0-9]{14}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
-    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
-
 bioregistry:agrovoc a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Vocabulary" ;
     dc:description "AGROVOC is a multilingual and controlled vocabulary designed to cover concepts and terminology under FAO's areas of interest. It is the largest Linked Open Data set about agriculture available for public use and its greatest impact is through providing the access and visibility of data across domains and languages."^^xsd:string ;
@@ -23276,6 +22775,24 @@ bioregistry:atcc a bioregistry.schema:0000001 ;
         "ATCC number",
         "ATCC(dna)",
         "ATCC(in host)" .
+
+bioregistry:bacdive a bioregistry.schema:0000001 ;
+    rdfs:label "Bacterial Diversity Metadatabase" ;
+    dc:description "BacDive—the Bacterial Diversity Metadatabase merges detailed strain-linked information on the different aspects of bacterial and archaeal biodiversity."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch n2t:bacdive,
+        fairsharing:FAIRsharing.aSszvY,
+        miriam:bacdive,
+        re3data:r3d100013060 ;
+    dcat:keyword "biodiversity",
+        "life science",
+        "microbiology" ;
+    foaf:homepage "https://bacdive.dsmz.de/"^^xsd:string ;
+    bioregistry.schema:0000005 "131392"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bacdive.dsmz.de/strain/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7805-0660 .
 
 bioregistry:bactibase a bioregistry.schema:0000001 ;
     rdfs:label "Bactibase" ;
@@ -23567,24 +23084,24 @@ bioregistry:bpdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:brenda.ligand a bioregistry.schema:0000001 ;
-    rdfs:label "BRENDA Ligand" ;
-    dc:description "Information for ligands in the BRENDA database."^^xsd:string ;
+bioregistry:brenda a bioregistry.schema:0000001 ;
+    rdfs:label "BRENDA Enzyme" ;
+    dc:description "BRENDA is a collection of enzyme functional data available to the scientific community. Data on enzyme function are extracted directly from the primary literature The database covers information on classification and nomenclature, reaction and specificity, functional parameters, occurrence, enzyme structure and stability, mutants and enzyme engineering, preparation and isolation, the application of enzymes, and ligand-related data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
-    bioregistry.schema:0000005 "278"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:brenda.ligandgroup a bioregistry.schema:0000001 ;
-    rdfs:label "BRENDA Ligand Group" ;
-    dc:description "Information for ligand groups (chemical classes)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
-    bioregistry.schema:0000005 "18030"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    skos:exactMatch biocontext:BRENDA,
+        go.resource:BRENDA,
+        n2t:brenda,
+        fairsharing:FAIRsharing.etp533,
+        prefixcommons:brenda,
+        miriam:brenda,
+        re3data:r3d100010616 ;
+    dcat:keyword "enzyme",
+        "life science" ;
+    foaf:homepage "https://www.brenda-enzymes.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.brenda-enzymes.org/php/result_flat.php4?ecno=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^((\\d+\\.-\\.-\\.-)|(\\d+\\.\\d+\\.-\\.-)|(\\d+\\.\\d+\\.\\d+\\.-)|(\\d+\\.\\d+\\.\\d+\\.\\d+))$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:eccode ;
     bioregistry.schema:0000012 false .
 
 bioregistry:bs a bioregistry.schema:0000001 ;
@@ -23598,6 +23115,37 @@ bioregistry:bs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/The-Sequence-Ontology/SO-Ontologies/master/Ontology_Files/subsets/biosapiens.obo> ;
     bioregistry.schema:0000012 false .
+
+bioregistry:bto a bioregistry.schema:0000001 ;
+    rdfs:label "BRENDA Tissue Ontology" ;
+    dc:description "The Brenda tissue ontology is a structured controlled vocabulary eastablished to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:BTO,
+        obofoundry:bto,
+        ontobee:BTO,
+        bioportal:BTO,
+        biocontext:BTO,
+        cellosaurus.resource:BTO,
+        go.resource:BTO,
+        n2t:bto,
+        fairsharing:FAIRsharing.1414v8,
+        prefixcommons:bto,
+        miriam:bto,
+        ols:bto,
+        wikidata:P5501 ;
+    dcat:keyword "enzymology",
+        "life science",
+        "obo",
+        "ontology",
+        "tissue" ;
+    foaf:homepage "http://www.brenda-enzymes.org"^^xsd:string ;
+    bioregistry.schema:0000005 "0000590"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/bto/terms?obo_id=BTO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:bto.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9117-7909 ;
+    bioregistry.schema:0000023 "BTO" .
 
 bioregistry:caloha a bioregistry.schema:0000001 ;
     rdfs:label "CALIPHO Group Ontology of Human Anatomy" ;
@@ -24855,6 +24403,20 @@ bioregistry:ecn a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{3}-\\d{3}-\\d$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ecocyc a bioregistry.schema:0000001 ;
+    rdfs:label "EcoCyc" ;
+    dc:description "EcoCyc is a scientific database for the bacterium Escherichia coli K-12 MG1655. The EcoCyc project performs literature-based curation of its genome, and of transcriptional regulation, transporters, and metabolic pathways."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch go.resource:EcoCyc,
+        ncbi.resource:ECOCYC,
+        fairsharing:FAIRsharing.65dmtr,
+        re3data:r3d100011277 ;
+    dcat:keyword "biology" ;
+    foaf:homepage "http://ecocyc.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "AICARTRANSIMPCYCLO-CPLX"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biocyc.org/gene?id=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:ecolexicon a bioregistry.schema:0000001 ;
     rdfs:label "EcoLexicon" ;
     dc:description "EcoLexicon represents the conceptual structure of the specialized domain of the Environment in the form of a visual thesaurus. This thesaurus has been elaborated according to the theoretical premises of Frame-Based Terminology."^^xsd:string ;
@@ -25108,32 +24670,6 @@ bioregistry:epio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 .
-
-bioregistry:eupath a bioregistry.schema:0000001 ;
-    rdfs:label "VEuPathDB ontology" ;
-    dc:description "The VEuPathDB ontology is an application ontology developed to encode our understanding of what data is about in the public resources developed and maintained by the Eukaryotic Pathogen, Host and Vector Genomics Resource (VEuPathDB; https://veupathdb.org). The VEuPathDB ontology was previously named the EuPathDB ontology prior to EuPathDB joining with VectorBase.The ontology was built based on the Ontology of Biomedical Investigations (OBI) with integration of other OBO ontologies such as PATO, OGMS, DO, etc. as needed for coverage. Currently the VEuPath ontology is primarily intended to be used for support of the VEuPathDB sites. Terms with VEuPathDB ontology IDs that are not specific to VEuPathDB will be submitted to OBO Foundry ontologies for subsequent import and replacement of those terms when they are available."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:EUPATH,
-        obofoundry:eupath,
-        ontobee:EUPATH,
-        bioportal:EUPATH,
-        biocontext:EUPATH,
-        fairsharing:FAIRsharing.9rhr9j,
-        ols:eupath ;
-    dcat:keyword "biomedical science",
-        "epidemiology",
-        "functional genomics",
-        "obo",
-        "ontology",
-        "population genetics" ;
-    foaf:homepage "https://github.com/VEuPathDB-ontology/VEuPathDB-ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0010316"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EUPATH_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:eupath.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 .
 
 bioregistry:evm a bioregistry.schema:0000001 ;
     rdfs:label "eVOC mouse development stage" ;
@@ -25392,27 +24928,6 @@ bioregistry:gaz a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
-
-bioregistry:gbif a bioregistry.schema:0000001 ;
-    rdfs:label "Global Biodiversity Information Facility" ;
-    dc:description """Database of living organisms, taxonomic. 
- The GBIF—the Global Biodiversity Information Facility—is international network and data infrastructure funded by the world's governments and aimed at providing anyone, anywhere, open access to data about all types of life on Earth."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.zv11j3,
-        re3data:r3d100011343,
-        wikidata:P846 ;
-    dcat:keyword "biodiversity",
-        "bioinformatics",
-        "marine biology",
-        "metagenomics",
-        "natural history",
-        "natural science",
-        "taxonomy" ;
-    foaf:homepage "https://www.gbif.org/species"^^xsd:string ;
-    bioregistry.schema:0000005 "4238"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.gbif.org/species/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:gc a bioregistry.schema:0000001 ;
     rdfs:label "Genetic Code" ;
@@ -25796,37 +25311,6 @@ bioregistry:hcpcs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Cynthia Hake" ;
             foaf:mbox "Cynthia.Hake@cms.hhs.gov" ] .
-
-bioregistry:hgnc a bioregistry.schema:0000001 ;
-    rdfs:label "HUGO Gene Nomenclature Committee" ;
-    dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:HGNC,
-        edam.data:2298,
-        oid:2.16.840.1.113883.6.281,
-        bioportal:HGNC,
-        biocontext:HGNC,
-        cellosaurus.resource:HGNC,
-        go.resource:HGNC,
-        n2t:hgnc,
-        ncbi.resource:HGNC,
-        fairsharing:FAIRsharing.amcv1e,
-        prefixcommons:hgnc,
-        miriam:hgnc,
-        uniprot.resource:DB-0042,
-        wikidata:P354 ;
-    dcat:keyword "classification",
-        "gene",
-        "life science",
-        "ontology" ;
-    foaf:homepage "http://www.genenames.org"^^xsd:string ;
-    bioregistry.schema:0000005 "16793"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Dr. Elspeth Bruford" ;
-            foaf:mbox "hgnc@genenames.org" ] .
 
 bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     rdfs:label "HGNC Gene Group" ;
@@ -26233,6 +25717,40 @@ bioregistry:insdc.sra a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/sra/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[SED]R[APRSXZ]\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:interpro a bioregistry.schema:0000001 ;
+    rdfs:label "InterPro" ;
+    dc:description "InterPro is a database of protein families, domains and functional sites in which identifiable features found in known proteins can be applied to unknown protein sequences."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1133,
+        obofoundry:ipr,
+        biocontext:IPR,
+        biolink:interpro,
+        go.resource:InterPro,
+        n2t:interpro,
+        ncbi.resource:InterPro,
+        fairsharing:FAIRsharing.pda11d,
+        prefixcommons:interpro,
+        miriam:interpro,
+        re3data:r3d100010798,
+        uniprot.resource:DB-0052,
+        wikidata:P2926 ;
+    dcat:keyword "bioinformatics",
+        "biology",
+        "domain",
+        "obo",
+        "ontology",
+        "protein" ;
+    foaf:homepage "http://www.ebi.ac.uk/interpro/index.html"^^xsd:string ;
+    bioregistry.schema:0000005 "IPR016380"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/interpro/entry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^IPR\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "InterPro Help" ;
+            foaf:mbox "interhelp@ebi.ac.uk" ] ;
+    bioregistry.schema:0000023 "IP",
+        "IPR",
+        "InterPro" .
 
 bioregistry:iro a bioregistry.schema:0000001 ;
     rdfs:label "Insect Resistance Ontology" ;
@@ -26763,6 +26281,35 @@ bioregistry:mfmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-1572-1316 .
 
+bioregistry:mgi a bioregistry.schema:0000001 ;
+    rdfs:label "Mouse Genome Informatics" ;
+    dc:description "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:3274,
+        biocontext:MGI,
+        cellosaurus.resource:MGI,
+        go.resource:MGI,
+        n2t:mgi,
+        ncbi.resource:MGI,
+        fairsharing:FAIRsharing.fcwyhz,
+        prefixcommons:mgi,
+        miriam:mgi,
+        re3data:r3d100010266,
+        uniprot.resource:DB-0060,
+        wikidata:P671 ;
+    dcat:keyword "expression",
+        "life science",
+        "ontology and terminology",
+        "phenotype",
+        "sequence" ;
+    foaf:homepage "http://www.informatics.jax.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "6017782"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.informatics.jax.org/accession/MGI:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "MGD",
+        "MGI" .
+
 bioregistry:mgnify.analysis a bioregistry.schema:0000001 ;
     rdfs:label "MGnify Analysis" ;
     dc:description "Analyses of microbiome data within MGnify"^^xsd:string ;
@@ -26850,7 +26397,7 @@ bioregistry:mirte a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mixs a bioregistry.schema:0000001 ;
-    rdfs:label "GSC Minimal Information about any Sequence" ;
+    rdfs:label "Minimal Information about any Sequence" ;
     dc:description "The GSC family of minimum information standards (checklists) – Minimum Information about any (x) Sequence (MIxS). MIxS identifiers are for terms describing an aspect of an environmental sample."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MIXS,
@@ -26858,8 +26405,9 @@ bioregistry:mixs a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.9aa0zp ;
     dcat:keyword "ontology" ;
     foaf:homepage "https://gensc.org/mixs/"^^xsd:string ;
-    bioregistry.schema:0000005 "ph_regm"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000005 "0001056"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/mixs/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/MIXS/5/mixs.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8815-0078 ;
@@ -27513,6 +27061,56 @@ bioregistry:openalex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0003-1613-5981 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
+bioregistry:orphanet a bioregistry.schema:0000001 ;
+    rdfs:label "Orphanet" ;
+    dc:description "Orphanet is a reference portal for information on rare diseases and orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of patients with rare diseases."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:Orphanet,
+        biolink:orphanet,
+        n2t:orphanet,
+        fairsharing:FAIRsharing.6bd5k6,
+        prefixcommons:orphanet,
+        miriam:orphanet,
+        uniprot.resource:DB-0068,
+        wikidata:P1550 ;
+    dcat:keyword "disease",
+        "drug",
+        "human",
+        "life science",
+        "ontology and terminology" ;
+    foaf:homepage "http://www.orpha.net/consor/"^^xsd:string ;
+    bioregistry.schema:0000005 "85163"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "ORPHA" .
+
+bioregistry:orphanet.ordo a bioregistry.schema:0000001 ;
+    rdfs:label "Orphanet Rare Disease Ontology" ;
+    dc:description """The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\r
+It integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10)."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:ordo,
+        bioportal:ORDO,
+        biocontext:ORPHANET.ORDO,
+        biolink:ORPHA,
+        cellosaurus.resource:ORDO,
+        n2t:orphanet.ordo,
+        fairsharing:FAIRsharing.pbbnwa,
+        miriam:orphanet.ordo,
+        ols:ordo ;
+    dcat:keyword "biomedical science",
+        "health science",
+        "ontology" ;
+    foaf:homepage "https://www.ebi.ac.uk/ols/ontologies/ordo"^^xsd:string ;
+    bioregistry.schema:0000005 "C023"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.orpha.net/ORDO/Orphanet_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^C?\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 <http://www.orphadata.org/data/ORDO/ordo_orphanet.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4308-6337 ;
+    bioregistry.schema:0000023 "ordo" .
+
 bioregistry:otol a bioregistry.schema:0000001 ;
     rdfs:label "Open Tree of Life" ;
     dc:description "Identifier for an entity in open tree of life"^^xsd:string ;
@@ -27546,73 +27144,6 @@ bioregistry:ovae a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 obo:ovae.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
-
-bioregistry:panther.family a bioregistry.schema:0000001 ;
-    rdfs:label "Protein ANalysis THrough Evolutionary Relationships Classification System" ;
-    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. This collection references groups of genes that have been organised as families."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:panther ;
-    skos:exactMatch biocontext:PANTHER.FAMILY,
-        biolink:PANTHER.FAMILY,
-        go.resource:PANTHER,
-        n2t:panther.family,
-        prefixcommons:panther,
-        miriam:panther.family,
-        uniprot.resource:DB-0069 ;
-    dcat:keyword "classification",
-        "gene",
-        "ontology",
-        "pathway",
-        "protein" ;
-    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PTHR12345"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantherdb.org/panther/family.do?clsAccession=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PTHR\\d{5}(\\:SF\\d{1,3})?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:panther.node a bioregistry.schema:0000001 ;
-    rdfs:label "PANTHER Node" ;
-    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. PANTHER tree is a key element of the PANTHER System to represent ‘all’ of the evolutionary events in the gene family. PANTHER nodes represent the evolutionary events, either speciation or duplication, within the tree. PANTHER is maintaining stable identifier for these nodes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:panther ;
-    skos:exactMatch biocontext:PANTHER.NODE,
-        n2t:panther.node,
-        miriam:panther.node ;
-    foaf:homepage "http://pantree.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PTN000000026"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantree.org/node/annotationNode.jsp?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PTN\\d{9}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:panther.pathway a bioregistry.schema:0000001 ;
-    rdfs:label "PANTHER Pathway" ;
-    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway collection references pathway information, primarily for signaling pathways, each with subfamilies and protein sequences mapped to individual pathway components."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:panther ;
-    skos:exactMatch edam.data:1161,
-        biocontext:PANTHER.PATHWAY,
-        n2t:panther.pathway,
-        miriam:panther.pathway ;
-    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "P00024"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^P\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:panther.pthcmp a bioregistry.schema:0000001 ;
-    rdfs:label "PANTHER Pathway Component" ;
-    dc:description """The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway Component collection references specific classes of molecules that play the same mechanistic role within a pathway, across species. Pathway\r
-components may be proteins, genes/DNA, RNA, or simple molecules. Where the identified component is a protein, DNA, or transcribed RNA, it is associated with protein sequences in the PANTHER protein family trees through manual curation."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:panther ;
-    skos:exactMatch biocontext:PANTHER.PTHCMP,
-        n2t:panther.pthcmp,
-        miriam:panther.pthcmp ;
-    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "P00266"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(G|P|U|C|S)\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:pathbank a bioregistry.schema:0000001 ;
     rdfs:label "PathBank" ;
@@ -27825,25 +27356,58 @@ bioregistry:pharmacodb.tissue a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
-    rdfs:label "Pharmacogenetics and Pharmacogenomics Knowledge Base" ;
+bioregistry:pharmgkb.disease a bioregistry.schema:0000001 ;
+    rdfs:label "PharmGKB Disease" ;
     dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:PHARMGKB,
-        biocontext:PHARMGKB.GENE,
-        go.resource:PharmGKB,
-        n2t:pharmgkb.gene,
-        prefixcommons:pharmgkb.gene,
-        miriam:pharmgkb.gene,
-        uniprot.resource:DB-0074,
+    skos:exactMatch edam.data:2651,
+        biocontext:PHARMGKB.DISEASE,
+        n2t:pharmgkb.disease,
+        prefixcommons:pharmgkb.disease,
+        miriam:pharmgkb.disease,
         wikidata:P7001 ;
-    dcat:keyword "gene",
-        "ontology",
+    dcat:keyword "pharmacogenomics" ;
+    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PA447218"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pharmgkb.org/disease/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pharmgkb.drug a bioregistry.schema:0000001 ;
+    rdfs:label "PharmGKB Drug" ;
+    dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2652,
+        biocontext:PHARMGKB.DRUG,
+        n2t:pharmgkb.drug,
+        prefixcommons:pharmgkb.drug,
+        miriam:pharmgkb.drug,
+        wikidata:P7001 ;
+    dcat:keyword "drug",
         "pharmacogenomics" ;
     foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PA131"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pharmgkb.org/gene/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PA\\w+$"^^xsd:string ;
+    bioregistry.schema:0000005 "PA448710"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pharmgkb.org/drug/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pharmgkb.pathways a bioregistry.schema:0000001 ;
+    rdfs:label "PharmGKB" ;
+    dc:description """The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \r
+PharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2650,
+        biocontext:PHARMGKB.PATHWAYS,
+        n2t:pharmgkb.pathways,
+        prefixcommons:pharmgkb.pathways,
+        miriam:pharmgkb.pathways,
+        wikidata:P7001 ;
+    dcat:keyword "pathway",
+        "pharmacogenomics" ;
+    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PA146123006"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pharmgkb.org/pathway/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:phenx a bioregistry.schema:0000001 ;
@@ -27921,6 +27485,29 @@ bioregistry:pigqtldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:pombase a bioregistry.schema:0000001 ;
+    rdfs:label "PomBase" ;
+    dc:description "PomBase is a model organism database established to provide access to molecular data and biological information for the fission yeast Schizosaccharomyces pombe. It encompasses annotation of genomic sequence and features, comprehensive manual literature curation and genome-wide data sets."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:PomBase,
+        biolink:PomBase,
+        go.resource:PomBase,
+        n2t:pombase,
+        ncbi.resource:PomBase,
+        fairsharing:FAIRsharing.8jsya3,
+        prefixcommons:pombase,
+        miriam:pombase,
+        re3data:r3d100011478,
+        uniprot.resource:DB-0031,
+        wikidata:P6245 ;
+    dcat:keyword "life science" ;
+    foaf:homepage "https://www.pombase.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "SPCC13B11.01"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.pombase.org/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^S\\w+(\\.)?\\w+(\\.)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "PomBase" .
 
 bioregistry:ppdb a bioregistry.schema:0000001 ;
     rdfs:label "Pesticide Properties DataBase" ;
@@ -28115,6 +27702,19 @@ bioregistry:publons.researcher a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:px a bioregistry.schema:0000001 ;
+    rdfs:label "ProteomeXchange" ;
+    dc:description "The ProteomeXchange provides a single point of submission of Mass Spectrometry (MS) proteomics data for the main existing proteomics repositories, and encourages the data exchange between them for optimal data dissemination."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:PX,
+        n2t:px,
+        miriam:px ;
+    foaf:homepage "http://www.proteomexchange.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PXD000500"^^xsd:string ;
+    bioregistry.schema:0000006 "http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(R)?PXD\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:rcb a bioregistry.schema:0000001 ;
     rdfs:label "RIKEN Bioresource Center Cell Bank" ;
     dc:description "Collection of many cell lines derived from human and other various animals, preserved by the RIKEN BioResource Research Center."^^xsd:string ;
@@ -28137,6 +27737,30 @@ bioregistry:rdo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/disease/RDO.owl> ;
     bioregistry.schema:0000012 false .
+
+bioregistry:reactome a bioregistry.schema:0000001 ;
+    rdfs:label "Reactome" ;
+    dc:description "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1155,
+        biocontext:REACTOME,
+        go.resource:Reactome,
+        n2t:reactome,
+        prefixcommons:reactome,
+        miriam:reactome,
+        cheminf:000411,
+        re3data:r3d100010861,
+        wikidata:P3937 ;
+    dcat:keyword "human",
+        "pathway",
+        "reaction" ;
+    foaf:homepage "https://www.reactome.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "R-BTA-418592"^^xsd:string ;
+    bioregistry.schema:0000006 "https://reactome.org/content/detail/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "RE",
+        "REACT" .
 
 bioregistry:reaxys a bioregistry.schema:0000001 ;
     rdfs:label "Reaxys" ;
@@ -28265,6 +27889,70 @@ bioregistry:rfc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://tools.ietf.org/rfc/rfc$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:rgd a bioregistry.schema:0000001 ;
+    rdfs:label "Rat Genome Database" ;
+    dc:description "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:RGD,
+        edam.data:2620,
+        bioportal:RGD,
+        biocontext:RGD,
+        cellosaurus.resource:RGD,
+        go.resource:RGD,
+        n2t:rgd,
+        ncbi.resource:RGD,
+        fairsharing:FAIRsharing.pfg82t,
+        prefixcommons:rgd,
+        miriam:rgd,
+        re3data:r3d100010417,
+        uniprot.resource:DB-0091,
+        wikidata:P3853 ;
+    dcat:keyword "biomedical science",
+        "comparative genomics",
+        "dna",
+        "gene",
+        "genome",
+        "genomics",
+        "molecular medicine",
+        "ontology",
+        "phenomics",
+        "quantitative genetics",
+        "translational medicine",
+        "veterinary medicine" ;
+    foaf:homepage "http://rgd.mcw.edu/"^^xsd:string ;
+    bioregistry.schema:0000005 "7499841"^^xsd:string ;
+    bioregistry.schema:0000006 "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4,}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6443-9376 ;
+    bioregistry.schema:0000023 "RGD" .
+
+bioregistry:rhea a bioregistry.schema:0000001 ;
+    rdfs:label "Rhea, the Annotated Reactions Database" ;
+    dc:description """ Rhea is an expert-curated knowledgebase of chemical and transport reactions of biological interest. Enzyme-catalyzed and spontaneously occurring reactions are curated from peer-reviewed literature and represented in a computationally tractable manner by using the ChEBI (Chemical Entities of Biological Interest) ontology to describe reaction participants.
+
+Rhea covers the reactions described by the IUBMB Enzyme Nomenclature as well as many additional reactions and can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analyses. Rhea is the standard for enzyme and transporter annotation in UniProtKB."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2644,
+        biocontext:RHEA,
+        go.resource:RHEA,
+        n2t:rhea,
+        fairsharing:FAIRsharing.pn1sr5,
+        prefixcommons:rhea,
+        miriam:rhea,
+        re3data:r3d100010891 ;
+    dcat:keyword "biochemistry",
+        "life science",
+        "reaction",
+        "small molecule" ;
+    foaf:homepage "https://www.rhea-db.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "12345"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.rhea-db.org/rhea/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1216-2969 ;
+    bioregistry.schema:0000023 "RHEA" .
 
 bioregistry:ribocentre a bioregistry.schema:0000001 ;
     rdfs:label "Ribocentre" ;
@@ -28414,6 +28102,34 @@ bioregistry:sfam a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "F0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sfam/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^F\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:sgd a bioregistry.schema:0000001 ;
+    rdfs:label "Saccharomyces Genome Database" ;
+    dc:description "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2632,
+        biocontext:SGD,
+        go.resource:SGD,
+        n2t:sgd,
+        ncbi.resource:SGD,
+        fairsharing:FAIRsharing.pzvw40,
+        prefixcommons:sgd,
+        miriam:sgd,
+        re3data:r3d100010419,
+        uniprot.resource:DB-0095,
+        wikidata:P3406 ;
+    dcat:keyword "epigenetics",
+        "eukaryotic",
+        "genome",
+        "life science",
+        "nucleotide",
+        "proteomics",
+        "transcriptomics" ;
+    foaf:homepage "https://www.yeastgenome.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "S000002493"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.yeastgenome.org/locus/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^((S\\d+$)|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?))$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sheepqtldb a bioregistry.schema:0000001 ;
@@ -28791,18 +28507,6 @@ bioregistry:ubprop a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000023 "UBPROP",
         "UBREL" .
-
-bioregistry:ucsc a bioregistry.schema:0000001 ;
-    rdfs:label "UCSC Genome Browser" ;
-    dc:description "The UCSC Genome Browser is an on-line, and downloadable, genome browser hosted by the University of California, Santa Cruz (UCSC).[2][3][4] It is an interactive website offering access to genome sequence data from a variety of vertebrate and invertebrate species and major model organisms, integrated with a large collection of aligned annotations."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UCSC,
-        uniprot.resource:DB-0139,
-        wikidata:P2576 ;
-    foaf:homepage "https://genome.ucsc.edu/"^^xsd:string ;
-    bioregistry.schema:0000005 "uc001rvw.5"^^xsd:string ;
-    bioregistry.schema:0000006 "ftp://hgdownload.cse.ucsc.edu/goldenPath/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:umbbd.enzyme a bioregistry.schema:0000001 ;
     rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
@@ -29236,6 +28940,35 @@ bioregistry:wikidata a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "WD_Entity",
         "wd" .
 
+bioregistry:wormbase a bioregistry.schema:0000001 ;
+    rdfs:label "Wormbase Gene ID" ;
+    dc:description "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1805,
+        biocontext:WormBase,
+        biolink:WBVocab,
+        go.resource:WB_REF,
+        n2t:wb,
+        ncbi.resource:WormBase,
+        fairsharing:FAIRsharing.zx1td8,
+        prefixcommons:wormbase,
+        miriam:wb,
+        re3data:r3d100010424,
+        uniprot.resource:DB-0110,
+        wikidata:P3860 ;
+    dcat:keyword "anatomy",
+        "gene",
+        "genome",
+        "life science" ;
+    foaf:homepage "https://www.wormbase.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "WBGene00000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.wormbase.org/get?name=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^WB[A-Z][a-z]+\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "WB_REF",
+        "wb",
+        "wormbase" .
+
 bioregistry:wwf.ecoregion a bioregistry.schema:0000001 ;
     rdfs:label "World Wildlife Fund Ecoregion" ;
     dc:description "WWF ecoregions are large unit of land or water containing a geographically distinct assemblage of species, natural communities, and environmental conditions."^^xsd:string ;
@@ -29382,6 +29115,35 @@ bioregistry:zfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2244-7917 ;
     bioregistry.schema:0000023 "ZFA_RETIRED" .
+
+bioregistry:zfin a bioregistry.schema:0000001 ;
+    rdfs:label "Zebrafish Information Network Gene" ;
+    dc:description "ZFIN serves as the zebrafish model organism database. This collection references all zebrafish biological entities in ZFIN."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:ZFIN,
+        go.resource:ZFIN,
+        n2t:zfin,
+        ncbi.resource:ZFIN,
+        fairsharing:FAIRsharing.ybxnhg,
+        prefixcommons:zfin,
+        miriam:zfin,
+        re3data:r3d100010421,
+        uniprot.resource:DB-0113,
+        wikidata:P3870 ;
+    dcat:keyword "animal physiology",
+        "developmental biology",
+        "gene",
+        "genetics",
+        "genome",
+        "genomics",
+        "zebrafish" ;
+    foaf:homepage "http://zfin.org"^^xsd:string ;
+    bioregistry.schema:0000005 "ZDB-GENE-041118-11"^^xsd:string ;
+    bioregistry.schema:0000006 "http://zfin.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^ZDB\\-\\w+\\-\\d+\\-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-5831-7439 ;
+    bioregistry.schema:0000023 "ZFIN" .
 
 fairsharing:FAIRsharing.0a2576 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -34712,6 +34474,29 @@ bioregistry:ac a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/activitystreams#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:agrkb a bioregistry.schema:0000001 ;
+    rdfs:label "Alliance of Genome Resources Knowledge Base" ;
+    dc:description """The [Alliance of Genome Resources](https://www.alliancegenome.org/about-us) creates identifiers for several biological entity types including genes, other sequence features, constructs, morpholinos, TALENs, CRISPRs, variants, alleles, genotypes, strains, environments and experiments, phenotype annotations, expression annotations, disease annotations, interactions, and variant annotations.
+
+The Alliance of Genome Resources was founded by the following Model Organism databases and the Gene Ontology Consortium and distributes high-quality, curated knowledge about several model organisms in a single, unified location:
+
+- [ZFIN](https://zfin.org) - Zebrafish Information Network
+- [WormBase](https://wormbase.org)
+- [MGI](https://www.mgi.org) - Mouse Genome Informatics
+- [RGD](https://rgd.mcw.edu) - Rat Genome Database
+- [SGD](https://www.yeastgenome.org) - Saccharomyces Genome Database
+- [FlyBase](https://flybase.org)
+- [Xenbase](https://www.xenbase.org)"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biolink:AGRKB ;
+    foaf:homepage "https://www.alliancegenome.org"^^xsd:string ;
+    bioregistry.schema:0000005 "100000000000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.alliancegenome.org/accession/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9][0-9]{14}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:bibo a bioregistry.schema:0000001 ;
     rdfs:label "The Bibliographic Ontology" ;
     dc:description "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web."^^xsd:string ;
@@ -34759,6 +34544,26 @@ bioregistry:biro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/spar/biro/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0530-4305 .
+
+bioregistry:brenda.ligand a bioregistry.schema:0000001 ;
+    rdfs:label "BRENDA Ligand" ;
+    dc:description "Information for ligands in the BRENDA database."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
+    bioregistry.schema:0000005 "278"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:brenda.ligandgroup a bioregistry.schema:0000001 ;
+    rdfs:label "BRENDA Ligand Group" ;
+    dc:description "Information for ligand groups (chemical classes)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
+    bioregistry.schema:0000005 "18030"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:c4o a bioregistry.schema:0000001 ;
     rdfs:label "Citation Counting and Context Characterisation Ontology" ;
@@ -34819,6 +34624,91 @@ bioregistry:cito a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/spar/cito/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0530-4305 .
+
+bioregistry:civic.aid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Assertion" ;
+    dc:description "A CIViC assertion classifies the clinical significance of a variant-disease relationship under recognized guidelines. The CIViC Assertion (AID) summarizes a collection of Evidence Items (EIDs) that covers predictive/therapeutic, diagnostic, prognostic or predisposing clinical information for a variant in a specific cancer context. CIViC currently has two main types of Assertions: those based on variants of primarily somatic origin (predictive/therapeutic, prognostic, and diagnostic) and those based on variants of primarily germline origin (predisposing). When the number and quality of Predictive, Prognostic, Diagnostic or Predisposing Evidence Items (EIDs) in CIViC sufficiently cover what is known for a particular variant and cancer type, then a corresponding assertion be created in CIViC."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.aid ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "3"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/assertions/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:civic.did a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Disease" ;
+    dc:description "Within the CIViC database, the disease should be the cancer or cancer subtype that is a result of the described variant. The disease selected should be as specific as possible should reflect the disease type used in the source that supports the evidence statement."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.did ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "46"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/diseases/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:civic.eid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Evidence" ;
+    dc:description "Evidence Items are the central building block of the Clinical Interpretation of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece of information that has been manually curated from trustable medical literature about a Variant or genomic ‘event’ that has implications in cancer Predisposition, Diagnosis (aka molecular classification), Prognosis, Predictive response to therapy, Oncogenicity or protein Function. For example, an Evidence Item might describe a line of evidence supporting the notion that tumors with a somatic BRAF V600 mutation generally respond well to the drug dabrafenib. A Variant may be a single nucleotide substitution, a small insertion or deletion, an RNA gene fusion, a chromosomal rearrangement, an RNA expression pattern (e.g. over-expression), etc. Each clinical Evidence statement corresponds to a single citable Source (a publication or conference abstract)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.eid ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1199"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/evidence/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:civic.gid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Gene" ;
+    dc:description "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene’s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.gid ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "272"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:civic.sid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Source" ;
+    dc:description "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.sid ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "62"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/sources/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:civic.tid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Therapy" ;
+    dc:description "Therapies (often drugs) in CIViC are associated with Predictive Evidence Types, which describe sensitivity, resistance or adverse response to therapies when a given variant is present. The Therapy field may also be used to describe more general treatment types and regimes, such as FOLFOX or Radiation, as long as the literature derived Evidence Item makes a scientific association between the Therapy (treatment type) and the presence of the variant."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.tid ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "14"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/drugs/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:civic.vid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC variant ID" ;
+    dc:description "CIViC variants are usually genomic alterations, including single nucleotide variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s such as amplification or deletion), structural variants (SVs such as translocations and inversions), and other events that differ from the “normal” genome. In some cases a CIViC variant may represent events of the transcriptome or proteome. For example, ‘expression’ or ‘over-expression’ is a valid variant. Regardless of the variant, it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional relevance that is clinical in nature to be entered in CIViC. i.e. There must be some rationale for why curation of this variant could ultimately aid clinical decision making."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:civic ;
+    skos:exactMatch miriam:civic.vid,
+        wikidata:P3329 ;
+    foaf:homepage "https://civicdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "12"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/variant/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:clinvar a bioregistry.schema:0000001 ;
     rdfs:label "ClinVar Variation" ;
@@ -35191,39 +35081,6 @@ bioregistry:dso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8600-949X .
 
-bioregistry:eccode a bioregistry.schema:0000001 ;
-    rdfs:label "Enzyme Commission Code" ;
-    dc:description "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1011,
-        bartoc:671,
-        biocontext:EC-CODE,
-        go.resource:EC,
-        n2t:ec-code,
-        fairsharing:FAIRsharing.rfLD2u,
-        prefixcommons:intenz,
-        miriam:ec-code,
-        re3data:r3d100010803,
-        uniprot.resource:DB-0024,
-        wikidata:P591 ;
-    dcat:keyword "biochemistry",
-        "classification",
-        "enzyme",
-        "enzymology" ;
-    foaf:homepage "https://www.enzyme-database.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0003-3889-2879 ;
-    bioregistry.schema:0000023 "EC",
-        "EC number",
-        "EC-CODE",
-        "ECCODE",
-        "EC_CODE",
-        "ec-code",
-        "intenz" .
-
 bioregistry:ecmdb a bioregistry.schema:0000001 ;
     rdfs:label "E. coli Metabolite Database" ;
     dc:description "The ECMDB is an expertly curated database containing extensive metabolomic data and metabolic pathway diagrams about Escherichia coli (strain K12, MG1655). This database includes significant quantities of “original” data compiled by members of the Wishart laboratory as well as additional material derived from hundreds of textbooks, scientific journals, metabolic reconstructions and other electronic databases. Each metabolite is linked to more than 100 data fields describing the compound, its ontology, physical properties, reactions, pathways, references, external links and associated proteins or enzymes."^^xsd:string ;
@@ -35312,33 +35169,31 @@ bioregistry:empiar a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:ena.embl a bioregistry.schema:0000001 ;
-    rdfs:label "European Nucleotide Archive" ;
-    dc:description "The European Nucleotide Archive (ENA) captures and presents information relating to experimental workflows that are based around nucleotide sequencing. ENA is made up of a number of distinct databases that includes EMBL-Bank, the Sequence Read Archive (SRA) and the Trace Archive each with their own data formats and standards. This collection references Embl-Bank identifiers."^^xsd:string ;
+bioregistry:eupath a bioregistry.schema:0000001 ;
+    rdfs:label "VEuPathDB ontology" ;
+    dc:description "The VEuPathDB ontology is an application ontology developed to encode our understanding of what data is about in the public resources developed and maintained by the Eukaryotic Pathogen, Host and Vector Genomics Resource (VEuPathDB; https://veupathdb.org). The VEuPathDB ontology was previously named the EuPathDB ontology prior to EuPathDB joining with VectorBase.The ontology was built based on the Ontology of Biomedical Investigations (OBI) with integration of other OBO ontologies such as PATO, OGMS, DO, etc. as needed for coverage. Currently the VEuPath ontology is primarily intended to be used for support of the VEuPathDB sites. Terms with VEuPathDB ontology IDs that are not specific to VEuPathDB will be submitted to OBO Foundry ontologies for subsequent import and replacement of those terms when they are available."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ENA.EMBL,
-        go.resource:ENA,
-        n2t:ena.embl,
-        fairsharing:FAIRsharing.dj8nt8,
-        prefixcommons:ena,
-        miriam:ena.embl,
-        re3data:r3d100010527,
-        uniprot.resource:DB-0022 ;
-    dcat:keyword "biodiversity",
-        "bioinformatics",
-        "data management",
-        "dna",
+    skos:exactMatch aberowl:EUPATH,
+        obofoundry:eupath,
+        ontobee:EUPATH,
+        bioportal:EUPATH,
+        biocontext:EUPATH,
+        fairsharing:FAIRsharing.9rhr9j,
+        ols:eupath ;
+    dcat:keyword "biomedical science",
+        "epidemiology",
         "functional genomics",
-        "genomics",
-        "metagenomics",
-        "transcriptomics" ;
-    foaf:homepage "https://www.ebi.ac.uk/ena/"^^xsd:string ;
-    bioregistry.schema:0000005 "BN000065"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ena/browser/view/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z]+[0-9]+(\\.\\d+)?$"^^xsd:string ;
+        "obo",
+        "ontology",
+        "population genetics" ;
+    foaf:homepage "https://github.com/VEuPathDB-ontology/VEuPathDB-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0010316"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EUPATH_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:eupath.owl ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-7954-7057 ;
-    bioregistry.schema:0000023 "ena" .
+    bioregistry.schema:0000018 bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 .
 
 bioregistry:eurofir a bioregistry.schema:0000001 ;
     rdfs:label "European Food Information Resource Network" ;
@@ -35510,6 +35365,27 @@ bioregistry:frapo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0530-4305 .
 
+bioregistry:gbif a bioregistry.schema:0000001 ;
+    rdfs:label "Global Biodiversity Information Facility" ;
+    dc:description """Database of living organisms, taxonomic. 
+ The GBIF—the Global Biodiversity Information Facility—is international network and data infrastructure funded by the world's governments and aimed at providing anyone, anywhere, open access to data about all types of life on Earth."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.zv11j3,
+        re3data:r3d100011343,
+        wikidata:P846 ;
+    dcat:keyword "biodiversity",
+        "bioinformatics",
+        "marine biology",
+        "metagenomics",
+        "natural history",
+        "natural science",
+        "taxonomy" ;
+    foaf:homepage "https://www.gbif.org/species"^^xsd:string ;
+    bioregistry.schema:0000005 "4238"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.gbif.org/species/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:gsso a bioregistry.schema:0000001 ;
     rdfs:label "Gender, Sex, and Sexual Orientation Ontology" ;
     dc:description "The Gender, Sex, and Sexual Orientation (GSSO) ontology is an interdisciplinary ontology connecting terms from biology, medicine, psychology, sociology, and gender studies, aiming to bridge gaps between linguistic variations inside and outside of the health care environment. A large focus of the ontology is its consideration of LGBTQIA+ terminology."^^xsd:string ;
@@ -35564,6 +35440,37 @@ bioregistry:hc.npn a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq.do?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:hgnc a bioregistry.schema:0000001 ;
+    rdfs:label "HUGO Gene Nomenclature Committee" ;
+    dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:HGNC,
+        edam.data:2298,
+        oid:2.16.840.1.113883.6.281,
+        bioportal:HGNC,
+        biocontext:HGNC,
+        cellosaurus.resource:HGNC,
+        go.resource:HGNC,
+        n2t:hgnc,
+        ncbi.resource:HGNC,
+        fairsharing:FAIRsharing.amcv1e,
+        prefixcommons:hgnc,
+        miriam:hgnc,
+        uniprot.resource:DB-0042,
+        wikidata:P354 ;
+    dcat:keyword "classification",
+        "gene",
+        "life science",
+        "ontology" ;
+    foaf:homepage "http://www.genenames.org"^^xsd:string ;
+    bioregistry.schema:0000005 "16793"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Dr. Elspeth Bruford" ;
+            foaf:mbox "hgnc@genenames.org" ] .
 
 bioregistry:hl7.v2codesystem a bioregistry.schema:0000001 ;
     rdfs:label "HL7 V2 Code Systems" ;
@@ -36572,6 +36479,73 @@ bioregistry:panorama a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9575-0255 .
 
+bioregistry:panther.family a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Family" ;
+    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. This collection references groups of genes that have been organised as families."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch biocontext:PANTHER.FAMILY,
+        biolink:PANTHER.FAMILY,
+        go.resource:PANTHER,
+        n2t:panther.family,
+        prefixcommons:panther,
+        miriam:panther.family,
+        uniprot.resource:DB-0069 ;
+    dcat:keyword "classification",
+        "gene",
+        "ontology",
+        "pathway",
+        "protein" ;
+    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PTHR12345"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantherdb.org/panther/family.do?clsAccession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PTHR\\d{5}(\\:SF\\d{1,3})?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:panther.node a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Node" ;
+    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. PANTHER tree is a key element of the PANTHER System to represent ‘all’ of the evolutionary events in the gene family. PANTHER nodes represent the evolutionary events, either speciation or duplication, within the tree. PANTHER is maintaining stable identifier for these nodes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch biocontext:PANTHER.NODE,
+        n2t:panther.node,
+        miriam:panther.node ;
+    foaf:homepage "http://pantree.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PTN000000026"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantree.org/node/annotationNode.jsp?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PTN\\d{9}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:panther.pathway a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Pathway" ;
+    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway collection references pathway information, primarily for signaling pathways, each with subfamilies and protein sequences mapped to individual pathway components."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch edam.data:1161,
+        biocontext:PANTHER.PATHWAY,
+        n2t:panther.pathway,
+        miriam:panther.pathway ;
+    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "P00024"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^P\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:panther.pthcmp a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Pathway Component" ;
+    dc:description """The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway Component collection references specific classes of molecules that play the same mechanistic role within a pathway, across species. Pathway\r
+components may be proteins, genes/DNA, RNA, or simple molecules. Where the identified component is a protein, DNA, or transcribed RNA, it is associated with protein sequences in the PANTHER protein family trees through manual curation."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch biocontext:PANTHER.PTHCMP,
+        n2t:panther.pthcmp,
+        miriam:panther.pthcmp ;
+    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "P00266"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(G|P|U|C|S)\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:pav a bioregistry.schema:0000001 ;
     rdfs:label "Provenance, Authoring, and Versioning Vocabulary" ;
     dc:description "PAV is a lightweight ontology for tracking provenance, authorship, and versioning. It specializes the W3C provenance ontology PROV-O in order to describe authorship, curation and digital creation of online resources."^^xsd:string ;
@@ -36639,31 +36613,26 @@ bioregistry:pesticides a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.alanwood.net/pesticides/$1.html"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pmc a bioregistry.schema:0000001 ;
-    rdfs:label "PMCID" ;
-    dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
+bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
+    rdfs:label "PharmGKB Gene" ;
+    dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PMCID,
-        go.resource:PMCID,
-        n2t:pmc,
-        fairsharing:FAIRsharing.wpt5mp,
-        prefixcommons:pmc,
-        miriam:pmc,
-        wikidata:P932 ;
-    dcat:keyword "bibliography",
-        "biomedical science",
-        "earth science",
-        "environmental science",
-        "epidemiology",
-        "life science",
-        "virology" ;
-    foaf:homepage "http://europepmc.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
-    bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PMC\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "PMC",
-        "PMCID" .
+    skos:exactMatch bioportal:PHARMGKB,
+        biocontext:PHARMGKB.GENE,
+        go.resource:PharmGKB,
+        n2t:pharmgkb.gene,
+        prefixcommons:pharmgkb.gene,
+        miriam:pharmgkb.gene,
+        uniprot.resource:DB-0074,
+        wikidata:P7001 ;
+    dcat:keyword "gene",
+        "ontology",
+        "pharmacogenomics" ;
+    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PA131"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pharmgkb.org/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PA\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:poro a bioregistry.schema:0000001 ;
     rdfs:label "Porifera Ontology" ;
@@ -37178,6 +37147,18 @@ bioregistry:symp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 ;
     bioregistry.schema:0000023 "SYMP" .
 
+bioregistry:ucsc a bioregistry.schema:0000001 ;
+    rdfs:label "UCSC Genome Browser" ;
+    dc:description "The UCSC Genome Browser is an on-line, and downloadable, genome browser hosted by the University of California, Santa Cruz (UCSC).[2][3][4] It is an interactive website offering access to genome sequence data from a variety of vertebrate and invertebrate species and major model organisms, integrated with a large collection of aligned annotations."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:UCSC,
+        uniprot.resource:DB-0139,
+        wikidata:P2576 ;
+    foaf:homepage "https://genome.ucsc.edu/"^^xsd:string ;
+    bioregistry.schema:0000005 "uc001rvw.5"^^xsd:string ;
+    bioregistry.schema:0000006 "ftp://hgdownload.cse.ucsc.edu/goldenPath/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:ucum a bioregistry.schema:0000001 ;
     rdfs:label "Unified Code for Units of Measure" ;
     dc:description "Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business."^^xsd:string ;
@@ -37500,33 +37481,6 @@ bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://ecoportal.lifewatch.eu/ontologies/$1" ;
     bioregistry.schema:0000019 orcid:0000-0003-4494-839X .
 
-bioregistry:chembl a bioregistry.schema:0000001 ;
-    rdfs:label "ChEMBL" ;
-    dc:description "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature."^^xsd:string ;
-    dcterms:hasPart bioregistry:chembl.cell,
-        bioregistry:chembl.compound,
-        bioregistry:chembl.target ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.m3jtpg,
-        prefixcommons:chembl,
-        miriam:chembl,
-        cheminf:000412,
-        re3data:r3d100010539,
-        uniprot.resource:DB-0174 ;
-    dcat:keyword "biochemistry",
-        "drug discovery",
-        "genomics",
-        "medicinal chemistry",
-        "molecules" ;
-    foaf:homepage "https://www.ebi.ac.uk/chembl"^^xsd:string ;
-    bioregistry.schema:0000005 "CHEMBL4303805"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/chembl/entity/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^CHEMBL\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "ChEMBL",
-        "ChEMBL_ID",
-        "chembl" .
-
 bioregistry:clyh a bioregistry.schema:0000001 ;
     rdfs:label "Clytia hemisphaerica Development and Anatomy Ontology" ;
     dc:description "Anatomy, development and life cycle stages - planula, polyp, medusa/jellyfish - of the cnidarian hydrozoan species, Clytia hemiphaerica."^^xsd:string ;
@@ -37656,6 +37610,39 @@ bioregistry:ecao a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-3625-0955 .
 
+bioregistry:eccode a bioregistry.schema:0000001 ;
+    rdfs:label "Enzyme Commission Code" ;
+    dc:description "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1011,
+        bartoc:671,
+        biocontext:EC-CODE,
+        go.resource:EC,
+        n2t:ec-code,
+        fairsharing:FAIRsharing.rfLD2u,
+        prefixcommons:intenz,
+        miriam:ec-code,
+        re3data:r3d100010803,
+        uniprot.resource:DB-0024,
+        wikidata:P591 ;
+    dcat:keyword "biochemistry",
+        "classification",
+        "enzyme",
+        "enzymology" ;
+    foaf:homepage "https://www.enzyme-database.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3889-2879 ;
+    bioregistry.schema:0000023 "EC",
+        "EC number",
+        "EC-CODE",
+        "ECCODE",
+        "EC_CODE",
+        "ec-code",
+        "intenz" .
+
 bioregistry:efo a bioregistry.schema:0000001 ;
     rdfs:label "Experimental Factor Ontology" ;
     dc:description "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by the EBI Functional Genomics Team."^^xsd:string ;
@@ -37711,6 +37698,34 @@ bioregistry:ehdaa2 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "EHDAA2_RETIRED",
         "HDAA2",
         "RETIRED_EHDAA2" .
+
+bioregistry:ena.embl a bioregistry.schema:0000001 ;
+    rdfs:label "European Nucleotide Archive" ;
+    dc:description "The European Nucleotide Archive (ENA) captures and presents information relating to experimental workflows that are based around nucleotide sequencing. ENA is made up of a number of distinct databases that includes EMBL-Bank, the Sequence Read Archive (SRA) and the Trace Archive each with their own data formats and standards. This collection references Embl-Bank identifiers."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:ENA.EMBL,
+        go.resource:ENA,
+        n2t:ena.embl,
+        fairsharing:FAIRsharing.dj8nt8,
+        prefixcommons:ena,
+        miriam:ena.embl,
+        re3data:r3d100010527,
+        uniprot.resource:DB-0022 ;
+    dcat:keyword "biodiversity",
+        "bioinformatics",
+        "data management",
+        "dna",
+        "functional genomics",
+        "genomics",
+        "metagenomics",
+        "transcriptomics" ;
+    foaf:homepage "https://www.ebi.ac.uk/ena/"^^xsd:string ;
+    bioregistry.schema:0000005 "BN000065"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ena/browser/view/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z]+[0-9]+(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-7954-7057 ;
+    bioregistry.schema:0000023 "ena" .
 
 bioregistry:fbcv a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Controlled Vocabulary" ;
@@ -38011,6 +38026,32 @@ bioregistry:plana a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:planp ;
     bioregistry.schema:0000019 orcid:0000-0002-3528-5267 .
 
+bioregistry:pmc a bioregistry.schema:0000001 ;
+    rdfs:label "PubMed Central" ;
+    dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:PMCID,
+        go.resource:PMCID,
+        n2t:pmc,
+        fairsharing:FAIRsharing.wpt5mp,
+        prefixcommons:pmc,
+        miriam:pmc,
+        wikidata:P932 ;
+    dcat:keyword "bibliography",
+        "biomedical science",
+        "earth science",
+        "environmental science",
+        "epidemiology",
+        "life science",
+        "virology" ;
+    foaf:homepage "http://europepmc.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
+    bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PMC\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "PMC",
+        "PMCID" .
+
 bioregistry:pubmed a bioregistry.schema:0000001 ;
     rdfs:label "PubMed ID" ;
     dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
@@ -38138,6 +38179,33 @@ orcid:0000-0003-1834-3856 rdfs:label "Mathias Brochhausen" ;
     foaf:mbox "mbrochhausen@gmail.com",
         "mbrochhausen@uams.edu" .
 
+bioregistry:chembl a bioregistry.schema:0000001 ;
+    rdfs:label "ChEMBL" ;
+    dc:description "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature."^^xsd:string ;
+    dcterms:hasPart bioregistry:chembl.cell,
+        bioregistry:chembl.compound,
+        bioregistry:chembl.target ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.m3jtpg,
+        prefixcommons:chembl,
+        miriam:chembl,
+        cheminf:000412,
+        re3data:r3d100010539,
+        uniprot.resource:DB-0174 ;
+    dcat:keyword "biochemistry",
+        "drug discovery",
+        "genomics",
+        "medicinal chemistry",
+        "molecules" ;
+    foaf:homepage "https://www.ebi.ac.uk/chembl"^^xsd:string ;
+    bioregistry.schema:0000005 "CHEMBL4303805"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/chembl/entity/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^CHEMBL\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "ChEMBL",
+        "ChEMBL_ID",
+        "chembl" .
+
 bioregistry:drugbank a bioregistry.schema:0000001 ;
     rdfs:label "DrugBank" ;
     dc:description "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information."^^xsd:string ;
@@ -38200,34 +38268,6 @@ bioregistry:edam a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
-bioregistry:ensembl a bioregistry.schema:0000001 ;
-    rdfs:label "Ensembl Gene" ;
-    dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
-    dcterms:hasPart bioregistry:ensembl.bacteria,
-        bioregistry:ensembl.fungi ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2610,
-        biocontext:ENSEMBL,
-        go.resource:ENSEMBL,
-        n2t:ensembl,
-        ncbi.resource:ENSEMBL,
-        fairsharing:FAIRsharing.fx0mw7,
-        prefixcommons:ensembl,
-        miriam:ensembl,
-        re3data:r3d100010228,
-        uniprot.resource:DB-0023,
-        wikidata:P594 ;
-    dcat:keyword "biomedical science",
-        "comparative genomics",
-        "genome",
-        "genomics" ;
-    foaf:homepage "https://www.ensembl.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "ENSG00000139618"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ensembl.org/id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "Ensembl" .
-
 bioregistry:hgnc.symbol a bioregistry.schema:0000001 ;
     rdfs:label "HGNC gene symbol" ;
     dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. This collection refers to records using the HGNC symbol."^^xsd:string ;
@@ -38256,39 +38296,6 @@ bioregistry:multicellds a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://multicellds.org/MultiCellDB/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8003-6860 .
-
-bioregistry:pdb a bioregistry.schema:0000001 ;
-    rdfs:label "PDB Structure" ;
-    dc:description "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1127,
-        biocontext:PDB,
-        go.resource:PDB,
-        n2t:pdb,
-        ncbi.resource:PDB,
-        fairsharing:FAIRsharing.rs2815,
-        prefixcommons:pdbj,
-        miriam:pdb,
-        re3data:r3d100010910,
-        uniprot.resource:DB-0172,
-        wikidata:P638 ;
-    dcat:keyword "bioinformatics",
-        "epidemiology",
-        "protein",
-        "proteomics",
-        "structural biology",
-        "structure",
-        "virology" ;
-    foaf:homepage "https://www.wwpdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "2gc4"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.wwpdb.org/pdb?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9][A-Za-z0-9]{3}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-6690-5863 ;
-    bioregistry.schema:0000023 "RCSB_PDB",
-        "pdbe",
-        "pdbj",
-        "wwpdb" .
 
 bioregistry:planp a bioregistry.schema:0000001 ;
     rdfs:label "Planarian Phenotype Ontology" ;
@@ -38523,46 +38530,33 @@ bioregistry:clo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-2548-641X ;
     bioregistry.schema:0000023 "CLO" .
 
-bioregistry:flybase a bioregistry.schema:0000001 ;
-    rdfs:label "FlyBase Gene" ;
-    dc:description "FlyBase is the database of the Drosophila Genome Projects and of associated literature."^^xsd:string ;
-    dcterms:hasPart bioregistry:fbbt,
-        bioregistry:fbcv,
-        bioregistry:fbrf,
-        bioregistry:fbsp,
-        bioregistry:fbtc ;
+bioregistry:ensembl a bioregistry.schema:0000001 ;
+    rdfs:label "Ensembl Gene" ;
+    dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
+    dcterms:hasPart bioregistry:ensembl.bacteria,
+        bioregistry:ensembl.fungi ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1089,
-        biocontext:FlyBase,
-        cellosaurus.resource:FlyBase,
-        go.resource:FB,
-        n2t:fb,
-        ncbi.resource:FLYBASE,
-        fairsharing:FAIRsharing.wrvze3,
-        prefixcommons:flybase,
-        miriam:fb,
-        re3data:r3d100010591,
-        uniprot.resource:DB-0026,
-        wikidata:P3852 ;
-    dcat:keyword "anatomy",
-        "bioinformatics",
+    skos:exactMatch edam.data:2610,
+        biocontext:ENSEMBL,
+        go.resource:ENSEMBL,
+        n2t:ensembl,
+        ncbi.resource:ENSEMBL,
+        fairsharing:FAIRsharing.fx0mw7,
+        prefixcommons:ensembl,
+        miriam:ensembl,
+        re3data:r3d100010228,
+        uniprot.resource:DB-0023,
+        wikidata:P594 ;
+    dcat:keyword "biomedical science",
         "comparative genomics",
-        "dna",
-        "functional genomics",
-        "genetics",
         "genome",
-        "genomics",
-        "interaction",
-        "life science",
-        "molecular biology",
-        "molecular genetics" ;
-    foaf:homepage "http://flybase.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "FBgn0011293"^^xsd:string ;
-    bioregistry.schema:0000006 "https://flybase.org/reports/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^FB\\w{2}\\d{7}$"^^xsd:string ;
+        "genomics" ;
+    foaf:homepage "https://www.ensembl.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "ENSG00000139618"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ensembl.org/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "FB",
-        "FlyBase" .
+    bioregistry.schema:0000023 "Ensembl" .
 
 bioregistry:genepio a bioregistry.schema:0000001 ;
     rdfs:label "Genomic Epidemiology Ontology" ;
@@ -38690,6 +38684,39 @@ More information can be found at https://obofoundry.org/ontology/ontoavida.html"
         bioregistry:stato ;
     bioregistry.schema:0000019 orcid:0000-0002-8374-1941 .
 
+bioregistry:pdb a bioregistry.schema:0000001 ;
+    rdfs:label "PDB Structure" ;
+    dc:description "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1127,
+        biocontext:PDB,
+        go.resource:PDB,
+        n2t:pdb,
+        ncbi.resource:PDB,
+        fairsharing:FAIRsharing.rs2815,
+        prefixcommons:pdbj,
+        miriam:pdb,
+        re3data:r3d100010910,
+        uniprot.resource:DB-0172,
+        wikidata:P638 ;
+    dcat:keyword "bioinformatics",
+        "epidemiology",
+        "protein",
+        "proteomics",
+        "structural biology",
+        "structure",
+        "virology" ;
+    foaf:homepage "https://www.wwpdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "2gc4"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.wwpdb.org/pdb?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9][A-Za-z0-9]{3}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-6690-5863 ;
+    bioregistry.schema:0000023 "RCSB_PDB",
+        "pdbe",
+        "pdbj",
+        "wwpdb" .
+
 bioregistry:pubchem dcterms:hasPart bioregistry:pubchem.bioassay,
         bioregistry:pubchem.cell,
         bioregistry:pubchem.classification,
@@ -38731,6 +38758,55 @@ bioregistry:caro a bioregistry.schema:0000001 ;
         bioregistry:lepao,
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0001-9114-8737 .
+
+bioregistry:civic dcterms:hasPart bioregistry:civic.aid,
+        bioregistry:civic.did,
+        bioregistry:civic.eid,
+        bioregistry:civic.gid,
+        bioregistry:civic.sid,
+        bioregistry:civic.tid,
+        bioregistry:civic.vid .
+
+bioregistry:flybase a bioregistry.schema:0000001 ;
+    rdfs:label "FlyBase Gene" ;
+    dc:description "FlyBase is the database of the Drosophila Genome Projects and of associated literature."^^xsd:string ;
+    dcterms:hasPart bioregistry:fbbt,
+        bioregistry:fbcv,
+        bioregistry:fbrf,
+        bioregistry:fbsp,
+        bioregistry:fbtc ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1089,
+        biocontext:FlyBase,
+        cellosaurus.resource:FlyBase,
+        go.resource:FB,
+        n2t:fb,
+        ncbi.resource:FLYBASE,
+        fairsharing:FAIRsharing.wrvze3,
+        prefixcommons:flybase,
+        miriam:fb,
+        re3data:r3d100010591,
+        uniprot.resource:DB-0026,
+        wikidata:P3852 ;
+    dcat:keyword "anatomy",
+        "bioinformatics",
+        "comparative genomics",
+        "dna",
+        "functional genomics",
+        "genetics",
+        "genome",
+        "genomics",
+        "interaction",
+        "life science",
+        "molecular biology",
+        "molecular genetics" ;
+    foaf:homepage "http://flybase.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "FBgn0011293"^^xsd:string ;
+    bioregistry.schema:0000006 "https://flybase.org/reports/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^FB\\w{2}\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "FB",
+        "FlyBase" .
 
 bioregistry:labo a bioregistry.schema:0000001 ;
     rdfs:label "clinical LABoratory Ontology" ;
@@ -39483,63 +39559,6 @@ bioregistry:envo a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-4366-3088 .
 
-bioregistry:go a bioregistry.schema:0000001 ;
-    rdfs:label "Gene Ontology" ;
-    dc:description "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:GO,
-        agroportal:GO,
-        edam.data:1176,
-        obofoundry:go,
-        oid:2.16.840.1.113883.6.128,
-        ontobee:GO,
-        bartoc:572,
-        bioportal:GO,
-        biocontext:GO,
-        go.resource:GO,
-        n2t:go,
-        ncbi.resource:GO,
-        fairsharing:FAIRsharing.6xq0ee,
-        prefixcommons:go,
-        miriam:go,
-        ols:go,
-        uniprot.resource:DB-0037,
-        wikidata:P686 ;
-    dcat:keyword "gene",
-        "life science",
-        "obo",
-        "ontology" ;
-    foaf:homepage "http://geneontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0032571"^^xsd:string ;
-    bioregistry.schema:0000006 "http://amigo.geneontology.org/amigo/term/GO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:go.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:cl,
-        bioregistry:ncbitaxon,
-        bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:maxo,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:planp,
-        bioregistry:uberon,
-        bioregistry:xpo,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0001-6787-2901 ;
-    bioregistry.schema:0000023 "gobp",
-        "gobpid",
-        "gocc",
-        "goccid",
-        "gomf",
-        "gomfid" .
-
 bioregistry:kegg a bioregistry.schema:0000001 ;
     rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
     dc:description "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies."^^xsd:string ;
@@ -39647,6 +39666,63 @@ bioregistry:cl a bioregistry.schema:0000001 ;
         bioregistry:uberon,
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0001-9990-8331 .
+
+bioregistry:go a bioregistry.schema:0000001 ;
+    rdfs:label "Gene Ontology" ;
+    dc:description "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:GO,
+        agroportal:GO,
+        edam.data:1176,
+        obofoundry:go,
+        oid:2.16.840.1.113883.6.128,
+        ontobee:GO,
+        bartoc:572,
+        bioportal:GO,
+        biocontext:GO,
+        go.resource:GO,
+        n2t:go,
+        ncbi.resource:GO,
+        fairsharing:FAIRsharing.6xq0ee,
+        prefixcommons:go,
+        miriam:go,
+        ols:go,
+        uniprot.resource:DB-0037,
+        wikidata:P686 ;
+    dcat:keyword "gene",
+        "life science",
+        "obo",
+        "ontology" ;
+    foaf:homepage "http://geneontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0032571"^^xsd:string ;
+    bioregistry.schema:0000006 "http://amigo.geneontology.org/amigo/term/GO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:go.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:cl,
+        bioregistry:ncbitaxon,
+        bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:chiro,
+        bioregistry:cl,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:maxo,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:planp,
+        bioregistry:uberon,
+        bioregistry:xpo,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0001-6787-2901 ;
+    bioregistry.schema:0000023 "gobp",
+        "gobpid",
+        "gocc",
+        "goccid",
+        "gomf",
+        "gomfid" .
 
 bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Taxonomy" ;
@@ -39782,6 +39858,50 @@ bioregistry:pato a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
+bioregistry:bfo a bioregistry.schema:0000001 ;
+    rdfs:label "Basic Formal Ontology" ;
+    dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:BFO,
+        agroportal:BFO,
+        obofoundry:bfo,
+        ontobee:BFO,
+        bioportal:BFO,
+        biocontext:BFO,
+        go.resource:BFO,
+        fairsharing:FAIRsharing.wcpd6f,
+        ols:bfo ;
+    dcat:keyword "obo",
+        "ontology",
+        "subject agnostic" ;
+    foaf:homepage "http://ifomis.org/bfo/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:bfo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ado,
+        bioregistry:agro,
+        bioregistry:aism,
+        bioregistry:cdno,
+        bioregistry:colao,
+        bioregistry:duo,
+        bioregistry:ecocore,
+        bioregistry:epio,
+        bioregistry:foodon,
+        bioregistry:fovt,
+        bioregistry:hso,
+        bioregistry:lepao,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:psdo,
+        bioregistry:rbo,
+        bioregistry:xpo,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
+
 bioregistry:chebi a bioregistry.schema:0000001 ;
     rdfs:label "Chemical Entities of Biological Interest" ;
     dc:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
@@ -39837,50 +39957,6 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "CHEBI",
         "CHEBIID",
         "ChEBI" .
-
-bioregistry:bfo a bioregistry.schema:0000001 ;
-    rdfs:label "Basic Formal Ontology" ;
-    dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:BFO,
-        agroportal:BFO,
-        obofoundry:bfo,
-        ontobee:BFO,
-        bioportal:BFO,
-        biocontext:BFO,
-        go.resource:BFO,
-        fairsharing:FAIRsharing.wcpd6f,
-        ols:bfo ;
-    dcat:keyword "obo",
-        "ontology",
-        "subject agnostic" ;
-    foaf:homepage "http://ifomis.org/bfo/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:bfo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:ado,
-        bioregistry:agro,
-        bioregistry:aism,
-        bioregistry:cdno,
-        bioregistry:colao,
-        bioregistry:duo,
-        bioregistry:ecocore,
-        bioregistry:epio,
-        bioregistry:foodon,
-        bioregistry:fovt,
-        bioregistry:hso,
-        bioregistry:lepao,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:psdo,
-        bioregistry:rbo,
-        bioregistry:xpo,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Protein" ;
