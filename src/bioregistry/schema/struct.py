@@ -879,7 +879,7 @@ class Resource(BaseModel):
             ),
         )
 
-    def get_keywords(self) -> Set[str]:
+    def get_keywords(self) -> List[str]:
         """Get keywords."""
         keywords = []
         if self.keywords:
@@ -893,7 +893,7 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        return {keyword.lower() for keyword in keywords}
+        return sorted({keyword.lower() for keyword in keywords})
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""

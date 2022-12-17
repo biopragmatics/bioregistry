@@ -139,7 +139,7 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
     return manager.get_synonyms(prefix)
 
 
-def get_keywords(prefix: str) -> Optional[Set[str]]:
+def get_keywords(prefix: str) -> Optional[List[str]]:
     """Return the keywords, if available."""
     return manager.get_keywords(prefix)
 
