@@ -366,7 +366,7 @@ class Manager:
             return None
         return entry.get_synonyms()
 
-    def get_keywords(self, prefix: str) -> Optional[Set[str]]:
+    def get_keywords(self, prefix: str) -> Optional[List[str]]:
         """Get keywords associated with a given prefix, if available."""
         entry = self.get_resource(prefix)
         if entry is None:
