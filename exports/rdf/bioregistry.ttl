@@ -267,12 +267,11 @@ bioregistry.collection:0000010 a bioregistry.schema:0000003 ;
     dc:creator orcid:0000-0003-4423-4370 ;
     dc:description """The [Global Biodata Coalition](https://globalbiodata.org) released a [curated list](https://globalbiodata.org/scientific-activities/global-core-biodata-resources/) of 37 life sciences databases in December 2022 that they consider as having significant importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)). While it's not a primary goal of the Bioregistry to cover life science databases (other resources like Wikidata and [FAIRsharing](https://fairsharing.org) already do an excellent job of this), many notable databases induce one or more semantic spaces that are relevant for curation and prefix assignment in the Bioregistry. Therefore, a large number of the resources in this list correspond 1-to-1 with prefixes in the Bioregistry, a small number (e.g., Orphanet, CIViC, PharmGKB) correspond to multiple prefixes, some have a complicated relationship with many-to-1 relationships to prefixes (DNA Data Bank of Japan, European Nucleotide Archive), and some constitute databases that simply reuse other key vocabularies (e.g., STRING reuses UniProt, GWAS Catalog reuses dbSNP and EFO). Among the databases that don't induce semantic spaces or have simple relationships to prefixes are:
 
-- [Clinical Genome Resource](https://www.clinicalgenome.org/)
-- [DNA Data Bank of Japan](https://www.ddbj.nig.ac.jp/)
-- [GENCODE](https://www.gencodegenes.org/)
-- [gnomAD](https://gnomad.broadinstitute.org/)
-- [GWAS Catalog](https://www.ebi.ac.uk/gwas/)
-- [STRING](https://string-db.org/)""" ;
+- [Clinical Genome Resource](https://www.clinicalgenome.org/) (uses HGNC, MONDO, PharmGKB, etc.)
+- [DNA Data Bank of Japan](https://www.ddbj.nig.ac.jp/) (uses INSDC)
+- [GENCODE](https://www.gencodegenes.org/) (uses GenBank)
+- [GWAS Catalog](https://www.ebi.ac.uk/gwas/) (uses dbSNP, EFO, etc)
+- [STRING](https://string-db.org/) (uses UniProt)""" ;
     dcterms:hasPart bioregistry:agrkb,
         bioregistry:bacdive,
         bioregistry:brenda,
@@ -294,6 +293,7 @@ bioregistry.collection:0000010 a bioregistry.schema:0000003 ;
         bioregistry:eupath,
         bioregistry:flybase,
         bioregistry:gbif,
+        bioregistry:gnomad,
         bioregistry:go,
         bioregistry:hgnc,
         bioregistry:interpro,
@@ -15560,6 +15560,9 @@ orcid:0000-0002-5892-6506 rdfs:label "Nathan Baker" ;
 
 orcid:0000-0002-5990-4157 rdfs:label "Stefan Kuhn" ;
     foaf:mbox "stefan.kuhn@dmu.ac.uk" .
+
+orcid:0000-0002-6025-0015 rdfs:label "Heidi L. Rehm" ;
+    foaf:mbox "hrehm@mgh.harvard.edu" .
 
 orcid:0000-0002-6062-7492 rdfs:label "Support Email" ;
     foaf:mbox "support@ccdc.cam.ac.uk" .
@@ -35386,6 +35389,16 @@ bioregistry:gbif a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:gnomad a bioregistry.schema:0000001 ;
+    rdfs:label "Genome Aggregation Database" ;
+    dc:description "The Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects, and making summary data available for the wider scientific community (from https://gnomad.broadinstitute.org)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://gnomad.broadinstitute.org"^^xsd:string ;
+    bioregistry.schema:0000005 "1-55516888-G-GA"^^xsd:string ;
+    bioregistry.schema:0000006 "https://gnomad.broadinstitute.org/variant/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6025-0015 .
+
 bioregistry:gsso a bioregistry.schema:0000001 ;
     rdfs:label "Gender, Sex, and Sexual Orientation Ontology" ;
     dc:description "The Gender, Sex, and Sexual Orientation (GSSO) ontology is an interdisciplinary ontology connecting terms from biology, medicine, psychology, sociology, and gender studies, aiming to bridge gaps between linguistic variations inside and outside of the health care environment. A large focus of the ontology is its consideration of LGBTQIA+ terminology."^^xsd:string ;
@@ -41067,6 +41080,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:github.pull,
         bioregistry:glygen,
         bioregistry:gmelin,
+        bioregistry:gnomad,
         bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
@@ -47219,6 +47233,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gmd.ref,
         bioregistry:gmelin,
         bioregistry:gno,
+        bioregistry:gnomad,
         bioregistry:gnpis,
         bioregistry:go,
         bioregistry:go.model,
