@@ -42,6 +42,8 @@ from .schema import (
     sanitize_model,
 )
 from .schema_utils import (
+    _collections_from_path,
+    _contexts_from_path,
     _read_metaregistry,
     _registry_from_path,
     read_collections,
@@ -96,9 +98,10 @@ class Manager:
         self,
         registry: Union[None, str, Path, Mapping[str, Resource]] = None,
         metaregistry: Union[None, str, Path, Mapping[str, Registry]] = None,
-        collections: Optional[Mapping[str, Collection]] = None,
-        contexts: Optional[Mapping[str, Context]] = None,
+        collections: Union[None, str, Path, Mapping[str, Collection]] = None,
+        contexts: Union[None, str, Path, Mapping[str, Context]] = None,
         mismatches: Optional[Mapping[str, Mapping[str, str]]] = None,
+        base_url: Optional[str] = None,
     ):
         """Instantiate a registry manager.
 
@@ -107,7 +110,10 @@ class Manager:
         :param collections: A custom collections dictionary. If none, defaults to the Bioregistry's collections.
         :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         :param mismatches: A custom mismatches dictionary. If none, defaults to the Bioregistry's mismatches.
+        :param base_url: The base URL.
         """
+        self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
+
         if registry is None:
             self.registry = dict(read_registry())
         elif isinstance(registry, (str, Path)):
@@ -122,8 +128,21 @@ class Manager:
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
-        self.collections = dict(read_collections() if collections is None else collections)
-        self.contexts = dict(read_contexts() if contexts is None else contexts)
+
+        if collections is None:
+            self.collections = dict(read_collections())
+        elif isinstance(collections, (str, Path)):
+            self.collections = dict(_collections_from_path(collections))
+        else:
+            self.collections = dict(collections)
+
+        if contexts is None:
+            self.contexts = dict(read_contexts())
+        elif isinstance(contexts, (str, Path)):
+            self.contexts = dict(_contexts_from_path(contexts))
+        else:
+            self.contexts = dict(contexts)
+
         self.mismatches = dict(read_mismatches() if mismatches is None else mismatches)
 
         canonical_for = defaultdict(list)
@@ -346,6 +365,13 @@ class Manager:
         if entry is None:
             return None
         return entry.get_synonyms()
+
+    def get_keywords(self, prefix: str) -> Optional[List[str]]:
+        """Get keywords associated with a given prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_keywords()
 
     def get_example(self, prefix: str) -> Optional[str]:
         """Get an example identifier, if it's available."""
@@ -570,15 +596,14 @@ class Manager:
 
     def _rasterized_registry(self) -> Mapping[str, Resource]:
         return {
-            prefix: self.rasterized_resource(prefix, resource)
-            for prefix, resource in self.registry.items()
+            prefix: self.rasterized_resource(resource) for prefix, resource in self.registry.items()
         }
 
-    def rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
+    def rasterized_resource(self, resource: Resource) -> Resource:
         """Rasterize a resource."""
         return Resource(
             prefix=resource.prefix,
-            preferred_prefix=resource.get_preferred_prefix() or prefix,
+            preferred_prefix=resource.get_preferred_prefix() or resource.prefix,
             name=resource.get_name(),
             description=resource.get_description(),
             pattern=resource.get_pattern(),
@@ -587,6 +612,7 @@ class Manager:
             version=resource.get_version(),
             synonyms=resource.get_synonyms(),
             repository=resource.get_repository(),
+            keywords=resource.get_keywords(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
@@ -617,8 +643,8 @@ class Manager:
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
-            appears_in=self.get_appears_in(prefix),
-            depends_on=self.get_depends_on(prefix),
+            appears_in=self.get_appears_in(resource.prefix),
+            depends_on=self.get_depends_on(resource.prefix),
             mappings=resource.get_mappings(),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
@@ -794,7 +820,7 @@ class Manager:
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
         if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
+        return f"{self.base_url}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.

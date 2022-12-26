@@ -4,6 +4,8 @@
 
 import unittest
 
+import rdflib
+
 import bioregistry
 from bioregistry import manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
@@ -13,9 +15,13 @@ from bioregistry.schema import Registry
 class TestMetaregistry(unittest.TestCase):
     """Tests for the metaregistry."""
 
+    def setUp(self) -> None:
+        """Set up the test case."""
+        self.manager = bioregistry.manager
+
     def test_minimum_metadata(self):
         """Test the metaregistry entries have a minimum amount of data."""
-        for metaprefix, registry in bioregistry.read_metaregistry().items():
+        for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
@@ -120,5 +126,8 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = metaresource_to_rdf_str("uniprot", manager=manager)
+        registry = self.manager.metaregistry["uniprot"]
+        s = metaresource_to_rdf_str(registry, manager=manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)

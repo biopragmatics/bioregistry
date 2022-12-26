@@ -2,9 +2,14 @@
 
 """Test for web."""
 
+import json
 import unittest
 from typing import List
 
+import rdflib
+import yaml
+
+from bioregistry import Collection, Manager
 from bioregistry.app.impl import get_app
 
 
@@ -14,6 +19,7 @@ class TestWeb(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case with an app."""
         self.app = get_app()
+        self.manager = Manager()
 
     def test_ui(self):
         """Test user-facing pages don't error."""
@@ -46,7 +52,13 @@ class TestWeb(unittest.TestCase):
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
-                    self.assertEqual(200, res.status_code)
+                    self.assertEqual(
+                        200, res.status_code, msg=f"Endpoint: {endpoint}\n\n{res.text}"
+                    )
+                    with self.assertRaises(
+                        ValueError, msg=f"Content should not be JSON-parsable. Endpoint: {endpoint}"
+                    ):
+                        json.loads(res.text)
 
     def test_api_registry(self):
         """Test the registry endpoint."""
@@ -68,6 +80,34 @@ class TestWeb(unittest.TestCase):
                 res = client.get("/api/registry/nope")
                 self.assertEqual(404, res.status_code)
 
+    def test_ui_resource_rdf(self):
+        """Test the UI resource with content negotiation."""
+        prefix = "3dmet"
+        for accept, format in [
+            ("text/turtle", "turtle"),
+            ("text/n3", "n3"),
+            ("application/ld+json", "jsonld"),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/registry/{prefix}", headers={"Accept": accept})
+                self.assertEqual(
+                    200, res.status_code, msg=f"Failed on {prefix} to accept {accept} ({format})"
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                if format == "jsonld":
+                    continue
+                with self.assertRaises(ValueError, msg="result was return as JSON"):
+                    json.loads(res.text)
+                g = rdflib.Graph()
+                g.parse(data=res.text, format=format)
+
+                # Check for single prefix
+                results = list(
+                    g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
+                )
+                self.assertEqual(1, len(results))
+                self.assertEqual(f"https://bioregistry.io/registry/{prefix}", str(results[0][0]))
+
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
         self.assert_endpoint(
@@ -81,6 +121,38 @@ class TestWeb(unittest.TestCase):
             "/api/metaregistry/miriam",
             ["json", "yaml", "turtle", "jsonld"],
         )
+
+    def test_ui_registry_rdf(self):
+        """Test the UI registry with content negotiation."""
+        metaprefix = "miriam"
+        for accept, format in [
+            ("text/turtle", "turtle"),
+            ("text/n3", "n3"),
+            ("application/ld+json", "jsonld"),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/metaregistry/{metaprefix}", headers={"Accept": accept})
+                self.assertEqual(
+                    200,
+                    res.status_code,
+                    msg=f"Failed on {metaprefix} to accept {accept} ({format})",
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                if format == "jsonld":
+                    continue
+                with self.assertRaises(ValueError, msg="result was return as JSON"):
+                    json.loads(res.text)
+                g = rdflib.Graph()
+                g.parse(data=res.text, format=format)
+
+                # Check for single prefix
+                results = list(
+                    g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000002> }")
+                )
+                self.assertEqual(1, len(results))
+                self.assertEqual(
+                    f"https://bioregistry.io/metaregistry/{metaprefix}", str(results[0][0])
+                )
 
     def test_api_reference(self):
         """Test the reference endpoint."""
@@ -100,8 +172,63 @@ class TestWeb(unittest.TestCase):
         """Test the collection endpoint."""
         self.assert_endpoint(
             "/api/collection/0000001",
-            ["json", "yaml", "turtle", "jsonld", "context"],
+            ["json", "yaml", "turtle", "jsonld"],
         )
+
+        with self.app.test_client() as client:
+            res = client.get("api/collection/0000001.context.jsonld").json
+            self.assertIn("@context", res)
+            self.assertIn("biostudies", res["@context"])
+
+    def test_ui_collection_json(self):
+        """Test the UI registry with content negotiation for json/yaml."""
+        identifier = "0000001"
+        for accept, loads in [
+            ("application/json", json.loads),
+            ("application/yaml", yaml.safe_load),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
+                self.assertEqual(
+                    200,
+                    res.status_code,
+                    msg=f"Failed on {identifier} to accept {accept} ({format})",
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                collection = Collection(**loads(res.text))
+                self.assertEqual(self.manager.collections[identifier], collection)
+
+    def test_ui_collection_rdf(self):
+        """Test the UI registry with content negotiation."""
+        identifier = "0000001"
+        for accept, format in [
+            ("text/turtle", "turtle"),
+            ("text/n3", "n3"),
+            ("application/ld+json", "jsonld"),
+        ]:
+            with self.subTest(format=format), self.app.test_client() as client:
+                res = client.get(f"/collection/{identifier}", headers={"Accept": accept})
+                self.assertEqual(
+                    200,
+                    res.status_code,
+                    msg=f"Failed on {identifier} to accept {accept} ({format})",
+                )
+                self.assertEqual({accept}, {t for t, _ in res.request.accept_mimetypes})
+                if format == "jsonld":
+                    continue
+                with self.assertRaises(ValueError, msg="result was return as JSON"):
+                    json.loads(res.text)
+                g = rdflib.Graph()
+                g.parse(data=res.text, format=format)
+
+                # Check for single prefix
+                results = list(
+                    g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000003> }")
+                )
+                self.assertEqual(1, len(results))
+                self.assertEqual(
+                    f"https://bioregistry.io/collection/{identifier}", str(results[0][0])
+                )
 
     def test_api_contexts(self):
         """Test the contexts endpoint."""
@@ -185,3 +312,23 @@ class TestWeb(unittest.TestCase):
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint)
                     self.assertEqual(302, res.status_code)
+
+    def test_banana_redirects(self):
+        """Test banana redirects."""
+        with self.app.test_client() as client:
+            for prefix, identifier, location in [
+                ("agrovoc", "c_2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+                ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
+                # Related to https://github.com/biopragmatics/bioregistry/issues/93, the app route is not greedy,
+                # so it parses on the rightmost colon.
+                # ("go", "0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
+                # ("go", "GO:0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
+            ]:
+                with self.subTest(prefix=prefix, identifier=identifier):
+                    res = client.get(f"/{prefix}:{identifier}", follow_redirects=False)
+                    self.assertEqual(
+                        302,
+                        res.status_code,
+                        msg=f"{prefix}\nHeaders: {res.headers}\nRequest: {res.request}",
+                    )
+                    self.assertEqual(location, res.headers["Location"])

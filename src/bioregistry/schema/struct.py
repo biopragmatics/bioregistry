@@ -59,6 +59,10 @@ BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 
 #: Search string for skipping formatters containing this
 IDOT_SKIP = "identifiers.org"
+ORCID_TO_GITHUB = {
+    "0000-0003-0530-4305": "essepuntato",
+    "0000-0002-9903-4248": "mbaudis",
+}
 
 
 def _uri_sort(uri):
@@ -141,7 +145,7 @@ class Attributable(BaseModel):
         :returns: The RDF node representing this author using an ORCiD URI.
         """
         from rdflib import BNode, Literal
-        from rdflib.namespace import RDFS
+        from rdflib.namespace import FOAF, RDFS
 
         if not self.orcid:
             node = BNode()
@@ -150,6 +154,8 @@ class Attributable(BaseModel):
 
             node = orcid.term(self.orcid)
         graph.add((node, RDFS["label"], Literal(self.name)))
+        if self.email:
+            graph.add((node, FOAF.mbox, Literal(self.email)))
         return node
 
 
@@ -375,6 +381,7 @@ class Resource(BaseModel):
     """
         ),
     )
+    keywords: Optional[List[str]] = Field(description="A list of keywords for the resource")
     references: Optional[List[str]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
@@ -863,22 +870,46 @@ class Resource(BaseModel):
                 "go",
                 "ncbi",
                 "cellosaurus",
+                "prefixcommons",
+                "fairsharing",
                 "cropoct",
                 "bioportal",
                 "agroportal",
                 "ecoportal",
-                "prefixcommons",
             ),
         )
+
+    def get_keywords(self) -> List[str]:
+        """Get keywords."""
+        keywords = []
+        if self.keywords:
+            keywords.extend(self.keywords)
+        if self.prefixcommons:
+            keywords.extend(self.prefixcommons.get("keywords", []))
+        if self.fairsharing:
+            keywords.extend(self.fairsharing.get("subjects", []))
+        if self.obofoundry:
+            keywords.append("obo")
+            keywords.append("ontology")
+        if self.get_download_obo() or self.get_download_owl() or self.bioportal:
+            keywords.append("ontology")
+        return sorted({keyword.lower() for keyword in keywords})
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
         if self.repository:
             return self.repository
-        return self.get_prefix_key("repository", "obofoundry")
+        return self.get_prefix_key("repository", ("obofoundry", "fairsharing"))
 
     def get_contact(self) -> Optional[Attributable]:
-        """Get the contact, if available."""
+        """Get the contact, if available.
+
+        :returns: A contact
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("frapo").get_contact().email
+        'silvio.peroni@unibo.it'
+        """
         name = self.get_contact_name()
         if name is None:
             return None
@@ -899,6 +930,8 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
+        >>> get_resource("frapo").get_contact_email()
+        'silvio.peroni@unibo.it'
         """
         if self.contact and self.contact.email:
             return self.contact.email
@@ -909,9 +942,12 @@ class Resource(BaseModel):
                 return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
-        rv = (self.bioportal or {}).get("contact", {}).get("email")
-        if rv:
-            return rv
+        for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
+            if not ext:
+                continue
+            rv = ext.get("contact", {}).get("email")
+            if rv:
+                return rv
         return rv
 
     def get_contact_name(self) -> Optional[str]:
@@ -924,14 +960,19 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
+        >>> get_resource("frapo").get_contact_name()
+        'Silvio Peroni'
         """
         if self.contact and self.contact.name:
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
-        rv = (self.bioportal or {}).get("contact", {}).get("name")
-        if rv:
-            return rv
+        for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
+            if not ext:
+                continue
+            rv = ext.get("contact", {}).get("name")
+            if rv:
+                return rv
         return None
 
     def get_contact_github(self) -> Optional[str]:
@@ -949,6 +990,11 @@ class Resource(BaseModel):
             return self.contact.github
         if self.obofoundry and "contact.github" in self.obofoundry:
             return self.obofoundry["contact.github"]
+
+        # Manually curated upgrade map. TODO externalize this
+        orcid = self.get_contact_orcid()
+        if orcid and orcid in ORCID_TO_GITHUB:
+            return ORCID_TO_GITHUB[orcid]
         return None
 
     def get_contact_orcid(self) -> Optional[str]:
@@ -961,11 +1007,17 @@ class Resource(BaseModel):
         '0000-0003-4423-4370'
         >>> get_resource("aero").get_contact_orcid()
         '0000-0002-9551-6370'
+        >>> get_resource("frapo").get_contact_orcid()
+        '0000-0003-0530-4305'
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
         if self.obofoundry and "contact.orcid" in self.obofoundry:
             return self.obofoundry["contact.orcid"]
+        if self.fairsharing:
+            rv = self.fairsharing.get("contact", {}).get("orcid")
+            if rv:
+                return rv
         return None
 
     def get_example(self) -> Optional[str]:
@@ -1091,8 +1143,10 @@ class Resource(BaseModel):
         """Get the Twitter handle for ther resource."""
         if self.twitter:
             return self.twitter
-        if self.obofoundry:
-            return self.obofoundry.get("twitter")
+        if self.obofoundry and "twitter" in self.obofoundry:
+            return self.obofoundry["twitter"]
+        if self.fairsharing and "twitter" in self.fairsharing:
+            return self.fairsharing["twitter"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
@@ -2047,10 +2101,10 @@ class Registry(BaseModel):
         >>> get_registry("miriam").get_provider_uri_prefix()
         'https://registry.identifiers.org/registry/'
         >>> get_registry("n2t").get_provider_uri_prefix()
-        'https://bioregistry.io/metaregistry/n2t/'
+        'https://bioregistry.io/metaregistry/n2t/resolve/'
         """
         if self.provider_uri_format is None or not self.provider_uri_format.endswith("$1"):
-            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/"
+            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/resolve/"
         return self.provider_uri_format.replace("$1", "")
 
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
@@ -2065,7 +2119,7 @@ class Registry(BaseModel):
         >>> get_registry("miriam").get_provider_uri_format("go")
         'https://registry.identifiers.org/registry/go'
         >>> get_registry("n2t").get_provider_uri_format("go")
-        'https://bioregistry.io/metaregistry/n2t/go'
+        'https://bioregistry.io/metaregistry/n2t/resolve/go'
         """
         return self.get_provider_uri_prefix() + prefix
 

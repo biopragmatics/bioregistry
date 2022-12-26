@@ -169,8 +169,13 @@ class Aligner:
         dry: bool = False,
         show: bool = False,
         force_download: Optional[bool] = None,
-    ):
-        """Align and output the curation sheet."""
+    ) -> None:
+        """Align and output the curation sheet.
+
+        :param dry: If true, don't write changes to the registry
+        :param show: If true, print a curation table
+        :param force_download: Force re-download of the data
+        """
         instance = cls(force_download=force_download)
         if not dry:
             instance.write_registry()
@@ -183,9 +188,11 @@ class Aligner:
         """Construct a CLI for the aligner."""
 
         @click.command()
-        @click.option("--dry", is_flag=True)
-        @click.option("--show", is_flag=True)
-        @click.option("--no-force", is_flag=True)
+        @click.option("--dry", is_flag=True, help="if set, don't write changes to the registry")
+        @click.option("--show", is_flag=True, help="if set, print a curation table")
+        @click.option(
+            "--no-force", is_flag=True, help="if set, do not force re-downloading the data"
+        )
         def _main(dry: bool, show: bool, no_force: bool):
             cls.align(dry=dry, show=show, force_download=not no_force)
 
@@ -220,7 +227,7 @@ class Aligner:
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(
-            self.external_registry.items(), key=lambda s: s[0].casefold()
+            self.external_registry.items(), key=lambda s: (s[0].casefold(), s[0])
         ):
             if external_id in self.skip_external:
                 continue

@@ -46,4 +46,4 @@ class BioContextAligner(Aligner):
 
 
 if __name__ == "__main__":
-    BioContextAligner.align()
+    BioContextAligner.cli()

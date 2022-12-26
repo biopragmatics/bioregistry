@@ -20,4 +20,4 @@ class BartocAligner(Aligner):
 
 
 if __name__ == "__main__":
-    BartocAligner.align()
+    BartocAligner.cli()

@@ -105,6 +105,19 @@
     "prefix": "P10115",
     "uri_format": "http://bppsdmk.kemkes.go.id/info_sdmk/info/fasyankes?unit=$1"
   },
+  "P10141": {
+    "database": "Q109936512",
+    "description": "identifier for an authority in the catalogue of the Academy of Athens Library",
+    "example": [
+      "122326",
+      "47353"
+    ],
+    "homepage": "https://opac.academyofathens.gr/cgi-bin/koha/opac-authorities-home.pl",
+    "name": "Academy of Athens authority ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P10141",
+    "uri_format": "https://opac.academyofathens.gr/cgi-bin/koha/opac-authoritiesdetail.pl?authid=$1&marc=1"
+  },
   "P10168": {
     "database": "Q110220550",
     "description": "numerical identifier for a botanical collector in the Z\u00fcrich Herbaria",
@@ -192,6 +205,18 @@
     "prefix": "P10246",
     "uri_format": "https://medlineplus.gov/druginfo/natural/$1.html"
   },
+  "P10299": {
+    "database": "Q107212858",
+    "description": "identifier for a Leopoldina member on the Leopoldina web site",
+    "example": [
+      "hermann-haken",
+      "leo-aario"
+    ],
+    "homepage": "https://www.leopoldina.org/mitglieder/mitglieder-seit-1652/",
+    "name": "Leopoldina member ID (new)",
+    "prefix": "P10299",
+    "uri_format": "https://www.leopoldina.org/mitgliederverzeichnis/mitglieder/member/Member/show/$1/"
+  },
   "P10322": {
     "database": "Q110724553",
     "description": "the time the animal spends in the pouch",
@@ -244,6 +269,21 @@
     "name": "Gardens Navigator ID",
     "prefix": "P10366",
     "uri_format": "http://navigate.botanicgardens.org/weboi/oecgi2.exe/INET_ECM_DispPl?NAMENUM=$1"
+  },
+  "P10412": {
+    "database": "Q110267813",
+    "description": "identifier for a legal material in the PKULaw Chinalawinfo database [with prefix 'CLI']",
+    "example": [
+      "CLI.1.261780",
+      "CLI.1.342411",
+      "CLI.HK.2011445",
+      "CLI.T.3956",
+      "CLI.T.5834"
+    ],
+    "homepage": "http://pkulaw.com",
+    "name": "PKULaw CLI Code",
+    "prefix": "P10412",
+    "uri_format": "https://www.pkulaw.com/$1"
   },
   "P10420": {
     "database": "Q85769261",
@@ -364,6 +404,16 @@
     "name": "medically indicated in case of",
     "prefix": "P10630"
   },
+  "P10676": {
+    "database": "Q121769",
+    "description": "number of references of an item, e.g. of a scholarly article",
+    "example": [
+      "39",
+      "4"
+    ],
+    "name": "number of references",
+    "prefix": "P10676"
+  },
   "P1070": {
     "database": "Q625817",
     "description": "identifier in 'The Plant List' database",
@@ -451,6 +501,22 @@
     "name": "GeoSciML ID",
     "prefix": "P10727",
     "uri_format": "http://resource.geosciml.org/classifier/cgi/$1"
+  },
+  "P10755": {
+    "database": "Q109378626",
+    "description": "identifier for a scholary article on Baidu Scholar, a Google Scholar-like academic search engine",
+    "example": [
+      "197x0gn03f020tu0de2602f0jy783342",
+      "208b6e46898d3d5e2ed2b34c68e5963e",
+      "a515be53e27a695e433c1102d330c890",
+      "b410f18cce5c2614bea15cc3f3e7a8d3",
+      "e28f67a1fece4b4b80514cd422b99d0b"
+    ],
+    "homepage": "https://xueshu.baidu.com",
+    "name": "Baidu Scholar paper ID",
+    "pattern": "^[0-9a-z]{32}$",
+    "prefix": "P10755",
+    "uri_format": "https://xueshu.baidu.com/usercenter/paper/show?paperid=$1"
   },
   "P1076": {
     "database": "Q105046487",
@@ -620,6 +686,23 @@
     "prefix": "P10835",
     "uri_format": "https://www.ukbeetles.co.uk/$1"
   },
+  "P10863": {
+    "database": "Q65509402",
+    "description": "identifier for an article in Springer Nature (SN) SciGraph",
+    "example": [
+      "10.1006/bulm.1997.0030",
+      "10.1007/978-3-319-11964-9_4",
+      "10.1007/bf00170901",
+      "10.1007/s00285-002-0173-7",
+      "10.1186/1756-0500-2-265",
+      "10.7603/s40632-015-0036-1"
+    ],
+    "homepage": "https://scigraph.springernature.com/explorer",
+    "name": "Springer Nature article ID",
+    "pattern": "^10\\.\\d{4,9}/[0-9a-z\\.-_]+$",
+    "prefix": "P10863",
+    "uri_format": "https://scigraph.springernature.com/pub.$1"
+  },
   "P10876": {
     "database": "Q113213713",
     "description": "code for a vaccine administered by the CDC's National Center for Immunization and Respiratory Diseases",
@@ -635,6 +718,33 @@
     "pattern": "^\\d+$",
     "prefix": "P10876",
     "uri_format": "https://www.findacode.com/cvx/$1.html"
+  },
+  "P10877": {
+    "database": "Q112943827",
+    "description": "identifier for a document in the Applied Ecology Resources database",
+    "example": [
+      "20003021763",
+      "20143268275",
+      "20210120532"
+    ],
+    "homepage": "https://www.britishecologicalsociety.org/applied-ecology-resources/",
+    "name": "Applied Ecology Resources document ID",
+    "prefix": "P10877",
+    "uri_format": "https://www.britishecologicalsociety.org/applied-ecology-resources/document/$1/"
+  },
+  "P10897": {
+    "database": "Q108127463",
+    "description": "Open Research Knowledge Graph (ORKG) ID",
+    "example": [
+      "R1020",
+      "R44759",
+      "R6758"
+    ],
+    "homepage": "https://orkg.org/",
+    "name": "ORKG ID",
+    "pattern": "^R[1-9]\\d*$",
+    "prefix": "P10897",
+    "uri_format": "https://orkg.org/resource/$1"
   },
   "P10907": {
     "database": "Q17073815",
@@ -654,6 +764,36 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P10907",
     "uri_format": "https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=$1"
+  },
+  "P10910": {
+    "database": "Q6431765",
+    "description": "identifier for a member of South Korea's Korean Academy of Science and Technology",
+    "example": [
+      "3770",
+      "4051",
+      "4919",
+      "5531"
+    ],
+    "homepage": "https://www.kast.or.kr/",
+    "name": "Korean Academy of Science and Technology member ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P10910",
+    "uri_format": "https://www.kast.or.kr/kr/member/member_view.php?idx=$1"
+  },
+  "P10915": {
+    "database": "Q113155366",
+    "description": "identifier for a paleographer or diplomatist in the website of the Italian Association of Paleographers and Diplomatists",
+    "example": [
+      "cordasco-pasquale",
+      "giove-nicoletta",
+      "luca-santo",
+      "maria-cannataro-cordasco"
+    ],
+    "homepage": "https://www.paleografidiplomatisti.org/soci/",
+    "name": "Associazione Italiana dei Paleografi e Diplomatisti member ID",
+    "pattern": "^[a-z-]+$",
+    "prefix": "P10915",
+    "uri_format": "https://www.paleografidiplomatisti.org/$1/"
   },
   "P10921": {
     "database": "Q113245046",
@@ -727,6 +867,20 @@
     "pattern": "^[A-Z][A-z0-9\\-]+$",
     "prefix": "P11022",
     "uri_format": "https://plantfinder.nativeplanttrust.org/plant/$1"
+  },
+  "P1104": {
+    "database": "Q1069725",
+    "description": "number of pages in an edition of a written work; see allowed units constraint for valid values to use for units in conjunction with a number",
+    "example": [
+      "159",
+      "28",
+      "285",
+      "37",
+      "399"
+    ],
+    "name": "number of pages",
+    "pattern": "^(0|[1-9]\\d{0,4})$",
+    "prefix": "P1104"
   },
   "P11043": {
     "database": "Q113467651",
@@ -1051,6 +1205,59 @@
     "prefix": "P11199",
     "uri_format": "https://www.probes-drugs.org/compound/$1"
   },
+  "P11267": {
+    "database": "Q115609446",
+    "description": "identifier of a rose cultivar in \"Nomenclature de tous les noms de roses, connus, avec indication de leur race, obtenteur, ann\u00e9e de production, couleur et synonymes\", 2nd edition, by L\u00e9on Simon and Pierre Cochet",
+    "example": [
+      "1226",
+      "1340",
+      "1409"
+    ],
+    "name": "Nomenclature de tous les noms de rosiers ID",
+    "prefix": "P11267"
+  },
+  "P11277": {
+    "database": "Q27612411",
+    "description": "identifier for a human gene in the CIViC database",
+    "example": [
+      "1134",
+      "14221",
+      "2",
+      "3",
+      "4"
+    ],
+    "homepage": "https://civic.genome.wustl.edu/#/home",
+    "name": "CIViC gene ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P11277",
+    "uri_format": "https://civicdb.org/genes/$1/summary"
+  },
+  "P11311": {
+    "database": "Q115641818",
+    "description": "identifier for a taxon on the Lygaeoidea Species File website",
+    "example": [
+      "1211893",
+      "1220402",
+      "1224199"
+    ],
+    "homepage": "http://lygaeoidea.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
+    "name": "Lygaeoidea Species File ID",
+    "pattern": "^[1-9]\\d{6}$",
+    "prefix": "P11311",
+    "uri_format": "http://lygaeoidea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
+  },
+  "P1154": {
+    "database": "Q371467",
+    "description": "unique academic work identifier assigned in Scopus bibliographic database",
+    "example": [
+      "2-s2.0-0030770923",
+      "2-s2.0-41049112855"
+    ],
+    "name": "Scopus EID",
+    "pattern": "^2-s2\\.0-\\d+$",
+    "prefix": "P1154",
+    "uri_format": "http://www.scopus.com/record/display.url?origin=inward&eid=$1"
+  },
   "P1193": {
     "database": "Q719602",
     "description": "portion in percent of a population with a given disease or disorder",
@@ -1221,6 +1428,17 @@
     ],
     "name": "number of cases",
     "prefix": "P1603"
+  },
+  "P1610": {
+    "database": "Q3025975",
+    "description": "identifier of an article in Dialnet",
+    "example": [
+      "3635829"
+    ],
+    "homepage": "https://dialnet.unirioja.es",
+    "name": "Dialnet article ID",
+    "prefix": "P1610",
+    "uri_format": "https://dialnet.unirioja.es/servlet/articulo?codigo=$1"
   },
   "P1668": {
     "database": "Q192093",
@@ -1758,6 +1976,22 @@
     "name": "mass",
     "prefix": "P2067"
   },
+  "P2070": {
+    "database": "Q99485572",
+    "description": "Fellow ID of the Royal Society",
+    "example": [
+      "alison-msmith12897",
+      "jos\u00e9-sarukh\u00e1n-12229",
+      "kostya-novoselov-12010",
+      "prince-william--10960",
+      "timothy-berners-lee-11074"
+    ],
+    "homepage": "https://royalsociety.org/",
+    "name": "Fellow of the Royal Society ID",
+    "pattern": "^([\\p{L}]+)(\\-[\\p{L}]+)*\\-{0,2}([1-9])(\\d*)$",
+    "prefix": "P2070",
+    "uri_format": "https://royalsociety.org/people/$1/"
+  },
   "P2072": {
     "description": "ID in UCI chemical database",
     "example": [
@@ -1913,6 +2147,19 @@
     "name": "life expectancy",
     "prefix": "P2250"
   },
+  "P2273": {
+    "database": "Q107212789",
+    "description": "entry in the list of members of the Heidelberg Academy for Sciences and Humanities",
+    "example": [
+      "1",
+      "850"
+    ],
+    "homepage": "https://www.hadw-bw.de/mitglieder",
+    "name": "HAdW member ID",
+    "pattern": "^[1-9]\\d{0,3}$",
+    "prefix": "P2273",
+    "uri_format": "https://www.hadw-bw.de/mitglieder?id=$1"
+  },
   "P2275": {
     "database": "Q824258",
     "description": "identifier for a drug",
@@ -1995,6 +2242,19 @@
     "prefix": "P235",
     "uri_format": "https://www.ncbi.nlm.nih.gov/sites/entrez?cmd=search&db=pccompound&term=%22$1%22%5BInChIKey%5D"
   },
+  "P2383": {
+    "database": "Q55740543",
+    "description": "identifier for a person in the directory of French learned societies",
+    "example": [
+      "101743",
+      "122666"
+    ],
+    "homepage": "http://cths.fr/an/selec.php?sc=pr",
+    "name": "CTHS person ID",
+    "pattern": "^\\d+$",
+    "prefix": "P2383",
+    "uri_format": "https://cths.fr/an/savant.php?id=$1"
+  },
   "P2393": {
     "database": "Q82494",
     "description": "unique gene identifier that can be used for any species of organism",
@@ -2017,6 +2277,22 @@
     "pattern": "^[A-Z][a-z\\d]{2,9}$",
     "prefix": "P2394",
     "uri_format": "http://www.ncbi.nlm.nih.gov/gene/?term=($1%5BSYM%5D)+AND+Mus+musculus%5BOrganism%5D"
+  },
+  "P2409": {
+    "database": "Q10726338",
+    "description": "identifier for an article in CiNii",
+    "example": [
+      "10016210320",
+      "130007941216"
+    ],
+    "homepage": "https://ci.nii.ac.jp/",
+    "name": "CiNii article ID",
+    "pattern": "^[1-9]\\d{10,11}$",
+    "prefix": "P2409",
+    "uri_format": "https://ci.nii.ac.jp/naid/$1",
+    "uri_format_rdf": [
+      "https://ci.nii.ac.jp/naid/$1#article"
+    ]
   },
   "P2426": {
     "database": "Q8043516",
@@ -2043,6 +2319,19 @@
     "name": "Panarctic Flora ID",
     "prefix": "P2434",
     "uri_format": "http://panarcticflora.org/results?name=#paf-$1"
+  },
+  "P2454": {
+    "database": "Q21491701",
+    "description": "identifier for a person in the Royal Netherlands Academy of Arts and Sciences past member database",
+    "example": [
+      "PE00000338",
+      "PE00004394"
+    ],
+    "homepage": "https://www.dwc.knaw.nl/biografie/pmknaw/",
+    "name": "KNAW past member ID",
+    "pattern": "^PE\\d{8}$",
+    "prefix": "P2454",
+    "uri_format": "http://www.dwc.knaw.nl/biografie/pmknaw/?pagetype=authorDetail&aId=$1"
   },
   "P2455": {
     "database": "Q24248482",
@@ -2552,6 +2841,21 @@
     "prefix": "P3169",
     "uri_format": "https://infochevaux.ifce.fr/fr/$1/infos-generales"
   },
+  "P3181": {
+    "database": "Q29279836",
+    "description": "identifier for an article or publication, in the OpenCitations Corpus",
+    "example": [
+      "173"
+    ],
+    "homepage": "http://opencitations.net/corpus",
+    "name": "OpenCitations bibliographic resource ID",
+    "pattern": "^\\d{1,7}$",
+    "prefix": "P3181",
+    "uri_format": "https://w3id.org/oc/corpus/br/$1.html",
+    "uri_format_rdf": [
+      "https://w3id.org/oc/corpus/br/$1"
+    ]
+  },
   "P3186": {
     "database": "Q26924544",
     "description": "identifier for a biological taxon in TAXREF, the national taxonomic reference for fauna, flora and Fungi of metropolitan France and overseas developed by the National Museum of Natural History",
@@ -2577,6 +2881,19 @@
     "name": "Medical Dictionary for Regulatory Activities ID",
     "prefix": "P3201",
     "uri_format": "http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1"
+  },
+  "P3226": {
+    "database": "Q107213548",
+    "description": "ID of the data-sheet of members of the Hungarian Academy of Sciences",
+    "example": [
+      "12371",
+      "8225"
+    ],
+    "homepage": "https://mta.hu/koztestuleti_tagok",
+    "name": "HAS member ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P3226",
+    "uri_format": "https://mta.hu/koztestuleti_tagok?PersonId=$1"
   },
   "P3240": {
     "database": "Q6970988",
@@ -2668,6 +2985,18 @@
     "prefix": "P3331",
     "uri_format": "http://reg.clinicalgenome.org/allele?hgvs=$1"
   },
+  "P3332": {
+    "database": "Q42805116",
+    "description": "unique identifier for a bibliographic record in the Association for Computing Machinery (ACM) Digital Library",
+    "example": [
+      "2872427",
+      "2874809"
+    ],
+    "homepage": "https://dl.acm.org/",
+    "name": "ACM Digital Library citation ID",
+    "prefix": "P3332",
+    "uri_format": "https://dl.acm.org/citation.cfm?id=$1"
+  },
   "P3337": {
     "database": "Q5532608",
     "description": "average time from one generation to another within the same population",
@@ -2719,6 +3048,19 @@
     "name": "minimum frequency of audible sound",
     "prefix": "P3387"
   },
+  "P3389": {
+    "database": "Q107212889",
+    "description": "identifier in the list of members of the Royal Swedish Academy of Letters, History and Antiquities",
+    "example": [
+      "1",
+      "181"
+    ],
+    "homepage": "http://www.vitterhetsakad.se/ledamoter/matrikel/",
+    "name": "Royal Swedish Academy of Letters member ID",
+    "pattern": "^[1-9]\\d{0,3}$",
+    "prefix": "P3389",
+    "uri_format": "http://www.vitterhetsakad.se/ledamoter/matrikel/$1"
+  },
   "P3395": {
     "database": "Q1073121",
     "description": "speed of the heartbeat measured by the number of contractions of the heart per minute (bpm)",
@@ -2753,6 +3095,32 @@
     "prefix": "P3405",
     "uri_format": "https://www.nederlandsesoorten.nl/linnaeus_ng/app/views/species/nsr_taxon.php?id=$1"
   },
+  "P3411": {
+    "database": "Q107212820",
+    "description": "identifier in the members' database of the Saxon Academy of Sciences",
+    "example": [
+      "abbee",
+      "poeppige"
+    ],
+    "homepage": "https://www.saw-leipzig.de/de/mitglieder",
+    "name": "Saxon Academy of Sciences member ID",
+    "pattern": "^[a-z]+$",
+    "prefix": "P3411",
+    "uri_format": "https://www.saw-leipzig.de/de/mitglieder/$1"
+  },
+  "P3413": {
+    "database": "Q107212858",
+    "description": "identifier in the members' database of the Leopoldina \u2013 German Academy of Sciences",
+    "example": [
+      "1536",
+      "266"
+    ],
+    "homepage": "http://www.leopoldina.org/de/mitglieder/mitglieder-seit-1652/",
+    "name": "Leopoldina member ID (superseded)",
+    "pattern": "^[1-9]\\d{0,3}$",
+    "prefix": "P3413",
+    "uri_format": "https://web.archive.org/web/https://www.leopoldina.org/mitglieder/mitgliederverzeichnis/mitglieder/member/Member/show/$1/"
+  },
   "P3420": {
     "database": "Q18812401",
     "description": "identifier for a taxon in Calflora",
@@ -2764,6 +3132,16 @@
     "pattern": "^[0-9]+$",
     "prefix": "P3420",
     "uri_format": "https://www.calflora.org/cgi-bin/species_query.cgi?where-calrecnum=$1"
+  },
+  "P3431": {
+    "database": "Q18389628",
+    "description": "identifier for the defunct/merged Publons website; URL redirects to Web of Science's P8372 (WOSID)",
+    "example": [
+      "507568"
+    ],
+    "name": "Publons publication ID",
+    "prefix": "P3431",
+    "uri_format": "https://publons.com/publon/$1"
   },
   "P3444": {
     "database": "Q5322614",
@@ -2956,6 +3334,22 @@
     "prefix": "P3550",
     "uri_format": "https://tga-search.clients.funnelback.com/s/search.html?collection=tga-artg&profile=record&meta_i=$1"
   },
+  "P356": {
+    "database": "Q25670",
+    "description": "serial code used to uniquely identify digital objects like academic papers (use upper case letters only)",
+    "example": [
+      "10.12987/YALE/9780300197051.003.0010",
+      "10.1371/JOURNAL.PONE.0029797"
+    ],
+    "miriam": "doi",
+    "name": "DOI",
+    "pattern": "^(?i)10.\\d{4,9}/[-._;()/:A-Z0-9]+$",
+    "prefix": "P356",
+    "uri_format": "https://doi.org/$1",
+    "uri_format_rdf": [
+      "http://dx.doi.org/$1"
+    ]
+  },
   "P3591": {
     "database": "Q8035497",
     "description": "identifier of a plant taxon, in the World Checklist of Selected Plant Families",
@@ -3049,6 +3443,18 @@
     "prefix": "P3746",
     "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
   },
+  "P3784": {
+    "database": "Q2715061",
+    "description": "identifier string for a scientific article available from CiteSeer",
+    "example": [
+      "10.1.1.329.777",
+      "10.1.1.760.3681"
+    ],
+    "name": "CiteSeerX article ID",
+    "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+\\.\\d+$",
+    "prefix": "P3784",
+    "uri_format": "https://citeseerx.ist.psu.edu/viewdoc/summary?doi=$1"
+  },
   "P3795": {
     "database": "Q25491442",
     "description": "identifier for a plant taxon or cultivar in the Flora of Israel Online database",
@@ -3123,6 +3529,18 @@
     "prefix": "P3885",
     "uri_format": "http://www.histmodbiomed.org/taxonomy/term/$1.html"
   },
+  "P3887": {
+    "database": "Q107214459",
+    "description": "identifier of member of the Royal Flemish Academy of Belgium for Science and the Arts",
+    "example": [
+      "778",
+      "88"
+    ],
+    "name": "KVAB member ID",
+    "pattern": "^[1-9][0-9]{2,3}$",
+    "prefix": "P3887",
+    "uri_format": "https://www.kvab.be/sites/default/rest/?q=leden/id/$1&_=popup&width=768&height=720&iframe=true"
+  },
   "P3890": {
     "database": "Q24174701",
     "description": "identifiers for compound entries in the MetaboLights databases.",
@@ -3133,6 +3551,17 @@
     "pattern": "^MTBLC\\d+$",
     "prefix": "P3890",
     "uri_format": "https://www.ebi.ac.uk/metabolights/$1"
+  },
+  "P3894": {
+    "database": "Q2015776",
+    "description": "identifier of a scientific article at Office of Scientific and Technical Information",
+    "example": [
+      "6071133"
+    ],
+    "name": "OSTI article ID",
+    "pattern": "^\\d+$",
+    "prefix": "P3894",
+    "uri_format": "https://www.osti.gov/biblio/$1"
   },
   "P3945": {
     "database": "Q107214406",
@@ -3146,6 +3575,19 @@
     "pattern": "^[1-9]\\d+$",
     "prefix": "P3945",
     "uri_format": "https://www.ranm.es/academicos/$1"
+  },
+  "P3951": {
+    "database": "Q19835482",
+    "description": "identifier of a document in BioRxiv, a preprint repository for the biological sciences launched in November 2013",
+    "example": [
+      "028522",
+      "2021.09.10.459803"
+    ],
+    "homepage": "http://biorxiv.org/search/limit_from:2010-01-01%20limit_to:2017-02-16%20numresults:10%20sort:relevance-rank%20format_result:standard",
+    "name": "BioRxiv ID",
+    "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6}$",
+    "prefix": "P3951",
+    "uri_format": "https://doi.org/10.1101/$1"
   },
   "P3956": {
     "database": "Q107213173",
@@ -3181,6 +3623,19 @@
     "pattern": "^[A-Za-z \\.]+$",
     "prefix": "P3982"
   },
+  "P4011": {
+    "database": "Q22908627",
+    "description": "identifier for an article in the Semantic Scholar database (40 hexadecimal digits; for numeric ID see P8299)",
+    "example": [
+      "4eb67f8548f76574864003baf314e8141f354cba",
+      "5acd1dd3da5752e1de4c5b46f75b7aec2bc50503"
+    ],
+    "homepage": "https://www.semanticscholar.org/",
+    "name": "Semantic Scholar paper ID",
+    "pattern": "^[0-9a-fA-F]{40}$",
+    "prefix": "P4011",
+    "uri_format": "https://www.semanticscholar.org/paper/$1"
+  },
   "P4024": {
     "database": "Q2850008",
     "description": "identifier for a taxon in the Animal Diversity Web database",
@@ -3193,6 +3648,19 @@
     "name": "ADW taxon ID",
     "prefix": "P4024",
     "uri_format": "https://animaldiversity.org/accounts/$1/"
+  },
+  "P4028": {
+    "database": "Q494817",
+    "description": "identifier for a paper in Google Scholar",
+    "example": [
+      "139042526584660102",
+      "15321553275576339397"
+    ],
+    "homepage": "https://scholar.google.com/",
+    "name": "Google Scholar paper ID",
+    "pattern": "^[A-Za-z0-9_-]*$",
+    "prefix": "P4028",
+    "uri_format": "https://scholar.google.com/scholar?cluster=$1"
   },
   "P4058": {
     "database": "Q3063240",
@@ -3263,7 +3731,7 @@
     "example": [
       "122"
     ],
-    "name": "highest observed lifespan",
+    "name": "longest observed lifespan",
     "prefix": "P4214"
   },
   "P4229": {
@@ -3515,6 +3983,31 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4569"
   },
+  "P4585": {
+    "database": "Q107212594",
+    "description": "identifier for a member of Accademia della Crusca",
+    "example": [
+      "163",
+      "1698"
+    ],
+    "homepage": "http://www.accademicidellacrusca.org/lista_acc_soci.asp",
+    "name": "Accademia della Crusca ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P4585",
+    "uri_format": "https://www.accademicidellacrusca.org/scheda?IDN=$1"
+  },
+  "P4596": {
+    "description": "identifier for an official publication of the U.S. National Institute of Safety and Health (NIOSH)",
+    "example": [
+      "2016-162",
+      "70-10253",
+      "82-104"
+    ],
+    "homepage": "https://www.cdc.gov/niosh/pubs/all_date_desc.html",
+    "name": "NIOSH Numbered Publication ID",
+    "pattern": "^7[0-3]-[1-9]\\d{4}|([7-9]\\d|20\\d{2})-[1-9]\\d{2}$",
+    "prefix": "P4596"
+  },
   "P4630": {
     "database": "Q3036834",
     "description": "identifier of an underwater animal or plant species from French metropolitan and overseas waters on the participatory site DORIS",
@@ -3547,6 +4040,20 @@
     "prefix": "P4670",
     "uri_format": "https://www.1177.se/Fakta-och-rad/Sjukdomar/$1"
   },
+  "P4700": {
+    "database": "Q2933237",
+    "description": "identifier for a journal or an article in Cairn, an online library of French-language scholarly journals",
+    "example": [
+      "revue-actes-de-la-recherche-en-sciences-sociales",
+      "revue-actuel-marx",
+      "revue-informations-sociales-2014-2-page-30"
+    ],
+    "homepage": "https://www.cairn.info/listerev.php",
+    "name": "Cairn publication ID",
+    "pattern": "^[\\w\\-@]{3,}$",
+    "prefix": "P4700",
+    "uri_format": "https://www.cairn.info/$1.htm"
+  },
   "P4715": {
     "database": "Q46968363",
     "description": "identifier for a bird taxon in the Guide to North American Birds on the National Audubon Society website",
@@ -3558,6 +4065,30 @@
     "name": "Guide to North American Birds ID",
     "prefix": "P4715",
     "uri_format": "https://www.audubon.org/field-guide/bird/$1"
+  },
+  "P4716": {
+    "database": "Q107213385",
+    "description": "identifier for a member of the Acad\u00e9mie des Inscriptions et Belles-Lettres on its website",
+    "example": [
+      "gabba-emilio",
+      "tilliette-jean-yves-marie-guy"
+    ],
+    "name": "Acad\u00e9mie des Inscriptions et Belles-Lettres member ID",
+    "pattern": "^[a-z\\-\\d]+$",
+    "prefix": "P4716",
+    "uri_format": "https://www.aibl.fr/membres/academiciens-depuis-1663/article/$1"
+  },
+  "P4717": {
+    "database": "Q107214508",
+    "description": "identifier for a member of the Acad\u00e9mie fran\u00e7aise on its website",
+    "example": [
+      "assia-djebar",
+      "jean-dormesson"
+    ],
+    "name": "Acad\u00e9mie fran\u00e7aise member ID",
+    "pattern": "^[a-z\\-]+$",
+    "prefix": "P4717",
+    "uri_format": "https://www.academie-francaise.fr/les-immortels/$1"
   },
   "P4728": {
     "database": "Q3551271",
@@ -3704,6 +4235,18 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4866",
     "uri_format": "http://rebase.neb.com/cgi-bin/reb_get.pl?enzname=$1"
+  },
+  "P4901": {
+    "database": "Q22661177",
+    "description": "ID of a work in Zenodo repository",
+    "example": [
+      "1038611",
+      "1481308"
+    ],
+    "name": "Zenodo ID",
+    "pattern": "^[1-9]\\d+$",
+    "prefix": "P4901",
+    "uri_format": "https://zenodo.org/record/$1"
   },
   "P4902": {
     "database": "Q5152005",
@@ -3910,6 +4453,31 @@
     "name": "ISO 3950 code",
     "prefix": "P5209"
   },
+  "P5212": {
+    "database": "Q107213603",
+    "description": "identifier for a member of the Armenian National Academy of Sciences",
+    "example": [
+      "160",
+      "59"
+    ],
+    "homepage": "https://www.sci.am/members.php?l=&id=&oid=&oid2=&d=&langid=2",
+    "name": "Armenian National Academy of Sciences ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P5212",
+    "uri_format": "https://www.sci.am/membersview.php?id=$1&d=&l=&langid=2"
+  },
+  "P5214": {
+    "database": "Q59798923",
+    "description": "identifier for a taxonomic paper about Paleozoic ammonoids, in the GONIAT database",
+    "example": [
+      "lit00000000000000000000000001050"
+    ],
+    "homepage": "http://www.goniat.org/",
+    "name": "GONIAT paper ID",
+    "pattern": "^lit[0-9]{29}$",
+    "prefix": "P5214",
+    "uri_format": "http://www.goniat.org/showLit.html?LitId=$1"
+  },
   "P5216": {
     "database": "Q59798923",
     "description": "identifier for a taxon, in the GONIAT database",
@@ -4002,6 +4570,19 @@
     "prefix": "P5299",
     "uri_format": "https://www.antweb.org/description.do?taxonName=$1"
   },
+  "P5325": {
+    "database": "Q107213578",
+    "description": "identifier of a person in the register of members of the Swedish Academy",
+    "example": [
+      "adlerbeth-gudmund-goran",
+      "wirsen-carl-david-af"
+    ],
+    "homepage": "http://www.svenskaakademien.se/en",
+    "name": "Swedish Academy member ID",
+    "pattern": "^[a-zA-Z\u00e5\u00e4\u00f6\u00c5\u00c4\u00d6]+(-[a-zA-Z\u00e5\u00e4\u00f6\u00c5\u00c4\u00d6]+)*$",
+    "prefix": "P5325",
+    "uri_format": "http://www.svenskaakademien.se/svenska-akademien/ledamotsregister/$1"
+  },
   "P5329": {
     "database": "Q105549761",
     "description": "Royal Academy of Medicine of Belgium member ID",
@@ -4029,6 +4610,33 @@
     "prefix": "P5354",
     "uri_format": "https://amphibiansoftheworld.amnh.org/Amphibia/$1"
   },
+  "P5362": {
+    "database": "Q107214612",
+    "description": "identifier of a member of the 'Acad\u00e9mie des Sciences Morales et Politiques' on its website",
+    "example": [
+      "section-ii-morale-et-sociologie/mireille-delmas-marty/",
+      "section-v/pierre-chaunu"
+    ],
+    "homepage": "https://academiesciencesmoralesetpolitiques.fr/les-academiciens-de-1832-a-nos-jours/",
+    "name": "Acad\u00e9mie des sciences morales et politiques member ID",
+    "pattern": "^section.+\\/[a-zA-Z]+(-[a-zA-Z]+)+\\/?$",
+    "prefix": "P5362",
+    "uri_format": "https://academiesciencesmoralesetpolitiques.fr/les-academiciens-de-1832-a-nos-jours/les-academiciens-de-1832-a-nos-jours-$1"
+  },
+  "P5363": {
+    "database": "Q107215022",
+    "description": "identifier of a member of the Acad\u00e9mie des beaux-arts on its website",
+    "example": [
+      "jean-cardot",
+      "pierre-carron",
+      "pierre-dehaye"
+    ],
+    "homepage": "https://www.academiedesbeauxarts.fr/membres-actuels",
+    "name": "Acad\u00e9mie des beaux-arts member ID",
+    "pattern": "^[a-z]+(-[a-z]+)*(-0)?$",
+    "prefix": "P5363",
+    "uri_format": "https://www.academiedesbeauxarts.fr/$1"
+  },
   "P5370": {
     "database": "Q57831640",
     "description": "identifier for an entry in the Biographies of the Entomologists of the World online database",
@@ -4041,6 +4649,20 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P5370",
     "uri_format": "http://sdei.senckenberg.de/biographies/information.php?id=$1"
+  },
+  "P5374": {
+    "database": "Q337512",
+    "description": "identifier for a member on the Acad\u00e9mie des sciences d'outre-mer website",
+    "example": [
+      "1188",
+      "204",
+      "96"
+    ],
+    "homepage": "http://www.academieoutremer.fr/academiciens/?gAlpha=1",
+    "name": "Acad\u00e9mie des sciences d'outre-mer member ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P5374",
+    "uri_format": "http://www.academieoutremer.fr/academiciens/?aId=$1"
   },
   "P5375": {
     "database": "Q105958830",
@@ -4068,6 +4690,20 @@
     "name": "Medicina author ID",
     "prefix": "P5376",
     "uri_format": "http://www.biusante.parisdescartes.fr/histoire/medicina/?auteur=$1"
+  },
+  "P5380": {
+    "database": "Q107213150",
+    "description": "identifier for a member or foreign associate on the American National Academy of Sciences website",
+    "example": [
+      "20030494",
+      "4325",
+      "45742"
+    ],
+    "homepage": "http://www.nasonline.org/member-directory/",
+    "name": "National Academy of Sciences member ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P5380",
+    "uri_format": "http://www.nasonline.org/member-directory/members/$1.html"
   },
   "P5397": {
     "database": "Q2432535",
@@ -4112,6 +4748,21 @@
     "pattern": "^[1-9]\\d{0,3}$",
     "prefix": "P5458",
     "uri_format": "https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
+  },
+  "P5463": {
+    "database": "Q107213897",
+    "description": "identifier for a member of the Academy of Europe",
+    "example": [
+      "Aaviksoo_Jaak",
+      "Alanen_Lilli",
+      "Sj\u00f6berg_Britt-Marie",
+      "de_LANGE_Nicholas"
+    ],
+    "homepage": "https://www.ae-info.org/ae/Member",
+    "name": "AE member ID",
+    "pattern": "^[\\p{L}_.'-]+(\\([1-9][0-9]*\\))?$",
+    "prefix": "P5463",
+    "uri_format": "https://www.ae-info.org/ae/Member/$1"
   },
   "P5468": {
     "database": "Q55395171",
@@ -4167,6 +4818,20 @@
     "prefix": "P5501",
     "uri_format": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3&id_go=$1"
   },
+  "P5530": {
+    "database": "Q27991349",
+    "description": "DOI of a scientific or academic article at altmetric.com, to track citation metrics",
+    "example": [
+      "10.1098/RSTB.2003.1449",
+      "10.1371/JOURNAL.PONE.0179010",
+      "10.15347/WJM/2014.001"
+    ],
+    "homepage": "https://altmetric.com/",
+    "name": "Altmetric DOI",
+    "pattern": "^10.\\d{4,9}\\/[-._;()\\/:A-Za-z0-9]+$",
+    "prefix": "P5530",
+    "uri_format": "https://www.altmetric.com/details/doi/$1"
+  },
   "P557": {
     "database": "Q213103",
     "description": "identifier sourced on the Diseases Database",
@@ -4205,6 +4870,45 @@
     "pattern": "^[8-9]\\d{3}(/[0-3])?$",
     "prefix": "P563",
     "uri_format": "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"
+  },
+  "P5661": {
+    "database": "Q107214470",
+    "description": "identifier for a member of the 'Acad\u00e9mie de Montpellier' on its website",
+    "example": [
+      "273",
+      "574",
+      "575"
+    ],
+    "homepage": "http://www.ac-sciences-lettres-montpellier.fr/academie_edition/sources/index.php?page=academiciens",
+    "name": "Acad\u00e9mie de Montpellier member ID",
+    "prefix": "P5661",
+    "uri_format": "http://www.ac-sciences-lettres-montpellier.fr/academie_edition/sources/index.php?page=academicien_detail&id=$1"
+  },
+  "P5662": {
+    "database": "Q107214661",
+    "description": "identifier for a member of the 'Acad\u00e9mie de M\u00e2con' on its website",
+    "example": [
+      "1017",
+      "1931",
+      "68"
+    ],
+    "homepage": "http://academiedemacon.fr/recherche-documentaire/les-membres/",
+    "name": "Acad\u00e9mie de M\u00e2con member ID",
+    "prefix": "P5662",
+    "uri_format": "http://academiedemacon.fr/details/?num=$1"
+  },
+  "P5663": {
+    "database": "Q107214646",
+    "description": "identifier for a member of the 'Acad\u00e9mie de Versailles' on its website",
+    "example": [
+      "218934",
+      "219607",
+      "219885"
+    ],
+    "homepage": "http://www.academiedeversailles.com/_anciens-membres",
+    "name": "Acad\u00e9mie de Versailles member ID",
+    "prefix": "P5663",
+    "uri_format": "https://www.academiedeversailles.com/_$1"
   },
   "P5683": {
     "database": "Q16958215",
@@ -4266,6 +4970,19 @@
     "name": "BGCI garden ID",
     "prefix": "P5818",
     "uri_format": "https://www.bgci.org/garden.php?id=$1"
+  },
+  "P5839": {
+    "database": "Q107214651",
+    "description": "identifier for a member of the 'Acad\u00e9mie de Marseille' on its website",
+    "example": [
+      "academiciens/bergoin-georges",
+      "academiciens/duchene-roger",
+      "membres/duchene-jacqueline"
+    ],
+    "homepage": "http://www.academie-sla-marseille.fr/pages/membres-1/academiciens/",
+    "name": "Acad\u00e9mie de Marseille member ID",
+    "prefix": "P5839",
+    "uri_format": "http://www.academie-sla-marseille.fr/pages/membres-1/$1.html"
   },
   "P5843": {
     "database": "Q27688927",
@@ -4329,6 +5046,19 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P5864",
     "uri_format": "https://enciclovida.mx/especies/$1"
+  },
+  "P5875": {
+    "database": "Q754454",
+    "description": "identifier of a publication in ResearchGate",
+    "example": [
+      "280630581",
+      "321796168",
+      "354628531"
+    ],
+    "name": "ResearchGate publication ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P5875",
+    "uri_format": "https://www.researchgate.net/publication/$1"
   },
   "P5878": {
     "database": "Q56649865",
@@ -5168,6 +5898,33 @@
     "prefix": "P6163",
     "uri_format": "https://nas.er.usgs.gov/queries/FactSheet.aspx?speciesID=$1"
   },
+  "P6171": {
+    "database": "Q107214639",
+    "description": "identifier for a member of the 'Acad\u00e9mie d'Arles' on its website",
+    "example": [
+      "fernand_benoit_264",
+      "gabriel_vian_246",
+      "jean_fuzier_252"
+    ],
+    "homepage": "http://academie.arles.free.fr/membres_contemporains_175.htm",
+    "name": "Acad\u00e9mie d'Arles member ID",
+    "prefix": "P6171",
+    "uri_format": "http://academie.arles.free.fr/$1.htm"
+  },
+  "P6174": {
+    "database": "Q107214566",
+    "description": "fellows of The World Academy of Sciences (TWAS)",
+    "example": [
+      "bahadur-raghu-raj",
+      "caldeyro-barcia-roberto",
+      "chagas-carlos"
+    ],
+    "homepage": "https://twas.org/directory/deceased-twas-fellows",
+    "name": "The World Academy of Sciences fellow ID",
+    "pattern": "^([a-z]+-)+[a-z]+$",
+    "prefix": "P6174",
+    "uri_format": "https://twas.org/directory/$1"
+  },
   "P6176": {
     "database": "Q58819364",
     "description": "identifier for a species on the California Invasive Plant Council website",
@@ -5198,6 +5955,19 @@
     "uri_format_rdf": [
       "http://eunis.eea.europa.eu/species/$1"
     ]
+  },
+  "P6179": {
+    "database": "Q95044734",
+    "description": "unique identifier for a work in the Dimensions database",
+    "example": [
+      "1052157206",
+      "1105497016"
+    ],
+    "homepage": "https://app.dimensions.ai/",
+    "name": "Dimensions Publication ID",
+    "pattern": "^\\d{10}$",
+    "prefix": "P6179",
+    "uri_format": "https://app.dimensions.ai/details/publication/pub.$1"
   },
   "P6209": {
     "database": "Q59263290",
@@ -5240,6 +6010,19 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6227",
     "uri_format": "https://wisflora.herbarium.wisc.edu/taxa/index.php?taxon=$1"
+  },
+  "P6235": {
+    "database": "Q107213910",
+    "description": "identifier for a person (including members) on the website of the 'Acad\u00e9mie royale de Belgique'",
+    "example": [
+      "andre-allard",
+      "iguillaumei-amedee-auguste-arendt",
+      "joseph-pierre-dit-jos-albert"
+    ],
+    "homepage": "http://www.academieroyale.be/fr/who-who/",
+    "name": "Acad\u00e9mie royale de Belgique member ID",
+    "prefix": "P6235",
+    "uri_format": "http://www.academieroyale.be/fr/who-who-detail/relations/$1"
   },
   "P6245": {
     "database": "Q25304673",
@@ -5293,6 +6076,19 @@
     "pattern": "^[1-9]\\d{0,8}$",
     "prefix": "P627",
     "uri_format": "https://apiv3.iucnredlist.org/api/v3/taxonredirect/$1"
+  },
+  "P6282": {
+    "database": "Q107214467",
+    "description": "identifier for a member of the French Academy of Sciences on its website",
+    "example": [
+      "C/vincent-courtillot",
+      "D/anne-dejean-assemat",
+      "M/edmond-malinvaud"
+    ],
+    "homepage": "http://www.academie-sciences.fr/fr/Table/Listes-par-ordre-alphabetique/Liste-des-membres-de-l-Academie-des-sciences-/-A/",
+    "name": "French Academy of Sciences member ID",
+    "prefix": "P6282",
+    "uri_format": "http://www.academie-sciences.fr/fr/Liste-des-membres-de-l-Academie-des-sciences-/-$1.html"
   },
   "P6285": {
     "database": "Q59848752",
@@ -5464,6 +6260,19 @@
     "prefix": "P6408",
     "uri_format": "https://hemiptera-databases.org/cool/database.php?db=cool&lang=en&card=taxon&rank=species&id=$1"
   },
+  "P6409": {
+    "database": "Q22661180",
+    "description": "ID of an article in CORE (Connecting Repositories)",
+    "example": [
+      "30443016",
+      "55658892",
+      "84001075"
+    ],
+    "name": "CORE ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P6409",
+    "uri_format": "https://core.ac.uk/display/$1"
+  },
   "P6433": {
     "database": "Q61417289",
     "description": "identifier for a taxon in Global Species database",
@@ -5476,6 +6285,19 @@
     "name": "Global Species ID",
     "pattern": "^[1-9]\\d{3,6}$",
     "prefix": "P6433"
+  },
+  "P6480": {
+    "database": "Q5970536",
+    "description": "identifier for a document in IEEE Xplore",
+    "example": [
+      "1580791",
+      "668698",
+      "761722"
+    ],
+    "name": "IEEE Xplore document ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P6480",
+    "uri_format": "https://ieeexplore.ieee.org/document/$1"
   },
   "P6481": {
     "database": "Q61313274",
@@ -5583,6 +6405,19 @@
     "pattern": "^[A-Z]{2}\\d{7}$",
     "prefix": "P657"
   },
+  "P6575": {
+    "database": "Q107214617",
+    "description": "identifier for a member of the Acad\u00e9mie de Rouen on its website",
+    "example": [
+      "1696",
+      "1872",
+      "581"
+    ],
+    "homepage": "http://www.rouen-histoire.com/Academie/Academie.php",
+    "name": "Acad\u00e9mie de Rouen member ID",
+    "prefix": "P6575",
+    "uri_format": "http://www.rouen-histoire.com/Academie/Acad_Fich.php?id=$1"
+  },
   "P6605": {
     "database": "Q62131052",
     "description": "identifier for a botanical artist, on the Plant Illustrations website",
@@ -5674,6 +6509,20 @@
     "uri_format_rdf": [
       "https://www.kegg.jp/entry/$1"
     ]
+  },
+  "P6661": {
+    "database": "Q19835482",
+    "description": "identifier for a scientific or academic preprint of a paper, in the Rxivist database",
+    "example": [
+      "10282",
+      "29365",
+      "5391"
+    ],
+    "homepage": "https://rxivist.org",
+    "name": "Rxivist preprint ID",
+    "pattern": "^([1-4]\\d{5}|[1-9]\\d{0,4})$",
+    "prefix": "P6661",
+    "uri_format": "https://rxivist.org/papers/$1"
   },
   "P667": {
     "database": "Q723530",
@@ -5857,6 +6706,20 @@
     "prefix": "P6756",
     "uri_format": "https://profiles.ala.org.au/opus/foa/profile/$1"
   },
+  "P6769": {
+    "database": "Q12857515",
+    "description": "identifier for journal articles in China National Knowledge Infrastructure (CNKI)'s China Journal Full-text Database (CJFD)",
+    "example": [
+      "LSYJ197703000",
+      "LSYJ200506002",
+      "ZGSJ402.002"
+    ],
+    "homepage": "http://cnki.com.cn/",
+    "name": "CJFD journal article ID",
+    "pattern": "^[A-Z]{4}([\\w\\-]{6,7}|[\\w\\-]{3,4}\\.|[\\w\\-]{14})[0-9A-Z]{3}$",
+    "prefix": "P6769",
+    "uri_format": "https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&filename=$1"
+  },
   "P6800": {
     "database": "Q7020",
     "description": "sequenced and assembled genome for this taxon",
@@ -5932,7 +6795,7 @@
     ]
   },
   "P6852": {
-    "database": "Q5025404",
+    "database": "Q115521452",
     "description": "identifier for a single crystal structure per the Cambridge Crystallographic Data Centre (CCDC)",
     "example": [
       "FEACAC03",
@@ -6240,6 +7103,17 @@
     "prefix": "P7366",
     "uri_format": "https://search.wdoms.org/home/SchoolDetail/$1"
   },
+  "P7381": {
+    "database": "Q19891828",
+    "description": "Identifier of an scientific article at PubPeer",
+    "example": [
+      "93E9A9190D7B965120D9ACAAEBBC42",
+      "DA836EA83987D45D9F5AB9BA9C3163"
+    ],
+    "name": "PubPeer article ID",
+    "prefix": "P7381",
+    "uri_format": "https://pubpeer.com/publications/$1"
+  },
   "P7387": {
     "database": "Q30900717",
     "description": "Q-Codes ID is for indexing Family medicine related docs; with the ICPC 2, both form the Core Content Classification in General Practice/ Family Medicine (3CGP)",
@@ -6252,6 +7126,32 @@
     "pattern": "^Q[CDEHPRST][1-9]\\d+$",
     "prefix": "P7387",
     "uri_format": "https://www.hetop.eu/hetop/Q/fr/?q=$1"
+  },
+  "P7408": {
+    "database": "Q1282060",
+    "description": "ID of a journal, book or article in EconBiz",
+    "example": [
+      "10011976210",
+      "10012056197",
+      "10012064515"
+    ],
+    "name": "EconBiz publication ID",
+    "pattern": "^\\d{11}$",
+    "prefix": "P7408",
+    "uri_format": "https://www.econbiz.de/Record/$1"
+  },
+  "P7409": {
+    "database": "Q2915193",
+    "description": "ID of an article or book in ERIC",
+    "example": [
+      "ED142418",
+      "EJ1213020",
+      "EJ1225398"
+    ],
+    "name": "ERIC publication ID",
+    "pattern": "^E(D\\d{6}|J\\d{6,7})$",
+    "prefix": "P7409",
+    "uri_format": "https://eric.ed.gov/?id=$1"
   },
   "P7413": {
     "description": "identifier for ancient and notable trees in the United Kingdom",
@@ -6354,6 +7254,22 @@
     "prefix": "P7552",
     "uri_format": "https://laji.fi/taxon/$1"
   },
+  "P7710": {
+    "database": "Q22666524",
+    "description": "unique identifier of a work in ScienceOpen database",
+    "example": [
+      "75646fcd-8e42-4afc-b120-41460eb0a49b",
+      "9fd49726-0ff2-43bd-b574-b6566a446554",
+      "a915795e-13ae-4b5a-bfe7-4707f1b3fd3d",
+      "c629f83c-7a2d-4e37-aa11-486f9741a179",
+      "d0eedb90-ab67-4184-a7dd-95ce4d1fbe4e"
+    ],
+    "homepage": "https://www.scienceopen.com",
+    "name": "ScienceOpen publication ID",
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "prefix": "P7710",
+    "uri_format": "https://www.scienceopen.com/document?vid=$1"
+  },
   "P7715": {
     "database": "Q77076820",
     "description": "identifier for a plant in World Flora Online",
@@ -6368,6 +7284,20 @@
     "pattern": "^wfo-\\d{10}$",
     "prefix": "P7715",
     "uri_format": "http://www.worldfloraonline.org/taxon/$1"
+  },
+  "P7720": {
+    "database": "Q796451",
+    "description": "identifier for a journal article in the Fossilworks database",
+    "example": [
+      "55763",
+      "61467",
+      "65044"
+    ],
+    "homepage": "http://fossilworks.org",
+    "name": "Fossilworks ID for this journal article",
+    "pattern": "^\\d+$",
+    "prefix": "P7720",
+    "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1"
   },
   "P7725": {
     "database": "Q67359273",
@@ -6450,6 +7380,36 @@
     "name": "period of lactation",
     "prefix": "P7862"
   },
+  "P7864": {
+    "database": "Q3144107",
+    "description": "identifier for an article in the HAL (Hyper Articles en Ligne) open access repository",
+    "example": [
+      "hal-01134934",
+      "in2p3-00025748",
+      "insu-01322341"
+    ],
+    "name": "HAL article ID",
+    "prefix": "P7864",
+    "uri_format": "https://hal.archives-ouvertes.fr/$1"
+  },
+  "P7896": {
+    "database": "Q2777905",
+    "description": "identifier of a publication at Academia.edu",
+    "example": [
+      "10023756",
+      "10049615",
+      "1022103",
+      "12581417",
+      "35090100",
+      "35090120",
+      "9843052"
+    ],
+    "homepage": "https://www.academia.edu/",
+    "name": "Academia.edu publication ID",
+    "pattern": "^[1-9]\\d{0,8}$",
+    "prefix": "P7896",
+    "uri_format": "https://www.academia.edu/$1"
+  },
   "P7905": {
     "database": "Q480003",
     "description": "identifier of a taxon in AnimalBase website",
@@ -6460,6 +7420,19 @@
     "name": "AnimalBase ID",
     "prefix": "P7905",
     "uri_format": "http://www.animalbase.uni-goettingen.de/zooweb/servlet/AnimalBase/home/speciestaxon?id=$1"
+  },
+  "P7916": {
+    "database": "Q1580044",
+    "description": "identifier for a scientific publication on the Mendeley.com website",
+    "example": [
+      "94345f84-4a49-3f3e-8f47-f7290e431f7d",
+      "bc44868b-d9f4-3e59-a059-b67bcbe429d2",
+      "e4d0a7e2-b5de-30f1-9be4-8a8a4be658f0"
+    ],
+    "homepage": "https://www.mendeley.com/newsfeed?search=research-papers",
+    "name": "Mendeley publication ID",
+    "prefix": "P7916",
+    "uri_format": "https://www.mendeley.com/catalogue/$1/"
   },
   "P7963": {
     "database": "Q55118285",
@@ -6480,6 +7453,20 @@
     "uri_format_rdf": [
       "http://purl.obolibrary.org/obo/$1"
     ]
+  },
+  "P7965": {
+    "database": "Q77125337",
+    "description": "ID of a work in Scilit by MDPI",
+    "example": [
+      "46662cf61f0b3b5d0d226e4a8a3f5abd",
+      "882a8473602a675c3f5320ea18c71f24",
+      "be21ac525bce06749b86883665d347b7"
+    ],
+    "homepage": "https://www.scilit.net",
+    "name": "Scilit work ID",
+    "pattern": "^[0-9a-f]{32}$",
+    "prefix": "P7965",
+    "uri_format": "https://www.scilit.net/article/$1"
   },
   "P7995": {
     "description": "identifier for a health condition in the NHS Health A to Z",
@@ -6602,6 +7589,62 @@
     "prefix": "P8082",
     "uri_format": "https://www.mscbs.gob.es/ciudadanos/centros.do?metodo=realizarDetalle&tipo=hospital&numero=$1"
   },
+  "P8099": {
+    "database": "Q88968310",
+    "description": "identifier for a scholarly article in the I-Revues bibliographic database",
+    "example": [
+      "66629",
+      "69984",
+      "9361"
+    ],
+    "homepage": "http://irevues.inist.fr/",
+    "name": "I-Revues ID",
+    "pattern": "^\\d+$",
+    "prefix": "P8099",
+    "uri_format": "http://documents.irevues.inist.fr/handle/2042/$1"
+  },
+  "P8101": {
+    "database": "Q1476351",
+    "description": "identifier for a scholarly article in the Project MUSE bibliographic database",
+    "example": [
+      "247123",
+      "37885",
+      "392026"
+    ],
+    "homepage": "https://muse.jhu.edu/",
+    "name": "MUSE article ID",
+    "pattern": "^\\d+$",
+    "prefix": "P8101",
+    "uri_format": "https://muse.jhu.edu/article/$1"
+  },
+  "P8103": {
+    "database": "Q55628549",
+    "description": "identifier for a scholarly article in the Paperity bibliographic database",
+    "example": [
+      "76644443",
+      "85189920",
+      "98850175"
+    ],
+    "homepage": "https://paperity.org/search/?advanced=1",
+    "name": "Paperity article ID",
+    "pattern": "^\\d+$",
+    "prefix": "P8103",
+    "uri_format": "https://paperity.org/p/$1/wd"
+  },
+  "P8109": {
+    "database": "Q3081272",
+    "description": "identifier for a scholarly publication in the Pascal and Francis bibliographic databases",
+    "example": [
+      "18610324",
+      "21695099",
+      "24515059"
+    ],
+    "homepage": "https://pascal-francis.inist.fr/vibad/index.php?action=advancedSearch",
+    "name": "Pascal et Francis ID",
+    "pattern": "^\\d+$",
+    "prefix": "P8109",
+    "uri_format": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=$1"
+  },
   "P8145": {
     "database": "Q89384967",
     "description": "numerical identifier for a taxon on the Psocodea Species File project",
@@ -6642,6 +7685,20 @@
     "prefix": "P8150",
     "uri_format": "https://search.bvsalud.org/global-literature-on-novel-coronavirus-2019-ncov/resource/ar/$1"
   },
+  "P8153": {
+    "database": "Q107212659",
+    "description": "identifier for a member of Accademia delle Scienze di Torino",
+    "example": [
+      "jean-perrin",
+      "nicola-abbagnano",
+      "vera-comoli"
+    ],
+    "homepage": "https://www.accademiadellescienze.it/accademia/soci",
+    "name": "Accademia delle Scienze di Torino ID",
+    "pattern": "^[A-Za-z]+([-_]([A-Za-z0-9]+))*$",
+    "prefix": "P8153",
+    "uri_format": "https://www.accademiadellescienze.it/accademia/soci/$1"
+  },
   "P8162": {
     "description": "identifier for a facility indexed by Bangladesh's Directorate General of Health Services",
     "example": [
@@ -6680,6 +7737,31 @@
     "pattern": "^\\d{11}$",
     "prefix": "P8170"
   },
+  "P818": {
+    "database": "Q18920853",
+    "description": "identifier of a document in arXiv pre-print archive",
+    "example": [
+      "0806.2878",
+      "1109.1746"
+    ],
+    "homepage": "http://arxiv.org/abs/",
+    "name": "arXiv ID",
+    "pattern": "^(\\d{4}.\\d{4,5}|[a-z\\-]+(\\.[A-Z]{2})?\\/\\d{7})(v\\d+)?$",
+    "prefix": "P818",
+    "uri_format": "http://arxiv.org/abs/$1"
+  },
+  "P819": {
+    "database": "Q25754",
+    "description": "bibcode in the Astrophysics Data System",
+    "example": [
+      "1954Metic...1..228L",
+      "2008MNRAS.389..869E"
+    ],
+    "name": "ADS bibcode",
+    "pattern": "^\\d{4}[A-Za-z\\.\\&]{5}[\\w\\.]{4}[ELPQ-Z\\.][\\d\\.]{4}[A-Z]$",
+    "prefix": "P819",
+    "uri_format": "https://ui.adsabs.harvard.edu/abs/$1"
+  },
   "P8204": {
     "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Do not delete such statements.",
     "example": [
@@ -6700,6 +7782,17 @@
     "name": "GMC registration number",
     "prefix": "P8273",
     "uri_format": "https://www.gmc-uk.org/doctors/$1"
+  },
+  "P8299": {
+    "database": "Q22908627",
+    "description": "identifier for an article in the Semantic Scholar database (for hexadecimal ID see P4011)",
+    "example": [
+      "37220927",
+      "9445722"
+    ],
+    "name": "Semantic Scholar corpus ID",
+    "prefix": "P8299",
+    "uri_format": "https://api.semanticscholar.org/CorpusID:$1"
   },
   "P830": {
     "database": "Q82486",
@@ -6863,6 +7956,49 @@
     "name": "extinction date",
     "prefix": "P8556"
   },
+  "P8586": {
+    "database": "Q50426299",
+    "description": "identifier for a scholarly article in the Anais do Museu Paulista",
+    "example": [
+      "103878",
+      "119847",
+      "53560"
+    ],
+    "homepage": "https://www.revistas.usp.br/wp/",
+    "name": "Anais do Museu Paulista article ID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "prefix": "P8586",
+    "uri_format": "http://www.revistas.usp.br/anaismp/article/view/$1"
+  },
+  "P8608": {
+    "database": "Q59296908",
+    "description": "identifier on fatcat.wiki, a repository of scholarly articles maintained by the Internet Archive",
+    "example": [
+      "container_q7tdka6lt5bjnpgfzbobhytwl4",
+      "release_svbqek5t4vdd5p3ezqnovzbycq",
+      "release_ygsxgwsoc5gddmdbhpstt27bky"
+    ],
+    "homepage": "https://fatcat.wiki/",
+    "name": "Fatcat ID",
+    "pattern": "^(release|work|container|creator|file|fileset|webcapture|extra)_[a-z0-9]{26}$",
+    "prefix": "P8608",
+    "uri_format": "https://fatcat.wiki/$1"
+  },
+  "P8612": {
+    "database": "Q99485561",
+    "description": "identifier for past Fellows (deceased) of the Royal Society",
+    "example": [
+      "NA4398",
+      "NA5162",
+      "NA5723",
+      "NA597"
+    ],
+    "homepage": "https://catalogues.royalsociety.org/CalmView/default.aspx",
+    "name": "past Fellow of the Royal Society ID",
+    "pattern": "^NA\\d{3,5}$",
+    "prefix": "P8612",
+    "uri_format": "https://catalogues.royalsociety.org/CalmView/Record.aspx?src=CalmView.Persons&id=$1"
+  },
   "P8656": {
     "database": "Q81661810",
     "description": "identifier in the Symptom Ontology",
@@ -6952,6 +8088,19 @@
     "prefix": "P8741",
     "uri_format": "https://www.calflora.org/app/ipl/ipx?loc_id=gpi$1"
   },
+  "P8758": {
+    "database": "Q252430",
+    "description": "identifier for an article on Pers\u00e9e",
+    "example": [
+      "1895_0769-0959_1998_num_26_1_1376",
+      "abpo_0003-391x_1919_num_34_2_1520",
+      "rga_0035-1121_1989_num_77_4_2758"
+    ],
+    "homepage": "https://www.persee.fr/",
+    "name": "Pers\u00e9e article ID",
+    "prefix": "P8758",
+    "uri_format": "https://www.persee.fr/doc/$1"
+  },
   "P8765": {
     "database": "Q1032739",
     "description": "identifier for plants listed on the Royal Horticultural Society website",
@@ -6975,6 +8124,47 @@
     "name": "Bioweb Ecuador ID",
     "prefix": "P8792",
     "uri_format": "https://bioweb.bio/$1"
+  },
+  "P8877": {
+    "database": "Q107215029",
+    "description": "identifier of a fellow of the Royal Society of Canada",
+    "example": [
+      "dence-michael-r",
+      "janet-werker"
+    ],
+    "name": "Fellow of the Royal Society of Canada ID",
+    "pattern": "^[A-Z]?[a-z\u00e7\u00e9]+(-[A-Z]?[a-z\u00e7\u00e9]+)+(-\\d)?$",
+    "prefix": "P8877",
+    "uri_format": "https://rsc-src.ca/en/$1"
+  },
+  "P888": {
+    "database": "Q1420342",
+    "description": "identifier for an article or a book in JSTOR",
+    "example": [
+      "10.5325/style.35.3.472",
+      "3250188",
+      "41679268",
+      "689530",
+      "mammalianspecies.44.1.59"
+    ],
+    "homepage": "https://www.jstor.org/",
+    "name": "JSTOR article ID",
+    "pattern": "^(\\d{2}.\\d{4,5}\\/[a-z\\d.-]+)|(arion|booksireland|genus|healhumarigh|lindbergia|mammalianspecies|vermjenvilaw|westhistquar|wilsonq)[\\d.]+|[1-9]\\d{0,8}$",
+    "prefix": "P888",
+    "uri_format": "https://www.jstor.org/stable/$1"
+  },
+  "P889": {
+    "database": "Q211172",
+    "description": "identifier in Mathematical Reviews, a journal and online database",
+    "example": [
+      "1721123",
+      "50248"
+    ],
+    "homepage": "http://www.ams.org/mathscinet/",
+    "name": "Mathematical Reviews ID",
+    "pattern": "^[1-9]\\d{1,6}$",
+    "prefix": "P889",
+    "uri_format": "https://mathscinet.ams.org/mathscinet-getitem?mr=$1"
   },
   "P8892": {
     "database": "Q98629471",
@@ -7015,6 +8205,98 @@
     "pattern": "^\\d+$",
     "prefix": "P8915",
     "uri_format": "https://www.zobodat.at/arten.php?id=$1"
+  },
+  "P8925": {
+    "database": "Q109342432",
+    "description": "identifier of an article in CQVIP",
+    "example": [
+      "11847868",
+      "662209641"
+    ],
+    "homepage": "https://qikan.cqvip.com/",
+    "name": "CQVIP article ID",
+    "prefix": "P8925",
+    "uri_format": "https://qikan.cqvip.com/Qikan/Article/Detail?id=$1"
+  },
+  "P893": {
+    "database": "Q7550801",
+    "description": "identifier for an article/paper at the SSRN",
+    "example": [
+      "1667659",
+      "3345366",
+      "956170"
+    ],
+    "name": "SSRN article ID",
+    "prefix": "P893",
+    "uri_format": "https://ssrn.com/abstract=$1"
+  },
+  "P894": {
+    "database": "Q18241050",
+    "description": "identifier in the zbMath database",
+    "example": [
+      "0118.26104",
+      "1147.91001"
+    ],
+    "homepage": "https://zbmath.org/",
+    "name": "zbMATH document ID",
+    "prefix": "P894",
+    "uri_format": "https://zbmath.org/?q=an:$1"
+  },
+  "P8968": {
+    "database": "Q56476926",
+    "description": "identifier for submitted article to the OpenReview.net system",
+    "example": [
+      "B1aJkYFRf",
+      "SJNNaPbO-B"
+    ],
+    "name": "OpenReview.net submission ID",
+    "prefix": "P8968",
+    "uri_format": "https://openreview.net/forum?id=$1"
+  },
+  "P8978": {
+    "database": "Q1224715",
+    "description": "identifier of publications in the DBLP database",
+    "example": [
+      "books/el/01/BurkartCMS01",
+      "conf/dls/MedeirosI08",
+      "journals/pvldb/Ley09",
+      "journals/rfc/rfc8478",
+      "tr/ibm/IWBS202"
+    ],
+    "homepage": "https://dblp.org/",
+    "name": "DBLP publication ID",
+    "prefix": "P8978",
+    "uri_format": "https://dblp.org/rec/$1",
+    "uri_format_rdf": [
+      "https://dblp.org/rec/$1.rdf"
+    ]
+  },
+  "P9026": {
+    "database": "Q107214677",
+    "description": "identifier for a person who is member of the Societ\u00e0 dei Filologi della Letteratura Italiana",
+    "example": [
+      "antonello-fabio-caterino",
+      "giovanni-barberi-squarotti",
+      "luca-donghia",
+      "massimo-zaggia"
+    ],
+    "homepage": "http://www.sfli.it/soci/",
+    "name": "SFLI ID",
+    "pattern": "^([a-z-]|\\d){1,128}$",
+    "prefix": "P9026",
+    "uri_format": "http://www.sfli.it/soci/$1/"
+  },
+  "P9038": {
+    "database": "Q2933562",
+    "description": "unique identifier for publications on online publishing platform Calam\u00e9o",
+    "example": [
+      "000019422a4217768904a",
+      "00240937868b63ad013e8",
+      "004021827da342e75785b"
+    ],
+    "name": "Calam\u00e9o ID",
+    "prefix": "P9038",
+    "uri_format": "https://en.calameo.com/books/$1"
   },
   "P9066": {
     "database": "Q104786660",
@@ -7064,6 +8346,32 @@
     "name": "number of vaccinations",
     "prefix": "P9107"
   },
+  "P9108": {
+    "database": "Q3591464",
+    "description": "unique identifier for an article in \u00c9rudit",
+    "example": [
+      "010225ar",
+      "014516ar",
+      "1036696ar",
+      "1072422ar"
+    ],
+    "homepage": "https://www.erudit.org/fr/recherche/?basic_search_term=*&basic_search_field=all&filter_publication_types=Article&filter_funds=%C3%89rudit&page_size=50&sort_by=relevance",
+    "name": "Erudit article ID",
+    "prefix": "P9108",
+    "uri_format": "https://id.erudit.org/iderudit/$1"
+  },
+  "P9111": {
+    "database": "Q106925071",
+    "description": "identifier for a person who is member of the Societ\u00e0 Italiana per lo Studio della Storia Contemporanea",
+    "example": [
+      "arisi-rota-arianna",
+      "faggioli-massimo"
+    ],
+    "homepage": "https://www.sissco.it/soci/",
+    "name": "SISSCO ID",
+    "prefix": "P9111",
+    "uri_format": "https://www.sissco.it/soci/$1/"
+  },
   "P9157": {
     "database": "Q22661281",
     "description": "identifier for an entity in Open Tree of Life, a comprehensive, dynamic and digitally-available tree of life by synthesizing published phylogenetic trees along with taxonomic data",
@@ -7107,6 +8415,20 @@
     "prefix": "P9243",
     "uri_format": "https://www.nparks.gov.sg/florafaunaweb/$1"
   },
+  "P9262": {
+    "database": "Q50012382",
+    "description": "identifier of a document in ChemRxiv, a preprint server for the chemical sciences launched in 2016",
+    "example": [
+      "12791954",
+      "13289222",
+      "13607438"
+    ],
+    "homepage": "https://chemrxiv.org/",
+    "name": "ChemRxiv ID",
+    "pattern": "^\\d+$",
+    "prefix": "P9262",
+    "uri_format": "https://doi.org/10.26434/CHEMRXIV.$1"
+  },
   "P9272": {
     "database": "Q5690673",
     "description": "identifier in the Health Sciences Descriptors thesaurus",
@@ -7122,6 +8444,18 @@
     "prefix": "P9272",
     "uri_format": "https://decs.bvsalud.org/en/ths/resource/?id=$1"
   },
+  "P9273": {
+    "database": "Q206316",
+    "description": "identifier for a scholarly article in the RePEc (Research Papers in Economics) database",
+    "example": [
+      "cvs:starer:81-23",
+      "eee:moneco:v:22:y:1988:i:1:p:3-42"
+    ],
+    "homepage": "https://econpapers.repec.org/",
+    "name": "RePEc EconPapers ID",
+    "prefix": "P9273",
+    "uri_format": "https://econpapers.repec.org/RePEc:$1"
+  },
   "P9306": {
     "description": "identifier for a trial in the EU Clinical Trials Register, the clinical trial registry of the European Medicines Agency",
     "example": [
@@ -7131,6 +8465,18 @@
     "name": "EudraCT trial ID",
     "prefix": "P9306",
     "uri_format": "https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1"
+  },
+  "P932": {
+    "database": "Q11801904",
+    "description": "identifier for a scientific work issued by PubMed Central (without \"PMC\" prefix)",
+    "example": [
+      "1201091"
+    ],
+    "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
+    "name": "PMCID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "prefix": "P932",
+    "uri_format": "http://europepmc.org/articles/PMC$1"
   },
   "P9334": {
     "database": "Q104030182",
@@ -7268,6 +8614,23 @@
     "name": "Washington Rare Plant Field Guide ID (PDF version)",
     "prefix": "P9460",
     "uri_format": "https://www.dnr.wa.gov/publications/amp_nh_$1.pdf"
+  },
+  "P9467": {
+    "database": "Q107215080",
+    "description": "identifier for a member of the International Astronomical Union (IAU)",
+    "example": [
+      "17673",
+      "2457",
+      "3218",
+      "4747",
+      "590",
+      "61"
+    ],
+    "homepage": "https://www.iau.org/administration/membership/individual/",
+    "name": "IAU member ID",
+    "pattern": "^\\d{1,5}$",
+    "prefix": "P9467",
+    "uri_format": "https://www.iau.org/administration/membership/individual/$1/"
   },
   "P9501": {
     "database": "Q106234027",
@@ -7433,6 +8796,21 @@
     "prefix": "P9608",
     "uri_format": "https://www.leps.it/indexjs.htm?SpeciesPages/$1.htm"
   },
+  "P9609": {
+    "database": "Q100742597",
+    "description": "identifier for a publication in the What Works Clearinghouse database",
+    "example": [
+      "32018",
+      "69367",
+      "79356",
+      "81509",
+      "82934"
+    ],
+    "homepage": "https://ies.ed.gov/ncee/wwc/ReviewedStudies/",
+    "name": "What Works Clearinghouse study ID",
+    "prefix": "P9609",
+    "uri_format": "https://ies.ed.gov/ncee/wwc/Study/$1"
+  },
   "P961": {
     "database": "Q922063",
     "description": "numerical identifier for a plant name in the International Plant Names Index",
@@ -7461,6 +8839,30 @@
     "prefix": "P962",
     "uri_format": "https://www.mycobank.org/MB/$1"
   },
+  "P9633": {
+    "database": "Q106980683",
+    "description": "identifier for a document in the AZGS (Arizona Geological Survey) Document Repository",
+    "example": [
+      "1960",
+      "1976",
+      "71"
+    ],
+    "homepage": "http://repository.azgs.az.gov/",
+    "name": "AZGS Document Repository ID",
+    "prefix": "P9633",
+    "uri_format": "http://repository.azgs.az.gov/uri_gin/azgs/dlio/$1"
+  },
+  "P9634": {
+    "database": "Q106973802",
+    "description": "identifier for a member of the Italian Accademia delle Arti del Disegno",
+    "example": [
+      "gregotti-vittorio",
+      "kiefer-anselm"
+    ],
+    "name": "AADFI member ID",
+    "prefix": "P9634",
+    "uri_format": "https://www.aadfi.it/?accademico=$1"
+  },
   "P9635": {
     "database": "Q106981981",
     "description": "identifier of a medicine listed in the electronic Essential Medicines List (eEML) published by the WHO",
@@ -7473,6 +8875,19 @@
     "name": "electronic Essential Medicines List medicine ID",
     "prefix": "P9635",
     "uri_format": "https://list.essentialmeds.org/medicines/$1"
+  },
+  "P9640": {
+    "database": "Q106982426",
+    "description": "identifier for a member of the Pontifical Academy of Sciences",
+    "example": [
+      "deceased/abderhalden",
+      "former/funes",
+      "ordinary/bagnato"
+    ],
+    "homepage": "http://www.pas.va/content/accademia/en/academicians.html",
+    "name": "PAS member ID",
+    "prefix": "P9640",
+    "uri_format": "https://www.pas.va/en/academicians/$1.html"
   },
   "P9649": {
     "database": "Q107076580",
@@ -7502,6 +8917,19 @@
     "name": "Burke Herbarium Image Collection ID",
     "prefix": "P9654",
     "uri_format": "https://biology.burke.washington.edu/herbarium/imagecollection/taxon.php?Taxon=$1"
+  },
+  "P9656": {
+    "database": "Q107075117",
+    "description": "identifier for a member of the Istituto Veneto di Scienze, Lettere ed Arti",
+    "example": [
+      "1318",
+      "1432",
+      "1446"
+    ],
+    "homepage": "http://www.istitutoveneto.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/17",
+    "name": "Istituto Veneto di Scienze, Lettere ed Arti member ID",
+    "prefix": "P9656",
+    "uri_format": "http://www.istitutoveneto.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/$1"
   },
   "P9674": {
     "database": "Q106210298",
@@ -7615,6 +9043,20 @@
     "prefix": "P9741",
     "uri_format": "https://pladias.cz/taxon/taxonid/$1"
   },
+  "P9784": {
+    "database": "Q1661161",
+    "description": "identifier of a publication in Index Theologicus",
+    "example": [
+      "109896117X",
+      "1523162406",
+      "1646188381",
+      "1662931263"
+    ],
+    "name": "Index Theologicus publication ID",
+    "pattern": "^\\d{9}[0-9X]$",
+    "prefix": "P9784",
+    "uri_format": "https://ixtheo.de/Record/$1"
+  },
   "P9799": {
     "database": "Q108064445",
     "description": "identifier of a taxon in the Palynodata database",
@@ -7631,6 +9073,20 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P9799",
     "uri_format": "https://paleobotany.ru/palynodata/species/$1"
+  },
+  "P9801": {
+    "database": "Q108003522",
+    "description": "identifier of an journal article or book chapter in APA PsycNET",
+    "example": [
+      "1986-20664-001",
+      "2001-05315-001",
+      "2003-08045-010"
+    ],
+    "homepage": "https://psycnet.apa.org/home",
+    "name": "PsycNET ID",
+    "pattern": "^(19|20)\\d\\d-\\d{5}-\\d{3}$",
+    "prefix": "P9801",
+    "uri_format": "https://psycnet.apa.org/record/$1"
   },
   "P9804": {
     "database": "Q108064445",
@@ -7676,6 +9132,20 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P9853",
     "uri_format": "http://www.medicalpioneers.com/cgi-bin/index.cgi?detail=1&id=$1"
+  },
+  "P9858": {
+    "database": "Q108087390",
+    "description": "identifier for a member of the association Civilisti Italiani",
+    "example": [
+      "aggregati/649",
+      "corrispondenti/170",
+      "effettivi/116",
+      "onorari/89"
+    ],
+    "homepage": "https://www.civilistiitaliani.eu/",
+    "name": "Civilisti Italiani member ID",
+    "prefix": "P9858",
+    "uri_format": "https://www.civilistiitaliani.eu/soci/soci-$1"
   },
   "P9876": {
     "database": "Q108392349",
@@ -7745,6 +9215,19 @@
     "prefix": "P9933",
     "uri_format": "https://vietherb.com.vn/metabolites/$1"
   },
+  "P9939": {
+    "database": "Q2910510",
+    "description": "persistent identifier for a bibliographic item in Horizon Pleins textes, typically a scholarly article",
+    "example": [
+      "010048570",
+      "23643",
+      "40981"
+    ],
+    "homepage": "https://horizon.documentation.ird.fr/exl-php/accueil",
+    "name": "Institut de recherche pour le d\u00e9veloppement (IRD) identifier",
+    "prefix": "P9939",
+    "uri_format": "https://www.documentation.ird.fr/hor/fdi:$1"
+  },
   "P9967": {
     "database": "Q106146327",
     "description": "identifier for a rare plant in the Washington Natural Heritage Program's of the Rare Plant Field Guide (2021- Web version)",
@@ -7758,6 +9241,20 @@
     "name": "Washington Rare Plant Field Guide ID (Web version)",
     "prefix": "P9967",
     "uri_format": "https://fieldguide.mt.gov/wa/?species=$1"
+  },
+  "P9985": {
+    "database": "Q108788880",
+    "description": "identifier for a member of the European Molecular Biology Organization",
+    "example": [
+      "alberto-bardelli",
+      "bertil-daneholt",
+      "carl-philipp-heisenberg",
+      "nils-goran-larsson"
+    ],
+    "name": "EMBO member ID",
+    "pattern": "^[a-z]+(-[a-z]+)+$",
+    "prefix": "P9985",
+    "uri_format": "https://people.embo.org/profile/$1"
   },
   "Q111831044": {
     "database": "Q17142750",

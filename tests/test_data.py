@@ -10,6 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import curies
+import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -310,6 +311,13 @@ class TestRegistry(unittest.TestCase):
         )
         self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
+        resource = self.registry["agrovoc"]
+        self.assertEqual(
+            "^c_[a-z0-9]+$",
+            resource.get_pattern_with_banana(),
+        )
+        self.assertEqual("^(c_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+
     def test_examples(self):
         """Test examples for the required conditions.
 
@@ -468,8 +476,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi", manager=manager)
+        resource = manager.registry["chebi"]
+        s = resource_to_rdf_str(resource, manager=manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)
 
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
@@ -760,7 +771,13 @@ class TestRegistry(unittest.TestCase):
             if resource.license is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(standardize_license(resource.license), resource.license)
+                standard_license = standardize_license(resource.license)
+                self.assertEqual(
+                    standard_license,
+                    resource.license,
+                    msg=f"manually curated license in {prefix} should be standardized"
+                    f" to SPDX identifier {standard_license}",
+                )
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -930,3 +947,15 @@ class TestRegistry(unittest.TestCase):
                     continue
                 with self.subTest(prefix=prefix, metaprefix=metaprefix):
                     self.assertRegex(metaidentifier, pattern)
+
+    def test_standardize_identifier(self):
+        """Standardize the identifier."""
+        examples = [
+            ("agrovoc", "1234", "1234"),
+            ("agrovoc", "c_1234", "1234"),
+        ]
+        for prefix, identifier, norm_identifier in examples:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertEqual(
+                    norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
+                )

@@ -21,4 +21,4 @@ class N2TAligner(Aligner):
 
 
 if __name__ == "__main__":
-    N2TAligner.align()
+    N2TAligner.cli()

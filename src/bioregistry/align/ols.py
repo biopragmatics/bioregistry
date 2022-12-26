@@ -26,4 +26,4 @@ class OLSAligner(Aligner):
 
 
 if __name__ == "__main__":
-    OLSAligner.align()
+    OLSAligner.cli()

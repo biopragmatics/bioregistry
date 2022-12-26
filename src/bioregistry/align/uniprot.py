@@ -21,4 +21,4 @@ class UniProtAligner(Aligner):
 
 
 if __name__ == "__main__":
-    UniProtAligner.align()
+    UniProtAligner.cli()

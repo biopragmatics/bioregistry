@@ -78,6 +78,8 @@ TABLES_METADATA_TSV_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tsv")
 TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
 TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
 
+EXPORT_ANALYSES = EXPORT_DIRECTORY.joinpath("analyses")
+
 BENCHMARKS = EXPORT_DIRECTORY.joinpath("benchmarks")
 
 URI_PARSING = BENCHMARKS.joinpath("uri_parsing")
@@ -95,8 +97,11 @@ CURIE_VALIDATION.mkdir(exist_ok=True, parents=True)
 CURIE_VALIDATION_DATA_PATH = CURIE_VALIDATION.joinpath("data.tsv")
 CURIE_VALIDATION_SVG_PATH = CURIE_VALIDATION.joinpath("results.svg")
 
+BIOREGISTRY_DEFAULT_BASE_URL = "https://bioregistry.io"
 #: The URL of the remote Bioregistry site
-BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"
+BIOREGISTRY_REMOTE_URL = pystow.get_config(
+    "bioregistry", "url", default=BIOREGISTRY_DEFAULT_BASE_URL
+)
 
 #: Resolution is broken on identifiers.org for the following
 IDOT_BROKEN = {

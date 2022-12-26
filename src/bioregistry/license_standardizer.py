@@ -85,26 +85,34 @@ CC_BY_3_IGO = "CC-BY-3.0-IGO"
 #: https://creativecommons.org/licenses/by/2.5/
 CC_BY_25 = "CC BY 2.5"
 
+#: A mapping from SPDX identifiers to external
 REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
     None: ["None", "license", "unspecified"],
-    CC_BY_25: [
+    "CC-BY-2.5": [
+        "CC BY 2.5",
+        "CC-BY-2.5",
         "https://creativecommons.org/licenses/by/2.5/",
         "https://creativecommons.org/licenses/by/2.5/dk",
     ],
-    CC_BY_3_IGO: [
+    "CC-BY-3.0-IGO": [
         CC_BY_3_IGO,
         "https://spdx.org/licenses/CC-BY-3.0-IGO.html",
+        "https://spdx.org/licenses/CC-BY-3.0-IGO",
         "https://creativecommons.org/licenses/by/3.0/igo/legalcode",
         "https://creativecommons.org/licenses/by/3.0/igo",
     ],
-    W3C: [
+    "W3C": [
         W3C,
         "http://www.opensource.org/licenses/W3C",
+        "https://spdx.org/licenses/W3C.html",
+        "https://spdx.org/licenses/W3C",
     ],
-    CC_BY_4: [
+    "CC-BY-4.0": [
         "CC-BY-4.0",
         "CC-BY 4.0",
         "CC BY 4.0",  # correct
+        "https://spdx.org/licenses/CC-BY-4.0",
+        "https://spdx.org/licenses/CC-BY-4.0.html",
         "https://creativecommons.org/licenses/by/4.0",
         "http://creativecommons.org/licenses/by/4.0",
         "https://creativecommons.org/licenses/by/4.0/",
@@ -113,8 +121,11 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "url: http://creativecommons.org/licenses/by/4.0",
         "SWO is provided under a Creative Commons Attribution 4.0 International"
         " (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).",
+        # Automatically upgrade unspecified to latest
+        "CC-BY",
+        "creative-commons-attribution-license",
     ],
-    CC_BY_3: [
+    "CC-BY-3.0": [
         "CC-BY-3.0",
         "CC-BY 3.0",
         "CC BY 3.0",  # correct
@@ -124,6 +135,8 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "https://creativecommons.org/licenses/by/3.0/",
         "CC-BY 3.0 https://creativecommons.org/licenses/by/3.0",
         "CC-BY version 3.0",
+        "https://spdx.org/licenses/CC-BY-3.0",
+        "https://spdx.org/licenses/CC-BY-3.0.html",
     ],
     CC_BY_ND_3: [
         "CC BY-ND 3.0",
@@ -138,12 +151,10 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "https://creativecommons.org/licenses/by/2.0",
         "http://creativecommons.org/licenses/by/2.0/",
         "https://creativecommons.org/licenses/by/2.0/",
+        "https://spdx.org/licenses/CC-BY-2.0",
+        "https://spdx.org/licenses/CC-BY-2.0.html",
     ],
-    CC_BY_UNSPECIFIED: [
-        "CC-BY",
-        "creative-commons-attribution-license",
-    ],
-    CC_0: [
+    "CC0-1.0": [
         "CC-0",  # correct
         "CC 0",
         "CC0",
@@ -151,10 +162,13 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "CC0 1.0 Universal",
         "CC0 1.0",
         "CC-0 1.0",
+        "CC0-1.0",
         "http://creativecommons.org/publicdomain/zero/1.0",
         "https://creativecommons.org/publicdomain/zero/1.0",
         "http://creativecommons.org/publicdomain/zero/1.0/",
         "https://creativecommons.org/publicdomain/zero/1.0/",
+        "https://spdx.org/licenses/CC0-1.0",
+        "https://spdx.org/licenses/CC0-1.0.html",
     ],
     CC_MARK: [
         "http://creativecommons.org/publicdomain/mark/1.0",
@@ -171,8 +185,9 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "CC BY SA",
     ],
     CC_BY_NC_SA_2: [
+        "CC-BY-NC-SA-2.0",  # SPDX
         "CC-BY-NC-SA 2.0",
-        "CC BY-NC-SA 2.0",  # corect
+        "CC BY-NC-SA 2.0",  # correct
         "CC BY NC SA 2.0",
         "https://creativecommons.org/licenses/by-nc-sa/2.0",
         "http://creativecommons.org/licenses/by-nc-sa/2.0",

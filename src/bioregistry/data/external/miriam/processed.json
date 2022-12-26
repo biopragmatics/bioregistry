@@ -919,7 +919,7 @@
         "uri_format": "http://www.ncbi.nlm.nih.gov/biosample?term=$1"
       },
       {
-        "code": "CURATOR_REVIEW",
+        "code": "ddbj",
         "description": "BioSample at DNA Data Bank of Japan",
         "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
         "name": "BioSample at DNA Data Bank of Japan",
@@ -5480,19 +5480,19 @@
     "id": "00000273",
     "name": "MassBank",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Z]{2}[A-Z0-9][0-9]{5}$",
+    "pattern": "^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$",
     "prefix": "massbank",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
+        "code": "massbankeu",
         "description": "MassBank in Europe",
         "homepage": "https://massbank.eu/",
         "name": "MassBank in Europe",
         "uri_format": "https://massbank.eu/MassBank/RecordDisplay?id=$1"
       }
     ],
-    "sampleId": "PB000166",
-    "uri_format": "http://www.massbank.jp/RecordDisplay?id=$1"
+    "sampleId": "MSBNK-IPB_Halle-PB000166",
+    "uri_format": "https://massbank.jp/RecordDisplay?id=$1"
   },
   "massive": {
     "deprecated": false,
@@ -5954,7 +5954,7 @@
     "pattern": "^MIR:\\d{8}$",
     "prefix": "mir",
     "sampleId": "00100037",
-    "uri_format": "https://registry.identifiers.org/registry?query=\"MIR:$1\""
+    "uri_format": "https://registry.identifiers.org/registry?query=MIR:$1"
   },
   "mirbase": {
     "deprecated": false,
@@ -8658,6 +8658,18 @@
     "prefix": "sbo",
     "sampleId": "0000262",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1"
+  },
+  "sciflection": {
+    "deprecated": false,
+    "description": "Sciflection is a public repository for experiments and associated spectra, usually uploaded from Electronic Lab Notebooks, shared under FAIR conditions",
+    "homepage": "https://sciformation.com/sciflection.html",
+    "id": "00000973",
+    "name": "Sciflection",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "prefix": "sciflection",
+    "sampleId": "5ede4273-b26c-4ea4-adb7-3ce294ab3397",
+    "uri_format": "https://sciflection.com/$1"
   },
   "scop": {
     "deprecated": false,

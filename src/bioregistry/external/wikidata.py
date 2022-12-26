@@ -42,6 +42,7 @@ QUERY = dedent(
       VALUES ?category {
         wd:Q21294996  # chemistry
         wd:Q22988603  # biology
+        wd:Q80840868  # research
       }
       ?prop wdt:P31/wdt:P279+ ?category .
       BIND( SUBSTR(STR(?prop), 32) AS ?propStr )
