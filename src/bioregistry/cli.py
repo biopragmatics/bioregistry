@@ -97,6 +97,9 @@ def update(ctx: click.Context):
         ctx.invoke(upload_ndex.main)
     except ImportError:
         click.secho("Could not import ndex", fg="red")
+    except Exception as e:
+        click.secho("Error uploading to ndex", fg="red")
+        click.secho(str(e), fg="red")
 
 
 if __name__ == "__main__":
