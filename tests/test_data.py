@@ -2,6 +2,7 @@
 
 """Tests for data integrity."""
 
+import getpass
 import json
 import logging
 import unittest
@@ -959,3 +960,24 @@ class TestRegistry(unittest.TestCase):
                 self.assertEqual(
                     norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
                 )
+
+    @unittest.skipUnless(getpass.getuser() == "cthoyt", reason="not running locally")
+    def test_keywords(self):
+        """Assert that all entries have keywords."""
+        for resource in self.registry.values():
+            if resource.is_deprecated():
+                continue
+            if not resource.contributor:
+                continue
+            if resource.get_mappings():
+                continue  # TODO remove this after first found of curation is done
+            with self.subTest(prefix=resource.prefix, name=resource.get_name()):
+                if resource.keywords:
+                    self.assertEqual(
+                        sorted(k.lower() for k in resource.keywords),
+                        resource.keywords,
+                        msg="manually curated keywords should be sorted and exclusively lowercase",
+                    )
+                keywords = resource.get_keywords()
+                self.assertIsNotNone(keywords)
+                self.assertLess(0, len(keywords), msg=f"{resource.prefix} is missing keywords")
