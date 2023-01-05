@@ -8522,7 +8522,7 @@
             "providerCode": "CURATOR_REVIEW",
             "resourceHomeUrl": "http://www.atcc.org/",
             "sampleId": "11303",
-            "urlPattern": "http://www.lgcstandards-atcc.org/Products/All/{$id}.aspx"
+            "urlPattern": "https://www.atcc.org/products/{$id}"
           }
         ],
         "sampleId": "11303"
@@ -13542,50 +13542,6 @@
           }
         ],
         "sampleId": "24801"
-      },
-      {
-        "created": "2019-06-11T14:16:39.210+0000",
-        "deprecated": false,
-        "deprecationDate": null,
-        "description": "The 'COmputational Modeling in BIology' NEtwork (COMBINE) is an initiative to coordinate the development of the various community standards and formats for computational models, initially in Systems Biology and related fields. This collection pertains to specifications of the standard formats developed by the Computational Modeling in Biology Network.",
-        "id": 765,
-        "mirId": "MIR:00000258",
-        "modified": "2019-06-11T14:16:39.210+0000",
-        "name": "COMBINE specifications",
-        "namespaceEmbeddedInLui": false,
-        "pattern": "^\\w+(\\-|\\.|\\w)*$",
-        "prefix": "combine.specifications",
-        "resources": [
-          {
-            "deprecated": false,
-            "deprecationDate": null,
-            "description": "COMBINE at EBI",
-            "id": 766,
-            "institution": {
-              "description": "At EMBL-EBI, we make the world’s public biological data freely available to the scientific community via a range of services and tools, perform basic research and provide professional training in bioinformatics. \nWe are part of the European Molecular Biology Laboratory (EMBL), an international, innovative and interdisciplinary research organisation funded by 26 member states and two associate member states.",
-              "homeUrl": "https://www.ebi.ac.uk",
-              "id": 2,
-              "location": {
-                "countryCode": "GB",
-                "countryName": "United Kingdom"
-              },
-              "name": "European Bioinformatics Institute",
-              "rorId": "https://ror.org/02catss52"
-            },
-            "location": {
-              "countryCode": "GB",
-              "countryName": "United Kingdom"
-            },
-            "mirId": "MIR:00100329",
-            "name": "COMBINE at EBI",
-            "official": false,
-            "providerCode": "ebi",
-            "resourceHomeUrl": "https://co.mbine.org/standards/",
-            "sampleId": "sbgn.er.level-1.version-1.2",
-            "urlPattern": "https://co.mbine.org/specifications/{$id}"
-          }
-        ],
-        "sampleId": "sbgn.er.level-1.version-1.2"
       },
       {
         "created": "2019-06-11T14:16:39.396+0000",
@@ -21054,50 +21010,6 @@
           }
         ],
         "sampleId": "h_aktPathway"
-      },
-      {
-        "created": "2019-06-11T14:17:16.858+0000",
-        "deprecated": false,
-        "deprecationDate": null,
-        "description": "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway Component collection references specific classes of molecules that play the same mechanistic role within a pathway, across species. Pathway\r\ncomponents may be proteins, genes/DNA, RNA, or simple molecules. Where the identified component is a protein, DNA, or transcribed RNA, it is associated with protein sequences in the PANTHER protein family trees through manual curation.",
-        "id": 1217,
-        "mirId": "MIR:00000422",
-        "modified": "2019-06-11T14:17:16.858+0000",
-        "name": "PANTHER Pathway Component",
-        "namespaceEmbeddedInLui": false,
-        "pattern": "^G|P|U|C|S\\d{5}$",
-        "prefix": "panther.pthcmp",
-        "resources": [
-          {
-            "deprecated": false,
-            "deprecationDate": null,
-            "description": "PANTHER Pathway Component at USC (Los Angeles)",
-            "id": 1218,
-            "institution": {
-              "description": "CURATOR_REVIEW",
-              "homeUrl": "CURATOR_REVIEW",
-              "id": 94,
-              "location": {
-                "countryCode": "US",
-                "countryName": "United States"
-              },
-              "name": "Keck School of Medicine, University of Southern California",
-              "rorId": null
-            },
-            "location": {
-              "countryCode": "US",
-              "countryName": "United States"
-            },
-            "mirId": "MIR:00100545",
-            "name": "PANTHER Pathway Component at USC (Los Angeles)",
-            "official": false,
-            "providerCode": "CURATOR_REVIEW",
-            "resourceHomeUrl": "http://www.pantherdb.org/",
-            "sampleId": "P00266",
-            "urlPattern": "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession={$id}"
-          }
-        ],
-        "sampleId": "P00266"
       },
       {
         "created": "2019-06-11T14:17:17.038+0000",
@@ -34264,50 +34176,6 @@
         "sampleId": "Gm00047"
       },
       {
-        "created": "2019-06-11T14:15:43.085+0000",
-        "deprecated": false,
-        "deprecationDate": null,
-        "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products.",
-        "id": 153,
-        "mirId": "MIR:00000039",
-        "modified": "2020-03-31T09:55:28.774+0000",
-        "name": "RefSeq",
-        "namespaceEmbeddedInLui": false,
-        "pattern": "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
-        "prefix": "refseq",
-        "resources": [
-          {
-            "deprecated": false,
-            "deprecationDate": null,
-            "description": "The NCBI Reference Sequence database",
-            "id": 155,
-            "institution": {
-              "description": "The National Center for Biotechnology Information advances science and health by providing access to biomedical and genomic information.",
-              "homeUrl": "https://www.ncbi.nlm.nih.gov/",
-              "id": 26,
-              "location": {
-                "countryCode": "US",
-                "countryName": "United States"
-              },
-              "name": "National Center for Biotechnology Information",
-              "rorId": "https://ror.org/02meqm098"
-            },
-            "location": {
-              "countryCode": "US",
-              "countryName": "United States"
-            },
-            "mirId": "MIR:00100067",
-            "name": "The NCBI Reference Sequence database",
-            "official": false,
-            "providerCode": "ncbi",
-            "resourceHomeUrl": "https://www.ncbi.nlm.nih.gov/projects/RefSeq/",
-            "sampleId": "NP_012345",
-            "urlPattern": "https://www.ncbi.nlm.nih.gov/protein/{$id}"
-          }
-        ],
-        "sampleId": "NP_012345"
-      },
-      {
         "created": "2019-06-11T14:17:12.343+0000",
         "deprecated": false,
         "deprecationDate": null,
@@ -34438,6 +34306,50 @@
           }
         ],
         "sampleId": "PGS000018"
+      },
+      {
+        "created": "2019-06-11T14:15:43.085+0000",
+        "deprecated": false,
+        "deprecationDate": null,
+        "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products.",
+        "id": 153,
+        "mirId": "MIR:00000039",
+        "modified": "2023-01-04T19:52:50.191+0000",
+        "name": "RefSeq",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
+        "prefix": "refseq",
+        "resources": [
+          {
+            "deprecated": false,
+            "deprecationDate": null,
+            "description": "The NCBI Reference Sequence database",
+            "id": 155,
+            "institution": {
+              "description": "The National Center for Biotechnology Information advances science and health by providing access to biomedical and genomic information.",
+              "homeUrl": "https://www.ncbi.nlm.nih.gov/",
+              "id": 26,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "National Center for Biotechnology Information",
+              "rorId": "https://ror.org/02meqm098"
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00100067",
+            "name": "The NCBI Reference Sequence database",
+            "official": false,
+            "providerCode": "ncbi",
+            "resourceHomeUrl": "https://www.ncbi.nlm.nih.gov/projects/RefSeq/",
+            "sampleId": "NP_012345",
+            "urlPattern": "https://www.ncbi.nlm.nih.gov/protein/{$id}"
+          }
+        ],
+        "sampleId": "NP_012345"
       },
       {
         "created": "2020-05-22T09:05:34.813+0000",
@@ -35374,7 +35286,7 @@
             },
             "mirId": "MIR:00100580",
             "name": "UBERON through OLS",
-            "official": false,
+            "official": true,
             "providerCode": "ols",
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols/ontologies/uberon",
             "sampleId": "0008203",
@@ -36214,7 +36126,7 @@
             "providerCode": "ito",
             "resourceHomeUrl": "https://bioportal.bioontology.org/",
             "sampleId": "ITO_01625",
-            "urlPattern": "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https%3A%2F%2Fai-strategies.org%2Fontology%2F{$id}"
+            "urlPattern": "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:{$id}"
           }
         ],
         "sampleId": "ITO_01625"
@@ -40086,6 +39998,94 @@
           }
         ],
         "sampleId": "5ede4273-b26c-4ea4-adb7-3ce294ab3397"
+      },
+      {
+        "created": "2019-06-11T14:16:39.210+0000",
+        "deprecated": false,
+        "deprecationDate": null,
+        "description": "The 'COmputational Modeling in BIology' NEtwork (COMBINE) is an initiative to coordinate the development of the various community standards and formats for computational models, initially in Systems Biology and related fields. This collection pertains to specifications of the standard formats developed by the Computational Modeling in Biology Network.",
+        "id": 765,
+        "mirId": "MIR:00000258",
+        "modified": "2023-01-04T15:31:16.641+0000",
+        "name": "COMBINE specifications",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "^\\w+(\\-|\\.|\\w)*$",
+        "prefix": "combine.specifications",
+        "resources": [
+          {
+            "deprecated": false,
+            "deprecationDate": null,
+            "description": "COMBINE at EBI",
+            "id": 766,
+            "institution": {
+              "description": "At EMBL-EBI, we make the world’s public biological data freely available to the scientific community via a range of services and tools, perform basic research and provide professional training in bioinformatics. \nWe are part of the European Molecular Biology Laboratory (EMBL), an international, innovative and interdisciplinary research organisation funded by 26 member states and two associate member states.",
+              "homeUrl": "https://www.ebi.ac.uk",
+              "id": 2,
+              "location": {
+                "countryCode": "GB",
+                "countryName": "United Kingdom"
+              },
+              "name": "European Bioinformatics Institute",
+              "rorId": "https://ror.org/02catss52"
+            },
+            "location": {
+              "countryCode": "GB",
+              "countryName": "United Kingdom"
+            },
+            "mirId": "MIR:00100329",
+            "name": "COMBINE at EBI",
+            "official": false,
+            "providerCode": "ebi",
+            "resourceHomeUrl": "https://co.mbine.org/standards/",
+            "sampleId": "sed-ml.level-1.version-1",
+            "urlPattern": "https://github.com/combine-org/combine-specifications/blob/main/specifications/{$id}.md"
+          }
+        ],
+        "sampleId": "sed-ml.level-1.version-1"
+      },
+      {
+        "created": "2019-06-11T14:17:16.858+0000",
+        "deprecated": false,
+        "deprecationDate": null,
+        "description": "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway Component collection references specific classes of molecules that play the same mechanistic role within a pathway, across species. Pathway\r\ncomponents may be proteins, genes/DNA, RNA, or simple molecules. Where the identified component is a protein, DNA, or transcribed RNA, it is associated with protein sequences in the PANTHER protein family trees through manual curation.",
+        "id": 1217,
+        "mirId": "MIR:00000422",
+        "modified": "2023-01-04T16:32:41.267+0000",
+        "name": "PANTHER Pathway Component",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "^[GPUCS]\\d{5}$",
+        "prefix": "panther.pthcmp",
+        "resources": [
+          {
+            "deprecated": false,
+            "deprecationDate": null,
+            "description": "PANTHER Pathway Component at USC (Los Angeles)",
+            "id": 1218,
+            "institution": {
+              "description": "CURATOR_REVIEW",
+              "homeUrl": "CURATOR_REVIEW",
+              "id": 94,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "Keck School of Medicine, University of Southern California",
+              "rorId": null
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00100545",
+            "name": "PANTHER Pathway Component at USC (Los Angeles)",
+            "official": false,
+            "providerCode": "CURATOR_REVIEW",
+            "resourceHomeUrl": "http://www.pantherdb.org/",
+            "sampleId": "P00266",
+            "urlPattern": "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession={$id}"
+          }
+        ],
+        "sampleId": "P00266"
       }
     ]
   }
