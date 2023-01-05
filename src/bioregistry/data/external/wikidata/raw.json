@@ -1246,6 +1246,57 @@
     "prefix": "P11311",
     "uri_format": "http://lygaeoidea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
   },
+  "P11367": {
+    "database": "Q21386125",
+    "description": "identifier for a publication in the Annales Historico-Naturales Musei Nationalis Hungarici",
+    "example": [
+      "1411",
+      "535",
+      "537"
+    ],
+    "homepage": "http://publication.nhmus.hu/annales/cikkreszletes.php?idhoz=1411",
+    "name": "AHNMNH publication ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P11367",
+    "uri_format": "http://publication.nhmus.hu/annales/cikkreszletes.php?idhoz=$1"
+  },
+  "P11378": {
+    "database": "Q115119452",
+    "description": "identifier for a publication in DML-CZ (Czech Digital Mathematics Library)",
+    "example": [
+      "119017",
+      "150664",
+      "401381",
+      "701106"
+    ],
+    "homepage": "https://dml.cz/",
+    "name": "DML-CZ publication ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P11378",
+    "uri_format": "https://dml.cz/handle/10338.dmlcz/$1"
+  },
+  "P11409": {
+    "database": "Q7203726",
+    "description": "identifier corresponding to publications and scholarly articles relating to taxonomy, stored in Plazi",
+    "example": [
+      "34BB99A9758355CBB3170F765063BCF2",
+      "FFE1FFC6D709FFDBFFF2FFE1C9174A36",
+      "FFF5FFE8032A390AC52D45617F37AA6F"
+    ],
+    "homepage": "https://plazi.org/",
+    "name": "Plazi reference ID",
+    "pattern": "^[0-9A-F]{8}[0-9A-F]{4}[0-9A-F]{4}[0-9A-F]{4}[0-9A-F]{12}$",
+    "prefix": "P11409",
+    "uri_format": "http://publication.plazi.org/id/$1"
+  },
+  "P11430": {
+    "database": "Q905695",
+    "description": "identifier for a disease in the UniProt database",
+    "name": "UniProt disease ID",
+    "pattern": "^DI-\\d{5}$",
+    "prefix": "P11430",
+    "uri_format": "https://www.uniprot.org/diseases/$1"
+  },
   "P1154": {
     "database": "Q371467",
     "description": "unique academic work identifier assigned in Scopus bibliographic database",
@@ -2279,7 +2330,7 @@
     "uri_format": "http://www.ncbi.nlm.nih.gov/gene/?term=($1%5BSYM%5D)+AND+Mus+musculus%5BOrganism%5D"
   },
   "P2409": {
-    "database": "Q10726338",
+    "database": "Q107529324",
     "description": "identifier for an article in CiNii",
     "example": [
       "10016210320",
@@ -3729,7 +3780,8 @@
     "database": "Q13419831",
     "description": "age of the oldest specimen of a taxon for which the age can be verified",
     "example": [
-      "122"
+      "122",
+      "250"
     ],
     "name": "longest observed lifespan",
     "prefix": "P4214"
@@ -4329,7 +4381,7 @@
       "urn:lsid:ipni.org:names:811804-1"
     ],
     "name": "Plants of the World online ID",
-    "pattern": "^urn:lsid:ipni\\.org:names:[1-9]\\d{0,7}-[123]$",
+    "pattern": "^urn:lsid:ipni\\.org:names:[1-9]\\d{0,7}-[1234]$",
     "prefix": "P5037",
     "uri_format": "https://powo.science.kew.org/taxon/$1",
     "uri_format_rdf": [
@@ -5094,6 +5146,7 @@
       "CHEMBL417016"
     ],
     "homepage": "https://www.ebi.ac.uk/chembl",
+    "miriam": "chembl",
     "name": "ChEMBL ID",
     "pattern": "^CHEMBL\\d+$",
     "prefix": "P592",
@@ -6160,30 +6213,6 @@
     "prefix": "P6349",
     "uri_format": "https://www.hemiptera-databases.org/cgi-bin/Tingidae/tingidae.pl?db=tingides&lang=en&card=taxon&rank=species&id=$1"
   },
-  "P6366": {
-    "database": "Q28136779",
-    "description": "identifier for an object or topic in the Microsoft Academic Graph",
-    "example": [
-      "1130451194",
-      "114090438",
-      "130828816",
-      "1341412227",
-      "137773608",
-      "1498221862",
-      "2144675545",
-      "2206799855",
-      "2779912601",
-      "2792937454",
-      "63966007"
-    ],
-    "name": "Microsoft Academic ID",
-    "pattern": "^[1-9]\\d{3,9}$",
-    "prefix": "P6366",
-    "uri_format": "https://web.archive.org/web/*/https://academic.microsoft.com/v2/detail/$1",
-    "uri_format_rdf": [
-      "http://ma-graph.org/entity/$1"
-    ]
-  },
   "P637": {
     "database": "Q7307074",
     "description": "identifier for a protein",
@@ -6796,16 +6825,16 @@
   },
   "P6852": {
     "database": "Q115521452",
-    "description": "identifier for a single crystal structure per the Cambridge Crystallographic Data Centre (CCDC)",
+    "description": "unique numerical identifier for crystal structures submitted to the Cambridge Crystallographic Data Centre (CCDC)",
     "example": [
-      "FEACAC03",
-      "MOYHAJ",
-      "OIBZAC01"
+      "1213725",
+      "161834",
+      "179601"
     ],
     "homepage": "https://www.ccdc.cam.ac.uk/",
     "name": "CCDC Number",
     "prefix": "P6852",
-    "uri_format": "https://www.ccdc.cam.ac.uk/services/structures?sid=IDORG&pid=csd:$1"
+    "uri_format": "https://identifiers.org/ccdc:$1"
   },
   "P6864": {
     "database": "Q12360981",
@@ -8770,7 +8799,7 @@
   },
   "P960": {
     "database": "Q2578548",
-    "description": "identifier for a name, in the Tropicos database",
+    "description": "identifier for a taxon name in the Tropicos database",
     "example": [
       "1700006",
       "40013483",
@@ -9267,5 +9296,11 @@
     "description": "greatest height obtained by an entity",
     "name": "greatest observed height",
     "prefix": "Q112586709"
+  },
+  "Q115916376": {
+    "description": "Species identifier for HKBU \"Hong Kong Wildtracks\" digital database",
+    "homepage": "https://digital.lib.hkbu.edu.hk/hkwildtracks/",
+    "name": "HKBU Hong Kong Wildtracks Species ID",
+    "prefix": "Q115916376"
   }
 }

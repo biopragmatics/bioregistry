@@ -435,7 +435,7 @@
     "pattern": "^\\d+$",
     "prefix": "atcc",
     "sampleId": "11303",
-    "uri_format": "http://www.lgcstandards-atcc.org/Products/All/$1.aspx"
+    "uri_format": "https://www.atcc.org/products/$1"
   },
   "atcvet": {
     "deprecated": false,
@@ -1753,8 +1753,8 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\w+(\\-|\\.|\\w)*$",
     "prefix": "combine.specifications",
-    "sampleId": "sbgn.er.level-1.version-1.2",
-    "uri_format": "https://co.mbine.org/specifications/$1"
+    "sampleId": "sed-ml.level-1.version-1",
+    "uri_format": "https://github.com/combine-org/combine-specifications/blob/main/specifications/$1.md"
   },
   "complexportal": {
     "deprecated": false,
@@ -4882,7 +4882,7 @@
     "pattern": "^.+$",
     "prefix": "ito",
     "sampleId": "ITO_01625",
-    "uri_format": "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https%3A%2F%2Fai-strategies.org%2Fontology%2F$1"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1"
   },
   "iuphar.family": {
     "deprecated": false,
@@ -7260,7 +7260,7 @@
     "id": "00000422",
     "name": "PANTHER Pathway Component",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^G|P|U|C|S\\d{5}$",
+    "pattern": "^[GPUCS]\\d{5}$",
     "prefix": "panther.pthcmp",
     "sampleId": "P00266",
     "uri_format": "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"
@@ -8309,7 +8309,7 @@
     "id": "00000039",
     "name": "RefSeq",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
+    "pattern": "^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
     "prefix": "refseq",
     "sampleId": "NP_012345",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
@@ -9485,14 +9485,14 @@
   "uberon": {
     "deprecated": false,
     "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
-    "homepage": "http://bioportal.bioontology.org/ontologies/UBERON",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/uberon",
     "id": "00000446",
     "name": "UBERON",
     "namespaceEmbeddedInLui": true,
     "pattern": "^UBERON:\\d+$",
     "prefix": "uberon",
     "sampleId": "0008203",
-    "uri_format": "http://purl.bioontology.org/ontology/UBERON/UBERON:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1"
   },
   "ubio.namebank": {
     "deprecated": false,

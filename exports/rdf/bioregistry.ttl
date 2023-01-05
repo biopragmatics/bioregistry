@@ -869,7 +869,9 @@ bioregistry:apaonto a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:APAONTO,
         bioportal:APAONTO,
         fairsharing:FAIRsharing.gkw1w8 ;
-    dcat:keyword "ontology" ;
+    dcat:keyword "ontology",
+        "ontology and terminology",
+        "psychology" ;
     foaf:homepage "https://bioportal.bioontology.org/ontologies/APAONTO"^^xsd:string ;
     bioregistry.schema:0000005 "Abdomen"^^xsd:string ;
     bioregistry.schema:0000006 "http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1"^^xsd:string ;
@@ -3416,8 +3418,8 @@ bioregistry:combine.specifications a bioregistry.schema:0000001 ;
         n2t:combine.specifications,
         miriam:combine.specifications ;
     foaf:homepage "https://co.mbine.org/standards/"^^xsd:string ;
-    bioregistry.schema:0000005 "sbgn.er.level-1.version-1.2"^^xsd:string ;
-    bioregistry.schema:0000006 "https://co.mbine.org/specifications/$1"^^xsd:string ;
+    bioregistry.schema:0000005 "sed-ml.level-1.version-1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://github.com/combine-org/combine-specifications/blob/main/specifications/$1.md"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+(\\-|\\.|\\w)*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -4229,7 +4231,8 @@ bioregistry:dideo a bioregistry.schema:0000001 ;
         biocontext:DIDEO,
         fairsharing:FAIRsharing.9y8f0n,
         ols:dideo ;
-    dcat:keyword "obo",
+    dcat:keyword "biochemistry",
+        "obo",
         "ontology" ;
     foaf:homepage "https://github.com/DIDEO/DIDEO"^^xsd:string ;
     bioregistry.schema:0000005 "00000180"^^xsd:string ;
@@ -5737,7 +5740,8 @@ Documentation is under development as well, and for now a slidedeck is available
         biocontext:GENO,
         fairsharing:FAIRsharing.kpbna7,
         ols:geno ;
-    dcat:keyword "obo",
+    dcat:keyword "genomics",
+        "obo",
         "ontology" ;
     foaf:homepage "https://github.com/monarch-initiative/GENO-ontology/"^^xsd:string ;
     bioregistry.schema:0000005 "0000632"^^xsd:string ;
@@ -6596,7 +6600,7 @@ bioregistry:hcao a bioregistry.schema:0000001 ;
     skos:exactMatch ols:hcao ;
     dcat:keyword "ontology" ;
     foaf:homepage "https://www.humancellatlas.org"^^xsd:string ;
-    bioregistry.schema:0000010 <http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-11-15/hcao.owl> ;
+    bioregistry.schema:0000010 <http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-12-16/hcao.owl> ;
     bioregistry.schema:0000012 false .
 
 bioregistry:hcvdb a bioregistry.schema:0000001 ;
@@ -7613,7 +7617,7 @@ bioregistry:ito a bioregistry.schema:0000001 ;
     dcat:keyword "ontology" ;
     foaf:homepage "https://bioportal.bioontology.org/"^^xsd:string ;
     bioregistry.schema:0000005 "ITO_01625"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https%3A%2F%2Fai-strategies.org%2Fontology%2F$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^.+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/ITO/17/ito.owl> ;
     bioregistry.schema:0000012 false .
@@ -14716,7 +14720,8 @@ bioregistry:vto a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.akmeb9,
         ols:vto ;
     dcat:keyword "obo",
-        "ontology" ;
+        "ontology",
+        "taxonomy" ;
     foaf:homepage "https://github.com/phenoscape/vertebrate-taxonomy-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "9008500"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VTO_$1"^^xsd:string ;
@@ -14875,8 +14880,10 @@ bioregistry:wikipathways a bioregistry.schema:0000001 ;
         miriam:wikipathways,
         re3data:r3d100013316,
         wikidata:P2410 ;
-    dcat:keyword "ontology",
-        "pathway" ;
+    dcat:keyword "epidemiology",
+        "ontology",
+        "pathway",
+        "virology" ;
     foaf:homepage "http://www.wikipathways.org/"^^xsd:string ;
     bioregistry.schema:0000005 "WP732"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.wikipathways.org/instance/$1"^^xsd:string ;
@@ -29062,7 +29069,11 @@ bioregistry:zeco a bioregistry.schema:0000001 ;
         biocontext:ZECO,
         fairsharing:FAIRsharing.np2wfz,
         ols:zeco ;
-    dcat:keyword "obo",
+    dcat:keyword "animal physiology",
+        "developmental biology",
+        "genetics",
+        "genomics",
+        "obo",
         "ontology" ;
     foaf:homepage "https://github.com/ybradford/zebrafish-experimental-conditions-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000171"^^xsd:string ;
@@ -36658,8 +36669,11 @@ bioregistry:poro a bioregistry.schema:0000001 ;
         biocontext:PORO,
         fairsharing:FAIRsharing.93g1th,
         ols:poro ;
-    dcat:keyword "obo",
-        "ontology" ;
+    dcat:keyword "anatomy",
+        "obo",
+        "ontology",
+        "phylogeny",
+        "taxonomy" ;
     foaf:homepage "https://github.com/obophenotype/porifera-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000550"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PORO_$1"^^xsd:string ;
@@ -36695,7 +36709,9 @@ bioregistry:pso a bioregistry.schema:0000001 ;
         bioportal:PSO,
         fairsharing:FAIRsharing.dyj433,
         ols:pso ;
-    dcat:keyword "obo",
+    dcat:keyword "medical informatics",
+        "obo",
+        "occupational medicine",
         "ontology" ;
     foaf:homepage "https://github.com/Planteome/plant-stress-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000013"^^xsd:string ;
@@ -40035,7 +40051,7 @@ bioregistry:uberon a bioregistry.schema:0000001 ;
         "taxonomy" ;
     foaf:homepage "http://uberon.org"^^xsd:string ;
     bioregistry.schema:0000005 "2005080"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/UBERON_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 obo:uberon.owl ;
     bioregistry.schema:0000012 false ;
