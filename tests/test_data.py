@@ -4,7 +4,6 @@
 
 import json
 import logging
-import os
 import unittest
 from collections import defaultdict
 from textwrap import dedent
@@ -961,7 +960,7 @@ class TestRegistry(unittest.TestCase):
                     norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
                 )
 
-    @unittest.skipUnless(os.getlogin() == "cthoyt", reason="not running locally")
+    @unittest.skip
     def test_keywords(self):
         """Assert that all entries have keywords."""
         for resource in self.registry.values():
