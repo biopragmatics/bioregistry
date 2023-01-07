@@ -230,6 +230,9 @@ ac:
     standard provides a general way to represent activities.
   example: Add
   homepage: http://www.w3.org/ns/activitystreams
+  keywords:
+  - semantic web
+  - social media
   name: Activity Streams
   preferred_prefix: ac
   uri_format: http://www.w3.org/ns/activitystreams#$1
@@ -572,6 +575,8 @@ agilent.probe:
     TUCP transcripts catalog (Nov 2011).  Probe annotation was taken from A-GEOD-16699.'
   example: A_24_P98555
   homepage: https://www.ebi.ac.uk/arrayexpress/files/A-MEXP-2320/A-MEXP-2320.adf.txt
+  keywords:
+  - transcriptomics
   name: Agilent Probe
   pattern: ^A_\d+_.+$
   preferred_prefix: agilent.probe
@@ -652,6 +657,8 @@ agrkb:
   example: '100000000000001'
   github_request_issue: 359
   homepage: https://www.alliancegenome.org
+  keywords:
+  - model organism database
   mappings:
     biolink: AGRKB
   name: Alliance of Genome Resources Knowledge Base
@@ -911,6 +918,10 @@ alzforum.mutation:
     with Alzheimer's disease.
   example: app-d678n-tottori
   homepage: https://www.alzforum.org/mutations
+  keywords:
+  - alzheimer's disease
+  - genes
+  - variants
   name: Alzforum Mutations
   preferred_prefix: alzforum.mutation
   synonyms:
@@ -2343,6 +2354,8 @@ bcrc:
   description: Cell line collections
   example: '60316'
   homepage: https://catalog.bcrc.firdi.org.tw
+  keywords:
+  - cell lines
   mappings:
     cellosaurus: BCRC
   name: BCRC Strain Collection Catalog
@@ -2478,6 +2491,8 @@ beiresources:
   description: Cell line collections
   example: MRA-253
   homepage: https://www.beiresources.org
+  keywords:
+  - cell lines
   mappings:
     cellosaurus: BEI_Resources
   name: BEI Resources
@@ -2636,6 +2651,8 @@ bibo:
     books, articles, etc) on the Semantic Web.
   example: authorList
   homepage: https://bibliontology.com/
+  keywords:
+  - bibliometrics
   name: The Bibliographic Ontology
   preferred_prefix: bibo
   uri_format: http://purl.org/ontology/bibo/$1
@@ -3001,6 +3018,12 @@ biolegend:
   description: BioLegend is a life sciences supply vendor.
   example: '3403'
   homepage: https://www.biolegend.com
+  keywords:
+  - antibodies
+  - assays
+  - life sciences
+  - reagents
+  - vendor
   name: BioLegend
   pattern: ^\d+$
   preferred_prefix: biolegend
@@ -3378,6 +3401,8 @@ bioregistry.collection:
   description: Manually curated collections of resources stored in the bioregistry
   example: '0000001'
   homepage: https://bioregistry.io/collection
+  keywords:
+  - registry
   name: Bioregistry Collections
   pattern: ^\d{7}$
   preferred_prefix: bioregistry.collection
@@ -3396,6 +3421,11 @@ bioregistry.registry:
   description: The Bioregistry's meta-registry
   example: miriam
   homepage: https://bioregistry.io/metaregistry/
+  keywords:
+  - data integration
+  - data science
+  - metaregistry
+  - registry
   name: Bioregistry Metaregistry
   preferred_prefix: bioregistry.registry
   uri_format: https://bioregistry.io/metaregistry/$1
@@ -3413,6 +3443,8 @@ bioregistry.schema:
   description: Schema for the export of the Bioregistry as RDF
   example: '0000001'
   homepage: https://bioregistry.io/schema
+  keywords:
+  - registry
   name: Bioregistry Schema
   pattern: ^\d{7}$
   preferred_prefix: bioregistry.schema
@@ -3430,6 +3462,9 @@ biorxiv:
   - 000091v1
   - 2022.07.08.499378v2
   homepage: https://biorxiv.org
+  keywords:
+  - preprints
+  - publishing
   mappings:
     go: bioRxiv
     wikidata: P3951
@@ -3812,6 +3847,10 @@ bmrb.restraint:
     databases respectively.
   example: '28789'
   homepage: https://restraintsgrid.bmrb.io/NRG/MRGridServlet
+  keywords:
+  - chemistry
+  - nmr
+  - spectrometry
   name: NMR Restraints Grid
   pattern: ^\d+$
   preferred_prefix: bmrb.restraint
@@ -3959,6 +3998,9 @@ brenda.ligand:
   description: Information for ligands in the BRENDA database.
   example: '278'
   homepage: https://www.brenda-enzymes.de/ligand.php
+  keywords:
+  - chemistry
+  - structrual bioinformatics
   name: BRENDA Ligand
   pattern: ^\d+$
   preferred_prefix: brenda.ligand
@@ -3972,6 +4014,10 @@ brenda.ligandgroup:
   description: Information for ligand groups (chemical classes).
   example: '18030'
   homepage: https://www.brenda-enzymes.de/ligand.php
+  keywords:
+  - chemistry
+  - grouping
+  - structrual bioinformatics
   name: BRENDA Ligand Group
   pattern: ^\d+$
   preferred_prefix: brenda.ligandgroup
@@ -4677,6 +4723,8 @@ cba:
     in MEDLINE.'
   example: '375364'
   homepage: http://www.cba.ac.cn
+  keywords:
+  - bibliography
   name: Chinese Biological Abstracts
   pattern: ^\d+$
   preferred_prefix: cba
@@ -5144,6 +5192,10 @@ cellosaurus.resource:
   description: The set of prefixes used in the Cellosaurus resource
   example: 4DN
   homepage: https://web.expasy.org/cellosaurus/
+  keywords:
+  - cell lines
+  - cells
+  - registry
   name: Cellosaurus Registry
   preferred_prefix: cellosaurus.resource
   uri_format: https://bioregistry.io/metaregistry/cellosaurus/$1
@@ -5544,6 +5596,9 @@ chembl.cell:
   description: Chemistry resources
   example: CHEMBL3307800
   homepage: https://www.ebi.ac.uk/chembldb
+  keywords:
+  - bioactivities
+  - cell lines
   mappings:
     cellosaurus: ChEMBL-Cells
   name: ChEMBL database of bioactive drug-like small molecules - Cell lines section
@@ -6329,6 +6384,10 @@ clingene:
     variants
   example: CA981206459
   homepage: https://reg.clinicalgenome.org
+  keywords:
+  - alleles
+  - genetics
+  - mutations
   mappings:
     biolink: CAID
   name: ClinGen Allele Registry
@@ -6571,6 +6630,9 @@ cmecs:
     in the Coastal and Marine Ecological Classification Standard.
   example: '595'
   homepage: https://cmecscatalog.org/cmecs
+  keywords:
+  - ecology
+  - marine ecology
   name: Costal and Marine Ecological Classification Standard
   pattern: ^\d+$
   preferred_prefix: cmecs
@@ -7599,6 +7661,10 @@ coconut:
   example: CNP0171505
   github_request_issue: 221
   homepage: https://coconut.naturalproducts.net
+  keywords:
+  - chemistry
+  - natural producs
+  - organic chemistry
   name: COlleCtion of Open Natural ProdUcTs
   pattern: ^CNP\d{7}$
   preferred_prefix: coconut
@@ -7625,6 +7691,9 @@ codelink:
     2004 release).'
   example: GE86325
   homepage: https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt
+  keywords:
+  - microarray
+  - transcriptomics
   name: GE Healthcare/Amersham Biosciences CodeLink Human Whole Genome Bioarray
   pattern: ^GE\d+$
   preferred_prefix: codelink
@@ -7693,6 +7762,8 @@ cog.category:
   description: Higher-level classifications of COG Pathways
   example: K
   homepage: https://www.ncbi.nlm.nih.gov/research/cog/
+  keywords:
+  - pathways
   name: COG Categories
   part_of: cog
   preferred_prefix: cog.category
@@ -35839,6 +35910,10 @@ pubchem.cell:
   description: Cell Lines in PubChem
   example: '31'
   homepage: https://pubchem.ncbi.nlm.nih.gov
+  keywords:
+  - bioactivities
+  - cell lines
+  - chemistry
   name: PubChem Cell Line
   part_of: pubchem
   pattern: ^\d+$
@@ -35858,6 +35933,8 @@ pubchem.classification:
     find the subset of PubChem records.
   example: '87'
   homepage: https://pubchem.ncbi.nlm.nih.gov/classification/
+  keywords:
+  - chemistry
   name: PubChem Classification
   part_of: pubchem
   pattern: ^\d+$
@@ -38553,6 +38630,10 @@ schem:
     Language
   example: A0001
   homepage: https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-legacy-chemical-names.txt
+  keywords:
+  - bel
+  - chemistry
+  - selventa
   name: Selventa Chemicals
   pattern: ^A\d{4}$
   preferred_prefix: schem
@@ -38598,6 +38679,9 @@ scholia.resource:
   description: A frontend to Wikidata
   example: doi
   homepage: https://scholia.toolforge.org/
+  keywords:
+  - registry
+  - wikidata
   name: Scholia Registry
   preferred_prefix: scholia.resource
   uri_format: https://bioregistry.io/metaregistry/scholia/$1
@@ -38611,6 +38695,10 @@ scomp:
     Language
   example: C0001
   homepage: https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-named-complexes.txt
+  keywords:
+  - bel
+  - protein complexes
+  - selventa
   name: Selventa Complexes
   pattern: ^C\d{4}$
   preferred_prefix: scomp
@@ -38863,6 +38951,10 @@ sdis:
     Language
   example: D0001
   homepage: https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-legacy-diseases.txt
+  keywords:
+  - bel
+  - diseases
+  - selventa
   name: Selventa Diseases
   pattern: ^D\d{4}$
   preferred_prefix: sdis
@@ -39034,6 +39126,10 @@ sfam:
     Language
   example: F0001
   homepage: https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-protein-families.txt
+  keywords:
+  - bel
+  - protein families
+  - selventa
   name: Selventa Families
   pattern: ^F\d{4}$
   preferred_prefix: sfam
@@ -43488,6 +43584,10 @@ uniprot.ptm:
     usage as well as other information is provided in the following format
   example: PTM-0450
   homepage: https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/docs/ptmlist
+  keywords:
+  - biochemistry
+  - post-translational modification
+  - structural biology
   name: UniProt Post-Translational Modification
   part_of: uniprot
   pattern: ^PTM-\d{4}$
@@ -44426,6 +44526,7 @@ vipr:
   - biomedical science
   - epidemiology
   - genomics
+  - immunology
   - life science
   - proteomics
   - virology
@@ -44673,6 +44774,7 @@ vo:
   homepage: http://www.violinet.org/vaccineontology
   keywords:
   - biomedical science
+  - immunology
   - obo
   - ontology
   - pathobiochemistry

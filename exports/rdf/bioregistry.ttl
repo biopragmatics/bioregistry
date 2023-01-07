@@ -14538,6 +14538,7 @@ bioregistry:vipr a bioregistry.schema:0000001 ;
     dcat:keyword "biomedical science",
         "epidemiology",
         "genomics",
+        "immunology",
         "life science",
         "proteomics",
         "virology" ;
@@ -22628,6 +22629,7 @@ bioregistry:agilent.probe a bioregistry.schema:0000001 ;
     rdfs:label "Agilent Probe" ;
     dc:description "This is the Agilent SurePrint G3 Human GE v2 8x60k Microarray, Agilent design ID 039494, GridName 039494_D_F_20120628. Probe layout is 1 x 1 x 384 rows x 164 cols, which is different from a similar ADF A-GEOD-16699 (1 x 1 x 328 rows x 192 cols). Version 2 of this array  contains long intergenic non-coding RNA (lincRNA) probes designed to the human catalog of lincRNAs from the Broad Institute, along with an update of mRNA content when compared to version 1. Probes were designed using GRCh37 assembly of the human genome. Annotation of probes came from the following database: RefSeq Build 50, Ensembl Release 52, Unigene Build 216, GenBank (April 2009), Broad Institute Human lincRNA catalog (Nov 2011), Broad Institute TUCP transcripts catalog (Nov 2011).  Probe annotation was taken from A-GEOD-16699."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "transcriptomics" ;
     foaf:homepage "https://www.ebi.ac.uk/arrayexpress/files/A-MEXP-2320/A-MEXP-2320.adf.txt"^^xsd:string ;
     bioregistry.schema:0000005 "A_24_P98555"^^xsd:string ;
     bioregistry.schema:0000008 "^A_\\d+_.+$"^^xsd:string ;
@@ -22661,6 +22663,9 @@ bioregistry:alzforum.mutation a bioregistry.schema:0000001 ;
     rdfs:label "Alzforum Mutations" ;
     dc:description "Alzforum mutations is a repository of genes and rare variants associated with Alzheimer's disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "alzheimer's disease",
+        "genes",
+        "variants" ;
     foaf:homepage "https://www.alzforum.org/mutations"^^xsd:string ;
     bioregistry.schema:0000005 "app-d678n-tottori"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.alzforum.org/mutations/$1"^^xsd:string ;
@@ -22874,6 +22879,7 @@ bioregistry:bcrc a bioregistry.schema:0000001 ;
     dc:description "Cell line collections"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch cellosaurus.resource:BCRC ;
+    dcat:keyword "cell lines" ;
     foaf:homepage "https://catalog.bcrc.firdi.org.tw"^^xsd:string ;
     bioregistry.schema:0000005 "60316"^^xsd:string ;
     bioregistry.schema:0000006 "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=$1"^^xsd:string ;
@@ -22885,6 +22891,7 @@ bioregistry:beiresources a bioregistry.schema:0000001 ;
     dc:description "Cell line collections"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch cellosaurus.resource:BEI_Resources ;
+    dcat:keyword "cell lines" ;
     foaf:homepage "https://www.beiresources.org"^^xsd:string ;
     bioregistry.schema:0000005 "MRA-253"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.beiresources.org/Catalog/cellBanks/$1.aspx"^^xsd:string ;
@@ -22934,6 +22941,11 @@ bioregistry:biolegend a bioregistry.schema:0000001 ;
     rdfs:label "BioLegend" ;
     dc:description "BioLegend is a life sciences supply vendor."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "antibodies",
+        "assays",
+        "life sciences",
+        "reagents",
+        "vendor" ;
     foaf:homepage "https://www.biolegend.com"^^xsd:string ;
     bioregistry.schema:0000005 "3403"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.biolegend.com/Default.aspx?ID=6664&productid=$1"^^xsd:string ;
@@ -22961,6 +22973,7 @@ bioregistry:bioregistry.collection a bioregistry.schema:0000001 ;
     rdfs:label "Bioregistry Collections" ;
     dc:description "Manually curated collections of resources stored in the bioregistry"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "registry" ;
     foaf:homepage "https://bioregistry.io/collection"^^xsd:string ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/collection/$1"^^xsd:string ;
@@ -22972,6 +22985,10 @@ bioregistry:bioregistry.registry a bioregistry.schema:0000001 ;
     rdfs:label "Bioregistry Metaregistry" ;
     dc:description "The Bioregistry's meta-registry"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "data integration",
+        "data science",
+        "metaregistry",
+        "registry" ;
     foaf:homepage "https://bioregistry.io/metaregistry/"^^xsd:string ;
     bioregistry.schema:0000005 "miriam"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/$1"^^xsd:string ;
@@ -22982,6 +22999,7 @@ bioregistry:bioregistry.schema a bioregistry.schema:0000001 ;
     rdfs:label "Bioregistry Schema" ;
     dc:description "Schema for the export of the Bioregistry as RDF"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "registry" ;
     foaf:homepage "https://bioregistry.io/schema"^^xsd:string ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/schema/#$1"^^xsd:string ;
@@ -22995,6 +23013,8 @@ bioregistry:biorxiv a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch go.resource:bioRxiv,
         wikidata:P3951 ;
+    dcat:keyword "preprints",
+        "publishing" ;
     foaf:homepage "https://biorxiv.org"^^xsd:string ;
     bioregistry.schema:0000005 "2022.07.08.499378"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.biorxiv.org/content/10.1101/$1"^^xsd:string ;
@@ -23078,6 +23098,9 @@ bioregistry:bmrb.restraint a bioregistry.schema:0000001 ;
     rdfs:label "NMR Restraints Grid" ;
     dc:description "The NMR Restraints Grid contains the original NMR data as collected for over 2500 protein and nucleic acid structures with corresponding PDB entries. In addition to the original restraints, most of the distance, dihedral angle and RDC restraint data (>85%) were parsed, and those in over 500 entries were converted and filtered. The converted and filtered data sets constitute the DOCR and FRED databases respectively."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "nmr",
+        "spectrometry" ;
     foaf:homepage "https://restraintsgrid.bmrb.io/NRG/MRGridServlet"^^xsd:string ;
     bioregistry.schema:0000005 "28789"^^xsd:string ;
     bioregistry.schema:0000006 "https://restraintsgrid.bmrb.io/NRG/MRGridServlet?block_text_type=2-parsed&db_username=wattos1&file_detail=2-parsed&format=n%2Fa&program=STAR&request_type=block&subtype=full&type=entry&mrblock_id=$1"^^xsd:string ;
@@ -23237,6 +23260,7 @@ bioregistry:cba a bioregistry.schema:0000001 ;
     rdfs:label "Chinese Biological Abstracts" ;
     dc:description "CBA: http://www.cba.ac.cn/ and the Shanghai Institutes for Biological Sciences (SIBS at http://www.sibs.ac.cn/) provide EBI with citation data not available in MEDLINE."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bibliography" ;
     foaf:homepage "http://www.cba.ac.cn"^^xsd:string ;
     bioregistry.schema:0000005 "375364"^^xsd:string ;
     bioregistry.schema:0000006 "https://europepmc.org/article/CBA/$1"^^xsd:string ;
@@ -23334,6 +23358,9 @@ bioregistry:cellosaurus.resource a bioregistry.schema:0000001 ;
     rdfs:label "Cellosaurus Registry" ;
     dc:description "The set of prefixes used in the Cellosaurus resource"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "cell lines",
+        "cells",
+        "registry" ;
     foaf:homepage "https://web.expasy.org/cellosaurus/"^^xsd:string ;
     bioregistry.schema:0000005 "4DN"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/cellosaurus/$1"^^xsd:string ;
@@ -23518,6 +23545,9 @@ bioregistry:clingene a bioregistry.schema:0000001 ;
     dc:description "The allele registry provides and maintains identifiers for genetic variants"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biolink:CAID ;
+    dcat:keyword "alleles",
+        "genetics",
+        "mutations" ;
     foaf:homepage "https://reg.clinicalgenome.org"^^xsd:string ;
     bioregistry.schema:0000005 "CA981206459"^^xsd:string ;
     bioregistry.schema:0000006 "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"^^xsd:string ;
@@ -23562,6 +23592,8 @@ bioregistry:cmecs a bioregistry.schema:0000001 ;
     rdfs:label "Costal and Marine Ecological Classification Standard" ;
     dc:description "Use this database to browse the CMECS classification and to get definitions for individual CMECS Units. This database contains the units that were published in the Coastal and Marine Ecological Classification Standard."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "ecology",
+        "marine ecology" ;
     foaf:homepage "https://cmecscatalog.org/cmecs"^^xsd:string ;
     bioregistry.schema:0000005 "595"^^xsd:string ;
     bioregistry.schema:0000006 "https://cmecscatalog.org/cmecs/classification/unit/$1.html"^^xsd:string ;
@@ -23597,6 +23629,9 @@ bioregistry:coconut a bioregistry.schema:0000001 ;
     rdfs:label "COlleCtion of Open Natural ProdUcTs" ;
     dc:description "COCONUT (COlleCtion of Open Natural ProdUcTs) Online is an open source project for Natural Products (NPs) storage, search and analysis. It gathers data from over 50 open NP resources and is available free of charge and without any restriction. Each entry corresponds to a \"flat\" NP structure, and is associated, when available, to their known stereochemical forms, literature, organisms that produce them, natural geographical presence and diverse pre-computed molecular properties."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "natural producs",
+        "organic chemistry" ;
     foaf:homepage "https://coconut.naturalproducts.net"^^xsd:string ;
     bioregistry.schema:0000005 "CNP0171505"^^xsd:string ;
     bioregistry.schema:0000006 "https://coconut.naturalproducts.net/compound/coconut_id/$1"^^xsd:string ;
@@ -23608,6 +23643,8 @@ bioregistry:codelink a bioregistry.schema:0000001 ;
     rdfs:label "GE Healthcare/Amersham Biosciences CodeLink Human Whole Genome Bioarray" ;
     dc:description "GE Healthcare/Amersham Biosciences CodeLink? Human Whole Genome Bioarray targets most of the known and predictive genes of the human genome as it is described today in the public domain. It is comprised of approximately 55,000 30-mer probes designed to conserved exons across the transcripts of targeted genes. These 55,000 probes represent well annotated, full length, and partial human gene sequences from major public databases. GE Healthcare/Amersham Biosciences CodeLink? Human Whole Genome Bioarray probe sequences were selected from the NCBI UniGene build #165, RefSeq database (January 5, 2004 release) and dbEST database (January 8, 2004 release)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "microarray",
+        "transcriptomics" ;
     foaf:homepage "https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt"^^xsd:string ;
     bioregistry.schema:0000005 "GE86325"^^xsd:string ;
     bioregistry.schema:0000008 "^GE\\d+$"^^xsd:string ;
@@ -28029,6 +28066,9 @@ bioregistry:schem a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Chemicals" ;
     dc:description "Selventa legacy chemical namespace used with the Biological Expression Language"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bel",
+        "chemistry",
+        "selventa" ;
     foaf:homepage "https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-legacy-chemical-names.txt"^^xsd:string ;
     bioregistry.schema:0000005 "A0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/schem/$1"^^xsd:string ;
@@ -28039,6 +28079,8 @@ bioregistry:scholia.resource a bioregistry.schema:0000001 ;
     rdfs:label "Scholia Registry" ;
     dc:description "A frontend to Wikidata"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "registry",
+        "wikidata" ;
     foaf:homepage "https://scholia.toolforge.org/"^^xsd:string ;
     bioregistry.schema:0000005 "doi"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/scholia/$1"^^xsd:string ;
@@ -28048,6 +28090,9 @@ bioregistry:scomp a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Complexes" ;
     dc:description "Selventa legacy complex namespace used with the Biological Expression Language"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bel",
+        "protein complexes",
+        "selventa" ;
     foaf:homepage "https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-named-complexes.txt"^^xsd:string ;
     bioregistry.schema:0000005 "C0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/scomp/$1"^^xsd:string ;
@@ -28086,6 +28131,9 @@ bioregistry:sdis a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Diseases" ;
     dc:description "Selventa legacy disease namespace used with the Biological Expression Language"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bel",
+        "diseases",
+        "selventa" ;
     foaf:homepage "https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-legacy-diseases.txt"^^xsd:string ;
     bioregistry.schema:0000005 "D0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sdis/$1"^^xsd:string ;
@@ -28108,6 +28156,9 @@ bioregistry:sfam a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Families" ;
     dc:description "Selventa legacy protein family namespace used with the Biological Expression Language"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bel",
+        "protein families",
+        "selventa" ;
     foaf:homepage "https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-protein-families.txt"^^xsd:string ;
     bioregistry.schema:0000005 "F0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sfam/$1"^^xsd:string ;
@@ -34483,6 +34534,8 @@ bioregistry:ac a bioregistry.schema:0000001 ;
     rdfs:label "Activity Streams" ;
     dc:description "Activity Streams is an open format specification for activity stream protocols, which are used to syndicate activities taken in social web applications and services, similar to those in Facebook's, Instagram's, and Twitter's. The standard provides a general way to represent activities."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "semantic web",
+        "social media" ;
     foaf:homepage "http://www.w3.org/ns/activitystreams"^^xsd:string ;
     bioregistry.schema:0000005 "Add"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/activitystreams#$1"^^xsd:string ;
@@ -34503,6 +34556,7 @@ The Alliance of Genome Resources was founded by the following Model Organism dat
 - [Xenbase](https://www.xenbase.org)"""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biolink:AGRKB ;
+    dcat:keyword "model organism database" ;
     foaf:homepage "https://www.alliancegenome.org"^^xsd:string ;
     bioregistry.schema:0000005 "100000000000001"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.alliancegenome.org/accession/$1"^^xsd:string ;
@@ -34515,6 +34569,7 @@ bioregistry:bibo a bioregistry.schema:0000001 ;
     rdfs:label "The Bibliographic Ontology" ;
     dc:description "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bibliometrics" ;
     foaf:homepage "https://bibliontology.com/"^^xsd:string ;
     bioregistry.schema:0000005 "authorList"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/ontology/bibo/$1"^^xsd:string ;
@@ -34563,6 +34618,8 @@ bioregistry:brenda.ligand a bioregistry.schema:0000001 ;
     rdfs:label "BRENDA Ligand" ;
     dc:description "Information for ligands in the BRENDA database."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "structrual bioinformatics" ;
     foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
     bioregistry.schema:0000005 "278"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"^^xsd:string ;
@@ -34573,6 +34630,9 @@ bioregistry:brenda.ligandgroup a bioregistry.schema:0000001 ;
     rdfs:label "BRENDA Ligand Group" ;
     dc:description "Information for ligand groups (chemical classes)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "grouping",
+        "structrual bioinformatics" ;
     foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
     bioregistry.schema:0000005 "18030"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"^^xsd:string ;
@@ -34597,6 +34657,8 @@ bioregistry:chembl.cell a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:chembl ;
     skos:exactMatch cellosaurus.resource:ChEMBL-Cells ;
+    dcat:keyword "bioactivities",
+        "cell lines" ;
     foaf:homepage "https://www.ebi.ac.uk/chembldb"^^xsd:string ;
     bioregistry.schema:0000005 "CHEMBL3307800"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/chembl/cell_line_report_card/$1"^^xsd:string ;
@@ -34755,6 +34817,7 @@ bioregistry:cog.category a bioregistry.schema:0000001 ;
     dc:description "Higher-level classifications of COG Pathways"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:cog ;
+    dcat:keyword "pathways" ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/research/cog/"^^xsd:string ;
     bioregistry.schema:0000005 "K"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1"^^xsd:string ;
@@ -36727,6 +36790,9 @@ bioregistry:pubchem.cell a bioregistry.schema:0000001 ;
     dc:description "Cell Lines in PubChem"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:pubchem ;
+    dcat:keyword "bioactivities",
+        "cell lines",
+        "chemistry" ;
     foaf:homepage "https://pubchem.ncbi.nlm.nih.gov"^^xsd:string ;
     bioregistry.schema:0000005 "31"^^xsd:string ;
     bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/cell/$1"^^xsd:string ;
@@ -36738,6 +36804,7 @@ bioregistry:pubchem.classification a bioregistry.schema:0000001 ;
     dc:description "The PubChem Classification Browser allows you to browse the distribution of PubChem data among nodes in the hierarchy of interest, thereby providing an aggregate view of PubChem data. It also allows you to search for PubChem records annotated with the desired hierarchy/term, providing a powerful way to quickly find the subset of PubChem records."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:pubchem ;
+    dcat:keyword "chemistry" ;
     foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/classification/"^^xsd:string ;
     bioregistry.schema:0000005 "87"^^xsd:string ;
     bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/classification/#hid=$1"^^xsd:string ;
@@ -37267,6 +37334,9 @@ bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
     dc:description "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
+    dcat:keyword "biochemistry",
+        "post-translational modification",
+        "structural biology" ;
     foaf:homepage "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/docs/ptmlist"^^xsd:string ;
     bioregistry.schema:0000005 "PTM-0450"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/uniprot.ptm/$1"^^xsd:string ;
@@ -37326,6 +37396,7 @@ bioregistry:vo a bioregistry.schema:0000001 ;
         ols:vo,
         wikidata:P1928 ;
     dcat:keyword "biomedical science",
+        "immunology",
         "obo",
         "ontology",
         "pathobiochemistry",
