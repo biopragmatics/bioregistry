@@ -15374,7 +15374,8 @@ orcid:0000-0001-9370-918X rdfs:label "Daniel Sonenshine" ;
     foaf:mbox "dsonensh@odu.edu" .
 
 orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
-    dcterms:contributor bioregistry:bko,
+    dcterms:contributor bioregistry:biofactoid,
+        bioregistry:bko,
         bioregistry:casspc,
         bioregistry:cemo,
         bioregistry:cordis.project,
@@ -15704,6 +15705,9 @@ orcid:0000-0002-8876-128X rdfs:label "Jianmin Wu" ;
 
 orcid:0000-0002-8878-3972 rdfs:label "Sandra Orchard" ;
     foaf:mbox "orchard@ebi.ac.uk" .
+
+orcid:0000-0002-8912-5699 rdfs:label "Jeffrey Wong" ;
+    foaf:mbox "jeffvin.wong@utoronto.ca" .
 
 orcid:0000-0002-8951-466X rdfs:label "Christine Pourcel" ;
     foaf:mbox "Christine.Pourcel@u-psud.fr" .
@@ -22908,6 +22912,18 @@ bioregistry:bel a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "9-1-1 Complex"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0728-781X .
+
+bioregistry:biofactoid a bioregistry.schema:0000001 ;
+    rdfs:label "Biofactoid" ;
+    dc:description "Biofactoid is a web-based system that empowers authors to capture and share machine-readable summaries of molecular-level interactions described in their publications."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://biofactoid.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "fdb8a927-45c3-48b7-9743-cbb5e16837fa"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biofactoid.org/document/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8912-5699 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:biogrid a bioregistry.schema:0000001 ;
     rdfs:label "BioGRID" ;
@@ -46822,6 +46838,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:biocarta.pathway,
         bioregistry:biocatalogue.service,
         bioregistry:biocyc,
+        bioregistry:biofactoid,
         bioregistry:biogrid,
         bioregistry:biogrid.interaction,
         bioregistry:biolegend,
