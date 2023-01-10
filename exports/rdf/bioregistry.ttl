@@ -10546,7 +10546,7 @@ bioregistry:opb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/OPB/13/opb.owl> ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Max Neal" ;
+    bioregistry.schema:0000019 [ rdfs:label "Maxwell L. Neal" ;
             foaf:mbox "maxneal@gmail.com" ] .
 
 bioregistry:opl a bioregistry.schema:0000001 ;
@@ -37898,39 +37898,6 @@ bioregistry:genbank a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/nucleotide/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:hp a bioregistry.schema:0000001 ;
-    rdfs:label "Human Phenotype Ontology" ;
-    dc:description "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:HP_O,
-        obofoundry:hp,
-        oid:2.16.840.1.113883.6.339,
-        ontobee:HP,
-        bartoc:1937,
-        bioportal:HP_O,
-        biocontext:HPO,
-        n2t:hp,
-        fairsharing:FAIRsharing.kbtt7f,
-        miriam:hp,
-        ols:hp,
-        wikidata:P3841 ;
-    dcat:keyword "biomedical science",
-        "genetics",
-        "obo",
-        "ontology",
-        "phenomics",
-        "preclinical studies" ;
-    foaf:homepage "http://www.human-phenotype-ontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0011140"^^xsd:string ;
-    bioregistry.schema:0000006 "https://hpo.jax.org/app/browse/term/HP:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:hp.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:chiro,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-5316-1399 ;
-    bioregistry.schema:0000023 "hpo" .
-
 bioregistry:icd9 a bioregistry.schema:0000001 ;
     rdfs:label "International Classification of Diseases, 9th Revision" ;
     dc:description "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics."^^xsd:string ;
@@ -37966,32 +37933,6 @@ bioregistry:metatlas a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7753-9042 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
-
-bioregistry:nbo a bioregistry.schema:0000001 ;
-    rdfs:label "Neuro Behavior Ontology" ;
-    dc:description "An ontology of human and animal behaviours and behavioural phenotypes"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:NBO,
-        obofoundry:nbo,
-        ontobee:NBO,
-        bioportal:NBO,
-        biocontext:NBO,
-        fairsharing:FAIRsharing.pktgc6,
-        ols:nbo ;
-    dcat:keyword "obo",
-        "ontology",
-        "social and behavioural science",
-        "systemic neuroscience" ;
-    foaf:homepage "https://github.com/obo-behavior/behavior-ontology/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000564"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:nbo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:ecto,
-        bioregistry:pcl,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
 bioregistry:ncbigene a bioregistry.schema:0000001 ;
     rdfs:label "Entrez Gene" ;
@@ -38398,6 +38339,40 @@ bioregistry:hgnc.symbol a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Za-z-0-9_]+(\\@)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:hp a bioregistry.schema:0000001 ;
+    rdfs:label "Human Phenotype Ontology" ;
+    dc:description "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:HP_O,
+        obofoundry:hp,
+        oid:2.16.840.1.113883.6.339,
+        ontobee:HP,
+        bartoc:1937,
+        bioportal:HP_O,
+        biocontext:HPO,
+        n2t:hp,
+        fairsharing:FAIRsharing.kbtt7f,
+        miriam:hp,
+        ols:hp,
+        wikidata:P3841 ;
+    dcat:keyword "biomedical science",
+        "genetics",
+        "obo",
+        "ontology",
+        "phenomics",
+        "preclinical studies" ;
+    foaf:homepage "http://www.human-phenotype-ontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0011140"^^xsd:string ;
+    bioregistry.schema:0000006 "https://hpo.jax.org/app/browse/term/HP:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:hp.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:chiro,
+        bioregistry:maxo,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-5316-1399 ;
+    bioregistry.schema:0000023 "hpo" .
+
 bioregistry:multicellds a bioregistry.schema:0000001 ;
     rdfs:label "MultiCellDS" ;
     dc:description "MultiCellDS is data standard for multicellular simulation, experimental, and clinical data. A digital cell line is a hierarchical organization of quantitative phenotype data for a single biological cell line, including the microenvironmental context of the measurements and essential metadata."^^xsd:string ;
@@ -38412,6 +38387,33 @@ bioregistry:multicellds a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://multicellds.org/MultiCellDB/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8003-6860 .
+
+bioregistry:nbo a bioregistry.schema:0000001 ;
+    rdfs:label "Neuro Behavior Ontology" ;
+    dc:description "An ontology of human and animal behaviours and behavioural phenotypes"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:NBO,
+        obofoundry:nbo,
+        ontobee:NBO,
+        bioportal:NBO,
+        biocontext:NBO,
+        fairsharing:FAIRsharing.pktgc6,
+        ols:nbo ;
+    dcat:keyword "obo",
+        "ontology",
+        "social and behavioural science",
+        "systemic neuroscience" ;
+    foaf:homepage "https://github.com/obo-behavior/behavior-ontology/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000564"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:nbo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ecto,
+        bioregistry:maxo,
+        bioregistry:pcl,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
 bioregistry:planp a bioregistry.schema:0000001 ;
     rdfs:label "Planarian Phenotype Ontology" ;
@@ -39093,33 +39095,6 @@ bioregistry:lepao a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-9136-9932 .
 
-bioregistry:maxo a bioregistry.schema:0000001 ;
-    rdfs:label "Medical Action Ontology" ;
-    dc:description "An ontology to represent medically relevant actions, procedures, therapies, interventions, and recommendations."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:MAXO,
-        obofoundry:maxo,
-        ontobee:MAXO,
-        bioportal:MAXO,
-        biolink:MAXO,
-        ols:maxo ;
-    dcat:keyword "obo",
-        "ontology" ;
-    foaf:homepage "https://github.com/monarch-initiative/MAxO"^^xsd:string ;
-    bioregistry.schema:0000005 "0000008"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MAXO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:maxo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:chebi,
-        bioregistry:foodon,
-        bioregistry:go,
-        bioregistry:iao,
-        bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000018 bioregistry:ecto ;
-    bioregistry.schema:0000019 orcid:0000-0001-7941-2961 .
-
 bioregistry:rbo a bioregistry.schema:0000001 ;
     rdfs:label "Radiation Biology Ontology" ;
     dc:description "RBO is an ontology for the effects of radiation on biota in terrestrial and space environments."^^xsd:string ;
@@ -39320,43 +39295,35 @@ bioregistry:ecocore a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-4366-3088 .
 
-bioregistry:obi a bioregistry.schema:0000001 ;
-    rdfs:label "Ontology for Biomedical Investigations" ;
-    dc:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
+bioregistry:maxo a bioregistry.schema:0000001 ;
+    rdfs:label "Medical Action Ontology" ;
+    dc:description "An ontology to represent medically relevant actions, procedures, therapies, interventions, and recommendations."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OBI,
-        obofoundry:obi,
-        ontobee:OBI,
-        bioportal:OBI,
-        biocontext:OBI,
-        go.resource:OBI,
-        n2t:obi,
-        fairsharing:FAIRsharing.284e1z,
-        prefixcommons:obi,
-        miriam:obi,
-        ols:obi ;
-    dcat:keyword "biomedical science",
-        "functional genomics",
-        "life science",
-        "obo",
+    skos:exactMatch aberowl:MAXO,
+        obofoundry:maxo,
+        ontobee:MAXO,
+        bioportal:MAXO,
+        biolink:MAXO,
+        ols:maxo ;
+    dcat:keyword "obo",
         "ontology" ;
-    foaf:homepage "http://obi-ontology.org"^^xsd:string ;
-    bioregistry.schema:0000005 "0400109"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
+    foaf:homepage "https://github.com/monarch-initiative/MAxO"^^xsd:string ;
+    bioregistry.schema:0000005 "0000008"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MAXO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:obi.owl ;
+    bioregistry.schema:0000010 obo:maxo.owl ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
+    bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:foodon,
-        bioregistry:hso,
-        bioregistry:labo,
-        bioregistry:mco,
-        bioregistry:one,
-        bioregistry:ons,
-        bioregistry:proco,
-        bioregistry:rbo,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 .
+        bioregistry:go,
+        bioregistry:hp,
+        bioregistry:iao,
+        bioregistry:nbo,
+        bioregistry:obi,
+        bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000018 bioregistry:ecto ;
+    bioregistry.schema:0000019 orcid:0000-0001-7941-2961 .
 
 bioregistry:pco a bioregistry.schema:0000001 ;
     rdfs:label "Population and Community Ontology" ;
@@ -39434,6 +39401,45 @@ bioregistry:iao a bioregistry.schema:0000001 ;
         bioregistry:psdo,
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 .
+
+bioregistry:obi a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology for Biomedical Investigations" ;
+    dc:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OBI,
+        obofoundry:obi,
+        ontobee:OBI,
+        bioportal:OBI,
+        biocontext:OBI,
+        go.resource:OBI,
+        n2t:obi,
+        fairsharing:FAIRsharing.284e1z,
+        prefixcommons:obi,
+        miriam:obi,
+        ols:obi ;
+    dcat:keyword "biomedical science",
+        "functional genomics",
+        "life science",
+        "obo",
+        "ontology" ;
+    foaf:homepage "http://obi-ontology.org"^^xsd:string ;
+    bioregistry.schema:0000005 "0400109"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:obi.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:foodon,
+        bioregistry:hso,
+        bioregistry:labo,
+        bioregistry:maxo,
+        bioregistry:mco,
+        bioregistry:one,
+        bioregistry:ons,
+        bioregistry:proco,
+        bioregistry:rbo,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 .
 
 bioregistry:pcl a bioregistry.schema:0000001 ;
     rdfs:label "Provisional Cell Ontology" ;

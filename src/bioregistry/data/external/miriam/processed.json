@@ -1346,14 +1346,14 @@
   "cellosaurus": {
     "deprecated": false,
     "description": "The Cellosaurus is a knowledge resource on cell lines. It attempts to describe all cell lines used in biomedical research. Its scope includes: Immortalized cell lines; naturally immortal cell lines (example: stem cell lines); finite life cell lines when those are distributed and used widely; vertebrate cell line with an emphasis on human, mouse and rat cell lines; and invertebrate (insects and ticks) cell lines. Its scope does not include primary cell lines (with the exception of the finite life cell lines described above) and plant cell lines.",
-    "homepage": "https://web.expasy.org/cellosaurus/",
+    "homepage": "https://www.cellosaurus.org/",
     "id": "00000598",
     "name": "Cellosaurus",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^CVCL_[A-Z0-9]{4}$",
+    "pattern": "^CVCL_[A-Z0-9]{4}(\\.txt)?$",
     "prefix": "cellosaurus",
     "sampleId": "CVCL_0030",
-    "uri_format": "https://web.expasy.org/cellosaurus/$1"
+    "uri_format": "https://www.cellosaurus.org/$1"
   },
   "cellrepo": {
     "deprecated": false,
@@ -2835,7 +2835,7 @@
     "id": "00000003",
     "name": "Ensembl",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^((ENS[FPTG]\\\\d{11}(\\\\.\\\\d+)?)|(FB\\\\w{2}\\\\d{7})|(Y[A-Z]{2}\\\\d{3}[a-zA-Z](\\\\-[A-Z])?)|([A-Z_a-z0-9]+(\\\\.)?(t)?(\\\\d+)?([a-z])?))$",
+    "pattern": "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$",
     "prefix": "ensembl",
     "providers": [
       {

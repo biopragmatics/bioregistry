@@ -39,7 +39,7 @@ wrong_patterns:
   prefix: cco
 - correct: ^[A-Z0-9]{4}$
   homepage: https://cellosaurus.org
-  miriam: ^CVCL_[A-Z0-9]{4}$
+  miriam: ^CVCL_[A-Z0-9]{4}(\.txt)?$
   name: Cellosaurus
   prefix: cellosaurus
 - correct: ^\d+$
@@ -87,11 +87,6 @@ wrong_patterns:
   miriam: ECO:\d{7}$
   name: Evidence ontology
   prefix: eco
-- correct: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
-  homepage: https://www.ensembl.org/
-  miriam: ^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$
-  name: Ensembl Gene
-  prefix: ensembl
 - correct: ^\d{7,8}$
   homepage: http://environmentontology.org/
   miriam: ^ENVO:\d{7,8}$
