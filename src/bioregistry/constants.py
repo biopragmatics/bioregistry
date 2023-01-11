@@ -18,7 +18,7 @@ __all__ = [
     "BIOREGISTRY_MODULE",
 ]
 
-HERE = pathlib.Path(__file__).resolve()
+HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 DATA_DIRECTORY = HERE / "data"
 EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
