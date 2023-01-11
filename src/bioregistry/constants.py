@@ -18,7 +18,7 @@ __all__ = [
     "BIOREGISTRY_MODULE",
 ]
 
-HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
+HERE = pathlib.Path(__file__).resolve()
 DATA_DIRECTORY = HERE / "data"
 EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
@@ -83,17 +83,14 @@ EXPORT_ANALYSES = EXPORT_DIRECTORY.joinpath("analyses")
 BENCHMARKS = EXPORT_DIRECTORY.joinpath("benchmarks")
 
 URI_PARSING = BENCHMARKS.joinpath("uri_parsing")
-URI_PARSING.mkdir(exist_ok=True, parents=True)
 URI_PARSING_DATA_PATH = URI_PARSING.joinpath("data.tsv")
 URI_PARSING_SVG_PATH = URI_PARSING.joinpath("results.svg")
 
 CURIE_PARSING = BENCHMARKS.joinpath("curie_parsing")
-CURIE_PARSING.mkdir(exist_ok=True, parents=True)
 CURIE_PARSING_DATA_PATH = CURIE_PARSING.joinpath("data.tsv")
 CURIE_PARSING_SVG_PATH = CURIE_PARSING.joinpath("results.svg")
 
 CURIE_VALIDATION = BENCHMARKS.joinpath("curie_validation")
-CURIE_VALIDATION.mkdir(exist_ok=True, parents=True)
 CURIE_VALIDATION_DATA_PATH = CURIE_VALIDATION.joinpath("data.tsv")
 CURIE_VALIDATION_SVG_PATH = CURIE_VALIDATION.joinpath("results.svg")
 
