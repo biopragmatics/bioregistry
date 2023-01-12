@@ -128,6 +128,7 @@ def resource(prefix: str):
         markdown=markdown,
         prefix=prefix,
         resource=_resource,
+        bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
         name=manager.get_name(prefix),
         example=example,
         example_extras=example_extras,
@@ -463,7 +464,7 @@ def home():
         metaregistry_size=len(manager.metaregistry),
         collections_size=len(manager.collections),
         contributors_size=len(manager.read_contributors()),
-        bioschemas=json.dumps(bioschemas) if bioschemas else None,
+        bioschemas=json.dumps(bioschemas, ensure_ascii=False) if bioschemas else None,
     )
 
 

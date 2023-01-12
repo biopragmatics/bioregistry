@@ -23,7 +23,7 @@
 {% set keywords = resource.get_keywords() %}
 
 {% block container %}
-    <script type="application/ld+json">{{ resource.get_bioschemas_jsonld() | safe }}</script>
+    <script type="application/ld+json">{{ bioschemas | safe }}</script>
     <div class="card">
         <div class="card-header">
             <div class="row align-items-center">
