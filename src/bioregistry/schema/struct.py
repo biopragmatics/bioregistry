@@ -62,6 +62,7 @@ IDOT_SKIP = "identifiers.org"
 ORCID_TO_GITHUB = {
     "0000-0003-0530-4305": "essepuntato",
     "0000-0002-9903-4248": "mbaudis",
+    "0000-0001-9018-4680": "alimanfoo",
 }
 
 
