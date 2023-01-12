@@ -281,7 +281,7 @@
     "namespaceEmbeddedInLui": true,
     "pattern": "^(ark\\:)/*[0-9A-Za-z]+(?:/[\\w/.=*+@\\$-]*)?(?:\\?.*)?$",
     "prefix": "ark",
-    "sampleId": "/12345/fk1234",
+    "sampleId": "/87924/r4154jq8h",
     "uri_format": "http://n2t.net/ark:$1"
   },
   "arrayexpress": {
@@ -960,7 +960,7 @@
     "id": "00000694",
     "name": "BioStudies database",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^S-[A-Z]{4}[A-Z\\d\\-]+$",
+    "pattern": "^S-[A-Z]{4}[\\-\\_A-Z\\d]+$",
     "prefix": "biostudies",
     "sampleId": "S-EPMC6266652",
     "uri_format": "https://www.ebi.ac.uk/biostudies/studies/$1"
@@ -1302,7 +1302,7 @@
     "id": "00000234",
     "name": "Cell Cycle Ontology",
     "namespaceEmbeddedInLui": true,
-    "pattern": "^CCO\\:\\w+$",
+    "pattern": "^CCO:\\w+$",
     "prefix": "cco",
     "sampleId": "0000003",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cco/terms?obo_id=CCO:$1"
@@ -3804,18 +3804,6 @@
     "sampleId": "GR:0080039",
     "uri_format": "http://www.gramene.org/db/genes/search_gene?acc=$1"
   },
-  "gramene.growthstage": {
-    "deprecated": false,
-    "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This collection refers to growth stage ontology information in Gramene.",
-    "homepage": "http://www.gramene.org/",
-    "id": "00000508",
-    "name": "Gramene Growth Stage Ontology",
-    "namespaceEmbeddedInLui": true,
-    "pattern": "^GRO\\:\\d+$",
-    "prefix": "gramene.growthstage",
-    "sampleId": "0007133",
-    "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
-  },
   "gramene.protein": {
     "deprecated": false,
     "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This datatype refers to proteins in Gramene.",
@@ -3887,6 +3875,18 @@
     "prefix": "grin.taxonomy",
     "sampleId": "19333",
     "uri_format": "http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1"
+  },
+  "gro": {
+    "deprecated": false,
+    "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This collection refers to growth stage ontology information in Gramene.",
+    "homepage": "http://www.gramene.org/",
+    "id": "00000508",
+    "name": "Gramene Growth Stage Ontology",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^GRO:\\d+$",
+    "prefix": "gro",
+    "sampleId": "0007133",
+    "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "grsdb": {
     "deprecated": false,
@@ -5762,7 +5762,7 @@
     "uri_format": "https://www.metabolome-express.org/datasetview.php?datasetid=$1"
   },
   "mge": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "ACLAME is a database dedicated to the collection and classification of mobile genetic elements (MGEs) from various sources, comprising all known phage genomes, plasmids and transposons.",
     "homepage": "http://aclame.ulb.ac.be/",
     "id": "00000063",
@@ -6953,7 +6953,7 @@
     "namespaceEmbeddedInLui": true,
     "pattern": "^HOG:[0-9]{7}(\\.[0-9a-z.]+)?(_[0-9]+)?$",
     "prefix": "oma.hog",
-    "sampleId": "HOG:0459895",
+    "sampleId": "0459895",
     "uri_format": "https://omabrowser.org/oma/hog/resolve/HOG:$1/"
   },
   "oma.protein": {
@@ -9242,6 +9242,18 @@
     "prefix": "tair.locus",
     "sampleId": "2200950",
     "uri_format": "http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1"
+  },
+  "tair.name": {
+    "deprecated": false,
+    "description": "The Arabidopsis Information Resource (TAIR) maintains a database of genetic and molecular biology data for the model higher plant Arabidopsis thaliana. The name of a Locus is unique and used by TAIR, TIGR, and MIPS.",
+    "homepage": "https://www.arabidopsis.org/index.jsp",
+    "id": "00000976",
+    "name": "TAIR gene name",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^AT.G[0-9]{5}$",
+    "prefix": "tair.name",
+    "sampleId": "AT5G05330",
+    "uri_format": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
   },
   "tair.protein": {
     "deprecated": false,
