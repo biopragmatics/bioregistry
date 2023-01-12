@@ -3,6 +3,7 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from operator import itemgetter
 
 import click
 from pystow.utils import download
@@ -37,6 +38,8 @@ def get_miriam(force_download: bool = False, force_process: bool = False):
     download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
     with open(RAW_PATH) as file:
         data = json.load(file)
+
+    data["payload"]["namespaces"] = sorted(data["payload"]["namespaces"], key=itemgetter("prefix"))
     if force_download:
         with open(RAW_PATH, "w") as file:
             json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
