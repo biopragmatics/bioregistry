@@ -975,10 +975,12 @@ bioregistry:araport a bioregistry.schema:0000001 ;
     dc:description "Website with general information about Arabidopsis and functionalities such as a genomic viewer"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch ncbi.resource:Araport,
+        miriam:tair.name,
         uniprot.resource:DB-0221 ;
     foaf:homepage "https://www.araport.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "AT1G01010"^^xsd:string ;
+    bioregistry.schema:0000005 "AT5G05330"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^AT.G[0-9]{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:archdb a bioregistry.schema:0000001 ;
@@ -2633,6 +2635,17 @@ bioregistry:classyfire a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "CHEMONTID" .
 
+bioregistry:clb a bioregistry.schema:0000001 ;
+    rdfs:label "ChecklistBank" ;
+    dc:description "ChecklistBank is an index and repository for taxonomic and nomenclatural datasets"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch miriam:clb ;
+    foaf:homepage "https://www.checklistbank.org"^^xsd:string ;
+    bioregistry.schema:0000005 "1010"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.checklistbank.org/dataset/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+(LR)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:cldb a bioregistry.schema:0000001 ;
     rdfs:label "Cell Line Database" ;
     dc:description "The Cell Line Data Base (CLDB) is a reference information source for human and animal cell lines. It provides the characteristics of the cell lines and their availability through  distributors, allowing cell line requests to be made from collections and laboratories."^^xsd:string ;
@@ -3386,6 +3399,18 @@ bioregistry:cob a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 obo:cob.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8457-6693 .
+
+bioregistry:col a bioregistry.schema:0000001 ;
+    rdfs:label "Catalogue of Life" ;
+    dc:description "Identifier of a taxon or synonym in the Catalogue of Life"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bartoc:1915,
+        miriam:col ;
+    foaf:homepage "https://www.checklistbank.org"^^xsd:string ;
+    bioregistry.schema:0000005 "4QHKG"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.checklistbank.org/dataset/3LR/taxon/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:collagenmutdb a bioregistry.schema:0000001 ;
     rdfs:label "Collagen Mutation Database" ;
@@ -6218,7 +6243,7 @@ bioregistry:gramene.growthstage a bioregistry.schema:0000001 ;
         biocontext:GRAMENE.GROWTHSTAGE,
         n2t:gramene.growthstage,
         prefixcommons:gramene.po,
-        miriam:gramene.growthstage ;
+        miriam:gro ;
     dcat:keyword "anatomy",
         "obo",
         "ontology" ;
@@ -8625,7 +8650,7 @@ bioregistry:mge a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "2"^^xsd:string ;
     bioregistry.schema:0000006 "http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000023 "aclame" .
 
 bioregistry:mgnify.proj a bioregistry.schema:0000001 ;
@@ -12619,6 +12644,18 @@ bioregistry:sasbdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1321-3956 .
 
+bioregistry:sciflection a bioregistry.schema:0000001 ;
+    rdfs:label "Sciflection" ;
+    dc:description "Sciflection is a public repository for experiments and associated spectra, usually uploaded from Electronic Lab Notebooks, shared under FAIR conditions"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch miriam:sciflection,
+        re3data:r3d100013413 ;
+    foaf:homepage "https://sciformation.com/sciflection.html"^^xsd:string ;
+    bioregistry.schema:0000005 "5ede4273-b26c-4ea4-adb7-3ce294ab3397"^^xsd:string ;
+    bioregistry.schema:0000006 "https://sciflection.com/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:scop a bioregistry.schema:0000001 ;
     rdfs:label "Structural Classification of Protein" ;
     dc:description "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes."^^xsd:string ;
@@ -13010,6 +13047,17 @@ bioregistry:sitex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1000"^^xsd:string ;
     bioregistry.schema:0000006 "http://www-bionet.sscc.ru/sitex/index.php?siteid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:skm a bioregistry.schema:0000001 ;
+    rdfs:label "Stress Knowledge Map" ;
+    dc:description "Stress Knowledge Map (SKM, available at https://skm.nib.si) is a knowledge graph resulting from the integration of dispersed published information on plant molecular responses to biotic and abiotic stressors. "^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch miriam:skm ;
+    foaf:homepage "http://www.nib.si/eng/"^^xsd:string ;
+    bioregistry.schema:0000005 "rx00408"^^xsd:string ;
+    bioregistry.schema:0000006 "https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary"^^xsd:string ;
+    bioregistry.schema:0000008 "^rx[0-9]{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:slkbase a bioregistry.schema:0000001 ;
@@ -17980,6 +18028,8 @@ bartoc:1884 dcterms:isPartOf bioregistry.metaresource:bartoc .
 bartoc:1895 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bartoc:1897 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:1915 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bartoc:1937 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
@@ -23050,7 +23100,7 @@ bioregistry:biostudies a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.ebi.ac.uk/biostudies/"^^xsd:string ;
     bioregistry.schema:0000005 "S-EPMC6266652"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/biostudies/studies/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^S-[A-Z]{4}[A-Z\\d\\-]+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^S-[A-Z]{4}[\\-\\_A-Z\\d]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:biozil a bioregistry.schema:0000001 ;
@@ -31718,6 +31768,8 @@ miriam:cl dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:classyfire dcterms:isPartOf bioregistry.metaresource:miriam .
 
+miriam:clb dcterms:isPartOf bioregistry.metaresource:miriam .
+
 miriam:cldb dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:clinicaltrials dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -31729,6 +31781,8 @@ miriam:clinvar.record dcterms:isPartOf bioregistry.metaresource:miriam .
 miriam:clinvar.submission dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:clinvar.submitter dcterms:isPartOf bioregistry.metaresource:miriam .
+
+miriam:col dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:combine.specifications dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -32058,8 +32112,6 @@ miriam:gpmdb dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:gramene.gene dcterms:isPartOf bioregistry.metaresource:miriam .
 
-miriam:gramene.growthstage dcterms:isPartOf bioregistry.metaresource:miriam .
-
 miriam:gramene.protein dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:gramene.qtl dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -32071,6 +32123,8 @@ miriam:greengenes dcterms:isPartOf bioregistry.metaresource:miriam .
 miriam:grid dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:grin.taxonomy dcterms:isPartOf bioregistry.metaresource:miriam .
+
+miriam:gro dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:grsdb dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -32788,6 +32842,8 @@ miriam:sasbdb dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:sbo dcterms:isPartOf bioregistry.metaresource:miriam .
 
+miriam:sciflection dcterms:isPartOf bioregistry.metaresource:miriam .
+
 miriam:scop dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:scretf dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -32825,6 +32881,8 @@ miriam:sio dcterms:isPartOf bioregistry.metaresource:miriam .
 miriam:sisu dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:sitex dcterms:isPartOf bioregistry.metaresource:miriam .
+
+miriam:skm dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:slm dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -32875,6 +32933,8 @@ miriam:t3db dcterms:isPartOf bioregistry.metaresource:miriam .
 miriam:tair.gene dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:tair.locus dcterms:isPartOf bioregistry.metaresource:miriam .
+
+miriam:tair.name dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:tair.protein dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -34023,6 +34083,8 @@ re3data:r3d100013330 dcterms:isPartOf bioregistry.metaresource:re3data .
 re3data:r3d100013331 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100013361 dcterms:isPartOf bioregistry.metaresource:re3data .
+
+re3data:r3d100013413 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100013432 dcterms:isPartOf bioregistry.metaresource:re3data .
 
@@ -35572,7 +35634,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl> ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Dr. Elspeth Bruford" ;
+    bioregistry.schema:0000019 [ rdfs:label "Elspeth Bruford" ;
             foaf:mbox "hgnc@genenames.org" ] .
 
 bioregistry:hl7.v2codesystem a bioregistry.schema:0000001 ;
@@ -40278,49 +40340,6 @@ bioregistry.metaresource:cropoct a bioregistry.schema:0000002 ;
     bioregistry.schema:0000007 "https://cropontology.org/term/$1:$2" ;
     bioregistry.schema:0000019 orcid:0000-0002-6020-5919 .
 
-bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
-    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
-    dc:description "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)." ;
-    dcterms:hasPart bartoc:1028,
-        bartoc:109,
-        bartoc:1237,
-        bartoc:16,
-        bartoc:17791,
-        bartoc:181,
-        bartoc:18206,
-        bartoc:18377,
-        bartoc:1884,
-        bartoc:1895,
-        bartoc:1897,
-        bartoc:1937,
-        bartoc:1940,
-        bartoc:20052,
-        bartoc:2021,
-        bartoc:20299,
-        bartoc:2053,
-        bartoc:216,
-        bartoc:305,
-        bartoc:391,
-        bartoc:400,
-        bartoc:445,
-        bartoc:447,
-        bartoc:449,
-        bartoc:509,
-        bartoc:528,
-        bartoc:549,
-        bartoc:558,
-        bartoc:571,
-        bartoc:572,
-        bartoc:576,
-        bartoc:581,
-        bartoc:671,
-        bartoc:720,
-        bartoc:822 ;
-    foaf:homepage "https://bartoc.org/" ;
-    bioregistry.schema:0000005 "241" ;
-    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
-
 bioregistry:ro a bioregistry.schema:0000001 ;
     rdfs:label "Relation Ontology" ;
     dc:description "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies."^^xsd:string ;
@@ -40386,6 +40405,50 @@ bioregistry:ro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "RO_proposed_relation",
         "obo_rel",
         "oborel" .
+
+bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
+    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
+    dc:description "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)." ;
+    dcterms:hasPart bartoc:1028,
+        bartoc:109,
+        bartoc:1237,
+        bartoc:16,
+        bartoc:17791,
+        bartoc:181,
+        bartoc:18206,
+        bartoc:18377,
+        bartoc:1884,
+        bartoc:1895,
+        bartoc:1897,
+        bartoc:1915,
+        bartoc:1937,
+        bartoc:1940,
+        bartoc:20052,
+        bartoc:2021,
+        bartoc:20299,
+        bartoc:2053,
+        bartoc:216,
+        bartoc:305,
+        bartoc:391,
+        bartoc:400,
+        bartoc:445,
+        bartoc:447,
+        bartoc:449,
+        bartoc:509,
+        bartoc:528,
+        bartoc:549,
+        bartoc:558,
+        bartoc:571,
+        bartoc:572,
+        bartoc:576,
+        bartoc:581,
+        bartoc:671,
+        bartoc:720,
+        bartoc:822 ;
+    foaf:homepage "https://bartoc.org/" ;
+    bioregistry.schema:0000005 "241" ;
+    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
 
 bioregistry.metaresource:hl7 a bioregistry.schema:0000002 ;
     rdfs:label "HL7 External Code Systems" ;
@@ -41891,6 +41954,7 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100013330,
         re3data:r3d100013331,
         re3data:r3d100013361,
+        re3data:r3d100013413,
         re3data:r3d100013432,
         re3data:r3d100013478,
         re3data:r3d100013547,
@@ -45225,12 +45289,14 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:civic.vid,
         miriam:cl,
         miriam:classyfire,
+        miriam:clb,
         miriam:cldb,
         miriam:clinicaltrials,
         miriam:clinvar,
         miriam:clinvar.record,
         miriam:clinvar.submission,
         miriam:clinvar.submitter,
+        miriam:col,
         miriam:combine.specifications,
         miriam:complexportal,
         miriam:comptox,
@@ -45395,13 +45461,13 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:gpcrdb,
         miriam:gpmdb,
         miriam:gramene.gene,
-        miriam:gramene.growthstage,
         miriam:gramene.protein,
         miriam:gramene.qtl,
         miriam:gramene.taxonomy,
         miriam:greengenes,
         miriam:grid,
         miriam:grin.taxonomy,
+        miriam:gro,
         miriam:grsdb,
         miriam:gsso,
         miriam:gtex,
@@ -45760,6 +45826,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:sabiork.reaction,
         miriam:sasbdb,
         miriam:sbo,
+        miriam:sciflection,
         miriam:scop,
         miriam:scretf,
         miriam:sdbs,
@@ -45779,6 +45846,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:sio,
         miriam:sisu,
         miriam:sitex,
+        miriam:skm,
         miriam:slm,
         miriam:smart,
         miriam:smpdb,
@@ -45804,6 +45872,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:t3db,
         miriam:tair.gene,
         miriam:tair.locus,
+        miriam:tair.name,
         miriam:tair.protein,
         miriam:tarbase,
         miriam:taxonomy,
@@ -46961,6 +47030,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cl,
         bioregistry:clao,
         bioregistry:classyfire,
+        bioregistry:clb,
         bioregistry:cldb,
         bioregistry:clingene,
         bioregistry:clinicaltrials,
@@ -47016,6 +47086,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cog.category,
         bioregistry:cog.pathway,
         bioregistry:cohd,
+        bioregistry:col,
         bioregistry:col.taiwan,
         bioregistry:colao,
         bioregistry:collagenmutdb,
@@ -48064,6 +48135,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:schem,
         bioregistry:schema,
         bioregistry:scholia.resource,
+        bioregistry:sciflection,
         bioregistry:scomp,
         bioregistry:scop,
         bioregistry:scopus,
@@ -48106,6 +48178,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sisu,
         bioregistry:sitex,
         bioregistry:skip,
+        bioregistry:skm,
         bioregistry:skos,
         bioregistry:skosxl,
         bioregistry:slkbase,

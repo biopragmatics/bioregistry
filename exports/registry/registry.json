@@ -1482,13 +1482,15 @@
   },
   "araport": {
     "description": "Website with general information about Arabidopsis and functionalities such as a genomic viewer",
-    "example": "AT1G01010",
+    "example": "AT5G05330",
     "homepage": "https://www.araport.org/",
     "mappings": {
+      "miriam": "tair.name",
       "ncbi": "Araport",
       "uniprot": "DB-0221"
     },
     "name": "Arabidopsis Information Portal",
+    "pattern": "^AT.G[0-9]{5}$",
     "preferred_prefix": "araport",
     "publications": [
       {
@@ -3961,7 +3963,7 @@
       "re3data": "r3d100012627"
     },
     "name": "BioStudies database",
-    "pattern": "^S-[A-Z]{4}[A-Z\\d\\-]+$",
+    "pattern": "^S-[A-Z]{4}[\\-\\_A-Z\\d]+$",
     "preferred_prefix": "biostudies",
     "publications": [
       {
@@ -6975,6 +6977,18 @@
     ],
     "uri_format": "http://classyfire.wishartlab.com/tax_nodes/C$1"
   },
+  "clb": {
+    "description": "ChecklistBank is an index and repository for taxonomic and nomenclatural datasets",
+    "example": "1010",
+    "homepage": "https://www.checklistbank.org",
+    "mappings": {
+      "miriam": "clb"
+    },
+    "name": "ChecklistBank",
+    "pattern": "^[0-9]+(LR)?$",
+    "preferred_prefix": "clb",
+    "uri_format": "https://www.checklistbank.org/dataset/$1"
+  },
   "cldb": {
     "description": "The Cell Line Data Base (CLDB) is a reference information source for human and animal cell lines. It provides the characteristics of the cell lines and their availability through  distributors, allowing cell line requests to be made from collections and laboratories.",
     "example": "cl3603",
@@ -8574,6 +8588,28 @@
     "no_own_terms": true,
     "preferred_prefix": "cohd",
     "repository": "https://github.com/MIT-LCP/mimic-omop"
+  },
+  "col": {
+    "description": "Identifier of a taxon or synonym in the Catalogue of Life",
+    "example": "4QHKG",
+    "homepage": "https://www.checklistbank.org",
+    "mappings": {
+      "bartoc": "1915",
+      "miriam": "col"
+    },
+    "name": "Catalogue of Life",
+    "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
+    "preferred_prefix": "col",
+    "providers": [
+      {
+        "code": "col",
+        "description": "The Catalogue of Life website providing a view onto the latest release of the COL Checklist.",
+        "homepage": "https://www.catalogueoflife.org",
+        "name": "Catalogue of Life (COL)",
+        "uri_format": "https://www.catalogueoflife.org/data/taxon/$1"
+      }
+    ],
+    "uri_format": "https://www.checklistbank.org/dataset/3LR/taxon/$1"
   },
   "col.taiwan": {
     "contributor": {
@@ -20057,7 +20093,7 @@
     "mappings": {
       "biocontext": "GRAMENE.GROWTHSTAGE",
       "bioportal": "GRO-CPGA",
-      "miriam": "gramene.growthstage",
+      "miriam": "gro",
       "n2t": "gramene.growthstage",
       "obofoundry": "gro",
       "prefixcommons": "gramene.po"
@@ -20931,7 +20967,7 @@
     "contact": {
       "email": "hgnc@genenames.org",
       "github": null,
-      "name": "Dr. Elspeth Bruford",
+      "name": "Elspeth Bruford",
       "orcid": null
     },
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
@@ -27858,6 +27894,7 @@
   },
   "mge": {
     "banana": "mge",
+    "deprecated": true,
     "description": "ACLAME is a database dedicated to the collection and classification of mobile genetic elements (MGEs) from various sources, comprising all known phage genomes, plasmids and transposons.",
     "example": "2",
     "homepage": "http://aclame.ulb.ac.be/",
@@ -42413,6 +42450,19 @@
     "preferred_prefix": "scholia.resource",
     "uri_format": "https://bioregistry.io/metaregistry/scholia/$1"
   },
+  "sciflection": {
+    "description": "Sciflection is a public repository for experiments and associated spectra, usually uploaded from Electronic Lab Notebooks, shared under FAIR conditions",
+    "example": "5ede4273-b26c-4ea4-adb7-3ce294ab3397",
+    "homepage": "https://sciformation.com/sciflection.html",
+    "mappings": {
+      "miriam": "sciflection",
+      "re3data": "r3d100013413"
+    },
+    "name": "Sciflection",
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "preferred_prefix": "sciflection",
+    "uri_format": "https://sciflection.com/$1"
+  },
   "scomp": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -43873,10 +43923,22 @@
     "preferred_prefix": "skip",
     "uri_format": "https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1"
   },
+  "skm": {
+    "description": "Stress Knowledge Map (SKM, available at https://skm.nib.si) is a knowledge graph resulting from the integration of dispersed published information on plant molecular responses to biotic and abiotic stressors. ",
+    "example": "rx00408",
+    "homepage": "http://www.nib.si/eng/",
+    "mappings": {
+      "miriam": "skm"
+    },
+    "name": "Stress Knowledge Map",
+    "pattern": "^rx[0-9]{5}$",
+    "preferred_prefix": "skm",
+    "uri_format": "https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary"
+  },
   "skos": {
     "contact": {
       "email": "alistair.miles@linacre.ox.ac.uk",
-      "github": null,
+      "github": "alimanfoo",
       "name": "Alistair Miles",
       "orcid": "0000-0001-9018-4680"
     },
