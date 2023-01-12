@@ -6,9 +6,10 @@ import time
 from statistics import mean
 from typing import Iterable, Tuple
 
+import click
 import matplotlib.pyplot as plt
 import seaborn as sns
-from tqdm import tqdm
+from tqdm import tqdm, trange
 
 import bioregistry
 from bioregistry import manager
@@ -54,7 +55,10 @@ def iter_curies() -> Iterable[Tuple[str, str, str, str, str]]:
                 yield prefix, e, p, banana_extended, f"{p}:{example_extended}"
 
 
-def main(rebuild: bool = False, epochs: int = 10):
+@click.command()
+@click.option("--rebuild", is_flag=True)
+@click.option("--replicates", type=int, default=10)
+def main(rebuild: bool, replicates: int):
     """Test parsing CURIEs."""
     curies = get_curies(rebuild=rebuild)
 
@@ -63,7 +67,7 @@ def main(rebuild: bool = False, epochs: int = 10):
 
     times = []
     failures = 0
-    for _ in range(epochs):
+    for _ in trange(replicates, desc="Test parsing CURIEs", unit="replicate"):
         random.shuffle(curies)
         for prefix, identifier, _synonym, _banana, curie in tqdm(
             curies, unit_scale=True, unit="CURIE"
@@ -75,14 +79,15 @@ def main(rebuild: bool = False, epochs: int = 10):
                 failures += 1
                 tqdm.write(f"failed on {curie} to get {prefix}:{identifier}")
 
+    m = mean(times)
+    title = f"Bioregistry CURIE Parsing Benchmark\nAverage: {round(1 / m):,} CURIE/s, Errors: {failures // replicates}"
+    click.echo(title)
+
     fig, ax = plt.subplots()
     sns.histplot(data=times, ax=ax, log_scale=True)
-    m = mean(times)
     ax.axvline(m)
     ax.set_xlabel("Time (seconds)")
-    ax.set_title(
-        f"Bioregistry CURIE Parsing Benchmark\nAverage: {round(1/m):,} CURIE/s, Errors: {failures // epochs}"
-    )
+    ax.set_title(title)
     fig.savefig(CURIE_PARSING_SVG_PATH)
 
 
