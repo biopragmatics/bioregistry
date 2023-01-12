@@ -220,7 +220,7 @@ class Aligner:
             elif isinstance(value, str):
                 rv.append(value.strip())
             elif isinstance(value, bool):
-                rv.append(value)
+                rv.append("true" if value else "false")
             elif isinstance(value, (list, tuple, set)):
                 rv.append("|".join(sorted(v.strip() for v in value)))
             else:
