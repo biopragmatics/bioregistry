@@ -4,6 +4,7 @@
 
 import datetime
 import itertools as itt
+import json
 import platform
 from collections import defaultdict
 from operator import attrgetter
@@ -22,16 +23,20 @@ from flask import (
 )
 from markdown import markdown
 
-import bioregistry
-
 from .proxies import manager
 from .utils import (
-    _get_resource_mapping_rows,
     _get_resource_providers,
     _normalize_prefix_or_404,
+    get_accept_media_type,
+    serialize_model,
 )
 from .. import version
 from ..constants import NDEX_UUID
+from ..export.rdf_export import (
+    collection_to_rdf_str,
+    metaresource_to_rdf_str,
+    resource_to_rdf_str,
+)
 from ..schema import Context
 from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
@@ -109,6 +114,10 @@ def resource(prefix: str):
     _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        return serialize_model(_resource, resource_to_rdf_str, negotiate=True)
+
     example = _resource.get_example()
     example_curie = _resource.get_example_curie()
     example_extras = _resource.example_extras or []
@@ -116,7 +125,6 @@ def resource(prefix: str):
     return render_template(
         "resource.html",
         zip=zip,
-        bioregistry=bioregistry,
         markdown=markdown,
         prefix=prefix,
         resource=_resource,
@@ -125,7 +133,17 @@ def resource(prefix: str):
         example_extras=example_extras,
         example_curie=example_curie,
         example_curie_extras=example_curie_extras,
-        mappings=_get_resource_mapping_rows(_resource),
+        mappings=[
+            dict(
+                metaprefix=metaprefix,
+                metaresource=manager.get_registry(metaprefix),
+                xref=xref,
+                homepage=manager.get_registry_homepage(metaprefix),
+                name=manager.get_registry_name(metaprefix),
+                uri=manager.get_registry_provider_uri_format(metaprefix, xref),
+            )
+            for metaprefix, xref in _resource.get_mappings().items()
+        ],
         synonyms=_resource.get_synonyms(),
         homepage=_resource.get_homepage(),
         repository=_resource.get_repository(),
@@ -155,6 +173,7 @@ def resource(prefix: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -165,6 +184,9 @@ def metaresource(metaprefix: str):
     entry = manager.metaregistry.get(metaprefix)
     if entry is None:
         return abort(404, f"Invalid metaprefix: {metaprefix}")
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
     example_identifier = manager.get_example(entry.example)
     return render_template(
@@ -190,6 +212,7 @@ def metaresource(metaprefix: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -209,6 +232,10 @@ def collection(identifier: str):
     entry = manager.collections.get(identifier)
     if entry is None:
         return abort(404, f"Invalid collection: {identifier}")
+    accept = get_accept_media_type()
+    if accept != "text/html":
+        return serialize_model(entry, collection_to_rdf_str, negotiate=True)
+
     return render_template(
         "collection.html",
         identifier=identifier,
@@ -219,7 +246,7 @@ def collection(identifier: str):
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
-            ("Context JSON-LD", "context"),
+            ("RDF (n3)", "n3"),
         ],
     )
 
@@ -397,7 +424,6 @@ def contributor(orcid: str):
         return abort(404)
     return render_template(
         "contributor.html",
-        bioregistry=bioregistry,
         contributor=author,
         collections=sorted(
             (collection_id, manager.collections.get(collection_id))
@@ -427,6 +453,7 @@ def home():
     example_prefix = current_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
     example_identifier = manager.get_example(example_prefix)
     example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
+    bioschemas = current_app.config.get("METAREGISTRY_BIOSCHEMAS")
     return render_template(
         "home.html",
         example_url=example_url,
@@ -436,6 +463,7 @@ def home():
         metaregistry_size=len(manager.metaregistry),
         collections_size=len(manager.collections),
         contributors_size=len(manager.read_contributors()),
+        bioschemas=json.dumps(bioschemas) if bioschemas else None,
     )
 
 
@@ -531,3 +559,14 @@ def highlights_twitter():
 def highlights_relations():
     """Render the relations highlights page."""
     return render_template("highlights/relations.html")
+
+
+@ui_blueprint.route("/highlights/keywords")
+def highlights_keywords():
+    """Render the keywords highlights page."""
+    keyword_to_prefix = defaultdict(list)
+    for resource in manager.registry.values():
+        for keyword in resource.get_keywords():
+            keyword_to_prefix[keyword].append(resource)
+
+    return render_template("highlights/keywords.html", keywords=keyword_to_prefix)

@@ -3,7 +3,7 @@ license_conflict: []
 prefix_rewrites: []
 wrong_patterns:
 - correct: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
-  homepage: http://n2t.net/
+  homepage: https://arks.org
   miriam: ^(ark\:)/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
   name: Archival Resource Key
   prefix: ark
@@ -27,15 +27,10 @@ wrong_patterns:
   miriam: ^\d+$
   name: BioPortal
   prefix: bioportal
-- correct: ^[-A-Za-z0-9\_]*$
-  homepage: https://bio.tools/
-  miriam: ^[A-Za-z0-9\_]*$
-  name: BioTools
-  prefix: biotools
 - correct: ^\d{7}$
   homepage: http://www.brenda-enzymes.org
   miriam: ^BTO:\d{7}$
-  name: BRENDA tissue / enzyme source
+  name: BRENDA Tissue Ontology
   prefix: bto
 - correct: ^\w+$
   homepage: http://www.semantic-systems-biology.org/apo
@@ -44,7 +39,7 @@ wrong_patterns:
   prefix: cco
 - correct: ^[A-Z0-9]{4}$
   homepage: https://cellosaurus.org
-  miriam: ^CVCL_[A-Z0-9]{4}$
+  miriam: ^CVCL_[A-Z0-9]{4}(\.txt)?$
   name: Cellosaurus
   prefix: cellosaurus
 - correct: ^\d+$
@@ -69,7 +64,7 @@ wrong_patterns:
   prefix: did
 - correct: ^10.\d{2,9}/.*$
   homepage: https://www.doi.org/
-  miriam: ^(doi\:)?\d{2}\.\d{4}.*$
+  miriam: ^(doi\:)?10\.\d+/.*$
   name: Digital Object Identifier
   prefix: doi
 - correct: ^\d+$
@@ -83,7 +78,7 @@ wrong_patterns:
   name: Drug Central
   prefix: drugcentral
 - correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
-  homepage: https://www.ebi.ac.uk/intenz/
+  homepage: https://www.enzyme-database.org/
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Commission Code
   prefix: eccode
@@ -92,11 +87,6 @@ wrong_patterns:
   miriam: ECO:\d{7}$
   name: Evidence ontology
   prefix: eco
-- correct: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
-  homepage: https://www.ensembl.org/
-  miriam: ^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$
-  name: Ensembl Gene
-  prefix: ensembl
 - correct: ^\d{7,8}$
   homepage: http://environmentontology.org/
   miriam: ^ENVO:\d{7,8}$
@@ -329,7 +319,7 @@ wrong_patterns:
   prefix: orphanet.ordo
 - correct: ^(G|P|U|C|S)\d{5}$
   homepage: http://www.pantherdb.org/
-  miriam: ^G|P|U|C|S\d{5}$
+  miriam: ^[GPUCS]\d{5}$
   name: PANTHER Pathway Component
   prefix: panther.pthcmp
 - correct: ^\d{7}$
@@ -374,7 +364,7 @@ wrong_patterns:
   prefix: reactome
 - correct: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
   homepage: https://www.ncbi.nlm.nih.gov/projects/RefSeq/
-  miriam: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
+  miriam: ^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
   name: Reference Sequence Collection
   prefix: refseq
 - correct: ^\d{7}$

@@ -45,6 +45,7 @@ from .resolve import (  # noqa:F401
     get_homepage,
     get_identifiers_org_prefix,
     get_json_download,
+    get_keywords,
     get_license,
     get_license_conflicts,
     get_mappings,

@@ -10,6 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import curies
+import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -475,8 +476,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi", manager=manager)
+        resource = manager.registry["chebi"]
+        s = resource_to_rdf_str(resource, manager=manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)
 
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
@@ -955,3 +959,24 @@ class TestRegistry(unittest.TestCase):
                 self.assertEqual(
                     norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
                 )
+
+    @unittest.skip
+    def test_keywords(self):
+        """Assert that all entries have keywords."""
+        for resource in self.registry.values():
+            if resource.is_deprecated():
+                continue
+            if not resource.contributor:
+                continue
+            if resource.get_mappings():
+                continue  # TODO remove this after first found of curation is done
+            with self.subTest(prefix=resource.prefix, name=resource.get_name()):
+                if resource.keywords:
+                    self.assertEqual(
+                        sorted(k.lower() for k in resource.keywords),
+                        resource.keywords,
+                        msg="manually curated keywords should be sorted and exclusively lowercase",
+                    )
+                keywords = resource.get_keywords()
+                self.assertIsNotNone(keywords)
+                self.assertLess(0, len(keywords), msg=f"{resource.prefix} is missing keywords")

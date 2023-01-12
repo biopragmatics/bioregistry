@@ -6,6 +6,7 @@ import unittest
 
 import bioregistry
 from bioregistry import Manager
+from bioregistry.export.rdf_export import get_full_rdf
 
 
 class TestResourceManager(unittest.TestCase):
@@ -213,3 +214,14 @@ class TestResourceManager(unittest.TestCase):
         for curie in invalid:
             with self.subTest(curie=curie):
                 self.assertFalse(self.manager.is_standardizable_curie(curie))
+
+    def test_full_rdf(self):
+        """Test the full dump."""
+        full = get_full_rdf(self.manager)
+        prefixes = {
+            prefix[len("https://bioregistry.io/registry/") :]
+            for prefix, in full.query(
+                "SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }"
+            )
+        }
+        self.assertEqual(set(self.manager.registry), prefixes)

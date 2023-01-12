@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% set twitter = resource.get_twitter() %}
+{% set keywords = resource.get_keywords() %}
 
 {% block container %}
     <script type="application/ld+json">{{ resource.get_bioschemas_jsonld() | safe }}</script>
@@ -86,6 +87,14 @@
                     <dd>
                         {% for synonym in synonyms %}
                             <span class="badge badge-light">{{ synonym }}</span>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if keywords %}
+                    <dt>Keywords</dt>
+                    <dd>
+                        {% for keyword in keywords|sort %}
+                            <span class="badge badge-light">{{ keyword }}</span>
                         {% endfor %}
                     </dd>
                 {% endif %}
@@ -156,7 +165,7 @@
                     {% endif %}
                     {% if twitter %}
                         <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
-                            <i class="fa-brands fa-twitter"></i> @{{ twitter }}
+                            <i class="fab fa-twitter"></i> @{{ twitter }}
                         </a>
                     {% endif %}
                 </dd>

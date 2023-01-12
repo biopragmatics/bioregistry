@@ -2,24 +2,25 @@
 
 """API blueprint and routes."""
 
-from functools import partial
+from typing import cast
 
 from flask import Blueprint, abort, jsonify, request
 
 from .proxies import manager
 from .utils import (
     _autocomplete,
-    _get_identifier,
     _normalize_prefix_or_404,
     _search,
     serialize,
+    serialize_model,
 )
+from .. import Collection, Registry
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
-from ..schema import Collection, sanitize_mapping
+from ..schema import sanitize_mapping
 from ..schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
@@ -27,6 +28,7 @@ from ..schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+from ..utils import curie_to_str
 
 __all__ = [
     "api_blueprint",
@@ -83,10 +85,11 @@ def resource(prefix: str):
         return jsonify(query=prefix, message="Invalid prefix"), 404
     resource = manager.get_resource(prefix)
     assert resource is not None
-    return _serialize_resource(resource)
+    # TODO rasterize?
+    return serialize_model(resource, resource_to_rdf_str)
 
 
-@api_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
+@api_blueprint.route("/metaregistry/<metaprefix>/resolve/<metaidentifier>")
 def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
     """Get a resource by an external prefix.
 
@@ -123,23 +126,47 @@ def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
         return abort(404, f"invalid metaidentifier: {metaidentifier}")
     resource = manager.get_resource(prefix)
     assert resource is not None
-    return _serialize_resource(resource, rasterize=True)
+    resource = manager.rasterized_resource(resource)
+    return serialize_model(resource, resource_to_rdf_str)
 
 
-def _serialize_resource(resource, rasterize: bool = False):
-    if rasterize:
-        resource = manager.rasterized_resource(resource.prefix, resource)
-    data = dict(prefix=resource.prefix, **resource.dict(exclude_unset=True, exclude_none=True))
-    return serialize(
-        data,
-        serializers=[
-            ("turtle", "text/plain", partial(resource_to_rdf_str, manager=manager, fmt="turtle")),
-            (
-                "jsonld",
-                "application/ld+json",
-                partial(resource_to_rdf_str, manager=manager, fmt="json-ld"),
-            ),
-        ],
+@api_blueprint.route("/metaregistry/<metaprefix>/mappings.json")
+def bioregistry_to_external_mapping(metaprefix: str):
+    """Get mappings from the Bioregistry to an external registry.
+
+    ---
+    parameters:
+    - name: metaprefix
+      in: path
+      description: The target metaprefix (e.g., bioportal)
+      required: true
+      type: string
+    """  # noqa:DAR101,DAR201
+    if metaprefix not in manager.metaregistry:
+        return abort(404, f"invalid metaprefix: {metaprefix}")
+    return jsonify(manager.get_registry_map(metaprefix))
+
+
+@api_blueprint.route("/metaregistry/<metaprefix>/registry_subset.json")
+def get_external_registry_slim(metaprefix: str):
+    """Get a slim, rasterized version of the Bioregistry for records in the external registry.
+
+    ---
+    parameters:
+    - name: metaprefix
+      in: path
+      description: The target metaprefix (e.g., bioportal)
+      required: true
+      type: string
+    """  # noqa:DAR101,DAR201
+    if metaprefix not in manager.metaregistry:
+        return abort(404, f"invalid metaprefix: {metaprefix}")
+    return sanitize_mapping(
+        {
+            prefix: manager.rasterized_resource(resource_)
+            for prefix, resource_ in manager.registry.items()
+            if metaprefix in resource_.get_mappings()
+        }
     )
 
 
@@ -187,23 +214,9 @@ def metaresource(metaprefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     data = manager.metaregistry.get(metaprefix)
-    if not data:
+    if data is None:
         abort(404, f"Invalid metaprefix: {metaprefix}")
-    return serialize(
-        data,
-        serializers=[
-            (
-                "turtle",
-                "text/plain",
-                partial(metaresource_to_rdf_str, manager=manager, fmt="turtle"),
-            ),
-            (
-                "jsonld",
-                "application/ld+json",
-                partial(metaresource_to_rdf_str, manager=manager, fmt="json-ld"),
-            ),
-        ],
-    )
+    return serialize_model(cast(Registry, data), metaresource_to_rdf_str)
 
 
 @api_blueprint.route("/collections")
@@ -252,18 +265,37 @@ def collection(identifier: str):
     data = manager.collections.get(identifier)
     if not data:
         abort(404, f"Invalid collection: {identifier}")
-    return serialize(
-        data,
-        serializers=[
-            ("context", "application/ld+json", Collection.as_context_jsonld_str),
-            ("turtle", "text/plain", partial(collection_to_rdf_str, manager=manager, fmt="turtle")),
-            (
-                "jsonld",
-                "application/ld+json",
-                partial(collection_to_rdf_str, manager=manager, fmt="json-ld"),
-            ),
-        ],
-    )
+    # ("context", "application/ld+json", Collection.as_context_jsonld_str),
+    return serialize_model(cast(Collection, data), collection_to_rdf_str)
+
+
+@api_blueprint.route("/collection/<identifier>.context.jsonld")
+def collection_context(identifier: str):
+    """Get a collection as a JSON-LD context.
+
+    ---
+    tags:
+    - collection
+    parameters:
+    - name: prefix
+      in: path
+      description: The identifier of the collection
+      required: true
+      type: string
+      example: 0000001
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml, context, turtle, jsonld]
+    """  # noqa:DAR101,DAR201
+    data = manager.collections.get(identifier)
+    if data is None:
+        abort(404, f"Invalid collection: {identifier}")
+    return jsonify(cast(Collection, data).as_context_jsonld())
 
 
 @api_blueprint.route("/contexts")
@@ -344,7 +376,22 @@ def reference(prefix: str, identifier: str):
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(_get_identifier(prefix, identifier))
+    prefix = _normalize_prefix_or_404(prefix)
+    if not manager.is_standardizable_identifier(prefix, identifier):
+        return abort(
+            404,
+            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
+        )
+    providers = manager.get_providers(prefix, identifier)
+    if not providers:
+        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
+
+    return serialize(
+        dict(
+            query=dict(prefix=prefix, identifier=identifier),
+            providers=providers,
+        )
+    )
 
 
 @api_blueprint.route("/contributors")

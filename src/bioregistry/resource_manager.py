@@ -366,6 +366,13 @@ class Manager:
             return None
         return entry.get_synonyms()
 
+    def get_keywords(self, prefix: str) -> Optional[List[str]]:
+        """Get keywords associated with a given prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_keywords()
+
     def get_example(self, prefix: str) -> Optional[str]:
         """Get an example identifier, if it's available."""
         entry = self.get_resource(prefix)
@@ -589,15 +596,14 @@ class Manager:
 
     def _rasterized_registry(self) -> Mapping[str, Resource]:
         return {
-            prefix: self.rasterized_resource(prefix, resource)
-            for prefix, resource in self.registry.items()
+            prefix: self.rasterized_resource(resource) for prefix, resource in self.registry.items()
         }
 
-    def rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
+    def rasterized_resource(self, resource: Resource) -> Resource:
         """Rasterize a resource."""
         return Resource(
             prefix=resource.prefix,
-            preferred_prefix=resource.get_preferred_prefix() or prefix,
+            preferred_prefix=resource.get_preferred_prefix() or resource.prefix,
             name=resource.get_name(),
             description=resource.get_description(),
             pattern=resource.get_pattern(),
@@ -606,6 +612,7 @@ class Manager:
             version=resource.get_version(),
             synonyms=resource.get_synonyms(),
             repository=resource.get_repository(),
+            keywords=resource.get_keywords(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
@@ -636,8 +643,8 @@ class Manager:
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
-            appears_in=self.get_appears_in(prefix),
-            depends_on=self.get_depends_on(prefix),
+            appears_in=self.get_appears_in(resource.prefix),
+            depends_on=self.get_depends_on(resource.prefix),
             mappings=resource.get_mappings(),
             # Ontology Properties
             deprecated=resource.is_deprecated(),

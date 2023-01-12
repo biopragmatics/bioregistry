@@ -3,15 +3,24 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
+from functools import partial
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
-from flask import abort, current_app, redirect, render_template, request, url_for
+from flask import (
+    Response,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
-from bioregistry.schema import Resource, sanitize_model
-from bioregistry.utils import curie_to_str, extended_encoder
+from bioregistry.schema import sanitize_model
+from bioregistry.utils import extended_encoder
 
 from .proxies import manager
 from ..utils import _norm
@@ -40,20 +49,6 @@ def _get_resource_providers(
             )
         )
     return rv
-
-
-def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
-    return [
-        dict(
-            metaprefix=metaprefix,
-            metaresource=manager.get_registry(metaprefix),
-            xref=xref,
-            homepage=manager.get_registry_homepage(metaprefix),
-            name=manager.get_registry_name(metaprefix),
-            uri=manager.get_registry_provider_uri_format(metaprefix, xref),
-        )
-        for metaprefix, xref in resource.get_mappings().items()
-    ]
 
 
 def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
@@ -164,23 +159,6 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     )
 
 
-def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
-    prefix = _normalize_prefix_or_404(prefix)
-    if not manager.is_standardizable_identifier(prefix, identifier):
-        return abort(
-            404,
-            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
-        )
-    providers = manager.get_providers(prefix, identifier)
-    if not providers:
-        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
-
-    return dict(
-        query=dict(prefix=prefix, identifier=identifier),
-        providers=providers,
-    )
-
-
 def jsonify(data):
     """Dump data as JSON, like like :func:`flask.jsonify`."""
     return current_app.response_class(
@@ -200,18 +178,75 @@ def yamlify(data):
     )
 
 
-def _get_format(default: str = "json") -> str:
-    return request.args.get("format", default=default)
-
-
-def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None):
+def serialize(
+    data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None, negotiate: bool = False
+) -> Response:
     """Serialize either as JSON or YAML."""
-    fmt = _get_format()
-    if fmt == "json":
-        return jsonify(data)
-    elif fmt in {"yaml", "yml"}:
-        return yamlify(data)
-    for name, mimetype, func in serializers or []:
-        if fmt == name:
+    if negotiate:
+        accept = get_accept_media_type()
+    else:
+        accept = FORMAT_MAP[request.args.get("format", "json")]
+    if accept == "application/json":
+        return jsonify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
+    elif accept in "application/yaml":
+        return yamlify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
+    for _name, mimetype, func in serializers or []:
+        if accept == mimetype:
             return current_app.response_class(func(data), mimetype=mimetype)
-    return abort(404, f"invalid format: {fmt}")
+    return abort(404, f"unhandled media type: {accept}")
+
+
+def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:
+    """Serialize a model."""
+    return serialize(
+        entry,
+        negotiate=negotiate,
+        serializers=[
+            ("turtle", "text/turtle", partial(func, manager=manager, fmt="turtle")),
+            ("n3", "text/n3", partial(func, manager=manager, fmt="n3")),
+            ("rdf", "application/rdf+xml", partial(func, manager=manager, fmt="xml")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(func, manager=manager, fmt="json-ld"),
+            ),
+        ],
+    )
+
+
+def get_accept_media_type() -> str:
+    """Get accept type."""
+    fmt = request.args.get("format")
+    if fmt is not None:
+        rv = FORMAT_MAP.get(fmt)
+        if rv:
+            return rv
+        return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+
+    # If accept is specifically set to one of the special quanties, then use it.
+    accept = str(request.accept_mimetypes)
+    if accept in FORMAT_MAP.values():
+        return accept
+
+    # Otherwise, return HTML
+    return "text/html"
+
+
+FORMAT_MAP = {
+    "json": "application/json",
+    "yml": "application/yaml",
+    "yaml": "application/yaml",
+    "turtle": "text/turtle",
+    "jsonld": "application/ld+json",
+    "json-ld": "application/ld+json",
+    "rdf": "application/rdf+xml",
+    "n3": "text/n3",
+}

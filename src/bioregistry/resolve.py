@@ -19,6 +19,7 @@ __all__ = [
     "get_preferred_prefix",
     "get_mappings",
     "get_synonyms",
+    "get_keywords",
     "get_pattern",
     "get_curie_pattern",
     "get_namespace_in_lui",
@@ -136,6 +137,11 @@ def count_mappings() -> typing.Counter[str]:
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
     """Get the synonyms for a given prefix, if available."""
     return manager.get_synonyms(prefix)
+
+
+def get_keywords(prefix: str) -> Optional[List[str]]:
+    """Return the keywords, if available."""
+    return manager.get_keywords(prefix)
 
 
 def get_pattern(prefix: str) -> Optional[str]:

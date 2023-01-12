@@ -5,8 +5,10 @@
 {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}
 
 {% block container %}
-    {% if config.METAREGISTRY_BIOSCHEMAS %}
-    <script type="application/ld+json">{{ config.METAREGISTRY_BIOSCHEMAS | safe }}</script>
+    {% if bioschemas %}
+    <script type="application/ld+json">
+        {{ bioschemas | safe }}
+    </script>
     {% endif %}
     <div class="card card-body bg-light">
         <h1 class="display-3">{{ config.METAREGISTRY_TITLE }}</h1>
