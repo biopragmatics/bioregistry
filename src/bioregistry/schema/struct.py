@@ -1824,12 +1824,12 @@ class Resource(BaseModel):
         rv = {
             "@context": "https://schema.org",
             "@type": "Dataset",
-            "@id": f"https://bioregistry.io/{self.prefix}",
+            "@id": f"{BIOREGISTRY_REMOTE_URL}/{self.prefix}",
             "url": self.get_homepage(),
             "name": self.get_name(),
             "description": self.get_description(),
             "identifier": identifiers,
-            "keywords": [],
+            "keywords": self.get_keywords(),
         }
         version = self.get_version()
         if version:
