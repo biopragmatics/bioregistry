@@ -8416,6 +8416,7 @@ bioregistry:mesh.2012 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "17186"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?mode=&index=$1&view=expanded"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:mesh ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mesh.2013 a bioregistry.schema:0000001 ;
@@ -8429,6 +8430,7 @@ bioregistry:mesh.2013 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "17165"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?mode=&index=$1&view=expanded"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:mesh ;
     bioregistry.schema:0000012 false .
 
 bioregistry:metabolights a bioregistry.schema:0000001 ;
@@ -10626,7 +10628,8 @@ bioregistry:orcid a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.nx58jg,
         miriam:orcid,
         wikidata:P496 ;
-    dcat:keyword "subject agnostic" ;
+    dcat:keyword "person",
+        "subject agnostic" ;
     foaf:homepage "https://orcid.org"^^xsd:string ;
     bioregistry.schema:0000005 "0000-0002-5355-2576"^^xsd:string ;
     bioregistry.schema:0000006 "https://orcid.org/$1"^^xsd:string ;
@@ -11658,6 +11661,28 @@ bioregistry:pride.project a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/pride/archive/projects/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^P(X|R)D\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:prints a bioregistry.schema:0000001 ;
+    rdfs:label "PRINTS compendium of protein fingerprints" ;
+    dc:description "PRINTS is a compendium of protein fingerprints. A fingerprint is a group of conserved motifs used to characterise a protein family; its diagnostic power is refined by iterative scanning of a SWISS-PROT/TrEMBL composite. Usually the motifs do not overlap, but are separated along a sequence, though they may be contiguous in 3D-space. Fingerprints can encode protein folds and functionalities more flexibly and powerfully than can single motifs, full diagnostic potency deriving from the mutual context provided by motif neighbours."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:PRINTS,
+        go.resource:PRINTS,
+        n2t:prints,
+        fairsharing:FAIRsharing.h8r843,
+        prefixcommons:sprint,
+        miriam:prints,
+        uniprot.resource:DB-0082 ;
+    dcat:keyword "biology",
+        "domain",
+        "protein",
+        "structural biology" ;
+    foaf:homepage "http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/"^^xsd:string ;
+    bioregistry.schema:0000005 "PR00001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off"^^xsd:string ;
+    bioregistry.schema:0000008 "^PR\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "sprint" .
 
 bioregistry:probonto a bioregistry.schema:0000001 ;
     rdfs:label "Probability Distribution Ontology" ;
@@ -13308,8 +13333,10 @@ bioregistry:srao a bioregistry.schema:0000001 ;
         "environmental science",
         "humanities",
         "life science",
+        "metascience",
         "natural science",
-        "ontology" ;
+        "ontology",
+        "topics" ;
     foaf:homepage "https://github.com/FAIRsharing/subject-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000400"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.fairsharing.org/ontology/subject/SRAO_$1"^^xsd:string ;
@@ -14433,7 +14460,7 @@ bioregistry:vectorbase a bioregistry.schema:0000001 ;
         "protein" ;
     foaf:homepage "https://www.vectorbase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "ISCW007415"^^xsd:string ;
-    bioregistry.schema:0000006 "https://vectorbase.org/vectorbase/app/record/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://vectorbase.org/gene/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\D{4}\\d{6}(\\-\\D{2})?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -14597,6 +14624,30 @@ bioregistry:vipr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Za-z 0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1355-892X .
+
+bioregistry:viralzone a bioregistry.schema:0000001 ;
+    rdfs:label "ViralZone" ;
+    dc:description "ViralZone is a resource bridging textbook knowledge with genomic and proteomic sequences. It provides fact sheets on all known virus families/genera with easy access to sequence data. A selection of reference strains (RefStrain) provides annotated standards to circumvent the exponential increase of virus sequences. Moreover ViralZone offers a complete set of detailed and accurate virion pictures."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:VIRALZONE,
+        go.resource:VZ,
+        n2t:viralzone,
+        fairsharing:FAIRsharing.tppk10,
+        prefixcommons:vz,
+        miriam:viralzone,
+        re3data:r3d100013314 ;
+    dcat:keyword "epidemiology",
+        "life science",
+        "molecular biology",
+        "virology",
+        "virus" ;
+    foaf:homepage "http://www.expasy.org/viralzone/"^^xsd:string ;
+    bioregistry.schema:0000005 "992"^^xsd:string ;
+    bioregistry.schema:0000006 "https://viralzone.expasy.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-8528-090X ;
+    bioregistry.schema:0000023 "vz" .
 
 bioregistry:virgen a bioregistry.schema:0000001 ;
     rdfs:label "VirGen" ;
@@ -14779,20 +14830,6 @@ bioregistry:vto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 obo:vto.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8688-6599 .
-
-bioregistry:vz a bioregistry.schema:0000001 ;
-    rdfs:label "ViralZone" ;
-    dc:description "ViralZone is a SIB Swiss Institute of Bioinformatics web-resource for all viral genus and families, providing general molecular and epidemiological information, along with virion and genome figures. Each virus or family page gives an easy access to UniProtKB/Swiss-Prot viral protein entries."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:VZ,
-        prefixcommons:vz ;
-    dcat:keyword "virus" ;
-    foaf:homepage "http://viralzone.expasy.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "886"^^xsd:string ;
-    bioregistry.schema:0000006 "https://viralzone.expasy.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000016 bioregistry:viralzone .
 
 bioregistry:wb.rnai a bioregistry.schema:0000001 ;
     rdfs:label "WormBase RNAi" ;
@@ -22968,6 +23005,9 @@ bioregistry:biofactoid a bioregistry.schema:0000001 ;
     rdfs:label "Biofactoid" ;
     dc:description "Biofactoid is a web-based system that empowers authors to capture and share machine-readable summaries of molecular-level interactions described in their publications."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "biocuration",
+        "database",
+        "relationships" ;
     foaf:homepage "https://biofactoid.org/"^^xsd:string ;
     bioregistry.schema:0000005 "fdb8a927-45c3-48b7-9743-cbb5e16837fa"^^xsd:string ;
     bioregistry.schema:0000006 "https://biofactoid.org/document/$1"^^xsd:string ;
@@ -23727,6 +23767,10 @@ bioregistry:cohd a bioregistry.schema:0000001 ;
     rdfs:label "MIMIC III Database" ;
     dc:description "MIMIC-III is a dataset comprising health-related data associated with over 40,000 patients who stayed in critical care units of the Beth Israel Deaconess Medical Center between 2001 and 2012"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "clinical data",
+        "clinical trials",
+        "health",
+        "health sciences" ;
     foaf:homepage "https://github.com/MIT-LCP/mimic-omop"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -23779,6 +23823,9 @@ bioregistry:confident.event a bioregistry.schema:0000001 ;
     rdfs:label "ConfIDent Event" ;
     dc:description "Confident makes descriptive metadata on conferences and other formats of scientific events permanently accessible in a high quality through automated processes and scientific data curating."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "conferences",
+        "meetings",
+        "metascience" ;
     foaf:homepage "https://www.confident-conference.org/index.php/Category:Event"^^xsd:string ;
     bioregistry.schema:0000005 "37af84f2-bfd7-4653-b608-eaff44febba6"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.confident-conference.org/index.php/Event:$1"^^xsd:string ;
@@ -23790,6 +23837,10 @@ bioregistry:confident.series a bioregistry.schema:0000001 ;
     rdfs:label "ConfIDent Event Series" ;
     dc:description "Confident makes descriptive metadata on conferences and other formats of scientific events permanently accessible in a high quality through automated processes and scientific data curating."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "conferences",
+        "grouping",
+        "meetings",
+        "metascience" ;
     foaf:homepage "https://www.confident-conference.org/index.php/Category:Event_Series"^^xsd:string ;
     bioregistry.schema:0000005 "AAC"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.confident-conference.org/index.php/Event_Series:$1"^^xsd:string ;
@@ -23800,6 +23851,11 @@ bioregistry:conso a bioregistry.schema:0000001 ;
     rdfs:label "Curation of Neurodegeneration Supporting Ontology" ;
     dc:description "An ontology describing phenomena encountered in the literature surrounding neurodegenerative diseases such as Alzheimer's disease, Parkinson's disease, Huntington's disease, tauopathies, and related protein aggregation diseases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "biology",
+        "life science",
+        "neurodegeneration",
+        "neuroscience",
+        "ontology" ;
     foaf:homepage "https://pharmacome.github.io/conso/"^^xsd:string ;
     bioregistry.schema:0000005 "CONSO00010"^^xsd:string ;
     bioregistry.schema:0000006 "https://pharmacome.github.io/conso/$1"^^xsd:string ;
@@ -24024,6 +24080,9 @@ bioregistry:ddinter.drug a bioregistry.schema:0000001 ;
     rdfs:label "Curated Drug-Drug Interactions Database - Drug" ;
     dc:description "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "drugs",
+        "relationships" ;
     foaf:homepage "http://ddinter.scbdd.com"^^xsd:string ;
     bioregistry.schema:0000005 "DDInter20"^^xsd:string ;
     bioregistry.schema:0000006 "http://ddinter.scbdd.com/ddinter/drug-detail/$1"^^xsd:string ;
@@ -24036,6 +24095,10 @@ bioregistry:ddinter.interaction a bioregistry.schema:0000001 ;
     rdfs:label "Curated Drug-Drug Interactions Database - Interaction" ;
     dc:description "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "drug-drug interactions",
+        "drugs",
+        "relationships" ;
     foaf:homepage "http://ddinter.scbdd.com"^^xsd:string ;
     bioregistry.schema:0000005 "1122888"^^xsd:string ;
     bioregistry.schema:0000006 "http://ddinter.scbdd.com/ddinter/interact/$1"^^xsd:string ;
@@ -24475,6 +24538,8 @@ bioregistry:easychair.cfp a bioregistry.schema:0000001 ;
     rdfs:label "EasyChair Call for Paper" ;
     dc:description "Conferences in EasyChair"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "conferences",
+        "metascience" ;
     foaf:homepage "https://easychair.org/cfp/"^^xsd:string ;
     bioregistry.schema:0000005 "SysBioCancer2022"^^xsd:string ;
     bioregistry.schema:0000006 "https://easychair.org/cfp/$1"^^xsd:string ;
@@ -24484,6 +24549,8 @@ bioregistry:easychair.topic a bioregistry.schema:0000001 ;
     rdfs:label "EasyChair Topic" ;
     dc:description "Call for paper topics in EasyChair"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "metascience",
+        "topics" ;
     foaf:homepage "https://easychair.org/cfp/"^^xsd:string ;
     bioregistry.schema:0000005 "27106865"^^xsd:string ;
     bioregistry.schema:0000006 "https://easychair.org/cfp/topic.cgi?tid=$1"^^xsd:string ;
@@ -24548,6 +24615,8 @@ bioregistry:ecolexicon a bioregistry.schema:0000001 ;
     rdfs:label "EcoLexicon" ;
     dc:description "EcoLexicon represents the conceptual structure of the specialized domain of the Environment in the form of a visual thesaurus. This thesaurus has been elaborated according to the theoretical premises of Frame-Based Terminology."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "ecology",
+        "environmental science" ;
     foaf:homepage "http://ecolexicon.ugr.es/en/index.htm"^^xsd:string ;
     bioregistry.schema:0000005 "canal"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -24649,6 +24718,9 @@ bioregistry:emolecules a bioregistry.schema:0000001 ;
     rdfs:label "Reaxys eMolecules" ;
     dc:description "Catalog of purchasable reagents and building blocks"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "reagents",
+        "vendor" ;
     foaf:homepage "https://reaxys.emolecules.com"^^xsd:string ;
     bioregistry.schema:0000005 "491187"^^xsd:string ;
     bioregistry.schema:0000006 "https://reaxys.emolecules.com/cgi-bin/more?vid=$1"^^xsd:string ;
@@ -25171,6 +25243,10 @@ bioregistry:github.issue a bioregistry.schema:0000001 ;
     rdfs:label "GitHub Issue" ;
     dc:description "An issue in any public repository on GitHub."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "knowledge and information systems",
+        "project management",
+        "software engineering",
+        "version control" ;
     foaf:homepage "https://github.com/"^^xsd:string ;
     bioregistry.schema:0000005 "biopragmatics/bioregistry/424"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/resolve/github/issue/$1"^^xsd:string ;
@@ -25180,6 +25256,10 @@ bioregistry:github.pull a bioregistry.schema:0000001 ;
     rdfs:label "GitHub Pull Request" ;
     dc:description "A pull request in any public repository on GitHub."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "knowledge and information systems",
+        "project management",
+        "software engineering",
+        "version control" ;
     foaf:homepage "https://github.com/"^^xsd:string ;
     bioregistry.schema:0000005 "biopragmatics/bioregistry/416"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioregistry.io/resolve/github/pull/$1"^^xsd:string ;
@@ -25660,6 +25740,10 @@ bioregistry:idpo a bioregistry.schema:0000001 ;
     rdfs:label "Intrinsically Disordered Proteins Ontology" ;
     dc:description "IDPO is used to describe structural aspects of an IDP/IDR, self-functions and functions directly associated with their disordered state. GO is used to describe functional aspects of an IDP/IDR."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "protein structure",
+        "proteins",
+        "structural biochemistry",
+        "structural bioinformatics" ;
     foaf:homepage "https://www.disprot.org/ontology"^^xsd:string ;
     bioregistry.schema:0000005 "00056"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.disprot.org/idpo/IDPO:$1"^^xsd:string ;
@@ -25698,6 +25782,7 @@ bioregistry:illumina.probe a bioregistry.schema:0000001 ;
     rdfs:label "Illumina Probe Identifier" ;
     dc:description "Illumina probe identifiers for microarrays, such as those in Illumina HumanRef-6 v2.0 expression beadchip."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "transcriptomics" ;
     foaf:homepage "https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-6790/A-GEOD-6790.adf.txt"^^xsd:string ;
     bioregistry.schema:0000005 "ILMN_129894"^^xsd:string ;
     bioregistry.schema:0000008 "^ILMN_\\d+$"^^xsd:string ;
@@ -25776,6 +25861,7 @@ bioregistry:inaturalist.user a bioregistry.schema:0000001 ;
     rdfs:label "iNaturalist User" ;
     dc:description "Identifier for a user in iNaturalist"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "person" ;
     foaf:homepage "https://www.inaturalist.org/users"^^xsd:string ;
     bioregistry.schema:0000005 "1426686"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.inaturalist.org/users/$1"^^xsd:string ;
@@ -26252,6 +26338,9 @@ bioregistry:lotus a bioregistry.schema:0000001 ;
     rdfs:label "LOTUS Initiative for Open Natural Products Research" ;
     dc:description "LOTUS, actually, represents the most exhaustive resource of documented structure-organism pairs. Within the frame of current computational approaches in Natural Produts’s research and related fields, these documented structure-organism pairs should allow a more complete understanding of organisms and their chemistry."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "drugs",
+        "metabolites" ;
     foaf:homepage "https://lotus.naturalproducts.net"^^xsd:string ;
     bioregistry.schema:0000005 "LTS0004651"^^xsd:string ;
     bioregistry.schema:0000006 "https://lotus.naturalproducts.net/compound/lotus_id/$1"^^xsd:string ;
@@ -26296,6 +26385,9 @@ bioregistry:lspci a bioregistry.schema:0000001 ;
     rdfs:label "Laboratory of Systems Pharmacology Compound" ;
     dc:description "Internal identifiers form the LSP for ChEBML compound classes (e.g., combining various salts and ions)"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "drugs",
+        "metabolites" ;
     foaf:homepage "https://labsyspharm.github.io/lspci/"^^xsd:string ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "https://labsyspharm.github.io/lspci/$1"^^xsd:string ;
@@ -26637,6 +26729,9 @@ bioregistry:namerxn a bioregistry.schema:0000001 ;
     rdfs:label "NameRXN" ;
     dc:description "The nomenclature used for named reactions in text mining software from NextMove. While it's proprietary, there are a few publications listing parts. 487/1,855 have mappings to the Reaction Ontology (RXNO)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "chemistry",
+        "reactions",
+        "text mining" ;
     foaf:homepage "https://www.nextmovesoftware.com/namerxn.html"^^xsd:string ;
     bioregistry.schema:0000005 "4.2.78"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -26911,6 +27006,7 @@ bioregistry:nmdc a bioregistry.schema:0000001 ;
     dc:description "An initiative to empower the research community to harness microbiome data exploration and discovery through a collaborative integrative data science ecosystem."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch miriam:nmdc ;
+    dcat:keyword "microbiome" ;
     foaf:homepage "https://microbiomedata.org/"^^xsd:string ;
     bioregistry.schema:0000005 "y3ax-8bq3-60"^^xsd:string ;
     bioregistry.schema:0000006 "https://drs.microbiomedata.org/objects/$1"^^xsd:string ;
@@ -27704,24 +27800,6 @@ bioregistry:pride a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.obo> ;
     bioregistry.schema:0000012 false .
 
-bioregistry:prints a bioregistry.schema:0000001 ;
-    rdfs:label "PRINTS compendium of protein fingerprints" ;
-    dc:description "PRINTS is a compendium of protein fingerprints. A fingerprint is a group of conserved motifs used to characterise a protein family; its diagnostic power is refined by iterative scanning of a SWISS-PROT/TrEMBL composite. Usually the motifs do not overlap, but are separated along a sequence, though they may be contiguous in 3D-space. Fingerprints can encode protein folds and functionalities more flexibly and powerfully than can single motifs, full diagnostic potency deriving from the mutual context provided by motif neighbours."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PRINTS,
-        go.resource:PRINTS,
-        n2t:prints,
-        fairsharing:FAIRsharing.h8r843,
-        miriam:prints,
-        uniprot.resource:DB-0082 ;
-    dcat:keyword "biology",
-        "structural biology" ;
-    foaf:homepage "http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/"^^xsd:string ;
-    bioregistry.schema:0000005 "PR00001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off"^^xsd:string ;
-    bioregistry.schema:0000008 "^PR\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:probesanddrugs a bioregistry.schema:0000001 ;
     rdfs:label "Probes and Drugs" ;
     dc:description "The Probes & Drugs portal (P&D) is a hub for the integration of high-quality bioactive compound sets enabling their analysis and comparison. Its main focus is on chemical probes and drugs but it also includes additional relevant sets from specialist databases/scientific publications, and vendor sets. Upon these, established bioactive chemistry sources (such as ChEMBL, BindingDB, Guide To Pharmacology, DrugCentral or DrugBank) are utilized for compounds' biological annotation."^^xsd:string ;
@@ -28471,22 +28549,6 @@ bioregistry:sphn a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0003-3248-7899 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
-bioregistry:sprint a bioregistry.schema:0000001 ;
-    rdfs:label "Search PRINTS-S" ;
-    dc:description "SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database. PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.4ttw2d,
-        prefixcommons:sprint ;
-    dcat:keyword "domain",
-        "life science",
-        "protein" ;
-    foaf:homepage "http://130.88.97.239/dbbrowser/sprint/"^^xsd:string ;
-    bioregistry.schema:0000005 "PR00001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PR\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000016 bioregistry:prints .
-
 bioregistry:sty a bioregistry.schema:0000001 ;
     rdfs:label "UMLS Semantic Types Ontology" ;
     dc:description "UMLS Semantic Network The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types."^^xsd:string ;
@@ -29001,26 +29063,6 @@ bioregistry:violinnet a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "violinID",
         "violinId" .
 
-bioregistry:viralzone a bioregistry.schema:0000001 ;
-    rdfs:label "ViralZone" ;
-    dc:description "ViralZone is a resource bridging textbook knowledge with genomic and proteomic sequences. It provides fact sheets on all known virus families/genera with easy access to sequence data. A selection of reference strains (RefStrain) provides annotated standards to circumvent the exponential increase of virus sequences. Moreover ViralZone offers a complete set of detailed and accurate virion pictures."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:VIRALZONE,
-        n2t:viralzone,
-        fairsharing:FAIRsharing.tppk10,
-        miriam:viralzone,
-        re3data:r3d100013314 ;
-    dcat:keyword "epidemiology",
-        "life science",
-        "molecular biology",
-        "virology" ;
-    foaf:homepage "http://www.expasy.org/viralzone/"^^xsd:string ;
-    bioregistry.schema:0000005 "992"^^xsd:string ;
-    bioregistry.schema:0000006 "http://viralzone.expasy.org/all_by_protein/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-8528-090X .
-
 bioregistry:vsdb a bioregistry.schema:0000001 ;
     rdfs:label "Veterinary Substances DataBase" ;
     dc:description "Veterinary pharmaceuticals are biologically active and potentially persistent substances which are recognised as a continuing threat to environmental quality. Whilst the environmental risk of agricultural pesticides has had considerable attention in recent decades, risks assessments for veterinary pharmaceuticals have only relatively recently began to be addressed. Risk assessments and risk modelling tend to be inherently data hungry processes and one of the main obstacles to consistent, accurate and efficient assessments is the need for a reliable, quality and comprehensive data source."^^xsd:string ;
@@ -29493,8 +29535,6 @@ fairsharing:FAIRsharing.4ndncv dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.4qyf0f dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.4shj9c dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.4ttw2d dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.4vr0ys dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -35247,6 +35287,10 @@ bioregistry:drugbank.category a bioregistry.schema:0000001 ;
     dc:description "Close to 5K Categorizations for drugs, similar to ATCC."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:drugbank ;
+    dcat:keyword "chemistry",
+        "drugs",
+        "metascience",
+        "topics" ;
     foaf:homepage "https://go.drugbank.com/categories"^^xsd:string ;
     bioregistry.schema:0000005 "DBCAT000600"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.drugbank.ca/categories/$1"^^xsd:string ;
@@ -35282,6 +35326,8 @@ bioregistry:dso a bioregistry.schema:0000001 ;
     rdfs:label "Data Science Ontology" ;
     dc:description "The Data Science Ontology is a research project of IBM Research AI and Stanford University Statistics. Its long-term objective is to improve the efficiency and transparency of collaborative, data-driven science."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "data science",
+        "ontology" ;
     foaf:homepage "https://www.datascienceontology.org/"^^xsd:string ;
     bioregistry.schema:0000005 "classification-model"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.datascienceontology.org/concept/$1"^^xsd:string ;
@@ -35885,6 +35931,8 @@ bioregistry:iceberg.cime a bioregistry.schema:0000001 ;
     dc:description "ICEs have also been reported capable to mobilize other genetic elements, such as the chromosome-borne integrative and mobilizable elements (IMEs), cis-mobilizable elements (CIMEs), plasmids and etc. IMEs and CIMEs are also important vehicles for the spread of antiobiotic resistances and virulence factors. However, unlike ICE, IMEs and CIMEs are commonly devoid of conjugal apparatus, thus have to hijack the machinery of other conjugative elements."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:iceberg ;
+    dcat:keyword "biology",
+        "genomics" ;
     foaf:homepage "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_CIME.php?type=alpha&alpha=100"^^xsd:string ;
     bioregistry.schema:0000005 "6"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page_CIME.php?cime_id=$1_CIME"^^xsd:string ;
@@ -35896,6 +35944,8 @@ bioregistry:iceberg.ime a bioregistry.schema:0000001 ;
     dc:description "ICEs have also been reported capable to mobilize other genetic elements, such as the chromosome-borne integrative and mobilizable elements (IMEs), cis-mobilizable elements (CIMEs), plasmids and etc. IMEs and CIMEs are also important vehicles for the spread of antiobiotic resistances and virulence factors. However, unlike ICE, IMEs and CIMEs are commonly devoid of conjugal apparatus, thus have to hijack the machinery of other conjugative elements."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:iceberg ;
+    dcat:keyword "biology",
+        "genomics" ;
     foaf:homepage "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_IME.php?type=alpha&alpha=100"^^xsd:string ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page_IME.php?ime_id=$1_IME"^^xsd:string ;
@@ -36112,52 +36162,13 @@ bioregistry:merops.clan a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:mesh a bioregistry.schema:0000001 ;
-    rdfs:label "Medical Subject Headings" ;
-    dc:description "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:MESH,
-        edam.data:1177,
-        oid:2.16.840.1.113883.6.177,
-        bartoc:391,
-        bioportal:MESH,
-        biocontext:MESH,
-        biolink:MESH,
-        cellosaurus.resource:MeSH,
-        go.resource:MeSH,
-        n2t:mesh,
-        fairsharing:FAIRsharing.qnkw45,
-        prefixcommons:mesh,
-        miriam:mesh,
-        wikidata:P486 ;
-    dcat:keyword "bioinformatics",
-        "biomedical science",
-        "classification",
-        "life science",
-        "ontology" ;
-    foaf:homepage "http://id.nlm.nih.gov/mesh/"^^xsd:string ;
-    bioregistry.schema:0000005 "C063233"^^xsd:string ;
-    bioregistry.schema:0000006 "https://meshb.nlm.nih.gov/record/ui?ui=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(C|D)\\d{6,9}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "NLM Customer Service" ;
-            foaf:mbox "custserv@nlm.nih.gov" ] ;
-    bioregistry.schema:0000023 "MESH",
-        "MESHA",
-        "MESHC",
-        "MESHCS",
-        "MESHD",
-        "MESHPP",
-        "MESH_DESCRIPTOR_UI",
-        "MESH_SUPPLEMENTAL_RECORD_UI",
-        "MSH",
-        "MSH2010_2010_02_22" .
-
 bioregistry:metatlas.metabolite a bioregistry.schema:0000001 ;
     rdfs:label "Metabolic Atlas Metabolite" ;
     dc:description "A subspace of Metabolic Atlas for compartment-specific records for metabolites."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:metatlas ;
+    dcat:keyword "chemistry",
+        "metabolites" ;
     foaf:homepage "https://metabolicatlas.org"^^xsd:string ;
     bioregistry.schema:0000005 "MAM01234c"^^xsd:string ;
     bioregistry.schema:0000006 "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"^^xsd:string ;
@@ -36171,6 +36182,8 @@ bioregistry:metatlas.reaction a bioregistry.schema:0000001 ;
     dc:description "A subspace of Metabolic Atlas for reactions."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:metatlas ;
+    dcat:keyword "chemistry",
+        "reactions" ;
     foaf:homepage "https://metabolicatlas.org"^^xsd:string ;
     bioregistry.schema:0000005 "MAR11851"^^xsd:string ;
     bioregistry.schema:0000006 "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"^^xsd:string ;
@@ -36367,6 +36380,7 @@ bioregistry:nlx.anat a bioregistry.schema:0000001 ;
     dc:description "NLXANAT covers anatomy terms. Almost all terms are also in Uberon."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "anatomy" ;
     foaf:homepage "https://scicrunch.org/scicrunch/interlex/dashboard"^^xsd:string ;
     bioregistry.schema:0000005 "090201"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"^^xsd:string ;
@@ -36380,6 +36394,9 @@ bioregistry:nlx.br a bioregistry.schema:0000001 ;
     dc:description "NLXBR covers brain regions from the PHT00 macaque parcellation, Paxinos, Huang, and Tog The Rhesus Monkey Brain In Stereotaxic Coordinates (1999)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "anatomy",
+        "brain regions",
+        "neuroscience" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "145"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_br_$1"^^xsd:string ;
@@ -36394,6 +36411,10 @@ bioregistry:nlx.cell a bioregistry.schema:0000001 ;
     dc:description "NLXCELL conatins cell types with a focus on neuron types."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "cell lines",
+        "cell types",
+        "cells",
+        "neuroscience" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "91005"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_cell_$1"^^xsd:string ;
@@ -36408,6 +36429,7 @@ bioregistry:nlx.chem a bioregistry.schema:0000001 ;
     dc:description "NLXCHEM covers chemicals. Most classes are also in ChEBI."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "chemistry" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "90801"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_chem_$1"^^xsd:string ;
@@ -36422,6 +36444,9 @@ bioregistry:nlx.dys a bioregistry.schema:0000001 ;
     dc:description "NLXDYS covers dysfunction, diseases, and disorders. Most classes are also in Disease Ontology (DOID), Monarch Disease Ontology (MONDO), Human Phenotype Ontology (HPO), etc."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "disease",
+        "disorders",
+        "phenotypes" ;
     foaf:homepage "https://scicrunch.org/scicrunch/interlex/dashboard"^^xsd:string ;
     bioregistry.schema:0000005 "20090303"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"^^xsd:string ;
@@ -36436,6 +36461,7 @@ bioregistry:nlx.func a bioregistry.schema:0000001 ;
     dc:description "NLXFUNC covers terms for cognitive function."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "neuroscience" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "90801"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_func_$1"^^xsd:string ;
@@ -36450,6 +36476,8 @@ bioregistry:nlx.inv a bioregistry.schema:0000001 ;
     dc:description "NLXINV includes funding agencies and some terms related to documenting scientific investigations data acquisition and analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "data analysis",
+        "funding agencies" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "90901"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_inv_$1"^^xsd:string ;
@@ -36463,6 +36491,10 @@ bioregistry:nlx.mol a bioregistry.schema:0000001 ;
     dc:description "NLXMOL covers molecules, proteins, and molecular roles, similar to entities in the Protein Ontology, UniProt, and ChEBI, with a focus on those of particular relevance in the nervous system."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "biology",
+        "chemistry",
+        "neuroscience",
+        "proteins" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "90806"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_mol_$1"^^xsd:string ;
@@ -36477,6 +36509,7 @@ bioregistry:nlx.oen a bioregistry.schema:0000001 ;
     dc:description "NLXOEN prefixed identifiers are from the version of the Ontology for Experimental Neurophysiology (OEN; https://github.com/G-Node/OEN) that were originally deposited in Neurolex (for examples, see https://scicrunch.org/scicrunch/interlex/search?q=NLXOEN results)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "neuroscience" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0001000"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/oen_$1"^^xsd:string ;
@@ -36491,6 +36524,7 @@ bioregistry:nlx.org a bioregistry.schema:0000001 ;
     dc:description "NLXORG covers organisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "taxonomy" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "090701"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_organ_$1"^^xsd:string ;
@@ -36505,6 +36539,8 @@ bioregistry:nlx.qual a bioregistry.schema:0000001 ;
     dc:description "NLXQUAL covers qualities and dispositions similar to the Phenotype And Trait Ontology (PATO)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "dispositions",
+        "qualities" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "100810"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_qual_$1"^^xsd:string ;
@@ -36519,6 +36555,7 @@ bioregistry:nlx.res a bioregistry.schema:0000001 ;
     dc:description "NLXRES covers digital resources. Most classes are high level types covering everything from databases and sourcecode to source code licenses and instrument supplier websites"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    dcat:keyword "software and information systems" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "090924"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_res_$1"^^xsd:string ;
@@ -36534,6 +36571,7 @@ bioregistry:nlx.sub a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
     skos:exactMatch go.resource:NIF_Subcellular ;
+    dcat:keyword "cellular components" ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "090803"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"^^xsd:string ;
@@ -38050,6 +38088,9 @@ bioregistry:metatlas a bioregistry.schema:0000001 ;
         bioregistry:metatlas.reaction ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch miriam:metatlas ;
+    dcat:keyword "chemistry",
+        "metabolites",
+        "reactions" ;
     foaf:homepage "https://metabolicatlas.org"^^xsd:string ;
     bioregistry.schema:0000005 "MAM01234c"^^xsd:string ;
     bioregistry.schema:0000006 "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"^^xsd:string ;
@@ -38496,6 +38537,49 @@ bioregistry:hp a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-5316-1399 ;
     bioregistry.schema:0000023 "hpo" .
+
+bioregistry:mesh a bioregistry.schema:0000001 ;
+    rdfs:label "Medical Subject Headings" ;
+    dc:description "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:MESH,
+        edam.data:1177,
+        oid:2.16.840.1.113883.6.177,
+        bartoc:391,
+        bioportal:MESH,
+        biocontext:MESH,
+        biolink:MESH,
+        cellosaurus.resource:MeSH,
+        go.resource:MeSH,
+        n2t:mesh,
+        fairsharing:FAIRsharing.qnkw45,
+        prefixcommons:mesh,
+        miriam:mesh,
+        wikidata:P486 ;
+    dcat:keyword "bioinformatics",
+        "biomedical science",
+        "classification",
+        "life science",
+        "metascience",
+        "ontology",
+        "topics" ;
+    foaf:homepage "http://id.nlm.nih.gov/mesh/"^^xsd:string ;
+    bioregistry.schema:0000005 "C063233"^^xsd:string ;
+    bioregistry.schema:0000006 "https://meshb.nlm.nih.gov/record/ui?ui=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(C|D)\\d{6,9}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "NLM Customer Service" ;
+            foaf:mbox "custserv@nlm.nih.gov" ] ;
+    bioregistry.schema:0000023 "MESH",
+        "MESHA",
+        "MESHC",
+        "MESHCS",
+        "MESHD",
+        "MESHPP",
+        "MESH_DESCRIPTOR_UI",
+        "MESH_SUPPLEMENTAL_RECORD_UI",
+        "MSH",
+        "MSH2010_2010_02_22" .
 
 bioregistry:multicellds a bioregistry.schema:0000001 ;
     rdfs:label "MultiCellDS" ;
@@ -41479,7 +41563,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:snap,
         bioregistry:snornabase,
         bioregistry:span,
-        bioregistry:sprint,
         bioregistry:ssbd.dataset,
         bioregistry:ssbd.project,
         bioregistry:storedb.dataset,
@@ -44015,7 +44098,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.4ndncv,
         fairsharing:FAIRsharing.4qyf0f,
         fairsharing:FAIRsharing.4shj9c,
-        fairsharing:FAIRsharing.4ttw2d,
         fairsharing:FAIRsharing.4vr0ys,
         fairsharing:FAIRsharing.530e61,
         fairsharing:FAIRsharing.5701h1,
@@ -48266,7 +48348,6 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:splash,
         bioregistry:splicenest,
         bioregistry:spp,
-        bioregistry:sprint,
         bioregistry:srao,
         bioregistry:ssbd.dataset,
         bioregistry:ssbd.project,
@@ -48419,7 +48500,6 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:vt,
         bioregistry:vto,
         bioregistry:vuid,
-        bioregistry:vz,
         bioregistry:wb.rnai,
         bioregistry:wbbt,
         bioregistry:wbls,
