@@ -1827,7 +1827,7 @@ class Resource(BaseModel):
             "@type": "Dataset",
             "http://purl.org/dc/terms/conformsTo": {
                 "@id": "https://bioschemas.org/profiles/Dataset/1.0-RELEASE",
-                "@type": "CreativeWork"
+                "@type": "CreativeWork",
             },
             "@id": f"{BIOREGISTRY_REMOTE_URL}/{self.prefix}",
             "url": self.get_homepage(),
