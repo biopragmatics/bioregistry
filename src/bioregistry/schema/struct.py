@@ -1825,6 +1825,10 @@ class Resource(BaseModel):
         rv = {
             "@context": "https://schema.org",
             "@type": "Dataset",
+            "http://purl.org/dc/terms/conformsTo": {
+                "@id": "https://bioschemas.org/profiles/Dataset/1.0-RELEASE",
+                "@type": "CreativeWork",
+            },
             "@id": f"{BIOREGISTRY_REMOTE_URL}/{self.prefix}",
             "url": self.get_homepage(),
             "name": self.get_name(),
