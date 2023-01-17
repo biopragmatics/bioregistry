@@ -166,7 +166,12 @@ def _get_wikidata():
             elif len(values) == 1:
                 bindings[key] = values[0]
             elif prefix not in canonicals:
-                logger.warning(f"[wikidata] need to curate canonical %s for %s (%s):", key, prefix, bindings["name"])
+                logger.warning(
+                    "[wikidata] need to curate canonical %s for %s (%s):",
+                    key,
+                    prefix,
+                    bindings["name"],
+                )
                 for value in values:
                     logger.warning("  %s", value)
                 bindings[key] = values[0]
