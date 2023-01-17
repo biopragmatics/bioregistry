@@ -2022,7 +2022,8 @@ bacdive:
     miriam: bacdive
     n2t: bacdive
     re3data: r3d100013060
-  name: Bacterial Diversity Metadatabase
+    wikidata: P2946
+  name: BacDive ID
   pattern: ^[0-9]+$
   preferred_prefix: bacdive
   publications:
@@ -6218,7 +6219,8 @@ civic.gid:
   homepage: https://civicdb.org/
   mappings:
     miriam: civic.gid
-  name: CIViC Gene
+    wikidata: P11277
+  name: CIViC gene ID
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.gid
@@ -11190,7 +11192,7 @@ dragondb.protein:
 drduke:
   description: identifier for chemicals linked to information on occurrence in plants
   example: '19'
-  homepage: https://data.nal.usda.gov/system/files/Duke-Source-CSV.zip
+  homepage: https://phytochem.nal.usda.gov/phytochem/search/list
   mappings:
     wikidata: P10074
   name: Dr. Duke's Phytochemical and Ethnobotanical Databases chemical ID
@@ -15985,10 +15987,23 @@ funderregistry:
   homepage: https://www.crossref.org/
   mappings:
     miriam: funderregistry
-    wikidata: P356
-  name: DOI
+  name: FunderRegistry
   pattern: ^\d{9,9}$
   preferred_prefix: funderregistry
+  providers:
+  - code: crossref.api
+    description: Access funder data through the Crossref API
+    homepage: https://api.crossref.org
+    name: Crossref API
+    uri_format: https://api.crossref.org/funders/$1
+  - code: doi
+    description: Access funder data through a DOI for crossref funders.
+    homepage: https://doi.org
+    name: DOI
+    uri_format: https://dx.doi.org/10.13039/501100000995
+  synonyms:
+  - FundRef
+  - crossref.funder
   uri_format: http://data.crossref.org/fundingdata/funder/10.13039/$1
 fungidb:
   contact:
@@ -24890,7 +24905,7 @@ meddra:
   - MeDRA
   - MedDRA
   - Medical Dictionary for Regulatory Activities
-  uri_format: http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1
+  uri_format: http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1
 medgen:
   description: MedGen is a portal for information about conditions and phenotypes
     related to Medical Genetics. Terms from multiple sources are aggregated into concepts,
@@ -43831,6 +43846,7 @@ uniprot.disease:
   - ontology
   mappings:
     biolink: SPDI
+    wikidata: P11430
   name: UniProt Diseases
   part_of: uniprot
   pattern: ^DI-\d{5}$

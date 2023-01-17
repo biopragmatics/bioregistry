@@ -4385,7 +4385,7 @@ bioregistry:drduke a bioregistry.schema:0000001 ;
     dc:description "identifier for chemicals linked to information on occurrence in plants"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch wikidata:P10074 ;
-    foaf:homepage "https://data.nal.usda.gov/system/files/Duke-Source-CSV.zip"^^xsd:string ;
+    foaf:homepage "https://phytochem.nal.usda.gov/phytochem/search/list"^^xsd:string ;
     bioregistry.schema:0000005 "19"^^xsd:string ;
     bioregistry.schema:0000006 "https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -5414,16 +5414,17 @@ bioregistry:funcbase.yeast a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:funderregistry a bioregistry.schema:0000001 ;
-    rdfs:label "DOI" ;
+    rdfs:label "FunderRegistry" ;
     dc:description "The Funder Registry is an open registry of persistent identifiers for grant-giving organizations around the world."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:funderregistry,
-        wikidata:P356 ;
+    skos:exactMatch miriam:funderregistry ;
     foaf:homepage "https://www.crossref.org/"^^xsd:string ;
     bioregistry.schema:0000005 "100000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://data.crossref.org/fundingdata/funder/10.13039/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{9,9}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "FundRef",
+        "crossref.funder" .
 
 bioregistry:fungidb a bioregistry.schema:0000001 ;
     rdfs:label "FungiDB" ;
@@ -8334,7 +8335,7 @@ bioregistry:meddra a bioregistry.schema:0000001 ;
         "preclinical studies" ;
     foaf:homepage "http://bioportal.bioontology.org/ontologies/MEDDRA"^^xsd:string ;
     bioregistry.schema:0000005 "10015919"^^xsd:string ;
-    bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/MDRFRE?p=classes&conceptid=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "MedDRA MSSO" ;
@@ -22884,13 +22885,14 @@ bioregistry:atcc a bioregistry.schema:0000001 ;
         "ATCC(in host)" .
 
 bioregistry:bacdive a bioregistry.schema:0000001 ;
-    rdfs:label "Bacterial Diversity Metadatabase" ;
+    rdfs:label "BacDive ID" ;
     dc:description "BacDive—the Bacterial Diversity Metadatabase merges detailed strain-linked information on the different aspects of bacterial and archaeal biodiversity."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:bacdive,
         fairsharing:FAIRsharing.aSszvY,
         miriam:bacdive,
-        re3data:r3d100013060 ;
+        re3data:r3d100013060,
+        wikidata:P2946 ;
     dcat:keyword "biodiversity",
         "life science",
         "microbiology" ;
@@ -34406,6 +34408,10 @@ wikidata:P11198 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P11199 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P11277 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P11430 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P1294 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1391 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -34488,6 +34494,8 @@ wikidata:P2892 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2926 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P2946 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P299 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P305 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -34523,6 +34531,8 @@ wikidata:P352 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P353 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P354 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P356 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3590 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -34908,11 +34918,12 @@ bioregistry:civic.eid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:civic.gid a bioregistry.schema:0000001 ;
-    rdfs:label "CIViC Gene" ;
+    rdfs:label "CIViC gene ID" ;
     dc:description "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene’s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:civic ;
-    skos:exactMatch miriam:civic.gid ;
+    skos:exactMatch miriam:civic.gid,
+        wikidata:P11277 ;
     foaf:homepage "https://civicdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "272"^^xsd:string ;
     bioregistry.schema:0000006 "https://civicdb.org/links/gene/$1"^^xsd:string ;
@@ -37466,7 +37477,8 @@ bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
     dc:description "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
-    skos:exactMatch biolink:SPDI ;
+    skos:exactMatch biolink:SPDI,
+        wikidata:P11430 ;
     dcat:keyword "ontology" ;
     foaf:homepage "https://www.uniprot.org/diseases/"^^xsd:string ;
     bioregistry.schema:0000005 "DI-04240"^^xsd:string ;
@@ -37744,8 +37756,6 @@ orcid:0000-0003-4446-6200 rdfs:label "Jessica Kissinger",
         "Omar Harb" ;
     foaf:mbox "jkissing@uga.edu",
         "oharb@pcbi.upenn.edu" .
-
-wikidata:P356 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
     rdfs:label "EcoPortal" ;
@@ -41768,6 +41778,8 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P11089,
         wikidata:P11198,
         wikidata:P11199,
+        wikidata:P11277,
+        wikidata:P11430,
         wikidata:P1294,
         wikidata:P1391,
         wikidata:P1402,
@@ -41809,6 +41821,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P2871,
         wikidata:P2892,
         wikidata:P2926,
+        wikidata:P2946,
         wikidata:P299,
         wikidata:P305,
         wikidata:P3088,
