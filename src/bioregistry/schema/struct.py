@@ -62,6 +62,7 @@ IDOT_SKIP = "identifiers.org"
 ORCID_TO_GITHUB = {
     "0000-0003-0530-4305": "essepuntato",
     "0000-0002-9903-4248": "mbaudis",
+    "0000-0001-9018-4680": "alimanfoo",
 }
 
 
@@ -1778,6 +1779,13 @@ class Resource(BaseModel):
                 return license_value
         return None
 
+    def get_license_url(self) -> Optional[str]:
+        """Get a license URL."""
+        spdx_id = self.get_license()
+        if spdx_id is None:
+            return None
+        return f"{BIOREGISTRY_REMOTE_URL}/spdx:{spdx_id}"
+
     def get_version(self) -> Optional[str]:
         """Get the version for the resource."""
         if self.version:
@@ -1803,6 +1811,38 @@ class Resource(BaseModel):
 
         rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
         return markupsafe.Markup(rv)
+
+    def get_bioschemas_jsonld(self):
+        """Get the BioSchemas JSON-LD."""
+        identifiers = [
+            f"bioregistry:{self.prefix}",
+            *(
+                f"{metaprefix}:{metaidentifier}"
+                for metaprefix, metaidentifier in self.get_mappings().items()
+            ),
+        ]
+
+        rv = {
+            "@context": "https://schema.org",
+            "@type": "Dataset",
+            "http://purl.org/dc/terms/conformsTo": {
+                "@id": "https://bioschemas.org/profiles/Dataset/1.0-RELEASE",
+                "@type": "CreativeWork",
+            },
+            "@id": f"{BIOREGISTRY_REMOTE_URL}/{self.prefix}",
+            "url": self.get_homepage(),
+            "name": self.get_name(),
+            "description": self.get_description(),
+            "identifier": identifiers,
+            "keywords": self.get_keywords(),
+        }
+        version = self.get_version()
+        if version:
+            rv["version"] = version
+        license_url = self.get_license_url()
+        if license_url:
+            rv["license"] = license_url
+        return rv
 
 
 SchemaStatus = Literal["required", "required*", "present", "present*", "missing"]
