@@ -23740,6 +23740,17 @@ bioregistry:cmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-6443-9376 .
 
+bioregistry:cnrs a bioregistry.schema:0000001 ;
+    rdfs:label "French National Center for Scientific Research - Research Group Identifier" ;
+    dc:description "identifier for an academic research group issued by the CNRS"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P4550 ;
+    foaf:homepage "https://annuaire.cnrs.fr"^^xsd:string ;
+    bioregistry.schema:0000005 "UMR7315"^^xsd:string ;
+    bioregistry.schema:0000006 "https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=$1&p_origine_appel=u"^^xsd:string ;
+    bioregistry.schema:0000008 "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY)\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:coconut a bioregistry.schema:0000001 ;
     rdfs:label "COlleCtion of Open Natural ProdUcTs" ;
     dc:description "COCONUT (COlleCtion of Open Natural ProdUcTs) Online is an open source project for Natural Products (NPs) storage, search and analysis. It gathers data from over 50 open NP resources and is available free of charge and without any restriction. Each entry corresponds to a \"flat\" NP structure, and is associated, when available, to their known stereochemical forms, literature, organisms that produce them, natural geographical presence and diverse pre-computed molecular properties."^^xsd:string ;
@@ -28745,6 +28756,18 @@ bioregistry:ubprop a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000023 "UBPROP",
         "UBREL" .
+
+bioregistry:ukprn a bioregistry.schema:0000001 ;
+    rdfs:label "UK Provider Reference Number" ;
+    dc:description "identifier for an educational organization issued by the UK Register of Learning Providers"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P4971 ;
+    foaf:homepage "https://www.ukrlp.co.uk"^^xsd:string ;
+    bioregistry.schema:0000005 "10007835"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ukrlp.co.uk/ukrlp/ukrlp_provider.page_pls_provDetails?x=&pn_p_id=$1&pv_status=VERIFIED&pv_vis_code=L"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "ukprns" .
 
 bioregistry:umbbd.enzyme a bioregistry.schema:0000001 ;
     rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
@@ -34574,6 +34597,8 @@ wikidata:P4495 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4537 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P4550 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P4616 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4732 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -34593,6 +34618,8 @@ wikidata:P493 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P494 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P496 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P4971 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P5221 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -41313,6 +41340,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cito,
         bioregistry:clingene,
         bioregistry:cmecs,
+        bioregistry:cnrs,
         bioregistry:codelink,
         bioregistry:cog,
         bioregistry:cog.category,
@@ -41592,6 +41620,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ubprop,
         bioregistry:ucsc,
         bioregistry:ucum,
+        bioregistry:ukprn,
         bioregistry:umls.aui,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.journal,
@@ -41861,6 +41890,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P4394,
         wikidata:P4495,
         wikidata:P4537,
+        wikidata:P4550,
         wikidata:P4616,
         wikidata:P4732,
         wikidata:P486,
@@ -41871,6 +41901,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P493,
         wikidata:P494,
         wikidata:P496,
+        wikidata:P4971,
         wikidata:P5221,
         wikidata:P5270,
         wikidata:P5299,
@@ -47203,6 +47234,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cmf,
         bioregistry:cmo,
         bioregistry:cmpo,
+        bioregistry:cnrs,
         bioregistry:co_320,
         bioregistry:co_321,
         bioregistry:co_322,
@@ -48435,6 +48467,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ubprop,
         bioregistry:ucsc,
         bioregistry:ucum,
+        bioregistry:ukprn,
         bioregistry:umbbd.compound,
         bioregistry:umbbd.enzyme,
         bioregistry:umbbd.pathway,

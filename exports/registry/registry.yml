@@ -6808,6 +6808,22 @@ cmpo:
   twitter: EBIOLS
   uri_format: http://www.ebi.ac.uk/cmpo/CMPO_$1
   version: '2017-12-19'
+cnrs:
+  comment: Motivated to add because of appearance in ROR
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: identifier for an academic research group issued by the CNRS
+  example: UMR7315
+  homepage: https://annuaire.cnrs.fr
+  mappings:
+    wikidata: P4550
+  name: French National Center for Scientific Research - Research Group Identifier
+  pattern: ^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY)\d+$
+  preferred_prefix: cnrs
+  uri_format: https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=$1&p_origine_appel=u
 co_320:
   contact:
     email: helpdesk@cropontology-curationtool.org
@@ -43410,6 +43426,25 @@ ucum:
   - https://units-of-measurement.org/
   repository: https://github.com/ucum-org/ucum
   uri_format: https://units-of-measurement.org/$1
+ukprn:
+  comment: Added because of appearance in ROR
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: identifier for an educational organization issued by the UK Register
+    of Learning Providers
+  example: '10007835'
+  homepage: https://www.ukrlp.co.uk
+  mappings:
+    wikidata: P4971
+  name: UK Provider Reference Number
+  pattern: ^[1-9]\d*$
+  preferred_prefix: ukprn
+  synonyms:
+  - ukprns
+  uri_format: https://www.ukrlp.co.uk/ukrlp/ukrlp_provider.page_pls_provDetails?x=&pn_p_id=$1&pv_status=VERIFIED&pv_vis_code=L
 umbbd.compound:
   description: The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD)
     contains information on microbial biocatalytic reactions and biodegradation pathways
