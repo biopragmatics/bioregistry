@@ -4572,7 +4572,7 @@ cas:
   - CAS_RN
   - SECONDARY_CAS_RN
   - cas_id
-  uri_format: https://commonchemistry.cas.org/detail?ref=$1
+  uri_format: https://commonchemistry.cas.org/detail?cas_rn=$1
 casspc:
   comment: Jim Balhoff said that Catalog of Fishes does not publish their data in
     a machine readable format, but a long time ago they sent a CSV dump to help in
@@ -6602,10 +6602,9 @@ clo:
   - doid
   - ncbitaxon
   - uberon
-  description: The Cell Line Ontology (CLO) is a community-based ontology of cell
-    lines. The CLO is developed to unify publicly available cell line entry data from
-    multiple sources to a standardized logically defined format based on consensus
-    design patterns.
+  description: The Cell Line Ontology is a community-based ontology of cell lines.
+    The CLO is developed to unify publicly available cell line entry data from multiple
+    sources to a standardized logically defined format based on consensus design patterns.
   download_owl: http://purl.obolibrary.org/obo/clo.owl
   example: 0000091
   homepage: http://www.clo-ontology.org
@@ -6621,6 +6620,7 @@ clo:
     bioportal: CLO
     cellosaurus: CLO
     fairsharing: FAIRsharing.4dvtcz
+    miriam: clo
     obofoundry: clo
     ols: clo
     ontobee: CLO
@@ -6629,6 +6629,17 @@ clo:
   name: Cell Line Ontology
   pattern: ^\d{7}$
   preferred_prefix: CLO
+  providers:
+  - code: bioportal
+    description: Our vision is that all biomedical knowledge and data are disseminated
+      on the Internet using principled ontologies in such a way that the knowledge
+      and data are semantically interoperable and useful for furthering biomedical
+      science and clinical care. Our mission is to create software and support services
+      for the application of principled ontologies in biomedical science and clinical
+      care, ranging from tools for application developers to software for end-users.
+    homepage: https://bioportal.bioontology.org
+    name: Center for Biomedical Informatics Research, Stanford
+    uri_format: https://bioportal.bioontology.org/ontologies/CLO/?p=classes&conceptid=http://purl.obolibrary.org/obo/CLO_$1
   publications:
   - doi: 10.1186/2041-1480-5-37
     pmc: PMC4387853
@@ -6643,7 +6654,7 @@ clo:
   repository: https://github.com/CLO-Ontology/CLO
   synonyms:
   - CLO
-  uri_format: http://purl.obolibrary.org/obo/CLO_$1
+  uri_format: https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1
   version: 2.1.178
 cls:
   description: Cell line collections
@@ -35739,6 +35750,11 @@ probesanddrugs:
   preferred_prefix: probesanddrugs
   uri_format: https://www.probes-drugs.org/compound/$1
 probonto:
+  contact:
+    email: pierre.grenon@ifomis.uni-saarland.de
+    github: pgrenon
+    name: Pierre Grenon
+    orcid: 0000-0003-4614-562X
   description: ProbOnto, is an ontology-based knowledge base of probability distributions,
     featuring uni- and multivariate distributions with their defining functions, characteristics,
     relationships and reparameterisation formulae.  It can be used for annotation
@@ -35768,7 +35784,7 @@ probonto:
     pubmed: '27153608'
     title: 'ProbOnto: ontology and knowledge base of probability distributions.'
     year: 2016
-  repository: https://github.com/probonto/ontology/issues
+  repository: https://github.com/probonto/ontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1
   version: 2.5.0
 proco:
@@ -43828,7 +43844,7 @@ uniprot:
   - UniProtKB
   - Uniprot ID
   - uniprot/swiss-prot
-  uri_format: http://purl.uniprot.org/uniprot/$1
+  uri_format: https://purl.uniprot.org/uniprot/$1
 uniprot.arba:
   contributor:
     email: cjmungall@lbl.gov

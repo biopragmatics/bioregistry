@@ -1579,6 +1579,18 @@
     "sampleId": "272",
     "uri_format": "https://civicdb.org/links/gene/$1"
   },
+  "civic.mpid": {
+    "deprecated": false,
+    "description": "CIViC Molecular Profiles are combinations of one or more CIViC variants. Most Molecular Profiles are \u201cSimple\u201d Molecular Profiles comprised of a single variant. In most cases, these can be considered equivalent to the CIViC concept of a Variant. However, increasingly clinical significance must be considered in the context of multiple variants simultaneously. Complex Molecular Profiles in CIViC allow for curation of such variant combinations. Regardless of the nature of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered in CIViC.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000981",
+    "name": "CIViC Molecular Profile",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.mpid",
+    "sampleId": "559",
+    "uri_format": "https://civicdb.org/links/molecular_profile/$1"
+  },
   "civic.sid": {
     "deprecated": false,
     "description": "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source.",
@@ -1602,6 +1614,18 @@
     "prefix": "civic.tid",
     "sampleId": "14",
     "uri_format": "https://civicdb.org/links/drugs/$1"
+  },
+  "civic.vgid": {
+    "deprecated": false,
+    "description": "Variant Groups in CIViC provide user-defined grouping of Variants within and between genes based on unifying characteristics. CIViC curators are required to define a cohesive rationale for grouping these variants together, summarize their relevance to cancer diagnosis, prognosis or treatment and highlight any treatments or cancers of particular relevance",
+    "homepage": "https://civicdb.org/",
+    "id": "00000979",
+    "name": "CIViC Variant Group",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.vgid",
+    "sampleId": "16",
+    "uri_format": "https://civicdb.org/links/variant_group/$1"
   },
   "civic.vid": {
     "deprecated": false,
@@ -1722,6 +1746,27 @@
     "prefix": "clinvar.submitter",
     "sampleId": "26957",
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
+  },
+  "clo": {
+    "deprecated": false,
+    "description": "The Cell Line Ontology is a community-based ontology of cell lines. The CLO is developed to unify publicly available cell line entry data from multiple sources to a standardized logically defined format based on consensus design patterns.",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/clo",
+    "id": "00000983",
+    "name": "Cell Line Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\d{7}$",
+    "prefix": "clo",
+    "providers": [
+      {
+        "code": "bioportal",
+        "description": "Our vision is that all biomedical knowledge and data are disseminated on the Internet using principled ontologies in such a way that the knowledge and data are semantically interoperable and useful for furthering biomedical science and clinical care. Our mission is to create software and support services for the application of principled ontologies in biomedical science and clinical care, ranging from tools for application developers to software for end-users.",
+        "homepage": "https://bioportal.bioontology.org",
+        "name": "Center for Biomedical Informatics Research, Stanford",
+        "uri_format": "https://bioportal.bioontology.org/ontologies/CLO/?p=classes&conceptid=http://purl.obolibrary.org/obo/CLO_$1"
+      }
+    ],
+    "sampleId": "0000091",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1"
   },
   "col": {
     "deprecated": false,
@@ -9686,7 +9731,7 @@
       }
     ],
     "sampleId": "P0DP23",
-    "uri_format": "http://purl.uniprot.org/uniprot/$1"
+    "uri_format": "https://purl.uniprot.org/uniprot/$1"
   },
   "uniprot.chain": {
     "deprecated": false,

@@ -2202,7 +2202,7 @@ bioregistry:cas a bioregistry.schema:0000001 ;
         "structure" ;
     foaf:homepage "https://commonchemistry.cas.org/"^^xsd:string ;
     bioregistry.schema:0000005 "50-00-0"^^xsd:string ;
-    bioregistry.schema:0000006 "https://commonchemistry.cas.org/detail?ref=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://commonchemistry.cas.org/detail?cas_rn=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{1,7}\\-\\d{2}\\-\\d$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "CASID",
@@ -11704,7 +11704,8 @@ bioregistry:probonto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PROB_c\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/probonto/ontology/master/probonto4ols.owl> ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4614-562X .
 
 bioregistry:prodom a bioregistry.schema:0000001 ;
     rdfs:label "ProDom" ;
@@ -15967,6 +15968,9 @@ orcid:0000-0003-4494-839X rdfs:label "Xeni Kechagioglou" ;
 
 orcid:0000-0003-4606-0597 rdfs:label "Sue Bello" ;
     foaf:mbox "drsbello@gmail.com" .
+
+orcid:0000-0003-4614-562X rdfs:label "Pierre Grenon" ;
+    foaf:mbox "pierre.grenon@ifomis.uni-saarland.de" .
 
 orcid:0000-0003-4694-3883 rdfs:label "Paolo Romano" ;
     foaf:mbox "paolo.romano@hsanmartino.it" .
@@ -31897,6 +31901,8 @@ miriam:clinvar.submission dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:clinvar.submitter dcterms:isPartOf bioregistry.metaresource:miriam .
 
+miriam:clo dcterms:isPartOf bioregistry.metaresource:miriam .
+
 miriam:col dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:combine.specifications dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -38863,7 +38869,7 @@ bioregistry:cdno a bioregistry.schema:0000001 ;
 
 bioregistry:clo a bioregistry.schema:0000001 ;
     rdfs:label "Cell Line Ontology" ;
-    dc:description "The Cell Line Ontology (CLO) is a community-based ontology of cell lines. The CLO is developed to unify publicly available cell line entry data from multiple sources to a standardized logically defined format based on consensus design patterns."^^xsd:string ;
+    dc:description "The Cell Line Ontology is a community-based ontology of cell lines. The CLO is developed to unify publicly available cell line entry data from multiple sources to a standardized logically defined format based on consensus design patterns."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:CLO,
         obofoundry:clo,
@@ -38873,6 +38879,7 @@ bioregistry:clo a bioregistry.schema:0000001 ;
         cellosaurus.resource:CLO,
         fairsharing:FAIRsharing.4dvtcz,
         prefixcommons:clo,
+        miriam:clo,
         ols:clo,
         wikidata:P2158 ;
     dcat:keyword "cell biology",
@@ -38881,7 +38888,7 @@ bioregistry:clo a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage "http://www.clo-ontology.org"^^xsd:string ;
     bioregistry.schema:0000005 "0000091"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CLO_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:clo.owl ;
     bioregistry.schema:0000012 false ;
@@ -40355,7 +40362,7 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
         "protein" ;
     foaf:homepage "http://www.uniprot.org"^^xsd:string ;
     bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://purl.uniprot.org/uniprot/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "SwissProt",
@@ -45485,6 +45492,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:clinvar.record,
         miriam:clinvar.submission,
         miriam:clinvar.submitter,
+        miriam:clo,
         miriam:col,
         miriam:combine.specifications,
         miriam:complexportal,
