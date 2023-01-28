@@ -7181,13 +7181,9 @@ bioregistry:igsn a bioregistry.schema:0000001 ;
     dc:description "IGSN is a globally unique and persistent identifier for material samples and specimens.  IGSNs are obtained from IGSN e.V. Agents."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:igsn,
-        fairsharing:FAIRsharing.Yvc76F,
+        fairsharing:FAIRsharing.c7f365,
         miriam:igsn ;
-    dcat:keyword "earth science",
-        "environmental science",
-        "geochemistry",
-        "geology",
-        "hydrogeology" ;
+    dcat:keyword "subject agnostic" ;
     foaf:homepage "http://www.geosamples.org/"^^xsd:string ;
     bioregistry.schema:0000005 "AU124"^^xsd:string ;
     bioregistry.schema:0000006 "http://igsn.org/$1"^^xsd:string ;
@@ -7640,14 +7636,17 @@ bioregistry:ito a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ITO,
         bioportal:ITO,
+        fairsharing:FAIRsharing.89e853,
         miriam:ito ;
-    dcat:keyword "ontology" ;
+    dcat:keyword "artificial intelligence",
+        "ontology" ;
     foaf:homepage "https://bioportal.bioontology.org/"^^xsd:string ;
     bioregistry.schema:0000005 "ITO_01625"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^.+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/ITO/17/ito.owl> ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-4855-2571 .
 
 bioregistry:iuphar.family a bioregistry.schema:0000001 ;
     rdfs:label "IUPHAR family" ;
@@ -15627,6 +15626,9 @@ orcid:0000-0002-4142-7153 rdfs:label "Sabrina Toro" ;
 
 orcid:0000-0002-4299-7561 rdfs:label "David Gloriam" ;
     foaf:mbox "david.gloriam@sund.ku.dk" .
+
+orcid:0000-0002-4855-2571 rdfs:label "Matthias Samwald" ;
+    foaf:mbox "matthias.samwald@meduniwien.ac.at" .
 
 orcid:0000-0002-4858-8056 rdfs:label "Mathias Uhlen" ;
     foaf:mbox "mathias.uhlen@scilifelab.se" .
@@ -29699,6 +29701,8 @@ fairsharing:FAIRsharing.85k1jm dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.88v2k0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.89e853 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.8b6wfq dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.8hcczk dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -29784,8 +29788,6 @@ fairsharing:FAIRsharing.USxx0K dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.WxI96O dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.XykycZ dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.Yvc76F dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.Z8OKi5 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -29904,6 +29906,8 @@ fairsharing:FAIRsharing.c54ywe dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.c55d5e dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.c6vhm3 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.c7f365 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.c7f4d7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -32076,6 +32080,8 @@ miriam:eggnog dcterms:isPartOf bioregistry.metaresource:miriam .
 miriam:elm dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:emdb dcterms:isPartOf bioregistry.metaresource:miriam .
+
+miriam:empiar dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:ena.embl dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -35457,7 +35463,8 @@ bioregistry:empiar a bioregistry.schema:0000001 ;
     rdfs:label "Electron Microscopy Public Image Archive" ;
     dc:description "EMPIAR, the Electron Microscopy Public Image Archive, is a public resource for raw, 2D electron microscopy images. Here, you can browse, upload and download the raw images used to build a 3D structure"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.dff3ef ;
+    skos:exactMatch fairsharing:FAIRsharing.dff3ef,
+        miriam:empiar ;
     dcat:keyword "bioinformatics",
         "biology" ;
     foaf:homepage "https://www.ebi.ac.uk/pdbe/emdb"^^xsd:string ;
@@ -44216,6 +44223,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.84c1a7,
         fairsharing:FAIRsharing.85k1jm,
         fairsharing:FAIRsharing.88v2k0,
+        fairsharing:FAIRsharing.89e853,
         fairsharing:FAIRsharing.8b6wfq,
         fairsharing:FAIRsharing.8hcczk,
         fairsharing:FAIRsharing.8jsya3,
@@ -44259,7 +44267,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.USxx0K,
         fairsharing:FAIRsharing.WxI96O,
         fairsharing:FAIRsharing.XykycZ,
-        fairsharing:FAIRsharing.Yvc76F,
         fairsharing:FAIRsharing.Z8OKi5,
         fairsharing:FAIRsharing.a0k4cd,
         fairsharing:FAIRsharing.a14123,
@@ -44319,6 +44326,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.c54ywe,
         fairsharing:FAIRsharing.c55d5e,
         fairsharing:FAIRsharing.c6vhm3,
+        fairsharing:FAIRsharing.c7f365,
         fairsharing:FAIRsharing.c7f4d7,
         fairsharing:FAIRsharing.c7w81a,
         fairsharing:FAIRsharing.c86b48,
@@ -45580,6 +45588,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:eggnog,
         miriam:elm,
         miriam:emdb,
+        miriam:empiar,
         miriam:ena.embl,
         miriam:encode,
         miriam:ensembl,

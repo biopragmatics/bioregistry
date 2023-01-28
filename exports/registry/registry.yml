@@ -12892,6 +12892,8 @@ emolecules:
   preferred_prefix: emolecules
   uri_format: https://reaxys.emolecules.com/cgi-bin/more?vid=$1
 empiar:
+  banana: EMPIAR
+  banana_peel: '-'
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -12907,6 +12909,7 @@ empiar:
   - biology
   mappings:
     fairsharing: FAIRsharing.dff3ef
+    miriam: empiar
   name: Electron Microscopy Public Image Archive
   pattern: ^\d+$
   preferred_prefix: empiar
@@ -21400,13 +21403,9 @@ igsn:
   example: AU124
   homepage: http://www.geosamples.org/
   keywords:
-  - earth science
-  - environmental science
-  - geochemistry
-  - geology
-  - hydrogeology
+  - subject agnostic
   mappings:
-    fairsharing: FAIRsharing.Yvc76F
+    fairsharing: FAIRsharing.c7f365
     miriam: igsn
     n2t: igsn
   name: International Geo Sample Number
@@ -22718,6 +22717,11 @@ itis:
   preferred_prefix: itis
   uri_format: https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1
 ito:
+  contact:
+    email: matthias.samwald@meduniwien.ac.at
+    github: null
+    name: Matthias Samwald
+    orcid: 0000-0002-4855-2571
   description: The Intelligence Task Ontology (ITO) provides a comprehensive map of
     machine intelligence tasks, as well as broader human intelligence or hybrid human/machine
     intelligence tasks.
@@ -22725,14 +22729,34 @@ ito:
   example: ITO_01625
   homepage: https://bioportal.bioontology.org/
   keywords:
+  - artificial intelligence
   - ontology
   mappings:
     aberowl: ITO
     bioportal: ITO
+    fairsharing: FAIRsharing.89e853
     miriam: ito
   name: Intelligence Task Ontology
   pattern: ^.+$
   preferred_prefix: ito
+  publications:
+  - doi: 10.5281/zenodo.5561989
+    pmc: null
+    pubmed: null
+    title: Intelligence Task Ontology and Knowledge Graph (ITO)
+    year: null
+  - doi: 10.48550/arxiv.2110.01434
+    pmc: null
+    pubmed: null
+    title: A curated, ontology-based, large-scale knowledge graph of artificial intelligence
+      tasks and benchmarks.
+    year: null
+  - doi: 10.1038/s41597-022-01435-x
+    pmc: null
+    pubmed: null
+    title: A curated, ontology-based, large-scale knowledge graph of artificial intelligence
+      tasks and benchmarks
+    year: null
   uri_format: https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1
 iuphar.family:
   description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
