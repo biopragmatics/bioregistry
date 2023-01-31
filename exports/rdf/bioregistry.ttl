@@ -426,9 +426,6 @@ orcid:0000-0001-5705-7831 rdfs:label "Harry Caufield" ;
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
     dcterms:contributor bioregistry:openalex .
 
-orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu" ;
-    dcterms:contributor bioregistry:pav .
-
 orcid:0000-0002-8719-7760 rdfs:label "Sierra Moxon" ;
     dcterms:contributor bioregistry:agrkb,
         bioregistry:cpt,
@@ -3371,15 +3368,18 @@ bioregistry:co_367 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:co_370 a bioregistry.schema:0000001 ;
-    rdfs:label "Apple ontology" ;
+    rdfs:label "Apple Ontology" ;
     dc:description "Apple (Malus domestica) defines crop traits and variables to support the standardisation of apple breeding databases providing description of agronomic, morphological, physiological, quality traits, its methods and scales."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch cropoct:CO_370 ;
+    skos:exactMatch agroportal:CO_370,
+        cropoct:CO_370 ;
     foaf:homepage "https://cropontology.org/term/CO_370:ROOT"^^xsd:string ;
     bioregistry.schema:0000005 "0000890"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_370:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Ekaterina Chuprikova" ;
+            foaf:mbox "ekaterina.chuprikova@eurac.edu" ] .
 
 bioregistry:cob a bioregistry.schema:0000001 ;
     rdfs:label "Core Ontology for Biology and Biomedicine" ;
@@ -15693,6 +15693,10 @@ orcid:0000-0002-7073-9172 rdfs:label "David Osumi-Sutherland" ;
 orcid:0000-0002-7140-9933 rdfs:label "Thomas Lütteke" ;
     foaf:mbox "thomas@luetteke-online.de" .
 
+orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu" ;
+    dcterms:contributor bioregistry:pav ;
+    foaf:mbox "nicolas.matentzoglu@gmail.com" .
+
 orcid:0000-0002-7440-0467 rdfs:label "Lucas Leclere" ;
     foaf:mbox "lucas.leclere@obs-vlfr.fr" .
 
@@ -16715,6 +16719,8 @@ agroportal:CO_360 dcterms:isPartOf bioregistry.metaresource:agroportal .
 agroportal:CO_365 dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:CO_366 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_370 dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:EDAM dcterms:isPartOf bioregistry.metaresource:agroportal .
 
@@ -28347,6 +28353,18 @@ bioregistry:seinet a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0002-8169-9049 .
+
+bioregistry:semapv a bioregistry.schema:0000001 ;
+    rdfs:label "Semantic Mapping Vocabulary" ;
+    dc:description "The Semantic Mapping Vocabulary provides and defines terms used for creating and maintaining semantic mappings, in particular mapping metadata."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "ontology" ;
+    foaf:homepage "https://mapping-commons.github.io/semantic-mapping-vocabulary/"^^xsd:string ;
+    bioregistry.schema:0000005 "LexicalMatching"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/semapv/vocab/$1"^^xsd:string ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/mapping-commons/semantic-mapping-vocabulary/main/semapv.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7356-1779 .
 
 bioregistry:sfam a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Families" ;
@@ -40743,6 +40761,7 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:CO_360,
         agroportal:CO_365,
         agroportal:CO_366,
+        agroportal:CO_370,
         agroportal:EDAM,
         agroportal:EFO,
         agroportal:ENVO,
@@ -41603,6 +41622,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:scr,
         bioregistry:sdis,
         bioregistry:seinet,
+        bioregistry:semapv,
         bioregistry:sfam,
         bioregistry:shacl,
         bioregistry:shex,
@@ -48360,6 +48380,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:seed.compound,
         bioregistry:seed.reaction,
         bioregistry:seinet,
+        bioregistry:semapv,
         bioregistry:sep,
         bioregistry:sepio,
         bioregistry:sfam,
