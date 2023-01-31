@@ -186,9 +186,9 @@ def serialize(
         accept = get_accept_media_type()
     else:
         arg = request.args.get("format", "json")
-        accept = FORMAT_MAP.get(arg)
-        if not accept:
-            return abort(404, f"unhandled value for `format`: {arg}")
+        if arg not in FORMAT_MAP:
+            return abort(404, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}")
+        accept = FORMAT_MAP[arg]
 
     if accept == "application/json":
         return jsonify(
@@ -202,8 +202,6 @@ def serialize(
             if isinstance(data, BaseModel)
             else data
         )
-    else:
-        return abort(500, f"Serializing MIMETYPE not implemented for {accept}")
     for _name, mimetype, func in serializers or []:
         if accept == mimetype:
             return current_app.response_class(func(data), mimetype=mimetype)
