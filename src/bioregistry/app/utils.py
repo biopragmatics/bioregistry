@@ -187,7 +187,9 @@ def serialize(
     else:
         arg = request.args.get("format", "json")
         if arg not in FORMAT_MAP:
-            return abort(404, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}")
+            return abort(
+                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}"
+            )
         accept = FORMAT_MAP[arg]
 
     if accept == "application/json":
