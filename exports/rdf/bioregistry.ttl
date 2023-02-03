@@ -11698,9 +11698,9 @@ bioregistry:probonto a bioregistry.schema:0000001 ;
         "statistics",
         "systems biology" ;
     foaf:homepage "http://probonto.org"^^xsd:string ;
-    bioregistry.schema:0000005 "PROB_c0000005"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PROB_c\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "c0000005"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.probonto.org/ontology#PROB_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(c|k)\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/probonto/ontology/master/probonto4ols.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-4614-562X .
@@ -16774,6 +16774,8 @@ agroportal:SDGIO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:SIO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
+agroportal:SIREN dcterms:isPartOf bioregistry.metaresource:agroportal .
+
 agroportal:SO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:STY dcterms:isPartOf bioregistry.metaresource:agroportal .
@@ -20900,6 +20902,8 @@ go.resource:DDANAT dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:DOI dcterms:isPartOf bioregistry.metaresource:go .
 
+go.resource:DisProt dcterms:isPartOf bioregistry.metaresource:go .
+
 go.resource:EC dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:ECO dcterms:isPartOf bioregistry.metaresource:go .
@@ -24267,6 +24271,7 @@ bioregistry:disprot a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:2723,
         biocontext:DISPROT,
+        go.resource:DisProt,
         n2t:disprot,
         fairsharing:FAIRsharing.dt9z89,
         prefixcommons:disprot,
@@ -25548,6 +25553,17 @@ bioregistry:hcpcs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Cynthia Hake" ;
             foaf:mbox "Cynthia.Hake@cms.hhs.gov" ] .
+
+bioregistry:hesa a bioregistry.schema:0000001 ;
+    rdfs:label "UK Higher Education Statistics Agency" ;
+    dc:description "An identifier for institutions in the United Kingdom, used in GRID and ROR."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bibliometrics",
+        "institution" ;
+    foaf:homepage "https://www.hesa.ac.uk"^^xsd:string ;
+    bioregistry.schema:0000005 "0154"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     rdfs:label "HGNC Gene Group" ;
@@ -28456,6 +28472,19 @@ bioregistry:signor a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-9528-6018 ;
     bioregistry.schema:0000023 "SIGNOR" .
 
+bioregistry:siren a bioregistry.schema:0000001 ;
+    rdfs:label "Scientific Information Retrieval and Exchange Network" ;
+    dc:description "A modern method of records management and an automated cross-referenced subject index for accurate and comprehensive information retrieval developed by the US FDA's Bureau of Foods"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch agroportal:SIREN ;
+    foaf:homepage "https://www.langual.org/langual_indexed_datasets.asp"^^xsd:string ;
+    bioregistry.schema:0000005 "F11903"^^xsd:string ;
+    bioregistry.schema:0000008 "^F\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Buche" ;
+            foaf:mbox "patrice.buche@inrae.fr" ] ;
+    bioregistry.schema:0000023 "SUBSET_SIREN" .
+
 bioregistry:skip a bioregistry.schema:0000001 ;
     rdfs:label "Stemcell Knowledge and Information Portal" ;
     dc:description "SKIP is aiming to promote the exchange of information and joint research between researchers by aggregating various information of stem cells (iPS cells, iPS cells derived from patients, etc.) to stimulate research on disease and regenerative medicine."^^xsd:string ;
@@ -28782,6 +28811,17 @@ bioregistry:ubprop a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000023 "UBPROP",
         "UBREL" .
+
+bioregistry:ucas a bioregistry.schema:0000001 ;
+    rdfs:label "UK Universities and Colleges Admissions Service" ;
+    dc:description "An identifier for institutions in the United Kingdom, used in GRID and ROR."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "bibliometrics",
+        "institution" ;
+    foaf:homepage "https://www.ucas.com"^^xsd:string ;
+    bioregistry.schema:0000005 "N21"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:ukprn a bioregistry.schema:0000001 ;
     rdfs:label "UK Provider Reference Number" ;
@@ -40789,6 +40829,7 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:RO,
         agroportal:SDGIO,
         agroportal:SIO,
+        agroportal:SIREN,
         agroportal:SO,
         agroportal:STY,
         agroportal:TO,
@@ -41490,6 +41531,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:hc.din,
         bioregistry:hc.npn,
         bioregistry:hcpcs,
+        bioregistry:hesa,
         bioregistry:hl7.v2codesystem,
         bioregistry:hl7.v3codesystem,
         bioregistry:hms.lincs.compound,
@@ -41629,6 +41671,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:shacl,
         bioregistry:shex,
         bioregistry:sigmaaldrich,
+        bioregistry:siren,
         bioregistry:skip,
         bioregistry:skos,
         bioregistry:skosxl,
@@ -41654,6 +41697,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:time,
         bioregistry:tkg,
         bioregistry:ubprop,
+        bioregistry:ucas,
         bioregistry:ucsc,
         bioregistry:ucum,
         bioregistry:ukprn,
@@ -41713,6 +41757,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:ComplexPortal,
         go.resource:DDANAT,
         go.resource:DOI,
+        go.resource:DisProt,
         go.resource:EC,
         go.resource:ECO,
         go.resource:EMAPA,
@@ -47702,6 +47747,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hcpcs,
         bioregistry:hcvdb,
         bioregistry:hdr,
+        bioregistry:hesa,
         bioregistry:hgmd,
         bioregistry:hgnc,
         bioregistry:hgnc.genefamily,
@@ -48405,6 +48451,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:signor,
         bioregistry:signor.relation,
         bioregistry:sio,
+        bioregistry:siren,
         bioregistry:sisu,
         bioregistry:sitex,
         bioregistry:skip,
@@ -48505,6 +48552,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uberon,
         bioregistry:ubio.namebank,
         bioregistry:ubprop,
+        bioregistry:ucas,
         bioregistry:ucsc,
         bioregistry:ucum,
         bioregistry:ukprn,

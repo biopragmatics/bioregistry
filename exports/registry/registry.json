@@ -11584,6 +11584,7 @@
       "biocontext": "DISPROT",
       "edam": "2723",
       "fairsharing": "FAIRsharing.dt9z89",
+      "go": "DisProt",
       "miriam": "disprot",
       "n2t": "disprot",
       "prefixcommons": "disprot",
@@ -21150,6 +21151,24 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "hdr",
     "uri_format": "http://research.nhgri.nih.gov/apps/homeodomain/web/index.cgi?mode=view&amp;view=proteins&amp;id=$1"
+  },
+  "hesa": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An identifier for institutions in the United Kingdom, used in GRID and ROR.",
+    "example": "0154",
+    "homepage": "https://www.hesa.ac.uk",
+    "keywords": [
+      "bibliometrics",
+      "institution"
+    ],
+    "name": "UK Higher Education Statistics Agency",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "hesa"
   },
   "hgmd": {
     "description": "The Human Gene Mutation Database (HGMD) collates data on germ-line mutations in nuclear genes associated with human inherited disease. It includes information on single base-pair substitutions in coding, regulatory and splicing-relevant regions; micro-deletions and micro-insertions; indels; triplet repeat expansions as well as gross deletions; insertions; duplications; and complex rearrangements. Each mutation entry is unique, and includes cDNA reference sequences for most genes, splice junction sequences, disease-associated and functional polymorphisms, as well as links to data present in publicly available online locus-specific mutation databases.",
@@ -39267,6 +39286,8 @@
     "uri_format": "https://www.probes-drugs.org/compound/$1"
   },
   "probonto": {
+    "banana": "PROB",
+    "banana_peel": "_",
     "contact": {
       "email": "pierre.grenon@ifomis.uni-saarland.de",
       "github": "pgrenon",
@@ -39275,7 +39296,10 @@
     },
     "description": "ProbOnto, is an ontology-based knowledge base of probability distributions, featuring uni- and multivariate distributions with their defining functions, characteristics, relationships and reparameterisation formulae.  It can be used for annotation of models, facilitating the encoding of distribution-based models, related functions and quantities.",
     "download_owl": "https://raw.githubusercontent.com/probonto/ontology/master/probonto4ols.owl",
-    "example": "PROB_c0000005",
+    "example": "c0000005",
+    "example_extras": [
+      "k0001285"
+    ],
     "homepage": "http://probonto.org",
     "keywords": [
       "computational biology",
@@ -39292,7 +39316,7 @@
       "ols": "probonto"
     },
     "name": "Probability Distribution Ontology",
-    "pattern": "^PROB_c\\d+$",
+    "pattern": "^(c|k)\\d{7}$",
     "preferred_prefix": "probonto",
     "publications": [
       {
@@ -39304,7 +39328,7 @@
       }
     ],
     "repository": "https://github.com/probonto/ontology",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1",
+    "uri_format": "http://www.probonto.org/ontology#PROB_$1",
     "version": "2.5.0"
   },
   "proco": {
@@ -44330,6 +44354,46 @@
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sio/terms?short_form=$1",
     "version": "1.53"
   },
+  "siren": {
+    "comment": "appears in FOODON, there is no website other than the spreadsheet referenced below on langual's site",
+    "contact": {
+      "email": "patrice.buche@inrae.fr",
+      "github": null,
+      "name": "Buche",
+      "orcid": null
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A modern method of records management and an automated cross-referenced subject index for accurate and comprehensive information retrieval developed by the US FDA's Bureau of Foods",
+    "example": "F11903",
+    "homepage": "https://www.langual.org/langual_indexed_datasets.asp",
+    "mappings": {
+      "agroportal": "SIREN"
+    },
+    "name": "Scientific Information Retrieval and Exchange Network",
+    "pattern": "^F\\d+$",
+    "preferred_prefix": "siren",
+    "publications": [
+      {
+        "doi": "10.1093/jaoac/65.5.1268",
+        "pmc": null,
+        "pubmed": null,
+        "title": "SIREN: Data Base Approach to Scientific Information Handling in the Bureau of Foods, Food and Drug Administration",
+        "year": null
+      }
+    ],
+    "references": [
+      "https://github.com/FoodOntology/foodon/issues/267",
+      "https://www.langual.org/download/IndexedDatasets/FDA/SIREN%20(updated).TXT"
+    ],
+    "synonyms": [
+      "SUBSET_SIREN"
+    ]
+  },
   "sisu": {
     "contact": {
       "email": "hannele.laivuori@helsinki.fi",
@@ -47637,6 +47701,24 @@
       "UBPROP",
       "UBREL"
     ]
+  },
+  "ucas": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An identifier for institutions in the United Kingdom, used in GRID and ROR.",
+    "example": "N21",
+    "homepage": "https://www.ucas.com",
+    "keywords": [
+      "bibliometrics",
+      "institution"
+    ],
+    "name": "UK Universities and Colleges Admissions Service",
+    "pattern": "^\\w\\d+$",
+    "preferred_prefix": "ucas"
   },
   "ucsc": {
     "contributor": {
