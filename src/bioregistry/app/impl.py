@@ -82,7 +82,9 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
     """\
     <p style="margin-bottom: 0">
         Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-        improvements</a> or make pull requests to update the underlying database, which is stored in
+        improvements</a>, <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=\
+            New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">request a new prefix</a>,
+             or make pull requests to update the underlying database, which is stored in
         <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
             JSON</a> on GitHub where the community can engage in an open review process.
     </p>
