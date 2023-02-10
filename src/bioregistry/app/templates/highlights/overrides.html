@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Overrides{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            Overrides for <code>{{ key }}</code>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Prefix</th>
+                <th>Name</th>
+                <th>{{ key }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for resource, value in overrides %}
+                <tr>
+                    <td><code>{{ resource.prefix }}</code></td>
+                    <td>{{ resource.get_name() }}</td>
+                    <td>
+                        {% if value is string and (value.startswith("http") or value.startswith("ftp")) %}
+                            <a href="{{ value }}">{{ value }}</a>
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

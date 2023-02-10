@@ -44,6 +44,7 @@ from ..schema.struct import (
     RegistryGovernance,
     RegistryQualities,
     RegistrySchema,
+    Resource,
     get_json_schema,
     schema_status_map,
 )
@@ -571,3 +572,18 @@ def highlights_keywords():
             keyword_to_prefix[keyword].append(resource)
 
     return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
+
+
+@ui_blueprint.route("/highlights/overrides/")
+@ui_blueprint.route("/highlights/overrides/<key>")
+def highlights_overides(key: Optional[str] = None):
+    """Render the overrides highlights page."""
+    if not key or key not in Resource.__fields__:
+        s = "\n".join(f"- {key}" for key in sorted(Resource.__fields__))
+        return abort(400, f"Invalid key passed: {key}. Valid are:\n{s}")
+    overrides = []
+    for _, r in sorted(manager.registry.items()):
+        value = getattr(r, key, None)
+        if value:
+            overrides.append((r, value))
+    return render_template("highlights/overrides.html", key=key, overrides=overrides)
