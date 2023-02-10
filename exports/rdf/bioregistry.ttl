@@ -10495,19 +10495,23 @@ bioregistry:oma.protein a bioregistry.schema:0000001 ;
 
 bioregistry:omia a bioregistry.schema:0000001 ;
     rdfs:label "Online Mendelian Inheritance in Animals" ;
-    dc:description "Online Mendelian Inheritance in Animals is a a database of genes, inherited disorders and traits in animal species (other than human and mouse)."^^xsd:string ;
+    dc:description "Online Mendelian Inheritance in Animals (OMIA) is a catalogue/compendium of inherited disorders, other (single-locus) traits, and associated genes and variants in 363 animal species (other than human and mouse and rats and zebrafish, which have their own resources)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:OMIA,
         n2t:omia,
         prefixcommons:omia,
         miriam:omia ;
     dcat:keyword "classification",
-        "gene" ;
-    foaf:homepage "http://omia.angis.org.au/"^^xsd:string ;
+        "disorders",
+        "gene",
+        "model organism database",
+        "traits" ;
+    foaf:homepage "https://omia.org"^^xsd:string ;
     bioregistry.schema:0000005 "1000"^^xsd:string ;
-    bioregistry.schema:0000006 "http://omia.angis.org.au/$1/"^^xsd:string ;
+    bioregistry.schema:0000006 "https://omia.org/OMIA$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 true .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5520-6597 .
 
 bioregistry:ontoneo a bioregistry.schema:0000001 ;
     rdfs:label "Obstetric and Neonatal Ontology" ;
@@ -15650,6 +15654,9 @@ orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" ;
 orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
     foaf:mbox "Maciej.Antczak@cs.put.poznan.pl" .
 
+orcid:0000-0002-5520-6597 rdfs:label "Imke Tammen" ;
+    foaf:mbox "imke.tammen@sydney.edu.au" .
+
 orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" ;
     foaf:mbox "stoeckrt@pcbi.upenn.edu" .
 
@@ -20583,6 +20590,10 @@ biolink:SPDI dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:STY dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:ScopusID dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:UNIPROT.ISOFORM dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:UniProtKB dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:VANDF dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -28976,6 +28987,7 @@ bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
     skos:exactMatch biocontext:UNIPROT.ISOFORM,
+        biolink:UNIPROT.ISOFORM,
         n2t:uniprot.isoform,
         miriam:uniprot.isoform ;
     foaf:homepage "http://www.uniprot.org/"^^xsd:string ;
@@ -40416,6 +40428,7 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:UP,
         edam.data:3021,
         biocontext:UniProtKB,
+        biolink:UniProtKB,
         cellosaurus.resource:UniProtKB,
         go.resource:UniProtKB,
         n2t:uniprot,
@@ -40992,6 +41005,8 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:SPDI,
         biolink:STY,
         biolink:ScopusID,
+        biolink:UNIPROT.ISOFORM,
+        biolink:UniProtKB,
         biolink:VANDF,
         biolink:VMC,
         biolink:WBVocab,
