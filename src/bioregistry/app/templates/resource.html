@@ -22,6 +22,19 @@
 {% set twitter = resource.get_twitter() %}
 {% set keywords = resource.get_keywords() %}
 
+{% macro get_banana_text() %}
+    This means that you may see local unique identifiers that include a redundant prefix and delimiter (also known
+    as a <i>banana</i>)
+    and therefore look like a CURIE. For {{ name }}, the banana looks like
+    <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}</code>.
+    Therefore, you may see local unique identifiers for this resource that look like
+    <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}{{ example }}</code>
+    (instead of the canonical form <code>{{ example }}</code>) and CURIEs for this resource that look like
+    <code>{{ prefix }}:{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}{{ example }}</code>
+    (instead of the canonical form <code>{{ prefix }}:{{ example }}</code>).
+    The Bioregistry will automatically strip off the banana when standardizing local unique identifiers and CURIEs.
+{% endmacro %}
+
 {% block container %}
     <script type="application/ld+json">{{ bioschemas | safe }}</script>
     <div class="card">
@@ -247,14 +260,18 @@
                     {% endif %}
                 </dd>
                 {% if namespace_in_lui %}
-                    <dt>MIRIAM Namespace Embedded in LUI</dt>
+                    <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
                     <dd>
                         The legacy MIRIAM standard for generating CURIEs with this resource
-                        includes the <code>namespaceEmbeddedInLUI</code> as true. The actual
-                        part that gets prefixed before the local unique identifier regex,
-                        otherwise known as the banana, is
-                        <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}</code>.
-                        Therefore, you might see local unique identifiers written out as CURIEs.
+                        annotates the <code>namespaceEmbeddedInLUI</code> as true.
+                        {{ get_banana_text() }}
+                    </dd>
+                {% elif banana %}
+                    <dt><i class="fas fa-info-circle"></i> Namespace Embedded in LUI</dt>
+                    <dd>
+                        This resource has been annotated by the Bioregistry as having a potential
+                        namespace embedded in LUI.
+                        {{ get_banana_text() }}
                     </dd>
                 {% endif %}
 
