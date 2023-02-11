@@ -4843,17 +4843,30 @@
     "example": "0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "keywords": [
-      "ontology"
+      "anatomy",
+      "human",
+      "ontology",
+      "physiology"
     ],
+    "license": "CC-BY-4.0",
     "name": "CALIPHO Group Ontology of Human Anatomy",
     "pattern": "^\\d+$",
     "preferred_prefix": "caloha",
+    "providers": [
+      {
+        "code": "biopragmatics",
+        "description": "A static site generated from the CALOHA OBO flat file",
+        "homepage": "https://biopragmatics.github.io/providers",
+        "name": "Biopragmatics Browser",
+        "uri_format": "https://biopragmatics.github.io/providers/caloha/$1"
+      }
+    ],
     "references": [
       "https://twitter.com/neXtProt_news/status/1350105997633867781"
     ],
     "repository": "https://github.com/calipho-sib/controlled-vocabulary",
     "twitter": "neXtProt_news",
-    "uri_format": "https://biopragmatics.github.io/providers/caloha/$1"
+    "uri_format": "https://www.nextprot.org/term/TS-$1"
   },
   "cameo": {
     "contact": {
@@ -5711,6 +5724,13 @@
         "homepage": "https://web.expasy.org/cellosaurus",
         "name": "Legacy Endpoint",
         "uri_format": "https://web.expasy.org/cellosaurus/CVCL_$1"
+      },
+      {
+        "code": "nextprot",
+        "description": "The neXtProt endpoint for exploring Cellosaurus",
+        "homepage": "https://www.nextprot.org/",
+        "name": "neXtProt Cellosaurus Browser",
+        "uri_format": "https://www.nextprot.org/term/CVCL_$1"
       }
     ],
     "publications": [
@@ -6893,7 +6913,7 @@
       "uberon"
     ],
     "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi.",
-    "download_obo": "https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo",
+    "download_obo": "https://github.com/obophenotype/cell-ontology/raw/master/cl.obo",
     "download_owl": "http://purl.obolibrary.org/obo/cl.owl",
     "example": "0000062",
     "homepage": "https://obophenotype.github.io/cell-ontology/",
@@ -19671,6 +19691,13 @@
         "uri_format": "http://www.informatics.jax.org/vocab/gene_ontology/GO:$1"
       },
       {
+        "code": "nextprot",
+        "description": "The neXtProt endpoint for exploring GO",
+        "homepage": "https://www.nextprot.org/",
+        "name": "neXtProt GO Browser",
+        "uri_format": "https://www.nextprot.org/term/GO:$1"
+      },
+      {
         "code": "quickgo",
         "description": "QuickGO (Gene Ontology browser)",
         "homepage": "https://www.ebi.ac.uk/QuickGO/",
@@ -23268,6 +23295,43 @@
       "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0003479"
     ],
     "uri_format": "http://purl.bioontology.org/ontology/IDODEN_$1"
+  },
+  "idog": {
+    "contact": {
+      "email": "baoym@big.ac.cn",
+      "github": null,
+      "name": "Yiming Bao",
+      "orcid": "0000-0002-9922-9723"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Provides the worldwide dog research community a variety of data services including access to genes, genomes, SNPs, breed/disease Traits, gene expression experiments, dog-guman homology, and literatur. In addition, iDog provides online tools for performing genomic data visualization and analyses.",
+    "example": "4",
+    "homepage": "https://ngdc.cncb.ac.cn/idog/",
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "re3data": "r3d100012176"
+    },
+    "name": "Integrated Resource for Domestic Dog",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "idog",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gky1041",
+        "pmc": "PMC6323916 ",
+        "pubmed": "30371881",
+        "title": "iDog: an integrated resource for domestic dogs and wild canids",
+        "year": 2019
+      }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/725"
+    ],
+    "uri_format": "https://ngdc.cncb.ac.cn/idog/breed/getBreedDetail.action?breedId=$1"
   },
   "idomal": {
     "appears_in": [
@@ -30074,6 +30138,15 @@
     "namespace_in_lui": true,
     "pattern": "^\\d{7}$",
     "preferred_prefix": "MP",
+    "providers": [
+      {
+        "code": "nextprot",
+        "description": "The neXtProt endpoint for exploring MP",
+        "homepage": "https://www.nextprot.org",
+        "name": "neXtProt MP Browser",
+        "uri_format": "https://www.nextprot.org/term/MP:$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1186/s13326-015-0009-1",
@@ -44887,6 +44960,9 @@
       "SNOMEDCT_US_2021_03_01",
       "SNOMEDCT_US_2021_07_31",
       "SNOMEDCT_US_2021_09_01",
+      "SNOMEDCT_US_2022_07_31",
+      "SNOMEDCT_US_2022_09_01",
+      "SNOMEDCT_US_2022_12_31",
       "SNOMED_CT",
       "SNOMED_CT_US_2018_03_01",
       "SNOWMEDCT",
@@ -49252,6 +49328,31 @@
     "pattern": "^VB\\.[A-Za-z][A-Za-z]\\..*$",
     "preferred_prefix": "vegbank",
     "uri_format": "http://vegbank.org/cite/$1"
+  },
+  "venom": {
+    "comment": "Note that getting access to this resource requires manual written contact and signing a licensing agreement. Used by VBO",
+    "contact": {
+      "email": "DBrodbelt@RVC.AC.UK",
+      "github": null,
+      "name": "David Brodbelt",
+      "orcid": "0000-0001-5628-4194"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A standard set of clinical veterinary terms for use in referral veterinary hospital electronic patient records and first opinion veterinary practice management systems.",
+    "example": "12969",
+    "homepage": "https://venomcoding.org/",
+    "name": "Veterinary Nomenclature",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "venom",
+    "proprietary": true,
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/724"
+    ]
   },
   "vfb": {
     "contact": {

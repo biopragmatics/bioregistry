@@ -15340,6 +15340,9 @@ orcid:0000-0001-5528-0087 rdfs:label "Roman Laskowski" ;
 orcid:0000-0001-5530-0017 rdfs:label "Milton H. Saier, Jr." ;
     foaf:mbox "msaier@ucsd.edu" .
 
+orcid:0000-0001-5628-4194 rdfs:label "David Brodbelt" ;
+    foaf:mbox "DBrodbelt@RVC.AC.UK" .
+
 orcid:0000-0001-5809-9523 rdfs:label "Darren Natale" ;
     foaf:mbox "dan5@georgetown.edu" .
 
@@ -15847,6 +15850,9 @@ orcid:0000-0002-9713-9994 rdfs:label "Mike Tyers" ;
 
 orcid:0000-0002-9765-2990 rdfs:label "Ryan Brinkman" ;
     foaf:mbox "rbrinkman@bccrc.ca" .
+
+orcid:0000-0002-9922-9723 rdfs:label "Yiming Bao" ;
+    foaf:mbox "baoym@big.ac.cn" .
 
 orcid:0000-0002-9943-2342 rdfs:label "EOL Secretariat" ;
     foaf:mbox "secretariat@eol.org" .
@@ -23328,10 +23334,13 @@ bioregistry:caloha a bioregistry.schema:0000001 ;
     rdfs:label "CALIPHO Group Ontology of Human Anatomy" ;
     dc:description "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    dcat:keyword "ontology" ;
+    dcat:keyword "anatomy",
+        "human",
+        "ontology",
+        "physiology" ;
     foaf:homepage "https://github.com/calipho-sib/controlled-vocabulary"^^xsd:string ;
     bioregistry.schema:0000005 "0001"^^xsd:string ;
-    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/caloha/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.nextprot.org/term/TS-$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo> ;
     bioregistry.schema:0000012 false .
@@ -25751,6 +25760,18 @@ bioregistry:idoden a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Elvira Mitraka" ;
             foaf:mbox "elvira@imbb.forth.gr" ] .
+
+bioregistry:idog a bioregistry.schema:0000001 ;
+    rdfs:label "Integrated Resource for Domestic Dog" ;
+    dc:description "Provides the worldwide dog research community a variety of data services including access to genes, genomes, SNPs, breed/disease Traits, gene expression experiments, dog-guman homology, and literatur. In addition, iDog provides online tools for performing genomic data visualization and analyses."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch re3data:r3d100012176 ;
+    foaf:homepage "https://ngdc.cncb.ac.cn/idog/"^^xsd:string ;
+    bioregistry.schema:0000005 "4"^^xsd:string ;
+    bioregistry.schema:0000006 "https://ngdc.cncb.ac.cn/idog/breed/getBreedDetail.action?breedId=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-9922-9723 .
 
 bioregistry:idomal a bioregistry.schema:0000001 ;
     rdfs:label "Malaria Ontology" ;
@@ -28586,6 +28607,9 @@ bioregistry:snomedct a bioregistry.schema:0000001 ;
         "SNOMEDCT_US_2021_03_01",
         "SNOMEDCT_US_2021_07_31",
         "SNOMEDCT_US_2021_09_01",
+        "SNOMEDCT_US_2022_07_31",
+        "SNOMEDCT_US_2022_09_01",
+        "SNOMEDCT_US_2022_12_31",
         "SNOMED_CT",
         "SNOMED_CT_US_2018_03_01",
         "SNOWMEDCT",
@@ -29153,6 +29177,16 @@ bioregistry:vega a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0338-3070 ;
     bioregistry.schema:0000023 "VEGA" .
+
+bioregistry:venom a bioregistry.schema:0000001 ;
+    rdfs:label "Veterinary Nomenclature" ;
+    dc:description "A standard set of clinical veterinary terms for use in referral veterinary hospital electronic patient records and first opinion veterinary practice management systems."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://venomcoding.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "12969"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-5628-4194 .
 
 bioregistry:violinnet a bioregistry.schema:0000001 ;
     rdfs:label "ViolinNet" ;
@@ -34176,6 +34210,8 @@ re3data:r3d100012078 dcterms:isPartOf bioregistry.metaresource:re3data .
 re3data:r3d100012152 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100012171 dcterms:isPartOf bioregistry.metaresource:re3data .
+
+re3data:r3d100012176 dcterms:isPartOf bioregistry.metaresource:re3data .
 
 re3data:r3d100012189 dcterms:isPartOf bioregistry.metaresource:re3data .
 
@@ -41563,6 +41599,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:icepo,
         bioregistry:icf,
         bioregistry:idoden,
+        bioregistry:idog,
         bioregistry:idpo,
         bioregistry:ietf.language,
         bioregistry:ihw,
@@ -41729,6 +41766,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:vandf,
         bioregistry:vann,
         bioregistry:vega,
+        bioregistry:venom,
         bioregistry:violinnet,
         bioregistry:void,
         bioregistry:vsdb,
@@ -42186,6 +42224,7 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100012078,
         re3data:r3d100012152,
         re3data:r3d100012171,
+        re3data:r3d100012176,
         re3data:r3d100012189,
         re3data:r3d100012193,
         re3data:r3d100012197,
@@ -47821,6 +47860,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ido,
         bioregistry:idocovid19,
         bioregistry:idoden,
+        bioregistry:idog,
         bioregistry:idomal,
         bioregistry:idoo,
         bioregistry:idot,
@@ -48619,6 +48659,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:vectorbase,
         bioregistry:vega,
         bioregistry:vegbank,
+        bioregistry:venom,
         bioregistry:vfb,
         bioregistry:vfdb.gene,
         bioregistry:vfdb.genus,
