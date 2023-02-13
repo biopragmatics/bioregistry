@@ -15661,6 +15661,10 @@ orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
 orcid:0000-0002-5520-6597 rdfs:label "Imke Tammen" ;
     foaf:mbox "imke.tammen@sydney.edu.au" .
 
+orcid:0000-0002-5705-5710 rdfs:label "Joshua Orvis" ;
+    dcterms:contributor bioregistry:gear ;
+    foaf:mbox "jorvis@gmail.com" .
+
 orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" ;
     foaf:mbox "stoeckrt@pcbi.upenn.edu" .
 
@@ -25196,6 +25200,18 @@ bioregistry:gc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "gc_id" .
+
+bioregistry:gear a bioregistry.schema:0000001 ;
+    rdfs:label "Gene Expression Analysis Resource" ;
+    dc:description "The gEAR portal is a website for visualization and analysis of multi-omic data both in public and private domains."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://umgear.org"^^xsd:string ;
+    bioregistry.schema:0000005 "d.a59037e8"^^xsd:string ;
+    bioregistry.schema:0000006 "https://umgear.org/p?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[dp]\\.[a-z0-9]{8}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5705-5710 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:gemet a bioregistry.schema:0000001 ;
     rdfs:label "General Multilingual Environmental Thesaurus" ;
@@ -47713,6 +47729,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gcst,
         bioregistry:gdc,
         bioregistry:gdsc,
+        bioregistry:gear,
         bioregistry:gecko,
         bioregistry:gemet,
         bioregistry:genatlas,
