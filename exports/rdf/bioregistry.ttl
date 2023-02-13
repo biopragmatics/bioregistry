@@ -10627,6 +10627,7 @@ bioregistry:orcid a bioregistry.schema:0000001 ;
     skos:exactMatch bartoc:2021,
         biocontext:ORCID,
         biolink:ORCID,
+        go.resource:orcid,
         n2t:orcid,
         fairsharing:FAIRsharing.nx58jg,
         miriam:orcid,
@@ -21154,6 +21155,8 @@ go.resource:dbSNP dcterms:isPartOf bioregistry.metaresource:go .
 go.resource:dictyBase dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:gomodel dcterms:isPartOf bioregistry.metaresource:go .
+
+go.resource:orcid dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:taxon dcterms:isPartOf bioregistry.metaresource:go .
 
@@ -35808,6 +35811,17 @@ bioregistry:gnomad a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6025-0015 .
 
+bioregistry:go.rule a bioregistry.schema:0000001 ;
+    rdfs:label "Gene Ontology Rules" ;
+    dc:description "GO Rules are a way of documenting the set of filters and reports that should apply to GAF annotation data. Some rules are expressed as SPARQL on a triplestore, some are code in the GAF parsing software, ontobio."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:go ;
+    foaf:homepage "https://github.com/geneontology/go-site/tree/master/metadata/rules"^^xsd:string ;
+    bioregistry.schema:0000005 "0000004"^^xsd:string ;
+    bioregistry.schema:0000006 "https://github.com/geneontology/go-site/blob/master/metadata/rules/gorule-$1.md"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:gsso a bioregistry.schema:0000001 ;
     rdfs:label "Gender, Sex, and Sexual Orientation Ontology" ;
     dc:description "The Gender, Sex, and Sexual Orientation (GSSO) ontology is an interdisciplinary ontology connecting terms from biology, medicine, psychology, sociology, and gender studies, aiming to bridge gaps between linguistic variations inside and outside of the health care environment. A large focus of the ontology is its consideration of LGBTQIA+ terminology."^^xsd:string ;
@@ -40156,63 +40170,6 @@ bioregistry:cl a bioregistry.schema:0000001 ;
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0001-9990-8331 .
 
-bioregistry:go a bioregistry.schema:0000001 ;
-    rdfs:label "Gene Ontology" ;
-    dc:description "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:GO,
-        agroportal:GO,
-        edam.data:1176,
-        obofoundry:go,
-        oid:2.16.840.1.113883.6.128,
-        ontobee:GO,
-        bartoc:572,
-        bioportal:GO,
-        biocontext:GO,
-        go.resource:GO,
-        n2t:go,
-        ncbi.resource:GO,
-        fairsharing:FAIRsharing.6xq0ee,
-        prefixcommons:go,
-        miriam:go,
-        ols:go,
-        uniprot.resource:DB-0037,
-        wikidata:P686 ;
-    dcat:keyword "gene",
-        "life science",
-        "obo",
-        "ontology" ;
-    foaf:homepage "http://geneontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0032571"^^xsd:string ;
-    bioregistry.schema:0000006 "http://amigo.geneontology.org/amigo/term/GO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:go.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:cl,
-        bioregistry:ncbitaxon,
-        bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:maxo,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:planp,
-        bioregistry:uberon,
-        bioregistry:xpo,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0001-6787-2901 ;
-    bioregistry.schema:0000023 "gobp",
-        "gobpid",
-        "gocc",
-        "goccid",
-        "gomf",
-        "gomfid" .
-
 bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Taxonomy" ;
     dc:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
@@ -40297,6 +40254,64 @@ bioregistry:nif dcterms:hasPart bioregistry:neurolex,
         bioregistry:nlx.qual,
         bioregistry:nlx.res,
         bioregistry:nlx.sub .
+
+bioregistry:go a bioregistry.schema:0000001 ;
+    rdfs:label "Gene Ontology" ;
+    dc:description "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism."^^xsd:string ;
+    dcterms:hasPart bioregistry:go.rule ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:GO,
+        agroportal:GO,
+        edam.data:1176,
+        obofoundry:go,
+        oid:2.16.840.1.113883.6.128,
+        ontobee:GO,
+        bartoc:572,
+        bioportal:GO,
+        biocontext:GO,
+        go.resource:GO,
+        n2t:go,
+        ncbi.resource:GO,
+        fairsharing:FAIRsharing.6xq0ee,
+        prefixcommons:go,
+        miriam:go,
+        ols:go,
+        uniprot.resource:DB-0037,
+        wikidata:P686 ;
+    dcat:keyword "gene",
+        "life science",
+        "obo",
+        "ontology" ;
+    foaf:homepage "http://geneontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0032571"^^xsd:string ;
+    bioregistry.schema:0000006 "http://amigo.geneontology.org/amigo/term/GO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:go.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:cl,
+        bioregistry:ncbitaxon,
+        bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:chiro,
+        bioregistry:cl,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:maxo,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:planp,
+        bioregistry:uberon,
+        bioregistry:xpo,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0001-6787-2901 ;
+    bioregistry.schema:0000023 "gobp",
+        "gobpid",
+        "gocc",
+        "goccid",
+        "gomf",
+        "gomfid" .
 
 bioregistry:pato a bioregistry.schema:0000001 ;
     rdfs:label "Phenotype And Trait Ontology" ;
@@ -41565,6 +41580,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:gmelin,
         bioregistry:gnomad,
         bioregistry:go.resource,
+        bioregistry:go.rule,
         bioregistry:goche,
         bioregistry:goeco,
         bioregistry:goldbook,
@@ -41928,6 +41944,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:dbSNP,
         go.resource:dictyBase,
         go.resource:gomodel,
+        go.resource:orcid,
         go.resource:taxon ;
     foaf:homepage "http://geneontology.org/" ;
     bioregistry.schema:0000005 "CHEBI" ;
@@ -47748,6 +47765,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:go.model,
         bioregistry:go.ref,
         bioregistry:go.resource,
+        bioregistry:go.rule,
         bioregistry:goa,
         bioregistry:goche,
         bioregistry:goeco,

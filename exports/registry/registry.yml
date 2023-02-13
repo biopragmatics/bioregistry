@@ -18000,6 +18000,22 @@ go.resource:
   name: Gene Ontology Registry
   preferred_prefix: go.resource
   uri_format: https://bioregistry.io/metaregistry/go/$1
+go.rule:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: GO Rules are a way of documenting the set of filters and reports that
+    should apply to GAF annotation data. Some rules are expressed as SPARQL on a triplestore,
+    some are code in the GAF parsing software, ontobio.
+  example: '0000004'
+  homepage: https://github.com/geneontology/go-site/tree/master/metadata/rules
+  name: Gene Ontology Rules
+  part_of: go
+  pattern: ^\d{7}$
+  preferred_prefix: GORULE
+  uri_format: https://github.com/geneontology/go-site/blob/master/metadata/rules/gorule-$1.md
 goa:
   description: The GOA (Gene Ontology Annotation) project provides high-quality Gene
     Ontology (GO) annotations to proteins in the UniProt Knowledgebase (UniProtKB)
@@ -32093,6 +32109,7 @@ orcid:
     biocontext: ORCID
     biolink: ORCID
     fairsharing: FAIRsharing.nx58jg
+    go: orcid
     miriam: orcid
     n2t: orcid
     wikidata: P496

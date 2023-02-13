@@ -1783,6 +1783,18 @@
       url_syntax: http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
       example_id: PANTHER:PTHR11455
       example_url: http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000
+- database: orcid
+  name: Open Researcher and Contributor
+  description: ORCID (Open Researcher and Contributor ID) is an open, non-profit, community-based effort to create and maintain a registry of unique identifiers for individual researchers.
+  generic_urls:
+    - https://orcid.org/
+  entity_types:
+    - type_name: entity
+      type_id: BET:0000000
+      id_syntax: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
+      url_syntax: https://orcid.org/[example_id]
+      example_id: orcid:0000-0003-4423-4370
+      example_url: https://orcid.org/0000-0003-4423-4370
 - database: ParkinsonsUK-UCL
   name: Parkinsons Disease Gene Ontology Initiative
   generic_urls:
