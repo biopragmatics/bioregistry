@@ -9674,14 +9674,23 @@
   "unii": {
     "deprecated": false,
     "description": "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance\u2019s molecular structure and/or descriptive information.",
-    "homepage": "http://fdasis.nlm.nih.gov/srs/",
+    "homepage": "https://precision.fda.gov/uniisearch",
     "id": "00000531",
     "name": "UNII",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]+$",
     "prefix": "unii",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "UNII at U.S. Food and Drug Administration",
+        "homepage": "http://fdasis.nlm.nih.gov/srs/",
+        "name": "UNII at U.S. Food and Drug Administration",
+        "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+      }
+    ],
     "sampleId": "3G6A5W338E",
-    "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+    "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
   },
   "unimod": {
     "deprecated": false,

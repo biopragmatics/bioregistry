@@ -43923,7 +43923,7 @@ unii:
     UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric
     identifier based on a substance’s molecular structure and/or descriptive information.
   example: 3G6A5W338E
-  homepage: http://fdasis.nlm.nih.gov/srs/
+  homepage: https://precision.fda.gov/uniisearch
   mappings:
     biocontext: UNII
     cheminf: '000563'
@@ -43933,7 +43933,13 @@ unii:
   name: Unique Ingredient Identifier
   pattern: ^[A-Z0-9]+$
   preferred_prefix: unii
-  uri_format: http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1
+  providers:
+  - code: CURATOR_REVIEW
+    description: UNII at U.S. Food and Drug Administration
+    homepage: http://fdasis.nlm.nih.gov/srs/
+    name: UNII at U.S. Food and Drug Administration
+    uri_format: http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1
+  uri_format: https://precision.fda.gov/uniisearch/srs/unii/$1
 unimod:
   description: Unimod is a public domain database created to provide a community supported,
     comprehensive database of protein modifications for mass spectrometry applications.
