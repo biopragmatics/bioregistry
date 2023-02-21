@@ -57,7 +57,6 @@ SKIP = {
     "P181": "is a data property",
     "P1843": "is a data property",
     "P225": "is a data property",
-    "P1104": "is a data property",
 }
 
 
