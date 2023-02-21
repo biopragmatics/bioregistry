@@ -1250,7 +1250,7 @@ class Resource(BaseModel):
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
-        :param legacy_banana:
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1287,6 +1287,7 @@ class Resource(BaseModel):
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1387,7 +1388,7 @@ class Resource(BaseModel):
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "miriam.legacy": get_legacy_miriam_uri_format,
-        "miriam.legacy2": get_legacy_alt_miriam_uri_format,
+        "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
     }
