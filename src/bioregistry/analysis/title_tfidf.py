@@ -26,7 +26,7 @@ URL = (
 
 
 @click.command()
-def main():
+def main() -> None:
     """Train, evaluate, and apply a TF-IDF classifier on resources that should be curated by publication title."""
     click.echo("loading bioregistry publications")
     publication_df = get_publications_df()
