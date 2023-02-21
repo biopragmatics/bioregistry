@@ -409,7 +409,7 @@ def get_default_format(prefix: str) -> Optional[str]:
     return entry.get_default_format()
 
 
-def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
+def get_miriam_uri_prefix(prefix: str, **kwargs) -> Optional[str]:
     """Get the URI prefix for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
@@ -425,10 +425,10 @@ def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_miriam_uri_prefix()
+    return resource.get_miriam_uri_prefix(**kwargs)
 
 
-def get_miriam_uri_format(prefix: str) -> Optional[str]:
+def get_miriam_uri_format(prefix: str, **kwargs) -> Optional[str]:
     """Get the URI format for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
@@ -444,7 +444,7 @@ def get_miriam_uri_format(prefix: str) -> Optional[str]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_miriam_uri_format()
+    return resource.get_miriam_uri_format(**kwargs)
 
 
 def get_obofoundry_uri_format(prefix: str) -> Optional[str]:
