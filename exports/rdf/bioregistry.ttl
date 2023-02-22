@@ -4642,7 +4642,9 @@ bioregistry:emapa a bioregistry.schema:0000001 ;
         go.resource:EMAPA,
         fairsharing:FAIRsharing.j0fa1d,
         ols:emapa ;
-    dcat:keyword "obo",
+    dcat:keyword "anatomy",
+        "developmental biology",
+        "obo",
         "ontology" ;
     foaf:homepage "http://www.informatics.jax.org/expression.shtml"^^xsd:string ;
     bioregistry.schema:0000005 "26753"^^xsd:string ;
@@ -7489,6 +7491,20 @@ bioregistry:interlex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "ILX" .
 
+bioregistry:iobc a bioregistry.schema:0000001 ;
+    rdfs:label "Interlinking Ontology for Biological Concepts" ;
+    dc:description "Interlinking Ontology for Biological Concepts (IOBC) contains approximately 80,000 biological concepts such as biological phenomena, diseases, molecular functions, gene products, chemicals, and medical cares, and approximately 20,000 related concepts such as earth science and environmental science. The concepts are structured by thirty-five relations such as has function, has role, has quality, and precedes. Each concept has both of English and Japanese labels. For further information including the developmental method, see papers in the PUBLICATIONS PAGE. The license for this ontology is specified in the Creative Commons Attribution-NonCommercial 4.0 International. If you use data from this ontology, please be sure attribute this ontology as follows: \"Interlinking Ontology for Biological Concepts © National Bioscience Database Center licensed under CC Attribution-NonCommercial 4.0 International\"."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:IOBC,
+        bioportal:IOBC ;
+    dcat:keyword "ontology" ;
+    foaf:homepage "https://github.com/kushidat/IOBC"^^xsd:string ;
+    bioregistry.schema:0000005 "200906038218908385"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.jp/bio/4/id/$1"^^xsd:string ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/IOBC/25/iobc.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-0784-4113 .
+
 bioregistry:ipi a bioregistry.schema:0000001 ;
     rdfs:label "International Protein Index" ;
     dc:description "IPI provides a top level guide to the main databases that describe the proteomes of higher eukaryotic organisms. IPI maintaisn a database of cross references between the primary data sources, it provides minimally redundant but complete sets of proteins for featured species, and it maintains stable and unique identifiers."^^xsd:string ;
@@ -9171,7 +9187,10 @@ bioregistry:mmusdv a bioregistry.schema:0000001 ;
         biolink:MmusDv,
         fairsharing:FAIRsharing.zchb68,
         ols:mmusdv ;
-    dcat:keyword "obo",
+    dcat:keyword "anatomy",
+        "developmental biology",
+        "embryology",
+        "obo",
         "ontology" ;
     foaf:homepage "https://github.com/obophenotype/developmental-stage-ontologies/wiki/MmusDv"^^xsd:string ;
     bioregistry.schema:0000005 "0000066"^^xsd:string ;
@@ -15531,6 +15550,9 @@ orcid:0000-0002-0643-3144 rdfs:label "Simon Jupp" ;
 orcid:0000-0002-0682-3089 rdfs:label "David Sehnal" ;
     foaf:mbox "david.sehnal@gmail.com" .
 
+orcid:0000-0002-0784-4113 rdfs:label "Tatsuya Kushida" ;
+    foaf:mbox "kushida@biosciencedbc.jp" .
+
 orcid:0000-0002-0816-7775 rdfs:label "Philipp Bucher" ;
     foaf:mbox "ask-epd@googlegroups.com" .
 
@@ -16299,6 +16321,8 @@ aberowl:IDODEN dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:IDOMAL dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:INO dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:IOBC dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ITO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -18441,6 +18465,8 @@ bioportal:IDODEN dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:IDOMAL dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:INO dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:IOBC dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:ITO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -24667,7 +24693,7 @@ bioregistry:ecocyc a bioregistry.schema:0000001 ;
     dcat:keyword "biology" ;
     foaf:homepage "https://ecocyc.org/"^^xsd:string ;
     bioregistry.schema:0000005 "AICARTRANSIMPCYCLO-CPLX"^^xsd:string ;
-    bioregistry.schema:0000006 "https://biocyc.org/gene?id=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://ecocyc.org/gene?id=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ecolexicon a bioregistry.schema:0000001 ;
@@ -25646,6 +25672,26 @@ bioregistry:hmdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "HMDB" .
 
+bioregistry:hms.lincs.antibody a bioregistry.schema:0000001 ;
+    rdfs:label "HMS Library of Integrated Network-based Cellular Signatures Antibodies" ;
+    dc:description "Database contains all publicly available HMS LINCS datasets and information for each dataset about experimental reagents (small molecule perturbagens, cells, antibodies, and proteins) and experimental and data analysis protocols."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://lincs.hms.harvard.edu/db/antibodies/"^^xsd:string ;
+    bioregistry.schema:0000005 "80001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://lincs.hms.harvard.edu/db/antibodies/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^8\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:hms.lincs.cell a bioregistry.schema:0000001 ;
+    rdfs:label "HMS LINCS Cell" ;
+    dc:description "Database contains all publicly available HMS LINCS datasets and information for each dataset about experimental reagents (small molecule perturbagens, cells, antibodies, and proteins) and experimental and data analysis protocols."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://lincs.hms.harvard.edu/db/cell/"^^xsd:string ;
+    bioregistry.schema:0000005 "50583"^^xsd:string ;
+    bioregistry.schema:0000006 "https://lincs.hms.harvard.edu/db/cells/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^5\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:hms.lincs.compound a bioregistry.schema:0000001 ;
     rdfs:label "HMS LINCS Compound" ;
     dc:description "Database contains all publicly available HMS LINCS datasets and information for each dataset about experimental reagents (small molecule perturbagens, cells, antibodies, and proteins) and experimental and data analysis protocols."^^xsd:string ;
@@ -25653,9 +25699,20 @@ bioregistry:hms.lincs.compound a bioregistry.schema:0000001 ;
     foaf:homepage "https://lincs.hms.harvard.edu/db/sm/"^^xsd:string ;
     bioregistry.schema:0000005 "10001-101"^^xsd:string ;
     bioregistry.schema:0000006 "https://lincs.hms.harvard.edu/db/sm/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^1\\d{4}-\\d{3}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "HMS-LINCS",
         "hmsl_id" .
+
+bioregistry:hms.lincs.dataset a bioregistry.schema:0000001 ;
+    rdfs:label "HMS Library of Integrated Network-based Cellular Signatures Datasets" ;
+    dc:description ""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://lincs.hms.harvard.edu/db/datasets/"^^xsd:string ;
+    bioregistry.schema:0000005 "20003"^^xsd:string ;
+    bioregistry.schema:0000006 "https://lincs.hms.harvard.edu/db/datasets/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^2\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:hog a bioregistry.schema:0000001 ;
     rdfs:label "Homologous Organ Groups" ;
@@ -35956,7 +36013,9 @@ bioregistry:hsapdv a bioregistry.schema:0000001 ;
         biolink:HsapDv,
         fairsharing:FAIRsharing.c6vhm3,
         ols:hsapdv ;
-    dcat:keyword "obo",
+    dcat:keyword "anatomy",
+        "developmental biology",
+        "obo",
         "ontology" ;
     foaf:homepage "https://github.com/obophenotype/developmental-stage-ontologies/wiki/HsapDv"^^xsd:string ;
     bioregistry.schema:0000005 "0000194"^^xsd:string ;
@@ -41617,7 +41676,10 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:hesa,
         bioregistry:hl7.v2codesystem,
         bioregistry:hl7.v3codesystem,
+        bioregistry:hms.lincs.antibody,
+        bioregistry:hms.lincs.cell,
         bioregistry:hms.lincs.compound,
+        bioregistry:hms.lincs.dataset,
         bioregistry:hog,
         bioregistry:hsdb,
         bioregistry:icd10cm,
@@ -43246,6 +43308,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:IDODEN,
         bioportal:IDOMAL,
         bioportal:INO,
+        bioportal:IOBC,
         bioportal:ITO,
         bioportal:KISAO,
         bioportal:LABO,
@@ -43576,6 +43639,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:IDODEN,
         aberowl:IDOMAL,
         aberowl:INO,
+        aberowl:IOBC,
         aberowl:ITO,
         aberowl:KISAO,
         aberowl:LABO,
@@ -47850,7 +47914,10 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hl7.v2codesystem,
         bioregistry:hl7.v3codesystem,
         bioregistry:hmdb,
+        bioregistry:hms.lincs.antibody,
+        bioregistry:hms.lincs.cell,
         bioregistry:hms.lincs.compound,
+        bioregistry:hms.lincs.dataset,
         bioregistry:hog,
         bioregistry:hogenom,
         bioregistry:hoip,
@@ -47939,6 +48006,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:interfil,
         bioregistry:interlex,
         bioregistry:interpro,
+        bioregistry:iobc,
         bioregistry:ipi,
         bioregistry:ird.segment,
         bioregistry:irefweb,
