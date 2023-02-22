@@ -154,6 +154,14 @@ class TestIdentifiersOrg(unittest.TestCase):
             get_resource("doid").get_miriam_uri_prefix(legacy_banana=True),
         )
         self.assertEqual(
+            "https://identifiers.org/vario/VariO:",
+            get_resource("vario").get_miriam_uri_prefix(legacy_banana=True),
+        )
+        self.assertEqual(
+            "https://identifiers.org/cellosaurus/CVCL_",
+            get_resource("cellosaurus").get_miriam_uri_prefix(legacy_banana=True),
+        )
+        self.assertEqual(
             "https://identifiers.org/DOID/",
             get_resource("doid").get_miriam_uri_prefix(legacy_delimiter=True),
         )

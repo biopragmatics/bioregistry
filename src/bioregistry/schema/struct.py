@@ -1260,6 +1260,10 @@ class Resource(BaseModel):
         'https://identifiers.org/GO:'
         >>> get_resource('doid').get_miriam_uri_prefix(legacy_banana=True)
         'https://identifiers.org/doid/DOID:'
+        >>> get_resource('vario').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/doid/VariO:'
+        >>> get_resource('cellosaurus').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/cellosaurus/CVCL_'
         >>> get_resource('doid').get_miriam_uri_prefix(legacy_delimiter=True)
         'https://identifiers.org/DOID/'
         >>> assert get_resource('sty').get_miriam_uri_prefix() is None
@@ -1268,8 +1272,8 @@ class Resource(BaseModel):
         if miriam_prefix is None:
             return None
         protocol = "http" if legacy_protocol else "https"
-        if legacy_banana:
-            return f"{protocol}://identifiers.org/{miriam_prefix}/{miriam_prefix.upper()}:"
+        if legacy_banana and self.get_banana():
+            return f"{protocol}://identifiers.org/{miriam_prefix}/{self.get_banana()}{self.get_banana_peel()}"
         if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
