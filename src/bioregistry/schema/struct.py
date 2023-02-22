@@ -1261,7 +1261,7 @@ class Resource(BaseModel):
         >>> get_resource('doid').get_miriam_uri_prefix(legacy_banana=True)
         'https://identifiers.org/doid/DOID:'
         >>> get_resource('vario').get_miriam_uri_prefix(legacy_banana=True)
-        'https://identifiers.org/doid/VariO:'
+        'https://identifiers.org/vario/VariO:'
         >>> get_resource('cellosaurus').get_miriam_uri_prefix(legacy_banana=True)
         'https://identifiers.org/cellosaurus/CVCL_'
         >>> get_resource('doid').get_miriam_uri_prefix(legacy_delimiter=True)
