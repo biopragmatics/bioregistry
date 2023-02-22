@@ -12053,6 +12053,11 @@ ecocore:
   uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
   version: '2022-03-09'
 ecocyc:
+  contributor_extras:
+  - email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
   description: EcoCyc is a scientific database for the bacterium Escherichia coli
     K-12 MG1655. The EcoCyc project performs literature-based curation of its genome,
     and of transcriptional regulation, transporters, and metabolic pathways.
@@ -12088,7 +12093,7 @@ ecocyc:
     pubmed: '23143106'
     title: 'EcoCyc: fusing model organism databases with systems biology.'
     year: 2012
-  uri_format: https://biocyc.org/gene?id=$1
+  uri_format: https://ecocyc.org/gene?id=$1
 ecogene:
   description: The EcoGene database contains updated information about the E. coli
     K-12 genome and proteome sequences, including extensive gene bibliographies. A
@@ -12819,6 +12824,8 @@ emapa:
   example: '26753'
   homepage: http://www.informatics.jax.org/expression.shtml
   keywords:
+  - anatomy
+  - developmental biology
   - obo
   - ontology
   license: CC-BY-4.0
@@ -16454,6 +16461,8 @@ gear:
   description: The gEAR portal is a website for visualization and analysis of multi-omic
     data both in public and private domains.
   example: d.a59037e8
+  example_extras:
+  - p.bfd178f5
   github_request_issue: 728
   homepage: https://umgear.org
   license: AGPL-3.0-only
@@ -19675,6 +19684,40 @@ hmdb:
   - HMDB
   twitter: WishartLab
   uri_format: http://www.hmdb.ca/metabolites/$1
+hms.lincs.antibody:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Database contains all publicly available HMS LINCS datasets and information
+    for each dataset about experimental reagents (small molecule perturbagens, cells,
+    antibodies, and proteins) and experimental and data analysis protocols.
+  example: '80001'
+  homepage: https://lincs.hms.harvard.edu/db/antibodies/
+  name: HMS Library of Integrated Network-based Cellular Signatures Antibodies
+  pattern: ^8\d{4}$
+  preferred_prefix: hms.lincs.antibody
+  uri_format: https://lincs.hms.harvard.edu/db/antibodies/$1
+hms.lincs.cell:
+  comment: this is NOT the same as lincs.cell. On https://lincs.hms.harvard.edu/db/cells/?search=MCF-10A&extra_form_shown=&dataset_types=,
+    you can see there's a mapping to the other resource.
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Database contains all publicly available HMS LINCS datasets and information
+    for each dataset about experimental reagents (small molecule perturbagens, cells,
+    antibodies, and proteins) and experimental and data analysis protocols.
+  example: '50583'
+  homepage: https://lincs.hms.harvard.edu/db/cell/
+  name: HMS LINCS Cell
+  pattern: ^5\d{4}$
+  preferred_prefix: hms.lincs.cell
+  references:
+  - https://github.com/identifiers-org/identifiers-org.github.io/issues/223
+  uri_format: https://lincs.hms.harvard.edu/db/cells/$1
 hms.lincs.compound:
   contributor:
     email: cthoyt@gmail.com
@@ -19685,13 +19728,28 @@ hms.lincs.compound:
     for each dataset about experimental reagents (small molecule perturbagens, cells,
     antibodies, and proteins) and experimental and data analysis protocols.
   example: 10001-101
+  example_extras:
+  - 11996-999
   homepage: https://lincs.hms.harvard.edu/db/sm/
   name: HMS LINCS Compound
+  pattern: ^1\d{4}-\d{3}$
   preferred_prefix: hms.lincs.compound
   synonyms:
   - HMS-LINCS
   - hmsl_id
   uri_format: https://lincs.hms.harvard.edu/db/sm/$1
+hms.lincs.dataset:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  example: '20003'
+  homepage: https://lincs.hms.harvard.edu/db/datasets/
+  name: HMS Library of Integrated Network-based Cellular Signatures Datasets
+  pattern: ^2\d{4}$
+  preferred_prefix: hms.lincs.dataset
+  uri_format: https://lincs.hms.harvard.edu/db/datasets/$1
 hog:
   contributor:
     email: cthoyt@gmail.com
@@ -20291,6 +20349,8 @@ hsapdv:
   example: 0000194
   homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/HsapDv
   keywords:
+  - anatomy
+  - developmental biology
   - obo
   - ontology
   license: CC-BY-3.0
@@ -22559,6 +22619,34 @@ interpro:
   - InterPro
   twitter: InterProDB
   uri_format: https://www.ebi.ac.uk/interpro/entry/$1
+iobc:
+  contact:
+    email: kushida@biosciencedbc.jp
+    github: kushidatatsuya
+    name: Tatsuya Kushida
+    orcid: 0000-0002-0784-4113
+  description: 'Interlinking Ontology for Biological Concepts (IOBC) contains approximately
+    80,000 biological concepts such as biological phenomena, diseases, molecular functions,
+    gene products, chemicals, and medical cares, and approximately 20,000 related
+    concepts such as earth science and environmental science. The concepts are structured
+    by thirty-five relations such as has function, has role, has quality, and precedes.
+    Each concept has both of English and Japanese labels. For further information
+    including the developmental method, see papers in the PUBLICATIONS PAGE. The license
+    for this ontology is specified in the Creative Commons Attribution-NonCommercial
+    4.0 International. If you use data from this ontology, please be sure attribute
+    this ontology as follows: "Interlinking Ontology for Biological Concepts © National
+    Bioscience Database Center licensed under CC Attribution-NonCommercial 4.0 International".'
+  download_owl: http://aber-owl.net/media/ontologies/IOBC/25/iobc.owl
+  example: '200906038218908385'
+  homepage: https://github.com/kushidat/IOBC
+  keywords:
+  - ontology
+  mappings:
+    aberowl: IOBC
+    bioportal: IOBC
+  name: Interlinking Ontology for Biological Concepts
+  preferred_prefix: iobc
+  uri_format: http://purl.jp/bio/4/id/$1
 ipi:
   deprecated: true
   description: IPI provides a top level guide to the main databases that describe
@@ -27029,6 +27117,9 @@ mmusdv:
   example: '0000066'
   homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/MmusDv
   keywords:
+  - anatomy
+  - developmental biology
+  - embryology
   - obo
   - ontology
   license: CC-BY-3.0
