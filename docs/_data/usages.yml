@@ -145,3 +145,65 @@
     - description: Uses the Bioregistry Python package for normalizing prefixes
       links:
         - https://github.com/dmis-lab/BERN2/blob/e783813c7a08852a18741057920e59949af7ca6b/bern2/bern2.py
+
+- name: OntoGPT
+  description: A knowledge extraction tool that uses a large language model to extract semantic information from text.
+  link: https://monarch-initiative.github.io/ontogpt/
+  type: package
+  repository: https://github.com/monarch-initiative/ontogpt
+  uses:
+    - description: Generate links from CURIEs
+      links:
+        - https://github.com/monarch-initiative/ontogpt/blob/d22fe590ca9bfcd1b7421d7c2399711ea19f5124/src/ontogpt/io/markdown_exporter.py
+        - https://github.com/monarch-initiative/ontogpt/blob/d22fe590ca9bfcd1b7421d7c2399711ea19f5124/src/ontogpt/io/html_exporter.py
+
+- name: OBO Foundry
+  link: https://obofoundry.org/
+  repository: https://github.com/OBOFoundry/OBOFoundry.github.io
+  type: organization
+  uses:
+    - description: Uses the Bioregistry in order to identify if proposed ontologies' prefixes collide with existing prefixes
+      links:
+        - https://github.com/OBOFoundry/OBOFoundry.github.io/blob/af5bf3bb2fee6bfffde5dcf98a09a79b90520277/docs/ReservePrefix.md
+        - https://github.com/OBOFoundry/OBOFoundry.github.io/blob/334d2d6882f22094af29640fc126e0ab70c06e2a/id-policy.md
+
+- name: Ontology Quality 2022 Analysis
+  link: https://github.com/Ostrzyciel/ontology-quality-2022
+  repository: https://github.com/Ostrzyciel/ontology-quality-2022
+  type: analysis
+  uses:
+    - description: Uses Bioregistry data directly to identify prefixes in ontologies that aren't OBO Foundry prefixes
+      links:
+        - https://github.com/Ostrzyciel/ontology-quality-2022/blob/aca8bea664a99b52a39c8f727b59149730738952/obo/3_cross_refs/xrefs.ipynb
+
+- name: iSamples.org
+  repository: https://github.com/isamplesorg
+  type: organization
+  uses:
+    - description: Uses the Bioregistry as a semantic space for referencing prefixes (in LinkML)
+      links:
+        - https://github.com/isamplesorg/metadata/blob/28954e4b69ad40a47828bb631f4bf9f98b03bc1c/notes/evaluation/test_dynamic_vocab.yml
+
+- name: BioCypher
+  link: https://biocypher.org/
+  type: project
+  uses:
+    - description: Uses the Bioregistry Python package for normalizing CURIEs
+      links:
+        - https://github.com/saezlab/DepMap-BioCypher/blob/4c84fdc24f414a05ed68820096d55c09b6a81877/dmb/adapter.py
+
+- name: Babel Validator
+  link: https://github.com/TranslatorSRI/babel-validation
+  uses:
+    - description: Uses the Bioregistry resolver for creating resolvable links
+      links:
+        - https://github.com/TranslatorSRI/babel-validation/blob/827c26c27d5f49f6959f0dbded3cde48f1fcde44/website/src/models/tests.js
+
+- name: National Microbiome Data Collaborative
+  abbreviation: NMDC
+  uses:
+    - description: Uses the Bioregistry Python package to normalize prefixes, look up patterns, etc.
+      links:
+        - https://github.com/microbiomedata/sample-annotator/blob/81b994d342945da0189aaf34e3a86d6a5acd30cc/sample_annotator/sample_annotator.py
+
+
