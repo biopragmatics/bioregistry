@@ -48,3 +48,100 @@
     - description: Standardizes annotations of CURIEs that have been replaced in the TIWID database
       links:
         - https://github.com/bridgedb/tiwid/blob/f97575c7c48141acd5ec75c294c01e740fe014ea/tests/test_integrity.py
+
+- name: Ontology Lookup Service
+  abbreviation: OLS
+  type: project
+  link: https://www.ebi.ac.uk/ols/index
+  uses:
+    - description: Uses the Bioregistry to parse CURIEs in ontologies and generate links
+      links:
+        - https://github.com/EBISPOT/ols4/blob/cea7a92f46f05b78a8dd5f74a0c37fccf0c6ddb3/dataload/linker/src/main/java/Bioregistry.java
+
+- name: FAIRsFAIR Research Data Object Assessment Service
+  abbreviation: F-UJI
+  type: project
+  link: https://github.com/pangaea-data-publisher/fuji
+  uses:
+    - description: Uses the Bioregistry data file directly to implement its own URI parser
+      links:
+        - https://github.com/pangaea-data-publisher/fuji/blob/f28f51d49d95994e15ff265ada14dfeac0b0adf8/fuji_server/helper/linked_vocab_helper.py
+
+- name: Manubot
+  type: project
+  link: https://manubot.org/
+  uses:
+    - description: Uses the Bioregistry python package to parse CURIEs appearing in scholarly articles, generate links, and retrieve metadata
+      links:
+        - https://github.com/manubot/manubot/blob/f6c1fcd3781fd25574cd23100155b1b1d2783515/manubot/cite/curie/__init__.py
+
+- name: LOTUS Iniative
+  type: project
+  link: https://lotus.naturalproducts.net/
+  uses:
+    - description: Generates Bioregistry links for resolving CURIEs for taxa and natural products
+      links:
+        - https://github.com/lotusnprod/lotus-web/blob/f7b06f29de1a5e49b85c070ebc80e8f063954365/src/main/js/components/compoundcard/Representations.js
+
+- name: Text2Term Ontology Mapper
+  link: https://github.com/ccb-hms/ontology-mapper
+  type: package
+  uses:
+    - description: Uses the Bioregistry python package for parsing URIs
+      links:
+        - https://github.com/ccb-hms/ontology-mapper/blob/0b4edd50da0144ec317e77b265f93e3d6655a64e/text2term/onto_utils.py
+
+
+- link: https://lamin.ai/docs/bionty
+  name: Bionty
+  type: project
+  uses:
+    - description: Uses the Bioregistry Python package to normalize prefixes
+      links:
+        - https://github.com/laminlabs/bionty/issues/199
+        - https://github.com/laminlabs/bionty/blob/3f2f3bf1f9acb2e0c33c4ee885997ea7fb681ba2/bionty/_table.py
+
+- name: Related Sciences
+  link: https://www.related.vc
+  type: organization
+  uses:
+    - description: Uses the Bioregistry Python package to normalize prefixes and CURIEs in its ENSEMBL pre-processing pipeline
+      links:
+        - https://github.com/related-sciences/ensembl-genes/blob/d251894f4b8af164230a08849a81f8af76be8039/ensembl_genes/ensembl_genes.py
+        - https://github.com/related-sciences/ensembl-genes/blob/50af2fca19dab904b7f2a70737a9ee027f2f8205/ensembl_genes/notebooks/ensembl_genes_eda.ipynb
+
+- name: Gut-brain Axis Knowledge Graph
+  abbreviation: GBA-KG
+  link: https://github.com/liwenqingi/GBA-KG
+  type: package
+  uses:
+    - description: Uses the Bioregistry via BERN2
+
+- name: Wikipathways
+  type: project
+  link: https://www.wikipathways.org
+  uses:
+    - description: Standardizes cross-references with the Bioregistry (via BridgeDB)
+      links:
+        - https://github.com/wikipathways/meta-data-action/blob/03e965afed8ae8837cc54d9e87f78ac12f8c4bf2/meta.data.action/src/main/java/meta/data/action/MetaDataExtractor.java
+
+- name: Ensmallen / Grape
+  type: package
+  link: https://github.com/AnacletoLAB/ensmallen
+  uses:
+    - description: Uses the Bioregistry Python package to standardize CURIEs in knowledge graphs generated from ontologies and other sources
+      links:
+        - https://github.com/AnacletoLAB/ensmallen/blob/c4a931dea9b83df64b2d1dd6aa717e9f563f3aa2/bindings/python/ensmallen/datasets/kgobo.py
+
+
+- name: Advanced Biomedical Entity Recognition and Normalization
+  abbreviation: BERN2
+  type: package
+  link: https://github.com/dmis-lab/BERN2
+  uses:
+    - description: Uses the Bioregistry web service for expanding CURIEs into URIs
+      links:
+        - https://github.com/dmis-lab/BERN2/blob/53a72b528e7a09bee2646c95ccf1103cfa9c8cf6/app/result_parser.py
+    - description: Uses the Bioregistry Python package for normalizing prefixes
+      links:
+        - https://github.com/dmis-lab/BERN2/blob/e783813c7a08852a18741057920e59949af7ca6b/bern2/bern2.py
