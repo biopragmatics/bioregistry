@@ -1,6 +1,6 @@
 - name: Global Alliance for Genomics and Health
   abbreviation: GA4GH
-  link: https://www.ga4gh.org/
+  homepage: https://www.ga4gh.org/
   type: organization
   uses:
     - description: Gave a tutorial at ISMB 2022 on how to run a local instance of the Bioregistry
@@ -9,7 +9,7 @@
 
 - name: LinkML
   type: project
-  link: https://linkml.io
+  homepage: https://linkml.io
   uses:
     - description: Uses the Bioregistry as a semantic space of other semantic spaces in prefix maps
       links:
@@ -24,12 +24,13 @@
 - name: Automating Scientific Knowledge Extraction and Modeling
   abbreviation: ASKEM
   type: project
-  link: https://indralab.github.io/#askem
+  homepage: https://indralab.github.io/#askem
   uses:
     - description: Deploys a custom instance of the Bioregistry including a subset of prefixes from the main services and additional custom prefixes for epidemiology modeling and space weather use cases
 
 - name: BioClients
-  link: https://github.com/jeremyjyang/BioClients
+  homepage: https://github.com/jeremyjyang/BioClients
+  repository: https://github.com/jeremyjyang/BioClients
   type: package
   uses:
     - description: Wraps the API of bioregistry.io in a Python package
@@ -38,7 +39,7 @@
         - https://github.com/jeremyjyang/BioClients/blob/fc12590a57c4cc49d01bf364ce51dbd955b69b5e/BioClients/bioregistry/Client.py
 
 - name: BridgeDB
-  link: https://www.bridgedb.org
+  homepage: https://www.bridgedb.org
   type: project
   uses:
     - description: Links prefixes used in BridgeDB's mapping database to Bioregistry prefixes, standardizing when possible
@@ -52,7 +53,7 @@
 - name: Ontology Lookup Service
   abbreviation: OLS
   type: project
-  link: https://www.ebi.ac.uk/ols/index
+  homepage: https://www.ebi.ac.uk/ols/index
   uses:
     - description: Uses the Bioregistry to parse CURIEs in ontologies and generate links
       links:
@@ -61,7 +62,7 @@
 - name: FAIRsFAIR Research Data Object Assessment Service
   abbreviation: F-UJI
   type: project
-  link: https://github.com/pangaea-data-publisher/fuji
+  homepage: https://github.com/pangaea-data-publisher/fuji
   uses:
     - description: Uses the Bioregistry data file directly to implement its own URI parser
       links:
@@ -69,7 +70,7 @@
 
 - name: Manubot
   type: project
-  link: https://manubot.org/
+  homepage: https://manubot.org/
   uses:
     - description: Uses the Bioregistry python package to parse CURIEs appearing in scholarly articles, generate links, and retrieve metadata
       links:
@@ -77,14 +78,14 @@
 
 - name: LOTUS Iniative
   type: project
-  link: https://lotus.naturalproducts.net/
+  homepage: https://lotus.naturalproducts.net/
   uses:
     - description: Generates Bioregistry links for resolving CURIEs for taxa and natural products
       links:
         - https://github.com/lotusnprod/lotus-web/blob/f7b06f29de1a5e49b85c070ebc80e8f063954365/src/main/js/components/compoundcard/Representations.js
 
 - name: Text2Term Ontology Mapper
-  link: https://github.com/ccb-hms/ontology-mapper
+  homepage: https://github.com/ccb-hms/ontology-mapper
   type: package
   uses:
     - description: Uses the Bioregistry python package for parsing URIs
@@ -92,7 +93,7 @@
         - https://github.com/ccb-hms/ontology-mapper/blob/0b4edd50da0144ec317e77b265f93e3d6655a64e/text2term/onto_utils.py
 
 
-- link: https://lamin.ai/docs/bionty
+- homepage: https://lamin.ai/docs/bionty
   name: Bionty
   type: project
   uses:
@@ -102,7 +103,7 @@
         - https://github.com/laminlabs/bionty/blob/3f2f3bf1f9acb2e0c33c4ee885997ea7fb681ba2/bionty/_table.py
 
 - name: Related Sciences
-  link: https://www.related.vc
+  homepage: https://www.related.vc
   type: organization
   uses:
     - description: Uses the Bioregistry Python package to normalize prefixes and CURIEs in its ENSEMBL pre-processing pipeline
@@ -112,14 +113,14 @@
 
 - name: Gut-brain Axis Knowledge Graph
   abbreviation: GBA-KG
-  link: https://github.com/liwenqingi/GBA-KG
+  homepage: https://github.com/liwenqingi/GBA-KG
   type: package
   uses:
     - description: Uses the Bioregistry via BERN2
 
 - name: Wikipathways
   type: project
-  link: https://www.wikipathways.org
+  homepage: https://www.wikipathways.org
   uses:
     - description: Standardizes cross-references with the Bioregistry (via BridgeDB)
       links:
@@ -127,7 +128,7 @@
 
 - name: Ensmallen / Grape
   type: package
-  link: https://github.com/AnacletoLAB/ensmallen
+  homepage: https://github.com/AnacletoLAB/ensmallen
   uses:
     - description: Uses the Bioregistry Python package to standardize CURIEs in knowledge graphs generated from ontologies and other sources
       links:
@@ -137,7 +138,7 @@
 - name: Advanced Biomedical Entity Recognition and Normalization
   abbreviation: BERN2
   type: package
-  link: https://github.com/dmis-lab/BERN2
+  homepage: https://github.com/dmis-lab/BERN2
   uses:
     - description: Uses the Bioregistry web service for expanding CURIEs into URIs
       links:
@@ -148,7 +149,7 @@
 
 - name: OntoGPT
   description: A knowledge extraction tool that uses a large language model to extract semantic information from text.
-  link: https://monarch-initiative.github.io/ontogpt/
+  homepage: https://monarch-initiative.github.io/ontogpt/
   type: package
   repository: https://github.com/monarch-initiative/ontogpt
   uses:
@@ -158,7 +159,7 @@
         - https://github.com/monarch-initiative/ontogpt/blob/d22fe590ca9bfcd1b7421d7c2399711ea19f5124/src/ontogpt/io/html_exporter.py
 
 - name: OBO Foundry
-  link: https://obofoundry.org/
+  homepage: https://obofoundry.org/
   repository: https://github.com/OBOFoundry/OBOFoundry.github.io
   type: organization
   uses:
@@ -168,7 +169,7 @@
         - https://github.com/OBOFoundry/OBOFoundry.github.io/blob/334d2d6882f22094af29640fc126e0ab70c06e2a/id-policy.md
 
 - name: Ontology Quality 2022 Analysis
-  link: https://github.com/Ostrzyciel/ontology-quality-2022
+  homepage: https://github.com/Ostrzyciel/ontology-quality-2022
   repository: https://github.com/Ostrzyciel/ontology-quality-2022
   type: analysis
   uses:
@@ -179,13 +180,14 @@
 - name: iSamples.org
   repository: https://github.com/isamplesorg
   type: organization
+  homepage: https://isamplesorg.github.io/
   uses:
     - description: Uses the Bioregistry as a semantic space for referencing prefixes (in LinkML)
       links:
         - https://github.com/isamplesorg/metadata/blob/28954e4b69ad40a47828bb631f4bf9f98b03bc1c/notes/evaluation/test_dynamic_vocab.yml
 
 - name: BioCypher
-  link: https://biocypher.org/
+  homepage: https://biocypher.org/
   type: project
   uses:
     - description: Uses the Bioregistry Python package for normalizing CURIEs
@@ -193,7 +195,8 @@
         - https://github.com/saezlab/DepMap-BioCypher/blob/4c84fdc24f414a05ed68820096d55c09b6a81877/dmb/adapter.py
 
 - name: Babel Validator
-  link: https://github.com/TranslatorSRI/babel-validation
+  homepage: https://github.com/TranslatorSRI/babel-validation
+  type: package
   uses:
     - description: Uses the Bioregistry resolver for creating resolvable links
       links:
@@ -201,9 +204,50 @@
 
 - name: National Microbiome Data Collaborative
   abbreviation: NMDC
+  homepage: https://microbiomedata.org/
+  type: organization
   uses:
     - description: Uses the Bioregistry Python package to normalize prefixes, look up patterns, etc.
       links:
         - https://github.com/microbiomedata/sample-annotator/blob/81b994d342945da0189aaf34e3a86d6a5acd30cc/sample_annotator/sample_annotator.py
 
+- name: PheKnowLator
+  repository: https://github.com/callahantiff/PheKnowLator
+  homepage: https://github.com/callahantiff/PheKnowLator/wiki
+  type: package
+  uses:
+    - description: Normalizing IRIs and CURIEs during the construction of the knowledge graph
 
+- name: Natural Product Knowledge Graph
+  abbreviation: NP-KG
+  repository: https://github.com/sanyabt/np-kg
+  homepage: https://github.com/sanyabt/np-kg
+  type: package
+  description: A graph framework that creates a biomedical knowledge graph to identify and generate mechanistic hypotheses for pharmacokinetic natural product-drug interactions.
+  uses:
+    - description: Normalizing IRIs and CURIEs during the construction of the knowledge graph via PheKnowLator
+
+- name: Ontology Quality Assessment Toolkit
+  repository: https://github.com/cthoyt/oquat
+  homepage: https://cthoyt.github.io/oquat
+  type: package
+  uses:
+    - description: Uses the Bioregistry Python package to check the standardization of prefixes in OBO Foundry ontologies
+    - description: Uses the Bioregistry to get a list of ontologies and their download links
+
+- name: PyOBO
+  repository: https://github.com/pyobo/pyobo
+  homepage: https://github.com/pyobo/pyobo
+  type: package
+  uses:
+    - description: Uses the Bioregistry Python package to get a list of ontologies and their download links
+    - description: Uses the Bioregistry Python package to standardize prefixes, CURIEs, and IRIs in ontologies
+    - description: Uses the Bioregistry Python package to validate prefixes, CURIEs, and IRIs in ontologies during the construction of custom ontologies, e.g., from biological databases
+
+
+- name: SSSOM
+  type: project
+  homepage: https://mapping-commons.github.io/sssom/
+  repository: https://github.com/mapping-commons/sssom
+  uses:
+    - description: Uses the Bioregistry as a default prefix map
