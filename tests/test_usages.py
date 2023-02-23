@@ -22,6 +22,9 @@ class TestUsages(unittest.TestCase):
             name = record["name"]
             with self.subTest(name=name):
                 self.assertIn("homepage", record)
+                self.assertIsInstance(record["homepage"], str)
+                self.assertIn("type", record)
+                self.assertIn(record["type"], {"organization", "project", "package", "analysis"})
                 self.assertIn("uses", record)
                 for use in record["uses"]:
                     self.assertIn("description", use)
