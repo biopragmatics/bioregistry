@@ -1,0 +1,49 @@
+- name: Global Alliance for Genomics and Health
+  abbreviation: GA4GH
+  type: organization
+  uses:
+    - description: Gave a tutorial at ISMB 2022 on how to run a local instance of the Bioregistry
+      links:
+        - https://github.com/ga4gh/ismb-2022-ga4gh-tutorial/blob/06ce0eb33137ccbc2db6888c487bb1e9c24f7c55/supporting/bioregistry/README.md
+
+- name: LinkML
+  type: project
+  link: https://linkml.io
+  uses:
+    - description: Uses the Bioregistry as a semantic space of other semantic spaces in prefix maps
+      links:
+        - https://github.com/linkml/linkml/blob/e8f6820d729c9d7e85fa751f3dee299ea4bb7bd8/docs/schemas/enums.md
+    - description: Caches the Bioregistry data with use case-specific preprocessing
+      links:
+        - https://github.com/linkml/prefixmaps/blob/a2d8c51e7c02cdbf0d2cbd07918c8314647fcd18/src/prefixmaps/ingest/ingest_bioregistry.py
+    - description: Uses the Bioregistry package for lookup of URI format strings
+      links:
+        - https://github.com/linkml/schemasheets/blob/2f64a5abcc01899a047e12b2261dadb88b9c3005/schemasheets/utils/prefixtool.py
+
+- name: Automating Scientific Knowledge Extraction and Modeling
+  abbreviation: ASKEM
+  type: project
+  link: https://indralab.github.io/#askem
+  uses:
+    - description: Deploys a custom instance of the Bioregistry including a subset of prefixes from the main services and additional custom prefixes for epidemiology modeling and space weather use cases
+
+- name: BioClients
+  link: https://github.com/jeremyjyang/BioClients
+  type: package
+  uses:
+    - description: Wraps the API of bioregistry.io in a Python package
+      links:
+        - https://github.com/jeremyjyang/BioClients/blob/fc12590a57c4cc49d01bf364ce51dbd955b69b5e/doc/bioregistry.md
+        - https://github.com/jeremyjyang/BioClients/blob/fc12590a57c4cc49d01bf364ce51dbd955b69b5e/BioClients/bioregistry/Client.py
+
+- name: BridgeDB
+  link: https://www.bridgedb.org
+  type: project
+  uses:
+    - description: Links prefixes used in BridgeDB's mapping database to Bioregistry prefixes, standardizing when possible
+      links:
+        - https://github.com/bridgedb/datasources/blob/09855e63b5db17fb27ac529192cad38396a3bf1f/scripts/align_bioregistry.py
+        - https://github.com/bridgedb/datasources/blob/76bcc4cb29e6d94b11661f0e54516f1c71435efb/tests/test_integrity.py
+    - description: Standardizes annotations of CURIEs that have been replaced in the TIWID database
+      links:
+        - https://github.com/bridgedb/tiwid/blob/f97575c7c48141acd5ec75c294c01e740fe014ea/tests/test_integrity.py
