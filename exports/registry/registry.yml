@@ -4218,6 +4218,12 @@ bto:
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: BTO
+  providers:
+  - code: miriam_obo_legacy
+    description: An old URI style for MIRIAM
+    homepage: https://identifiers.org/
+    name: MIRIAM OBO Legacy
+    uri_format: http://identifiers.org/obo.bto/BTO:$1
   publications:
   - doi: 10.1093/nar/gky1048
     pmc: PMC6323942
@@ -10887,6 +10893,11 @@ doi:
     homepage: https://www.doi.org
     name: Digital Object Identifier
     uri_format: https://dx.doi.org/$1
+  - code: miriam_legacy
+    description: A legacy MIRIAM URI that does not follow the standard pattern
+    homepage: https://identifiers.org
+    name: Legacy MIRIAM URI
+    uri_format: http://identifiers.org/DOI/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -17919,11 +17930,21 @@ go:
     homepage: http://www.pantherdb.org/
     name: GO through PANTHER
     uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
+  - code: go_site
+    description: A non-PURL link through the GO site
+    homepage: http://www.geneontology.org
+    name: GO Site Link
+    uri_format: http://www.geneontology.org/GO:$1
   - code: jax
     description: The JAX endpoint for exploring GO
     homepage: http://www.informatics.jax.org
     name: Jackson Laboratories
     uri_format: http://www.informatics.jax.org/vocab/gene_ontology/GO:$1
+  - code: miriam_obo_legacy
+    description: An old URI style for MIRIAM + GO
+    homepage: https://identifiers.org/
+    name: MIRIAM OBO Legacy
+    uri_format: http://identifiers.org/obo.go/GO:$1
   - code: nextprot
     description: The neXtProt endpoint for exploring GO
     homepage: https://www.nextprot.org/
@@ -24315,11 +24336,6 @@ loggerhead:
   preferred_prefix: LOGGERHEAD
   uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
 loinc:
-  contact:
-    email: loinc@regenstrief.org
-    github: null
-    name: LOINC Support
-    orcid: null
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -31538,6 +31554,11 @@ omim:
     homepage: https://www.omim.org
     name: OMIM
     uri_format: https://www.omim.org/entry/$1
+  - code: miriam_legacy
+    description: Legacy URLs for identifiers.org
+    homepage: http://identifiers.org
+    name: MIRIAM Legacy
+    uri_format: http://identifiers.org/omim/$1
   - code: ncbi.omim
     description: An NCBI endpoint for OMIM entries
     homepage: http://www.ncbi.nlm.nih.gov/omim
@@ -36929,6 +36950,12 @@ pw:
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: PW
+  providers:
+  - code: miriam_obo_legacy
+    description: An old URI style for MIRIAM
+    homepage: https://identifiers.org/
+    name: MIRIAM OBO Legacy
+    uri_format: http://identifiers.org/obo.pw/PW:$1
   publications:
   - doi: 10.1186/s40246-014-0017-8
     pmc: PMC4191248
