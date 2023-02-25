@@ -239,33 +239,25 @@
                         <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
                     {% endif %}
                 </dd>
+                {% if pattern and curie_pattern %}
                 <dt>Pattern for CURIES</dt>
                 <dd>
-                    {% if curie_pattern %}
-                        <p>
-                            Compact URIs (CURIEs) constructed from {{ name }} should match
-                            this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
-                        </p>
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Could not construct CURIE pattern</span>
-                    {% endif %}
+                    <p>
+                        Compact URIs (CURIEs) constructed from {{ name }} should match
+                        this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
+                    </p>
                 </dd>
+                {% endif %}
+                {% if example and example_curie %}
                 <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
-                    {% if example_curie %}
-                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
-                        {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
-                            <br />
-                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
-                        {% endfor %}
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
-                    {% endif %}
+                    <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                    {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
+                        <br />
+                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
+                    {% endfor %}
                 </dd>
+                {% endif %}
                 {% if namespace_in_lui %}
                     <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
                     <dd>
