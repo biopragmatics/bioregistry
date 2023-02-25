@@ -174,6 +174,13 @@ class Manager:
             return None
         return registry.name
 
+    def get_registry_short_name(self, metaprefix: str) -> Optional[str]:
+        """Get the registry short name."""
+        registry = self.get_registry(metaprefix)
+        if registry is None:
+            return None
+        return registry.get_short_name()
+
     def get_registry_homepage(self, metaprefix: str) -> Optional[str]:
         """Get the registry homepage."""
         registry = self.get_registry(metaprefix)

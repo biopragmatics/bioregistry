@@ -54,6 +54,11 @@
             Has Canonical <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% endif %}
+    {% if resource.proprietary %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Proprietary <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% endif %}
 {% endmacro %}
 
 {% macro render_provider_table(prefix, identifier, providers) -%}
@@ -68,6 +73,7 @@
             </thead>
             <tbody>
             {% for provider in providers %}
+                {% if provider.name %}
                 <tr>
                     <td>
                         {% if provider.homepage %}
@@ -81,6 +87,7 @@
                         <a href="{{ provider.uri }}">{{ provider.uri }}</a>
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>
