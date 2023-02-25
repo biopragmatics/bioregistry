@@ -54,6 +54,11 @@
             Has Canonical <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% endif %}
+    {% if resource.proprietary %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Proprietary <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% endif %}
 {% endmacro %}
 
 {% macro render_provider_table(prefix, identifier, providers) -%}

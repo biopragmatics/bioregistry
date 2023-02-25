@@ -77,6 +77,13 @@
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
+            {% if resource.proprietary %}
+                <p>
+                    This resource is <span class="badge badge-warning">proprietary</span>. This means that it is not
+                    freely and publicly available without restriction. Such resources are still valuable to include
+                    in the Bioregistry as they may appear in other non-proprietary resources.
+                </p>
+            {% endif %}
 
             <dl>
                 {% if resource.comment %}
