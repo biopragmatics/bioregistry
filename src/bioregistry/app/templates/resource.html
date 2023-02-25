@@ -480,9 +480,9 @@
                     <tr>
                         <td>
                             {% if mapping.homepage %}
-                                <a href="{{ mapping.homepage }}">{{ mapping.name }}</a>
+                                <a href="{{ mapping.homepage }}" title="{{ mapping.name }}">{{ mapping.short_name }}</a>
                             {% else %}
-                                {{ mapping.name }}
+                                {{ mapping.short_name }}
                             {% endif %}
                             {% if mapping.metaresource.logo_url %}
                                 <img style="max-height: 1em" alt="{{ mapping.name }} logo" src="{{ mapping.metaresource.logo_url }}" />
