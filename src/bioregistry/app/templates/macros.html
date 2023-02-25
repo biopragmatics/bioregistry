@@ -73,6 +73,7 @@
             </thead>
             <tbody>
             {% for provider in providers %}
+                {% if provider.name %}
                 <tr>
                     <td>
                         {% if provider.homepage %}
@@ -86,6 +87,7 @@
                         <a href="{{ provider.uri }}">{{ provider.uri }}</a>
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>
