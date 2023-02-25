@@ -373,7 +373,7 @@
                 {% endif %}
                 {% if part_of %}
                     <dt>
-                        Part Of
+                        Part Of ({{ utils.code_curie("bfo", "0000050") }})
                     </dt>
                     <dd>
                         {% if manager.get_name(part_of) %}
@@ -389,7 +389,7 @@
                 {% endif %}
                 {% if has_parts %}
                     <dt>
-                        Has Part
+                        Has Part ({{ utils.code_curie("bfo", "0000051") }})
                     </dt>
                     <dd>
                         {% for rel_prefix in has_parts %}
@@ -403,7 +403,7 @@
                 {% endif %}
                 {% if has_canonical %}
                     <dt>
-                        Has Canonical
+                        Has Canonical ({{ utils.code_curie("bioregistry.schema", "0000016") }})
                     </dt>
                     <dd>
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=has_canonical) }}"
@@ -429,7 +429,7 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }})
+                        Depends On ({{ depends_on | length }}) ({{ utils.code_curie("bioregistry.schema", "0000017") }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
@@ -443,7 +443,7 @@
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }})
+                        Appears In ({{ appears_in | length }}) ({{ utils.code_curie("bioregistry.schema", "0000018") }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
