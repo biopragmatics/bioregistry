@@ -56,6 +56,13 @@
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
+                    {% if entry.governance.issue_tracker %}
+                        <a class="badge badge-pill badge-light" href="{{ entry.governance.issue_tracker }}">
+                            Issue Tracker <i class="fas fa-check"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-light text-muted">No Issue Tracker</span>
+                    {% endif %}
                     {% if entry.download %}
                         <a class="badge badge-pill badge-light" href="{{ entry.download }}">
                             Download <i class="fas fa-download"></i>
