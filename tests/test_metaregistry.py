@@ -132,8 +132,8 @@ class TestMetaregistry(unittest.TestCase):
         g = rdflib.Graph()
         g.parse(data=s)
 
-    def test_example(self):
-        """Test examples pass corresponding resources' patterns."""
+    def test_corresponding(self):
+        """Test data corresponds between the registry and metaregistry."""
         for metaprefix, registry in self.manager.metaregistry.items():
             if registry.bioregistry_prefix:
                 resource = self.manager.registry[registry.bioregistry_prefix]
@@ -141,8 +141,16 @@ class TestMetaregistry(unittest.TestCase):
                 resource = self.manager.registry[metaprefix]
             else:
                 continue
+
+            # Test pattern
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
             with self.subTest(metaprefix=metaprefix):
                 self.assertRegexpMatches(registry.example, pattern)
+
+            # Test URI format string
+            if registry.provider_uri_format:
+                uri_formats = resource.get_uri_formats()
+                self.assertLess(0, len(uri_formats))
+                self.assertIn(registry.provider_uri_format, uri_formats)
