@@ -107,7 +107,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertEqual(name, registry.name)
         self.assertEqual(name, bioregistry.get_registry_name(metaprefix))
 
-        example = "0174"
+        example = "DB-0174"
         self.assertEqual(example, registry.example)
         self.assertEqual(example, bioregistry.get_registry_example(metaprefix))
 
@@ -131,3 +131,18 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
         g.parse(data=s)
+
+    def test_example(self):
+        """Test examples pass corresponding resources' patterns."""
+        for metaprefix, registry in self.manager.metaregistry.items():
+            if registry.bioregistry_prefix:
+                resource = self.manager.registry[registry.bioregistry_prefix]
+            elif metaprefix in self.manager.registry:
+                resource = self.manager.registry[metaprefix]
+            else:
+                continue
+            pattern = resource.get_pattern()
+            if pattern is None:
+                continue
+            with self.subTest(metaprefix=metaprefix):
+                self.assertRegexpMatches(registry.example, pattern)
