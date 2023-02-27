@@ -68,6 +68,7 @@
 - name: FAIRsFAIR Research Data Object Assessment Service
   abbreviation: F-UJI
   type: project
+  repository: https://github.com/pangaea-data-publisher/fuji
   homepage: https://github.com/pangaea-data-publisher/fuji
   uses:
     - description: Uses the Bioregistry data file directly to implement its own URI parser
@@ -95,15 +96,16 @@
 - name: Text2Term Ontology Mapper
   homepage: https://github.com/ccb-hms/ontology-mapper
   type: package
+  wikidata: Q116924843
   uses:
     - description: Uses the Bioregistry python package for parsing URIs
       links:
         - https://github.com/ccb-hms/ontology-mapper/blob/0b4edd50da0144ec317e77b265f93e3d6655a64e/text2term/onto_utils.py
 
-
 - homepage: https://lamin.ai/docs/bionty
   name: Bionty
   type: project
+  repository: https://github.com/laminlabs/bionty
   uses:
     - description: Uses the Bioregistry Python package to normalize prefixes
       links:
@@ -113,6 +115,7 @@
 - name: Related Sciences
   homepage: https://www.related.vc
   type: organization
+  wikidata: Q116924914
   uses:
     - description: Uses the Bioregistry Python package to normalize prefixes and CURIEs in its ENSEMBL pre-processing pipeline
       links:
@@ -122,6 +125,7 @@
 - name: Gut-brain Axis Knowledge Graph
   abbreviation: GBA-KG
   homepage: https://github.com/liwenqingi/GBA-KG
+  repository: https://github.com/liwenqingi/GBA-KG
   type: package
   uses:
     - description: Uses the Bioregistry via BERN2
@@ -137,15 +141,16 @@
 
 - name: Ensmallen / Grape
   type: package
+  wikidata: Q116924819
   homepage: https://github.com/AnacletoLAB/ensmallen
   uses:
     - description: Uses the Bioregistry Python package to standardize CURIEs in knowledge graphs generated from ontologies and other sources
       links:
         - https://github.com/AnacletoLAB/ensmallen/blob/c4a931dea9b83df64b2d1dd6aa717e9f563f3aa2/bindings/python/ensmallen/datasets/kgobo.py
 
-
 - name: Advanced Biomedical Entity Recognition and Normalization
   abbreviation: BERN2
+  wikidata: Q116924884
   type: package
   homepage: https://github.com/dmis-lab/BERN2
   uses:
@@ -199,6 +204,7 @@
 - name: BioCypher
   homepage: https://biocypher.org/
   type: project
+  repository: https://github.com/saezlab/BioCypher
   uses:
     - description: Uses the Bioregistry Python package for normalizing CURIEs
       links:
@@ -206,6 +212,7 @@
 
 - name: Babel Validator
   homepage: https://github.com/TranslatorSRI/babel-validation
+  repository: https://github.com/TranslatorSRI/babel-validation
   type: package
   uses:
     - description: Uses the Bioregistry resolver for creating resolvable links
@@ -214,6 +221,7 @@
 
 - name: National Microbiome Data Collaborative
   abbreviation: NMDC
+  wikidata: Q94461838
   homepage: https://microbiomedata.org/
   type: organization
   uses:
@@ -254,7 +262,6 @@
     - description: Uses the Bioregistry Python package to get a list of ontologies and their download links
     - description: Uses the Bioregistry Python package to standardize prefixes, CURIEs, and IRIs in ontologies
     - description: Uses the Bioregistry Python package to validate prefixes, CURIEs, and IRIs in ontologies during the construction of custom ontologies, e.g., from biological databases
-
 
 - name: SSSOM
   type: project

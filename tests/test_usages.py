@@ -1,4 +1,7 @@
-"""Test the integrity of the usages annotations."""
+"""Test the integrity of the usages annotations.
+
+Use ``npx prettier --write _data/usages.yml``
+"""
 
 import unittest
 from pathlib import Path
@@ -23,8 +26,10 @@ class TestUsages(unittest.TestCase):
             with self.subTest(name=name):
                 self.assertIn("homepage", record)
                 self.assertIsInstance(record["homepage"], str)
-                self.assertIn("type", record)
-                self.assertIn(record["type"], {"organization", "project", "package", "analysis"})
-                self.assertIn("uses", record)
+                msg = f"\n\nSee {record['homepage']}"
+                self.assertTrue("wikidata" in record or "repository" in record, msg=msg)
+                self.assertIn("type", record, msg=msg)
+                self.assertIn(record["type"], {"organization", "project", "package", "analysis"}, msg=msg)
+                self.assertIn("uses", record, msg=msg)
                 for use in record["uses"]:
-                    self.assertIn("description", use)
+                    self.assertIn("description", use, msg=msg)
