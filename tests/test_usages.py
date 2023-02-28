@@ -29,7 +29,9 @@ class TestUsages(unittest.TestCase):
                 msg = f"\n\nSee {record['homepage']}"
                 self.assertTrue("wikidata" in record or "repository" in record, msg=msg)
                 self.assertIn("type", record, msg=msg)
-                self.assertIn(record["type"], {"organization", "project", "package", "analysis"}, msg=msg)
+                self.assertIn(
+                    record["type"], {"organization", "project", "package", "analysis"}, msg=msg
+                )
                 self.assertIn("uses", record, msg=msg)
                 for use in record["uses"]:
                     self.assertIn("description", use, msg=msg)
