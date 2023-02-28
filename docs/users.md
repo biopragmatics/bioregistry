@@ -28,6 +28,12 @@ permalink: /usages/
 <td><a href="{{ entry.repository }}">{{ entry.repository }}</a></td>
 </tr>
 {% endif %}
+{% if entry.wikidata %}
+<tr>
+<td><strong>Wikidata</strong></td>
+<td><a href="https://scholia.toolforge.org/{{ entry.wikidata }}">{{ entry.wikidata }}</a></td>
+</tr>
+{% endif %}
 <tr>
 <td><strong>Usages</strong></td>
 <td>

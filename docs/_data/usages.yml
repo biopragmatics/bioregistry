@@ -2,6 +2,7 @@
   abbreviation: GA4GH
   homepage: https://www.ga4gh.org/
   type: organization
+  wikidata: Q60750423
   uses:
     - description: Gave a tutorial at ISMB 2022 on how to run a local instance of the Bioregistry
       links:
@@ -10,6 +11,7 @@
 - name: LinkML
   type: project
   homepage: https://linkml.io
+  wikidata: Q108911530
   uses:
     - description: Uses the Bioregistry as a semantic space of other semantic spaces in prefix maps
       links:
@@ -23,12 +25,14 @@
 
 - name: Automating Scientific Knowledge Extraction and Modeling
   abbreviation: ASKEM
+  wikidata: Q116898517
   type: project
   homepage: https://indralab.github.io/#askem
   uses:
     - description: Deploys a custom instance of the Bioregistry including a subset of prefixes from the main services and additional custom prefixes for epidemiology modeling and space weather use cases
 
 - name: BioClients
+  wikidata: Q116898721
   homepage: https://github.com/jeremyjyang/BioClients
   repository: https://github.com/jeremyjyang/BioClients
   type: package
@@ -41,6 +45,7 @@
 - name: BridgeDb
   homepage: https://www.bridgedb.org
   type: project
+  wikidata: Q55582517
   uses:
     - description: Links prefixes used in BridgeDb's mapping database to Bioregistry prefixes, standardizing when possible
       links:
@@ -53,6 +58,7 @@
 - name: Ontology Lookup Service
   abbreviation: OLS
   type: project
+  wikidata: Q22230760
   homepage: https://www.ebi.ac.uk/ols/index
   uses:
     - description: Uses the Bioregistry to parse CURIEs in ontologies and generate links
@@ -62,6 +68,7 @@
 - name: FAIRsFAIR Research Data Object Assessment Service
   abbreviation: F-UJI
   type: project
+  repository: https://github.com/pangaea-data-publisher/fuji
   homepage: https://github.com/pangaea-data-publisher/fuji
   uses:
     - description: Uses the Bioregistry data file directly to implement its own URI parser
@@ -70,14 +77,16 @@
 
 - name: Manubot
   type: project
+  wikidata: Q96473455
   homepage: https://manubot.org/
   uses:
     - description: Uses the Bioregistry python package to parse CURIEs appearing in scholarly articles, generate links, and retrieve metadata
       links:
         - https://github.com/manubot/manubot/blob/f6c1fcd3781fd25574cd23100155b1b1d2783515/manubot/cite/curie/__init__.py
 
-- name: LOTUS Iniative
+- name: LOTUS Initiative
   type: project
+  wikidata: Q104225190
   homepage: https://lotus.naturalproducts.net/
   uses:
     - description: Generates Bioregistry links for resolving CURIEs for taxa and natural products
@@ -87,15 +96,16 @@
 - name: Text2Term Ontology Mapper
   homepage: https://github.com/ccb-hms/ontology-mapper
   type: package
+  wikidata: Q116924843
   uses:
     - description: Uses the Bioregistry python package for parsing URIs
       links:
         - https://github.com/ccb-hms/ontology-mapper/blob/0b4edd50da0144ec317e77b265f93e3d6655a64e/text2term/onto_utils.py
 
-
 - homepage: https://lamin.ai/docs/bionty
   name: Bionty
   type: project
+  repository: https://github.com/laminlabs/bionty
   uses:
     - description: Uses the Bioregistry Python package to normalize prefixes
       links:
@@ -105,6 +115,7 @@
 - name: Related Sciences
   homepage: https://www.related.vc
   type: organization
+  wikidata: Q116924914
   uses:
     - description: Uses the Bioregistry Python package to normalize prefixes and CURIEs in its ENSEMBL pre-processing pipeline
       links:
@@ -114,12 +125,14 @@
 - name: Gut-brain Axis Knowledge Graph
   abbreviation: GBA-KG
   homepage: https://github.com/liwenqingi/GBA-KG
+  repository: https://github.com/liwenqingi/GBA-KG
   type: package
   uses:
     - description: Uses the Bioregistry via BERN2
 
-- name: Wikipathways
+- name: WikiPathways
   type: project
+  wikidata: Q7999828
   homepage: https://www.wikipathways.org
   uses:
     - description: Standardizes cross-references with the Bioregistry (via BridgeDB)
@@ -128,15 +141,16 @@
 
 - name: Ensmallen / Grape
   type: package
+  wikidata: Q116924819
   homepage: https://github.com/AnacletoLAB/ensmallen
   uses:
     - description: Uses the Bioregistry Python package to standardize CURIEs in knowledge graphs generated from ontologies and other sources
       links:
         - https://github.com/AnacletoLAB/ensmallen/blob/c4a931dea9b83df64b2d1dd6aa717e9f563f3aa2/bindings/python/ensmallen/datasets/kgobo.py
 
-
 - name: Advanced Biomedical Entity Recognition and Normalization
   abbreviation: BERN2
+  wikidata: Q116924884
   type: package
   homepage: https://github.com/dmis-lab/BERN2
   uses:
@@ -159,6 +173,7 @@
         - https://github.com/monarch-initiative/ontogpt/blob/d22fe590ca9bfcd1b7421d7c2399711ea19f5124/src/ontogpt/io/html_exporter.py
 
 - name: OBO Foundry
+  wikidata: Q7072326
   homepage: https://obofoundry.org/
   repository: https://github.com/OBOFoundry/OBOFoundry.github.io
   type: organization
@@ -189,6 +204,7 @@
 - name: BioCypher
   homepage: https://biocypher.org/
   type: project
+  repository: https://github.com/saezlab/BioCypher
   uses:
     - description: Uses the Bioregistry Python package for normalizing CURIEs
       links:
@@ -196,6 +212,7 @@
 
 - name: Babel Validator
   homepage: https://github.com/TranslatorSRI/babel-validation
+  repository: https://github.com/TranslatorSRI/babel-validation
   type: package
   uses:
     - description: Uses the Bioregistry resolver for creating resolvable links
@@ -204,6 +221,7 @@
 
 - name: National Microbiome Data Collaborative
   abbreviation: NMDC
+  wikidata: Q94461838
   homepage: https://microbiomedata.org/
   type: organization
   uses:
@@ -239,14 +257,15 @@
   repository: https://github.com/pyobo/pyobo
   homepage: https://github.com/pyobo/pyobo
   type: package
+  wikidata: Q116738054
   uses:
     - description: Uses the Bioregistry Python package to get a list of ontologies and their download links
     - description: Uses the Bioregistry Python package to standardize prefixes, CURIEs, and IRIs in ontologies
     - description: Uses the Bioregistry Python package to validate prefixes, CURIEs, and IRIs in ontologies during the construction of custom ontologies, e.g., from biological databases
 
-
 - name: SSSOM
   type: project
+  wikidata: Q108394654
   homepage: https://mapping-commons.github.io/sssom/
   repository: https://github.com/mapping-commons/sssom
   uses:
