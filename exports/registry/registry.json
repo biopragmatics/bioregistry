@@ -6448,7 +6448,7 @@
       }
     ],
     "repository": "https://github.com/semanticchemistry/semanticchemistry",
-    "uri_format": "http://purl.obolibrary.org/obo/CHEMINF_$1",
+    "uri_format": "https://semanticscience.org/resource/CHEMINF_$1",
     "version": "2.0"
   },
   "chemrof": {
@@ -34359,6 +34359,13 @@
     "preferred_prefix": "oid",
     "providers": [
       {
+        "code": "oid_www",
+        "description": "OID w/ WWW",
+        "homepage": "http://www.oid-info.com",
+        "name": "OID w/ WWW",
+        "uri_format": "http://www.oid-info.com/get/$1"
+      },
+      {
         "code": "orange",
         "description": "Mirror of OID site from Orange",
         "homepage": "https://oid-rep.orange-labs.fr",
@@ -43653,6 +43660,9 @@
       "ontology"
     ],
     "license": "CC0-1.0",
+    "mappings": {
+      "bartoc": "20428"
+    },
     "name": "Semantic Mapping Vocabulary",
     "preferred_prefix": "semapv",
     "references": [
@@ -49534,7 +49544,9 @@
     "uri_format": "http://vegbank.org/cite/$1"
   },
   "venom": {
-    "comment": "Note that getting access to this resource requires manual written contact and signing a licensing agreement. Used by VBO",
+    "appears_in": [
+      "vbo"
+    ],
     "contact": {
       "email": "DBrodbelt@RVC.AC.UK",
       "github": null,
@@ -49547,12 +49559,12 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "A standard set of clinical veterinary terms for use in referral veterinary hospital electronic patient records and first opinion veterinary practice management systems.",
+    "description": "The Veterinary Nomenclature (VeNom) is a standard set of clinical veterinary terms for use in referral veterinary hospital electronic patient records and first opinion veterinary practice management systems.",
     "example": "12969",
     "homepage": "https://venomcoding.org/",
     "name": "Veterinary Nomenclature",
     "pattern": "^\\d+$",
-    "preferred_prefix": "venom",
+    "preferred_prefix": "VeNom",
     "proprietary": true,
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/724"

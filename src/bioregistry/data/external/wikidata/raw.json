@@ -1369,6 +1369,20 @@
     "prefix": "P11583",
     "uri_format": "https://nas.er.usgs.gov/queries/GreatLakes/FactSheet.aspx?Species_ID=$1"
   },
+  "P11623": {
+    "database": "Q116303978",
+    "description": "identifier of an entry in the NCI Drug Dictionary",
+    "example": [
+      "beta-carotene",
+      "edatrexate",
+      "hydroxychloroquine",
+      "l-carnitine-l-tartrate"
+    ],
+    "homepage": "https://www.cancer.gov/publications/dictionaries/cancer-drug",
+    "name": "NCI Drug Dictionary ID",
+    "prefix": "P11623",
+    "uri_format": "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/$1"
+  },
   "P1193": {
     "database": "Q719602",
     "description": "portion in percent of a population with a given disease or disorder",
@@ -2710,7 +2724,10 @@
     "name": "EPPO Code",
     "pattern": "^[0-9A-Z]{5,6}$",
     "prefix": "P3031",
-    "uri_format": "https://gd.eppo.int/taxon/$1"
+    "uri_format": "https://gd.eppo.int/taxon/$1",
+    "uri_format_rdf": [
+      "https://gd.eppo.int/taxon/$1"
+    ]
   },
   "P3060": {
     "database": "Q27777766",
@@ -5831,7 +5848,7 @@
     "name": "FLOW ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6096",
-    "uri_format": "https://www.hemiptera-databases.org/flow/?page=explorer&db=flow&lang=en&card=taxon&rank=species&id=$1"
+    "uri_format": "https://flow.hemiptera-databases.org/flow/?page=explorer&db=flow&lang=en&card=taxon&rank=species&id=$1"
   },
   "P6098": {
     "database": "Q58006102",
