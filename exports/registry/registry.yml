@@ -9736,9 +9736,16 @@ dc:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Metadata terms maintained by the Dublin Core Metadata Initiative, including
-    properties, vocabulary encoding schemes, syntax encoding schemes, and classes.
-  download_owl: http://aber-owl.net/media/ontologies/DC/3/dc.owl
+  deprecated: true
+  description: 'Metadata terms maintained by the Dublin Core Metadata Initiative,
+    including properties, vocabulary encoding schemes, syntax encoding schemes, and
+    classes.
+
+
+    **Deprecation Notice**: While the `/elements/1.1/` namespace will be supported
+    indefinitely, DCMI gently encourages use of the `/terms/` namespace (i.e., `dcterms`)
+    ([source](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3)).'
+  download_owl: http://aber-owl.net/media/ontologies/dcelements/1/dcelements.owl
   example: contributor
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   keywords:
@@ -9747,14 +9754,16 @@ dc:
   - ontology
   - subject agnostic
   mappings:
-    aberowl: DC
+    aberowl: dcelements
     biocontext: dc
     bioportal: DC
     fairsharing: FAIRsharing.3nx7t
-  name: Dublin Core
+  name: Dublin Core Elements (1.1)
   preferred_prefix: dc
   synonyms:
+  - dc.elements
   - dc11
+  - dce
   uri_format: http://purl.org/dc/elements/1.1/$1
 dc_cl:
   contact:
@@ -9831,7 +9840,7 @@ dcterms:
     biolink: dct
     bioportal: DCTERMS
     fairsharing: FAIRsharing.9vtwjs
-  name: Dublin Core Metadata Vocabulary
+  name: Dublin Core Metadata Initiative Terms
   preferred_prefix: dcterms
   synonyms:
   - dc.terms
@@ -22659,14 +22668,27 @@ iobc:
     Bioscience Database Center licensed under CC Attribution-NonCommercial 4.0 International".'
   download_owl: http://aber-owl.net/media/ontologies/IOBC/25/iobc.owl
   example: '200906038218908385'
+  example_extras:
+  - AC21_cat
+  - AC21
+  - OWLClass_00000000000000000321
   homepage: https://github.com/kushidat/IOBC
   keywords:
   - ontology
+  license: CC-BY-NC-4.0
   mappings:
     aberowl: IOBC
     bioportal: IOBC
   name: Interlinking Ontology for Biological Concepts
   preferred_prefix: iobc
+  publications:
+  - doi: 10.1007/s00354-019-00074-y
+    pmc: null
+    pubmed: null
+    title: Interconnection of Biological Knowledge Using NikkajiRDF and Interlinking
+      Ontology for Biological Concepts
+    year: 2019
+  repository: https://github.com/kushidat/IOBC
   uri_format: http://purl.jp/bio/4/id/$1
 ipi:
   deprecated: true

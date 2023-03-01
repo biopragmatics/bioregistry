@@ -16145,8 +16145,6 @@ aberowl:CVDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:DATACITE dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:DC dcterms:isPartOf bioregistry.metaresource:aberowl .
-
 aberowl:DCAT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:DDANAT dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -16680,6 +16678,8 @@ aberowl:ZFA dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:ZFS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ZP dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:dcelements dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:dcterms dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -35340,10 +35340,12 @@ bioregistry:dbsnp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dc a bioregistry.schema:0000001 ;
-    rdfs:label "Dublin Core" ;
-    dc:description "Metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes."^^xsd:string ;
+    rdfs:label "Dublin Core Elements (1.1)" ;
+    dc:description """Metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.
+
+**Deprecation Notice**: While the `/elements/1.1/` namespace will be supported indefinitely, DCMI gently encourages use of the `/terms/` namespace (i.e., `dcterms`) ([source](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3))."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:DC,
+    skos:exactMatch aberowl:dcelements,
         bioportal:DC,
         biocontext:dc,
         fairsharing:FAIRsharing.3nx7t ;
@@ -35354,10 +35356,12 @@ bioregistry:dc a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/"^^xsd:string ;
     bioregistry.schema:0000005 "contributor"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/dc/elements/1.1/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/DC/3/dc.owl> ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/dcelements/1/dcelements.owl> ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-9052-2854 ;
-    bioregistry.schema:0000023 "dc11" .
+    bioregistry.schema:0000023 "dc.elements",
+        "dc11",
+        "dce" .
 
 bioregistry:dcat a bioregistry.schema:0000001 ;
     rdfs:label "Data Catalog" ;
@@ -35379,7 +35383,7 @@ bioregistry:dcat a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0001-9052-2854 .
 
 bioregistry:dcterms a bioregistry.schema:0000001 ;
-    rdfs:label "Dublin Core Metadata Vocabulary" ;
+    rdfs:label "Dublin Core Metadata Initiative Terms" ;
     dc:description "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:dcterms,
@@ -43556,7 +43560,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:CTO,
         aberowl:CVDO,
         aberowl:DATACITE,
-        aberowl:DC,
         aberowl:DCAT,
         aberowl:DDANAT,
         aberowl:DDPHENO,
@@ -43824,6 +43827,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:ZFA,
         aberowl:ZFS,
         aberowl:ZP,
+        aberowl:dcelements,
         aberowl:dcterms,
         aberowl:foaf,
         aberowl:ordo,
