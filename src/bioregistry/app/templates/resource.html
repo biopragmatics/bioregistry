@@ -442,7 +442,7 @@
                             <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
-                                {{ manager.get_preferred_prefix(rel_prefix) }}
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
