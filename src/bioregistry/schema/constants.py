@@ -2,8 +2,8 @@
 
 """Schema constants."""
 
-from dataclasses import dataclass
-from typing import Mapping, Optional, Union
+from dataclasses import dataclass, field
+from typing import List, Mapping, Optional, Union
 
 import rdflib.namespace
 from rdflib import DCTERMS, FOAF, OWL, RDF, RDFS, SKOS, XSD, Literal, URIRef
@@ -34,7 +34,7 @@ class Term:
 class ClassTerm(Term):
     """A term for a class."""
 
-    xref: Optional[URIRef] = None
+    xrefs: List[URIRef] = field(default_factory=list)
 
 
 @dataclass
@@ -43,13 +43,13 @@ class PropertyTerm(Term):
 
     domain: Union[str, Node]
     range: Union[str, Node]
-    xref: Optional[URIRef] = None
+    xrefs: List[URIRef] = field(default_factory=list)
     parent: Optional[URIRef] = None
 
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")
+WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
-
 
 bioregistry_schema_terms = [
     ClassTerm("0000001", "Class", "Resource", "A type for entries in the Bioregistry's registry."),
@@ -73,7 +73,7 @@ bioregistry_schema_terms = [
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
-        xref=IDOT["exampleIdentifier"],
+        xrefs=[IDOT["exampleIdentifier"]],
     ),
     PropertyTerm(
         "0000006",
@@ -83,7 +83,10 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
-        xref=IDOT["accessPattern"],
+        xrefs=[
+            IDOT["accessPattern"],
+            WIKIDATA["P1630"],
+        ],
     ),
     PropertyTerm(
         "0000007",
@@ -101,7 +104,10 @@ bioregistry_schema_terms = [
         "The pattern for identifiers in the given resource",
         domain="0000001",
         range=XSD.string,
-        xref=IDOT["identifierPattern"],
+        xrefs=[
+            IDOT["identifierPattern"],
+            WIKIDATA["P1793"],
+        ],
     ),
     # PropertyTerm(
     #     "0000009",
@@ -201,7 +207,7 @@ bioregistry_schema_terms = [
         "Class",
         "Person",
         "A person",
-        xref=FOAF.Person,
+        xrefs=[FOAF.Person],
     ),
     PropertyTerm(
         "0000021",
@@ -226,7 +232,7 @@ bioregistry_schema_terms = [
         "An alternative or synonymous prefix",
         domain="0000001",
         range=XSD.string,
-        xref=IDOT["alternatePrefix"],
+        xrefs=[IDOT["alternatePrefix"]],
         parent=OBOINOWL["hasExactSynonym"],
     ),
 ]
@@ -273,12 +279,12 @@ def _add_schema(graph):
         node = bioregistry_schema[term.identifier]
         if isinstance(term, ClassTerm):
             graph.add((node, RDF.type, RDFS.Class))
-            if term.xref is not None:
-                graph.add((node, OWL.equivalentClass, term.xref))
+            for xref in term.xrefs:
+                graph.add((node, OWL.equivalentClass, xref))
         elif isinstance(term, PropertyTerm):
             graph.add((node, RDF.type, RDF.Property))
-            if term.xref is not None:
-                graph.add((node, OWL.equivalentProperty, term.xref))
+            for xref in term.xrefs:
+                graph.add((node, OWL.equivalentProperty, xref))
             if term.parent is not None:
                 graph.add((node, RDFS.subPropertyOf, term.parent))
             for property_node, object_node in (

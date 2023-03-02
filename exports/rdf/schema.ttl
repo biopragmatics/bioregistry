@@ -37,7 +37,8 @@ bioregistry.schema:0000006 a rdf:Property ;
     dcterms:description "The URL format for a provider that contains $1 for the identifier (or metaidentifier) that should be resolved." ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
-    owl:equivalentProperty idot:accessPattern .
+    owl:equivalentProperty idot:accessPattern,
+        <http://www.wikidata.org/entity/P1630> .
 
 bioregistry.schema:0000007 a rdf:Property ;
     rdfs:label "has resolver formatter" ;
@@ -50,7 +51,8 @@ bioregistry.schema:0000008 a rdf:Property ;
     dcterms:description "The pattern for identifiers in the given resource" ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
-    owl:equivalentProperty idot:identifierPattern .
+    owl:equivalentProperty idot:identifierPattern,
+        <http://www.wikidata.org/entity/P1793> .
 
 bioregistry.schema:0000010 a rdf:Property ;
     rdfs:label "has download URL" ;
