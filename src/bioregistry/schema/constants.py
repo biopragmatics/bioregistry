@@ -48,6 +48,7 @@ class PropertyTerm(Term):
 
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")
+VANN = rdflib.Namespace("http://purl.org/vocab/vann/")
 WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
 
@@ -73,7 +74,10 @@ bioregistry_schema_terms = [
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
-        xrefs=[IDOT["exampleIdentifier"]],
+        xrefs=[
+            IDOT["exampleIdentifier"],
+            VANN["example"],
+        ],
     ),
     PropertyTerm(
         "0000006",
@@ -235,6 +239,18 @@ bioregistry_schema_terms = [
         xrefs=[IDOT["alternatePrefix"]],
         parent=OBOINOWL["hasExactSynonym"],
     ),
+    PropertyTerm(
+        "0000024",
+        "Property",
+        "has provider formatter",
+        "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier)"
+        " that should be resolved.",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[
+            VANN["preferredNamespaceUri"],
+        ],
+    ),
 ]
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
@@ -270,6 +286,7 @@ def get_schema_rdf() -> rdflib.Graph:
     graph.bind("foaf", FOAF)
     graph.bind("skos", SKOS)
     graph.bind("oboinowl", OBOINOWL)
+    graph.bind("vann", VANN)
     _add_schema(graph)
     return graph
 

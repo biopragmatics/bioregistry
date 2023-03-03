@@ -24,6 +24,7 @@ from bioregistry.constants import (
 from bioregistry.schema.constants import (
     IDOT,
     OBOINOWL,
+    VANN,
     WIKIDATA,
     _add_schema,
     bioregistry_collection,
@@ -95,6 +96,7 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
     graph.namespace_manager.bind("idot", IDOT)
     graph.namespace_manager.bind("wikidata", WIKIDATA)
+    graph.namespace_manager.bind("vann", VANN)
     graph.namespace_manager.bind("oboinowl", OBOINOWL)
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)

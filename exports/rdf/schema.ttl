@@ -6,6 +6,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 bioregistry.schema:0000001 a rdfs:Class ;
@@ -30,7 +31,8 @@ bioregistry.schema:0000005 a rdf:Property ;
     dcterms:description "An identifier for a resource or metaresource." ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
-    owl:equivalentProperty idot:exampleIdentifier .
+    owl:equivalentProperty idot:exampleIdentifier,
+        vann:example .
 
 bioregistry.schema:0000006 a rdf:Property ;
     rdfs:label "has provider formatter" ;
@@ -115,4 +117,11 @@ bioregistry.schema:0000023 a rdf:Property ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf oboinowl:hasExactSynonym ;
     owl:equivalentProperty idot:alternatePrefix .
+
+bioregistry.schema:0000024 a rdf:Property ;
+    rdfs:label "has provider formatter" ;
+    dcterms:description "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier) that should be resolved." ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range xsd:string ;
+    owl:equivalentProperty vann:preferredNamespaceUri .
 
