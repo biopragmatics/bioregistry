@@ -133,7 +133,7 @@ class Organization(BaseModel):
         if self.ror:
             return f"https://ror.org/{self.ror}"
         elif self.wikidata:
-            return f"https://www.wikidata.org/wiki/{self.wikidata}"
+            return f"https://scholia.toolforge.org/{self.wikidata}"
         else:
             raise ValueError
 
