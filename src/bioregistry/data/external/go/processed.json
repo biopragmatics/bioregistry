@@ -767,6 +767,23 @@
     ],
     "name": "DTU Health Tech Services"
   },
+  "DisProt": {
+    "database": "DisProt",
+    "description": "Database of intrinsically disordered proteins",
+    "entity_types": [
+      {
+        "example_id": "DP00086",
+        "example_url": "https://www.disprot.org/DP00086",
+        "type_id": "BET:0000000",
+        "type_name": "entity",
+        "url_syntax": "https://www.disprot.org/[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://www.disprot.org"
+    ],
+    "name": "DisProt"
+  },
   "EC": {
     "database": "EC",
     "entity_types": [
@@ -983,33 +1000,66 @@
     "entity_types": [
       {
         "example_id": "EcoCyc:P2-PWY",
-        "example_url": "http://biocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=P2-PWY",
-        "id_syntax": "EG[0-9]{5}",
+        "example_url": "https://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=P2-PWY",
+        "id_syntax": "^[A-Za-z0-9+_.%-:]+$",
         "type_id": "GO:0008150",
         "type_name": "biological_process",
-        "url_syntax": "http://biocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=[example_id]"
+        "url_syntax": "https://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://ecocyc.org/"
+      "https://ecocyc.org/"
     ],
-    "name": "Encyclopedia of E. coli metabolism"
+    "name": "Scientific database for the bacterium Escherichia coli K-12 MG1655"
+  },
+  "EcoCyc_GENE": {
+    "database": "EcoCyc_GENE",
+    "entity_types": [
+      {
+        "example_id": "EcoCyc:RBSA-MONOMER",
+        "example_url": "https://ecocyc.org/gene?orgid=ECOLI&id=RBSA-MONOMER",
+        "id_syntax": "^[A-Za-z0-9+_.%-:]+$",
+        "type_id": "PR:000000001",
+        "type_name": "protein",
+        "url_syntax": "https://ecocyc.org/gene?orgid=ECOLI&id=[example_id]"
+      },
+      {
+        "example_id": "EcoCyc:EG30086",
+        "example_url": "https://ecocyc.org/gene?orgid=ECOLI&id=EG30086",
+        "id_syntax": "^[A-Za-z0-9+_.%-:]+$",
+        "type_id": "CHEBI:33697",
+        "type_name": "ribonucleic acid",
+        "url_syntax": "https://ecocyc.org/gene?orgid=ECOLI&id=[example_id]"
+      },
+      {
+        "example_id": "EcoCyc:ABC-28-CPLX",
+        "example_url": "https://ecocyc.org/ECOLI/NEW-IMAGE?id=ABC-28-CPLX",
+        "id_syntax": "^[A-Za-z0-9+_.%-:]+$",
+        "type_id": "GO:0032991",
+        "type_name": "protein-containing complex",
+        "url_syntax": "https://ecocyc.org/ECOLI/NEW-IMAGE?id=[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://ecocyc.org/"
+    ],
+    "name": "Scientific database for the bacterium Escherichia coli K-12 MG1655"
   },
   "EcoCyc_REF": {
     "database": "EcoCyc_REF",
     "entity_types": [
       {
         "example_id": "EcoCyc_REF:COLISALII",
-        "example_url": "http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=COLISALII",
+        "example_url": "https://ecocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=COLISALII",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=[example_id]"
+        "url_syntax": "https://ecocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://ecocyc.org/"
+      "https://ecocyc.org/"
     ],
-    "name": "Encyclopedia of E. coli metabolism",
+    "name": "Scientific database for the bacterium Escherichia coli K-12 MG1655",
     "synonyms": [
       "ECOCYC_REF"
     ]
@@ -2371,14 +2421,15 @@
     "entity_types": [
       {
         "example_id": "MetaCyc:GLUTDEG-PWY",
-        "example_url": "http://biocyc.org/META/NEW-IMAGE?type=NIL&object=GLUTDEG-PWY",
+        "example_url": "https://biocyc.org/META/NEW-IMAGE?type=NIL&object=GLUTDEG-PWY",
+        "id_syntax": "^[A-Za-z0-9+_.%-:]+$",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "http://biocyc.org/META/NEW-IMAGE?type=NIL&object=[example_id]"
+        "url_syntax": "https://biocyc.org/META/NEW-IMAGE?type=NIL&object=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://metacyc.org/"
+      "https://metacyc.org/"
     ],
     "name": "Metabolic Encyclopedia of metabolic and other pathways",
     "rdf_uri_prefix": "https://identifiers.org/metacyc.reaction",
@@ -2669,6 +2720,24 @@
       "https://www.rcsb.org/pdb/"
     ],
     "name": "Protein Data Bank"
+  },
+  "PHI-base": {
+    "database": "PHI-base",
+    "description": "PHI-base catalogues experimentally verified pathogenicity, virulence and effector genes from fungal, Oomycete and bacterial pathogens, which infect animal, plant, fungal and insect hosts.",
+    "entity_types": [
+      {
+        "example_id": "PHI:3",
+        "example_url": "http://www.phi-base.org/searchFacet.htm?queryTerm=PHI:3",
+        "id_syntax": "PHI:[0-9]+",
+        "type_id": "BET:0000000",
+        "type_name": "entity",
+        "url_syntax": "http://www.phi-base.org/searchFacet.htm?queryTerm=PHI:[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "http://www.phi-base.org/"
+    ],
+    "name": "Pathogen-Host Interactions Database"
   },
   "PIR": {
     "database": "PIR",
@@ -3513,19 +3582,27 @@
     "database": "SO",
     "entity_types": [
       {
-        "example_id": "SO:0000195",
-        "example_url": "http://www.sequenceontology.org/browser/current_svn/term/SO:0001850",
+        "example_id": "SO:0000400",
+        "example_url": "http://www.sequenceontology.org/browser/current_svn/term/SO:0000400",
         "id_syntax": "\\d{7}",
         "type_id": "SO:0000400",
         "type_name": "sequence attribute",
         "url_syntax": "http://www.sequenceontology.org/browser/current_svn/term/SO:[example_id]"
       },
       {
-        "example_id": "SO:0000195",
-        "example_url": "http://www.sequenceontology.org/browser/current_svn/term/SO:0001850",
+        "example_id": "SO:0000307",
+        "example_url": "http://www.sequenceontology.org/browser/current_svn/term/SO:0000307",
         "id_syntax": "\\d{7}",
         "type_id": "SO:0000110",
         "type_name": "sequence feature",
+        "url_syntax": "http://www.sequenceontology.org/browser/current_svn/term/SO:[example_id]"
+      },
+      {
+        "example_id": "SO:0001166",
+        "example_url": "http://www.sequenceontology.org/browser/current_svn/term/SO:0001166",
+        "id_syntax": "\\d{7}",
+        "type_id": "SO:0001683",
+        "type_name": "sequence motif",
         "url_syntax": "http://www.sequenceontology.org/browser/current_svn/term/SO:[example_id]"
       }
     ],
@@ -4458,6 +4535,23 @@
     "name": "Gene Ontology Causal Activity Model Database",
     "rdf_uri_prefix": "http://model.geneontology.org/"
   },
+  "iBB": {
+    "database": "iBB",
+    "description": "RNAi phenotypes for beetle (Tribolium) genes",
+    "entity_types": [
+      {
+        "example_id": "TC006055",
+        "example_url": "https://ibeetle-base.uni-goettingen.de/details/TC006055",
+        "type_id": "BET:0000000",
+        "type_name": "entity",
+        "url_syntax": "https://ibeetle-base.uni-goettingen.de/details|[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://ibeetle-base.uni-goettingen.de/"
+    ],
+    "name": "iBeetleBase"
+  },
   "iPTMnet": {
     "database": "iPTMnet",
     "entity_types": [
@@ -4473,6 +4567,24 @@
       "https://research.bioinformatics.udel.edu/iptmnet/"
     ],
     "name": "iPTMnet protein post-translational modification database"
+  },
+  "orcid": {
+    "database": "orcid",
+    "description": "ORCID (Open Researcher and Contributor ID) is an open, non-profit, community-based effort to create and maintain a registry of unique identifiers for individual researchers.",
+    "entity_types": [
+      {
+        "example_id": "orcid:0000-0003-4423-4370",
+        "example_url": "https://orcid.org/0000-0003-4423-4370",
+        "id_syntax": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
+        "type_id": "BET:0000000",
+        "type_name": "entity",
+        "url_syntax": "https://orcid.org/[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://orcid.org/"
+    ],
+    "name": "Open Researcher and Contributor"
   },
   "protein_id": {
     "database": "protein_id",

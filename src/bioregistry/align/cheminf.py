@@ -31,4 +31,4 @@ class ChemInfAligner(Aligner):
 
 
 if __name__ == "__main__":
-    ChemInfAligner.align()
+    ChemInfAligner.cli()

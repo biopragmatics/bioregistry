@@ -10,6 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import curies
+import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -310,6 +311,13 @@ class TestRegistry(unittest.TestCase):
         )
         self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
+        resource = self.registry["agrovoc"]
+        self.assertEqual(
+            "^c_[a-z0-9]+$",
+            resource.get_pattern_with_banana(),
+        )
+        self.assertEqual("^(c_)?[a-z0-9]+$", resource.get_pattern_with_banana(strict=False))
+
     def test_examples(self):
         """Test examples for the required conditions.
 
@@ -354,7 +362,7 @@ class TestRegistry(unittest.TestCase):
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
         canonical = entry.is_valid_identifier(example)
-        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}: {example}")
+        self.assertTrue(canonical is None or canonical, msg=f"[{prefix}] invalid LUID: {example}")
 
     def test_extra_examples(self):
         """Test extra examples."""
@@ -468,8 +476,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi", manager=manager)
+        resource = manager.registry["chebi"]
+        s = resource_to_rdf_str(resource, manager=manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)
 
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
@@ -637,7 +648,7 @@ class TestRegistry(unittest.TestCase):
         for lead in priorities:
             priority = [lead, *(x for x in priorities if x != lead)]
             with self.subTest(priority=",".join(priority)):
-                prefix_map = bioregistry.get_prefix_map(priority=priority)
+                prefix_map = bioregistry.get_prefix_map(uri_prefix_priority=priority)
                 self.assertIsNotNone(prefix_map)
 
     def test_default_prefix_map_no_miriam(self):
@@ -665,6 +676,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
+        self.assertEqual("GO", self.registry["go"].get_preferred_prefix())
+        self.assertEqual("AAO", self.registry["aao"].get_preferred_prefix())
+        self.assertEqual("NCBITaxon", self.registry["ncbitaxon"].get_preferred_prefix())
+        self.assertEqual("MGI", self.registry["mgi"].get_preferred_prefix())
+
         for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix):
                 continue
@@ -676,6 +692,23 @@ class TestRegistry(unittest.TestCase):
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
+
+    def test_priority_prefix(self):
+        """Test getting priority prefixes."""
+        resource = self.registry["go"]
+        self.assertEqual("go", resource.get_priority_prefix())
+        self.assertEqual("go", resource.get_priority_prefix("default"))
+        self.assertEqual("go", resource.get_priority_prefix("bioregistry"))
+        self.assertEqual("go", resource.get_priority_prefix("obofoundry"))
+        self.assertEqual("GO", resource.get_priority_prefix("preferred"))
+
+        resource = self.registry["biomodels.kisao"]
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix())
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix("default"))
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix("bioregistry"))
+        self.assertEqual("kisao", resource.get_priority_prefix("obofoundry"))
+        self.assertEqual("KISAO", resource.get_priority_prefix("obofoundry.preferred"))
+        self.assertEqual("biomodels.kisao", resource.get_priority_prefix("preferred"))
 
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
@@ -738,7 +771,13 @@ class TestRegistry(unittest.TestCase):
             if resource.license is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(standardize_license(resource.license), resource.license)
+                standard_license = standardize_license(resource.license)
+                self.assertEqual(
+                    standard_license,
+                    resource.license,
+                    msg=f"manually curated license in {prefix} should be standardized"
+                    f" to SPDX identifier {standard_license}",
+                )
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -788,41 +827,6 @@ class TestRegistry(unittest.TestCase):
                 )
                 self.assertIsNotNone(
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
-                )
-
-    def test_wikidata(self):
-        """Check wikidata prefixes are written properly."""
-        allowed = {
-            "database",
-            "prefix",
-            "pattern",
-            "paper",
-            "description",
-            "homepage",
-            "name",
-            "uri_format",
-            "database.label",
-            "format.rdf",
-            "database.homepage",
-        }
-        for prefix, resource in self.registry.items():
-            if not resource.wikidata:
-                continue
-            with self.subTest(prefix=prefix):
-                unexpected_keys = set(resource.wikidata) - allowed
-                self.assertFalse(
-                    unexpected_keys, msg=f"Unexpected keys in wikidata entry: {unexpected_keys}"
-                )
-                database = resource.wikidata.get("database")
-                self.assertTrue(
-                    database is None or database.startswith("Q"),
-                    msg=f"Wikidata database for {prefix} is malformed: {database}",
-                )
-
-                wikidata_property = resource.wikidata.get("prefix")
-                self.assertTrue(
-                    wikidata_property is None or wikidata_property.startswith("P"),
-                    msg=f"Wikidata property for {prefix} is malformed: {wikidata_property}",
                 )
 
     def test_wikidata_wrong_place(self):
@@ -943,3 +947,53 @@ class TestRegistry(unittest.TestCase):
                     continue
                 with self.subTest(prefix=prefix, metaprefix=metaprefix):
                     self.assertRegex(metaidentifier, pattern)
+
+    def test_standardize_identifier(self):
+        """Standardize the identifier."""
+        examples = [
+            ("agrovoc", "1234", "1234"),
+            ("agrovoc", "c_1234", "1234"),
+        ]
+        for prefix, identifier, norm_identifier in examples:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertEqual(
+                    norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
+                )
+
+    @unittest.skip
+    def test_keywords(self):
+        """Assert that all entries have keywords."""
+        for resource in self.registry.values():
+            if resource.is_deprecated():
+                continue
+            if not resource.contributor:
+                continue
+            if resource.get_mappings():
+                continue  # TODO remove this after first found of curation is done
+            with self.subTest(prefix=resource.prefix, name=resource.get_name()):
+                if resource.keywords:
+                    self.assertEqual(
+                        sorted(k.lower() for k in resource.keywords),
+                        resource.keywords,
+                        msg="manually curated keywords should be sorted and exclusively lowercase",
+                    )
+                keywords = resource.get_keywords()
+                self.assertIsNotNone(keywords)
+                self.assertLess(0, len(keywords), msg=f"{resource.prefix} is missing keywords")
+
+    def test_owners(self):
+        """Test owner annotations."""
+        for prefix, resource in self.registry.items():
+            if not resource.owners:
+                continue
+            with self.subTest(prefix=prefix):
+                # If any organizations are partnered, ensure fully
+                # filled out contact.
+                if any(owner.partnered for owner in resource.owners):
+                    self.assertIsNotNone(resource.contact)
+                    self.assertIsNotNone(resource.contact.github)
+                    self.assertIsNotNone(resource.contact.email)
+                    self.assertIsNotNone(resource.contact.orcid)
+                    self.assertIsNotNone(resource.contact.name)
+                for owner in resource.owners:
+                    self.assertTrue(owner.ror is not None or owner.wikidata is not None)

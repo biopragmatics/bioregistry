@@ -4,6 +4,7 @@ import random
 import time
 from typing import Iterable, Tuple
 
+import click
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -58,7 +59,10 @@ def iter_curies() -> Iterable[Tuple[str, str, str, str]]:
                     yield prefix, example_extended, "false", curie_to_str(synonym, example_extended)
 
 
-def main(rebuild: bool = True, epochs: int = 10):
+@click.command()
+@click.option("--rebuild", is_flag=True)
+@click.option("--replicates", type=int, default=10)
+def main(rebuild: bool, replicates: int):
     """Test validating CURIEs."""
     curies = get_curies(rebuild=rebuild)
 
@@ -68,7 +72,7 @@ def main(rebuild: bool = True, epochs: int = 10):
     rows_ = []
     failures = 0
     xx = set()
-    for _ in trange(epochs, desc="epochs"):
+    for _ in trange(replicates, desc="Test validating CURIEs", unit="replicate"):
         random.shuffle(curies)
         for prefix, identifier, label, curie in tqdm(
             curies, unit_scale=True, unit="CURIE", leave=False
@@ -91,15 +95,19 @@ def main(rebuild: bool = True, epochs: int = 10):
                     xx.add((prefix, identifier, label, curie))
                     tqdm.write(f"expecting {curie} to be valid (got {result} but expected true)")
 
-    fig, ax = plt.subplots()
     df = pd.DataFrame(rows_, columns=["time", "label"])
-    sns.histplot(data=df, x="time", hue="label", ax=ax, log_scale=True)
     m = df["time"].mean()
+    title = (
+        f"Bioregistry CURIE Validation Benchmark\nAverage: {round(1 / m):,} CURIE/s, "
+        f"Errors: {failures // replicates}"
+    )
+    click.echo(title)
+
+    fig, ax = plt.subplots()
+    sns.histplot(data=df[df["time"] > 0], x="time", hue="label", ax=ax, log_scale=True)
     ax.axvline(m)
     ax.set_xlabel("Time (seconds)")
-    ax.set_title(
-        f"Bioregistry CURIE Validation Benchmark\nAverage: {round(1 / m):,} CURIE/s, Errors: {failures // epochs}"
-    )
+    ax.set_title(title)
     fig.savefig(CURIE_VALIDATION_SVG_PATH)
 
 

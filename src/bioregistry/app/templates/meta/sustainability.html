@@ -115,12 +115,23 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
     <p>
         The Bioregistry project is also interested in acquiring grants to help ensure its longevity. We give a
         conservative estimate of around $100-200/year to support domain registration, AWS costs, and
-        personnel time for maitenance. This means that the Bioregistry could cost as little as $1,000
+        personnel time for maintenance. This means that the Bioregistry could cost as little as $1,000
         to run for 10 years (which is much longer than most scientific databases/websites are able to persist).
-        For example, an International Society for Biocuration
-        <a href="https://www.biocuration.org/community/microgrants/">microgrant</a> might be sufficient.
     </p>
 
+    <h3>Mirroring</h3>
+    <p>
+        The Bioregistry can be mirrored following
+        <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html">these instructions</a>.
+    </p>
+
+    <h3>Deploying with Custom Content</h3>
+    <p>
+        The Bioregistry can be deployed using custom content by following
+        <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html#deploying-a-custom-bioregistry">these
+        instructions</a>.
+    </p>
+    
     <h2>Project Governance</h2>
     <p>
         Stakeholders in the Bioregistry have been interested in questions including:
@@ -166,4 +177,10 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
             <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+label%3APolicy">Policy</a> on the Bioregistry's GitHub issue tracker
         </li>
     </ul>
+    <h2>Evaluation of FAIR Data Principles</h2>
+    <p>
+        Content negotiation was implemented in <a href="https://github.com/biopragmatics/bioregistry/pull/682">
+        PR #682</a> in order to better comply with FAIR-ness evaluations such as th
+        <a href="https://fair-enough.semanticscience.org">FAIR Enough Evaluation</a>
+    </p>
 {% endblock %}

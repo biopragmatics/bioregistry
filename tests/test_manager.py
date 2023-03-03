@@ -6,6 +6,7 @@ import unittest
 
 import bioregistry
 from bioregistry import Manager
+from bioregistry.export.rdf_export import get_full_rdf
 
 
 class TestResourceManager(unittest.TestCase):
@@ -15,18 +16,45 @@ class TestResourceManager(unittest.TestCase):
         """Set up the test case with a resource manager."""
         self.manager = Manager()
 
+    def test_get_records(self):
+        """Test getting records."""
+        resource = self.manager.registry["uniprot.isoform"]
+        self.assertEqual("uniprot.isoform", resource.get_priority_prefix())
+
+        prefixes = {
+            resource.prefix
+            for resource in self.manager.registry.values()
+            if resource.get_uri_prefix()
+        }
+        self.assertIn(
+            "uniprot.isoform",
+            prefixes,
+            msg="uniprot.isoform isn't registered with a URI prefix properly",
+        )
+
+        records = self.manager.get_curies_records()
+        prefixes = {record.prefix for record in records}
+        self.assertIn("uniprot.isoform", prefixes)
+
+    def test_prefix_map(self):
+        """Test getting a prefix map."""
+        prefix_map = self.manager.get_prefix_map()
+        # Non-obo, but need to check it works right
+        self.assertIn("uniprot.isoform", prefix_map)
+        self.assertEqual("http://purl.uniprot.org/isoforms/", prefix_map["uniprot.isoform"])
+
     def test_prefix_map_preferred(self):
         """Test using preferred prefixes in the prefix map."""
         prefix_map = self.manager.get_prefix_map(
-            priority=["obofoundry", "default"],
-            use_preferred=True,
+            prefix_priority=["preferred", "default"],
+            uri_prefix_priority=["obofoundry", "default"],
         )
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
 
         prefix_map = bioregistry.get_prefix_map(
-            priority=["obofoundry", "default"],
-            use_preferred=True,
+            uri_prefix_priority=["obofoundry", "default"],
+            prefix_priority=["preferred", "default"],
         )
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
@@ -186,3 +214,14 @@ class TestResourceManager(unittest.TestCase):
         for curie in invalid:
             with self.subTest(curie=curie):
                 self.assertFalse(self.manager.is_standardizable_curie(curie))
+
+    def test_full_rdf(self):
+        """Test the full dump."""
+        full = get_full_rdf(self.manager)
+        prefixes = {
+            prefix[len("https://bioregistry.io/registry/") :]
+            for prefix, in full.query(
+                "SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }"
+            )
+        }
+        self.assertEqual(set(self.manager.registry), prefixes)

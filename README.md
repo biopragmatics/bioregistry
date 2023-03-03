@@ -374,7 +374,7 @@ prefix_map = get_prefix_map()
 
 # Prioritize OBO prefixes over bioregistry
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-prefix_map = get_prefix_map(priority=priority)
+prefix_map = get_prefix_map(uri_prefix_priority=priority)
 
 # Provide custom remapping that doesn't have prioritization logic
 remapping = {"chebi": "CHEBI"}
@@ -461,16 +461,21 @@ It looks like this: [![Powered by the Bioregistry](https://img.shields.io/static
 
 ### 📖 Citation
 
-> [Unifying the Identification of Biomedical Entities with the Bioregistry](https://bioregistry.io/doi:10.1101/2022.07.08.499378)
+> [Unifying the identification of biomedical entities with the Bioregistry](https://bioregistry.io/doi:10.1038/s41597-022-01807-3)
 > <br />Hoyt, C. T., Balk, M., Callahan, T. J., Domingo-Fernandez, D., Haendel, M. A., Hegde, H. B., Himmelstein, D. S., Karis, K., Kunze, J., Lubiana, T., Matentzoglu, N., McMurry, J., Moxon, S., Mungall, C. J., Rutz, A., Unni, D. R., Willighagen, E., Winston, D., and Gyori, B. M. (2022)
-> <br />*bioRxiv*, 2022.07.08.499378
+> <br />*Nature Scientific Data*, s41597-022-01807-3
 
 ```bibtex
 @article{Hoyt2022Bioregistry,
-    author = {Hoyt, C T and Balk, M and Callahan, T J and Domingo-Fernandez, D and Haendel, M A and Hegde, H B and Himmelstein, D S and Karis, K and Kunze, J and Lubiana, T and Matentzoglu, N and McMurry, J and Moxon, S and Mungall, C J and Rutz, A and Unni, D R and Willighagen, E and Winston, D and Gyori, B M},
-    doi = {10.1101/2022.07.08.499378},
-    journal = {bioRxiv},
-    title = {{Unifying the Identification of Biomedical Entities with the Bioregistry}},
+    author = {Hoyt, Charles Tapley and Balk, Meghan and Callahan, Tiffany J and Domingo-Fern{\'{a}}ndez, Daniel and Haendel, Melissa A and Hegde, Harshad B and Himmelstein, Daniel S and Karis, Klas and Kunze, John and Lubiana, Tiago and Matentzoglu, Nicolas and McMurry, Julie and Moxon, Sierra and Mungall, Christopher J and Rutz, Adriano and Unni, Deepak R and Willighagen, Egon and Winston, Donald and Gyori, Benjamin M},
+    doi = {10.1038/s41597-022-01807-3},
+    issn = {2052-4463},
+    journal = {Sci. Data},
+    number = {1},
+    pages = {714},
+    title = {{Unifying the identification of biomedical entities with the Bioregistry}},
+    url = {https://doi.org/10.1038/s41597-022-01807-3},
+    volume = {9},
     year = {2022}
 }
 ```

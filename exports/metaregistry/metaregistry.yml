@@ -40,6 +40,7 @@ aberowl:
     status: active
   homepage: http://aber-owl.net
   license: See https://github.com/biopragmatics/bioregistry/issues/339
+  logo_url: http://aber-owl.net/static/images/logo-owl-small.33629e604a66.png
   name: AberOWL
   prefix: aberowl
   provider_uri_format: http://aber-owl.net/ontology/$1
@@ -81,13 +82,14 @@ agroportal:
     curation: opaque-review
     data_repository: null
     imports: false
-    issue_tracker: null
+    issue_tracker: https://github.com/agroportal/project-management/issues
     public_version_controlled_data: false
     review_team: private
     scope: agro-ontologies
     status: active
   homepage: http://agroportal.lirmm.fr
   license: See https://github.com/biopragmatics/bioregistry/issues/336
+  logo_url: https://avatars.githubusercontent.com/u/16088111
   name: AgroPortal
   prefix: agroportal
   provider_uri_format: http://agroportal.lirmm.fr/ontologies/$1
@@ -97,6 +99,64 @@ agroportal:
     no_authentication: false
     structured_data: true
   resolver_type: lookup
+bartoc:
+  availability:
+    alternate_providers: present
+    contact: present
+    description: present
+    example: missing
+    homepage: present
+    license: present
+    name: required
+    pattern: present
+    provider: missing
+    search: true
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: bartoc
+  contact:
+    email: andreas.ledl1@fhnw.ch
+    github: nichtich
+    name: Andreas Ledl
+    orcid: 0000-0002-0629-0446
+  description: 'The Basic Register of Thesauri, Ontologies & Classifications (BARTOC)
+    is a database of Knowledge Organization Systems and KOS related registries.\nThe
+    main goal of BARTOC is to list as many Knowledge Organization Systems as possible
+    at one place in order to achieve greater visibility, highlight their features,
+    make them searchable and comparable, and foster knowledge sharing. BARTOC includes
+    any kind of KOS from any subject area, in any language, any publication format,
+    and any form of accessibility. BARTOC’s search interface is available in 20 European
+    languages and provides two search options: Basic Search by keywords, and Advanced
+    Search by taxonomy terms. A circle of editors has gathered around BARTOC from
+    all across Europe and BARTOC has been approved by the International Society for
+    Knowledge Organization (ISKO).'
+  download: https://bartoc.org/data/dumps/latest.ndjson
+  example: '241'
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/gbv/bartoc.org
+    comments: null
+    curates: true
+    curation: opaque-review
+    data_repository: null
+    imports: false
+    issue_tracker: https://github.com/gbv/bartoc.org/issues
+    public_version_controlled_data: false
+    review_team: public
+    scope: general
+    status: active
+  homepage: https://bartoc.org/
+  license: PDDL 1.0
+  logo_url: https://bartoc.org/img/bartoc-logo.svg
+  name: Basic Register of Thesauri, Ontologies & Classifications
+  prefix: bartoc
+  provider_uri_format: https://bartoc.org/en/node/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  short_name: BARTOC
 biocontext:
   availability:
     alternate_providers: missing
@@ -182,6 +242,7 @@ biolink:
     status: active
   homepage: https://github.com/biolink/biolink-model
   license: Apache 2.0
+  logo_url: https://avatars.githubusercontent.com/u/25489141
   name: Biolink Model Registry
   prefix: biolink
   qualities:
@@ -229,6 +290,7 @@ bioportal:
     status: active
   homepage: https://bioportal.bioontology.org/
   license: See https://github.com/biopragmatics/bioregistry/issues/337
+  logo_url: https://ontoportal.org/wp-content/uploads/2020/02/bioportal-logo.png
   name: BioPortal Prefixes
   prefix: bioportal
   provider_uri_format: https://bioportal.bioontology.org/ontologies/$1
@@ -279,6 +341,7 @@ bioregistry:
     status: active
   homepage: https://bioregistry.io
   license: CC0
+  logo_url: https://bioregistry.io/static/logo.svg
   name: Bioregistry
   prefix: bioregistry
   provider_uri_format: https://bioregistry.io/registry/$1
@@ -327,6 +390,7 @@ cellosaurus:
     status: active
   homepage: https://web.expasy.org/cellosaurus/
   license: CC BY 4.0
+  logo_url: https://www.cellosaurus.org/cellosaurus.png
   name: Cellosaurus Registry
   prefix: cellosaurus
   qualities:
@@ -375,7 +439,7 @@ cheminf:
   license: CC BY 3.0
   name: Chemical Information Ontology
   prefix: cheminf
-  provider_uri_format: https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1
+  provider_uri_format: https://semanticscience.org/resource/CHEMINF_$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -424,6 +488,7 @@ cropoct:
     status: active
   homepage: https://www.cropontology.org
   license: CC BY 4.0
+  logo_url: https://cropontology.org/cropontology_static/crop_ontology_logo_2.png
   name: Crop Ontology Curation Tool
   prefix: cropoct
   provider_uri_format: https://www.cropontology.org/ontology/$1
@@ -473,6 +538,7 @@ ecoportal:
     status: active
   homepage: http://ecoportal.lifewatch.eu
   license: See https://github.com/biopragmatics/bioregistry/issues/338
+  logo_url: https://metadatacatalogue.lifewatch.eu/srv/api/records/95a44a9c-6f70-454f-9d3e-5e9d5684bb51/attachments/EcoPortal%20Positivo2.png
   name: EcoPortal
   prefix: ecoportal
   provider_uri_format: http://ecoportal.lifewatch.eu/ontologies/$1
@@ -526,6 +592,7 @@ edam:
     status: active
   homepage: ' http://edamontology.org'
   license: CC BY-SA 4.0
+  logo_url: https://avatars.githubusercontent.com/u/7922809
   name: EDAM Ontology
   prefix: edam
   provider_uri_format: http://edamontology.org/data_$1
@@ -622,6 +689,7 @@ go:
     status: inactive
   homepage: http://geneontology.org/
   license: CC BY 4.0
+  logo_url: http://geneontology.org/assets/go-logo.large.png
   name: Gene Ontology Registry
   prefix: go
   qualities:
@@ -668,9 +736,10 @@ hl7:
     status: active
   homepage: http://www.oid-info.com/get/2.16.840.1.113883.6
   license: See https://github.com/biopragmatics/bioregistry/issues/586
+  logo_url: https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png
   name: HL7 External Code Systems
   prefix: hl7
-  provider_uri_format: http://www.oid-info.com/get/$1
+  provider_uri_format: http://oid-info.com/get/$1
   qualities:
     automatable_download: false
     bulk_data: false
@@ -718,7 +787,7 @@ miriam:
     status: unresponsive
   homepage: https://identifiers.org
   license: CC BY 4.0
-  logo_url: https://identifiers.org/identifiers_logo.c7cbd962.png
+  logo_url: https://identifiers.org/identifiers_logo.f6737b08.png
   name: Identifiers.org
   prefix: miriam
   provider_uri_format: https://registry.identifiers.org/registry/$1
@@ -820,6 +889,7 @@ ncbi:
     status: inactive
   homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/
   license: See https://github.com/biopragmatics/bioregistry/issues/342
+  logo_url: https://upload.wikimedia.org/wikipedia/commons/0/07/US-NLM-NCBI-Logo.svg
   name: National Center for Biotechnology Information Registry
   prefix: ncbi
   qualities:
@@ -965,6 +1035,7 @@ ontobee:
     status: active
   homepage: http://www.ontobee.org/
   license: See https://github.com/biopragmatics/bioregistry/issues/341
+  logo_url: https://ontobee.org/public/images/logo.gif
   name: OntoBee
   prefix: ontobee
   provider_uri_format: http://www.ontobee.org/ontology/$1
@@ -1042,7 +1113,9 @@ prefixcommons:
     name: Michel Dumontier
     orcid: 0000-0003-4727-9435
   description: A registry of commonly used prefixes in the life sciences and linked
-    data
+    data. The source data for this registry is a spreadsheet on Google called the
+    Life Science Registry. This registry was previously known as Prefix Commons and
+    was available at https://prefixcommons.org.
   download: https://raw.githubusercontent.com/prefixcommons/data-ingest/master/yml/lsregistry.yml
   example: CHEBI
   governance:
@@ -1058,11 +1131,12 @@ prefixcommons:
     review_team: public
     scope: life sciences
     status: active
-  homepage: https://prefixcommons.org
-  license: missing
+  homepage: https://registry.bio2kg.org
+  license: Public Domain
+  logo_url: https://avatars.githubusercontent.com/u/15466415
   name: Prefix Commons
   prefix: prefixcommons
-  provider_uri_format: https://prefixcommons.org/?q=$1
+  provider_uri_format: https://registry.bio2kg.org/resource/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1082,6 +1156,7 @@ re3data:
     search: true
     synonyms: missing
     version: missing
+  bibtex: Pampel2013
   bioregistry_prefix: re3data
   contact:
     email: mwitt@purdue.edu
@@ -1106,6 +1181,7 @@ re3data:
     status: active
   homepage: https://www.re3data.org
   license: CC0
+  logo_url: https://www.re3data.org/bundles/kitlibraryre3dataapp/img/re3datalogo_black.png
   name: Registry of Research Data Repositories
   prefix: re3data
   provider_uri_format: https://www.re3data.org/repository/$1
@@ -1140,7 +1216,7 @@ uniprot:
     and implicit links to databases such as nucleotide sequence databases, model organism
     databases and genomics and proteomics resources.
   download: https://www.uniprot.org/database/?format=rdf
-  example: '0174'
+  example: DB-0174
   governance:
     accepts_external_contributions: false
     code_repository: null
@@ -1156,9 +1232,10 @@ uniprot:
     status: active
   homepage: https://www.uniprot.org/database/
   license: CC BY 4.0
+  logo_url: https://www.uniprot.org/uniprot-logo.img.0df091.svg
   name: UniProt Cross-ref database
   prefix: uniprot
-  provider_uri_format: https://www.uniprot.org/database/DB-$1
+  provider_uri_format: https://www.uniprot.org/database/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1207,7 +1284,7 @@ wikidata:
   logo_url: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
   name: Wikidata Property
   prefix: wikidata
-  provider_uri_format: https://www.wikidata.org/wiki/Property:$1
+  provider_uri_format: https://www.wikidata.org/entity/$1
   qualities:
     automatable_download: true
     bulk_data: true

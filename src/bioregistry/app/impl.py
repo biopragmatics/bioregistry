@@ -1,16 +1,22 @@
 """App builder interface."""
 
+import json
+from pathlib import Path
 from textwrap import dedent
-from typing import Any, Mapping, Optional
+from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 
-from bioregistry import Manager, curie_to_str, version
+from bioregistry import curie_to_str, resource_manager, version
 
 from .api import api_blueprint
+from .constants import BIOSCHEMAS
 from .ui import ui_blueprint
+
+if TYPE_CHECKING:
+    import bioregistry
 
 __all__ = [
     "get_app",
@@ -76,7 +82,9 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
     """\
     <p style="margin-bottom: 0">
         Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-        improvements</a> or make pull requests to update the underlying database, which is stored in
+        improvements</a>, <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=\
+            New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">request a new prefix</a>,
+             or make pull requests to update the underlying database, which is stored in
         <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
             JSON</a> on GitHub where the community can engage in an open review process.
     </p>
@@ -84,28 +92,38 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
-def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any]] = None) -> Flask:
-    """Prepare the flask application."""
+def get_app(
+    manager: Optional["bioregistry.Manager"] = None,
+    config: Union[None, str, Path, Mapping[str, Any]] = None,
+    first_party: bool = True,
+) -> Flask:
+    """Prepare the flask application.
+
+    :param manager: A pre-configured manager. If none given, uses the default manager.
+    :param config: Additional configuration to be passed to the flask application. See below.
+    :param first_party: Set to true if deploying the "canonical" bioregistry instance
+    :returns: An instantiated flask application
+    :raises ValueError: if there's an issue with the configuration's integrity
+    """
     app = Flask(__name__)
-    if config is not None:
+    if isinstance(config, (str, Path)):
+        with open(config) as file:
+            app.config.update(json.load(file))
+    elif config is not None:
         app.config.update(config)
     app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    app.config.setdefault("METAREGISTRY_HOST", "https://bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
     app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
     app.config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
     app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    app.config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
 
-    if manager is None:
-        from .. import resource_manager
+    app.manager = manager or resource_manager.manager
 
-        manager = resource_manager.manager
-        app.config.setdefault("METAREGISTRY_FIRST_PARTY", True)
-    else:
-        app.config.setdefault("METAREGISTRY_FIRST_PARTY", False)
-    app.manager = manager
+    if app.config.get("METAREGISTRY_FIRST_PARTY"):
+        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
     example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
     resource = app.manager.registry.get(example_prefix)
@@ -133,12 +151,12 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
                     "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
                 },
             },
-            "host": app.config["METAREGISTRY_HOST"],
+            "host": app.manager.base_url,
             "tags": [
                 {
                     "name": "collections",
                     "externalDocs": {
-                        "url": f"{app.config['METAREGISTRY_HOST']}/collection/",
+                        "url": f"{app.manager.base_url}/collection/",
                     },
                 },
             ],
@@ -152,5 +170,5 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
     app.register_blueprint(ui_blueprint)
 
     # Make manager available in all jinja templates
-    app.jinja_env.globals.update(manager=manager, curie_to_str=curie_to_str)
+    app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
     return app

@@ -20,4 +20,4 @@ class Re3dataAligner(Aligner):
 
 
 if __name__ == "__main__":
-    Re3dataAligner.align()
+    Re3dataAligner.cli()

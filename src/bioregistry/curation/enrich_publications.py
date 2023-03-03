@@ -10,7 +10,7 @@ from manubot.cite.doi import get_doi_csl_item
 from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
 from tqdm import tqdm
 
-from bioregistry import Resource, manager
+from bioregistry import manager
 from bioregistry.schema.struct import Publication, deduplicate_publications
 from bioregistry.utils import removeprefix
 
@@ -34,14 +34,13 @@ def _get_pubmed_from_doi(doi: str) -> Optional[str]:
     return get_pmid_for_doi(doi)
 
 
-def _main():  # noqa:C901
+def _main() -> None:  # noqa:C901
     c = 0
 
     resource_dois = []
     resources = []
     it = tqdm(manager.registry.values(), unit="resource", unit_scale=True, desc="caching PMIDs")
     for resource in it:
-        resource: Resource
         it.set_postfix(prefix=resource.prefix)
         resource_publications = resource.get_publications()
         pubmed_ids = set()

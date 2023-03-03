@@ -27,4 +27,4 @@ class OntobeeAligner(Aligner):
 
 
 if __name__ == "__main__":
-    OntobeeAligner.align(dry=False)
+    OntobeeAligner.cli()

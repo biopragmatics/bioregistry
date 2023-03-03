@@ -19,4 +19,4 @@ class CropOCTAligner(Aligner):
 
 
 if __name__ == "__main__":
-    CropOCTAligner.align()
+    CropOCTAligner.cli()

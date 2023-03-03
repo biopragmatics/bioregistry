@@ -32,7 +32,7 @@
         </div>
         <div class="card-body">
             {% if entry.logo_url %}
-                <img style="max-height: 100px;" src="{{ entry.logo_url }}"/>
+                <img style="max-height: 100px;" src="{{ entry.logo_url }}" alt="Logo for {{ name }}"/>
             {% endif %}
             <p>{{ description }}</p>
             <dl>
@@ -56,6 +56,13 @@
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
+                    {% if entry.governance.issue_tracker %}
+                        <a class="badge badge-pill badge-light" href="{{ entry.governance.issue_tracker }}">
+                            Issue Tracker <i class="fas fa-check"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-light text-muted">No Issue Tracker</span>
+                    {% endif %}
                     {% if entry.download %}
                         <a class="badge badge-pill badge-light" href="{{ entry.download }}">
                             Download <i class="fas fa-download"></i>
@@ -63,6 +70,33 @@
                     {% else %}
                         <span class="badge badge-pill badge-light text-muted">No Download Available</span>
                     {% endif %}
+
+                    <a class="badge badge-pill badge-light"
+                       title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
+                       href="{{ url_for("metaregistry_api.bioregistry_to_external_mapping", metaprefix=entry.prefix) }}">
+                        Download Prefix Mappings
+                    </a>
+                    <a class="badge badge-pill badge-light"
+                       title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
+                       href="{{ url_for("metaregistry_api.get_external_registry_slim", metaprefix=entry.prefix) }}">
+                        Download Slim Registry
+                    </a>
+                    <span class="dropdown">
+                        <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                            External Mappings <i class="bi bi-caret-down-fill"></i>
+                        </span>
+                        <span class="dropdown-menu">
+                            {% for target, target_registry in manager.metaregistry.items() %}
+                            {% if target != entry.prefix and target != "bioregistry" %}
+                            <a class="dropdown-item"
+                               href="{{ url_for("metaregistry_api.mapping", source=entry.prefix, target=target) }}">
+                                {{ target_registry.get_short_name() }}
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        </span>
+                    </span>
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>

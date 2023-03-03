@@ -44,6 +44,9 @@
   "ChemBank": {
     "uri_format": "http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1"
   },
+  "ComplexPortal": {
+    "uri_format": "https://www.ebi.ac.uk/complexportal/complex/$1"
+  },
   "DGIdb": {
     "uri_format": "https://www.dgidb.org/interaction_types$1"
   },
@@ -170,17 +173,11 @@
   "OBAN": {
     "uri_format": "http://purl.org/oban/$1"
   },
-  "OBOREL": {
-    "uri_format": "http://purl.obolibrary.org/obo/RO_$1"
-  },
   "OMIM.PS": {
     "uri_format": "https://www.omim.org/phenotypicSeries/$1"
   },
   "ORCID": {
     "uri_format": "https://orcid.org/$1"
-  },
-  "ORPHA": {
-    "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
   },
   "PANTHER.FAMILY": {
     "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
@@ -218,11 +215,8 @@
   "SIO": {
     "uri_format": "http://semanticscience.org/resource/SIO_$1"
   },
-  "SNOMED": {
-    "uri_format": "http://www.snomedbrowser.com/Codes/Details/$1"
-  },
   "SNOMEDCT": {
-    "uri_format": "http://www.snomedbrowser.com/Codes/Details/$1"
+    "uri_format": "http://snomed.info/id/$1"
   },
   "SPDI": {
     "uri_format": "https://api.ncbi.nlm.nih.gov/variation/v0/spdi/$1"
@@ -245,8 +239,14 @@
   "UMLSSG": {
     "uri_format": "https://lhncbc.nlm.nih.gov/semanticnetwork/download/sg_archive/SemGroups-v04.txt$1"
   },
+  "UNIPROT.ISOFORM": {
+    "uri_format": "http://purl.uniprot.org/isoforms/$1"
+  },
   "UO-PROPERTY": {
     "uri_format": "http://purl.obolibrary.org/obo/uo#$1"
+  },
+  "UniProtKB": {
+    "uri_format": "http://purl.uniprot.org/uniprot/$1"
   },
   "VANDF": {
     "uri_format": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF/$1"
@@ -336,7 +336,7 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/medgen/$1"
   },
   "metacyc.reaction": {
-    "uri_format": "https://identifiers.org/metacyc.reaction:$1"
+    "uri_format": "http://identifiers.org/metacyc.reaction:$1"
   },
   "mirbase": {
     "uri_format": "http://identifiers.org/mirbase$1"
@@ -352,6 +352,9 @@
   },
   "oboformat": {
     "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
+  },
+  "orphanet": {
+    "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"
   },
   "os": {
     "uri_format": "https://github.com/cmungall/owlstar/blob/master/owlstar.ttl$1"

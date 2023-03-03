@@ -25,6 +25,10 @@
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
+                            <a class="dropdown-item"
+                               href="{{ url_for("metaregistry_api.collection_context", identifier=identifier) }}">
+                               Context JSON-LD  <i class="fas fa-download"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

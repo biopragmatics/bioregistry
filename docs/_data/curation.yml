@@ -157,7 +157,7 @@ formatter:
   name: Diagnostic and Statistical Manual of Mental Disorders (5th Edition)
   prefix: dsm5
 - homepage: https://echa.europa.eu/information-on-chemicals
-  name: European Community number
+  name: EC number
   prefix: ecn
 - homepage: http://ecolexicon.ugr.es/en/index.htm
   name: EcoLexicon
@@ -186,6 +186,9 @@ formatter:
 - homepage: https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906
   name: Fyler
   prefix: fyler
+- homepage: http://genecards.weizmann.ac.il/geneannot/
+  name: 'GeneAnnot: Microarray Gene Annotation'
+  prefix: genecards.geneannot
 - homepage: http://www.semantic-systems-biology.org/apo
   name: Gene Expression Ontology
   prefix: gexo
@@ -207,6 +210,9 @@ formatter:
 - homepage: https://www.humancellatlas.org
   name: Human Cell Atlas Ontology
   prefix: hcao
+- homepage: https://www.hesa.ac.uk
+  name: UK Higher Education Statistics Agency
+  prefix: hesa
 - homepage: http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
   name: Internet Engineering Task Force Language Tag
   prefix: ietf.language
@@ -222,6 +228,9 @@ formatter:
 - homepage: https://www.goreni.org/gr3_nomenclature.php
   name: The International Harmonization of Nomenclature and Diagnostic criteria
   prefix: inhand
+- homepage: http://influenza.korea.ac.kr
+  name: Influenza Sequence and Epitope Database
+  prefix: ised
 - homepage: https://www.iso.org/iso-3166-country-codes.html
   name: ISO 3166-1 Country Code
   prefix: iso.3166
@@ -294,9 +303,9 @@ formatter:
 - homepage: https://signor.uniroma2.it
   name: SIGNOR Relation
   prefix: signor.relation
-- homepage: https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html
-  name: Simplified molecular-input line-entry system
-  prefix: smiles
+- homepage: https://www.langual.org/langual_indexed_datasets.asp
+  name: Scientific Information Retrieval and Exchange Network
+  prefix: siren
 - homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Span
   prefix: span
@@ -312,12 +321,21 @@ formatter:
 - homepage: null
   name: Uberon Property
   prefix: ubprop
+- homepage: https://www.ucas.com
+  name: UK Universities and Colleges Admissions Service
+  prefix: ucas
 - homepage: https://www.nlm.nih.gov/research/umls
   name: Unified Medical Language System Atomic Unique Identifier
   prefix: umls.aui
 - homepage: http://pkuxxj.pku.edu.cn/UNPD/
   name: Universal Natural Products Database
   prefix: unpd
+- homepage: https://venomcoding.org/
+  name: Veterinary Nomenclature
+  prefix: venom
+- homepage: http://bioinfo.ernet.in/virgen/virgen.html
+  name: VirGen
+  prefix: virgen
 - homepage: null
   name: Variation Modelling Collaboration
   prefix: vmc
@@ -364,9 +382,6 @@ pattern:
 - homepage: https://bioportal.bioontology.org/ontologies/APAONTO
   name: Psychology Ontology
   prefix: apaonto
-- homepage: https://www.araport.org/
-  name: Arabidopsis Information Portal
-  prefix: araport
 - homepage: http://sbi.imim.es/archdb
   name: ArchDB
   prefix: archdb
@@ -461,9 +476,6 @@ pattern:
 - homepage: http://www.sparontologies.net/ontologies/cito
   name: Citation Typing Ontology
   prefix: cito
-- homepage: https://reg.clinicalgenome.org
-  name: ClinGen Allele Registry
-  prefix: clingene
 - homepage: https://cls.shop/
   name: Cell Lines Service
   prefix: cls
@@ -519,13 +531,13 @@ pattern:
   name: Database of Genomic Structural Variation - Variant
   prefix: dbvar.variant
 - homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
-  name: Dublin Core
+  name: Dublin Core Elements (1.1)
   prefix: dc
 - homepage: https://www.w3.org/ns/dcat
   name: Data Catalog
   prefix: dcat
 - homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
-  name: Dublin Core Metadata Vocabulary
+  name: Dublin Core Metadata Initiative Terms
   prefix: dcterms
 - homepage: https://dublincore.org/specifications/dublin-core/dcmi-terms/
   name: Dublin Core Types
@@ -551,6 +563,9 @@ pattern:
 - homepage: http://purl.obolibrary.org/obo/fbcv
   name: Drosophila Phenotype Ontology
   prefix: dpo
+- homepage: https://phytochem.nal.usda.gov/phytochem/search/list
+  name: Dr. Duke's Phytochemical and Ethnobotanical Databases chemical ID
+  prefix: drduke
 - homepage: https://www.dsmz.de
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
   prefix: dsmz
@@ -566,7 +581,7 @@ pattern:
 - homepage: https://www.ebisc.org
   name: European Bank for induced pluripotent Stem Cells
   prefix: ebisc
-- homepage: http://ecocyc.org/
+- homepage: https://ecocyc.org/
   name: EcoCyc
   prefix: ecocyc
 - homepage: http://ecolexicon.ugr.es/en/index.htm
@@ -644,9 +659,15 @@ pattern:
 - homepage: http://caps.ncbs.res.in/gendis/home.html
   name: Genomic Distribution of structural Superfamilies
   prefix: gendis
+- homepage: http://genecards.weizmann.ac.il/geneannot/
+  name: 'GeneAnnot: Microarray Gene Annotation'
+  prefix: genecards.geneannot
 - homepage: http://genecards.weizmann.ac.il/geneloc/
   name: Gene Location
   prefix: genecards.geneloc
+- homepage: http://genecards.weizmann.ac.il/genenote/
+  name: Gene Normal Tissue Expression
+  prefix: genecards.genenote
 - homepage: https://www.geonames.org/export/codes.html
   name: GeoNames Feature Code
   prefix: geonames.feature
@@ -671,6 +692,9 @@ pattern:
 - homepage: https://glygen.org/glycan/
   name: Computational and Informatics Resources for Glycoscience
   prefix: glygen
+- homepage: https://gnomad.broadinstitute.org
+  name: Genome Aggregation Database
+  prefix: gnomad
 - homepage: http://www.geneontology.org/gocam
   name: Gene Ontology Causal Assembly Model
   prefix: go.model
@@ -680,9 +704,6 @@ pattern:
 - homepage: http://geneontology.org/docs/guide-go-evidence-codes/
   name: GO Evidence Code
   prefix: goeco
-- homepage: https://goldbook.iupac.org
-  name: IUPAC Gold Book Compendium of Chemical Terminology
-  prefix: goldbook
 - homepage: https://books.google.com
   name: Google Books
   prefix: google.book
@@ -728,9 +749,6 @@ pattern:
 - homepage: https://www.hivreagentprogram.org/
   name: NIH HIV Reagent Program
   prefix: hivreagentprogram
-- homepage: https://lincs.hms.harvard.edu/db/sm/
-  name: HMS LINCS Compound
-  prefix: hms.lincs.compound
 - homepage: https://horizondiscovery.com/
   name: Horizon Discovery cell line collection
   prefix: horizon_discovery
@@ -738,12 +756,6 @@ pattern:
   name: International Classification of Diseases, 10th Revision, Procedure Coding
     System
   prefix: icd10pcs
-- homepage: https://icd.who.int/
-  name: International Classification of Diseases, 11th Revision
-  prefix: icd11
-- homepage: https://www.cdc.gov/nchs/icd/icd9.htm
-  name: International Classification of Diseases, 9th Revision
-  prefix: icd9
 - homepage: http://www.iclc.it
   name: Interlab Cell Line Collection
   prefix: iclc
@@ -759,6 +771,9 @@ pattern:
 - homepage: http://www.imdrf.org/
   name: International Medical Device Regulators Forum
   prefix: imdrf
+- homepage: http://imgt.org/IMGTPrimerDB/
+  name: IMGT/PRIMER-DB
+  prefix: imgt.primerdb
 - homepage: http://caps.ncbs.res.in/imotdb/
   name: Database of Spatially Interacting Motifs in Proteins
   prefix: imotdb
@@ -774,15 +789,30 @@ pattern:
 - homepage: http://www.interfil.org
   name: Human Intermediate Filament Database
   prefix: interfil
+- homepage: https://github.com/kushidat/IOBC
+  name: Interlinking Ontology for Biological Concepts
+  prefix: iobc
+- homepage: http://www.ebi.ac.uk/IPI
+  name: International Protein Index
+  prefix: ipi
 - homepage: http://www.iresite.org
   name: Database of experimentally verified IRES structures
   prefix: iresite
+- homepage: http://influenza.korea.ac.kr
+  name: Influenza Sequence and Epitope Database
+  prefix: ised
+- homepage: http://influenza.psych.ac.cn/
+  name: Influenza Virus Database
+  prefix: ivdb
 - homepage: https://cellbank.nibiohn.go.jp
   name: JRBC Cell Bank
   prefix: jcrb
 - homepage: https://cellbank.snu.ac.kr/english
   name: Korean Cell Line Bank
   prefix: kclb
+- homepage: http://www.genome.jp/kegg/brite.html
+  name: KEGG BRITE
+  prefix: kegg.brite
 - homepage: http://www.genome.jp/dbget-bin/www_bfind?enzyme
   name: KEGG Enzyme
   prefix: kegg.enzyme
@@ -795,6 +825,9 @@ pattern:
 - homepage: https://www.kyinno.com/
   name: KYinno cell lines
   prefix: kyinno
+- homepage: http://leafsnap.com/
+  name: Leafsnap ID
+  prefix: leafsnap
 - homepage: http://hpc-bioinformatics.cineca.it/fusion/main
   name: Cancer cell LInes GEne fusions portAl
   prefix: ligea
@@ -813,9 +846,6 @@ pattern:
 - homepage: http://www.mesquiteproject.org/ontology/Loggerhead/index.html
   name: Loggerhead nesting
   prefix: loggerhead
-- homepage: https://loinc.org/
-  name: Logical Observation Identifiers Names and Codes
-  prefix: loinc
 - homepage: http://www.weizmann.ac.il/molgen/loqate/
   name: The localization and quantitation atlas of the yeast proteome
   prefix: loqate
@@ -882,9 +912,6 @@ pattern:
 - homepage: https://www.ndexbio.org
   name: Network Data Exchange
   prefix: ndex
-- homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
-  name: National Drug File - Reference Terminology
-  prefix: ndfrt
 - homepage: http://www.nematodes.org
   name: Nematode & Neglected Genomics
   prefix: nembase
@@ -1005,6 +1032,9 @@ pattern:
 - homepage: https://wiki.phenoscape.org/wiki/Curation_workflow
   name: Phenoscape Publication
   prefix: pspub
+- homepage: https://publons.com
+  name: Publons publication ID
+  prefix: publons.publication
 - homepage: http://www.sparontologies.net/ontologies/pro
   name: Publishing Roles Ontology
   prefix: puro
@@ -1053,6 +1083,9 @@ pattern:
 - homepage: http://rnajunction.abcc.ncifcrf.gov
   name: Database of RNA Junctions and Kissing loop Structures
   prefix: rnajunction
+- homepage: http://virus.zoo.ox.ac.uk/rnavirusdb/
+  name: RNA Virus Database
+  prefix: rnavdb
 - homepage: http://smartdb.bioinf.med.uni-goettingen.de/
   name: The S/MAR transaction DataBase
   prefix: s_mart_db
@@ -1074,6 +1107,9 @@ pattern:
 - homepage: http://fermi.utmb.edu/SDAP
   name: Structural Database of Allergenic Proteins
   prefix: sdap
+- homepage: https://mapping-commons.github.io/semantic-mapping-vocabulary/
+  name: Semantic Mapping Vocabulary
+  prefix: semapv
 - homepage: https://www.w3.org/TR/shacl/
   name: Shapes Constraint Language
   prefix: shacl
@@ -1092,9 +1128,6 @@ pattern:
 - homepage: http://www.w3.org/2008/05/skos-xl#
   name: Simple Knowledge Organization System eXtension for Labels
   prefix: skosxl
-- homepage: https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html
-  name: Simplified molecular-input line-entry system
-  prefix: smiles
 - homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Snapshot
   prefix: snap
@@ -1188,12 +1221,24 @@ pattern:
 - homepage: https://vega.archive.ensembl.org/index.html
   name: Vertebrate Genome Annotation Database
   prefix: vega
+- homepage: http://viperdb.scripps.edu/
+  name: VIPERdb
+  prefix: viperdb
+- homepage: http://bioinfo.ernet.in/virgen/virgen.html
+  name: VirGen
+  prefix: virgen
 - homepage: http://alk.ibms.sinica.edu.tw
   name: Vir-Mir db
   prefix: virmirdb
+- homepage: http://viroligo.okstate.edu
+  name: VirOligo
+  prefix: viroligo
 - homepage: https://www.genome.jp/virushostdb/
   name: Virus-HostDB
   prefix: virushostdb
+- homepage: http://vita.mbc.nctu.edu.tw/
+  name: Virus' miRNA target
+  prefix: vita
 - homepage: null
   name: Variation Modelling Collaboration
   prefix: vmc
@@ -1244,6 +1289,8 @@ prefix_xrefs:
   name: AberOWL
 - metaprefix: agroportal
   name: AgroPortal
+- metaprefix: bartoc
+  name: BARTOC
 - metaprefix: biocontext
   name: BioContext
 - metaprefix: biolink
@@ -1252,6 +1299,8 @@ prefix_xrefs:
   name: BioPortal
 - metaprefix: cellosaurus
   name: Cellosaurus
+- metaprefix: cropoct
+  name: CropOCT
 - metaprefix: ecoportal
   name: EcoPortal
 - metaprefix: edam
@@ -1335,9 +1384,6 @@ wikidata:
 - homepage: https://github.com/AgriculturalSemantics/agro
   name: Agronomy Ontology
   prefix: agro
-- homepage: https://data.apps.fao.org/catalog/organization/agrovoc
-  name: Agronomy Vocabulary
-  prefix: agrovoc
 - homepage: http://www.genomesize.com
   name: Animal Genome Size Database
   prefix: agsd
@@ -1407,7 +1453,7 @@ wikidata:
 - homepage: http://ardb.cbcb.umd.edu/
   name: Antibiotic Resistance Genes Database
   prefix: ardb
-- homepage: http://n2t.net/
+- homepage: https://arks.org
   name: Archival Resource Key
   prefix: ark
 - homepage: https://github.com/arpcard/aro
@@ -1422,9 +1468,6 @@ wikidata:
 - homepage: https://www.arraymap.org
   name: ArrayMap
   prefix: arraymap
-- homepage: https://arxiv.org/
-  name: arXiv
-  prefix: arxiv
 - homepage: http://asap.ahabs.wisc.edu/asap/home.php
   name: A Systematic Annotation Package for Community Analysis of Genomes
   prefix: asap
@@ -1446,9 +1489,6 @@ wikidata:
 - homepage: http://www.ebi.ac.uk/astd/
   name: ASTD
   prefix: astd
-- homepage: http://www.whocc.no/atc_ddd_index/
-  name: Anatomical Therapeutic Chemical Classification System
-  prefix: atc
 - homepage: https://www.lgcstandards-atcc.org
   name: American Type Culture Collection
   prefix: atcc
@@ -1467,9 +1507,6 @@ wikidata:
 - homepage: http://autism.mindspec.org/autdb/
   name: AutDB
   prefix: autdb
-- homepage: https://bacdive.dsmz.de/
-  name: Bacterial Diversity Metadatabase
-  prefix: bacdive
 - homepage: http://bacmap.wishartlab.com/
   name: BacMap Biography
   prefix: bacmap.biog
@@ -1581,6 +1618,9 @@ wikidata:
 - homepage: http://biocyc.org
   name: BioCyc collection of metabolic pathway databases
   prefix: biocyc
+- homepage: https://biofactoid.org/
+  name: Biofactoid
+  prefix: biofactoid
 - homepage: http://thebiogrid.org/
   name: BioGRID
   prefix: biogrid
@@ -1636,9 +1676,6 @@ wikidata:
 - homepage: https://bioregistry.io/schema
   name: Bioregistry Schema
   prefix: bioregistry.schema
-- homepage: https://biorxiv.org
-  name: bioRxiv
-  prefix: biorxiv
 - homepage: https://www.ebi.ac.uk/biosamples/
   name: BioSample
   prefix: biosample
@@ -1684,9 +1721,6 @@ wikidata:
 - homepage: https://restraintsgrid.bmrb.io/NRG/MRGridServlet
   name: NMR Restraints Grid
   prefix: bmrb.restraint
-- homepage: http://www.boldsystems.org/
-  name: Barcode of Life database
-  prefix: bold.taxonomy
 - homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   name: Gene Regulation Ontology
   prefix: bootstrep
@@ -1694,7 +1728,7 @@ wikidata:
   name: Bio-Pesticides DataBase
   prefix: bpdb
 - homepage: https://www.brenda-enzymes.org/
-  name: BRENDA, The Comprehensive Enzyme Information System
+  name: BRENDA Enzyme
   prefix: brenda
 - homepage: https://www.brenda-enzymes.de/ligand.php
   name: BRENDA Ligand
@@ -1741,9 +1775,6 @@ wikidata:
 - homepage: https://github.com/obophenotype/caro/
   name: Common Anatomy Reference Ontology
   prefix: caro
-- homepage: https://commonchemistry.cas.org/
-  name: CAS Chemical Registry
-  prefix: cas
 - homepage: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp
   name: Eschmeyer's Catalog of Fishes
   prefix: casspc
@@ -1895,32 +1926,26 @@ wikidata:
   name: CIViC Evidence
   prefix: civic.eid
 - homepage: https://civicdb.org/
-  name: CIViC Gene
-  prefix: civic.gid
-- homepage: https://civicdb.org/
   name: CIViC Source
   prefix: civic.sid
 - homepage: https://civicdb.org/
   name: CIViC Therapy
   prefix: civic.tid
-- homepage: https://civicdb.org/
-  name: CIViC Variant
-  prefix: civic.vid
 - homepage: https://github.com/luis-gonzalez-m/Collembola
   name: Collembola Anatomy Ontology
   prefix: clao
 - homepage: http://classyfire.wishartlab.com/
   name: ClassyFire
   prefix: classyfire
+- homepage: https://www.checklistbank.org
+  name: ChecklistBank
+  prefix: clb
 - homepage: http://bioinformatics.hsanmartino.it/hypercldb/indexes.html
   name: Cell Line Database
   prefix: cldb
 - homepage: https://reg.clinicalgenome.org
   name: ClinGen Allele Registry
   prefix: clingene
-- homepage: https://clinicaltrials.gov/
-  name: ClinicalTrials.gov
-  prefix: clinicaltrials
 - homepage: http://www.ncbi.nlm.nih.gov/clinvar/
   name: ClinVar Record
   prefix: clinvar.record
@@ -1930,9 +1955,6 @@ wikidata:
 - homepage: https://www.ncbi.nlm.nih.gov/clinvar/
   name: ClinVar Submitter
   prefix: clinvar.submitter
-- homepage: http://www.clo-ontology.org
-  name: Cell Line Ontology
-  prefix: clo
 - homepage: https://cls.shop/
   name: Cell Lines Service
   prefix: cls
@@ -1951,6 +1973,9 @@ wikidata:
 - homepage: http://www.ebi.ac.uk/cmpo
   name: Cellular Microscopy Phenotype Ontology
   prefix: cmpo
+- homepage: https://annuaire.cnrs.fr
+  name: French National Center for Scientific Research - Research Group Identifier
+  prefix: cnrs
 - homepage: https://cropontology.org/ontology/CO_320/Rice
   name: Rice ontology
   prefix: co_320
@@ -2051,7 +2076,7 @@ wikidata:
   name: Quinoa Ontology ontology
   prefix: co_367
 - homepage: https://cropontology.org/term/CO_370:ROOT
-  name: Apple ontology
+  name: Apple Ontology
   prefix: co_370
 - homepage: https://obofoundry.org/COB/
   name: Core Ontology for Biology and Biomedicine
@@ -2074,6 +2099,9 @@ wikidata:
 - homepage: https://github.com/MIT-LCP/mimic-omop
   name: MIMIC III Database
   prefix: cohd
+- homepage: https://www.checklistbank.org
+  name: Catalogue of Life
+  prefix: col
 - homepage: https://github.com/insect-morphology/colao
   name: Coleoptera Anatomy Ontology
   prefix: colao
@@ -2092,9 +2120,6 @@ wikidata:
 - homepage: http://www.ontologyrepository.com
   name: Common Core Ontologies
   prefix: commoncoreontology
-- homepage: https://comptox.epa.gov/dashboard
-  name: CompTox Chemistry Dashboard
-  prefix: comptox
 - homepage: http://compluyeast2dpage.dacya.ucm.es/
   name: Compluyeast-2D-DB
   prefix: compulyeast
@@ -2263,9 +2288,6 @@ wikidata:
 - homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe
   name: NCBI Probe database Public registry of nucleic acid reagents
   prefix: dbprobe
-- homepage: https://www.ncbi.nlm.nih.gov/snp/
-  name: NCBI dbSNP
-  prefix: dbsnp
 - homepage: https://www.ncbi.nlm.nih.gov/dbvar
   name: Database of Genomic Structural Variation - Study
   prefix: dbvar.study
@@ -2273,7 +2295,7 @@ wikidata:
   name: Database of Genomic Structural Variation - Variant
   prefix: dbvar.variant
 - homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
-  name: Dublin Core
+  name: Dublin Core Elements (1.1)
   prefix: dc
 - homepage: http://www.dukeontologygroup.org/Projects.html
   name: Dendritic cell
@@ -2282,7 +2304,7 @@ wikidata:
   name: Data Catalog
   prefix: dcat
 - homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
-  name: Dublin Core Metadata Vocabulary
+  name: Dublin Core Metadata Initiative Terms
   prefix: dcterms
 - homepage: https://dublincore.org/specifications/dublin-core/dcmi-terms/
   name: Dublin Core Types
@@ -2401,9 +2423,6 @@ wikidata:
 - homepage: http://www.sparontologies.net/ontologies/doco
   name: Document Components Ontology
   prefix: doco
-- homepage: https://www.doi.org/
-  name: Digital Object Identifier
-  prefix: doi
 - homepage: http://korkinlab.org/dommino
   name: Database of Macromolecular Interactions
   prefix: dommino
@@ -2449,15 +2468,6 @@ wikidata:
 - homepage: http://www.drugbank.ca/targets
   name: DrugBank Target v4
   prefix: drugbankv4.target
-- homepage: http://drugcentral.org
-  name: Drug Central
-  prefix: drugcentral
-- homepage: https://en.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders#DSM-IV-TR_(2000)
-  name: Diagnostic and Statistical Manual of Mental Disorders (4th Edition)
-  prefix: dsm4
-- homepage: https://en.wikipedia.org/wiki/DSM-5
-  name: Diagnostic and Statistical Manual of Mental Disorders (5th Edition)
-  prefix: dsm5
 - homepage: https://www.dsmz.de
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
   prefix: dsmz
@@ -2488,25 +2498,16 @@ wikidata:
 - homepage: https://github.com/echinoderm-ontology/ecao_ontology
   name: The Echinoderm Anatomy and Development Ontology
   prefix: ecao
-- homepage: https://www.ebi.ac.uk/intenz/
-  name: Enzyme Commission Code
-  prefix: eccode
 - homepage: https://bioportal.bioontology.org/ontologies/ECG
   name: Electrocardiogram Ontology
   prefix: ecg
 - homepage: http://www.york.ac.uk/
   name: EchoBASE post-genomic database for Escherichia coli
   prefix: echobase
-- homepage: https://echa.europa.eu/information-on-chemicals
-  name: European Community number
-  prefix: ecn
-- homepage: https://www.evidenceontology.org
-  name: Evidence ontology
-  prefix: eco
 - homepage: https://github.com/EcologicalSemantics/ecocore
   name: An ontology of core ecological entities
   prefix: ecocore
-- homepage: http://ecocyc.org/
+- homepage: https://ecocyc.org/
   name: EcoCyc
   prefix: ecocyc
 - homepage: http://ecogene.org/
@@ -2566,7 +2567,7 @@ wikidata:
 - homepage: http://genex.hgu.mrc.ac.uk/
   name: Human developmental anatomy, timed version
   prefix: ehda
-- homepage: http://obofoundry.org/ontology/ehdaa.html
+- homepage: http://genex.hgu.mrc.ac.uk/
   name: Human developmental anatomy, abstract version
   prefix: ehdaa
 - homepage: https://github.com/obophenotype/human-developmental-anatomy-ontology
@@ -2581,6 +2582,9 @@ wikidata:
 - homepage: http://www.informatics.jax.org/expression.shtml
   name: Mouse Developmental Anatomy Ontology
   prefix: emapa
+- homepage: https://www.informatics.jax.org/vocab/gxd/anatomy/
+  name: Mouse Developmental Anatomy Ontology with Theiler Stage
+  prefix: emaps
 - homepage: https://www.ebi.ac.uk/pdbe/emdb/
   name: Electron Microscopy Data Bank
   prefix: emdb
@@ -2774,18 +2778,12 @@ wikidata:
 - homepage: http://www.flymine.org/
   name: FlyMine Chromosome Band
   prefix: flymine.chromosome
-- homepage: http://si.washington.edu/projects/fma
-  name: Foundational Model of Anatomy
-  prefix: fma
 - homepage: http://xmlns.com/foaf/spec/
   name: Friend of a Friend
   prefix: foaf
 - homepage: https://github.com/pcastellanoescuder/FoodBiomarkerOntology
   name: Food-Biomarker Ontology
   prefix: fobi
-- homepage: https://foodb.ca/
-  name: FooDB Compound
-  prefix: foodb.compound
 - homepage: https://foodb.ca/foods
   name: FooDB Food
   prefix: foodb.food
@@ -2852,18 +2850,12 @@ wikidata:
 - homepage: https://www.opengalen.org
   name: GALEN
   prefix: galen
-- homepage: https://rarediseases.info.nih.gov/diseases
-  name: Genetic and Rare Diseases Information Center
-  prefix: gard
 - homepage: https://www.hdruk.ac.uk
   name: Health Data Research Innovation Gateway
   prefix: gateway
 - homepage: http://environmentontology.github.io/gaz/
   name: Gazetteer
   prefix: gaz
-- homepage: https://www.gbif.org/species
-  name: Global Biodiversity Information Facility
-  prefix: gbif
 - homepage: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html
   name: Genetic Code
   prefix: gc
@@ -2876,6 +2868,9 @@ wikidata:
 - homepage: https://www.cancerrxgene.org
   name: Genomics of Drug Sensitivity in Cancer
   prefix: gdsc
+- homepage: https://umgear.org
+  name: Gene Expression Analysis Resource
+  prefix: gear
 - homepage: https://github.com/IHCC-cohorts/GECKO
   name: Genomics Cohorts Knowledge Ontology
   prefix: gecko
@@ -2894,9 +2889,15 @@ wikidata:
 - homepage: http://www.genecards.org/
   name: GeneCards
   prefix: genecards
+- homepage: http://genecards.weizmann.ac.il/geneannot/
+  name: 'GeneAnnot: Microarray Gene Annotation'
+  prefix: genecards.geneannot
 - homepage: http://genecards.weizmann.ac.il/geneloc/
   name: Gene Location
   prefix: genecards.geneloc
+- homepage: http://genecards.weizmann.ac.il/genenote/
+  name: Gene Normal Tissue Expression
+  prefix: genecards.genenote
 - homepage: http://urgi.versailles.inra.fr/Genefarm/
   name: GeneFarm
   prefix: genefarm
@@ -2999,12 +3000,12 @@ wikidata:
 - homepage: http://gmd.mpimp-golm.mpg.de/
   name: Golm Metabolome Database Reference Substance
   prefix: gmd.ref
-- homepage: https://link.springer.com/bookseries/562
-  name: Gmelins Handbuch der anorganischen Chemie
-  prefix: gmelin
 - homepage: https://gnome.glyomics.org/
   name: Glycan Naming and Subsumption Ontology
   prefix: gno
+- homepage: https://gnomad.broadinstitute.org
+  name: Genome Aggregation Database
+  prefix: gnomad
 - homepage: https://urgi.versailles.inra.fr/gnpis/
   name: GnpIS
   prefix: gnpis
@@ -3020,6 +3021,9 @@ wikidata:
 - homepage: http://geneontology.org/
   name: Gene Ontology Registry
   prefix: go.resource
+- homepage: https://github.com/geneontology/go-site/tree/master/metadata/rules
+  name: Gene Ontology Rules
+  prefix: go.rule
 - homepage: https://www.ebi.ac.uk/GOA/
   name: Gene Ontology Annotation Database
   prefix: goa
@@ -3038,9 +3042,6 @@ wikidata:
 - homepage: http://www.genomesonline.org/cgi-bin/GOLD/index.cgi
   name: GOLD metadata
   prefix: gold.meta
-- homepage: https://goldbook.iupac.org
-  name: IUPAC Gold Book Compendium of Chemical Terminology
-  prefix: goldbook
 - homepage: https://books.google.com
   name: Google Books
   prefix: google.book
@@ -3092,9 +3093,6 @@ wikidata:
 - homepage: http://www.ars-grin.gov/
   name: Germplasm Resources Information Network
   prefix: grin
-- homepage: http://www.ars-grin.gov/cgi-bin/npgs/html/index.pl?language=en
-  name: Germplasm Resources Information Network
-  prefix: grin.taxonomy
 - homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   name: Gene Regulation Ontology
   prefix: gro
@@ -3170,27 +3168,24 @@ wikidata:
 - homepage: https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo
   name: Healthcare Common Procedure Coding System
   prefix: hcpcs
-- homepage: http://euhcvdb.ibcp.fr
-  name: Hepatitis C Virus Database
+- homepage: http://euhcvdb.ibcp.fr/euHCVdb/
+  name: Hepatitis C Virus Database Project
   prefix: hcvdb
 - homepage: http://research.nhgri.nih.gov/apps/homeodomain/web/
   name: Homeodomain Research
   prefix: hdr
+- homepage: https://www.hesa.ac.uk
+  name: UK Higher Education Statistics Agency
+  prefix: hesa
 - homepage: http://www.hgmd.cf.ac.uk/ac/index.php
   name: Human Gene Mutation Database
   prefix: hgmd
-- homepage: http://www.genenames.org
-  name: HUGO Gene Nomenclature Committee
-  prefix: hgnc
 - homepage: http://www.genenames.org
   name: HGNC gene family
   prefix: hgnc.genefamily
 - homepage: https://www.genenames.org
   name: HGNC Gene Group
   prefix: hgnc.genegroup
-- homepage: https://www.genenames.org/
-  name: HGNC Symbol
-  prefix: hgnc.symbol
 - homepage: http://h-invitational.jp/hinv/ahg-db/index.jsp
   name: H-InvDb Locus
   prefix: hinv.locus
@@ -3212,15 +3207,27 @@ wikidata:
 - homepage: https://terminology.hl7.org/codesystems-v2.html
   name: HL7 V2 Code Systems
   prefix: hl7.v3codesystem
+- homepage: https://lincs.hms.harvard.edu/db/antibodies/
+  name: HMS Library of Integrated Network-based Cellular Signatures Antibodies
+  prefix: hms.lincs.antibody
+- homepage: https://lincs.hms.harvard.edu/db/cell/
+  name: HMS LINCS Cell
+  prefix: hms.lincs.cell
 - homepage: https://lincs.hms.harvard.edu/db/sm/
   name: HMS LINCS Compound
   prefix: hms.lincs.compound
+- homepage: https://lincs.hms.harvard.edu/db/datasets/
+  name: HMS Library of Integrated Network-based Cellular Signatures Datasets
+  prefix: hms.lincs.dataset
 - homepage: https://bgee.org/bgee/bgee?page=documentation#sectionHomologyRelationships
   name: Homologous Organ Groups
   prefix: hog
 - homepage: http://pbil.univ-lyon1.fr/databases/hogenom/
   name: Database of Complete Genome Homologous Genes Families
   prefix: hogenom
+- homepage: https://knowledge.brc.riken.jp/bioresource/ontology/HOIP
+  name: Homeostasis imbalance process ontology
+  prefix: hoip
 - homepage: https://github.com/BgeeDB/homology-ontology
   name: Homology Ontology
   prefix: hom
@@ -3228,7 +3235,7 @@ wikidata:
   name: HOMD Sequence Metainformation
   prefix: homd.seq
 - homepage: http://www.homd.org/index.php
-  name: HOMD Taxonomy
+  name: Human Oral Microbiome Database
   prefix: homd.taxon
 - homepage: https://horizondiscovery.com/
   name: Horizon Discovery cell line collection
@@ -3246,7 +3253,7 @@ wikidata:
   name: Human Proteome Map Peptide
   prefix: hpm.peptide
 - homepage: http://www.humanproteomemap.org/index.php
-  name: Human Proteome Map Protein
+  name: Human Proteome Map
   prefix: hpm.protein
 - homepage: http://www.hprd.org/
   name: Human Protein Reference Database
@@ -3257,9 +3264,6 @@ wikidata:
 - homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/HsapDv
   name: Human Developmental Stages
   prefix: hsapdv
-- homepage: https://pubchem.ncbi.nlm.nih.gov/source/hsdb
-  name: Hazardous Substances Data Bank
-  prefix: hsdb
 - homepage: https://w3id.org/hso
   name: Health Surveillance Ontology
   prefix: hso
@@ -3275,31 +3279,9 @@ wikidata:
 - homepage: https://github.com/information-artifact-ontology/IAO/
   name: Information Artifact Ontology
   prefix: iao
-- homepage: https://icd.who.int/browse10
-  name: International Classification of Diseases, 10th Revision
-  prefix: icd10
-- homepage: https://www.icd10data.com/ICD10CM
-  name: International Classification of Diseases, 10th Revision, Clinical Modification
-  prefix: icd10cm
-- homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS
-  name: International Classification of Diseases, 10th Revision, Procedure Coding
-    System
-  prefix: icd10pcs
-- homepage: https://icd.who.int/
-  name: International Classification of Diseases, 11th Revision
-  prefix: icd11
-- homepage: https://www.cdc.gov/nchs/icd/icd9.htm
-  name: International Classification of Diseases, 9th Revision
-  prefix: icd9
-- homepage: https://www.cdc.gov/nchs/icd/icd9cm.htm
-  name: International Classification of Diseases, 9th Revision, Clinical Modification
-  prefix: icd9cm
 - homepage: https://caninecommons.cancer.gov/#/
   name: Integrated Canine Data Commons
   prefix: icdc
-- homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
-  name: International Classification of Diseases for Oncology
-  prefix: icdo
 - homepage: https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_CIME.php?type=alpha&alpha=100
   name: ICEberg cis-integrative and mobilizable element
   prefix: iceberg.cime
@@ -3339,6 +3321,9 @@ wikidata:
 - homepage: https://bioportal.bioontology.org/ontologies/IDODEN
   name: Dengue Fever Ontology
   prefix: idoden
+- homepage: https://ngdc.cncb.ac.cn/idog/
+  name: Integrated Resource for Domestic Dog
+  prefix: idog
 - homepage: https://www.vectorbase.org/ontology-browser
   name: Malaria Ontology
   prefix: idomal
@@ -3399,36 +3384,24 @@ wikidata:
 - homepage: http://www.imgt.org/
   name: ImMunoGeneTics database covering immunoglobulins and T-cell receptors
   prefix: imgt.ligm
+- homepage: http://imgt.org/IMGTPrimerDB/
+  name: IMGT/PRIMER-DB
+  prefix: imgt.primerdb
 - homepage: http://caps.ncbs.res.in/imotdb/
   name: Database of Spatially Interacting Motifs in Proteins
   prefix: imotdb
 - homepage: http://www.inoh.org
   name: Molecule role (INOH Protein name/family name ontology)
   prefix: imr
-- homepage: https://www.inaturalist.org/observations
-  name: iNaturalist Observation
-  prefix: inaturalist.observation
 - homepage: https://www.inaturalist.org/places
   name: iNaturalist Place
   prefix: inaturalist.place
-- homepage: https://www.inaturalist.org/taxa
-  name: iNaturalist Taxonomy
-  prefix: inaturalist.taxon
 - homepage: https://www.inaturalist.org/users
   name: iNaturalist User
   prefix: inaturalist.user
-- homepage: http://www.chemspider.com/
-  name: InChI
-  prefix: inchi
-- homepage: http://www.chemspider.com/
-  name: InChIKey
-  prefix: inchikey
 - homepage: https://www.goreni.org/gr3_nomenclature.php
   name: The International Harmonization of Nomenclature and Diagnostic criteria
   prefix: inhand
-- homepage: https://www.who.int/teams/health-product-and-policy-standards/inn
-  name: International Nonproprietary Names
-  prefix: inn
 - homepage: http://www.innatedb.ca/
   name: A Knowledge Resource for Innate Immunity Interactions and Pathways
   prefix: innatedb
@@ -3459,12 +3432,15 @@ wikidata:
 - homepage: http://www.interfil.org
   name: Human Intermediate Filament Database
   prefix: interfil
-- homepage: https://www.fdilab.org
-  name: InterLex
-  prefix: interlex
 - homepage: http://www.ebi.ac.uk/interpro/index.html
   name: InterPro
   prefix: interpro
+- homepage: https://github.com/kushidat/IOBC
+  name: Interlinking Ontology for Biological Concepts
+  prefix: iobc
+- homepage: http://www.ebi.ac.uk/IPI
+  name: International Protein Index
+  prefix: ipi
 - homepage: http://www.fludb.org/
   name: IRD Segment Sequence
   prefix: ird.segment
@@ -3480,6 +3456,9 @@ wikidata:
 - homepage: http://isbndb.com/
   name: International Standard Book Number
   prefix: isbn
+- homepage: http://influenza.korea.ac.kr
+  name: Influenza Sequence and Epitope Database
+  prefix: ised
 - homepage: http://www-is.biotoul.fr/i
   name: Insertion sequence elements database
   prefix: isfinder
@@ -3492,15 +3471,15 @@ wikidata:
 - homepage: https://portal.issn.org
   name: International Standard Serial Number
   prefix: issn
-- homepage: https://www.itis.gov/
-  name: Integrated Taxonomic Information System
-  prefix: itis
 - homepage: https://bioportal.bioontology.org/
   name: Intelligence Task Ontology
   prefix: ito
 - homepage: http://www.guidetopharmacology.org/
   name: IUPHAR family
   prefix: iuphar.family
+- homepage: http://influenza.psych.ac.cn/
+  name: Influenza Virus Database
+  prefix: ivdb
 - homepage: https://www.jax.org/strain
   name: Jackson Laboratories Strain
   prefix: jax
@@ -3534,6 +3513,9 @@ wikidata:
 - homepage: http://www.kegg.jp/
   name: Kyoto Encyclopedia of Genes and Genomes
   prefix: kegg
+- homepage: http://www.genome.jp/kegg/brite.html
+  name: KEGG BRITE
+  prefix: kegg.brite
 - homepage: https://www.genome.jp/kegg/ligand.html
   name: KEGG Compound
   prefix: kegg.compound
@@ -3648,9 +3630,6 @@ wikidata:
 - homepage: http://lipidbank.jp/index.html
   name: LipidBank
   prefix: lipidbank
-- homepage: http://www.lipidmaps.org
-  name: LIPID MAPS
-  prefix: lipidmaps
 - homepage: null
   name: Lipid Ontology
   prefix: lipro
@@ -3660,9 +3639,6 @@ wikidata:
 - homepage: http://www.mesquiteproject.org/ontology/Loggerhead/index.html
   name: Loggerhead nesting
   prefix: loggerhead
-- homepage: https://loinc.org/
-  name: Logical Observation Identifiers Names and Codes
-  prefix: loinc
 - homepage: https://knowledge.lonza.com
   name: Lonza
   prefix: lonza
@@ -3726,9 +3702,6 @@ wikidata:
 - homepage: https://medical-data-models.org/
   name: Medical Data Models
   prefix: mdm
-- homepage: http://bioportal.bioontology.org/ontologies/MEDDRA
-  name: Medical Dictionary for Regulatory Activities Terminology
-  prefix: meddra
 - homepage: https://www.ncbi.nlm.nih.gov/medgen/
   name: Human Medical Genetics
   prefix: medgen
@@ -3870,12 +3843,12 @@ wikidata:
 - homepage: https://github.com/VEuPathDB-ontology/MIRO
   name: Mosquito insecticide resistance
   prefix: miro
-- homepage: http://mirtarbase.mbc.nctu.edu.tw/
-  name: miRTarBase
-  prefix: mirtarbase
 - homepage: http://www.russelllab.org/miRNAs/
   name: miRNA Target Prediction at EMBL
   prefix: mirte
+- homepage: https://gensc.org/mixs/
+  name: Minimal Information about any Sequence
+  prefix: mixs
 - homepage: https://mlcommons.org/en/
   name: MLCommons Association
   prefix: mlc
@@ -3939,9 +3912,6 @@ wikidata:
 - homepage: http://bioinfo.mbb.yale.edu/MolMovDB/
   name: Database of Macromolecular Movements
   prefix: molmovdb
-- homepage: https://monarch-initiative.github.io/mondo
-  name: Monarch Disease Ontology
-  prefix: mondo
 - homepage: https://github.com/rsc-ontologies/rxno
   name: Molecular Process Ontology
   prefix: mop
@@ -4071,9 +4041,6 @@ wikidata:
 - homepage: http://omnisearch.soc.southalabama.edu/w/index.php/Ontology
   name: Non-Coding RNA Ontology
   prefix: ncro
-- homepage: http://www.accessdata.fda.gov/scripts/cder/ndc/
-  name: National Drug Code
-  prefix: ndc
 - homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF
   name: National Drug Data File
   prefix: nddf
@@ -4092,9 +4059,6 @@ wikidata:
 - homepage: http://neuromorpho.org/index.jsp
   name: NeuroMorpho
   prefix: neuromorpho
-- homepage: http://braininfo.rprc.washington.edu/
-  name: NeuroNames
-  prefix: neuronames
 - homepage: http://senselab.med.yale.edu/NeuronDB/
   name: NeuronDB
   prefix: neurondb
@@ -4188,9 +4152,6 @@ wikidata:
 - homepage: http://msi-ontology.sourceforge.net/
   name: NMR-instrument specific component of metabolomics investigations
   prefix: nmr
-- homepage: https://nmrshiftdb.nmr.uni-koeln.de
-  name: NMR Shift Database
-  prefix: nmrshiftdb2
 - homepage: https://github.com/SpeciesFileGroup/nomen
   name: A nomenclatural ontology for biological names
   prefix: nomen
@@ -4229,7 +4190,7 @@ wikidata:
   prefix: nucc.taxonomy
 - homepage: http://www.receptors.org/nucleardb/
   name: NucleaRDB
-  prefix: nuclearbd
+  prefix: nucleardb
 - homepage: https://www.ncbi.nlm.nih.gov/
   name: Nucleotide
   prefix: nucleotide
@@ -4320,7 +4281,7 @@ wikidata:
 - homepage: https://omabrowser.org/cgi-bin/gateway.pl
   name: OMA Protein
   prefix: oma.protein
-- homepage: http://omia.angis.org.au/
+- homepage: https://omia.org
   name: Online Mendelian Inheritance in Animals
   prefix: omia
 - homepage: https://github.com/OMIABIS/omiabis-dev
@@ -4413,9 +4374,6 @@ wikidata:
 - homepage: http://oryzatagline.cirad.fr/
   name: Oryza Tag Line
   prefix: otl
-- homepage: https://tree.opentreeoflife.org
-  name: Open Tree of Life
-  prefix: otol
 - homepage: http://www.violinet.org/ovae/
   name: Ontology of Vaccine Adverse Events
   prefix: ovae
@@ -4438,7 +4396,7 @@ wikidata:
   name: Panorama Public
   prefix: panorama
 - homepage: http://www.pantherdb.org/
-  name: Protein ANalysis THrough Evolutionary Relationships Classification System
+  name: PANTHER Family
   prefix: panther.family
 - homepage: http://pantree.org/
   name: PANTHER Node
@@ -4497,9 +4455,6 @@ wikidata:
 - homepage: https://www.ebi.ac.uk/pdbe-srv/pdbechem/
   name: Chemical Component Dictionary
   prefix: pdb-ccd
-- homepage: http://www.pdb.org/
-  name: Protein Data Bank Ligand
-  prefix: pdb.ligand
 - homepage: http://www.ebi.ac.uk/pdbsum
   name: PDBsum; at-a-glance overview of macromolecular structures
   prefix: pdbsum
@@ -4576,7 +4531,7 @@ wikidata:
   name: PharmGKB Drug
   prefix: pharmgkb.drug
 - homepage: http://www.pharmgkb.org/
-  name: Pharmacogenetics and Pharmacogenomics Knowledge Base
+  name: PharmGKB Gene
   prefix: pharmgkb.gene
 - homepage: https://www.pharmvar.org
   name: Pharmacogene Variation Consortium
@@ -4656,9 +4611,6 @@ wikidata:
 - homepage: http://substrate.burnham.org/
   name: SubstrateDB
   prefix: pmap.substratedb
-- homepage: http://europepmc.org/
-  name: Pubmed Central
-  prefix: pmc
 - homepage: https://bioinformatics.cineca.it/PMDB/
   name: Protein Model Database
   prefix: pmdb
@@ -4704,9 +4656,6 @@ wikidata:
 - homepage: http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/
   name: PRINTS compendium of protein fingerprints
   prefix: prints
-- homepage: https://www.probes-drugs.org
-  name: Probes and Drugs
-  prefix: probesanddrugs
 - homepage: http://probonto.org
   name: Probability Distribution Ontology
   prefix: probonto
@@ -4776,9 +4725,6 @@ wikidata:
 - homepage: https://publons.com/researcher
   name: Publons Researcher
   prefix: publons.researcher
-- homepage: https://www.ncbi.nlm.nih.gov/PubMed/
-  name: PubMed
-  prefix: pubmed
 - homepage: http://www.sparontologies.net/ontologies/pro
   name: Publishing Roles Ontology
   prefix: puro
@@ -4810,7 +4756,7 @@ wikidata:
   name: RAP-DB Locus
   prefix: rapdb.locus
 - homepage: https://rapdb.dna.affrc.go.jp/
-  name: RAP-DB Transcript
+  name: Rice annotation Project database
   prefix: rapdb.transcript
 - homepage: http://ratmap.org
   name: Rat Genome Database
@@ -4831,17 +4777,11 @@ wikidata:
   name: RDF Schema
   prefix: rdfs
 - homepage: https://ratmine.mcw.edu/ontology/disease/
-  name: RGD Disease_Ontology
+  name: RGD Disease Ontology
   prefix: rdo
 - homepage: https://datacite.org
   name: re3data
   prefix: re3data
-- homepage: https://www.reaxys.com
-  name: Reaxys
-  prefix: reaxys
-- homepage: http://rebase.neb.com/rebase/
-  name: REBASE restriction enzyme database
-  prefix: rebase
 - homepage: http://www.receptome.org
   name: Human Plasma Membrane Receptome Families
   prefix: receptome.family
@@ -4920,9 +4860,6 @@ wikidata:
 - homepage: http://www.rnasoft.ca/sstrand
   name: RNA SSTRAND
   prefix: rna_sstrand
-- homepage: https://rnacentral.org/
-  name: RNAcentral
-  prefix: rnacentral
 - homepage: http://rnajunction.abcc.ncifcrf.gov
   name: Database of RNA Junctions and Kissing loop Structures
   prefix: rnajunction
@@ -4938,10 +4875,13 @@ wikidata:
 - homepage: https://github.com/bgsu-rna/rnao
   name: RNA ontology
   prefix: rnao
+- homepage: http://virus.zoo.ox.ac.uk/rnavirusdb/
+  name: RNA Virus Database
+  prefix: rnavdb
 - homepage: https://oborel.github.io/
   name: Relation Ontology
   prefix: ro
-- homepage: https://github.com/roleontology/roleo
+- homepage: http://sourceforge.net/projects/roleo
   name: Role Ontology
   prefix: roleo
 - homepage: https://ror.org
@@ -5007,6 +4947,9 @@ wikidata:
 - homepage: https://scholia.toolforge.org/
   name: Scholia Registry
   prefix: scholia.resource
+- homepage: https://sciformation.com/sciflection.html
+  name: Sciflection
+  prefix: sciflection
 - homepage: https://github.com/OpenBEL/resource-generator/blob/master/datasets/selventa-named-complexes.txt
   name: Selventa Complexes
   prefix: scomp
@@ -5055,6 +4998,9 @@ wikidata:
 - homepage: http://modelseed.org/biochem/reactions/
   name: SEED Reactions
   prefix: seed.reaction
+- homepage: https://mapping-commons.github.io/semantic-mapping-vocabulary/
+  name: Semantic Mapping Vocabulary
+  prefix: semapv
 - homepage: https://psidev.info/sepcv
   name: Sample processing and separation techniques
   prefix: sep
@@ -5109,6 +5055,9 @@ wikidata:
 - homepage: https://github.com/micheldumontier/semanticscience
   name: Semanticscience Integrated Ontology
   prefix: sio
+- homepage: https://www.langual.org/langual_indexed_datasets.asp
+  name: Scientific Information Retrieval and Exchange Network
+  prefix: siren
 - homepage: http://www.sisuproject.fi/
   name: Sequencing Initiative Suomi
   prefix: sisu
@@ -5118,6 +5067,9 @@ wikidata:
 - homepage: https://skip.stemcellinformatics.org/en/
   name: Stemcell Knowledge and Information Portal
   prefix: skip
+- homepage: http://www.nib.si/eng/
+  name: Stress Knowledge Map
+  prefix: skm
 - homepage: https://www.w3.org/2004/02/skos/
   name: Simple Knowledge Organization System
   prefix: skos
@@ -5133,9 +5085,6 @@ wikidata:
 - homepage: https://smid-db.org/
   name: C. elegans Small Molecule Identifier Database
   prefix: smid
-- homepage: https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html
-  name: Simplified molecular-input line-entry system
-  prefix: smiles
 - homepage: https://smpdb.ca/
   name: Small Molecule Pathway Database
   prefix: smpdb
@@ -5166,9 +5115,6 @@ wikidata:
 - homepage: http://spbase.org
   name: SpBase
   prefix: spbase
-- homepage: http://research.amnh.org/atol/files/
-  name: Spider Ontology
-  prefix: spd
 - homepage: https://spdx.org/licenses
   name: Software Package Data Exchange License
   prefix: spdx
@@ -5187,9 +5133,6 @@ wikidata:
 - homepage: https://www.signalingpathways.org/index.jsf
   name: Signaling Pathways Project
   prefix: spp
-- homepage: http://130.88.97.239/dbbrowser/sprint/
-  name: Search PRINTS-S
-  prefix: sprint
 - homepage: https://github.com/FAIRsharing/subject-ontology
   name: FAIRsharing Subject Ontology
   prefix: srao
@@ -5259,9 +5202,6 @@ wikidata:
 - homepage: https://www.w3.org/2003/11/swrl#
   name: A Semantic Web Rule Language Combining OWL and RuleML
   prefix: swrl
-- homepage: http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page
-  name: Symptom Ontology
-  prefix: symp
 - homepage: null
   name: Gemina Symptom Ontology
   prefix: syoid
@@ -5301,9 +5241,6 @@ wikidata:
 - homepage: http://www.itb.cnr.it/cellcycle
   name: The Cell Cycle DB
   prefix: tccd
-- homepage: https://ifaa.unifr.ch/
-  name: Terminologia Embryologica
-  prefix: te
 - homepage: http://tfclass.bioinf.med.uni-goettingen.de
   name: Classification of Transcription Factors in Mammalia
   prefix: tfclass
@@ -5385,23 +5322,23 @@ wikidata:
 - homepage: https://toxpilot.nibiohn.go.jp/
   name: Toxic Process Ontology
   prefix: txpo
-- homepage: http://uberon.org
-  name: Uber Anatomy Ontology
-  prefix: uberon
 - homepage: http://www.ubio.org
   name: uBio NameBank
   prefix: ubio.namebank
 - homepage: null
   name: Uberon Property
   prefix: ubprop
-- homepage: https://genome.ucsc.edu/
-  name: UCSC Genome Browser
-  prefix: ucsc
+- homepage: https://www.ucas.com
+  name: UK Universities and Colleges Admissions Service
+  prefix: ucas
 - homepage: https://ucum.org
   name: Unified Code for Units of Measure
   prefix: ucum
+- homepage: https://www.ukrlp.co.uk
+  name: UK Provider Reference Number
+  prefix: ukprn
 - homepage: http://umbbd.ethz.ch/
-  name: UM-BBD Compound
+  name: UM-BBD compound ID
   prefix: umbbd.compound
 - homepage: http://umbbd.ethz.ch/
   name: EAWAG Biocatalysis/Biodegradation Database
@@ -5413,17 +5350,11 @@ wikidata:
   name: EAWAG Biocatalysis/Biodegradation Database
   prefix: umbbd.rule
 - homepage: https://www.nlm.nih.gov/research/umls
-  name: Unified Medical Language System Concept Unique Identifier
-  prefix: umls
-- homepage: https://www.nlm.nih.gov/research/umls
   name: Unified Medical Language System Atomic Unique Identifier
   prefix: umls.aui
 - homepage: http://www.ncbi.nlm.nih.gov/unigene
   name: UniGene
   prefix: unigene
-- homepage: http://fdasis.nlm.nih.gov/srs/
-  name: Unique Ingredient Identifier
-  prefix: unii
 - homepage: http://www.unimod.org/
   name: Unimod protein modification database for mass spectrometry
   prefix: unimod
@@ -5442,9 +5373,6 @@ wikidata:
 - homepage: https://www.uniprot.org
   name: UniProt Chain
   prefix: uniprot.chain
-- homepage: https://www.uniprot.org/diseases/
-  name: UniProt Diseases
-  prefix: uniprot.disease
 - homepage: http://www.uniprot.org/
   name: UniProt Isoform
   prefix: uniprot.isoform
@@ -5530,6 +5458,9 @@ wikidata:
 - homepage: http://vegbank.org/
   name: VegBank
   prefix: vegbank
+- homepage: https://venomcoding.org/
+  name: Veterinary Nomenclature
+  prefix: venom
 - homepage: https://VirtualFlyBrain.org
   name: Virtual Fly Brain
   prefix: vfb
@@ -5554,21 +5485,30 @@ wikidata:
 - homepage: null
   name: ViolinNet
   prefix: violinnet
+- homepage: http://viperdb.scripps.edu/
+  name: VIPERdb
+  prefix: viperdb
 - homepage: http://www.viprbrc.org/brc/home.do?decorator=vipr
   name: Virus Pathogen Resource
   prefix: vipr
-- homepage: http://www.expasy.org/viralzone/
-  name: ViralZone
-  prefix: viralzone
+- homepage: http://bioinfo.ernet.in/virgen/virgen.html
+  name: VirGen
+  prefix: virgen
 - homepage: http://alk.ibms.sinica.edu.tw
   name: Vir-Mir db
   prefix: virmirdb
+- homepage: http://viroligo.okstate.edu
+  name: VirOligo
+  prefix: viroligo
 - homepage: http://crdd.osdd.net/servers/virsirnadb
   name: VIRsiRNA
   prefix: virsirna
 - homepage: https://www.genome.jp/virushostdb/
   name: Virus-HostDB
   prefix: virushostdb
+- homepage: http://vita.mbc.nctu.edu.tw/
+  name: Virus' miRNA target
+  prefix: vita
 - homepage: null
   name: Variation Modelling Collaboration
   prefix: vmc
@@ -5581,9 +5521,6 @@ wikidata:
 - homepage: https://www.vmh.life/
   name: VMH reaction
   prefix: vmhreaction
-- homepage: http://www.violinet.org/vaccineontology
-  name: Vaccine Ontology
-  prefix: vo
 - homepage: http://vocab.deri.ie/void
   name: Vocabulary of Interlinked Datasets
   prefix: void
@@ -5650,12 +5587,6 @@ wikidata:
 - homepage: https://www.wormbase.org/db/seq/protein
   name: Wormpep
   prefix: wormpep
-- homepage: http://www.marinespecies.org/
-  name: World Register of Marine Species
-  prefix: worms
-- homepage: http://www.xenbase.org/anatomy/xao.do?method=display
-  name: Xenopus Anatomy Ontology
-  prefix: xao
 - homepage: https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:0000000
   name: Experimental condition ontology
   prefix: xco
@@ -5719,18 +5650,12 @@ wikidata:
 - homepage: https://github.com/ybradford/zebrafish-experimental-conditions-ontology
   name: Zebrafish Experimental Conditions Ontology
   prefix: zeco
-- homepage: https://zenodo.org
-  name: Zenodo
-  prefix: zenodo.record
 - homepage: https://wiki.zfin.org/display/general/Anatomy+Atlases+and+Resources
   name: Zebrafish anatomy and development ontology
   prefix: zfa
 - homepage: https://wiki.zfin.org/display/general/Anatomy+Atlases+and+Resources
   name: Zebrafish developmental stages ontology
   prefix: zfs
-- homepage: http://zinc15.docking.org/
-  name: ZINC is not Commercial
-  prefix: zinc
 - homepage: https://github.com/obophenotype/zebrafish-phenotype-ontology
   name: Zebrafish Phenotype Ontology
   prefix: zp

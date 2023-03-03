@@ -3,6 +3,7 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from operator import itemgetter
 
 import click
 from pystow.utils import download
@@ -28,15 +29,20 @@ SKIP = {
 }
 
 
-def get_miriam(force_download: bool = False):
+def get_miriam(force_download: bool = False, force_process: bool = False):
     """Get the MIRIAM registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=MIRIAM_URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
+    download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
+    with open(RAW_PATH) as file:
         data = json.load(file)
+
+    data["payload"]["namespaces"] = sorted(data["payload"]["namespaces"], key=itemgetter("prefix"))
+    if force_download:
+        with open(RAW_PATH, "w") as file:
+            json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
 
     rv = {
         record["prefix"]: _process(record)
