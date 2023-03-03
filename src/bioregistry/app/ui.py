@@ -141,6 +141,7 @@ def resource(prefix: str):
                 xref=xref,
                 homepage=manager.get_registry_homepage(metaprefix),
                 name=manager.get_registry_name(metaprefix),
+                short_name=manager.get_registry_short_name(metaprefix),
                 uri=manager.get_registry_provider_uri_format(metaprefix, xref),
             )
             for metaprefix, xref in _resource.get_mappings().items()
@@ -571,3 +572,17 @@ def highlights_keywords():
             keyword_to_prefix[keyword].append(resource)
 
     return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
+
+
+@ui_blueprint.route("/highlights/owners")
+def highlights_owners():
+    """Render the partners highlights page."""
+    owner_to_resources = defaultdict(list)
+    owners = {}
+    for resource in manager.registry.values():
+        for owner in resource.owners or []:
+            owners[owner.pair] = owner
+            owner_to_resources[owner.pair].append(resource)
+    return render_template(
+        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+    )

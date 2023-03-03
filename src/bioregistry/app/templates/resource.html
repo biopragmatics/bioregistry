@@ -77,6 +77,13 @@
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
+            {% if resource.proprietary %}
+                <p>
+                    This resource is <span class="badge badge-warning">proprietary</span>. This means that it is not
+                    freely and publicly available without restriction. Such resources are still valuable to include
+                    in the Bioregistry as they may appear in other non-proprietary resources.
+                </p>
+            {% endif %}
 
             <dl>
                 {% if resource.comment %}
@@ -197,6 +204,21 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {% if resource.owners %}
+                    <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
+                    {% for owner in resource.owners %}
+                    <dd>
+                    <a href="{{ owner.link }}">{{ owner.name }}</a>
+                    {% if owner.partnered %}
+                    <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md#partners"
+                           class="badge badge-pill badge-info" data-toggle="tooltip"
+                           title="This organization has partnered with the Bioregistry to proactively maintain this record. Click to see related project governance.">
+                        Partnered
+                    </a>
+                    {% endif %}
+                    </dd>
+                    {% endfor %}
+                {% endif %}
                 <dt>Pattern for Local Unique Identifiers</dt>
                 <dd>
                     {% if pattern %}
@@ -232,33 +254,25 @@
                         <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
                     {% endif %}
                 </dd>
+                {% if pattern and curie_pattern %}
                 <dt>Pattern for CURIES</dt>
                 <dd>
-                    {% if curie_pattern %}
-                        <p>
-                            Compact URIs (CURIEs) constructed from {{ name }} should match
-                            this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
-                        </p>
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Could not construct CURIE pattern</span>
-                    {% endif %}
+                    <p>
+                        Compact URIs (CURIEs) constructed from {{ name }} should match
+                        this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
+                    </p>
                 </dd>
+                {% endif %}
+                {% if example and example_curie %}
                 <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
-                    {% if example_curie %}
-                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
-                        {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
-                            <br />
-                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
-                        {% endfor %}
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
-                    {% endif %}
+                    <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                    {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
+                        <br />
+                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
+                    {% endfor %}
                 </dd>
+                {% endif %}
                 {% if namespace_in_lui %}
                     <dt><i class="fas fa-info-circle"></i> MIRIAM Namespace Embedded in LUI</dt>
                     <dd>
@@ -366,7 +380,7 @@
                 {% endif %}
                 {% if part_of %}
                     <dt>
-                        Part Of
+                        Part Of ({{ utils.code_curie("bfo", "0000050") }})
                     </dt>
                     <dd>
                         {% if manager.get_name(part_of) %}
@@ -382,7 +396,7 @@
                 {% endif %}
                 {% if has_parts %}
                     <dt>
-                        Has Part
+                        Has Part ({{ utils.code_curie("bfo", "0000051") }})
                     </dt>
                     <dd>
                         {% for rel_prefix in has_parts %}
@@ -396,7 +410,7 @@
                 {% endif %}
                 {% if has_canonical %}
                     <dt>
-                        Has Canonical
+                        Has Canonical ({{ utils.code_curie("bioregistry.schema", "0000016") }})
                     </dt>
                     <dd>
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=has_canonical) }}"
@@ -422,7 +436,7 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }})
+                        Depends On ({{ depends_on | length }}) ({{ utils.code_curie("bioregistry.schema", "0000017") }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
@@ -436,14 +450,14 @@
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }})
+                        Appears In ({{ appears_in | length }}) ({{ utils.code_curie("bioregistry.schema", "0000018") }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
                             <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
-                                {{ manager.get_preferred_prefix(rel_prefix) }}
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -481,9 +495,9 @@
                     <tr>
                         <td>
                             {% if mapping.homepage %}
-                                <a href="{{ mapping.homepage }}">{{ mapping.name }}</a>
+                                <a href="{{ mapping.homepage }}" title="{{ mapping.name }}">{{ mapping.short_name }}</a>
                             {% else %}
-                                {{ mapping.name }}
+                                {{ mapping.short_name }}
                             {% endif %}
                             {% if mapping.metaresource.logo_url %}
                                 <img style="max-height: 1em" alt="{{ mapping.name }} logo" src="{{ mapping.metaresource.logo_url }}" />

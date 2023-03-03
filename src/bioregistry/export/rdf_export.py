@@ -8,7 +8,7 @@ from typing import Any, Callable, List, Optional, Tuple, Union, cast
 import click
 import rdflib
 from rdflib import Literal, Namespace
-from rdflib.namespace import DC, DCAT, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
+from rdflib.namespace import DCAT, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import URIRef
 
 import bioregistry
@@ -24,6 +24,9 @@ from bioregistry.constants import (
 from bioregistry.schema.constants import (
     IDOT,
     OBOINOWL,
+    ROR,
+    VANN,
+    WIKIDATA,
     _add_schema,
     bioregistry_collection,
     bioregistry_metaresource,
@@ -88,12 +91,14 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
     graph.namespace_manager.bind("orcid", orcid)
     graph.namespace_manager.bind("foaf", FOAF)
-    graph.namespace_manager.bind("dc", DC)
     graph.namespace_manager.bind("dcat", DCAT)
     graph.namespace_manager.bind("dcterms", DCTERMS)
     graph.namespace_manager.bind("skos", SKOS)
     graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
     graph.namespace_manager.bind("idot", IDOT)
+    graph.namespace_manager.bind("wikidata", WIKIDATA)
+    graph.namespace_manager.bind("vann", VANN)
+    graph.namespace_manager.bind("ror", ROR)
     graph.namespace_manager.bind("oboinowl", OBOINOWL)
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)
@@ -152,12 +157,12 @@ def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resour
         ("0000006", Resource.get_uri_format, XSD.string),
         ("0000005", Resource.get_example, XSD.string),
         ("0000012", Resource.is_deprecated, XSD.boolean),
-        (DC.description, Resource.get_description, XSD.string),
+        (DCTERMS.description, Resource.get_description, XSD.string),
         (FOAF.homepage, Resource.get_homepage, XSD.string),
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):  # noqa:C901
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
@@ -190,6 +195,15 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
 
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
+
+    for owner in resource.owners or []:
+        if owner.ror:
+            obj = ROR[owner.ror]
+        elif owner.wikidata:
+            obj = WIKIDATA[owner.wikidata]
+        else:
+            continue
+        graph.add((node, bioregistry_schema["0000026"], obj))
 
     part_of = manager.get_part_of(resource.prefix)
     if part_of:

@@ -110,6 +110,42 @@ URI_FORMAT_PATHS = [
 ]
 
 
+class Organization(BaseModel):
+    """Model for organizataions."""
+
+    ror: Optional[str] = Field(
+        title="Research Organization Registry identifier",
+        description="ROR identifier for a record about the organization",
+    )
+    wikidata: Optional[str] = Field(
+        title="Wikidata identifier",
+        description="Wikidata identifier for a record about the organization",
+    )
+    name: str = Field(..., description="Name of the organization")
+    partnered: bool = Field(
+        False, description="Has this organization made a specific connection with Bioregistry?"
+    )
+
+    @property
+    def pair(self) -> Tuple[str, str]:
+        """Get a CURIE pair."""
+        if self.ror:
+            return "ror", self.ror
+        elif self.wikidata:
+            return "wikidata", self.wikidata
+        raise ValueError
+
+    @property
+    def link(self) -> str:
+        """Get a link for the organization."""
+        if self.ror:
+            return f"https://ror.org/{self.ror}"
+        elif self.wikidata:
+            return f"https://scholia.toolforge.org/{self.wikidata}"
+        else:
+            raise ValueError
+
+
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
@@ -265,6 +301,10 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
         integration_status="suggested",
+    )
+    owners: Optional[List[Organization]] = Field(
+        description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
+        "bioregistry/issues/755."
     )
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
@@ -1241,12 +1281,16 @@ class Resource(BaseModel):
         return self.get_identifiers_org_prefix()
 
     def get_miriam_uri_prefix(
-        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+        self,
+        legacy_delimiter: bool = False,
+        legacy_protocol: bool = False,
+        legacy_banana: bool = False,
     ) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1254,26 +1298,40 @@ class Resource(BaseModel):
         'https://identifiers.org/taxonomy:'
         >>> get_resource('go').get_miriam_uri_prefix()
         'https://identifiers.org/GO:'
+        >>> get_resource('doid').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/doid/DOID:'
+        >>> get_resource('vario').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/vario/VariO:'
+        >>> get_resource('cellosaurus').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/cellosaurus/CVCL_'
+        >>> get_resource('doid').get_miriam_uri_prefix(legacy_delimiter=True)
+        'https://identifiers.org/DOID/'
         >>> assert get_resource('sty').get_miriam_uri_prefix() is None
         """
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
             return None
+        protocol = "http" if legacy_protocol else "https"
+        if legacy_banana and self.get_banana():
+            return f"{protocol}://identifiers.org/{miriam_prefix}/{self.get_banana()}{self.get_banana_peel()}"
         if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
-        protocol = "http" if legacy_protocol else "https"
         delimiter = "/" if legacy_delimiter else ":"
         return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
     def get_miriam_uri_format(
-        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+        self,
+        legacy_delimiter: bool = False,
+        legacy_protocol: bool = False,
+        legacy_banana: bool = False,
     ) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1284,7 +1342,9 @@ class Resource(BaseModel):
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
         miriam_url_prefix = self.get_miriam_uri_prefix(
-            legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol
+            legacy_delimiter=legacy_delimiter,
+            legacy_protocol=legacy_protocol,
+            legacy_banana=legacy_banana,
         )
         if miriam_url_prefix is None:
             return None
@@ -1293,6 +1353,12 @@ class Resource(BaseModel):
     def get_legacy_miriam_uri_format(self) -> Optional[str]:
         """Get the legacy Identifiers.org URI format string for this entry, if possible."""
         return self.get_miriam_uri_format(legacy_protocol=True, legacy_delimiter=True)
+
+    def get_legacy_alt_miriam_uri_format(self) -> Optional[str]:
+        """Get the legacy Identifiers.org URI format string for this entry, if possible."""
+        return self.get_miriam_uri_format(
+            legacy_protocol=True, legacy_delimiter=True, legacy_banana=True
+        )
 
     def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
@@ -1366,6 +1432,7 @@ class Resource(BaseModel):
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "miriam.legacy": get_legacy_miriam_uri_format,
+        "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
     }
