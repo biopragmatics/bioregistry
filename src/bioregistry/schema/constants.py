@@ -242,7 +242,7 @@ bioregistry_schema_terms = [
     PropertyTerm(
         "0000024",
         "Property",
-        "has provider formatter",
+        "has URI prefix",
         "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier)"
         " that should be resolved.",
         domain="0000001",
