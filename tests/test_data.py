@@ -986,7 +986,7 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if not resource.owners:
                 continue
-            with self.subTest(prefix=prefix, owner=owner.name):
+            with self.subTest(prefix=prefix):
                 # If any organizations are partnered, ensure fully
                 # filled out contact.
                 if any(owner.partnered for owner in resource.owners):
