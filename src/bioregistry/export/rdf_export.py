@@ -8,7 +8,7 @@ from typing import Any, Callable, List, Optional, Tuple, Union, cast
 import click
 import rdflib
 from rdflib import Literal, Namespace
-from rdflib.namespace import DC, DCAT, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
+from rdflib.namespace import DCAT, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import URIRef
 
 import bioregistry
@@ -24,6 +24,8 @@ from bioregistry.constants import (
 from bioregistry.schema.constants import (
     IDOT,
     OBOINOWL,
+    VANN,
+    WIKIDATA,
     _add_schema,
     bioregistry_collection,
     bioregistry_metaresource,
@@ -88,12 +90,13 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
     graph.namespace_manager.bind("orcid", orcid)
     graph.namespace_manager.bind("foaf", FOAF)
-    graph.namespace_manager.bind("dc", DC)
     graph.namespace_manager.bind("dcat", DCAT)
     graph.namespace_manager.bind("dcterms", DCTERMS)
     graph.namespace_manager.bind("skos", SKOS)
     graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
     graph.namespace_manager.bind("idot", IDOT)
+    graph.namespace_manager.bind("wikidata", WIKIDATA)
+    graph.namespace_manager.bind("vann", VANN)
     graph.namespace_manager.bind("oboinowl", OBOINOWL)
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)
@@ -152,7 +155,7 @@ def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resour
         ("0000006", Resource.get_uri_format, XSD.string),
         ("0000005", Resource.get_example, XSD.string),
         ("0000012", Resource.is_deprecated, XSD.boolean),
-        (DC.description, Resource.get_description, XSD.string),
+        (DCTERMS.description, Resource.get_description, XSD.string),
         (FOAF.homepage, Resource.get_homepage, XSD.string),
     ]
 
