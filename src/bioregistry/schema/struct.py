@@ -127,6 +127,15 @@ class Organization(BaseModel):
     )
 
     @property
+    def pair(self) -> Tuple[str, str]:
+        """Get a CURIE pair."""
+        if self.ror:
+            return "ror", self.ror
+        elif self.wikidata:
+            return "wikidata", self.wikidata
+        raise ValueError
+
+    @property
     def link(self) -> str:
         """Get a link for the organization."""
         if self.ror:
