@@ -122,7 +122,6 @@ class Organization(BaseModel):
         description="Wikidata identifier for a record about the organization",
     )
     name: str = Field(..., description="Name of the organization")
-    logo_url: Optional[str] = Field(description="A URL resolving to an image for the organization.")
     partnered: bool = Field(
         False, description="Has this organization made a specific connection with Bioregistry?"
     )
