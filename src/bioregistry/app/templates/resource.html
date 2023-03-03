@@ -204,6 +204,17 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {% if resource.owner %}
+                    <dt>
+                    Identifier Space Owner
+                    </dt>
+                    <dd>
+                    <a href="{{ resource.owner.link }}">{{ resource.owner.name }}</a>
+                    {% if resource.owner.active %}
+                        <span class="badge badge-pill badge-info">Active</span>
+                        {% endif %}
+                    </dd>
+                {% endif %}
                 <dt>Pattern for Local Unique Identifiers</dt>
                 <dd>
                     {% if pattern %}

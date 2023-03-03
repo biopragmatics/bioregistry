@@ -980,3 +980,17 @@ class TestRegistry(unittest.TestCase):
                 keywords = resource.get_keywords()
                 self.assertIsNotNone(keywords)
                 self.assertLess(0, len(keywords), msg=f"{resource.prefix} is missing keywords")
+
+    def test_owners(self):
+        """Test owner annotations."""
+        for prefix, resource in self.registry.items():
+            if not resource.owner:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertTrue(resource.owner.ror is not None or resource.wikidata is not None)
+                if resource.owner.active:
+                    self.assertIsNotNone(resource.contact)
+                    self.assertIsNotNone(resource.contact.github)
+                    self.assertIsNotNone(resource.contact.email)
+                    self.assertIsNotNone(resource.contact.orcid)
+                    self.assertIsNotNone(resource.contact.name)

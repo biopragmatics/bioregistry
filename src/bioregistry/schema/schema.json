@@ -154,6 +154,37 @@
         "name"
       ]
     },
+    "Organization": {
+      "title": "Organization",
+      "description": "Model for organizataions.",
+      "type": "object",
+      "properties": {
+        "ror": {
+          "title": "Research Organization Registry identifier",
+          "description": "ROR identifier for a record about the organization",
+          "type": "string"
+        },
+        "wikidata": {
+          "title": "Wikidata identifier",
+          "description": "Wikidata identifier for a record about the organization",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string"
+        },
+        "active": {
+          "title": "Active",
+          "description": "Has this organization made a specific connection with Bioregistry?",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
     "Publication": {
       "title": "Publication",
       "description": "Metadata about a publication.",
@@ -247,6 +278,15 @@
           "allOf": [
             {
               "$ref": "#/definitions/Attributable"
+            }
+          ]
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "The owner of the corresponding identifier space. See also https://github.com/biopragmatics/bioregistry/issues/755.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Organization"
             }
           ]
         },
