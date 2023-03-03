@@ -984,13 +984,16 @@ class TestRegistry(unittest.TestCase):
     def test_owners(self):
         """Test owner annotations."""
         for prefix, resource in self.registry.items():
-            if not resource.owner:
+            if not resource.owners:
                 continue
-            with self.subTest(prefix=prefix):
-                self.assertTrue(resource.owner.ror is not None or resource.wikidata is not None)
-                if resource.owner.active:
+            with self.subTest(prefix=prefix, owner=owner.name):
+                # If any organizations are partnered, ensure fully
+                # filled out contact.
+                if any(owner.partnered for owner in resource.owners):
                     self.assertIsNotNone(resource.contact)
                     self.assertIsNotNone(resource.contact.github)
                     self.assertIsNotNone(resource.contact.email)
                     self.assertIsNotNone(resource.contact.orcid)
                     self.assertIsNotNone(resource.contact.name)
+                for owner in resource.owners:
+                    self.assertTrue(owner.ror is not None or owner.wikidata is not None)

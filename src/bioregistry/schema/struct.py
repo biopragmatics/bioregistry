@@ -121,8 +121,9 @@ class Organization(BaseModel):
         title="Wikidata identifier",
         description="Wikidata identifier for a record about the organization",
     )
-    name: str = Field(description="Name of the organization")
-    active: bool = Field(
+    name: str = Field(..., description="Name of the organization")
+    logo_url: Optional[str] = Field(description="A URL resolving to an image for the organization.")
+    partnered: bool = Field(
         False, description="Has this organization made a specific connection with Bioregistry?"
     )
 
@@ -293,7 +294,7 @@ class Resource(BaseModel):
         ),
         integration_status="suggested",
     )
-    owner: Optional[Organization] = Field(
+    owners: Optional[List[Organization]] = Field(
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
         "bioregistry/issues/755."
     )
