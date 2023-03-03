@@ -210,7 +210,11 @@
                     <dd>
                     <a href="{{ owner.link }}">{{ owner.name }}</a>
                     {% if owner.partnered %}
-                        <span class="badge badge-pill badge-info">Partnered</span>
+                    <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md#partners"
+                           class="badge badge-pill badge-info" data-toggle="tooltip"
+                           title="This organization has partnered with the Bioregistry to proactively maintain this record. Click to see related project governance.">
+                        Partnered
+                    </a>
                     {% endif %}
                     </dd>
                     {% endfor %}
