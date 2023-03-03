@@ -194,6 +194,15 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
+    for owner in resource.owners or []:
+        if owner.ror:
+            obj = NAMESPACES["ror"][owner.ror]
+        elif owner.wikidata:
+            obj = NAMESPACES["wikidata"][owner.wikidata]
+        else:
+            continue
+        graph.add((node, bioregistry_schema["0000026"], obj))
+
     part_of = manager.get_part_of(resource.prefix)
     if part_of:
         graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
