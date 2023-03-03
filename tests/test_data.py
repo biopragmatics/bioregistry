@@ -361,6 +361,10 @@ class TestRegistry(unittest.TestCase):
     def assert_is_valid_identifier(self, prefix: str, example: str) -> None:
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
+        regex = entry.get_pattern()
+        if not regex:
+            return
+        self.assertRegexpMatches(example, regex, msg=f"[{prefix}] invalid LUID: {example}")
         canonical = entry.is_valid_identifier(example)
         self.assertTrue(canonical is None or canonical, msg=f"[{prefix}] invalid LUID: {example}")
 
