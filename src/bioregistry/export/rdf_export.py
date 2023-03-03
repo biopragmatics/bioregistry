@@ -24,6 +24,7 @@ from bioregistry.constants import (
 from bioregistry.schema.constants import (
     IDOT,
     OBOINOWL,
+    ROR,
     VANN,
     WIKIDATA,
     _add_schema,
@@ -97,6 +98,7 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("idot", IDOT)
     graph.namespace_manager.bind("wikidata", WIKIDATA)
     graph.namespace_manager.bind("vann", VANN)
+    graph.namespace_manager.bind("ror", ROR)
     graph.namespace_manager.bind("oboinowl", OBOINOWL)
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)
@@ -160,7 +162,7 @@ def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resour
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):  # noqa:C901
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
@@ -193,6 +195,15 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
 
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
+
+    for owner in resource.owners or []:
+        if owner.ror:
+            obj = ROR[owner.ror]
+        elif owner.wikidata:
+            obj = WIKIDATA[owner.wikidata]
+        else:
+            continue
+        graph.add((node, bioregistry_schema["0000026"], obj))
 
     part_of = manager.get_part_of(resource.prefix)
     if part_of:

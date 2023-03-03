@@ -644,6 +644,7 @@ class Manager:
             contributor=resource.contributor,
             contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
+            owners=resource.owners,
             twitter=resource.get_twitter(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations

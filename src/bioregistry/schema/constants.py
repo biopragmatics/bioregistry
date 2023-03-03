@@ -48,6 +48,7 @@ class PropertyTerm(Term):
 
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")
+ROR = rdflib.Namespace("https://ror.org/")
 VANN = rdflib.Namespace("http://purl.org/vocab/vann/")
 WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
@@ -250,6 +251,20 @@ bioregistry_schema_terms = [
         xrefs=[
             VANN["preferredNamespaceUri"],
         ],
+    ),
+    ClassTerm(
+        "0000025",
+        "Class",
+        "Organization",
+        "An organization",
+    ),
+    PropertyTerm(
+        "0000026",
+        "Property",
+        "has identifier space owner",
+        "An organization",
+        domain="0000001",
+        range="0000025",
     ),
 ]
 bioregistry_schema_extras = [

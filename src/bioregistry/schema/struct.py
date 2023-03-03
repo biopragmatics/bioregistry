@@ -110,6 +110,42 @@ URI_FORMAT_PATHS = [
 ]
 
 
+class Organization(BaseModel):
+    """Model for organizataions."""
+
+    ror: Optional[str] = Field(
+        title="Research Organization Registry identifier",
+        description="ROR identifier for a record about the organization",
+    )
+    wikidata: Optional[str] = Field(
+        title="Wikidata identifier",
+        description="Wikidata identifier for a record about the organization",
+    )
+    name: str = Field(..., description="Name of the organization")
+    partnered: bool = Field(
+        False, description="Has this organization made a specific connection with Bioregistry?"
+    )
+
+    @property
+    def pair(self) -> Tuple[str, str]:
+        """Get a CURIE pair."""
+        if self.ror:
+            return "ror", self.ror
+        elif self.wikidata:
+            return "wikidata", self.wikidata
+        raise ValueError
+
+    @property
+    def link(self) -> str:
+        """Get a link for the organization."""
+        if self.ror:
+            return f"https://ror.org/{self.ror}"
+        elif self.wikidata:
+            return f"https://scholia.toolforge.org/{self.wikidata}"
+        else:
+            raise ValueError
+
+
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
@@ -265,6 +301,10 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
         integration_status="suggested",
+    )
+    owners: Optional[List[Organization]] = Field(
+        description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
+        "bioregistry/issues/755."
     )
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
