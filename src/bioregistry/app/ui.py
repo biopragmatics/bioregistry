@@ -583,4 +583,6 @@ def highlights_owners():
         for owner in resource.owners or []:
             owners[owner.pair] = owner
             owner_to_resources[owner.pair].append(resource)
-    return render_template("highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources)
+    return render_template(
+        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+    )
