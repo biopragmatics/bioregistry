@@ -48,6 +48,7 @@ class PropertyTerm(Term):
 
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")
+ROR = rdflib.Namespace("https://ror.org/")
 VANN = rdflib.Namespace("http://purl.org/vocab/vann/")
 WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")

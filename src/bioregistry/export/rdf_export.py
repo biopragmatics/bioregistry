@@ -24,6 +24,7 @@ from bioregistry.constants import (
 from bioregistry.schema.constants import (
     IDOT,
     OBOINOWL,
+    ROR,
     VANN,
     WIKIDATA,
     _add_schema,
@@ -97,6 +98,7 @@ def _graph(manager: Manager) -> rdflib.Graph:
     graph.namespace_manager.bind("idot", IDOT)
     graph.namespace_manager.bind("wikidata", WIKIDATA)
     graph.namespace_manager.bind("vann", VANN)
+    graph.namespace_manager.bind("ror", ROR)
     graph.namespace_manager.bind("oboinowl", OBOINOWL)
     for key, value in manager.get_internal_prefix_map().items():
         graph.namespace_manager.bind(key, value)
@@ -196,9 +198,9 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
 
     for owner in resource.owners or []:
         if owner.ror:
-            obj = NAMESPACES["ror"][owner.ror]
+            obj = ROR[owner.ror]
         elif owner.wikidata:
-            obj = NAMESPACES["wikidata"][owner.wikidata]
+            obj = WIKIDATA[owner.wikidata]
         else:
             continue
         graph.add((node, bioregistry_schema["0000026"], obj))
