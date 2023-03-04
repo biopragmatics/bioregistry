@@ -4839,8 +4839,12 @@
     "uri_format": "https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement[@publicId=$1]"
   },
   "caloha": {
-    "banana": "TS",
-    "banana_peel": "-",
+    "contact": {
+      "email": "Paula.Duek@sib.swiss",
+      "github": "paulacalipho",
+      "name": "Paula Duek Roggli",
+      "orcid": "0000-0002-0819-0473"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -4849,7 +4853,7 @@
     },
     "description": "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins.",
     "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
-    "example": "0001",
+    "example": "TS-0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "keywords": [
       "anatomy",
@@ -4859,7 +4863,7 @@
     ],
     "license": "CC-BY-4.0",
     "name": "CALIPHO Group Ontology of Human Anatomy",
-    "pattern": "^\\d+$",
+    "pattern": "^TS-\\d+$",
     "preferred_prefix": "caloha",
     "providers": [
       {
@@ -4871,11 +4875,12 @@
       }
     ],
     "references": [
-      "https://twitter.com/neXtProt_news/status/1350105997633867781"
+      "https://twitter.com/neXtProt_news/status/1350105997633867781",
+      "https://github.com/biopragmatics/bioregistry/issues/721"
     ],
     "repository": "https://github.com/calipho-sib/controlled-vocabulary",
     "twitter": "neXtProt_news",
-    "uri_format": "https://www.nextprot.org/term/TS-$1"
+    "uri_format": "https://www.nextprot.org/term/$1"
   },
   "cameo": {
     "contact": {
@@ -13665,6 +13670,14 @@
       "ontobee": "EFO"
     },
     "name": "Experimental Factor Ontology",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d{7}$",
     "preferred_prefix": "EFO",
     "providers": [
@@ -13708,6 +13721,14 @@
       "re3data": "r3d100011242"
     },
     "name": "European Genome-phenome Archive Dataset",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^EGAD\\d{11}$",
     "preferred_prefix": "ega.dataset",
     "providers": [
@@ -14111,6 +14132,14 @@
       "re3data": "r3d100010562"
     },
     "name": "Electron Microscopy Data Bank",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^EMD-\\d{4,5}$",
     "preferred_prefix": "emdb",
     "publications": [
@@ -14179,6 +14208,14 @@
       "miriam": "empiar"
     },
     "name": "Electron Microscopy Public Image Archive",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d+$",
     "preferred_prefix": "empiar",
     "publications": [
@@ -14223,6 +14260,14 @@
       "uniprot": "DB-0022"
     },
     "name": "European Nucleotide Archive",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^[A-Z]+[0-9]+(\\.\\d+)?$",
     "preferred_prefix": "ena.embl",
     "providers": [
@@ -15714,6 +15759,14 @@
       "cellosaurus": "ESTDAB"
     },
     "name": "European Searchable Tumour Line Database",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d{3}$",
     "preferred_prefix": "estdab",
     "uri_format": "https://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?ESTDAB-$1"
@@ -16071,6 +16124,12 @@
     "uri_format": "https://www.facebase.org/data/record/#1/isa:dataset/accession=$1"
   },
   "fairsharing": {
+    "contact": {
+      "email": "allyson.lister@oerc.ox.ac.uk",
+      "github": null,
+      "name": "Allyson Lister",
+      "orcid": "0000-0002-7702-4495"
+    },
     "description": "The web-based FAIRSharing catalogues aim to centralize bioscience data policies, reporting standards and links to other related portals. This collection references bioinformatics data exchange standards, which includes 'Reporting Guidelines', Format Specifications and Terminologies.",
     "example": "bsg-000052",
     "example_extras": [
@@ -16126,6 +16185,50 @@
     "repository": "https://github.com/FAIRsharing",
     "twitter": "fairsharing_org",
     "uri_format": "https://fairsharing.org/$1"
+  },
+  "fairsharing.organization": {
+    "contact": {
+      "email": "allyson.lister@oerc.ox.ac.uk",
+      "github": "allysonlister",
+      "name": "Allyson Lister",
+      "orcid": "0000-0002-7702-4495"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An organization in FAIRsharing, including universities, labs, etc.",
+    "example": "3851",
+    "homepage": "https://fairsharing.org",
+    "name": "FAIRsharing Organization",
+    "part_of": "fairsharing",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "fairsharing.organization",
+    "uri_format": "https://fairsharing.org/organisations/$1"
+  },
+  "fairsharing.user": {
+    "contact": {
+      "email": "allyson.lister@oerc.ox.ac.uk",
+      "github": "allysonlister",
+      "name": "Allyson Lister",
+      "orcid": "0000-0002-7702-4495"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A user of FAIRsharing",
+    "example": "5112",
+    "homepage": "https://fairsharing.org",
+    "name": "FAIRsharing User",
+    "part_of": "fairsharing",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "fairsharing.user",
+    "uri_format": "https://fairsharing.org/users/$1"
   },
   "faldo": {
     "contact": {
@@ -16671,6 +16774,14 @@
       "prefixcommons": "fix"
     },
     "name": "Physico-chemical methods and properties",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "part_of": "chebi",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "FIX",
@@ -18112,6 +18223,14 @@
       "n2t": "gcst"
     },
     "name": "GWAS Catalog",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^GCST\\d{6}\\d*$",
     "preferred_prefix": "gcst",
     "uri_format": "https://www.ebi.ac.uk/gwas/studies/$1"
@@ -18829,6 +18948,14 @@
       "prefixcommons": "jcvi.genprop"
     },
     "name": "Genome Properties",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^GenProp\\d+$",
     "preferred_prefix": "genprop",
     "uri_format": "https://www.ebi.ac.uk/interpro/genomeproperties/#$1"
@@ -20885,6 +21012,14 @@
       "n2t": "gxa.expt"
     },
     "name": "GXA Expt",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^[AEP]-\\w{4}-\\d+$",
     "preferred_prefix": "gxa.expt",
     "providers": [
@@ -20908,6 +21043,14 @@
       "n2t": "gxa.gene"
     },
     "name": "GXA Gene",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\w+$",
     "preferred_prefix": "gxa.gene",
     "uri_format": "https://www.ebi.ac.uk/gxa/genes/$1"
@@ -21070,6 +21213,14 @@
       "ontobee": "HANCESTRO"
     },
     "name": "Human Ancestry Ontology",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d{4}$",
     "preferred_prefix": "HANCESTRO",
     "publications": [
@@ -23912,6 +24063,14 @@
       "re3data": "r3d100010669"
     },
     "name": "International Molecular Exchange",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d+(-\\d+)?$",
     "preferred_prefix": "imex",
     "providers": [
@@ -24028,6 +24187,14 @@
       "re3data": "r3d100010804"
     },
     "name": "IMGT/HLA human major histocompatibility complex sequence database",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^[A-Z0-9*:]+$",
     "preferred_prefix": "imgt.hla",
     "publications": [
@@ -24754,6 +24921,14 @@
       "uniprot": "DB-0051"
     },
     "name": "IntAct protein interaction database",
+    "owners": [
+      {
+        "name": "European Bioinformatics Institute",
+        "partnered": false,
+        "ror": "02catss52",
+        "wikidata": null
+      }
+    ],
     "pattern": "^EBI\\-[0-9]+$",
     "preferred_prefix": "intact",
     "publications": [
@@ -28027,6 +28202,25 @@
     "preferred_prefix": "mesh.2013",
     "provides": "mesh",
     "uri_format": "http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?mode=&index=$1&view=expanded"
+  },
+  "mesh.vocab": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Medical Subject Headings vocabulary is the set of predicates used in the MeSH RDF dump",
+    "example": "term",
+    "homepage": "https://hhs.github.io/meshrdf/",
+    "name": "Medical Subject Headings Vocabulary",
+    "part_of": "mesh",
+    "preferred_prefix": "mesh.vocab",
+    "references": [
+      "https://id.nlm.nih.gov/mesh/query"
+    ],
+    "repository": "https://github.com/HHS/meshrdf",
+    "uri_format": "http://id.nlm.nih.gov/mesh/vocab#$1"
   },
   "metabolights": {
     "description": "MetaboLights is a database for Metabolomics experiments and derived information. The database is cross-species, cross-technique and covers metabolite structures and their reference spectra as well as their biological roles, locations and concentrations, and experimental data from metabolic experiments. This collection references individual metabolomics studies.",
@@ -31411,6 +31605,14 @@
       "wikidata": "P351"
     },
     "name": "Entrez Gene",
+    "owners": [
+      {
+        "name": "National Center for Biotechnology Information",
+        "partnered": false,
+        "ror": "02meqm098",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d+$",
     "preferred_prefix": "NCBIGene",
     "providers": [
@@ -31480,6 +31682,14 @@
       "ncbi": "GI"
     },
     "name": "GenInfo Identifier",
+    "owners": [
+      {
+        "name": "National Center for Biotechnology Information",
+        "partnered": false,
+        "ror": "02meqm098",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d+$",
     "preferred_prefix": "ncbigi",
     "references": [
@@ -31508,6 +31718,14 @@
       "re3data": "r3d100010776"
     },
     "name": "NCBI Protein",
+    "owners": [
+      {
+        "name": "National Center for Biotechnology Information",
+        "partnered": false,
+        "ror": "02meqm098",
+        "wikidata": null
+      }
+    ],
     "pattern": "^(\\w+\\d+(\\.\\d+)?)|(NP_\\d+)$",
     "preferred_prefix": "NCBIProtein",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
@@ -31576,6 +31794,14 @@
       "wikidata": "P685"
     },
     "name": "NCBI Taxonomy",
+    "owners": [
+      {
+        "name": "National Center for Biotechnology Information",
+        "partnered": false,
+        "ror": "02meqm098",
+        "wikidata": null
+      }
+    ],
     "pattern": "^\\d+$",
     "preferred_prefix": "NCBITaxon",
     "providers": [
@@ -31657,6 +31883,14 @@
       "n2t": "ncim"
     },
     "name": "NCI Metathesaurus",
+    "owners": [
+      {
+        "name": "National Cancer Institute",
+        "partnered": false,
+        "ror": "040gcmg81",
+        "wikidata": null
+      }
+    ],
     "pattern": "^C\\d+$",
     "preferred_prefix": "ncim",
     "uri_format": "http://ncim.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=$1"
@@ -31704,6 +31938,14 @@
       "wikidata": "P1748"
     },
     "name": "NCI Thesaurus",
+    "owners": [
+      {
+        "name": "National Cancer Institute",
+        "partnered": false,
+        "ror": "040gcmg81",
+        "wikidata": null
+      }
+    ],
     "pattern": "^C\\d+$",
     "preferred_prefix": "NCIT",
     "providers": [
@@ -43728,6 +43970,14 @@
       "bartoc": "20428"
     },
     "name": "Semantic Mapping Vocabulary",
+    "owners": [
+      {
+        "name": "Semanticly",
+        "partnered": true,
+        "ror": null,
+        "wikidata": "Q115518213"
+      }
+    ],
     "preferred_prefix": "semapv",
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/714"
@@ -45682,6 +45932,12 @@
     "uri_format": "https://www.signalingpathways.org/datasets/dataset.jsf?doi=$1"
   },
   "srao": {
+    "contact": {
+      "email": "allyson.lister@oerc.ox.ac.uk",
+      "github": "allysonlister",
+      "name": "Allyson Lister",
+      "orcid": "0000-0002-7702-4495"
+    },
     "description": "The FAIRsharing Subject Ontology (SRAO) is an application ontology for the categorization of research disciplines across all research domains, from the humanities to the natural sciences. It utilizes multiple external vocabularies.",
     "download_owl": "https://raw.githubusercontent.com/FAIRsharing/subject-ontology/master/releases/SRAO.owl",
     "example": "0000400",
@@ -45704,6 +45960,7 @@
       "ols": "srao"
     },
     "name": "FAIRsharing Subject Ontology",
+    "part_of": "fairsharing",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "srao",
     "repository": "https://github.com/FAIRsharing/subject-ontology",
@@ -46665,6 +46922,61 @@
       }
     ],
     "uri_format": "http://www.t3db.org/toxins/$1"
+  },
+  "t4fs": {
+    "contact": {
+      "email": "allyson.lister@oerc.ox.ac.uk",
+      "github": "allysonlister",
+      "name": "Allyson Lister",
+      "orcid": "0000-0002-7702-4495"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A terminology for the skills necessary to make data FAIR and to keep it FAIR.",
+    "download_json": "http://purl.obolibrary.org/obo/t4fs.json",
+    "download_obo": "http://purl.obolibrary.org/obo/t4fs.obo",
+    "download_owl": "http://purl.obolibrary.org/obo/t4fs.owl",
+    "example": "0000127",
+    "homepage": "https://github.com/terms4fairskills/FAIRterminology",
+    "keywords": [
+      "obo",
+      "ontology",
+      "subject agnostic"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "aberowl": "T4FS",
+      "fairsharing": "FAIRsharing.fb99fa",
+      "obofoundry": "t4fs",
+      "ols": "t4fs",
+      "ontobee": "T4FS"
+    },
+    "name": "terms4FAIRskills",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "T4FS",
+    "publications": [
+      {
+        "doi": "10.5281/zenodo.4772741",
+        "pmc": null,
+        "pubmed": null,
+        "title": "EOSC Co-creation funded project 074: Delivery of a proof of concept for terms4FAIRskills: Technical report",
+        "year": null
+      },
+      {
+        "doi": "10.5281/zenodo.4705219",
+        "pmc": null,
+        "pubmed": null,
+        "title": "EOSC Co-creation funded project 074: Delivery of a proof of concept for terms4FAIRskills: Technical report",
+        "year": null
+      }
+    ],
+    "repository": "https://github.com/terms4fairskills/FAIRterminology",
+    "uri_format": "http://purl.obolibrary.org/obo/T4FS_$1",
+    "version": "2022-10-05"
   },
   "tads": {
     "contact": {
@@ -49175,8 +49487,30 @@
     "version": "2017-10-31"
   },
   "uspto": {
+    "comment": "Information about the regular expression was derived from examples at https://patft.uspto.gov/netahtml/PTO/srchnum.htm. TODO, make the regular expression work for '100000000'",
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "dhimmel",
+        "name": "Daniel Himmelstein",
+        "orcid": "0000-0002-3012-7446"
+      }
+    ],
     "description": "The United States Patent and Trademark Office (USPTO) is the federal agency for granting U.S. patents and registering trademarks. As a mechanism that protects new ideas and investments in innovation and creativity, the USPTO is at the cutting edge of the nation's technological progress and achievement.",
     "example": "4145692",
+    "example_extras": [
+      "10,000,000",
+      "6923014",
+      "0000001",
+      "D000152",
+      "PP07514",
+      "RE12345",
+      "T855019",
+      "H001234",
+      "AI00007",
+      "X000001",
+      "RX00001"
+    ],
     "homepage": "http://patft.uspto.gov/netahtml/PTO/index.html",
     "mappings": {
       "biocontext": "USPTO",
@@ -49184,8 +49518,11 @@
       "n2t": "uspto"
     },
     "name": "United States Patent and Trademark Office",
-    "pattern": "^(D|PP|R|T|H|X|AI)?\\d+$",
+    "pattern": "^(\\d{1,2},?\\d{3},?\\d{3}|(PP|RE|AI|RX)\\d{2},?\\d{3}|(D|T|H|X)\\d{3},?\\d{3})$",
     "preferred_prefix": "uspto",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/253"
+    ],
     "uri_format": "http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1"
   },
   "vac": {

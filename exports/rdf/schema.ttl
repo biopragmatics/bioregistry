@@ -26,6 +26,10 @@ bioregistry.schema:0000020 a rdfs:Class ;
     dcterms:description "A person" ;
     owl:equivalentClass foaf:Person .
 
+bioregistry.schema:0000025 a rdfs:Class ;
+    rdfs:label "Organization" ;
+    dcterms:description "An organization" .
+
 bioregistry.schema:0000005 a rdf:Property ;
     rdfs:label "has example" ;
     dcterms:description "An identifier for a resource or metaresource." ;
@@ -124,4 +128,10 @@ bioregistry.schema:0000024 a rdf:Property ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
     owl:equivalentProperty vann:preferredNamespaceUri .
+
+bioregistry.schema:0000026 a rdf:Property ;
+    rdfs:label "has identifier space owner" ;
+    dcterms:description "An organization" ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range bioregistry.schema:0000025 .
 
