@@ -617,7 +617,7 @@ class Manager:
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            synonyms=resource.get_synonyms(),
+            synonyms=sorted(resource.get_synonyms()),
             repository=resource.get_repository(),
             keywords=resource.get_keywords(),
             # Downloads
