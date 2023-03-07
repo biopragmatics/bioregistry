@@ -87,7 +87,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         contact_orcid = resource_data.pop("contact_orcid", None)
         contact_email = resource_data.pop("contact_email", None)
         contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
-        if contact_orcid:
+        if contact_orcid and contact_name:
             contact = Author(
                 name=contact_name,
                 orcid=_trim_orcid(contact_orcid),
@@ -134,7 +134,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             github_request_issue=issue_id,
             wikidata=wikidata,
             mappings=mappings,
-            **resource_data,
+            **resource_data,  # type:ignore
         )
     return rv
 
