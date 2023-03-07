@@ -26374,10 +26374,10 @@ bioregistry:insdc a bioregistry.schema:0000001 ;
         prefixcommons:insdc,
         miriam:insdc ;
     dcat:keyword "dna" ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/Genbank/"^^xsd:string ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/nuccore/"^^xsd:string ;
     bioregistry.schema:0000005 "X58356"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/nuccore/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000008 "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4,6}\\d{8,10}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:insdc.run a bioregistry.schema:0000001 ;

@@ -545,14 +545,14 @@
     "database": "Q28416737",
     "description": "identifier for a plant in Chinese Plant Names Index database of Scientific Database of China Plant Species",
     "example": [
-      "CPNI-015",
-      "CPNI-079-07878",
-      "CPNI-17899",
-      "CPNI-263-04287"
+      "015",
+      "079-07878",
+      "17899",
+      "263-04287"
     ],
     "name": "CPNI ID",
     "prefix": "P10778",
-    "uri_format": "http://db.kib.ac.cn/CNFlora/SearchResult.aspx?cpni=$1"
+    "uri_format": "http://db.kib.ac.cn/CNFlora/SearchResult.aspx?cpni=CPNI-$1"
   },
   "P10783": {
     "database": "Q111967201",
@@ -4077,7 +4077,10 @@
     ],
     "name": "Xenopus Anatomical Ontology ID",
     "prefix": "P4495",
-    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1"
+    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "P4526": {
     "database": "Q4743180",
@@ -4102,7 +4105,10 @@
     "miriam": "SPD",
     "name": "Spider Ontology ID",
     "prefix": "P4537",
-    "uri_format": "http://purl.obolibrary.org/obo/SPD_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/SPD_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/SPD_$1"
+    ]
   },
   "P4567": {
     "database": "Q2925763",
@@ -4492,7 +4498,10 @@
     "name": "IRMNG ID",
     "pattern": "^[1-9]\\d{0,7}$",
     "prefix": "P5055",
-    "uri_format": "https://www.irmng.org/aphia.php?p=taxdetails&id=$1"
+    "uri_format": "https://www.irmng.org/aphia.php?p=taxdetails&id=$1",
+    "uri_format_rdf": [
+      "urn:lsid:irmng.org:taxname:$1"
+    ]
   },
   "P5082": {
     "database": "Q19378370",
@@ -7630,7 +7639,10 @@
     ],
     "name": "AGROVOC ID",
     "prefix": "P8061",
-    "uri_format": "http://aims.fao.org/aos/agrovoc/$1"
+    "uri_format": "http://aims.fao.org/aos/agrovoc/$1",
+    "uri_format_rdf": [
+      "http://aims.fao.org/aos/agrovoc/$1"
+    ]
   },
   "P8062": {
     "database": "Q2868312",
@@ -8550,7 +8562,10 @@
     "name": "ChemRxiv ID",
     "pattern": "^\\d+$",
     "prefix": "P9262",
-    "uri_format": "https://doi.org/10.26434/CHEMRXIV.$1"
+    "uri_format": "https://doi.org/10.26434/CHEMRXIV.$1",
+    "uri_format_rdf": [
+      "http://dx.doi.org/10.26434/chemrxiv.$1.v1"
+    ]
   },
   "P9272": {
     "database": "Q5690673",
@@ -8615,7 +8630,10 @@
     "name": "Cephalopod Ontology ID",
     "pattern": "^[0-9]{7}$",
     "prefix": "P9334",
-    "uri_format": "http://purl.obolibrary.org/obo/CEPH_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/CEPH_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/CEPH_$1"
+    ]
   },
   "P9340": {
     "database": "Q199897",
@@ -8630,7 +8648,10 @@
     "name": "MeSH descriptor/qualifier ID",
     "pattern": "^D\\d{6}(\\d{3}|)Q\\d{6}(\\d{3}|)$",
     "prefix": "P9340",
-    "uri_format": "https://id.nlm.nih.gov/mesh/$1"
+    "uri_format": "https://id.nlm.nih.gov/mesh/$1",
+    "uri_format_rdf": [
+      "http://id.nlm.nih.gov/mesh/$1"
+    ]
   },
   "P9341": {
     "database": "Q199897",
@@ -8661,7 +8682,10 @@
     "name": "Hymenoptera Anatomy Ontology ID",
     "pattern": "^[0-9]{7}$",
     "prefix": "P9356",
-    "uri_format": "http://purl.obolibrary.org/obo/HAO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/HAO_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/HAO_$1"
+    ]
   },
   "P938": {
     "database": "Q837101",

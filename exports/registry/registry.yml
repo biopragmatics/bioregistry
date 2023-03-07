@@ -22442,7 +22442,7 @@ insdc:
     consists of a joint effort to collect and disseminate databases containing DNA
     and RNA sequences.
   example: X58356
-  homepage: https://www.ncbi.nlm.nih.gov/Genbank/
+  homepage: https://www.ncbi.nlm.nih.gov/nuccore/
   keywords:
   - dna
   mappings:
@@ -22451,9 +22451,14 @@ insdc:
     n2t: insdc
     prefixcommons: insdc
   name: Nucleotide Sequence Database
-  pattern: ^([A-Z]\d{5}|[A-Z]{2}\d{6}|[A-Z]{4}\d{8}|[A-J][A-Z]{2}\d{5})(\.\d+)?$
+  pattern: ^([A-Z]\d{5}|[A-Z]{2}\d{6}|[A-Z]{4,6}\d{8,10}|[A-J][A-Z]{2}\d{5})(\.\d+)?$
   preferred_prefix: insdc
   providers:
+  - code: CURATOR_REVIEW
+    description: INSDC through GenBank
+    homepage: https://www.ncbi.nlm.nih.gov/Genbank/
+    name: INSDC through GenBank
+    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   - code: CURATOR_REVIEW
     description: INSDC through DDBJ
     homepage: http://www.ddbj.nig.ac.jp/
@@ -22464,11 +22469,6 @@ insdc:
     homepage: https://www.ebi.ac.uk/ena/
     name: INSDC through European Nucleotide Archive (ENA)
     uri_format: https://www.ebi.ac.uk/ena/data/view/$1
-  - code: ncbi
-    description: INSDC through Nucleotide database at NCBI
-    homepage: https://www.ncbi.nlm.nih.gov/nuccore/
-    name: INSDC through Nucleotide database at NCBI
-    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   publications:
   - doi: 10.1093/nar/18.6.1517
     pmc: PMC330520

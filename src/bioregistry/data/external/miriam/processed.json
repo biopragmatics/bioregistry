@@ -4697,13 +4697,20 @@
   "insdc": {
     "deprecated": false,
     "description": "The International Nucleotide Sequence Database Collaboration (INSDC) consists of a joint effort to collect and disseminate databases containing DNA and RNA sequences.",
-    "homepage": "https://www.ncbi.nlm.nih.gov/Genbank/",
+    "homepage": "https://www.ncbi.nlm.nih.gov/nuccore/",
     "id": "00000029",
     "name": "Nucleotide Sequence Database",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4,6}\\d{8,10}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
     "prefix": "insdc",
     "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "INSDC through GenBank",
+        "homepage": "https://www.ncbi.nlm.nih.gov/Genbank/",
+        "name": "INSDC through GenBank",
+        "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
+      },
       {
         "code": "CURATOR_REVIEW",
         "description": "INSDC through DDBJ",
@@ -4717,13 +4724,6 @@
         "homepage": "https://www.ebi.ac.uk/ena/",
         "name": "INSDC through European Nucleotide Archive (ENA)",
         "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
-      },
-      {
-        "code": "ncbi",
-        "description": "INSDC through Nucleotide database at NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/nuccore/",
-        "name": "INSDC through Nucleotide database at NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
       }
     ],
     "sampleId": "X58356",
