@@ -515,53 +515,53 @@ class Resource(BaseModel):
         description="The GitHub issue for the new prefix request"
     )
     #: External data from Identifiers.org's MIRIAM Database
-    miriam: Optional[Mapping[str, Any]]
+    miriam: Optional[Mapping[str, Any]] = None
     #: External data from the Name-to-Thing service
-    n2t: Optional[Mapping[str, Any]]
+    n2t: Optional[Mapping[str, Any]] = None
     #: External data from Prefix Commons
-    prefixcommons: Optional[Mapping[str, Any]]
+    prefixcommons: Optional[Mapping[str, Any]] = None
     #: External data from Wikidata Properties
-    wikidata: Optional[Mapping[str, Any]]
+    wikidata: Optional[Mapping[str, Any]] = None
     #: External data from the Gene Ontology's custom registry
-    go: Optional[Mapping[str, Any]]
+    go: Optional[Mapping[str, Any]] = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Optional[Mapping[str, Any]]
+    obofoundry: Optional[Mapping[str, Any]] = None
     #: External data from the BioPortal ontology repository
-    bioportal: Optional[Mapping[str, Any]]
+    bioportal: Optional[Mapping[str, Any]] = None
     #: External data from the EcoPortal ontology repository
-    ecoportal: Optional[Mapping[str, Any]]
+    ecoportal: Optional[Mapping[str, Any]] = None
     #: External data from the AgroPortal ontology repository
-    agroportal: Optional[Mapping[str, Any]]
+    agroportal: Optional[Mapping[str, Any]] = None
     #: External data from the CropOCT ontology curation tool
-    cropoct: Optional[Mapping[str, Any]]
+    cropoct: Optional[Mapping[str, Any]] = None
     #: External data from the Ontology Lookup Service
-    ols: Optional[Mapping[str, Any]]
+    ols: Optional[Mapping[str, Any]] = None
     #: External data from the AberOWL ontology repository
-    aberowl: Optional[Mapping[str, Any]]
+    aberowl: Optional[Mapping[str, Any]] = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: Optional[Mapping[str, Any]]
+    ncbi: Optional[Mapping[str, Any]] = None
     #: External data from UniProt's custom registry
-    uniprot: Optional[Mapping[str, Any]]
+    uniprot: Optional[Mapping[str, Any]] = None
     #: External data from the BioLink Model's custom registry
-    biolink: Optional[Mapping[str, Any]]
+    biolink: Optional[Mapping[str, Any]] = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: Optional[Mapping[str, Any]]
+    cellosaurus: Optional[Mapping[str, Any]] = None
     #: External data from the OntoBee
-    ontobee: Optional[Mapping[str, Any]]
+    ontobee: Optional[Mapping[str, Any]] = None
     #: External data from ChemInf
-    cheminf: Optional[Mapping[str, Any]]
+    cheminf: Optional[Mapping[str, Any]] = None
     #: External data from FAIRsharing
-    fairsharing: Optional[Mapping[str, Any]]
+    fairsharing: Optional[Mapping[str, Any]] = None
     #: External data from BioContext
-    biocontext: Optional[Mapping[str, Any]]
+    biocontext: Optional[Mapping[str, Any]] = None
     #: External data from EDAM ontology
-    edam: Optional[Mapping[str, Any]]
+    edam: Optional[Mapping[str, Any]] = None
     #: External data from re3data
-    re3data: Optional[Mapping[str, Any]]
+    re3data: Optional[Mapping[str, Any]] = None
     #: External data from hl7
-    hl7: Optional[Mapping[str, Any]]
+    hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
-    bartoc: Optional[Mapping[str, Any]]
+    bartoc: Optional[Mapping[str, Any]] = None
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -736,7 +736,7 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Mapping[str, str]:
+    def get_mappings(self) -> Dict[str, str]:
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
