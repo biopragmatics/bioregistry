@@ -15689,10 +15689,6 @@ orcid:0000-0002-7073-9172 rdfs:label "David Osumi-Sutherland" ;
 orcid:0000-0002-7140-9933 rdfs:label "Thomas Lütteke" ;
     foaf:mbox "thomas@luetteke-online.de" .
 
-orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu" ;
-    dcterms:contributor bioregistry:pav ;
-    foaf:mbox "nicolas.matentzoglu@gmail.com" .
-
 orcid:0000-0002-7440-0467 rdfs:label "Lucas Leclere" ;
     foaf:mbox "lucas.leclere@obs-vlfr.fr" .
 
@@ -29083,6 +29079,18 @@ bioregistry:srao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7702-4495 .
 
+bioregistry:sssom a bioregistry.schema:0000001 ;
+    rdfs:label "Simple Standard for Sharing Ontological Mappings" ;
+    dcterms:description "SSSOM is a Simple Standard for Sharing Ontological Mappings, providing - a TSV-based representation for ontology term mappings - a comprehensive set of standard metadata elements to describe mappings and - a standard translation between the TSV and the Web Ontology Language (OWL). Most metadata elements, such as \"sssom:mapping_justification\" are defined in the sssom namespace."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://w3id.org/sssom"^^xsd:string ;
+    bioregistry.schema:0000005 "mapping_justification"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/sssom/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-z_]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7356-1779 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:sty a bioregistry.schema:0000001 ;
     rdfs:label "UMLS Semantic Types Ontology" ;
     dcterms:description "UMLS Semantic Network The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types."^^xsd:string ;
@@ -30486,6 +30494,8 @@ fairsharing:FAIRsharing.d05nwx dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.d064y6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.d2d84f dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.d3pqw7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.d5ff6e dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -31216,6 +31226,12 @@ orcid:0000-0002-6309-7327 rdfs:label "Nicolas Le Novere",
 
 orcid:0000-0002-6982-4660 rdfs:label "Alex Bateman" ;
     foaf:mbox "agb@ebi.ac.uk" .
+
+orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu",
+        "Nicolas Matentzoglu" ;
+    dcterms:contributor bioregistry:pav,
+        bioregistry:sssom ;
+    foaf:mbox "nicolas.matentzoglu@gmail.com" .
 
 orcid:0000-0002-7509-4801 rdfs:label "Tom Gillespie" ;
     dcterms:contributor bioregistry:nif.ext,
@@ -37028,8 +37044,11 @@ bioregistry:opmi a bioregistry.schema:0000001 ;
         obofoundry:opmi,
         ontobee:OPMI,
         bioportal:OPMI,
+        fairsharing:FAIRsharing.d2d84f,
         ols:opmi ;
-    dcat:keyword "obo",
+    dcat:keyword "clinical studies",
+        "obo",
+        "omics",
         "ontology" ;
     foaf:homepage "https://github.com/OPMI/opmi"^^xsd:string ;
     bioregistry.schema:0000005 "0000101"^^xsd:string ;
@@ -44715,6 +44734,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.czzmpg,
         fairsharing:FAIRsharing.d05nwx,
         fairsharing:FAIRsharing.d064y6,
+        fairsharing:FAIRsharing.d2d84f,
         fairsharing:FAIRsharing.d3pqw7,
         fairsharing:FAIRsharing.d5ff6e,
         fairsharing:FAIRsharing.d7f0a9,
@@ -48797,6 +48817,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:srao,
         bioregistry:ssbd.dataset,
         bioregistry:ssbd.project,
+        bioregistry:sssom,
         bioregistry:sstoss,
         bioregistry:stap,
         bioregistry:stato,
