@@ -6,7 +6,21 @@ from dataclasses import dataclass, field
 from typing import List, Mapping, Optional, Union
 
 import rdflib.namespace
-from rdflib import DCTERMS, FOAF, OWL, RDF, RDFS, SKOS, XSD, Literal, URIRef
+from rdflib import (
+    DCAT,
+    DCTERMS,
+    DOAP,
+    FOAF,
+    OWL,
+    RDF,
+    RDFS,
+    SKOS,
+    VANN,
+    VOID,
+    XSD,
+    Literal,
+    URIRef,
+)
 from rdflib.term import Node
 
 __all__ = [
@@ -49,7 +63,6 @@ class PropertyTerm(Term):
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")
 ROR = rdflib.Namespace("https://ror.org/")
-VANN = rdflib.Namespace("http://purl.org/vocab/vann/")
 WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
 
@@ -71,7 +84,7 @@ bioregistry_schema_terms = [
     PropertyTerm(
         "0000005",
         "Property",
-        "has example",
+        "has local unique identifier example",
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
@@ -105,7 +118,7 @@ bioregistry_schema_terms = [
     PropertyTerm(
         "0000008",
         "Property",
-        "has pattern",
+        "has local unique identifier pattern",
         "The pattern for identifiers in the given resource",
         domain="0000001",
         range=XSD.string,
@@ -248,9 +261,7 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
-        xrefs=[
-            VANN["preferredNamespaceUri"],
-        ],
+        xrefs=[VANN["preferredNamespaceUri"], VOID.uriSpace],
     ),
     ClassTerm(
         "0000025",
@@ -265,6 +276,29 @@ bioregistry_schema_terms = [
         "An organization",
         domain="0000001",
         range="0000025",
+    ),
+    PropertyTerm(
+        "0000027",
+        "Property",
+        "has resource example",
+        "An expanded example URL for a resource or metaresource.",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[
+            VOID.exampleResource,
+        ],
+    ),
+    PropertyTerm(
+        "0000028",
+        "Property",
+        "has URI pattern",
+        "The pattern for expanded URIs in the given resource",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[
+            VOID.uriRegexPattern,
+            WIKIDATA["P8966"],
+        ],
     ),
 ]
 bioregistry_schema_extras = [
@@ -289,19 +323,34 @@ bioregistry_class_to_id: Mapping[str, URIRef] = {
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
 
 
+def _graph(manager=None) -> rdflib.Graph:
+    graph = rdflib.Graph()
+    graph.namespace_manager.bind("bioregistry", bioregistry_resource)
+    graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
+    graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
+    graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
+    graph.namespace_manager.bind("orcid", orcid)
+    graph.namespace_manager.bind("foaf", FOAF)
+    graph.namespace_manager.bind("dcat", DCAT)
+    graph.namespace_manager.bind("dcterms", DCTERMS)
+    graph.namespace_manager.bind("skos", SKOS)
+    graph.namespace_manager.bind("obo", rdflib.Namespace("http://purl.obolibrary.org/obo/"))
+    graph.namespace_manager.bind("idot", IDOT)
+    graph.namespace_manager.bind("wikidata", WIKIDATA)
+    graph.namespace_manager.bind("vann", VANN)
+    graph.namespace_manager.bind("ror", ROR)
+    graph.namespace_manager.bind("oboinowl", OBOINOWL)
+    graph.namespace_manager.bind("void", VOID)
+    graph.namespace_manager.bind("doap", DOAP)
+    if manager:
+        for key, value in manager.get_internal_prefix_map().items():
+            graph.namespace_manager.bind(key, value)
+    return graph
+
+
 def get_schema_rdf() -> rdflib.Graph:
     """Get the Bioregistry schema as an RDF graph."""
-    graph = rdflib.Graph()
-    graph.bind("bioregistry.schema", bioregistry_schema)
-    graph.bind("bioregistry.collection", bioregistry_collection)
-    graph.bind("bioregistry", bioregistry_resource)
-    graph.bind("dcterms", DCTERMS)
-    graph.bind("owl", OWL)
-    graph.bind("idot", IDOT)
-    graph.bind("foaf", FOAF)
-    graph.bind("skos", SKOS)
-    graph.bind("oboinowl", OBOINOWL)
-    graph.bind("vann", VANN)
+    graph = _graph()
     _add_schema(graph)
     return graph
 
