@@ -99,6 +99,9 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
     for collection in manager.collections.values():
         collection.add_triples(graph)
     for resource in manager.registry.values():
+        uri_prefix = resource.get_uri_prefix()
+        if uri_prefix:
+            graph.bind(resource.prefix, uri_prefix)
         _add_resource(graph=graph, manager=manager, resource=resource)
     return graph
 
