@@ -1906,6 +1906,7 @@
     "homepage": "http://www.aspgd.org/",
     "mappings": {
       "biocontext": "ASPGD.LOCUS",
+      "biolink": "AspGD",
       "go": "AspGD_LOCUS",
       "miriam": "aspgd.locus",
       "n2t": "aspgd.locus"
@@ -2128,7 +2129,8 @@
     "homepage": "http://www.amphibanat.org",
     "keywords": [
       "obo",
-      "ontology"
+      "ontology",
+      "taxonomy"
     ],
     "mappings": {
       "aberowl": "ATO",
@@ -3915,6 +3917,28 @@
       "biosamples"
     ],
     "uri_format": "https://www.ebi.ac.uk/biosamples/sample/$1"
+  },
+  "bioschemas": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Bioschemas aims to improve the Findability on the Web of life sciences resources such as datasets, software, and training materials. It does this by encouraging people in the life sciences to use Schema.org markup in their websites so that they are indexable by search engines and other services. Bioschemas encourages the consistent use of markup to ease the consumption of the contained markup across many sites. This structured information then makes it easier to discover, collate, and analyse distributed resources. [from BioSchemas.org]",
+    "example": "Dataset",
+    "homepage": "https://bioschemas.org",
+    "mappings": {
+      "biolink": "bioschemas"
+    },
+    "name": "BioSchemas",
+    "preferred_prefix": "bioschemas",
+    "repository": "https://github.com/BioSchemas/specifications",
+    "synonyms": [
+      "bioschema"
+    ],
+    "twitter": "bioschemas",
+    "uri_format": "https://bioschemas.org/profiles/$1"
   },
   "biosimulations": {
     "description": "BioSimulations is an open repository of simulation projects, including simulation experiments, their results, and data visualizations of their results. BioSimulations supports a broad range of model languages, modeling frameworks, simulation algorithms, and simulation software tools.",
@@ -10248,6 +10272,24 @@
     "repository": "https://github.com/sparontologies/datacite",
     "twitter": "datacite",
     "uri_format": "http://purl.org/spar/datacite/$1"
+  },
+  "datacommons": {
+    "description": "A large RDF store built from American governmental data. This semantic space has a mixture of direct terms and subspaces.",
+    "example": "Gene",
+    "homepage": "https://datacommons.org",
+    "mappings": {
+      "biolink": "dcid"
+    },
+    "name": "Data Commons",
+    "preferred_prefix": "datacommons",
+    "repository": "https://github.com/datacommonsorg/website",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://datacommons.org/browser/$1"
   },
   "datanator.gene": {
     "description": "Datanator is an integrated database of genomic and biochemical data designed to help investigators find data about specific molecules and reactions in specific organisms and specific environments for meta-analyses and mechanistic models. Datanator currently includes metabolite concentrations, RNA modifications and half-lives, protein abundances and modifications, and reaction kinetics integrated from several databases and numerous publications. The Datanator website and REST API provide tools for extracting clouds of data about specific molecules and reactions in specific organisms and specific environments, as well as data about similar molecules and reactions in taxonomically similar organisms.",
@@ -20024,6 +20066,31 @@
     "twitter": "news4go",
     "uri_format": "http://amigo.geneontology.org/amigo/term/GO:$1",
     "version": "2022-12-04"
+  },
+  "go.gpi": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "sierra-moxon",
+        "name": "Sierra Moxon",
+        "orcid": "0000-0002-8719-7760"
+      }
+    ],
+    "description": "This describes the metadata schema for the Gene Product Information (GPI) files in the Gene Ontology, i.e., the local unique identifiers in this identifier space refer to the columns in GPI files.",
+    "example": "db-object-id",
+    "homepage": "http://geneontology.org/docs/gene-product-information-gpi-format/#db-object-id",
+    "mappings": {
+      "biolink": "gpi"
+    },
+    "name": "Gene Product Information Schema",
+    "preferred_prefix": "go.gpi",
+    "uri_format": "http://geneontology.org/docs/gene-product-information-gpi-format/#$1"
   },
   "go.model": {
     "description": "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform.",
@@ -33930,6 +33997,31 @@
     "uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
     "version": "2022-11-26"
   },
+  "oban": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "It is an ontology model used to describe associations between biomedical entities in triple format based on W3C specification. OBAN is a generic association representation model that loosely couples a subject and object (e.g. disease and its associated phenotypes supported by the source of evidence for that association) via a construction of class OBAN:association. [from GitHub]",
+    "download_owl": "https://raw.githubusercontent.com/EBISPOT/OBAN/master/ontology/oban_core.owl",
+    "download_rdf": "https://raw.githubusercontent.com/EBISPOT/OBAN/master/ontology/oban_core.ttl",
+    "example": "provenance",
+    "homepage": "https://github.com/EBISPOT/OBAN",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "biocontext": "OBAN",
+      "biolink": "OBAN"
+    },
+    "name": "Open Biomedical Annotations",
+    "pattern": "^\\w+$",
+    "preferred_prefix": "oban",
+    "repository": "https://github.com/EBISPOT/OBAN",
+    "uri_format": "http://purl.org/oban/$1"
+  },
   "obcs": {
     "contact": {
       "email": "jiezheng@pennmedicine.upenn.edu",
@@ -36230,6 +36322,33 @@
     "name": "Web Ontology Language",
     "preferred_prefix": "owl",
     "uri_format": "http://www.w3.org/2002/07/owl#$1"
+  },
+  "owlstar": {
+    "contact": {
+      "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
+      "name": "Chris Mungall",
+      "orcid": "0000-0002-6601-2165"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This proposed vocabulary allows edges in Property Graphs (e.g Neo4j, RDF*) to be augmented with edge properties that specify ontological semantics, including (but not limited) to OWL-DL interpretations. [from GitHub]",
+    "download_rdf": "https://github.com/linkml/owlstar/raw/master/owlstar.ttl",
+    "example": "AllSomeInterpretation",
+    "homepage": "https://linkml.io/owlstar/",
+    "license": "CC0-1.0",
+    "mappings": {
+      "biolink": "os"
+    },
+    "name": "Ontological Interpretations for Web Property Graphs",
+    "pattern": "^\\w+$",
+    "preferred_prefix": "owlstar",
+    "repository": "https://github.com/linkml/owlstar",
+    "uri_format": "http://w3id.org/owlstar/$1"
   },
   "p3db.protein": {
     "description": "Plant Protein Phosphorylation DataBase (P3DB) is a database that provides information on experimentally determined phosphorylation sites in the proteins of various plant species. This collection references plant proteins that contain phosphorylation sites.",
@@ -46408,7 +46527,7 @@
     "mappings": {
       "aberowl": "STY",
       "agroportal": "STY",
-      "biolink": "STY",
+      "biolink": "UMLSSG",
       "bioportal": "STY",
       "ecoportal": "STY"
     },
@@ -46416,6 +46535,7 @@
     "pattern": "^T\\d{3}$",
     "preferred_prefix": "sty",
     "synonyms": [
+      "UMLSSG",
       "umls.st",
       "umls.sty"
     ],
