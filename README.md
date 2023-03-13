@@ -250,8 +250,6 @@ assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/
 assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
 ```
 
-
-
 ### Generating IRIs
 
 You can generate an IRI from either a CURIE or a pre-parsed CURIE
