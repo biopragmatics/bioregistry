@@ -250,20 +250,7 @@ assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/
 assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
 ```
 
-> **Warning**
-> The following functionality is deprecated.
-> You can add to (or override) the default prefix map from the Bioregistry by
-> passing a dictionary with the `prefix_map` keyword:
 
-```python
-from bioregistry import curie_from_iri, parse_iri
-
-prefix_map = {
-   "myprefix": "https://example.org/myprefix/"
-}
-assert ('myprefix', '1234') == parse_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
-assert 'myprefix:24867' == curie_from_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
-```
 
 ### Generating IRIs
 
