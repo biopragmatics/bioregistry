@@ -14,6 +14,7 @@ from rdflib import (
     OWL,
     RDF,
     RDFS,
+    SH,
     SKOS,
     VANN,
     VOID,
@@ -261,7 +262,7 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
-        xrefs=[VANN["preferredNamespaceUri"], VOID.uriSpace],
+        xrefs=[VANN.preferredNamespaceUri, VOID.uriSpace, SH.namespace],
     ),
     ClassTerm(
         "0000025",
@@ -298,7 +299,17 @@ bioregistry_schema_terms = [
         xrefs=[
             VOID.uriRegexPattern,
             WIKIDATA["P8966"],
+            IDOT["accessIdentifierPattern"],
         ],
+    ),
+    PropertyTerm(
+        "0000029",
+        "Property",
+        "has prefix",
+        "has canonical prefix",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[SH.prefix, VANN.preferredNamespacePrefix, IDOT["preferredPrefix"]],
     ),
 ]
 bioregistry_schema_extras = [
@@ -342,6 +353,7 @@ def _graph(manager=None) -> rdflib.Graph:
     graph.namespace_manager.bind("oboinowl", OBOINOWL)
     graph.namespace_manager.bind("void", VOID)
     graph.namespace_manager.bind("doap", DOAP)
+    graph.namespace_manager.bind("sh", SH)
     if manager:
         for key, value in manager.get_internal_prefix_map().items():
             graph.namespace_manager.bind(key, value)

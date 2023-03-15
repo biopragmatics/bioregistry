@@ -162,6 +162,7 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
+    graph.add((node, bioregistry_schema["0000029"], Literal(resource.prefix)))
     graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
     graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
     for synonym in resource.get_synonyms():
