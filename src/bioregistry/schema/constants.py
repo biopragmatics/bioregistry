@@ -14,13 +14,13 @@ from rdflib import (
     OWL,
     RDF,
     RDFS,
+    SH,
     SKOS,
     VANN,
     VOID,
     XSD,
     Literal,
     URIRef,
-    SH,
 )
 from rdflib.term import Node
 
@@ -311,7 +311,6 @@ bioregistry_schema_terms = [
         range=XSD.string,
         xrefs=[SH.prefix, VANN.preferredNamespacePrefix, IDOT["preferredPrefix"]],
     ),
-
 ]
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
