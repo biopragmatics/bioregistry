@@ -159,6 +159,15 @@ class Manager:
         self.provided_by = dict(provided_by)
         self.has_parts = dict(has_parts)
 
+        self._converter = None
+
+    @property
+    def converter(self) -> curies.Converter:
+        """Get the default converter."""
+        if self._converter is None:
+            self._converter = curies.Converter(records=self.get_curies_records())
+        return self._converter
+
     def write_registry(self):
         """Write the registry."""
         write_registry(self.registry)
