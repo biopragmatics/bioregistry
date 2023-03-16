@@ -982,7 +982,6 @@ def get_converter(**kwargs) -> curies.Converter:
     return manager.get_converter(**kwargs)
 
 
-@lru_cache(1)
 def get_default_converter() -> curies.Converter:
     """Get a converter from this manager."""
-    return manager.get_converter()
+    return manager.converter

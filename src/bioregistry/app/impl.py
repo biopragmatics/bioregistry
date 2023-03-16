@@ -5,6 +5,7 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
+from curies.mapping_service import get_flask_mapping_blueprint
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
@@ -168,6 +169,9 @@ def get_app(
 
     app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
+
+    sparql_blueprint = get_flask_mapping_blueprint(app.manager.converter)
+    app.register_blueprint(sparql_blueprint)
 
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
