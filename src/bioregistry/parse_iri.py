@@ -6,7 +6,7 @@ import warnings
 from typing import List, Mapping, Optional, Tuple, Union
 
 from .resolve import get_default_converter, get_preferred_prefix, parse_curie
-from .resource_manager import prepare_prefix_list
+from .resource_manager import manager, prepare_prefix_list
 from .uri_format import get_prefix_map
 from .utils import curie_to_str
 
@@ -170,17 +170,16 @@ def parse_iri(
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if prefix_map is None:
-        return get_default_converter().parse_uri(iri)
+        return manager.parse_uri(iri)
 
-    warnings.warn(
+    raise NotImplementedError(
         "Parsing without a pre-compiled `curies.Converter` class is very slow. "
-        "This functionality will be removed from the Bioregistry in a future version.",
+        "This functionality has been removed from the Bioregistry in the 0.7.0 release.",
     )
-    # TODO remove this and update all relevant docstrings and README
-    if isinstance(prefix_map, list):
-        return _parse_iri(iri, prefix_map)
-    prefix_list = ensure_prefix_list(prefix_map)
-    return _parse_iri(iri, prefix_list)
+    # if isinstance(prefix_map, list):
+    #     return _parse_iri(iri, prefix_map)
+    # prefix_list = ensure_prefix_list(prefix_map)
+    # return _parse_iri(iri, prefix_list)
 
 
 def _parse_iri(iri: str, prefix_list: List[Tuple[str, str]]):

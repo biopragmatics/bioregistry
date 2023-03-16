@@ -226,6 +226,10 @@ class Manager:
             return None
         return self.registry.get(norm_prefix)
 
+    def parse_uri(self, uri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+        """Parse an IRI into a prefix/identifier pair."""
+        return self.converter.parse_uri(uri)
+
     def parse_curie(self, curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
         """Parse a CURIE and normalize its prefix and identifier."""
         try:
