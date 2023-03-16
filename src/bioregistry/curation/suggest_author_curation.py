@@ -29,7 +29,7 @@ def _main():
                 )
             ],
             tablefmt="github",
-            headers=["name", "orcid", "email", "github"],
+            headers=["name", "orcid", "email", "github", "prefixes"],
         )
     )
 
