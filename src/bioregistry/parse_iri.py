@@ -2,19 +2,16 @@
 
 """Functionality for parsing IRIs."""
 
-import warnings
 from typing import List, Mapping, Optional, Tuple, Union
 
-from .resolve import get_default_converter, get_preferred_prefix, parse_curie
-from .resource_manager import manager, prepare_prefix_list
-from .uri_format import get_prefix_map
+from .resolve import get_preferred_prefix, parse_curie
+from .resource_manager import manager
 from .utils import curie_to_str
 
 __all__ = [
     "curie_from_iri",
     "parse_iri",
     "parse_obolibrary_purl",
-    "ensure_prefix_list",
 ]
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
@@ -104,6 +101,7 @@ def parse_iri(
         to use this function in a loop, pre-compute this and pass it instead.
         If a list of pairs is passed, will use it directly.
     :return: A pair of prefix/identifier, if can be parsed
+    :raises NotImplementedError: If prefix map is given
 
     IRI from an OBO PURL:
 
@@ -148,20 +146,6 @@ def parse_iri(
     >>> parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
     ('neuronames', '268')
 
-    Provide your own prefix map for one-off parsing (i.e., not in bulk):
-    >>> prefix_map = {"chebi": "https://example.org/chebi:"}
-    >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
-    ('chebi', '1234')
-
-    If you provide your own prefix map but want to do parsing in bulk,
-    you should pre-process the prefix map with:
-
-    >>> from bioregistry import ensure_prefix_list
-    >>> prefix_map = {"chebi": "https://example.org/chebi:"}
-    >>> prefix_list = ensure_prefix_list(prefix_map)
-    >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_list)
-    ('chebi', '1234')
-
     Corner cases:
 
     >>> parse_iri("https://omim.org/MIM:PS214100")
@@ -176,52 +160,6 @@ def parse_iri(
         "Parsing without a pre-compiled `curies.Converter` class is very slow. "
         "This functionality has been removed from the Bioregistry in the 0.7.0 release.",
     )
-    # if isinstance(prefix_map, list):
-    #     return _parse_iri(iri, prefix_map)
-    # prefix_list = ensure_prefix_list(prefix_map)
-    # return _parse_iri(iri, prefix_list)
-
-
-def _parse_iri(iri: str, prefix_list: List[Tuple[str, str]]):
-    if iri.startswith(BIOREGISTRY_PREFIX):
-        curie = iri[len(BIOREGISTRY_PREFIX) :]
-        return parse_curie(curie)
-    if iri.startswith(OLS_URL_PREFIX):
-        sub_iri = iri.rsplit("=", 1)[1]
-        return parse_obolibrary_purl(sub_iri)
-    if iri.startswith(OBO_PREFIX):
-        return parse_obolibrary_purl(iri)
-    if iri.startswith(IDOT_HTTPS_PREFIX):
-        curie = iri[len(IDOT_HTTPS_PREFIX) :]
-        return _safe_parse_curie(curie)
-    if iri.startswith(IDOT_HTTP_PREFIX):
-        curie = iri[len(IDOT_HTTP_PREFIX) :]
-        return _safe_parse_curie(curie)
-    if iri.startswith(N2T_PREFIX):
-        curie = iri[len(N2T_PREFIX) :]
-        return parse_curie(curie)
-    for prefix, prefix_url in prefix_list:
-        if iri.startswith(prefix_url):
-            return prefix, iri[len(prefix_url) :]
-    return None, None
-
-
-def ensure_prefix_list(
-    prefix_map: Optional[Mapping[str, str]] = None, **kwargs
-) -> List[Tuple[str, str]]:
-    """Ensure a prefix list, using the given merge strategy with default."""
-    _prefix_map = dict(get_prefix_map(**kwargs))
-    if prefix_map:
-        _prefix_map.update(prefix_map)
-    return prepare_prefix_list(_prefix_map)
-
-
-def _safe_parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
-    for sep in "_/:":
-        prefix, identifier = parse_curie(curie, sep)
-        if prefix is not None and identifier is not None:
-            return prefix, identifier
-    return None, None
 
 
 def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:

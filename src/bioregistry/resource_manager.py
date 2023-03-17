@@ -1370,23 +1370,6 @@ class Manager:
         )
 
 
-def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
-    """Prepare a priority prefix list from a prefix map."""
-    rv = []
-    for prefix, uri_prefix in sorted(prefix_map.items(), key=_sort_key):
-        rv.append((prefix, uri_prefix))
-        if uri_prefix.startswith("https://"):
-            rv.append((prefix, "http://" + uri_prefix[8:]))
-        elif uri_prefix.startswith("http://"):
-            rv.append((prefix, "https://" + uri_prefix[7:]))
-    return rv
-
-
-def _sort_key(kv: Tuple[str, str]) -> int:
-    """Return a value appropriate for sorting a pair of prefix/IRI."""
-    return -len(kv[0])
-
-
 def _read_contributors(
     registry, metaregistry, collections, contexts, direct_only: bool = False
 ) -> Mapping[str, Attributable]:
