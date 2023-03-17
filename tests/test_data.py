@@ -18,7 +18,7 @@ from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
-from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
+from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, extended_encoder
 
@@ -783,6 +783,15 @@ class TestRegistry(unittest.TestCase):
                     f" to SPDX identifier {standard_license}",
                 )
 
+    def assert_contact_metadata(self, author: Attributable):
+        """Check metadata is correct."""
+        if author.github:
+            self.assertNotIn(" ", author.github)
+        if author.orcid:
+            self.assertNotIn(" ", author.orcid)
+        if author.email:
+            self.assertRegex(author.email, EMAIL_RE)
+
     def test_contributors(self):
         """Check contributors have minimal metadata."""
         for prefix, resource in self.registry.items():
@@ -794,10 +803,12 @@ class TestRegistry(unittest.TestCase):
                     self.assertIsNotNone(resource.contributor.name)
                     self.assertIsNotNone(resource.contributor.orcid)
                     self.assertIsNotNone(resource.contributor.github)
+                    self.assert_contact_metadata(resource.contributor)
                 for contributor in resource.contributor_extras or []:
                     self.assertIsNotNone(contributor.name)
                     self.assertIsNotNone(contributor.orcid)
                     self.assertIsNotNone(contributor.github)
+                    self.assert_contact_metadata(contributor)
 
     def test_no_contributor_duplicates(self):
         """Test that the contributor doesn't show up in the contributor extras."""
@@ -819,6 +830,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(resource.reviewer.name)
                 self.assertIsNotNone(resource.reviewer.orcid)
                 self.assertIsNotNone(resource.reviewer.github)
+                self.assert_contact_metadata(resource.reviewer)
 
     def test_contacts(self):
         """Check contacts have minimal metadata."""
@@ -832,6 +844,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
+                self.assert_contact_metadata(resource.contact)
 
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
@@ -999,5 +1012,6 @@ class TestRegistry(unittest.TestCase):
                     self.assertIsNotNone(resource.contact.email)
                     self.assertIsNotNone(resource.contact.orcid)
                     self.assertIsNotNone(resource.contact.name)
+                    self.assert_contact_metadata(resource.contact)
                 for owner in resource.owners:
                     self.assertTrue(owner.ror is not None or owner.wikidata is not None)
