@@ -3,17 +3,27 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
+from functools import partial
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
-from flask import abort, current_app, redirect, render_template, request, url_for
+from flask import (
+    Response,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from pydantic import BaseModel
 
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL
-from bioregistry.schema import Resource, sanitize_model
-from bioregistry.utils import curie_to_str, extended_encoder
+from bioregistry.resource_manager import Manager
+from bioregistry.schema import sanitize_model
+from bioregistry.utils import extended_encoder
 
 from .proxies import manager
+from ..utils import _norm
 
 
 def _get_resource_providers(
@@ -41,20 +51,6 @@ def _get_resource_providers(
     return rv
 
 
-def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
-    return [
-        dict(
-            metaprefix=metaprefix,
-            metaresource=manager.get_registry(metaprefix),
-            xref=xref,
-            homepage=manager.get_registry_homepage(metaprefix),
-            name=manager.get_registry_name(metaprefix),
-            uri=manager.get_registry_provider_uri_format(metaprefix, xref),
-        )
-        for metaprefix, xref in resource.get_mappings().items()
-    ]
-
-
 def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     try:
         norm_prefix = manager.normalize_prefix(prefix)
@@ -67,28 +63,36 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(manager_, q: str) -> List[str]:
-    q_norm = q.lower()
-    return [prefix for prefix in manager_.registry if q_norm in prefix]
+def _search(manager_: Manager, q: str) -> List[Tuple[str, str]]:
+    q_norm = _norm(q)
+    results = [
+        (prefix, lookup if _norm(prefix) != lookup else "")
+        for lookup, prefix in manager_.synonyms.items()
+        if q_norm in lookup
+    ]
+    return sorted(results)
 
 
-def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
+def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -> Mapping[str, Any]:
     r"""Run the autocomplete algorithm.
 
     :param manager_: A manager
     :param q: The query string
+    :param url_prefix:
+        The explicit URL prefix. If not used, relative paths are generated. Introduced to
+        solve https://github.com/biopragmatics/bioregistry/issues/596.
     :return: A dictionary with the autocomplete results.
 
     Before completion is of prefix:
 
     >>> from bioregistry import manager
     >>> _autocomplete(manager, 'cheb')
-    {'query': 'cheb', 'results': ['chebi'], 'success': True, 'reason': 'searched prefix', 'url': None}
+    {'query': 'cheb', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
     >>> _autocomplete(manager, 'chebi')
-    {'query': 'chebi', 'results': ['chebi'], 'success': True, 'reason': 'matched prefix', 'url': 'https://bioregistry.io/chebi'}
+    {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
 
     Not matching the pattern:
 
@@ -98,13 +102,17 @@ def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
     Matching the pattern:
 
     >>> _autocomplete(manager, 'chebi:1234')
-    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
+    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
     """  # noqa: E501
+    if url_prefix is None:
+        url_prefix = ""
+    url_prefix = url_prefix.rstrip().rstrip("/")
+
     if ":" not in q:
         url: Optional[str]
         if q in manager_.registry:
             reason = "matched prefix"
-            url = f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{q}"
+            url = f"{url_prefix}/{q}"
         else:
             reason = "searched prefix"
             url = None
@@ -116,8 +124,8 @@ def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
             url=url,
         )
     prefix, identifier = q.split(":", 1)
-    norm_prefix = manager_.normalize_prefix(prefix)
-    if norm_prefix is None:
+    resource = manager_.get_resource(prefix)
+    if resource is None:
         return dict(
             query=q,
             prefix=prefix,
@@ -129,11 +137,13 @@ def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
     if pattern is None:
         success = True
         reason = "no pattern"
-        url = manager_.get_bioregistry_iri(prefix, identifier)
-    elif manager_.is_standardizable_identifier(prefix, identifier):
+        norm_id = resource.standardize_identifier(identifier)
+        url = f"{url_prefix}/{resource.get_curie(norm_id)}"
+    elif resource.is_standardizable_identifier(identifier):
         success = True
         reason = "passed validation"
-        url = manager_.get_bioregistry_iri(prefix, identifier)
+        norm_id = resource.standardize_identifier(identifier)
+        url = f"{url_prefix}/{resource.get_curie(norm_id)}"
     else:
         success = False
         reason = "failed validation"
@@ -146,23 +156,6 @@ def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
         success=success,
         reason=reason,
         url=url,
-    )
-
-
-def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
-    prefix = _normalize_prefix_or_404(prefix)
-    if not manager.is_standardizable_identifier(prefix, identifier):
-        return abort(
-            404,
-            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
-        )
-    providers = manager.get_providers(prefix, identifier)
-    if not providers:
-        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
-
-    return dict(
-        query=dict(prefix=prefix, identifier=identifier),
-        providers=providers,
     )
 
 
@@ -185,18 +178,81 @@ def yamlify(data):
     )
 
 
-def _get_format(default: str = "json") -> str:
-    return request.args.get("format", default=default)
-
-
-def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None):
+def serialize(
+    data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None, negotiate: bool = False
+) -> Response:
     """Serialize either as JSON or YAML."""
-    fmt = _get_format()
-    if fmt == "json":
-        return jsonify(data)
-    elif fmt in {"yaml", "yml"}:
-        return yamlify(data)
-    for name, mimetype, func in serializers or []:
-        if fmt == name:
+    if negotiate:
+        accept = get_accept_media_type()
+    else:
+        arg = request.args.get("format", "json")
+        if arg not in FORMAT_MAP:
+            return abort(
+                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}"
+            )
+        accept = FORMAT_MAP[arg]
+
+    if accept == "application/json":
+        return jsonify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
+    elif accept in "application/yaml":
+        return yamlify(
+            data.dict(exclude_unset=True, exclude_none=True)
+            if isinstance(data, BaseModel)
+            else data
+        )
+    for _name, mimetype, func in serializers or []:
+        if accept == mimetype:
             return current_app.response_class(func(data), mimetype=mimetype)
-    return abort(404, f"invalid format: {fmt}")
+    return abort(404, f"unhandled media type: {accept}")
+
+
+def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:
+    """Serialize a model."""
+    return serialize(
+        entry,
+        negotiate=negotiate,
+        serializers=[
+            ("turtle", "text/turtle", partial(func, manager=manager, fmt="turtle")),
+            ("n3", "text/n3", partial(func, manager=manager, fmt="n3")),
+            ("rdf", "application/rdf+xml", partial(func, manager=manager, fmt="xml")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(func, manager=manager, fmt="json-ld"),
+            ),
+        ],
+    )
+
+
+def get_accept_media_type() -> str:
+    """Get accept type."""
+    fmt = request.args.get("format")
+    if fmt is not None:
+        rv = FORMAT_MAP.get(fmt)
+        if rv:
+            return rv
+        return abort(400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}")
+
+    # If accept is specifically set to one of the special quanties, then use it.
+    accept = str(request.accept_mimetypes)
+    if accept in FORMAT_MAP.values():
+        return accept
+
+    # Otherwise, return HTML
+    return "text/html"
+
+
+FORMAT_MAP = {
+    "json": "application/json",
+    "yml": "application/yaml",
+    "yaml": "application/yaml",
+    "turtle": "text/turtle",
+    "jsonld": "application/ld+json",
+    "json-ld": "application/ld+json",
+    "rdf": "application/rdf+xml",
+    "n3": "text/n3",
+}

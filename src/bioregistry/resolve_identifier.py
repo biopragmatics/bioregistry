@@ -25,6 +25,7 @@ __all__ = [
     "get_link",
     "get_bioregistry_iri",
     "get_default_iri",
+    "standardize_identifier",
     "miriam_standardize_identifier",
 ]
 
@@ -174,6 +175,14 @@ def is_standardizable_identifier(prefix: str, identifier: str) -> bool:
     False
     """
     return manager.is_standardizable_identifier(prefix, identifier)
+
+
+def standardize_identifier(prefix: str, identifier: str) -> str:
+    """Normalize an identifier."""
+    resource = get_resource(prefix)
+    if resource is None:
+        return identifier  # nothing we can do
+    return resource.standardize_identifier(identifier)
 
 
 def miriam_standardize_identifier(prefix: str, identifier: str) -> Optional[str]:

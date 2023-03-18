@@ -2,20 +2,14 @@
 
 {% block title %}{{ config.METAREGISTRY_TITLE }}{% endblock %}
 
-{% block scripts %}
-    {{ super() }}
-    <script>
-        $(".basicAutoComplete").autoComplete({
-            resolverSettings: {
-                url: "{{ url_for('metaregistry_api.search') }}"
-            }
-        });
-    </script>
-{% endblock %}
-
 {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}
 
 {% block container %}
+    {% if bioschemas %}
+    <script type="application/ld+json">
+        {{ bioschemas | safe }}
+    </script>
+    {% endif %}
     <div class="card card-body bg-light">
         <h1 class="display-3">{{ config.METAREGISTRY_TITLE }}</h1>
         {% if config.METAREGISTRY_HEADER %}
@@ -54,11 +48,13 @@
                         current_result.pattern }}</kbd>
                     </div>
                     <div v-if="result_has_options && options_are_worth_showing" class="option-box">
-                        <div v-for="option in result_options"
-                             class="option-line"
-                             @click="setUserInput">
-                            {{ option }}
-                        </div>
+                        <a v-for="option in result_options"
+                           class="option-line"
+                           style="display: block;"
+                           :href="'/' + option[0]"
+                        >
+                            {{ option[0] }} <span v-if="option[1]">({{ option[1] }})</span>
+                        </a>
                     </div>
                     <div v-else-if="options_are_worth_showing" class="option-line">
                         <i class="fas fa-exclamation-circle" style="color: goldenrod"></i> No results
@@ -121,6 +117,16 @@
                 </div>
                 <p class="mb-1">
                     About the motivation for constructing the {{ config.METAREGISTRY_TITLE }}.
+                </p>
+                {# <small class="text-muted">Donec id elit non mi porta.</small> #}
+            </a>
+            <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-question"></i> Request a Prefix</h5>
+                </div>
+                <p class="mb-1">
+                    Request a new prefix in the Bioregistry via its GitHub Issue tracker.
                 </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
@@ -211,14 +217,14 @@
                     }
 
                     // Get the suggestions from the server.
-                    console.log(`Getting autocomplete options for: "${this.user_input}".`);
+                    // console.log(`Getting autocomplete options for: "${this.user_input}".`);
                     const resp = await fetch(`${this.autocomplete_url}?q=${this.user_input}`);
                     if (resp.status !== 200) {
-                        console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
+                        console.log(`ERROR on input ${this.user_input}: ${resp.status}: ${resp.statusText}`);
                         this.error_message = "Unsuccessful response from the survey."
                     }
                     const resp_json = await resp.json();
-                    console.log(resp_json);
+                    // console.log(resp_json);
 
                     // Populate the results.
                     this.current_result = resp_json;
@@ -236,11 +242,6 @@
                     } else if (this.current_result.reason !== SEARCHED_PREFIX) {
                         this.last_yielding_result = null;
                     }
-                },
-
-                setUserInput: function (event) {
-                    this.user_input = event.target.innerText;
-                    this.getPrefix();
                 },
 
                 followLink: function () {

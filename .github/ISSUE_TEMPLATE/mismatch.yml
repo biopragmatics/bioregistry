@@ -1,0 +1,41 @@
+name: Report misalignment
+description: Use this to report an incorrect alignment between a Bioregistry prefix and an external registry's prefix
+title: Report misalignment from [X]
+labels: [ Prefix, Update ]
+
+body:
+  - type: input
+    id: prefix
+    attributes:
+      label: Bioregistry Prefix
+      description: What is the Bioregistry prefix of the resource with an incorrect external alignment?
+      placeholder: ex. rdo
+    validations:
+      required: true
+
+  - type: input
+    id: metaprefix
+    attributes:
+      label: Metaprefix
+      description: What is the Bioregistry metaprefix of the registry of the incorrect external alignment?
+      placeholder: ex. bioportal
+    validations:
+      required: true
+
+  - type: input
+    id: external-prefix
+    attributes:
+      label: External Prefix
+      description: What is the external prefix of the misaligned resource?
+      placeholder: ex. RDO
+    validations:
+      required: true
+
+  - type: input
+    id: orcid
+    attributes:
+      label: Contributor ORCID
+      description: Please provide your ORCiD identifier so we can attribute this contribution to you.
+      placeholder: ex. 0000-0003-4423-4370
+    validations:
+      required: true

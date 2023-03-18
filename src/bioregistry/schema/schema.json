@@ -154,6 +154,37 @@
         "name"
       ]
     },
+    "Organization": {
+      "title": "Organization",
+      "description": "Model for organizataions.",
+      "type": "object",
+      "properties": {
+        "ror": {
+          "title": "Research Organization Registry identifier",
+          "description": "ROR identifier for a record about the organization",
+          "type": "string"
+        },
+        "wikidata": {
+          "title": "Wikidata identifier",
+          "description": "Wikidata identifier for a record about the organization",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string"
+        },
+        "partnered": {
+          "title": "Partnered",
+          "description": "Has this organization made a specific connection with Bioregistry?",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
     "Publication": {
       "title": "Publication",
       "description": "Metadata about a publication.",
@@ -250,6 +281,14 @@
             }
           ]
         },
+        "owners": {
+          "title": "Owners",
+          "description": "The owner of the corresponding identifier space. See also https://github.com/biopragmatics/bioregistry/issues/755.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organization"
+          }
+        },
         "example": {
           "title": "Example",
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
@@ -338,6 +377,14 @@
         "synonyms": {
           "title": "Synonyms",
           "description": "A list of synonyms for the prefix of this resource. These are used in normalization of prefixes and are a useful reference tool for prefixes that are written many ways. For example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons of other nonsense like ``SNOMEDCTCT``.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "keywords": {
+          "title": "Keywords",
+          "description": "A list of keywords for the resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -533,6 +580,10 @@
         },
         "hl7": {
           "title": "Hl7",
+          "type": "object"
+        },
+        "bartoc": {
+          "title": "Bartoc",
           "type": "object"
         }
       },
@@ -973,7 +1024,7 @@
         },
         "prefix_priority": {
           "title": "Prefix Priority",
-          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority.",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority. Add in \"preferred\" for explicitly using preferred prefixes or \"default\" for explicitly using Bioregistry canonical prefixes.",
           "type": "array",
           "items": {
             "type": "string"
@@ -982,12 +1033,6 @@
         "include_synonyms": {
           "title": "Include Synonyms",
           "description": "Should synonyms be included in the prefix map?",
-          "default": false,
-          "type": "boolean"
-        },
-        "use_preferred": {
-          "title": "Use Preferred",
-          "description": "Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
           "default": false,
           "type": "boolean"
         },

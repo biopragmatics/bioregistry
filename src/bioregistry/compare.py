@@ -46,6 +46,7 @@ logger = logging.getLogger(__name__)
 
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = "silver"
+BAR_SKIP = {"re3data", "bartoc"}
 
 
 class RegistryInfo(typing.NamedTuple):
@@ -328,10 +329,11 @@ def bibliometric_comparison():
     sns.barplot(data=df, ax=ax, x="year", y="count")
     ax.set_ylabel("Publications")
     ax.set_xlabel("")
-    ax.set_title(f"Timeline of {len(publications):,} Publications")
+    ax.set_title(f"Timeline of First Publications for {len(publications):,} Prefixes")
     plt.xticks(rotation=45)
     fig.tight_layout()
     fig.savefig(DOCS_IMG.joinpath("bibliography_years.svg"), dpi=350)
+    fig.savefig(DOCS_IMG.joinpath("bibliography_years.png"), dpi=350)
 
 
 @click.command()
@@ -367,7 +369,7 @@ def compare():  # noqa:C901
 
     fig, _axes = plot_coverage_gains(overlaps=overlaps)
     _save(fig, name="bioregistry_coverage_bar", png=paper, pdf=paper)
-    return
+
     fig, axes = plot_overlap_venn_diagrams(
         keys=registry_infos, overlaps=overlaps, watermark=watermark
     )
@@ -489,6 +491,8 @@ def plot_coverage_overlaps(*, overlaps):
 
     rows = []
     for metaprefix, data in overlaps.items():
+        if metaprefix in BAR_SKIP:
+            continue
         br, external = data[REMAPPED_KEY], data[REMAPPED_VALUE]
         rows.append(
             (
@@ -562,10 +566,9 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
 
     sns.set_style("white")
 
-    skip = {"re3data"}
     rows = []
     for metaprefix, data in overlaps.items():
-        if metaprefix in skip:
+        if metaprefix in BAR_SKIP:
             continue
         # Get the set of remapped bioregistry prefixes
         bioregistry_prefixes = data[REMAPPED_KEY]
@@ -682,7 +685,7 @@ def plot_xrefs(registry_infos, watermark: bool):
         data=xrefs_df,
         x="frequency",
         y="count",
-        ci=None,
+        errorbar=None,
         palette=xrefs_colors,
         alpha=1.0,
         ax=ax,

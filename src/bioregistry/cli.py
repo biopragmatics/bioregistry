@@ -5,8 +5,8 @@
 import sys
 
 import click
-from more_click import make_web_command
 
+from .app.cli import web
 from .compare import compare
 from .export.cli import export
 from .lint import lint
@@ -79,7 +79,7 @@ def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force:
 main.add_command(lint)
 main.add_command(compare)
 main.add_command(export)
-main.add_command(make_web_command("bioregistry.app.wsgi:app"))
+main.add_command(web)
 
 
 @main.command()
@@ -93,10 +93,13 @@ def update(ctx: click.Context):
 
     try:
         from . import upload_ndex
-    except ImportError:
-        click.secho("Could not import ndex")
-    else:
+
         ctx.invoke(upload_ndex.main)
+    except ImportError:
+        click.secho("Could not import ndex", fg="red")
+    except Exception as e:
+        click.secho("Error uploading to ndex", fg="red")
+        click.secho(str(e), fg="red")
 
 
 if __name__ == "__main__":

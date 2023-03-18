@@ -21,4 +21,4 @@ class FairsharingAligner(Aligner):
 
 
 if __name__ == "__main__":
-    FairsharingAligner.align()
+    FairsharingAligner.cli()

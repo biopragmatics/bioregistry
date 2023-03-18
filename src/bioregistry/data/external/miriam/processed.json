@@ -274,14 +274,14 @@
   },
   "ark": {
     "deprecated": false,
-    "description": "An Archival Resource Key (ARK) is a Uniform Resource Locator (URL) that is a multi-purpose persistent identifier for information objects of any type.",
-    "homepage": "http://n2t.net/",
+    "description": "Archival Resource Keys (ARKs) serve as persistent identifiers, or stable, trusted references for information objects. Among other things, they aim to be web addresses (URLs) that don\u2019t return 404 Page Not Found errors. The ARK Alliance is an open global community supporting the ARK infrastructure on behalf of research and scholarship. End users, especially researchers, rely on ARKs for long term access to the global scientific and cultural record. Since 2001 some 8.2 billion ARKs have been created by over 1000 organizations \u2014 libraries, data centers, archives, museums, publishers, government agencies, and vendors. They identify anything digital, physical, or abstract. ARKs are open, mainstream, non-paywalled, decentralized persistent identifiers that can be created by an organization as soon as it is registered with a NAAN (Name Assigning Authority Number). Once registered, an ARK organization can create unlimited numbers of ARKs and publicize them via the n2t.net global resolver or via their own local resolver.",
+    "homepage": "https://arks.org",
     "id": "00000592",
-    "name": "ARK",
+    "name": "Archival Resource Key (ARK)",
     "namespaceEmbeddedInLui": true,
     "pattern": "^(ark\\:)/*[0-9A-Za-z]+(?:/[\\w/.=*+@\\$-]*)?(?:\\?.*)?$",
     "prefix": "ark",
-    "sampleId": "/12345/fk1234",
+    "sampleId": "/53355/cl010066723",
     "uri_format": "http://n2t.net/ark:$1"
   },
   "arrayexpress": {
@@ -435,7 +435,7 @@
     "pattern": "^\\d+$",
     "prefix": "atcc",
     "sampleId": "11303",
-    "uri_format": "http://www.lgcstandards-atcc.org/Products/All/$1.aspx"
+    "uri_format": "https://www.atcc.org/products/$1"
   },
   "atcvet": {
     "deprecated": false,
@@ -761,6 +761,18 @@
     "sampleId": "31623",
     "uri_format": "http://thebiogrid.org/$1"
   },
+  "biokc": {
+    "deprecated": false,
+    "description": "BioKC (Biological Knowledge Curation), is a web-based collaborative platform for the curation and annotation of biomedical knowledge following the standard data model from Systems Biology Markup Language (SBML).",
+    "homepage": "https://wwwen.uni.lu/lcsb",
+    "id": "00000995",
+    "name": "BioKC",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "bkc[0-9]*",
+    "prefix": "biokc",
+    "sampleId": "bkc640",
+    "uri_format": "https://biokb.lcsb.uni.lu/fact/$1"
+  },
   "biolink": {
     "deprecated": false,
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
@@ -919,7 +931,7 @@
         "uri_format": "http://www.ncbi.nlm.nih.gov/biosample?term=$1"
       },
       {
-        "code": "CURATOR_REVIEW",
+        "code": "ddbj",
         "description": "BioSample at DNA Data Bank of Japan",
         "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
         "name": "BioSample at DNA Data Bank of Japan",
@@ -960,7 +972,7 @@
     "id": "00000694",
     "name": "BioStudies database",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^S-[A-Z]{4}[A-Z\\d\\-]+$",
+    "pattern": "^S-[A-Z]{4}[\\-\\_A-Z\\d]+$",
     "prefix": "biostudies",
     "sampleId": "S-EPMC6266652",
     "uri_format": "https://www.ebi.ac.uk/biostudies/studies/$1"
@@ -984,7 +996,7 @@
     "id": "00000616",
     "name": "BioTools",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Za-z0-9\\_]*$",
+    "pattern": "^[-A-Za-z0-9\\_]*$",
     "prefix": "biotools",
     "sampleId": "uniprotkb",
     "uri_format": "https://bio.tools/$1"
@@ -1302,7 +1314,7 @@
     "id": "00000234",
     "name": "Cell Cycle Ontology",
     "namespaceEmbeddedInLui": true,
-    "pattern": "^CCO\\:\\w+$",
+    "pattern": "^CCO:\\w+$",
     "prefix": "cco",
     "sampleId": "0000003",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cco/terms?obo_id=CCO:$1"
@@ -1346,14 +1358,14 @@
   "cellosaurus": {
     "deprecated": false,
     "description": "The Cellosaurus is a knowledge resource on cell lines. It attempts to describe all cell lines used in biomedical research. Its scope includes: Immortalized cell lines; naturally immortal cell lines (example: stem cell lines); finite life cell lines when those are distributed and used widely; vertebrate cell line with an emphasis on human, mouse and rat cell lines; and invertebrate (insects and ticks) cell lines. Its scope does not include primary cell lines (with the exception of the finite life cell lines described above) and plant cell lines.",
-    "homepage": "https://web.expasy.org/cellosaurus/",
+    "homepage": "https://www.cellosaurus.org/",
     "id": "00000598",
     "name": "Cellosaurus",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^CVCL_[A-Z0-9]{4}$",
+    "pattern": "^CVCL_[A-Z0-9]{4}(\\.txt)?$",
     "prefix": "cellosaurus",
     "sampleId": "CVCL_0030",
-    "uri_format": "https://web.expasy.org/cellosaurus/$1"
+    "uri_format": "https://www.cellosaurus.org/$1"
   },
   "cellrepo": {
     "deprecated": false,
@@ -1579,6 +1591,18 @@
     "sampleId": "272",
     "uri_format": "https://civicdb.org/links/gene/$1"
   },
+  "civic.mpid": {
+    "deprecated": false,
+    "description": "CIViC Molecular Profiles are combinations of one or more CIViC variants. Most Molecular Profiles are \u201cSimple\u201d Molecular Profiles comprised of a single variant. In most cases, these can be considered equivalent to the CIViC concept of a Variant. However, increasingly clinical significance must be considered in the context of multiple variants simultaneously. Complex Molecular Profiles in CIViC allow for curation of such variant combinations. Regardless of the nature of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered in CIViC.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000981",
+    "name": "CIViC Molecular Profile",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.mpid",
+    "sampleId": "559",
+    "uri_format": "https://civicdb.org/links/molecular_profile/$1"
+  },
   "civic.sid": {
     "deprecated": false,
     "description": "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source.",
@@ -1602,6 +1626,18 @@
     "prefix": "civic.tid",
     "sampleId": "14",
     "uri_format": "https://civicdb.org/links/drugs/$1"
+  },
+  "civic.vgid": {
+    "deprecated": false,
+    "description": "Variant Groups in CIViC provide user-defined grouping of Variants within and between genes based on unifying characteristics. CIViC curators are required to define a cohesive rationale for grouping these variants together, summarize their relevance to cancer diagnosis, prognosis or treatment and highlight any treatments or cancers of particular relevance",
+    "homepage": "https://civicdb.org/",
+    "id": "00000979",
+    "name": "CIViC Variant Group",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.vgid",
+    "sampleId": "16",
+    "uri_format": "https://civicdb.org/links/variant_group/$1"
   },
   "civic.vid": {
     "deprecated": false,
@@ -1638,6 +1674,18 @@
     "prefix": "classyfire",
     "sampleId": "C0004828",
     "uri_format": "http://classyfire.wishartlab.com/tax_nodes/$1"
+  },
+  "clb": {
+    "deprecated": false,
+    "description": "ChecklistBank is an index and repository for taxonomic and nomenclatural datasets",
+    "homepage": "https://www.checklistbank.org",
+    "id": "00000964",
+    "name": "ChecklistBank",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+(LR)?$",
+    "prefix": "clb",
+    "sampleId": "1010",
+    "uri_format": "https://www.checklistbank.org/dataset/$1"
   },
   "cldb": {
     "deprecated": false,
@@ -1711,6 +1759,48 @@
     "sampleId": "26957",
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
   },
+  "clo": {
+    "deprecated": false,
+    "description": "The Cell Line Ontology is a community-based ontology of cell lines. The CLO is developed to unify publicly available cell line entry data from multiple sources to a standardized logically defined format based on consensus design patterns.",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/clo",
+    "id": "00000983",
+    "name": "Cell Line Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\d{7}$",
+    "prefix": "clo",
+    "providers": [
+      {
+        "code": "bioportal",
+        "description": "Our vision is that all biomedical knowledge and data are disseminated on the Internet using principled ontologies in such a way that the knowledge and data are semantically interoperable and useful for furthering biomedical science and clinical care. Our mission is to create software and support services for the application of principled ontologies in biomedical science and clinical care, ranging from tools for application developers to software for end-users.",
+        "homepage": "https://bioportal.bioontology.org",
+        "name": "Center for Biomedical Informatics Research, Stanford",
+        "uri_format": "https://bioportal.bioontology.org/ontologies/CLO/?p=classes&conceptid=http://purl.obolibrary.org/obo/CLO_$1"
+      }
+    ],
+    "sampleId": "0000091",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1"
+  },
+  "col": {
+    "deprecated": false,
+    "description": "Identifier of a taxon or synonym in the Catalogue of Life",
+    "homepage": "https://www.checklistbank.org",
+    "id": "00000969",
+    "name": "Catalogue of Life",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
+    "prefix": "col",
+    "providers": [
+      {
+        "code": "col",
+        "description": "The Catalogue of Life website providing a view onto the latest release of the COL Checklist.",
+        "homepage": "https://www.catalogueoflife.org",
+        "name": "Catalogue of Life (COL)",
+        "uri_format": "https://www.catalogueoflife.org/data/taxon/$1"
+      }
+    ],
+    "sampleId": "4QHKG",
+    "uri_format": "https://www.checklistbank.org/dataset/3LR/taxon/$1"
+  },
   "combine.specifications": {
     "deprecated": false,
     "description": "The 'COmputational Modeling in BIology' NEtwork (COMBINE) is an initiative to coordinate the development of the various community standards and formats for computational models, initially in Systems Biology and related fields. This collection pertains to specifications of the standard formats developed by the Computational Modeling in Biology Network.",
@@ -1720,8 +1810,8 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\w+(\\-|\\.|\\w)*$",
     "prefix": "combine.specifications",
-    "sampleId": "sbgn.er.level-1.version-1.2",
-    "uri_format": "https://co.mbine.org/specifications/$1"
+    "sampleId": "sed-ml.level-1.version-1",
+    "uri_format": "https://github.com/combine-org/combine-specifications/blob/main/specifications/$1.md"
   },
   "complexportal": {
     "deprecated": false,
@@ -2331,7 +2421,7 @@
     "id": "00000019",
     "name": "DOI",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(doi\\:)?\\d{2}\\.\\d{4}.*$",
+    "pattern": "^(doi\\:)?10\\.\\d+/.*$",
     "prefix": "doi",
     "providers": [
       {
@@ -2509,6 +2599,18 @@
     "prefix": "drugbankv4.target",
     "sampleId": "BE0000048",
     "uri_format": "http://www.drugbank.ca/biodb/bio_entities/$1"
+  },
+  "drugcentral": {
+    "deprecated": false,
+    "description": "DrugCentral (http://drugcentral.org) is an open-access online drug compendium. DrugCentral integrates structure, bioactivity, regulatory, pharmacologic actions and indications for active pharmaceutical ingredients approved by FDA and other regulatory agencies. Monitoring of regulatory agencies for new drugs approvals ensures the resource is up-to-date. DrugCentral integrates content for active ingredients with pharmaceutical formulations, indexing drugs and drug label annotations, complementing similar resources available online. Its complementarity with other online resources is facilitated by cross referencing to external resources. At the molecular level, DrugCentral bridges drug-target interactions with pharmacological action and indications. The integration with FDA drug labels enables text mining applications for drug adverse events and clinical trial information. Chemical structure overlap between DrugCentral and five online drug resources, and the overlap between DrugCentral FDA-approved drugs and their presence in four different chemical collections, are discussed. DrugCentral can be accessed via the web application or downloaded in relational database format.",
+    "homepage": "http://www.unm.edu/",
+    "id": "00000966",
+    "name": "DrugCentral",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "drugcentral",
+    "sampleId": "257",
+    "uri_format": "https://drugcentral.org/drugcard/$1"
   },
   "ec-code": {
     "deprecated": false,
@@ -2745,10 +2847,22 @@
     "id": "00000561",
     "name": "Electron Microscopy Data Bank",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^EMD-\\d{4}$",
+    "pattern": "^EMD-\\d{4,5}$",
     "prefix": "emdb",
     "sampleId": "EMD-1001",
     "uri_format": "https://www.ebi.ac.uk/pdbe/entry/emdb/$1"
+  },
+  "empiar": {
+    "deprecated": false,
+    "description": "EMPIAR, the Electron Microscopy Public Image Archive, is a public resource for raw images underpinning 3D cryo-EM maps and tomograms (themselves archived in EMDB). EMPIAR also accommodates 3D datasets obtained with volume EM techniques and soft and hard X-ray tomography.",
+    "homepage": "https://www.ebi.ac.uk",
+    "id": "00000986",
+    "name": "EMPIAR",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "EMPIAR-\\d{5,}",
+    "prefix": "empiar",
+    "sampleId": "EMPIAR-10002",
+    "uri_format": "https://www.ebi.ac.uk/empiar/$1"
   },
   "ena.embl": {
     "deprecated": false,
@@ -2790,7 +2904,7 @@
     "id": "00000003",
     "name": "Ensembl",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^((ENS[FPTG]\\\\d{11}(\\\\.\\\\d+)?)|(FB\\\\w{2}\\\\d{7})|(Y[A-Z]{2}\\\\d{3}[a-zA-Z](\\\\-[A-Z])?)|([A-Z_a-z0-9]+(\\\\.)?(t)?(\\\\d+)?([a-z])?))$",
+    "pattern": "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$",
     "prefix": "ensembl",
     "providers": [
       {
@@ -3320,7 +3434,7 @@
     "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
   },
   "genedb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "GeneDB is a genome database for prokaryotic and eukaryotic organisms and provides a portal through which data generated by the \"Pathogen Genomics\" group at the Wellcome Trust Sanger Institute and other collaborating sequencing centres can be accessed.",
     "homepage": "https://www.genedb.org/",
     "id": "00000106",
@@ -3506,9 +3620,9 @@
     "id": "00000830",
     "name": "GlycoNAVI",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^GN_[A-Za-z0-9]+$",
+    "pattern": "^GN_[A-Za-z]*[_]*[A-Za-z0-9-:_]+$",
     "prefix": "glyconavi",
-    "sampleId": "GN_G03681DA",
+    "sampleId": "GN_GlyTouCan_G03681DA",
     "uri_format": "https://glyconavi.org/hub/?id=$1"
   },
   "glycopost": {
@@ -3759,18 +3873,6 @@
     "sampleId": "GR:0080039",
     "uri_format": "http://www.gramene.org/db/genes/search_gene?acc=$1"
   },
-  "gramene.growthstage": {
-    "deprecated": false,
-    "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This collection refers to growth stage ontology information in Gramene.",
-    "homepage": "http://www.gramene.org/",
-    "id": "00000508",
-    "name": "Gramene Growth Stage Ontology",
-    "namespaceEmbeddedInLui": true,
-    "pattern": "^GRO\\:\\d+$",
-    "prefix": "gramene.growthstage",
-    "sampleId": "0007133",
-    "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
-  },
   "gramene.protein": {
     "deprecated": false,
     "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This datatype refers to proteins in Gramene.",
@@ -3842,6 +3944,18 @@
     "prefix": "grin.taxonomy",
     "sampleId": "19333",
     "uri_format": "http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1"
+  },
+  "gro": {
+    "deprecated": false,
+    "description": "Gramene is a comparative genome mapping database for grasses and crop plants. It combines a semi-automatically generated database of cereal genomic and expressed sequence tag sequences, genetic maps, map relations, quantitative trait loci (QTL), and publications, with a curated database of mutants (genes and alleles), molecular markers, and proteins. This collection refers to growth stage ontology information in Gramene.",
+    "homepage": "http://www.gramene.org/",
+    "id": "00000508",
+    "name": "Gramene Growth Stage Ontology",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^GRO:\\d+$",
+    "prefix": "gro",
+    "sampleId": "0007133",
+    "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "grsdb": {
     "deprecated": false,
@@ -4583,13 +4697,20 @@
   "insdc": {
     "deprecated": false,
     "description": "The International Nucleotide Sequence Database Collaboration (INSDC) consists of a joint effort to collect and disseminate databases containing DNA and RNA sequences.",
-    "homepage": "https://www.ncbi.nlm.nih.gov/Genbank/",
+    "homepage": "https://www.ncbi.nlm.nih.gov/nuccore/",
     "id": "00000029",
     "name": "Nucleotide Sequence Database",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4,6}\\d{8,10}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
     "prefix": "insdc",
     "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "INSDC through GenBank",
+        "homepage": "https://www.ncbi.nlm.nih.gov/Genbank/",
+        "name": "INSDC through GenBank",
+        "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
+      },
       {
         "code": "CURATOR_REVIEW",
         "description": "INSDC through DDBJ",
@@ -4603,13 +4724,6 @@
         "homepage": "https://www.ebi.ac.uk/ena/",
         "name": "INSDC through European Nucleotide Archive (ENA)",
         "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
-      },
-      {
-        "code": "ncbi",
-        "description": "INSDC through Nucleotide database at NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/nuccore/",
-        "name": "INSDC through Nucleotide database at NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
       }
     ],
     "sampleId": "X58356",
@@ -4772,7 +4886,7 @@
     "prefix": "isbn",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
+        "code": "worldcat",
         "description": "ISBN database at WorldCat",
         "homepage": "http://www.worldcat.org/",
         "name": "ISBN database at WorldCat",
@@ -4837,7 +4951,7 @@
     "pattern": "^.+$",
     "prefix": "ito",
     "sampleId": "ITO_01625",
-    "uri_format": "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https%3A%2F%2Fai-strategies.org%2Fontology%2F$1"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1"
   },
   "iuphar.family": {
     "deprecated": false,
@@ -5435,19 +5549,19 @@
     "id": "00000273",
     "name": "MassBank",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Z]{2}[A-Z0-9][0-9]{5}$",
+    "pattern": "^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$",
     "prefix": "massbank",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
+        "code": "massbankeu",
         "description": "MassBank in Europe",
         "homepage": "https://massbank.eu/",
         "name": "MassBank in Europe",
         "uri_format": "https://massbank.eu/MassBank/RecordDisplay?id=$1"
       }
     ],
-    "sampleId": "PB000166",
-    "uri_format": "http://www.massbank.jp/RecordDisplay?id=$1"
+    "sampleId": "MSBNK-IPB_Halle-PB000166",
+    "uri_format": "https://massbank.jp/RecordDisplay?id=$1"
   },
   "massive": {
     "deprecated": false,
@@ -5717,7 +5831,7 @@
     "uri_format": "https://www.metabolome-express.org/datasetview.php?datasetid=$1"
   },
   "mge": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "ACLAME is a database dedicated to the collection and classification of mobile genetic elements (MGEs) from various sources, comprising all known phage genomes, plasmids and transposons.",
     "homepage": "http://aclame.ulb.ac.be/",
     "id": "00000063",
@@ -5909,7 +6023,7 @@
     "pattern": "^MIR:\\d{8}$",
     "prefix": "mir",
     "sampleId": "00100037",
-    "uri_format": "https://registry.identifiers.org/registry?query=\"MIR:$1\""
+    "uri_format": "https://resolver.api.identifiers.org/resolveMirId/MIR:$1"
   },
   "mirbase": {
     "deprecated": false,
@@ -6659,6 +6773,18 @@
     "sampleId": "J0705A10",
     "uri_format": "http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1"
   },
+  "nlfff": {
+    "deprecated": false,
+    "description": "Nonlinear Force-Free Field Three-Dimensional Magnetic Fields Data of Solar Active Regions Database",
+    "homepage": "https://nlfff.dataset.deepsolar.space/en/",
+    "id": "00000988",
+    "name": "NLFFF Database",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "nlfff",
+    "sampleId": "345201101230312003",
+    "uri_format": "http://database.deepsolar.space:18080/dbs/nlfff/$1"
+  },
   "nmdc": {
     "deprecated": false,
     "description": "The National Microbiome Data Collaborative (NMDC) is an initiative to empower the research community to harness microbiome data exploration and discovery through a collaborative integrative data science ecosystem.",
@@ -6908,7 +7034,7 @@
     "namespaceEmbeddedInLui": true,
     "pattern": "^HOG:[0-9]{7}(\\.[0-9a-z.]+)?(_[0-9]+)?$",
     "prefix": "oma.hog",
-    "sampleId": "HOG:0459895",
+    "sampleId": "0459895",
     "uri_format": "https://omabrowser.org/oma/hog/resolve/HOG:$1/"
   },
   "oma.protein": {
@@ -7215,7 +7341,7 @@
     "id": "00000422",
     "name": "PANTHER Pathway Component",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^G|P|U|C|S\\d{5}$",
+    "pattern": "^[GPUCS]\\d{5}$",
     "prefix": "panther.pthcmp",
     "sampleId": "P00266",
     "uri_format": "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"
@@ -8264,7 +8390,7 @@
     "id": "00000039",
     "name": "RefSeq",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
+    "pattern": "^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
     "prefix": "refseq",
     "sampleId": "NP_012345",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
@@ -8605,14 +8731,26 @@
   "sbo": {
     "deprecated": false,
     "description": "The goal of the Systems Biology Ontology is to develop controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modeling. SBO is a project of the BioModels.net effort.",
-    "homepage": "https://www.ebi.ac.uk/sbo/",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/sbo",
     "id": "00000024",
     "name": "Systems Biology Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^SBO:\\d{7}$",
     "prefix": "sbo",
     "sampleId": "0000262",
-    "uri_format": "https://www.ebi.ac.uk/sbo/main/SBO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1"
+  },
+  "sciflection": {
+    "deprecated": false,
+    "description": "Sciflection is a public repository for experiments and associated spectra, usually uploaded from Electronic Lab Notebooks, shared under FAIR conditions",
+    "homepage": "https://sciformation.com/sciflection.html",
+    "id": "00000973",
+    "name": "Sciflection",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "prefix": "sciflection",
+    "sampleId": "5ede4273-b26c-4ea4-adb7-3ce294ab3397",
+    "uri_format": "https://sciflection.com/$1"
   },
   "scop": {
     "deprecated": false,
@@ -8864,6 +9002,18 @@
     "prefix": "sitex",
     "sampleId": "1000",
     "uri_format": "http://www-bionet.sscc.ru/sitex/index.php?siteid=$1"
+  },
+  "skm": {
+    "deprecated": false,
+    "description": "Stress Knowledge Map (SKM, available at https://skm.nib.si) is a knowledge graph resulting from the integration of dispersed published information on plant molecular responses to biotic and abiotic stressors. ",
+    "homepage": "http://www.nib.si/eng/",
+    "id": "00000968",
+    "name": "Stress Knowledge Map",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^rx[0-9]{5}$",
+    "prefix": "skm",
+    "sampleId": "rx00408",
+    "uri_format": "https://skm.nib.si/api/pss/reactions?reaction_id=$1&return_field=summary"
   },
   "slm": {
     "deprecated": false,
@@ -9174,6 +9324,18 @@
     "sampleId": "2200950",
     "uri_format": "http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1"
   },
+  "tair.name": {
+    "deprecated": false,
+    "description": "The Arabidopsis Information Resource (TAIR) maintains a database of genetic and molecular biology data for the model higher plant Arabidopsis thaliana. The name of a Locus is unique and used by TAIR, TIGR, and MIPS.",
+    "homepage": "https://www.arabidopsis.org/index.jsp",
+    "id": "00000976",
+    "name": "TAIR gene name",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^AT.G[0-9]{5}$",
+    "prefix": "tair.name",
+    "sampleId": "AT5G05330",
+    "uri_format": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
+  },
   "tair.protein": {
     "deprecated": false,
     "description": "The Arabidopsis Information Resource (TAIR) maintains a database of genetic and molecular biology data for the model higher plant Arabidopsis thaliana. This provides protein information for a given gene model and provides links to other sources such as UniProtKB and GenPept",
@@ -9416,14 +9578,14 @@
   "uberon": {
     "deprecated": false,
     "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
-    "homepage": "http://bioportal.bioontology.org/ontologies/UBERON",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/uberon",
     "id": "00000446",
     "name": "UBERON",
     "namespaceEmbeddedInLui": true,
     "pattern": "^UBERON:\\d+$",
     "prefix": "uberon",
     "sampleId": "0008203",
-    "uri_format": "http://purl.bioontology.org/ontology/UBERON/UBERON:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1"
   },
   "ubio.namebank": {
     "deprecated": false,
@@ -9524,14 +9686,23 @@
   "unii": {
     "deprecated": false,
     "description": "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance\u2019s molecular structure and/or descriptive information.",
-    "homepage": "http://fdasis.nlm.nih.gov/srs/",
+    "homepage": "https://precision.fda.gov/uniisearch",
     "id": "00000531",
     "name": "UNII",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]+$",
     "prefix": "unii",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "UNII at U.S. Food and Drug Administration",
+        "homepage": "http://fdasis.nlm.nih.gov/srs/",
+        "name": "UNII at U.S. Food and Drug Administration",
+        "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+      }
+    ],
     "sampleId": "3G6A5W338E",
-    "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+    "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
   },
   "unimod": {
     "deprecated": false,
@@ -9605,7 +9776,7 @@
       }
     ],
     "sampleId": "P0DP23",
-    "uri_format": "http://purl.uniprot.org/uniprot/$1"
+    "uri_format": "https://purl.uniprot.org/uniprot/$1"
   },
   "uniprot.chain": {
     "deprecated": false,
@@ -9707,6 +9878,18 @@
     "sampleId": "4145692",
     "uri_format": "http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1"
   },
+  "utrdb": {
+    "deprecated": false,
+    "description": "A curated database of 5' and 3' untranslated sequences of eukaryotic mRNAs. In the current update, the UTR entries are organized in a gene-centric structure to better visualize and retrieve 5' and 3'UTR variants generated by alternative initiation and termination of transcription and alternative splicing. Experimentally validated miRNA targets and conserved sequence elements are also annotated. The integration of UTRdb with genomic data has allowed the implementation of an efficient annotation system and a powerful retrieval resource for the selection and extraction of specific UTR subsets. ",
+    "homepage": "https://utrdb.cloud.ba.infn.it/utrdb/index_107.html",
+    "id": "00000993",
+    "name": "UTRdb",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "([3-5][A-Z])\\w+[^A-Z][0-9]",
+    "prefix": "utrdb",
+    "sampleId": "5UTR_107_ENST00000517291.2",
+    "uri_format": "https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1"
+  },
   "validatordb": {
     "deprecated": false,
     "description": "Database of validation results for ligands and non-standard residues in the Protein Data Bank.",
@@ -9786,7 +9969,7 @@
     "pattern": "^\\D{4}\\d{6}(\\-\\D{2})?$",
     "prefix": "vectorbase",
     "sampleId": "ISCW007415",
-    "uri_format": "https://www.vectorbase.org/search/site/$1?&site=\"Genome\""
+    "uri_format": "https://vectorbase.org/gene/$1"
   },
   "vegbank": {
     "deprecated": false,
@@ -9991,7 +10174,7 @@
   },
   "wikipathways": {
     "deprecated": false,
-    "description": "WikiPathways is a resource providing an open and public collection of  pathway maps created and curated by the community in a Wiki like style.\r\nAll content is under the Creative Commons Attribution 3.0 Unported license.",
+    "description": "WikiPathways is a resource providing an open and public collection of pathway maps created and curated by the community in a Wiki-like style.",
     "homepage": "http://www.wikipathways.org/",
     "id": "00000076",
     "name": "WikiPathways",

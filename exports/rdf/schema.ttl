@@ -1,7 +1,15 @@
 @prefix bioregistry.schema: <https://bioregistry.io/schema/#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix idot: <http://identifiers.org/idot/> .
+@prefix oboinowl: <http://www.geneontology.org/formats/oboInOwl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 bioregistry.schema:0000001 a rdfs:Class ;
@@ -18,19 +26,28 @@ bioregistry.schema:0000003 a rdfs:Class ;
 
 bioregistry.schema:0000020 a rdfs:Class ;
     rdfs:label "Person" ;
-    dcterms:description "A person" .
+    dcterms:description "A person" ;
+    owl:equivalentClass foaf:Person .
+
+bioregistry.schema:0000025 a rdfs:Class ;
+    rdfs:label "Organization" ;
+    dcterms:description "An organization" .
 
 bioregistry.schema:0000005 a rdf:Property ;
-    rdfs:label "has example" ;
+    rdfs:label "has local unique identifier example" ;
     dcterms:description "An identifier for a resource or metaresource." ;
     rdfs:domain bioregistry.schema:0000001 ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:equivalentProperty idot:exampleIdentifier,
+        vann:example .
 
 bioregistry.schema:0000006 a rdf:Property ;
     rdfs:label "has provider formatter" ;
     dcterms:description "The URL format for a provider that contains $1 for the identifier (or metaidentifier) that should be resolved." ;
     rdfs:domain bioregistry.schema:0000001 ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:equivalentProperty idot:accessPattern,
+        wikidata:P1630 .
 
 bioregistry.schema:0000007 a rdf:Property ;
     rdfs:label "has resolver formatter" ;
@@ -39,10 +56,12 @@ bioregistry.schema:0000007 a rdf:Property ;
     rdfs:range xsd:string .
 
 bioregistry.schema:0000008 a rdf:Property ;
-    rdfs:label "has pattern" ;
+    rdfs:label "has local unique identifier pattern" ;
     dcterms:description "The pattern for identifiers in the given resource" ;
     rdfs:domain bioregistry.schema:0000001 ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:equivalentProperty idot:identifierPattern,
+        wikidata:P1793 .
 
 bioregistry.schema:0000010 a rdf:Property ;
     rdfs:label "has download URL" ;
@@ -97,4 +116,52 @@ bioregistry.schema:0000022 a rdf:Property ;
     dcterms:description "The main contact person for a registry" ;
     rdfs:domain bioregistry.schema:0000002 ;
     rdfs:range bioregistry.schema:0000020 .
+
+bioregistry.schema:0000023 a rdf:Property ;
+    rdfs:label "has alternative prefix" ;
+    dcterms:description "An alternative or synonymous prefix" ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf oboinowl:hasExactSynonym ;
+    owl:equivalentProperty idot:alternatePrefix .
+
+bioregistry.schema:0000024 a rdf:Property ;
+    rdfs:label "has URI prefix" ;
+    dcterms:description "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier) that should be resolved." ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range xsd:string ;
+    owl:equivalentProperty vann:preferredNamespaceUri,
+        void:uriSpace,
+        sh:namespace .
+
+bioregistry.schema:0000026 a rdf:Property ;
+    rdfs:label "has identifier space owner" ;
+    dcterms:description "An organization" ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range bioregistry.schema:0000025 .
+
+bioregistry.schema:0000027 a rdf:Property ;
+    rdfs:label "has resource example" ;
+    dcterms:description "An expanded example URL for a resource or metaresource." ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range xsd:string ;
+    owl:equivalentProperty void:exampleResource .
+
+bioregistry.schema:0000028 a rdf:Property ;
+    rdfs:label "has URI pattern" ;
+    dcterms:description "The pattern for expanded URIs in the given resource" ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range xsd:string ;
+    owl:equivalentProperty idot:accessIdentifierPattern,
+        void:uriRegexPattern,
+        wikidata:P8966 .
+
+bioregistry.schema:0000029 a rdf:Property ;
+    rdfs:label "has prefix" ;
+    dcterms:description "has canonical prefix" ;
+    rdfs:domain bioregistry.schema:0000001 ;
+    rdfs:range xsd:string ;
+    owl:equivalentProperty idot:preferredPrefix,
+        vann:preferredNamespacePrefix,
+        sh:prefix .
 

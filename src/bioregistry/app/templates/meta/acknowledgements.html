@@ -22,17 +22,22 @@
         This registry is based on the code underlying the Bioregistry, which can be cited as follows:
         {% endif %}
         <blockquote class="blockquote">
-            Hoyt, C. T., <i>et al.</i> (2022) <a href="https://bioregistry.io/doi:10.1101/2022.07.08.499378">The
-            Unifying the Identification of Biomedical Entities with the Bioregistry</a>. <i>bioRxiv</i>,
-            2022.07.08.499378
+            Hoyt, C. T., <i>et al.</i> (2022) <a href="https://bioregistry.io/doi:10.1038/s41597-022-01807-3">The
+            Unifying the identification of biomedical entities with the Bioregistry</a>. <i>Nature Scientific Data</i>,
+            s41597-022-01807-3
         </blockquote>
     </p>
     <p>or by using the following LaTeX:</p>
     <pre><code class="language-bibtex">@article{Hoyt2022Bioregistry,
-    author = {Hoyt, C T and Balk, M and Callahan, T J and Domingo-Fernandez, D and Haendel, M A and Hegde, H B and Himmelstein, D S and Karis, K and Kunze, J and Lubiana, T and Matentzoglu, N and McMurry, J and Moxon, S and Mungall, C J and Rutz, A and Unni, D R and Willighagen, E and Winston, D and Gyori, B M},
-    doi = {10.1101/2022.07.08.499378},
-    journal = {bioRxiv},
-    title = {Unifying the Identification of Biomedical Entities with the Bioregistry},
+    author = {Hoyt, Charles Tapley and Balk, Meghan and Callahan, Tiffany J and Domingo-Fern{\'{a}}ndez, Daniel and Haendel, Melissa A and Hegde, Harshad B and Himmelstein, Daniel S and Karis, Klas and Kunze, John and Lubiana, Tiago and Matentzoglu, Nicolas and McMurry, Julie and Moxon, Sierra and Mungall, Christopher J and Rutz, Adriano and Unni, Deepak R and Willighagen, Egon and Winston, Donald and Gyori, Benjamin M},
+    doi = {10.1038/s41597-022-01807-3},
+    issn = {2052-4463},
+    journal = {Sci. Data},
+    number = {1},
+    pages = {714},
+    title = {Unifying the identification of biomedical entities with the Bioregistry},
+    url = {https://doi.org/10.1038/s41597-022-01807-3},
+    volume = {9},
     year = {2022}
 }</code></pre>
     {% if config.METAREGISTRY_FIRST_PARTY %}
@@ -70,7 +75,7 @@
     </p>
     {% for registry in registries %}
         {% set code_link = registry.get_code_link() %}
-        {% if code_link or registry.license %}
+        {% if registry.prefix != "bioregistry" and (code_link or registry.license) %}
             <h5><a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=registry.prefix) }}">{{ registry.name }}</a></h5>
             <p>
                 {% if registry.logo_url %}

@@ -4,7 +4,7 @@
 
 import logging
 import typing
-from collections import ChainMap, Counter, defaultdict
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -42,6 +42,8 @@ from .schema import (
     sanitize_model,
 )
 from .schema_utils import (
+    _collections_from_path,
+    _contexts_from_path,
     _read_metaregistry,
     _registry_from_path,
     read_collections,
@@ -96,9 +98,10 @@ class Manager:
         self,
         registry: Union[None, str, Path, Mapping[str, Resource]] = None,
         metaregistry: Union[None, str, Path, Mapping[str, Registry]] = None,
-        collections: Optional[Mapping[str, Collection]] = None,
-        contexts: Optional[Mapping[str, Context]] = None,
+        collections: Union[None, str, Path, Mapping[str, Collection]] = None,
+        contexts: Union[None, str, Path, Mapping[str, Context]] = None,
         mismatches: Optional[Mapping[str, Mapping[str, str]]] = None,
+        base_url: Optional[str] = None,
     ):
         """Instantiate a registry manager.
 
@@ -107,7 +110,10 @@ class Manager:
         :param collections: A custom collections dictionary. If none, defaults to the Bioregistry's collections.
         :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         :param mismatches: A custom mismatches dictionary. If none, defaults to the Bioregistry's mismatches.
+        :param base_url: The base URL.
         """
+        self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
+
         if registry is None:
             self.registry = dict(read_registry())
         elif isinstance(registry, (str, Path)):
@@ -122,8 +128,21 @@ class Manager:
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
-        self.collections = dict(read_collections() if collections is None else collections)
-        self.contexts = dict(read_contexts() if contexts is None else contexts)
+
+        if collections is None:
+            self.collections = dict(read_collections())
+        elif isinstance(collections, (str, Path)):
+            self.collections = dict(_collections_from_path(collections))
+        else:
+            self.collections = dict(collections)
+
+        if contexts is None:
+            self.contexts = dict(read_contexts())
+        elif isinstance(contexts, (str, Path)):
+            self.contexts = dict(_contexts_from_path(contexts))
+        else:
+            self.contexts = dict(contexts)
+
         self.mismatches = dict(read_mismatches() if mismatches is None else mismatches)
 
         canonical_for = defaultdict(list)
@@ -140,6 +159,15 @@ class Manager:
         self.provided_by = dict(provided_by)
         self.has_parts = dict(has_parts)
 
+        self._converter = None
+
+    @property
+    def converter(self) -> curies.Converter:
+        """Get the default converter."""
+        if self._converter is None:
+            self._converter = curies.Converter(records=self.get_curies_records())
+        return self._converter
+
     def write_registry(self):
         """Write the registry."""
         write_registry(self.registry)
@@ -154,6 +182,13 @@ class Manager:
         if registry is None:
             return None
         return registry.name
+
+    def get_registry_short_name(self, metaprefix: str) -> Optional[str]:
+        """Get the registry short name."""
+        registry = self.get_registry(metaprefix)
+        if registry is None:
+            return None
+        return registry.get_short_name()
 
     def get_registry_homepage(self, metaprefix: str) -> Optional[str]:
         """Get the registry homepage."""
@@ -347,6 +382,13 @@ class Manager:
             return None
         return entry.get_synonyms()
 
+    def get_keywords(self, prefix: str) -> Optional[List[str]]:
+        """Get keywords associated with a given prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_keywords()
+
     def get_example(self, prefix: str) -> Optional[str]:
         """Get an example identifier, if it's available."""
         entry = self.get_resource(prefix)
@@ -371,22 +413,24 @@ class Manager:
     def get_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
         it = self._iter_pattern_map(
-            include_synonyms=include_synonyms, use_preferred=use_preferred, blacklist=blacklist
+            include_synonyms=include_synonyms, prefix_priority=prefix_priority, blacklist=blacklist
         )
         if not remapping:
             return dict(it)
@@ -395,21 +439,18 @@ class Manager:
     def _iter_pattern_map(
         self,
         *,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
         blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
+        for resource in self.registry.values():
+            if resource.prefix in blacklist:
                 continue
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
+            prefix = resource.get_priority_prefix(priority=prefix_priority)
             yield prefix, pattern
             if include_synonyms:
                 for synonym in resource.get_synonyms():
@@ -425,19 +466,26 @@ class Manager:
         uri_prefix_priority: Optional[Sequence[str]] = None,
         include_prefixes: bool = False,
         strict: bool = False,
+        remapping: Optional[Mapping[str, str]] = None,
+        blacklist: Optional[typing.Collection[str]] = None,
     ) -> List[curies.Record]:
         """Get a list of records for all resources in this manager.
 
         :param prefix_priority:
-            The order of metaprefixes (or "preferred") for choosing a primary prefix
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
         :param uri_prefix_priority:
-            The order of metaprefixes for choosing the primary URI prefix
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be
             used to parse both URIs and CURIEs
         :param strict:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
+        :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+        :param blacklist:
+            A collection of prefixes to skip
 
         :returns: A list of records for :class:`curies.Converter`
         """
@@ -452,6 +500,8 @@ class Manager:
             uri_prefix_priority=uri_prefix_priority,
             include_prefixes=include_prefixes,
             strict=strict,
+            blacklist=blacklist,
+            remapping=remapping,
         )
 
     def get_reverse_prefix_map(
@@ -491,61 +541,39 @@ class Manager:
     def get_prefix_map(
         self,
         *,
-        priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
+        prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
-        use_preferred: bool = False,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
-        :param priority: A priority list for how to generate URI prefixes.
+        :param prefix_priority:
+            The order of metaprefixes OR "preferred" for choosing a primary prefix
+            OR "default" for Bioregistry prefixes
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix OR
+            "default" for Bioregistry prefixes
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
-        it = self._iter_prefix_map(
-            priority=priority,
-            include_synonyms=include_synonyms,
-            use_preferred=use_preferred,
+        records = self.get_curies_records(
+            prefix_priority=prefix_priority,
+            uri_prefix_priority=uri_prefix_priority,
+            remapping=remapping,
             blacklist=blacklist,
         )
-        if not remapping:
-            return dict(it)
-        return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
-
-    def _iter_prefix_map(
-        self,
-        *,
-        priority: Optional[Sequence[str]] = None,
-        include_synonyms: bool = False,
-        use_preferred: bool = False,
-        blacklist: Optional[typing.Collection[str]] = None,
-    ) -> Iterable[Tuple[str, str]]:
-        blacklist = set(blacklist or [])
-        for prefix, resource in self.registry.items():
-            if prefix in blacklist:
-                continue
-            uri_prefix = resource.get_uri_prefix(priority=priority)
-            if uri_prefix is None:
-                continue
-            if use_preferred:
-                preferred_prefix = resource.get_preferred_prefix()
-                if preferred_prefix is not None:
-                    prefix = preferred_prefix
-            yield prefix, uri_prefix
+        rv = {}
+        for record in records:
+            rv[record.prefix] = record.uri_prefix
             if include_synonyms:
-                for synonym in resource.get_synonyms():
-                    yield synonym, uri_prefix
-
-    def get_prefix_list(self, **kwargs) -> List[Tuple[str, str]]:
-        """Get the default priority prefix list."""
-        #: A prefix map in reverse sorted order based on length of the URI prefix
-        #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-        return prepare_prefix_list(self.get_prefix_map(**kwargs))
+                for prefix in record.prefix_synonyms:
+                    rv[prefix] = record.uri_prefix
+        return rv
 
     def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
@@ -584,23 +612,23 @@ class Manager:
 
     def _rasterized_registry(self) -> Mapping[str, Resource]:
         return {
-            prefix: self.rasterized_resource(prefix, resource)
-            for prefix, resource in self.registry.items()
+            prefix: self.rasterized_resource(resource) for prefix, resource in self.registry.items()
         }
 
-    def rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
+    def rasterized_resource(self, resource: Resource) -> Resource:
         """Rasterize a resource."""
         return Resource(
             prefix=resource.prefix,
-            preferred_prefix=resource.get_preferred_prefix() or prefix,
+            preferred_prefix=resource.get_preferred_prefix() or resource.prefix,
             name=resource.get_name(),
             description=resource.get_description(),
             pattern=resource.get_pattern(),
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            synonyms=resource.get_synonyms(),
+            synonyms=sorted(resource.get_synonyms()),
             repository=resource.get_repository(),
+            keywords=resource.get_keywords(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
@@ -625,14 +653,15 @@ class Manager:
             contributor=resource.contributor,
             contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
+            owners=resource.owners,
             twitter=resource.get_twitter(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
-            appears_in=self.get_appears_in(prefix),
-            depends_on=self.get_depends_on(prefix),
+            appears_in=self.get_appears_in(resource.prefix),
+            depends_on=self.get_depends_on(resource.prefix),
             mappings=resource.get_mappings(),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
@@ -808,7 +837,7 @@ class Manager:
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
         if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
+        return f"{self.base_url}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
@@ -1300,29 +1329,20 @@ class Manager:
         context = self.get_context(key)
         if context is None:
             raise KeyError
-        remapping = dict(
-            ChainMap(
-                *(
-                    self.get_registry_map(metaprefix)
-                    for metaprefix in context.prefix_priority or []
-                ),
-                context.prefix_remapping or {},
-            )
-        )
         include_synonyms = (
             include_synonyms if include_synonyms is not None else context.include_synonyms
         )
         prescriptive_prefix_map = self.get_prefix_map(
-            remapping=remapping,
-            priority=context.uri_prefix_priority,
+            remapping=context.prefix_remapping,
+            uri_prefix_priority=context.uri_prefix_priority,
+            prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
             blacklist=context.blacklist,
         )
         prescriptive_pattern_map = self.get_pattern_map(
-            remapping=remapping,
+            remapping=context.prefix_remapping,
             include_synonyms=include_synonyms,
-            use_preferred=context.use_preferred,
+            prefix_priority=context.prefix_priority,
             blacklist=context.blacklist,
         )
         return prescriptive_prefix_map, prescriptive_pattern_map

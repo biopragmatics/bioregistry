@@ -4,6 +4,7 @@ import itertools as itt
 import logging
 from collections import defaultdict
 from typing import (
+    Collection,
     DefaultDict,
     Dict,
     Iterable,
@@ -46,7 +47,16 @@ prefix_resource_blacklist = {
     ("uberon", "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/"),
     ("ncbigene", "https://en.wikipedia.org/wiki/"),  # probably from wikigene?
     ("ncbigene", "http://en.wikipedia.org/wiki/"),
+    ("wbphenotype", "http://www.wormbase.org/get?name="),  # wrong in GO
+    ("wbphenotype", "https://www.wormbase.org/get?name="),  # wrong in GO
+    ("wbls", "http://www.wormbase.org/get?name="),  # wrong in GO
+    ("wbls", "https://www.wormbase.org/get?name="),  # wrong in GO
+    ("uniprot.isoform", "http://www.uniprot.org/uniprot/"),  # wrong in miriam
+    ("uniprot.isoform", "https://www.uniprot.org/uniprot/"),  # wrong in miriam
+    ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
+    ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
 }
+assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
 
 
 def _debug_or_raise(msg: str, strict: bool = False):
@@ -69,7 +79,6 @@ def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], 
 
 def _iterate_prefix_prefix(resource: Resource, *extras: str):
     prefixes_ = [
-        resource.prefix,
         resource.prefix,
         *resource.get_synonyms(),
         resource.get_preferred_prefix(),
@@ -100,19 +109,24 @@ def get_records(  # noqa: C901
     uri_prefix_priority: Optional[Sequence[str]] = None,
     include_prefixes: bool = False,
     strict: bool = False,
+    blacklist: Optional[Collection[str]] = None,
+    remapping: Optional[Mapping[str, str]] = None,
 ) -> List[curies.Record]:
     """Generate records from resources."""
+    blacklist = set(blacklist or []).union(prefix_blacklist)
+    remapping = dict(remapping or {})
     resource_dict: Mapping[str, Resource] = {
         resource.prefix: resource
         for resource in resources
-        if resource.get_uri_prefix() and resource.prefix not in prefix_blacklist
+        if resource.get_uri_prefix() and resource.prefix not in blacklist
     }
     primary_uri_prefixes: Dict[str, str] = {
         resource.prefix: cast(str, resource.get_uri_prefix(priority=uri_prefix_priority))
         for resource in resource_dict.values()
     }
     primary_prefixes: Dict[str, str] = {
-        resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
+        resource.prefix: remapping.get(resource.prefix)
+        or resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
     secondary_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
@@ -181,7 +195,7 @@ def get_records(  # noqa: C901
             secondary_uri_prefixes[prefix].add(uri_prefix)
 
     def _add_prefix_prefixes(
-        primary_prefix: str, resource: Resource, target_prefix: str = None
+        primary_prefix: str, resource: Resource, target_prefix: Optional[str] = None
     ) -> None:
         if target_prefix is None:
             target_prefix = resource.prefix
@@ -238,17 +252,21 @@ def get_records(  # noqa: C901
                     primary_prefix=primary_prefix, resource=resource, target_prefix=prefix
                 )
         elif has_part:
-            uri_prefixes = resource.get_uri_prefixes()
-            if (
-                any(uri_prefix in reverse_uri_prefix_lookup for uri_prefix in uri_prefixes)
-                and has_part in primary_uri_prefixes
-            ):
+            uri_prefixes = {
+                p
+                for p in resource.get_uri_prefixes()
+                if (resource.prefix, p) not in prefix_resource_blacklist
+            }
+            _duplicats = [
+                uri_prefix for uri_prefix in uri_prefixes if uri_prefix in reverse_uri_prefix_lookup
+            ]
+            if _duplicats and has_part in primary_uri_prefixes:
                 del primary_prefixes[resource.prefix]
                 del primary_uri_prefixes[resource.prefix]
                 _add_synonym(synonym=resource.prefix, prefix=has_part)
                 for synonym in resource.get_synonyms():
                     _add_synonym(synonym=synonym, prefix=has_part)
-                for uri_prefix in resource.get_uri_prefixes():
+                for uri_prefix in uri_prefixes:
                     _add_uri_synonym(uri_prefix=uri_prefix, prefix=has_part)
                 if include_prefixes:
                     _add_prefix_prefixes(
