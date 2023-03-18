@@ -25,11 +25,15 @@ from typing import (
 import curies
 
 from .constants import (
+    BIOREGISTRY_PATH,
     BIOREGISTRY_REMOTE_URL,
+    COLLECTIONS_PATH,
+    CONTEXTS_PATH,
     EXTRAS,
     HEALTH_BASE,
     IDENTIFIERS_ORG_URL_PREFIX,
     LINK_PRIORITY,
+    METAREGISTRY_PATH,
     SHIELDS_BASE,
 )
 from .license_standardizer import standardize_license
@@ -46,11 +50,7 @@ from .schema_utils import (
     _contexts_from_path,
     _read_metaregistry,
     _registry_from_path,
-    read_collections,
-    read_contexts,
-    read_metaregistry,
     read_mismatches,
-    read_registry,
     write_registry,
 )
 from .utils import NormDict, _norm, curie_to_str
@@ -115,7 +115,7 @@ class Manager:
         self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
 
         if registry is None:
-            self.registry = dict(read_registry())
+            self.registry = dict(_registry_from_path(BIOREGISTRY_PATH))
         elif isinstance(registry, (str, Path)):
             self.registry = dict(_registry_from_path(registry))
         else:
@@ -123,21 +123,21 @@ class Manager:
         self.synonyms = _synonym_to_canonical(self.registry)
 
         if metaregistry is None:
-            self.metaregistry = dict(read_metaregistry())
+            self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
         elif isinstance(metaregistry, (str, Path)):
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
 
         if collections is None:
-            self.collections = dict(read_collections())
+            self.collections = dict(_collections_from_path(COLLECTIONS_PATH))
         elif isinstance(collections, (str, Path)):
             self.collections = dict(_collections_from_path(collections))
         else:
             self.collections = dict(collections)
 
         if contexts is None:
-            self.contexts = dict(read_contexts())
+            self.contexts = dict(_contexts_from_path(CONTEXTS_PATH))
         elif isinstance(contexts, (str, Path)):
             self.contexts = dict(_contexts_from_path(contexts))
         else:
