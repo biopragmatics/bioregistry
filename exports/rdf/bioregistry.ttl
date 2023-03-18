@@ -1101,7 +1101,9 @@
 @prefix scholia.resource: <https://bioregistry.io/metaregistry/scholia/> .
 @prefix sciflection: <https://sciflection.com/> .
 @prefix scomp: <https://biopragmatics.github.io/providers/scomp/> .
-@prefix scop: <http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?sunid=> .
+@prefix scop: <http://scop.berkeley.edu/sunid=> .
+@prefix scop.sccs: <http://scop.berkeley.edu/sccs=> .
+@prefix scop.sid: <http://scop.berkeley.edu/sid=> .
 @prefix scoro: <http://purl.org/spar/scoro/> .
 @prefix scpd: <http://rulai.cshl.edu/cgi-bin/SCPD/getgene2?> .
 @prefix scr: <http://scicrunch.org/resolver/SCR_> .
@@ -16249,27 +16251,6 @@ bioregistry:sciflection a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 sciflection:5ede4273-b26c-4ea4-adb7-3ce294ab3397 ;
     bioregistry.schema:0000029 "sciflection" .
 
-bioregistry:scop a bioregistry.schema:0000001 ;
-    rdfs:label "Structural Classification of Protein" ;
-    dcterms:description "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch biocontext:SCOP,
-        n2t:scop,
-        fairsharing:FAIRsharing.wjzty,
-        prefixcommons:scop,
-        miriam:scop ;
-    dcat:keyword "life science",
-        "protein",
-        "structure" ;
-    foaf:homepage <http://scop.mrc-lmb.cam.ac.uk/scop/> ;
-    bioregistry.schema:0000005 "47419"^^xsd:string ;
-    bioregistry.schema:0000006 "http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?sunid=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?sunid="^^xsd:string ;
-    bioregistry.schema:0000027 scop:47419 ;
-    bioregistry.schema:0000029 "scop" .
-
 bioregistry:scpd a bioregistry.schema:0000001 ;
     rdfs:label "Saccharomyces cerevisiae promoter database" ;
     dcterms:description "Database containing promotor sequences found in Saccharomyces cerevisiae."^^xsd:string ;
@@ -20909,7 +20890,13 @@ edam.data:1027 dcterms:isPartOf bioregistry.registry:edam .
 
 edam.data:1035 dcterms:isPartOf bioregistry.registry:edam .
 
+edam.data:1039 dcterms:isPartOf bioregistry.registry:edam .
+
 edam.data:1040 dcterms:isPartOf bioregistry.registry:edam .
+
+edam.data:1041 dcterms:isPartOf bioregistry.registry:edam .
+
+edam.data:1042 dcterms:isPartOf bioregistry.registry:edam .
 
 edam.data:1089 dcterms:isPartOf bioregistry.registry:edam .
 
@@ -34007,6 +33994,57 @@ bioregistry:scomp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 scomp:C0001 ;
     bioregistry.schema:0000029 "scomp" .
 
+bioregistry:scop a bioregistry.schema:0000001 ;
+    rdfs:label "Structural Classification of Proteins - Unique Identifier" ;
+    dcterms:description "SCOP(e) unique identifier. This is simply a number that may be used to reference any entry in the SCOP(e) hierarchy, from root to leaves (Fold, Superfamily, Family, etc.)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch edam.data:1042,
+        biocontext:SCOP,
+        n2t:scop,
+        prefixcommons:scop,
+        miriam:scop ;
+    dcat:keyword "protein",
+        "structure" ;
+    foaf:homepage <https://scop.berkeley.edu> ;
+    bioregistry.schema:0000005 "47419"^^xsd:string ;
+    bioregistry.schema:0000006 "http://scop.berkeley.edu/sunid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5153-9079 ;
+    bioregistry.schema:0000023 "scop.sun",
+        "scop.sunid" ;
+    bioregistry.schema:0000024 "http://scop.berkeley.edu/sunid="^^xsd:string ;
+    bioregistry.schema:0000027 scop:47419 ;
+    bioregistry.schema:0000029 "scop" .
+
+bioregistry:scop.sccs a bioregistry.schema:0000001 ;
+    rdfs:label "SCOP(e) concise classification string" ;
+    dcterms:description "This is a dot notation used to concisely describe a SCOP(e) class, fold, superfamily, and family. For example, a.39.1.1 references the 'Calbindin D9K' family, where 'a' represents the class, '39' represents the fold, '1' represents the superfamily, and the last '1' represents the family."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch edam.data:1041 ;
+    foaf:homepage <https://scop.berkeley.edu> ;
+    bioregistry.schema:0000005 "a.39.1.1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://scop.berkeley.edu/sccs=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5153-9079 ;
+    bioregistry.schema:0000024 "http://scop.berkeley.edu/sccs="^^xsd:string ;
+    bioregistry.schema:0000027 scop.sccs:a.39.1.1 ;
+    bioregistry.schema:0000029 "scop.sccs" .
+
+bioregistry:scop.sid a bioregistry.schema:0000001 ;
+    rdfs:label "Structural Classification of Protein - Stable Domain Identifier" ;
+    dcterms:description " A 7-character sid consists of \"d\" followed by the 4-character PDB ID of the file of origin, the PDB chain ID ('_' if none, '.' if multiple as is the case in genetic domains), and a single character (usually an integer) if needed to specify the domain uniquely ('_' if not). Sids are currently all lower case, even when the chain letter is upper case. Example sids include d4akea1, d9hvpa_, and d1cph.1."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch edam.data:1039 ;
+    foaf:homepage <https://scop.berkeley.edu> ;
+    bioregistry.schema:0000005 "d4akea1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://scop.berkeley.edu/sid=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5153-9079 ;
+    bioregistry.schema:0000024 "http://scop.berkeley.edu/sid="^^xsd:string ;
+    bioregistry.schema:0000027 scop.sid:d4akea1 ;
+    bioregistry.schema:0000029 "scop.sid" .
+
 bioregistry:scopus a bioregistry.schema:0000001 ;
     rdfs:label "Scopus Researcher" ;
     dcterms:description """Scopus is the largest abstract and citation database of peer-reviewed literature: scientific journals, books and conference proceedings. 
@@ -36504,8 +36542,6 @@ fairsharing:FAIRsharing.wcpd6f dcterms:isPartOf bioregistry.registry:fairsharing
 fairsharing:FAIRsharing.we2r5a dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.wf28wm dcterms:isPartOf bioregistry.registry:fairsharing .
-
-fairsharing:FAIRsharing.wjzty dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.wkaakq dcterms:isPartOf bioregistry.registry:fairsharing .
 
@@ -44201,6 +44237,9 @@ orcid:0000-0002-5111-7263 rdfs:label "Dr Paul Schofield",
     foaf:mbox "PNS12@cam.ac.uk",
         "pns12@hermes.cam.ac.uk" .
 
+orcid:0000-0002-5153-9079 rdfs:label "John-Marc Chandonia" ;
+    foaf:mbox "JMChandonia@lbl.gov" .
+
 orcid:0000-0002-5640-5491 rdfs:label "Matt Yoder" ;
     foaf:mbox "diapriid@gmail.com",
         "mjyoder@illinois.edu" .
@@ -47986,7 +48025,10 @@ bioregistry.registry:edam a bioregistry.schema:0000002 ;
         edam.data:1011,
         edam.data:1027,
         edam.data:1035,
+        edam.data:1039,
         edam.data:1040,
+        edam.data:1041,
+        edam.data:1042,
         edam.data:1089,
         edam.data:1098,
         edam.data:1105,
@@ -48405,6 +48447,9 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:schema,
         bioregistry:scholia.resource,
         bioregistry:scomp,
+        bioregistry:scop,
+        bioregistry:scop.sccs,
+        bioregistry:scop.sid,
         bioregistry:scopus,
         bioregistry:scoro,
         bioregistry:scr,
@@ -51439,7 +51484,6 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.wcpd6f,
         fairsharing:FAIRsharing.we2r5a,
         fairsharing:FAIRsharing.wf28wm,
-        fairsharing:FAIRsharing.wjzty,
         fairsharing:FAIRsharing.wkaakq,
         fairsharing:FAIRsharing.wkdjpb,
         fairsharing:FAIRsharing.wnk2eq,
@@ -55187,6 +55231,8 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sciflection,
         bioregistry:scomp,
         bioregistry:scop,
+        bioregistry:scop.sccs,
+        bioregistry:scop.sid,
         bioregistry:scopus,
         bioregistry:scoro,
         bioregistry:scpd,

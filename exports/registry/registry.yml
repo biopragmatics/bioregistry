@@ -39922,24 +39922,31 @@ scomp:
   preferred_prefix: scomp
   uri_format: https://biopragmatics.github.io/providers/scomp/$1
 scop:
-  description: The SCOP (Structural Classification of Protein) database is a comprehensive
-    ordering of all proteins of known structure according to their evolutionary, functional
-    and structural relationships. The basic classification unit is the protein domain.
-    Domains are hierarchically classified into species, proteins, families, superfamilies,
-    folds, and classes.
+  contact:
+    email: JMChandonia@lbl.gov
+    github: jmchandonia
+    name: John-Marc Chandonia
+    orcid: 0000-0002-5153-9079
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: SCOP(e) unique identifier. This is simply a number that may be used
+    to reference any entry in the SCOP(e) hierarchy, from root to leaves (Fold, Superfamily,
+    Family, etc.).
   example: '47419'
-  homepage: http://scop.mrc-lmb.cam.ac.uk/scop/
+  homepage: https://scop.berkeley.edu
   keywords:
-  - life science
   - protein
   - structure
   mappings:
     biocontext: SCOP
-    fairsharing: FAIRsharing.wjzty
+    edam: '1042'
     miriam: scop
     n2t: scop
     prefixcommons: scop
-  name: Structural Classification of Protein
+  name: Structural Classification of Proteins - Unique Identifier
   pattern: ^\d+$
   preferred_prefix: scop
   providers:
@@ -39948,6 +39955,11 @@ scop:
     homepage: http://scop.berkeley.edu/
     name: SCOP at Berkeley
     uri_format: http://scop.berkeley.edu/sunid=$1
+  - code: mrc
+    description: SCOP at UK Medical Research council (MRC)
+    homepage: https://scop.mrc-lmb.cam.ac.uk
+    name: SCOP at UK Medical Research council (MRC)
+    uri_format: https://scop.mrc-lmb.cam.ac.uk/term/$1
   publications:
   - doi: 10.1093/nar/27.1.254
     pmc: PMC148149
@@ -39971,7 +39983,69 @@ scop:
       evaluation of the effectiveness of sequence alignment methods and statistics
       of protein structural data.'
     year: 1998
-  uri_format: http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?sunid=$1
+  references:
+  - https://scop.berkeley.edu/help/#stableidentifiers
+  synonyms:
+  - scop.sun
+  - scop.sunid
+  uri_format: http://scop.berkeley.edu/sunid=$1
+scop.sccs:
+  contact:
+    email: JMChandonia@lbl.gov
+    github: jmchandonia
+    name: John-Marc Chandonia
+    orcid: 0000-0002-5153-9079
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is a dot notation used to concisely describe a SCOP(e) class,
+    fold, superfamily, and family. For example, a.39.1.1 references the 'Calbindin
+    D9K' family, where 'a' represents the class, '39' represents the fold, '1' represents
+    the superfamily, and the last '1' represents the family.
+  example: a.39.1.1
+  example_extras:
+  - a.39.1
+  - a.39
+  - a
+  homepage: https://scop.berkeley.edu
+  mappings:
+    edam: '1041'
+  name: SCOP(e) concise classification string
+  preferred_prefix: scop.sccs
+  references:
+  - https://scop.berkeley.edu/help/#stableidentifiers
+  uri_format: http://scop.berkeley.edu/sccs=$1
+scop.sid:
+  contact:
+    email: JMChandonia@lbl.gov
+    github: jmchandonia
+    name: John-Marc Chandonia
+    orcid: 0000-0002-5153-9079
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ' A 7-character sid consists of "d" followed by the 4-character PDB
+    ID of the file of origin, the PDB chain ID (''_'' if none, ''.'' if multiple as
+    is the case in genetic domains), and a single character (usually an integer) if
+    needed to specify the domain uniquely (''_'' if not). Sids are currently all lower
+    case, even when the chain letter is upper case. Example sids include d4akea1,
+    d9hvpa_, and d1cph.1.'
+  example: d4akea1
+  example_extras:
+  - d9hvpa_
+  - d1cph.1
+  homepage: https://scop.berkeley.edu
+  mappings:
+    edam: '1039'
+  name: Structural Classification of Protein - Stable Domain Identifier
+  preferred_prefix: scop.sid
+  references:
+  - https://scop.berkeley.edu/help/#stableidentifiers
+  uri_format: http://scop.berkeley.edu/sid=$1
 scopus:
   contributor:
     email: cthoyt@gmail.com
