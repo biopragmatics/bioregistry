@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 44.0
- Last update: 15-December-2022
+ Version: 45.0
+ Last update: 21-March-2023
 
 ----------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -85,7 +85,7 @@ Where : Resource_abbrev is one of: FlyBase_Gene|HGNC|MGI|RGD|UniProtKB|VGNC
 
 Topic:  Transformant
 Format: CC   Transformant: Resource_abbrev; %s; Transformant_name.
-Where : Resource_abbrev is one of: ChEBI|NCBI_TaxID|NCIt|PubChem
+Where : Resource_abbrev is one of: ChEBI|DrugBank|NCBI_TaxID|NCIt|PubChem
 
 4) CC lines "Sequence variation"
 
@@ -183,7 +183,7 @@ Cat   : Cell line collections
 //
 Abbrev: BCRJ
 Name  : Banco de Celulas do Rio de Janeiro
-Server: http://bcrj.org.br/celula/bcrj
+Server: https://bcrj.org.br/pesquisa/
 Db_URL: http://bcrj.org.br/celula/%s
 Term. : No
 Cat   : Cell line collections
@@ -226,8 +226,8 @@ Cat   : Cell line collections
 //
 Abbrev: CBA
 Name  : CellBank Australia
-Server: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
-Db_URL: http://www.cellbankaustralia.com/%s
+Server: https://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
+Db_URL: https://www.cellbankaustralia.com/%s
 Term. : No
 Cat   : Cell line collections
 //
@@ -546,8 +546,8 @@ Cat   : Organism-specific databases
 //
 Abbrev: HipSci
 Name  : Human Induced Pluripotent Stem Cells Initiative
-Server: http://www.hipsci.org
-Db_URL: http://www.hipsci.org/lines/#/lines/%s
+Server: https://www.hipsci.org
+Db_URL: https://www.hipsci.org/lines/#/lines/%s
 Term. : No
 Cat   : Cell line databases/resources
 //
@@ -770,7 +770,7 @@ Cat   : Cell line collections
 //
 Abbrev: NCBI_Iran
 Name  : National Cell Bank of Iran
-Server: http://en.pasteur.ac.ir/pages.aspx?id=823
+Server: https://en.pasteur.ac.ir/Department%20of%20Cell%20Bank
 Db_URL: None
 Term. : No
 Cat   : Cell line collections
@@ -802,6 +802,13 @@ Server: https://stemcells.nindsgenetics.org
 Db_URL: https://stemcells.nindsgenetics.org?line=%s
 Term. : No
 Cat   : Cell line collections
+//
+Abbrev: NIHhESC
+Name  : NIH Human Embryonic Stem Cell Registry
+Server: https://grants.nih.gov/stem_cells/registry/current.htm
+Db_URL: https://grants.nih.gov/stem_cells/registry/current.htm?ID=%s
+Term. : No
+Cat   : Cell line databases/resources
 //
 Abbrev: NISES
 Name  : National Institute of Sericultural and Entomological Science Cell Database
