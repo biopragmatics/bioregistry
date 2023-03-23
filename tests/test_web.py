@@ -18,7 +18,7 @@ class TestWeb(unittest.TestCase):
 
     def setUp(self) -> None:
         """Set up the test case with an app."""
-        self.app = get_app()
+        _, self.app = get_app(return_flask=True)
         self.manager = Manager()
 
     def test_ui(self):
