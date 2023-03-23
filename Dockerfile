@@ -1,6 +1,6 @@
-FROM python:3.10-alpine
+FROM python:3.11-alpine
 
 RUN python -m pip install --upgrade pip
 RUN python -m pip install --upgrade wheel
-RUN python -m pip install gunicorn bioregistry[web]
-ENTRYPOINT python -m bioregistry web --port 8766 --host "0.0.0.0" --with-gunicorn --workers 4
+RUN python -m pip install bioregistry[web]
+ENTRYPOINT python -m bioregistry web --port 8766 --host "0.0.0.0" --workers 4
