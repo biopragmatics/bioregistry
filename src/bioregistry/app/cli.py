@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 import click
-from more_click import host_option, port_option, verbose_option
+from more_click import host_option, port_option, verbose_option, with_gunicorn_option
 
 __all__ = [
     "web",
@@ -16,6 +16,12 @@ __all__ = [
 @click.command()
 @host_option
 @port_option
+@with_gunicorn_option
+@click.option(
+    "--workers",
+    type=int,
+    help="Number of workers",
+)
 @verbose_option
 @click.option("--registry", type=Path, help="Path to a local registry file")
 @click.option("--metaregistry", type=Path, help="Path to a local metaregistry file")
@@ -32,6 +38,8 @@ __all__ = [
 def web(
     host: str,
     port: str,
+    with_gunicorn: bool,
+    workers: Optional[int],
     registry: Optional[Path],
     metaregistry: Optional[Path],
     collections: Optional[Path],
@@ -44,6 +52,9 @@ def web(
 
     from .impl import get_app
     from ..resource_manager import Manager
+
+    if with_gunicorn:
+        click.secho("--with-gunicorn is deprecated", fg="yellow")
 
     manager = Manager(
         registry=registry,
@@ -61,5 +72,4 @@ def web(
         and collections is None
         and contexts is None,
     )
-
-    uvicorn.run(app, host=host, port=int(port), log_level="info")
+    uvicorn.run(app, host=host, port=int(port), workers=workers)

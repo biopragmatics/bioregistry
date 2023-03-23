@@ -76,6 +76,8 @@ KEEP = {
     "example",
     "uri_format",
 }
+#: These contain synonyms with mismatches
+DISCARD_SYNONYMS = {"biogrid", "cath", "zfa"}
 
 
 def get_prefixcommons(force_download: bool = False):
@@ -84,7 +86,7 @@ def get_prefixcommons(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=URL, path=RAW_PATH, force=True)
+    download(url=URL, path=RAW_PATH, force=force_download)
     rows = {}
     with RAW_PATH.open() as file:
         lines = iter(file)
@@ -100,6 +102,7 @@ def get_prefixcommons(force_download: bool = False):
 
 def _process_row(line: str):
     cells = line.strip().split("\t")
+    prefix = cells[0]
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
     rv: Dict[str, Any] = {
         key: value.strip()
@@ -110,10 +113,23 @@ def _process_row(line: str):
         if not rv.get(key):
             return None, None
 
-    for key in ["keywords", "pubmed_ids", "synonyms"]:
+    for key in ["keywords", "pubmed_ids"]:
         values = rv.get(key)
         if values:
             rv[key] = [value.strip() for value in values.split(",")]
+
+    synonyms = rv.get("synonyms")
+    if not synonyms:
+        pass
+    elif prefix in DISCARD_SYNONYMS:
+        rv["synonyms"] = []
+    else:
+        synonyms_it = (s.strip() for s in synonyms.split(","))
+        rv["synonyms"] = [
+            synonym
+            for synonym in synonyms_it
+            if synonym.lower() != prefix.lower() and " " not in synonym
+        ]
 
     uri_format = rv.get("uri_format")
     if uri_format:
@@ -129,7 +145,7 @@ def _process_row(line: str):
             pattern = f"{pattern}$"
         rv["pattern"] = pattern
 
-    return cells[0], rv
+    return prefix, rv
 
 
 if __name__ == "__main__":

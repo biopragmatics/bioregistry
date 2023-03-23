@@ -6,6 +6,9 @@ from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
 from fastapi import FastAPI
+from curies.mapping_service import get_flask_mapping_blueprint
+from fastapi import FastAPI
+from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from starlette.middleware.wsgi import WSGIMiddleware
@@ -83,7 +86,9 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
     """\
     <p style="margin-bottom: 0">
         Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-        improvements</a> or make pull requests to update the underlying database, which is stored in
+        improvements</a>, <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=\
+            New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">request a new prefix</a>,
+             or make pull requests to update the underlying database, which is stored in
         <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
             JSON</a> on GitHub where the community can engage in an open review process.
     </p>
@@ -103,7 +108,8 @@ def get_app(
     :param config: Additional configuration to be passed to the flask application. See below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Return the encased flask app, use for testing purposes.
-    :returns: An instantiated flask application
+    :param return_flask: Set to true to get internal flask app
+    :returns: An instantiated WSGI application
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     if isinstance(config, (str, Path)):
@@ -176,14 +182,14 @@ def get_app(
     fast_api.manager = manager
     fast_api.include_router(api_router)
 
-    flask_app = Flask(__name__)
-    flask_app.config.update(conf)
-    flask_app.manager = manager
+    app = Flask(__name__)
+    app.config.update(conf)
+    app.manager = manager
 
-    if flask_app.config.get("METAREGISTRY_FIRST_PARTY"):
-        flask_app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
+    if app.config.get("METAREGISTRY_FIRST_PARTY"):
+        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
-    example_prefix = flask_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
+    example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
     resource = manager.registry.get(example_prefix)
     if resource is None:
         raise ValueError(
@@ -196,18 +202,21 @@ def get_app(
 
     # "host": removeprefix(removeprefix(manager.base_url, "https://"), "http://"),
 
-    Bootstrap4(flask_app)
+    Bootstrap4(app)
 
-    flask_app.register_blueprint(ui_blueprint)
+    app.register_blueprint(ui_blueprint)
 
-    # Make manager available in all jinja templates
-    flask_app.jinja_env.globals.update(
+    sparql_blueprint = get_flask_mapping_blueprint(app.manager.converter)
+    app.register_blueprint(sparql_blueprint)
+
+    fast_api = FastAPI()
+    fast_api.mount("/", WSGIMiddleware(app))
+
+    app.jinja_env.globals.update(
         manager=manager,
         curie_to_str=curie_to_str,
         fastapi=fast_api,
     )
-
-    fast_api.mount("/", WSGIMiddleware(flask_app))
     if return_flask:
-        return fast_api, flask_app
+        return fast_api, app
     return fast_api

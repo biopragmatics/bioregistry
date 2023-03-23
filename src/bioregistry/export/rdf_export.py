@@ -7,9 +7,20 @@ from typing import Any, Callable, List, Optional, Tuple, Union, cast
 
 import click
 import rdflib
-from rdflib import Literal, Namespace
-from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
-from rdflib.term import URIRef
+from rdflib import (
+    DCAT,
+    DCTERMS,
+    DOAP,
+    FOAF,
+    RDF,
+    RDFS,
+    SKOS,
+    XSD,
+    Literal,
+    Namespace,
+    URIRef,
+)
+from rdflib.term import _is_valid_uri
 
 import bioregistry
 from bioregistry import Manager
@@ -22,13 +33,14 @@ from bioregistry.constants import (
     SCHEMA_TURTLE_PATH,
 )
 from bioregistry.schema.constants import (
+    ROR,
+    WIKIDATA,
     _add_schema,
-    bioregistry_collection,
+    _graph,
     bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
     get_schema_rdf,
-    orcid,
 )
 from bioregistry.schema.struct import Collection, Registry, Resource
 
@@ -78,23 +90,6 @@ def export_rdf():
     )
 
 
-def _graph(manager: Manager) -> rdflib.Graph:
-    graph = rdflib.Graph()
-    graph.namespace_manager.bind("bioregistry", bioregistry_resource)
-    graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
-    graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
-    graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
-    graph.namespace_manager.bind("orcid", orcid)
-    graph.namespace_manager.bind("foaf", FOAF)
-    graph.namespace_manager.bind("dc", DC)
-    graph.namespace_manager.bind("dcterms", DCTERMS)
-    graph.namespace_manager.bind("skos", SKOS)
-    graph.namespace_manager.bind("obo", Namespace("http://purl.obolibrary.org/obo/"))
-    for key, value in manager.get_internal_prefix_map().items():
-        graph.namespace_manager.bind(key, value)
-    return graph
-
-
 def get_full_rdf(manager: Manager) -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph(manager=manager)
@@ -104,6 +99,9 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
     for collection in manager.collections.values():
         collection.add_triples(graph)
     for resource in manager.registry.values():
+        uri_prefix = resource.get_uri_prefix()
+        if uri_prefix:
+            graph.bind(resource.prefix, uri_prefix)
         _add_resource(graph=graph, manager=manager, resource=resource)
     return graph
 
@@ -145,26 +143,48 @@ def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resour
     return [
         ("0000008", Resource.get_pattern, XSD.string),
         ("0000006", Resource.get_uri_format, XSD.string),
+        ("0000024", Resource.get_uri_prefix, XSD.string),
         ("0000005", Resource.get_example, XSD.string),
         ("0000012", Resource.is_deprecated, XSD.boolean),
-        (DC.description, Resource.get_description, XSD.string),
-        (FOAF.homepage, Resource.get_homepage, XSD.string),
+        (DCTERMS.description, Resource.get_description, XSD.string),
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
+def _get_resource_function_2() -> List[Tuple[Union[str, URIRef], Callable[[Resource], Any]]]:
+    return [
+        ("0000027", Resource.get_example_iri),
+        (FOAF.homepage, Resource.get_homepage),
+        (DOAP.GitRepository, Resource.get_repository),
+    ]
+
+
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):  # noqa:C901
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
+    graph.add((node, bioregistry_schema["0000029"], Literal(resource.prefix)))
     graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
     graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
+    for synonym in resource.get_synonyms():
+        graph.add((node, bioregistry_schema["0000023"], Literal(synonym)))
+    for keyword in resource.get_keywords():
+        graph.add((node, DCAT.keyword, Literal(keyword)))
 
     for predicate, func, datatype in _get_resource_functions():
         value = func(resource)
+        if value is None:
+            continue
         if not isinstance(predicate, URIRef):
             predicate = bioregistry_schema[predicate]
-        if value is not None:
-            graph.add((node, predicate, Literal(value, datatype=datatype)))
+        graph.add((node, predicate, Literal(value, datatype=datatype)))
+
+    for predicate, func in _get_resource_function_2():
+        value = func(resource)
+        if value is None or not _is_valid_uri(value):
+            continue
+        if not isinstance(predicate, URIRef):
+            predicate = bioregistry_schema[predicate]
+        graph.add((node, predicate, URIRef(value)))
 
     download = (
         resource.get_download_owl()
@@ -181,6 +201,15 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
 
     for appears_in in manager.get_appears_in(resource.prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
+
+    for owner in resource.owners or []:
+        if owner.ror:
+            obj = ROR[owner.ror]
+        elif owner.wikidata:
+            obj = WIKIDATA[owner.wikidata]
+        else:
+            continue
+        graph.add((node, bioregistry_schema["0000026"], obj))
 
     part_of = manager.get_part_of(resource.prefix)
     if part_of:

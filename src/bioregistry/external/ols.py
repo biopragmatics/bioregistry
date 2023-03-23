@@ -36,6 +36,7 @@ OLS_SKIP = {
     "epso": "can't figure out / not sure if still exists",
     "epio": "can't figure out / not sure if still exists",
     "ccf": "this is full of temporary annotations and is mostly nonsense",
+    "cpont": "no own terms?",
 }
 
 

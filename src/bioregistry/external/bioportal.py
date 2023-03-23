@@ -17,6 +17,7 @@ from tqdm.contrib.concurrent import thread_map
 
 from bioregistry.constants import EMAIL_RE, EXTERNAL
 from bioregistry.license_standardizer import standardize_license
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_bioportal",
@@ -72,12 +73,18 @@ class OntoPortalClient:
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
         records = thread_map(
-            self._preprocess, records, unit="ontology", max_workers=self.max_workers
+            self._preprocess,
+            records,
+            unit="ontology",
+            max_workers=self.max_workers,
+            desc=f"Preprocessing {self.metaprefix}",
         )
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
-        records = thread_map(self.process, records, disable=True)
+        records = thread_map(
+            self.process, records, disable=True, description=f"Processing {self.metaprefix}"
+        )
         rv = {result["prefix"]: result for result in records}
 
         with self.processed_path.open("w") as file:
@@ -105,6 +112,9 @@ class OntoPortalClient:
         ]:
             value = res_json.get(key)
             if value:
+                if not isinstance(value, str):
+                    tqdm.write(f"got non-string value ({type(value)}) for {key}: {value}")
+                    continue
                 record[key] = (
                     (value or "")
                     .strip()
@@ -129,6 +139,9 @@ class OntoPortalClient:
             # TODO consider sorting contacts in a canonical order?
             # contact = min(contacts, key=lambda c: len(c["email"]))
             record["contact"] = {k: v for k, v in contact.items() if k != "id"}
+            name = record["contact"].get("name")
+            if name:
+                record["contact"]["name"] = removeprefix(removeprefix(name, "Dr. "), "Dr ")
 
         return {k: v for k, v in record.items() if v}
 

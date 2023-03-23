@@ -15,8 +15,10 @@ SKIP = {
     "redidb": "Website is dead",
     "trnadbce": "Website is password protected",
     "pogs_plantrbp": "Website is dead",
+    "smr": "no evidence of it existing",
 }
 PROVIDERS = {
+    "homeodomain_resource": "hdr",
     "interpare": "pdb",
     "consurfdb": "pdb",
     "homstrad": "pdb",
@@ -37,6 +39,8 @@ PROVIDERS = {
     "procognate": "pdb",
     "binding_moad": "pdb",
     "bhfucl": "uniprot",
+    "pdzbase": "uniprot",
+    "unisave": "uniprot",
     "2dbaseecoli": "uniprot",
     "swiss2dpage": "uniprot",
     "siena2dpage": "uniprot",
@@ -71,6 +75,10 @@ PROVIDERS = {
     "sdr": "pfam",
     "ipfam": "pfam",
     "hupi": "hgnc.symbol",
+    "chimerdb": "hgnc.symbol",
+    "po.psds": "po",
+    "cutdb": "pmap.cutdb",
+    "hubmed": "pubmed",
 }
 
 

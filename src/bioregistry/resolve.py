@@ -19,6 +19,7 @@ __all__ = [
     "get_preferred_prefix",
     "get_mappings",
     "get_synonyms",
+    "get_keywords",
     "get_pattern",
     "get_curie_pattern",
     "get_namespace_in_lui",
@@ -136,6 +137,11 @@ def count_mappings() -> typing.Counter[str]:
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
     """Get the synonyms for a given prefix, if available."""
     return manager.get_synonyms(prefix)
+
+
+def get_keywords(prefix: str) -> Optional[List[str]]:
+    """Return the keywords, if available."""
+    return manager.get_keywords(prefix)
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -403,10 +409,11 @@ def get_default_format(prefix: str) -> Optional[str]:
     return entry.get_default_format()
 
 
-def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
+def get_miriam_uri_prefix(prefix: str, **kwargs) -> Optional[str]:
     """Get the URI prefix for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
+    :param kwargs: Keyword arguments to pass to :meth:`Resource.get_miriam_uri_prefix`
     :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
     >>> import bioregistry
@@ -419,13 +426,14 @@ def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_miriam_uri_prefix()
+    return resource.get_miriam_uri_prefix(**kwargs)
 
 
-def get_miriam_uri_format(prefix: str) -> Optional[str]:
+def get_miriam_uri_format(prefix: str, **kwargs) -> Optional[str]:
     """Get the URI format for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
+    :param kwargs: Keyword arguments to pass to :meth:`Resource.get_miriam_uri_format`
     :returns: The Identifiers.org/MIRIAM URI format string, if available.
 
     >>> import bioregistry
@@ -438,7 +446,7 @@ def get_miriam_uri_format(prefix: str) -> Optional[str]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_miriam_uri_format()
+    return resource.get_miriam_uri_format(**kwargs)
 
 
 def get_obofoundry_uri_format(prefix: str) -> Optional[str]:
@@ -974,7 +982,6 @@ def get_converter(**kwargs) -> curies.Converter:
     return manager.get_converter(**kwargs)
 
 
-@lru_cache(1)
 def get_default_converter() -> curies.Converter:
     """Get a converter from this manager."""
-    return manager.get_converter()
+    return manager.converter

@@ -75,10 +75,24 @@ CANONICAL_DATABASES = {
     "P4168": "Q112783946",  # Immune epitope database
 }
 
-CANONICAL_HOMEPAGES: Dict[str, str] = {}
+CANONICAL_HOMEPAGES: Dict[str, str] = {
+    "P6852": "https://www.ccdc.cam.ac.uk",
+    "P7224": "http://insecta.pro/catalog",
+}
 CANONICAL_URI_FORMATS = {
     "P830": "https://eol.org/pages/$1",
     "P2085": "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1",
+    "P604": "https://medlineplus.gov/ency/article/$1.htm",
+    "P492": "https://omim.org/OMIM:$1",
+    "P486": "http://www.nlm.nih.gov",
+    "P3201": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
+    "P7224": "http://insecta.pro/taxonomy/$1",
+    "P3088": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
+    "P8150": "https://search.bvsalud.org/global-literature-on-novel-coronavirus-2019-ncov/resource/en/$1",
+    "P9272": "https://decs.bvsalud.org/ths/resource/?id=$1",
+    "P8082": "https://www.mscbs.gob.es/ciudadanos/centros.do?metodo=realizarDetalle&tipo=hospital&numero=$1",
+    "P10095": "https://www.surgeons.org/Profile/$1",
+    "P5397": "http://www.tierstimmen.org/en/database?field_spec_species_target_id_selective=$1",
 }
 
 # Stuff with miriam IDs that shouldn't
@@ -143,13 +157,23 @@ def _get_wikidata():
             ("homepage", CANONICAL_HOMEPAGES),
             ("uri_format", CANONICAL_URI_FORMATS),
         ]:
-            values = bindings.get(key, [])
+            # sort by increasing length - the assumption being that the shortest
+            # one has the least amount of nonsense, like language tags or extra
+            # parameters
+            values = sorted(bindings.get(key, []), key=len)
             if not values:
                 pass
             elif len(values) == 1:
                 bindings[key] = values[0]
             elif prefix not in canonicals:
-                logger.warning(f"need to curate canonical {key} for {prefix}: {', '.join(values)}")
+                logger.warning(
+                    "[wikidata] need to curate canonical %s for %s (%s):",
+                    key,
+                    prefix,
+                    bindings["name"],
+                )
+                for value in values:
+                    logger.warning("  %s", value)
                 bindings[key] = values[0]
             else:
                 bindings[key] = canonicals[prefix]

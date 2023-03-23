@@ -2,11 +2,26 @@
 
 """Schema constants."""
 
-from dataclasses import dataclass
-from typing import Mapping, Optional, Union
+from dataclasses import dataclass, field
+from typing import List, Mapping, Optional, Union
 
 import rdflib.namespace
-from rdflib import DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, Literal, URIRef
+from rdflib import (
+    DCAT,
+    DCTERMS,
+    DOAP,
+    FOAF,
+    OWL,
+    RDF,
+    RDFS,
+    SH,
+    SKOS,
+    VANN,
+    VOID,
+    XSD,
+    Literal,
+    URIRef,
+)
 from rdflib.term import Node
 
 __all__ = [
@@ -34,7 +49,7 @@ class Term:
 class ClassTerm(Term):
     """A term for a class."""
 
-    xref: Optional[URIRef] = None
+    xrefs: List[URIRef] = field(default_factory=list)
 
 
 @dataclass
@@ -43,7 +58,14 @@ class PropertyTerm(Term):
 
     domain: Union[str, Node]
     range: Union[str, Node]
+    xrefs: List[URIRef] = field(default_factory=list)
+    parent: Optional[URIRef] = None
 
+
+IDOT = rdflib.Namespace("http://identifiers.org/idot/")
+ROR = rdflib.Namespace("https://ror.org/")
+WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
+OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
 
 bioregistry_schema_terms = [
     ClassTerm("0000001", "Class", "Resource", "A type for entries in the Bioregistry's registry."),
@@ -63,10 +85,14 @@ bioregistry_schema_terms = [
     PropertyTerm(
         "0000005",
         "Property",
-        "has example",
+        "has local unique identifier example",
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
+        xrefs=[
+            IDOT["exampleIdentifier"],
+            VANN["example"],
+        ],
     ),
     PropertyTerm(
         "0000006",
@@ -76,6 +102,10 @@ bioregistry_schema_terms = [
         " that should be resolved.",
         domain="0000001",
         range=XSD.string,
+        xrefs=[
+            IDOT["accessPattern"],
+            WIKIDATA["P1630"],
+        ],
     ),
     PropertyTerm(
         "0000007",
@@ -89,10 +119,14 @@ bioregistry_schema_terms = [
     PropertyTerm(
         "0000008",
         "Property",
-        "has pattern",
+        "has local unique identifier pattern",
         "The pattern for identifiers in the given resource",
         domain="0000001",
         range=XSD.string,
+        xrefs=[
+            IDOT["identifierPattern"],
+            WIKIDATA["P1793"],
+        ],
     ),
     # PropertyTerm(
     #     "0000009",
@@ -192,7 +226,7 @@ bioregistry_schema_terms = [
         "Class",
         "Person",
         "A person",
-        xref=FOAF.Person,
+        xrefs=[FOAF.Person],
     ),
     PropertyTerm(
         "0000021",
@@ -209,6 +243,73 @@ bioregistry_schema_terms = [
         "The main contact person for a registry",
         domain="0000002",
         range="0000020",
+    ),
+    PropertyTerm(
+        "0000023",
+        "Property",
+        "has alternative prefix",
+        "An alternative or synonymous prefix",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[IDOT["alternatePrefix"]],
+        parent=OBOINOWL["hasExactSynonym"],
+    ),
+    PropertyTerm(
+        "0000024",
+        "Property",
+        "has URI prefix",
+        "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier)"
+        " that should be resolved.",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[VANN.preferredNamespaceUri, VOID.uriSpace, SH.namespace],
+    ),
+    ClassTerm(
+        "0000025",
+        "Class",
+        "Organization",
+        "An organization",
+    ),
+    PropertyTerm(
+        "0000026",
+        "Property",
+        "has identifier space owner",
+        "An organization",
+        domain="0000001",
+        range="0000025",
+    ),
+    PropertyTerm(
+        "0000027",
+        "Property",
+        "has resource example",
+        "An expanded example URL for a resource or metaresource.",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[
+            VOID.exampleResource,
+        ],
+    ),
+    PropertyTerm(
+        "0000028",
+        "Property",
+        "has URI pattern",
+        "The pattern for expanded URIs in the given resource",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[
+            VOID.uriRegexPattern,
+            WIKIDATA["P8966"],
+            IDOT["accessIdentifierPattern"],
+        ],
+    ),
+    PropertyTerm(
+        "0000029",
+        "Property",
+        "has prefix",
+        "has canonical prefix",
+        domain="0000001",
+        range=XSD.string,
+        xrefs=[SH.prefix, VANN.preferredNamespacePrefix, IDOT["preferredPrefix"]],
     ),
 ]
 bioregistry_schema_extras = [
@@ -233,13 +334,35 @@ bioregistry_class_to_id: Mapping[str, URIRef] = {
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
 
 
+def _graph(manager=None) -> rdflib.Graph:
+    graph = rdflib.Graph()
+    graph.namespace_manager.bind("bioregistry", bioregistry_resource)
+    graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
+    graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
+    graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
+    graph.namespace_manager.bind("orcid", orcid)
+    graph.namespace_manager.bind("foaf", FOAF)
+    graph.namespace_manager.bind("dcat", DCAT)
+    graph.namespace_manager.bind("dcterms", DCTERMS)
+    graph.namespace_manager.bind("skos", SKOS)
+    graph.namespace_manager.bind("obo", rdflib.Namespace("http://purl.obolibrary.org/obo/"))
+    graph.namespace_manager.bind("idot", IDOT)
+    graph.namespace_manager.bind("wikidata", WIKIDATA)
+    graph.namespace_manager.bind("vann", VANN)
+    graph.namespace_manager.bind("ror", ROR)
+    graph.namespace_manager.bind("oboinowl", OBOINOWL)
+    graph.namespace_manager.bind("void", VOID)
+    graph.namespace_manager.bind("doap", DOAP)
+    graph.namespace_manager.bind("sh", SH)
+    if manager:
+        for key, value in manager.get_internal_prefix_map().items():
+            graph.namespace_manager.bind(key, value)
+    return graph
+
+
 def get_schema_rdf() -> rdflib.Graph:
     """Get the Bioregistry schema as an RDF graph."""
-    graph = rdflib.Graph()
-    graph.bind("bioregistry.schema", bioregistry_schema)
-    graph.bind("bioregistry.collection", bioregistry_collection)
-    graph.bind("bioregistry", bioregistry_resource)
-    graph.bind("dcterms", DCTERMS)
+    graph = _graph()
     _add_schema(graph)
     return graph
 
@@ -249,8 +372,14 @@ def _add_schema(graph):
         node = bioregistry_schema[term.identifier]
         if isinstance(term, ClassTerm):
             graph.add((node, RDF.type, RDFS.Class))
+            for xref in term.xrefs:
+                graph.add((node, OWL.equivalentClass, xref))
         elif isinstance(term, PropertyTerm):
             graph.add((node, RDF.type, RDF.Property))
+            for xref in term.xrefs:
+                graph.add((node, OWL.equivalentProperty, xref))
+            if term.parent is not None:
+                graph.add((node, RDFS.subPropertyOf, term.parent))
             for property_node, object_node in (
                 (RDFS.domain, term.domain),
                 (RDFS.range, term.range),
@@ -265,6 +394,7 @@ def _add_schema(graph):
             raise TypeError(term)
         graph.add((node, RDFS.label, Literal(term.label)))
         graph.add((node, DCTERMS.description, Literal(term.description)))
+
     return graph
 
 

@@ -25,11 +25,15 @@ from typing import (
 import curies
 
 from .constants import (
+    BIOREGISTRY_PATH,
     BIOREGISTRY_REMOTE_URL,
+    COLLECTIONS_PATH,
+    CONTEXTS_PATH,
     EXTRAS,
     HEALTH_BASE,
     IDENTIFIERS_ORG_URL_PREFIX,
     LINK_PRIORITY,
+    METAREGISTRY_PATH,
     SHIELDS_BASE,
 )
 from .license_standardizer import standardize_license
@@ -46,11 +50,7 @@ from .schema_utils import (
     _contexts_from_path,
     _read_metaregistry,
     _registry_from_path,
-    read_collections,
-    read_contexts,
-    read_metaregistry,
     read_mismatches,
-    read_registry,
     write_registry,
 )
 from .utils import NormDict, _norm, curie_to_str
@@ -115,7 +115,7 @@ class Manager:
         self.base_url = (base_url or BIOREGISTRY_REMOTE_URL).rstrip()
 
         if registry is None:
-            self.registry = dict(read_registry())
+            self.registry = dict(_registry_from_path(BIOREGISTRY_PATH))
         elif isinstance(registry, (str, Path)):
             self.registry = dict(_registry_from_path(registry))
         else:
@@ -123,21 +123,21 @@ class Manager:
         self.synonyms = _synonym_to_canonical(self.registry)
 
         if metaregistry is None:
-            self.metaregistry = dict(read_metaregistry())
+            self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
         elif isinstance(metaregistry, (str, Path)):
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
 
         if collections is None:
-            self.collections = dict(read_collections())
+            self.collections = dict(_collections_from_path(COLLECTIONS_PATH))
         elif isinstance(collections, (str, Path)):
             self.collections = dict(_collections_from_path(collections))
         else:
             self.collections = dict(collections)
 
         if contexts is None:
-            self.contexts = dict(read_contexts())
+            self.contexts = dict(_contexts_from_path(CONTEXTS_PATH))
         elif isinstance(contexts, (str, Path)):
             self.contexts = dict(_contexts_from_path(contexts))
         else:
@@ -159,6 +159,15 @@ class Manager:
         self.provided_by = dict(provided_by)
         self.has_parts = dict(has_parts)
 
+        self._converter = None
+
+    @property
+    def converter(self) -> curies.Converter:
+        """Get the default converter."""
+        if self._converter is None:
+            self._converter = curies.Converter(records=self.get_curies_records())
+        return self._converter
+
     def write_registry(self):
         """Write the registry."""
         write_registry(self.registry)
@@ -173,6 +182,13 @@ class Manager:
         if registry is None:
             return None
         return registry.name
+
+    def get_registry_short_name(self, metaprefix: str) -> Optional[str]:
+        """Get the registry short name."""
+        registry = self.get_registry(metaprefix)
+        if registry is None:
+            return None
+        return registry.get_short_name()
 
     def get_registry_homepage(self, metaprefix: str) -> Optional[str]:
         """Get the registry homepage."""
@@ -365,6 +381,13 @@ class Manager:
         if entry is None:
             return None
         return entry.get_synonyms()
+
+    def get_keywords(self, prefix: str) -> Optional[List[str]]:
+        """Get keywords associated with a given prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_keywords()
 
     def get_example(self, prefix: str) -> Optional[str]:
         """Get an example identifier, if it's available."""
@@ -603,8 +626,9 @@ class Manager:
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            synonyms=resource.get_synonyms(),
+            synonyms=sorted(resource.get_synonyms()),
             repository=resource.get_repository(),
+            keywords=resource.get_keywords(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
@@ -629,6 +653,7 @@ class Manager:
             contributor=resource.contributor,
             contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
+            owners=resource.owners,
             twitter=resource.get_twitter(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations

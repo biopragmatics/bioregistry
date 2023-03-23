@@ -219,15 +219,17 @@ class Aligner:
                 rv.append("")
             elif isinstance(value, str):
                 rv.append(value.strip())
+            elif isinstance(value, bool):
+                rv.append("true" if value else "false")
             elif isinstance(value, (list, tuple, set)):
                 rv.append("|".join(sorted(v.strip() for v in value)))
             else:
-                raise TypeError
+                raise TypeError(f"unexpected type in curation header: {value}")
         return rv
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(
-            self.external_registry.items(), key=lambda s: s[0].casefold()
+            self.external_registry.items(), key=lambda s: (s[0].casefold(), s[0])
         ):
             if external_id in self.skip_external:
                 continue

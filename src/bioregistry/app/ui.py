@@ -128,6 +128,7 @@ def resource(prefix: str):
         markdown=markdown,
         prefix=prefix,
         resource=_resource,
+        bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
         name=manager.get_name(prefix),
         example=example,
         example_extras=example_extras,
@@ -140,6 +141,7 @@ def resource(prefix: str):
                 xref=xref,
                 homepage=manager.get_registry_homepage(metaprefix),
                 name=manager.get_registry_name(metaprefix),
+                short_name=manager.get_registry_short_name(metaprefix),
                 uri=manager.get_registry_provider_uri_format(metaprefix, xref),
             )
             for metaprefix, xref in _resource.get_mappings().items()
@@ -463,7 +465,7 @@ def home():
         metaregistry_size=len(manager.metaregistry),
         collections_size=len(manager.collections),
         contributors_size=len(manager.read_contributors()),
-        bioschemas=json.dumps(bioschemas) if bioschemas else None,
+        bioschemas=json.dumps(bioschemas, ensure_ascii=False) if bioschemas else None,
     )
 
 
@@ -559,3 +561,28 @@ def highlights_twitter():
 def highlights_relations():
     """Render the relations highlights page."""
     return render_template("highlights/relations.html")
+
+
+@ui_blueprint.route("/highlights/keywords")
+def highlights_keywords():
+    """Render the keywords highlights page."""
+    keyword_to_prefix = defaultdict(list)
+    for resource in manager.registry.values():
+        for keyword in resource.get_keywords():
+            keyword_to_prefix[keyword].append(resource)
+
+    return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
+
+
+@ui_blueprint.route("/highlights/owners")
+def highlights_owners():
+    """Render the partners highlights page."""
+    owner_to_resources = defaultdict(list)
+    owners = {}
+    for resource in manager.registry.values():
+        for owner in resource.owners or []:
+            owners[owner.pair] = owner
+            owner_to_resources[owner.pair].append(resource)
+    return render_template(
+        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+    )
