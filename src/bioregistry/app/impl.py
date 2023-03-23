@@ -5,11 +5,12 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
-from curies.mapping_service import get_flask_mapping_blueprint
+from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import FastAPI
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
@@ -174,14 +175,27 @@ def get_app(
     app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
-    sparql_blueprint = get_flask_mapping_blueprint(app.manager.converter)
-    app.register_blueprint(sparql_blueprint)
-
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
 
     fast_api = FastAPI()
+    fast_api.mount("/", _get_sparql_router(app.manager))
     fast_api.mount("/", WSGIMiddleware(app))
     if return_flask:
         return fast_api, app
     return fast_api
+
+
+def _get_sparql_router(manager):
+    sparql_graph = MappingServiceGraph(converter=manager.converter)
+    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+    sparql_router = SparqlRouter(
+        path="/sparql",
+        title="Bioregistry SPARQL Service",
+        description="An identifier mapping service",
+        version=version.get_version(),
+        graph=sparql_graph,
+        processor=sparql_processor,
+        public_url=f"{manager.base_url}/sparql",
+    )
+    return sparql_router
