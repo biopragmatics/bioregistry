@@ -179,7 +179,7 @@ def get_app(
     app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
 
     fast_api = FastAPI()
-    fast_api.mount("/", _get_sparql_router(app.manager))
+    fast_api.mount("/sparql", _get_sparql_router(app.manager))
     fast_api.mount("/", WSGIMiddleware(app))
     if return_flask:
         return fast_api, app
@@ -190,7 +190,7 @@ def _get_sparql_router(manager):
     sparql_graph = MappingServiceGraph(converter=manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
     sparql_router = SparqlRouter(
-        path="/sparql",
+        path="/",
         title="Bioregistry SPARQL Service",
         description="An identifier mapping service",
         version=version.get_version(),
