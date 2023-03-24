@@ -13,7 +13,7 @@ from flask_bootstrap import Bootstrap4
 from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
-from bioregistry import Manager, curie_to_str, resource_manager, version
+from bioregistry import curie_to_str, resource_manager, version
 
 from .api import api_blueprint
 from .constants import BIOSCHEMAS
@@ -179,7 +179,7 @@ def get_app(
     app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
 
     fast_api = FastAPI()
-    fast_api.include_router(_get_sparql_router(app.manager))
+    fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
     if return_flask:
         return fast_api, app
@@ -196,17 +196,17 @@ SELECT ?s ?o WHERE {
 """.rstrip()
 
 
-def _get_sparql_router(manager: Manager) -> APIRouter:
-    sparql_graph = MappingServiceGraph(converter=manager.converter)
+def _get_sparql_router(app) -> APIRouter:
+    sparql_graph = MappingServiceGraph(converter=app.manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
     sparql_router = SparqlRouter(
         path="/sparql",
-        title="Bioregistry SPARQL Service",
+        title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",
         version=version.get_version(),
         example_query=example_query,
         graph=sparql_graph,
         processor=sparql_processor,
-        public_url=f"{manager.base_url}/sparql",
+        public_url=f"{app.manager.base_url}/sparql",
     )
     return sparql_router
