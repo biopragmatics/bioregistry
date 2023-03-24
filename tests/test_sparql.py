@@ -25,8 +25,11 @@ def get(endpoint: str, sparql: str, accept):
 
 def sparql_service_available(endpoint: str) -> bool:
     """Test if a SPARQL service is running."""
-    records = get(endpoint, PING_SPARQL, "application/json")
-    return "hello" == records[0]["test"]
+    try:
+        records = get(endpoint, PING_SPARQL, "application/json")
+    except requests.exceptions.ConnectionError:
+        return False
+    return 1 == len(records) and "hello" == records[0]["test"]
 
 
 SPARQL = f"""\
