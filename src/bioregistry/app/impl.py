@@ -6,14 +6,14 @@ from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
-from bioregistry import curie_to_str, resource_manager, version
+from bioregistry import curie_to_str, resource_manager, version, Manager
 
 from .api import api_blueprint
 from .constants import BIOSCHEMAS
@@ -186,7 +186,7 @@ def get_app(
     return fast_api
 
 
-def _get_sparql_router(manager):
+def _get_sparql_router(manager: Manager) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
     sparql_router = SparqlRouter(
