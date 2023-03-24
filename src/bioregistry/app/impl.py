@@ -190,10 +190,11 @@ example_query = """\
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
 SELECT ?s ?o WHERE {
-    VALUES ?s { <http://purl.obolibrary.org/CHEBI_1> }
+    VALUES ?s { <http://purl.obolibrary.org/obo/CHEBI_1> }
     ?s owl:sameAs ?o
 }
 """.rstrip()
+
 
 def _get_sparql_router(manager: Manager) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=manager.converter)
