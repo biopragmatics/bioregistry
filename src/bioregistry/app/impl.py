@@ -6,14 +6,14 @@ from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
-from fastapi import FastAPI, APIRouter
+from fastapi import APIRouter, FastAPI
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
-from bioregistry import curie_to_str, resource_manager, version, Manager
+from bioregistry import Manager, curie_to_str, resource_manager, version
 
 from .api import api_blueprint
 from .constants import BIOSCHEMAS
@@ -186,6 +186,15 @@ def get_app(
     return fast_api
 
 
+example_query = """\
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?s ?o WHERE {
+    VALUES ?s { <http://purl.obolibrary.org/CHEBI_1> }
+    ?s owl:sameAs ?o
+}
+""".rstrip()
+
 def _get_sparql_router(manager: Manager) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
@@ -194,6 +203,7 @@ def _get_sparql_router(manager: Manager) -> APIRouter:
         title="Bioregistry SPARQL Service",
         description="An identifier mapping service",
         version=version.get_version(),
+        example_query=example_query,
         graph=sparql_graph,
         processor=sparql_processor,
         public_url=f"{manager.base_url}/sparql",
