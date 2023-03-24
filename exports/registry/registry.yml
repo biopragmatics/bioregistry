@@ -2211,15 +2211,20 @@ bao:
   version: 2.7.2
 bartoc:
   contact:
-    email: andreas.ledl1@fhnw.ch
-    github: null
-    name: Andreas Ledl
-    orcid: 0000-0002-0629-0446
+    email: voss@gbv.de
+    github: nichtich
+    name: Jakob Voß
+    orcid: 0000-0002-7613-4123
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: voss@gbv.de
+    github: nichtich
+    name: Jakob Voß
+    orcid: 0000-0002-7613-4123
   description: 'The Basic Register of Thesauri, Ontologies & Classifications (BARTOC)
     is a database of Knowledge Organization Systems and KOS related registries.
 
@@ -2239,11 +2244,19 @@ bartoc:
   - ontology and terminology
   license: PDDL 1.0
   mappings:
+    bartoc: '2054'
     fairsharing: FAIRsharing.f1777e
     wikidata: P2689
   name: Basic Register of Thesauri, Ontologies & Classifications
+  owners:
+  - name: Verbundzentrale des GBV
+    partnered: false
+    ror: 048vdhs48
+    wikidata: null
   pattern: ^[1-9][0-9]*$
   preferred_prefix: bartoc
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/783
   repository: https://github.com/gbv/bartoc.org
   uri_format: https://bartoc.org/en/node/$1
 bbkg:
@@ -3435,6 +3448,7 @@ bioregistry:
   - life science
   - ontology and terminology
   mappings:
+    bartoc: '18951'
     fairsharing: FAIRsharing.250a8c
   name: Bioregistry
   preferred_prefix: bioregistry
