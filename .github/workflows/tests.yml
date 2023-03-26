@@ -75,7 +75,7 @@ jobs:
       - name: Start blazegraph and virtuoso triplestores with docker
         run: |
           docker-compose up -d
-          sleep 5
+          sleep 20
           docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'
 
       - name: Test with pytest
