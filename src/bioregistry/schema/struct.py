@@ -1611,9 +1611,12 @@ class Resource(BaseModel):
                 Provider(
                     code="bio2rdf",
                     name="Bio2RDF",
-                    homepage="http://bio2rdf.org",
+                    homepage="https://bio2rdf.org",
                     uri_format=f"http://bio2rdf.org/{prefixcommons_prefix}:$1",
-                    description="Bio2RDF connects life science data in RDF",
+                    description="Bio2RDF is an open-source project that uses Semantic Web technologies to "
+                    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
+                    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
+                    "set of heterogeneously formatted sources obtained from multiple data providers.",
                 )
             )
         return sorted(rv, key=attrgetter("code"))
