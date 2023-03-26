@@ -58,6 +58,7 @@ jobs:
     name: Tests
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest ]
         python-version: [ "3.11", "3.7" ]
@@ -73,6 +74,7 @@ jobs:
           pip install "tox<4.0.0"
 
       - name: Start blazegraph and virtuoso triplestores with docker
+        if: matrix.os == 'ubuntu-latest'
         run: |
           docker-compose up -d
           sleep 20
