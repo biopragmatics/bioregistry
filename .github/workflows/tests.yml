@@ -1,6 +1,7 @@
 name: Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
@@ -23,6 +24,13 @@ jobs:
         run: |
           pip install --upgrade pip setuptools wheel
           pip install tox
+
+      - name: Start blazegraph and virtuoso triplestores with docker
+        run: |
+          docker-compose up -d
+          sleep(5)
+          docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'
+
       - name: Check manifest
         run: tox -e manifest
       - name: Check code quality with flake8

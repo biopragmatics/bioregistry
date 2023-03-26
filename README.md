@@ -475,3 +475,53 @@ at [Harvard Medical School](https://hms.harvard.edu/).
 ### 💰 Funding
 
 The development of the Bioregistry is funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
+
+
+## 🛠️ For Developers
+
+<details>
+  <summary>See developer instructions</summary>
+
+
+The final section of the README is for if you want to get involved by making a code contribution.
+
+### 📥️ Development Installation
+
+To install in development mode, consider enabling a virtual environment, and use the following:
+
+```bash
+$ git clone git+https://github.com/biopragmatics/bioregistry.git
+$ cd bioregistry
+$ pip install -e ".[tests,web]"
+```
+
+### 🥼 Testing
+
+To run all tests you will need to start the Bioregistry, a Virtuoso endpoint, and a Blazegraph endpoint using `docker compose`:
+
+```bash
+$ docker compose up
+```
+
+The first time you start it you will need start another terminal, and go to this repository root folder, to run an additional command to enable federated query in Virtuoso:
+
+```bash
+$ docker compose exec virtuoso isql -U dba -P dba exec='GRANT "SPARQL_SELECT_FED" TO "SPARQL";'
+```
+
+After cloning the repository and installing the dependencies, the unit tests in the `tests/` folder can be
+run reproducibly with:
+
+```shell
+$ tox
+```
+
+You can also run tests files individually to quickly test a specific feature:
+
+```bash
+$ pytest tests/test_sparql.py
+```
+
+Additionally, these tests are automatically re-run with each commit in a [GitHub Action](https://github.com/cthoyt/curies/actions?query=workflow%3ATests).
+
+</details>
