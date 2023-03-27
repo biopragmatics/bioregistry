@@ -159,6 +159,12 @@ class Manager:
         self.provided_by = dict(provided_by)
         self.has_parts = dict(has_parts)
 
+        in_collection = defaultdict(list)
+        for cid, collection in self.collections.items():
+            for prefix in collection.resources:
+                in_collection[prefix].append(cid)
+        self.in_collection = dict(in_collection)
+
         self._converter = None
 
     @property
@@ -210,6 +216,10 @@ class Manager:
         if entry is None:
             return None
         return entry.get_provider_uri_format(prefix)
+
+    def get_collection_name(self, identifier: str) -> str:
+        """Get a collection's name."""
+        return self.collections[identifier].name
 
     def normalize_prefix(self, prefix: str) -> Optional[str]:
         """Get the normalized prefix, or return None if not registered.
@@ -826,6 +836,13 @@ class Manager:
             else:
                 rv[key] = [norm_key, *values]
         return rv
+
+    def get_in_collections(self, prefix: str) -> Optional[List[str]]:
+        """Get the identifiers for collections the prefix is in."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return self.in_collection.get(prefix)
 
     def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get a Bioregistry link.
