@@ -296,8 +296,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dc_cl: <http://purl.obolibrary.org/obo/DC_CL_> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -483,7 +483,7 @@
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix geno: <http://purl.obolibrary.org/obo/GENO_> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
-@prefix geo: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
+@prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geogeo: <http://purl.obolibrary.org/obo/GEO_> .
 @prefix geonames: <https://www.geonames.org/> .
 @prefix gfo: <http://www.onto-med.de/ontologies/gfo.owl#> .
@@ -30211,7 +30211,7 @@ bioregistry:geo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/GEO/4/geo.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc="^^xsd:string ;
-    bioregistry.schema:0000027 geo:GDS1234 ;
+    bioregistry.schema:0000027 geo1:GDS1234 ;
     bioregistry.schema:0000029 "geo" .
 
 bioregistry:geonames a bioregistry.schema:0000001 ;
@@ -41136,7 +41136,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
