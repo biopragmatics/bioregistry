@@ -5576,7 +5576,7 @@
     ],
     "homepage": "https://biodiversity.org.au/afd/search/names",
     "name": "Australian Faunal Directory ID",
-    "pattern": "^[a-zA-Z\\xC0-\\xFF]*([-_;]([(]?)[a-zA-Z\\xC0-\\xFF]*(\\.)?([)]?))*(\\.)?$",
+    "pattern": "^\\p{Latin}*([-_;]\\(?\\p{Latin}*\\.?\\)?)*\\.?$",
     "prefix": "P6039",
     "uri_format": "https://biodiversity.org.au/afd/taxa/$1"
   },
