@@ -5,7 +5,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 3.2.4
+version: 3.2.5
 
 
 ## ------------
@@ -671,6 +671,13 @@ slots:
       - gff3:Dbxref
       - gpi:DB_Xrefs
 
+  support graphs:
+    description: >-
+      A list of knowledge graphs that support the existence of this node.
+    multivalued: true
+    in_subset:
+      - translator_minimal
+  
   resource:
     is_a: node property
     description: >-
