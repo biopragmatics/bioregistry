@@ -828,7 +828,7 @@ def parse_curie(
 
     Use preferred (available)
     >>> parse_curie('GO_1234', sep="_", use_preferred=True)
-    ('go', '1234')
+    ('GO', '1234')
 
     Use preferred (unavailable)
     >>> parse_curie('pdb:1234', use_preferred=True)
