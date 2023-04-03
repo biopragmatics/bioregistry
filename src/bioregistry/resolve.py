@@ -782,6 +782,9 @@ def parse_curie(
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
         "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
 
     The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
@@ -820,6 +823,14 @@ def parse_curie(
     Banana with no peel:
     >>> parse_curie("omim.ps:PS12345")
     ('omim.ps', '12345')
+
+    Use preferred (available)
+    >>> parse_curie('GO_1234', sep="_", use_preferred=True)
+    ('go', '1234')
+
+    Use preferred (unavailable):
+    >>> parse_curie('pdb:1234', use_preferred=True))
+    ('pdb', '1234')
     """
     return manager.parse_curie(curie, sep=sep, use_preferred=use_preferred)
 
