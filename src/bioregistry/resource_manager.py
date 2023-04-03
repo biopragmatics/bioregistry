@@ -35,6 +35,7 @@ from .constants import (
     LINK_PRIORITY,
     METAREGISTRY_PATH,
     SHIELDS_BASE,
+    MaybeCURIE,
 )
 from .license_standardizer import standardize_license
 from .schema import (
@@ -61,8 +62,6 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
-
-MaybeCURIE = Union[Tuple[str, str], Tuple[None, None]]
 
 
 def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:

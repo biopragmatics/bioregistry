@@ -45,7 +45,7 @@ def curie_from_iri(
 ) -> Optional[str]:
     """Generate a CURIE from an IRI via :meth:`Manager.compress`.
 
-    :param iri: A valid IRI.
+    :param iri: A valid IRI
     :param prefix_map:
         This functionality was removed in Bioregistry v0.8.0.
         Leave this as None. This argument will be removed in Bioregistry v0.9.0.
@@ -68,7 +68,7 @@ def parse_iri(
 ) -> MaybeCURIE:
     """Parse a compact identifier from an IRI that wraps :meth:`Manager.parse_uri`.
 
-    :param iri: A valid IRI.
+    :param iri: A valid IRI
     :param prefix_map:
         This functionality was removed in Bioregistry v0.8.0.
         Leave this as None. This argument will be removed in Bioregistry v0.9.0.

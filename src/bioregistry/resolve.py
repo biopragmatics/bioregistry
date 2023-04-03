@@ -9,6 +9,7 @@ from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
 import curies
 
+from .constants import MaybeCURIE
 from .resource_manager import manager
 from .schema import Attributable, Resource
 
@@ -777,7 +778,7 @@ def parse_curie(
     *,
     sep: str = ":",
     use_preferred: bool = False,
-) -> Union[Tuple[str, str], Tuple[None, None]]:
+) -> MaybeCURIE:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
@@ -830,7 +831,7 @@ def parse_curie(
     ('go', '1234')
 
     Use preferred (unavailable)
-    >>> parse_curie('pdb:1234', use_preferred=True))
+    >>> parse_curie('pdb:1234', use_preferred=True)
     ('pdb', '1234')
     """
     return manager.parse_curie(curie, sep=sep, use_preferred=use_preferred)
@@ -841,7 +842,7 @@ def normalize_parsed_curie(
     identifier: str,
     *,
     use_preferred: bool = False,
-) -> Union[Tuple[str, str], Tuple[None, None]]:
+) -> MaybeCURIE:
     """Normalize a prefix/identifier pair.
 
     :param prefix: The prefix in the CURIE
