@@ -61,6 +61,10 @@ def _context_prefix_maps():
         _write_shacl(
             stub.with_suffix(".context.ttl"), prefix_map=prefix_map, pattern_map=pattern_map
         )
+        _write_extended_prefix_map(
+            stub.with_suffix(".epm.json"),
+            manager.records_from_context(key),
+        )
 
         if key == "obo":  # Special case, maybe put this in data model
             prefix_map, pattern_map = manager.get_context_artifacts(key, include_synonyms=True)
