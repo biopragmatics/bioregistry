@@ -979,8 +979,7 @@ class Manager:
         :param identifier: The identifier in the CURIE
         :return: A link to the Bioregistry resolver
         """
-        norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
-        curie = _safe_curie_to_str(norm_prefix, norm_identifier)
+        curie = self.normalize_curie(prefix, identifier)
         if curie is None:
             return None
         return f"{self.base_url}/{curie}"
