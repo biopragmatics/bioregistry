@@ -63,7 +63,7 @@ def _context_prefix_maps():
         )
         _write_extended_prefix_map(
             stub.with_suffix(".epm.json"),
-            manager.records_from_context(key),
+            manager.get_records_from_context(key),
         )
 
         if key == "obo":  # Special case, maybe put this in data model
