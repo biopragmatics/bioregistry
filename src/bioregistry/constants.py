@@ -5,6 +5,7 @@
 import os
 import pathlib
 import re
+from typing import Tuple, Union
 
 import pystow
 
@@ -145,3 +146,5 @@ EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 # not a perfect email regex, but close enough
 EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
+
+MaybeCURIE = Union[Tuple[str, str], Tuple[None, None]]

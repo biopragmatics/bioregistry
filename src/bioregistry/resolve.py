@@ -772,7 +772,11 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     return entry.proprietary
 
 
-def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
+def parse_curie(
+    curie: str,
+    sep: str = ":",
+    use_preferred: bool = False,
+) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
@@ -817,7 +821,7 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
     >>> parse_curie("omim.ps:PS12345")
     ('omim.ps', '12345')
     """
-    return manager.parse_curie(curie, sep=sep)
+    return manager.parse_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
 def normalize_parsed_curie(
