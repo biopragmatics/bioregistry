@@ -220,16 +220,24 @@ class Manager:
             return None
         return entry.get_provider_uri_format(prefix)
 
-    def normalize_prefix(self, prefix: str) -> Optional[str]:
+    def normalize_prefix(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         """Get the normalized prefix, or return None if not registered.
 
         :param prefix: The prefix to normalize, which could come from Bioregistry,
             OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+        :param use_preferred:
+            If set to true, uses the "preferred prefix", if available, instead
+            of the canonicalized Bioregistry prefix.
         :returns: The canonical Bioregistry prefix, it could be looked up. This
             will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
             in a few cases, such as NCBITaxon.
         """
-        return self.synonyms.get(prefix)
+        norm_prefix = self.synonyms.get(prefix)
+        if norm_prefix is None:
+            return None
+        if use_preferred:
+            norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
+        return norm_prefix
 
     def get_resource(self, prefix: str) -> Optional[Resource]:
         """Get the Bioregistry entry for the given prefix.
@@ -244,7 +252,7 @@ class Manager:
             return None
         return self.registry.get(norm_prefix)
 
-    def parse_uri(self, uri: str, use_preferred: bool = False) -> MaybeCURIE:
+    def parse_uri(self, uri: str, *, use_preferred: bool = False) -> MaybeCURIE:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
@@ -319,7 +327,7 @@ class Manager:
             prefix = self.get_preferred_prefix(prefix) or prefix
         return prefix, identifier
 
-    def compress(self, uri: str, use_preferred: bool = False) -> Optional[str]:
+    def compress(self, uri: str, *, use_preferred: bool = False) -> Optional[str]:
         """Parse a compact uniform resource identifier (CURIE) from a URI.
 
         :param uri: A valid URI
@@ -373,7 +381,7 @@ class Manager:
         prefix, identifier = self.parse_uri(uri, use_preferred=use_preferred)
         return _safe_curie_to_str(prefix, identifier)
 
-    def parse_curie(self, curie: str, sep: str = ":", use_preferred: bool = False) -> MaybeCURIE:
+    def parse_curie(self, curie: str, *, sep: str = ":", use_preferred: bool = False) -> MaybeCURIE:
         """Parse a CURIE and normalize its prefix and identifier."""
         try:
             prefix, identifier = curie.split(sep, 1)
@@ -382,7 +390,7 @@ class Manager:
         return self.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
     def normalize_curie(
-        self, curie: str, sep: str = ":", use_preferred: bool = False
+        self, curie: str, *, sep: str = ":", use_preferred: bool = False
     ) -> Optional[str]:
         """Normalize the prefix and identifier in the CURIE."""
         prefix, identifier = self.parse_curie(curie, sep=sep, use_preferred=use_preferred)
@@ -392,6 +400,7 @@ class Manager:
         self,
         prefix: str,
         identifier: str,
+        *,
         use_preferred: bool = False,
     ) -> MaybeCURIE:
         """Normalize a prefix/identifier pair.
@@ -721,7 +730,7 @@ class Manager:
                     rv[prefix] = record.uri_prefix
         return rv
 
-    def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
+    def get_curie_pattern(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
 
         :param prefix: The prefix to look up
@@ -981,7 +990,7 @@ class Manager:
         :param identifier: The identifier in the CURIE
         :return: A link to the Bioregistry resolver
         """
-        curie = self.normalize_curie(prefix, identifier)
+        curie = _safe_curie_to_str(*self.normalize_parsed_curie(prefix, identifier))
         if curie is None:
             return None
         return f"{self.base_url}/{curie}"
