@@ -147,7 +147,7 @@ class TestMetaregistry(unittest.TestCase):
             if pattern is None:
                 continue
             with self.subTest(metaprefix=metaprefix):
-                self.assertRegexpMatches(registry.example, pattern)
+                self.assertRegex(registry.example, pattern)
 
             # Test URI format string
             if registry.provider_uri_format:
