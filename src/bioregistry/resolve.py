@@ -5,7 +5,7 @@
 import logging
 import typing
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Set
 
 import curies
 
