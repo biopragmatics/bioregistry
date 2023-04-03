@@ -48,7 +48,7 @@ def curie_from_iri(
     :param iri: A valid IRI.
     :param prefix_map:
         This functionality was removed in Bioregistry v0.8.0.
-        Leave this as None. Will be removed in Bioregistry v0.9.0.
+        Leave this as None. This argument will be removed in Bioregistry v0.9.0.
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
@@ -71,7 +71,7 @@ def parse_iri(
     :param iri: A valid IRI.
     :param prefix_map:
         This functionality was removed in Bioregistry v0.8.0.
-        Leave this as None. Will be removed in Bioregistry v0.9.0.
+        Leave this as None. This argument will be removed in Bioregistry v0.9.0.
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.

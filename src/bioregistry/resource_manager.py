@@ -297,13 +297,7 @@ class Manager:
         >>> manager.parse_uri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
         ('neuronames', '268')
 
-        Provide your own prefix map for one-off parsing (i.e., not in bulk):
-        >>> prefix_map = {"chebi": "https://example.org/chebi:"}
-        >>> manager.parse_uri("https://example.org/chebi:1234", prefix_map=prefix_map)
-        ('chebi', '1234')
-
-        If you provide your own prefix map but want to do parsing in bulk,
-        you should pre-process the prefix map with:
+        If you provide your own prefix map, you should pre-process the prefix map with:
 
         >>> from curies import Converter, chain
         >>> prefix_map = {"chebi": "https://example.org/chebi:"}
@@ -326,7 +320,7 @@ class Manager:
         return prefix, identifier
 
     def compress(self, uri: str, use_preferred: bool = False) -> Optional[str]:
-        """Parse a compact identifier from an URI.
+        """Parse a compact uniform resource identifier (CURIE) from a URI.
 
         :param uri: A valid URI
         :param use_preferred:
@@ -387,9 +381,9 @@ class Manager:
             return None, None
         return self.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
-    def normalize_curie(self, curie: str, sep: str = ":") -> Optional[str]:
+    def normalize_curie(self, curie: str, sep: str = ":", use_preferred: bool = False) -> Optional[str]:
         """Normalize the prefix and identifier in the CURIE."""
-        prefix, identifier = self.parse_curie(curie, sep=sep)
+        prefix, identifier = self.parse_curie(curie, sep=sep, use_preferred=use_preferred)
         return _safe_curie_to_str(prefix, identifier)
 
     def normalize_parsed_curie(

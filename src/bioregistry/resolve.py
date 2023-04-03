@@ -848,7 +848,7 @@ def normalize_parsed_curie(
     return manager.normalize_parsed_curie(prefix, identifier)
 
 
-def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
+def normalize_curie(curie: str, sep: str = ":", use_preferred: bool = False) -> Optional[str]:
     """Normalize a CURIE.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
@@ -891,7 +891,7 @@ def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
     >>> normalize_curie('GO_1234', sep="_")
     'go:1234'
     """
-    return manager.normalize_curie(curie, sep=sep)
+    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
 def normalize_prefix(prefix: str) -> Optional[str]:
