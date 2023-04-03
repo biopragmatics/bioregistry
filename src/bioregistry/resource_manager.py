@@ -381,7 +381,9 @@ class Manager:
             return None, None
         return self.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
-    def normalize_curie(self, curie: str, sep: str = ":", use_preferred: bool = False) -> Optional[str]:
+    def normalize_curie(
+        self, curie: str, sep: str = ":", use_preferred: bool = False
+    ) -> Optional[str]:
         """Normalize the prefix and identifier in the CURIE."""
         prefix, identifier = self.parse_curie(curie, sep=sep, use_preferred=use_preferred)
         return _safe_curie_to_str(prefix, identifier)
