@@ -48,6 +48,12 @@
                         </a>{% if not loop.last %}, {% endif %}
                     {% endfor %}
                 </dd>
+                {% if entry.references %}
+                    <dt>Resources</dt>
+                    {% for reference in entry.references %}
+                        <dd><a href="{{ reference }}">{{ reference }}</a></dd>
+                    {% endfor %}
+                {% endif %}
                 <dt>Resources</dt>
                 <dd>
                     <ul>

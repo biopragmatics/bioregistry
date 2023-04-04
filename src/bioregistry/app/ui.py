@@ -170,6 +170,7 @@ def resource(prefix: str):
         provided_by=manager.get_provided_by(prefix),
         part_of=manager.get_part_of(prefix),
         has_parts=manager.get_has_parts(prefix),
+        in_collections=manager.get_in_collections(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
         formats=[
             *FORMATS,

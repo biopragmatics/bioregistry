@@ -2376,6 +2376,7 @@ class Collection(BaseModel):
     )
     #: JSON-LD context name
     context: Optional[str]
+    references: Optional[List[str]] = Field(description="URL references")
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.
