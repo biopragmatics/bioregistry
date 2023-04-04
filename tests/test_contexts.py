@@ -60,6 +60,7 @@ class TestContexts(unittest.TestCase):
         )
 
         converter = manager.get_converter_from_context("obo")
+        self.assertEqual("GO", converter.standardize_prefix("GO"))
         self.assertEqual("GO", converter.standardize_prefix("gomf"))
         self.assertEqual("GO", converter.standardize_prefix("go"))
 
