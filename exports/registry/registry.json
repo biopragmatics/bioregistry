@@ -4517,6 +4517,7 @@
     "example": "2023",
     "homepage": "https://bioportal.bioontology.org/ontologies/BIRNLEX",
     "keywords": [
+      "anatomy",
       "biomedical science",
       "ontology"
     ],
@@ -12985,6 +12986,29 @@
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1",
     "version": "2022-09-29"
   },
+  "dolce": {
+    "comment": "This resource doesn't exist anymore",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "DOLCE (Descriptive Ontology for Linguistic and Cognitive Engineering) is a foundational ontology developed as part of the WonderWeb Foundational Ontologies Library (WFOL).  The development of this library has been guided by the need of a reliable set of foundational ontologies that can serve as 1) astarting point for building other ontologies, 2) a reference point for easy and rigorous comparisons among different ontological approaches, and 3) a rigorous basis for analyzing, harmonizing and integrating existing ontologies and metadata standards (by manually mapping them into some general module(s) in the library). DOLCE is the first module of WFOL and it is not a candidate for a universal standard ontology. Rather, it is intended as a starting point for comparing and elucidating the relationships with the other modules of the library, and also for clarifying the hidden assumptions underlying existing ontologies or linguistic resources such as WordNet.  As reflected by its acronym, DOLCE has a clear cognitive bias, in the sense that it aims at capturing the ontological categories underlying natural language and human commonsense. DOLCE is an ontology that focuses on particulars in the sense that its domain of discourse is restricted to them. The project is complete, though the ontology remains available for use.",
+    "homepage": "http://www.loa.istc.cnr.it/dolce/overview.html",
+    "keywords": [
+      "computer science",
+      "knowledge and information systems",
+      "linguistics",
+      "subject agnostic"
+    ],
+    "mappings": {
+      "fairsharing": "FAIRsharing.ae8hpt"
+    },
+    "name": "Descriptive Ontology for Linguistic and Cognitive Engineering",
+    "preferred_prefix": "dolce"
+  },
   "dommino": {
     "description": "DOMMINO is a database of macromolecular interactions that includes the interactions between protein domains, interdomain linkers, N- and C-terminal regions and protein peptides.",
     "example": "2GC4",
@@ -15213,6 +15237,56 @@
       }
     ],
     "uri_format": "https://www.ebi.ac.uk/pdbe/entry/emdb/$1"
+  },
+  "emmo": {
+    "banana": "EMMO",
+    "banana_peel": "_",
+    "contact": {
+      "email": "jesper.friis@sintef.no",
+      "github": "jesper-friis",
+      "name": "Jesper Friis",
+      "orcid": "0000-0002-1560-809X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "EMMO is a multidisciplinary effort to develop a standard representational framework (the ontology) for applied sciences. It is based on physics, analytical philosophy and information and communication technologies. It has been instigated by materials science to provide a framework for knowledge capture that is consistent with scientific principles and methodologies. (from GitHub)",
+    "download_rdf": "https://raw.githubusercontent.com/emmo-repo/EMMO/master/emmo.ttl",
+    "example": "03212fd7_abfd_4828_9c8e_62c293052d4b",
+    "homepage": "https://emmo-repo.github.io",
+    "license": "CC-BY-4.0",
+    "name": "Elementary Multiperspective Material Ontology",
+    "preferred_prefix": "emmo",
+    "repository": "https://github.com/emmo-repo/EMMO",
+    "uri_format": "http://emmo.info/emmo#EMMO_$1"
+  },
+  "emmo.cif": {
+    "contact": {
+      "email": "jesper.friis@sintef.no",
+      "github": "jesper-friis",
+      "name": "Jesper Friis",
+      "orcid": "0000-0002-1560-809X"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A crystallography domain ontology based on EMMO and the CIF core dictionary. It is implemented as a formal language. (from https://nfdi4cat.org/services/ontologie-sammlung/)",
+    "download_rdf": "https://raw.githubusercontent.com/emmo-repo/CIF-ontology/main/ontology/cif-core.ttl",
+    "example": "_space_group_symop.operation_xyz",
+    "example_extras": [
+      "o12"
+    ],
+    "homepage": "https://www.iucr.org/resources/cif",
+    "name": "Crystallographic Information Framework",
+    "preferred_prefix": "emmo.cif",
+    "repository": "https://github.com/emmo-repo/CIF-ontology",
+    "uri_format": "http://emmo.info/emmo/cif-core#$1"
   },
   "emolecules": {
     "contributor": {
@@ -19303,6 +19377,28 @@
       }
     ],
     "uri_format": "http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=$1&Mode=ShowBioObject"
+  },
+  "gainesville.core": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Describes typical Computational Chemistry experiments, including Molecular Publications, Molecular Systems, Molecular Calculations",
+    "download_owl": "http://ontologies.makolab.com/gc06/gc.owl",
+    "example": "Aromatic",
+    "homepage": "http://ontologies.makolab.com/gc06/gc.html",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "Gainesville Core Ontology",
+    "preferred_prefix": "gainesville.core",
+    "references": [
+      "http://ontologies.makolab.com/gc/"
+    ],
+    "uri_format": "http://purl.org/gc/$1"
   },
   "galen": {
     "comment": "I really tried, but could not figure out what GALEN stands for",
@@ -27248,6 +27344,21 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "iso.3166"
   },
+  "iso15926": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The primary purpose of ISO 15926 is to provide a foundation ontology to support the integration and sharing of data related to the lifecycle of a process plant in such a way that it is consistent, unambiguous, and minimizing the number of ways something could be expressed. Further purpose of ISO 15926-14 is to meet needs for OWL 2 ontologies that are based on ISO 15926-2, that enable efficient reasoning and that capture lifecycle information. A specific purpose is to demonstrate lifecycle modelling through a representation of the lifecycle model of ISO/IEC 81346-1. Another specific purpose is to exemplify how this standard can be used to develop industrial ontologies through various real-world use cases from industry. (from https://nfdi4cat.org/services/ontologie-sammlung/)",
+    "download_rdf": "https://github.com/uwasystemhealth/modular_ontologies/raw/master/LIS-14.ttl",
+    "example": "activityBoundOf",
+    "homepage": "https://15926.org/home/",
+    "name": "ISO 15926-14",
+    "preferred_prefix": "iso15926",
+    "uri_format": "http://standards.iso.org/iso/15926/part14/$1"
+  },
   "issn": {
     "description": "The International Standard Serial Number (ISSN) is a unique eight-digit number used to identify a print or electronic periodical publication, rather than individual articles or books.",
     "example": "0745-4570",
@@ -35027,6 +35138,61 @@
     ],
     "twitter": "neXtProt_news",
     "uri_format": "https://www.nextprot.org/term/FA-$1"
+  },
+  "nfdi4chem.cao": {
+    "contact": {
+      "email": "williams.antony@epa.gov",
+      "github": null,
+      "name": "Antony Williams",
+      "orcid": "0000-0002-2668-4821"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology developed as part of the Chemical Analysis Metadata Project (ChAMP) as a resource to semantically annotate standards developed using the ChAMP platform. (source: CAO ontology)",
+    "example": "000064",
+    "homepage": "https://champ.stuchalk.domains.unf.edu",
+    "keywords": [
+      "characterisation data heat",
+      "transport and kinetic data"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "Chemical Analysis Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "nfdi4chem.cao",
+    "uri_format": "http://champ-project.org/images/ontology/cao.owl#CAO_$1"
+  },
+  "nfdi4chem.ontocape": {
+    "comment": "This ontology ecosystem is near unusable",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "OntoCAPE is a large-scale ontology for the domain of Computer Aided Process Engineering (CAPE). Represented in a formal, machine-interpretable ontology language, OntoCAPE captures consensual knowledge of the process engineering domain in a generic way such that it can be reused and shared by groups of people and across software systems. On the basis of OntoCAPE, novel software support for various engineering activities can be developed; possible applications include the systematic management and retrieval of simulation models and design documents, electronic procurement of plant equipment, mathematical modeling, as well as the integration of design data from distributed sources.",
+    "homepage": "https://www.avt.rwth-aachen.de/cms/AVT/Forschung/Software/~ipts/OntoCape/",
+    "license": "GPL-2.0",
+    "name": "Ontology for computer aided process engineering",
+    "preferred_prefix": "nfdi4chem.ontocape"
+  },
+  "nfdi4chem.osmo": {
+    "comment": "locked behind a private GitLab instance",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "OSMO is an ontologization and extension of MODA, a workflow metadata standard that constitutes a mandatory requirement within a number of European calls and projects in the context of materials modelling. OSMO was developed within the Horizon 2020 project VIMMP (Virtual Materials Marketplace) and is part of a larger effort in ontology engineering driven by the European Materials Modelling Council, with the European Materials and Modelling Ontology (EMMO) as its core. (from https://nfdi4cat.org/services/ontologie-sammlung/)",
+    "homepage": "https://zenodo.org/record/5237774#.YXq72hxCRGo",
+    "name": "Ontology for simulation, modelling, and optimization",
+    "preferred_prefix": "nfdi4chem.osmo"
   },
   "ngl": {
     "description": "NASA's GeneLab gathers spaceflight genomic data, RNA and protein expression, and metabolic profiles, interfaces with existing databases for expanded research, will offer tools to conduct data analysis, and is in the process of creating a place online where scientists, researchers, teachers and students can connect with their peers, share their results, and communicate with NASA.",
@@ -54366,7 +54532,8 @@
         "uri_format": "http://bio2rdf.org/viperdb:$1"
       }
     ],
-    "uri_format": "http://viperdb.scripps.edu/info_page.php?VDB=$1"
+    "provides": "pdb",
+    "uri_format": "https://viperdb.org/Info_Page.php?VDB=$1"
   },
   "vipr": {
     "contact": {
@@ -55480,8 +55647,19 @@
     "uri_format": "http://www.wikipathways.org/instance/$1"
   },
   "wikipedia.en": {
+    "contributor_extras": [
+      {
+        "email": "cjmungall@lbl.gov",
+        "github": "cmungall",
+        "name": "Chris Mungall",
+        "orcid": "0000-0002-6601-2165"
+      }
+    ],
     "description": "Wikipedia is a multilingual, web-based, free-content encyclopedia project based on an openly editable model. It is written collaboratively by largely anonymous Internet volunteers who write without pay.",
     "example": "SM_UB-81",
+    "example_extras": [
+      "Pharyngeal_pouch_(embryology)"
+    ],
     "homepage": "http://en.wikipedia.org/wiki/Main_Page",
     "mappings": {
       "biocontext": "WIKIPEDIA.EN",
@@ -55491,7 +55669,7 @@
       "prefixcommons": "wikipedia"
     },
     "name": "Wikipedia",
-    "pattern": "^[A-Za-z-0-9_]+$",
+    "pattern": "^\\S+$",
     "preferred_prefix": "wikipedia.en",
     "providers": [
       {
@@ -55515,6 +55693,9 @@
         "name": "Volupedia",
         "uri_format": "http://en.volupedia.org/wiki/$1"
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/794"
     ],
     "synonyms": [
       "wikipedia"
@@ -55591,6 +55772,41 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://world-2dpage.expasy.org/repository/$1"
+  },
+  "worldavatar.compchem": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Linked-data framework for connecting species in chemical kinetic reaction mechanisms with quantum calculations. A mechanism can be constructed from thermodynamic, reaction rate, and transport data that has been obtained either experimentally, computationally, or by a combination of both. In order to implement this approach, two existing ontologies, namely OntoKin, for representing chemical kinetic reaction mechanisms, and OntoCompChem, for representing quantum chemistry calculations, are extended. (from https://nfdi4cat.org/services/ontologie-sammlung/)",
+    "download_owl": "http://www.theworldavatar.com/ontology/ontocompchem/ontocompchem.owl",
+    "homepage": "https://como.ceb.cam.ac.uk/preprints/223/",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Computational Chemistry Ontology",
+    "no_own_terms": true,
+    "preferred_prefix": "worldavatar.compchem"
+  },
+  "worldavatar.kin": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Represents chemical kinetic reaction mechanisms.",
+    "download_owl": "http://www.theworldavatar.com/ontology/ontokin/OntoKin.owl",
+    "example": "ElementNumber",
+    "homepage": "http://www.theworldavatar.com/ontokin/",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Ontology for Chemical Kinetic Reaction Mechanisms",
+    "preferred_prefix": "worldavatar.kin",
+    "uri_format": "http://www.theworldavatar.com/ontology/ontokin/OntoKin.owl#$1"
   },
   "wormbase": {
     "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
