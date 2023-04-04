@@ -5,11 +5,12 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
-from curies.mapping_service import get_flask_mapping_blueprint
-from fastapi import FastAPI
+from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
+from fastapi import APIRouter, FastAPI
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
@@ -174,14 +175,38 @@ def get_app(
     app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
-    sparql_blueprint = get_flask_mapping_blueprint(app.manager.converter)
-    app.register_blueprint(sparql_blueprint)
-
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
 
     fast_api = FastAPI()
+    fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
     if return_flask:
         return fast_api, app
     return fast_api
+
+
+example_query = """\
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?s ?o WHERE {
+    VALUES ?s { <http://purl.obolibrary.org/obo/CHEBI_1> }
+    ?s owl:sameAs ?o
+}
+""".rstrip()
+
+
+def _get_sparql_router(app) -> APIRouter:
+    sparql_graph = MappingServiceGraph(converter=app.manager.converter)
+    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+    sparql_router = SparqlRouter(
+        path="/sparql",
+        title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
+        description="An identifier mapping service",
+        version=version.get_version(),
+        example_query=example_query,
+        graph=sparql_graph,
+        processor=sparql_processor,
+        public_url=f"{app.manager.base_url}/sparql",
+    )
+    return sparql_router

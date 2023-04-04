@@ -35,6 +35,7 @@ from .constants import (
     LINK_PRIORITY,
     METAREGISTRY_PATH,
     SHIELDS_BASE,
+    MaybeCURIE,
 )
 from .license_standardizer import standardize_license
 from .schema import (
@@ -83,6 +84,13 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
                 logger.debug(f"[{identifier}] missing potential synonym: {external_prefix}")
 
     return norm_synonym_to_key
+
+
+def _safe_curie_to_str(prefix: Optional[str], identifier: Optional[str]) -> Optional[str]:
+    """Combine a prefix and identifier into a CURIE string, if available."""
+    if prefix is None or identifier is None:
+        return None
+    return curie_to_str(prefix, identifier)
 
 
 class Manager:
@@ -221,16 +229,24 @@ class Manager:
         """Get a collection's name."""
         return self.collections[identifier].name
 
-    def normalize_prefix(self, prefix: str) -> Optional[str]:
+    def normalize_prefix(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         """Get the normalized prefix, or return None if not registered.
 
         :param prefix: The prefix to normalize, which could come from Bioregistry,
             OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+        :param use_preferred:
+            If set to true, uses the "preferred prefix", if available, instead
+            of the canonicalized Bioregistry prefix.
         :returns: The canonical Bioregistry prefix, it could be looked up. This
             will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
             in a few cases, such as NCBITaxon.
         """
-        return self.synonyms.get(prefix)
+        norm_prefix = self.synonyms.get(prefix)
+        if norm_prefix is None:
+            return None
+        if use_preferred:
+            norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
+        return norm_prefix
 
     def get_resource(self, prefix: str) -> Optional[Resource]:
         """Get the Bioregistry entry for the given prefix.
@@ -245,28 +261,164 @@ class Manager:
             return None
         return self.registry.get(norm_prefix)
 
-    def parse_curie(self, curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
+    def parse_uri(self, uri: str, *, use_preferred: bool = False) -> MaybeCURIE:
+        """Parse a compact identifier from a URI.
+
+        :param uri: A valid URI
+        :param use_preferred:
+            If set to true, uses the "preferred prefix", if available, instead
+            of the canonicalized Bioregistry prefix.
+        :return: A pair of prefix/identifier, if can be parsed
+
+        IRI from an OBO PURL:
+
+        >>> from bioregistry import manager
+        >>> manager.parse_uri("http://purl.obolibrary.org/obo/DRON_00023232")
+        ('dron', '00023232')
+
+        IRI from the OLS:
+
+        >>> manager.parse_uri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180")  # noqa:E501
+        ('ecao', '0107180')
+
+        .. todo:: IRI from bioportal
+
+        IRI from native provider
+
+        >>> manager.parse_uri("https://www.alzforum.org/mutations/1234")
+        ('alzforum.mutation', '1234')
+
+        Dog food:
+
+        >>> manager.parse_uri("https://bioregistry.io/DRON:00023232")
+        ('dron', '00023232')
+
+        IRIs from Identifiers.org (https and http, colon and slash):
+
+        >>> manager.parse_uri("https://identifiers.org/aop.relationships:5")
+        ('aop.relationships', '5')
+        >>> manager.parse_uri("http://identifiers.org/aop.relationships:5")
+        ('aop.relationships', '5')
+        >>> manager.parse_uri("https://identifiers.org/aop.relationships/5")
+        ('aop.relationships', '5')
+        >>> manager.parse_uri("http://identifiers.org/aop.relationships/5")
+        ('aop.relationships', '5')
+
+        IRI from N2T
+        >>> manager.parse_uri("https://n2t.net/aop.relationships:5")
+        ('aop.relationships', '5')
+
+        Handle either HTTP or HTTPS:
+        >>> manager.parse_uri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+        ('neuronames', '268')
+        >>> manager.parse_uri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+        ('neuronames', '268')
+
+        If you provide your own prefix map, you should pre-process the prefix map with:
+
+        >>> from curies import Converter, chain
+        >>> prefix_map = {"chebi": "https://example.org/chebi:"}
+        >>> converter = chain([Converter.from_prefix_map(prefix_map), manager.converter])
+        >>> converter.parse_uri("https://example.org/chebi:1234")
+        ('chebi', '1234')
+
+        Corner cases:
+
+        >>> manager.parse_uri("https://omim.org/MIM:PS214100")
+        ('omim.ps', '214100')
+
+        .. todo:: IRI with weird embedding, like ones that end in .html
+        """
+        prefix, identifier = self.converter.parse_uri(uri)
+        if prefix is None or identifier is None:
+            return None, None
+        if use_preferred:
+            prefix = self.get_preferred_prefix(prefix) or prefix
+        return prefix, identifier
+
+    def compress(self, uri: str, *, use_preferred: bool = False) -> Optional[str]:
+        """Parse a compact uniform resource identifier (CURIE) from a URI.
+
+        :param uri: A valid URI
+        :param use_preferred:
+            If set to true, uses the "preferred prefix", if available, instead
+            of the canonicalized Bioregistry prefix.
+        :return: A CURIE, if the URI can be parsed
+
+        URI from an OBO PURL:
+
+        >>> from bioregistry import manager
+        >>> manager.compress("http://purl.obolibrary.org/obo/DRON_00023232")
+        'dron:00023232'
+
+        URI from the OLS:
+
+        >>> manager.compress("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_1")  # noqa:E501
+        'ecao:1'
+
+        .. todo:: URI from bioportal
+
+        URI from native provider
+
+        >>> manager.compress("https://www.alzforum.org/mutations/1234")
+        'alzforum.mutation:1234'
+
+        Dog food:
+
+        >>> manager.compress("https://bioregistry.io/DRON:00023232")
+        'dron:00023232'
+
+        IRIs from Identifiers.org (https and http, colon and slash):
+
+        >>> manager.compress("https://identifiers.org/aop.relationships:5")
+        'aop.relationships:5'
+        >>> manager.compress("http://identifiers.org/aop.relationships:5")
+        'aop.relationships:5'
+        >>> manager.compress("https://identifiers.org/aop.relationships/5")
+        'aop.relationships:5'
+        >>> manager.compress("http://identifiers.org/aop.relationships/5")
+        'aop.relationships:5'
+
+        URI from N2T
+        >>> manager.compress("https://n2t.net/aop.relationships:5")
+        'aop.relationships:5'
+
+        URI from an OBO PURL (with preferred prefix)
+        >>> manager.compress("http://purl.obolibrary.org/obo/DRON_00023232", use_preferred=True)
+        'DRON:00023232'
+        """
+        prefix, identifier = self.parse_uri(uri, use_preferred=use_preferred)
+        return _safe_curie_to_str(prefix, identifier)
+
+    def parse_curie(self, curie: str, *, sep: str = ":", use_preferred: bool = False) -> MaybeCURIE:
         """Parse a CURIE and normalize its prefix and identifier."""
         try:
             prefix, identifier = curie.split(sep, 1)
         except ValueError:
             return None, None
-        return self.normalize_parsed_curie(prefix, identifier)
+        return self.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
-    def normalize_curie(self, curie: str, sep: str = ":") -> Optional[str]:
+    def normalize_curie(
+        self, curie: str, *, sep: str = ":", use_preferred: bool = False
+    ) -> Optional[str]:
         """Normalize the prefix and identifier in the CURIE."""
-        prefix, identifier = self.parse_curie(curie, sep=sep)
-        if prefix is None or identifier is None:
-            return None
-        return curie_to_str(prefix, identifier)
+        prefix, identifier = self.parse_curie(curie, sep=sep, use_preferred=use_preferred)
+        return _safe_curie_to_str(prefix, identifier)
 
     def normalize_parsed_curie(
-        self, prefix: str, identifier: str
-    ) -> Union[Tuple[str, str], Tuple[None, None]]:
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = False,
+    ) -> MaybeCURIE:
         """Normalize a prefix/identifier pair.
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE
+        :param use_preferred:
+            If set to true, uses the "preferred prefix", if available, instead
+            of the canonicalized Bioregistry prefix.
         :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
             prefixes or bananas, all lowercase.
         """
@@ -275,6 +427,8 @@ class Manager:
             return None, None
         resource = self.registry[norm_prefix]
         norm_identifier = resource.standardize_identifier(identifier)
+        if use_preferred:
+            norm_prefix = resource.get_preferred_prefix() or norm_prefix
         return norm_prefix, norm_identifier
 
     @lru_cache(maxsize=None)  # noqa:B019
@@ -585,12 +739,13 @@ class Manager:
                     rv[prefix] = record.uri_prefix
         return rv
 
-    def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
+    def get_curie_pattern(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
 
         :param prefix: The prefix to look up
-        :param use_preferred: Should the preferred prefix be used instead
-            of the Bioregistry prefix (if it exists)?
+        :param use_preferred:
+            If set to true, uses the "preferred prefix", if available, instead
+            of the canonicalized Bioregistry prefix.
         :return: The regular expression pattern to match CURIEs against
 
         >>> from bioregistry import manager
@@ -851,10 +1006,10 @@ class Manager:
         :param identifier: The identifier in the CURIE
         :return: A link to the Bioregistry resolver
         """
-        norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
-        if norm_prefix is None or norm_identifier is None:
+        curie = _safe_curie_to_str(*self.normalize_parsed_curie(prefix, identifier))
+        if curie is None:
             return None
-        return f"{self.base_url}/{curie_to_str(norm_prefix, norm_identifier)}"
+        return f"{self.base_url}/{curie}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
@@ -1381,23 +1536,6 @@ class Manager:
             contexts=self.contexts,
             direct_only=direct_only,
         )
-
-
-def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
-    """Prepare a priority prefix list from a prefix map."""
-    rv = []
-    for prefix, uri_prefix in sorted(prefix_map.items(), key=_sort_key):
-        rv.append((prefix, uri_prefix))
-        if uri_prefix.startswith("https://"):
-            rv.append((prefix, "http://" + uri_prefix[8:]))
-        elif uri_prefix.startswith("http://"):
-            rv.append((prefix, "https://" + uri_prefix[7:]))
-    return rv
-
-
-def _sort_key(kv: Tuple[str, str]) -> int:
-    """Return a value appropriate for sorting a pair of prefix/IRI."""
-    return -len(kv[0])
 
 
 def _read_contributors(

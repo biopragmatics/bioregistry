@@ -364,7 +364,7 @@ class TestRegistry(unittest.TestCase):
         regex = entry.get_pattern()
         if not regex:
             return
-        self.assertRegexpMatches(example, regex, msg=f"[{prefix}] invalid LUID: {example}")
+        self.assertRegex(example, regex, msg=f"[{prefix}] invalid LUID: {example}")
         canonical = entry.is_valid_identifier(example)
         self.assertTrue(canonical is None or canonical, msg=f"[{prefix}] invalid LUID: {example}")
 

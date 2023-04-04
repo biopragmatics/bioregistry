@@ -699,7 +699,7 @@
     ],
     "homepage": "https://scigraph.springernature.com/explorer",
     "name": "Springer Nature article ID",
-    "pattern": "^10\\.\\d{4,9}/[0-9a-z\\.-_]+$",
+    "pattern": "^10\\.\\d{4,9}/[0-9a-z._-]+$",
     "prefix": "P10863",
     "uri_format": "https://scigraph.springernature.com/pub.$1"
   },
@@ -864,7 +864,7 @@
     ],
     "homepage": "https://plantfinder.nativeplanttrust.org/Plant-Search",
     "name": "Garden Plant Finder ID",
-    "pattern": "^[A-Z][A-z0-9\\-]+$",
+    "pattern": "^[A-Z][A-Za-z0-9\\-]+$",
     "prefix": "P11022",
     "uri_format": "https://plantfinder.nativeplanttrust.org/plant/$1"
   },
@@ -1050,7 +1050,7 @@
     ],
     "homepage": "https://www.egardengo.com/explore-plants",
     "name": "eGardenGo plant ID",
-    "pattern": "^[A-z0-9\\-]+$",
+    "pattern": "^[A-Za-z0-9-]+$",
     "prefix": "P11087",
     "uri_format": "https://www.egardengo.com/plant/$1"
   },
@@ -1528,14 +1528,12 @@
     "database": "Q17017504",
     "description": "identifier of disease at Patient UK",
     "example": [
-      "Asperger's-Syndrome.htm",
-      "Diaphyseal-Aclasis",
       "aspergers-syndrome",
       "diaphyseal-aclasis"
     ],
     "homepage": "https://www.patient.co.uk/patientplus/a.htm",
     "name": "Patientplus ID",
-    "pattern": "^[A-Za-z'\\-\\d\\(\\)]+(\\.htm)?$",
+    "pattern": "^[A-Za-z\\-\\d\\(\\)]+$",
     "prefix": "P1461",
     "uri_format": "https://patient.info/doctor/$1"
   },
@@ -2085,7 +2083,7 @@
     ],
     "homepage": "http://www.speciesplus.net/",
     "name": "CITES Species+ ID",
-    "pattern": "^\\d{4,5}$",
+    "pattern": "^\\d{1,5}$",
     "prefix": "P2040",
     "uri_format": "https://speciesplus.net/#/taxon_concepts/$1/legal"
   },
@@ -2886,7 +2884,8 @@
     "database": "Q3073852",
     "description": "identifier for a plant taxon, in the Flora of Australia Online",
     "example": [
-      "41037"
+      "41037",
+      "46116"
     ],
     "homepage": "http://www.anbg.gov.au/abrs/online-resources/flora/",
     "name": "Flora of Australia ID (old)",
@@ -5160,7 +5159,7 @@
       "64859006"
     ],
     "homepage": "http://snomed.info/",
-    "name": "SNOMED CT identifier",
+    "name": "SNOMED CT ID",
     "pattern": "^[0-9]*$",
     "prefix": "P5806",
     "uri_format": "http://snomed.info/id/$1",
@@ -5576,7 +5575,7 @@
     ],
     "homepage": "https://biodiversity.org.au/afd/search/names",
     "name": "Australian Faunal Directory ID",
-    "pattern": "^[a-zA-Z\\xC0-\\xFF]*([-_;]([(]?)[a-zA-Z\\xC0-\\xFF]*(\\.)?([)]?))*(\\.)?$",
+    "pattern": "^\\p{Latin}*([-_;]\\(?\\p{Latin}*\\.?\\)?)*\\.?$",
     "prefix": "P6039",
     "uri_format": "https://biodiversity.org.au/afd/taxa/$1"
   },
@@ -8915,7 +8914,7 @@
       "6193"
     ],
     "homepage": "https://bios.au.dk/forskningraadgivning/temasider/redlistframe/",
-    "name": "Danish 2010 redlist identifier",
+    "name": "Danish 2010 redlist ID",
     "prefix": "P9576",
     "uri_format": "https://roedliste.au.dk/data.asp?ID=$1"
   },
@@ -9427,7 +9426,7 @@
       "40981"
     ],
     "homepage": "https://horizon.documentation.ird.fr/exl-php/accueil",
-    "name": "Institut de recherche pour le d\u00e9veloppement (IRD) identifier",
+    "name": "Institut de recherche pour le d\u00e9veloppement (IRD) ID",
     "prefix": "P9939",
     "uri_format": "https://www.documentation.ird.fr/hor/fdi:$1"
   },
