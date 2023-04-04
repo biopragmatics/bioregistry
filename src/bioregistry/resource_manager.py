@@ -626,6 +626,7 @@ class Manager:
 
     def get_curies_records(
         self,
+        *,
         prefix_priority: Optional[Sequence[str]] = None,
         uri_prefix_priority: Optional[Sequence[str]] = None,
         include_prefixes: bool = False,
@@ -1493,6 +1494,29 @@ class Manager:
         :returns: A prescriptive context object, if available
         """
         return self.contexts.get(key)
+
+    def get_records_from_context(
+        self, context: Union[str, Context], strict: bool = False
+    ) -> List[curies.Record]:
+        """Get records based on a context."""
+        if isinstance(context, str):
+            context = self.contexts[context]
+        return self.get_curies_records(
+            prefix_priority=context.prefix_priority,
+            uri_prefix_priority=context.uri_prefix_priority,
+            strict=strict,
+            remapping=context.prefix_remapping,
+            blacklist=context.blacklist,
+            # include_synonyms is not necessary here
+        )
+
+    def get_converter_from_context(
+        self, context: Union[str, Context], strict: bool = False
+    ) -> curies.Converter:
+        """Get a converter based on a context."""
+        return curies.Converter(
+            records=self.get_records_from_context(context=context, strict=strict)
+        )
 
     def get_context_artifacts(
         self, key: str, include_synonyms: Optional[bool] = None
