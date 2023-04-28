@@ -26,7 +26,12 @@ __all__ = [
 ]
 
 TITLE_DEFAULT = "Bioregistry"
-DESCRIPTION_DEFAULT = "A service for resolving CURIEs"
+DESCRIPTION_DEFAULT = dedent(
+    """\
+    An open source, community curated registry, meta-registry,
+    and compact identifier (CURIE) resolver.
+"""
+)
 FOOTER_DEFAULT = dedent(
     """\
     Developed with ❤️ by the <a href="https://indralab.github.io">INDRA Lab</a> in the
