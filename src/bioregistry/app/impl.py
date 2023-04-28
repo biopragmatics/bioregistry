@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import APIRouter, FastAPI
-from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from rdflib_endpoint import SparqlRouter
@@ -27,6 +26,7 @@ __all__ = [
 ]
 
 TITLE_DEFAULT = "Bioregistry"
+DESCRIPTION_DEFAULT = "A service for resolving CURIEs"
 FOOTER_DEFAULT = dedent(
     """\
     Developed with ❤️ by the <a href="https://indralab.github.io">INDRA Lab</a> in the
@@ -112,27 +112,32 @@ def get_app(
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
+
+    if manager is None:
+        manager = resource_manager.manager
+
     if isinstance(config, (str, Path)):
         with open(config) as file:
-            app.config.update(json.load(file))
-    elif config is not None:
-        app.config.update(config)
-    app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
-    app.config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    app.config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+            config = json.load(file)
+    elif config is None:
+        config = {}
+    config.setdefault("METAREGISTRY_TITLE", TITLE_DEFAULT)
+    config.setdefault("METAREGISTRY_DESCRIPTION", DESCRIPTION_DEFAULT)
+    config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
+    config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    config.setdefault("METAREGISTRY_VERSION", version.get_version())
+    example_prefix = config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    config.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    config.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    config.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    config.setdefault(
+        "METAREGISTRY_LICENSE_URL", "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE"
+    )
 
-    app.manager = manager or resource_manager.manager
-
-    if app.config.get("METAREGISTRY_FIRST_PARTY"):
-        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
-
-    example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
-    resource = app.manager.registry.get(example_prefix)
+    resource = manager.registry.get(example_prefix)
     if resource is None:
         raise ValueError(
             f"{example_prefix} is not available as a prefix. Set a different METAREGISTRY_EXAMPLE_PREFIX"
@@ -142,45 +147,39 @@ def get_app(
     if resource.get_uri_format() is None:
         raise ValueError("Must use an example prefix with a URI format")
 
-    Swagger.DEFAULT_CONFIG.update(
-        {
-            "info": {
-                "title": app.config["METAREGISTRY_TITLE"],
-                "description": "A service for resolving CURIEs",
-                "contact": {
-                    "responsibleDeveloper": "Charles Tapley Hoyt",
-                    "email": "cthoyt@gmail.com",
-                },
-                "version": "1.0",
-                "license": {
-                    "name": "Code available under the MIT License",
-                    "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
-                },
-            },
-            "host": app.manager.base_url,
-            "tags": [
-                {
-                    "name": "collections",
-                    "externalDocs": {
-                        "url": f"{app.manager.base_url}/collection/",
-                    },
-                },
-            ],
-        }
-    )
-
-    Swagger(app)
     Bootstrap4(app)
 
     app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
-    # Make manager available in all jinja templates
-    app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
+    app.config.update(config)
+    app.manager = manager
 
-    fast_api = FastAPI()
+    if app.config.get("METAREGISTRY_FIRST_PARTY"):
+        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
+
+    fast_api = FastAPI(
+        title=config["METAREGISTRY_TITLE"],
+        description=config["METAREGISTRY_DESCRIPTION"],
+        contact={
+            "name": config["METAREGISTRY_CONTACT_NAME"],
+            "email": config["METAREGISTRY_CONTACT_EMAIL"],
+        },
+        license_info={
+            "name": config["METAREGISTRY_LICENSE_NAME"],
+            "url": config["METAREGISTRY_LICENSE_URL"],
+        },
+    )
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
+
+    # Make manager available in all jinja templates
+    app.jinja_env.globals.update(
+        manager=app.manager,
+        curie_to_str=curie_to_str,
+        fastapi=fast_api,
+    )
+
     if return_flask:
         return fast_api, app
     return fast_api
