@@ -1,68 +1,20 @@
 """Tests for the local SPARQL endpoint."""
 
 import unittest
-from typing import Set, Tuple
-from xml import etree
+from typing import ClassVar
 
-import requests
+from curies.mapping_service.utils import (
+    CONTENT_TYPE_SYNONYMS,
+    sparql_service_available,
+    get_sparql_records,
+    get_sparql_record_so_tuples,
+)
+from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
+from bioregistry import Manager
 
 PING_SPARQL = 'SELECT ?s ?o WHERE { BIND("hello" as ?s) . BIND("there" as ?o) . }'
 LOCAL_BIOREGISTRY = "http://localhost:5000/sparql"
 LOCAL_BLAZEGRAPH = "http://192.168.2.30:9999/blazegraph/sparql"
-
-
-def _handle_res_xml(res: requests.Response) -> Set[Tuple[str, str]]:
-    root = etree.ElementTree.fromstring(res.text)  # noqa:S314
-    results = root.find("{http://www.w3.org/2005/sparql-results#}results")
-    rv = set()
-    for result in results:
-        parsed_result = {
-            binding.attrib["name"]: binding.find("{http://www.w3.org/2005/sparql-results#}uri").text
-            for binding in result
-        }
-        rv.add((parsed_result["s"], parsed_result["o"]))
-    return rv
-
-
-def _handle_res_json(res: requests.Response) -> Set[Tuple[str, str]]:
-    res_json = res.json()
-    return {
-        (record["s"]["value"], record["o"]["value"]) for record in res_json["results"]["bindings"]
-    }
-
-
-def _handle_res_csv(res: requests.Response) -> Set[Tuple[str, str]]:
-    header, *lines = (line.strip().split(",") for line in res.text.splitlines())
-    records = (dict(zip(header, line)) for line in lines)
-    return {(record["s"], record["o"]) for record in records}
-
-
-HANDLERS = {
-    "application/json": _handle_res_json,
-    "application/xml": _handle_res_xml,
-    "text/csv": _handle_res_csv,
-}
-
-
-def get(endpoint: str, sparql: str, accept) -> Set[Tuple[str, str]]:
-    """Get a response from a given SPARQL query."""
-    res = requests.get(
-        endpoint,
-        params={"query": sparql},
-        headers={"accept": accept},
-    )
-    func = HANDLERS[accept]
-    return func(res)
-
-
-def sparql_service_available(endpoint: str) -> bool:
-    """Test if a SPARQL service is running."""
-    try:
-        records = get(endpoint, PING_SPARQL, "application/json")
-    except requests.exceptions.ConnectionError:
-        return False
-    return list(records) == [("hello", "there")]
-
 
 SPARQL = f"""\
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -75,6 +27,33 @@ SELECT DISTINCT ?s ?o WHERE {{
 """.rstrip()
 
 
+class TestMappingGraph(unittest.TestCase):
+    """A test case for the mapping service graph."""
+
+    manager: ClassVar[Manager]
+    graph: ClassVar[MappingServiceGraph]
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        """Add a manager and service graph to the test case."""
+        cls.manager = Manager()
+        cls.graph = MappingServiceGraph(converter=cls.manager.converter)
+        cls.processor = MappingServiceSPARQLProcessor(graph=cls.graph)
+
+    def test_ensembl(self):
+        """Test mapping over ensembl.
+
+        Suggested by Olaf in https://github.com/biopragmatics/bioregistry/issues/803
+        """
+        sparql = """\
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        SELECT ?o WHERE {
+            <http://identifiers.org/ensembl/ENSG00000006125> owl:sameAs ?o
+        }
+        """
+        results = self.graph.query(sparql, processor=self.processor)
+
+
 @unittest.skipUnless(
     sparql_service_available(LOCAL_BIOREGISTRY), reason="No local Bioregistry is running"
 )
@@ -83,10 +62,10 @@ class TestSPARQL(unittest.TestCase):
 
     def assert_endpoint(self, endpoint: str, *, accept: str):
         """Assert the endpoint returns favorable results."""
-        records = get(endpoint, SPARQL, accept=accept)
+        records = get_sparql_records(endpoint, SPARQL, accept=accept)
         self.assertIn(
             ("http://purl.obolibrary.org/obo/CHEBI_24867", "https://bioregistry.io/chebi:24867"),
-            records,
+            get_sparql_record_so_tuples(records),
         )
 
     @unittest.skipUnless(
@@ -100,6 +79,7 @@ class TestSPARQL(unittest.TestCase):
         1. Get: https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_2_1_6_RC/blazegraph.jar
         2. Run: java -jar blazegraph.jar
         """
-        for mimetype in HANDLERS:
+        mimetypes = set(CONTENT_TYPE_SYNONYMS).union(CONTENT_TYPE_SYNONYMS.values())
+        for mimetype, query in sorted(mimetypes):
             with self.subTest(mimetype=mimetype):
                 self.assert_endpoint(LOCAL_BLAZEGRAPH, accept=mimetype)
