@@ -58,7 +58,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ ubuntu-latest, windows-latest ]
         python-version: [ "3.11", "3.7" ]
     steps:
       - uses: actions/checkout@v2
@@ -69,7 +69,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip setuptools wheel
-          pip install "tox<4.0.0"
+          pip install tox
       - name: Test with pytest
         run:
           tox -e py
