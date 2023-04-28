@@ -587,3 +587,10 @@ def highlights_owners():
     return render_template(
         "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
     )
+
+
+@ui_blueprint.route("/apidocs")
+@ui_blueprint.route("/apidocs/")
+def apidocs():
+    """Render api documentation page."""
+    return redirect(url_for(".usage"))
