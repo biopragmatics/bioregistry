@@ -60,14 +60,6 @@ class TestMappingGraph(unittest.TestCase):
 class TestSPARQL(unittest.TestCase):
     """Tests for SPARQL."""
 
-    def assert_endpoint(self, endpoint: str, *, accept: str):
-        """Assert the endpoint returns favorable results."""
-        records = get_sparql_records(endpoint, SPARQL, accept=accept)
-        self.assertIn(
-            ("http://purl.obolibrary.org/obo/CHEBI_24867", "https://bioregistry.io/chebi:24867"),
-            get_sparql_record_so_tuples(records),
-        )
-
     @unittest.skipUnless(
         sparql_service_available(LOCAL_BLAZEGRAPH), reason="No local BlazeGraph is running"
     )
@@ -82,4 +74,8 @@ class TestSPARQL(unittest.TestCase):
         mimetypes = set(CONTENT_TYPE_SYNONYMS).union(CONTENT_TYPE_SYNONYMS.values())
         for mimetype, query in sorted(mimetypes):
             with self.subTest(mimetype=mimetype):
-                self.assert_endpoint(LOCAL_BLAZEGRAPH, accept=mimetype)
+                records = get_sparql_records(LOCAL_BLAZEGRAPH, SPARQL, accept=mimetype)
+                self.assertIn(
+                    ("http://purl.obolibrary.org/obo/CHEBI_24867", "https://bioregistry.io/chebi:24867"),
+                    get_sparql_record_so_tuples(records),
+                )
