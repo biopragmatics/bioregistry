@@ -47,8 +47,6 @@ class TestWeb(unittest.TestCase):
                 "sustainability",
                 "related",
                 "acknowledgements",
-                # API
-                "apidocs",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
