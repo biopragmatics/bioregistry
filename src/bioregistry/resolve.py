@@ -5,10 +5,11 @@
 import logging
 import typing
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Set
 
 import curies
 
+from .constants import MaybeCURIE
 from .resource_manager import manager
 from .schema import Attributable, Resource
 
@@ -772,12 +773,20 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     return entry.proprietary
 
 
-def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
+def parse_curie(
+    curie: str,
+    *,
+    sep: str = ":",
+    use_preferred: bool = False,
+) -> MaybeCURIE:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
         "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
 
     The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
@@ -816,29 +825,46 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
     Banana with no peel:
     >>> parse_curie("omim.ps:PS12345")
     ('omim.ps', '12345')
+
+    Use preferred (available)
+    >>> parse_curie('GO_1234', sep="_", use_preferred=True)
+    ('GO', '1234')
+
+    Use preferred (unavailable)
+    >>> parse_curie('pdb:1234', use_preferred=True)
+    ('pdb', '1234')
     """
-    return manager.parse_curie(curie, sep=sep)
+    return manager.parse_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
 def normalize_parsed_curie(
-    prefix: str, identifier: str
-) -> Union[Tuple[str, str], Tuple[None, None]]:
+    prefix: str,
+    identifier: str,
+    *,
+    use_preferred: bool = False,
+) -> MaybeCURIE:
     """Normalize a prefix/identifier pair.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
         prefixes or bananas, all lowercase.
     """
-    return manager.normalize_parsed_curie(prefix, identifier)
+    return manager.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
 
-def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
+def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> Optional[str]:
     """Normalize a CURIE.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
         "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :return: A normalized CURIE, if possible using the colon as a separator
 
     >>> normalize_curie('pdb:1234')
@@ -875,15 +901,22 @@ def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
     Parse OBO PURL curies
     >>> normalize_curie('GO_1234', sep="_")
     'go:1234'
+
+    Use preferred
+    >>> normalize_curie('GO_1234', sep="_", use_preferred=True)
+    'GO:1234'
     """
-    return manager.normalize_curie(curie, sep=sep)
+    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
-def normalize_prefix(prefix: str) -> Optional[str]:
+def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> Optional[str]:
     """Get the normalized prefix, or return None if not registered.
 
     :param prefix: The prefix to normalize, which could come from Bioregistry,
         OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :returns: The canonical Bioregistry prefix, it could be looked up. This
         will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
         in a few cases, such as NCBITaxon.
@@ -900,8 +933,13 @@ def normalize_prefix(prefix: str) -> Optional[str]:
 
     >>> assert 'eccode' == normalize_prefix('ec-code')
     >>> assert 'eccode' == normalize_prefix('EC_CODE')
+
+    Get a "preferred" prefix:
+
+    >>> normalize_prefix("go", use_preferred=True)
+    'GO'
     """
-    return manager.normalize_prefix(prefix)
+    return manager.normalize_prefix(prefix, use_preferred=use_preferred)
 
 
 def get_version(prefix: str) -> Optional[str]:
@@ -918,7 +956,7 @@ def get_versions() -> Mapping[str, str]:
     return manager.get_versions()
 
 
-def get_curie_pattern(prefix: str, use_preferred: bool = False) -> Optional[str]:
+def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> Optional[str]:
     """Get the CURIE pattern for this resource.
 
     :param prefix: The prefix to look up

@@ -1250,6 +1250,10 @@ class Resource(BaseModel):
         """
         return self.get_external("biocontext").get(URI_FORMAT_KEY)
 
+    def get_prefixcommons_prefix(self) -> Optional[str]:
+        """Get the Prefix Commons prefix."""
+        return self.get_mapped_prefix("prefixcommons")
+
     def get_prefixcommons_uri_format(self) -> Optional[str]:
         """Get the Prefix Commons URI format string for this entry, if available.
 
@@ -1600,6 +1604,20 @@ class Resource(BaseModel):
         if self.miriam:
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
+        prefixcommons_prefix = self.get_prefixcommons_prefix()
+        if prefixcommons_prefix:
+            rv.append(
+                Provider(
+                    code="bio2rdf",
+                    name="Bio2RDF",
+                    homepage="https://bio2rdf.org",
+                    uri_format=f"http://bio2rdf.org/{prefixcommons_prefix}:$1",
+                    description="Bio2RDF is an open-source project that uses Semantic Web technologies to "
+                    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
+                    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
+                    "set of heterogeneously formatted sources obtained from multiple data providers.",
+                )
+            )
         return sorted(rv, key=attrgetter("code"))
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
@@ -2357,6 +2375,7 @@ class Collection(BaseModel):
     )
     #: JSON-LD context name
     context: Optional[str]
+    references: Optional[List[str]] = Field(description="URL references")
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.
