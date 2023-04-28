@@ -317,7 +317,7 @@ class TestWeb(unittest.TestCase):
                 "health/go",
             ]:
                 with self.subTest(endpoint=endpoint):
-                    res = client.get(endpoint)
+                    res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(
                         302, res.status_code, msg=f"\n\nFailed on {endpoint}\n\n{res.text}"
                     )
