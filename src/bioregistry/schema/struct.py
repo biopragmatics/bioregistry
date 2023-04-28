@@ -1187,6 +1187,13 @@ class Resource(BaseModel):
             return self.mastodon
         return None
 
+    def get_mastodon_url(self) -> Optional[str]:
+        """Get the Mastodon URL for the resource."""
+        if self.mastodon:
+            parts = self.mastodon.split("@")
+            return "https://" + parts[2] + "/@" + parts[1]
+        return None
+
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
         if self.twitter:
