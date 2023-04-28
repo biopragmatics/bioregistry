@@ -511,6 +511,7 @@ class Resource(BaseModel):
         ),
     )
     twitter: Optional[str] = Field(description="The twitter handle for the project")
+    mastodon: Optional[str] = Field(description="The mastodon handle for the project")
     github_request_issue: Optional[int] = Field(
         description="The GitHub issue for the new prefix request"
     )
@@ -1179,6 +1180,12 @@ class Resource(BaseModel):
             for publication in self.uniprot.get("publications", []):
                 publications.append(Publication.parse_obj(publication))
         return deduplicate_publications(publications)
+
+    def get_mastodon(self) -> Optional[str]:
+        """Get the Mastodon handle for the resource."""
+        if self.mastodon:
+            return self.mastodon
+        return None
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
