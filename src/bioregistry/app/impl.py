@@ -118,22 +118,24 @@ def get_app(
 
     if isinstance(config, (str, Path)):
         with open(config) as file:
-            config = json.load(file)
+            conf = json.load(file)
     elif config is None:
-        config = {}
-    config.setdefault("METAREGISTRY_TITLE", TITLE_DEFAULT)
-    config.setdefault("METAREGISTRY_DESCRIPTION", DESCRIPTION_DEFAULT)
-    config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
-    config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
-    config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
-    config.setdefault("METAREGISTRY_VERSION", version.get_version())
-    example_prefix = config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
-    config.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
-    config.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
-    config.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
-    config.setdefault(
+        conf = {}
+    else:
+        conf = config
+    conf.setdefault("METAREGISTRY_TITLE", TITLE_DEFAULT)
+    conf.setdefault("METAREGISTRY_DESCRIPTION", DESCRIPTION_DEFAULT)
+    conf.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
+    conf.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_VERSION", version.get_version())
+    example_prefix = conf.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    conf.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    conf.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    conf.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    conf.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    conf.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    conf.setdefault(
         "METAREGISTRY_LICENSE_URL", "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE"
     )
 
@@ -152,22 +154,22 @@ def get_app(
     app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
-    app.config.update(config)
+    app.config.update(conf)
     app.manager = manager
 
     if app.config.get("METAREGISTRY_FIRST_PARTY"):
         app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
     fast_api = FastAPI(
-        title=config["METAREGISTRY_TITLE"],
-        description=config["METAREGISTRY_DESCRIPTION"],
+        title=conf["METAREGISTRY_TITLE"],
+        description=conf["METAREGISTRY_DESCRIPTION"],
         contact={
-            "name": config["METAREGISTRY_CONTACT_NAME"],
-            "email": config["METAREGISTRY_CONTACT_EMAIL"],
+            "name": conf["METAREGISTRY_CONTACT_NAME"],
+            "email": conf["METAREGISTRY_CONTACT_EMAIL"],
         },
         license_info={
-            "name": config["METAREGISTRY_LICENSE_NAME"],
-            "url": config["METAREGISTRY_LICENSE_URL"],
+            "name": conf["METAREGISTRY_LICENSE_NAME"],
+            "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
     fast_api.include_router(_get_sparql_router(app))
