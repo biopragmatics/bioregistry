@@ -5,13 +5,11 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
-from curies.mapping_service import (
-    MappingServiceGraph,
-    MappingServiceSPARQLProcessor,
-)
+from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from markdown import markdown
 from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
@@ -193,6 +191,7 @@ def get_app(
         manager=manager,
         curie_to_str=curie_to_str,
         fastapi_url_for=fast_api.url_path_for,
+        markdown=markdown,
     )
 
     if return_flask:

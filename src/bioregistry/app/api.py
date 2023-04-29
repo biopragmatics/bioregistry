@@ -5,6 +5,7 @@
 from typing import Any, List, Mapping, Optional, Set
 
 import yaml
+from curies.mapping_service.utils import handle_header
 from fastapi import APIRouter, Header, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
@@ -35,6 +36,11 @@ api_router = APIRouter(
 )
 
 
+class UnhandledFormat(HTTPException):
+    def __init__(self, fmt: str):
+        super().__init__(400, f"Bad Accept header: {fmt}")
+
+
 class YAMLResponse(Response):
     """A custom response encoded in YAML."""
 
@@ -58,11 +64,16 @@ ACCEPT_HEADER = Header(default=None)
 FORMAT_QUERY = Query(
     title="Format", default=None, description=f"The return format, one of: {list(FORMAT_MAP)}"
 )
+#: A mapping of mimetypes to RDFLib formats
 RDF_MEDIA_TYPES = {
     "text/turtle": "turtle",
     "application/ld+json": "json-ld",
     "application/rdf+xml": "xml",
     "text/n3": "n3",
+}
+CONTENT_TYPE_SYNONYMS = {
+    "text/json": "application/json",
+    "text/yaml": "application/yaml",
 }
 
 
@@ -72,19 +83,14 @@ def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
             raise HTTPException(
                 400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
             )
-        fmt = FORMAT_MAP[fmt]
-    if accept == "*/*":
-        accept = None
-    if accept and fmt:
-        if accept != fmt:
-            raise HTTPException(
-                400, f"Mismatch between Accept header ({accept}) and format parameter ({fmt})"
-            )
-        return accept
-    if accept:
-        return accept
-    if fmt:
-        return fmt
+        return FORMAT_MAP[fmt]
+    if not accept:
+        return "application/json"
+    for header in handle_header(accept):
+        if header in CONTENT_TYPE_SYNONYMS:
+            return CONTENT_TYPE_SYNONYMS[header]
+        if header in RDF_MEDIA_TYPES or header in CONTENT_TYPE_SYNONYMS.values():
+            return header
     return "application/json"
 
 
@@ -103,7 +109,7 @@ def get_resources(
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
-        raise HTTPException(400, f"Bad Accept header: {accept}")
+        raise UnhandledFormat(accept)
 
 
 @api_router.get(
@@ -134,11 +140,10 @@ def get_resource(
     if resource is None:
         raise HTTPException(status_code=404, detail=f"Prefix not found: {prefix}")
     resource = request.app.manager.rasterized_resource(resource)
-
     accept = _handle_formats(accept, format)
     if accept == "application/json":
         return resource
-    elif accept == "application/yaml" or format in {"yaml", "yml"}:
+    elif accept == "application/yaml":
         return YAMLResponse(resource)
     elif accept in RDF_MEDIA_TYPES:
         return Response(
@@ -146,7 +151,7 @@ def get_resource(
             media_type=accept,
         )
     else:
-        raise HTTPException(400, f"Bad Accept header: {accept}")
+        raise UnhandledFormat(format)
 
 
 @api_router.get(
@@ -169,7 +174,7 @@ def get_metaresources(
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
-        raise HTTPException(400, f"Bad Accept header: {accept}")
+        raise UnhandledFormat(accept)
 
 
 METAPREFIX_PATH = Path(
@@ -202,7 +207,8 @@ def get_metaresource(
     format: Optional[str] = FORMAT_QUERY,
 ):
     """Get all registries."""
-    metaresource = request.app.manager.get_registry(metaprefix)
+    manager = request.app.manager
+    metaresource = manager.get_registry(metaprefix)
     if metaresource is None:
         raise HTTPException(status_code=404, detail=f"Registry not found: {metaprefix}")
     accept = _handle_formats(accept, format)
@@ -215,12 +221,12 @@ def get_metaresource(
             metaresource_to_rdf_str(
                 metaresource,
                 fmt=RDF_MEDIA_TYPES[accept],
-                manager=request.app.manager,
+                manager=manager,
             ),
             media_type=accept,
         )
     else:
-        raise HTTPException(400, f"Bad Accept header: {accept}")
+        raise UnhandledFormat(format)
 
 
 @api_router.get(
@@ -312,9 +318,10 @@ def get_metaresource_external_mappings(
 )
 def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PATH):
     """Get mappings from the Bioregistry to an external registry."""
-    if metaprefix not in request.app.manager.metaregistry:
+    manager = request.app.manager
+    if metaprefix not in manager.metaregistry:
         raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
-    return request.app.manager.get_registry_map(metaprefix)
+    return manager.get_registry_map(metaprefix)
 
 
 @api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
@@ -361,7 +368,8 @@ def get_collection(
     format: Optional[str] = FORMAT_QUERY,
 ):
     """Get a collection."""
-    collection = request.app.manager.collections.get(identifier)
+    manager = request.app.manager
+    collection = manager.collections.get(identifier)
     if collection is None:
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
     if accept == "x-bioregistry-context" or format == "context":
@@ -376,7 +384,7 @@ def get_collection(
             collection_to_rdf_str(
                 collection,
                 fmt=RDF_MEDIA_TYPES[accept],
-                manager=request.app.manager,
+                manager=manager,
             ),
             media_type=accept,
         )

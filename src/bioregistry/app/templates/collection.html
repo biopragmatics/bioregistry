@@ -21,14 +21,10 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ fastapi_url_for("get_collection", identifier=identifier) }}">
+                                   href="{{ fastapi_url_for("get_collection", identifier=identifier) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
-                            <a class="dropdown-item"
-                               href="{{ url_for("metaregistry_api.collection_context", identifier=identifier) }}">
-                               Context JSON-LD  <i class="fas fa-download"></i>
-                            </a>
                         </div>
                     </div>
                 </div>

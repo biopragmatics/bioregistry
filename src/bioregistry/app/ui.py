@@ -21,7 +21,6 @@ from flask import (
     request,
     url_for,
 )
-from markdown import markdown
 
 from .proxies import manager
 from .utils import (
@@ -79,7 +78,6 @@ def resources():
     return render_template(
         "resources.html",
         formats=FORMATS,
-        markdown=markdown,
         registry=registry,
     )
 
@@ -100,7 +98,6 @@ def collections():
     return render_template(
         "collections.html",
         rows=manager.collections.items(),
-        markdown=markdown,
         formats=FORMATS,
     )
 
@@ -125,7 +122,6 @@ def resource(prefix: str):
     return render_template(
         "resource.html",
         zip=zip,
-        markdown=markdown,
         prefix=prefix,
         resource=_resource,
         bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
@@ -244,9 +240,9 @@ def collection(identifier: str):
         identifier=identifier,
         entry=entry,
         resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
-        markdown=markdown,
         formats=[
             *FORMATS,
+            ("Context (JSON-LD)", "context"),
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
             ("RDF (n3)", "n3"),
@@ -260,7 +256,6 @@ def contexts():
     return render_template(
         "contexts.html",
         rows=manager.contexts.items(),
-        markdown=markdown,
         formats=FORMATS,
         schema=Context.schema(),
     )
@@ -276,7 +271,6 @@ def context(identifier: str):
         "context.html",
         identifier=identifier,
         entry=entry,
-        markdown=markdown,
         schema=Context.schema()["properties"],
         formats=FORMATS,
     )
