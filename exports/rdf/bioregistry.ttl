@@ -92,6 +92,7 @@
 @prefix biofactoid: <https://biofactoid.org/document/> .
 @prefix biogrid: <http://thebiogrid.org/> .
 @prefix biogrid.interaction: <https://thebiogrid.org/interaction/> .
+@prefix biokc: <https://biokb.lcsb.uni.lu/fact/> .
 @prefix biolegend: <https://www.biolegend.com/Default.aspx?ID=6664&productid=> .
 @prefix biolink: <https://bioregistry.io/metaregistry/biolink/resolve/> .
 @prefix biolink1: <https://w3id.org/biolink/vocab/> .
@@ -185,8 +186,10 @@
 @prefix civic.did: <https://civicdb.org/links/diseases/> .
 @prefix civic.eid: <https://civicdb.org/links/evidence/> .
 @prefix civic.gid: <https://civicdb.org/links/gene/> .
+@prefix civic.mpid: <https://civicdb.org/links/molecular_profile/> .
 @prefix civic.sid: <https://civicdb.org/links/sources/> .
 @prefix civic.tid: <https://civicdb.org/links/drugs/> .
+@prefix civic.vgid: <https://civicdb.org/links/variant_group/> .
 @prefix civic.vid: <https://civicdb.org/links/variant/> .
 @prefix cl: <https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:> .
 @prefix classyfire: <http://classyfire.wishartlab.com/tax_nodes/C> .
@@ -270,6 +273,7 @@
 @prefix cryptodb: <https://cryptodb.org/cryptodb/app/record/gene/> .
 @prefix csa: <https://www.ebi.ac.uk/thornton-srv/databases/CSA/SearchResults.php?PDBID=> .
 @prefix csp: <http://purl.bioontology.org/ontology/CSP/> .
+@prefix cstr: <https://cstr.cn/> .
 @prefix ctd.chemical: <http://ctdbase.org/detail.go?type=chem&acc=> .
 @prefix ctd.disease: <http://ctdbase.org/detail.go?type=disease&db=MESH&acc=> .
 @prefix ctd.gene: <http://ctdbase.org/detail.go?type=gene&acc=> .
@@ -296,8 +300,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dc_cl: <http://purl.obolibrary.org/obo/DC_CL_> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -486,7 +490,7 @@
 @prefix genewiki: <http://plugins.biogps.org/cgi-bin/wp.cgi?id=> .
 @prefix geno: <http://purl.obolibrary.org/obo/GENO_> .
 @prefix genprop: <https://www.ebi.ac.uk/interpro/genomeproperties/#> .
-@prefix geo1: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
+@prefix geo: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=> .
 @prefix geogeo: <http://purl.obolibrary.org/obo/GEO_> .
 @prefix geonames: <https://www.geonames.org/> .
 @prefix gfo: <http://www.onto-med.de/ontologies/gfo.owl#> .
@@ -507,6 +511,7 @@
 @prefix gmd.gcms: <http://gmd.mpimp-golm.mpg.de/Spectrums/> .
 @prefix gmd.profile: <http://gmd.mpimp-golm.mpg.de/profile/default.aspx?XemlId=> .
 @prefix gmd.ref: <http://gmd.mpimp-golm.mpg.de/ReferenceSubstances/> .
+@prefix gnd: <https://lobid.org/gnd/> .
 @prefix gnomad: <https://gnomad.broadinstitute.org/variant/> .
 @prefix gnpis: <https://urgi.versailles.inra.fr/gnpis/#result/term=> .
 @prefix go: <http://amigo.geneontology.org/amigo/term/GO:> .
@@ -524,6 +529,7 @@
 @prefix google.book: <https://books.google.com/books?id=> .
 @prefix google.patent: <https://www.google.com/patents/> .
 @prefix gpcrdb: <https://gpcrdb.org/protein/> .
+@prefix gpcrnava: <http://nava.liacs.nl/cgi-bin/nava.py?id=> .
 @prefix gpmdb: <http://gpmdb.thegpm.org/~/dblist_gpmnum/gpmnum=> .
 @prefix graingenes.reference: <https://wheat.pw.usda.gov/cgi-bin/GG3/report.cgi?class=reference&name=> .
 @prefix gramene.growthstage: <http://www.gramene.org/db/ontology/search?id=GRO:> .
@@ -567,7 +573,7 @@
 @prefix hinv.locus: <http://h-invitational.jp/hinv/spsoup/locus_view?hix_id=> .
 @prefix hinv.protein: <http://h-invitational.jp/hinv/protein/protein_view.cgi?hip_id=> .
 @prefix hinv.transcript: <http://h-invitational.jp/hinv/spsoup/transcript_view?hit_id=> .
-@prefix hipsci: <http://www.hipsci.org/lines/#/lines/> .
+@prefix hipsci: <https://www.hipsci.org/lines/#/lines/> .
 @prefix hl7.v2codesystem: <http://terminology.hl7.org/CodeSystem/v2-> .
 @prefix hl7.v3codesystem: <https://terminology.hl7.org/CodeSystem-v3-> .
 @prefix hmdb: <http://www.hmdb.ca/metabolites/> .
@@ -841,6 +847,7 @@
 @prefix nif.ext: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
 @prefix nif.std: <http://uri.neuinfo.org/nif/nifstd/> .
 @prefix nihreporter.project: <https://reporter.nih.gov/project-details/> .
+@prefix nlfff: <http://database.deepsolar.space:18080/dbs/nlfff/> .
 @prefix nlm: <https://www.ncbi.nlm.nih.gov/nlmcatalog/> .
 @prefix nlx.anat: <http://uri.neuinfo.org/nif/nifstd/nlx_anat_> .
 @prefix nlx.br: <http://uri.neuinfo.org/nif/nifstd/nlx_br_> .
@@ -880,6 +887,7 @@
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix obofoundry: <http://www.obofoundry.org/ontology/> .
 @prefix oboinowl: <http://www.geneontology.org/formats/oboInOwl#> .
+@prefix obv: <https://permalink.obvsg.at/> .
 @prefix oci: <https://w3id.org/oc/oci/> .
 @prefix ocid: <https://ocid.ontochem.com/prefname?ocid=> .
 @prefix oclc: <https://www.worldcat.org/oclc/> .
@@ -1264,6 +1272,7 @@
 @prefix uo: <https://www.ebi.ac.uk/ols/ontologies/uo/terms?obo_id=UO:> .
 @prefix upa: <http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=> .
 @prefix uspto: <http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/> .
+@prefix utrdb: <https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=> .
 @prefix vac: <https://vac.niaid.nih.gov/view?id=> .
 @prefix validatordb: <https://webchem.ncbr.muni.cz/Platform/ValidatorDb/ByStructure/> .
 @prefix vandf: <http://purl.bioontology.org/ontology/VANDF/> .
@@ -2923,7 +2932,7 @@ bioregistry:bcrj a bioregistry.schema:0000001 ;
     dcterms:description "Cell line collections"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch cellosaurus.resource:BCRJ ;
-    foaf:homepage bcrj:bcrj ;
+    foaf:homepage <https://bcrj.org.br/pesquisa/> ;
     bioregistry.schema:0000005 "0278"^^xsd:string ;
     bioregistry.schema:0000006 "http://bcrj.org.br/celula/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
@@ -3176,8 +3185,7 @@ bioregistry:bila a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:bila.owl ;
     bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "Thorsten Heinrich" ;
-            foaf:mbox "henrich@embl.de" ] ;
+    bioregistry.schema:0000019 orcid:0000-0002-1548-3290 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BILA_"^^xsd:string ;
     bioregistry.schema:0000027 bila:0000000 ;
     bioregistry.schema:0000029 "bila" .
@@ -3284,6 +3292,20 @@ bioregistry:biocyc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://biocyc.org/getid?id="^^xsd:string ;
     bioregistry.schema:0000027 <http://biocyc.org/getid?id=ECOLI:CYT-D-UBIOX-CPLX> ;
     bioregistry.schema:0000029 "biocyc" .
+
+bioregistry:biokc a bioregistry.schema:0000001 ;
+    rdfs:label "BioKC" ;
+    dcterms:description "BioKC (Biological Knowledge Curation), is a web-based collaborative platform for the curation and annotation of biomedical knowledge following the standard data model from Systems Biology Markup Language (SBML)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:biokc ;
+    foaf:homepage <https://wwwen.uni.lu/lcsb> ;
+    bioregistry.schema:0000005 "bkc640"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biokb.lcsb.uni.lu/fact/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^bkc[0-9]*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://biokb.lcsb.uni.lu/fact/"^^xsd:string ;
+    bioregistry.schema:0000027 biokc:bkc640 ;
+    bioregistry.schema:0000029 "biokc" .
 
 bioregistry:biolink a bioregistry.schema:0000001 ;
     rdfs:label "Biolink Model" ;
@@ -4114,7 +4136,7 @@ bioregistry:cellbank.australia a bioregistry.schema:0000001 ;
     dcterms:description "CellBank Australia collects novel cell lines, developed by Australian researchers, submits these cell lines to rigorous testing to confirm their integrity, and then distributes the cell lines to researchers throughout the world."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch cellosaurus.resource:CBA ;
-    foaf:homepage <http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/> ;
+    foaf:homepage <https://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/> ;
     bioregistry.schema:0000005 "ab-1-ha"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cellbankaustralia.com/$1.html"^^xsd:string ;
     bioregistry.schema:0000012 false ;
@@ -4362,6 +4384,34 @@ bioregistry:cio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CIO_"^^xsd:string ;
     bioregistry.schema:0000027 cio:0000040 ;
     bioregistry.schema:0000029 "cio" .
+
+bioregistry:civic.mpid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Molecular Profile" ;
+    dcterms:description "CIViC Molecular Profiles are combinations of one or more CIViC variants. Most Molecular Profiles are “Simple” Molecular Profiles comprised of a single variant. In most cases, these can be considered equivalent to the CIViC concept of a Variant. However, increasingly clinical significance must be considered in the context of multiple variants simultaneously. Complex Molecular Profiles in CIViC allow for curation of such variant combinations. Regardless of the nature of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered in CIViC."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:civic.mpid ;
+    foaf:homepage <https://civicdb.org/> ;
+    bioregistry.schema:0000005 "559"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/molecular_profile/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://civicdb.org/links/molecular_profile/"^^xsd:string ;
+    bioregistry.schema:0000027 civic.mpid:559 ;
+    bioregistry.schema:0000029 "civic.mpid" .
+
+bioregistry:civic.vgid a bioregistry.schema:0000001 ;
+    rdfs:label "CIViC Variant Group" ;
+    dcterms:description "Variant Groups in CIViC provide user-defined grouping of Variants within and between genes based on unifying characteristics. CIViC curators are required to define a cohesive rationale for grouping these variants together, summarize their relevance to cancer diagnosis, prognosis or treatment and highlight any treatments or cancers of particular relevance"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:civic.vgid ;
+    foaf:homepage <https://civicdb.org/> ;
+    bioregistry.schema:0000005 "16"^^xsd:string ;
+    bioregistry.schema:0000006 "https://civicdb.org/links/variant_group/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://civicdb.org/links/variant_group/"^^xsd:string ;
+    bioregistry.schema:0000027 civic.vgid:16 ;
+    bioregistry.schema:0000029 "civic.vgid" .
 
 bioregistry:classyfire a bioregistry.schema:0000001 ;
     rdfs:label "ClassyFire" ;
@@ -5752,6 +5802,20 @@ bioregistry:cst.ab a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000027 <http://www.cellsignal.com/products/3305.html> ;
     bioregistry.schema:0000029 "cst.ab" .
+
+bioregistry:cstr a bioregistry.schema:0000001 ;
+    rdfs:label "Common Science and Technology Resources" ;
+    dcterms:description "CSTR is an identifier for Common Science and Technology Resources, to provide persistent identification services for the positioning, traceability, citation, statistics and evaluation of science and technology resources. "^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:cstr ;
+    foaf:homepage <https://www.cstr.cn/en/> ;
+    bioregistry.schema:0000005 "31253.11.sciencedb.j00001.00123"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cstr.cn/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w{5}\\.\\d{2}\\..*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://cstr.cn/"^^xsd:string ;
+    bioregistry.schema:0000027 cstr:31253.11.sciencedb.j00001.00123 ;
+    bioregistry.schema:0000029 "cstr" .
 
 bioregistry:cto a bioregistry.schema:0000001 ;
     rdfs:label "Clinical Trials Ontology" ;
@@ -8393,6 +8457,25 @@ bioregistry:gmd.ref a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 gmd.ref:8cf84adb-b4db-4807-ac98-0004247c35df ;
     bioregistry.schema:0000029 "gmd.ref" .
 
+bioregistry:gnd a bioregistry.schema:0000001 ;
+    rdfs:label "Gemeinsame Normdatei" ;
+    dcterms:description "The Gemeinsame Normdatei (Integrated Authority File) or GND is an international authority file for person names, subject headings and corporate bodies. It is used mainly for documentation in libraries and increasingly also by archives and museums. The GND is managed by the German National Library in cooperation with various regional library networks in German-speaking Europe and other partners."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch bartoc:430,
+        fairsharing:FAIRsharing.8337e2,
+        miriam:gnd ;
+    dcat:keyword "culture",
+        "knowledge and information systems",
+        "social science" ;
+    foaf:homepage <https://lobid.org/> ;
+    bioregistry.schema:0000005 "117145750"^^xsd:string ;
+    bioregistry.schema:0000006 "https://lobid.org/gnd/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9X\\-]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://lobid.org/gnd/"^^xsd:string ;
+    bioregistry.schema:0000027 gnd:117145750 ;
+    bioregistry.schema:0000029 "gnd" .
+
 bioregistry:gno a bioregistry.schema:0000001 ;
     rdfs:label "Glycan Naming and Subsumption Ontology" ;
     dcterms:description "An ontology for glycans based on GlyTouCan, but organized by subsumption."^^xsd:string ;
@@ -8553,6 +8636,21 @@ bioregistry:gpcrdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://gpcrdb.org/protein/"^^xsd:string ;
     bioregistry.schema:0000027 gpcrdb:RL3R1_HUMAN ;
     bioregistry.schema:0000029 "gpcrdb" .
+
+bioregistry:gpcrnava a bioregistry.schema:0000001 ;
+    rdfs:label "GPCR Natural Variants database" ;
+    dcterms:description "The GPCR NaVa database describes sequence variants within the family of human G Protein-Coupled Receptors (GPCRs). GPCRs regulate many physiological functions and are the targets for most of today's medicines. The acronym NaVa stands for Natural Variant, which means any (non-artificial) variant that occurs in humans."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch prefixcommons:gnd ;
+    dcat:keyword "pathway",
+        "protein" ;
+    foaf:homepage <http://nava.liacs.nl/> ;
+    bioregistry.schema:0000005 "1150"^^xsd:string ;
+    bioregistry.schema:0000006 "http://nava.liacs.nl/cgi-bin/nava.py?id=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://nava.liacs.nl/cgi-bin/nava.py?id="^^xsd:string ;
+    bioregistry.schema:0000027 gpcrnava:1150 ;
+    bioregistry.schema:0000029 "gpcrnava" .
 
 bioregistry:gpmdb a bioregistry.schema:0000001 ;
     rdfs:label "Global Proteome Machine Database" ;
@@ -9187,11 +9285,11 @@ bioregistry:hipsci a bioregistry.schema:0000001 ;
     dcterms:description "Cell line databases/resources"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch cellosaurus.resource:HipSci ;
-    foaf:homepage <http://www.hipsci.org> ;
+    foaf:homepage <https://www.hipsci.org> ;
     bioregistry.schema:0000005 "HPSI0114i-bezi_1"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.hipsci.org/lines/#/lines/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.hipsci.org/lines/#/lines/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "http://www.hipsci.org/lines/#/lines/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.hipsci.org/lines/#/lines/"^^xsd:string ;
     bioregistry.schema:0000027 hipsci:HPSI0114i-bezi_1 ;
     bioregistry.schema:0000029 "hipsci" .
 
@@ -10980,7 +11078,7 @@ bioregistry:mao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "mao" .
 
 bioregistry:massbank a bioregistry.schema:0000001 ;
-    rdfs:label "MassBank accession" ;
+    rdfs:label "MassBank" ;
     dcterms:description "MassBank is a federated database of reference spectra from different instruments, including high-resolution mass spectra of small metabolites (<3000 Da)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository github:MassBank ;
@@ -11398,8 +11496,7 @@ bioregistry:mfo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MFO_$1"^^xsd:string ;
     bioregistry.schema:0000010 obo:mfo.owl ;
     bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "Thorsten Henrich" ;
-            foaf:mbox "Thorsten.Henrich@embl-heidelberg.de" ] ;
+    bioregistry.schema:0000019 orcid:0000-0002-1548-3290 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MFO_"^^xsd:string ;
     bioregistry.schema:0000027 mfo:MFO_0000001 ;
     bioregistry.schema:0000029 "mfo" .
@@ -11537,7 +11634,7 @@ bioregistry:mi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:mi.owl ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-8429-8793 ;
+    bioregistry.schema:0000019 orcid:0000-0001-5084-9000 ;
     bioregistry.schema:0000023 "PSI-MI" ;
     bioregistry.schema:0000024 "https://www.ebi.ac.uk/ols/ontologies/mi/terms?obo_id=MI:"^^xsd:string ;
     bioregistry.schema:0000027 mi:0058 ;
@@ -12949,6 +13046,26 @@ bioregistry:nextprot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 nextprot:NX_O00165 ;
     bioregistry.schema:0000029 "nextprot" .
 
+bioregistry:ngbo a bioregistry.schema:0000001 ;
+    rdfs:label "Next Generation Biobanking Ontology" ;
+    dcterms:description "The Next Generation Biobanking Ontology (NGBO) is an open application ontology representing contextual data about omics digital assets in biobank. The ontology focuses on capturing the information about three main activities: wet bench analysis used to generate omics data, bioinformatics analysis used to analyze and interpret data, and data management."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/Dalalghamdi/NGBO> ;
+    skos:exactMatch aberowl:NGBO,
+        obofoundry:ngbo,
+        ontobee:NGBO,
+        bioportal:NGBO ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/Dalalghamdi/NGBO> ;
+    bioregistry.schema:0000005 "6000122"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NGBO_$1"^^xsd:string ;
+    bioregistry.schema:0000010 obo:ngbo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2801-0767 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NGBO_"^^xsd:string ;
+    bioregistry.schema:0000029 "ngbo" .
+
 bioregistry:ngl a bioregistry.schema:0000001 ;
     rdfs:label "NASA GeneLab" ;
     dcterms:description "NASA's GeneLab gathers spaceflight genomic data, RNA and protein expression, and metabolic profiles, interfaces with existing databases for expanded research, will offer tools to conduct data analysis, and is in the process of creating a place online where scientists, researchers, teachers and students can connect with their peers, share their results, and communicate with NASA."^^xsd:string ;
@@ -12999,6 +13116,20 @@ bioregistry:niaest a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1="^^xsd:string ;
     bioregistry.schema:0000027 niaest:J0705A10 ;
     bioregistry.schema:0000029 "niaest" .
+
+bioregistry:nlfff a bioregistry.schema:0000001 ;
+    rdfs:label "NLFFF Database" ;
+    dcterms:description "Nonlinear Force-Free Field Three-Dimensional Magnetic Fields Data of Solar Active Regions Database"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:nlfff ;
+    foaf:homepage <https://nlfff.dataset.deepsolar.space/en/> ;
+    bioregistry.schema:0000005 "345201101230312003"^^xsd:string ;
+    bioregistry.schema:0000006 "http://database.deepsolar.space:18080/dbs/nlfff/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://database.deepsolar.space:18080/dbs/nlfff/"^^xsd:string ;
+    bioregistry.schema:0000027 nlfff:345201101230312003 ;
+    bioregistry.schema:0000029 "nlfff" .
 
 bioregistry:nmpdr a bioregistry.schema:0000001 ;
     rdfs:label "National Microbial Pathogen Data Resource" ;
@@ -13285,6 +13416,21 @@ bioregistry:obo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-7356-1779 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/"^^xsd:string ;
     bioregistry.schema:0000029 "obo" .
+
+bioregistry:obv a bioregistry.schema:0000001 ;
+    rdfs:label "Austrian Library Network" ;
+    dcterms:description "The Austrian Library Network (OBV) is the largest network of scientific and administrative libraries in Austria with 70 participants, representing more than 90 individual institutions - including the Austrian National Library, university libraries, the colleges of education, individual ministries, numerous technical colleges and other important collections."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch bartoc:20430,
+        miriam:obv ;
+    foaf:homepage <https://www.obvsg.at/> ;
+    bioregistry.schema:0000005 "AC00963334"^^xsd:string ;
+    bioregistry.schema:0000006 "https://permalink.obvsg.at/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^AC[0-9]{8}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://permalink.obvsg.at/"^^xsd:string ;
+    bioregistry.schema:0000027 obv:AC00963334 ;
+    bioregistry.schema:0000029 "obv" .
 
 bioregistry:occ a bioregistry.schema:0000001 ;
     rdfs:label "OpenCitations Corpus" ;
@@ -13689,6 +13835,20 @@ bioregistry:omia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://omia.org/OMIA"^^xsd:string ;
     bioregistry.schema:0000027 omia:1000 ;
     bioregistry.schema:0000029 "omia" .
+
+bioregistry:omid a bioregistry.schema:0000001 ;
+    rdfs:label "OpenCitations Meta Identifier" ;
+    dcterms:description "Every entity in OpenCitations Meta (https://opencitations.net/meta) is assigned persistent internal identifier called OpenCitations Meta Identifier (OMID). The OMID has structure [[entity_type_abbreviation]]/[[supplier_prefix]][[sequential_number]]. For example, the first journal article ever processed has OMID br/0601 (the full URI is https://w3id.org/oc/meta/br/0601), where br is the abbreviation of bibliographic resource, and 060 corresponds to the supplier prefix, helpful in recognising at a glance the index it belongs to (i.e., OpenCitations Meta). Finally, 1 indicates that this is the index's first bibliographic resource ever minted."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:omid ;
+    foaf:homepage <http://opencitations.net/> ;
+    bioregistry.schema:0000005 "br/0601"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/oc/meta/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://w3id.org/oc/meta/"^^xsd:string ;
+    bioregistry.schema:0000027 <https://w3id.org/oc/meta/br/0601> ;
+    bioregistry.schema:0000029 "omid" .
 
 bioregistry:ontoneo a bioregistry.schema:0000001 ;
     rdfs:label "Obstetric and Neonatal Ontology" ;
@@ -14289,8 +14449,7 @@ bioregistry:pd_st a bioregistry.schema:0000001 ;
     foaf:homepage <http://4dx.embl.de/platy> ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PD_ST_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "Thorsten Heinrich" ;
-            foaf:mbox "henrich@embl.de" ] ;
+    bioregistry.schema:0000019 orcid:0000-0002-1548-3290 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PD_ST_"^^xsd:string ;
     bioregistry.schema:0000029 "pd_st" .
 
@@ -18151,6 +18310,20 @@ bioregistry:uspto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 uspto:4145692 ;
     bioregistry.schema:0000029 "uspto" .
 
+bioregistry:utrdb a bioregistry.schema:0000001 ;
+    rdfs:label "UTRdb" ;
+    dcterms:description "A curated database of 5' and 3' untranslated sequences of eukaryotic mRNAs. In the current update, the UTR entries are organized in a gene-centric structure to better visualize and retrieve 5' and 3'UTR variants generated by alternative initiation and termination of transcription and alternative splicing. Experimentally validated miRNA targets and conserved sequence elements are also annotated. The integration of UTRdb with genomic data has allowed the implementation of an efficient annotation system and a powerful retrieval resource for the selection and extraction of specific UTR subsets. "^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:utrdb ;
+    foaf:homepage <https://utrdb.cloud.ba.infn.it/utrdb/index_107.html> ;
+    bioregistry.schema:0000005 "5UTR_107_ENST00000517291.2"^^xsd:string ;
+    bioregistry.schema:0000006 "https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([3-5][A-Z])\\w+[^A-Z][0-9]$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e="^^xsd:string ;
+    bioregistry.schema:0000027 utrdb:5UTR_107_ENST00000517291.2 ;
+    bioregistry.schema:0000029 "utrdb" .
+
 bioregistry:validatordb a bioregistry.schema:0000001 ;
     rdfs:label "ValidatorDB" ;
     dcterms:description "Database of validation results for ligands and non-standard residues in the Protein Data Bank."^^xsd:string ;
@@ -19274,9 +19447,6 @@ orcid:0000-0001-5025-5886 rdfs:label "Idan Gabdank" ;
 orcid:0000-0001-5059-4132 rdfs:label "Marijane White" ;
     foaf:mbox "whimar@ohsu.edu" .
 
-orcid:0000-0001-5084-9000 rdfs:label "Luana Licata" ;
-    foaf:mbox "luana.licata@gmail.com" .
-
 orcid:0000-0001-5168-3196 rdfs:label "Nathan Edwards" ;
     foaf:mbox "nje5@georgetown.edu" .
 
@@ -19603,6 +19773,9 @@ orcid:0000-0002-2627-833X rdfs:label "Peer Bork" ;
 orcid:0000-0002-2668-4821 rdfs:label "Antony Williams" ;
     foaf:mbox "williams.antony@epa.gov" .
 
+orcid:0000-0002-2801-0767 rdfs:label "Dalia Alghamdi" ;
+    foaf:mbox "dal.alghamdi92@gmail.com" .
+
 orcid:0000-0002-2916-3423 rdfs:label "Maria Gould" ;
     foaf:mbox "maria.gould@ucop.edu" .
 
@@ -19634,6 +19807,9 @@ orcid:0000-0002-4054-1827 rdfs:label "Dawood B. Dudekula" ;
 
 orcid:0000-0002-4071-8397 rdfs:label "Zoë May Pendlington" ;
     foaf:mbox "zmp@ebi.ac.uk" .
+
+orcid:0000-0002-4131-735X rdfs:label "John Garavelli" ;
+    foaf:mbox "john.garavelli@ebi.ac.uk" .
 
 orcid:0000-0002-4142-7153 rdfs:label "Sabrina Toro" ;
     foaf:mbox "Sabrina@tislab.org" .
@@ -19816,9 +19992,6 @@ orcid:0000-0002-8411-3226 rdfs:label "Stefanie Seltmann" ;
 orcid:0000-0002-8424-0604 rdfs:label "Donny Winston" ;
     dcterms:contributor bioregistry:nmdc ;
     foaf:mbox "donny@polyneme.xyz" .
-
-orcid:0000-0002-8429-8793 rdfs:label "Pablo Porras Millán" ;
-    foaf:mbox "pporras@ebi.ac.uk" .
 
 orcid:0000-0002-8461-9745 rdfs:label "Marie-Angélique Laporte" ;
     foaf:mbox "m.a.laporte@cgiar.org" .
@@ -20446,6 +20619,8 @@ aberowl:NDFRT dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:NEMO dcterms:isPartOf bioregistry.registry:aberowl .
 
+aberowl:NGBO dcterms:isPartOf bioregistry.registry:aberowl .
+
 aberowl:NIFCELL dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:NIFSTD dcterms:isPartOf bioregistry.registry:aberowl .
@@ -20733,6 +20908,8 @@ agroportal:BCO dcterms:isPartOf bioregistry.registry:agroportal .
 agroportal:BFO dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:CDAO dcterms:isPartOf bioregistry.registry:agroportal .
+
+agroportal:CDNO dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:CL dcterms:isPartOf bioregistry.registry:agroportal .
 
@@ -21490,6 +21667,8 @@ obofoundry:ncit dcterms:isPartOf bioregistry.registry:obofoundry .
 
 obofoundry:ncro dcterms:isPartOf bioregistry.registry:obofoundry .
 
+obofoundry:ngbo dcterms:isPartOf bioregistry.registry:obofoundry .
+
 obofoundry:nif_cell dcterms:isPartOf bioregistry.registry:obofoundry .
 
 obofoundry:nif_dysfunction dcterms:isPartOf bioregistry.registry:obofoundry .
@@ -21711,6 +21890,8 @@ obofoundry:zp dcterms:isPartOf bioregistry.registry:obofoundry .
 ontobee:ADO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:AEO dcterms:isPartOf bioregistry.registry:ontobee .
+
+ontobee:AFO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:AGRO dcterms:isPartOf bioregistry.registry:ontobee .
 
@@ -21955,6 +22136,8 @@ ontobee:NCIT dcterms:isPartOf bioregistry.registry:ontobee .
 ontobee:NCRO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:NDF-RT dcterms:isPartOf bioregistry.registry:ontobee .
+
+ontobee:NGBO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:NOMEN dcterms:isPartOf bioregistry.registry:ontobee .
 
@@ -22500,6 +22683,8 @@ bartoc:20299 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:20428 dcterms:isPartOf bioregistry.registry:bartoc .
 
+bartoc:20430 dcterms:isPartOf bioregistry.registry:bartoc .
+
 bartoc:2053 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:2054 dcterms:isPartOf bioregistry.registry:bartoc .
@@ -22511,6 +22696,8 @@ bartoc:305 dcterms:isPartOf bioregistry.registry:bartoc .
 bartoc:391 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:400 dcterms:isPartOf bioregistry.registry:bartoc .
+
+bartoc:430 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:445 dcterms:isPartOf bioregistry.registry:bartoc .
 
@@ -22913,6 +23100,8 @@ bioportal:NDDF dcterms:isPartOf bioregistry.registry:bioportal .
 bioportal:NDFRT dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:NEMO dcterms:isPartOf bioregistry.registry:bioportal .
+
+bioportal:NGBO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:NIFCELL dcterms:isPartOf bioregistry.registry:bioportal .
 
@@ -24916,13 +25105,15 @@ biolink:ICD9 dcterms:isPartOf bioregistry.registry:biolink .
 
 biolink:INO dcterms:isPartOf bioregistry.registry:biolink .
 
+biolink:KEGG dcterms:isPartOf bioregistry.registry:biolink .
+
 biolink:KEGG.BRITE dcterms:isPartOf bioregistry.registry:biolink .
 
 biolink:KEGG.DGROUP dcterms:isPartOf bioregistry.registry:biolink .
 
 biolink:KEGG.ENZYME dcterms:isPartOf bioregistry.registry:biolink .
 
-biolink:KEGG.GENE dcterms:isPartOf bioregistry.registry:biolink .
+biolink:KEGG.GENES dcterms:isPartOf bioregistry.registry:biolink .
 
 biolink:KEGG.PATHWAY dcterms:isPartOf bioregistry.registry:biolink .
 
@@ -24965,6 +25156,8 @@ biolink:PHARMGKB.DISEASE dcterms:isPartOf bioregistry.registry:biolink .
 biolink:PHARMGKB.GENE dcterms:isPartOf bioregistry.registry:biolink .
 
 biolink:PHARMGKB.PATHWAYS dcterms:isPartOf bioregistry.registry:biolink .
+
+biolink:PMC dcterms:isPartOf bioregistry.registry:biolink .
 
 biolink:PathWhiz dcterms:isPartOf bioregistry.registry:biolink .
 
@@ -27176,6 +27369,7 @@ bioregistry:afo a bioregistry.schema:0000001 ;
     dcterms:description "Allotrope Merged Ontology Suite"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch aberowl:AFO,
+        ontobee:AFO,
         bioportal:AFO,
         fairsharing:FAIRsharing.595710,
         ols:afo ;
@@ -30163,7 +30357,11 @@ bioregistry:gemet a bioregistry.schema:0000001 ;
     dcterms:description "The European Environment Information and Observation Network (Eionet) is a partnership network of the European Environment Agency (EEA) and its 38 member and cooperating countries. The EEA is responsible for developing Eionet and coordinating its activities together with National Focal Points (NFPs) in the countries. This terminology supports those efforts."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch agroportal:GEMET,
-        bartoc:16 ;
+        bartoc:16,
+        fairsharing:FAIRsharing.9091d9 ;
+    dcat:keyword "biodiversity",
+        "ecology",
+        "environmental science" ;
     foaf:homepage <https://www.eionet.europa.eu/gemet/en/themes/> ;
     bioregistry.schema:0000005 "627"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.eionet.europa.eu/gemet/en/concept/$1"^^xsd:string ;
@@ -30206,7 +30404,7 @@ bioregistry:geo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/GEO/4/geo.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc="^^xsd:string ;
-    bioregistry.schema:0000027 geo1:GDS1234 ;
+    bioregistry.schema:0000027 geo:GDS1234 ;
     bioregistry.schema:0000029 "geo" .
 
 bioregistry:geonames a bioregistry.schema:0000001 ;
@@ -31162,7 +31360,7 @@ bioregistry:insdc a bioregistry.schema:0000001 ;
         prefixcommons:insdc,
         miriam:insdc ;
     dcat:keyword "dna" ;
-    foaf:homepage nucleotide: ;
+    foaf:homepage <https://www.ncbi.nlm.nih.gov/Genbank/> ;
     bioregistry.schema:0000005 "X58356"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/nuccore/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4,6}\\d{8,10}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$"^^xsd:string ;
@@ -31396,7 +31594,7 @@ bioregistry:kegg.genes a bioregistry.schema:0000001 ;
         bioregistry:kegg ;
     skos:exactMatch wikidata:P665,
         biocontext:KEGG.GENES,
-        biolink:KEGG.GENE,
+        biolink:KEGG.GENES,
         n2t:kegg.genes,
         prefixcommons:kegg.gene,
         miriam:kegg.genes ;
@@ -31733,10 +31931,10 @@ bioregistry:lrg a bioregistry.schema:0000001 ;
         miriam:lrg ;
     foaf:homepage <http://www.lrg-sequence.org/> ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
-    bioregistry.schema:0000006 "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"^^xsd:string ;
+    bioregistry.schema:0000006 "http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000027 <ftp://ftp.ebi.ac.uk/pub/databases/lrgex/1.xml> ;
+    bioregistry.schema:0000027 <http://ftp.ebi.ac.uk/pub/databases/lrgex/1.xml> ;
     bioregistry.schema:0000029 "lrg" .
 
 bioregistry:lspci a bioregistry.schema:0000001 ;
@@ -33132,7 +33330,7 @@ bioregistry:pfam a bioregistry.schema:0000001 ;
     dcat:keyword "biology",
         "domain",
         "protein" ;
-    foaf:homepage <https://pfam.xfam.org/> ;
+    foaf:homepage <https://www.ebi.ac.uk/interpro/> ;
     bioregistry.schema:0000005 "PF11779"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/interpro/entry/pfam/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PF\\d{5}$"^^xsd:string ;
@@ -33773,8 +33971,7 @@ bioregistry:resid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://proteininformationresource.org/cgi-bin/resid?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^AA\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "John Garavelli" ;
-            foaf:mbox "john.garavelli@ebi.ac.uk" ] ;
+    bioregistry.schema:0000019 orcid:0000-0002-4131-735X ;
     bioregistry.schema:0000024 "https://proteininformationresource.org/cgi-bin/resid?id="^^xsd:string ;
     bioregistry.schema:0000027 resid:AA0001 ;
     bioregistry.schema:0000029 "resid" .
@@ -35792,6 +35989,8 @@ fairsharing:FAIRsharing.7zffgc dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.7zxrs6 dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.8337e2 dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.847069 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.84c1a7 dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -35823,6 +36022,8 @@ fairsharing:FAIRsharing.8wm364 dcterms:isPartOf bioregistry.registry:fairsharing
 fairsharing:FAIRsharing.8zqzm9 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.901nkj dcterms:isPartOf bioregistry.registry:fairsharing .
+
+fairsharing:FAIRsharing.9091d9 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.910c39 dcterms:isPartOf bioregistry.registry:fairsharing .
 
@@ -36702,6 +36903,9 @@ fairsharing:FAIRsharing.zx2ztd dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.zzgvrv dcterms:isPartOf bioregistry.registry:fairsharing .
 
+orcid:0000-0001-5084-9000 rdfs:label "Luana Licata" ;
+    foaf:mbox "luana.licata@gmail.com" .
+
 orcid:0000-0001-5699-0515 rdfs:label "Rafael Richards" ;
     foaf:mbox "rmrich5@gmail.com" .
 
@@ -37126,6 +37330,8 @@ prefixcommons:giardiadb dcterms:isPartOf bioregistry.registry:prefixcommons .
 prefixcommons:glycomapsdb dcterms:isPartOf bioregistry.registry:prefixcommons .
 
 prefixcommons:glycomedb dcterms:isPartOf bioregistry.registry:prefixcommons .
+
+prefixcommons:gnd dcterms:isPartOf bioregistry.registry:prefixcommons .
 
 prefixcommons:go dcterms:isPartOf bioregistry.registry:prefixcommons .
 
@@ -37871,6 +38077,8 @@ miriam:biocyc dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:biogrid dcterms:isPartOf bioregistry.registry:miriam .
 
+miriam:biokc dcterms:isPartOf bioregistry.registry:miriam .
+
 miriam:biolink dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:biominder dcterms:isPartOf bioregistry.registry:miriam .
@@ -37991,9 +38199,13 @@ miriam:civic.eid dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:civic.gid dcterms:isPartOf bioregistry.registry:miriam .
 
+miriam:civic.mpid dcterms:isPartOf bioregistry.registry:miriam .
+
 miriam:civic.sid dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:civic.tid dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:civic.vgid dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:civic.vid dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -38054,6 +38266,8 @@ miriam:csd dcterms:isPartOf bioregistry.registry:miriam .
 miriam:cst dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:cst.ab dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:cstr dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:ctd.chemical dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -38326,6 +38540,8 @@ miriam:gmd.gcms dcterms:isPartOf bioregistry.registry:miriam .
 miriam:gmd.profile dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:gmd.ref dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:gnd dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:gnpis dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -38773,6 +38989,8 @@ miriam:ngl dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:niaest dcterms:isPartOf bioregistry.registry:miriam .
 
+miriam:nlfff dcterms:isPartOf bioregistry.registry:miriam .
+
 miriam:nmdc dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:nmr dcterms:isPartOf bioregistry.registry:miriam .
@@ -38792,6 +39010,8 @@ miriam:nuclearbd dcterms:isPartOf bioregistry.registry:miriam .
 miriam:nucleotide dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:obi dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:obv dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:occ dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -38818,6 +39038,8 @@ miriam:oma.hog dcterms:isPartOf bioregistry.registry:miriam .
 miriam:oma.protein dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:omia dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:omid dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:omit dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -39250,6 +39472,8 @@ miriam:unite dcterms:isPartOf bioregistry.registry:miriam .
 miriam:uo dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:uspto dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:utrdb dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:validatordb dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -40343,6 +40567,8 @@ re3data:r3d100014071 dcterms:isPartOf bioregistry.registry:re3data .
 
 re3data:r3d100014113 dcterms:isPartOf bioregistry.registry:re3data .
 
+re3data:r3d100014165 dcterms:isPartOf bioregistry.registry:re3data .
+
 uniprot.resource:DB-0005 dcterms:isPartOf bioregistry.registry:uniprot .
 
 uniprot.resource:DB-0013 dcterms:isPartOf bioregistry.registry:uniprot .
@@ -41177,7 +41403,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -44336,6 +44562,9 @@ orcid:0000-0002-1048-5019 rdfs:label "Matthew Brush" ;
 orcid:0000-0002-1171-9876 rdfs:label "Martin Kuiper" ;
     foaf:mbox "kuiper@bio.ntnu.no" .
 
+orcid:0000-0002-1548-3290 rdfs:label "Thorsten Henrich" ;
+    foaf:mbox "henrich@embl.de" .
+
 orcid:0000-0002-1595-3213 rdfs:label "Philip Strömert" ;
     dcterms:contributor bioregistry:aeon ;
     foaf:mbox "Philip.Stroemert@tib.eu" .
@@ -44357,8 +44586,7 @@ orcid:0000-0002-3469-4923 rdfs:label "Janna Hastings" ;
     foaf:mbox "janna.hastings@gmail.com" .
 
 orcid:0000-0002-3884-3420 rdfs:label "Simon Cox" ;
-    foaf:mbox "dr.shorthair@pm.me",
-        "simon.cox@csiro.au" .
+    foaf:mbox "dr.shorthair@pm.me" .
 
 orcid:0000-0002-4366-3088 rdfs:label "Pier Luigi Buttigieg" ;
     foaf:mbox "p.buttigieg@gmail.com",
@@ -44376,8 +44604,7 @@ orcid:0000-0002-5640-5491 rdfs:label "Matt Yoder" ;
     foaf:mbox "diapriid@gmail.com",
         "mjyoder@illinois.edu" .
 
-orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu",
-        "Nicolas Matentzoglu" ;
+orcid:0000-0002-7356-1779 rdfs:label "Nicolas Matentzoglu" ;
     dcterms:contributor bioregistry:pav,
         bioregistry:sssom ;
     foaf:mbox "nicolas.matentzoglu@gmail.com" .
@@ -45049,6 +45276,7 @@ bioregistry:pmc a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch wikidata:P932,
         biocontext:PMCID,
+        biolink:PMC,
         go.resource:PMCID,
         n2t:pmc,
         fairsharing:FAIRsharing.wpt5mp,
@@ -45662,6 +45890,7 @@ bioregistry:cdno a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/Southern-Cross-Plant-Science/cdno> ;
     skos:exactMatch aberowl:CDNO,
+        agroportal:CDNO,
         obofoundry:cdno,
         ontobee:CDNO,
         bioportal:CDNO,
@@ -46931,6 +47160,7 @@ bioregistry:kegg a bioregistry.schema:0000001 ;
         bioregistry:kegg.reaction ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:KEGG,
+        biolink:KEGG,
         go.resource:KEGG,
         n2t:kegg,
         miriam:kegg,
@@ -47137,6 +47367,7 @@ bioregistry:go a bioregistry.schema:0000001 ;
         prefixcommons:go,
         miriam:go,
         ols:go,
+        re3data:r3d100014165,
         uniprot.resource:DB-0037 ;
     dcat:keyword "gene",
         "life science",
@@ -47638,12 +47869,14 @@ bioregistry.registry:bartoc a bioregistry.schema:0000002 ;
         bartoc:2021,
         bartoc:20299,
         bartoc:20428,
+        bartoc:20430,
         bartoc:2053,
         bartoc:2054,
         bartoc:216,
         bartoc:305,
         bartoc:391,
         bartoc:400,
+        bartoc:430,
         bartoc:445,
         bartoc:447,
         bartoc:449,
@@ -47727,6 +47960,7 @@ bioregistry.registry:agroportal a bioregistry.schema:0000002 ;
         agroportal:BCO,
         agroportal:BFO,
         agroportal:CDAO,
+        agroportal:CDNO,
         agroportal:CL,
         agroportal:CO_320,
         agroportal:CO_321,
@@ -48132,10 +48366,11 @@ bioregistry.registry:biolink a bioregistry.schema:0000002 ;
         biolink:ICD10,
         biolink:ICD9,
         biolink:INO,
+        biolink:KEGG,
         biolink:KEGG.BRITE,
         biolink:KEGG.DGROUP,
         biolink:KEGG.ENZYME,
-        biolink:KEGG.GENE,
+        biolink:KEGG.GENES,
         biolink:KEGG.PATHWAY,
         biolink:KEGG.RCLASS,
         biolink:LOINC,
@@ -48157,6 +48392,7 @@ bioregistry.registry:biolink a bioregistry.schema:0000002 ;
         biolink:PHARMGKB.DISEASE,
         biolink:PHARMGKB.GENE,
         biolink:PHARMGKB.PATHWAYS,
+        biolink:PMC,
         biolink:PathWhiz,
         biolink:PomBase,
         biolink:RO,
@@ -49234,7 +49470,8 @@ bioregistry.registry:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100013715,
         re3data:r3d100013816,
         re3data:r3d100014071,
-        re3data:r3d100014113 ;
+        re3data:r3d100014113,
+        re3data:r3d100014165 ;
     foaf:homepage "https://www.re3data.org" ;
     bioregistry.schema:0000005 "r3d100010772" ;
     bioregistry.schema:0000006 "https://www.re3data.org/repository/$1" ;
@@ -49245,6 +49482,7 @@ bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
     dc:description "Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis." ;
     dcterms:hasPart ontobee:ADO,
         ontobee:AEO,
+        ontobee:AFO,
         ontobee:AGRO,
         ontobee:AISM,
         ontobee:AMPHX,
@@ -49367,6 +49605,7 @@ bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
         ontobee:NCIT,
         ontobee:NCRO,
         ontobee:NDF-RT,
+        ontobee:NGBO,
         ontobee:NOMEN,
         ontobee:OAE,
         ontobee:OARCS,
@@ -49617,6 +49856,7 @@ bioregistry.registry:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:ncbitaxon,
         obofoundry:ncit,
         obofoundry:ncro,
+        obofoundry:ngbo,
         obofoundry:nif_cell,
         obofoundry:nif_dysfunction,
         obofoundry:nif_grossanatomy,
@@ -50209,6 +50449,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:NDDF,
         bioportal:NDFRT,
         bioportal:NEMO,
+        bioportal:NGBO,
         bioportal:NIFCELL,
         bioportal:NIFSTD,
         bioportal:NMR,
@@ -50539,6 +50780,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:NDDF,
         aberowl:NDFRT,
         aberowl:NEMO,
+        aberowl:NGBO,
         aberowl:NIFCELL,
         aberowl:NIFSTD,
         aberowl:NMR,
@@ -50827,6 +51069,7 @@ bioregistry.registry:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:giardiadb,
         prefixcommons:glycomapsdb,
         prefixcommons:glycomedb,
+        prefixcommons:gnd,
         prefixcommons:go,
         prefixcommons:goa,
         prefixcommons:gold,
@@ -51292,6 +51535,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.7xkx69,
         fairsharing:FAIRsharing.7zffgc,
         fairsharing:FAIRsharing.7zxrs6,
+        fairsharing:FAIRsharing.8337e2,
         fairsharing:FAIRsharing.847069,
         fairsharing:FAIRsharing.84c1a7,
         fairsharing:FAIRsharing.85k1jm,
@@ -51308,6 +51552,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.8wm364,
         fairsharing:FAIRsharing.8zqzm9,
         fairsharing:FAIRsharing.901nkj,
+        fairsharing:FAIRsharing.9091d9,
         fairsharing:FAIRsharing.910c39,
         fairsharing:FAIRsharing.91yrz6,
         fairsharing:FAIRsharing.93ee19,
@@ -52503,6 +52748,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:biocatalogue.service,
         miriam:biocyc,
         miriam:biogrid,
+        miriam:biokc,
         miriam:biolink,
         miriam:biominder,
         miriam:biomodels.db,
@@ -52563,8 +52809,10 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:civic.did,
         miriam:civic.eid,
         miriam:civic.gid,
+        miriam:civic.mpid,
         miriam:civic.sid,
         miriam:civic.tid,
+        miriam:civic.vgid,
         miriam:civic.vid,
         miriam:cl,
         miriam:classyfire,
@@ -52595,6 +52843,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:csd,
         miriam:cst,
         miriam:cst.ab,
+        miriam:cstr,
         miriam:ctd.chemical,
         miriam:ctd.disease,
         miriam:ctd.gene,
@@ -52731,6 +52980,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:gmd.gcms,
         miriam:gmd.profile,
         miriam:gmd.ref,
+        miriam:gnd,
         miriam:gnpis,
         miriam:go,
         miriam:go_ref,
@@ -52954,6 +53204,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:nextprot,
         miriam:ngl,
         miriam:niaest,
+        miriam:nlfff,
         miriam:nmdc,
         miriam:nmr,
         miriam:nmrshiftdb2,
@@ -52964,6 +53215,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:nuclearbd,
         miriam:nucleotide,
         miriam:obi,
+        miriam:obv,
         miriam:occ,
         miriam:oci,
         miriam:ocid,
@@ -52977,6 +53229,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:oma.hog,
         miriam:oma.protein,
         miriam:omia,
+        miriam:omid,
         miriam:omit,
         miriam:opb,
         miriam:opm,
@@ -53194,6 +53447,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:unite,
         miriam:uo,
         miriam:uspto,
+        miriam:utrdb,
         miriam:validatordb,
         miriam:vario,
         miriam:vbase2,
@@ -54198,6 +54452,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:biofactoid,
         bioregistry:biogrid,
         bioregistry:biogrid.interaction,
+        bioregistry:biokc,
         bioregistry:biolegend,
         bioregistry:biolink,
         bioregistry:biomagresbank,
@@ -54307,8 +54562,10 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:civic.did,
         bioregistry:civic.eid,
         bioregistry:civic.gid,
+        bioregistry:civic.mpid,
         bioregistry:civic.sid,
         bioregistry:civic.tid,
+        bioregistry:civic.vgid,
         bioregistry:civic.vid,
         bioregistry:cl,
         bioregistry:clao,
@@ -54408,6 +54665,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:csp,
         bioregistry:cst,
         bioregistry:cst.ab,
+        bioregistry:cstr,
         bioregistry:ctcae,
         bioregistry:ctd.chemical,
         bioregistry:ctd.disease,
@@ -54706,6 +54964,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gmd.profile,
         bioregistry:gmd.ref,
         bioregistry:gmelin,
+        bioregistry:gnd,
         bioregistry:gno,
         bioregistry:gnomad,
         bioregistry:gnpis,
@@ -54727,6 +54986,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:google.scholar,
         bioregistry:gorel,
         bioregistry:gpcrdb,
+        bioregistry:gpcrnava,
         bioregistry:gpmdb,
         bioregistry:graingenes.reference,
         bioregistry:graingenes.symbol,
@@ -55120,6 +55380,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nfdi4chem.cao,
         bioregistry:nfdi4chem.ontocape,
         bioregistry:nfdi4chem.osmo,
+        bioregistry:ngbo,
         bioregistry:ngl,
         bioregistry:nhcdr,
         bioregistry:niaest,
@@ -55130,6 +55391,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nif.std,
         bioregistry:nihreporter.project,
         bioregistry:nist,
+        bioregistry:nlfff,
         bioregistry:nlm,
         bioregistry:nlx.anat,
         bioregistry:nlx.br,
@@ -55173,6 +55435,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:obib,
         bioregistry:obo,
         bioregistry:oboinowl,
+        bioregistry:obv,
         bioregistry:occ,
         bioregistry:oci,
         bioregistry:ocid,
@@ -55196,6 +55459,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oma.protein,
         bioregistry:omia,
         bioregistry:omiabis,
+        bioregistry:omid,
         bioregistry:omim,
         bioregistry:omim.ps,
         bioregistry:omit,
@@ -55631,6 +55895,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:upa,
         bioregistry:upheno,
         bioregistry:uspto,
+        bioregistry:utrdb,
         bioregistry:vac,
         bioregistry:validatordb,
         bioregistry:vandf,
