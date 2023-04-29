@@ -602,6 +602,7 @@ afo:
     bioportal: AFO
     fairsharing: FAIRsharing.595710
     ols: afo
+    ontobee: AFO
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
@@ -1630,6 +1631,7 @@ ark:
     fairsharing: FAIRsharing.f928f1
     miriam: ark
     n2t: ark
+  mastodon: arks_org@fosstodon.org
   name: Archival Resource Key
   namespace_in_lui: true
   pattern: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
@@ -2633,7 +2635,7 @@ bcrc:
 bcrj:
   description: Cell line collections
   example: 0278
-  homepage: http://bcrj.org.br/celula/bcrj
+  homepage: https://bcrj.org.br/pesquisa/
   mappings:
     cellosaurus: BCRJ
   name: Banco de Celulas do Rio de Janeiro
@@ -3060,9 +3062,9 @@ bigg.reaction:
 bila:
   contact:
     email: henrich@embl.de
-    github: null
-    name: Thorsten Heinrich
-    orcid: null
+    github: ThorstenHen
+    name: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   deprecated: true
   description: This is a record of the Bilateria anatomy terminology and ontology.
     We have been unable to find any further information about this resource.
@@ -3420,6 +3422,18 @@ biogrid.interaction:
   preferred_prefix: biogrid.interaction
   twitter: biogrid
   uri_format: https://thebiogrid.org/interaction/$1
+biokc:
+  description: BioKC (Biological Knowledge Curation), is a web-based collaborative
+    platform for the curation and annotation of biomedical knowledge following the
+    standard data model from Systems Biology Markup Language (SBML).
+  example: bkc640
+  homepage: https://wwwen.uni.lu/lcsb
+  mappings:
+    miriam: biokc
+  name: BioKC
+  pattern: ^bkc[0-9]*$
+  preferred_prefix: biokc
+  uri_format: https://biokb.lcsb.uni.lu/fact/$1
 biolegend:
   contributor:
     email: cthoyt@gmail.com
@@ -3856,6 +3870,7 @@ bioregistry:
   mappings:
     bartoc: '18951'
     fairsharing: FAIRsharing.250a8c
+  mastodon: bioregistry@fosstodon.org
   name: Bioregistry
   preferred_prefix: bioregistry
   publications:
@@ -5668,6 +5683,7 @@ cdno:
   license: CC-BY-3.0
   mappings:
     aberowl: CDNO
+    agroportal: CDNO
     bioportal: CDNO
     obofoundry: cdno
     ols: cdno
@@ -5745,7 +5761,7 @@ cellbank.australia:
     researchers, submits these cell lines to rigorous testing to confirm their integrity,
     and then distributes the cell lines to researchers throughout the world.
   example: ab-1-ha
-  homepage: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
+  homepage: https://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
   mappings:
     cellosaurus: CBA
   name: CellBank Australia
@@ -5834,6 +5850,7 @@ cellosaurus:
     n2t: cellosaurus
     re3data: r3d100013293
     wikidata: P3289
+  mastodon: cellosaurus@fediscience.org
   name: Cellosaurus
   pattern: ^[A-Z0-9]{4}$
   preferred_prefix: cellosaurus
@@ -6989,6 +7006,24 @@ civic.gid:
   pattern: ^[0-9]+$
   preferred_prefix: civic.gid
   uri_format: https://civicdb.org/links/gene/$1
+civic.mpid:
+  description: CIViC Molecular Profiles are combinations of one or more CIViC variants.
+    Most Molecular Profiles are “Simple” Molecular Profiles comprised of a single
+    variant. In most cases, these can be considered equivalent to the CIViC concept
+    of a Variant. However, increasingly clinical significance must be considered in
+    the context of multiple variants simultaneously. Complex Molecular Profiles in
+    CIViC allow for curation of such variant combinations. Regardless of the nature
+    of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic,
+    Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered
+    in CIViC.
+  example: '559'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.mpid
+  name: CIViC Molecular Profile
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.mpid
+  uri_format: https://civicdb.org/links/molecular_profile/$1
 civic.sid:
   description: In CIViC, each Evidence Item must be associated with a Source Type
     and Source ID, which link the Evidence Item to the original source of information
@@ -7022,6 +7057,20 @@ civic.tid:
   pattern: ^[0-9]+$
   preferred_prefix: civic.tid
   uri_format: https://civicdb.org/links/drugs/$1
+civic.vgid:
+  description: Variant Groups in CIViC provide user-defined grouping of Variants within
+    and between genes based on unifying characteristics. CIViC curators are required
+    to define a cohesive rationale for grouping these variants together, summarize
+    their relevance to cancer diagnosis, prognosis or treatment and highlight any
+    treatments or cancers of particular relevance
+  example: '16'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.vgid
+  name: CIViC Variant Group
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.vgid
+  uri_format: https://civicdb.org/links/variant_group/$1
 civic.vid:
   description: CIViC variants are usually genomic alterations, including single nucleotide
     variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s
@@ -9827,6 +9876,18 @@ cst.ab:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/cst:$1
   uri_format: http://www.cellsignal.com/products/$1.html
+cstr:
+  description: 'CSTR is an identifier for Common Science and Technology Resources,
+    to provide persistent identification services for the positioning, traceability,
+    citation, statistics and evaluation of science and technology resources. '
+  example: 31253.11.sciencedb.j00001.00123
+  homepage: https://www.cstr.cn/en/
+  mappings:
+    miriam: cstr
+  name: Common Science and Technology Resources
+  pattern: ^\w{5}\.\d{2}\..*$
+  preferred_prefix: cstr
+  uri_format: https://cstr.cn/$1
 ctcae:
   appears_in:
   - oae
@@ -14530,6 +14591,7 @@ ensembl:
     re3data: r3d100010228
     uniprot: DB-0023
     wikidata: P594
+  mastodon: ensembl@genomic.social
   name: Ensembl Gene
   pattern: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
   preferred_prefix: ensembl
@@ -16058,6 +16120,7 @@ fairsharing:
     miriam: fairsharing
     n2t: fairsharing
     re3data: r3d100010142
+  mastodon: fairsharing@fediscience.org
   name: FAIRsharing
   pattern: ^(bsg-[dscp]?\d{6})|(FAIRsharing\.\w+)$
   preferred_prefix: fairsharing
@@ -18147,9 +18210,14 @@ gemet:
     terminology supports those efforts.
   example: '627'
   homepage: https://www.eionet.europa.eu/gemet/en/themes/
+  keywords:
+  - biodiversity
+  - ecology
+  - environmental science
   mappings:
     agroportal: GEMET
     bartoc: '16'
+    fairsharing: FAIRsharing.9091d9
   name: General Multilingual Environmental Thesaurus
   pattern: ^\d+$
   preferred_prefix: gemet
@@ -19505,6 +19573,27 @@ gmelin:
   proprietary: true
   references:
   - https://en.wikipedia.org/wiki/Gmelin_database
+gnd:
+  description: The Gemeinsame Normdatei (Integrated Authority File) or GND is an international
+    authority file for person names, subject headings and corporate bodies. It is
+    used mainly for documentation in libraries and increasingly also by archives and
+    museums. The GND is managed by the German National Library in cooperation with
+    various regional library networks in German-speaking Europe and other partners.
+  example: '117145750'
+  homepage: https://lobid.org/
+  keywords:
+  - culture
+  - knowledge and information systems
+  - social science
+  mappings:
+    bartoc: '430'
+    fairsharing: FAIRsharing.8337e2
+    miriam: gnd
+  name: Gemeinsame Normdatei
+  pattern: ^[0-9X\-]+$
+  preferred_prefix: gnd
+  twitter: gndnet
+  uri_format: https://lobid.org/gnd/$1
 gno:
   contact:
     email: nje5@georgetown.edu
@@ -19680,8 +19769,10 @@ go:
     ols: go
     ontobee: GO
     prefixcommons: go
+    re3data: r3d100014165
     uniprot: DB-0037
     wikidata: P686
+  mastodon: go@genomic.social
   name: Gene Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -20270,6 +20361,32 @@ gpcrdb:
     year: 2001
   twitter: gpcrdb
   uri_format: https://gpcrdb.org/protein/$1
+gpcrnava:
+  description: The GPCR NaVa database describes sequence variants within the family
+    of human G Protein-Coupled Receptors (GPCRs). GPCRs regulate many physiological
+    functions and are the targets for most of today's medicines. The acronym NaVa
+    stands for Natural Variant, which means any (non-artificial) variant that occurs
+    in humans.
+  example: '1150'
+  homepage: http://nava.liacs.nl/
+  keywords:
+  - pathway
+  - protein
+  mappings:
+    prefixcommons: gnd
+  name: GPCR Natural Variants database
+  preferred_prefix: gpcrnava
+  providers:
+  - code: bio2rdf
+    description: Bio2RDF is an open-source project that uses Semantic Web technologies
+      to build and provide the largest network of Linked Data for the Life Sciences.
+      Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked
+      Data from a diverse set of heterogeneously formatted sources obtained from multiple
+      data providers.
+    homepage: https://bio2rdf.org
+    name: Bio2RDF
+    uri_format: http://bio2rdf.org/gnd:$1
+  uri_format: http://nava.liacs.nl/cgi-bin/nava.py?id=$1
 gpmdb:
   description: The Global Proteome Machine Database was constructed to utilize the
     information obtained by GPM servers to aid in the difficult process of validating
@@ -21598,12 +21715,12 @@ hinv.transcript:
 hipsci:
   description: Cell line databases/resources
   example: HPSI0114i-bezi_1
-  homepage: http://www.hipsci.org
+  homepage: https://www.hipsci.org
   mappings:
     cellosaurus: HipSci
   name: Human Induced Pluripotent Stem Cells Initiative
   preferred_prefix: hipsci
-  uri_format: http://www.hipsci.org/lines/#/lines/$1
+  uri_format: https://www.hipsci.org/lines/#/lines/$1
 hivreagentprogram:
   description: Cell line collections
   example: ARP-1513
@@ -22119,6 +22236,7 @@ hp:
     ols: hp
     ontobee: HP
     wikidata: P3841
+  mastodon: hpo@masto.ai
   name: Human Phenotype Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -22713,7 +22831,7 @@ icd10:
     orcid: 0000-0002-2906-7319
   - email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   - email: cthoyt@gmail.com
     github: cthoyt
@@ -24515,7 +24633,7 @@ insdc:
     consists of a joint effort to collect and disseminate databases containing DNA
     and RNA sequences.
   example: X58356
-  homepage: https://www.ncbi.nlm.nih.gov/nuccore/
+  homepage: https://www.ncbi.nlm.nih.gov/Genbank/
   keywords:
   - dna
   mappings:
@@ -24527,11 +24645,6 @@ insdc:
   pattern: ^([A-Z]\d{5}|[A-Z]{2}\d{6}|[A-Z]{4,6}\d{8,10}|[A-J][A-Z]{2}\d{5})(\.\d+)?$
   preferred_prefix: insdc
   providers:
-  - code: CURATOR_REVIEW
-    description: INSDC through GenBank
-    homepage: https://www.ncbi.nlm.nih.gov/Genbank/
-    name: INSDC through GenBank
-    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   - code: CURATOR_REVIEW
     description: INSDC through DDBJ
     homepage: http://www.ddbj.nig.ac.jp/
@@ -24551,6 +24664,11 @@ insdc:
     homepage: https://www.ebi.ac.uk/ena/
     name: INSDC through European Nucleotide Archive (ENA)
     uri_format: https://www.ebi.ac.uk/ena/data/view/$1
+  - code: ncbi
+    description: INSDC through Nucleotide database at NCBI
+    homepage: https://www.ncbi.nlm.nih.gov/nuccore/
+    name: INSDC through Nucleotide database at NCBI
+    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   publications:
   - doi: 10.1093/nar/18.6.1517
     pmc: PMC330520
@@ -25713,6 +25831,7 @@ kegg:
   homepage: http://www.kegg.jp/
   mappings:
     biocontext: KEGG
+    biolink: KEGG
     cheminf: 000409
     go: KEGG
     miriam: kegg
@@ -25939,7 +26058,7 @@ kegg.genes:
   - protein
   mappings:
     biocontext: KEGG.GENES
-    biolink: KEGG.GENE
+    biolink: KEGG.GENES
     miriam: kegg.genes
     n2t: kegg.genes
     prefixcommons: kegg.gene
@@ -27126,7 +27245,7 @@ lrg:
     homepage: http://useast.ensembl.org/
     name: Locus Reference Genomic through Ensembl mirror (US east)
     uri_format: http://useast.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
-  uri_format: ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml
+  uri_format: http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml
 lspci:
   contributor:
     email: cthoyt@gmail.com
@@ -27449,7 +27568,7 @@ massbank:
     miriam: massbank
     n2t: massbank
     wikidata: P6689
-  name: MassBank accession
+  name: MassBank
   pattern: ^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$
   preferred_prefix: massbank
   providers:
@@ -28539,10 +28658,10 @@ mfmo:
   version: '2013-11-16'
 mfo:
   contact:
-    email: Thorsten.Henrich@embl-heidelberg.de
-    github: null
+    email: henrich@embl.de
+    github: ThorstenHen
     name: Thorsten Henrich
-    orcid: null
+    orcid: 0000-0002-1548-3290
   deprecated: true
   description: A structured controlled vocabulary of the anatomy and development of
     the Japanese medaka fish, <i>Oryzias latipes</i>.
@@ -28852,10 +28971,10 @@ mgnify.samp:
 mi:
   banana: MI
   contact:
-    email: pporras@ebi.ac.uk
-    github: pporrasebi
-    name: Pablo Porras Millán
-    orcid: 0000-0002-8429-8793
+    email: luana.licata@gmail.com
+    github: luanalicata
+    name: Luana Licata
+    orcid: 0000-0001-5084-9000
   description: The Molecular Interactions (MI) ontology forms a structured controlled
     vocabulary for the annotation of experiments concerned with protein-protein interactions.
     MI is developed by the HUPO Proteomics Standards Initiative.
@@ -30352,6 +30471,7 @@ mondo:
     ols: mondo
     ontobee: MONDO
     wikidata: P5270
+  mastodon: monarch_initiative@genomic.social
   name: Mondo Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: MONDO
@@ -32570,6 +32690,33 @@ nfdi4chem.osmo:
   homepage: https://zenodo.org/record/5237774#.YXq72hxCRGo
   name: Ontology for simulation, modelling, and optimization
   preferred_prefix: nfdi4chem.osmo
+ngbo:
+  contact:
+    email: dal.alghamdi92@gmail.com
+    github: dalalghamdi
+    name: Dalia Alghamdi
+    orcid: 0000-0002-2801-0767
+  description: 'The Next Generation Biobanking Ontology (NGBO) is an open application
+    ontology representing contextual data about omics digital assets in biobank. The
+    ontology focuses on capturing the information about three main activities: wet
+    bench analysis used to generate omics data, bioinformatics analysis used to analyze
+    and interpret data, and data management.'
+  download_owl: http://purl.obolibrary.org/obo/ngbo.owl
+  example: '6000122'
+  homepage: https://github.com/Dalalghamdi/NGBO
+  keywords:
+  - obo
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    aberowl: NGBO
+    bioportal: NGBO
+    obofoundry: ngbo
+    ontobee: NGBO
+  name: Next Generation Biobanking Ontology
+  preferred_prefix: NGBO
+  repository: https://github.com/Dalalghamdi/NGBO
+  uri_format: http://purl.obolibrary.org/obo/NGBO_$1
 ngl:
   description: NASA's GeneLab gathers spaceflight genomic data, RNA and protein expression,
     and metabolic profiles, interfaces with existing databases for expanded research,
@@ -32811,6 +32958,17 @@ nist:
   synonyms:
   - NIST
   - NIST Chemistry WebBook
+nlfff:
+  description: Nonlinear Force-Free Field Three-Dimensional Magnetic Fields Data of
+    Solar Active Regions Database
+  example: '345201101230312003'
+  homepage: https://nlfff.dataset.deepsolar.space/en/
+  mappings:
+    miriam: nlfff
+  name: NLFFF Database
+  pattern: ^[0-9]+$
+  preferred_prefix: nlfff
+  uri_format: http://database.deepsolar.space:18080/dbs/nlfff/$1
 nlm:
   contributor:
     email: cthoyt@gmail.com
@@ -34109,7 +34267,7 @@ obo:
   contact:
     email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   description: The OBO namespace is the top-level namespace used by Open Biological
     and Biomedical Ontology (OBO) Foundry ontologies.
@@ -34157,6 +34315,21 @@ oboinowl:
   - oboformat
   - oio
   uri_format: http://www.geneontology.org/formats/oboInOwl#$1
+obv:
+  description: The Austrian Library Network (OBV) is the largest network of scientific
+    and administrative libraries in Austria with 70 participants, representing more
+    than 90 individual institutions - including the Austrian National Library, university
+    libraries, the colleges of education, individual ministries, numerous technical
+    colleges and other important collections.
+  example: AC00963334
+  homepage: https://www.obvsg.at/
+  mappings:
+    bartoc: '20430'
+    miriam: obv
+  name: Austrian Library Network
+  pattern: ^AC[0-9]{8}$
+  preferred_prefix: obv
+  uri_format: https://permalink.obvsg.at/$1
 occ:
   description: The OpenCitations Corpus is open repository of scholarly citation data
     made available under a Creative Commons public domain dedication (CC0), which
@@ -34853,6 +35026,23 @@ omiabis:
   repository: https://github.com/OMIABIS/omiabis-dev
   uri_format: http://purl.obolibrary.org/obo/OMIABIS_$1
   version: '2014-05-28'
+omid:
+  description: Every entity in OpenCitations Meta (https://opencitations.net/meta)
+    is assigned persistent internal identifier called OpenCitations Meta Identifier
+    (OMID). The OMID has structure [[entity_type_abbreviation]]/[[supplier_prefix]][[sequential_number]].
+    For example, the first journal article ever processed has OMID br/0601 (the full
+    URI is https://w3id.org/oc/meta/br/0601), where br is the abbreviation of bibliographic
+    resource, and 060 corresponds to the supplier prefix, helpful in recognising at
+    a glance the index it belongs to (i.e., OpenCitations Meta). Finally, 1 indicates
+    that this is the index's first bibliographic resource ever minted.
+  example: br/0601
+  homepage: http://opencitations.net/
+  mappings:
+    miriam: omid
+  name: OpenCitations Meta Identifier
+  pattern: ^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$
+  preferred_prefix: omid
+  uri_format: https://w3id.org/oc/meta/$1
 omim:
   contact:
     email: ahamosh@jhmi.edu
@@ -35080,7 +35270,7 @@ omop:
   contributor_extras:
   - email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   description: The OMOP Common Data Model allows for the systematic analysis of disparate
     observational databases. The concept behind this approach is to transform data
@@ -35642,6 +35832,7 @@ orcid:
     miriam: orcid
     n2t: orcid
     wikidata: P496
+  mastodon: ORCID_Org@scicomm.xyz
   name: Open Researcher and Contributor
   pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
   preferred_prefix: orcid
@@ -36768,7 +36959,7 @@ pav:
   contributor:
     email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   contributor_extras:
   - email: cthoyt@gmail.com
@@ -37022,9 +37213,9 @@ pco:
 pd_st:
   contact:
     email: henrich@embl.de
-    github: null
-    name: Thorsten Heinrich
-    orcid: null
+    github: ThorstenHen
+    name: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   deprecated: true
   homepage: http://4dx.embl.de/platy
   keywords:
@@ -37669,7 +37860,7 @@ pfam:
   description: The Pfam database contains information about protein domains and families.
     For each entry a protein sequence alignment and a Hidden Markov Model is stored.
   example: PF11779
-  homepage: https://pfam.xfam.org/
+  homepage: https://www.ebi.ac.uk/interpro/
   keywords:
   - biology
   - domain
@@ -39016,6 +39207,7 @@ pmc:
   - virology
   mappings:
     biocontext: PMCID
+    biolink: PMC
     fairsharing: FAIRsharing.wpt5mp
     go: PMCID
     miriam: pmc
@@ -41751,7 +41943,7 @@ resid:
     email: john.garavelli@ebi.ac.uk
     github: null
     name: John Garavelli
-    orcid: null
+    orcid: 0000-0002-4131-735X
   deprecated: true
   description: The RESID Database of Protein Modifications is a comprehensive collection
     of annotations and structures for protein modifications including amino-terminal,
@@ -42873,6 +43065,7 @@ ror:
     fairsharing: FAIRsharing.1jKfji
     miriam: ror
     n2t: ror
+  mastodon: ResearchOrgs@mastodon.social
   name: Research Organization Registry
   pattern: ^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
   preferred_prefix: ror
@@ -44149,7 +44342,7 @@ semapv:
   contact:
     email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   contributor:
     email: cthoyt@gmail.com
@@ -47881,7 +48074,7 @@ tigrfam:
   uri_format: https://www.ncbi.nlm.nih.gov/cdd?term=$1
 time:
   contact:
-    email: simon.cox@csiro.au
+    email: dr.shorthair@pm.me
     github: dr-shorthair
     name: Simon Cox
     orcid: 0000-0002-3884-3420
@@ -49849,6 +50042,23 @@ uspto:
   references:
   - https://github.com/biopragmatics/bioregistry/issues/253
   uri_format: http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1
+utrdb:
+  description: 'A curated database of 5'' and 3'' untranslated sequences of eukaryotic
+    mRNAs. In the current update, the UTR entries are organized in a gene-centric
+    structure to better visualize and retrieve 5'' and 3''UTR variants generated by
+    alternative initiation and termination of transcription and alternative splicing.
+    Experimentally validated miRNA targets and conserved sequence elements are also
+    annotated. The integration of UTRdb with genomic data has allowed the implementation
+    of an efficient annotation system and a powerful retrieval resource for the selection
+    and extraction of specific UTR subsets. '
+  example: 5UTR_107_ENST00000517291.2
+  homepage: https://utrdb.cloud.ba.infn.it/utrdb/index_107.html
+  mappings:
+    miriam: utrdb
+  name: UTRdb
+  pattern: ^([3-5][A-Z])\w+[^A-Z][0-9]$
+  preferred_prefix: utrdb
+  uri_format: https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1
 vac:
   contributor:
     email: cthoyt@gmail.com
@@ -51526,6 +51736,7 @@ wikipathways:
     prefixcommons: wikipathways
     re3data: r3d100013316
     wikidata: P2410
+  mastodon: wikipathways@fosstodon.org
   name: WikiPathways
   pattern: ^WP\d{1,5}(\_r\d+)?$
   preferred_prefix: wikipathways
