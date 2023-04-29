@@ -9,12 +9,13 @@ from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProc
 from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from markdown import markdown
 from rdflib_endpoint import SparqlRouter
 from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
 
-from .api import api_blueprint
+from .api import api_router
 from .constants import BIOSCHEMAS
 from .ui import ui_blueprint
 
@@ -107,7 +108,7 @@ def get_app(
     first_party: bool = True,
     return_flask: bool = False,
 ):
-    """Prepare the flask application.
+    """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
     :param config: Additional configuration to be passed to the flask application. See below.
@@ -154,9 +155,11 @@ def get_app(
     if resource.get_uri_format() is None:
         raise ValueError("Must use an example prefix with a URI format")
 
+    # note from klas:
+    # "host": removeprefix(removeprefix(manager.base_url, "https://"), "http://"),
+
     Bootstrap4(app)
 
-    app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
     app.config.update(conf)
@@ -166,6 +169,7 @@ def get_app(
         app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
     fast_api = FastAPI(
+        openapi_tags=_get_tags_metadata(conf, manager),
         title=conf["METAREGISTRY_TITLE"],
         description=conf["METAREGISTRY_DESCRIPTION"],
         contact={
@@ -177,14 +181,17 @@ def get_app(
             "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
+    fast_api.manager = manager
+    fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
 
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(
-        manager=app.manager,
+        manager=manager,
         curie_to_str=curie_to_str,
-        fastapi=fast_api,
+        fastapi_url_for=fast_api.url_path_for,
+        markdown=markdown,
     )
 
     if return_flask:
@@ -216,3 +223,33 @@ def _get_sparql_router(app) -> APIRouter:
         public_url=f"{app.manager.base_url}/sparql",
     )
     return sparql_router
+
+
+def _get_tags_metadata(conf, manager):
+    tags_metadata = [
+        {
+            "name": "resource",
+            "description": "Identifier resources in the registry",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Resource Catalog",
+                "url": f"{manager.base_url}/registry/",
+            },
+        },
+        {
+            "name": "metaresource",
+            "description": "Resources representing registries",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Registry Catalog",
+                "url": f"{manager.base_url}/metaregistry/",
+            },
+        },
+        {
+            "name": "collection",
+            "description": "Fit-for-purpose lists of prefixes",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Collection Catalog",
+                "url": f"{manager.base_url}/collection/",
+            },
+        },
+    ]
+    return tags_metadata
