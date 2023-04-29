@@ -110,6 +110,42 @@ URI_FORMAT_PATHS = [
 ]
 
 
+class Organization(BaseModel):
+    """Model for organizataions."""
+
+    ror: Optional[str] = Field(
+        title="Research Organization Registry identifier",
+        description="ROR identifier for a record about the organization",
+    )
+    wikidata: Optional[str] = Field(
+        title="Wikidata identifier",
+        description="Wikidata identifier for a record about the organization",
+    )
+    name: str = Field(..., description="Name of the organization")
+    partnered: bool = Field(
+        False, description="Has this organization made a specific connection with Bioregistry?"
+    )
+
+    @property
+    def pair(self) -> Tuple[str, str]:
+        """Get a CURIE pair."""
+        if self.ror:
+            return "ror", self.ror
+        elif self.wikidata:
+            return "wikidata", self.wikidata
+        raise ValueError
+
+    @property
+    def link(self) -> str:
+        """Get a link for the organization."""
+        if self.ror:
+            return f"https://ror.org/{self.ror}"
+        elif self.wikidata:
+            return f"https://scholia.toolforge.org/{self.wikidata}"
+        else:
+            raise ValueError
+
+
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
@@ -265,6 +301,10 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
         integration_status="suggested",
+    )
+    owners: Optional[List[Organization]] = Field(
+        description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
+        "bioregistry/issues/755."
     )
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
@@ -475,53 +515,53 @@ class Resource(BaseModel):
         description="The GitHub issue for the new prefix request"
     )
     #: External data from Identifiers.org's MIRIAM Database
-    miriam: Optional[Mapping[str, Any]]
+    miriam: Optional[Mapping[str, Any]] = None
     #: External data from the Name-to-Thing service
-    n2t: Optional[Mapping[str, Any]]
+    n2t: Optional[Mapping[str, Any]] = None
     #: External data from Prefix Commons
-    prefixcommons: Optional[Mapping[str, Any]]
+    prefixcommons: Optional[Mapping[str, Any]] = None
     #: External data from Wikidata Properties
-    wikidata: Optional[Mapping[str, Any]]
+    wikidata: Optional[Mapping[str, Any]] = None
     #: External data from the Gene Ontology's custom registry
-    go: Optional[Mapping[str, Any]]
+    go: Optional[Mapping[str, Any]] = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Optional[Mapping[str, Any]]
+    obofoundry: Optional[Mapping[str, Any]] = None
     #: External data from the BioPortal ontology repository
-    bioportal: Optional[Mapping[str, Any]]
+    bioportal: Optional[Mapping[str, Any]] = None
     #: External data from the EcoPortal ontology repository
-    ecoportal: Optional[Mapping[str, Any]]
+    ecoportal: Optional[Mapping[str, Any]] = None
     #: External data from the AgroPortal ontology repository
-    agroportal: Optional[Mapping[str, Any]]
+    agroportal: Optional[Mapping[str, Any]] = None
     #: External data from the CropOCT ontology curation tool
-    cropoct: Optional[Mapping[str, Any]]
+    cropoct: Optional[Mapping[str, Any]] = None
     #: External data from the Ontology Lookup Service
-    ols: Optional[Mapping[str, Any]]
+    ols: Optional[Mapping[str, Any]] = None
     #: External data from the AberOWL ontology repository
-    aberowl: Optional[Mapping[str, Any]]
+    aberowl: Optional[Mapping[str, Any]] = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: Optional[Mapping[str, Any]]
+    ncbi: Optional[Mapping[str, Any]] = None
     #: External data from UniProt's custom registry
-    uniprot: Optional[Mapping[str, Any]]
+    uniprot: Optional[Mapping[str, Any]] = None
     #: External data from the BioLink Model's custom registry
-    biolink: Optional[Mapping[str, Any]]
+    biolink: Optional[Mapping[str, Any]] = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: Optional[Mapping[str, Any]]
+    cellosaurus: Optional[Mapping[str, Any]] = None
     #: External data from the OntoBee
-    ontobee: Optional[Mapping[str, Any]]
+    ontobee: Optional[Mapping[str, Any]] = None
     #: External data from ChemInf
-    cheminf: Optional[Mapping[str, Any]]
+    cheminf: Optional[Mapping[str, Any]] = None
     #: External data from FAIRsharing
-    fairsharing: Optional[Mapping[str, Any]]
+    fairsharing: Optional[Mapping[str, Any]] = None
     #: External data from BioContext
-    biocontext: Optional[Mapping[str, Any]]
+    biocontext: Optional[Mapping[str, Any]] = None
     #: External data from EDAM ontology
-    edam: Optional[Mapping[str, Any]]
+    edam: Optional[Mapping[str, Any]] = None
     #: External data from re3data
-    re3data: Optional[Mapping[str, Any]]
+    re3data: Optional[Mapping[str, Any]] = None
     #: External data from hl7
-    hl7: Optional[Mapping[str, Any]]
+    hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
-    bartoc: Optional[Mapping[str, Any]]
+    bartoc: Optional[Mapping[str, Any]] = None
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -696,7 +736,7 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Mapping[str, str]:
+    def get_mappings(self) -> Dict[str, str]:
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
@@ -1211,6 +1251,10 @@ class Resource(BaseModel):
         """
         return self.get_external("biocontext").get(URI_FORMAT_KEY)
 
+    def get_prefixcommons_prefix(self) -> Optional[str]:
+        """Get the Prefix Commons prefix."""
+        return self.get_mapped_prefix("prefixcommons")
+
     def get_prefixcommons_uri_format(self) -> Optional[str]:
         """Get the Prefix Commons URI format string for this entry, if available.
 
@@ -1241,12 +1285,16 @@ class Resource(BaseModel):
         return self.get_identifiers_org_prefix()
 
     def get_miriam_uri_prefix(
-        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+        self,
+        legacy_delimiter: bool = False,
+        legacy_protocol: bool = False,
+        legacy_banana: bool = False,
     ) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1254,26 +1302,40 @@ class Resource(BaseModel):
         'https://identifiers.org/taxonomy:'
         >>> get_resource('go').get_miriam_uri_prefix()
         'https://identifiers.org/GO:'
+        >>> get_resource('doid').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/doid/DOID:'
+        >>> get_resource('vario').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/vario/VariO:'
+        >>> get_resource('cellosaurus').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/cellosaurus/CVCL_'
+        >>> get_resource('doid').get_miriam_uri_prefix(legacy_delimiter=True)
+        'https://identifiers.org/DOID/'
         >>> assert get_resource('sty').get_miriam_uri_prefix() is None
         """
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
             return None
+        protocol = "http" if legacy_protocol else "https"
+        if legacy_banana and self.get_banana():
+            return f"{protocol}://identifiers.org/{miriam_prefix}/{self.get_banana()}{self.get_banana_peel()}"
         if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
-        protocol = "http" if legacy_protocol else "https"
         delimiter = "/" if legacy_delimiter else ":"
         return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
     def get_miriam_uri_format(
-        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+        self,
+        legacy_delimiter: bool = False,
+        legacy_protocol: bool = False,
+        legacy_banana: bool = False,
     ) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1284,7 +1346,9 @@ class Resource(BaseModel):
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
         miriam_url_prefix = self.get_miriam_uri_prefix(
-            legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol
+            legacy_delimiter=legacy_delimiter,
+            legacy_protocol=legacy_protocol,
+            legacy_banana=legacy_banana,
         )
         if miriam_url_prefix is None:
             return None
@@ -1293,6 +1357,12 @@ class Resource(BaseModel):
     def get_legacy_miriam_uri_format(self) -> Optional[str]:
         """Get the legacy Identifiers.org URI format string for this entry, if possible."""
         return self.get_miriam_uri_format(legacy_protocol=True, legacy_delimiter=True)
+
+    def get_legacy_alt_miriam_uri_format(self) -> Optional[str]:
+        """Get the legacy Identifiers.org URI format string for this entry, if possible."""
+        return self.get_miriam_uri_format(
+            legacy_protocol=True, legacy_delimiter=True, legacy_banana=True
+        )
 
     def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
@@ -1366,6 +1436,7 @@ class Resource(BaseModel):
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "miriam.legacy": get_legacy_miriam_uri_format,
+        "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
     }
@@ -1534,6 +1605,20 @@ class Resource(BaseModel):
         if self.miriam:
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
+        prefixcommons_prefix = self.get_prefixcommons_prefix()
+        if prefixcommons_prefix:
+            rv.append(
+                Provider(
+                    code="bio2rdf",
+                    name="Bio2RDF",
+                    homepage="https://bio2rdf.org",
+                    uri_format=f"http://bio2rdf.org/{prefixcommons_prefix}:$1",
+                    description="Bio2RDF is an open-source project that uses Semantic Web technologies to "
+                    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
+                    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
+                    "set of heterogeneously formatted sources obtained from multiple data providers.",
+                )
+            )
         return sorted(rv, key=attrgetter("code"))
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
@@ -2291,6 +2376,7 @@ class Collection(BaseModel):
     )
     #: JSON-LD context name
     context: Optional[str]
+    references: Optional[List[str]] = Field(description="URL references")
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.

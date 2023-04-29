@@ -5,9 +5,13 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
+from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
+from fastapi import APIRouter, FastAPI
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from rdflib_endpoint import SparqlRouter
+from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
 
@@ -82,7 +86,9 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
     """\
     <p style="margin-bottom: 0">
         Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-        improvements</a> or make pull requests to update the underlying database, which is stored in
+        improvements</a>, <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=\
+            New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">request a new prefix</a>,
+             or make pull requests to update the underlying database, which is stored in
         <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
             JSON</a> on GitHub where the community can engage in an open review process.
     </p>
@@ -94,13 +100,15 @@ def get_app(
     manager: Optional["bioregistry.Manager"] = None,
     config: Union[None, str, Path, Mapping[str, Any]] = None,
     first_party: bool = True,
-) -> Flask:
+    return_flask: bool = False,
+):
     """Prepare the flask application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
     :param config: Additional configuration to be passed to the flask application. See below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
-    :returns: An instantiated flask application
+    :param return_flask: Set to true to get internal flask app
+    :returns: An instantiated WSGI application
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
@@ -169,4 +177,36 @@ def get_app(
 
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
-    return app
+
+    fast_api = FastAPI()
+    fast_api.include_router(_get_sparql_router(app))
+    fast_api.mount("/", WSGIMiddleware(app))
+    if return_flask:
+        return fast_api, app
+    return fast_api
+
+
+example_query = """\
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?s ?o WHERE {
+    VALUES ?s { <http://purl.obolibrary.org/obo/CHEBI_1> }
+    ?s owl:sameAs ?o
+}
+""".rstrip()
+
+
+def _get_sparql_router(app) -> APIRouter:
+    sparql_graph = MappingServiceGraph(converter=app.manager.converter)
+    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+    sparql_router = SparqlRouter(
+        path="/sparql",
+        title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
+        description="An identifier mapping service",
+        version=version.get_version(),
+        example_query=example_query,
+        graph=sparql_graph,
+        processor=sparql_processor,
+        public_url=f"{app.manager.base_url}/sparql",
+    )
+    return sparql_router

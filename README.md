@@ -57,7 +57,7 @@ Aggregated data are redistributed under their original licenses.
 
 Contributions are both welcomed and encouraged. Contribution guidelines for new
 prefix requests, record edits, record removals, and code updates are available
-in [CONTRIBUTING.md](docs/CONTRIBUTING.md). 
+in [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 The most simple contribution is to submit an issue:
 
@@ -104,7 +104,7 @@ If you want to manually update the database, run the following:
 $ tox -e update
 ```
 
-Make sure that you have valid environment variables or `pystow` configurations 
+Make sure that you have valid environment variables or `pystow` configurations
 for `BIOPORTAL_API_KEY`, `ECOPORTAL_API_KEY`, `AGROPORTAL_API_KEY`,
 `FAIRSHARING_LOGIN`, and `FAIRSHARING_PASSWORD`.
 
@@ -250,21 +250,6 @@ assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/
 assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
 ```
 
-> **Warning**
-> The following functionality is deprecated.
-> You can add to (or override) the default prefix map from the Bioregistry by
-> passing a dictionary with the `prefix_map` keyword:
-
-```python
-from bioregistry import curie_from_iri, parse_iri
-
-prefix_map = {
-   "myprefix": "https://example.org/myprefix/"
-}
-assert ('myprefix', '1234') == parse_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
-assert 'myprefix:24867' == curie_from_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
-```
-
 ### Generating IRIs
 
 You can generate an IRI from either a CURIE or a pre-parsed CURIE
@@ -295,7 +280,7 @@ priority and when OBO PURLs can't be generated, default to something else:
 from bioregistry import get_iri
 
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
+assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867'
 assert get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
 ```
 
@@ -343,8 +328,8 @@ assert br.get_default_iri('chebi', '24867') == 'https://www.ebi.ac.uk/chebi/sear
 assert br.get_obofoundry_iri('chebi', '24867') == 'http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # OLS IRI
-assert br.get_ols_iri('chebi', '24867') == \
-    'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
+assert br.get_ols_iri('chebi', '24867') ==
+       'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # Bioportal IRI
 assert br.get_bioportal_iri('chebi', '24867') == \
@@ -430,7 +415,7 @@ $ bioregistry web
 ```
 
 to run a web app that functions like Identifiers.org, but backed by the Bioregistry.
-A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at 
+A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at
 https://bioregistry.io.
 
 ## 👋 Attribution
@@ -479,6 +464,15 @@ It looks like this: [![Powered by the Bioregistry](https://img.shields.io/static
     year = {2022}
 }
 ```
+
+Talks on the Bioregistry:
+
+- [Future Curation in the Bioregistry](https://bit.ly/wpci2022-bioregistry-maintenance) (WPCI, December 2022)
+- [The Bioregistry - Governance and Review Team](https://bit.ly/wpci2022-bioregistry-governance) (WPCI, December 2022)
+- [Development, Maintenance, and Expansion of the Bioregistry](https://bit.ly/sorger-lab-bioregistry-2022)
+  (Sorger Lab Meeting, October 2022)
+- [The Bioregistry, CURIEs, and OBO Community Health](https://bit.ly/icbo2022-cth) (ICBO 2022 (September))
+- [Introduction to the Bioregistry](https://bit.ly/bioregistry-short-talk) (Sorger Lab Meeting, July 2021)
 
 ### 🎁 Support
 

@@ -185,7 +185,13 @@ def serialize(
     if negotiate:
         accept = get_accept_media_type()
     else:
-        accept = FORMAT_MAP[request.args.get("format", "json")]
+        arg = request.args.get("format", "json")
+        if arg not in FORMAT_MAP:
+            return abort(
+                400, f"unhandled value for `format`: {arg}. Use one of: {sorted(FORMAT_MAP)}"
+            )
+        accept = FORMAT_MAP[arg]
+
     if accept == "application/json":
         return jsonify(
             data.dict(exclude_unset=True, exclude_none=True)

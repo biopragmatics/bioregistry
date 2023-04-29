@@ -112,6 +112,9 @@ class OntoPortalClient:
         ]:
             value = res_json.get(key)
             if value:
+                if not isinstance(value, str):
+                    tqdm.write(f"got non-string value ({type(value)}) for {key}: {value}")
+                    continue
                 record[key] = (
                     (value or "")
                     .strip()

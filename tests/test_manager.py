@@ -5,7 +5,7 @@
 import unittest
 
 import bioregistry
-from bioregistry import Manager
+from bioregistry import Manager, parse_curie
 from bioregistry.export.rdf_export import get_full_rdf
 
 
@@ -225,3 +225,25 @@ class TestResourceManager(unittest.TestCase):
             )
         }
         self.assertEqual(set(self.manager.registry), prefixes)
+
+    def test_parse_curie(self):
+        """Test parsing CURIEs."""
+        for curie, pref, sep, p, i in [
+            ("pdb:1234", False, ":", "pdb", "1234"),
+            ("go:GO:1234", False, ":", "go", "1234"),
+            ("go:go:1234", False, ":", "go", "1234"),
+            ("go:1234", False, ":", "go", "1234"),
+            ("fbbt:FBbt:1234", False, ":", "fbbt", "1234"),
+            ("fbbt:fbbt:1234", False, ":", "fbbt", "1234"),
+            ("fbbt:1234", False, ":", "fbbt", "1234"),
+            ("go.ref:GO_REF:1234", False, ":", "go.ref", "1234"),
+            ("go.ref:1234", False, ":", "go.ref", "1234"),
+            ("GO_1234", False, "_", "go", "1234"),
+            ("omim.ps:PS12345", False, ":", "omim.ps", "12345"),
+            ("GO_1234", True, "_", "GO", "1234"),
+            ("pdb:1234", True, ":", "pdb", "1234"),
+        ]:
+            with self.subTest(curie=curie, use_preferred=pref, sep=sep):
+                actual_prefix, actual_i = parse_curie(curie, sep=sep, use_preferred=pref)
+                self.assertEqual(p, actual_prefix)
+                self.assertEqual(i, actual_i)

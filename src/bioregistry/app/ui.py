@@ -141,6 +141,7 @@ def resource(prefix: str):
                 xref=xref,
                 homepage=manager.get_registry_homepage(metaprefix),
                 name=manager.get_registry_name(metaprefix),
+                short_name=manager.get_registry_short_name(metaprefix),
                 uri=manager.get_registry_provider_uri_format(metaprefix, xref),
             )
             for metaprefix, xref in _resource.get_mappings().items()
@@ -169,6 +170,7 @@ def resource(prefix: str):
         provided_by=manager.get_provided_by(prefix),
         part_of=manager.get_part_of(prefix),
         has_parts=manager.get_has_parts(prefix),
+        in_collections=manager.get_in_collections(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
         formats=[
             *FORMATS,
@@ -571,3 +573,17 @@ def highlights_keywords():
             keyword_to_prefix[keyword].append(resource)
 
     return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
+
+
+@ui_blueprint.route("/highlights/owners")
+def highlights_owners():
+    """Render the partners highlights page."""
+    owner_to_resources = defaultdict(list)
+    owners = {}
+    for resource in manager.registry.values():
+        for owner in resource.owners or []:
+            owners[owner.pair] = owner
+            owner_to_resources[owner.pair].append(resource)
+    return render_template(
+        "highlights/owners.html", owners=owners, owner_to_resources=owner_to_resources
+    )

@@ -274,14 +274,14 @@
   },
   "ark": {
     "deprecated": false,
-    "description": "An Archival Resource Key (ARK) is a Uniform Resource Locator (URL) that is a multi-purpose persistent identifier for information objects of any type.",
-    "homepage": "http://n2t.net/",
+    "description": "Archival Resource Keys (ARKs) serve as persistent identifiers, or stable, trusted references for information objects. Among other things, they aim to be web addresses (URLs) that don\u2019t return 404 Page Not Found errors. The ARK Alliance is an open global community supporting the ARK infrastructure on behalf of research and scholarship. End users, especially researchers, rely on ARKs for long term access to the global scientific and cultural record. Since 2001 some 8.2 billion ARKs have been created by over 1000 organizations \u2014 libraries, data centers, archives, museums, publishers, government agencies, and vendors. They identify anything digital, physical, or abstract. ARKs are open, mainstream, non-paywalled, decentralized persistent identifiers that can be created by an organization as soon as it is registered with a NAAN (Name Assigning Authority Number). Once registered, an ARK organization can create unlimited numbers of ARKs and publicize them via the n2t.net global resolver or via their own local resolver.",
+    "homepage": "https://arks.org",
     "id": "00000592",
-    "name": "ARK",
+    "name": "Archival Resource Key (ARK)",
     "namespaceEmbeddedInLui": true,
     "pattern": "^(ark\\:)/*[0-9A-Za-z]+(?:/[\\w/.=*+@\\$-]*)?(?:\\?.*)?$",
     "prefix": "ark",
-    "sampleId": "/87924/r4154jq8h",
+    "sampleId": "/53355/cl010066723",
     "uri_format": "http://n2t.net/ark:$1"
   },
   "arrayexpress": {
@@ -760,6 +760,18 @@
     "prefix": "biogrid",
     "sampleId": "31623",
     "uri_format": "http://thebiogrid.org/$1"
+  },
+  "biokc": {
+    "deprecated": false,
+    "description": "BioKC (Biological Knowledge Curation), is a web-based collaborative platform for the curation and annotation of biomedical knowledge following the standard data model from Systems Biology Markup Language (SBML).",
+    "homepage": "https://wwwen.uni.lu/lcsb",
+    "id": "00000995",
+    "name": "BioKC",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "bkc[0-9]*",
+    "prefix": "biokc",
+    "sampleId": "bkc640",
+    "uri_format": "https://biokb.lcsb.uni.lu/fact/$1"
   },
   "biolink": {
     "deprecated": false,
@@ -1579,6 +1591,18 @@
     "sampleId": "272",
     "uri_format": "https://civicdb.org/links/gene/$1"
   },
+  "civic.mpid": {
+    "deprecated": false,
+    "description": "CIViC Molecular Profiles are combinations of one or more CIViC variants. Most Molecular Profiles are \u201cSimple\u201d Molecular Profiles comprised of a single variant. In most cases, these can be considered equivalent to the CIViC concept of a Variant. However, increasingly clinical significance must be considered in the context of multiple variants simultaneously. Complex Molecular Profiles in CIViC allow for curation of such variant combinations. Regardless of the nature of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered in CIViC.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000981",
+    "name": "CIViC Molecular Profile",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.mpid",
+    "sampleId": "559",
+    "uri_format": "https://civicdb.org/links/molecular_profile/$1"
+  },
   "civic.sid": {
     "deprecated": false,
     "description": "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source.",
@@ -1602,6 +1626,18 @@
     "prefix": "civic.tid",
     "sampleId": "14",
     "uri_format": "https://civicdb.org/links/drugs/$1"
+  },
+  "civic.vgid": {
+    "deprecated": false,
+    "description": "Variant Groups in CIViC provide user-defined grouping of Variants within and between genes based on unifying characteristics. CIViC curators are required to define a cohesive rationale for grouping these variants together, summarize their relevance to cancer diagnosis, prognosis or treatment and highlight any treatments or cancers of particular relevance",
+    "homepage": "https://civicdb.org/",
+    "id": "00000979",
+    "name": "CIViC Variant Group",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.vgid",
+    "sampleId": "16",
+    "uri_format": "https://civicdb.org/links/variant_group/$1"
   },
   "civic.vid": {
     "deprecated": false,
@@ -1722,6 +1758,27 @@
     "prefix": "clinvar.submitter",
     "sampleId": "26957",
     "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1"
+  },
+  "clo": {
+    "deprecated": false,
+    "description": "The Cell Line Ontology is a community-based ontology of cell lines. The CLO is developed to unify publicly available cell line entry data from multiple sources to a standardized logically defined format based on consensus design patterns.",
+    "homepage": "https://www.ebi.ac.uk/ols/ontologies/clo",
+    "id": "00000983",
+    "name": "Cell Line Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\d{7}$",
+    "prefix": "clo",
+    "providers": [
+      {
+        "code": "bioportal",
+        "description": "Our vision is that all biomedical knowledge and data are disseminated on the Internet using principled ontologies in such a way that the knowledge and data are semantically interoperable and useful for furthering biomedical science and clinical care. Our mission is to create software and support services for the application of principled ontologies in biomedical science and clinical care, ranging from tools for application developers to software for end-users.",
+        "homepage": "https://bioportal.bioontology.org",
+        "name": "Center for Biomedical Informatics Research, Stanford",
+        "uri_format": "https://bioportal.bioontology.org/ontologies/CLO/?p=classes&conceptid=http://purl.obolibrary.org/obo/CLO_$1"
+      }
+    ],
+    "sampleId": "0000091",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1"
   },
   "col": {
     "deprecated": false,
@@ -1959,6 +2016,18 @@
     "prefix": "cst.ab",
     "sampleId": "3305",
     "uri_format": "http://www.cellsignal.com/products/$1.html"
+  },
+  "cstr": {
+    "deprecated": false,
+    "description": "CSTR is an identifier for Common Science and Technology Resources, to provide persistent identification services for the positioning, traceability, citation, statistics and evaluation of science and technology resources. ",
+    "homepage": "https://www.cstr.cn/en/",
+    "id": "00000998",
+    "name": "CSTR",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\w{5}\\.\\d{2}\\..*$",
+    "prefix": "cstr",
+    "sampleId": "31253.11.sciencedb.j00001.00123",
+    "uri_format": "https://cstr.cn/$1"
   },
   "ctd.chemical": {
     "deprecated": false,
@@ -2790,10 +2859,22 @@
     "id": "00000561",
     "name": "Electron Microscopy Data Bank",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^EMD-\\d{4}$",
+    "pattern": "^EMD-\\d{4,5}$",
     "prefix": "emdb",
     "sampleId": "EMD-1001",
     "uri_format": "https://www.ebi.ac.uk/pdbe/entry/emdb/$1"
+  },
+  "empiar": {
+    "deprecated": false,
+    "description": "EMPIAR, the Electron Microscopy Public Image Archive, is a public resource for raw images underpinning 3D cryo-EM maps and tomograms (themselves archived in EMDB). EMPIAR also accommodates 3D datasets obtained with volume EM techniques and soft and hard X-ray tomography.",
+    "homepage": "https://www.ebi.ac.uk",
+    "id": "00000986",
+    "name": "EMPIAR",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "EMPIAR-\\d{5,}",
+    "prefix": "empiar",
+    "sampleId": "EMPIAR-10002",
+    "uri_format": "https://www.ebi.ac.uk/empiar/$1"
   },
   "ena.embl": {
     "deprecated": false,
@@ -3639,6 +3720,18 @@
     "prefix": "gmd.ref",
     "sampleId": "8cf84adb-b4db-4807-ac98-0004247c35df",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/ReferenceSubstances/$1"
+  },
+  "gnd": {
+    "deprecated": false,
+    "description": "The Gemeinsame Normdatei (Integrated Authority File) or GND is an international authority file for person names, subject headings and corporate bodies. It is used mainly for documentation in libraries and increasingly also by archives and museums. The GND is managed by the German National Library in cooperation with various regional library networks in German-speaking Europe and other partners.",
+    "homepage": "https://lobid.org/",
+    "id": "00001002",
+    "name": "Gemeinsame Normdatei",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[0-9X\\-]+",
+    "prefix": "gnd",
+    "sampleId": "117145750",
+    "uri_format": "https://lobid.org/gnd/$1"
   },
   "gnpis": {
     "deprecated": false,
@@ -4632,7 +4725,7 @@
     "id": "00000029",
     "name": "Nucleotide Sequence Database",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4,6}\\d{8,10}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
     "prefix": "insdc",
     "providers": [
       {
@@ -4817,7 +4910,7 @@
     "prefix": "isbn",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
+        "code": "worldcat",
         "description": "ISBN database at WorldCat",
         "homepage": "http://www.worldcat.org/",
         "name": "ISBN database at WorldCat",
@@ -5423,7 +5516,7 @@
       }
     ],
     "sampleId": "LRG_1",
-    "uri_format": "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"
+    "uri_format": "http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"
   },
   "ma": {
     "deprecated": false,
@@ -5954,7 +6047,7 @@
     "pattern": "^MIR:\\d{8}$",
     "prefix": "mir",
     "sampleId": "00100037",
-    "uri_format": "https://registry.identifiers.org/registry?query=MIR:$1"
+    "uri_format": "https://resolver.api.identifiers.org/resolveMirId/MIR:$1"
   },
   "mirbase": {
     "deprecated": false,
@@ -6704,6 +6797,18 @@
     "sampleId": "J0705A10",
     "uri_format": "http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1"
   },
+  "nlfff": {
+    "deprecated": false,
+    "description": "Nonlinear Force-Free Field Three-Dimensional Magnetic Fields Data of Solar Active Regions Database",
+    "homepage": "https://nlfff.dataset.deepsolar.space/en/",
+    "id": "00000988",
+    "name": "NLFFF Database",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "nlfff",
+    "sampleId": "345201101230312003",
+    "uri_format": "http://database.deepsolar.space:18080/dbs/nlfff/$1"
+  },
   "nmdc": {
     "deprecated": false,
     "description": "The National Microbiome Data Collaborative (NMDC) is an initiative to empower the research community to harness microbiome data exploration and discovery through a collaborative integrative data science ecosystem.",
@@ -6823,6 +6928,18 @@
     "prefix": "obi",
     "sampleId": "OBI_0000070",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
+  },
+  "obv": {
+    "deprecated": false,
+    "description": "The Austrian Library Network (OBV) is the largest network of scientific and administrative libraries in Austria with 70 participants, representing more than 90 individual institutions - including the Austrian National Library, university libraries, the colleges of education, individual ministries, numerous technical colleges and other important collections.",
+    "homepage": "https://www.obvsg.at/",
+    "id": "00001000",
+    "name": "Austrian Library Network",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "AC[0-9]{8}",
+    "prefix": "obv",
+    "sampleId": "AC00963334",
+    "uri_format": "https://permalink.obvsg.at/$1"
   },
   "occ": {
     "deprecated": false,
@@ -6979,6 +7096,18 @@
     "prefix": "omia",
     "sampleId": "1000",
     "uri_format": "http://omia.angis.org.au/$1/"
+  },
+  "omid": {
+    "deprecated": false,
+    "description": "Every entity in OpenCitations Meta (https://opencitations.net/meta) is assigned persistent internal identifier called OpenCitations Meta Identifier (OMID). The OMID has structure [[entity_type_abbreviation]]/[[supplier_prefix]][[sequential_number]]. For example, the first journal article ever processed has OMID br/0601 (the full URI is https://w3id.org/oc/meta/br/0601), where br is the abbreviation of bibliographic resource, and 060 corresponds to the supplier prefix, helpful in recognising at a glance the index it belongs to (i.e., OpenCitations Meta). Finally, 1 indicates that this is the index's first bibliographic resource ever minted.",
+    "homepage": "http://opencitations.net/",
+    "id": "00001004",
+    "name": "OpenCitations Meta Identifier",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$",
+    "prefix": "omid",
+    "sampleId": "br/0601",
+    "uri_format": "https://w3id.org/oc/meta/$1"
   },
   "omit": {
     "deprecated": false,
@@ -7482,14 +7611,14 @@
   "pfam": {
     "deprecated": false,
     "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
-    "homepage": "https://pfam.xfam.org/",
+    "homepage": "https://www.ebi.ac.uk/interpro/",
     "id": "00000028",
     "name": "Pfam",
     "namespaceEmbeddedInLui": false,
     "pattern": "^PF\\d{5}$",
     "prefix": "pfam",
     "sampleId": "PF01234",
-    "uri_format": "https://pfam.xfam.org/family/$1"
+    "uri_format": "https://www.ebi.ac.uk/interpro/entry/pfam/$1"
   },
   "pgs": {
     "deprecated": false,
@@ -9605,14 +9734,23 @@
   "unii": {
     "deprecated": false,
     "description": "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance\u2019s molecular structure and/or descriptive information.",
-    "homepage": "http://fdasis.nlm.nih.gov/srs/",
+    "homepage": "https://precision.fda.gov/uniisearch",
     "id": "00000531",
     "name": "UNII",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]+$",
     "prefix": "unii",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "UNII at U.S. Food and Drug Administration",
+        "homepage": "http://fdasis.nlm.nih.gov/srs/",
+        "name": "UNII at U.S. Food and Drug Administration",
+        "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+      }
+    ],
     "sampleId": "3G6A5W338E",
-    "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+    "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
   },
   "unimod": {
     "deprecated": false,
@@ -9686,7 +9824,7 @@
       }
     ],
     "sampleId": "P0DP23",
-    "uri_format": "http://purl.uniprot.org/uniprot/$1"
+    "uri_format": "https://purl.uniprot.org/uniprot/$1"
   },
   "uniprot.chain": {
     "deprecated": false,
@@ -9787,6 +9925,18 @@
     "prefix": "uspto",
     "sampleId": "4145692",
     "uri_format": "http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1"
+  },
+  "utrdb": {
+    "deprecated": false,
+    "description": "A curated database of 5' and 3' untranslated sequences of eukaryotic mRNAs. In the current update, the UTR entries are organized in a gene-centric structure to better visualize and retrieve 5' and 3'UTR variants generated by alternative initiation and termination of transcription and alternative splicing. Experimentally validated miRNA targets and conserved sequence elements are also annotated. The integration of UTRdb with genomic data has allowed the implementation of an efficient annotation system and a powerful retrieval resource for the selection and extraction of specific UTR subsets. ",
+    "homepage": "https://utrdb.cloud.ba.infn.it/utrdb/index_107.html",
+    "id": "00000993",
+    "name": "UTRdb",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "([3-5][A-Z])\\w+[^A-Z][0-9]",
+    "prefix": "utrdb",
+    "sampleId": "5UTR_107_ENST00000517291.2",
+    "uri_format": "https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1"
   },
   "validatordb": {
     "deprecated": false,

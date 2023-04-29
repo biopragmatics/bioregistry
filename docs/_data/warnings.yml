@@ -87,6 +87,11 @@ wrong_patterns:
   miriam: ECO:\d{7}$
   name: Evidence ontology
   prefix: eco
+- correct: ^\d+$
+  homepage: https://www.ebi.ac.uk/pdbe/emdb
+  miriam: EMPIAR-\d{5,}
+  name: Electron Microscopy Public Image Archive
+  prefix: empiar
 - correct: ^\d{7,8}$
   homepage: http://environmentontology.org/
   miriam: ^ENVO:\d{7,8}$
@@ -347,6 +352,11 @@ wrong_patterns:
   miriam: ^\d+$
   name: PRIDE Controlled Vocabulary
   prefix: pride
+- correct: ^(c|k)\d{7}$
+  homepage: http://probonto.org
+  miriam: ^PROB_c\d+$
+  name: Probability Distribution Ontology
+  prefix: probonto
 - correct: ^\d+$
   homepage: https://www.psidev.info/psi-par
   miriam: ^PAR:\d+$
@@ -387,6 +397,11 @@ wrong_patterns:
   miriam: ^SIO_\d{6,6}$
   name: Semanticscience Integrated Ontology
   prefix: sio
+- correct: ^\d+$
+  homepage: http://www.swisslipids.org/#/
+  miriam: ^SLM:\d+$
+  name: SwissLipid
+  prefix: slm
 - correct: ^\d{7}$
   homepage: http://www.sequenceontology.org/
   miriam: ^SO:\d{7}$
@@ -402,11 +417,6 @@ wrong_patterns:
   miriam: ^swh:[1-9]:(cnt|dir|rel|rev|snp):[0-9a-f]+(;(origin|visit|anchor|path|lines)=\S+)*$
   name: Software Heritage
   prefix: swh
-- correct: ^\d+$
-  homepage: http://www.swisslipids.org/#/
-  miriam: ^SLM:\d+$
-  name: SwissLipid
-  prefix: swisslipid
 - correct: ^\d{7}$
   homepage: http://arabidopsis.org/index.jsp
   miriam: ^Gene:\d{7}$
@@ -432,6 +442,11 @@ wrong_patterns:
   miriam: ^UO:\d{7}?
   name: Units of measurement ontology
   prefix: uo
+- correct: ^(\d{1,2},?\d{3},?\d{3}|(PP|RE|AI|RX)\d{2},?\d{3}|(D|T|H|X)\d{3},?\d{3})$
+  homepage: http://patft.uspto.gov/netahtml/PTO/index.html
+  miriam: ^(D|PP|R|T|H|X|AI)?\d+$
+  name: United States Patent and Trademark Office
+  prefix: uspto
 - correct: ^\d+$
   homepage: http://variationontology.org
   miriam: ^VariO:\d+$
@@ -442,3 +457,8 @@ wrong_patterns:
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
   name: Vertebrate Gene Nomenclature Committee
   prefix: vgnc
+- correct: ^\S+$
+  homepage: http://en.wikipedia.org/wiki/Main_Page
+  miriam: ^[A-Za-z-0-9_]+$
+  name: Wikipedia
+  prefix: wikipedia.en

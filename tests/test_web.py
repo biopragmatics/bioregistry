@@ -18,7 +18,7 @@ class TestWeb(unittest.TestCase):
 
     def setUp(self) -> None:
         """Set up the test case with an app."""
-        self.app = get_app()
+        _, self.app = get_app(return_flask=True)
         self.manager = Manager()
 
     def test_ui(self):
@@ -59,6 +59,15 @@ class TestWeb(unittest.TestCase):
                         ValueError, msg=f"Content should not be JSON-parsable. Endpoint: {endpoint}"
                     ):
                         json.loads(res.text)
+
+    def test_api_invalid_format(self):
+        """Test when an invalid `format` parameter is given.
+
+        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/715
+        """
+        with self.app.test_client() as client:
+            res = client.get("/api/registry/3dmet?format=nope")
+            self.assertEqual(400, res.status_code)
 
     def test_api_registry(self):
         """Test the registry endpoint."""

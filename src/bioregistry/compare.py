@@ -592,6 +592,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
 
     fig, ax = plt.subplots(1, 1, figsize=(10, 7.5))
     plt.rc("legend", fontsize=12, loc="upper right")
+    fig.subplots_adjust(right=0.4)
     df.plot(
         kind="barh",
         stacked=True,

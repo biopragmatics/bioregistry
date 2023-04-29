@@ -69,7 +69,7 @@ ontologies:
   ontology_purl: http://purl.obolibrary.org/obo/agro.owl
   preferredPrefix: AGRO
   products:
-  - description: Contains all AgrO terms and links to other relavent ontologies.
+  - description: Contains all AgrO terms and links to other relevant ontologies.
     id: agro.owl
     ontology_purl: http://purl.obolibrary.org/obo/agro.owl
     title: AgrO
@@ -203,8 +203,8 @@ ontologies:
     github: hoganwr
     label: William Hogan
     orcid: 0000-0002-9881-1017
-  description: Defines terms and relations necessary for interoperation between epidemic
-    models and public health application software that interface with these models
+  description: An OWL2 ontology of phenomena in infectious disease epidemiology and
+    population biology for use in epidemic simulation.
   domain: health
   homepage: https://github.com/ApolloDev/apollo-sv
   id: apollo_sv
@@ -225,6 +225,15 @@ ontologies:
   repository: https://github.com/ApolloDev/apollo-sv
   title: Apollo Structured Vocabulary
   tracker: https://github.com/ApolloDev/apollo-sv/issues
+  usages:
+  - description: Apollo-SV terms are used in the new MIDAS portal (https://midasnetwork.us/catalog/)
+      for making data discoverable.
+    examples:
+    - description: A 'hospital stay dataset' reference in the midasnetwork.us resource
+      url: https://midasnetwork.us/ontology/class-oboapollo_sv_00000600.html
+    seeAlso: https://midasnetwork.us/catalog/
+    type: annotation
+    user: https://midasnetwork.us/
 - activity_status: active
   contact:
     email: mcarthua@mcmaster.ca
@@ -825,6 +834,7 @@ ontologies:
     label: Metazoa
   title: Cell Ontology
   tracker: https://github.com/obophenotype/cell-ontology/issues
+  twitter: CellOntology
   usages:
   - description: The BICCN created a high-resolution atlas of cell types in the primary
       motor based on single cell transcriptomics. These cell types are represented
@@ -888,7 +898,7 @@ ontologies:
     publications:
     - id: https://www.ncbi.nlm.nih.gov/pubmed/25776021
       title: Ontology application and use at the ENCODE DCC
-    seeAlso: https://www.biosharing.org/biodbcore-000034
+    seeAlso: https://doi.org/10.25504/FAIRsharing.v0hbjs
     type: annotation
     user: https://www.encodeproject.org/
   - description: FANTOM5 is using Uberon and CL to annotate samples allowing for transcriptome
@@ -1846,7 +1856,7 @@ ontologies:
   tracker: https://github.com/obophenotype/mouse-anatomy-ontology/issues
   usages:
   - description: GXD
-    seeAlso: https://www.biosharing.org/biodbcore-000659
+    seeAlso: https://doi.org/10.25504/FAIRsharing.q9neh8
     user: http://www.informatics.jax.org/expression.shtml
 - activity_status: active
   build:
@@ -3378,7 +3388,7 @@ ontologies:
   tracker: https://github.com/obophenotype/mouse-anatomy-ontology/issues
   usages:
   - description: GXD
-    seeAlso: https://www.biosharing.org/biodbcore-000659
+    seeAlso: https://doi.org/10.25504/FAIRsharing.q9neh8
     user: http://www.informatics.jax.org/expression.shtml
 - activity_status: active
   build:
@@ -3601,10 +3611,10 @@ ontologies:
     method: obo2owl
     source_url: https://raw.githubusercontent.com/HUPO-PSI/psi-mi-CV/master/psi-mi.obo
   contact:
-    email: pporras@ebi.ac.uk
-    github: pporrasebi
-    label: Pablo Porras Millán
-    orcid: 0000-0002-8429-8793
+    email: luana.licata@gmail.com
+    github: luanalicata
+    label: Luana Licata
+    orcid: 0000-0001-5084-9000
   description: A structured controlled vocabulary for the annotation of experiments
     concerned with protein-protein interactions.
   domain: investigations
@@ -4311,6 +4321,35 @@ ontologies:
   title: Non-Coding RNA Ontology
   tracker: https://github.com/OmniSearch/ncro/issues
 - activity_status: active
+  contact:
+    email: dal.alghamdi92@gmail.com
+    github: dalalghamdi
+    label: Dalia Alghamdi
+    orcid: 0000-0002-2801-0767
+  description: 'The Next Generation Biobanking Ontology (NGBO) is an open application
+    ontology representing contextual data about omics digital assets in biobank. The
+    ontology focuses on capturing the information about three main activities: wet
+    bench analysis used to generate omics data, bioinformatics analysis used to analyze
+    and interpret data, and data management.'
+  domain: investigations
+  homepage: https://github.com/Dalalghamdi/NGBO
+  id: ngbo
+  issue_requested: 1819
+  layout: ontology_detail
+  license:
+    label: CC BY 4.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
+    url: https://creativecommons.org/licenses/by/4.0/
+  ontology_purl: http://purl.obolibrary.org/obo/ngbo.owl
+  preferredPrefix: NGBO
+  products:
+  - id: ngbo.owl
+    ontology_purl: http://purl.obolibrary.org/obo/ngbo.owl
+  pull_request_added: 2214
+  repository: https://github.com/Dalalghamdi/NGBO
+  title: Next Generation Biobanking Ontology
+  tracker: https://github.com/Dalalghamdi/NGBO/issues
+- activity_status: active
   build:
     checkout: git clone https://github.com/SpeciesFileGroup/nomen.git
     system: git
@@ -4440,6 +4479,10 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/oba.obo
   - id: oba/subsets/oba-basic.obo
     ontology_purl: http://purl.obolibrary.org/obo/oba/subsets/oba-basic.obo
+  publications:
+  - id: https://doi.org/10.1101/2023.01.26.525742
+    title: The Ontology of Biological Attributes (OBA) - Computational Traits for
+      the Life Sciences
   repository: https://github.com/obophenotype/bio-attribute-ontology
   title: Ontology of Biological Attributes
   tracker: https://github.com/obophenotype/bio-attribute-ontology/issues
@@ -6834,7 +6877,7 @@ ontologies:
     - description: Uberon terms used to annotate expression of human hemoglobin subunit
         beta
       url: http://bgee.org/?page=gene&gene_id=ENSG00000244734
-    seeAlso: https://www.biosharing.org/biodbcore-000228
+    seeAlso: https://doi.org/10.25504/FAIRsharing.x6d6sx
     type: annotation
     user: http://bgee.org/
   - description: The National Human Genome Research Institute (NHGRI) launched a public
@@ -6844,7 +6887,7 @@ ontologies:
     publications:
     - id: https://www.ncbi.nlm.nih.gov/pubmed/25776021
       title: Ontology application and use at the ENCODE DCC
-    seeAlso: https://www.biosharing.org/biodbcore-000034
+    seeAlso: https://doi.org/10.25504/FAIRsharing.v0hbjs
     type: annotation
     user: https://www.encodeproject.org/
   - description: FANTOM5 is using Uberon and CL to annotate samples allowing for transcriptome
@@ -7033,6 +7076,14 @@ ontologies:
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   title: Vertebrate Breed Ontology
   tracker: https://github.com/monarch-initiative/vertebrate-breed-ontology/issues
+  usages:
+  - description: VBO is used in the Online Mendelian Inheritance in Animals (OMIA)
+      for breed annotations.
+    examples:
+    - description: Urticaria pigmentosa affects the Sphynx (Cat) (VBO:0100230) breed.
+      url: https://www.omia.org/OMIA001289/9685/
+    type: annotation
+    user: https://omia.org/home/
 - activity_status: active
   build:
     source_url: https://raw.githubusercontent.com/vaccineontology/VO/master/src/VO_merged.owl
@@ -8196,6 +8247,10 @@ ontologies:
     ontology_purl: http://purl.obolibrary.org/obo/gaz.owl
   - id: gaz.obo
     ontology_purl: http://purl.obolibrary.org/obo/gaz.obo
+  - description: A country specific subset of the GAZ.
+    id: gaz/gaz-countries.owl
+    ontology_purl: http://purl.obolibrary.org/obo/gaz/gaz-countries.owl
+    title: GAZ countries
   repository: https://github.com/EnvironmentOntology/gaz
   title: Gazetteer
   tracker: https://github.com/EnvironmentOntology/gaz/issues
@@ -8367,6 +8422,7 @@ ontologies:
   contact:
     email: david.c.blackburn@gmail.com
     label: David Blackburn
+    orcid: 0000-0002-1810-9886
   domain: anatomy and development
   homepage: http://github.com/seger/aao
   id: aao
@@ -8415,6 +8471,7 @@ ontologies:
   contact:
     email: david.c.blackburn@gmail.com
     label: David Blackburn
+    orcid: 0000-0002-1810-9886
   domain: organisms
   homepage: http://www.amphibanat.org
   id: ato
@@ -8454,7 +8511,9 @@ ontologies:
     source_url: http://4dx.embl.de/4DXpress_4d/edocs/bilateria_mrca.obo
   contact:
     email: henrich@embl.de
-    label: Thorsten Heinrich
+    github: ThorstenHen
+    label: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   domain: anatomy and development
   homepage: http://4dx.embl.de/4DXpress
   id: bila
@@ -8786,7 +8845,8 @@ ontologies:
     source_url: http://www.lipidprofiles.com/LipidOntology
   contact:
     email: bakerc@unb.ca
-    label: Christipher Baker
+    label: Christopher Baker
+    orcid: 0000-0003-4004-6479
   description: An ontology representation of the LIPIDMAPS nomenclature classification.
   domain: chemistry and biochemistry
   id: lipro
@@ -8829,8 +8889,10 @@ ontologies:
   title: Minimal anatomical terminology
 - activity_status: inactive
   contact:
-    email: Thorsten.Henrich@embl-heidelberg.de
+    email: henrich@embl.de
+    github: ThorstenHen
     label: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   description: A structured controlled vocabulary of the anatomy and development of
     the Japanese medaka fish, <i>Oryzias latipes</i>.
   domain: anatomy and development
@@ -8885,6 +8947,7 @@ ontologies:
   contact:
     email: smtifahim@gmail.com
     label: Fahim Imam
+    orcid: 0000-0003-4752-543X
   description: Neuronal cell types
   domain: anatomy and development
   homepage: http://neuinfo.org/
@@ -8897,6 +8960,7 @@ ontologies:
   contact:
     email: smtifahim@gmail.com
     label: Fahim Imam
+    orcid: 0000-0003-4752-543X
   domain: health
   homepage: http://neuinfo.org/
   id: nif_dysfunction
@@ -8908,6 +8972,7 @@ ontologies:
   contact:
     email: smtifahim@gmail.com
     label: Fahim Imam
+    orcid: 0000-0003-4752-543X
   domain: anatomy and development
   homepage: http://neuinfo.org/
   id: nif_grossanatomy
@@ -9005,7 +9070,9 @@ ontologies:
 - activity_status: inactive
   contact:
     email: henrich@embl.de
-    label: Thorsten Heinrich
+    github: ThorstenHen
+    label: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   domain: anatomy and development
   homepage: http://4dx.embl.de/platy
   id: pd_st
@@ -9053,6 +9120,7 @@ ontologies:
   contact:
     email: john.garavelli@ebi.ac.uk
     label: John Garavelli
+    orcid: 0000-0002-4131-735X
   description: For the description of covalent bonds in proteins.
   domain: chemistry and biochemistry
   homepage: http://www.ebi.ac.uk/RESID/

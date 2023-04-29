@@ -33,7 +33,7 @@
       "pianta-officinale"
     ],
     "homepage": "https://www.treccani.it/enciclopedia/elenco-opere/Dizionario_di_Medicina",
-    "name": "Dizionario di Medicina ID",
+    "name": "Treccani's Dizionario di Medicina ID",
     "prefix": "P10022",
     "uri_format": "https://www.treccani.it/enciclopedia/$1_(Dizionario-di-Medicina)"
   },
@@ -545,14 +545,14 @@
     "database": "Q28416737",
     "description": "identifier for a plant in Chinese Plant Names Index database of Scientific Database of China Plant Species",
     "example": [
-      "CPNI-015",
-      "CPNI-079-07878",
-      "CPNI-17899",
-      "CPNI-263-04287"
+      "015",
+      "079-07878",
+      "17899",
+      "263-04287"
     ],
     "name": "CPNI ID",
     "prefix": "P10778",
-    "uri_format": "http://db.kib.ac.cn/CNFlora/SearchResult.aspx?cpni=$1"
+    "uri_format": "http://db.kib.ac.cn/CNFlora/SearchResult.aspx?cpni=CPNI-$1"
   },
   "P10783": {
     "database": "Q111967201",
@@ -699,7 +699,7 @@
     ],
     "homepage": "https://scigraph.springernature.com/explorer",
     "name": "Springer Nature article ID",
-    "pattern": "^10\\.\\d{4,9}/[0-9a-z\\.-_]+$",
+    "pattern": "^10\\.\\d{4,9}/[0-9a-z._-]+$",
     "prefix": "P10863",
     "uri_format": "https://scigraph.springernature.com/pub.$1"
   },
@@ -864,7 +864,7 @@
     ],
     "homepage": "https://plantfinder.nativeplanttrust.org/Plant-Search",
     "name": "Garden Plant Finder ID",
-    "pattern": "^[A-Z][A-z0-9\\-]+$",
+    "pattern": "^[A-Z][A-Za-z0-9\\-]+$",
     "prefix": "P11022",
     "uri_format": "https://plantfinder.nativeplanttrust.org/plant/$1"
   },
@@ -1050,7 +1050,7 @@
     ],
     "homepage": "https://www.egardengo.com/explore-plants",
     "name": "eGardenGo plant ID",
-    "pattern": "^[A-z0-9\\-]+$",
+    "pattern": "^[A-Za-z0-9-]+$",
     "prefix": "P11087",
     "uri_format": "https://www.egardengo.com/plant/$1"
   },
@@ -1321,7 +1321,6 @@
       "1580009750427316224"
     ],
     "name": "CiNii Research ID",
-    "pattern": "^[1-9]\\d{18}$",
     "prefix": "P11496",
     "uri_format": "https://cir.nii.ac.jp/crid/$1",
     "uri_format_rdf": [
@@ -1339,6 +1338,118 @@
     "pattern": "^2-s2\\.0-\\d+$",
     "prefix": "P1154",
     "uri_format": "http://www.scopus.com/record/display.url?origin=inward&eid=$1"
+  },
+  "P11563": {
+    "database": "Q116428408",
+    "description": "identifier for a member of the Real Academia de Doctores de Espa\u00f1a",
+    "example": [
+      "1170",
+      "2",
+      "21",
+      "233"
+    ],
+    "homepage": "https://www.radoctores.es/academicos.php?cat=N&estado=F",
+    "name": "Real Academia de Doctores de Espa\u00f1a ID",
+    "pattern": "^\\d{1,4}$",
+    "prefix": "P11563",
+    "uri_format": "https://www.radoctores.es/academico.php?item=$1"
+  },
+  "P11583": {
+    "database": "Q116431845",
+    "description": "identifier for a taxon in the Great Lakes Aquatic Nonindigenous Species Information System (GLANSIS)",
+    "example": [
+      "1038",
+      "155",
+      "2661",
+      "9",
+      "95"
+    ],
+    "name": "GLANSIS ID",
+    "prefix": "P11583",
+    "uri_format": "https://nas.er.usgs.gov/queries/GreatLakes/FactSheet.aspx?Species_ID=$1"
+  },
+  "P11623": {
+    "database": "Q116303978",
+    "description": "identifier of an entry in the NCI Drug Dictionary",
+    "example": [
+      "beta-carotene",
+      "edatrexate",
+      "hydroxychloroquine",
+      "l-carnitine-l-tartrate"
+    ],
+    "homepage": "https://www.cancer.gov/publications/dictionaries/cancer-drug",
+    "name": "NCI Drug Dictionary ID",
+    "prefix": "P11623",
+    "uri_format": "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/$1"
+  },
+  "P11650": {
+    "description": "ID for a taxon in the Moscow Digital Herbarium",
+    "example": [
+      "13509942",
+      "168804042",
+      "84905124"
+    ],
+    "name": "Moscow University Herbarium ID",
+    "pattern": "^\\d+$",
+    "prefix": "P11650",
+    "uri_format": "https://plant.depo.msu.ru/open/public/search?division=P&searchBy=taxon&queryString=$1"
+  },
+  "P11680": {
+    "description": "identifier for Thorndike and Kibre, catalogs of incipits of medieval scientific writings in Latin",
+    "example": [
+      "0566H",
+      "1053C",
+      "1333L"
+    ],
+    "homepage": "https://cctr1.umkc.edu/cgi-bin/medievalacademy",
+    "name": "eTK ID",
+    "pattern": "^\\d{4}[A-Z]$",
+    "prefix": "P11680",
+    "uri_format": "https://cctr1.umkc.edu/find/$db=eTK&ms=$1"
+  },
+  "P11681": {
+    "description": "identifier for Scientific and medical writings in Old and Middle English",
+    "example": [
+      "1383.00",
+      "6696.00",
+      "7327.00",
+      "7783.00"
+    ],
+    "homepage": "https://cctr1.umkc.edu/cgi-bin/medievalacademy",
+    "name": "eVK2 ID",
+    "pattern": "^\\d{4}\\.\\d{2}$",
+    "prefix": "P11681",
+    "uri_format": "https://cctr1.umkc.edu/find/$db=eVK2&ms=$1"
+  },
+  "P11691": {
+    "database": "Q60390398",
+    "description": "numerical identifier for an entry on the Feminae website",
+    "example": [
+      "28949",
+      "41110",
+      "43482"
+    ],
+    "homepage": "https://inpress.lib.uiowa.edu/feminae/AdvancedSearch.aspx",
+    "name": "Feminae record ID",
+    "pattern": "^\\d+$",
+    "prefix": "P11691",
+    "uri_format": "https://inpress.lib.uiowa.edu/feminae/DetailsPage.aspx?Feminae_ID=$1"
+  },
+  "P11733": {
+    "database": "Q117188014",
+    "description": "identifier for an item in Universo del corpo on the website of the Institute of the Italian Encyclopaedia",
+    "example": [
+      "ictus-cerebrale",
+      "malattie-infettive",
+      "sonnambulismo",
+      "testa",
+      "testa_res-fc23e798-8b78-11dc-8e9d-0016357eee51"
+    ],
+    "homepage": "https://www.treccani.it/enciclopedia/elenco-opere/Universo_del_Corpo",
+    "name": "Universo del corpo ID",
+    "pattern": "^[a-z]+(-[a-z]+)*(_res\\-[0-9a-f]{8}(\\-[0-9a-f]{4}){3}\\-[0-9a-f]{12})?$",
+    "prefix": "P11733",
+    "uri_format": "https://www.treccani.it/enciclopedia/$1_(Universo-del-Corpo)"
   },
   "P1193": {
     "database": "Q719602",
@@ -1432,14 +1543,12 @@
     "database": "Q17017504",
     "description": "identifier of disease at Patient UK",
     "example": [
-      "Asperger's-Syndrome.htm",
-      "Diaphyseal-Aclasis",
       "aspergers-syndrome",
       "diaphyseal-aclasis"
     ],
     "homepage": "https://www.patient.co.uk/patientplus/a.htm",
     "name": "Patientplus ID",
-    "pattern": "^[A-Za-z'\\-\\d\\(\\)]+(\\.htm)?$",
+    "pattern": "^[A-Za-z\\-\\d\\(\\)]+$",
     "prefix": "P1461",
     "uri_format": "https://patient.info/doctor/$1"
   },
@@ -1638,7 +1747,7 @@
     "example": [
       "FB0A73A0-E464-4919-8307-80DCCB14FB16"
     ],
-    "homepage": "http://zoobank.org/",
+    "homepage": "https://zoobank.org/",
     "name": "ZooBank ID for name or act",
     "pattern": "^[A-Z0-9]{8}(-[A-Z0-9]{4}){3}-[A-Z0-9]{12}$",
     "prefix": "P1746",
@@ -1777,7 +1886,10 @@
     ],
     "name": "Vaccine Ontology ID",
     "prefix": "P1928",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "uri_format": "http://purl.obolibrary.org/obo/$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "P1929": {
     "database": "Q20023123",
@@ -1846,7 +1958,7 @@
     "name": "USDA NDB number",
     "pattern": "^\\d{5}$",
     "prefix": "P1978",
-    "uri_format": "https://fdc.nal.usda.gov/fdc-app.html#/?query=$1/"
+    "uri_format": "https://fdc.nal.usda.gov/fdc-app.html#/?query=$1"
   },
   "P1991": {
     "database": "Q6595107",
@@ -1911,7 +2023,7 @@
     "example": [
       "9105-2"
     ],
-    "homepage": "http://www.ipni.org/",
+    "homepage": "https://www.ipni.org/",
     "name": "IPNI publication ID",
     "pattern": "^[1-9]\\d{0,7}\\-\\d$",
     "prefix": "P2008",
@@ -1975,7 +2087,7 @@
     "name": "African Plant Database ID",
     "pattern": "^\\d{1,6}$",
     "prefix": "P2036",
-    "uri_format": "https://africanplantdatabase.ch/nomen/$1"
+    "uri_format": "https://africanplantdatabase.ch/en/nomen/$1"
   },
   "P2040": {
     "database": "Q20962955",
@@ -1986,7 +2098,7 @@
     ],
     "homepage": "http://www.speciesplus.net/",
     "name": "CITES Species+ ID",
-    "pattern": "^\\d{4,5}$",
+    "pattern": "^\\d{1,5}$",
     "prefix": "P2040",
     "uri_format": "https://speciesplus.net/#/taxon_concepts/$1/legal"
   },
@@ -2122,7 +2234,6 @@
     "uri_format": "http://zinc.docking.org/substances/ZINC$1"
   },
   "P2085": {
-    "database": "Q105344067",
     "description": "identifier for a chemical compound in the Japan Chemical Substance Dictionary (Nikkaji)",
     "example": [
       "J2.375B",
@@ -2156,7 +2267,10 @@
     "name": "NDF-RT ID",
     "pattern": "^N[0-9]{10}$",
     "prefix": "P2115",
-    "uri_format": "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=$1"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=$1",
+    "uri_format_rdf": [
+      "http://purl.bioontology.org/ontology/NDFRT/$1"
+    ]
   },
   "P2153": {
     "database": "Q278487",
@@ -2184,7 +2298,10 @@
     "name": "Cell Line Ontology ID",
     "pattern": "^CLO_\\d{7}$",
     "prefix": "P2158",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "uri_format": "http://purl.obolibrary.org/obo/$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "P2240": {
     "database": "Q711849",
@@ -2360,7 +2477,7 @@
     "name": "MGI Gene Symbol",
     "pattern": "^[A-Z][a-z\\d]{2,9}$",
     "prefix": "P2394",
-    "uri_format": "http://www.ncbi.nlm.nih.gov/gene/?term=($1%5BSYM%5D)+AND+Mus+musculus%5BOrganism%5D"
+    "uri_format": "https://www.ncbi.nlm.nih.gov/gene/?term=($1%5BSYM%5D)+AND+Mus+musculus%5BOrganism%5D"
   },
   "P2409": {
     "database": "Q107529324",
@@ -2431,7 +2548,6 @@
     "uri_format": "https://www.environment.gov.au/cgi-bin/sprat/public/publicspecies.pl?taxon_id=$1"
   },
   "P2464": {
-    "database": "Q4986057",
     "description": "identifier in BugGuide.net",
     "example": [
       "7646",
@@ -2489,7 +2605,7 @@
     "prefix": "P2710"
   },
   "P2712": {
-    "database": "Q77564939",
+    "database": "Q11874263",
     "description": "statistically derived median concentration of a substance in an environmental medium expected to kill 50% of organisms in a given population under a defined set of conditions",
     "example": [
       "137"
@@ -2681,7 +2797,10 @@
     "name": "EPPO Code",
     "pattern": "^[0-9A-Z]{5,6}$",
     "prefix": "P3031",
-    "uri_format": "https://gd.eppo.int/taxon/$1"
+    "uri_format": "https://gd.eppo.int/taxon/$1",
+    "uri_format_rdf": [
+      "https://gd.eppo.int/taxon/$1"
+    ]
   },
   "P3060": {
     "database": "Q27777766",
@@ -2780,7 +2899,8 @@
     "database": "Q3073852",
     "description": "identifier for a plant taxon, in the Flora of Australia Online",
     "example": [
-      "41037"
+      "41037",
+      "46116"
     ],
     "homepage": "http://www.anbg.gov.au/abrs/online-resources/flora/",
     "name": "Flora of Australia ID (old)",
@@ -2964,7 +3084,10 @@
     ],
     "name": "Medical Dictionary for Regulatory Activities ID",
     "prefix": "P3201",
-    "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1"
+    "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
+    "uri_format_rdf": [
+      "http://purl.bioontology.org/ontology/MDRFRE/$1"
+    ]
   },
   "P3226": {
     "database": "Q107213548",
@@ -3246,6 +3369,9 @@
   "P3457": {
     "database": "Q92307203",
     "description": "proportion of patients who die of a particular medical condition out of all who have this condition within a given time frame",
+    "example": [
+      "0.35"
+    ],
     "name": "case fatality rate",
     "prefix": "P3457"
   },
@@ -3548,7 +3674,6 @@
       "systematics/polygonaceae"
     ],
     "name": "Flora of Israel Online plant ID",
-    "pattern": "^(systematics\\/)?[a-zA-Z0-9\\-]+$",
     "prefix": "P3795",
     "uri_format": "https://flora.org.il/en/plants/$1"
   },
@@ -3671,7 +3796,10 @@
     "name": "BioRxiv ID",
     "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6}$",
     "prefix": "P3951",
-    "uri_format": "https://doi.org/10.1101/$1"
+    "uri_format": "https://doi.org/10.1101/$1",
+    "uri_format_rdf": [
+      "http://dx.doi.org/10.1101/$1"
+    ]
   },
   "P3956": {
     "database": "Q107213173",
@@ -3923,7 +4051,10 @@
     "name": "FOIH taxon ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4311",
-    "uri_format": "https://id.erfgoed.net/thesauri/soorten/$1"
+    "uri_format": "https://id.erfgoed.net/thesauri/soorten/$1",
+    "uri_format_rdf": [
+      "https://id.erfgoed.net/thesauri/soorten/$1"
+    ]
   },
   "P4317": {
     "database": "Q47517289",
@@ -4017,7 +4148,10 @@
     ],
     "name": "Xenopus Anatomical Ontology ID",
     "prefix": "P4495",
-    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1"
+    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "P4526": {
     "database": "Q4743180",
@@ -4042,7 +4176,10 @@
     "miriam": "SPD",
     "name": "Spider Ontology ID",
     "prefix": "P4537",
-    "uri_format": "http://purl.obolibrary.org/obo/SPD_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/SPD_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/SPD_$1"
+    ]
   },
   "P4567": {
     "database": "Q2925763",
@@ -4363,7 +4500,7 @@
       "E950",
       "V15.01"
     ],
-    "name": "ICD-9",
+    "name": "ICD-9 ID",
     "pattern": "^(\\d\\d\\d|V\\d\\d|E[8-9]\\d\\d)(\\.\\d{1,2})?$",
     "prefix": "P493",
     "uri_format": "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"
@@ -4432,7 +4569,10 @@
     "name": "IRMNG ID",
     "pattern": "^[1-9]\\d{0,7}$",
     "prefix": "P5055",
-    "uri_format": "https://www.irmng.org/aphia.php?p=taxdetails&id=$1"
+    "uri_format": "https://www.irmng.org/aphia.php?p=taxdetails&id=$1",
+    "uri_format_rdf": [
+      "urn:lsid:irmng.org:taxname:$1"
+    ]
   },
   "P5082": {
     "database": "Q19378370",
@@ -4577,13 +4717,12 @@
     "uri_format": "https://www.goniat.org/showTax.html?TaxId=$1"
   },
   "P5221": {
-    "database": "Q2300489",
     "description": "identifier in the Tree of Life Web Project",
     "example": [
       "16952",
       "5838"
     ],
-    "homepage": "https://tolweb.org",
+    "homepage": "http://tolweb.org/tree/",
     "name": "Tree of Life Web Project ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P5221",
@@ -4628,13 +4767,13 @@
   },
   "P5270": {
     "database": "Q27468140",
-    "description": "identifier for a disease in the Monarch Disease Ontology",
+    "description": "identifier for an entity in the Mondo Disease Ontology",
     "example": [
       "MONDO:0005301",
       "MONDO:0005344"
     ],
     "homepage": "https://github.com/monarch-initiative/mondo",
-    "name": "MonDO ID",
+    "name": "Mondo ID",
     "pattern": "^MONDO:([0-9]{1,7})$",
     "prefix": "P5270",
     "short_name": [
@@ -5035,7 +5174,7 @@
       "64859006"
     ],
     "homepage": "http://snomed.info/",
-    "name": "SNOMED CT identifier",
+    "name": "SNOMED CT ID",
     "pattern": "^[0-9]*$",
     "prefix": "P5806",
     "uri_format": "http://snomed.info/id/$1",
@@ -5409,7 +5548,7 @@
       "282911"
     ],
     "homepage": "http://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx",
-    "name": "Plant Finder ID",
+    "name": "Plant Finder ID (Missouri Botanical Garden)",
     "pattern": "^[1-9]\\d{5}$",
     "prefix": "P6034",
     "uri_format": "https://www.missouribotanicalgarden.org/PlantFinder/PlantFinderDetails.aspx?taxonid=$1"
@@ -5451,7 +5590,7 @@
     ],
     "homepage": "https://biodiversity.org.au/afd/search/names",
     "name": "Australian Faunal Directory ID",
-    "pattern": "^[a-zA-Z\\xC0-\\xFF]*([-_;]([(]?)[a-zA-Z\\xC0-\\xFF]*(\\.)?([)]?))*(\\.)?$",
+    "pattern": "^\\p{Latin}*([-_;]\\(?\\p{Latin}*\\.?\\)?)*\\.?$",
     "prefix": "P6039",
     "uri_format": "https://biodiversity.org.au/afd/taxa/$1"
   },
@@ -5535,7 +5674,7 @@
     "homepage": "https://www.feis-crs.org/feis/faces/index.xhtml",
     "name": "FEIS ID",
     "prefix": "P6044",
-    "uri_format": "https://www.fs.fed.us/database/feis/$1/all.html"
+    "uri_format": "https://www.fs.usda.gov/database/feis/$1/all.html"
   },
   "P6045": {
     "database": "Q57677599",
@@ -5800,7 +5939,7 @@
     "name": "FLOW ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6096",
-    "uri_format": "https://www.hemiptera-databases.org/flow/?page=explorer&db=flow&lang=en&card=taxon&rank=species&id=$1"
+    "uri_format": "https://flow.hemiptera-databases.org/flow/?page=explorer&db=flow&lang=en&card=taxon&rank=species&id=$1"
   },
   "P6098": {
     "database": "Q58006102",
@@ -6652,13 +6791,13 @@
     "database": "Q24088019",
     "description": "accession number for entries in the MassBank database (records of mass spectrometry)",
     "example": [
-      "AU112601",
-      "EA030311",
+      "MSBNK-Athens_Univ-AU112601",
+      "MSBNK-Eawag-EA030311",
       "SMI00011"
     ],
     "homepage": "https://massbank.eu/",
     "name": "MassBank accession ID",
-    "pattern": "^MSBNK-[A-Z0-9_]{1,32}-[A-Z0-9_]{1,64}$",
+    "pattern": "^MSBNK-[A-Za-z0-9_]{1,32}-[A-Za-z0-9_]{1,64}$",
     "prefix": "P6689",
     "uri_format": "https://massbank.eu/MassBank/RecordDisplay?id=$1"
   },
@@ -6764,7 +6903,7 @@
     ],
     "homepage": "https://profiles.ala.org.au/opus/foa/profile/",
     "name": "Flora of Australia ID (new)",
-    "pattern": "^[\\w][\\w\\- \\.]*[\\w]$",
+    "pattern": "^[\\w][\\w\u00d7\\- \\.]*[\\w]$",
     "prefix": "P6756",
     "uri_format": "https://profiles.ala.org.au/opus/foa/profile/$1"
   },
@@ -7143,6 +7282,7 @@
     "uri_format": "http://www.moose-deutschland.de/organismen/$1"
   },
   "P7329": {
+    "database": "Q55695727",
     "description": "identifier in ICD terminology of diseases - Version 11 (Mortality and Morbidity Statistics) linearization (not the foundation ID)",
     "example": [
       "9B75.0",
@@ -7355,7 +7495,7 @@
       "61467",
       "65044"
     ],
-    "homepage": "http://fossilworks.org",
+    "homepage": "http://www.fossilworks.org",
     "name": "Fossilworks ID for this journal article",
     "pattern": "^\\d+$",
     "prefix": "P7720",
@@ -7412,7 +7552,7 @@
   },
   "P783": {
     "database": "Q914105",
-    "description": "type of spore-bearing surface or that mushroom",
+    "description": "type of spore-bearing surface of a mushroom",
     "name": "hymenium type",
     "prefix": "P783"
   },
@@ -7569,7 +7709,10 @@
     ],
     "name": "AGROVOC ID",
     "prefix": "P8061",
-    "uri_format": "http://aims.fao.org/aos/agrovoc/$1"
+    "uri_format": "http://aims.fao.org/aos/agrovoc/$1",
+    "uri_format_rdf": [
+      "http://aims.fao.org/aos/agrovoc/$1"
+    ]
   },
   "P8062": {
     "database": "Q2868312",
@@ -7825,7 +7968,8 @@
     "uri_format": "https://ui.adsabs.harvard.edu/abs/$1"
   },
   "P8204": {
-    "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Do not delete such statements.",
+    "database": "Q116763078",
+    "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Try to avoid deleting such statements.",
     "example": [
       "http://commons.wikimedia.org/data/main/Data:COVID-19+cases+in+Santa+Clara+County,+California.tab",
       "http://commons.wikimedia.org/data/main/Data:COVID-19+hospitalizations+in+Denmark.tab",
@@ -8107,7 +8251,7 @@
       "SLM:000000510"
     ],
     "homepage": "https://www.swisslipids.org/#/",
-    "name": "SwissLipids identifier",
+    "name": "SwissLipids ID",
     "prefix": "P8691",
     "uri_format": "https://www.swisslipids.org/#/entity/$1/"
   },
@@ -8211,7 +8355,7 @@
     ],
     "homepage": "https://www.jstor.org/",
     "name": "JSTOR article ID",
-    "pattern": "^(\\d{2}.\\d{4,5}\\/[a-z\\d.-]+)|(arion|booksireland|genus|healhumarigh|lindbergia|mammalianspecies|vermjenvilaw|westhistquar|wilsonq)[\\d.]+|[1-9]\\d{0,8}$",
+    "pattern": "^(\\d{2}.\\d{4,5}\\/[a-z\\d.-]+)|(arion|booksireland|genus|healhumarigh|lindbergia|mammalianspecies|vermjenvilaw|westhistquar|wilsonq|community)[\\d.]+|[1-9]\\d{0,8}$",
     "prefix": "P888",
     "uri_format": "https://www.jstor.org/stable/$1"
   },
@@ -8458,7 +8602,6 @@
     ],
     "homepage": "https://dicopolhis.univ-lemans.fr/fr/index.html",
     "name": "DicoPolHiS ID",
-    "pattern": "^[a-z]\\/[a-z-]{1,100}$",
     "prefix": "P9186",
     "uri_format": "https://dicopolhis.univ-lemans.fr/fr/dictionnaire/$1.html"
   },
@@ -8489,7 +8632,10 @@
     "name": "ChemRxiv ID",
     "pattern": "^\\d+$",
     "prefix": "P9262",
-    "uri_format": "https://doi.org/10.26434/CHEMRXIV.$1"
+    "uri_format": "https://doi.org/10.26434/CHEMRXIV.$1",
+    "uri_format_rdf": [
+      "http://dx.doi.org/10.26434/chemrxiv.$1.v1"
+    ]
   },
   "P9272": {
     "database": "Q5690673",
@@ -8504,7 +8650,7 @@
     "name": "DeCS ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P9272",
-    "uri_format": "https://decs.bvsalud.org/ths/resource/?id=$1"
+    "uri_format": "https://decs.bvsalud.org/en/ths/resource/?id=$1"
   },
   "P9273": {
     "database": "Q206316",
@@ -8554,7 +8700,10 @@
     "name": "Cephalopod Ontology ID",
     "pattern": "^[0-9]{7}$",
     "prefix": "P9334",
-    "uri_format": "http://purl.obolibrary.org/obo/CEPH_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/CEPH_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/CEPH_$1"
+    ]
   },
   "P9340": {
     "database": "Q199897",
@@ -8569,7 +8718,10 @@
     "name": "MeSH descriptor/qualifier ID",
     "pattern": "^D\\d{6}(\\d{3}|)Q\\d{6}(\\d{3}|)$",
     "prefix": "P9340",
-    "uri_format": "https://id.nlm.nih.gov/mesh/$1"
+    "uri_format": "https://id.nlm.nih.gov/mesh/$1",
+    "uri_format_rdf": [
+      "http://id.nlm.nih.gov/mesh/$1"
+    ]
   },
   "P9341": {
     "database": "Q199897",
@@ -8600,7 +8752,10 @@
     "name": "Hymenoptera Anatomy Ontology ID",
     "pattern": "^[0-9]{7}$",
     "prefix": "P9356",
-    "uri_format": "http://purl.obolibrary.org/obo/HAO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/HAO_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/HAO_$1"
+    ]
   },
   "P938": {
     "database": "Q837101",
@@ -8774,7 +8929,7 @@
       "6193"
     ],
     "homepage": "https://bios.au.dk/forskningraadgivning/temasider/redlistframe/",
-    "name": "Danish 2010 redlist identifier",
+    "name": "Danish 2010 redlist ID",
     "prefix": "P9576",
     "uri_format": "https://roedliste.au.dk/data.asp?ID=$1"
   },
@@ -8880,7 +9035,7 @@
       "298593-1",
       "323572-2"
     ],
-    "homepage": "http://www.ipni.org/",
+    "homepage": "https://www.ipni.org/",
     "name": "IPNI plant ID",
     "pattern": "^[1-9]\\d{0,7}-[123]$",
     "prefix": "P961",
@@ -9286,7 +9441,7 @@
       "40981"
     ],
     "homepage": "https://horizon.documentation.ird.fr/exl-php/accueil",
-    "name": "Institut de recherche pour le d\u00e9veloppement (IRD) identifier",
+    "name": "Institut de recherche pour le d\u00e9veloppement (IRD) ID",
     "prefix": "P9939",
     "uri_format": "https://www.documentation.ird.fr/hor/fdi:$1"
   },

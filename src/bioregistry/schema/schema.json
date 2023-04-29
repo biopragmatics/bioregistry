@@ -75,6 +75,14 @@
         "context": {
           "title": "Context",
           "type": "string"
+        },
+        "references": {
+          "title": "References",
+          "description": "URL references",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -148,6 +156,37 @@
           "title": "GitHub handle",
           "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Organization": {
+      "title": "Organization",
+      "description": "Model for organizataions.",
+      "type": "object",
+      "properties": {
+        "ror": {
+          "title": "Research Organization Registry identifier",
+          "description": "ROR identifier for a record about the organization",
+          "type": "string"
+        },
+        "wikidata": {
+          "title": "Wikidata identifier",
+          "description": "Wikidata identifier for a record about the organization",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string"
+        },
+        "partnered": {
+          "title": "Partnered",
+          "description": "Has this organization made a specific connection with Bioregistry?",
+          "default": false,
+          "type": "boolean"
         }
       },
       "required": [
@@ -249,6 +288,14 @@
               "$ref": "#/definitions/Attributable"
             }
           ]
+        },
+        "owners": {
+          "title": "Owners",
+          "description": "The owner of the corresponding identifier space. See also https://github.com/biopragmatics/bioregistry/issues/755.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organization"
+          }
         },
         "example": {
           "title": "Example",

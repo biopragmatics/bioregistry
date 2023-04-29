@@ -163,3 +163,9 @@ This governance must updated through the following steps:
 This procedure doesn't apply to cosmetic or ergonomics changes, which are
 allowed to be done in a more *ad-hoc* manner. The Bioregistry Review Team may
 later make explicit criteria for accepting changes to this governance.
+
+## Partners
+
+Please see https://github.com/biopragmatics/bioregistry/issues/755
+for discussions about a governance model for partnerships between
+the Bioregistry and identifier space owners.

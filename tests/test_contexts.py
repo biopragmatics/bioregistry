@@ -59,6 +59,15 @@ class TestContexts(unittest.TestCase):
             msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
         )
 
+    def get_obo_converter(self):
+        """Test getting a converter from a context."""
+        converter = manager.get_converter_from_context("obo")
+        self.assertEqual("GO", converter.standardize_prefix("GO"))
+        self.assertEqual("GO", converter.standardize_prefix("gomf"))
+        # FIXME later, handle adding canonical bioregistry prefix
+        #  as synonym when non-default prefix priority ordering is given
+        # self.assertEqual("GO", converter.standardize_prefix("go"))
+
     def test_data(self):
         """Test the data integrity."""
         for key, context in self.contexts.items():

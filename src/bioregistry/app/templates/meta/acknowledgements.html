@@ -75,7 +75,7 @@
     </p>
     {% for registry in registries %}
         {% set code_link = registry.get_code_link() %}
-        {% if code_link or registry.license %}
+        {% if registry.prefix != "bioregistry" and (code_link or registry.license) %}
             <h5><a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=registry.prefix) }}">{{ registry.name }}</a></h5>
             <p>
                 {% if registry.logo_url %}
