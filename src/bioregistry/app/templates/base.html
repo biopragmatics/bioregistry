@@ -29,7 +29,7 @@
 
         <script src="https://kit.fontawesome.com/4c86883252.js" crossorigin="anonymous"></script>
         <title>{% block title %}{% endblock %}</title>
-        <meta name="description" content="The Bioregistry is an open source, community curated registry, meta-registry, and compact identifier (CURIE) resolver" />
+        <meta name="description" content="{{ config.METAREGISTRY_DESCRIPTION }}" />
         <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
     {% endblock %}
 </head>
@@ -141,7 +141,7 @@
                     {% if config.METAREGISTRY_FIRST_PARTY %}
                     <a class="dropdown-item" href="{{ url_for('metaregistry_ui.download') }}">Downloads</a>
                     {% endif %}
-                    <a class="dropdown-item" href="/docs">API Documentation</a>
+                    <a class="dropdown-item" href="{{ url_for('metaregistry_ui.apidocs') }}">API Documentation</a>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.usage") }}">Programmatic Usage Guide</a>
                 </div>
             </li>

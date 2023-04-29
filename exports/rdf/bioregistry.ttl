@@ -559,6 +559,7 @@
 @prefix hcpcs: <http://purl.bioontology.org/ontology/HCPCS/> .
 @prefix hcvdb: <https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=> .
 @prefix hdr: <http://research.nhgri.nih.gov/apps/homeodomain/web/index.cgi?mode=view&amp;view=proteins&amp;id=> .
+@prefix hepro: <http://purl.obolibrary.org/obo/HEPRO_> .
 @prefix hgmd: <http://www.hgmd.cf.ac.uk/ac/gene.php?gene=> .
 @prefix hgnc: <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/> .
 @prefix hgnc.genegroup: <https://www.genenames.org/cgi-bin/genefamilies/set/> .
@@ -1150,6 +1151,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
 @prefix slkbase: <https://sumlineknowledgebase.com/?page_id=> .
+@prefix slm: <https://www.swisslipids.org/#/entity/SLM:> .
 @prefix smart: <http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=> .
 @prefix smid: <https://smid-db.org/smid/> .
 @prefix smpdb: <https://smpdb.ca/view/> .
@@ -1186,7 +1188,6 @@
 @prefix supfam: <http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=> .
 @prefix sweetrealm: <http://sweetontology.net/matrMineral/> .
 @prefix swiss-model: <https://swissmodel.expasy.org/repository/uniprot/> .
-@prefix swisslipid: <https://www.swisslipids.org/#/entity/SLM:> .
 @prefix swissregulon: <http://swissregulon.unibas.ch/query/> .
 @prefix swo: <http://purl.obolibrary.org/obo/SWO_> .
 @prefix swrl: <http://www.w3.org/2003/11/swrl#> .
@@ -16707,6 +16708,31 @@ bioregistry:slkbase a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 slkbase:3618 ;
     bioregistry.schema:0000029 "slkbase" .
 
+bioregistry:slm a bioregistry.schema:0000001 ;
+    rdfs:label "SwissLipid" ;
+    dcterms:description "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P8691,
+        biocontext:SWISSLIPID,
+        n2t:swisslipid,
+        fairsharing:FAIRsharing.pxr7x2,
+        miriam:slm,
+        re3data:r3d100012603,
+        uniprot.resource:DB-0197 ;
+    dcat:keyword "life science",
+        "metabolomics" ;
+    foaf:homepage <http://www.swisslipids.org/#/> ;
+    bioregistry.schema:0000005 "000000341"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.swisslipids.org/#/entity/SLM:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-2148-9135 ;
+    bioregistry.schema:0000023 "swisslipid",
+        "swisslipids" ;
+    bioregistry.schema:0000024 "https://www.swisslipids.org/#/entity/SLM:"^^xsd:string ;
+    bioregistry.schema:0000027 slm:000000341 ;
+    bioregistry.schema:0000029 "slm" .
+
 bioregistry:smart a bioregistry.schema:0000001 ;
     rdfs:label "Simple Modular Architecture Research Tool" ;
     dcterms:description "The Simple Modular Architecture Research Tool (SMART) is an online tool for the identification and annotation of protein domains, and the analysis of domain architectures."^^xsd:string ;
@@ -17181,31 +17207,6 @@ bioregistry:swiss-model a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://swissmodel.expasy.org/repository/uniprot/"^^xsd:string ;
     bioregistry.schema:0000027 swiss-model:P23298 ;
     bioregistry.schema:0000029 "swiss-model" .
-
-bioregistry:swisslipid a bioregistry.schema:0000001 ;
-    rdfs:label "SwissLipid" ;
-    dcterms:description "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch wikidata:P8691,
-        biocontext:SWISSLIPID,
-        n2t:swisslipid,
-        fairsharing:FAIRsharing.pxr7x2,
-        miriam:slm,
-        re3data:r3d100012603,
-        uniprot.resource:DB-0197 ;
-    dcat:keyword "life science",
-        "metabolomics" ;
-    foaf:homepage <http://www.swisslipids.org/#/> ;
-    bioregistry.schema:0000005 "000000341"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.swisslipids.org/#/entity/SLM:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0003-2148-9135 ;
-    bioregistry.schema:0000023 "slm",
-        "swisslipids" ;
-    bioregistry.schema:0000024 "https://www.swisslipids.org/#/entity/SLM:"^^xsd:string ;
-    bioregistry.schema:0000027 swisslipid:000000341 ;
-    bioregistry.schema:0000029 "swisslipid" .
 
 bioregistry:swissregulon a bioregistry.schema:0000001 ;
     rdfs:label "SwissRegulon" ;
@@ -30629,6 +30630,25 @@ bioregistry:hcpcs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 hcpcs:G8944 ;
     bioregistry.schema:0000029 "hcpcs" .
 
+bioregistry:hepro a bioregistry.schema:0000001 ;
+    rdfs:label "Health Procedure Ontology" ;
+    dcterms:description "HEPRO is an ontology of informational entities and processes related to health procedures and health activities."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/OpenLHS/HEPRO> ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <https://openlhs.github.io/HEPRO/> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HEPRO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://github.com/OpenLHS/HEPRO/raw/main/HEPRO.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3336-2476 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/HEPRO_"^^xsd:string ;
+    bioregistry.schema:0000026 ror:00kybxq39 ;
+    bioregistry.schema:0000027 hepro:0000001 ;
+    bioregistry.schema:0000029 "hepro" .
+
 bioregistry:hesa a bioregistry.schema:0000001 ;
     rdfs:label "UK Higher Education Statistics Agency" ;
     dcterms:description "An identifier for institutions in the United Kingdom, used in GRID and ROR."^^xsd:string ;
@@ -42491,7 +42511,7 @@ bioregistry:molbase.sheffield a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "molbase.sheffield" .
 
 bioregistry:mondo a bioregistry.schema:0000001 ;
-    rdfs:label "Monarch Disease Ontology" ;
+    rdfs:label "Mondo Disease Ontology" ;
     dcterms:description "A semi-automatically constructed ontology that merges in multiple disease resources to yield a coherent merged ontology."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/monarch-initiative/mondo> ;
@@ -44333,9 +44353,6 @@ orcid:0000-0002-2265-5572 rdfs:label "Michael Y Galperin" ;
 orcid:0000-0002-2346-5201 rdfs:label "Carissa Park" ;
     foaf:mbox "caripark@iastate.edu" .
 
-orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" ;
-    foaf:mbox "paul.fabry@usherbrooke.ca" .
-
 orcid:0000-0002-3469-4923 rdfs:label "Janna Hastings" ;
     foaf:mbox "janna.hastings@gmail.com" .
 
@@ -45211,6 +45228,10 @@ orcid:0000-0002-0294-5484 rdfs:label "David Mendez Lopez" ;
 
 orcid:0000-0002-0956-8634 rdfs:label "Terry Hayamizu" ;
     foaf:mbox "Terry.Hayamizu@jax.org" .
+
+orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" ;
+    dcterms:contributor bioregistry:hepro ;
+    foaf:mbox "paul.fabry@usherbrooke.ca" .
 
 orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" ;
     foaf:mbox "e.arnaud@cgiar.org",
@@ -54747,6 +54768,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hcpcs,
         bioregistry:hcvdb,
         bioregistry:hdr,
+        bioregistry:hepro,
         bioregistry:hesa,
         bioregistry:hgmd,
         bioregistry:hgnc,
@@ -55474,6 +55496,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:skos,
         bioregistry:skosxl,
         bioregistry:slkbase,
+        bioregistry:slm,
         bioregistry:smart,
         bioregistry:smid,
         bioregistry:smiles,
@@ -55516,7 +55539,6 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sweetrealm,
         bioregistry:swh,
         bioregistry:swiss-model,
-        bioregistry:swisslipid,
         bioregistry:swissregulon,
         bioregistry:swo,
         bioregistry:swrl,
