@@ -21318,6 +21318,42 @@ hdr:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/hdr:$1
   uri_format: http://research.nhgri.nih.gov/apps/homeodomain/web/index.cgi?mode=view&amp;view=proteins&amp;id=$1
+hepro:
+  contact:
+    email: paul.fabry@usherbrooke.ca
+    github: pfabry
+    name: Paul Fabry
+    orcid: 0000-0002-3336-2476
+  contributor:
+    email: paul.fabry@usherbrooke.ca
+    github: pfabry
+    name: Paul Fabry
+    orcid: 0000-0002-3336-2476
+  description: HEPRO is an ontology of informational entities and processes related
+    to health procedures and health activities.
+  download_json: https://github.com/OpenLHS/HEPRO/raw/main/HEPRO.json
+  download_owl: https://github.com/OpenLHS/HEPRO/raw/main/HEPRO.owl
+  example: '0000001'
+  github_request_issue: 810
+  homepage: https://openlhs.github.io/HEPRO/
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  name: Health Procedure Ontology
+  owners:
+  - name: Université de Sherbrooke
+    partnered: false
+    ror: 00kybxq39
+    wikidata: null
+  pattern: ^\d{7}$
+  preferred_prefix: HEPRO
+  repository: https://github.com/OpenLHS/HEPRO
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://purl.obolibrary.org/obo/HEPRO_$1
 hesa:
   contributor:
     email: cthoyt@gmail.com
@@ -30316,7 +30352,7 @@ mondo:
     ols: mondo
     ontobee: MONDO
     wikidata: P5270
-  name: Monarch Disease Ontology
+  name: Mondo Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: MONDO
   publications:
@@ -45261,6 +45297,45 @@ slkbase:
   pattern: ^\d+$
   preferred_prefix: slkbase
   uri_format: https://sumlineknowledgebase.com/?page_id=$1
+slm:
+  banana: SLM
+  contact:
+    email: swisslipids@isb-sib.ch
+    github: null
+    name: Alan Bridge
+    orcid: 0000-0003-2148-9135
+  description: SwissLipids is a curated resource that provides information about known
+    lipids, including lipid structure, metabolism, interactions, and subcellular and
+    tissue localization. Information is curated from peer-reviewed literature and
+    referenced using established ontologies, and provided with full provenance and
+    evidence codes for curated assertions.
+  example: '000000341'
+  homepage: http://www.swisslipids.org/#/
+  keywords:
+  - life science
+  - metabolomics
+  mappings:
+    biocontext: SWISSLIPID
+    fairsharing: FAIRsharing.pxr7x2
+    miriam: slm
+    n2t: swisslipid
+    re3data: r3d100012603
+    uniprot: DB-0197
+    wikidata: P8691
+  name: SwissLipid
+  namespace_in_lui: true
+  pattern: ^\d+$
+  preferred_prefix: SLM
+  publications:
+  - doi: 10.1093/bioinformatics/btv285
+    pmc: PMC4547616
+    pubmed: '25943471'
+    title: The SwissLipids knowledgebase for lipid biology.
+    year: 2015
+  synonyms:
+  - swisslipid
+  - swisslipids
+  uri_format: https://www.swisslipids.org/#/entity/SLM:$1
 smart:
   description: The Simple Modular Architecture Research Tool (SMART) is an online
     tool for the identification and annotation of protein domains, and the analysis
@@ -46846,45 +46921,6 @@ swiss-model:
     year: 2008
   twitter: SWISS_MODEL
   uri_format: https://swissmodel.expasy.org/repository/uniprot/$1
-swisslipid:
-  banana: SLM
-  contact:
-    email: swisslipids@isb-sib.ch
-    github: null
-    name: Alan Bridge
-    orcid: 0000-0003-2148-9135
-  description: SwissLipids is a curated resource that provides information about known
-    lipids, including lipid structure, metabolism, interactions, and subcellular and
-    tissue localization. Information is curated from peer-reviewed literature and
-    referenced using established ontologies, and provided with full provenance and
-    evidence codes for curated assertions.
-  example: '000000341'
-  homepage: http://www.swisslipids.org/#/
-  keywords:
-  - life science
-  - metabolomics
-  mappings:
-    biocontext: SWISSLIPID
-    fairsharing: FAIRsharing.pxr7x2
-    miriam: slm
-    n2t: swisslipid
-    re3data: r3d100012603
-    uniprot: DB-0197
-    wikidata: P8691
-  name: SwissLipid
-  namespace_in_lui: true
-  pattern: ^\d+$
-  preferred_prefix: swisslipid
-  publications:
-  - doi: 10.1093/bioinformatics/btv285
-    pmc: PMC4547616
-    pubmed: '25943471'
-    title: The SwissLipids knowledgebase for lipid biology.
-    year: 2015
-  synonyms:
-  - slm
-  - swisslipids
-  uri_format: https://www.swisslipids.org/#/entity/SLM:$1
 swissregulon:
   contact:
     email: erik.vannimwegen@unibas.ch

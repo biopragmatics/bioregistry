@@ -7097,6 +7097,18 @@
     "sampleId": "1000",
     "uri_format": "http://omia.angis.org.au/$1/"
   },
+  "omid": {
+    "deprecated": false,
+    "description": "Every entity in OpenCitations Meta (https://opencitations.net/meta) is assigned persistent internal identifier called OpenCitations Meta Identifier (OMID). The OMID has structure [[entity_type_abbreviation]]/[[supplier_prefix]][[sequential_number]]. For example, the first journal article ever processed has OMID br/0601 (the full URI is https://w3id.org/oc/meta/br/0601), where br is the abbreviation of bibliographic resource, and 060 corresponds to the supplier prefix, helpful in recognising at a glance the index it belongs to (i.e., OpenCitations Meta). Finally, 1 indicates that this is the index's first bibliographic resource ever minted.",
+    "homepage": "http://opencitations.net/",
+    "id": "00001004",
+    "name": "OpenCitations Meta Identifier",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$",
+    "prefix": "omid",
+    "sampleId": "br/0601",
+    "uri_format": "https://w3id.org/oc/meta/$1"
+  },
   "omit": {
     "deprecated": false,
     "description": "The purpose of the OMIT ontology is to establish data exchange standards and common data elements in the microRNA (miR) domain. Biologists (cell biologists in particular) and bioinformaticians can make use of OMIT to leverage emerging semantic technologies in knowledge acquisition and discovery for more effective identification of important roles performed by miRs in humans' various diseases and biological processes (usually through miRs' respective target genes).",
