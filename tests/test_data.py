@@ -192,15 +192,14 @@ class TestRegistry(unittest.TestCase):
                 self.fail(msg=f"bad email: {email}")
 
     def test_mastodon(self):
-        """Test that all Mastodon handles look like @go@genomic.social."""
-        for prefix in self.registry:
-            resource = bioregistry.get_resource(prefix)
-            self.assertIsNotNone(resource)
+        """Test that all Mastodon handles look like go@genomic.social."""
+        for prefix, resource in self.registry.items():
             mastodon = resource.get_mastodon()
-            if mastodon is None or mastodon.startswith("@"):
+            if not mastodon:
                 continue
             with self.subTest(prefix=prefix):
-                self.fail(msg=f"malformed Mastodon account: {mastodon}")
+                self.assertFalse(mastodon.startswith("@"))
+                self.assertEqual(1, mastodon.count("@"))
 
     def test_no_redundant_acronym(self):
         """Test that there is no redundant acronym in the name.
