@@ -38,6 +38,10 @@ class UnhandledFormat(HTTPException):
     """An exception for an unhandled format."""
 
     def __init__(self, fmt):
+        """Instantiate the exception.
+
+        :param fmt: The header that was bad
+        """
         super().__init__(400, f"Bad Accept header: {fmt}")
 
 

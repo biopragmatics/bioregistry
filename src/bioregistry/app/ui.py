@@ -587,4 +587,4 @@ def highlights_owners():
 @ui_blueprint.route("/apidocs/")
 def apidocs():
     """Render api documentation page."""
-    return redirect(url_for(".usage"))
+    return redirect("/docs")
