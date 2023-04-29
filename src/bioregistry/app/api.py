@@ -31,13 +31,13 @@ __all__ = [
     "api_router",
 ]
 
-api_router = APIRouter(
-    prefix="/api",
-)
+api_router = APIRouter(prefix="/api")
 
 
 class UnhandledFormat(HTTPException):
-    def __init__(self, fmt: str):
+    """An exception for an unhandled format."""
+
+    def __init__(self, fmt):
         super().__init__(400, f"Bad Accept header: {fmt}")
 
 
