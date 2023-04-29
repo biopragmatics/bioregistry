@@ -115,7 +115,6 @@ def get_app(
     :param manager: A pre-configured manager. If none given, uses the default manager.
     :param config: Additional configuration to be passed to the flask application. See below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
-    :param return_flask: Return the encased flask app, use for testing purposes.
     :param return_flask: Set to true to get internal flask app
     :returns: An instantiated WSGI application
     :raises ValueError: if there's an issue with the configuration's integrity
@@ -132,7 +131,6 @@ def get_app(
         conf = {}
     else:
         conf = config
-
     conf.setdefault("METAREGISTRY_TITLE", TITLE_DEFAULT)
     conf.setdefault("METAREGISTRY_DESCRIPTION", DESCRIPTION_DEFAULT)
     conf.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
@@ -148,6 +146,7 @@ def get_app(
     conf.setdefault(
         "METAREGISTRY_LICENSE_URL", "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE"
     )
+
     resource = manager.registry.get(example_prefix)
     if resource is None:
         raise ValueError(
@@ -157,55 +156,6 @@ def get_app(
         raise ValueError("Must use an example prefix with an example identifier")
     if resource.get_uri_format() is None:
         raise ValueError("Must use an example prefix with a URI format")
-
-    tags_metadata = [
-        {
-            "name": "resource",
-            "description": "Identifier resources in the registry",
-            "externalDocs": {
-                "description": f"{conf['METAREGISTRY_TITLE']} Resource Catalog",
-                "url": f"{manager.base_url}/registry/",
-            },
-        },
-        {
-            "name": "metaresource",
-            "description": "Resources representing registries",
-            "externalDocs": {
-                "description": f"{conf['METAREGISTRY_TITLE']} Registry Catalog",
-                "url": f"{manager.base_url}/metaregistry/",
-            },
-        },
-        {
-            "name": "collection",
-            "description": "Fit-for-purpose lists of prefixes",
-            "externalDocs": {
-                "description": f"{conf['METAREGISTRY_TITLE']} Collection Catalog",
-                "url": f"{manager.base_url}/collection/",
-            },
-        },
-    ]
-
-    fast_api = FastAPI(
-        openapi_tags=tags_metadata,
-        title=conf["METAREGISTRY_TITLE"],
-        description=conf["METAREGISTRY_DESCRIPTION"],
-        contact={
-            "name": conf["METAREGISTRY_CONTACT_NAME"],
-            "email": conf["METAREGISTRY_CONTACT_EMAIL"],
-        },
-        license_info={
-            "name": conf["METAREGISTRY_LICENSE_NAME"],
-            "url": conf["METAREGISTRY_LICENSE_URL"],
-        },
-    )
-    fast_api.manager = manager
-    fast_api.include_router(api_router)
-
-    app.config.update(conf)
-    app.manager = manager
-
-    if app.config.get("METAREGISTRY_FIRST_PARTY"):
-        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
     # note from klas:
     # "host": removeprefix(removeprefix(manager.base_url, "https://"), "http://"),
@@ -221,6 +171,7 @@ def get_app(
         app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
 
     fast_api = FastAPI(
+        openapi_tags=_get_tags_metadata(conf, manager),
         title=conf["METAREGISTRY_TITLE"],
         description=conf["METAREGISTRY_DESCRIPTION"],
         contact={
@@ -232,6 +183,8 @@ def get_app(
             "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
+    fast_api.manager = manager
+    fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
 
@@ -239,7 +192,7 @@ def get_app(
     app.jinja_env.globals.update(
         manager=manager,
         curie_to_str=curie_to_str,
-        fastapi=fast_api,
+        fastapi_url_for=fast_api.url_path_for,
     )
 
     if return_flask:
@@ -271,3 +224,33 @@ def _get_sparql_router(app) -> APIRouter:
         public_url=f"{app.manager.base_url}/sparql",
     )
     return sparql_router
+
+
+def _get_tags_metadata(conf, manager):
+    tags_metadata = [
+        {
+            "name": "resource",
+            "description": "Identifier resources in the registry",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Resource Catalog",
+                "url": f"{manager.base_url}/registry/",
+            },
+        },
+        {
+            "name": "metaresource",
+            "description": "Resources representing registries",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Registry Catalog",
+                "url": f"{manager.base_url}/metaregistry/",
+            },
+        },
+        {
+            "name": "collection",
+            "description": "Fit-for-purpose lists of prefixes",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Collection Catalog",
+                "url": f"{manager.base_url}/collection/",
+            },
+        },
+    ]
+    return tags_metadata

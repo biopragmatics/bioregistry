@@ -21,7 +21,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ fastapi.url_path_for("get_metaresource", metaprefix=metaprefix) }}">
+                                   href="{{ fastapi_url_for("get_metaresource", metaprefix=metaprefix) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -73,12 +73,12 @@
 
                     <a class="badge badge-pill badge-light"
                        title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
-                       href="{{ fastapi.url_path_for("get_metaresource_mappings", metaprefix=entry.prefix) }}">
+                       href="{{ fastapi_url_for("get_metaresource_mappings", metaprefix=entry.prefix) }}">
                         Download Prefix Mappings
                     </a>
                     <a class="badge badge-pill badge-light"
                        title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
-                       href="{{ fastapi.url_path_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
+                       href="{{ fastapi_url_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
                         Download Slim Registry
                     </a>
                     <span class="dropdown">
@@ -87,11 +87,11 @@
                             External Mappings <i class="bi bi-caret-down-fill"></i>
                         </span>
                         <span class="dropdown-menu">
-                            {% for mp2, mr2 in manager.metaregistry.items() %}
-                            {% if mp2 != entry.prefix and mp2 != "bioregistry" %}
+                            {% for target, target_registry in manager.metaregistry.items() %}
+                            {% if target != entry.prefix and target != "bioregistry" %}
                             <a class="dropdown-item"
-                               href="{{ fastapi.url_path_for("get_metaresource_external_mappings", metaprefix=entry.prefix, target=mp2) }}">
-                                {{ mr2.get_short_name() }}
+                               href="{{ fastapi_url_for("get_metaresource_external_mappings", metaprefix=entry.prefix, target=target) }}">
+                                {{ target_registry.get_short_name() }}
                             </a>
                             {% endif %}
                             {% endfor %}

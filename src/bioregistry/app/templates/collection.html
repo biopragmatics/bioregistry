@@ -21,7 +21,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ fastapi.url_path_for("get_collection", identifier=identifier) }}">
+                                   href="{{ fastapi_url_for("get_collection", identifier=identifier) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
