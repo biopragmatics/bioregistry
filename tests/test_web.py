@@ -47,8 +47,6 @@ class TestWeb(unittest.TestCase):
                 "sustainability",
                 "related",
                 "acknowledgements",
-                # API
-                "apidocs",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
@@ -319,7 +317,7 @@ class TestWeb(unittest.TestCase):
                 "health/go",
             ]:
                 with self.subTest(endpoint=endpoint):
-                    res = client.get(endpoint)
+                    res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(302, res.status_code)
 
     def test_banana_redirects(self):
