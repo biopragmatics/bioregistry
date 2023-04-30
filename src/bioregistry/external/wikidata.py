@@ -9,7 +9,7 @@ from typing import Dict
 
 import click
 
-from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_PATH, EXTERNAL, URI_FORMAT_KEY
 from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
@@ -18,13 +18,28 @@ __all__ = [
 
 DIRECTORY = EXTERNAL / "wikidata"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
 logger = logging.getLogger(__name__)
 
+PROPERTIES_QUERY = dedent(
+    """\
+    SELECT ?propStr
+    WHERE {
+      VALUES ?category {
+        wd:Q21294996  # chemistry
+        wd:Q22988603  # biology
+        wd:Q80840868  # research
+      }
+      ?prop wdt:P31/wdt:P279+ ?category .
+      BIND( SUBSTR(STR(?prop), 32) AS ?propStr )
+    }
+    ORDER BY ?prop
+    """
+)
+
 #: A query to wikidata for properties related to chemistry, biology, and related
-QUERY = dedent(
+QUERY_FMT = dedent(
     """\
     SELECT DISTINCT
       (?prop AS ?prefix)
@@ -39,12 +54,17 @@ QUERY = dedent(
       (GROUP_CONCAT(DISTINCT ?example_; separator='\\t') AS ?example)
       (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_name)
     WHERE {
-      VALUES ?category {
-        wd:Q21294996  # chemistry
-        wd:Q22988603  # biology
-        wd:Q80840868  # research
+      {
+        VALUES ?category {
+          wd:Q21294996  # chemistry
+          wd:Q22988603  # biology
+          wd:Q80840868  # research
+        }
+        ?prop wdt:P31/wdt:P279+ ?category .
       }
-      ?prop wdt:P31/wdt:P279+ ?category .
+      UNION {
+        VALUES ?prop { %s }
+      }
       BIND( SUBSTR(STR(?prop), 32) AS ?propStr )
       OPTIONAL { ?prop wdt:P1793 ?pattern }
       OPTIONAL { ?prop wdt:P4793 ?miriam }
@@ -116,10 +136,31 @@ MIRIAM_BLACKLIST = {
 }
 
 
+def _get_mapped():
+    return {
+        value
+        for record in json.loads(BIOREGISTRY_PATH.read_text()).values()
+        for metaprefix, value in record.get("mappings", {}).items()
+        if metaprefix == "wikidata"
+    }
+
+
+def _get_query(properties) -> str:
+    values = " ".join(f"wd:{p}" for p in properties)
+    return QUERY_FMT % values
+
+
 def _get_wikidata():
     """Iterate over Wikidata properties connected to biological databases."""
+    mapped = _get_mapped()
+    # throw out anyhting that can be queried directly
+    mapped.difference_update(
+        bindings["propStr"]["value"]
+        for bindings in query_wikidata(PROPERTIES_QUERY)
+        if bindings["propStr"]["value"].startswith("P")  # throw away any regular ones
+    )
     rv = {}
-    for bindings in query_wikidata(QUERY):
+    for bindings in query_wikidata(_get_query(mapped)):
         examples = bindings.get("example", {}).get("value", "").split("\t")
         if examples and all(
             example.startswith("http://www.wikidata.org/entity/") for example in examples
@@ -198,7 +239,7 @@ def get_wikidata(force_download: bool = False):
             return json.load(file)
 
     data = _get_wikidata()
-    with RAW_PATH.open("w") as file:
+    with PROCESSED_PATH.open("w") as file:
         json.dump(data, file, indent=2, sort_keys=True)
     return data
 
