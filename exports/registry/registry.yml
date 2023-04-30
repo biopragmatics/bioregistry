@@ -7264,6 +7264,8 @@ cldb:
   name: Cell Line Database
   pattern: ^(cl|tum)\d+$
   preferred_prefix: cldb
+  synonyms:
+  - hypercldb
   uri_format: http://bioinformatics.hsanmartino.it/hypercldb/$1.html
 clingene:
   contributor:
@@ -44030,10 +44032,46 @@ scopus:
   mappings:
     biolink: ScopusID
     fairsharing: FAIRsharing.0a674c
+    wikidata: P1153
   name: Scopus Researcher
   pattern: ^\d+$
   preferred_prefix: scopus
+  synonyms:
+  - scopus.author
   twitter: Scopus
+  uri_format: https://www.scopus.com/authid/detail.uri?authorId=$1
+scopus.affiliation:
+  description: identifier for an organisation in author affiliations per Scopus
+  example: '60025709'
+  homepage: http://info.sciencedirect.com/scopus/scopus-in-detail/tools/affiliationidentifier
+  mappings:
+    wikidata: P1155
+  name: Scopus affiliation ID
+  preferred_prefix: scopus.affiliation
+  uri_format: https://www.scopus.com/affil/profile.uri?afid=$1
+scopus.publication:
+  description: identifier for a source/publication venue (journal, conference, etc)
+    in Scopus
+  example: '16129'
+  homepage: https://www.scopus.com/
+  mappings:
+    wikidata: P1156
+  name: Scopus Publication
+  pattern: ^[1-9]\d{0,11}$
+  preferred_prefix: scopus.publication
+  uri_format: https://www.scopus.com/sourceid/$1
+scopus.work:
+  description: unique academic work identifier assigned in Scopus bibliographic database
+  example: 2-s2.0-0030770923
+  homepage: https://www.scopus.com/
+  mappings:
+    wikidata: P1154
+  name: Scopus Work
+  pattern: ^2-s2\.0-\d+$
+  preferred_prefix: scopus.work
+  synonyms:
+  - scopus.eid
+  uri_format: http://www.scopus.com/record/display.url?origin=inward&eid=$1
 scoro:
   contact:
     email: silvio.peroni@unibo.it
@@ -45775,6 +45813,11 @@ snomedct:
     github: null
     name: NLM Customer Service
     orcid: null
+  contributor_extras:
+  - email: nicolas.matentzoglu@gmail.com
+    github: matentzn
+    name: Nicolas Matentzoglu
+    orcid: 0000-0002-7356-1779
   description: SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms),
     is a systematically organized computer processable collection of medical terminology
     covering most areas of clinical information such as diseases, findings, procedures,
@@ -45852,7 +45895,7 @@ snomedct:
   - SNOWMEDCT
   - SNOWMEDCT_US
   - SNOWMEDCT_US_2018_03_01
-  uri_format: http://www.snomedbrowser.com/Codes/Details/$1
+  uri_format: http://snomed.info/id/$1
   version: '2020-01-31'
 snornabase:
   contributor:
@@ -51724,7 +51767,7 @@ wikipathways:
   - virology
   license: CC0-1.0
   mappings:
-    bioportal: WIKIPATHWAYS
+    biocontext: WIKIPATHWAYS
     edam: '3952'
     fairsharing: FAIRsharing.g7b4rj
     miriam: wikipathways
@@ -52144,6 +52187,21 @@ worms:
     year: 2018
   twitter: WRMarineSpecies
   uri_format: http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1
+wos:
+  description: 'unique academic work identifier assigned in Web of Science bibliographic
+    database (Web of Science Core Collection only and do not include WOS: prefix)'
+  example: 000177759000002
+  homepage: https://www.webofscience.com
+  mappings:
+    wikidata: P8372
+  name: Web of Science ID (work)
+  preferred_prefix: wos
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/805
+  synonyms:
+  - wosid
+  - wosuid
+  uri_format: https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL
 wwf.ecoregion:
   comment: ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658
   contributor:

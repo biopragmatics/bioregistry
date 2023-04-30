@@ -1118,6 +1118,10 @@
 @prefix scop: <http://scop.berkeley.edu/sunid=> .
 @prefix scop.sccs: <http://scop.berkeley.edu/sccs=> .
 @prefix scop.sid: <http://scop.berkeley.edu/sid=> .
+@prefix scopus: <https://www.scopus.com/authid/detail.uri?authorId=> .
+@prefix scopus.affiliation: <https://www.scopus.com/affil/profile.uri?afid=> .
+@prefix scopus.publication: <https://www.scopus.com/sourceid/> .
+@prefix scopus.work: <http://www.scopus.com/record/display.url?origin=inward&eid=> .
 @prefix scoro: <http://purl.org/spar/scoro/> .
 @prefix scpd: <http://rulai.cshl.edu/cgi-bin/SCPD/getgene2?> .
 @prefix scr: <http://scicrunch.org/resolver/SCR_> .
@@ -1164,7 +1168,7 @@
 @prefix smid: <https://smid-db.org/smid/> .
 @prefix smpdb: <https://smpdb.ca/view/> .
 @prefix snap: <http://snap.humgen.au.dk/views/geneview.cgi?gene=> .
-@prefix snomedct: <http://www.snomedbrowser.com/Codes/Details/> .
+@prefix snomedct: <http://snomed.info/id/> .
 @prefix snornabase: <http://www-snorna.biotoul.fr/plus.php?id=> .
 @prefix snp2tfbs: <https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=> .
 @prefix snp500cancer: <http://snp500cancer.nci.nih.gov/snp.cfm?both_snp_id=> .
@@ -1319,6 +1323,7 @@
 @prefix wikidata: <http://www.wikidata.org/entity/> .
 @prefix wikidata.property: <https://www.wikidata.org/wiki/Property:> .
 @prefix wikipathways: <http://www.wikipathways.org/instance/> .
+@prefix wikipathways.vocab: <https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23> .
 @prefix wikipedia.en: <http://en.wikipedia.org/wiki/> .
 @prefix worfdb: <http://worfdb.dfci.harvard.edu/index.php?search_type=name&page=showresultrc&race_query=> .
 @prefix world2dpage: <https://world-2dpage.expasy.org/repository/> .
@@ -4457,6 +4462,7 @@ bioregistry:cldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://bioinformatics.hsanmartino.it/hypercldb/$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^(cl|tum)\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "hypercldb" ;
     bioregistry.schema:0000027 <http://bioinformatics.hsanmartino.it/hypercldb/cl3603.html> ;
     bioregistry.schema:0000029 "cldb" .
 
@@ -16392,6 +16398,48 @@ bioregistry:sciflection a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 sciflection:5ede4273-b26c-4ea4-adb7-3ce294ab3397 ;
     bioregistry.schema:0000029 "sciflection" .
 
+bioregistry:scopus.affiliation a bioregistry.schema:0000001 ;
+    rdfs:label "Scopus affiliation ID" ;
+    dcterms:description "identifier for an organisation in author affiliations per Scopus"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P1155 ;
+    foaf:homepage <http://info.sciencedirect.com/scopus/scopus-in-detail/tools/affiliationidentifier> ;
+    bioregistry.schema:0000005 "60025709"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.scopus.com/affil/profile.uri?afid=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.scopus.com/affil/profile.uri?afid="^^xsd:string ;
+    bioregistry.schema:0000027 scopus.affiliation:60025709 ;
+    bioregistry.schema:0000029 "scopus.affiliation" .
+
+bioregistry:scopus.publication a bioregistry.schema:0000001 ;
+    rdfs:label "Scopus Publication" ;
+    dcterms:description "identifier for a source/publication venue (journal, conference, etc) in Scopus"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P1156 ;
+    foaf:homepage <https://www.scopus.com/> ;
+    bioregistry.schema:0000005 "16129"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.scopus.com/sourceid/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d{0,11}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.scopus.com/sourceid/"^^xsd:string ;
+    bioregistry.schema:0000027 scopus.publication:16129 ;
+    bioregistry.schema:0000029 "scopus.publication" .
+
+bioregistry:scopus.work a bioregistry.schema:0000001 ;
+    rdfs:label "Scopus Work" ;
+    dcterms:description "unique academic work identifier assigned in Scopus bibliographic database"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P1154 ;
+    foaf:homepage <https://www.scopus.com/> ;
+    bioregistry.schema:0000005 "2-s2.0-0030770923"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.scopus.com/record/display.url?origin=inward&eid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^2-s2\\.0-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "scopus.eid" ;
+    bioregistry.schema:0000024 "http://www.scopus.com/record/display.url?origin=inward&eid="^^xsd:string ;
+    bioregistry.schema:0000027 scopus.work:2-s2.0-0030770923 ;
+    bioregistry.schema:0000029 "scopus.work" .
+
 bioregistry:scpd a bioregistry.schema:0000001 ;
     rdfs:label "Saccharomyces cerevisiae promoter database" ;
     dcterms:description "Database containing promotor sequences found in Saccharomyces cerevisiae."^^xsd:string ;
@@ -19035,10 +19083,8 @@ bioregistry:wikipathways a bioregistry.schema:0000001 ;
     rdfs:label "WikiPathways" ;
     dcterms:description "WikiPathways is a database of biological pathways maintained by and for the scientific community."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:WIKIPATHWAYS,
-        edam.data:3952,
+    skos:exactMatch edam.data:3952,
         wikidata:P2410,
-        bioportal:WIKIPATHWAYS,
         biocontext:WIKIPATHWAYS,
         n2t:wikipathways,
         fairsharing:FAIRsharing.g7b4rj,
@@ -19046,19 +19092,34 @@ bioregistry:wikipathways a bioregistry.schema:0000001 ;
         miriam:wikipathways,
         re3data:r3d100013316 ;
     dcat:keyword "epidemiology",
-        "ontology",
         "pathway",
         "virology" ;
     foaf:homepage <http://www.wikipathways.org/> ;
     bioregistry.schema:0000005 "WP732"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.wikipathways.org/instance/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^WP\\d{1,5}(\\_r\\d+)?$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-7542-0286 ;
     bioregistry.schema:0000024 "http://www.wikipathways.org/instance/"^^xsd:string ;
     bioregistry.schema:0000027 wikipathways:WP732 ;
     bioregistry.schema:0000029 "wikipathways" .
+
+bioregistry:wikipathways.vocab a bioregistry.schema:0000001 ;
+    rdfs:label "Wikipathways Ontology" ;
+    dcterms:description "An ontology supporting data modeling in Wikipathways"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:WIKIPATHWAYS,
+        bioportal:WIKIPATHWAYS ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <http://www.wikipathways.org> ;
+    bioregistry.schema:0000005 "DataNode"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23$1"^^xsd:string ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 ;
+    bioregistry.schema:0000024 "https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23"^^xsd:string ;
+    bioregistry.schema:0000027 wikipathways.vocab:DataNode ;
+    bioregistry.schema:0000029 "wikipathways.vocab" .
 
 bioregistry:wikipedia.en a bioregistry.schema:0000001 ;
     rdfs:label "Wikipedia" ;
@@ -19157,6 +19218,20 @@ bioregistry:worms a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://www.marinespecies.org/aphia.php?p=taxdetails&id="^^xsd:string ;
     bioregistry.schema:0000027 worms:146421 ;
     bioregistry.schema:0000029 "worms" .
+
+bioregistry:wos a bioregistry.schema:0000001 ;
+    rdfs:label "Web of Science ID (work)" ;
+    dcterms:description "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P8372 ;
+    foaf:homepage <https://www.webofscience.com> ;
+    bioregistry.schema:0000005 "000177759000002"^^xsd:string ;
+    bioregistry.schema:0000006 "https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "wosid",
+        "wosuid" ;
+    bioregistry.schema:0000027 <https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:000177759000002&DestLinkType=FullRecord&DestApp=WOS_CPL> ;
+    bioregistry.schema:0000029 "wos" .
 
 bioregistry:xenbase a bioregistry.schema:0000001 ;
     rdfs:label "Xenbase" ;
@@ -22345,6 +22420,14 @@ wikidata:P11277 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P11430 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P1153 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P1154 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P1155 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P1156 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P1294 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1391 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -22624,6 +22707,8 @@ wikidata:P815 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P818 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P830 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P8372 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P842 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -34271,13 +34356,18 @@ bioregistry:scopus a bioregistry.schema:0000001 ;
 Delivering a comprehensive overview of the world's research output in  the fields of science, technology, medicine, social sciences, and arts 
 and humanities, Scopus features smart tools to track, analyze and  visualize research."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:ScopusID,
+    skos:exactMatch wikidata:P1153,
+        biolink:ScopusID,
         fairsharing:FAIRsharing.0a674c ;
     dcat:keyword "subject agnostic" ;
     foaf:homepage <https://www.scopus.com> ;
     bioregistry.schema:0000005 "56305849200"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.scopus.com/authid/detail.uri?authorId=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "scopus.author" ;
+    bioregistry.schema:0000024 "https://www.scopus.com/authid/detail.uri?authorId="^^xsd:string ;
+    bioregistry.schema:0000027 scopus:56305849200 ;
     bioregistry.schema:0000029 "scopus" .
 
 bioregistry:scr a bioregistry.schema:0000001 ;
@@ -34533,7 +34623,7 @@ bioregistry:snomedct a bioregistry.schema:0000001 ;
         "preclinical studies" ;
     foaf:homepage <http://www.snomedbrowser.com/> ;
     bioregistry.schema:0000005 "284196006"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.snomedbrowser.com/Codes/Details/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://snomed.info/id/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(\\w+)?\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://snomed.info/sct/900000000000207008/version/20200131> ;
     bioregistry.schema:0000012 false ;
@@ -34570,7 +34660,7 @@ bioregistry:snomedct a bioregistry.schema:0000001 ;
         "SNOWMEDCT",
         "SNOWMEDCT_US",
         "SNOWMEDCT_US_2018_03_01" ;
-    bioregistry.schema:0000024 "http://www.snomedbrowser.com/Codes/Details/"^^xsd:string ;
+    bioregistry.schema:0000024 "http://snomed.info/id/"^^xsd:string ;
     bioregistry.schema:0000027 snomedct:284196006 ;
     bioregistry.schema:0000029 "snomedct" .
 
@@ -45838,10 +45928,6 @@ bioregistry:uo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 uo:0000080 ;
     bioregistry.schema:0000029 "uo" .
 
-orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" ;
-    foaf:mbox "egon.willighagen@gmail.com",
-        "egon.willighagen@maastrichtuniversity.nl" .
-
 orcid:0000-0001-8910-9851 rdfs:label "Lynn Schriml" ;
     foaf:mbox "lschriml@som.umaryland.edu",
         "lynn.schriml@gmail.com" .
@@ -46174,6 +46260,10 @@ bioregistry:pubchem dcterms:hasPart bioregistry:pubchem.bioassay,
         bioregistry:pubchem.compound,
         bioregistry:pubchem.element,
         bioregistry:pubchem.substance .
+
+orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" ;
+    foaf:mbox "egon.willighagen@gmail.com",
+        "egon.willighagen@maastrichtuniversity.nl" .
 
 orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" ;
     foaf:mbox "matus.kalas@uib.no" .
@@ -49125,6 +49215,10 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P11199,
         wikidata:P11277,
         wikidata:P11430,
+        wikidata:P1153,
+        wikidata:P1154,
+        wikidata:P1155,
+        wikidata:P1156,
         wikidata:P1294,
         wikidata:P1391,
         wikidata:P1402,
@@ -49267,6 +49361,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P815,
         wikidata:P818,
         wikidata:P830,
+        wikidata:P8372,
         wikidata:P842,
         wikidata:P846,
         wikidata:P850,
@@ -55715,6 +55810,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:scop.sccs,
         bioregistry:scop.sid,
         bioregistry:scopus,
+        bioregistry:scopus.affiliation,
+        bioregistry:scopus.publication,
+        bioregistry:scopus.work,
         bioregistry:scoro,
         bioregistry:scpd,
         bioregistry:scr,
@@ -55950,6 +56048,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:wikidata.property,
         bioregistry:wikigenes,
         bioregistry:wikipathways,
+        bioregistry:wikipathways.vocab,
         bioregistry:wikipedia.en,
         bioregistry:worfdb,
         bioregistry:world2dpage,
@@ -55958,6 +56057,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:wormbase,
         bioregistry:wormpep,
         bioregistry:worms,
+        bioregistry:wos,
         bioregistry:wwf.ecoregion,
         bioregistry:xao,
         bioregistry:xco,
