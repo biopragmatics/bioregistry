@@ -1327,6 +1327,22 @@
       "https://cir.nii.ac.jp/crid/$1.rdf"
     ]
   },
+  "P1153": {
+    "database": "Q371467",
+    "description": "identifier for an author assigned in Scopus bibliographic database",
+    "example": [
+      "25723615000",
+      "35247902700",
+      "37083905900",
+      "55765581600",
+      "7005487412"
+    ],
+    "homepage": "https://www.scopus.com/freelookup/form/author.uri",
+    "name": "Scopus author ID",
+    "pattern": "^[1-9]\\d{9,11}$",
+    "prefix": "P1153",
+    "uri_format": "https://www.scopus.com/authid/detail.uri?authorId=$1"
+  },
   "P1154": {
     "database": "Q371467",
     "description": "unique academic work identifier assigned in Scopus bibliographic database",
@@ -1338,6 +1354,31 @@
     "pattern": "^2-s2\\.0-\\d+$",
     "prefix": "P1154",
     "uri_format": "http://www.scopus.com/record/display.url?origin=inward&eid=$1"
+  },
+  "P1155": {
+    "database": "Q371467",
+    "description": "identifier for an organisation in author affiliations per\u00a0Scopus",
+    "example": [
+      "60025709",
+      "60028651"
+    ],
+    "homepage": "http://info.sciencedirect.com/scopus/scopus-in-detail/tools/affiliationidentifier",
+    "name": "Scopus affiliation ID",
+    "prefix": "P1155",
+    "uri_format": "https://www.scopus.com/affil/profile.uri?afid=$1"
+  },
+  "P1156": {
+    "database": "Q371467",
+    "description": "identifier for a source/publication venue (journal, conference, etc) in Scopus",
+    "example": [
+      "16129",
+      "22380",
+      "25283"
+    ],
+    "name": "Scopus source ID",
+    "pattern": "^[1-9]\\d{0,11}$",
+    "prefix": "P1156",
+    "uri_format": "https://www.scopus.com/sourceid/$1"
   },
   "P11563": {
     "database": "Q116428408",
@@ -1460,6 +1501,19 @@
     ],
     "name": "prevalence",
     "prefix": "P1193"
+  },
+  "P1294": {
+    "database": "Q6617741",
+    "description": "identifier for ecoregions",
+    "example": [
+      "AA1101",
+      "AT1201"
+    ],
+    "homepage": "https://www.worldwildlife.org/biomes",
+    "name": "WWF ecoregion code",
+    "pattern": "^[A-Z]{2}\\d{4}$",
+    "prefix": "P1294",
+    "uri_format": "http://www.worldwildlife.org/ecoregions/$1"
   },
   "P1323": {
     "database": "Q286567",
@@ -2255,6 +2309,17 @@
     "prefix": "P2086",
     "uri_format": "http://www.collaborativedrug.com/public/structures/$1"
   },
+  "P2106": {
+    "database": "Q20991891",
+    "description": "RSC ontology for organic reactions",
+    "example": [
+      "RXNO:0000051"
+    ],
+    "homepage": "https://github.com/rsc-ontologies/rxno",
+    "name": "RXNO Ontology",
+    "prefix": "P2106",
+    "uri_format": "http://www.rsc.org/publishing/journals/prospect/ontology.asp?id=$1"
+  },
   "P2115": {
     "database": "Q21008030",
     "description": "identifier for the National Drug File Reference Terminology",
@@ -2495,6 +2560,22 @@
       "https://ci.nii.ac.jp/naid/$1#article"
     ]
   },
+  "P2410": {
+    "database": "Q7999828",
+    "description": "describes in which biological pathways a biological entity occurs",
+    "example": [
+      "WP2533"
+    ],
+    "homepage": "http://www.wikipathways.org",
+    "miriam": "wikipathways",
+    "name": "WikiPathways ID",
+    "pattern": "^WP\\d{1,4}$",
+    "prefix": "P2410",
+    "uri_format": "https://new.wikipathways.org/pathways/$1",
+    "uri_format_rdf": [
+      "http://identifiers.org/wikipathways/$1"
+    ]
+  },
   "P2426": {
     "database": "Q8043516",
     "description": "identifier of a bird species in the Xeno-canto database",
@@ -2570,6 +2651,17 @@
     "prefix": "P2566",
     "uri_format": "https://echa.europa.eu/substance-information/-/substanceinfo/$1"
   },
+  "P2576": {
+    "database": "Q1047293",
+    "description": "identifier of a UCSC's release of a genome",
+    "example": [
+      "hg38"
+    ],
+    "homepage": "https://genome.ucsc.edu",
+    "name": "UCSC Genome Browser assembly ID",
+    "prefix": "P2576",
+    "uri_format": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=$1"
+  },
   "P2646": {
     "database": "Q6826951",
     "description": "identifier for the mirTarBase database, a database for microRNAs and their targets",
@@ -2594,6 +2686,21 @@
     "pattern": "^[A-V]([0-9][0-9]([A-Z]([A-Z]([0-9][0-9])?)?)?)[0-9]$",
     "prefix": "P267",
     "uri_format": "https://www.whocc.no/atc_ddd_index/?code=$1"
+  },
+  "P2689": {
+    "database": "Q22279816",
+    "description": "identifier in the BARTOC Terminology Registry",
+    "example": [
+      "241"
+    ],
+    "homepage": "https://bartoc.org/",
+    "name": "BARTOC ID",
+    "pattern": "^[1-9][0-9]*$",
+    "prefix": "P2689",
+    "uri_format": "https://bartoc.org/en/node/$1",
+    "uri_format_rdf": [
+      "https://bartoc.org/en/node/$1"
+    ]
   },
   "P2710": {
     "database": "Q21346369",
@@ -2659,6 +2766,18 @@
     "prefix": "P2794",
     "uri_format": "http://www.ville-ge.ch/musinfo/bd/cjb/hepatic/detail.php?no_record=$1"
   },
+  "P2796": {
+    "database": "Q23948774",
+    "description": "identifier of chemical compounds in 3DMet database",
+    "example": [
+      "B01253",
+      "B01305"
+    ],
+    "name": "3DMet ID",
+    "pattern": "^B\\d{5}$",
+    "prefix": "P2796",
+    "uri_format": "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=$1"
+  },
   "P2809": {
     "database": "Q24009610",
     "description": "identifier for a pollen or spore in the Australasian Pollen and Spore Atlas, managed by the Australian National University",
@@ -2715,6 +2834,30 @@
     ],
     "name": "disease burden",
     "prefix": "P2854"
+  },
+  "P2870": {
+    "database": "Q6826947",
+    "description": "identifier for pre-miRNAs in miRBase, the reference database for microRNAs",
+    "example": [
+      "MI0000472"
+    ],
+    "homepage": "http://www.mirbase.org/",
+    "name": "miRBase pre-miRNA ID",
+    "pattern": "^MI\\d{7}$",
+    "prefix": "P2870",
+    "uri_format": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=$1"
+  },
+  "P2871": {
+    "database": "Q6826947",
+    "description": "identifier for mature miRNAs in miRBase, the reference database for microRNAs",
+    "example": [
+      "MIMAT0000446"
+    ],
+    "homepage": "http://www.mirbase.org/",
+    "name": "miRBase mature miRNA ID",
+    "pattern": "^MIMAT\\d{7}$",
+    "prefix": "P2871",
+    "uri_format": "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$1"
   },
   "P2877": {
     "database": "Q24091097",
@@ -2787,6 +2930,16 @@
     "prefix": "P2946",
     "uri_format": "https://bacdive.dsmz.de/strain/$1"
   },
+  "P299": {
+    "database": "Q2725758",
+    "description": "identifier for a country in numeric format per ISO 3166-1",
+    "example": [
+      "276",
+      "554"
+    ],
+    "name": "ISO 3166-1 numeric code",
+    "prefix": "P299"
+  },
   "P3031": {
     "database": "Q4874420",
     "description": "identifier for a taxon in the EPPO Global Database",
@@ -2801,6 +2954,18 @@
     "uri_format_rdf": [
       "https://gd.eppo.int/taxon/$1"
     ]
+  },
+  "P305": {
+    "database": "Q1059900",
+    "description": "identifier for language or languoid per the Internet Engineering Task Force; can include a primary language subtag,  subtags for script, region, variant, extension, or private-use. Format: 2 or 3 letters, followed by \"-\" if subtags present",
+    "example": [
+      "ar-SA",
+      "en-GB",
+      "hu"
+    ],
+    "homepage": "http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
+    "name": "IETF language tag",
+    "prefix": "P305"
   },
   "P3060": {
     "database": "Q27777766",
@@ -3247,6 +3412,17 @@
     "name": "FAO 2007 genetic resource ID",
     "prefix": "P3380"
   },
+  "P3382": {
+    "database": "Q5531047",
+    "description": "gene identifier in GeneDB",
+    "example": [
+      "PF3D7_0531100"
+    ],
+    "homepage": "http://www.genedb.org/",
+    "name": "GeneDB ID",
+    "prefix": "P3382",
+    "uri_format": "https://web.archive.org/web/*/https://www.genedb.org/gene/$1"
+  },
   "P3387": {
     "description": "minimum frequency of audible sound for this species",
     "example": [
@@ -3301,6 +3477,18 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P3405",
     "uri_format": "https://www.nederlandsesoorten.nl/linnaeus_ng/app/views/species/nsr_taxon.php?id=$1"
+  },
+  "P3406": {
+    "database": "Q3460832",
+    "description": "identifier for a genetic element in the Saccharomyces Genome Database",
+    "example": [
+      "S000001582"
+    ],
+    "homepage": "http://www.yeastgenome.org",
+    "name": "Saccharomyces Genome Database ID",
+    "pattern": "^S\\d{9}$",
+    "prefix": "P3406",
+    "uri_format": "http://www.yeastgenome.org/locus/$1/overview"
   },
   "P3411": {
     "database": "Q107212820",
@@ -3560,6 +3748,15 @@
       "http://dx.doi.org/$1"
     ]
   },
+  "P3590": {
+    "database": "Q28729320",
+    "description": "ID in the Relations Ontology",
+    "homepage": "https://github.com/oborel/obo-relations/",
+    "name": "Relations Ontology ID",
+    "pattern": "^(RO|BFO)_[0-9]{7}$",
+    "prefix": "P3590",
+    "uri_format": "http://purl.obolibrary.org/obo/$1"
+  },
   "P3591": {
     "database": "Q8035497",
     "description": "identifier of a plant taxon, in the World Checklist of Selected Plant Families",
@@ -3595,6 +3792,19 @@
     "name": "BOLD Systems taxon ID",
     "prefix": "P3606",
     "uri_format": "http://www.boldsystems.org/index.php/TaxBrowser_TaxonPage?taxid=$1"
+  },
+  "P3636": {
+    "database": "Q766195",
+    "description": "identifier for small molecules and ligands in the Protein Data Bank (PDB)",
+    "example": [
+      "032"
+    ],
+    "homepage": "http://www.wwpdb.org/",
+    "miriam": "pdb.ligand",
+    "name": "PDB ligand ID",
+    "pattern": "^[A-Z0-9]{1,3}|PRD_[0-9]+$",
+    "prefix": "P3636",
+    "uri_format": "https://www.rcsb.org/ligand/$1"
   },
   "P3637": {
     "database": "Q130146",
@@ -3677,6 +3887,14 @@
     "prefix": "P3795",
     "uri_format": "https://flora.org.il/en/plants/$1"
   },
+  "P3811": {
+    "database": "Q28445410",
+    "description": "identifier in the Evidence & Conclusion Ontology for capturing evidence in biological research",
+    "homepage": "http://evidenceontology.org/",
+    "name": "Evidence & Conclusion Ontology ID",
+    "pattern": "^ECO:[0-9]{7}$",
+    "prefix": "P3811"
+  },
   "P3841": {
     "database": "Q17027854",
     "description": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
@@ -3725,6 +3943,17 @@
     "prefix": "P3860",
     "uri_format": "http://www.wormbase.org/db/gene/gene?name=$1;class=Gene"
   },
+  "P3870": {
+    "database": "Q29128476",
+    "description": "identifier for a genetic element in the Zebrafish Model Organism Database",
+    "example": [
+      "ZDB-GENE-980526-388"
+    ],
+    "homepage": "http://zfin.org",
+    "name": "ZFIN Gene ID",
+    "prefix": "P3870",
+    "uri_format": "https://zfin.org/$1"
+  },
   "P3885": {
     "description": "identifier of a person or topic in the History of Modern Biomedicine database",
     "example": [
@@ -3771,6 +4000,17 @@
     "pattern": "^\\d+$",
     "prefix": "P3894",
     "uri_format": "https://www.osti.gov/biblio/$1"
+  },
+  "P3937": {
+    "database": "Q2134522",
+    "description": "Identifier used in Reactome to uniquely identify a biological pathway",
+    "example": [
+      "R-HSA-71403"
+    ],
+    "homepage": "http://www.reactome.org/",
+    "name": "Reactome ID",
+    "prefix": "P3937",
+    "uri_format": "https://reactome.org/content/detail/$1"
   },
   "P3945": {
     "database": "Q107214406",
@@ -4084,6 +4324,17 @@
       "http://loinc.org/rdf/$1"
     ]
   },
+  "P4355": {
+    "database": "Q899676",
+    "description": "identifier for a protein family, domain or functional site, in the PROSITE database",
+    "example": [
+      "PDOC00550"
+    ],
+    "name": "PROSITE documentation ID",
+    "pattern": "^PDOC\\d{5}$",
+    "prefix": "P4355",
+    "uri_format": "https://prosite.expasy.org/$1"
+  },
   "P4393": {
     "database": "Q295815",
     "description": "identifier provided by Anvisa, a regulatory body of the Brazilian government responsible for the regulation and approval of pharmaceutical drugs, sanitary standards and regulation of the food industry",
@@ -4181,6 +4432,19 @@
       "http://purl.obolibrary.org/obo/SPD_$1"
     ]
   },
+  "P4550": {
+    "database": "Q280413",
+    "description": "identifier for an academic research group issued by the CNRS",
+    "example": [
+      "UMR7315",
+      "UMR7318",
+      "UMR8627"
+    ],
+    "name": "CNRS research group ID",
+    "pattern": "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY)\\d+$",
+    "prefix": "P4550",
+    "uri_format": "https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=$1&p_origine_appel=u"
+  },
   "P4567": {
     "database": "Q2925763",
     "description": "identifier for a bird species, issued by the British Trust for Ornithology (BTO)",
@@ -4229,6 +4493,22 @@
     "name": "NIOSH Numbered Publication ID",
     "pattern": "^7[0-3]-[1-9]\\d{4}|([7-9]\\d|20\\d{2})-[1-9]\\d{2}$",
     "prefix": "P4596"
+  },
+  "P4616": {
+    "database": "Q905695",
+    "description": "identifier for a scientific journal, in the UniProt database",
+    "example": [
+      "0341",
+      "3546"
+    ],
+    "homepage": "https://www.uniprot.org/journals",
+    "name": "UniProt journal ID",
+    "pattern": "^\\d{4}$",
+    "prefix": "P4616",
+    "uri_format": "https://www.uniprot.org/journals/$1",
+    "uri_format_rdf": [
+      "http://purl.uniprot.org/journals/$1"
+    ]
   },
   "P4630": {
     "database": "Q3036834",
@@ -4324,6 +4604,22 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4728",
     "uri_format": "http://www.ubio.org/browser/details.php?namebankID=$1"
+  },
+  "P4732": {
+    "database": "Q902163",
+    "description": "identifier of definition in ''Compendium of Chemical Terminology'' (''IUPAC GoldBook'')",
+    "example": [
+      "A00204",
+      "A00212"
+    ],
+    "homepage": "http://goldbook.iupac.org/",
+    "name": "IUPAC Gold Book ID",
+    "pattern": "^[A-Z]{1,2}\\d{5}$",
+    "prefix": "P4732",
+    "uri_format": "https://dx.doi.org/10.1351/goldbook.$1",
+    "uri_format_rdf": [
+      "http://dx.doi.org/10.1351/goldbook.$1"
+    ]
   },
   "P4753": {
     "database": "Q47129765",
@@ -4491,6 +4787,18 @@
     "prefix": "P492",
     "uri_format": "https://omim.org/OMIM:$1"
   },
+  "P4926": {
+    "database": "Q55118584",
+    "description": "Identifier for an entry in the PRotein Ontology (PRO)",
+    "example": [
+      "PR:000049515"
+    ],
+    "homepage": "https://pir.georgetown.edu/pro/pro.shtml",
+    "name": "PRotein Ontology ID",
+    "pattern": "^PR:\\d*$",
+    "prefix": "P4926",
+    "uri_format": "https://proconsortium.org/app/entry/$1/"
+  },
   "P493": {
     "database": "Q14067712",
     "description": "identifier in the ICD catalogue codes for diseases \u2013 Version 9",
@@ -4517,6 +4825,37 @@
     "pattern": "^[A-Z]\\d{2}(\\.\\d{1,2})?$",
     "prefix": "P494",
     "uri_format": "https://icd.who.int/browse10/2019/en#/$1"
+  },
+  "P496": {
+    "database": "Q51044",
+    "description": "identifier for a person",
+    "example": [
+      "0000-0001-8994-2210",
+      "0000-0002-1003-5675",
+      "0000-0002-1825-0097"
+    ],
+    "homepage": "https://orcid.org/",
+    "miriam": "orcid",
+    "name": "ORCID iD",
+    "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$",
+    "prefix": "P496",
+    "uri_format": "https://orcid.org/$1",
+    "uri_format_rdf": [
+      "https://orcid.org/$1"
+    ]
+  },
+  "P4971": {
+    "database": "Q28136395",
+    "description": "identifier for an educational organization issued by the UK Register of Learning Providers",
+    "example": [
+      "10007835",
+      "10008408"
+    ],
+    "homepage": "https://www.ukrlp.co.uk/",
+    "name": "UK Provider Reference Number",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P4971",
+    "uri_format": "https://www.ukrlp.co.uk/ukrlp/ukrlp_provider.page_pls_provDetails?x=&pn_p_id=$1&pv_status=VERIFIED&pv_vis_code=L"
   },
   "P5003": {
     "database": "Q59784234",
@@ -6879,6 +7218,18 @@
     "prefix": "P673",
     "uri_format": "https://emedicine.medscape.com/article/$1-overview"
   },
+  "P675": {
+    "database": "Q206033",
+    "description": "identifier for a book edition in Google Books",
+    "example": [
+      "2Zc3AAAAYAAJ",
+      "7r14FzJdSuAC"
+    ],
+    "homepage": "https://books.google.com/books",
+    "name": "Google Books ID",
+    "prefix": "P675",
+    "uri_format": "https://books.google.com/books?id=$1"
+  },
   "P6754": {
     "database": "Q2013373",
     "description": "identifier for a taxon, in the Ocean Biogeographic Information System",
@@ -6920,6 +7271,23 @@
     "pattern": "^[A-Z]{4}([\\w\\-]{6,7}|[\\w\\-]{3,4}\\.|[\\w\\-]{14})[0-9A-Z]{3}$",
     "prefix": "P6769",
     "uri_format": "https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&filename=$1"
+  },
+  "P6778": {
+    "database": "Q81661634",
+    "description": "identifier from the Open Bio Ontologies Gazetteer (GAZ) (without prefix)",
+    "example": [
+      "00000005",
+      "00001460",
+      "00008990"
+    ],
+    "homepage": "http://obofoundry.org/ontology/gaz",
+    "name": "OBO Gazetteer ID",
+    "pattern": "^\\d{8}$",
+    "prefix": "P6778",
+    "uri_format": "http://purl.obolibrary.org/obo/GAZ_$1",
+    "uri_format_rdf": [
+      "http://purl.obolibrary.org/obo/GAZ_$1"
+    ]
   },
   "P6800": {
     "database": "Q7020",
@@ -7007,6 +7375,34 @@
     "name": "CCDC Number",
     "prefix": "P6852",
     "uri_format": "https://identifiers.org/ccdc:$1"
+  },
+  "P686": {
+    "database": "Q135085",
+    "description": "identifier in the Gene Ontology",
+    "example": [
+      "GO:0005773",
+      "GO:0046872"
+    ],
+    "homepage": "http://amigo.geneontology.org/",
+    "miriam": "GO",
+    "name": "Gene Ontology ID",
+    "pattern": "^GO:\\d{7}$",
+    "prefix": "P686",
+    "uri_format": "http://amigo.geneontology.org/amigo/term/$1"
+  },
+  "P6861": {
+    "database": "Q5243761",
+    "description": "identifier used in dbSNP to uniquely identify a genetic variant",
+    "example": [
+      "rs113488022",
+      "rs121913355",
+      "rs1488384581"
+    ],
+    "homepage": "https://civicdb.org/home",
+    "miriam": "dbsnp",
+    "name": "dbSNP Reference SNP number",
+    "prefix": "P6861",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/snp/$1"
   },
   "P6864": {
     "database": "Q12360981",
@@ -7131,6 +7527,22 @@
     "pattern": "^DOID:([0-9]{7}|[1-9][0-9]{0,4})$",
     "prefix": "P699",
     "uri_format": "http://www.disease-ontology.org/?id=$1"
+  },
+  "P7001": {
+    "database": "Q18392556",
+    "description": "unique identifier for an entity in the PharmGKB knowledgebase",
+    "example": [
+      "PA134955224",
+      "PA356",
+      "PA443560",
+      "PA451581",
+      "PA451906"
+    ],
+    "homepage": "https://www.pharmgkb.org/",
+    "name": "PharmGKB ID",
+    "pattern": "^PA[1-9]\\d*$",
+    "prefix": "P7001",
+    "uri_format": "https://www.pharmgkb.org/accession/$1"
   },
   "P704": {
     "database": "Q177900",
@@ -7281,6 +7693,20 @@
     "prefix": "P7255",
     "uri_format": "http://www.moose-deutschland.de/organismen/$1"
   },
+  "P7260": {
+    "database": "Q69255727",
+    "description": "classifies transport proteins similar to how EC classifies enzymes",
+    "example": [
+      "1.A.1",
+      "2.A.1.1.28",
+      "3.A.3"
+    ],
+    "homepage": "https://www.tcdb.org",
+    "name": "Transporter Classification Database ID",
+    "pattern": "^\\d|(\\d\\.[A-Z](\\.(\\d{1,3}){0,3}))$",
+    "prefix": "P7260",
+    "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
+  },
   "P7329": {
     "database": "Q55695727",
     "description": "identifier in ICD terminology of diseases - Version 11 (Mortality and Morbidity Statistics) linearization (not the foundation ID)",
@@ -7292,6 +7718,20 @@
     "homepage": "https://icd.who.int/en/",
     "name": "ID (MMS)",
     "prefix": "P7329"
+  },
+  "P7333": {
+    "database": "Q28864280",
+    "description": "identifier in the Pathway Ontology database",
+    "example": [
+      "PW:0000003",
+      "PW:0000125",
+      "PW:0000624"
+    ],
+    "homepage": "http://bioportal.bioontology.org/ontologies/PW",
+    "name": "Pathway Ontology ID",
+    "pattern": "^PW:([0-9]{7})$",
+    "prefix": "P7333",
+    "uri_format": "https://purl.bioontology.org/ontology/PW/$1"
   },
   "P7366": {
     "database": "Q5474389",
@@ -7381,6 +7821,20 @@
     "pattern": "^(\\d{2}[0-4]\\d{7})$",
     "prefix": "P7468",
     "uri_format": "https://www1.nhi.gov.tw/QueryN/Query3_Detail.aspx?Page=3&HospID=$1"
+  },
+  "P7471": {
+    "database": "Q16958215",
+    "description": "identifier for a place in iNaturalist",
+    "example": [
+      "13378",
+      "49955",
+      "7207",
+      "98521"
+    ],
+    "name": "iNaturalist place ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P7471",
+    "uri_format": "https://www.inaturalist.org/places/$1"
   },
   "P7472": {
     "database": "Q106327887",
@@ -7486,6 +7940,21 @@
     "pattern": "^wfo-\\d{10}$",
     "prefix": "P7715",
     "uri_format": "http://www.worldfloraonline.org/taxon/$1"
+  },
+  "P7718": {
+    "database": "Q420927",
+    "description": "accession number of protein complex at the Complex Portal",
+    "example": [
+      "CPX-2165",
+      "CPX-577",
+      "CPX-630"
+    ],
+    "homepage": "https://www.ebi.ac.uk/complexportal/home",
+    "miriam": "complexportal",
+    "name": "Complex Portal accession ID",
+    "pattern": "^CPX-[0-9]+$",
+    "prefix": "P7718",
+    "uri_format": "https://www.ebi.ac.uk/complexportal/complex/$1"
   },
   "P7720": {
     "database": "Q796451",
@@ -7850,6 +8319,30 @@
     "prefix": "P8109",
     "uri_format": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=$1"
   },
+  "P8117": {
+    "database": "Q16800711",
+    "description": "ID of chemical compound in FooDB",
+    "example": [
+      "FDB000082",
+      "FDB000316",
+      "FDB002100"
+    ],
+    "name": "FooDB compound ID",
+    "prefix": "P8117",
+    "uri_format": "https://foodb.ca/compounds/$1"
+  },
+  "P8121": {
+    "description": "ID for chemical compound in The University of Minnesota Biocatalysis/Biodegradation Database",
+    "example": [
+      "c0001",
+      "c0002",
+      "c0003"
+    ],
+    "homepage": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=allcomps",
+    "name": "UM-BBD compound ID",
+    "prefix": "P8121",
+    "uri_format": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1"
+  },
   "P8145": {
     "database": "Q89384967",
     "description": "numerical identifier for a taxon on the Psocodea Species File project",
@@ -8025,6 +8518,20 @@
     ],
     "name": "author citation (zoology)",
     "prefix": "P835"
+  },
+  "P8372": {
+    "database": "Q1201886",
+    "description": "unique academic work identifier assigned in Web of Science bibliographic database (Web of Science Core Collection only and do not include WOS: prefix)",
+    "example": [
+      "000177759000002",
+      "000271214700001",
+      "000301355700052",
+      "000503382400004",
+      "A1953UA43400007"
+    ],
+    "name": "Web of Science ID (work)",
+    "prefix": "P8372",
+    "uri_format": "https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL"
   },
   "P838": {
     "database": "Q12345690",
@@ -8254,6 +8761,18 @@
     "name": "SwissLipids ID",
     "prefix": "P8691",
     "uri_format": "https://www.swisslipids.org/#/entity/$1/"
+  },
+  "P8697": {
+    "database": "Q99839604",
+    "description": "ID in the RNA central database",
+    "example": [
+      "URS0000413C32_559292",
+      "URS000080E36F_9606"
+    ],
+    "homepage": "https://rnacentral.org/",
+    "name": "RNACentral ID",
+    "prefix": "P8697",
+    "uri_format": "https://rnacentral.org/rna/$1"
   },
   "P8707": {
     "database": "Q11959214",
@@ -8769,6 +9288,20 @@
     "pattern": "^[1-9]\\d{0,4}$",
     "prefix": "P938",
     "uri_format": "https://www.fishbase.ca/summary/$1"
+  },
+  "P9405": {
+    "database": "Q24170714",
+    "description": "structure identifiers in the NMRShiftDB",
+    "example": [
+      "20143612",
+      "20188613",
+      "20213347"
+    ],
+    "homepage": "https://nmrshiftdb.nmr.uni-koeln.de/",
+    "name": "NMRShiftDB structure ID",
+    "pattern": "^\\d+$",
+    "prefix": "P9405",
+    "uri_format": "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"
   },
   "P9408": {
     "database": "Q106140471",

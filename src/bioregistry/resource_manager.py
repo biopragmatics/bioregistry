@@ -772,7 +772,7 @@ class Manager:
     def rasterize(self):
         """Build a dictionary representing the fully constituted registry."""
         return {
-            prefix: sanitize_model(resource)
+            prefix: sanitize_model(resource, exclude={"prefix"})
             for prefix, resource in self._rasterized_registry().items()
         }
 
