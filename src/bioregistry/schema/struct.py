@@ -1690,6 +1690,8 @@ class Resource(BaseModel):
         '1234'
         >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
         '1234'
+        >>> get_resource("chebi").standardize_identifier('CHEBI_1234')
+        '1234'
 
         Examples from OBO Foundry that should not have a redundant
         prefix added:
@@ -1702,14 +1704,15 @@ class Resource(BaseModel):
         >>> get_resource("pdb").standardize_identifier('00000020')
         '00000020'
         """
-        banana = self.get_banana()
-        peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}".casefold()
         icf = identifier.casefold()
-        if banana and icf.startswith(prebanana):
-            return identifier[len(prebanana) :]
-        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
-            return identifier[len(self.prefix) + len(peel) :]
+        banana = self.get_banana()
+        peels = [self.get_banana_peel(), "_"]
+        for peel in peels:
+            prebanana = f"{banana}{peel}".casefold()
+            if banana and icf.startswith(prebanana):
+                return identifier[len(prebanana) :]
+            elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+                return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
