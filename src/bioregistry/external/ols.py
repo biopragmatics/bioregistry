@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "ols"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-URL = "https://www.ebi.ac.uk/ols/api/ontologies?size=1000"
+URL = "https://www.ebi.ac.uk/ols4/api/ontologies?size=1000"
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 OLS_PROCESSING = DATA_DIRECTORY / "processing_ols.json"
@@ -37,6 +37,8 @@ OLS_SKIP = {
     "epio": "can't figure out / not sure if still exists",
     "ccf": "this is full of temporary annotations and is mostly nonsense",
     "cpont": "no own terms?",
+    "schemaorg_https": "duplicate of canonical HTTP version",
+    "hpi": "nonsensical duplication of HP",
 }
 
 
@@ -131,7 +133,7 @@ def _process(  # noqa:C901
         else:
             rv["contact"] = email
 
-    license_value = config.get("annotations", {}).get("license", [None])[0]
+    license_value = (config.get("annotations") or {}).get("license", [None])[0]
     if license_value in {"Unspecified", "Unspecified"}:
         license_value = None
     if not license_value:
