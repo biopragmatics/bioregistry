@@ -300,8 +300,8 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dc_cl: <http://purl.obolibrary.org/obo/DC_CL_> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -10383,14 +10383,14 @@ bioregistry:ito a bioregistry.schema:0000001 ;
     dcat:keyword "artificial intelligence",
         "ontology" ;
     foaf:homepage <https://bioportal.bioontology.org/> ;
-    bioregistry.schema:0000005 "ITO_01625"^^xsd:string ;
+    bioregistry.schema:0000005 "01625"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^.+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/ITO/17/ito.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-4855-2571 ;
     bioregistry.schema:0000024 "https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:"^^xsd:string ;
-    bioregistry.schema:0000027 ito:ITO_01625 ;
+    bioregistry.schema:0000027 ito:01625 ;
     bioregistry.schema:0000029 "ito" .
 
 bioregistry:iuphar.family a bioregistry.schema:0000001 ;
@@ -41494,7 +41494,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
