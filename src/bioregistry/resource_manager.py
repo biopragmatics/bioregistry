@@ -1075,7 +1075,7 @@ class Manager:
         obo_iri = self.get_obofoundry_iri(prefix, identifier)
         if ols_prefix is None or obo_iri is None:
             return None
-        return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+        return f"https://www.ebi.ac.uk/ols4/ontologies/{ols_prefix}/terms?iri={obo_iri}"
 
     def get_formatted_iri(self, metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
         """Get an IRI using the format in the metaregistry.
