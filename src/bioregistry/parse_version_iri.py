@@ -36,7 +36,7 @@ def _match_any_part(iri, pattern):
 
 def parse_obo_version_iri(
     version_iri: str, obo_prefix: str
-) -> Union[Tuple[str, str, str], Tuple[None, None, None]]:
+) -> Union[Tuple[str, Optional[str], str], Tuple[None, None, None]]:
     """Parse an OBO version IRI."""
     obo_prefix = obo_prefix.lower()
     parts = [
