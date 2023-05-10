@@ -25836,6 +25836,50 @@
         "sampleId": "PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2"
       },
       {
+        "created": "2023-05-09T12:26:02.992+0000",
+        "deprecated": false,
+        "deprecationDate": null,
+        "description": "Nanbyo Disease Ontology (NANDO) is the ontology creating a comprehensive hierarchical controlled vocabulary for intractable and rare disease (i.e., nanbyo) representation in Japan.",
+        "id": 3536,
+        "mirId": "MIR:00001010",
+        "modified": "2023-05-09T13:07:17.390+0000",
+        "name": "Nanbyo Disease Ontology",
+        "namespaceEmbeddedInLui": true,
+        "pattern": "^NANDO:[0-9]+$",
+        "prefix": "nando",
+        "resources": [
+          {
+            "deprecated": false,
+            "deprecationDate": null,
+            "description": "Database Center for Life Science (DBCLS) is a part of Research Organization of Information and Systems (ROIS) and has been developing new technologies, services and standards for integrating biological databases, which include those developed and maintained in Japan as well as world-renowned databases.",
+            "id": 3537,
+            "institution": {
+              "description": "Database Center for Life Science (DBCLS) is a part of Research Organization of Information and Systems (ROIS) and has been developing new technologies, services and standards for integrating biological databases, which include those developed and maintained in Japan as well as world-renowned databases.",
+              "homeUrl": "https://dbcls.rois.ac.jp/index-en.html",
+              "id": 3526,
+              "location": {
+                "countryCode": "JP",
+                "countryName": "Japan"
+              },
+              "name": "Database Center for Life Science, Kashiwa, Chiba, Japan",
+              "rorId": null
+            },
+            "location": {
+              "countryCode": "JP",
+              "countryName": "Japan"
+            },
+            "mirId": "MIR:00001009",
+            "name": "Database Center for Life Science, Kashiwa, Chiba, Japan",
+            "official": true,
+            "providerCode": "dbcls",
+            "resourceHomeUrl": "https://nanbyodata.jp/",
+            "sampleId": "NANDO:1200031",
+            "urlPattern": "https://nanbyodata.jp/disease/NANDO:{$id}"
+          }
+        ],
+        "sampleId": "1200031"
+      },
+      {
         "created": "2019-06-11T14:18:04.316+0000",
         "deprecated": false,
         "deprecationDate": null,
@@ -27506,7 +27550,7 @@
         "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:number-number, where “oci:” is the identifier prefix, and is used to identify a citation as a first-class data entitiy - see https://opencitations.wordpress.com/2018/02/19/citations-as-first-class-data-entities-introduction/ for additional information.\r\n\r\nOCIs for citations stored within the OpenCitations Corpus are constructed by combining the OpenCitations Corpus local identifiers for the citing and cited bibliographic resources, separating them with a dash. For example, oci:2544384-7295288 is a valid OCI for the citation between two papers stored within the OpenCitations Corpus.\r\n\r\nOCIs can also be created for bibliographic resources described in an external bibliographic database, if they are similarly identified there by identifiers having a unique numerical part. For example, the OCI for the citation that exists between Wikidata resources Q27931310 and Q22252312 is oci:01027931310–01022252312.\r\n\r\nOCIs can also be created for bibliographic resources described in external bibliographic database such as Crossref or DataCite where they are identified by alphanumeric Digital Object Identifiers (DOIs), rather than purely numerical strings.",
         "id": 1831,
         "mirId": "MIR:00000660",
-        "modified": "2019-06-11T14:18:13.968+0000",
+        "modified": "2023-05-09T09:50:26.136+0000",
         "name": "OCI",
         "namespaceEmbeddedInLui": false,
         "pattern": "^[0-9]+-[0-9]+$",
@@ -27518,15 +27562,15 @@
             "description": "OpenCitations",
             "id": 1833,
             "institution": {
-              "description": "CURATOR_REVIEW",
-              "homeUrl": "CURATOR_REVIEW",
-              "id": 1832,
+              "description": "OpenCitations is an independent not-for-profit infrastructure organization for open scholarship dedicated to the publication of open bibliographic and citation data by the use of Semantic Web (Linked Data) technologies. It is also engaged in advocacy for open citations, particularly in its role as a key founding member of the Initiative for Open Citations (I4OC). For administrative convenience, OpenCitations is managed by the Research Centre for Open Scholarly Metadata at the University of Bologna.",
+              "homeUrl": "http://opencitations.net/",
+              "id": 1919,
               "location": {
                 "countryCode": "IT",
                 "countryName": "Italy"
               },
-              "name": "University of Bologna",
-              "rorId": null
+              "name": "OpenCitations",
+              "rorId": "https://ror.org/00wb4mk85"
             },
             "location": {
               "countryCode": "IT",
@@ -27537,11 +27581,11 @@
             "official": false,
             "providerCode": "CURATOR_REVIEW",
             "resourceHomeUrl": "http://opencitations.net",
-            "sampleId": "1-18",
+            "sampleId": "01027931310-01022252312",
             "urlPattern": "https://w3id.org/oc/oci/{$id}"
           }
         ],
-        "sampleId": "1-18"
+        "sampleId": "01027931310-01022252312"
       },
       {
         "created": "2019-09-10T09:27:59.693+0000",
