@@ -514,6 +514,8 @@ class Resource(BaseModel):
     github_request_issue: Optional[int] = Field(
         description="The GitHub issue for the new prefix request"
     )
+    logo: Optional[str] = Field(description="The URL of the logo for the project/resource")
+
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]] = None
     #: External data from the Name-to-Thing service
@@ -1209,13 +1211,21 @@ class Resource(BaseModel):
         return f"https://{server}/@{username}"
 
     def get_twitter(self) -> Optional[str]:
-        """Get the Twitter handle for ther resource."""
+        """Get the Twitter handle for the resource."""
         if self.twitter:
             return self.twitter
         if self.obofoundry and "twitter" in self.obofoundry:
             return self.obofoundry["twitter"]
         if self.fairsharing and "twitter" in self.fairsharing:
             return self.fairsharing["twitter"]
+        return None
+
+    def get_logo(self) -> Optional[str]:
+        """Get the logo for the resource."""
+        if self.logo:
+            return self.logo
+        if self.obofoundry and "logo" in self.obofoundry:
+            return self.obofoundry["logo"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
