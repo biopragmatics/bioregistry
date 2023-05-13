@@ -3043,14 +3043,14 @@
   "epd": {
     "deprecated": false,
     "description": "The Eukaryotic Promoter Database (EPD) is an annotated non-redundant collection of eukaryotic POL II promoters, for which the transcription start site has been determined experimentally. Access to promoter sequences is provided by pointers to positions in nucleotide sequence entries. The annotation part of an entry includes description of the initiation site mapping data, cross-references to other databases, and bibliographic references. EPD is structured in a way that facilitates dynamic extraction of biologically meaningful promoter subsets for comparative sequence analysis.",
-    "homepage": "http://epd.vital-it.ch/",
+    "homepage": "https://epd.expasy.org/epd",
     "id": "00000408",
     "name": "EPD",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z-_0-9]+$",
     "prefix": "epd",
     "sampleId": "TA_H3",
-    "uri_format": "http://epd.vital-it.ch/cgi-bin/query_result.pl?out_format=NICE&Entry_0=$1"
+    "uri_format": "https://epd.expasy.org/cgi-bin/epd/query_result.pl?out_format=NICE&Entry_0=$1"
   },
   "erm": {
     "deprecated": false,
@@ -6967,12 +6967,12 @@
   },
   "oci": {
     "deprecated": false,
-    "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:number-number, where \u201coci:\u201d is the identifier prefix, and is used to identify a citation as a first-class data entitiy - see https://opencitations.wordpress.com/2018/02/19/citations-as-first-class-data-entities-introduction/ for additional information.\r\n\r\nOCIs for citations stored within the OpenCitations Corpus are constructed by combining the OpenCitations Corpus local identifiers for the citing and cited bibliographic resources, separating them with a dash. For example, oci:2544384-7295288 is a valid OCI for the citation between two papers stored within the OpenCitations Corpus.\r\n\r\nOCIs can also be created for bibliographic resources described in an external bibliographic database, if they are similarly identified there by identifiers having a unique numerical part. For example, the OCI for the citation that exists between Wikidata resources Q27931310 and Q22252312 is oci:01027931310\u201301022252312.\r\n\r\nOCIs can also be created for bibliographic resources described in external bibliographic database such as Crossref or DataCite where they are identified by alphanumeric Digital Object Identifiers (DOIs), rather than purely numerical strings.",
+    "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>, where \u201coci:\u201d is the identifier prefix, and is used to identify a citation as a first-class data entity - see https://doi.org/10.6084/m9.figshare.7127816.v2 for additional information. In each OCI, the first <identifier> is the identifier for the citing bibliographic resource, while the second <identifier> is the identifier for the cited bibliographic resource.",
     "homepage": "http://opencitations.net",
     "id": "00000660",
     "name": "OCI",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[0-9]+-[0-9]+$",
+    "pattern": "^0[1-9]+0[0-9]+-0[1-9]+0[0-9]+$",
     "prefix": "oci",
     "sampleId": "01027931310-01022252312",
     "uri_format": "https://w3id.org/oc/oci/$1"
