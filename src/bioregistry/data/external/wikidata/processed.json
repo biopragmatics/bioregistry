@@ -519,12 +519,17 @@
     "uri_format": "https://xueshu.baidu.com/usercenter/paper/show?paperid=$1"
   },
   "P1076": {
-    "database": "Q105046487",
-    "description": "identifier in the Universal Virus Database (ICTVdB)",
-    "homepage": "http://ictvdb.bio-mirror.cn/Ictv/vc_code.htm",
+    "description": "identifier of the virus taxon for the ICTV taxon details entry",
+    "example": [
+      "201908702",
+      "202215026",
+      "202215039"
+    ],
+    "homepage": "https://ictv.global/taxonomy",
     "name": "ICTV virus ID",
-    "pattern": "^\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\.(|\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\d\\d\\.)))))))$",
-    "prefix": "P1076"
+    "pattern": "^[0-9]+$",
+    "prefix": "P1076",
+    "uri_format": "https://ictv.global/taxonomy/taxondetails?taxnode_id=$1"
   },
   "P10770": {
     "database": "Q11236491",
