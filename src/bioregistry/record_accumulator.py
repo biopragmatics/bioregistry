@@ -294,6 +294,8 @@ def get_records(  # noqa: C901
     records: Dict[str, curies.Record] = {}
     for prefix, primary_prefix in primary_prefixes.items():
         primary_uri_prefix = primary_uri_prefixes[prefix]
+        if not primary_prefix or not primary_uri_prefix:
+            continue
         records[prefix] = curies.Record(
             prefix=primary_prefix,
             prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
