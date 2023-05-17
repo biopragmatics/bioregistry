@@ -1625,10 +1625,9 @@ class Resource(BaseModel):
             uri_format = self.get_external(metaprefix).get(key)
             if uri_format:
                 yield uri_format
-        if self.get_miriam_prefix():
-            miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
-            if miriam_legacy_uri_prefix:
-                yield miriam_legacy_uri_prefix
+        miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
+        if miriam_legacy_uri_prefix:
+            yield miriam_legacy_uri_prefix
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
