@@ -312,7 +312,7 @@ def get_wikidata(force_download: bool = False):
 
 @click.command()
 def _main():
-    data = get_wikidata(force_download=False)
+    data = get_wikidata(force_download=True)
     click.echo(f"Got {len(data):,} records")
 
 
