@@ -1251,6 +1251,19 @@ class Resource(BaseModel):
             return None
         return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
 
+    def get_bioregistry_uri_format(self) -> Optional[str]:
+        """Get the Bioregisry URI format string for this entry.
+
+        :returns: A Bioregistry URI, if this can be resolved.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_bioregistry_uri_format()
+        'https://bioregistry.io/go:$1'
+        """
+        if not self.get_default_format():
+            return None
+        return f"https://bioregistry.io/{self.prefix}:$1"
+
     def get_obofoundry_uri_format(self) -> Optional[str]:
         """Get the OBO Foundry URI format string for this entry, if possible.
 
@@ -1459,6 +1472,7 @@ class Resource(BaseModel):
 
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
+        "bioregistry": get_bioregistry_uri_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
@@ -1469,14 +1483,16 @@ class Resource(BaseModel):
         "ols": get_ols_uri_format,
     }
 
+    #: The point of this priority order is to figure out what URI format string
+    #: to give back. The "default" means it's goign to go into the metaregistry
+    #: and try and find a real URI, not a re-directed one. If it can't manage that,
+    #: try and get an OBO foundry redirect (though note this is only applicable to
+    #: a small number of prefixes corresponding to ontologies). Finally, if this
+    #: doesn't work, give a Bioregistry URI
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
-        "biocontext",
-        "miriam",
-        "n2t",
-        "ols",
-        "prefixcommons",
+        "bioregistry",
     )
 
     def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:

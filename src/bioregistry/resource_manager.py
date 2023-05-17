@@ -656,6 +656,8 @@ class Manager:
         """
         from .record_accumulator import get_records
 
+        # first step - filter to resources that have *anything* for a URI prefix
+        # TODO maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
         resources = [
             resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
         ]
