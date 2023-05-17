@@ -287,7 +287,6 @@ class Resource(BaseModel):
     rdf_uri_format: Optional[str] = Field(
         title="RDF URI format string",
         description="The RDF URI format string, which must have at least one ``$1`` in it",
-        integration_status="required_for_new",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
@@ -1481,8 +1480,8 @@ class Resource(BaseModel):
             return self.rdf_uri_format
         if self.obofoundry:
             return self.get_obofoundry_uri_format()
-        if self.wikidata and 'uri_format_rdf' in self.wikidata:
-            return self.wikidata['uri_format_rdf']
+        if self.wikidata and "uri_format_rdf" in self.wikidata:
+            return self.wikidata["uri_format_rdf"]
         # TODO also pull from Prefix Commons
         return None
 
