@@ -149,6 +149,9 @@ CANONICAL_HOMEPAGES: Dict[str, str] = {
     "P10246": "https://medlineplus.gov/druginfo/herb_All.html",
     "P10245": "https://medlineplus.gov/druginfo/drug_Aa.html",
     "P9704": "https://www.monumentaltrees.com/en/",
+    "P9356": "http://portal.hymao.org/projects/32/public/label/list_all",
+    "P3088": "https://taibnet.sinica.edu.tw/home_eng.php",
+    "P486": "http://www.nlm.nih.gov",
 }
 CANONICAL_URI_FORMATS = {
     "P830": "https://eol.org/pages/$1",
@@ -164,6 +167,7 @@ CANONICAL_URI_FORMATS = {
     "P8082": "https://www.mscbs.gob.es/ciudadanos/centros.do?metodo=realizarDetalle&tipo=hospital&numero=$1",
     "P10095": "https://www.surgeons.org/Profile/$1",
     "P5397": "http://www.tierstimmen.org/en/database?field_spec_species_target_id_selective=$1",
+    "P7471": "https://www.inaturalist.org/places/$1",
 }
 CANONICAL_RDF_URI_FORMATS: Dict[str, str] = {}
 
@@ -224,7 +228,7 @@ def _get_wikidata():
         if prefix in SKIP:
             continue
 
-        examples = bindings.get("example", {}).split("\t")
+        examples = bindings.get("example", "").split("\t")
         if examples and all(
             example.startswith("http://www.wikidata.org/entity/") for example in examples
         ):
@@ -251,7 +255,7 @@ def _get_wikidata():
             ("database", CANONICAL_DATABASES),
             ("homepage", CANONICAL_HOMEPAGES),
             ("uri_format", CANONICAL_URI_FORMATS),
-            ("uri_format_rdf", CANONICAL_URI_FORMATS),
+            ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
         ]:
             # sort by increasing length - the assumption being that the shortest
             # one has the least amount of nonsense, like language tags or extra
