@@ -1261,6 +1261,19 @@ class Resource(BaseModel):
             return None
         return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
 
+    def get_bioregistry_uri_format(self) -> Optional[str]:
+        """Get the Bioregisry URI format string for this entry.
+
+        :returns: A Bioregistry URI, if this can be resolved.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_bioregistry_uri_format()
+        'https://bioregistry.io/go:$1'
+        """
+        if not self.get_default_format():
+            return None
+        return f"https://bioregistry.io/{self.prefix}:$1"
+
     def get_obofoundry_uri_format(self) -> Optional[str]:
         """Get the OBO Foundry URI format string for this entry, if possible.
 
@@ -1469,6 +1482,7 @@ class Resource(BaseModel):
 
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
+        "bioregistry": get_bioregistry_uri_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
@@ -1479,14 +1493,16 @@ class Resource(BaseModel):
         "ols": get_ols_uri_format,
     }
 
+    #: The point of this priority order is to figure out what URI format string
+    #: to give back. The "default" means it's goign to go into the metaregistry
+    #: and try and find a real URI, not a re-directed one. If it can't manage that,
+    #: try and get an OBO foundry redirect (though note this is only applicable to
+    #: a small number of prefixes corresponding to ontologies). Finally, if this
+    #: doesn't work, give a Bioregistry URI
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
-        "biocontext",
-        "miriam",
-        "n2t",
-        "ols",
-        "prefixcommons",
+        "bioregistry",
     )
 
     def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
@@ -1527,6 +1543,17 @@ class Resource(BaseModel):
                 return mappings[metaprefix]
         return self.prefix
 
+    def _iterate_uri_formats(self, priority: Optional[Sequence[str]] = None):
+        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+            formatter = self.URI_FORMATTERS.get(metaprefix)
+            if formatter is None:
+                logger.warning("could not get formatter for %s", metaprefix)
+                continue
+            uri_format = formatter(self)
+            if uri_format is None:
+                continue
+            yield uri_format
+
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available.
 
@@ -1558,15 +1585,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
-        # TODO add examples in doctests for BioContext, MIRIAM/Identifiers.org, and OLS
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
-            formatter = self.URI_FORMATTERS.get(metaprefix)
-            if formatter is None:
-                logger.warning("could not get formatter for %s", metaprefix)
-                continue
-            rv = formatter(self)
-            if rv is not None:
-                return rv
+        for uri_format in self._iterate_uri_formats(priority):
+            return uri_format
         return None
 
     def get_uri_prefix(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -1580,11 +1600,11 @@ class Resource(BaseModel):
         >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        uri_format = self.get_uri_format(priority=priority)
-        if uri_format is None:
-            logging.debug("term missing formatter: %s", self.name)
-            return None
-        return self._clip_uri_format(uri_format)
+        for uri_format in self._iterate_uri_formats(priority):
+            uri_prefix = self._clip_uri_format(uri_format)
+            if uri_prefix is not None:
+                return uri_prefix
+        return None
 
     def _clip_uri_format(self, uri_format: str) -> Optional[str]:
         count = uri_format.count("$1")
