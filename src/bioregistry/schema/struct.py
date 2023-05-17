@@ -1517,6 +1517,17 @@ class Resource(BaseModel):
                 return mappings[metaprefix]
         return self.prefix
 
+    def _iterate_uri_formats(self, priority: Optional[Sequence[str]] = None):
+        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+            formatter = self.URI_FORMATTERS.get(metaprefix)
+            if formatter is None:
+                logger.warning("could not get formatter for %s", metaprefix)
+                continue
+            uri_format = formatter(self)
+            if uri_format is None:
+                continue
+            yield uri_format
+
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available.
 
@@ -1548,15 +1559,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
-        # TODO add examples in doctests for BioContext, MIRIAM/Identifiers.org, and OLS
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
-            formatter = self.URI_FORMATTERS.get(metaprefix)
-            if formatter is None:
-                logger.warning("could not get formatter for %s", metaprefix)
-                continue
-            rv = formatter(self)
-            if rv is not None:
-                return rv
+        for uri_format in self._iterate_uri_formats(priority):
+            return uri_format
         return None
 
     def get_uri_prefix(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -1570,11 +1574,11 @@ class Resource(BaseModel):
         >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        uri_format = self.get_uri_format(priority=priority)
-        if uri_format is None:
-            logging.debug("term missing formatter: %s", self.name)
-            return None
-        return self._clip_uri_format(uri_format)
+        for uri_format in self._iterate_uri_formats(priority):
+            uri_prefix = self._clip_uri_format(uri_format)
+            if uri_prefix is not None:
+                return uri_prefix
+        return None
 
     def _clip_uri_format(self, uri_format: str) -> Optional[str]:
         count = uri_format.count("$1")
@@ -1621,9 +1625,10 @@ class Resource(BaseModel):
             uri_format = self.get_external(metaprefix).get(key)
             if uri_format:
                 yield uri_format
-        miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
-        if miriam_legacy_uri_prefix:
-            yield miriam_legacy_uri_prefix
+        if self.get_miriam_prefix():
+            miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
+            if miriam_legacy_uri_prefix:
+                yield miriam_legacy_uri_prefix
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
