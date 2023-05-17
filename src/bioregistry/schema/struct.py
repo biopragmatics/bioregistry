@@ -1470,6 +1470,7 @@ class Resource(BaseModel):
             return self.get_obofoundry_uri_format()
         if self.wikidata and 'uri_format_rdf' in self.wikidata:
             return self.wikidata['uri_format_rdf']
+        # TODO also pull from Prefix Commons
         return None
 
     def get_rdf_uri_prefix(self) -> Optional[str]:
