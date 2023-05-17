@@ -805,6 +805,7 @@ class Manager:
             example_extras=resource.example_extras,
             example_decoys=resource.example_decoys,
             uri_format=resource.get_uri_format(),
+            rdf_uri_format=resource.get_rdf_uri_format(),
             providers=resource.get_extra_providers(),
             # Comments
             comment=resource.comment,

@@ -284,6 +284,11 @@ class Resource(BaseModel):
         description="The URI format string, which must have at least one ``$1`` in it",
         integration_status="required_for_new",
     )
+    rdf_uri_format: Optional[str] = Field(
+        title="RDF URI format string",
+        description="The RDF URI format string, which must have at least one ``$1`` in it",
+        integration_status="required_for_new",
+    )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
     )
@@ -1457,8 +1462,24 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_rdf_uri_format(self) -> Optional[str]:
+        """Get the URI format string for the given prefix for RDF usages."""
+        if self.rdf_uri_format:
+            return self.rdf_uri_format
+        if self.obofoundry:
+            return self.get_obofoundry_uri_format()
+        if self.wikidata and 'uri_format_rdf' in self.wikidata:
+            return self.wikidata['uri_format_rdf']
+        return None
+
+    def get_rdf_uri_prefix(self) -> Optional[str]:
+        """Get the URI prefix for the prefix for RDF usages."""
+        rdf_uri_format = self.get_rdf_uri_format()
+        return self._clip_uri_format(rdf_uri_format)
+
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
+        "rdf": get_rdf_uri_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
@@ -1571,12 +1592,11 @@ class Resource(BaseModel):
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
         uri_format = self.get_uri_format(priority=priority)
-        if uri_format is None:
-            logging.debug("term missing formatter: %s", self.name)
-            return None
         return self._clip_uri_format(uri_format)
 
-    def _clip_uri_format(self, uri_format: str) -> Optional[str]:
+    def _clip_uri_format(self, uri_format: Optional[str]) -> Optional[str]:
+        if uri_format is None:
+            return None
         count = uri_format.count("$1")
         if 0 == count:
             logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
