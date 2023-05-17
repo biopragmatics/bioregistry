@@ -105,19 +105,6 @@
     "prefix": "P10115",
     "uri_format": "http://bppsdmk.kemkes.go.id/info_sdmk/info/fasyankes?unit=$1"
   },
-  "P10141": {
-    "database": "Q414403",
-    "description": "identifier for an authority in the catalogue of the Academy of Athens Library",
-    "example": [
-      "122326",
-      "47353"
-    ],
-    "homepage": "https://opac.academyofathens.gr/cgi-bin/koha/opac-authorities-home.pl",
-    "name": "Academy of Athens authority ID",
-    "pattern": "^[1-9]\\d*$",
-    "prefix": "P10141",
-    "uri_format": "https://opac.academyofathens.gr/cgi-bin/koha/opac-authoritiesdetail.pl?authid=$1&marc=1"
-  },
   "P10168": {
     "database": "Q56569651",
     "description": "numerical identifier for a botanical collector in the Z\u00fcrich Herbaria",
@@ -519,17 +506,12 @@
     "uri_format": "https://xueshu.baidu.com/usercenter/paper/show?paperid=$1"
   },
   "P1076": {
-    "description": "identifier of the virus taxon for the ICTV taxon details entry",
-    "example": [
-      "201908702",
-      "202215026",
-      "202215039"
-    ],
-    "homepage": "https://ictv.global/taxonomy",
+    "database": "Q105046487",
+    "description": "identifier in the Universal Virus Database (ICTVdB)",
+    "homepage": "http://ictvdb.bio-mirror.cn/Ictv/vc_code.htm",
     "name": "ICTV virus ID",
-    "pattern": "^[0-9]+$",
-    "prefix": "P1076",
-    "uri_format": "https://ictv.global/taxonomy/taxondetails?taxnode_id=$1"
+    "pattern": "^\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\.(|\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\d\\d\\.)))))))$",
+    "prefix": "P1076"
   },
   "P10770": {
     "database": "Q11236491",
@@ -1328,9 +1310,7 @@
     "name": "CiNii Research ID",
     "prefix": "P11496",
     "uri_format": "https://cir.nii.ac.jp/crid/$1",
-    "uri_format_rdf": [
-      "https://cir.nii.ac.jp/crid/$1.rdf"
-    ]
+    "uri_format_rdf": "https://cir.nii.ac.jp/crid/$1.rdf"
   },
   "P1153": {
     "database": "Q371467",
@@ -1856,9 +1836,7 @@
     "pattern": "^C\\d{3,7}$",
     "prefix": "P1748",
     "uri_format": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/NCIT_$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/NCIT_$1"
   },
   "P1761": {
     "database": "Q3011194",
@@ -1964,9 +1942,7 @@
     "name": "Vaccine Ontology ID",
     "prefix": "P1928",
     "uri_format": "http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
   },
   "P1929": {
     "database": "Q20023123",
@@ -2063,9 +2039,7 @@
     "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
     "prefix": "P1992",
     "uri_format": "https://treatment.plazi.org/id/$1",
-    "uri_format_rdf": [
-      "https://treatment.plazi.org/id/$1.rdf"
-    ]
+    "uri_format_rdf": "https://treatment.plazi.org/id/$1.rdf"
   },
   "P2006": {
     "database": "Q8074026",
@@ -2356,9 +2330,7 @@
     "pattern": "^N[0-9]{10}$",
     "prefix": "P2115",
     "uri_format": "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=$1",
-    "uri_format_rdf": [
-      "http://purl.bioontology.org/ontology/NDFRT/$1"
-    ]
+    "uri_format_rdf": "http://purl.bioontology.org/ontology/NDFRT/$1"
   },
   "P2153": {
     "database": "Q278487",
@@ -2372,9 +2344,7 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P2153",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/substance/$1",
-    "uri_format_rdf": [
-      "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1"
-    ]
+    "uri_format_rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1"
   },
   "P2158": {
     "database": "Q21039006",
@@ -2387,9 +2357,7 @@
     "pattern": "^CLO_\\d{7}$",
     "prefix": "P2158",
     "uri_format": "http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
   },
   "P2240": {
     "database": "Q711849",
@@ -2579,9 +2547,7 @@
     "pattern": "^[1-9]\\d{10,11}$",
     "prefix": "P2409",
     "uri_format": "https://ci.nii.ac.jp/naid/$1",
-    "uri_format_rdf": [
-      "https://ci.nii.ac.jp/naid/$1#article"
-    ]
+    "uri_format_rdf": "https://ci.nii.ac.jp/naid/$1#article"
   },
   "P2410": {
     "database": "Q7999828",
@@ -2595,9 +2561,7 @@
     "pattern": "^WP\\d{1,4}$",
     "prefix": "P2410",
     "uri_format": "https://new.wikipathways.org/pathways/$1",
-    "uri_format_rdf": [
-      "http://identifiers.org/wikipathways/$1"
-    ]
+    "uri_format_rdf": "http://identifiers.org/wikipathways/$1"
   },
   "P2426": {
     "database": "Q8043516",
@@ -2721,9 +2685,7 @@
     "pattern": "^[1-9][0-9]*$",
     "prefix": "P2689",
     "uri_format": "https://bartoc.org/en/node/$1",
-    "uri_format_rdf": [
-      "https://bartoc.org/en/node/$1"
-    ]
+    "uri_format_rdf": "https://bartoc.org/en/node/$1"
   },
   "P2710": {
     "database": "Q21346369",
@@ -2974,9 +2936,7 @@
     "pattern": "^[0-9A-Z]{5,6}$",
     "prefix": "P3031",
     "uri_format": "https://gd.eppo.int/taxon/$1",
-    "uri_format_rdf": [
-      "https://gd.eppo.int/taxon/$1"
-    ]
+    "uri_format_rdf": "https://gd.eppo.int/taxon/$1"
   },
   "P305": {
     "database": "Q1059900",
@@ -3244,9 +3204,7 @@
     "pattern": "^\\d{1,7}$",
     "prefix": "P3181",
     "uri_format": "https://w3id.org/oc/corpus/br/$1.html",
-    "uri_format_rdf": [
-      "https://w3id.org/oc/corpus/br/$1"
-    ]
+    "uri_format_rdf": "https://w3id.org/oc/corpus/br/$1"
   },
   "P3186": {
     "database": "Q26924544",
@@ -3260,9 +3218,7 @@
     "pattern": "^\\d+$",
     "prefix": "P3186",
     "uri_format": "https://inpn.mnhn.fr/espece/cd_nom/$1",
-    "uri_format_rdf": [
-      "http://taxref.mnhn.fr/lod/taxon/$1/13.0"
-    ]
+    "uri_format_rdf": "http://taxref.mnhn.fr/lod/taxon/$1/13.0"
   },
   "P3201": {
     "database": "Q1539689",
@@ -3273,9 +3229,7 @@
     "name": "Medical Dictionary for Regulatory Activities ID",
     "prefix": "P3201",
     "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1",
-    "uri_format_rdf": [
-      "http://purl.bioontology.org/ontology/MDRFRE/$1"
-    ]
+    "uri_format_rdf": "http://purl.bioontology.org/ontology/MDRFRE/$1"
   },
   "P3226": {
     "database": "Q107213548",
@@ -3671,9 +3625,7 @@
     "pattern": "^[1-9]\\d{0,8}$",
     "prefix": "P351",
     "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1",
-    "uri_format_rdf": [
-      "http://purl.uniprot.org/geneid/$1"
-    ]
+    "uri_format_rdf": "http://purl.uniprot.org/geneid/$1"
   },
   "P3519": {
     "database": "Q906796",
@@ -3701,9 +3653,7 @@
     "pattern": "^([OPQ][0-9][A-Z0-9]|[A-NR-Z][0-9][A-Z])[A-Z0-9][A-Z0-9][0-9]([A-Z][A-Z0-9][A-Z0-9][0-9])?$",
     "prefix": "P352",
     "uri_format": "https://www.uniprot.org/uniprot/$1",
-    "uri_format_rdf": [
-      "http://purl.uniprot.org/uniprot/$1"
-    ]
+    "uri_format_rdf": "http://purl.uniprot.org/uniprot/$1"
   },
   "P3524": {
     "database": "Q12746855",
@@ -3767,9 +3717,7 @@
     "pattern": "^(?i)10.\\d{4,9}/[-._;()/:A-Z0-9]+$",
     "prefix": "P356",
     "uri_format": "https://doi.org/$1",
-    "uri_format_rdf": [
-      "http://dx.doi.org/$1"
-    ]
+    "uri_format_rdf": "http://dx.doi.org/$1"
   },
   "P3590": {
     "database": "Q28729320",
@@ -4060,9 +4008,7 @@
     "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6}$",
     "prefix": "P3951",
     "uri_format": "https://doi.org/10.1101/$1",
-    "uri_format_rdf": [
-      "http://dx.doi.org/10.1101/$1"
-    ]
+    "uri_format_rdf": "http://dx.doi.org/10.1101/$1"
   },
   "P3956": {
     "database": "Q107213173",
@@ -4315,9 +4261,7 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4311",
     "uri_format": "https://id.erfgoed.net/thesauri/soorten/$1",
-    "uri_format_rdf": [
-      "https://id.erfgoed.net/thesauri/soorten/$1"
-    ]
+    "uri_format_rdf": "https://id.erfgoed.net/thesauri/soorten/$1"
   },
   "P4317": {
     "database": "Q47517289",
@@ -4343,9 +4287,7 @@
     "pattern": "^\\d+-\\d$",
     "prefix": "P4338",
     "uri_format": "https://loinc.org/$1",
-    "uri_format_rdf": [
-      "http://loinc.org/rdf/$1"
-    ]
+    "uri_format_rdf": "http://loinc.org/rdf/$1"
   },
   "P4355": {
     "database": "Q899676",
@@ -4423,9 +4365,7 @@
     "name": "Xenopus Anatomical Ontology ID",
     "prefix": "P4495",
     "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
   },
   "P4526": {
     "database": "Q4743180",
@@ -4451,9 +4391,7 @@
     "name": "Spider Ontology ID",
     "prefix": "P4537",
     "uri_format": "http://purl.obolibrary.org/obo/SPD_$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/SPD_$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/SPD_$1"
   },
   "P4550": {
     "database": "Q280413",
@@ -4529,9 +4467,7 @@
     "pattern": "^\\d{4}$",
     "prefix": "P4616",
     "uri_format": "https://www.uniprot.org/journals/$1",
-    "uri_format_rdf": [
-      "http://purl.uniprot.org/journals/$1"
-    ]
+    "uri_format_rdf": "http://purl.uniprot.org/journals/$1"
   },
   "P4630": {
     "database": "Q3036834",
@@ -4640,9 +4576,7 @@
     "pattern": "^[A-Z]{1,2}\\d{5}$",
     "prefix": "P4732",
     "uri_format": "https://dx.doi.org/10.1351/goldbook.$1",
-    "uri_format_rdf": [
-      "http://dx.doi.org/10.1351/goldbook.$1"
-    ]
+    "uri_format_rdf": "http://dx.doi.org/10.1351/goldbook.$1"
   },
   "P4753": {
     "database": "Q47129765",
@@ -4762,9 +4696,7 @@
     "pattern": "^[CD]\\w{6}(\\w{3}|)$",
     "prefix": "P486",
     "uri_format": "https://meshb.nlm.nih.gov/record/ui?ui=$1",
-    "uri_format_rdf": [
-      "http://id.nlm.nih.gov/mesh/$1"
-    ]
+    "uri_format_rdf": "http://id.nlm.nih.gov/mesh/$1"
   },
   "P4866": {
     "database": "Q7301611",
@@ -4863,9 +4795,7 @@
     "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$",
     "prefix": "P496",
     "uri_format": "https://orcid.org/$1",
-    "uri_format_rdf": [
-      "https://orcid.org/$1"
-    ]
+    "uri_format_rdf": "https://orcid.org/$1"
   },
   "P4971": {
     "database": "Q28136395",
@@ -4916,9 +4846,7 @@
     "pattern": "^urn:lsid:ipni\\.org:names:[1-9]\\d{0,7}-[1234]$",
     "prefix": "P5037",
     "uri_format": "https://powo.science.kew.org/taxon/$1",
-    "uri_format_rdf": [
-      "http://lsid.tdwg.org/$1"
-    ]
+    "uri_format_rdf": "http://lsid.tdwg.org/$1"
   },
   "P5055": {
     "database": "Q51885189",
@@ -4932,9 +4860,7 @@
     "pattern": "^[1-9]\\d{0,7}$",
     "prefix": "P5055",
     "uri_format": "https://www.irmng.org/aphia.php?p=taxdetails&id=$1",
-    "uri_format_rdf": [
-      "urn:lsid:irmng.org:taxname:$1"
-    ]
+    "uri_format_rdf": "urn:lsid:irmng.org:taxname:$1"
   },
   "P5082": {
     "database": "Q19378370",
@@ -5540,9 +5466,7 @@
     "pattern": "^[0-9]*$",
     "prefix": "P5806",
     "uri_format": "http://snomed.info/id/$1",
-    "uri_format_rdf": [
-      "http://snomed.info/id/$1"
-    ]
+    "uri_format_rdf": "http://snomed.info/id/$1"
   },
   "P5818": {
     "database": "Q1339511",
@@ -5685,9 +5609,7 @@
     "pattern": "^CHEMBL\\d+$",
     "prefix": "P592",
     "uri_format": "https://www.ebi.ac.uk/chembl/compound_report_card/$1/",
-    "uri_format_rdf": [
-      "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1"
-    ]
+    "uri_format_rdf": "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1"
   },
   "P5926": {
     "database": "Q7575169",
@@ -5730,9 +5652,7 @@
     "pattern": "^(ENS(|MUS|RNO)G\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)$",
     "prefix": "P594",
     "uri_format": "https://identifiers.org/ensembl/$1",
-    "uri_format_rdf": [
-      "http://rdf.ebi.ac.uk/resource/ensembl/$1"
-    ]
+    "uri_format_rdf": "http://rdf.ebi.ac.uk/resource/ensembl/$1"
   },
   "P5945": {
     "database": "Q58380943",
@@ -6539,9 +6459,7 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6177",
     "uri_format": "https://eunis.eea.europa.eu/species/$1",
-    "uri_format_rdf": [
-      "http://eunis.eea.europa.eu/species/$1"
-    ]
+    "uri_format_rdf": "http://eunis.eea.europa.eu/species/$1"
   },
   "P6179": {
     "database": "Q95044734",
@@ -6759,9 +6677,7 @@
     "pattern": "^[NYXW]P_(\\d{6}|\\d{9})(\\.\\d{1,2})?$",
     "prefix": "P637",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1",
-    "uri_format_rdf": [
-      "http://purl.uniprot.org/refseq/$1"
-    ]
+    "uri_format_rdf": "http://purl.uniprot.org/refseq/$1"
   },
   "P6376": {
     "database": "Q60535830",
@@ -6791,9 +6707,7 @@
     "pattern": "^[0-9][0-9A-Za-z]{3}$",
     "prefix": "P638",
     "uri_format": "https://www.rcsb.org/structure/$1",
-    "uri_format_rdf": [
-      "https://rdf.wwpdb.org/pdb/$1"
-    ]
+    "uri_format_rdf": "https://rdf.wwpdb.org/pdb/$1"
   },
   "P639": {
     "database": "Q7307074",
@@ -7008,9 +6922,7 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P661",
     "uri_format": "https://www.chemspider.com/Chemical-Structure.$1.html",
-    "uri_format_rdf": [
-      "http://rdf.chemspider.com/$1"
-    ]
+    "uri_format_rdf": "http://rdf.chemspider.com/$1"
   },
   "P662": {
     "database": "Q278487",
@@ -7026,9 +6938,7 @@
     "pattern": "^[1-9]\\d{0,8}$",
     "prefix": "P662",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1",
-    "uri_format_rdf": [
-      "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1"
-    ]
+    "uri_format_rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1"
   },
   "P6626": {
     "database": "Q62056291",
@@ -7069,9 +6979,7 @@
     "pattern": "^[A-Z]\\d+$",
     "prefix": "P665",
     "uri_format": "https://www.kegg.jp/entry/$1",
-    "uri_format_rdf": [
-      "http://www.kegg.jp/entry/$1"
-    ]
+    "uri_format_rdf": "http://www.kegg.jp/entry/$1"
   },
   "P6661": {
     "database": "Q19835482",
@@ -7145,9 +7053,7 @@
     "pattern": "^T\\w{6}(\\w{3})?$",
     "prefix": "P6680",
     "uri_format": "https://id.nlm.nih.gov/mesh/$1",
-    "uri_format_rdf": [
-      "http://id.nlm.nih.gov/mesh/$1"
-    ]
+    "uri_format_rdf": "http://id.nlm.nih.gov/mesh/$1"
   },
   "P6689": {
     "database": "Q24088019",
@@ -7176,9 +7082,7 @@
     "pattern": "^M\\w{7}(\\w{2})?$",
     "prefix": "P6694",
     "uri_format": "https://id.nlm.nih.gov/mesh/$1",
-    "uri_format_rdf": [
-      "http://id.nlm.nih.gov/mesh/$1"
-    ]
+    "uri_format_rdf": "http://id.nlm.nih.gov/mesh/$1"
   },
   "P6704": {
     "database": "Q63150425",
@@ -7223,9 +7127,7 @@
     "pattern": "^[A-Z](\\d\\d(.\\d\\d\\d){0,5})?$",
     "prefix": "P672",
     "uri_format": "https://id.nlm.nih.gov/mesh/$1",
-    "uri_format_rdf": [
-      "http://id.nlm.nih.gov/mesh/$1"
-    ]
+    "uri_format_rdf": "http://id.nlm.nih.gov/mesh/$1"
   },
   "P673": {
     "database": "Q305913",
@@ -7308,9 +7210,7 @@
     "pattern": "^\\d{8}$",
     "prefix": "P6778",
     "uri_format": "http://purl.obolibrary.org/obo/GAZ_$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/GAZ_$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/GAZ_$1"
   },
   "P6800": {
     "database": "Q7020",
@@ -7366,9 +7266,7 @@
     "pattern": "^\\d+$",
     "prefix": "P683",
     "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/CHEBI_$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/CHEBI_$1"
   },
   "P685": {
     "database": "Q13711410",
@@ -7382,9 +7280,7 @@
     "pattern": "^[1-9][0-9]{0,6}$",
     "prefix": "P685",
     "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
-    "uri_format_rdf": [
-      "http://purl.uniprot.org/taxonomy/$1"
-    ]
+    "uri_format_rdf": "http://purl.uniprot.org/taxonomy/$1"
   },
   "P6852": {
     "database": "Q115521452",
@@ -7579,9 +7475,7 @@
     "pattern": "^ENS([GT]|MUST|RNOT|DART)\\d{11}|Y[A-Z]{2}\\d{3}[A-Z](-[A-Z])?|FBtr\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}((LA|UA)|[A-C][A-Z]?)))*(\\.\\d{1,4}[a-z]?)+$",
     "prefix": "P704",
     "uri_format": "http://identifiers.org/ensembl/$1",
-    "uri_format_rdf": [
-      "http://rdf.ebi.ac.uk/resource/ensembl/$1"
-    ]
+    "uri_format_rdf": "http://rdf.ebi.ac.uk/resource/ensembl/$1"
   },
   "P705": {
     "database": "Q1344256",
@@ -8144,9 +8038,7 @@
     "pattern": "^CL_[0-9]{7}$",
     "prefix": "P7963",
     "uri_format": "http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
   },
   "P7965": {
     "database": "Q77125337",
@@ -8202,9 +8094,7 @@
     "name": "AGROVOC ID",
     "prefix": "P8061",
     "uri_format": "http://aims.fao.org/aos/agrovoc/$1",
-    "uri_format_rdf": [
-      "http://aims.fao.org/aos/agrovoc/$1"
-    ]
+    "uri_format_rdf": "http://aims.fao.org/aos/agrovoc/$1"
   },
   "P8062": {
     "database": "Q2868312",
@@ -8653,9 +8543,7 @@
     "pattern": "^[1-9]\\d{0,6}$",
     "prefix": "P850",
     "uri_format": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=$1",
-    "uri_format_rdf": [
-      "urn:lsid:marinespecies.org:taxname:$1"
-    ]
+    "uri_format_rdf": "urn:lsid:marinespecies.org:taxname:$1"
   },
   "P8502": {
     "database": "Q12056889",
@@ -8812,7 +8700,7 @@
   },
   "P8724": {
     "database": "Q172266",
-    "description": "identifier for a scientific name in the Biodiversity Heritage Library",
+    "description": "identifier for a scientific name in the Biodiversity Heritage Library (BHL)",
     "example": [
       "Hamadryas",
       "Ornithorhynchus_anatinus",
@@ -9015,9 +8903,7 @@
     "name": "DBLP publication ID",
     "prefix": "P8978",
     "uri_format": "https://dblp.org/rec/$1",
-    "uri_format_rdf": [
-      "https://dblp.org/rec/$1.rdf"
-    ]
+    "uri_format_rdf": "https://dblp.org/rec/$1.rdf"
   },
   "P9026": {
     "database": "Q107214677",
@@ -9175,9 +9061,7 @@
     "pattern": "^\\d+$",
     "prefix": "P9262",
     "uri_format": "https://doi.org/10.26434/CHEMRXIV.$1",
-    "uri_format_rdf": [
-      "http://dx.doi.org/10.26434/chemrxiv.$1.v1"
-    ]
+    "uri_format_rdf": "http://dx.doi.org/10.26434/chemrxiv.$1.v1"
   },
   "P9272": {
     "database": "Q5690673",
@@ -9243,9 +9127,7 @@
     "pattern": "^[0-9]{7}$",
     "prefix": "P9334",
     "uri_format": "http://purl.obolibrary.org/obo/CEPH_$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/CEPH_$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/CEPH_$1"
   },
   "P9340": {
     "database": "Q199897",
@@ -9261,9 +9143,7 @@
     "pattern": "^D\\d{6}(\\d{3}|)Q\\d{6}(\\d{3}|)$",
     "prefix": "P9340",
     "uri_format": "https://id.nlm.nih.gov/mesh/$1",
-    "uri_format_rdf": [
-      "http://id.nlm.nih.gov/mesh/$1"
-    ]
+    "uri_format_rdf": "http://id.nlm.nih.gov/mesh/$1"
   },
   "P9341": {
     "database": "Q199897",
@@ -9295,9 +9175,7 @@
     "pattern": "^[0-9]{7}$",
     "prefix": "P9356",
     "uri_format": "http://purl.obolibrary.org/obo/HAO_$1",
-    "uri_format_rdf": [
-      "http://purl.obolibrary.org/obo/HAO_$1"
-    ]
+    "uri_format_rdf": "http://purl.obolibrary.org/obo/HAO_$1"
   },
   "P938": {
     "database": "Q837101",
@@ -9596,9 +9474,7 @@
     "pattern": "^[1-9]\\d{0,7}-[123]$",
     "prefix": "P961",
     "uri_format": "https://www.ipni.org/n/$1",
-    "uri_format_rdf": [
-      "http://ipni.org/urn:lsid:ipni.org:names:$1"
-    ]
+    "uri_format_rdf": "http://ipni.org/urn:lsid:ipni.org:names:$1"
   },
   "P962": {
     "database": "Q2574835",
