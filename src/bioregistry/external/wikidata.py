@@ -251,6 +251,13 @@ def _get_wikidata():
                     )
                 )
 
+        # remove URNs
+        bindings["uri_format_rdf"] = [
+            uri_format_rdf
+            for uri_format_rdf in bindings.get("uri_format_rdf", [])
+            if not uri_format_rdf.startswith("urn:")
+        ]
+
         for key, canonicals in [
             ("database", CANONICAL_DATABASES),
             ("homepage", CANONICAL_HOMEPAGES),
@@ -286,7 +293,7 @@ def _get_wikidata():
                 pattern = pattern + "$"
             bindings["pattern"] = pattern
 
-        rv[prefix] = bindings
+        rv[prefix] = {k: v for k, v in bindings.items() if k and v}
 
     return rv
 

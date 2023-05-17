@@ -5,7 +5,7 @@
 from typing import Mapping
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external.wikidata import get_wikidata, SKIP
+from bioregistry.external.wikidata import SKIP, get_wikidata
 
 __all__ = [
     "WikidataAligner",
