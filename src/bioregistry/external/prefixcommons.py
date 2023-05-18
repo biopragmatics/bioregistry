@@ -134,8 +134,6 @@ def _process_row(line: str):
     uri_format = rv.pop("uri_format", None)
     if uri_format:
         uri_format = uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
-        if "obo" in uri_format:
-            print(prefix, uri_format)
         if uri_format != "http://purl.obolibrary.org/obo/$1":
             rv["uri_format"] = uri_format
 
