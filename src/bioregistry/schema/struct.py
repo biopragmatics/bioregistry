@@ -65,6 +65,12 @@ ORCID_TO_GITHUB = {
     "0000-0001-9018-4680": "alimanfoo",
 }
 
+URI_IRI_INFO = (
+    "Note that this field is generic enough to accept IRIs. "
+    "See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) "
+    "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
+)
+
 
 def _uri_sort(uri):
     try:
@@ -216,7 +222,7 @@ class Provider(BaseModel):
     uri_format: str = Field(
         ...,
         title="URI Format",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
 
     def resolve(self, identifier: str) -> str:
@@ -281,12 +287,12 @@ class Resource(BaseModel):
     )
     uri_format: Optional[str] = Field(
         title="URI format string",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
         integration_status="required_for_new",
     )
     rdf_uri_format: Optional[str] = Field(
         title="RDF URI format string",
-        description="The RDF URI format string, which must have at least one ``$1`` in it",
+        description=f"The RDF URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
