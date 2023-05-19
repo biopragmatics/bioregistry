@@ -66,6 +66,7 @@ IDOT = rdflib.Namespace("http://identifiers.org/idot/")
 ROR = rdflib.Namespace("https://ror.org/")
 WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
+BRIDGEDB = rdflib.Namespace("http://vocabularies.bridgedb.org/ops#")
 
 bioregistry_schema_terms = [
     ClassTerm("0000001", "Class", "Resource", "A type for entries in the Bioregistry's registry."),
@@ -89,10 +90,7 @@ bioregistry_schema_terms = [
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
-        xrefs=[
-            IDOT["exampleIdentifier"],
-            VANN["example"],
-        ],
+        xrefs=[IDOT["exampleIdentifier"], VANN["example"], BRIDGEDB["idExample"]],
     ),
     PropertyTerm(
         "0000006",
@@ -105,6 +103,7 @@ bioregistry_schema_terms = [
         xrefs=[
             IDOT["accessPattern"],
             WIKIDATA["P1630"],
+            BRIDGEDB["hasPrimaryUriPattern"],
         ],
     ),
     PropertyTerm(
@@ -126,6 +125,7 @@ bioregistry_schema_terms = [
         xrefs=[
             IDOT["identifierPattern"],
             WIKIDATA["P1793"],
+            BRIDGEDB["hasRegexPattern"],
         ],
     ),
     # PropertyTerm(
@@ -309,7 +309,12 @@ bioregistry_schema_terms = [
         "has canonical prefix",
         domain="0000001",
         range=XSD.string,
-        xrefs=[SH.prefix, VANN.preferredNamespacePrefix, IDOT["preferredPrefix"]],
+        xrefs=[
+            SH.prefix,
+            VANN.preferredNamespacePrefix,
+            IDOT["preferredPrefix"],
+            BRIDGEDB["systemCode"],
+        ],
     ),
 ]
 bioregistry_schema_extras = [

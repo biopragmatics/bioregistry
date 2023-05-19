@@ -24,7 +24,7 @@ def get_biocontext(force_download: bool = False) -> Mapping[str, Mapping[str, An
     """Get the BioContext context map.
 
     :param force_download: If true, forces download. If false and the file
-        is already cached, resuses it.
+        is already cached, reuses it.
     :returns: The biocontext data dictionary
 
     .. seealso:: https://github.com/prefixcommons/biocontext
@@ -32,7 +32,7 @@ def get_biocontext(force_download: bool = False) -> Mapping[str, Mapping[str, An
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
-    download(url=URL, path=RAW_PATH, force=True)
+    download(url=URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = json.load(file)
     rv = {

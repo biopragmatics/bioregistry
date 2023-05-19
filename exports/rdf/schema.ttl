@@ -39,7 +39,8 @@ bioregistry.schema:0000005 a rdf:Property ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
     owl:equivalentProperty idot:exampleIdentifier,
-        vann:example .
+        vann:example,
+        <http://vocabularies.bridgedb.org/ops#idExample> .
 
 bioregistry.schema:0000006 a rdf:Property ;
     rdfs:label "has provider formatter" ;
@@ -47,6 +48,7 @@ bioregistry.schema:0000006 a rdf:Property ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
     owl:equivalentProperty idot:accessPattern,
+        <http://vocabularies.bridgedb.org/ops#hasPrimaryUriPattern>,
         wikidata:P1630 .
 
 bioregistry.schema:0000007 a rdf:Property ;
@@ -61,6 +63,7 @@ bioregistry.schema:0000008 a rdf:Property ;
     rdfs:domain bioregistry.schema:0000001 ;
     rdfs:range xsd:string ;
     owl:equivalentProperty idot:identifierPattern,
+        <http://vocabularies.bridgedb.org/ops#hasRegexPattern>,
         wikidata:P1793 .
 
 bioregistry.schema:0000010 a rdf:Property ;
@@ -163,5 +166,6 @@ bioregistry.schema:0000029 a rdf:Property ;
     rdfs:range xsd:string ;
     owl:equivalentProperty idot:preferredPrefix,
         vann:preferredNamespacePrefix,
+        <http://vocabularies.bridgedb.org/ops#systemCode>,
         sh:prefix .
 
