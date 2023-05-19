@@ -1578,11 +1578,10 @@ class Resource(BaseModel):
             The default is:
 
             1. Manually curated URI Format in the Bioregistry
-            2. Default first party (i.e. reach inside other resources like MIRIAM, BioContext, Wikidata
-               for their annotations )
-            2. OBO Foundry
+            2. Default first party (e.g., MIRIAM, BioContext, Prefix Commons, Wikidata)
+            3. OBO Foundry
             4. MIRIAM/Identifiers.org (i.e., make a URI like https://identifiers.org/<prefix>:<identifier>)
-            5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>
+            5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
