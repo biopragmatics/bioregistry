@@ -1577,13 +1577,13 @@ class Resource(BaseModel):
         :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
-            1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
+            1. Manually curated URI Format in the Bioregistry
+            2. Default first party (i.e. reach inside other resources like MIRIAM, BioContext, Wikidata
+               for their annotations )
             2. OBO Foundry
-            3. BioContext
-            4. MIRIAM/Identifiers.org
-            5. N2T
+            4. MIRIAM/Identifiers.org (i.e., make a URI like https://identifiers.org/<prefix>:<identifier>)
+            5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>
             6. OLS
-            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
