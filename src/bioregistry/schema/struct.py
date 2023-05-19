@@ -65,6 +65,12 @@ ORCID_TO_GITHUB = {
     "0000-0001-9018-4680": "alimanfoo",
 }
 
+URI_IRI_INFO = (
+    "Note that this field is generic enough to accept IRIs. "
+    "See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) "
+    "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
+)
+
 
 def _uri_sort(uri):
     try:
@@ -216,7 +222,7 @@ class Provider(BaseModel):
     uri_format: str = Field(
         ...,
         title="URI Format",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
 
     def resolve(self, identifier: str) -> str:
@@ -281,8 +287,12 @@ class Resource(BaseModel):
     )
     uri_format: Optional[str] = Field(
         title="URI format string",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
         integration_status="required_for_new",
+    )
+    rdf_uri_format: Optional[str] = Field(
+        title="RDF URI format string",
+        description=f"The RDF URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
@@ -1470,8 +1480,25 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_rdf_uri_format(self) -> Optional[str]:
+        """Get the URI format string for the given prefix for RDF usages."""
+        if self.rdf_uri_format:
+            return self.rdf_uri_format
+        if self.obofoundry:
+            return self.get_obofoundry_uri_format()
+        if self.wikidata and "uri_format_rdf" in self.wikidata:
+            return self.wikidata["uri_format_rdf"]
+        # TODO also pull from Prefix Commons
+        return None
+
+    def get_rdf_uri_prefix(self) -> Optional[str]:
+        """Get the URI prefix for the prefix for RDF usages."""
+        rdf_uri_format = self.get_rdf_uri_format()
+        return self._clip_uri_format(rdf_uri_format)
+
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
+        "rdf": get_rdf_uri_format,
         "bioregistry": get_bioregistry_uri_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
@@ -1550,13 +1577,12 @@ class Resource(BaseModel):
         :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
-            1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
-            2. OBO Foundry
-            3. BioContext
-            4. MIRIAM/Identifiers.org
-            5. N2T
+            1. Manually curated URI Format in the Bioregistry
+            2. Default first party (e.g., MIRIAM, BioContext, Prefix Commons, Wikidata)
+            3. OBO Foundry
+            4. MIRIAM/Identifiers.org (i.e., make a URI like https://identifiers.org/<prefix>:<identifier>)
+            5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
-            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -1596,7 +1622,9 @@ class Resource(BaseModel):
                 return uri_prefix
         return None
 
-    def _clip_uri_format(self, uri_format: str) -> Optional[str]:
+    def _clip_uri_format(self, uri_format: Optional[str]) -> Optional[str]:
+        if uri_format is None:
+            return None
         count = uri_format.count("$1")
         if 0 == count:
             logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
@@ -1644,6 +1672,9 @@ class Resource(BaseModel):
         miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
         if miriam_legacy_uri_prefix:
             yield miriam_legacy_uri_prefix
+        rdf_uri_format = self.get_rdf_uri_format()
+        if rdf_uri_format:
+            yield rdf_uri_format
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
