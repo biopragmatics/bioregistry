@@ -6,7 +6,7 @@ import json
 import unittest
 
 import bioregistry
-from bioregistry import manager
+from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
 from bioregistry.utils import extended_encoder
 
@@ -87,7 +87,7 @@ class TestContexts(unittest.TestCase):
                 self.assertRegex(maintainer.orcid, "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$")
 
             for metaprefix in context.uri_prefix_priority or []:
-                self.assertIn(metaprefix, self.valid_metaprefixes.union({"default"}))
+                self.assertIn(metaprefix, self.valid_metaprefixes.union(Resource.URI_FORMATTERS))
             for metaprefix in context.prefix_priority or []:
                 self.assertIn(
                     metaprefix,
