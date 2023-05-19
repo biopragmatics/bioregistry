@@ -8,8 +8,6 @@
 import json
 from typing import Any, MutableMapping, Optional
 
-from fairsharing_client import load_fairsharing
-
 from bioregistry.constants import EXTERNAL
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
@@ -37,6 +35,9 @@ def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
+
+    from fairsharing_client import load_fairsharing
+
     data = load_fairsharing(force_download=force_download, use_tqdm=use_tqdm)
     rv = {}
     for prefix, record in data.items():
