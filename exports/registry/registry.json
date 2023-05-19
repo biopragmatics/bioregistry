@@ -2752,7 +2752,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "BCGO",
     "repository": "https://github.com/obi-bcgo/bcgo",
-    "uri_format": "http://purl.obolibrary.org/obo/BCGO_$1",
+    "uri_format": "http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/$1",
     "version": "2015-07-08"
   },
   "bcio": {
@@ -3340,7 +3340,7 @@
         "year": 2007
       }
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/BILA_$1",
+    "uri_format": "http://4dx.embl.de/4DXpress/reg/all/cview/gene.do?geneID=$1",
     "version": "2019-06-12"
   },
   "bind": {
@@ -4983,6 +4983,23 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "brenda.ligandgroup",
     "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"
+  },
+  "bridgedb": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary about resources, similar to bioregistry.schema, venn, idot, etc.",
+    "example": "hasPrimaryUriPattern",
+    "homepage": "https://bridgedb.org",
+    "name": "BridgeDb Vocabulary",
+    "preferred_prefix": "bridgedb",
+    "references": [
+      "https://github.com/bridgedb/BridgeDb/blob/master/org.bridgedb.rdf/resources/IdentifiersOrgDataSource.ttl"
+    ],
+    "uri_format": "http://vocabularies.bridgedb.org/ops#$1"
   },
   "broad": {
     "description": "Magnaporthe grisea, the causal agent of rice blast disease, is one of the most devasting threats to food security worldwide and is a model organism for studying fungal phytopathogenicity and host-parasite interactions. The Magnaporthe comparative genomics database provides accesses to multiple fungal genomes from the Magnaporthaceae family to facilitate the comparative analysis. As part of the Broad Fungal Genome Initiative, the Magnaporthe comparative project includes the finished M. oryzae (formerly M. grisea) genome, as well as the draft assemblies of Gaeumannomyces graminis var. tritici and M. poae.",
@@ -17316,7 +17333,7 @@
     "references": [
       "https://twitter.com/Bgeedb/status/1350124337815281664"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/EV_$1"
+    "uri_format": "http://www.evocontology.org/site/Main/BrowseEvoc?x_termid=$1"
   },
   "evm": {
     "contributor": {
@@ -17424,7 +17441,7 @@
     "synonyms": [
       "ExO"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/EXO_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/ExO_$1",
     "version": "2022-06-29"
   },
   "fabio": {
@@ -18824,6 +18841,15 @@
     "name": "Food-Biomarker Ontology",
     "pattern": "^\\d{4,6}$",
     "preferred_prefix": "FOBI",
+    "providers": [
+      {
+        "code": "fobi.legacy",
+        "description": "An incorrect encoding of OBO purls",
+        "homepage": "http://purl.obolibrary.org/obo/fobi",
+        "name": "FOBI Hash",
+        "uri_format": "http://purl.obolibrary.org/obo/fobi.owl#FOBI:$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1093/bioinformatics/btab626",
@@ -24615,7 +24641,7 @@
     "synonyms": [
       "HsapDv"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/HSAPDV_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/HsapDv_$1",
     "version": "2020-03-10"
   },
   "hsdb": {
@@ -24669,6 +24695,15 @@
     "name": "Health Surveillance Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "HSO",
+    "providers": [
+      {
+        "code": "hso.legacy",
+        "description": "An incorrect encoding of OBO purls",
+        "homepage": "http://purl.obolibrary.org/obo/hso",
+        "name": "HSO Hash",
+        "uri_format": "http://purl.obolibrary.org/obo/hso.owl#HSO_$1"
+      }
+    ],
     "repository": "https://github.com/SVA-SE/HSO",
     "uri_format": "http://purl.obolibrary.org/obo/HSO_$1",
     "version": "2021-12-13"
@@ -25049,6 +25084,15 @@
     "name": "International Classification of Diseases, 10th Revision, Clinical Modification",
     "pattern": "^([A-Z][0-9][0-9AB]((-[A-Z][0-9][0-9AB])|(\\.[0-9A-KXZ]([0-9A-EXYZ]([0-9A-HX][0-59A-HJKMNP-S]?)?)?)?))$",
     "preferred_prefix": "icd10cm",
+    "providers": [
+      {
+        "code": "bioportal.purl",
+        "description": "PURL from BioPortal",
+        "homepage": "http://purl.bioontology.org/ontology/ICD10CM",
+        "name": "BioPortal PURL",
+        "uri_format": "http://purl.bioontology.org/ontology/ICD10CM/$1"
+      }
+    ],
     "synonyms": [
       "ICD10CM"
     ],
@@ -26001,7 +26045,7 @@
         "uri_format": "http://bio2rdf.org/iev:$1"
       }
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/IEV_$1"
+    "uri_format": "http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IEV&id=$1"
   },
   "igrhcellid": {
     "description": "Cell line databases/resources",
@@ -26523,7 +26567,7 @@
         "uri_format": "http://bio2rdf.org/imr:$1"
       }
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/IMR_$1"
+    "uri_format": "http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=$1"
   },
   "inaturalist.observation": {
     "contributor": {
@@ -32755,7 +32799,7 @@
     "synonyms": [
       "MmusDv"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/MMUSDV_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/MmusDv_$1",
     "version": "2020-03-10"
   },
   "mo": {
@@ -33143,7 +33187,7 @@
     ],
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
-    "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
+    "uri_format": "http://www.bioregistry.io/$1",
     "version": "2023-04-04"
   },
   "mop": {
@@ -37246,8 +37290,7 @@
       }
     ],
     "repository": "https://github.com/OBOFoundry/OBOFoundry.github.io",
-    "twitter": "OBOFoundry",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "twitter": "OBOFoundry"
   },
   "oboinowl": {
     "contributor": {
@@ -37847,7 +37890,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "OlatDv",
     "repository": "https://github.com/obophenotype/developmental-stage-ontologies",
-    "uri_format": "http://purl.obolibrary.org/obo/OLATDV_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/OlatDv_$1",
     "version": "2020-03-10"
   },
   "om": {
@@ -40671,6 +40714,15 @@
     "name": "The Prescription of Drugs Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "PDRO",
+    "providers": [
+      {
+        "code": "pdro.legacy",
+        "description": "An incorrect encoding of OBO purls",
+        "homepage": "http://purl.obolibrary.org/obo/pdro",
+        "name": "PDRO Hash",
+        "uri_format": "http://purl.obolibrary.org/obo/PDRO/PDRO.owl#PDRO_$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.3390/ijerph182212025",
@@ -40719,7 +40771,7 @@
     "synonyms": [
       "PdumDv"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/PDUMDV_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/PdumDv_$1",
     "version": "2020-03-10"
   },
   "peco": {
@@ -46926,7 +46978,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "RXNO",
     "repository": "https://github.com/rsc-ontologies/rxno",
-    "uri_format": "http://purl.obolibrary.org/obo/RXNO_$1",
+    "uri_format": "http://www.rsc.org/publishing/journals/prospect/ontology.asp?id=$1",
     "version": "2021-12-16"
   },
   "rxnorm": {
@@ -49869,6 +49921,7 @@
       "SNOMEDCT_US_2022_07_31",
       "SNOMEDCT_US_2022_09_01",
       "SNOMEDCT_US_2022_12_31",
+      "SNOMEDCT_US_2023_02_28",
       "SNOMED_CT",
       "SNOMED_CT_US_2018_03_01",
       "SNOWMEDCT",
@@ -51401,7 +51454,7 @@
     "synonyms": [
       "SYMP"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/SYMP_$1",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1",
     "version": "2022-11-30"
   },
   "syoid": {
@@ -54545,7 +54598,7 @@
         "year": 2013
       }
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/VARIO_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/VariO_$1",
     "version": "2018-11-09"
   },
   "vbase2": {
@@ -55509,7 +55562,7 @@
       }
     ],
     "repository": "https://github.com/vaccineontology/VO",
-    "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/$1",
     "version": "1.1.218"
   },
   "void": {
@@ -55849,7 +55902,7 @@
     "synonyms": [
       "WBbt"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
+    "uri_format": "http://wormbase.org/db/ontology/anatomy?name=$1",
     "version": "2023-04-07"
   },
   "wbls": {
@@ -56713,7 +56766,7 @@
       }
     ],
     "repository": "https://github.com/xenopus-anatomy/xao",
-    "uri_format": "http://purl.obolibrary.org/obo/XAO_$1",
+    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1",
     "version": "2022-08-29"
   },
   "xco": {
@@ -56954,8 +57007,7 @@
       "ontobee": "XL"
     },
     "name": "Cross-linker reagents ontology",
-    "preferred_prefix": "xl",
-    "uri_format": "http://purl.obolibrary.org/obo/XL_$1"
+    "preferred_prefix": "xl"
   },
   "xlmod": {
     "contact": {
