@@ -271,6 +271,8 @@ class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
     class Config:
+        """Configuration for pydantic class"""
+
         underscore_attrs_are_private = True
 
     prefix: str = Field(
