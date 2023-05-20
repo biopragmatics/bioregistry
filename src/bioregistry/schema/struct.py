@@ -270,6 +270,9 @@ class Publication(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
+    class Config:
+        underscore_attrs_are_private = True
+
     prefix: str = Field(
         ...,
         description="The prefix for this resource",
@@ -573,6 +576,9 @@ class Resource(BaseModel):
     #: External data from bartoc
     bartoc: Optional[Mapping[str, Any]] = None
 
+    # Cached compiled pattern for identifiers
+    _compiled_pattern: Optional[re.Pattern] = None
+
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
         return self.dict().get(metaprefix) or dict()
@@ -822,11 +828,13 @@ class Resource(BaseModel):
 
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
+        if self._compiled_pattern:
+            return self._compiled_pattern
         pattern = self.get_pattern()
         if pattern is None:
             return None
-        # FIXME cache this
-        return re.compile(pattern)
+        self._compiled_pattern = re.compile(pattern)
+        return self._compiled_pattern
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
         r"""Get the pattern for the prefix including a banana if available.
