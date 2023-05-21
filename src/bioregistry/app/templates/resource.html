@@ -82,7 +82,14 @@
             </div>
         </div>
         <div class="card-body">
-            {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if description %}
+                <p>
+                {% if resource.get_logo() %}
+                <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ resource.get_name() }}"/>
+                {% endif %}
+                {{ description }}
+                </p>
+            {% endif %}
             {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that

@@ -797,6 +797,7 @@ class Manager:
             synonyms=sorted(resource.get_synonyms()),
             repository=resource.get_repository(),
             keywords=resource.get_keywords(),
+            logo=resource.get_logo(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
