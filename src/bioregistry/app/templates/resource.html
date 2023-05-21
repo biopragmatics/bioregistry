@@ -504,6 +504,22 @@
             </table>
         </div>
     {% endif %}
+
+    {% if resource.get_rdf_uri_format() %}
+        <div class="card" style="margin-top: 20px">
+            <a id="mappings"></a>
+            <h5 class="card-header">RDF Information</h5>
+            <div class="card-body">
+                <p>
+                    When using this resource in RDF, the following URI format should be used:
+                </p>
+                <p>
+                    <code>{{ resource.get_rdf_uri_format() }}</code>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+
     {% if providers %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
