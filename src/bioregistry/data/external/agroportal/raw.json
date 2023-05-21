@@ -12,7 +12,7 @@
       "email": "gs_bouazzouni@esi.dz",
       "name": "Bouazzouni syphax"
     },
-    "description": "Le catalogue des produits phytopharmaceutiques de l’ANSES en une base de connaissances OWL dont le modèle ontologique est celui de la base de données E-Phy (https://ephy.anses.fr/) et les instances sont les produits qui y sont listés, alignées avec d’autres ressources sémantiques tel que le thésaurus French Crop Usage pour les cultures et l’ontologie CHEBI pour les familles chimiques. Cependant considérant que nos organismes ne sont pas des autorités pour ce catalogue, notre modèle de données est volontairement “bridé” pour être complètement rétro-compatible avec la base d’origine de façon à facilement mettre à jour notre ontologie à partir de nouveaux exports de l’ANSES.",
+    "description": "Le catalogue des produits phytopharmaceutiques de l’ANSES en une base de connaissances OWL dont le modèle ontologique est celui de la base de données E-Phy (https://ephy.anses.fr/) et les instances sont les produits qui y sont listés, alignées avec d’autres ressources sémantiques tel que le thésaurus French Crop Usage pour les cultures et l’ontologie CHEBI pour les familles chimiques. Cependant considérant que nos organismes ne sont pas des autorités pour ce catalogue, notre modèle de données est volontairement “bridé” pour être complètement rétro compatible avec la base d’origine de façon à facilement mettre à jour notre ontologie à partir de nouveaux exports de l’ANSES.",
     "exampleIdentifier": "http://www.d2kab.org/ontologies/ephy#PhraseRisque",
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/PHYS",
@@ -1083,7 +1083,6 @@
       "https://data.agroportal.lirmm.fr/groups/RICE"
     ],
     "homepage": "http://www.ebi.ac.uk/efo/",
-    "license": "Copyright [2014] EMBL - European Bioinformatics Institute\nLicensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the\nLicense.",
     "links": {
       "@context": {
         "analytics": "http://data.bioontology.org/metadata/Analytics",
@@ -1131,7 +1130,7 @@
     "name": "Experimental Factor Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.53.0",
+    "version": "3.54.0",
     "viewingRestriction": "public"
   },
   {
@@ -3054,6 +3053,16 @@
     "@id": "https://data.agroportal.lirmm.fr/ontologies/CDNO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "CDNO",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/Lilianaandresh",
+      "https://data.agroportal.lirmm.fr/users/Landres"
+    ],
+    "contact": {
+      "email": "landreshdz@gmail.com",
+      "name": "Liliana Andrés‐Hernández"
+    },
+    "description": "The CDNO provides structured terminologies to describe nutritional attributes of material entities that contribute to human diet. These terms are intended primarily to be associated with datasets that quantify concentration of chemical nutritional components derived from samples taken from any stage in the production of food raw materials (including from crops, livestock, fisheries) and through processing and supply chains. Additional knowledge associated with these dietary sources may be represented by terms that describe functional, physical and other attributes. Whilst recognising that dietary nutrients within food substrates may be present as complex and dynamic physical and chemical structures or mixtures, CDNO focuses on components typically quantified in an analytical chemistry laboratory. The primary CDNO class ‘dietary nutritional component’ contains hierarchical sets of terms organised to reflect commonly used classifications of chemical food composition. This class does not represent an exhaustive classification of chemical components, but focuses on structuring terms according to widely accepted categories. This class is independent of, but may be used in conjunction with, classes that describe ‘analytical methods’ for quantification, ‘physical properties’ or ‘dietary function’. Quantification data may be used and reported in research literature, to inform food composition tables and labelling, or for supply chain quality assurance and control. More specifically, terms within the ‘nutritional component concentration’ class may be used to represent quantification of components described in the ‘dietary nutritional component’ class. Concentration data are intended to be described in conjunction with post-composed metadata concepts, such as represented by the Food Ontology (FoodOn) ‘Food product by organism’, which derives from some food or anatomical entity and a NCBI organismal classification ontology (NCBITaxon) entity. The common vocabulary and relationships defined within CDNO should facilitate description, communication and exchange of material entity-derived nutritional composition datasets typically generated by analytical laboratories. The organisation of the vocabulary is structured to reflect common categories variously used by those involved in crop, livestock or other organismal production, associated R&D and breeding, as well as the food processing and supply sector, and nutritionists, inlcuding compilers and users of food composition databases. The CDNO therefore supports characterisation of genetic diversity and management of biodiversity collections, as well as sharing of knowledge relating to dietary composition between a wider set of researchers, breeders, farmers, processors and other stakeholders. Further development of the functional class should also assist in understanding how interactions between organismal genetic and environmental variation contribute to human diet and health in the farm to fork continuum.",
+    "exampleIdentifier": "http://purl.obolibrary.org/obo/CDNO_0200815",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY"
     ],
@@ -3063,6 +3072,7 @@
       "https://data.agroportal.lirmm.fr/categories/GENPLANT",
       "https://data.agroportal.lirmm.fr/categories/NUTRITION"
     ],
+    "license": "https://creativecommons.org/licenses/unspecified",
     "links": {
       "@context": {
         "analytics": "http://data.bioontology.org/metadata/Analytics",
@@ -5329,7 +5339,7 @@
       "email": "geg18@aber.ac.uk",
       "name": "George Gkoutos"
     },
-    "description": "An ontology of phenotypic qualities (properties, attributes or characteristics)., An ontology of phenotypic qualities (properties, attributes or characteristics).",
+    "description": "An ontology of phenotypic qualities (properties, attributes or characteristics).",
     "exampleIdentifier": "http://purl.obolibrary.org/obo/PATO_0001464",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY",
@@ -5390,7 +5400,7 @@
     "name": "Phenotype And Trait Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/pato-ontology/pato/",
-    "version": "2023-02-17",
+    "version": "2023-05-18",
     "viewingRestriction": "public"
   },
   {
@@ -5455,7 +5465,7 @@
     },
     "name": "Stratified lexicon of water related geophysical and textual data",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "viewingRestriction": "public",
     "views": [
       "https://data.agroportal.lirmm.fr/ontologies/LEXEAU-FR"
@@ -8161,7 +8171,7 @@
       "name": "Claire Nédellec"
     },
     "description": "WheatPhenotype (also called Wheat Treat Ontology) is an ontology in OBO format that describes the traits of soft wheat (Triticum aestivum) and the environmental factors that affect these traits. Traits include traits of resistance, development, nutritional, baking quality, etc. Environmental factors include biotic and abiotic factors.",
-    "exampleIdentifier": "http://purl.obolibrary.org/obo/ID_00000418",
+    "exampleIdentifier": "http://purl.obolibrary.org/obo/WTO_0000569",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/WHEAT",
       "https://data.agroportal.lirmm.fr/groups/INRAE"
@@ -8169,7 +8179,6 @@
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/TRAITS"
     ],
-    "license": "CC-BY-4.0",
     "links": {
       "@context": {
         "analytics": "http://data.bioontology.org/metadata/Analytics",
@@ -8216,8 +8225,6 @@
     },
     "name": "Wheat Trait and Phenotype Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "publication": "https://doi.org/10.5808/GI.2020.18.2.e14",
-    "version": "2.2.3b",
     "viewingRestriction": "public"
   },
   {
@@ -8645,7 +8652,7 @@
     "name": "Livestock Breed Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
-    "version": "8.1",
+    "version": "8.2",
     "viewingRestriction": "public"
   },
   {
@@ -10209,7 +10216,7 @@
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "publication": "http://geneontology.org/page/publications",
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2023-04-01",
+    "version": "2023-05-10",
     "viewingRestriction": "public"
   },
   {

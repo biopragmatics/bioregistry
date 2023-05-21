@@ -131,11 +131,11 @@ def _process_row(line: str):
             if synonym.lower() != prefix.lower() and " " not in synonym
         ]
 
-    uri_format = rv.get("uri_format")
+    uri_format = rv.pop("uri_format", None)
     if uri_format:
-        rv["uri_format"] = (
-            uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
-        )
+        uri_format = uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
+        if uri_format != "http://purl.obolibrary.org/obo/$1":
+            rv["uri_format"] = uri_format
 
     pattern = rv.get("pattern")
     if pattern:
