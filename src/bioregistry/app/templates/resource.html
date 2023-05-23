@@ -19,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
 {% endblock %}
 
+{% set mastodon = resource.get_mastodon() %}
+{% set mastodon_url = resource.get_mastodon_url() %}
 {% set twitter = resource.get_twitter() %}
 {% set keywords = resource.get_keywords() %}
 
@@ -70,7 +72,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("metaregistry_api.resource", prefix=prefix, format=key) }}">
+                                   href="{{ fastapi_url_for("get_resource", prefix=prefix) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -80,7 +82,14 @@
             </div>
         </div>
         <div class="card-body">
-            {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if description %}
+                <p>
+                {% if resource.get_logo() %}
+                <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ resource.get_name() }}"/>
+                {% endif %}
+                {{ description }}
+                </p>
+            {% endif %}
             {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that
@@ -195,6 +204,11 @@
                     {% if resource.github_request_issue %}
                         <a class="badge badge-pill badge-light" href="https://github.com/biopragmatics/bioregistry/issues/{{ resource.github_request_issue }}">
                             <i class="fas fa-info-circle"></i> Request Discussion
+                        </a>
+                    {% endif %}
+                    {% if mastodon %}
+                        <a class="badge badge-pill badge-light" href="{{ mastodon_url }}">
+                            <i class="fab fa-mastodon"></i> @{{ mastodon }}
                         </a>
                     {% endif %}
                     {% if twitter %}
@@ -497,6 +511,22 @@
             </table>
         </div>
     {% endif %}
+
+    {% if resource.get_rdf_uri_format() %}
+        <div class="card" style="margin-top: 20px">
+            <a id="mappings"></a>
+            <h5 class="card-header">RDF Information</h5>
+            <div class="card-body">
+                <p>
+                    When using this resource in RDF, the following URI format should be used:
+                </p>
+                <p>
+                    <code>{{ resource.get_rdf_uri_format() }}</code>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+
     {% if providers %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>

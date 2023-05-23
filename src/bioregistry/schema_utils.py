@@ -57,7 +57,9 @@ def resources() -> List[Resource]:
 def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {prefix: Resource(prefix=prefix, **value) for prefix, value in data.items()}
+    for prefix, value in data.items():
+        value.setdefault("prefix", prefix)
+    return {prefix: Resource.parse_obj(value) for prefix, value in data.items()}
 
 
 def add_resource(resource: Resource) -> None:
@@ -138,8 +140,15 @@ def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = N
         path = BIOREGISTRY_PATH
     with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
-            registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
+            registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=_registry_encoder
         )
+
+
+def _registry_encoder(r):
+    # this is necessary to make sure the prefix doesn't get duplicated
+    if isinstance(r, Resource):
+        return r.dict(exclude_none=True, exclude={"prefix"})
+    return extended_encoder(r)
 
 
 def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:

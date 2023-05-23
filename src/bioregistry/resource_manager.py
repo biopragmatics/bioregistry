@@ -320,7 +320,7 @@ class Manager:
         >>> prefix_map = {"chebi": "https://example.org/chebi:"}
         >>> converter = chain([Converter.from_prefix_map(prefix_map), manager.converter])
         >>> converter.parse_uri("https://example.org/chebi:1234")
-        ('chebi', '1234')
+        ReferenceTuple(prefix='chebi', identifier='1234')
 
         Corner cases:
 
@@ -656,6 +656,8 @@ class Manager:
         """
         from .record_accumulator import get_records
 
+        # first step - filter to resources that have *anything* for a URI prefix
+        # TODO maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
         resources = [
             resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
         ]
@@ -772,7 +774,7 @@ class Manager:
     def rasterize(self):
         """Build a dictionary representing the fully constituted registry."""
         return {
-            prefix: sanitize_model(resource)
+            prefix: sanitize_model(resource, exclude={"prefix"})
             for prefix, resource in self._rasterized_registry().items()
         }
 
@@ -795,6 +797,7 @@ class Manager:
             synonyms=sorted(resource.get_synonyms()),
             repository=resource.get_repository(),
             keywords=resource.get_keywords(),
+            logo=resource.get_logo(),
             # Downloads
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
@@ -805,6 +808,7 @@ class Manager:
             example_extras=resource.example_extras,
             example_decoys=resource.example_decoys,
             uri_format=resource.get_uri_format(),
+            rdf_uri_format=resource.get_rdf_uri_format(),
             providers=resource.get_extra_providers(),
             # Comments
             comment=resource.comment,
@@ -820,6 +824,7 @@ class Manager:
             contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
             owners=resource.owners,
+            mastodon=resource.get_mastodon(),
             twitter=resource.get_twitter(),
             github_request_issue=resource.github_request_issue,
             # Ontology Relations
@@ -1074,7 +1079,7 @@ class Manager:
         obo_iri = self.get_obofoundry_iri(prefix, identifier)
         if ols_prefix is None or obo_iri is None:
             return None
-        return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+        return f"https://www.ebi.ac.uk/ols4/ontologies/{ols_prefix}/terms?iri={obo_iri}"
 
     def get_formatted_iri(self, metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
         """Get an IRI using the format in the metaregistry.

@@ -191,6 +191,16 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.fail(msg=f"bad email: {email}")
 
+    def test_mastodon(self):
+        """Test that all Mastodon handles look like go@genomic.social."""
+        for prefix, resource in self.registry.items():
+            mastodon = resource.get_mastodon()
+            if not mastodon:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertFalse(mastodon.startswith("@"))
+                self.assertEqual(1, mastodon.count("@"))
+
     def test_no_redundant_acronym(self):
         """Test that there is no redundant acronym in the name.
 
@@ -663,10 +673,7 @@ class TestRegistry(unittest.TestCase):
     def test_obo_prefix_map(self):
         """Test the integrity of the OBO prefix map."""
         obofoundry_prefix_map = get_obo_context_prefix_map()
-        self.assert_no_idot(obofoundry_prefix_map)
         self.assertIn("FlyBase", set(obofoundry_prefix_map))
-
-        self.assert_no_idot(get_obo_context_prefix_map(include_synonyms=True))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""

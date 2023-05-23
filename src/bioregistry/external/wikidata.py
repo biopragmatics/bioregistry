@@ -9,7 +9,7 @@ from typing import Dict
 
 import click
 
-from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_PATH, EXTERNAL, URI_FORMAT_KEY
 from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
@@ -18,13 +18,28 @@ __all__ = [
 
 DIRECTORY = EXTERNAL / "wikidata"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
 logger = logging.getLogger(__name__)
 
+PROPERTIES_QUERY = dedent(
+    """\
+    SELECT ?propStr
+    WHERE {
+      VALUES ?category {
+        wd:Q21294996  # chemistry
+        wd:Q22988603  # biology
+        wd:Q80840868  # research
+      }
+      ?prop wdt:P31/wdt:P279+ ?category .
+      BIND( SUBSTR(STR(?prop), 32) AS ?propStr )
+    }
+    ORDER BY ?prop
+    """
+)
+
 #: A query to wikidata for properties related to chemistry, biology, and related
-QUERY = dedent(
+QUERY_FMT = dedent(
     """\
     SELECT DISTINCT
       (?prop AS ?prefix)
@@ -39,12 +54,17 @@ QUERY = dedent(
       (GROUP_CONCAT(DISTINCT ?example_; separator='\\t') AS ?example)
       (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_name)
     WHERE {
-      VALUES ?category {
-        wd:Q21294996  # chemistry
-        wd:Q22988603  # biology
-        wd:Q80840868  # research
+      {
+        VALUES ?category {
+          wd:Q21294996  # chemistry
+          wd:Q22988603  # biology
+          wd:Q80840868  # research
+        }
+        ?prop wdt:P31/wdt:P279+ ?category .
       }
-      ?prop wdt:P31/wdt:P279+ ?category .
+      UNION {
+        VALUES ?prop { %s }
+      }
       BIND( SUBSTR(STR(?prop), 32) AS ?propStr )
       OPTIONAL { ?prop wdt:P1793 ?pattern }
       OPTIONAL { ?prop wdt:P4793 ?miriam }
@@ -67,6 +87,49 @@ QUERY = dedent(
     """
 )
 
+SKIP = {
+    "P3205": "is a relationship",
+    "P3781": "is a relationship",
+    "P4545": "is a relationship",
+    "P3190": "is a relationship",
+    "P4954": "is a relationship",
+    "P4000": "is a relationship",
+    "P3189": "is a relationship",
+    "P3310": "is a relationship",
+    "P3395": "is a data property",
+    "P3387": "is a data property",
+    "P3337": "is a data property",
+    "P3485": "is a data property",
+    "P3486": "is a data property",
+    "P10322": "is a data property",
+    "P10630": "is a data property",
+    "P1193": "is a data property",
+    "P1603": "is a data property",
+    "P2067": "is a data property",
+    "P2844": "is a data property",
+    "P2854": "is a data property",
+    "P3487": "is a data property",
+    "P3492": "is a data property",
+    "P4214": "is a data property",
+    "P3488": "is a data property",
+    "P4250": "is a data property",
+    "P574": "is a data property",
+    "P7770": "is a data property",
+    "P783": "is a data property",
+    "P7862": "is a data property",
+    "P8010": "is a data property",
+    "P8011": "is a data property",
+    "P8049": "is a data property",
+    "P8556": "is a data property",
+    "P9107": "is a data property",
+    "Q112586709": "should not be annotated like a property",
+    "Q111831044": "should not be annotated like a property",
+    "P1104": "is a data property",
+    "P10676": "is a data property",
+    "P181": "is a data property",
+    "P1843": "is a data property",
+    "P225": "is a data property",
+}
 RENAMES = {"propLabel": "name", "propDescription": "description"}
 CANONICAL_DATABASES = {
     "P6800": "Q87630124",  # -> NCBI Genome
@@ -78,6 +141,17 @@ CANONICAL_DATABASES = {
 CANONICAL_HOMEPAGES: Dict[str, str] = {
     "P6852": "https://www.ccdc.cam.ac.uk",
     "P7224": "http://insecta.pro/catalog",
+    "P1761": "http://delta-intkey.com",
+    "P2083": "http://www.leadscope.com",
+    "P7965": "https://www.scilit.net",
+    "P7963": "https://github.com/obophenotype/cell-ontology",
+    "P2275": "http://www.who.int/medicines/services/inn/en/",
+    "P10246": "https://medlineplus.gov/druginfo/herb_All.html",
+    "P10245": "https://medlineplus.gov/druginfo/drug_Aa.html",
+    "P9704": "https://www.monumentaltrees.com/en/",
+    "P9356": "http://portal.hymao.org/projects/32/public/label/list_all",
+    "P3088": "https://taibnet.sinica.edu.tw/home_eng.php",
+    "P486": "http://www.nlm.nih.gov",
 }
 CANONICAL_URI_FORMATS = {
     "P830": "https://eol.org/pages/$1",
@@ -93,7 +167,9 @@ CANONICAL_URI_FORMATS = {
     "P8082": "https://www.mscbs.gob.es/ciudadanos/centros.do?metodo=realizarDetalle&tipo=hospital&numero=$1",
     "P10095": "https://www.surgeons.org/Profile/$1",
     "P5397": "http://www.tierstimmen.org/en/database?field_spec_species_target_id_selective=$1",
+    "P7471": "https://www.inaturalist.org/places/$1",
 }
+CANONICAL_RDF_URI_FORMATS: Dict[str, str] = {}
 
 # Stuff with miriam IDs that shouldn't
 MIRIAM_BLACKLIST = {
@@ -116,26 +192,49 @@ MIRIAM_BLACKLIST = {
 }
 
 
+def _get_mapped():
+    return {
+        value
+        for record in json.loads(BIOREGISTRY_PATH.read_text()).values()
+        for metaprefix, value in record.get("mappings", {}).items()
+        if metaprefix == "wikidata"
+    }
+
+
+def _get_query(properties) -> str:
+    values = " ".join(f"wd:{p}" for p in properties)
+    return QUERY_FMT % values
+
+
 def _get_wikidata():
     """Iterate over Wikidata properties connected to biological databases."""
+    mapped = _get_mapped()
+    # throw out anything that can be queried directly
+    mapped.difference_update(
+        bindings["propStr"]["value"]
+        for bindings in query_wikidata(PROPERTIES_QUERY)
+        if bindings["propStr"]["value"].startswith("P")  # throw away any regular ones
+    )
     rv = {}
-    for bindings in query_wikidata(QUERY):
-        examples = bindings.get("example", {}).get("value", "").split("\t")
+    for bindings in query_wikidata(_get_query(mapped)):
+        bindings = {
+            RENAMES.get(key, key): value["value"]
+            for key, value in bindings.items()
+            if value["value"]
+        }
+        prefix = bindings["prefix"] = removeprefix(
+            bindings["prefix"], "http://www.wikidata.org/entity/"
+        )
+        if prefix in SKIP:
+            continue
+
+        examples = bindings.get("example", "").split("\t")
         if examples and all(
             example.startswith("http://www.wikidata.org/entity/") for example in examples
         ):
             # This is a relationship
             continue
 
-        bindings = {
-            RENAMES.get(key, key): value["value"]
-            for key, value in bindings.items()
-            if value["value"]
-        }
-
-        prefix = bindings["prefix"] = removeprefix(
-            bindings["prefix"], "http://www.wikidata.org/entity/"
-        )
         for key in [
             "homepage",
             "uri_format_rdf",
@@ -152,10 +251,18 @@ def _get_wikidata():
                     )
                 )
 
+        # remove URNs
+        bindings["uri_format_rdf"] = [
+            uri_format_rdf
+            for uri_format_rdf in bindings.get("uri_format_rdf", [])
+            if not uri_format_rdf.startswith("urn:")
+        ]
+
         for key, canonicals in [
             ("database", CANONICAL_DATABASES),
             ("homepage", CANONICAL_HOMEPAGES),
             ("uri_format", CANONICAL_URI_FORMATS),
+            ("uri_format_rdf", CANONICAL_RDF_URI_FORMATS),
         ]:
             # sort by increasing length - the assumption being that the shortest
             # one has the least amount of nonsense, like language tags or extra
@@ -186,7 +293,7 @@ def _get_wikidata():
                 pattern = pattern + "$"
             bindings["pattern"] = pattern
 
-        rv[prefix] = bindings
+        rv[prefix] = {k: v for k, v in bindings.items() if k and v}
 
     return rv
 
@@ -198,7 +305,7 @@ def get_wikidata(force_download: bool = False):
             return json.load(file)
 
     data = _get_wikidata()
-    with RAW_PATH.open("w") as file:
+    with PROCESSED_PATH.open("w") as file:
         json.dump(data, file, indent=2, sort_keys=True)
     return data
 

@@ -188,6 +188,7 @@ aao:
     pubmed: '17992749'
     title: An anatomical ontology for amphibians.
     year: 2007
+  rdf_uri_format: http://purl.obolibrary.org/obo/AAO_$1
   uri_format: http://purl.obolibrary.org/obo/AAO_$1
 abcd:
   contributor:
@@ -324,6 +325,38 @@ aceview.worm:
     title: 'AceView: a comprehensive cDNA-supported gene and transcripts annotation.'
     year: 2006
   uri_format: https://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/av.cgi?db=worm&c=Gene&l=$1
+adcad:
+  contact:
+    email: brycemecum@gmail.com
+    github: amoeba
+    name: Bryce Mecum
+    orcid: 0000-0002-0381-3766
+  contributor:
+    email: j.harry.caufield@gmail.com
+    github: caufieldjh
+    name: Harry Caufield
+    orcid: 0000-0001-5705-7831
+  description: An ontology to support disciplinary annotation of Arctic Data Center
+    datasets.
+  download_rdf: https://github.com/NCEAS/adc-disciplines/raw/main/ADCAD.ttl
+  example: '00000'
+  github_request_issue: 827
+  homepage: https://arcticdata.io/
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    bioportal: ADCAD
+  name: Arctic Data Center Academic Disciplines Ontology
+  pattern: ^\d{5}$
+  preferred_prefix: adcad
+  repository: https://github.com/NCEAS/adc-disciplines
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://purl.dataone.org/odo/ADCAD_$1
 addexbio:
   description: Cell line collections
   example: C0020004/4992
@@ -379,6 +412,27 @@ addgene:
     year: 2012
   twitter: Addgene
   uri_format: http://addgene.org/$1
+adms:
+  contact:
+    email: bert.van.nuffelen@tenforce.com
+    github: bertvannuffelen
+    name: Bert Van Nuffelen
+    orcid: null
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A vocabulary for describing semantic assets, defined as highly reusable
+    metadata (e.g. XML1 schemata, generic data models) and reference data (e.g. code
+    lists, taxonomies, dictionaries, vocabularies).
+  example: Asset
+  homepage: http://www.w3.org/ns/adms
+  license: CC-BY-4.0
+  name: Asset Description Metadata Schema Vocabulary
+  preferred_prefix: adms
+  repository: https://github.com/SEMICeu/ADMS/
+  uri_format: http://www.w3.org/ns/adms#$1
 ado:
   contact:
     email: alpha.tom.kodamullil@scai.fraunhofer.de
@@ -417,9 +471,10 @@ ado:
     title: 'ADO: a disease ontology representing the domain knowledge specific to
       Alzheimer''s disease.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/ADO_$1
   repository: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
   uri_format: http://purl.obolibrary.org/obo/ADO_$1
-  version: 2.0.0
+  version: '2022-06-11'
 adw:
   contact:
     email: adw_geeks@umich.edu
@@ -448,6 +503,7 @@ adw:
   name: Animal natural history and life history
   pattern: ^[A-Z_a-z]+$
   preferred_prefix: ADW
+  rdf_uri_format: http://purl.obolibrary.org/obo/ADW_$1
   uri_format: https://animaldiversity.org/accounts/$1
 aeo:
   appears_in:
@@ -489,6 +545,7 @@ aeo:
     title: The AEO, an Ontology of Anatomical Entities for Classifying Animal Tissues
       and Organs.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/AEO_$1
   repository: https://github.com/obophenotype/human-developmental-anatomy-ontology
   synonyms:
   - AEO_RETIRED
@@ -555,9 +612,11 @@ aero:
     bioportal: AERO
     fairsharing: FAIRsharing.rycy2x
     obofoundry: aero
+    ols: aero
   name: Adverse Event Reporting Ontology
   pattern: ^\d{7}$
   preferred_prefix: AERO
+  rdf_uri_format: http://purl.obolibrary.org/obo/AERO_$1
   uri_format: http://purl.obolibrary.org/obo/AERO_$1
 affy.probeset:
   description: An Affymetrix ProbeSet is a collection of up to 11 short (~22 nucleotide)
@@ -586,7 +645,7 @@ afo:
     name: Allotrope Foundation
     orcid: null
   description: Allotrope Merged Ontology Suite
-  download_owl: http://purl.allotrope.org/voc/afo/merged-OLS/REC/2019/05/10
+  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2023/03/merged-without-qudt-and-inferred
   homepage: https://www.allotrope.org/
   keywords:
   - agricultural engineering
@@ -602,10 +661,11 @@ afo:
     bioportal: AFO
     fairsharing: FAIRsharing.595710
     ols: afo
+    ontobee: AFO
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
-  version: '2019-05-10'
+  version: 2023/03
 aftol.taxonomy:
   contributor_extras:
   - email: laylamichan@ciencias.unam.mx
@@ -787,9 +847,10 @@ agro:
   name: Agronomy Ontology
   pattern: ^\d{8}$
   preferred_prefix: AGRO
+  rdf_uri_format: http://purl.obolibrary.org/obo/AGRO_$1
   repository: https://github.com/AgriculturalSemantics/agro
   uri_format: http://purl.obolibrary.org/obo/AGRO_$1
-  version: '2021-11-05'
+  version: '2022-11-02'
 agrovoc:
   banana: c_
   contact:
@@ -842,6 +903,7 @@ agrovoc:
     pubmed: null
     title: 'AGROVOC: The linked data concept hub for food and agriculture'
     year: 2022
+  rdf_uri_format: http://aims.fao.org/aos/agrovoc/$1
   references:
   - http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_core.nt.zip
   - http://agrovoc.uniroma2.it/latestAgrovoc/agrovoc_lod.nt.zip
@@ -918,9 +980,10 @@ aism:
   name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   pattern: ^\d{7}$
   preferred_prefix: AISM
+  rdf_uri_format: http://purl.obolibrary.org/obo/AISM_$1
   repository: https://github.com/insect-morphology/aism
   uri_format: http://purl.obolibrary.org/obo/AISM_$1
-  version: '2022-06-27'
+  version: '2023-04-14'
 alfred:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -1132,6 +1195,7 @@ amphx:
   name: The Amphioxus Development and Anatomy Ontology
   pattern: ^\d+$
   preferred_prefix: AMPHX
+  rdf_uri_format: http://purl.obolibrary.org/obo/AMPHX_$1
   repository: https://github.com/EBISPOT/amphx_ontology
   uri_format: http://purl.obolibrary.org/obo/AMPHX_$1
   version: '2020-12-18'
@@ -1400,10 +1464,11 @@ apo:
     pubmed: '20157474'
     title: New mutant phenotype data curation system in the Saccharomyces Genome Database.
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/APO_$1
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: https://www.yeastgenome.org/observable/APO:$1
-  version: '2022-07-06'
+  version: '2023-03-25'
 apollosv:
   appears_in:
   - scdo
@@ -1412,8 +1477,8 @@ apollosv:
     github: hoganwr
     name: William Hogan
     orcid: 0000-0002-9881-1017
-  description: Defines terms and relations necessary for interoperation between epidemic
-    models and public health application software that interface with these models
+  description: An OWL2 ontology of phenomena in infectious disease epidemiology and
+    population biology for use in epidemic simulation.
   download_owl: http://purl.obolibrary.org/obo/apollo_sv.owl
   example: '00000443'
   homepage: https://github.com/ApolloDev/apollo-sv
@@ -1455,9 +1520,10 @@ apollosv:
     title: 'Apollo: giving application developers a single point of access to public
       health models using structured vocabularies and Web services.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
   repository: https://github.com/ApolloDev/apollo-sv
   uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
-  version: 4.1.1
+  version: '2023-01-10'
 arachnoserver:
   description: ArachnoServer (www.arachnoserver.org) is a manually curated database
     providing information on the sequence, structure and biological activity of protein
@@ -1630,6 +1696,7 @@ ark:
     fairsharing: FAIRsharing.f928f1
     miriam: ark
     n2t: ark
+  mastodon: arks_org@fosstodon.org
   name: Archival Resource Key
   namespace_in_lui: true
   pattern: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
@@ -1672,6 +1739,7 @@ aro:
     title: 'CARD 2020: antibiotic resistome surveillance with the comprehensive antibiotic
       resistance database.'
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/ARO_$1
   repository: https://github.com/arpcard/aro
   uri_format: http://purl.obolibrary.org/obo/ARO_$1
 arrayexpress:
@@ -2192,6 +2260,7 @@ ato:
   name: Amphibian taxonomy
   pattern: ^\d{7}$
   preferred_prefix: ATO
+  rdf_uri_format: http://purl.obolibrary.org/obo/ATO_$1
   uri_format: http://purl.obolibrary.org/obo/ATO_$1
 atol:
   contact:
@@ -2446,7 +2515,7 @@ bao:
   synonyms:
   - BAO
   uri_format: http://bioportal.bioontology.org/ontologies/BAO/bao:BAO_$1
-  version: 2.7.2
+  version: 2.7.5
 bartoc:
   contact:
     email: voss@gbv.de
@@ -2493,6 +2562,7 @@ bartoc:
     wikidata: null
   pattern: ^[1-9][0-9]*$
   preferred_prefix: bartoc
+  rdf_uri_format: https://bartoc.org/en/node/$1
   references:
   - https://github.com/biopragmatics/bioregistry/issues/783
   repository: https://github.com/gbv/bartoc.org
@@ -2541,12 +2611,15 @@ bcgo:
     bioportal: BCGO
     cellosaurus: BCGO
     obofoundry: bcgo
+    ols: bcgo
     ontobee: BCGO
   name: Beta Cell Genomics Ontology
   pattern: ^\d{7}$
   preferred_prefix: BCGO
+  rdf_uri_format: http://purl.obolibrary.org/obo/BCGO_$1
   repository: https://github.com/obi-bcgo/bcgo
-  uri_format: http://purl.obolibrary.org/obo/BCGO_$1
+  uri_format: http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/$1
+  version: '2015-07-08'
 bcio:
   contact:
     email: srodriguez142857@gmail.com
@@ -2568,6 +2641,7 @@ bcio:
   pattern: ^\d{6}$
   preferred_prefix: bcio
   uri_format: https://w3id.org/BCI-ontology#$1
+  version: '2022-08-24'
 bco:
   appears_in:
   - fovt
@@ -2610,6 +2684,7 @@ bco:
     title: 'Semantics in support of biodiversity knowledge discovery: an introduction
       to the biological collections ontology and related ontologies.'
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/BCO_$1
   repository: https://github.com/BiodiversityOntologies/bco
   uri_format: http://purl.obolibrary.org/obo/BCO_$1
   version: '2021-11-14'
@@ -2633,7 +2708,7 @@ bcrc:
 bcrj:
   description: Cell line collections
   example: 0278
-  homepage: http://bcrj.org.br/celula/bcrj
+  homepage: https://bcrj.org.br/pesquisa/
   mappings:
     cellosaurus: BCRJ
   name: Banco de Celulas do Rio de Janeiro
@@ -2858,6 +2933,7 @@ bfo:
   - ontology
   - subject agnostic
   license: CC-BY-4.0
+  logo: https://avatars2.githubusercontent.com/u/12972134?v=3&s=200
   mappings:
     aberowl: BFO
     agroportal: BFO
@@ -2871,6 +2947,7 @@ bfo:
   name: Basic Formal Ontology
   pattern: ^\d{7}$
   preferred_prefix: BFO
+  rdf_uri_format: http://purl.obolibrary.org/obo/BFO_$1
   repository: https://github.com/BFO-ontology/BFO
   uri_format: http://purl.obolibrary.org/obo/BFO_$1
   version: '2019-08-26'
@@ -3060,9 +3137,9 @@ bigg.reaction:
 bila:
   contact:
     email: henrich@embl.de
-    github: null
-    name: Thorsten Heinrich
-    orcid: null
+    github: ThorstenHen
+    name: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   deprecated: true
   description: This is a record of the Bilateria anatomy terminology and ontology.
     We have been unable to find any further information about this resource.
@@ -3078,6 +3155,7 @@ bila:
     biocontext: BILA
     fairsharing: FAIRsharing.eqgjeq
     obofoundry: bila
+    ols: bila
     prefixcommons: 4dxpress
   name: Bilateria anatomy
   pattern: ^\d{7}$
@@ -3098,7 +3176,9 @@ bila:
     pubmed: '17916571'
     title: '4DXpress: a database for cross-species expression pattern comparisons.'
     year: 2007
-  uri_format: http://purl.obolibrary.org/obo/BILA_$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/BILA_$1
+  uri_format: http://4dx.embl.de/4DXpress/reg/all/cview/gene.do?geneID=$1
+  version: '2019-06-12'
 bind:
   deprecated: true
   description: Accession number of an entry from the BIND database.
@@ -3420,6 +3500,18 @@ biogrid.interaction:
   preferred_prefix: biogrid.interaction
   twitter: biogrid
   uri_format: https://thebiogrid.org/interaction/$1
+biokc:
+  description: BioKC (Biological Knowledge Curation), is a web-based collaborative
+    platform for the curation and annotation of biomedical knowledge following the
+    standard data model from Systems Biology Markup Language (SBML).
+  example: bkc640
+  homepage: https://wwwen.uni.lu/lcsb
+  mappings:
+    miriam: biokc
+  name: BioKC
+  pattern: ^bkc[0-9]*$
+  preferred_prefix: biokc
+  uri_format: https://biokb.lcsb.uni.lu/fact/$1
 biolegend:
   contributor:
     email: cthoyt@gmail.com
@@ -3610,6 +3702,7 @@ biomodels.kisao:
     pubmed: '22027554'
     title: Controlled vocabularies and semantics in systems biology.
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/KISAO_$1
   repository: https://github.com/SED-ML/KiSAO
   synonyms:
   - biomodels.kisao
@@ -3856,6 +3949,7 @@ bioregistry:
   mappings:
     bartoc: '18951'
     fairsharing: FAIRsharing.250a8c
+  mastodon: bioregistry@fosstodon.org
   name: Bioregistry
   preferred_prefix: bioregistry
   publications:
@@ -3959,6 +4053,7 @@ biorxiv:
     homepage: https://scholia.toolforge.org/
     name: Scholia
     uri_format: https://scholia.toolforge.org/biorxiv/$1
+  rdf_uri_format: http://dx.doi.org/10.1101/$1
   uri_format: https://www.biorxiv.org/content/10.1101/$1
 biosample:
   description: The BioSample Database stores information about biological samples
@@ -4432,6 +4527,7 @@ bootstrep:
     obofoundry: bootstrep
   name: Gene Regulation Ontology
   preferred_prefix: BOOTSTREP
+  rdf_uri_format: http://purl.obolibrary.org/obo/BOOTSTREP_$1
   uri_format: http://purl.obolibrary.org/obo/BOOTSTREP_$1
 bpdb:
   contributor:
@@ -4576,6 +4672,21 @@ brenda.ligandgroup:
   pattern: ^\d+$
   preferred_prefix: brenda.ligandgroup
   uri_format: https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1
+bridgedb:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A vocabulary about resources, similar to bioregistry.schema, venn,
+    idot, etc.
+  example: hasPrimaryUriPattern
+  homepage: https://bridgedb.org
+  name: BridgeDb Vocabulary
+  preferred_prefix: bridgedb
+  references:
+  - https://github.com/bridgedb/BridgeDb/blob/master/org.bridgedb.rdf/resources/IdentifiersOrgDataSource.ttl
+  uri_format: http://vocabularies.bridgedb.org/ops#$1
 broad:
   description: Magnaporthe grisea, the causal agent of rice blast disease, is one
     of the most devasting threats to food security worldwide and is a model organism
@@ -4662,9 +4773,10 @@ bspo:
     title: 'Nose to tail, roots to shoots: spatial descriptors for phenotypic diversity
       in the Biological Spatial Ontology.'
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/BSPO_$1
   repository: https://github.com/obophenotype/biological-spatial-ontology
   uri_format: http://purl.obolibrary.org/obo/BSPO_$1
-  version: '2022-06-28'
+  version: '2022-11-16'
 bto:
   banana: BTO
   contact:
@@ -4749,6 +4861,7 @@ bto:
     pubmed: '14681450'
     title: 'BRENDA, the enzyme database: updates and major new developments.'
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/BTO_$1
   repository: https://github.com/BRENDA-Enzymes/BTO
   synonyms:
   - BTO
@@ -5028,7 +5141,9 @@ caro:
     github: mellybelly
     name: Melissa Haendel
     orcid: 0000-0001-9114-8737
-  description: None
+  description: The Common Anatomy Reference Ontology (CARO) is being developed to
+    facilitate interoperability between existing anatomy ontologies for different
+    species, and will provide a template for building new anatomy ontologies.
   download_json: http://purl.obolibrary.org/obo/caro.json
   download_obo: http://purl.obolibrary.org/obo/caro.obo
   download_owl: http://purl.obolibrary.org/obo/caro.owl
@@ -5064,9 +5179,10 @@ caro:
     pubmed: null
     title: CARO – The Common Anatomy Reference Ontology
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/CARO_$1
   repository: https://github.com/obophenotype/caro
   uri_format: http://purl.obolibrary.org/obo/CARO_$1
-  version: '2022-02-18'
+  version: '2023-03-15'
 cas:
   description: CAS (Chemical Abstracts Service) is a division of the American Chemical
     Society and is the producer of comprehensive databases of chemical information.
@@ -5521,7 +5637,6 @@ cco:
       and integrated analysis of the cell cycle process.'
     year: 2009
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cco/terms?obo_id=CCO:$1
-  version: '2016-03-23'
 ccrid:
   contributor:
     email: cthoyt@gmail.com
@@ -5590,9 +5705,10 @@ cdao:
     pubmed: '19812726'
     title: Initial implementation of a comparative data analysis ontology.
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/CDAO_$1
   repository: https://github.com/evoinfo/cdao
   uri_format: http://purl.obolibrary.org/obo/CDAO_$1
-  version: '2019-06-26'
+  version: '2022-11-30'
 cdd:
   description: The Conserved Domain Database (CDD) is a collection of multiple sequence
     alignments and derived database search models, which represent protein domains
@@ -5668,6 +5784,7 @@ cdno:
   license: CC-BY-3.0
   mappings:
     aberowl: CDNO
+    agroportal: CDNO
     bioportal: CDNO
     obofoundry: cdno
     ols: cdno
@@ -5682,9 +5799,10 @@ cdno:
     title: Knowledge representation and data sharing to unlock crop variation for
       nutritional food security
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/CDNO_$1
   repository: https://github.com/Southern-Cross-Plant-Science/cdno
   uri_format: http://purl.obolibrary.org/obo/CDNO_$1
-  version: '2022-06-23'
+  version: '2022-12-23'
 cdpd:
   description: The Canadian Drug Product Database (DPD) contains product specific
     information on drugs approved for use in Canada, and includes human pharmaceutical
@@ -5745,7 +5863,7 @@ cellbank.australia:
     researchers, submits these cell lines to rigorous testing to confirm their integrity,
     and then distributes the cell lines to researchers throughout the world.
   example: ab-1-ha
-  homepage: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
+  homepage: https://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
   mappings:
     cellosaurus: CBA
   name: CellBank Australia
@@ -5834,6 +5952,7 @@ cellosaurus:
     n2t: cellosaurus
     re3data: r3d100013293
     wikidata: P3289
+  mastodon: cellosaurus@fediscience.org
   name: Cellosaurus
   pattern: ^[A-Z0-9]{4}$
   preferred_prefix: cellosaurus
@@ -5962,6 +6081,7 @@ ceph:
   name: Cephalopod Ontology
   pattern: ^\d{7}$
   preferred_prefix: CEPH
+  rdf_uri_format: http://purl.obolibrary.org/obo/CEPH_$1
   repository: https://github.com/obophenotype/cephalopod-ontology
   uri_format: http://purl.obolibrary.org/obo/CEPH_$1
   version: '2016-01-12'
@@ -6160,6 +6280,7 @@ chebi:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://www.ebi.ac.uk/chebi/images/ChEBI_logo.png
   mappings:
     aberowl: CHEBI
     bartoc: '558'
@@ -6224,6 +6345,7 @@ chebi:
     pubmed: '17932057'
     title: 'ChEBI: a database and ontology for chemical entities of biological interest.'
     year: 2007
+  rdf_uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
   repository: https://github.com/ebi-chebi/ChEBI
   synonyms:
   - CHEBI
@@ -6231,7 +6353,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1
-  version: '211'
+  version: '219'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -6393,6 +6515,7 @@ chembl.compound:
     homepage: https://www.ebi.ac.uk/rdf/services/chembl/
     name: ChEMBL compound RDF through EBI RDF Platform
     uri_format: https://rdf.ebi.ac.uk/resource/chembl/molecule/$1
+  rdf_uri_format: http://rdf.ebi.ac.uk/resource/chembl/molecule/$1
   uri_format: https://www.ebi.ac.uk/chembl/compound/inspect/$1
 chembl.target:
   contact:
@@ -6559,6 +6682,7 @@ cheminf:
     title: 'The chemical information ontology: provenance and disambiguation for chemical
       data on the biological semantic web.'
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/CHEMINF_$1
   repository: https://github.com/semanticchemistry/semanticchemistry
   uri_format: https://semanticscience.org/resource/CHEMINF_$1
   version: '2.0'
@@ -6633,6 +6757,7 @@ chemspider:
     pubmed: null
     title: 'ChemSpider: An Online Chemical Information Resource'
     year: 2010
+  rdf_uri_format: http://rdf.chemspider.com/$1
   synonyms:
   - ChemSpiderID
   - Chemspider
@@ -6710,6 +6835,7 @@ chiro:
     pubmed: null
     title: Extension of Roles in the ChEBI Ontology
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/CHIRO_$1
   repository: https://github.com/obophenotype/chiro
   uri_format: http://purl.obolibrary.org/obo/CHIRO_$1
   version: '2015-11-23'
@@ -6749,6 +6875,7 @@ chmo:
   name: Chemical Methods Ontology
   pattern: ^\d{7}$
   preferred_prefix: CHMO
+  rdf_uri_format: http://purl.obolibrary.org/obo/CHMO_$1
   repository: https://github.com/rsc-ontologies/rsc-cmo
   uri_format: http://purl.obolibrary.org/obo/CHMO_$1
   version: '2022-04-19'
@@ -6798,6 +6925,7 @@ cido:
     title: CIDO, a community-based ontology for coronavirus disease knowledge and
       data integration, sharing, and analysis.
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/CIDO_$1
   repository: https://github.com/cido-ontology/cido
   uri_format: http://purl.obolibrary.org/obo/CIDO_$1
   version: 1.0.337
@@ -6835,6 +6963,7 @@ cio:
     title: 'The Confidence Information Ontology: a step towards a standard for asserting
       confidence in annotations.'
     year: 2015
+  rdf_uri_format: http://purl.obolibrary.org/obo/CIO_$1
   repository: https://github.com/BgeeDB/confidence-information-ontology
   uri_format: http://purl.obolibrary.org/obo/CIO_$1
   version: '2015-03-10'
@@ -6989,6 +7118,24 @@ civic.gid:
   pattern: ^[0-9]+$
   preferred_prefix: civic.gid
   uri_format: https://civicdb.org/links/gene/$1
+civic.mpid:
+  description: CIViC Molecular Profiles are combinations of one or more CIViC variants.
+    Most Molecular Profiles are “Simple” Molecular Profiles comprised of a single
+    variant. In most cases, these can be considered equivalent to the CIViC concept
+    of a Variant. However, increasingly clinical significance must be considered in
+    the context of multiple variants simultaneously. Complex Molecular Profiles in
+    CIViC allow for curation of such variant combinations. Regardless of the nature
+    of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic,
+    Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered
+    in CIViC.
+  example: '559'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.mpid
+  name: CIViC Molecular Profile
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.mpid
+  uri_format: https://civicdb.org/links/molecular_profile/$1
 civic.sid:
   description: In CIViC, each Evidence Item must be associated with a Source Type
     and Source ID, which link the Evidence Item to the original source of information
@@ -7022,6 +7169,20 @@ civic.tid:
   pattern: ^[0-9]+$
   preferred_prefix: civic.tid
   uri_format: https://civicdb.org/links/drugs/$1
+civic.vgid:
+  description: Variant Groups in CIViC provide user-defined grouping of Variants within
+    and between genes based on unifying characteristics. CIViC curators are required
+    to define a cohesive rationale for grouping these variants together, summarize
+    their relevance to cancer diagnosis, prognosis or treatment and highlight any
+    treatments or cancers of particular relevance
+  example: '16'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.vgid
+  name: CIViC Variant Group
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.vgid
+  uri_format: https://civicdb.org/links/variant_group/$1
 civic.vid:
   description: CIViC variants are usually genomic alterations, including single nucleotide
     variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s
@@ -7083,6 +7244,7 @@ cl:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://obofoundry.org/images/CL-logo.jpg
   mappings:
     aberowl: CL
     agroportal: CL
@@ -7129,10 +7291,11 @@ cl:
     pubmed: '21208450'
     title: Logical development of the cell ontology.
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/CL_$1
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1
-  version: '2022-12-15'
+  version: '2023-04-20'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -7160,6 +7323,7 @@ clao:
   name: Collembola Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: CLAO
+  rdf_uri_format: http://purl.obolibrary.org/obo/CLAO_$1
   repository: https://github.com/luis-gonzalez-m/Collembola
   uri_format: http://purl.obolibrary.org/obo/CLAO_$1
   version: '2021-09-27'
@@ -7215,6 +7379,8 @@ cldb:
   name: Cell Line Database
   pattern: ^(cl|tum)\d+$
   preferred_prefix: cldb
+  synonyms:
+  - hypercldb
   uri_format: http://bioinformatics.hsanmartino.it/hypercldb/$1.html
 clingene:
   contributor:
@@ -7449,6 +7615,7 @@ clo:
     pubmed: '15693950'
     title: An ontology for cell types.
     year: 2005
+  rdf_uri_format: http://purl.obolibrary.org/obo/CLO_$1
   repository: https://github.com/CLO-Ontology/CLO
   synonyms:
   - CLO
@@ -7492,6 +7659,7 @@ clyh:
   name: Clytia hemisphaerica Development and Anatomy Ontology
   pattern: ^\d+$
   preferred_prefix: CLYH
+  rdf_uri_format: http://purl.obolibrary.org/obo/CLYH_$1
   repository: https://github.com/EBISPOT/clyh_ontology
   uri_format: http://purl.obolibrary.org/obo/CLYH_$1
   version: '2020-05-29'
@@ -7535,6 +7703,7 @@ cmf:
     ontobee: CMF
   name: CranioMaxilloFacial ontology
   preferred_prefix: CMF
+  rdf_uri_format: http://purl.obolibrary.org/obo/CMF_$1
   uri_format: http://purl.obolibrary.org/obo/CMF_$1
 cmo:
   appears_in:
@@ -7557,6 +7726,7 @@ cmo:
   - ontology
   - preclinical studies
   license: CC0-1.0
+  logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
   mappings:
     aberowl: CMO
     biocontext: CMO
@@ -7580,6 +7750,7 @@ cmo:
     pubmed: '22654893'
     title: Three ontologies to define phenotype measurement data.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/CMO_$1
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
@@ -8539,9 +8710,10 @@ cob:
   name: Core Ontology for Biology and Biomedicine
   pattern: ^\d{7}$
   preferred_prefix: COB
+  rdf_uri_format: http://purl.obolibrary.org/obo/COB_$1
   repository: https://github.com/OBOFoundry/COB
   uri_format: http://purl.obolibrary.org/obo/COB_$1
-  version: '2022-05-02'
+  version: '2022-11-02'
 coconut:
   comment: '@mSorok is the dev of the resource, hope I got it right!'
   contributor:
@@ -8791,9 +8963,10 @@ colao:
   name: Coleoptera Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: COLAO
+  rdf_uri_format: http://purl.obolibrary.org/obo/COLAO_$1
   repository: https://github.com/insect-morphology/colao
   uri_format: http://purl.obolibrary.org/obo/COLAO_$1
-  version: '2022-06-18'
+  version: '2023-04-08'
 collagenmutdb:
   description: This database aims to record all published accounts of variants resulting
     in osteogenesis imperfecta. Such variants occur in the COL1A1, COL1A2, CRTAP,
@@ -9341,7 +9514,7 @@ covoc:
   preferred_prefix: covoc
   repository: https://github.com/EBISPOT/covoc
   uri_format: http://purl.obolibrary.org/obo/COVOC_$1
-  version: '2020-08-28'
+  version: '2022-10-26'
 cp:
   appears_in:
   - cl
@@ -9565,6 +9738,7 @@ cro:
   name: Contributor Role Ontology
   pattern: ^\d{7}$
   preferred_prefix: CRO
+  rdf_uri_format: http://purl.obolibrary.org/obo/CRO_$1
   repository: https://github.com/data2health/contributor-role-ontology
   uri_format: http://purl.obolibrary.org/obo/CRO_$1
   version: '2019-12-11'
@@ -9827,6 +10001,18 @@ cst.ab:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/cst:$1
   uri_format: http://www.cellsignal.com/products/$1.html
+cstr:
+  description: 'CSTR is an identifier for Common Science and Technology Resources,
+    to provide persistent identification services for the positioning, traceability,
+    citation, statistics and evaluation of science and technology resources. '
+  example: 31253.11.sciencedb.j00001.00123
+  homepage: https://www.cstr.cn/en/
+  mappings:
+    miriam: cstr
+  name: Common Science and Technology Resources
+  pattern: ^\w{5}\.\d{2}\..*$
+  preferred_prefix: cstr
+  uri_format: https://cstr.cn/$1
 ctcae:
   appears_in:
   - oae
@@ -9967,6 +10153,7 @@ cteno:
   name: Ctenophore Ontology
   pattern: ^\d{7}$
   preferred_prefix: CTENO
+  rdf_uri_format: http://purl.obolibrary.org/obo/CTENO_$1
   repository: https://github.com/obophenotype/ctenophore-ontology
   uri_format: http://purl.obolibrary.org/obo/CTENO_$1
   version: '2016-10-19'
@@ -10001,6 +10188,7 @@ cto:
   name: Clinical Trials Ontology
   pattern: ^\d{7}$
   preferred_prefix: CTO
+  rdf_uri_format: http://purl.obolibrary.org/obo/CTO_$1
   repository: https://github.com/ClinicalTrialOntology/CTO
   uri_format: http://purl.obolibrary.org/obo/CTO_$1
   version: 1.0.0
@@ -10078,6 +10266,7 @@ cvdo:
   name: Cardiovascular Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: CVDO
+  rdf_uri_format: http://purl.obolibrary.org/obo/CVDO_$1
   repository: https://github.com/OpenLHS/CVDO
   uri_format: http://purl.obolibrary.org/obo/CVDO_$1
   version: '2020-03-05'
@@ -10695,7 +10884,7 @@ dc:
     **Deprecation Notice**: While the `/elements/1.1/` namespace will be supported
     indefinitely, DCMI gently encourages use of the `/terms/` namespace (i.e., `dcterms`)
     ([source](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3)).'
-  download_owl: http://aber-owl.net/media/ontologies/dcelements/1/dcelements.owl
+  download_owl: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_elements.rdf
   example: contributor
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   keywords:
@@ -10708,6 +10897,7 @@ dc:
     biocontext: dc
     bioportal: DC
     fairsharing: FAIRsharing.3nx7t
+    ols: dc
   name: Dublin Core Elements (1.1)
   preferred_prefix: dc
   synonyms:
@@ -10733,6 +10923,7 @@ dc_cl:
   name: Dendritic cell
   pattern: ^\d{7}$
   preferred_prefix: DC_CL
+  rdf_uri_format: http://purl.obolibrary.org/obo/DC_CL_$1
   uri_format: http://purl.obolibrary.org/obo/DC_CL_$1
 dcat:
   contact:
@@ -10778,7 +10969,7 @@ dcterms:
   description: This document is an up-to-date specification of all metadata terms
     maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
     encoding schemes, syntax encoding schemes, and classes.
-  download_owl: http://aber-owl.net/media/ontologies/dcterms/1/dcterms.owl
+  download_owl: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.rdf
   example: title
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   keywords:
@@ -10790,6 +10981,7 @@ dcterms:
     biolink: dct
     bioportal: DCTERMS
     fairsharing: FAIRsharing.9vtwjs
+    ols: dcterms
   name: Dublin Core Metadata Initiative Terms
   preferred_prefix: dcterms
   synonyms:
@@ -10861,6 +11053,7 @@ ddanat:
     title: An anatomy ontology to represent biological knowledge in Dictyostelium
       discoideum.
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/DDANAT_$1
   repository: https://github.com/dictyBase/migration-data
   twitter: dictybase
   uri_format: http://purl.obolibrary.org/obo/DDANAT_$1
@@ -10968,10 +11161,11 @@ ddpheno:
     title: 'One stop shop for everything Dictyostelium: dictyBase and the Dicty Stock
       Center in 2012.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/DDPHENO_$1
   repository: https://github.com/obophenotype/dicty-phenotype-ontology
   twitter: dictybase
   uri_format: http://purl.obolibrary.org/obo/DDPHENO_$1
-  version: '2020-06-19'
+  version: '2023-02-19'
 debio:
   contact:
     email: cthoyt@gmail.com
@@ -11349,7 +11543,7 @@ dicom:
       practice.'
     year: 2005
   uri_format: http://dicom.nema.org/resources/ontology/DCM/$1
-  version: 2021e_20211122
+  version: 2023b_20230403
 dictybase:
   description: A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics
   example: DDB0191090
@@ -11490,6 +11684,7 @@ dideo:
     pubmed: null
     title: 'Conceptual models of drug-drug interactions: A summary of recent efforts'
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/DIDEO_$1
   repository: https://github.com/DIDEO/DIDEO
   uri_format: http://purl.obolibrary.org/obo/DIDEO_$1
   version: '2022-06-14'
@@ -11522,6 +11717,7 @@ dinto:
     title: 'DINTO: Using OWL Ontologies and SWRL Rules to Infer Drug-Drug Interactions
       and Their Mechanisms.'
     year: 2015
+  rdf_uri_format: http://purl.obolibrary.org/obo/DINTO_$1
   repository: https://github.com/labda/DINTO
   uri_format: http://purl.obolibrary.org/obo/DINTO_$1
 dip:
@@ -11612,6 +11808,7 @@ disdriv:
   name: Disease Drivers Ontology
   pattern: ^\d+$
   preferred_prefix: DISDRIV
+  rdf_uri_format: http://purl.obolibrary.org/obo/DISDRIV_$1
   repository: https://github.com/DiseaseOntology/DiseaseDriversOntology
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DISDRIV_$1
@@ -11920,6 +12117,7 @@ doi:
     homepage: https://scholia.toolforge.org/
     name: Scholia
     uri_format: https://scholia.toolforge.org/doi/$1
+  rdf_uri_format: http://dx.doi.org/$1
   references:
   - https://github.com/biopragmatics/bioregistry/issues/287
   - https://github.com/biopragmatics/bioregistry/pull/316
@@ -11951,6 +12149,7 @@ doid:
   - obo
   - ontology
   license: CC0-1.0
+  logo: http://www.disease-ontology.org/media/images/DO_logo.jpg
   mappings:
     aberowl: DOID
     bartoc: '576'
@@ -12067,12 +12266,13 @@ doid:
     title: 'From disease ontology to disease-ontology lite: statistical methods to
       adapt a general-purpose ontology for the test of gene-ontology associations.'
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/DOID_$1
   repository: https://github.com/DiseaseOntology/HumanDiseaseOntology
   synonyms:
   - do
   twitter: diseaseontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1
-  version: '2022-09-29'
+  version: '2023-03-31'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -12256,9 +12456,10 @@ dpo:
     pubmed: '24138933'
     title: The Drosophila phenotype ontology.
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/drosophila-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2022-08-11'
+  version: '2023-02-09'
 dpv:
   description: Description of Plant Viruses (DPV) provides information about viruses,
     viroids and satellites of plants, fungi and protozoa. It provides taxonomic information,
@@ -12420,9 +12621,10 @@ dron:
     pubmed: '24345026'
     title: Building a drug ontology based on RxNorm and other sources.
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/DRON_$1
   repository: https://github.com/ufbmi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2022-04-22'
+  version: '2023-03-10'
 drsc:
   description: The DRSC (Drosophila RNAi Screening Cente) tracks both production of
     reagents for RNA interference (RNAi) screening in Drosophila cells and RNAi screen
@@ -12766,6 +12968,7 @@ duo:
     title: The Data Use Ontology to streamline responsible access to human biomedical
       datasets.
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/DUO_$1
   repository: https://github.com/EBISPOT/DUO
   uri_format: http://purl.obolibrary.org/obo/DUO_$1
   version: '2021-02-23'
@@ -12871,6 +13074,7 @@ ecao:
   name: The Echinoderm Anatomy and Development Ontology
   pattern: ^\d{7}$
   preferred_prefix: ECAO
+  rdf_uri_format: http://purl.obolibrary.org/obo/ECAO_$1
   repository: https://github.com/echinoderm-ontology/ecao_ontology
   uri_format: http://purl.obolibrary.org/obo/ECAO_$1
   version: '2020-05-22'
@@ -13102,6 +13306,7 @@ eco:
   - obo
   - ontology
   license: CC0-1.0
+  logo: https://avatars1.githubusercontent.com/u/12802432
   mappings:
     aberowl: ECO
     bartoc: '1028'
@@ -13158,9 +13363,10 @@ eco:
     pubmed: '14992503'
     title: An evidence ontology for use in pathway/genome databases.
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/ECO_$1
   repository: https://github.com/evidenceontology/evidenceontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:$1
-  version: '2022-08-05'
+  version: '2023-04-07'
 ecocore:
   contact:
     email: p.buttigieg@gmail.com
@@ -13198,6 +13404,7 @@ ecocore:
   name: An ontology of core ecological entities
   pattern: ^\d+$
   preferred_prefix: ECOCORE
+  rdf_uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
   repository: https://github.com/EcologicalSemantics/ecocore
   uri_format: http://purl.obolibrary.org/obo/ECOCORE_$1
   version: '2022-03-09'
@@ -13324,6 +13531,26 @@ ecoliwiki:
     title: What we can learn about Escherichia coli through application of Gene Ontology.
     year: 2009
   uri_format: http://ecoliwiki.net/colipedia/index.php/$1:Gene
+ecso:
+  contact:
+    email: brycemecum@gmail.com
+    github: amoeba
+    name: Bryce Mecum
+    orcid: 0000-0002-0381-3766
+  description: DataONE ontology of Carbon Flux measurements for MsTMIP and LTER Use
+    Cases
+  download_owl: https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/run4/observation/d1-ECSO.owl
+  example: '00000532'
+  homepage: https://github.com/DataONEorg/sem-prov-ontologies
+  keywords:
+  - ontology
+  mappings:
+    bioportal: ECSO
+  name: The Ecosystem Ontology
+  pattern: ^\d+$
+  preferred_prefix: ecso
+  repository: https://github.com/DataONEorg/sem-prov-ontologies
+  uri_format: http://purl.dataone.org/odo/ECSO_$1
 ecto:
   contact:
     email: annethessen@gmail.com
@@ -13362,6 +13589,7 @@ ecto:
   - obo
   - ontology
   license: CC0-1.0
+  logo: https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/ecto-logos/ecto-logo_black-banner.png
   mappings:
     aberowl: ECTO
     biolink: ECTO
@@ -13372,9 +13600,10 @@ ecto:
   name: Environmental conditions, treatments and exposures ontology
   pattern: ^\d{7}$
   preferred_prefix: ECTO
+  rdf_uri_format: http://purl.obolibrary.org/obo/ECTO_$1
   repository: https://github.com/EnvironmentOntology/environmental-exposure-ontology
   uri_format: http://purl.obolibrary.org/obo/ECTO_$1
-  version: '2022-12-12'
+  version: '2023-02-14'
 ecyano.entity:
   description: E-cyanobacterium.org is a web-based platform for public sharing, annotation,
     analysis, and visualisation of dynamical models and wet-lab experiments related
@@ -13504,7 +13733,6 @@ edam:
   repository: https://github.com/edamontology/edamontology
   twitter: edamontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
-  version: '2019-07-17'
 edam.data:
   contact:
     email: matus.kalas@uib.no
@@ -13701,7 +13929,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.49.0
+  version: 3.53.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -13858,6 +14086,7 @@ ehda:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/ehda:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/EHDA_$1
   uri_format: http://purl.obolibrary.org/obo/EHDA_$1
 ehdaa:
   contact:
@@ -13903,6 +14132,7 @@ ehdaa:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/ehdaa:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/EHDAA_$1
   uri_format: http://purl.obolibrary.org/obo/EHDAA_$1
 ehdaa2:
   contact:
@@ -13946,6 +14176,7 @@ ehdaa2:
     title: A new ontology (structured hierarchy) of human developmental anatomy for
       the first 7 weeks (Carnegie stages 1-20).
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/EHDAA2_$1
   repository: https://github.com/obophenotype/human-developmental-anatomy-ontology
   synonyms:
   - EHDAA2_RETIRED
@@ -14016,6 +14247,7 @@ emap:
     biocontext: EMAP
     bioportal: EMAP
     obofoundry: emap
+    ols: emap
     prefixcommons: emap.ontology
   name: Mouse gross anatomy and development, timed
   pattern: ^\d+$
@@ -14030,7 +14262,9 @@ emap:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/emap.ontology:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/EMAP_$1
   uri_format: http://purl.obolibrary.org/obo/EMAP_$1
+  version: '2020-04-13'
 emapa:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -14085,11 +14319,12 @@ emapa:
     pubmed: null
     title: Textual Anatomics
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/EMAPA_$1
   repository: https://github.com/obophenotype/mouse-anatomy-ontology
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1
-  version: '2022-07-14'
+  version: '2022-11-04'
 emaps:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -14270,6 +14505,42 @@ empiar:
     title: 'EMPIAR: a public archive for raw electron microscopy image data.'
     year: 2016
   uri_format: https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/$1
+emsl.project:
+  contact:
+    email: montana.smith@pnnl.gov
+    github: mslarae13
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  contributor:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: 'As a scientific user facility, the Environmental Molecular Sciences
+    Laboratory (EMSL) provides expertise, instrumentation, and resources to 250 projects
+    each year. Current and past projects supported through a variety of EMSL user
+    proposal avenues are publicly searchable on the EMSL website. Project pages provide
+    details including:
+
+    - Research team and institution
+
+    - The EMSL project DOI
+
+    - Link to project data available in EMSLs Data Portal
+
+    - Project type'
+  example: '60141'
+  github_request_issue: 835
+  homepage: https://www.emsl.pnnl.gov/projects
+  name: Environmental Molecular Sciences Laboratory Project
+  pattern: ^\d+$
+  preferred_prefix: emsl.project
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.emsl.pnnl.gov/project/$1
 ena.embl:
   contact:
     email: datasubs@ebi.ac.uk
@@ -14473,12 +14744,13 @@ enm:
     github: null
     name: Egon Willighagen
     orcid: 0000-0001-7542-0286
-  description: 'The eNanoMapper project (www.enanomapper.net) is creating a pan-European
-    computational infrastructure for toxicological data management for ENMs, based
-    on semantic web standards and ontologies. > This ontology is an application ontology
-    targeting the full domain of nanomaterial safety assessment. It re-uses several
-    other ontologies including the NPO, CHEMINF, ChEBI, and ENVO. '
-  download_owl: http://enanomapper.github.io/ontologies/enanomapper.owl
+  description: The eNanoMapper project (https://www.enanomapper.net/), NanoCommons
+    project (https://www.nanocommons.eu/) and ACEnano project (http://acenano-project.eu/)
+    are creating a pan-European computational infrastructure for toxicological data
+    management for ENMs, based on semantic web standards and ontologies. This ontology
+    is an application ontology targeting the full domain of nanomaterial safety assessment.
+    It re-uses several other ontologies including the NPO, CHEMINF, ChEBI, and ENVO.
+  download_owl: http://enanomapper.github.io/ontologies/releases/9.0/enanomapper.owl
   example: '8000221'
   homepage: http://www.enanomapper.net/
   keywords:
@@ -14489,7 +14761,7 @@ enm:
     bioportal: ENM
     fairsharing: FAIRsharing.2gpf81
     ols: enm
-  name: eNanoMapper Ontology
+  name: eNanoMapper ontology
   pattern: ^\d+$
   preferred_prefix: enm
   publications:
@@ -14500,7 +14772,7 @@ enm:
       risk assessment.'
     year: 2015
   uri_format: http://purl.enanomapper.org/onto/ENM_$1
-  version: '7.4'
+  version: '9.0'
 ensembl:
   description: Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to
     develop a software system which produces and maintains automatic annotation on
@@ -14530,6 +14802,7 @@ ensembl:
     re3data: r3d100010228
     uniprot: DB-0023
     wikidata: P594
+  mastodon: ensembl@genomic.social
   name: Ensembl Gene
   pattern: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
   preferred_prefix: ensembl
@@ -14823,6 +15096,7 @@ ensembl:
     pubmed: '11752248'
     title: The Ensembl genome database project.
     year: 2002
+  rdf_uri_format: http://rdf.ebi.ac.uk/resource/ensembl/$1
   synonyms:
   - Ensembl
   twitter: ensembl
@@ -15027,7 +15301,7 @@ ensembl.protist:
 ensemblglossary:
   description: The Ensembl glossary lists the terms, data types and file types that
     are used in Ensembl and describes how they are used.
-  download_owl: http://ensembl.org/glossary/ensembl-glossary/releases/2022-08-31/ensembl-glossary.owl
+  download_owl: http://ensembl.org/glossary/ensembl-glossary/releases/2023-01-04/ensembl-glossary.owl
   example: 0000198
   homepage: http://ensembl.org/glossary
   keywords:
@@ -15038,7 +15312,7 @@ ensemblglossary:
   pattern: ^\d{7}$
   preferred_prefix: ensemblglossary
   uri_format: http://ensembl.org/glossary/ENSGLOSSARY_$1
-  version: '2022-08-31'
+  version: '2023-01-04'
 envipath:
   contact:
     email: admin@envipath.org
@@ -15125,6 +15399,7 @@ envo:
   - obo
   - ontology
   license: CC0-1.0
+  logo: https://obofoundry.org/images/envo.png
   mappings:
     aberowl: ENVO
     agroportal: ENVO
@@ -15163,10 +15438,11 @@ envo:
     pubmed: '24330602'
     title: 'The environment ontology: contextualising biological and biomedical entities.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/ENVO_$1
   repository: https://github.com/EnvironmentOntology/envo
   twitter: envoTweets
   uri_format: https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1
-  version: '2021-05-14'
+  version: '2023-02-13'
 enzo:
   contributor:
     email: cthoyt@gmail.com
@@ -15212,6 +15488,7 @@ eo:
   - ontology
   - plant
   license: CC-BY-4.0
+  logo: http://planteome.org/sites/default/files/garland_logo.PNG
   mappings:
     aberowl: EO
     agroportal: EO
@@ -15240,6 +15517,7 @@ eo:
     pubmed: '22847540'
     title: Ontologies as integrative tools for plant science.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/EO_$1
   repository: https://github.com/Planteome/plant-environment-ontology
   uri_format: http://archive.gramene.org/db/ontology/search?query=EO:$1
 eol:
@@ -15320,10 +15598,15 @@ epcc:
   - https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE
 epd:
   contact:
-    email: ask-epd@googlegroups.com
+    email: Philipp.Bucher@sib.swiss
     github: null
     name: Philipp Bucher
     orcid: 0000-0002-0816-7775
+  contributor_extras:
+  - email: sebastien.moretti@sib.swiss
+    github: smoretti
+    name: Sebastien Moretti
+    orcid: 0000-0003-3947-488X
   description: The Eukaryotic Promoter Database (EPD) is an annotated non-redundant
     collection of eukaryotic POL II promoters, for which the transcription start site
     has been determined experimentally. Access to promoter sequences is provided by
@@ -15333,7 +15616,7 @@ epd:
     facilitates dynamic extraction of biologically meaningful promoter subsets for
     comparative sequence analysis.
   example: TA_H3
-  homepage: http://epd.vital-it.ch/
+  homepage: https://epd.expasy.org/epd/
   keywords:
   - bioinformatics
   - biology
@@ -15409,7 +15692,7 @@ epd:
     pubmed: '10592254'
     title: The eukaryotic promoter database (EPD).
     year: 2000
-  uri_format: http://epd.vital-it.ch/cgi-bin/query_result.pl?out_format=NICE&Entry_0=$1
+  uri_format: https://epd.expasy.org/cgi-bin/epd/query_result.pl?out_format=NICE&Entry_0=$1
 epio:
   contact:
     email: alpha.tom.kodamullil@scai.fraunhofer.de
@@ -15435,6 +15718,7 @@ epio:
   name: Epilepsy Ontology
   pattern: ^\d{7}$
   preferred_prefix: EPIO
+  rdf_uri_format: http://purl.obolibrary.org/obo/EPIO_$1
   repository: https://github.com/SCAI-BIO/EpilepsyOntology
   uri_format: http://purl.obolibrary.org/obo/EPIO_$1
 epo:
@@ -15457,6 +15741,7 @@ epo:
     ontobee: EPO
   name: Epidemiology Ontology
   preferred_prefix: EPO
+  rdf_uri_format: http://purl.obolibrary.org/obo/EPO_$1
   uri_format: http://purl.obolibrary.org/obo/EPO_$1
 epso:
   contact:
@@ -15561,6 +15846,7 @@ ero:
     pubmed: '22434835'
     title: 'Research resources: curating the new eagle-i discovery system.'
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/ERO_$1
   uri_format: http://purl.obolibrary.org/obo/ERO_$1
   version: '2016-07-27'
 eropmoscow:
@@ -15762,6 +16048,7 @@ eupath:
   - ontology
   - population genetics
   license: CC-BY-4.0
+  logo: https://raw.githubusercontent.com/EuPathDB/communitysite/master/assets/images/VEuPathDB-logo-s.png
   mappings:
     aberowl: EUPATH
     biocontext: EUPATH
@@ -15780,9 +16067,10 @@ eupath:
     title: Malaria study data integration and information retrieval based on OBO Foundry
       ontologies
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/EUPATH_$1
   repository: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology
   uri_format: http://purl.obolibrary.org/obo/EUPATH_$1
-  version: '2022-06-08'
+  version: '2023-03-20'
 eurofir:
   contributor:
     email: cthoyt@gmail.com
@@ -15834,9 +16122,10 @@ ev:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/evoc:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/EV_$1
   references:
   - https://twitter.com/Bgeedb/status/1350124337815281664
-  uri_format: http://purl.obolibrary.org/obo/EV_$1
+  uri_format: http://www.evocontology.org/site/Main/BrowseEvoc?x_termid=$1
 evm:
   contributor:
     email: cthoyt@gmail.com
@@ -15943,10 +16232,11 @@ exo:
     pubmed: '22324457'
     title: 'Providing the missing link: the exposure science ontology ExO.'
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/ExO_$1
   repository: https://github.com/CTDbase/exposure-ontology
   synonyms:
   - ExO
-  uri_format: http://purl.obolibrary.org/obo/EXO_$1
+  uri_format: http://purl.obolibrary.org/obo/ExO_$1
   version: '2022-06-29'
 fabio:
   contact:
@@ -16058,6 +16348,7 @@ fairsharing:
     miriam: fairsharing
     n2t: fairsharing
     re3data: r3d100010142
+  mastodon: fairsharing@fediscience.org
   name: FAIRsharing
   pattern: ^(bsg-[dscp]?\d{6})|(FAIRsharing\.\w+)$
   preferred_prefix: fairsharing
@@ -16197,6 +16488,7 @@ fao:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/fao:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/FAO_$1
   repository: https://github.com/obophenotype/fungal-anatomy-ontology
   uri_format: http://purl.obolibrary.org/obo/FAO_$1
   version: '2020-05-07'
@@ -16242,6 +16534,7 @@ fbbi:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/fbbi:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/FBbi_$1
   repository: https://github.com/CRBS/Biological_Imaging_Methods_Ontology
   synonyms:
   - FBbi
@@ -16312,12 +16605,13 @@ fbbt:
     pubmed: '16381917'
     title: 'FlyBase: anatomical data, images and queries.'
     year: 2006
+  rdf_uri_format: http://purl.obolibrary.org/obo/FBbt_$1
   repository: https://github.com/FlyBase/drosophila-anatomy-developmental-ontology
   synonyms:
   - FBbt
   - FBbt_root
   uri_format: https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1
-  version: '2022-06-09'
+  version: '2023-02-08'
 fbcv:
   appears_in:
   - ontoavida
@@ -16369,11 +16663,12 @@ fbcv:
     pubmed: '24138933'
     title: The Drosophila phenotype ontology.
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/flybase-controlled-vocabulary
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2022-06-09'
+  version: '2023-02-09'
 fbdv:
   contact:
     email: cp390@cam.ac.uk
@@ -16416,11 +16711,12 @@ fbdv:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/fbdv:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/FBdv_$1
   repository: https://github.com/FlyBase/drosophila-developmental-ontology
   synonyms:
   - FBdv
   uri_format: http://purl.obolibrary.org/obo/FBdv_$1
-  version: '2022-06-08'
+  version: '2023-02-08'
 fbol:
   comment: Website down, checked on 2021-10-07
   deprecated: true
@@ -16485,11 +16781,14 @@ fbsp:
     biocontext: FBSP
     bioportal: FB-SP
     obofoundry: fbsp
+    ols: fbsp
   name: Fly taxonomy
   part_of: flybase
   pattern: ^\d{8}$
   preferred_prefix: FBSP
+  rdf_uri_format: http://purl.obolibrary.org/obo/FBSP_$1
   uri_format: http://purl.obolibrary.org/obo/FBSP_$1
+  version: '2017-11-19'
 fbtc:
   contributor:
     email: cthoyt@gmail.com
@@ -16552,12 +16851,7 @@ fideo:
     github: getbordea
     name: Georgeta Bordea
     orcid: 0000-0001-9921-8234
-  description: The Food Interactions with Drugs Evidence Ontology (FIDEO) represents
-    Food-Drug Interactions and underlying interaction mechanisms described in scientific
-    publications, drug and adverse effects databases, and drug interactions compendia.
-    The ontology builds on previous efforts from the FoodOn, DRON, ChEBI, and DIDEO
-    ontologies as well as the Thériaque database. This ontology is maintained at https://gitub.u-bordeaux.fr/erias/fideo,
-    and requests for changes or additions should be filed at the issue tracker there.
+  description: Food-Drug interactions automatically extracted from scientific literature
   download_owl: http://purl.obolibrary.org/obo/fideo.owl
   example: '00000021'
   homepage: https://gitub.u-bordeaux.fr/erias/fideo
@@ -16574,8 +16868,10 @@ fideo:
   name: Food Interactions with Drugs Evidence Ontology
   pattern: ^\d{8}$
   preferred_prefix: FIDEO
+  rdf_uri_format: http://purl.obolibrary.org/obo/FIDEO_$1
   repository: https://gitub.u-bordeaux.fr/erias/fideo
   uri_format: http://purl.obolibrary.org/obo/FIDEO_$1
+  version: '2023-02-01'
 fishbase.species:
   contributor:
     email: cthoyt@gmail.com
@@ -16673,6 +16969,7 @@ fix:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/fix:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/FIX_$1
   uri_format: http://purl.obolibrary.org/obo/FIX_$1
   version: '2020-04-13'
 flopo:
@@ -16716,9 +17013,9 @@ flopo:
     pubmed: '25057255'
     title: Enriched biodiversity data as a resource and service.
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
   repository: https://github.com/flora-phenotype-ontology/flopoontology
   uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
-  version: '2019-09-09'
 flowrepository:
   contact:
     email: rbrinkman@bccrc.ca
@@ -16785,6 +17082,7 @@ flu:
   name: Influenza Ontology
   pattern: ^\d{7}$
   preferred_prefix: FLU
+  rdf_uri_format: http://purl.obolibrary.org/obo/FLU_$1
   uri_format: http://purl.obolibrary.org/obo/FLU_$1
 flybase:
   description: FlyBase is the database of the Drosophila Genome Projects and of associated
@@ -17116,6 +17414,7 @@ fma:
     title: 'A reference ontology for biomedical informatics: the Foundational Model
       of Anatomy.'
     year: 2003
+  rdf_uri_format: http://purl.obolibrary.org/obo/FMA_$1
   repository: https://bitbucket.org/uwsig/fma
   synonyms:
   - FMAID
@@ -17184,6 +17483,12 @@ fobi:
   name: Food-Biomarker Ontology
   pattern: ^\d{4,6}$
   preferred_prefix: FOBI
+  providers:
+  - code: fobi.legacy
+    description: An incorrect encoding of OBO purls
+    homepage: http://purl.obolibrary.org/obo/fobi
+    name: FOBI Hash
+    uri_format: http://purl.obolibrary.org/obo/fobi.owl#FOBI:$1
   publications:
   - doi: 10.1093/bioinformatics/btab626
     pmc: null
@@ -17196,6 +17501,7 @@ fobi:
     title: 'FOBI: an ontology to represent food intake data and associate it with
       metabolomic data.'
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/FOBI_$1
   repository: https://github.com/pcastellanoescuder/FoodBiomarkerOntology
   uri_format: http://purl.obolibrary.org/obo/FOBI_$1
 foodb.compound:
@@ -17318,9 +17624,10 @@ foodon:
     title: 'Context Is Everything: Harmonization of Critical Food Microbiology Descriptors
       and Metadata for Improved Food Safety and Surveillance.'
     year: 2017
+  rdf_uri_format: http://purl.obolibrary.org/obo/FOODON_$1
   repository: https://github.com/FoodOntology/foodon
   uri_format: https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1
-  version: '2022-02-01'
+  version: '2023-02-17'
 fossilworks.journal:
   contributor:
     email: meghan.balk@gmail.com
@@ -17381,7 +17688,8 @@ fovt:
   - pato
   - ro
   - uberon
-  description: None
+  description: These are the terms that are improted for FOVT to describe vertebrate
+    traits.
   download_obo: http://purl.obolibrary.org/obo/fovt.obo
   download_owl: http://purl.obolibrary.org/obo/fovt.owl
   example: 0000009
@@ -17399,6 +17707,7 @@ fovt:
   name: FuTRES Ontology of Vertebrate Traits
   pattern: ^\d{7}$
   preferred_prefix: FOVT
+  rdf_uri_format: http://purl.obolibrary.org/obo/FOVT_$1
   repository: https://github.com/futres/fovt
   uri_format: http://purl.obolibrary.org/obo/FOVT_$1
   version: '2021-11-10'
@@ -17507,6 +17816,22 @@ frbr:
   repository: https://github.com/sparontologies/frbr
   twitter: sparontologies
   uri_format: http://purl.org/vocab/frbr/core#$1
+frbrer:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is the element set of native RDF classes and properties described
+    in the current text (Feb 2009) of the Functional Requirements for Bibliographic
+    Records (FRBR) entity-relationship model. (from https://www.iflastandards.info/fr/frbr/frbrer.html)
+  download_rdf: http://iflastandards.info/ns/fr/frbr/frbrer.jsonld
+  example: '1001'
+  homepage: https://www.iflastandards.info/fr/frbr/frbrer
+  name: Functional Requirements for Bibliographic Records Entity-Relationship Model
+  part_of: frbr
+  preferred_prefix: frbrer
+  uri_format: http://iflastandards.info/ns/fr/frbr/frbrer/$1
 fsnp:
   description: The Functional Single Nucleotide Polymorphism (F-SNP) database integrates
     information obtained from databases about the functional effects of SNPs. These
@@ -17784,6 +18109,7 @@ fypo:
   - ontology
   - phylogenetics
   license: CC-BY-4.0
+  logo: https://github.com/pombase/website/blob/master/src/assets/FYPO_logo_tiny.png
   mappings:
     aberowl: FYPO
     biocontext: FYPO
@@ -17803,9 +18129,10 @@ fypo:
     pubmed: '23658422'
     title: 'FYPO: the fission yeast phenotype ontology.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2022-07-14'
+  version: '2023-03-08'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -17960,6 +18287,7 @@ gaz:
   name: Gazetteer
   pattern: ^\d{8}$
   preferred_prefix: GAZ
+  rdf_uri_format: http://purl.obolibrary.org/obo/GAZ_$1
   repository: https://github.com/EnvironmentOntology/gaz
   uri_format: http://purl.obolibrary.org/obo/GAZ_$1
 gbif:
@@ -18126,6 +18454,7 @@ gecko:
   name: Genomics Cohorts Knowledge Ontology
   pattern: ^\d{7}$
   preferred_prefix: GECKO
+  rdf_uri_format: http://purl.obolibrary.org/obo/GECKO_$1
   repository: https://github.com/IHCC-cohorts/GECKO
   uri_format: http://purl.obolibrary.org/obo/GECKO_$1
   version: '2021-01-18'
@@ -18147,9 +18476,14 @@ gemet:
     terminology supports those efforts.
   example: '627'
   homepage: https://www.eionet.europa.eu/gemet/en/themes/
+  keywords:
+  - biodiversity
+  - ecology
+  - environmental science
   mappings:
     agroportal: GEMET
     bartoc: '16'
+    fairsharing: FAIRsharing.9091d9
   name: General Multilingual Environmental Thesaurus
   pattern: ^\d+$
   preferred_prefix: gemet
@@ -18611,6 +18945,7 @@ genepio:
   name: Genomic Epidemiology Ontology
   pattern: ^\d{7}$
   preferred_prefix: GENEPIO
+  rdf_uri_format: http://purl.obolibrary.org/obo/GENEPIO_$1
   repository: https://github.com/GenEpiO/genepio
   uri_format: http://purl.obolibrary.org/obo/GENEPIO_$1
   version: '2022-02-06'
@@ -18735,9 +19070,10 @@ geno:
   name: Genotype Ontology
   pattern: ^\d{7}$
   preferred_prefix: GENO
+  rdf_uri_format: http://purl.obolibrary.org/obo/GENO_$1
   repository: https://github.com/monarch-initiative/GENO-ontology
   uri_format: http://purl.obolibrary.org/obo/GENO_$1
-  version: '2022-03-05'
+  version: '2023-02-21'
 genpept:
   description: The GenPept database is a collection of sequences based on translations
     from annotated coding regions in GenBank.
@@ -18889,6 +19225,7 @@ geogeo:
   namespace_in_lui: true
   pattern: ^\d{9}$
   preferred_prefix: GEOGEO
+  rdf_uri_format: http://purl.obolibrary.org/obo/GEO_$1
   repository: https://github.com/ufbmi/geographical-entity-ontology
   uri_format: http://purl.obolibrary.org/obo/GEO_$1
   version: '2016-03-26'
@@ -18957,7 +19294,6 @@ gexo:
     title: Finding gene regulatory network candidates using the gene expression knowledge
       base.
     year: 2014
-  version: '2019-09-18'
 gfo:
   contact:
     email: heinrich.herre@imise.uni-leipzig.de
@@ -19505,6 +19841,27 @@ gmelin:
   proprietary: true
   references:
   - https://en.wikipedia.org/wiki/Gmelin_database
+gnd:
+  description: The Gemeinsame Normdatei (Integrated Authority File) or GND is an international
+    authority file for person names, subject headings and corporate bodies. It is
+    used mainly for documentation in libraries and increasingly also by archives and
+    museums. The GND is managed by the German National Library in cooperation with
+    various regional library networks in German-speaking Europe and other partners.
+  example: '117145750'
+  homepage: https://lobid.org/
+  keywords:
+  - culture
+  - knowledge and information systems
+  - social science
+  mappings:
+    bartoc: '430'
+    fairsharing: FAIRsharing.8337e2
+    miriam: gnd
+  name: Gemeinsame Normdatei
+  pattern: ^[0-9X\-]+$
+  preferred_prefix: gnd
+  twitter: gndnet
+  uri_format: https://lobid.org/gnd/$1
 gno:
   contact:
     email: nje5@georgetown.edu
@@ -19549,11 +19906,12 @@ gno:
     pubmed: null
     title: GNOme - Glycan Naming and Subsumption Ontology
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/GNO_$1
   repository: https://github.com/glygen-glycan-data/GNOme
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: 1.10.0
+  version: '2022-12-20'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -19624,6 +19982,32 @@ gnpis:
       plants and fungi.'
     year: 2013
   uri_format: https://urgi.versailles.inra.fr/gnpis/#result/term=$1
+gnps.task:
+  contact:
+    email: mingxun.wang@cs.ucr.edu
+    github: mwang87
+    name: Mingxun Wang
+    orcid: 0000-0001-7647-6097
+  contributor:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: GNPS is a web-based mass spectrometry ecosystem that aims to be an
+    open-access knowledge base for community-wide organization and sharing of raw,
+    processed, or annotated fragmentation mass spectrometry data (MS/MS)
+  example: 4b848c342a4f4abc871bdf8a09a60807
+  github_request_issue: 833
+  homepage: https://gnps.ucsd.edu/
+  name: Global Natural Products Social Molecular Networking Task
+  pattern: ^[a-f0-9]+$
+  preferred_prefix: gnps.task
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://gnps.ucsd.edu/ProteoSAFe/status.jsp?task=$1
 go:
   appears_in:
   - agro
@@ -19663,6 +20047,7 @@ go:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://obofoundry.org/images/go_logo.png
   mappings:
     aberowl: GO
     agroportal: GO
@@ -19680,8 +20065,10 @@ go:
     ols: go
     ontobee: GO
     prefixcommons: go
+    re3data: r3d100014165
     uniprot: DB-0037
     wikidata: P686
+  mastodon: go@genomic.social
   name: Gene Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -19779,6 +20166,7 @@ go:
     title: 'Gene ontology: tool for the unification of biology. The Gene Ontology
       Consortium.'
     year: 2000
+  rdf_uri_format: http://purl.obolibrary.org/obo/GO_$1
   repository: https://github.com/geneontology/go-ontology
   synonyms:
   - gobp
@@ -19789,7 +20177,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://amigo.geneontology.org/amigo/term/GO:$1
-  version: '2022-12-04'
+  version: '2023-04-01'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -20102,6 +20490,7 @@ goldbook:
   name: IUPAC Gold Book Compendium of Chemical Terminology
   pattern: ^[A-Z]{1,2}\d{5}$
   preferred_prefix: goldbook
+  rdf_uri_format: http://dx.doi.org/10.1351/goldbook.$1
   uri_format: https://goldbook.iupac.org/terms/view/$1
 google.book:
   contributor:
@@ -20270,6 +20659,32 @@ gpcrdb:
     year: 2001
   twitter: gpcrdb
   uri_format: https://gpcrdb.org/protein/$1
+gpcrnava:
+  description: The GPCR NaVa database describes sequence variants within the family
+    of human G Protein-Coupled Receptors (GPCRs). GPCRs regulate many physiological
+    functions and are the targets for most of today's medicines. The acronym NaVa
+    stands for Natural Variant, which means any (non-artificial) variant that occurs
+    in humans.
+  example: '1150'
+  homepage: http://nava.liacs.nl/
+  keywords:
+  - pathway
+  - protein
+  mappings:
+    prefixcommons: gnd
+  name: GPCR Natural Variants database
+  preferred_prefix: gpcrnava
+  providers:
+  - code: bio2rdf
+    description: Bio2RDF is an open-source project that uses Semantic Web technologies
+      to build and provide the largest network of Linked Data for the Life Sciences.
+      Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked
+      Data from a diverse set of heterogeneously formatted sources obtained from multiple
+      data providers.
+    homepage: https://bio2rdf.org
+    name: Bio2RDF
+    uri_format: http://bio2rdf.org/gnd:$1
+  uri_format: http://nava.liacs.nl/cgi-bin/nava.py?id=$1
 gpmdb:
   description: The Global Proteome Machine Database was constructed to utilize the
     information obtained by GPM servers to aid in the difficult process of validating
@@ -20387,6 +20802,7 @@ gramene.growthstage:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/gramene.po:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/GRO_$1
   synonyms:
   - cpga
   - gro-cpga
@@ -20699,6 +21115,7 @@ gsso:
   namespace_in_lui: true
   pattern: ^\d{6}$
   preferred_prefix: GSSO
+  rdf_uri_format: http://purl.obolibrary.org/obo/GSSO_$1
   repository: https://github.com/Superraptor/GSSO
   uri_format: http://purl.obolibrary.org/obo/GSSO_$1
   version: 2.0.5
@@ -20910,6 +21327,7 @@ habronattus:
     obofoundry: habronattus
   name: Habronattus courtship
   preferred_prefix: HABRONATTUS
+  rdf_uri_format: http://purl.obolibrary.org/obo/HABRONATTUS_$1
   uri_format: http://purl.obolibrary.org/obo/HABRONATTUS_$1
 hagr.genage:
   description: GenAge is a database of human and model organism genes related to longevity
@@ -21078,9 +21496,10 @@ hancestro:
     title: A standardized framework for representation of ancestry data in genomics
       studies, with application to the NHGRI-EBI GWAS Catalog.
     year: 2018
+  rdf_uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
   repository: https://github.com/EBISPOT/ancestro
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
-  version: '2.6'
+  version: '2023-02-16'
 hao:
   contact:
     email: diapriid@gmail.com
@@ -21116,6 +21535,7 @@ hao:
     pubmed: '21209921'
     title: A gross anatomy ontology for hymenoptera.
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/HAO_$1
   repository: https://github.com/hymao/hao
   uri_format: http://purl.obolibrary.org/obo/HAO_$1
   version: '2021-03-05'
@@ -21223,7 +21643,7 @@ hc.npn:
 hcao:
   description: Application ontology for human cell types, anatomy and development
     stages for the Human Cell Atlas.
-  download_owl: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-12-16/hcao.owl
+  download_owl: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2023-04-18/hcao.owl
   homepage: https://www.humancellatlas.org
   keywords:
   - ontology
@@ -21232,7 +21652,6 @@ hcao:
   name: Human Cell Atlas Ontology
   no_own_terms: true
   preferred_prefix: hcao
-  version: '2022-12-16'
 hcpcs:
   contact:
     email: Cynthia.Hake@cms.hhs.gov
@@ -21598,12 +22017,12 @@ hinv.transcript:
 hipsci:
   description: Cell line databases/resources
   example: HPSI0114i-bezi_1
-  homepage: http://www.hipsci.org
+  homepage: https://www.hipsci.org
   mappings:
     cellosaurus: HipSci
   name: Human Induced Pluripotent Stem Cells Initiative
   preferred_prefix: hipsci
-  uri_format: http://www.hipsci.org/lines/#/lines/$1
+  uri_format: https://www.hipsci.org/lines/#/lines/$1
 hivreagentprogram:
   description: Cell line collections
   example: ARP-1513
@@ -21907,6 +22326,7 @@ hom:
     pubmed: '20116127'
     title: An ontology to clarify homology-related concepts.
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/HOM_$1
   repository: https://github.com/BgeeDB/homology-ontology
   uri_format: http://purl.obolibrary.org/obo/HOM_$1
   version: '2015-01-07'
@@ -22035,6 +22455,32 @@ horizon_discovery:
   name: Horizon Discovery cell line collection
   preferred_prefix: horizon_discovery
   uri_format: https://horizondiscovery.com/en/search?searchterm=$1
+hoso:
+  contact:
+    email: paul.fabry@usherbrooke.ca
+    github: pfabry
+    name: Paul Fabry
+    orcid: 0000-0002-3336-2476
+  contributor:
+    email: paul.fabry@usherbrooke.ca
+    github: pfabry
+    name: Paul Fabry
+    orcid: 0000-0002-3336-2476
+  description: HOSO is an ontology of informational entities and processes related
+    to healthcare organizations and services.
+  example: '0000001'
+  github_request_issue: 813
+  homepage: https://openlhs.github.io/HOSO/
+  license: CC-BY-4.0
+  name: Healthcare Organizations and Services Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: hoso
+  repository: https://github.com/OpenLHS/HOSO
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
 hovergen:
   contact:
     email: duret@biomserv.univ-lyon1.fr
@@ -22106,6 +22552,7 @@ hp:
   - phenomics
   - preclinical studies
   license: hpo
+  logo: https://raw.githubusercontent.com/obophenotype/human-phenotype-ontology/master/logo/HPO-logo-black_small.png
   mappings:
     aberowl: HP_O
     bartoc: '1937'
@@ -22119,6 +22566,7 @@ hp:
     ols: hp
     ontobee: HP
     wikidata: P3841
+  mastodon: hpo@masto.ai
   name: Human Phenotype Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -22157,12 +22605,13 @@ hp:
     title: 'The Human Phenotype Ontology: a tool for annotating and analyzing human
       hereditary disease.'
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/HP_$1
   repository: https://github.com/obophenotype/human-phenotype-ontology
   synonyms:
   - hpo
   twitter: hp_ontology
   uri_format: https://hpo.jax.org/app/browse/term/HP:$1
-  version: '2022-06-11'
+  version: '2023-04-05'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -22465,10 +22914,11 @@ hsapdv:
   name: Human Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: HsapDv
+  rdf_uri_format: http://purl.obolibrary.org/obo/HsapDv_$1
   repository: https://github.com/obophenotype/developmental-stage-ontologies
   synonyms:
   - HsapDv
-  uri_format: http://purl.obolibrary.org/obo/HSAPDV_$1
+  uri_format: http://purl.obolibrary.org/obo/HsapDv_$1
   version: '2020-03-10'
 hsdb:
   contributor:
@@ -22520,6 +22970,13 @@ hso:
   name: Health Surveillance Ontology
   pattern: ^\d{7}$
   preferred_prefix: HSO
+  providers:
+  - code: hso.legacy
+    description: An incorrect encoding of OBO purls
+    homepage: http://purl.obolibrary.org/obo/hso
+    name: HSO Hash
+    uri_format: http://purl.obolibrary.org/obo/hso.owl#HSO_$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/HSO_$1
   repository: https://github.com/SVA-SE/HSO
   uri_format: http://purl.obolibrary.org/obo/HSO_$1
   version: '2021-12-13'
@@ -22594,9 +23051,9 @@ htn:
   name: Hypertension Ontology
   pattern: ^\d{8}$
   preferred_prefix: HTN
+  rdf_uri_format: http://purl.obolibrary.org/obo/HTN_$1
   repository: https://github.com/aellenhicks/htn_owl
   uri_format: http://purl.obolibrary.org/obo/HTN_$1
-  version: '2019-06-10'
 huge:
   description: The Human Unidentified Gene-Encoded (HUGE) protein database contains  results
     from sequence analysis of human novel large (>4 kb) cDNAs identified in the Kazusa
@@ -22670,6 +23127,7 @@ iao:
   - ontology
   - subject agnostic
   license: CC-BY-4.0
+  logo: https://avatars0.githubusercontent.com/u/13591168?v=3&s=200
   mappings:
     aberowl: IAO
     biocontext: IAO
@@ -22697,9 +23155,10 @@ iao:
     title: An information artifact ontology perspective on data collections and associated
       representational artifacts.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/IAO_$1
   repository: https://github.com/information-artifact-ontology/IAO
   uri_format: http://purl.obolibrary.org/obo/IAO_$1
-  version: '2020-12-09'
+  version: '2022-11-07'
 icd10:
   contact:
     email: info@who.int
@@ -22713,7 +23172,7 @@ icd10:
     orcid: 0000-0002-2906-7319
   - email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   - email: cthoyt@gmail.com
     github: cthoyt
@@ -22864,6 +23323,12 @@ icd10cm:
   name: International Classification of Diseases, 10th Revision, Clinical Modification
   pattern: ^([A-Z][0-9][0-9AB]((-[A-Z][0-9][0-9AB])|(\.[0-9A-KXZ]([0-9A-EXYZ]([0-9A-HX][0-59A-HJKMNP-S]?)?)?)?))$
   preferred_prefix: icd10cm
+  providers:
+  - code: bioportal.purl
+    description: PURL from BioPortal
+    homepage: http://purl.bioontology.org/ontology/ICD10CM
+    name: BioPortal PURL
+    uri_format: http://purl.bioontology.org/ontology/ICD10CM/$1
   synonyms:
   - ICD10CM
   uri_format: https://icd.codes/icd10cm/$1
@@ -23227,6 +23692,7 @@ iceo:
     title: ICEO, a biological ontology for representing and analyzing bacterial integrative
       and conjugative elements.
     year: 2022
+  rdf_uri_format: http://purl.obolibrary.org/obo/ICEO_$1
   repository: https://github.com/ontoice/ICEO
   uri_format: http://purl.obolibrary.org/obo/ICEO_$1
   version: '2.1'
@@ -23331,6 +23797,7 @@ ico:
   name: Informed Consent Ontology
   pattern: ^\d{7}$
   preferred_prefix: ICO
+  rdf_uri_format: http://purl.obolibrary.org/obo/ICO_$1
   repository: https://github.com/ICO-ontology/ICO
   uri_format: http://purl.obolibrary.org/obo/ICO_$1
   version: 1.0.187
@@ -23405,6 +23872,7 @@ ido:
     pubmed: '34275487'
     title: The Infectious Disease Ontology in the age of COVID-19.
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/IDO_$1
   repository: https://github.com/infectious-disease-ontology/infectious-disease-ontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/ido/terms?obo_id=IDO:$1
   version: '2017-11-03'
@@ -23547,6 +24015,7 @@ idomal:
     pubmed: '20698959'
     title: 'IDOMAL: an ontology for malaria.'
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/IDOMAL_$1
   repository: https://github.com/VEuPathDB-ontology/IDOMAL
   twitter: VectorBase
   uri_format: http://purl.obolibrary.org/obo/IDOMAL_$1
@@ -23735,7 +24204,8 @@ iev:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/iev:$1
-  uri_format: http://purl.obolibrary.org/obo/IEV_$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/IEV_$1
+  uri_format: http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IEV&id=$1
 igrhcellid:
   description: Cell line databases/resources
   example: ACHN
@@ -24221,7 +24691,8 @@ imr:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/imr:$1
-  uri_format: http://purl.obolibrary.org/obo/IMR_$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/IMR_$1
+  uri_format: http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=$1
 inaturalist.observation:
   contributor:
     email: null
@@ -24507,6 +24978,7 @@ ino:
     title: Mining of vaccine-associated IFN-γ gene interaction networks using the
       Vaccine Ontology.
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/INO_$1
   repository: https://github.com/INO-ontology/ino
   uri_format: http://purl.obolibrary.org/obo/INO_$1
   version: 1.1.13
@@ -24515,7 +24987,7 @@ insdc:
     consists of a joint effort to collect and disseminate databases containing DNA
     and RNA sequences.
   example: X58356
-  homepage: https://www.ncbi.nlm.nih.gov/nuccore/
+  homepage: https://www.ncbi.nlm.nih.gov/Genbank/
   keywords:
   - dna
   mappings:
@@ -24527,11 +24999,6 @@ insdc:
   pattern: ^([A-Z]\d{5}|[A-Z]{2}\d{6}|[A-Z]{4,6}\d{8,10}|[A-J][A-Z]{2}\d{5})(\.\d+)?$
   preferred_prefix: insdc
   providers:
-  - code: CURATOR_REVIEW
-    description: INSDC through GenBank
-    homepage: https://www.ncbi.nlm.nih.gov/Genbank/
-    name: INSDC through GenBank
-    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   - code: CURATOR_REVIEW
     description: INSDC through DDBJ
     homepage: http://www.ddbj.nig.ac.jp/
@@ -24551,6 +25018,11 @@ insdc:
     homepage: https://www.ebi.ac.uk/ena/
     name: INSDC through European Nucleotide Archive (ENA)
     uri_format: https://www.ebi.ac.uk/ena/data/view/$1
+  - code: ncbi
+    description: INSDC through Nucleotide database at NCBI
+    homepage: https://www.ncbi.nlm.nih.gov/nuccore/
+    name: INSDC through Nucleotide database at NCBI
+    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   publications:
   - doi: 10.1093/nar/18.6.1517
     pmc: PMC330520
@@ -24911,6 +25383,7 @@ interpro:
     pubmed: '15608177'
     title: InterPro, progress and status in 2005.
     year: 2005
+  rdf_uri_format: http://purl.obolibrary.org/obo/IPR_$1
   repository: https://proteinswebteam.github.io/interpro-blog/
   synonyms:
   - IP
@@ -25338,6 +25811,8 @@ itis:
   preferred_prefix: itis
   uri_format: https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1
 ito:
+  banana: ITO
+  banana_peel: _
   contact:
     email: matthias.samwald@meduniwien.ac.at
     github: null
@@ -25347,7 +25822,7 @@ ito:
     machine intelligence tasks, as well as broader human intelligence or hybrid human/machine
     intelligence tasks.
   download_owl: http://aber-owl.net/media/ontologies/ITO/17/ito.owl
-  example: ITO_01625
+  example: '01625'
   homepage: https://bioportal.bioontology.org/
   keywords:
   - artificial intelligence
@@ -25358,7 +25833,7 @@ ito:
     fairsharing: FAIRsharing.89e853
     miriam: ito
   name: Intelligence Task Ontology
-  pattern: ^.+$
+  pattern: ^\d+$
   preferred_prefix: ito
   publications:
   - doi: 10.1038/s41597-022-01435-x
@@ -25614,6 +26089,41 @@ jcsd:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/jcsd:$1
   uri_format: http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1
+jgi.proposal:
+  contact:
+    email: sewilson@lbl.gov
+    github: null
+    name: Steven E. Wilson
+    orcid: 0000-0002-8489-208X
+  contributor:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  contributor_extras:
+  - email: aclum@lbl.gov
+    github: aclum
+    name: Alicia Clum
+    orcid: 0000-0002-5004-3362
+  description: Identifiers for proposals/projects at the Joint Genome Institute
+  example: '502930'
+  github_request_issue: 853
+  homepage: https://genome.jgi.doe.gov/portal/
+  name: Joint Genome Institute Proposals
+  pattern: ^\d+$
+  preferred_prefix: jgi.proposal
+  publications:
+  - doi: 10.1128/msystems.00804-20
+    pmc: PMC8269246
+    pubmed: '34006627'
+    title: DOE JGI Metagenome Workflow
+    year: 2021
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://genome.jgi.doe.gov/portal/lookup?keyName=proposalId&groupOnly=1&app=Info&keyValue=$1
 jstor:
   description: JSTOR (Journal Storage) is a digital library containing digital versions
     of historical academic journals, as well as books, pamphlets and current issues
@@ -25713,6 +26223,7 @@ kegg:
   homepage: http://www.kegg.jp/
   mappings:
     biocontext: KEGG
+    biolink: KEGG
     cheminf: 000409
     go: KEGG
     miriam: kegg
@@ -25939,7 +26450,7 @@ kegg.genes:
   - protein
   mappings:
     biocontext: KEGG.GENES
-    biolink: KEGG.GENE
+    biolink: KEGG.GENES
     miriam: kegg.genes
     n2t: kegg.genes
     prefixcommons: kegg.gene
@@ -26223,6 +26734,7 @@ kegg.reaction:
     pubmed: '22700311'
     title: Using the KEGG database resource.
     year: 2012
+  rdf_uri_format: http://www.kegg.jp/entry/$1
   synonyms:
   - KEGG_REACTION
   uri_format: https://www.kegg.jp/entry/$1
@@ -26313,6 +26825,7 @@ labo:
     pubmed: null
     title: 'LABO: An ontology for laboratory test prescription and reporting'
     year: 2019
+  rdf_uri_format: http://purl.obolibrary.org/obo/LABO_$1
   repository: https://github.com/OpenLHS/LABO
   uri_format: http://purl.obolibrary.org/obo/LABO_$1
   version: '2021-06-08'
@@ -26428,9 +26941,10 @@ lepao:
   name: Lepidoptera Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: LEPAO
+  rdf_uri_format: http://purl.obolibrary.org/obo/LEPAO_$1
   repository: https://github.com/insect-morphology/lepao
   uri_format: http://purl.obolibrary.org/obo/LEPAO_$1
-  version: '2021-11-20'
+  version: '2023-02-18'
 lgai.cede:
   description: LG Chemical Entity Detection Dataset (LGCEDe) is only available open-dataset
     with molecular instance level annotations (i.e. atom-bond level position annotations
@@ -26870,6 +27384,7 @@ lipro:
     obofoundry: lipro
   name: Lipid Ontology
   preferred_prefix: LIPRO
+  rdf_uri_format: http://purl.obolibrary.org/obo/LIPRO_$1
   uri_format: http://purl.obolibrary.org/obo/LIPRO_$1
 lncipedia:
   contributor:
@@ -26919,6 +27434,7 @@ loggerhead:
     obofoundry: loggerhead
   name: Loggerhead nesting
   preferred_prefix: LOGGERHEAD
+  rdf_uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
   uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
 loinc:
   contact:
@@ -26968,6 +27484,7 @@ loinc:
     pubmed: '22285984'
     title: Enabling international adoption of LOINC through translation.
     year: 2012
+  rdf_uri_format: http://loinc.org/rdf/$1
   synonyms:
   - LNC
   twitter: LOINC
@@ -27126,7 +27643,7 @@ lrg:
     homepage: http://useast.ensembl.org/
     name: Locus Reference Genomic through Ensembl mirror (US east)
     uri_format: http://useast.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
-  uri_format: ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml
+  uri_format: http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml
 lspci:
   contributor:
     email: cthoyt@gmail.com
@@ -27210,6 +27727,7 @@ ma:
     title: 'The Adult Mouse Anatomical Dictionary: a tool for annotating and integrating
       data.'
     year: 2005
+  rdf_uri_format: http://purl.obolibrary.org/obo/MA_$1
   repository: https://github.com/obophenotype/mouse-anatomy-ontology
   uri_format: http://www.informatics.jax.org/searches/AMA.cgi?id=MA:$1
   version: '2017-02-07'
@@ -27363,6 +27881,7 @@ mamo:
   name: Mathematical modeling ontology
   pattern: ^\d{7}$
   preferred_prefix: MAMO
+  rdf_uri_format: http://purl.obolibrary.org/obo/MAMO_$1
   repository: http://sourceforge.net/p/mamo-ontology
   uri_format: http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1
   version: '2020-08-24'
@@ -27427,6 +27946,7 @@ mao:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/mao:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/MAO_$1
   uri_format: http://purl.obolibrary.org/obo/MAO_$1
 massbank:
   contact:
@@ -27449,7 +27969,7 @@ massbank:
     miriam: massbank
     n2t: massbank
     wikidata: P6689
-  name: MassBank accession
+  name: MassBank
   pattern: ^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$
   preferred_prefix: massbank
   providers:
@@ -27553,6 +28073,7 @@ mat:
   name: Minimal Anatomical Terminology
   pattern: ^\d{7}$
   preferred_prefix: MAT
+  rdf_uri_format: http://purl.obolibrary.org/obo/MAT_$1
   uri_format: http://purl.obolibrary.org/obo/MAT_$1
 matrixdb:
   appears_in:
@@ -27655,6 +28176,7 @@ maxo:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/maxo-logos/maxo_logo_black-banner.png
   mappings:
     aberowl: MAXO
     biolink: MAXO
@@ -27665,10 +28187,11 @@ maxo:
   name: Medical Action Ontology
   pattern: ^\d{7}$
   preferred_prefix: MAXO
+  rdf_uri_format: http://purl.obolibrary.org/obo/MAXO_$1
   repository: https://github.com/monarch-initiative/MAxO
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MAXO_$1
-  version: '2022-12-09'
+  version: '2023-04-18'
 mba:
   contact:
     email: chinhda@alleninstitute.org
@@ -27760,6 +28283,7 @@ mco:
   name: Microbial Conditions Ontology
   pattern: ^\d+$
   preferred_prefix: MCO
+  rdf_uri_format: http://purl.obolibrary.org/obo/MCO_$1
   repository: https://github.com/microbial-conditions-ontology/microbial-conditions-ontology
   uri_format: http://purl.obolibrary.org/obo/MCO_$1
   version: '2019-05-15'
@@ -27851,6 +28375,7 @@ meddra:
     pubmed: '10082069'
     title: The medical dictionary for regulatory activities (MedDRA).
     year: 1999
+  rdf_uri_format: http://purl.bioontology.org/ontology/MDRFRE/$1
   synonyms:
   - MEDRA
   - MeDRA
@@ -28099,6 +28624,7 @@ mesh:
     pubmed: '13982385'
     title: Medical subject headings.
     year: 1963
+  rdf_uri_format: http://id.nlm.nih.gov/mesh/$1
   synonyms:
   - MESH
   - MESHA
@@ -28495,9 +29021,10 @@ mf:
   name: Mental Functioning Ontology
   pattern: ^\d{7}$
   preferred_prefix: MF
+  rdf_uri_format: http://purl.obolibrary.org/obo/MF_$1
   repository: https://github.com/jannahastings/mental-functioning-ontology
   uri_format: http://purl.obolibrary.org/obo/MF_$1
-  version: '2021-11-17'
+  version: '2022-07-19'
 mfmo:
   contact:
     email: druzinsk@uic.edu
@@ -28534,15 +29061,16 @@ mfmo:
     homepage: http://purl.obolibrary.org
     name: OBO PURL Parts
     uri_format: http://purl.obolibrary.org/obo/mfmo.owl#MFMO_$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/MFMO_$1
   repository: https://github.com/RDruzinsky/feedontology
   uri_format: http://purl.obolibrary.org/obo/MFMO_$1
   version: '2013-11-16'
 mfo:
   contact:
-    email: Thorsten.Henrich@embl-heidelberg.de
-    github: null
+    email: henrich@embl.de
+    github: ThorstenHen
     name: Thorsten Henrich
-    orcid: null
+    orcid: 0000-0002-1548-3290
   deprecated: true
   description: A structured controlled vocabulary of the anatomy and development of
     the Japanese medaka fish, <i>Oryzias latipes</i>.
@@ -28574,6 +29102,7 @@ mfo:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/mfo:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/MFO_$1
   uri_format: http://purl.obolibrary.org/obo/MFO_$1
 mfoem:
   contact:
@@ -28609,9 +29138,10 @@ mfoem:
     title: Evaluating the Emotion Ontology through use in the self-reporting of emotional
       responses at an academic conference.
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
   repository: https://github.com/jannahastings/emotion-ontology
   uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
-  version: '2021-11-17'
+  version: '2022-07-19'
 mfomd:
   contact:
     email: janna.hastings@gmail.com
@@ -28640,6 +29170,7 @@ mfomd:
   name: Mental Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: MFOMD
+  rdf_uri_format: http://purl.obolibrary.org/obo/MFOMD_$1
   repository: https://github.com/jannahastings/mental-functioning-ontology
   uri_format: http://purl.obolibrary.org/obo/MFOMD_$1
   version: '2020-04-26'
@@ -28852,10 +29383,10 @@ mgnify.samp:
 mi:
   banana: MI
   contact:
-    email: pporras@ebi.ac.uk
-    github: pporrasebi
-    name: Pablo Porras Millán
-    orcid: 0000-0002-8429-8793
+    email: luana.licata@gmail.com
+    github: luanalicata
+    name: Luana Licata
+    orcid: 0000-0001-5084-9000
   description: The Molecular Interactions (MI) ontology forms a structured controlled
     vocabulary for the annotation of experiments concerned with protein-protein interactions.
     MI is developed by the HUPO Proteomics Standards Initiative.
@@ -28904,6 +29435,7 @@ mi:
     title: The HUPO PSI's molecular interaction format--a community standard for the
       representation of protein interaction data.
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/MI_$1
   repository: https://github.com/HUPO-PSI/psi-mi-CV
   synonyms:
   - PSI-MI
@@ -28968,9 +29500,9 @@ miapa:
     title: 'Taking the first steps towards a standard for reporting on phylogenies:
       Minimum Information About a Phylogenetic Analysis (MIAPA).'
     year: 2006
+  rdf_uri_format: http://purl.obolibrary.org/obo/MIAPA_$1
   repository: https://github.com/evoinfo/miapa
   uri_format: http://purl.obolibrary.org/obo/MIAPA_$1
-  version: '2017-05-09'
 micro:
   appears_in:
   - mco
@@ -29006,6 +29538,7 @@ micro:
     title: 'MicrO: an ontology of phenotypic and metabolic characters, assays, and
       culture media found in prokaryotic taxonomic descriptions.'
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/MICRO_$1
   repository: https://github.com/carrineblank/MicrO
   uri_format: http://purl.obolibrary.org/obo/MICRO_$1
   version: 1.5.1
@@ -29548,6 +30081,7 @@ mirnao:
     ontobee: miRNAO
   name: microRNA Ontology
   preferred_prefix: MIRNAO
+  rdf_uri_format: http://purl.obolibrary.org/obo/MIRNAO_$1
   uri_format: http://purl.obolibrary.org/obo/MIRNAO_$1
 mirnest:
   description: miRNEST is a database of animal, plant and virus microRNAs, containing  miRNA
@@ -29625,6 +30159,7 @@ miro:
     title: 'MIRO and IRbase: IT tools for the epidemiological monitoring of insecticide
       resistance in mosquito disease vectors.'
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/MIRO_$1
   repository: https://github.com/VEuPathDB-ontology/MIRO
   uri_format: http://purl.obolibrary.org/obo/MIRO_$1
   version: '2014-05-14'
@@ -29819,8 +30354,8 @@ mmo:
     github: jrsjrs
     name: Jennifer Smith
     orcid: 0000-0002-6443-9376
-  description: 'A representation of the variety of methods used to make clinical and
-    phenotype measurements. '
+  description: A representation of the variety of methods used to make clinical and
+    phenotype measurements.
   download_obo: http://purl.obolibrary.org/obo/mmo.obo
   download_owl: http://purl.obolibrary.org/obo/mmo.owl
   example: '0000574'
@@ -29855,10 +30390,11 @@ mmo:
     pubmed: '22654893'
     title: Three ontologies to define phenotype measurement data.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/MMO_$1
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2019-03-27'
+  version: '2.39'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -30014,10 +30550,11 @@ mmusdv:
   name: Mouse Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: MmusDv
+  rdf_uri_format: http://purl.obolibrary.org/obo/MmusDv_$1
   repository: https://github.com/obophenotype/developmental-stage-ontologies
   synonyms:
   - MmusDv
-  uri_format: http://purl.obolibrary.org/obo/MMUSDV_$1
+  uri_format: http://purl.obolibrary.org/obo/MmusDv_$1
   version: '2020-03-10'
 mo:
   contact:
@@ -30052,6 +30589,7 @@ mo:
     homepage: https://mged.sourceforge.net/ontologies/MGEDontology.php
     name: MGED Ontology at SourceForge
     uri_format: https://mged.sourceforge.net/ontologies/MGEDontology.php#$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/MO_$1
   uri_format: http://purl.obolibrary.org/obo/MO_$1
 mobidb:
   contact:
@@ -30159,10 +30697,12 @@ mod:
     title: The PSI-MOD community standard for representation of protein modification
       data.
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/MOD_$1
   repository: https://github.com/HUPO-PSI/psi-mod-CV
   synonyms:
   - PSI-MOD
   uri_format: https://www.ebi.ac.uk/ols/ontologies/mod/terms?obo_id=MOD:$1
+  version: 1.031.6
 modeldb:
   description: ModelDB is a curated, searchable database of published models in the
     computational neuroscience domain. It accommodates models expressed in textual
@@ -30343,6 +30883,7 @@ mondo:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://raw.githubusercontent.com/monarch-initiative/mondo/master/docs/images/mondo_logo_black-stacked-small.png
   mappings:
     aberowl: MONDO
     biocontext: MONDO
@@ -30352,6 +30893,7 @@ mondo:
     ols: mondo
     ontobee: MONDO
     wikidata: P5270
+  mastodon: monarch_initiative@genomic.social
   name: Mondo Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: MONDO
@@ -30361,10 +30903,11 @@ mondo:
     pubmed: null
     title: 'Mondo: Unifying diseases for the world, by the world'
     year: 2022
+  rdf_uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
-  uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2022-12-01'
+  uri_format: http://www.bioregistry.io/$1
+  version: '2023-04-04'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -30394,9 +30937,10 @@ mop:
   name: Molecular Process Ontology
   pattern: ^\d{7}$
   preferred_prefix: MOP
+  rdf_uri_format: http://purl.obolibrary.org/obo/MOP_$1
   repository: https://github.com/rsc-ontologies/rxno
   uri_format: http://purl.obolibrary.org/obo/MOP_$1
-  version: '2022-02-01'
+  version: '2022-05-11'
 morpheus:
   description: 'The Morpheus model repository is an open-access data resource to store,
     search and retrieve unpublished and published computational models of spatio-temporal
@@ -30531,6 +31075,7 @@ mp:
     title: The Mammalian Phenotype Ontology as a tool for annotating, analyzing and
       comparing phenotypic information.
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1
 mpath:
@@ -30581,6 +31126,7 @@ mpath:
     pubmed: '20587689'
     title: Pathbase and the MPATH ontology. Community resources for mouse histopathology.
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/MPATH_$1
   repository: https://github.com/PaulNSchofield/mpath
   synonyms:
   - MPATH
@@ -30657,6 +31203,7 @@ mpio:
   name: Minimum PDDI Information Ontology
   pattern: ^\d{7}$
   preferred_prefix: MPIO
+  rdf_uri_format: http://purl.obolibrary.org/obo/MPIO_$1
   repository: https://github.com/MPIO-Developers/MPIO
   uri_format: http://purl.obolibrary.org/obo/MPIO_$1
   version: '2019-01-30'
@@ -30695,9 +31242,10 @@ mro:
     pubmed: '26759709'
     title: An ontology for major histocompatibility restriction.
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2022-06-17'
+  version: '2023-02-27'
 ms:
   banana: MS
   contact:
@@ -30744,8 +31292,10 @@ ms:
     title: The HUPO proteomics standards initiative- mass spectrometry controlled
       vocabulary.
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: https://www.ebi.ac.uk/ols/ontologies/ms/terms?obo_id=MS:$1
+  version: 4.1.119
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -31366,9 +31916,10 @@ nbo:
     title: 'The neurobehavior ontology: an ontology for annotation and integration
       of behavior and behavioral phenotypes.'
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/NBO_$1
   repository: https://github.com/obo-behavior/behavior-ontology
   uri_format: http://purl.obolibrary.org/obo/NBO_$1
-  version: '2021-02-15'
+  version: '2023-02-21'
 nbrc:
   description: NITE Biological Research Center (NBRC) provides a collection of microbial
     resources, performing taxonomic characterization of individual microorganisms
@@ -31620,6 +32171,7 @@ ncbigene:
     pubmed: '15608257'
     title: 'Entrez Gene: gene-centered information at NCBI.'
     year: 2005
+  rdf_uri_format: http://purl.uniprot.org/geneid/$1
   synonyms:
   - EGID
   - EntrezGene
@@ -31812,6 +32364,7 @@ ncbitaxon:
     pubmed: '22139910'
     title: The NCBI Taxonomy database.
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/NCBITaxon_$1
   repository: https://github.com/obophenotype/ncbitaxon
   synonyms:
   - NCBI Taxonomy
@@ -31825,7 +32378,7 @@ ncbitaxon:
   - taxonomy
   - uniprot.taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
-  version: '2022-08-18'
+  version: '2023-02-24'
 ncim:
   description: NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database
     that covers most terminologies used by NCI for clinical care, translational and
@@ -31923,6 +32476,7 @@ ncit:
     title: 'NCI Thesaurus: using science-based terminology to integrate cancer research
       results.'
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/NCIT_$1
   repository: https://github.com/NCI-Thesaurus/thesaurus-obo-edition
   synonyms:
   - NCI
@@ -31936,7 +32490,7 @@ ncit:
   - NCit
   - ncithesaurus
   uri_format: http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1
-  version: 22.07d
+  version: '2022-08-19'
 ncro:
   contact:
     email: huang@southalabama.edu
@@ -31971,9 +32525,9 @@ ncro:
     title: 'The Non-Coding RNA Ontology (NCRO): a comprehensive resource for the unification
       of non-coding RNA biology'
     year: null
+  rdf_uri_format: http://purl.obolibrary.org/obo/NCRO_$1
   repository: https://github.com/OmniSearch/ncro
   uri_format: http://purl.obolibrary.org/obo/NCRO_$1
-  version: '2015-12-10'
 ndc:
   description: The National Drug Code (NDC) is a unique, three-segment number used
     by the Food and Drug Administration (FDA) to identify drug products for commercial
@@ -32129,6 +32683,7 @@ ndfrt:
     title: Adequacy of representation of the National Drug File Reference Terminology
       Physiologic Effects reference hierarchy for commonly prescribed medications.
     year: 2003
+  rdf_uri_format: http://purl.bioontology.org/ontology/NDFRT/$1
   synonyms:
   - NUI
   - ndf-rt
@@ -32521,16 +33076,21 @@ nfdi4chem.cao:
   description: 'An ontology developed as part of the Chemical Analysis Metadata Project
     (ChAMP) as a resource to semantically annotate standards developed using the ChAMP
     platform. (source: CAO ontology)'
+  download_owl: https://champ.stuchalk.domains.unf.edu/images/ontology/cao.owl
   example: '000064'
   homepage: https://champ.stuchalk.domains.unf.edu
   keywords:
   - characterisation data heat
+  - ontology
   - transport and kinetic data
   license: CC-BY-3.0
+  mappings:
+    ols: cao
   name: Chemical Analysis Ontology
   pattern: ^\d+$
   preferred_prefix: nfdi4chem.cao
   uri_format: http://champ-project.org/images/ontology/cao.owl#CAO_$1
+  version: '0.2'
 nfdi4chem.ontocape:
   comment: This ontology ecosystem is near unusable
   contributor:
@@ -32570,6 +33130,36 @@ nfdi4chem.osmo:
   homepage: https://zenodo.org/record/5237774#.YXq72hxCRGo
   name: Ontology for simulation, modelling, and optimization
   preferred_prefix: nfdi4chem.osmo
+ngbo:
+  contact:
+    email: dal.alghamdi92@gmail.com
+    github: dalalghamdi
+    name: Dalia Alghamdi
+    orcid: 0000-0002-2801-0767
+  description: 'Next Generation Biobanking Ontology (NGBO) is an open application
+    ontology representing contextual data about omics digital assets in biobank. The
+    ontology focuses on capturing the information about three main activities: wet
+    bench analysis used to generate omics data, bioinformatics analysis used to analyze
+    and interpret data, and data management.'
+  download_owl: http://purl.obolibrary.org/obo/ngbo.owl
+  example: '6000122'
+  homepage: https://github.com/Dalalghamdi/NGBO
+  keywords:
+  - obo
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    aberowl: NGBO
+    bioportal: NGBO
+    obofoundry: ngbo
+    ols: ngbo
+    ontobee: NGBO
+  name: Next Generation Biobanking Ontology
+  preferred_prefix: NGBO
+  rdf_uri_format: http://purl.obolibrary.org/obo/NGBO_$1
+  repository: https://github.com/Dalalghamdi/NGBO
+  uri_format: http://purl.obolibrary.org/obo/NGBO_$1
+  version: '2022-10-05'
 ngl:
   description: NASA's GeneLab gathers spaceflight genomic data, RNA and protein expression,
     and metabolic profiles, interfaces with existing databases for expanded research,
@@ -32658,6 +33248,7 @@ nif.cell:
   name: NIF Cell
   part_of: nif
   preferred_prefix: NIF_CELL
+  rdf_uri_format: http://purl.obolibrary.org/obo/NIF_CELL_$1
   uri_format: http://purl.obolibrary.org/obo/NIF_CELL_$1
 nif.dysfunction:
   contact:
@@ -32676,6 +33267,7 @@ nif.dysfunction:
   name: NIF Dysfunction
   part_of: nif
   preferred_prefix: NIF_DYSFUNCTION
+  rdf_uri_format: http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1
   uri_format: http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1
 nif.ext:
   contact:
@@ -32725,6 +33317,7 @@ nif.grossanatomy:
   name: NIF Gross Anatomy
   part_of: nif
   preferred_prefix: NIF_GROSSANATOMY
+  rdf_uri_format: http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1
   uri_format: http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1
 nif.std:
   contact:
@@ -32811,6 +33404,41 @@ nist:
   synonyms:
   - NIST
   - NIST Chemistry WebBook
+nkos:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'NKOS is devoted to the discussion of the functional and data model
+    for enabling knowledge organization systems/services (KOS), such as classification
+    systems, thesauri, gazetteers, and ontologies, as networked interactive information
+    services to support the description and retrieval of diverse information resources
+    through the Internet.
+
+
+    Knowledge Organization Systems/Services (KOS) model the underlying semantic structure
+    of a domain. Embodied as Web-based services, they can facilitate resource discovery
+    and retrieval. They act as semantic road maps and make possible a common orientation
+    by indexers and future users (whether human or machine). -- Douglas Tudhope, Traugott
+    Koch (2004).'
+  download_rdf: https://nkos.dublincore.org/nkos.rdf
+  example: alignedWith
+  homepage: http://w3id.org/nkos
+  name: Networked Knowledge Organization Systems/Services/Structures
+  preferred_prefix: nkos
+  uri_format: http://w3id.org/nkos/$1
+nlfff:
+  description: Nonlinear Force-Free Field Three-Dimensional Magnetic Fields Data of
+    Solar Active Regions Database
+  example: '345201101230312003'
+  homepage: https://nlfff.dataset.deepsolar.space/en/
+  mappings:
+    miriam: nlfff
+  name: NLFFF Database
+  pattern: ^[0-9]+$
+  preferred_prefix: nlfff
+  uri_format: http://database.deepsolar.space:18080/dbs/nlfff/$1
 nlm:
   contributor:
     email: cthoyt@gmail.com
@@ -33352,6 +33980,7 @@ nmr:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/nmr:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/NMR_$1
   synonyms:
   - nmrcv
   uri_format: https://www.ebi.ac.uk/ols/ontologies/nmrcv/terms?short_form=NMR:$1
@@ -33442,6 +34071,7 @@ nomen:
   name: A nomenclatural ontology for biological names
   pattern: ^\d{7}$
   preferred_prefix: NOMEN
+  rdf_uri_format: http://purl.obolibrary.org/obo/NOMEN_$1
   repository: https://github.com/SpeciesFileGroup/nomen
   uri_format: http://purl.obolibrary.org/obo/NOMEN_$1
 noncodev3:
@@ -33814,9 +34444,10 @@ oae:
     pubmed: '25093068'
     title: 'OAE: The Ontology of Adverse Events.'
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/OAE_$1
   repository: https://github.com/OAE-ontology/OAE
   uri_format: http://purl.obolibrary.org/obo/OAE_$1
-  version: 1.2.44
+  version: 1.2.47
 oarcs:
   contact:
     email: mjyoder@illinois.edu
@@ -33852,6 +34483,7 @@ oarcs:
       Systems - OArCS) and its Integration into a Novel Formalization Scheme for Morphological
       Descriptions.
     year: 2017
+  rdf_uri_format: http://purl.obolibrary.org/obo/OARCS_$1
   repository: https://github.com/aszool/oarcs
   uri_format: http://purl.obolibrary.org/obo/OARCS_$1
   version: '2019-04-18'
@@ -33896,9 +34528,16 @@ oba:
     title: The Ontology of Biological Attributes (OBA) - Computational Traits for
       the Life Sciences.
     year: 2023
+  - doi: 10.1007/s00335-023-09992-1
+    pmc: null
+    pubmed: null
+    title: The Ontology of Biological Attributes (OBA) - computational traits for
+      the life sciences
+    year: null
+  rdf_uri_format: http://purl.obolibrary.org/obo/OBA_$1
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
-  version: '2022-11-26'
+  version: '2023-02-14'
 oban:
   contributor:
     email: cthoyt@gmail.com
@@ -33930,12 +34569,12 @@ obcs:
     github: zhengj2007
     name: Jie Zheng
     orcid: 0000-0002-2999-0103
-  description: 'OBCS stands for the Ontology of Biological and Clinical Statistics.
+  description: OBCS stands for the Ontology of Biological and Clinical Statistics.
     OBCS is an ontology in the domain of biological and clinical statistics. It is
     aligned with the Basic Formal Ontology (BFO) and the Ontology for Biomedical Investigations
     (OBI). OBCS imports all possible biostatistics terms in OBI and includes many
     additional biostatistics terms, some of which were proposed and discussed in the
-    OBI face-to-face workshop in Ann Arbor in 2012.  '
+    OBI face-to-face workshop in Ann Arbor in 2012.
   download_owl: http://purl.obolibrary.org/obo/obcs.owl
   example: '0000121'
   homepage: https://github.com/obcs/obcs
@@ -33966,9 +34605,10 @@ obcs:
     title: The Ontology of Biological and Clinical Statistics (OBCS) for standardized
       and reproducible statistical analysis.
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/OBCS_$1
   repository: https://github.com/obcs/obcs
   uri_format: http://purl.obolibrary.org/obo/OBCS_$1
-  version: '101'
+  version: '2018-02-22'
 obi:
   appears_in:
   - agro
@@ -34006,6 +34646,7 @@ obi:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://svn.code.sf.net/p/obi/code/trunk/web/htdocs/images/obi-lotext.png
   mappings:
     aberowl: OBI
     biocontext: OBI
@@ -34060,9 +34701,10 @@ obi:
     pubmed: '20626927'
     title: Modeling biomedical experimental processes with OBI.
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/OBI_$1
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
-  version: '2022-07-11'
+  version: '2023-03-10'
 obib:
   contact:
     email: jiezheng@pennmedicine.upenn.edu
@@ -34102,6 +34744,7 @@ obib:
     pubmed: '27148435'
     title: OBIB-a novel ontology for biobanking.
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/OBIB_$1
   repository: https://github.com/biobanking/biobanking
   uri_format: http://purl.obolibrary.org/obo/OBIB_$1
   version: '2021-11-12'
@@ -34109,7 +34752,7 @@ obo:
   contact:
     email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   description: The OBO namespace is the top-level namespace used by Open Biological
     and Biomedical Ontology (OBO) Foundry ontologies.
@@ -34130,7 +34773,6 @@ obo:
     year: 2007
   repository: https://github.com/OBOFoundry/OBOFoundry.github.io
   twitter: OBOFoundry
-  uri_format: http://purl.obolibrary.org/obo/$1
 oboinowl:
   contributor:
     email: cthoyt@gmail.com
@@ -34150,6 +34792,7 @@ oboinowl:
     biocontext: oboInOwl
     biolink: oboformat
     fairsharing: FAIRsharing.aa0eat
+    ols: oboinowl
   name: OBO in OWL
   preferred_prefix: oboInOwl
   repository: https://github.com/geneontology/go-ontology
@@ -34157,6 +34800,21 @@ oboinowl:
   - oboformat
   - oio
   uri_format: http://www.geneontology.org/formats/oboInOwl#$1
+obv:
+  description: The Austrian Library Network (OBV) is the largest network of scientific
+    and administrative libraries in Austria with 70 participants, representing more
+    than 90 individual institutions - including the Austrian National Library, university
+    libraries, the colleges of education, individual ministries, numerous technical
+    colleges and other important collections.
+  example: AC00963334
+  homepage: https://www.obvsg.at/
+  mappings:
+    bartoc: '20430'
+    miriam: obv
+  name: Austrian Library Network
+  pattern: ^AC[0-9]{8}$
+  preferred_prefix: obv
+  uri_format: https://permalink.obvsg.at/$1
 occ:
   description: The OpenCitations Corpus is open repository of scholarly citation data
     made available under a Creative Commons public domain dedication (CC0), which
@@ -34333,19 +34991,34 @@ odor:
   pattern: ^\d+$
   preferred_prefix: odor
   uri_format: http://senselab.med.yale.edu/OdorDB/Data/$1/?db=5
+odrl:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The ODRL Vocabulary and Expression defines a set of concepts and terms
+    (the vocabulary) and encoding mechanism (the expression) for permissions and obligations
+    statements describing digital content usage based on the ODRL Information Model.
+  download_rdf: https://www.w3.org/ns/odrl/2/ODRL22.rdf
+  example: assetConcepts
+  homepage: http://www.w3.org/ns/odrl/2
+  name: Open Digital Rights Language Ontology
+  preferred_prefix: odrl
+  uri_format: http://www.w3.org/ns/odrl/2/$1
 ogg:
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
     name: Yongqun Oliver He
     orcid: 0000-0001-9189-9661
-  description: 'OGG is a biological ontology in the area of genes and genomes. OGG
+  description: OGG is a biological ontology in the area of genes and genomes. OGG
     uses the Basic Formal Ontology (BFO) as its upper level ontology. This OGG document
     contains the genes and genomes of a list of selected organisms, including human,
     two viruses (HIV and influenza virus), and bacteria (B. melitensis strain 16M,
     E. coli strain K-12 substrain MG1655, M. tuberculosis strain H37Rv, and P. aeruginosa
     strain PAO1). More OGG information for other organisms (e.g., mouse, zebrafish,
-    fruit fly, yeast, etc.) may be found in other OGG subsets. '
+    fruit fly, yeast, etc.) may be found in other OGG subsets.
   download_owl: http://purl.obolibrary.org/obo/ogg.owl
   example: '3000887619'
   homepage: https://bitbucket.org/hegroup/ogg
@@ -34366,6 +35039,7 @@ ogg:
   name: The Ontology of Genes and Genomes
   pattern: ^\d+$
   preferred_prefix: OGG
+  rdf_uri_format: http://purl.obolibrary.org/obo/OGG_$1
   repository: https://bitbucket.org/hegroup/ogg
   uri_format: http://purl.obolibrary.org/obo/OGG_$1
   version: 1.0.59
@@ -34407,6 +35081,7 @@ ogi:
   name: Ontology for genetic interval
   pattern: ^\d{7}$
   preferred_prefix: OGI
+  rdf_uri_format: http://purl.obolibrary.org/obo/OGI_$1
   synonyms:
   - OGI.owl
   uri_format: http://purl.obolibrary.org/obo/OGI_$1
@@ -34447,6 +35122,7 @@ ogms:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: https://avatars2.githubusercontent.com/u/12973154?s=200&v=4
   mappings:
     aberowl: OGMS
     bartoc: '216'
@@ -34470,6 +35146,7 @@ ogms:
     pubmed: '24314207'
     title: The neurological disease ontology.
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/OGMS_$1
   repository: https://github.com/OGMS/ogms
   synonyms:
   - ogms/OMRE
@@ -34517,6 +35194,7 @@ ogsf:
     title: Ontology driven modeling for the knowledge of genetic susceptibility to
       disease.
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/OGSF_$1
   repository: https://github.com/linikujp/OGSF
   uri_format: http://purl.obolibrary.org/obo/OGSF_$1
   version: '2.0'
@@ -34556,9 +35234,10 @@ ohd:
     title: Structuring, reuse and analysis of electronic dental data using the Oral
       Health and Disease Ontology.
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/OHD_$1
   repository: https://github.com/oral-health-and-disease-ontologies/ohd-ontology
   uri_format: http://purl.obolibrary.org/obo/OHD_$1
-  version: '2016-06-27'
+  version: '2023-04-14'
 ohmi:
   contact:
     email: yongqunh@med.umich.edu
@@ -34586,6 +35265,7 @@ ohmi:
   name: Ontology of Host-Microbiome Interactions
   pattern: ^\d{7}$
   preferred_prefix: OHMI
+  rdf_uri_format: http://purl.obolibrary.org/obo/OHMI_$1
   repository: https://github.com/ohmi-ontology/ohmi
   uri_format: http://purl.obolibrary.org/obo/OHMI_$1
   version: '2019-09-17'
@@ -34624,9 +35304,10 @@ ohpi:
     title: 'Victors: a web-based knowledge base of virulence factors in human and
       animal pathogens.'
     year: 2019
+  rdf_uri_format: http://purl.obolibrary.org/obo/OHPI_$1
   repository: https://github.com/OHPI/ohpi
   uri_format: http://purl.obolibrary.org/obo/OHPI_$1
-  version: '2019-10-02'
+  version: '2019-09-30'
 oid:
   contributor_extras:
   - email: cthoyt@gmail.com
@@ -34694,8 +35375,9 @@ olatdv:
   name: Medaka Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: OlatDv
+  rdf_uri_format: http://purl.obolibrary.org/obo/OlatDv_$1
   repository: https://github.com/obophenotype/developmental-stage-ontologies
-  uri_format: http://purl.obolibrary.org/obo/OLATDV_$1
+  uri_format: http://purl.obolibrary.org/obo/OlatDv_$1
   version: '2020-03-10'
 om:
   contact:
@@ -34731,7 +35413,7 @@ om:
   preferred_prefix: om
   repository: https://github.com/HajoRijgersberg/OM
   uri_format: http://www.ontology-of-units-of-measure.org/resource/om-2/$1
-  version: 2.0.38
+  version: 2.0.39
 oma.grp:
   description: OMA (Orthologous MAtrix) is a database that identifies orthologs among
     publicly available, complete genome sequences. It identifies orthologous relationships
@@ -34850,9 +35532,27 @@ omiabis:
   name: Ontologized MIABIS
   pattern: ^\d{7}$
   preferred_prefix: OMIABIS
+  rdf_uri_format: http://purl.obolibrary.org/obo/OMIABIS_$1
   repository: https://github.com/OMIABIS/omiabis-dev
   uri_format: http://purl.obolibrary.org/obo/OMIABIS_$1
   version: '2014-05-28'
+omid:
+  description: Every entity in OpenCitations Meta (https://opencitations.net/meta)
+    is assigned persistent internal identifier called OpenCitations Meta Identifier
+    (OMID). The OMID has structure [[entity_type_abbreviation]]/[[supplier_prefix]][[sequential_number]].
+    For example, the first journal article ever processed has OMID br/0601 (the full
+    URI is https://w3id.org/oc/meta/br/0601), where br is the abbreviation of bibliographic
+    resource, and 060 corresponds to the supplier prefix, helpful in recognising at
+    a glance the index it belongs to (i.e., OpenCitations Meta). Finally, 1 indicates
+    that this is the index's first bibliographic resource ever minted.
+  example: br/0601
+  homepage: http://opencitations.net/
+  mappings:
+    miriam: omid
+  name: OpenCitations Meta Identifier
+  pattern: ^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$
+  preferred_prefix: omid
+  uri_format: https://w3id.org/oc/meta/$1
 omim:
   contact:
     email: ahamosh@jhmi.edu
@@ -35037,11 +35737,12 @@ omit:
     pubmed: '21879385'
     title: 'OMIT: a domain-specific knowledge base for microRNA target prediction.'
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/OMIT_$1
   repository: https://github.com/OmniSearch/omit
   synonyms:
   - OMIT
   uri_format: https://www.ebi.ac.uk/ols/ontologies/omit/terms?short_form=OMIT_$1
-  version: '2019-06-07'
+  version: dev
 omo:
   appears_in:
   - pcl
@@ -35068,9 +35769,10 @@ omo:
   name: OBO Metadata Ontology
   no_own_terms: true
   preferred_prefix: OMO
+  rdf_uri_format: http://purl.obolibrary.org/obo/OMO_$1
   repository: https://github.com/information-artifact-ontology/ontology-metadata
   uri_format: http://purl.obolibrary.org/obo/OMO_$1
-  version: '2022-04-27'
+  version: '2023-02-19'
 omop:
   contributor:
     email: cthoyt@gmail.com
@@ -35080,7 +35782,7 @@ omop:
   contributor_extras:
   - email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   description: The OMOP Common Data Model allows for the systematic analysis of disparate
     observational databases. The concept behind this approach is to transform data
@@ -35150,9 +35852,10 @@ omp:
     pubmed: '25433798'
     title: An ontology for microbial phenotypes.
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/OMP_$1
   repository: https://github.com/microbialphenotypes/OMP-ontology
   uri_format: http://purl.obolibrary.org/obo/OMP_$1
-  version: '2022-08-05'
+  version: '2022-12-04'
 omrse:
   appears_in:
   - labo
@@ -35194,9 +35897,10 @@ omrse:
     pubmed: '27406187'
     title: 'The ontology of medically related social entities: recent developments.'
     year: 2016
+  rdf_uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
   repository: https://github.com/ufbmi/OMRSE
   uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
-  version: '2022-04-06'
+  version: '2022-12-21'
 oncotree:
   appears_in:
   - efo
@@ -35263,6 +35967,7 @@ one:
     title: 'An Ontology to Standardize Research Output of Nutritional Epidemiology:
       From Paper-Based Standards to Linked Content.'
     year: 2019
+  rdf_uri_format: http://purl.obolibrary.org/obo/ONE_$1
   repository: https://github.com/cyang0128/Nutritional-epidemiologic-ontologies
   uri_format: http://purl.obolibrary.org/obo/ONE_$1
 ons:
@@ -35311,6 +36016,7 @@ ons:
     title: 'ONS: an ontology for a standardized description of interventions and observational
       studies in nutrition.'
     year: 2018
+  rdf_uri_format: http://purl.obolibrary.org/obo/ONS_$1
   repository: https://github.com/enpadasi/Ontology-for-Nutritional-Studies
   uri_format: http://purl.obolibrary.org/obo/ONS_$1
   version: Release version 1.2.3
@@ -35362,6 +36068,7 @@ ontoavida:
   name: Ontology for Avida digital evolution platform
   pattern: ^\d{8}$
   preferred_prefix: ONTOAVIDA
+  rdf_uri_format: http://purl.obolibrary.org/obo/ONTOAVIDA_$1
   repository: https://gitlab.com/fortunalab/ontoavida
   uri_format: http://purl.obolibrary.org/obo/ONTOAVIDA_$1
   version: '2022-03-15'
@@ -35400,17 +36107,19 @@ ontoneo:
     title: 'Ontologies for the representation of electronic medical records: The obstetric
       and neonatal ontology'
     year: null
+  rdf_uri_format: http://purl.obolibrary.org/obo/ONTONEO_$1
   repository: https://github.com/ontoneo-project/Ontoneo
   uri_format: http://purl.obolibrary.org/obo/ONTONEO_$1
-  version: v1.6
+  version: '2021-04-29'
 oostt:
   contact:
     email: mbrochhausen@gmail.com
     github: mbrochhausen
     name: Mathias Brochhausen
     orcid: 0000-0003-1834-3856
-  description: An ontology built for representating the organizational components
-    of trauma centers and trauma systems.
+  description: The Ontology of Organizational Structures of Trauma centers and Trauma
+    systems (OOSTT) is a representation of the components of trauma centers and trauma
+    systems coded in Web Ontology Language (OWL2).
   download_owl: http://purl.obolibrary.org/obo/oostt.owl
   example: 00000099
   homepage: https://github.com/OOSTT/OOSTT
@@ -35430,9 +36139,10 @@ oostt:
   name: Ontology of Organizational Structures of Trauma centers and Trauma systems
   pattern: ^\d{8}$
   preferred_prefix: OOSTT
+  rdf_uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
   repository: https://github.com/OOSTT/OOSTT
   uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
-  version: '2021-01-11'
+  version: '2023-03-30'
 opb:
   banana: OPB
   banana_peel: _
@@ -35562,6 +36272,7 @@ opl:
     title: 'The Ontology for Parasite Lifecycle (OPL): towards a consistent vocabulary
       of lifecycle stages in parasitic organisms.'
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/OPL_$1
   repository: https://github.com/OPL-ontology/OPL
   uri_format: http://purl.obolibrary.org/obo/OPL_$1
   version: '2021-01-28'
@@ -35615,9 +36326,10 @@ opmi:
   name: Ontology of Precision Medicine and Investigation
   pattern: ^\d{7}$
   preferred_prefix: OPMI
+  rdf_uri_format: http://purl.obolibrary.org/obo/OPMI_$1
   repository: https://github.com/OPMI/opmi
   uri_format: http://purl.obolibrary.org/obo/OPMI_$1
-  version: 1.0.158
+  version: 1.0.161
 orcid:
   contact:
     email: w.simpson@orcid.org
@@ -35642,6 +36354,7 @@ orcid:
     miriam: orcid
     n2t: orcid
     wikidata: P496
+  mastodon: ORCID_Org@scicomm.xyz
   name: Open Researcher and Contributor
   pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
   preferred_prefix: orcid
@@ -35664,6 +36377,7 @@ orcid:
     pubmed: null
     title: ORCID's 2025 Vision
     year: 2020
+  rdf_uri_format: https://orcid.org/$1
   repository: https://github.com/ORCID
   synonyms:
   - ORCID
@@ -35775,6 +36489,7 @@ ornaseq:
   name: Ontology of RNA Sequencing
   pattern: ^\d{7}$
   preferred_prefix: ORNASEQ
+  rdf_uri_format: http://purl.obolibrary.org/obo/ORNASEQ_$1
   repository: https://github.com/safisher/ornaseq
   uri_format: http://purl.obolibrary.org/obo/ORNASEQ_$1
   version: '2019-07-08'
@@ -35875,7 +36590,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.1'
+  version: '4.2'
 orth:
   contact:
     email: jfernand@um.es
@@ -36146,8 +36861,8 @@ ovae:
     github: yongqunh
     name: Yongqunh He
     orcid: 0000-0001-9189-9661
-  description: 'OVAE is a biomedical ontology in the area of vaccine adverse events.
-    OVAE is an extension of the community-based Ontology of Adverse Events (OAE). '
+  description: OVAE is a biomedical ontology in the area of vaccine adverse events.
+    OVAE is an extension of the community-based Ontology of Adverse Events (OAE).
   download_owl: http://purl.obolibrary.org/obo/ovae.owl
   example: 0000609
   homepage: http://www.violinet.org/ovae/
@@ -36174,6 +36889,7 @@ ovae:
     title: The Ontology of Vaccine Adverse Events (OVAE) and its usage in representing
       and analyzing adverse events associated with US-licensed human vaccines.
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/OVAE_$1
   repository: https://github.com/OVAE-Ontology/ovae
   uri_format: http://purl.obolibrary.org/obo/OVAE_$1
   version: 1.0.34
@@ -36202,9 +36918,11 @@ owl:
   mappings:
     biocontext: owl
     fairsharing: FAIRsharing.atygwy
+    ols: owl
   name: Web Ontology Language
   preferred_prefix: owl
   uri_format: http://www.w3.org/2002/07/owl#$1
+  version: '$Date: 2009/11/15 10:54:12 $'
 owlstar:
   contact:
     email: cjmungall@lbl.gov
@@ -36496,6 +37214,7 @@ pao:
     obofoundry: pao
   name: Plant Anatomy Ontology
   preferred_prefix: PAO
+  rdf_uri_format: http://purl.obolibrary.org/obo/PAO_$1
   uri_format: http://purl.obolibrary.org/obo/PAO_$1
 pass2:
   deprecated: true
@@ -36756,9 +37475,10 @@ pato:
     pubmed: '15642100'
     title: Using ontologies to describe mouse phenotypes.
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/PATO_$1
   repository: https://github.com/pato-ontology/pato
   uri_format: https://www.ebi.ac.uk/ols/ontologies/pato/terms?obo_id=PATO:$1
-  version: '2022-08-31'
+  version: '2023-02-17'
 pav:
   contact:
     email: stian@soiland-reyes.com
@@ -36768,7 +37488,7 @@ pav:
   contributor:
     email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   contributor_extras:
   - email: cthoyt@gmail.com
@@ -36962,9 +37682,10 @@ pcl:
     pubmed: null
     title: Brain Data Standards - A method for building data-driven cell-type ontologies
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/PCL_$1
   repository: https://github.com/obophenotype/provisional_cell_ontology
   uri_format: http://purl.obolibrary.org/obo/PCL_$1
-  version: '2022-10-19'
+  version: '2023-02-27'
 pco:
   appears_in:
   - ecocore
@@ -37016,15 +37737,16 @@ pco:
   name: Population and Community Ontology
   pattern: ^\d{7}$
   preferred_prefix: PCO
+  rdf_uri_format: http://purl.obolibrary.org/obo/PCO_$1
   repository: https://github.com/PopulationAndCommunityOntology/pco
   uri_format: http://purl.obolibrary.org/obo/PCO_$1
   version: '2021-05-03'
 pd_st:
   contact:
     email: henrich@embl.de
-    github: null
-    name: Thorsten Heinrich
-    orcid: null
+    github: ThorstenHen
+    name: Thorsten Henrich
+    orcid: 0000-0002-1548-3290
   deprecated: true
   homepage: http://4dx.embl.de/platy
   keywords:
@@ -37035,6 +37757,7 @@ pd_st:
     obofoundry: pd_st
   name: Platynereis stage ontology
   preferred_prefix: PD_ST
+  rdf_uri_format: http://purl.obolibrary.org/obo/PD_ST_$1
   uri_format: http://purl.obolibrary.org/obo/PD_ST_$1
 pdb:
   contact:
@@ -37146,6 +37869,7 @@ pdb:
     pubmed: '12099029'
     title: '[Development of PDBj: Advanced database for protein structures].'
     year: 2002
+  rdf_uri_format: https://rdf.wwpdb.org/pdb/$1
   synonyms:
   - RCSB_PDB
   - pdbe
@@ -37341,6 +38065,12 @@ pdro:
   name: The Prescription of Drugs Ontology
   pattern: ^\d{7}$
   preferred_prefix: PDRO
+  providers:
+  - code: pdro.legacy
+    description: An incorrect encoding of OBO purls
+    homepage: http://purl.obolibrary.org/obo/pdro
+    name: PDRO Hash
+    uri_format: http://purl.obolibrary.org/obo/PDRO/PDRO.owl#PDRO_$1
   publications:
   - doi: 10.3390/ijerph182212025
     pmc: PMC8619589
@@ -37348,6 +38078,7 @@ pdro:
     title: 'The Prescription of Drug Ontology 2.0 (PDRO): More Than the Sum of Its
       Parts.'
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/PDRO_$1
   repository: https://github.com/OpenLHS/PDRO
   uri_format: http://purl.obolibrary.org/obo/PDRO_$1
   version: '2021-06-08'
@@ -37379,10 +38110,11 @@ pdumdv:
   name: Platynereis Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: PdumDv
+  rdf_uri_format: http://purl.obolibrary.org/obo/PdumDv_$1
   repository: https://github.com/obophenotype/developmental-stage-ontologies
   synonyms:
   - PdumDv
-  uri_format: http://purl.obolibrary.org/obo/PDUMDV_$1
+  uri_format: http://purl.obolibrary.org/obo/PdumDv_$1
   version: '2020-03-10'
 peco:
   appears_in:
@@ -37404,6 +38136,7 @@ peco:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: http://planteome.org/sites/default/files/garland_logo.PNG
   mappings:
     aberowl: PECO
     agroportal: PECO
@@ -37423,6 +38156,7 @@ peco:
     title: 'The Planteome database: an integrated resource for reference ontologies,
       plant genomics and phenomics.'
     year: 2018
+  rdf_uri_format: http://purl.obolibrary.org/obo/PECO_$1
   repository: https://github.com/Planteome/plant-experimental-conditions-ontology
   uri_format: http://purl.obolibrary.org/obo/PECO_$1
   version: '2020-08-21'
@@ -37669,7 +38403,7 @@ pfam:
   description: The Pfam database contains information about protein domains and families.
     For each entry a protein sequence alignment and a Hidden Markov Model is stored.
   example: PF11779
-  homepage: https://pfam.xfam.org/
+  homepage: https://www.ebi.ac.uk/interpro/
   keywords:
   - biology
   - domain
@@ -37851,6 +38585,7 @@ pgdso:
     obofoundry: pgdso
   name: Plant Growth and Development Stage
   preferred_prefix: PGDSO
+  rdf_uri_format: http://purl.obolibrary.org/obo/PGDSO_$1
   uri_format: http://purl.obolibrary.org/obo/PGDSO_$1
 pgs:
   description: The Polygenic Score (PGS) Catalog is an open database of PGS and the
@@ -38314,9 +39049,10 @@ phipo:
     title: 'PHI-base in 2022: a multi-species phenotype database for Pathogen-Host
       Interactions.'
     year: 2022
+  rdf_uri_format: http://purl.obolibrary.org/obo/PHIPO_$1
   repository: https://github.com/PHI-base/phipo
   uri_format: http://purl.obolibrary.org/obo/PHIPO_$1
-  version: '2021-07-14'
+  version: '2022-11-23'
 phosphopoint.kinase:
   description: PhosphoPOINT is a database of the human kinase and phospho-protein
     interactome. It describes the interactions among kinases, their potential substrates
@@ -38772,9 +39508,10 @@ plana:
     title: 'Planarian Anatomy Ontology: a resource to connect data within and across
       experimental platforms.'
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/PLANA_$1
   repository: https://github.com/obophenotype/planaria-ontology
   uri_format: http://purl.obolibrary.org/obo/PLANA_$1
-  version: '2022-03-02'
+  version: '2023-03-13'
 planp:
   contact:
     email: smr@stowers.org
@@ -38805,6 +39542,7 @@ planp:
   name: Planarian Phenotype Ontology
   pattern: ^\d+$
   preferred_prefix: PLANP
+  rdf_uri_format: http://purl.obolibrary.org/obo/PLANP_$1
   repository: https://github.com/obophenotype/planarian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/PLANP_$1
   version: '2020-03-28'
@@ -38927,6 +39665,7 @@ plo:
     obofoundry: plo
   name: Plasmodium Life Cycle
   preferred_prefix: PLO
+  rdf_uri_format: http://purl.obolibrary.org/obo/PLO_$1
   uri_format: http://purl.obolibrary.org/obo/PLO_$1
 pmap.cutdb:
   description: The Proteolysis MAP is a resource for proteolytic networks and pathways.
@@ -39016,6 +39755,7 @@ pmc:
   - virology
   mappings:
     biocontext: PMCID
+    biolink: PMC
     fairsharing: FAIRsharing.wpt5mp
     go: PMCID
     miriam: pmc
@@ -39230,6 +39970,7 @@ po:
   - plant anatomy
   - structure
   license: CC-BY-4.0
+  logo: http://planteome.org/sites/default/files/garland_logo.PNG
   mappings:
     aberowl: PO
     agroportal: PO
@@ -39298,6 +40039,7 @@ po:
     title: 'The Plant Ontology Database: a community resource for plant structure
       and developmental stages controlled vocabulary and annotations.'
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/PO_$1
   repository: https://github.com/Planteome/plant-ontology
   twitter: planteome
   uri_format: http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1
@@ -39483,6 +40225,7 @@ poro:
     title: 'The Porifera Ontology (PORO): enhancing sponge systematics with an anatomy
       ontology.'
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/PORO_$1
   repository: https://github.com/obophenotype/porifera-ontology
   uri_format: http://purl.obolibrary.org/obo/PORO_$1
   version: '2016-10-06'
@@ -39555,6 +40298,7 @@ ppo:
     title: 'The Plant Phenology Ontology: A New Informatics Resource for Large-Scale
       Integration of Plant Phenology Data.'
     year: 2018
+  rdf_uri_format: http://purl.obolibrary.org/obo/PPO_$1
   repository: https://github.com/PlantPhenoOntology/PPO
   uri_format: http://purl.obolibrary.org/obo/PPO_$1
   version: '2018-10-26'
@@ -39564,17 +40308,29 @@ ppr:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: egon.willighagen@gmail.com
+    github: egonw
+    name: Egon Willighagen
+    orcid: 0000-0001-7542-0286
+  - email: javier.millanacosta@maastrichtuniversity.nl
+    github: jmillanacosta
+    name: Javier Millán Acosta
+    orcid: 0000-0002-4166-7093
   description: Preprints are articles which have not been peer-reviewed from various
     preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ
     Preprints and F1000.
-  example: ppr103739
-  homepage: https://europepmc.org
+  example: PPR103739
+  homepage: https://europepmc.org/Preprints
   keywords:
   - bibliometrics
   - preprints
   - publishing
   name: Europe PMC Preprints
+  pattern: ^PPR\d+$
   preferred_prefix: ppr
+  references:
+  - https://github.com/bridgedb/tiwid/pull/21
   uri_format: https://europepmc.org/article/ppr/$1
 pr:
   appears_in:
@@ -39603,6 +40359,7 @@ pr:
   - ontology
   - protein
   license: CC-BY-4.0
+  logo: https://raw.githubusercontent.com/PROconsortium/logo/master/PROlogo_small.png
   mappings:
     aberowl: PR
     agroportal: PR
@@ -39660,12 +40417,13 @@ pr:
     pubmed: '18047702'
     title: Framework for a protein ontology.
     year: 2007
+  rdf_uri_format: http://purl.obolibrary.org/obo/PR_$1
   repository: https://github.com/PROconsortium/PRoteinOntology
   synonyms:
   - PR
   - PRO
   uri_format: https://proconsortium.org/app/entry/PR:$1
-  version: '67.0'
+  version: '68.0'
 prefixcommons:
   contributor:
     email: cthoyt@gmail.com
@@ -39963,9 +40721,10 @@ proco:
   name: Process Chemistry Ontology
   pattern: ^\d{7}$
   preferred_prefix: PROCO
+  rdf_uri_format: http://purl.obolibrary.org/obo/PROCO_$1
   repository: https://github.com/proco-ontology/PROCO
   uri_format: http://purl.obolibrary.org/obo/PROCO_$1
-  version: PROCO release 20220414
+  version: '2022-04-11'
 prodom:
   description: ProDom is a database of protein domain families generated from the
     global comparison of all available protein sequences.
@@ -40057,6 +40816,7 @@ propreo:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/propreo:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/PROPREO_$1
   uri_format: http://purl.obolibrary.org/obo/PROPREO_$1
 prosite:
   description: PROSITE consists of documentation entries describing protein domains,
@@ -40295,7 +41055,7 @@ prov:
   description: The namespace name http://www.w3.org/ns/prov# is intended for use with
     the PROV family of documents that support the interchange of provenance on the
     web.
-  download_owl: http://www.w3.org/ns/prov-o-20130430
+  download_owl: https://www.w3.org/ns/prov-o
   example: Activity
   homepage: https://www.w3.org/ns/prov
   keywords:
@@ -40308,7 +41068,6 @@ prov:
   name: PROV Namespace
   preferred_prefix: prov
   uri_format: http://www.w3.org/ns/prov#$1
-  version: '2013-04-30'
 pscdb:
   description: The PSCDB (Protein Structural Change DataBase) collects information
     on the relationship between protein structural change upon ligand binding. Each
@@ -40349,15 +41108,24 @@ psdo:
   - iao
   - ro
   - stato
-  description: Performance Summary Display Ontology (PSDO) (pronounced "pseudo" or
-    "sudo") is an application ontology about charts, tables, and graphs that are used
-    to communicate performance information to employees and teams in organizations.
-    PSDO's domain focus is on healthcare organizations that use performance summary
-    displays in clinical dashboards and feedback interventions for healthcare professionals
-    and teams. The displays commonly show information about the quality of care and
-    health outcomes that has been derived from clinical data using performance measures
-    (aka metrics, process indicators, quality measures, etc). PSDO uses Basic Formal
-    Ontology as its upper level ontology. This work is not peer-reviewed.
+  description: 'Performance Summary Display Ontology (PSDO) is an application ontology
+    about motivating information in performance summaries and the visual and textual
+    entities that are used to communicate about performance. Motivating information
+    includes performance comparisons and changes that motivate improvement or sustainment,
+    such as improvement towards a goal, loss of high performer status, or the presence
+    of a performance gap. Visual and textual entities include charts, tables, and
+    graphs that display performance information. PSDO''s domain focus is healthcare
+    organizations that use clinical quality dashboards and feedback interventions
+    for healthcare professionals and teams. Performance information is commonly about
+    the quality of care and health outcomes that have been derived from clinical data
+    using performance measures (aka metrics, process indicators, quality measures,
+    etc). PSDO uses Basic Formal Ontology as its upper level ontology. This work is
+    supported by the NIH, National Library of Medicine (1K01LM012528-01, 1R01LM013894-01).
+
+
+    Landis-Lewis Z, Stansbury C, Rincón J, Gross C. Performance Summary Display Ontology:
+    Feedback intervention content, delivery, and interpreted information. International
+    Conference on Biomedical Ontology 2022 (ICBO 2022). https://icbo-conference.github.io/icbo2022/papers/ICBO-2022_paper_2172.pdf'
   download_owl: http://purl.obolibrary.org/obo/psdo.owl
   example: '0000055'
   homepage: https://github.com/Display-Lab/psdo
@@ -40374,9 +41142,10 @@ psdo:
   name: Performance Summary Display Ontology
   pattern: ^\d{7}$
   preferred_prefix: PSDO
+  rdf_uri_format: http://purl.obolibrary.org/obo/PSDO_$1
   repository: https://github.com/Display-Lab/psdo
   uri_format: http://purl.obolibrary.org/obo/PSDO_$1
-  version: 1.0.0
+  version: 1.0.1
 pseudogene:
   contact:
     email: mark@gersteinlab.org
@@ -40485,6 +41254,7 @@ pso:
     title: 'The Planteome database: an integrated resource for reference ontologies,
       plant genomics and phenomics.'
     year: 2018
+  rdf_uri_format: http://purl.obolibrary.org/obo/PSO_$1
   repository: https://github.com/Planteome/plant-stress-ontology
   uri_format: http://purl.obolibrary.org/obo/PSO_$1
   version: '2020-05-19'
@@ -40664,6 +41434,7 @@ pubchem.compound:
     pubmed: '17170002'
     title: Database resources of the National Center for Biotechnology Information.
     year: 2006
+  rdf_uri_format: http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1
   synonyms:
   - CID
   - DSSTox_CID
@@ -40729,6 +41500,7 @@ pubchem.substance:
     pubmed: '17170002'
     title: Database resources of the National Center for Biotechnology Information.
     year: 2006
+  rdf_uri_format: http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1
   synonyms:
   - DSSTox_Generic_SID
   twitter: pubchem
@@ -40900,6 +41672,7 @@ pw:
   - ontology
   - pathway
   license: CC-BY-4.0
+  logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
   mappings:
     aberowl: PW
     biocontext: PW
@@ -40948,10 +41721,11 @@ pw:
     pubmed: '21478484'
     title: The Rat Genome Database pathway portal.
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/PW_$1
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   twitter: ratgenome
   uri_format: http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=PW:$1
-  version: '2019-10-23'
+  version: '7.52'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -41306,9 +42080,10 @@ rbo:
   name: Radiation Biology Ontology
   pattern: ^\d{6,8}$
   preferred_prefix: RBO
+  rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
-  version: '2022-06-02'
+  version: '2023-03-02'
 rcb:
   contributor:
     email: cthoyt@gmail.com
@@ -41376,6 +42151,7 @@ rdfs:
     biocontext: rdfs
     bioportal: RDFS
     fairsharing: FAIRsharing.v9n3gk
+    ols: rdfs
   name: RDF Schema
   preferred_prefix: rdfs
   uri_format: http://www.w3.org/2000/01/rdf-schema#$1
@@ -41751,7 +42527,7 @@ resid:
     email: john.garavelli@ebi.ac.uk
     github: null
     name: John Garavelli
-    orcid: null
+    orcid: 0000-0002-4131-735X
   deprecated: true
   description: The RESID Database of Protein Modifications is a comprehensive collection
     of annotations and structures for protein modifications including amino-terminal,
@@ -41792,6 +42568,7 @@ resid:
     title: Annotation of post-translational modifications in the Swiss-Prot knowledge
       base.
     year: 2004
+  rdf_uri_format: http://purl.obolibrary.org/obo/RESID_$1
   uri_format: https://proteininformationresource.org/cgi-bin/resid?id=$1
 reto:
   contact:
@@ -41815,7 +42592,6 @@ reto:
   name: Regulation of Transcription Ontology
   no_own_terms: true
   preferred_prefix: reto
-  version: '2019-09-17'
 rex:
   contact:
     email: chebi-help@ebi.ac.uk
@@ -41857,6 +42633,7 @@ rex:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/rex:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/REX_$1
   uri_format: http://purl.obolibrary.org/obo/REX_$1
   version: '2017-11-19'
 rexo:
@@ -41887,7 +42664,6 @@ rexo:
     title: Finding gene regulatory network candidates using the gene expression knowledge
       base.
     year: 2014
-  version: '2019-04-11'
 rfam:
   description: 'The Rfam database is a collection of RNA families, each represented
     by multiple sequence alignments, consensus secondary structures and covariance
@@ -42677,6 +43453,7 @@ rnao:
     title: 'The RNA Ontology (RNAO): An ontology for integrating RNA sequence and
       structure data'
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/RNAO_$1
   repository: https://github.com/BGSU-RNA/rnao
   uri_format: http://purl.obolibrary.org/obo/RNAO_$1
   version: '2019-04-15'
@@ -42802,13 +43579,14 @@ ro:
     pubmed: '15892874'
     title: Relations in biomedical ontologies.
     year: 2005
+  rdf_uri_format: http://purl.obolibrary.org/obo/RO_$1
   repository: https://github.com/oborel/obo-relations
   synonyms:
   - RO_proposed_relation
   - obo_rel
   - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
-  version: '2022-10-26'
+  version: '2023-02-22'
 roleo:
   banana: RoleO
   banana_peel: _
@@ -42873,6 +43651,7 @@ ror:
     fairsharing: FAIRsharing.1jKfji
     miriam: ror
     n2t: ror
+  mastodon: ResearchOrgs@mastodon.social
   name: Research Organization Registry
   pattern: ^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
   preferred_prefix: ror
@@ -42988,6 +43767,7 @@ rs:
   - obo
   - ontology
   license: CC-BY-4.0
+  logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
   mappings:
     aberowl: RS
     biocontext: RS
@@ -43022,10 +43802,11 @@ rs:
     pubmed: '23603846'
     title: 'PhenoMiner: quantitative phenotype curation at the rat genome database.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/RS_$1
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '2019-12-13'
+  version: '6.107'
 rtecs:
   contributor:
     email: cthoyt@gmail.com
@@ -43104,8 +43885,9 @@ rxno:
   name: Name Reaction Ontology
   pattern: ^\d{7}$
   preferred_prefix: RXNO
+  rdf_uri_format: http://purl.obolibrary.org/obo/RXNO_$1
   repository: https://github.com/rsc-ontologies/rxno
-  uri_format: http://purl.obolibrary.org/obo/RXNO_$1
+  uri_format: http://www.rsc.org/publishing/journals/prospect/ontology.asp?id=$1
   version: '2021-12-16'
 rxnorm:
   contact:
@@ -43361,6 +44143,27 @@ salk:
   pattern: ^\d{6}$
   preferred_prefix: salk
   uri_format: https://abrc.osu.edu/stocks/number/SALK_$1
+salmon:
+  contact:
+    email: brycemecum@gmail.com
+    github: amoeba
+    name: Bryce Mecum
+    orcid: 0000-0002-0381-3766
+  description: An ontology representing knowledge about salmon, features of their
+    habitats, salmon stakeholders, and related entities. This ontology is considered
+    to be in the early stages of development, though it is based upon considerable
+    previous work. Contributions of all kinds are welcome and encouraged, including
+    alignments, updates to existing terms, and new terms.
+  example: '00000674'
+  homepage: https://github.com/DataONEorg/sem-prov-ontologies/
+  keywords:
+  - ontology
+  mappings:
+    bioportal: SALMON
+  name: Salmon Ontology
+  pattern: ^\d+$
+  preferred_prefix: salmon
+  uri_format: https://purl.dataone.org/odo/SALMON_$1
 sao:
   contact:
     email: slarson@ncmir.ucsd.edu
@@ -43397,9 +44200,30 @@ sao:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/sao:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/SAO_$1
   references:
   - http://www.ontobee.org/ontology/SAO
   uri_format: http://uri.neuinfo.org/nif/nifstd/sao$1
+sasap:
+  contact:
+    email: brycemecum@gmail.com
+    github: amoeba
+    name: Bryce Mecum
+    orcid: 0000-0002-0381-3766
+  description: An ontology which represents information about the State of Alaska's
+    Salmon and People (SASAP) project, as well as knowledge about salmon, features
+    of their habitats, salmon stakeholders, and related entities.
+  download_owl: https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/sasap-$1/SALMON/SASAP.owl
+  example: '00000101'
+  homepage: https://github.com/DataONEorg/sem-prov-ontologies
+  keywords:
+  - ontology
+  mappings:
+    bioportal: SASAP
+  name: The State of Alaska's Salmon and People Ontology
+  pattern: ^\d+$
+  preferred_prefix: sasap
+  uri_format: https://purl.dataone.org/odo/SASAP_$1
 sasbdb:
   contact:
     email: a.kikhney@embl-hamburg.de
@@ -43505,6 +44329,7 @@ sbo:
     pubmed: '17118155'
     title: Model storage, exchange and integration.
     year: 2006
+  rdf_uri_format: http://purl.obolibrary.org/obo/SBO_$1
   repository: https://github.com/EBI-BioModels/SBO
   twitter: biomodels
   uri_format: https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1
@@ -43587,6 +44412,7 @@ scdo:
     title: 'The Sickle Cell Disease Ontology: enabling universal sickle cell-based
       knowledge representation.'
     year: 2019
+  rdf_uri_format: http://purl.obolibrary.org/obo/SCDO_$1
   repository: https://github.com/scdodev/scdo-ontology
   uri_format: http://purl.obolibrary.org/obo/SCDO_$1
   version: '2021-04-15'
@@ -43622,7 +44448,7 @@ schema:
   description: Schema.org is a collaborative, community activity with a mission to
     create, maintain, and promote schemas for structured data on the Internet, on
     web pages, in email messages, and beyond.
-  download_owl: http://aber-owl.net/media/ontologies/SCHEMAORG/2/schemaorg.owl
+  download_owl: https://schema.org/version/latest/schemaorg-all-http.rdf
   example: Person
   homepage: https://schema.org
   keywords:
@@ -43634,6 +44460,7 @@ schema:
     biolink: schema
     bioportal: SCHEMA
     fairsharing: FAIRsharing.hzdzq8
+    ols: schemaorg_http
   name: Schema.org
   preferred_prefix: schema
   repository: http://github.com/schemaorg/schemaorg
@@ -43837,10 +44664,46 @@ scopus:
   mappings:
     biolink: ScopusID
     fairsharing: FAIRsharing.0a674c
+    wikidata: P1153
   name: Scopus Researcher
   pattern: ^\d+$
   preferred_prefix: scopus
+  synonyms:
+  - scopus.author
   twitter: Scopus
+  uri_format: https://www.scopus.com/authid/detail.uri?authorId=$1
+scopus.affiliation:
+  description: identifier for an organisation in author affiliations per Scopus
+  example: '60025709'
+  homepage: http://info.sciencedirect.com/scopus/scopus-in-detail/tools/affiliationidentifier
+  mappings:
+    wikidata: P1155
+  name: Scopus affiliation ID
+  preferred_prefix: scopus.affiliation
+  uri_format: https://www.scopus.com/affil/profile.uri?afid=$1
+scopus.publication:
+  description: identifier for a source/publication venue (journal, conference, etc)
+    in Scopus
+  example: '16129'
+  homepage: https://www.scopus.com/
+  mappings:
+    wikidata: P1156
+  name: Scopus Publication
+  pattern: ^[1-9]\d{0,11}$
+  preferred_prefix: scopus.publication
+  uri_format: https://www.scopus.com/sourceid/$1
+scopus.work:
+  description: unique academic work identifier assigned in Scopus bibliographic database
+  example: 2-s2.0-0030770923
+  homepage: https://www.scopus.com/
+  mappings:
+    wikidata: P1154
+  name: Scopus Work
+  pattern: ^2-s2\.0-\d+$
+  preferred_prefix: scopus.work
+  synonyms:
+  - scopus.eid
+  uri_format: http://www.scopus.com/record/display.url?origin=inward&eid=$1
 scoro:
   contact:
     email: silvio.peroni@unibo.it
@@ -44025,7 +44888,6 @@ sdgio:
   - https://github.com/SDG-InterfaceOntology/sdgio/issues/233
   repository: https://github.com/SDG-InterfaceOntology/sdgio
   uri_format: http://purl.unep.org/sdg/SDGIO_$1
-  version: '2018-08-10'
 sdis:
   contributor:
     email: cthoyt@gmail.com
@@ -44149,7 +45011,7 @@ semapv:
   contact:
     email: nicolas.matentzoglu@gmail.com
     github: matentzn
-    name: Nico Matentzoglu
+    name: Nicolas Matentzoglu
     orcid: 0000-0002-7356-1779
   contributor:
     email: cthoyt@gmail.com
@@ -44176,6 +45038,25 @@ semapv:
   references:
   - https://github.com/biopragmatics/bioregistry/pull/714
   uri_format: https://w3id.org/semapv/vocab/$1
+senso:
+  contact:
+    email: brycemecum@gmail.com
+    github: amoeba
+    name: Bryce Mecum
+    orcid: 0000-0002-0381-3766
+  description: The SENSO ontology is designed to provide classification terms for
+    labeling sensitive data for data archival and sharing.
+  download_rdf: https://ontologies.dataone.org/SENSO.ttl
+  example: '00000003'
+  homepage: https://github.com/DataONEorg/sem-prov-ontologies
+  keywords:
+  - ontology
+  mappings:
+    bioportal: SENSO
+  name: Sensitive Data Ontology
+  pattern: ^\d+$
+  preferred_prefix: senso
+  uri_format: http://purl.dataone.org/odo/SENSO_$1
 sep:
   contact:
     email: psidev-gps-dev@lists.sourceforge.net
@@ -44213,6 +45094,7 @@ sep:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/sep:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/SEP_$1
   uri_format: http://purl.obolibrary.org/obo/SEP_$1
 sepio:
   contact:
@@ -44229,6 +45111,7 @@ sepio:
   - obo
   - ontology
   license: CC-BY-3.0
+  logo: https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/SEPIO-LOGOS/sepio_logo_black-banner.png
   mappings:
     aberowl: SEPIO
     biocontext: SEPIO
@@ -44239,9 +45122,10 @@ sepio:
   name: Scientific Evidence and Provenance Information Ontology
   pattern: ^\d{7}$
   preferred_prefix: SEPIO
+  rdf_uri_format: http://purl.obolibrary.org/obo/SEPIO_$1
   repository: https://github.com/monarch-initiative/SEPIO-ontology
   uri_format: http://purl.obolibrary.org/obo/SEPIO_$1
-  version: $Revision$
+  version: '2023-02-21'
 sfam:
   contributor:
     email: cthoyt@gmail.com
@@ -44902,6 +45786,7 @@ sibo:
   name: Social Insect Behavior Ontology
   pattern: ^\d{7}$
   preferred_prefix: SIBO
+  rdf_uri_format: http://purl.obolibrary.org/obo/SIBO_$1
   repository: https://github.com/obophenotype/sibo
   uri_format: http://purl.obolibrary.org/obo/SIBO_$1
   version: '2015-06-15'
@@ -45060,7 +45945,7 @@ sio:
   description: The semanticscience integrated ontology (SIO) provides a simple, integrated
     upper level ontology (types, relations) for consistent knowledge representation
     across physical, processual and informational entities.
-  download_owl: http://semanticscience.org/ontology/sio/v1.53/sio-release.owl
+  download_owl: http://semanticscience.org/ontology/sio/v1.59/sio-release.owl
   example: 000912
   homepage: https://github.com/micheldumontier/semanticscience
   keywords:
@@ -45089,7 +45974,7 @@ sio:
     year: 2014
   repository: https://github.com/micheldumontier/semanticscience
   uri_format: https://www.ebi.ac.uk/ols/ontologies/sio/terms?short_form=$1
-  version: '1.53'
+  version: '1.59'
 siren:
   comment: appears in FOODON, there is no website other than the spreadsheet referenced
     below on langual's site
@@ -45253,7 +46138,7 @@ skos:
     support the use of knowledge organization systems (KOS) such as thesauri, classification
     schemes, subject heading lists and taxonomies within the framework of the Semantic
     Web
-  download_owl: http://aber-owl.net/media/ontologies/skos/1/skos.owl
+  download_owl: http://www.w3.org/TR/skos-reference/skos.rdf
   example: prefLabel
   homepage: https://www.w3.org/2004/02/skos/
   keywords:
@@ -45263,6 +46148,7 @@ skos:
     aberowl: skos
     biocontext: skos
     fairsharing: FAIRsharing.48e326
+    ols: skos
   name: Simple Knowledge Organization System
   preferred_prefix: skos
   uri_format: http://www.w3.org/2004/02/skos/core#$1
@@ -45582,6 +46468,11 @@ snomedct:
     github: null
     name: NLM Customer Service
     orcid: null
+  contributor_extras:
+  - email: nicolas.matentzoglu@gmail.com
+    github: matentzn
+    name: Nicolas Matentzoglu
+    orcid: 0000-0002-7356-1779
   description: SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms),
     is a systematically organized computer processable collection of medical terminology
     covering most areas of clinical information such as diseases, findings, procedures,
@@ -45627,6 +46518,7 @@ snomedct:
     title: 'Standardized nursing language in the systematized nomenclature of medicine
       clinical terms: A cross-mapping validation method.'
     year: 2006
+  rdf_uri_format: http://snomed.info/id/$1
   synonyms:
   - SCTID
   - SCTID_2010_1_31
@@ -45654,12 +46546,13 @@ snomedct:
   - SNOMEDCT_US_2022_07_31
   - SNOMEDCT_US_2022_09_01
   - SNOMEDCT_US_2022_12_31
+  - SNOMEDCT_US_2023_02_28
   - SNOMED_CT
   - SNOMED_CT_US_2018_03_01
   - SNOWMEDCT
   - SNOWMEDCT_US
   - SNOWMEDCT_US_2018_03_01
-  uri_format: http://www.snomedbrowser.com/Codes/Details/$1
+  uri_format: http://snomed.info/id/$1
   version: '2020-01-31'
 snornabase:
   contributor:
@@ -45758,6 +46651,7 @@ so:
   - rna
   - structure
   license: CC-BY-4.0
+  logo: https://obofoundry.org/images/so_logo.png
   mappings:
     aberowl: SO
     agroportal: SO
@@ -45801,6 +46695,7 @@ so:
     pubmed: '15892872'
     title: 'The Sequence Ontology: a tool for the unification of genome annotations.'
     year: 2005
+  rdf_uri_format: http://purl.obolibrary.org/obo/SO_$1
   repository: https://github.com/The-Sequence-Ontology/SO-Ontologies
   uri_format: http://www.sequenceontology.org/miso/current_release/term/SO:$1
   version: '2021-11-22'
@@ -45836,6 +46731,7 @@ sopharm:
     obofoundry: sopharm
   name: Suggested Ontology for Pharmacogenomics
   preferred_prefix: SOPHARM
+  rdf_uri_format: http://purl.obolibrary.org/obo/SOPHARM_$1
   uri_format: http://purl.obolibrary.org/obo/SOPHARM_$1
 soybase:
   contact:
@@ -45984,9 +46880,10 @@ spd:
     title: The Spider Anatomy Ontology (SPD)—A Versatile Tool to Link Anatomy with
       Cross-Disciplinary Data
     year: 2019
+  rdf_uri_format: http://purl.obolibrary.org/obo/SPD_$1
   repository: https://github.com/obophenotype/spider-ontology
   uri_format: http://purl.obolibrary.org/obo/SPD_$1
-  version: '2019-02-27'
+  version: '1.0'
 spdx:
   description: The SPDX License List is a list of commonly found licenses and exceptions
     used in free and open source and other collaborative software or documentation.
@@ -46381,6 +47278,7 @@ stato:
   - ontology
   - statistics
   license: CC-BY-3.0
+  logo: https://raw.githubusercontent.com/ISA-tools/stato/dev/images/stato-logo-3.png
   mappings:
     aberowl: STATO
     biocontext: STATO
@@ -46392,6 +47290,7 @@ stato:
   name: The Statistical Methods Ontology
   pattern: ^\d{7}$
   preferred_prefix: STATO
+  rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
   version: '1.4'
@@ -47025,9 +47924,10 @@ swo:
     title: 'The Software Ontology (SWO): a resource for reproducibility in biomedical
       data analysis, curation and digital preservation.'
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/SWO_$1
   repository: https://github.com/allysonlister/swo
   uri_format: http://purl.obolibrary.org/obo/SWO_$1
-  version: '2022-10-11'
+  version: '2023-03-05'
 swrl:
   contributor:
     email: cthoyt@gmail.com
@@ -47097,11 +47997,12 @@ symp:
     title: GeMInA, Genomic Metadata for Infectious Agents, a geospatial surveillance
       pathogen database.
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/SYMP_$1
   repository: https://github.com/DiseaseOntology/SymptomOntology
   synonyms:
   - SYMP
-  uri_format: http://purl.obolibrary.org/obo/SYMP_$1
-  version: '2022-07-12'
+  uri_format: https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1
+  version: '2022-11-30'
 syoid:
   contributor:
     email: cthoyt@gmail.com
@@ -47207,9 +48108,10 @@ t4fs:
     title: 'EOSC Co-creation funded project 074: Delivery of a proof of concept for
       terms4FAIRskills: Technical report'
     year: 2021
+  rdf_uri_format: http://purl.obolibrary.org/obo/T4FS_$1
   repository: https://github.com/terms4fairskills/FAIRterminology
   uri_format: http://purl.obolibrary.org/obo/T4FS_$1
-  version: '2022-10-05'
+  version: '2023-03-02'
 tads:
   contact:
     email: dsonensh@odu.edu
@@ -47246,6 +48148,7 @@ tads:
     title: Anatomical ontologies of mosquitoes and ticks, and their web browsers in
       VectorBase.
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/TADS_$1
   repository: https://github.com/VEuPathDB-ontology/TADS
   uri_format: http://purl.obolibrary.org/obo/TADS_$1
   version: '2015-08-20'
@@ -47264,6 +48167,7 @@ tahe:
     obofoundry: tahe
   name: Terminology of Anatomy of Human Embryology
   preferred_prefix: TAHE
+  rdf_uri_format: http://purl.obolibrary.org/obo/TAHE_$1
   uri_format: http://purl.obolibrary.org/obo/TAHE_$1
 tahh:
   contact:
@@ -47280,6 +48184,7 @@ tahh:
     obofoundry: tahh
   name: Terminology of Anatomy of Human Histology
   preferred_prefix: TAHH
+  rdf_uri_format: http://purl.obolibrary.org/obo/TAHH_$1
   uri_format: http://purl.obolibrary.org/obo/TAHH_$1
 tair.gene:
   banana: Gene
@@ -47422,6 +48327,7 @@ tao:
     biocontext: TAO
     bioportal: TAO
     obofoundry: tao
+    ols: tao
     prefixcommons: tao
   name: Teleost Anatomy Ontology
   pattern: ^\d{7}$
@@ -47443,9 +48349,11 @@ tao:
     title: 'The teleost anatomy ontology: anatomical representation for the genomics
       age.'
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/TAO_$1
   synonyms:
   - TAO_RETIRED
   uri_format: http://purl.obolibrary.org/obo/TAO_$1
+  version: '2012-08-10'
 tarbase:
   description: TarBase stores microRNA (miRNA) information for miRNA–gene interactions,
     as well as miRNA- and gene-related facts to information specific to the interaction
@@ -47535,6 +48443,7 @@ taxrank:
     title: 'The vertebrate taxonomy ontology: a framework for reasoning across model
       organism and species phenotypes.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
   repository: https://github.com/phenoscape/taxrank
   uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
   version: '2016-04-15'
@@ -47785,6 +48694,7 @@ tgma:
     title: Anatomical ontologies of mosquitoes and ticks, and their web browsers in
       VectorBase.
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/TGMA_$1
   repository: https://github.com/VEuPathDB-ontology/TGMA
   uri_format: http://purl.obolibrary.org/obo/TGMA_$1
   version: '2013-06-03'
@@ -47881,7 +48791,7 @@ tigrfam:
   uri_format: https://www.ncbi.nlm.nih.gov/cdd?term=$1
 time:
   contact:
-    email: simon.cox@csiro.au
+    email: dr.shorthair@pm.me
     github: dr-shorthair
     name: Simon Cox
     orcid: 0000-0002-3884-3420
@@ -47960,6 +48870,7 @@ to:
   - plant
   - trait
   license: CC-BY-4.0
+  logo: http://planteome.org/sites/default/files/garland_logo.PNG
   mappings:
     aberowl: TO
     agroportal: TO
@@ -47990,6 +48901,7 @@ to:
     title: 'The Planteome database: an integrated resource for reference ontologies,
       plant genomics and phenomics.'
     year: 2018
+  rdf_uri_format: http://purl.obolibrary.org/obo/TO_$1
   repository: https://github.com/Planteome/plant-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/TO_$1
   version: '2022-04-13'
@@ -48173,9 +49085,10 @@ trans:
     title: GeMInA, Genomic Metadata for Infectious Agents, a geospatial surveillance
       pathogen database.
     year: 2009
+  rdf_uri_format: http://purl.obolibrary.org/obo/TRANS_$1
   repository: https://github.com/DiseaseOntology/PathogenTransmissionOntology
   uri_format: http://purl.obolibrary.org/obo/TRANS_$1
-  version: '2020-08-04'
+  version: '2022-10-10'
 transportdb:
   description: TransportDB is a relational database describing the predicted cytoplasmic
     membrane transport protein complement for organisms whose complete genome sequence
@@ -48521,9 +49434,9 @@ tto:
     pubmed: null
     title: The Teleost Taxonomy Ontology
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/TTO_$1
   repository: https://github.com/phenoscape/teleost-taxonomy-ontology
   uri_format: http://purl.obolibrary.org/obo/TTO_$1
-  version: '2018-03-26'
 txpo:
   contact:
     email: yuki.yamagata@riken.jp
@@ -48569,9 +49482,10 @@ txpo:
     title: Ontological approach to the knowledge systematization of a toxic process
       and toxic course representation framework for early drug risk management.
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/TXPO_$1
   repository: https://github.com/txpo-ontology/TXPO
   uri_format: http://purl.obolibrary.org/obo/TXPO_$1
-  version: '2020-07-09'
+  version: '2022-12-07'
 uberon:
   appears_in:
   - aism
@@ -48629,6 +49543,7 @@ uberon:
   - ontology
   - taxonomy
   license: CC-BY-3.0
+  logo: https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/uberon-logos/uberon_logo_black-banner.png
   mappings:
     aberowl: UBERON
     biocontext: UBERON
@@ -48664,6 +49579,7 @@ uberon:
     pubmed: '22293552'
     title: Uberon, an integrative multi-species anatomy ontology.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/UBERON_$1
   repository: https://github.com/obophenotype/uberon
   synonyms:
   - UBERON
@@ -48671,7 +49587,7 @@ uberon:
   - Uberon
   twitter: uberanat
   uri_format: https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1
-  version: '2022-09-30'
+  version: '2023-04-19'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -49232,6 +50148,7 @@ uniprot:
     title: 'The Universal Protein Resource (UniProt): an expanding universe of protein
       information.'
     year: 2006
+  rdf_uri_format: http://purl.uniprot.org/uniprot/$1
   synonyms:
   - SwissProt
   - UP
@@ -49353,6 +50270,7 @@ uniprot.journal:
   name: UniProt journal
   pattern: ^\d{4}$
   preferred_prefix: uniprot.journal
+  rdf_uri_format: http://purl.uniprot.org/journals/$1
   uri_format: https://www.uniprot.org/journals/$1
 uniprot.keyword:
   description: UniProtKB entries are tagged with keywords that can be used to retrieve
@@ -49722,6 +50640,7 @@ uo:
     pubmed: '23060432'
     title: 'The Units Ontology: a tool for integrating units of measurement in science.'
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/UO_$1
   repository: https://github.com/bio-ontology-research-group/unit-ontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/uo/terms?obo_id=UO:$1
 upa:
@@ -49774,6 +50693,7 @@ upa:
     title: 'UniPathway: a resource for the exploration and annotation of metabolic
       pathways.'
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/UPA_$1
   repository: https://github.com/geneontology/unipathway
   synonyms:
   - UPa
@@ -49810,6 +50730,7 @@ upheno:
   name: Unified Phenotype Ontology
   no_own_terms: true
   preferred_prefix: UPHENO
+  rdf_uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   version: '2017-10-31'
@@ -49849,6 +50770,23 @@ uspto:
   references:
   - https://github.com/biopragmatics/bioregistry/issues/253
   uri_format: http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1
+utrdb:
+  description: 'A curated database of 5'' and 3'' untranslated sequences of eukaryotic
+    mRNAs. In the current update, the UTR entries are organized in a gene-centric
+    structure to better visualize and retrieve 5'' and 3''UTR variants generated by
+    alternative initiation and termination of transcription and alternative splicing.
+    Experimentally validated miRNA targets and conserved sequence elements are also
+    annotated. The integration of UTRdb with genomic data has allowed the implementation
+    of an efficient annotation system and a powerful retrieval resource for the selection
+    and extraction of specific UTR subsets. '
+  example: 5UTR_107_ENST00000517291.2
+  homepage: https://utrdb.cloud.ba.infn.it/utrdb/index_107.html
+  mappings:
+    miriam: utrdb
+  name: UTRdb
+  pattern: ^([3-5][A-Z])\w+[^A-Z][0-9]$
+  preferred_prefix: utrdb
+  uri_format: https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1
 vac:
   contributor:
     email: cthoyt@gmail.com
@@ -50027,7 +50965,8 @@ vario:
     pubmed: '24162187'
     title: Variation Ontology for annotation of variation effects and mechanisms.
     year: 2013
-  uri_format: http://purl.obolibrary.org/obo/VARIO_$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/VariO_$1
+  uri_format: http://purl.obolibrary.org/obo/VariO_$1
   version: '2018-11-09'
 vbase2:
   contact:
@@ -50097,9 +51036,10 @@ vbo:
   name: Vertebrate Breed Ontology
   pattern: ^\d{7}$
   preferred_prefix: VBO
+  rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2022-10-31'
+  version: '2023-03-09'
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
@@ -50411,6 +51351,7 @@ vhog:
   - development
   - obo
   - ontology
+  logo: http://bgee.org/img/logo/bgee13_logo.png
   mappings:
     aberowl: VHOG
     biocontext: VHOG
@@ -50430,6 +51371,7 @@ vhog:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/vhog:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/VHOG_$1
   synonyms:
   - VHOG_RETIRED
   uri_format: http://purl.obolibrary.org/obo/VHOG_$1
@@ -50864,11 +51806,12 @@ vo:
     github: yongqunh
     name: Yongqunh He
     orcid: 0000-0001-9189-9661
-  description: The Vaccine Ontology (VO) is a biomedical ontology in the domain of
-    vaccine and vaccination. VO aims to standardize vaccine annotation, integrate
-    various vaccine data, and support computer-assisted reasoning. VO supports basic
-    vaccine R&D and clincal vaccine usage. VO is being developed as a community-based
-    ontology with support and collaborations from the vaccine and bio-ontology communities.
+  description: The Vaccine Ontology (VO) is a community-based biomedical ontology
+    in the domain of vaccine and vaccination. VO aims to standardize vaccine types
+    and annotations, integrate various vaccine data, and support computer-assisted
+    reasoning. The VO supports basic vaccine R&D and clincal vaccine usage. VO is
+    being developed as a community-based ontology with support and collaborations
+    from the vaccine and bio-ontology communities.
   download_owl: http://purl.obolibrary.org/obo/vo.owl
   example: 0000093
   homepage: http://www.violinet.org/vaccineontology
@@ -50929,9 +51872,10 @@ vo:
     title: Bioinformatics analysis of Brucella vaccines and vaccine targets using
       VIOLIN.
     year: 2010
+  rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
-  uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: 1.1.198
+  uri_format: http://purl.obolibrary.org/obo/$1
+  version: 1.1.218
 void:
   contributor:
     email: cthoyt@gmail.com
@@ -50974,6 +51918,7 @@ vsao:
     biocontext: VSAO
     bioportal: VSAO
     obofoundry: vsao
+    ols: vsao
     prefixcommons: vao
   name: Vertebrate Skeletal Anatomy Ontology
   preferred_prefix: VSAO
@@ -50987,9 +51932,11 @@ vsao:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/vao:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/VSAO_$1
   synonyms:
   - VSAO_RETIRED
   uri_format: http://purl.obolibrary.org/obo/VSAO_$1
+  version: '2012-11-06'
 vsdb:
   contributor:
     email: cthoyt@gmail.com
@@ -51130,6 +52077,7 @@ vt:
     title: 'The Vertebrate Trait Ontology: a controlled vocabulary for the annotation
       of trait data across species.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
 vto:
@@ -51166,6 +52114,7 @@ vto:
     title: 'The vertebrate taxonomy ontology: a framework for reasoning across model
       organism and species phenotypes.'
     year: 2013
+  rdf_uri_format: http://purl.obolibrary.org/obo/VTO_$1
   repository: https://github.com/phenoscape/vertebrate-taxonomy-ontology
   uri_format: http://purl.obolibrary.org/obo/VTO_$1
   version: '2020-11-13'
@@ -51251,11 +52200,12 @@ wbbt:
     pubmed: '18629098'
     title: Building a cell and anatomy ontology of Caenorhabditis elegans.
     year: 2003
+  rdf_uri_format: http://purl.obolibrary.org/obo/WBbt_$1
   repository: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
   synonyms:
   - WBbt
-  uri_format: http://purl.obolibrary.org/obo/WBbt_$1
-  version: '2022-06-13'
+  uri_format: http://wormbase.org/db/ontology/anatomy?name=$1
+  version: '2023-04-07'
 wbls:
   contact:
     email: cgrove@caltech.edu
@@ -51305,11 +52255,12 @@ wbls:
     pubmed: '31642470'
     title: 'WormBase: a modern Model Organism Information Resource.'
     year: 2020
+  rdf_uri_format: http://purl.obolibrary.org/obo/WBls_$1
   repository: https://github.com/obophenotype/c-elegans-development-ontology
   synonyms:
   - WBls
   uri_format: http://www.wormbase.org/get?name=$1
-  version: '2022-06-21'
+  version: '2023-04-11'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -51359,11 +52310,12 @@ wbphenotype:
     title: 'Worm Phenotype Ontology: integrating phenotype data within and beyond
       the C. elegans community.'
     year: 2011
+  rdf_uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
   repository: https://github.com/obophenotype/c-elegans-phenotype-ontology
   synonyms:
   - WBPhenotype
   uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
-  version: '2022-06-21'
+  version: '2023-04-11'
 webelements:
   contributor:
     email: cthoyt@gmail.com
@@ -51506,19 +52458,16 @@ wikipathways:
     orcid: 0000-0001-7542-0286
   description: WikiPathways is a database of biological pathways maintained by and
     for the scientific community.
-  download_owl: http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl
   example: WP732
   homepage: http://www.wikipathways.org/
   keywords:
   - epidemiology
-  - ontology
   - pathway
   - virology
   license: CC0-1.0
+  logo: https://www.wikipathways.org/assets/img/wikipathways-logo-horizontal.svg
   mappings:
-    aberowl: WIKIPATHWAYS
     biocontext: WIKIPATHWAYS
-    bioportal: WIKIPATHWAYS
     edam: '3952'
     fairsharing: FAIRsharing.g7b4rj
     miriam: wikipathways
@@ -51526,6 +52475,7 @@ wikipathways:
     prefixcommons: wikipathways
     re3data: r3d100013316
     wikidata: P2410
+  mastodon: wikipathways@fosstodon.org
   name: WikiPathways
   pattern: ^WP\d{1,5}(\_r\d+)?$
   preferred_prefix: wikipathways
@@ -51575,8 +52525,30 @@ wikipathways:
     pubmed: '18651794'
     title: 'WikiPathways: pathway editing for the people.'
     year: 2008
+  rdf_uri_format: http://identifiers.org/wikipathways/$1
   twitter: WikiPathways
   uri_format: http://www.wikipathways.org/instance/$1
+wikipathways.vocab:
+  contact:
+    email: egon.willighagen@gmail.com
+    github: egonw
+    name: Egon Willighagen
+    orcid: 0000-0001-7542-0286
+  description: An ontology supporting data modeling in WikiPathways
+  download_owl: http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl
+  example: DataNode
+  homepage: http://www.wikipathways.org
+  keywords:
+  - ontology
+  mappings:
+    aberowl: WIKIPATHWAYS
+    bioportal: WIKIPATHWAYS
+  mastodon: wikipathways@fosstodon.org
+  name: WikiPathways Ontology
+  preferred_prefix: wikipathways.vocab
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/818
+  uri_format: https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23$1
 wikipedia.en:
   contributor_extras:
   - email: cjmungall@lbl.gov
@@ -51916,6 +52888,21 @@ worms:
     year: 2018
   twitter: WRMarineSpecies
   uri_format: http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1
+wos:
+  description: 'unique academic work identifier assigned in Web of Science bibliographic
+    database (Web of Science Core Collection only and do not include WOS: prefix)'
+  example: 000177759000002
+  homepage: https://www.webofscience.com
+  mappings:
+    wikidata: P8372
+  name: Web of Science ID (work)
+  preferred_prefix: wos
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/805
+  synonyms:
+  - wosid
+  - wosuid
+  uri_format: https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL
 wwf.ecoregion:
   comment: ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658
   contributor:
@@ -51987,9 +52974,10 @@ xao:
     pubmed: '18817563'
     title: An ontology for Xenopus anatomy and development.
     year: 2008
+  rdf_uri_format: http://purl.obolibrary.org/obo/XAO_$1
   repository: https://github.com/xenopus-anatomy/xao
-  uri_format: http://purl.obolibrary.org/obo/XAO_$1
-  version: '2021-03-04'
+  uri_format: http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1
+  version: '2022-08-29'
 xco:
   appears_in:
   - agro
@@ -52012,6 +53000,7 @@ xco:
   - obo
   - ontology
   license: CC0-1.0
+  logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
   mappings:
     aberowl: XCO
     biocontext: XCO
@@ -52046,10 +53035,11 @@ xco:
     pubmed: '22654893'
     title: Three ontologies to define phenotype measurement data.
     year: 2012
+  rdf_uri_format: http://purl.obolibrary.org/obo/XCO_$1
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1
-  version: '2019-12-18'
+  version: '4.46'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -52199,7 +53189,6 @@ xl:
     ontobee: XL
   name: Cross-linker reagents ontology
   preferred_prefix: xl
-  uri_format: http://purl.obolibrary.org/obo/XL_$1
 xlmod:
   contact:
     email: lutz.fischer@tu-berlin.de
@@ -52225,6 +53214,7 @@ xlmod:
   name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
   pattern: ^\d{5}$
   preferred_prefix: XLMOD
+  rdf_uri_format: http://purl.obolibrary.org/obo/XLMOD_$1
   repository: https://github.com/HUPO-PSI/xlmod-CV
   uri_format: http://purl.obolibrary.org/obo/XLMOD_$1
   version: '2019-10-28'
@@ -52306,9 +53296,10 @@ xpo:
     title: 'The Xenopus phenotype ontology: bridging model organism phenotype data
       to human health and development.'
     year: 2022
+  rdf_uri_format: http://purl.obolibrary.org/obo/XPO_$1
   repository: https://github.com/obophenotype/xenopus-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/XPO_$1
-  version: '2021-03-05'
+  version: '2022-09-15'
 xsd:
   contributor:
     email: cthoyt@gmail.com
@@ -52547,6 +53538,7 @@ ypo:
     obofoundry: ypo
   name: Yeast Phenotype Ontology
   preferred_prefix: YPO
+  rdf_uri_format: http://purl.obolibrary.org/obo/YPO_$1
   uri_format: http://purl.obolibrary.org/obo/YPO_$1
 yrcpdr:
   contact:
@@ -52621,6 +53613,7 @@ zea:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/zea:$1
+  rdf_uri_format: http://purl.obolibrary.org/obo/ZEA_$1
   uri_format: http://purl.obolibrary.org/obo/ZEA_$1
 zeco:
   appears_in:
@@ -52655,6 +53648,7 @@ zeco:
   name: Zebrafish Experimental Conditions Ontology
   pattern: ^\d{7}$
   preferred_prefix: ZECO
+  rdf_uri_format: http://purl.obolibrary.org/obo/ZECO_$1
   repository: https://github.com/ybradford/zebrafish-experimental-conditions-ontology
   uri_format: http://purl.obolibrary.org/obo/ZECO_$1
   version: '2022-02-14'
@@ -52745,11 +53739,12 @@ zfa:
     title: 'The zebrafish anatomy and stage ontologies: representing the anatomy and
       development of Danio rerio.'
     year: 2014
+  rdf_uri_format: http://purl.obolibrary.org/obo/ZFA_$1
   repository: https://github.com/cerivs/zebrafish-anatomical-ontology
   synonyms:
   - ZFA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/ZFA_$1
-  version: '2022-03-15'
+  version: '2022-12-09'
 zfin:
   contact:
     email: dhowe@zfin.org
@@ -52881,6 +53876,7 @@ zfs:
   name: Zebrafish developmental stages ontology
   pattern: ^\d{7}$
   preferred_prefix: ZFS
+  rdf_uri_format: http://purl.obolibrary.org/obo/ZFS_$1
   repository: https://github.com/cerivs/zebrafish-anatomical-ontology
   uri_format: http://purl.obolibrary.org/obo/ZFS_$1
   version: '2020-03-10'
@@ -52936,6 +53932,7 @@ zp:
   name: Zebrafish Phenotype Ontology
   pattern: ^\d+$
   preferred_prefix: ZP
+  rdf_uri_format: http://purl.obolibrary.org/obo/ZP_$1
   repository: https://github.com/obophenotype/zebrafish-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/ZP_$1
-  version: '2021-12-12'
+  version: '2022-12-17'

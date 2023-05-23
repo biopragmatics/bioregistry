@@ -65,6 +65,12 @@ ORCID_TO_GITHUB = {
     "0000-0001-9018-4680": "alimanfoo",
 }
 
+URI_IRI_INFO = (
+    "Note that this field is generic enough to accept IRIs. "
+    "See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) "
+    "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
+)
+
 
 def _uri_sort(uri):
     try:
@@ -216,7 +222,7 @@ class Provider(BaseModel):
     uri_format: str = Field(
         ...,
         title="URI Format",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
 
     def resolve(self, identifier: str) -> str:
@@ -264,10 +270,14 @@ class Publication(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
+    class Config:
+        """Configuration for pydantic class."""
+
+        underscore_attrs_are_private = True
+
     prefix: str = Field(
         ...,
         description="The prefix for this resource",
-        exclude=True,
         integration_status="required",
     )
     name: Optional[str] = Field(
@@ -282,8 +292,12 @@ class Resource(BaseModel):
     )
     uri_format: Optional[str] = Field(
         title="URI format string",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
         integration_status="required_for_new",
+    )
+    rdf_uri_format: Optional[str] = Field(
+        title="RDF URI format string",
+        description=f"The RDF URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
@@ -511,9 +525,12 @@ class Resource(BaseModel):
         ),
     )
     twitter: Optional[str] = Field(description="The twitter handle for the project")
+    mastodon: Optional[str] = Field(description="The mastodon handle for the project")
     github_request_issue: Optional[int] = Field(
         description="The GitHub issue for the new prefix request"
     )
+    logo: Optional[str] = Field(description="The URL of the logo for the project/resource")
+
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]] = None
     #: External data from the Name-to-Thing service
@@ -562,6 +579,9 @@ class Resource(BaseModel):
     hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
     bartoc: Optional[Mapping[str, Any]] = None
+
+    # Cached compiled pattern for identifiers
+    _compiled_pattern: Optional[re.Pattern] = None
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -812,11 +832,13 @@ class Resource(BaseModel):
 
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
+        if self._compiled_pattern:
+            return self._compiled_pattern
         pattern = self.get_pattern()
         if pattern is None:
             return None
-        # FIXME cache this
-        return re.compile(pattern)
+        self._compiled_pattern = re.compile(pattern)
+        return self._compiled_pattern
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
         r"""Get the pattern for the prefix including a banana if available.
@@ -1180,14 +1202,50 @@ class Resource(BaseModel):
                 publications.append(Publication.parse_obj(publication))
         return deduplicate_publications(publications)
 
+    def get_mastodon(self) -> Optional[str]:
+        """Get the Mastodon handle for the resource.
+
+        :return: The Mastodon handle. Note that this does **not** include a leading ``@``
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_mastodon()
+        'go@genomic.social'
+        """
+        if self.mastodon:
+            return self.mastodon
+        return None
+
+    def get_mastodon_url(self) -> Optional[str]:
+        """Get the Mastodon URL for the resource.
+
+        :return: The URL link for the mastodon account, if available
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_mastodon_url()
+        'https://genomic.social/@go'
+        """
+        mastodon = self.get_mastodon()
+        if mastodon is None:
+            return None
+        username, server = mastodon.split("@")
+        return f"https://{server}/@{username}"
+
     def get_twitter(self) -> Optional[str]:
-        """Get the Twitter handle for ther resource."""
+        """Get the Twitter handle for the resource."""
         if self.twitter:
             return self.twitter
         if self.obofoundry and "twitter" in self.obofoundry:
             return self.obofoundry["twitter"]
         if self.fairsharing and "twitter" in self.fairsharing:
             return self.fairsharing["twitter"]
+        return None
+
+    def get_logo(self) -> Optional[str]:
+        """Get the logo for the resource."""
+        if self.logo:
+            return self.logo
+        if self.obofoundry and "logo" in self.obofoundry:
+            return self.obofoundry["logo"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
@@ -1222,6 +1280,19 @@ class Resource(BaseModel):
         if obo_prefix is None:
             return None
         return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
+
+    def get_bioregistry_uri_format(self) -> Optional[str]:
+        """Get the Bioregisry URI format string for this entry.
+
+        :returns: A Bioregistry URI, if this can be resolved.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_bioregistry_uri_format()
+        'https://bioregistry.io/go:$1'
+        """
+        if not self.get_default_format():
+            return None
+        return f"https://bioregistry.io/{self.prefix}:$1"
 
     def get_obofoundry_uri_format(self) -> Optional[str]:
         """Get the OBO Foundry URI format string for this entry, if possible.
@@ -1429,8 +1500,26 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_rdf_uri_format(self) -> Optional[str]:
+        """Get the URI format string for the given prefix for RDF usages."""
+        if self.rdf_uri_format:
+            return self.rdf_uri_format
+        if self.obofoundry:
+            return self.get_obofoundry_uri_format()
+        if self.wikidata and "uri_format_rdf" in self.wikidata:
+            return self.wikidata["uri_format_rdf"]
+        # TODO also pull from Prefix Commons
+        return None
+
+    def get_rdf_uri_prefix(self) -> Optional[str]:
+        """Get the URI prefix for the prefix for RDF usages."""
+        rdf_uri_format = self.get_rdf_uri_format()
+        return self._clip_uri_format(rdf_uri_format)
+
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
+        "rdf": get_rdf_uri_format,
+        "bioregistry": get_bioregistry_uri_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
@@ -1441,14 +1530,16 @@ class Resource(BaseModel):
         "ols": get_ols_uri_format,
     }
 
+    #: The point of this priority order is to figure out what URI format string
+    #: to give back. The "default" means it's goign to go into the metaregistry
+    #: and try and find a real URI, not a re-directed one. If it can't manage that,
+    #: try and get an OBO foundry redirect (though note this is only applicable to
+    #: a small number of prefixes corresponding to ontologies). Finally, if this
+    #: doesn't work, give a Bioregistry URI
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
-        "biocontext",
-        "miriam",
-        "n2t",
-        "ols",
-        "prefixcommons",
+        "bioregistry",
     )
 
     def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
@@ -1489,19 +1580,29 @@ class Resource(BaseModel):
                 return mappings[metaprefix]
         return self.prefix
 
+    def _iterate_uri_formats(self, priority: Optional[Sequence[str]] = None):
+        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+            formatter = self.URI_FORMATTERS.get(metaprefix)
+            if formatter is None:
+                logger.warning("could not get formatter for %s", metaprefix)
+                continue
+            uri_format = formatter(self)
+            if uri_format is None:
+                continue
+            yield uri_format
+
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available.
 
         :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
-            1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
-            2. OBO Foundry
-            3. BioContext
-            4. MIRIAM/Identifiers.org
-            5. N2T
+            1. Manually curated URI Format in the Bioregistry
+            2. Default first party (e.g., MIRIAM, BioContext, Prefix Commons, Wikidata)
+            3. OBO Foundry
+            4. MIRIAM/Identifiers.org (i.e., make a URI like https://identifiers.org/<prefix>:<identifier>)
+            5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
-            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -1520,15 +1621,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
-        # TODO add examples in doctests for BioContext, MIRIAM/Identifiers.org, and OLS
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
-            formatter = self.URI_FORMATTERS.get(metaprefix)
-            if formatter is None:
-                logger.warning("could not get formatter for %s", metaprefix)
-                continue
-            rv = formatter(self)
-            if rv is not None:
-                return rv
+        for uri_format in self._iterate_uri_formats(priority):
+            return uri_format
         return None
 
     def get_uri_prefix(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -1542,13 +1636,15 @@ class Resource(BaseModel):
         >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        uri_format = self.get_uri_format(priority=priority)
-        if uri_format is None:
-            logging.debug("term missing formatter: %s", self.name)
-            return None
-        return self._clip_uri_format(uri_format)
+        for uri_format in self._iterate_uri_formats(priority):
+            uri_prefix = self._clip_uri_format(uri_format)
+            if uri_prefix is not None:
+                return uri_prefix
+        return None
 
-    def _clip_uri_format(self, uri_format: str) -> Optional[str]:
+    def _clip_uri_format(self, uri_format: Optional[str]) -> Optional[str]:
+        if uri_format is None:
+            return None
         count = uri_format.count("$1")
         if 0 == count:
             logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
@@ -1596,6 +1692,9 @@ class Resource(BaseModel):
         miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
         if miriam_legacy_uri_prefix:
             yield miriam_legacy_uri_prefix
+        rdf_uri_format = self.get_rdf_uri_format()
+        if rdf_uri_format:
+            yield rdf_uri_format
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
@@ -1662,6 +1761,8 @@ class Resource(BaseModel):
         '1234'
         >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
         '1234'
+        >>> get_resource("chebi").standardize_identifier('CHEBI_1234')
+        '1234'
 
         Examples from OBO Foundry that should not have a redundant
         prefix added:
@@ -1674,14 +1775,15 @@ class Resource(BaseModel):
         >>> get_resource("pdb").standardize_identifier('00000020')
         '00000020'
         """
-        banana = self.get_banana()
-        peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}".casefold()
         icf = identifier.casefold()
-        if banana and icf.startswith(prebanana):
-            return identifier[len(prebanana) :]
-        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
-            return identifier[len(self.prefix) + len(peel) :]
+        banana = self.get_banana()
+        peels = [self.get_banana_peel(), "_"]
+        for peel in peels:
+            prebanana = f"{banana}{peel}".casefold()
+            if banana and icf.startswith(prebanana):
+                return identifier[len(prebanana) :]
+            elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+                return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
