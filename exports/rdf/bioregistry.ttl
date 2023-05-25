@@ -26,6 +26,7 @@
 @prefix amoebadb: <https://amoebadb.org/amoeba/app/record/gene/> .
 @prefix antibodyregistry: <http://antibodyregistry.org/AB_> .
 @prefix antweb: <http://www.antweb.org/specimen.do?name=> .
+@prefix anzctr: <https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=> .
 @prefix aop: <https://aopwiki.org/aops/> .
 @prefix aop.events: <https://aopwiki.org/events/> .
 @prefix aop.relationships: <https://aopwiki.org/relationships/> .
@@ -322,6 +323,7 @@
 @prefix doqcs.pathway: <http://doqcs.ncbs.res.in/template.php?&y=pathwaydetails&pn=> .
 @prefix dpv: <http://www.dpvweb.net/dpv/showdpv.php?dpvno=> .
 @prefix drduke: <https://phytochem.nal.usda.gov/phytochem/chemicals/show/> .
+@prefix drks: <https://drks.de/search/en/trial/> .
 @prefix drsc: <http://www.flyrnai.org/cgi-bin/RNAi_gene_lookup_public.pl?gname=> .
 @prefix drugbank: <http://www.drugbank.ca/drugs/> .
 @prefix drugbank.category: <https://www.drugbank.ca/categories/> .
@@ -620,6 +622,7 @@
 @prefix isfinder: <https://www-is.biotoul.fr/scripts/ficheIS.php?name=> .
 @prefix isni: <http://www.isni.org/isni/> .
 @prefix iso15926: <http://standards.iso.org/iso/15926/part14/> .
+@prefix isrctn: <https://www.isrctn.com/> .
 @prefix issn: <https://portal.issn.org/resource/ISSN/> .
 @prefix itis: <https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=> .
 @prefix ito: <https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:> .
@@ -633,6 +636,7 @@
 @prefix jcrb: <https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=> .
 @prefix jcsd: <http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=> .
 @prefix jgi.proposal: <https://genome.jgi.doe.gov/portal/lookup?keyName=proposalId&groupOnly=1&app=Info&keyValue=> .
+@prefix jrct: <https://jrct.niph.go.jp/en-latest-detail/> .
 @prefix jstor: <http://www.jstor.org/stable/> .
 @prefix jws: <https://jjj.bio.vu.nl/models/> .
 @prefix kclb: <https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=> .
@@ -977,11 +981,13 @@
 @prefix rdo: <http://www.semanticweb.org/mca/ontologies/2018/8/untitled-ontology-47#> .
 @prefix re3data: <https://www.re3data.org/repository/> .
 @prefix reactome: <https://reactome.org/content/detail/> .
+@prefix rebec: <https://ensaiosclinicos.gov.br/rg/> .
 @prefix receptome.family: <http://www.receptome.org/families/Frameset_family.asp?ProtType=Receptor&FamId=> .
 @prefix redfly: <http://redfly.ccr.buffalo.edu/?content=/view_detail.php&crm_id=> .
 @prefix refseq: <https://www.ncbi.nlm.nih.gov/protein/> .
 @prefix repeatsdb.protein: <https://repeatsdb.org/protein/> .
 @prefix repeatsdb.structure: <https://repeatsdb.org/structure/> .
+@prefix repec: <https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=> .
 @prefix reproduceme: <https://w3id.org/reproduceme#> .
 @prefix resid: <https://proteininformationresource.org/cgi-bin/resid?id=> .
 @prefix rfam: <https://rfam.xfam.org/family/> .
@@ -1010,6 +1016,7 @@
 @prefix roleo: <http://purl.obolibrary.org/obo/RoleO_> .
 @prefix ror: <https://ror.org/> .
 @prefix rouge: <https://www.kazusa.or.jp/rouge/gfpage/> .
+@prefix rpcec: <https://rpcec.sld.cu/en/trials/> .
 @prefix rrid: <https://scicrunch.org/resolver/RRID:> .
 @prefix runbiosimulations: <https://run.biosimulations.org/simulations/> .
 @prefix rxno: <http://www.rsc.org/publishing/journals/prospect/ontology.asp?id=> .
@@ -1123,6 +1130,7 @@
 @prefix tcb: <https://www.pirbright.ac.uk/node/> .
 @prefix tccd: <http://www.itb.cnr.it/cellcycle/gene_rep.php?gene_name=> .
 @prefix tcdb: <http://www.tcdb.org/search/result.php?tc=> .
+@prefix tctr: <https://www.thaiclinicaltrials.org/show/> .
 @prefix tfclass: <http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=> .
 @prefix tgd: <http://ciliate.org/index.php/feature/details/> .
 @prefix tgn: <http://vocab.getty.edu/page/tgn/> .
@@ -1534,6 +1542,30 @@ Skipped:
         bioregistry:rex,
         bioregistry:rxno,
         bioregistry:sbo .
+
+bioregistry.collection:0000012 a bioregistry.schema:0000003 ;
+    rdfs:label "Clinical Trial Registries" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "A collection of clinical trial registries appearing in the World Health Organization's [International Clinical Trials Registry Platform (ICTRP)](https://trialsearch.who.int/)" ;
+    dcterms:hasPart bioregistry:anzctr,
+        bioregistry:chictr,
+        bioregistry:clinicaltrials,
+        bioregistry:ctri,
+        bioregistry:drks,
+        bioregistry:euclinicaltrials,
+        bioregistry:irct,
+        bioregistry:isrctn,
+        bioregistry:itmctr,
+        bioregistry:jrct,
+        bioregistry:kcris,
+        bioregistry:lbctr,
+        bioregistry:pactr,
+        bioregistry:rebec,
+        bioregistry:repec,
+        bioregistry:rpcec,
+        bioregistry:slctr,
+        bioregistry:tctr,
+        bioregistry:uminctr .
 
 bioregistry.registry:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
@@ -7068,23 +7100,6 @@ bioregistry:eu89h a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://data.europa.eu/89h/"^^xsd:string ;
     bioregistry.schema:0000027 eu89h:jrc-eurl-ecvam-chemagora ;
     bioregistry.schema:0000029 "eu89h" .
-
-bioregistry:euclinicaltrials a bioregistry.schema:0000001 ;
-    rdfs:label "EU Clinical Trials" ;
-    dcterms:description """The EU Clinical Trials Register contains information on clinical trials conducted in the European Union (EU), or the European Economic Area (EEA) which started after 1 May 2004.\r
-It also includes trials conducted outside these areas if they form part of a paediatric investigation plan (PIP), or are sponsored by a marketing authorisation holder, and involve the use of a medicine in the paediatric population."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch biocontext:EUCLINICALTRIALS,
-        n2t:euclinicaltrials,
-        miriam:euclinicaltrials ;
-    foaf:homepage <https://www.clinicaltrialsregister.eu/> ;
-    bioregistry.schema:0000005 "2008-005144-16"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{4}\\-\\d{6}\\-\\d{2}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://www.clinicaltrialsregister.eu/ctr-search/search?query="^^xsd:string ;
-    bioregistry.schema:0000027 euclinicaltrials:2008-005144-16 ;
-    bioregistry.schema:0000029 "euclinicaltrials" .
 
 bioregistry:eugenes a bioregistry.schema:0000001 ;
     rdfs:label "Eukaryotic Genes" ;
@@ -19068,23 +19083,6 @@ bioregistry:wikipathways a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 wikipathways:WP732 ;
     bioregistry.schema:0000029 "wikipathways" .
 
-bioregistry:wikipathways.vocab a bioregistry.schema:0000001 ;
-    rdfs:label "WikiPathways Ontology" ;
-    dcterms:description "An ontology supporting data modeling in WikiPathways"^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch aberowl:WIKIPATHWAYS,
-        bioportal:WIKIPATHWAYS ;
-    dcat:keyword "ontology" ;
-    foaf:homepage <http://www.wikipathways.org> ;
-    bioregistry.schema:0000005 "DataNode"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 ;
-    bioregistry.schema:0000024 "https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23"^^xsd:string ;
-    bioregistry.schema:0000027 wikipathways.vocab:DataNode ;
-    bioregistry.schema:0000029 "wikipathways.vocab" .
-
 bioregistry:wikipedia.en a bioregistry.schema:0000001 ;
     rdfs:label "Wikipedia" ;
     dcterms:description "Wikipedia is a multilingual, web-based, free-content encyclopedia project based on an openly editable model. It is written collaboratively by largely anonymous Internet volunteers who write without pay."^^xsd:string ;
@@ -28594,28 +28592,6 @@ bioregistry:clingene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 clingene:CA981206459 ;
     bioregistry.schema:0000029 "clingene" .
 
-bioregistry:clinicaltrials a bioregistry.schema:0000001 ;
-    rdfs:label "ClinicalTrials.gov" ;
-    dcterms:description "ClinicalTrials.gov provides free access to information on clinical studies for a wide range of diseases and conditions. Studies listed in the database are conducted in 175 countries"^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch wikidata:P3098,
-        biocontext:CLINICALTRIALS,
-        n2t:clinicaltrials,
-        prefixcommons:clinicaltrials,
-        miriam:clinicaltrials ;
-    dcat:keyword "disease",
-        "drug",
-        "human" ;
-    foaf:homepage <https://clinicaltrials.gov/> ;
-    bioregistry.schema:0000005 "NCT00222573"^^xsd:string ;
-    bioregistry.schema:0000006 "https://clinicaltrials.gov/ct2/show/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^NCT\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "clinicaltrial" ;
-    bioregistry.schema:0000024 "https://clinicaltrials.gov/ct2/show/"^^xsd:string ;
-    bioregistry.schema:0000027 clinicaltrials:NCT00222573 ;
-    bioregistry.schema:0000029 "clinicaltrials" .
-
 bioregistry:clinvar.record a bioregistry.schema:0000001 ;
     rdfs:label "ClinVar Record" ;
     dcterms:description "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of  the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Record Report, based on RCV accession."^^xsd:string ;
@@ -30124,6 +30100,24 @@ bioregistry:epio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/EPIO_"^^xsd:string ;
     bioregistry.schema:0000029 "epio" .
+
+bioregistry:euclinicaltrials a bioregistry.schema:0000001 ;
+    rdfs:label "EU Clinical Trials" ;
+    dcterms:description """The EU Clinical Trials Register contains information on clinical trials conducted in the European Union (EU), or the European Economic Area (EEA) which started after 1 May 2004.\r
+It also includes trials conducted outside these areas if they form part of a paediatric investigation plan (PIP), or are sponsored by a marketing authorisation holder, and involve the use of a medicine in the paediatric population."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch biocontext:EUCLINICALTRIALS,
+        n2t:euclinicaltrials,
+        miriam:euclinicaltrials ;
+    foaf:homepage <https://www.clinicaltrialsregister.eu/> ;
+    bioregistry.schema:0000005 "2008-005144-16"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4}\\-\\d{6}\\-\\d{2}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "EUCTR" ;
+    bioregistry.schema:0000024 "https://www.clinicaltrialsregister.eu/ctr-search/search?query="^^xsd:string ;
+    bioregistry.schema:0000027 euclinicaltrials:2008-005144-16 ;
+    bioregistry.schema:0000029 "euclinicaltrials" .
 
 bioregistry:evm a bioregistry.schema:0000001 ;
     rdfs:label "eVOC mouse development stage" ;
@@ -35609,6 +35603,23 @@ bioregistry:wikidata a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 wikidata:Q2207226 ;
     bioregistry.schema:0000029 "wikidata" .
 
+bioregistry:wikipathways.vocab a bioregistry.schema:0000001 ;
+    rdfs:label "WikiPathways Ontology" ;
+    dcterms:description "An ontology supporting data modeling in WikiPathways"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch aberowl:WIKIPATHWAYS,
+        bioportal:WIKIPATHWAYS ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <http://www.wikipathways.org> ;
+    bioregistry.schema:0000005 "DataNode"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23$1"^^xsd:string ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 ;
+    bioregistry.schema:0000024 "https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS/?p=classes&conceptid=http%3A%2F%2Fvocabularies.wikipathways.org%2Fwp%23"^^xsd:string ;
+    bioregistry.schema:0000027 wikipathways.vocab:DataNode ;
+    bioregistry.schema:0000029 "wikipathways.vocab" .
+
 bioregistry:worldavatar.compchem a bioregistry.schema:0000001 ;
     rdfs:label "Computational Chemistry Ontology" ;
     dcterms:description "Linked-data framework for connecting species in chemical kinetic reaction mechanisms with quantum calculations. A mechanism can be constructed from thermodynamic, reaction rate, and transport data that has been obtained either experimentally, computationally, or by a combination of both. In order to implement this approach, two existing ontologies, namely OntoKin, for representing chemical kinetic reaction mechanisms, and OntoCompChem, for representing quantum chemistry calculations, are extended. (from https://nfdi4cat.org/services/ontologie-sammlung/)"^^xsd:string ;
@@ -41043,6 +41054,22 @@ The Alliance of Genome Resources was founded by the following Model Organism dat
     bioregistry.schema:0000027 agrkb:100000000000001 ;
     bioregistry.schema:0000029 "agrkb" .
 
+bioregistry:anzctr a bioregistry.schema:0000001 ;
+    rdfs:label "Australian New Zealand Clinical Trials Registry" ;
+    dcterms:description """ The Australian New Zealand Clinical Trials Registry (ANZCTR) is an online register of clinical trials being undertaken in Australia, New Zealand and elsewhere. The ANZCTR includes trials from the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle, devices, treatment and rehabilitation strategies and complementary therapies.
+
+In 2007 the ANZCTR was one of the first three trial registries to be recognised by the World Health Organization International Clinical Trials Registry Platform (WHO ICTRP) as a Primary Registry. WHO recognises registries as Primary Registries if they fulfil certain criteria with respect to data content, quality and validity, accessibility, unique identification, technical capacity and administration. The ANZCTR contributes data to the WHO ICTRP, which was developed in 2007. Trials from all ICTRP Primary Registries can be searched at: www.who.int/trialsearch. (from website)"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://anzctr.org.au> ;
+    bioregistry.schema:0000005 "ACTRN12623000498695"^^xsd:string ;
+    bioregistry.schema:0000006 "https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^ACTRN\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "ACTRN" ;
+    bioregistry.schema:0000024 "https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN="^^xsd:string ;
+    bioregistry.schema:0000027 anzctr:ACTRN12623000498695 ;
+    bioregistry.schema:0000029 "anzctr" .
+
 bioregistry:bibo a bioregistry.schema:0000001 ;
     rdfs:label "The Bibliographic Ontology" ;
     dcterms:description "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web."^^xsd:string ;
@@ -41222,6 +41249,16 @@ bioregistry:cheminf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 cheminf:000410 ;
     bioregistry.schema:0000029 "cheminf" .
 
+bioregistry:chictr a bioregistry.schema:0000001 ;
+    rdfs:label "Chinese Clinical Trial Registry" ;
+    dcterms:description "Established in 2005 by professor Wu Taixiang and Li Youping team, West China Hospital, Sichuan University, and the Ministry of Health of China assigned it to be the representative of China to join WHO ICTRP in 2007. The Chinese Clinical Trial Registry provides the services include register for trials, consultation for trial design, central randomization for an allocation sequence, peer review for draft articles and training for peer reviewers. (from website)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.chictr.org.cn> ;
+    bioregistry.schema:0000005 "ChiCTR2300070727"^^xsd:string ;
+    bioregistry.schema:0000008 "^ChiCTR\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "chictr" .
+
 bioregistry:cito a bioregistry.schema:0000001 ;
     rdfs:label "Citation Typing Ontology" ;
     dcterms:description "An ontology that enables characterization of the nature or type of citations, both factually and rhetorically."^^xsd:string ;
@@ -41344,6 +41381,29 @@ bioregistry:civic.vid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://civicdb.org/links/variant/"^^xsd:string ;
     bioregistry.schema:0000027 civic.vid:12 ;
     bioregistry.schema:0000029 "civic.vid" .
+
+bioregistry:clinicaltrials a bioregistry.schema:0000001 ;
+    rdfs:label "ClinicalTrials.gov" ;
+    dcterms:description "ClinicalTrials.gov provides free access to information on clinical studies for a wide range of diseases and conditions. Studies listed in the database are conducted in 175 countries"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P3098,
+        biocontext:CLINICALTRIALS,
+        n2t:clinicaltrials,
+        prefixcommons:clinicaltrials,
+        miriam:clinicaltrials ;
+    dcat:keyword "disease",
+        "drug",
+        "human" ;
+    foaf:homepage <https://clinicaltrials.gov/> ;
+    bioregistry.schema:0000005 "NCT00222573"^^xsd:string ;
+    bioregistry.schema:0000006 "https://clinicaltrials.gov/ct2/show/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^NCT\\d{8}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "NCT",
+        "clinicaltrial" ;
+    bioregistry.schema:0000024 "https://clinicaltrials.gov/ct2/show/"^^xsd:string ;
+    bioregistry.schema:0000027 clinicaltrials:NCT00222573 ;
+    bioregistry.schema:0000029 "clinicaltrials" .
 
 bioregistry:clinvar a bioregistry.schema:0000001 ;
     rdfs:label "ClinVar Variation" ;
@@ -41474,6 +41534,18 @@ bioregistry:cteno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CTENO_"^^xsd:string ;
     bioregistry.schema:0000029 "cteno" .
+
+bioregistry:ctri a bioregistry.schema:0000001 ;
+    rdfs:label "India Clinical Trials Registry" ;
+    dcterms:description """The mission of the Clinical Trials Registry-India (CTRI) is to ensure that all clinical trials conducted in India are prospectively registered, i.e. before the enrolment of the first participant. Additionally, post-marketing surveillance studies, BA/BE studies as well as clinical studies as part of PG thesis are also expected to be registered in the CTRI. (from homepage)
+
+Note that the identifier in this semantic space is not the one used in the webpages"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://ctri.nic.in> ;
+    bioregistry.schema:0000005 "CTRI/2023/04/052053"^^xsd:string ;
+    bioregistry.schema:0000008 "^CTRI/\\d{4}/\\d{2}/\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "ctri" .
 
 bioregistry:cvx a bioregistry.schema:0000001 ;
     rdfs:label "Vaccine administered code set" ;
@@ -41749,6 +41821,19 @@ bioregistry:dolce a bioregistry.schema:0000001 ;
     foaf:homepage <http://www.loa.istc.cnr.it/dolce/overview.html> ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "dolce" .
+
+bioregistry:drks a bioregistry.schema:0000001 ;
+    rdfs:label "German Clinical Trials Register" ;
+    dcterms:description "The German Clinical Trials Register (DRKS) is the German WHO primary registry. It is competent for the registration of all patient-oriented clinical trials conducted in Germany. The DRKS now contains well over 14,000 studies. Currently, around 2,000 studies are added annually. (from website)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <http://drks.de> ;
+    bioregistry.schema:0000005 "DRKS00031815"^^xsd:string ;
+    bioregistry.schema:0000006 "https://drks.de/search/en/trial/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DRKS\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://drks.de/search/en/trial/"^^xsd:string ;
+    bioregistry.schema:0000027 drks:DRKS00031815 ;
+    bioregistry.schema:0000029 "drks" .
 
 bioregistry:drugbank.category a bioregistry.schema:0000001 ;
     rdfs:label "DrugBank Drug Category" ;
@@ -42718,6 +42803,17 @@ bioregistry:ietf.language a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "bcp47" ;
     bioregistry.schema:0000029 "ietf.language" .
 
+bioregistry:irct a bioregistry.schema:0000001 ;
+    rdfs:label "Iranian Registry of Clinical Trials" ;
+    dcterms:description """Iranian Registry of Clinical Trials. This is a Primary Registry in the WHO Registry Network set up with the help from the Ministry of Health and Medical Education (MOHME) and hosted by Iran University of Medical Sciences (IUMS). (from homepage)
+Note that the website uses a different identifier then the one reported in this semantic space."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://en.irct.ir/> ;
+    bioregistry.schema:0000005 "IRCT20080904001199N7"^^xsd:string ;
+    bioregistry.schema:0000008 "^IRCT\\d+N\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "irct" .
+
 bioregistry:iso.3166 a bioregistry.schema:0000001 ;
     rdfs:label "ISO 3166-1 Country Code" ;
     dcterms:description "An identifier for a country in numeric format per ISO 3166-1"^^xsd:string ;
@@ -42740,6 +42836,53 @@ bioregistry:iso15926 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://standards.iso.org/iso/15926/part14/"^^xsd:string ;
     bioregistry.schema:0000027 iso15926:activityBoundOf ;
     bioregistry.schema:0000029 "iso15926" .
+
+bioregistry:isrctn a bioregistry.schema:0000001 ;
+    rdfs:label "International Traditional Medicine Clinical Trial Registry" ;
+    dcterms:description "The ISRCTN registry is a primary clinical trial registry recognised by WHO and ICMJE that accepts all clinical research studies (whether proposed, ongoing or completed), providing content validation and curation and the unique identification number necessary for publication. All study records in the database are freely accessible and searchable. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage isrctn: ;
+    bioregistry.schema:0000005 "ISRCTN10175490"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.isrctn.com/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^ISRCTN\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.isrctn.com/"^^xsd:string ;
+    bioregistry.schema:0000027 isrctn:ISRCTN10175490 ;
+    bioregistry.schema:0000029 "isrctn" .
+
+bioregistry:itmctr a bioregistry.schema:0000001 ;
+    rdfs:label "International Traditional Medicine Clinical Trial Registry" ;
+    dcterms:description "The International Traditional Medicine Clinical Trial Registry (ITMCTR) is a non-profit online register of clinical trials being conducted in the field of traditional medicine. It isoperated by the China Academy of Chinese Medical Sciences and The China Center For Evidence Based Traditional Chinese Medicine. It is recognized as a Primary Registry of WHO, and contributes data to the WHO ICTRP. (from website)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <http://itmctr.ccebtcm.org.cn> ;
+    bioregistry.schema:0000005 "ITMCTR2023000002"^^xsd:string ;
+    bioregistry.schema:0000008 "^ITMCTR\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "itmctr" .
+
+bioregistry:jrct a bioregistry.schema:0000001 ;
+    rdfs:label "Japan Registry of Clinical Trials" ;
+    dcterms:description "This system submits an implementation plan to the Minister of Health, Labor and Welfare for clinical research conducted at medical institutions, etc. based on the provisions of the 'Clinical Research Act' and the 'Act on Ensuring Safety of Regenerative Medicine, etc.' It is a system for performing notification procedures such as In addition, based on the clinical research practice standards stipulated in the same law, we disclose information that the World Health Organization (WHO) requires to be disclosed, information that ensures the transparency of the research process, and information that contributes to the selection of participation in clinical research by the public. (translated from website)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://jrct.niph.go.jp> ;
+    bioregistry.schema:0000005 "jRCTs041220087"^^xsd:string ;
+    bioregistry.schema:0000006 "https://jrct.niph.go.jp/en-latest-detail/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^jRCT\\w?\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://jrct.niph.go.jp/en-latest-detail/"^^xsd:string ;
+    bioregistry.schema:0000027 jrct:jRCTs041220087 ;
+    bioregistry.schema:0000029 "jrct" .
+
+bioregistry:kcris a bioregistry.schema:0000001 ;
+    rdfs:label "Korean Clinical Research Information Service" ;
+    dcterms:description """The Clinical Research Information Service (CRIS) is a non-profit online registration system for clinical trials (researches) to be conducted in Korea. It has been established at the Korea Disease Control and Prevention Agency (KDCA) with support from the Ministry of Health and Welfare (MOHW). It joined the WHO International Clinical Trials Registry Platform (ICTRP) as 11th member of Primary Registry. (from about page)
+Note that the web page that resolves this trial does not correspond to the semantic space"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://cris.nih.go.kr> ;
+    bioregistry.schema:0000005 "KCT0008394"^^xsd:string ;
+    bioregistry.schema:0000008 "^KCT\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "kcris" .
 
 bioregistry:kegg.compound a bioregistry.schema:0000001 ;
     rdfs:label "KEGG Compound" ;
@@ -42842,6 +42985,16 @@ bioregistry:kegg.rclass a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "KEGG_RCLASS",
         "KEGG_REACTION_CLASS" ;
     bioregistry.schema:0000029 "kegg.rclass" .
+
+bioregistry:lbctr a bioregistry.schema:0000001 ;
+    rdfs:label "Lebanon Clinical Trials Registry" ;
+    dcterms:description "The Lebanese Clinical Trials Registry is an online register of clinical trials being undertaken in Lebanon. It includes trials that target humans from the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle, devices, treatment and rehabilitation strategies and complementary therapies. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://lbctr.moph.gov.lb/> ;
+    bioregistry.schema:0000005 "LBCTR2023015204"^^xsd:string ;
+    bioregistry.schema:0000008 "^LBCTR\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "lbctr" .
 
 bioregistry:loinc a bioregistry.schema:0000001 ;
     rdfs:label "Logical Observation Identifiers Names and Codes" ;
@@ -43619,6 +43772,16 @@ bioregistry:oslc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 oslc:Property ;
     bioregistry.schema:0000029 "oslc" .
 
+bioregistry:pactr a bioregistry.schema:0000001 ;
+    rdfs:label "Pan African Clinical Trials Registry" ;
+    dcterms:description "The Pan African Clinical Trials Registry (PACTR) is a regional register of clinical trials conducted in Africa. The registry is an African initiative serving the needs of Africans. It provides an open-access platform where clinical trials can be registered free of charge. The PACTR aims to increase clinical trial registration in Africa by developing awareness of the need to register trials and supporting trialists during registration. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://pactr.samrc.ac.za/> ;
+    bioregistry.schema:0000005 "PACTR202304525632216"^^xsd:string ;
+    bioregistry.schema:0000008 "^PACTR\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "pactr" .
+
 bioregistry:panorama a bioregistry.schema:0000001 ;
     rdfs:label "Panorama Public" ;
     dcterms:description "Panorama is a freely-available, open-source repository server application for targeted mass spectrometry assays that integrates into a Skyline mass spec workflow. It makes links to the Proteomics Exchange when possible."^^xsd:string ;
@@ -44059,6 +44222,32 @@ bioregistry:rdf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 rdf:RDF ;
     bioregistry.schema:0000029 "rdf" .
 
+bioregistry:rebec a bioregistry.schema:0000001 ;
+    rdfs:label "Brazilian Registry of Clinical Trials" ;
+    dcterms:description "Presents the new fast tracks for clinical research and observational studies on INDIGENOUS PEOPLE AND TRADITIONAL COMMUNITIES and on NEGLECTED TROPICAL DISEASES (NTDs). Fast-track can reduce the normal approval period for clinical trials to less than 48 hours, if the documentation, information and any mandatory changes requested are provided by the registrant."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://ensaiosclinicos.gov.br> ;
+    bioregistry.schema:0000005 "RBR-6qvdftm"^^xsd:string ;
+    bioregistry.schema:0000006 "https://ensaiosclinicos.gov.br/rg/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^RBR-\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://ensaiosclinicos.gov.br/rg/"^^xsd:string ;
+    bioregistry.schema:0000027 rebec:RBR-6qvdftm ;
+    bioregistry.schema:0000029 "rebec" .
+
+bioregistry:repec a bioregistry.schema:0000001 ;
+    rdfs:label "Peruvian Clinical Trial Registry" ;
+    dcterms:description "The Peruvian Clinical Trials Registry - REPEC is a non-profit online information system developed in 2007 by INS. It is a publicly accessible prospective registry aimed at providing information about clinical trials underway in Peru. REPEC also includes Registries for Trial Sites, Institutional Research Ethics Committees, Sponsors and Contract Research Organizations. REPEC contains records of clinical trials since 1995. Since December 14, 2012, the Peruvian National Institute of Health, by means of the General Office for Research and Technological Transfer (OGITT), has started a process to improve REPEC and to join the WHO International Clinical Trials Registry Platform (ICTRP) and to be acknowledged as a Primary Registry. More information about primary registries is available in ICRTP at http://apps.who.int/trialsearch/. (from website)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://ensayosclinicos-repec.ins.gob.pe/en/> ;
+    bioregistry.schema:0000005 "046-19"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC="^^xsd:string ;
+    bioregistry.schema:0000027 repec:046-19 ;
+    bioregistry.schema:0000029 "repec" .
+
 bioregistry:rex a bioregistry.schema:0000001 ;
     rdfs:label "Physico-chemical process" ;
     dcterms:description "An ontology of physico-chemical processes, i.e. physico-chemical changes occurring in course of time."^^xsd:string ;
@@ -44087,6 +44276,19 @@ bioregistry:rex a bioregistry.schema:0000001 ;
             foaf:mbox "chebi-help@ebi.ac.uk" ] ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/REX_"^^xsd:string ;
     bioregistry.schema:0000029 "rex" .
+
+bioregistry:rpcec a bioregistry.schema:0000001 ;
+    rdfs:label "Cuban Registry of Clinical Trials" ;
+    dcterms:description "The Cuban Public Registry of Clinical Trials (RPCEC) is a website with a database of clinical trials, with national coverage. It was established in 2007 under the leadership of the National Coordinating Center of Clinical Trials (CENCEC) and with INFOMED collaboration. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://rpcec.sld.cu/en/home> ;
+    bioregistry.schema:0000005 "RPCEC00000423"^^xsd:string ;
+    bioregistry.schema:0000006 "https://rpcec.sld.cu/en/trials/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^RPCEC\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://rpcec.sld.cu/en/trials/"^^xsd:string ;
+    bioregistry.schema:0000027 rpcec:RPCEC00000423 ;
+    bioregistry.schema:0000029 "rpcec" .
 
 bioregistry:rxnorm a bioregistry.schema:0000001 ;
     rdfs:label "RxNorm" ;
@@ -44295,6 +44497,16 @@ bioregistry:skosxl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 skosxl:literalForm ;
     bioregistry.schema:0000029 "skosxl" .
 
+bioregistry:slctr a bioregistry.schema:0000001 ;
+    rdfs:label "Sri Lanka Clinical Trials Registry" ;
+    dcterms:description "The Sri Lanka Clinical Trials Registry (SLCTR) is a Registry for clinical trials involving human subjects, conducted in Sri Lanka or overseas. The SLCTR is a Primary Registry linked to the Registry Network of the International Clinical Trials Registry Platform of the WHO (WHO-ICTRP). It is a not-for-profit Registry, with free and open access to researchers, clinicians, and the general public. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://slctr.lk/> ;
+    bioregistry.schema:0000005 "SLCTR/2023/010"^^xsd:string ;
+    bioregistry.schema:0000008 "^SLCTR/\\d{4}/\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "slctr" .
+
 bioregistry:smid a bioregistry.schema:0000001 ;
     rdfs:label "C. elegans Small Molecule Identifier Database" ;
     dcterms:description "SMIDs (Small Molecule Identifiers) represent gene-style identifiers for small molecules newly identified in C. elegans and other nematodes. SMIDs aim to make life easier for describing biogenic small molecules in metabolomic and genomic applications.     "^^xsd:string ;
@@ -44462,6 +44674,19 @@ bioregistry:symp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 symp:0019171 ;
     bioregistry.schema:0000029 "symp" .
 
+bioregistry:tctr a bioregistry.schema:0000001 ;
+    rdfs:label "Thai Clinical Trials Registry" ;
+    dcterms:description "The TCTR was estabished in 2009 and has been operated by Clinical Research Collaboration Network (CRCN), an organization under the Medical Research Foundation, which is a non-profit organization, and financially supported by Thailand Center of Excellence for Life Sciences (TCELS). CRCN has been retitled the Medical Research Network (MedResNet) since June 15, 2012. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.thaiclinicaltrials.org> ;
+    bioregistry.schema:0000005 "TCTR20230429001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.thaiclinicaltrials.org/show/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^TCTR\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.thaiclinicaltrials.org/show/"^^xsd:string ;
+    bioregistry.schema:0000027 tctr:TCTR20230429001 ;
+    bioregistry.schema:0000029 "tctr" .
+
 bioregistry:ucsc a bioregistry.schema:0000001 ;
     rdfs:label "UCSC Genome Browser" ;
     dcterms:description "The UCSC Genome Browser is an on-line, and downloadable, genome browser hosted by the University of California, Santa Cruz (UCSC).[2][3][4] It is an interactive website offering access to genome sequence data from a variety of vertebrate and invertebrate species and major model organisms, integrated with a large collection of aligned annotations."^^xsd:string ;
@@ -44513,6 +44738,16 @@ bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID="^^xsd:string ;
     bioregistry.schema:0000027 umbbd.compound:c0001 ;
     bioregistry.schema:0000029 "umbbd.compound" .
+
+bioregistry:uminctr a bioregistry.schema:0000001 ;
+    rdfs:label "University hospital Medical Information Network Clinical Trial Registry" ;
+    dcterms:description "An additional Japanese clinical trial registry"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.umin.ac.jp/ctr/index.htm> ;
+    bioregistry.schema:0000005 "UMIN000049383"^^xsd:string ;
+    bioregistry.schema:0000008 "^UMIN\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "uminctr" .
 
 bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Diseases" ;
@@ -48980,6 +49215,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:agilent.probe,
         bioregistry:agrovoc,
         bioregistry:alzforum.mutation,
+        bioregistry:anzctr,
         bioregistry:asrp,
         bioregistry:bactibase,
         bioregistry:bams,
@@ -49017,6 +49253,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cgnc,
         bioregistry:chembl.cell,
         bioregistry:chemrof,
+        bioregistry:chictr,
         bioregistry:citexplore,
         bioregistry:cito,
         bioregistry:clingene,
@@ -49037,6 +49274,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cp,
         bioregistry:credit,
         bioregistry:ctcae,
+        bioregistry:ctri,
         bioregistry:cvx,
         bioregistry:datacite,
         bioregistry:datacommons,
@@ -49060,6 +49298,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:doap,
         bioregistry:doco,
         bioregistry:dolce,
+        bioregistry:drks,
         bioregistry:drugbank.category,
         bioregistry:drugbank.salt,
         bioregistry:drugcentral,
@@ -49177,17 +49416,23 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:inaturalist.user,
         bioregistry:inhand,
         bioregistry:inn,
+        bioregistry:irct,
         bioregistry:iro,
         bioregistry:iso.3166,
         bioregistry:iso15926,
+        bioregistry:isrctn,
         bioregistry:itis,
+        bioregistry:itmctr,
         bioregistry:jax,
         bioregistry:jcrb,
+        bioregistry:jrct,
         bioregistry:kclb,
+        bioregistry:kcris,
         bioregistry:kegg.dgroup,
         bioregistry:kegg.rclass,
         bioregistry:kupo,
         bioregistry:langual,
+        bioregistry:lbctr,
         bioregistry:linkml,
         bioregistry:lncipedia,
         bioregistry:loinc,
@@ -49244,6 +49489,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:oslc,
         bioregistry:owl,
         bioregistry:owlstar,
+        bioregistry:pactr,
         bioregistry:panorama,
         bioregistry:pathbank,
         bioregistry:pba,
@@ -49277,10 +49523,13 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:rdfs,
         bioregistry:rdo,
         bioregistry:reaxys,
+        bioregistry:rebec,
         bioregistry:receptome.family,
         bioregistry:reo,
+        bioregistry:repec,
         bioregistry:rfc,
         bioregistry:rnamod,
+        bioregistry:rpcec,
         bioregistry:rtecs,
         bioregistry:rxnorm,
         bioregistry:sael,
@@ -49306,6 +49555,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:skip,
         bioregistry:skos,
         bioregistry:skosxl,
+        bioregistry:slctr,
         bioregistry:smid,
         bioregistry:smiles,
         bioregistry:snap,
@@ -49321,6 +49571,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:swrl,
         bioregistry:syoid,
         bioregistry:t4fs,
+        bioregistry:tctr,
         bioregistry:te,
         bioregistry:tfclass,
         bioregistry:tgn,
@@ -49333,6 +49584,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ucsc,
         bioregistry:ucum,
         bioregistry:ukprn,
+        bioregistry:uminctr,
         bioregistry:umls.aui,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.journal,
@@ -49355,6 +49607,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:webelements,
         bioregistry:wgs84,
         bioregistry:wikidata.property,
+        bioregistry:wikipathways.vocab,
         bioregistry:worldavatar.compchem,
         bioregistry:worldavatar.kin,
         bioregistry:ximbio,
@@ -54655,6 +54908,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:amphx,
         bioregistry:antibodyregistry,
         bioregistry:antweb,
+        bioregistry:anzctr,
         bioregistry:aop,
         bioregistry:aop.events,
         bioregistry:aop.relationships,
@@ -54831,6 +55085,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:chemrof,
         bioregistry:chemspider,
         bioregistry:chickenqtldb,
+        bioregistry:chictr,
         bioregistry:chiro,
         bioregistry:chmo,
         bioregistry:cido,
@@ -54951,6 +55206,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ctd.gene,
         bioregistry:cteno,
         bioregistry:cto,
+        bioregistry:ctri,
         bioregistry:cubedb,
         bioregistry:cutg,
         bioregistry:cvdo,
@@ -55035,6 +55291,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dragondb.locus,
         bioregistry:dragondb.protein,
         bioregistry:drduke,
+        bioregistry:drks,
         bioregistry:dron,
         bioregistry:drsc,
         bioregistry:drugbank,
@@ -55421,6 +55678,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:interpro,
         bioregistry:iobc,
         bioregistry:ipi,
+        bioregistry:irct,
         bioregistry:ird.segment,
         bioregistry:irefweb,
         bioregistry:iresite,
@@ -55431,8 +55689,10 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:isni,
         bioregistry:iso.3166,
         bioregistry:iso15926,
+        bioregistry:isrctn,
         bioregistry:issn,
         bioregistry:itis,
+        bioregistry:itmctr,
         bioregistry:ito,
         bioregistry:iuphar.family,
         bioregistry:iuphar.ligand,
@@ -55445,10 +55705,12 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:jcrb,
         bioregistry:jcsd,
         bioregistry:jgi.proposal,
+        bioregistry:jrct,
         bioregistry:jstor,
         bioregistry:jws,
         bioregistry:kaggle,
         bioregistry:kclb,
+        bioregistry:kcris,
         bioregistry:kegg,
         bioregistry:kegg.brite,
         bioregistry:kegg.compound,
@@ -55473,6 +55735,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:kyinno,
         bioregistry:labo,
         bioregistry:langual,
+        bioregistry:lbctr,
         bioregistry:lbo,
         bioregistry:leafsnap,
         bioregistry:lei,
@@ -55787,6 +56050,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:owlstar,
         bioregistry:p3db.protein,
         bioregistry:p3db.site,
+        bioregistry:pactr,
         bioregistry:paleodb,
         bioregistry:pandit,
         bioregistry:panorama,
@@ -55937,12 +56201,14 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:reactome,
         bioregistry:reaxys,
         bioregistry:rebase,
+        bioregistry:rebec,
         bioregistry:receptome.family,
         bioregistry:redfly,
         bioregistry:refseq,
         bioregistry:reo,
         bioregistry:repeatsdb.protein,
         bioregistry:repeatsdb.structure,
+        bioregistry:repec,
         bioregistry:reproduceme,
         bioregistry:resid,
         bioregistry:reto,
@@ -55976,6 +56242,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:roleo,
         bioregistry:ror,
         bioregistry:rouge,
+        bioregistry:rpcec,
         bioregistry:rrid,
         bioregistry:rs,
         bioregistry:rtecs,
@@ -56052,6 +56319,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:skm,
         bioregistry:skos,
         bioregistry:skosxl,
+        bioregistry:slctr,
         bioregistry:slkbase,
         bioregistry:slm,
         bioregistry:smart,
@@ -56115,6 +56383,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:tcb,
         bioregistry:tccd,
         bioregistry:tcdb,
+        bioregistry:tctr,
         bioregistry:te,
         bioregistry:tfclass,
         bioregistry:tgd,
@@ -56157,6 +56426,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:umbbd.pathway,
         bioregistry:umbbd.reaction,
         bioregistry:umbbd.rule,
+        bioregistry:uminctr,
         bioregistry:umls,
         bioregistry:umls.aui,
         bioregistry:unichem,

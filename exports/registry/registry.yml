@@ -1252,6 +1252,41 @@ antweb:
     title: Ants join online colony to boost conservation efforts.
     year: 2003
   uri_format: http://www.antweb.org/specimen.do?name=$1
+anzctr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ' The Australian New Zealand Clinical Trials Registry (ANZCTR) is an
+    online register of clinical trials being undertaken in Australia, New Zealand
+    and elsewhere. The ANZCTR includes trials from the full spectrum of therapeutic
+    areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle,
+    devices, treatment and rehabilitation strategies and complementary therapies.
+
+
+    In 2007 the ANZCTR was one of the first three trial registries to be recognised
+    by the World Health Organization International Clinical Trials Registry Platform
+    (WHO ICTRP) as a Primary Registry. WHO recognises registries as Primary Registries
+    if they fulfil certain criteria with respect to data content, quality and validity,
+    accessibility, unique identification, technical capacity and administration. The
+    ANZCTR contributes data to the WHO ICTRP, which was developed in 2007. Trials
+    from all ICTRP Primary Registries can be searched at: www.who.int/trialsearch.
+    (from website)'
+  example: ACTRN12623000498695
+  homepage: https://anzctr.org.au
+  name: Australian New Zealand Clinical Trials Registry
+  pattern: ^ACTRN\d+$
+  preferred_prefix: anzctr
+  providers:
+  - code: ''
+    description: ''
+    homepage: ''
+    name: ''
+    uri_format: https://anzctr.org.au/ACTRN$1.aspx
+  synonyms:
+  - ACTRN
+  uri_format: https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=$1
 aop:
   description: International repository of Adverse Outcome Pathways.
   example: '98'
@@ -6793,6 +6828,26 @@ chickenqtldb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/chickenqtldb:$1
   uri_format: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1
+chictr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Established in 2005 by professor Wu Taixiang and Li Youping team, West
+    China Hospital, Sichuan University, and the Ministry of Health of China assigned
+    it to be the representative of China to join WHO ICTRP in 2007. The Chinese Clinical
+    Trial Registry provides the services include register for trials, consultation
+    for trial design, central randomization for an allocation sequence, peer review
+    for draft articles and training for peer reviewers. (from website)
+  example: ChiCTR2300070727
+  homepage: https://www.chictr.org.cn
+  logo: https://www.chictr.org.cn/images/top.jpg
+  name: Chinese Clinical Trial Registry
+  pattern: ^ChiCTR\d+$
+  preferred_prefix: chictr
+  references:
+  - https://www.chictr.org.cn/showproj.html?proj=187605
 chiro:
   contact:
     email: vasilevs@ohsu.edu
@@ -7447,6 +7502,7 @@ clinicaltrials:
     name: Smart Patients
     uri_format: https://www.smartpatients.com/trials/$1
   synonyms:
+  - NCT
   - clinicaltrial
   uri_format: https://clinicaltrials.gov/ct2/show/$1
 clinvar:
@@ -10192,6 +10248,27 @@ cto:
   repository: https://github.com/ClinicalTrialOntology/CTO
   uri_format: http://purl.obolibrary.org/obo/CTO_$1
   version: 1.0.0
+ctri:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The mission of the Clinical Trials Registry-India (CTRI) is to ensure
+    that all clinical trials conducted in India are prospectively registered, i.e.
+    before the enrolment of the first participant. Additionally, post-marketing surveillance
+    studies, BA/BE studies as well as clinical studies as part of PG thesis are also
+    expected to be registered in the CTRI. (from homepage)
+
+
+    Note that the identifier in this semantic space is not the one used in the webpages'
+  example: CTRI/2023/04/052053
+  homepage: https://ctri.nic.in
+  name: India Clinical Trials Registry
+  pattern: ^CTRI/\d{4}/\d{2}/\d+$
+  preferred_prefix: ctri
+  references:
+  - https://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=82487
 cubedb:
   comment: website down as of 2021-10-04
   deprecated: true
@@ -12570,6 +12647,33 @@ drduke:
   name: Dr. Duke's Phytochemical and Ethnobotanical Databases chemical
   preferred_prefix: drduke
   uri_format: https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1
+drks:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The German Clinical Trials Register (DRKS) is the German WHO primary
+    registry. It is competent for the registration of all patient-oriented clinical
+    trials conducted in Germany. The DRKS now contains well over 14,000 studies. Currently,
+    around 2,000 studies are added annually. (from website)
+  example: DRKS00031815
+  homepage: http://drks.de
+  name: German Clinical Trials Register
+  pattern: ^DRKS\d+$
+  preferred_prefix: drks
+  providers:
+  - code: alt1
+    description: German Language Provider
+    homepage: http://drks.de
+    name: German Language Provider
+    uri_format: https://drks.de/search/de/trial/$1
+  - code: alt2
+    description: Legacy Provider
+    homepage: http://drks.de
+    name: Legacy Provider
+    uri_format: http://drks.de/en/trial/$1
+  uri_format: https://drks.de/search/en/trial/$1
 dron:
   appears_in:
   - scdo
@@ -15974,6 +16078,8 @@ euclinicaltrials:
   name: EU Clinical Trials
   pattern: ^\d{4}\-\d{6}\-\d{2}$
   preferred_prefix: euclinicaltrials
+  synonyms:
+  - EUCTR
   uri_format: https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1
 eugenes:
   contact:
@@ -25466,6 +25572,26 @@ ipi:
       experiments.'
     year: 2004
   uri_format: http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$1&format=default
+irct:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'Iranian Registry of Clinical Trials. This is a Primary Registry in
+    the WHO Registry Network set up with the help from the Ministry of Health and
+    Medical Education (MOHME) and hosted by Iran University of Medical Sciences (IUMS).
+    (from homepage)
+
+    Note that the website uses a different identifier then the one reported in this
+    semantic space.'
+  example: IRCT20080904001199N7
+  homepage: https://en.irct.ir/
+  name: Iranian Registry of Clinical Trials
+  pattern: ^IRCT\d+N\d+$
+  preferred_prefix: irct
+  references:
+  - https://en.irct.ir/trial/65035
 ird.segment:
   description: Influenza Research Database (IRD) contains information related to influenza
     virus, including genomic sequence, strain, protein, epitope  and bibliographic
@@ -25760,6 +25886,29 @@ iso15926:
   name: ISO 15926-14
   preferred_prefix: iso15926
   uri_format: http://standards.iso.org/iso/15926/part14/$1
+isrctn:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The ISRCTN registry is a primary clinical trial registry recognised
+    by WHO and ICMJE that accepts all clinical research studies (whether proposed,
+    ongoing or completed), providing content validation and curation and the unique
+    identification number necessary for publication. All study records in the database
+    are freely accessible and searchable. (from homepage)
+  example: ISRCTN10175490
+  homepage: https://www.isrctn.com/
+  name: International Traditional Medicine Clinical Trial Registry
+  pattern: ^ISRCTN\d+$
+  preferred_prefix: isrctn
+  providers:
+  - code: doi
+    description: DOI resolution of ISRCTN
+    homepage: https://doi.org/10.1186
+    name: DOI
+    uri_format: https://doi.org/10.1186/$1
+  uri_format: https://www.isrctn.com/$1
 issn:
   description: The International Standard Serial Number (ISSN) is a unique eight-digit
     number used to identify a print or electronic periodical publication, rather than
@@ -25810,6 +25959,24 @@ itis:
   pattern: ^\d+$
   preferred_prefix: itis
   uri_format: https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1
+itmctr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The International Traditional Medicine Clinical Trial Registry (ITMCTR)
+    is a non-profit online register of clinical trials being conducted in the field
+    of traditional medicine. It isoperated by the China Academy of Chinese Medical
+    Sciences and The China Center For Evidence Based Traditional Chinese Medicine.
+    It is recognized as a Primary Registry of WHO, and contributes data to the WHO
+    ICTRP. (from website)
+  example: ITMCTR2023000002
+  homepage: http://itmctr.ccebtcm.org.cn
+  logo: http://itmctr.ccebtcm.org.cn/Content/images/ny_logo.png
+  name: International Traditional Medicine Clinical Trial Registry
+  pattern: ^ITMCTR\d+$
+  preferred_prefix: itmctr
 ito:
   banana: ITO
   banana_peel: _
@@ -26124,6 +26291,33 @@ jgi.proposal:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://genome.jgi.doe.gov/portal/lookup?keyName=proposalId&groupOnly=1&app=Info&keyValue=$1
+jrct:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This system submits an implementation plan to the Minister of Health,
+    Labor and Welfare for clinical research conducted at medical institutions, etc.
+    based on the provisions of the 'Clinical Research Act' and the 'Act on Ensuring
+    Safety of Regenerative Medicine, etc.' It is a system for performing notification
+    procedures such as In addition, based on the clinical research practice standards
+    stipulated in the same law, we disclose information that the World Health Organization
+    (WHO) requires to be disclosed, information that ensures the transparency of the
+    research process, and information that contributes to the selection of participation
+    in clinical research by the public. (translated from website)
+  example: jRCTs041220087
+  homepage: https://jrct.niph.go.jp
+  name: Japan Registry of Clinical Trials
+  pattern: ^jRCT\w?\d+$
+  preferred_prefix: jrct
+  providers:
+  - code: ''
+    description: ''
+    homepage: ''
+    name: ''
+    uri_format: https://jrct.niph.go.jp/latest-detail/$1
+  uri_format: https://jrct.niph.go.jp/en-latest-detail/$1
 jstor:
   description: JSTOR (Journal Storage) is a digital library containing digital versions
     of historical academic journals, as well as books, pamphlets and current issues
@@ -26211,6 +26405,28 @@ kclb:
   name: Korean Cell Line Bank
   preferred_prefix: kclb
   uri_format: https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=$1
+kcris:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The Clinical Research Information Service (CRIS) is a non-profit online
+    registration system for clinical trials (researches) to be conducted in Korea.
+    It has been established at the Korea Disease Control and Prevention Agency (KDCA)
+    with support from the Ministry of Health and Welfare (MOHW). It joined the WHO
+    International Clinical Trials Registry Platform (ICTRP) as 11th member of Primary
+    Registry. (from about page)
+
+    Note that the web page that resolves this trial does not correspond to the semantic
+    space'
+  example: KCT0008394
+  homepage: https://cris.nih.go.kr
+  name: Korean Clinical Research Information Service
+  pattern: ^KCT\d+$
+  preferred_prefix: kcris
+  references:
+  - https://cris.nih.go.kr/cris/search/detailSearchEn.do?seq=23973
 kegg:
   comment: KEGG prefix has been split into several others
   deprecated: true
@@ -26853,6 +27069,24 @@ langual:
   pattern: ^B\d+$
   preferred_prefix: langual
   uri_format: https://www.langual.org/langual_thesaurus.asp?termid=$1
+lbctr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Lebanese Clinical Trials Registry is an online register of clinical
+    trials being undertaken in Lebanon. It includes trials that target humans from
+    the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures,
+    preventive measures, lifestyle, devices, treatment and rehabilitation strategies
+    and complementary therapies. (from homepage)
+  example: LBCTR2023015204
+  homepage: https://lbctr.moph.gov.lb/
+  name: Lebanon Clinical Trials Registry
+  pattern: ^LBCTR\d+$
+  preferred_prefix: lbctr
+  references:
+  - https://lbctr.moph.gov.lb/Trials/Details/5204
 lbo:
   contact:
     email: caripark@iastate.edu
@@ -36993,6 +37227,26 @@ p3db.site:
   pattern: ^\d+$
   preferred_prefix: p3db.site
   uri_format: http://www.p3db.org/phosphosite.php?id=$1&ref=0
+pactr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Pan African Clinical Trials Registry (PACTR) is a regional register
+    of clinical trials conducted in Africa. The registry is an African initiative
+    serving the needs of Africans. It provides an open-access platform where clinical
+    trials can be registered free of charge. The PACTR aims to increase clinical trial
+    registration in Africa by developing awareness of the need to register trials
+    and supporting trialists during registration. (from homepage)
+  example: PACTR202304525632216
+  homepage: https://pactr.samrc.ac.za/
+  logo: https://pactr.samrc.ac.za/images/Banner_Split.jpg
+  name: Pan African Clinical Trials Registry
+  pattern: ^PACTR\d+$
+  preferred_prefix: pactr
+  references:
+  - https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID=25488
 paleodb:
   description: The Paleobiology Database seeks to provide researchers and the public
     with information about the entire fossil record. It stores global, collection-based
@@ -42311,6 +42565,23 @@ rebase:
       and genomes.'
     year: 2009
   uri_format: http://rebase.neb.com/rebase/enz/$1.html
+rebec:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Presents the new fast tracks for clinical research and observational
+    studies on INDIGENOUS PEOPLE AND TRADITIONAL COMMUNITIES and on NEGLECTED TROPICAL
+    DISEASES (NTDs). Fast-track can reduce the normal approval period for clinical
+    trials to less than 48 hours, if the documentation, information and any mandatory
+    changes requested are provided by the registrant.
+  example: RBR-6qvdftm
+  homepage: https://ensaiosclinicos.gov.br
+  name: Brazilian Registry of Clinical Trials
+  pattern: ^RBR-\w+$
+  preferred_prefix: rebec
+  uri_format: https://ensaiosclinicos.gov.br/rg/$1
 receptome.family:
   contributor:
     email: cthoyt@gmail.com
@@ -42494,6 +42765,30 @@ repeatsdb.structure:
   pattern: ^[0-9][A-Za-z0-9]{3}[A-Za-z0-9][A-Za-z0-9]?[0-9]?[0-9]?$
   preferred_prefix: repeatsdb.structure
   uri_format: https://repeatsdb.org/structure/$1
+repec:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Peruvian Clinical Trials Registry - REPEC is a non-profit online
+    information system developed in 2007 by INS. It is a publicly accessible prospective
+    registry aimed at providing information about clinical trials underway in Peru.
+    REPEC also includes Registries for Trial Sites, Institutional Research Ethics
+    Committees, Sponsors and Contract Research Organizations. REPEC contains records
+    of clinical trials since 1995. Since December 14, 2012, the Peruvian National
+    Institute of Health, by means of the General Office for Research and Technological
+    Transfer (OGITT), has started a process to improve REPEC and to join the WHO International
+    Clinical Trials Registry Platform (ICTRP) and to be acknowledged as a Primary
+    Registry. More information about primary registries is available in ICRTP at http://apps.who.int/trialsearch/.
+    (from website)
+  example: 046-19
+  homepage: https://ensayosclinicos-repec.ins.gob.pe/en/
+  logo: https://ensayosclinicos-repec.ins.gob.pe/images/plantilla/img_logo_principal_repec_en.png
+  name: Peruvian Clinical Trial Registry
+  pattern: ^\d+-\d+$
+  preferred_prefix: repec
+  uri_format: https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=$1
 reproduceme:
   contact:
     email: sheeba.samuel@uni-jena.de
@@ -43696,6 +43991,22 @@ rouge:
       and ROUGE.'
     year: 2004
   uri_format: https://www.kazusa.or.jp/rouge/gfpage/$1
+rpcec:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Cuban Public Registry of Clinical Trials (RPCEC) is a website with
+    a database of clinical trials, with national coverage. It was established in 2007
+    under the leadership of the National Coordinating Center of Clinical Trials (CENCEC)
+    and with INFOMED collaboration. (from homepage)
+  example: RPCEC00000423
+  homepage: https://rpcec.sld.cu/en/home
+  name: Cuban Registry of Clinical Trials
+  pattern: ^RPCEC\d+$
+  preferred_prefix: rpcec
+  uri_format: https://rpcec.sld.cu/en/trials/$1
 rrid:
   banana: RRID
   description: "The Research Resource Identification Initiative provides RRIDs to\
@@ -46174,6 +46485,26 @@ skosxl:
   name: Simple Knowledge Organization System eXtension for Labels
   preferred_prefix: skosxl
   uri_format: http://www.w3.org/2008/05/skos-xl#$1
+slctr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Sri Lanka Clinical Trials Registry (SLCTR) is a Registry for clinical
+    trials involving human subjects, conducted in Sri Lanka or overseas. The SLCTR
+    is a Primary Registry linked to the Registry Network of the International Clinical
+    Trials Registry Platform of the WHO (WHO-ICTRP). It is a not-for-profit Registry,
+    with free and open access to researchers, clinicians, and the general public.
+    (from homepage)
+  example: SLCTR/2023/010
+  homepage: https://slctr.lk/
+  logo: https://slctr.lk/images/logo.png
+  name: Sri Lanka Clinical Trials Registry
+  pattern: ^SLCTR/\d{4}/\d+$
+  preferred_prefix: slctr
+  references:
+  - https://slctr.lk/trials/slctr-2023-010
 slkbase:
   description: Cell line databases/resources
   example: '3618'
@@ -48567,6 +48898,23 @@ tcdb:
   synonyms:
   - TC
   uri_format: http://www.tcdb.org/search/result.php?tc=$1
+tctr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The TCTR was estabished in 2009 and has been operated by Clinical Research
+    Collaboration Network (CRCN), an organization under the Medical Research Foundation,
+    which is a non-profit organization, and financially supported by Thailand Center
+    of Excellence for Life Sciences (TCELS). CRCN has been retitled the Medical Research
+    Network (MedResNet) since June 15, 2012. (from homepage)
+  example: TCTR20230429001
+  homepage: https://www.thaiclinicaltrials.org
+  name: Thai Clinical Trials Registry
+  pattern: ^TCTR\d+$
+  preferred_prefix: tctr
+  uri_format: https://www.thaiclinicaltrials.org/show/$1
 te:
   contributor:
     email: cthoyt@gmail.com
@@ -49846,6 +50194,20 @@ umbbd.rule:
   synonyms:
   - UM-BBD_ruleID
   uri_format: http://www.umbbd.ethz.ch/servlets/rule.jsp?rule=$1
+uminctr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An additional Japanese clinical trial registry
+  example: UMIN000049383
+  homepage: https://www.umin.ac.jp/ctr/index.htm
+  name: University hospital Medical Information Network Clinical Trial Registry
+  pattern: ^UMIN\d+$
+  preferred_prefix: uminctr
+  references:
+  - https://center6.umin.ac.jp/cgi-open-bin/ctr_e/ctr_view.cgi?recptno=R000056224
 umls:
   description: The Unified Medical Language System is a repository of biomedical vocabularies.
     Vocabularies integrated in the UMLS Metathesaurus include the NCBI taxonomy, Gene
@@ -52535,6 +52897,11 @@ wikipathways.vocab:
     github: egonw
     name: Egon Willighagen
     orcid: 0000-0001-7542-0286
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: An ontology supporting data modeling in WikiPathways
   download_owl: http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl
   example: DataNode
