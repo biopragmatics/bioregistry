@@ -5,7 +5,7 @@ permalink: /usages/
 ---
 {% for entry in site.data.usages %}
 
-### {{ entry.name }}
+### {{ entry.name }}{% if entry.logo %}<img src="{{ entry.logo }}" style="margin-left: 5px; max-height: 35px;" />{% endif %}
 
 <table class="table">
 {% if entry.description %}
