@@ -265,6 +265,7 @@
 @prefix ctd.chemical: <http://ctdbase.org/detail.go?type=chem&acc=> .
 @prefix ctd.disease: <http://ctdbase.org/detail.go?type=disease&db=MESH&acc=> .
 @prefix ctd.gene: <http://ctdbase.org/detail.go?type=gene&acc=> .
+@prefix ctis: <https://euclinicaltrials.eu/app/#/view/> .
 @prefix cutg: <http://www.kazusa.or.jp/codon/cgi-bin/showcodon.cgi?species=> .
 @prefix dailymed: <https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=> .
 @prefix dandi: <https://dandiarchive.org/dandiset/> .
@@ -1550,6 +1551,7 @@ bioregistry.collection:0000012 a bioregistry.schema:0000003 ;
     dcterms:hasPart bioregistry:anzctr,
         bioregistry:chictr,
         bioregistry:clinicaltrials,
+        bioregistry:ctis,
         bioregistry:ctri,
         bioregistry:drks,
         bioregistry:euclinicaltrials,
@@ -41535,6 +41537,19 @@ bioregistry:cteno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CTENO_"^^xsd:string ;
     bioregistry.schema:0000029 "cteno" .
 
+bioregistry:ctis a bioregistry.schema:0000001 ;
+    rdfs:label "Clinical Trials Information System" ;
+    dcterms:description "This website supports the undertaking and oversight of clinical trials in the European Union (EU) and European Economic Area (EEA). It is part of a broad initiative to transform the EU/EEA clinical trials environment in support of large clinical trials in multiple European countries, to the benefit of medical innovation and patients. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://euclinicaltrials.eu/> ;
+    bioregistry.schema:0000005 "2023-503698-40-00"^^xsd:string ;
+    bioregistry.schema:0000006 "https://euclinicaltrials.eu/app/#/view/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4}-\\d+-\\d+-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://euclinicaltrials.eu/app/#/view/"^^xsd:string ;
+    bioregistry.schema:0000027 ctis:2023-503698-40-00 ;
+    bioregistry.schema:0000029 "ctis" .
+
 bioregistry:ctri a bioregistry.schema:0000001 ;
     rdfs:label "India Clinical Trials Registry" ;
     dcterms:description """The mission of the Clinical Trials Registry-India (CTRI) is to ensure that all clinical trials conducted in India are prospectively registered, i.e. before the enrolment of the first participant. Additionally, post-marketing surveillance studies, BA/BE studies as well as clinical studies as part of PG thesis are also expected to be registered in the CTRI. (from homepage)
@@ -49274,6 +49289,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cp,
         bioregistry:credit,
         bioregistry:ctcae,
+        bioregistry:ctis,
         bioregistry:ctri,
         bioregistry:cvx,
         bioregistry:datacite,
@@ -55205,6 +55221,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ctd.disease,
         bioregistry:ctd.gene,
         bioregistry:cteno,
+        bioregistry:ctis,
         bioregistry:cto,
         bioregistry:ctri,
         bioregistry:cubedb,
