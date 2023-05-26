@@ -3,6 +3,9 @@ layout: page
 title: Who's Using the Bioregistry?
 permalink: /usages/
 ---
+Are you using the Bioregistry and want your project/organization on this list?
+Please let us know on the [issue tracker](https://github.com/biopragmatics/bioregistry/issues/new).
+
 {% for entry in site.data.usages %}
 
 ### {{ entry.name }}{% if entry.logo %}<img src="{{ entry.logo }}" style="margin-left: 5px; max-height: 35px;" />{% endif %}
