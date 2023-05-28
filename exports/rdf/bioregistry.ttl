@@ -240,6 +240,7 @@
 @prefix complexportal: <https://www.ebi.ac.uk/complexportal/complex/> .
 @prefix comptox: <https://comptox.epa.gov/dashboard/> .
 @prefix compulyeast: <http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=> .
+@prefix conference: <https://w3id.org/scholarlydata/ontology/conference-ontology.owl#> .
 @prefix confident.event: <https://www.confident-conference.org/index.php/Event:> .
 @prefix confident.series: <https://www.confident-conference.org/index.php/Event_Series:> .
 @prefix conoserver: <http://www.conoserver.org/?page=card&table=protein&id=> .
@@ -827,6 +828,7 @@
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix oban: <http://purl.org/oban/> .
 @prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix obofoundry: <http://www.obofoundry.org/ontology/> .
 @prefix oboinowl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix obv: <https://permalink.obvsg.at/> .
@@ -1061,6 +1063,7 @@
 @prefix seinet: <https://swbiodiversity.org/seinet/taxa/index.php?taxon=> .
 @prefix semapv: <https://w3id.org/semapv/vocab/> .
 @prefix senso: <http://purl.dataone.org/odo/SENSO_> .
+@prefix seo: <https://w3id.org/seo#> .
 @prefix sfam: <https://biopragmatics.github.io/providers/sfam/> .
 @prefix sgd: <https://www.yeastgenome.org/locus/> .
 @prefix sgd.pathways: <http://pathway.yeastgenome.org/YEAST/new-image?type=PATHWAY&object=> .
@@ -1218,7 +1221,6 @@
 @prefix vmhgene: <https://www.vmh.life/#gene/> .
 @prefix vmhmetabolite: <https://www.vmh.life/#metabolite/> .
 @prefix vmhreaction: <https://www.vmh.life/#reaction/> .
-@prefix vo: <http://purl.obolibrary.org/obo/> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix vsmo: <http://purl.obolibrary.org/obo/VSMO_> .
 @prefix vso: <https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_> .
@@ -1240,7 +1242,6 @@
 @prefix wormpep: <https://www.wormbase.org/db/seq/protein?name=> .
 @prefix worms: <http://www.marinespecies.org/aphia.php?p=taxdetails&id=> .
 @prefix wwf.ecoregion: <https://www.worldwildlife.org/ecoregions/> .
-@prefix xao: <http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/> .
 @prefix xco: <https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:> .
 @prefix xenbase: <https://www.xenbase.org/entry/> .
 @prefix ximbio: <https://ximbio.com/reagent/> .
@@ -1969,11 +1970,11 @@ bioregistry:aero a bioregistry.schema:0000001 ;
         "obo",
         "ontology",
         "preclinical studies" ;
-    foaf:homepage vo:aero ;
+    foaf:homepage obo:aero ;
     bioregistry.schema:0000005 "0000125"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/AERO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:aero.owl ;
+    bioregistry.schema:0000010 obo:aero.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-9551-6370 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/AERO_"^^xsd:string ;
@@ -2326,7 +2327,7 @@ bioregistry:apo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000184"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.yeastgenome.org/observable/APO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:apo.owl ;
+    bioregistry.schema:0000010 obo:apo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5472-917X ;
     bioregistry.schema:0000024 "https://www.yeastgenome.org/observable/APO:"^^xsd:string ;
@@ -3123,7 +3124,7 @@ bioregistry:bila a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://4dx.embl.de/4DXpress/reg/all/cview/gene.do?geneID=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:bila.owl ;
+    bioregistry.schema:0000010 obo:bila.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-1548-3290 ;
     bioregistry.schema:0000024 "http://4dx.embl.de/4DXpress/reg/all/cview/gene.do?geneID="^^xsd:string ;
@@ -3348,7 +3349,7 @@ bioregistry:biomodels.kisao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000057"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/KISAO?p=classes&conceptid=kisao:KISAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:kisao.owl ;
+    bioregistry.schema:0000010 obo:kisao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2605-5080 ;
     bioregistry.schema:0000023 "biomodels.kisao",
@@ -4000,7 +4001,7 @@ bioregistry:cdao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000072"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CDAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cdao.owl ;
+    bioregistry.schema:0000010 obo:cdao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8688-6599 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CDAO_"^^xsd:string ;
@@ -4123,7 +4124,7 @@ bioregistry:ceph a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000109"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CEPH_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ceph.owl ;
+    bioregistry.schema:0000010 obo:ceph.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CEPH_"^^xsd:string ;
@@ -4324,7 +4325,7 @@ bioregistry:cio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000040"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CIO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cio.owl ;
+    bioregistry.schema:0000010 obo:cio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CIO_"^^xsd:string ;
@@ -5293,7 +5294,7 @@ bioregistry:cob a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000080"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/COB_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cob.owl ;
+    bioregistry.schema:0000010 obo:cob.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8457-6693 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/COB_"^^xsd:string ;
@@ -5578,7 +5579,7 @@ bioregistry:cro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000038"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cro.owl ;
+    bioregistry.schema:0000010 obo:cro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5059-4132 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CRO_"^^xsd:string ;
@@ -5787,7 +5788,7 @@ bioregistry:cto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000022"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CTO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cto.owl ;
+    bioregistry.schema:0000010 obo:cto.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CTO_"^^xsd:string ;
@@ -5845,7 +5846,7 @@ bioregistry:cvdo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000546"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CVDO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cvdo.owl ;
+    bioregistry.schema:0000010 obo:cvdo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3336-2476 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CVDO_"^^xsd:string ;
@@ -6119,7 +6120,7 @@ bioregistry:ddanat a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000006"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DDANAT_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ddanat.owl ;
+    bioregistry.schema:0000010 obo:ddanat.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-4532-2703 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/DDANAT_"^^xsd:string ;
@@ -6144,7 +6145,7 @@ bioregistry:ddpheno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001417"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DDPHENO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ddpheno.owl ;
+    bioregistry.schema:0000010 obo:ddpheno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-4532-2703 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/DDPHENO_"^^xsd:string ;
@@ -6336,7 +6337,7 @@ bioregistry:dideo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000180"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DIDEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:dideo.owl ;
+    bioregistry.schema:0000010 obo:dideo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1834-3856 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/DIDEO_"^^xsd:string ;
@@ -6356,7 +6357,7 @@ bioregistry:dinto a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <http://labda.inf.uc3m.es/doku.php?id=es:labda_dinto> ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DINTO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:dinto.owl ;
+    bioregistry.schema:0000010 obo:dinto.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Maria Herrero" ;
             foaf:mbox "maria.herrero@kcl.ac.uk" ] ;
@@ -6416,7 +6417,7 @@ bioregistry:disdriv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DISDRIV_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:disdriv.owl ;
+    bioregistry.schema:0000010 obo:disdriv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/DISDRIV_"^^xsd:string ;
@@ -6566,7 +6567,7 @@ bioregistry:eco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0007807"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:eco.owl ;
+    bioregistry.schema:0000010 obo:eco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-7628-5565 ;
     bioregistry.schema:0000024 "https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:"^^xsd:string ;
@@ -6778,7 +6779,7 @@ bioregistry:emap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EMAP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:emap.owl ;
+    bioregistry.schema:0000010 obo:emap.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-0956-8634 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/EMAP_"^^xsd:string ;
@@ -7020,7 +7021,7 @@ bioregistry:ero a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001655"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ERO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ero.owl ;
+    bioregistry.schema:0000010 obo:ero.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-3734-1859 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ERO_"^^xsd:string ;
@@ -7240,7 +7241,7 @@ bioregistry:fao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fao.owl ;
+    bioregistry.schema:0000010 obo:fao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-6330-7526 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FAO_"^^xsd:string ;
@@ -7269,7 +7270,7 @@ bioregistry:fbbi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000268"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBbi_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fbbi.owl ;
+    bioregistry.schema:0000010 obo:fbbi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8841-5870 ;
     bioregistry.schema:0000023 "FBbi" ;
@@ -7295,11 +7296,11 @@ bioregistry:fbdv a bioregistry.schema:0000001 ;
         "life science",
         "obo",
         "ontology" ;
-    foaf:homepage vo:fbdv ;
+    foaf:homepage obo:fbdv ;
     bioregistry.schema:0000005 "00000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBdv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fbdv.owl ;
+    bioregistry.schema:0000010 obo:fbdv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
     bioregistry.schema:0000023 "FBdv" ;
@@ -7354,7 +7355,7 @@ bioregistry:fideo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000021"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FIDEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fideo.owl ;
+    bioregistry.schema:0000010 obo:fideo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9921-8234 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FIDEO_"^^xsd:string ;
@@ -7382,7 +7383,7 @@ bioregistry:flopo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0005250"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FLOPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:flopo.owl ;
+    bioregistry.schema:0000010 obo:flopo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8149-5890 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FLOPO_"^^xsd:string ;
@@ -7423,7 +7424,7 @@ bioregistry:flu a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000404"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FLU_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:flu.owl ;
+    bioregistry.schema:0000010 obo:flu.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-9666-6285 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FLU_"^^xsd:string ;
@@ -7477,7 +7478,7 @@ bioregistry:fma a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "63189"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/fma/terms?obo_id=FMA:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fma.owl ;
+    bioregistry.schema:0000010 obo:fma.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Onard Mejino" ;
             foaf:mbox "mejino@u.washington.edu" ] ;
@@ -7685,7 +7686,7 @@ bioregistry:fypo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001707"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FYPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fypo.owl ;
+    bioregistry.schema:0000010 obo:fypo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-6330-7526 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FYPO_"^^xsd:string ;
@@ -7828,7 +7829,7 @@ bioregistry:gecko a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000044"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GECKO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:gecko.owl ;
+    bioregistry.schema:0000010 obo:gecko.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-4871-5569 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/GECKO_"^^xsd:string ;
@@ -8050,7 +8051,7 @@ Documentation is under development as well, and for now a slidedeck is available
     bioregistry.schema:0000005 "0000632"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GENO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:geno.owl ;
+    bioregistry.schema:0000010 obo:geno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1048-5019 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/GENO_"^^xsd:string ;
@@ -8112,7 +8113,7 @@ bioregistry:geogeo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "000000021"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{9}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:geo.owl ;
+    bioregistry.schema:0000010 obo:geo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9881-1017 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/GEO_"^^xsd:string ;
@@ -8440,7 +8441,7 @@ bioregistry:gno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "10004892"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GNO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(\\d{8}|(\\w+\\d+\\w+))$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:gno.owl ;
+    bioregistry.schema:0000010 obo:gno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5168-3196 ;
     bioregistry.schema:0000023 "gnome" ;
@@ -9047,7 +9048,7 @@ bioregistry:hancestro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0290"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HANCESTRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:hancestro.owl ;
+    bioregistry.schema:0000010 obo:hancestro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1058-2668 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/HANCESTRO_"^^xsd:string ;
@@ -9074,7 +9075,7 @@ bioregistry:hao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000187"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:hao.owl ;
+    bioregistry.schema:0000010 obo:hao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5640-5491 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/HAO_"^^xsd:string ;
@@ -9297,7 +9298,7 @@ bioregistry:hom a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000049"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HOM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:hom.owl ;
+    bioregistry.schema:0000010 obo:hom.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/HOM_"^^xsd:string ;
@@ -9562,7 +9563,7 @@ bioregistry:htn a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000014"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HTN_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:htn.owl ;
+    bioregistry.schema:0000010 obo:htn.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1795-5570 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/HTN_"^^xsd:string ;
@@ -9630,7 +9631,7 @@ bioregistry:iceo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000712_1"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ICEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}(_\\d)?$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:iceo.owl ;
+    bioregistry.schema:0000010 obo:iceo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-3781-6962 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ICEO_"^^xsd:string ;
@@ -10016,7 +10017,7 @@ bioregistry:ino a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000003"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/INO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ino.owl ;
+    bioregistry.schema:0000010 obo:ino.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/INO_"^^xsd:string ;
@@ -10911,7 +10912,7 @@ bioregistry:ma a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002502"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.informatics.jax.org/searches/AMA.cgi?id=MA:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ma.owl ;
+    bioregistry.schema:0000010 obo:ma.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0956-8634 ;
     bioregistry.schema:0000024 "http://www.informatics.jax.org/searches/AMA.cgi?id=MA:"^^xsd:string ;
@@ -10991,7 +10992,7 @@ bioregistry:mamo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000026"^^xsd:string ;
     bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mamo.owl ;
+    bioregistry.schema:0000010 obo:mamo.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-6309-7327 ;
     bioregistry.schema:0000024 "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_"^^xsd:string ;
@@ -11429,7 +11430,7 @@ bioregistry:mf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000091"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MF_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mf.owl ;
+    bioregistry.schema:0000010 obo:mf.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3469-4923 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MF_"^^xsd:string ;
@@ -11452,7 +11453,7 @@ bioregistry:mfo a bioregistry.schema:0000001 ;
     foaf:homepage <http://ani.embl.de:8080/mepd/> ;
     bioregistry.schema:0000005 "MFO_0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MFO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mfo.owl ;
+    bioregistry.schema:0000010 obo:mfo.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-1548-3290 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MFO_"^^xsd:string ;
@@ -11477,7 +11478,7 @@ bioregistry:mfoem a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "000204"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MFOEM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mfoem.owl ;
+    bioregistry.schema:0000010 obo:mfoem.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3469-4923 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MFOEM_"^^xsd:string ;
@@ -11502,7 +11503,7 @@ bioregistry:mfomd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000046"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MFOMD_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mfomd.owl ;
+    bioregistry.schema:0000010 obo:mfomd.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3469-4923 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MFOMD_"^^xsd:string ;
@@ -11587,7 +11588,7 @@ bioregistry:mi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0058"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/mi/terms?obo_id=MI:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mi.owl ;
+    bioregistry.schema:0000010 obo:mi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5084-9000 ;
     bioregistry.schema:0000023 "PSI-MI" ;
@@ -11618,7 +11619,7 @@ This ontology is maintained at http://github.com/miapa/miapa, and requests for c
     bioregistry.schema:0000005 "0000010"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MIAPA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:miapa.owl ;
+    bioregistry.schema:0000010 obo:miapa.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9107-0714 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MIAPA_"^^xsd:string ;
@@ -11866,7 +11867,7 @@ bioregistry:mirnao a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <http://code.google.com/p/mirna-ontology/> ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MIRNAO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mirnao.owl ;
+    bioregistry.schema:0000010 obo:mirnao.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-1635-4810 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MIRNAO_"^^xsd:string ;
@@ -11913,7 +11914,7 @@ bioregistry:miro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "40000617"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MIRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:miro.owl ;
+    bioregistry.schema:0000010 obo:miro.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0003-2497-2210 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MIRO_"^^xsd:string ;
@@ -12019,7 +12020,7 @@ bioregistry:mmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000574"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mmo.owl ;
+    bioregistry.schema:0000010 obo:mmo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6443-9376 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MMO_"^^xsd:string ;
@@ -12145,7 +12146,7 @@ bioregistry:mmusdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000066"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MmusDv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mmusdv.owl ;
+    bioregistry.schema:0000010 obo:mmusdv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000023 "MmusDv" ;
@@ -12168,7 +12169,7 @@ bioregistry:mo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "ArrayGroup"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mo.owl ;
+    bioregistry.schema:0000010 obo:mo.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-5714-991X ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MO_"^^xsd:string ;
@@ -12222,7 +12223,7 @@ bioregistry:mod a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "01467"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/mod/terms?obo_id=MOD:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mod.owl ;
+    bioregistry.schema:0000010 obo:mod.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0045-7698 ;
     bioregistry.schema:0000023 "PSI-MOD" ;
@@ -12345,7 +12346,7 @@ bioregistry:mop a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000079"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MOP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mop.owl ;
+    bioregistry.schema:0000010 obo:mop.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5985-7429 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MOP_"^^xsd:string ;
@@ -12389,7 +12390,7 @@ bioregistry:mpath a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "728"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MPATH_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mpath.owl ;
+    bioregistry.schema:0000010 obo:mpath.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5111-7263 ;
     bioregistry.schema:0000023 "MPATH" ;
@@ -12436,7 +12437,7 @@ bioregistry:mpio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000004"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MPIO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mpio.owl ;
+    bioregistry.schema:0000010 obo:mpio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1834-3856 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MPIO_"^^xsd:string ;
@@ -12461,7 +12462,7 @@ bioregistry:mro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000634"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mro.owl ;
+    bioregistry.schema:0000010 obo:mro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8457-6693 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MRO_"^^xsd:string ;
@@ -12811,7 +12812,7 @@ bioregistry:ncro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002927"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NCRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ncro.owl ;
+    bioregistry.schema:0000010 obo:ncro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-2408-2883 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NCRO_"^^xsd:string ;
@@ -13008,7 +13009,7 @@ bioregistry:ngbo a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/Dalalghamdi/NGBO> ;
     bioregistry.schema:0000005 "6000122"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NGBO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ngbo.owl ;
+    bioregistry.schema:0000010 obo:ngbo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2801-0767 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NGBO_"^^xsd:string ;
@@ -13156,7 +13157,7 @@ bioregistry:nomen a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000295"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NOMEN_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:nomen.owl ;
+    bioregistry.schema:0000010 obo:nomen.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5640-5491 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NOMEN_"^^xsd:string ;
@@ -13287,7 +13288,7 @@ bioregistry:oarcs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000029"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OARCS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:oarcs.owl ;
+    bioregistry.schema:0000010 obo:oarcs.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5640-5491 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OARCS_"^^xsd:string ;
@@ -13316,7 +13317,7 @@ bioregistry:obcs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000121"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBCS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:obcs.owl ;
+    bioregistry.schema:0000010 obo:obcs.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBCS_"^^xsd:string ;
@@ -13341,7 +13342,7 @@ bioregistry:obib a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000389"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBIB_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:obib.owl ;
+    bioregistry.schema:0000010 obo:obib.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBIB_"^^xsd:string ;
@@ -13527,7 +13528,7 @@ bioregistry:ogg a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "3000887619"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OGG_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ogg.owl ;
+    bioregistry.schema:0000010 obo:ogg.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OGG_"^^xsd:string ;
@@ -13560,7 +13561,7 @@ Yu Lin, Peter Simons (2010) “DNA sequence from below: A Nominalist Approach”
     bioregistry.schema:0000005 "0000019"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OGI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ogi.owl ;
+    bioregistry.schema:0000010 obo:ogi.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-5379-5359 ;
     bioregistry.schema:0000023 "OGI.owl" ;
@@ -13588,7 +13589,7 @@ bioregistry:ogsf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000025"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OGSF_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ogsf.owl ;
+    bioregistry.schema:0000010 obo:ogsf.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5379-5359 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OGSF_"^^xsd:string ;
@@ -13613,7 +13614,7 @@ bioregistry:ohmi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000460"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OHMI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ohmi.owl ;
+    bioregistry.schema:0000010 obo:ohmi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OHMI_"^^xsd:string ;
@@ -13638,7 +13639,7 @@ bioregistry:ohpi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "9001411"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OHPI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ohpi.owl ;
+    bioregistry.schema:0000010 obo:ohpi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5159-414X ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OHPI_"^^xsd:string ;
@@ -13680,7 +13681,7 @@ bioregistry:olatdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000210"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OlatDv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:olatdv.owl ;
+    bioregistry.schema:0000010 obo:olatdv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OlatDv_"^^xsd:string ;
@@ -13809,7 +13810,7 @@ bioregistry:ontoneo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000098"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ONTONEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ontoneo.owl ;
+    bioregistry.schema:0000010 obo:ontoneo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-2338-8872 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ONTONEO_"^^xsd:string ;
@@ -13834,7 +13835,7 @@ bioregistry:oostt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000099"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OOSTT_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:oostt.owl ;
+    bioregistry.schema:0000010 obo:oostt.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1834-3856 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OOSTT_"^^xsd:string ;
@@ -13887,7 +13888,7 @@ bioregistry:opl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000319"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OPL_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:opl.owl ;
+    bioregistry.schema:0000010 obo:opl.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OPL_"^^xsd:string ;
@@ -14008,7 +14009,7 @@ bioregistry:ornaseq a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000010"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ORNASEQ_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ornaseq.owl ;
+    bioregistry.schema:0000010 obo:ornaseq.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8034-7685 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ORNASEQ_"^^xsd:string ;
@@ -14433,7 +14434,7 @@ bioregistry:pdro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0010039"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PDRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pdro.owl ;
+    bioregistry.schema:0000010 obo:pdro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3336-2476 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PDRO_"^^xsd:string ;
@@ -14459,7 +14460,7 @@ bioregistry:pdumdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001410"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PdumDv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pdumdv.owl ;
+    bioregistry.schema:0000010 obo:pdumdv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000023 "PdumDv" ;
@@ -15125,7 +15126,7 @@ bioregistry:ppo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002058"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ppo.owl ;
+    bioregistry.schema:0000010 obo:ppo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8815-0078 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PPO_"^^xsd:string ;
@@ -15480,7 +15481,7 @@ bioregistry:pw a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000423"^^xsd:string ;
     bioregistry.schema:0000006 "http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=PW:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pw.owl ;
+    bioregistry.schema:0000010 obo:pw.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9553-7227 ;
     bioregistry.schema:0000024 "http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=PW:"^^xsd:string ;
@@ -16028,7 +16029,7 @@ bioregistry:rnao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000128"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/RNAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:rnao.owl ;
+    bioregistry.schema:0000010 obo:rnao.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-5985-7429 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/RNAO_"^^xsd:string ;
@@ -16323,7 +16324,6 @@ bioregistry:sasap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000101"^^xsd:string ;
     bioregistry.schema:0000006 "https://purl.dataone.org/odo/SASAP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/sasap-$1/SALMON/SASAP.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0381-3766 ;
     bioregistry.schema:0000024 "https://purl.dataone.org/odo/SASAP_"^^xsd:string ;
@@ -16608,7 +16608,7 @@ bioregistry:sep a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00073"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SEP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5,6}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:sep.owl ;
+    bioregistry.schema:0000010 obo:sep.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "SEP developers via the PSI and MSI mailing lists" ;
             foaf:mbox "psidev-gps-dev@lists.sourceforge.net" ] ;
@@ -16632,7 +16632,7 @@ bioregistry:sepio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000048"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SEPIO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:sepio.owl ;
+    bioregistry.schema:0000010 obo:sepio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1048-5019 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SEPIO_"^^xsd:string ;
@@ -16737,7 +16737,7 @@ bioregistry:sibo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000509"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SIBO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:sibo.owl ;
+    bioregistry.schema:0000010 obo:sibo.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SIBO_"^^xsd:string ;
@@ -17090,7 +17090,7 @@ bioregistry:spd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SPD_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:spd.owl ;
+    bioregistry.schema:0000010 obo:spd.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0358-0130 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SPD_"^^xsd:string ;
@@ -17439,7 +17439,7 @@ bioregistry:swo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000144"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SWO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://github.com/allysonlister/swo/raw/master/release/swo.owl> ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7702-4495 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SWO_"^^xsd:string ;
@@ -17490,7 +17490,7 @@ bioregistry:tads a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000547"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TADS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:tads.owl ;
+    bioregistry.schema:0000010 obo:tads.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-9370-918X ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/TADS_"^^xsd:string ;
@@ -17582,7 +17582,7 @@ bioregistry:tao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000086"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:tao.owl ;
+    bioregistry.schema:0000010 obo:tao.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0003-3162-7490 ;
     bioregistry.schema:0000023 "TAO_RETIRED" ;
@@ -17629,7 +17629,7 @@ bioregistry:taxrank a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TAXRANK_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:taxrank.owl ;
+    bioregistry.schema:0000010 obo:taxrank.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8688-6599 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/TAXRANK_"^^xsd:string ;
@@ -17738,7 +17738,7 @@ bioregistry:tgma a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000984"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TGMA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:tgma.owl ;
+    bioregistry.schema:0000010 obo:tgma.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-1635-4810 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/TGMA_"^^xsd:string ;
@@ -18071,7 +18071,7 @@ bioregistry:tto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1058367"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TTO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:tto.owl ;
+    bioregistry.schema:0000010 obo:tto.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8688-6599 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/TTO_"^^xsd:string ;
@@ -18097,7 +18097,7 @@ In applied work, we have developed a prototype of TOXPILOT, a TOXic Process Inte
     bioregistry.schema:0000005 "0002066"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TXPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:txpo.owl ;
+    bioregistry.schema:0000010 obo:txpo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9673-1283 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/TXPO_"^^xsd:string ;
@@ -18317,7 +18317,7 @@ bioregistry:upheno a bioregistry.schema:0000001 ;
         "phenomics" ;
     foaf:homepage <https://github.com/obophenotype/upheno> ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/UPHENO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://github.com/obophenotype/upheno/blob/master/upheno.owl> ;
+    bioregistry.schema:0000010 obo:upheno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5208-3432 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/UPHENO_"^^xsd:string ;
@@ -18394,7 +18394,7 @@ bioregistry:vario a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0376"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VariO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vario.owl ;
+    bioregistry.schema:0000010 obo:vario.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-9614-7976 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/VariO_"^^xsd:string ;
@@ -18584,7 +18584,7 @@ bioregistry:vhog a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000411"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VHOG_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vhog.owl ;
+    bioregistry.schema:0000010 obo:vhog.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Bgee team" ;
             foaf:mbox "bgee@isb-sib.ch" ] ;
@@ -18860,7 +18860,7 @@ bioregistry:vsao a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.nescent.org/phenoscape/Main_Page> ;
     bioregistry.schema:0000005 "VSAO_0000183"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VSAO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vsao.owl ;
+    bioregistry.schema:0000010 obo:vsao.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0003-3162-7490 ;
     bioregistry.schema:0000023 "VSAO_RETIRED" ;
@@ -18911,7 +18911,7 @@ bioregistry:vto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "9008500"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VTO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vto.owl ;
+    bioregistry.schema:0000010 obo:vto.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8688-6599 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/VTO_"^^xsd:string ;
@@ -18957,7 +18957,7 @@ bioregistry:wbbt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001290"^^xsd:string ;
     bioregistry.schema:0000006 "http://wormbase.org/db/ontology/anatomy?name=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:wbbt.owl ;
+    bioregistry.schema:0000010 obo:wbbt.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8151-7479 ;
     bioregistry.schema:0000023 "WBbt" ;
@@ -18990,7 +18990,7 @@ bioregistry:wbls a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000690"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.wormbase.org/get?name=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:wbls.owl ;
+    bioregistry.schema:0000010 obo:wbls.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9076-6015 ;
     bioregistry.schema:0000023 "WBls" ;
@@ -19022,7 +19022,7 @@ bioregistry:wbphenotype a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000983"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/WBPhenotype_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:wbphenotype.owl ;
+    bioregistry.schema:0000010 obo:wbphenotype.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9076-6015 ;
     bioregistry.schema:0000023 "WBPhenotype" ;
@@ -19243,7 +19243,7 @@ bioregistry:xl a bioregistry.schema:0000001 ;
         ols:xl ;
     dcat:keyword "ontology" ;
     foaf:homepage <http://www.psidev.info/groups/controlled-vocabularies> ;
-    bioregistry.schema:0000010 vo:xl.owl ;
+    bioregistry.schema:0000010 obo:xl.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "xl" .
 
@@ -19263,7 +19263,7 @@ bioregistry:xlmod a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00050"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XLMOD_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:xlmod.owl ;
+    bioregistry.schema:0000010 obo:xlmod.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-4978-0864 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/XLMOD_"^^xsd:string ;
@@ -19453,7 +19453,7 @@ bioregistry:zfs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000050"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ZFS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:zfs.owl ;
+    bioregistry.schema:0000010 obo:zfs.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2244-7917 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ZFS_"^^xsd:string ;
@@ -27397,7 +27397,7 @@ bioregistry:ado a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ADO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ado.owl ;
+    bioregistry.schema:0000010 obo:ado.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 ;
@@ -27425,7 +27425,7 @@ bioregistry:aeo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001017"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/AEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:aeo.owl ;
+    bioregistry.schema:0000010 obo:aeo.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:ehdaa2 ;
     bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ;
@@ -27546,7 +27546,7 @@ bioregistry:amphx a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1000160"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/AMPHX_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:amphx.owl ;
+    bioregistry.schema:0000010 obo:amphx.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0001-7577-5028 ;
@@ -27574,7 +27574,7 @@ bioregistry:apollosv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000443"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/APOLLO_SV_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:apollo_sv.owl ;
+    bioregistry.schema:0000010 obo:apollo_sv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-9881-1017 ;
@@ -27598,7 +27598,7 @@ bioregistry:aro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ARO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:aro.owl ;
+    bioregistry.schema:0000010 obo:aro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-1142-3063 ;
@@ -27760,7 +27760,7 @@ bioregistry:bco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000081"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BCO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:bco.owl ;
+    bioregistry.schema:0000010 obo:bco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:fovt ;
     bioregistry.schema:0000019 orcid:0000-0001-8815-0078 ;
@@ -28161,7 +28161,7 @@ bioregistry:bto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000590"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/bto/terms?obo_id=BTO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:bto.owl ;
+    bioregistry.schema:0000010 obo:bto.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9117-7909 ;
     bioregistry.schema:0000023 "BTO" ;
@@ -28569,7 +28569,7 @@ bioregistry:clao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000088"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CLAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:clao.owl ;
+    bioregistry.schema:0000010 obo:clao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ro ;
     bioregistry.schema:0000019 orcid:0000-0002-9136-9932 ;
@@ -28647,7 +28647,7 @@ bioregistry:cmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001350"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cmo.owl ;
+    bioregistry.schema:0000010 obo:cmo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-6443-9376 ;
@@ -28764,6 +28764,20 @@ bioregistry:complexportal a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://www.ebi.ac.uk/complexportal/complex/"^^xsd:string ;
     bioregistry.schema:0000027 complexportal:CPX-263 ;
     bioregistry.schema:0000029 "complexportal" .
+
+bioregistry:conference a bioregistry.schema:0000001 ;
+    rdfs:label "Conference Ontology" ;
+    dcterms:description "The conference-ontology is a new self-contained ontology for modelleing knowledge about conferences. The conference-ontology adopts best ontology design practices (e.g., Ontology Design Patterns, ontology reuse and interlinking) and guarantees interoperability with SWC ontology and all other pertinent vocabularies. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <http://www.scholarlydata.org/ontology/doc/> ;
+    bioregistry.schema:0000005 "isDocumentRelatedTo"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#$1"^^xsd:string ;
+    bioregistry.schema:0000010 <https://w3id.org/scholarlydata/ontology/conference-ontology.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#"^^xsd:string ;
+    bioregistry.schema:0000027 conference:isDocumentRelatedTo ;
+    bioregistry.schema:0000029 "conference" .
 
 bioregistry:confident.event a bioregistry.schema:0000001 ;
     rdfs:label "ConfIDent Event" ;
@@ -29427,9 +29441,9 @@ bioregistry:dpo a bioregistry.schema:0000001 ;
         ols:dpo ;
     dcat:keyword "obo",
         "ontology" ;
-    foaf:homepage vo:fbcv ;
+    foaf:homepage obo:fbcv ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBcv_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:dpo.owl ;
+    bioregistry.schema:0000010 obo:dpo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FBcv_"^^xsd:string ;
@@ -29522,7 +29536,7 @@ bioregistry:dron a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00023232"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DRON_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:dron.owl ;
+    bioregistry.schema:0000010 obo:dron.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-9881-1017 ;
@@ -29852,7 +29866,7 @@ bioregistry:emapa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "26753"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:emapa.owl ;
+    bioregistry.schema:0000010 obo:emapa.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0956-8634 ;
     bioregistry.schema:0000023 "EMAPA_RETIRED" ;
@@ -30019,7 +30033,7 @@ bioregistry:eo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0007404"^^xsd:string ;
     bioregistry.schema:0000006 "http://archive.gramene.org/db/ontology/search?query=EO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:eo.owl ;
+    bioregistry.schema:0000010 obo:eo.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:foodon ;
     bioregistry.schema:0000019 orcid:0000-0002-1005-8383 ;
@@ -30096,7 +30110,7 @@ bioregistry:epio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000011"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EPIO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:epio.owl ;
+    bioregistry.schema:0000010 obo:epio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 ;
@@ -30148,11 +30162,11 @@ bioregistry:fbbt a bioregistry.schema:0000001 ;
         "life science",
         "obo",
         "ontology" ;
-    foaf:homepage vo:fbbt ;
+    foaf:homepage obo:fbbt ;
     bioregistry.schema:0000005 "00007294"^^xsd:string ;
     bioregistry.schema:0000006 "https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fbbt.owl ;
+    bioregistry.schema:0000010 obo:fbbt.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
     bioregistry.schema:0000023 "FBbt",
@@ -30185,7 +30199,7 @@ bioregistry:fbsp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBSP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fbsp.owl ;
+    bioregistry.schema:0000010 obo:fbsp.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FBSP_"^^xsd:string ;
@@ -30267,7 +30281,7 @@ bioregistry:fix a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000390"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FIX_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fix.owl ;
+    bioregistry.schema:0000010 obo:fix.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "chEBI" ;
             foaf:mbox "chebi-help@ebi.ac.uk" ] ;
@@ -30420,7 +30434,7 @@ bioregistry:gaz a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00620027"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GAZ_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:gaz.owl ;
+    bioregistry.schema:0000010 obo:gaz.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 ;
@@ -31217,7 +31231,7 @@ bioregistry:ico a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000066"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ICO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ico.owl ;
+    bioregistry.schema:0000010 obo:ico.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
@@ -31280,7 +31294,7 @@ bioregistry:idomal a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002350"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IDOMAL_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(5?)\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:idomal.owl ;
+    bioregistry.schema:0000010 obo:idomal.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-1635-4810 ;
@@ -32224,7 +32238,7 @@ bioregistry:mfmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000208"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MFMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mfmo.owl ;
+    bioregistry.schema:0000010 obo:mfmo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-1572-1316 ;
@@ -32301,7 +32315,7 @@ bioregistry:micro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002999"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MICRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:micro.owl ;
+    bioregistry.schema:0000010 obo:micro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0002-2100-6351 ;
@@ -32971,7 +32985,7 @@ bioregistry:oba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(VT)?\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:oba.owl ;
+    bioregistry.schema:0000010 obo:oba.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:fovt ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
@@ -33029,7 +33043,7 @@ bioregistry:ohd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000006"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OHD_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ohd.owl ;
+    bioregistry.schema:0000010 obo:ohd.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9625-1899 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OHD_"^^xsd:string ;
@@ -33052,7 +33066,7 @@ bioregistry:omiabis a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001079"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMIABIS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:omiabis.owl ;
+    bioregistry.schema:0000010 obo:omiabis.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:labo ;
     bioregistry.schema:0000019 orcid:0000-0003-1834-3856 ;
@@ -33081,7 +33095,7 @@ bioregistry:omit a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000069"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/omit/terms?short_form=OMIT_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:omit.owl ;
+    bioregistry.schema:0000010 obo:omit.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0003-2408-2883 ;
@@ -33104,7 +33118,7 @@ bioregistry:omo a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <https://github.com/information-artifact-ontology/ontology-metadata> ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:omo.owl ;
+    bioregistry.schema:0000010 obo:omo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:pcl ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
@@ -33146,7 +33160,7 @@ bioregistry:omp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0005067"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:omp.owl ;
+    bioregistry.schema:0000010 obo:omp.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0001-9016-2684 ;
@@ -33175,7 +33189,7 @@ bioregistry:omrse a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000022"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMRSE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:omrse.owl ;
+    bioregistry.schema:0000010 obo:omrse.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:labo ;
     bioregistry.schema:0000019 orcid:0000-0002-9881-1017 ;
@@ -33305,7 +33319,7 @@ bioregistry:ovae a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000609"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OVAE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ovae.owl ;
+    bioregistry.schema:0000010 obo:ovae.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OVAE_"^^xsd:string ;
@@ -33685,7 +33699,7 @@ bioregistry:phipo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PHIPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:phipo.owl ;
+    bioregistry.schema:0000010 obo:phipo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:pato ;
     bioregistry.schema:0000019 orcid:0000-0001-8941-3984 ;
@@ -34118,7 +34132,7 @@ bioregistry:reo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1048-5019 ;
     bioregistry.schema:0000024 "https://bioregistry.io/reo:"^^xsd:string ;
-    bioregistry.schema:0000027 vo:REO_00000791 ;
+    bioregistry.schema:0000027 obo:REO_00000791 ;
     bioregistry.schema:0000029 "reo" .
 
 bioregistry:resid a bioregistry.schema:0000001 ;
@@ -34312,7 +34326,7 @@ bioregistry:rxno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000253"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.rsc.org/publishing/journals/prospect/ontology.asp?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:rxno.owl ;
+    bioregistry.schema:0000010 obo:rxno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5985-7429 ;
     bioregistry.schema:0000024 "http://www.rsc.org/publishing/journals/prospect/ontology.asp?id="^^xsd:string ;
@@ -34520,6 +34534,18 @@ bioregistry:semapv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000026 wikidata:Q115518213 ;
     bioregistry.schema:0000027 semapv:LexicalMatching ;
     bioregistry.schema:0000029 "semapv" .
+
+bioregistry:seo a bioregistry.schema:0000001 ;
+    rdfs:label "Scientific Event Ontology" ;
+    dcterms:description "SEO is a reference ontology for modelling data about scientific events such as conferences, symposioums and workshops."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://w3id.org/seo> ;
+    bioregistry.schema:0000005 "Symposium"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/seo#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://w3id.org/seo#"^^xsd:string ;
+    bioregistry.schema:0000027 seo:Symposium ;
+    bioregistry.schema:0000029 "seo" .
 
 bioregistry:sfam a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Families" ;
@@ -34787,7 +34813,7 @@ bioregistry:sphn a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Allergy"^^xsd:string ;
     bioregistry.schema:0000006 "https://biomedit.ch/rdf/sphn-ontology/sphn#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.owl?inline=false> ;
+    bioregistry.schema:0000010 <https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/rdf_schema/sphn_rdf_schema.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-3248-7899 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
@@ -34874,7 +34900,7 @@ bioregistry:sweetrealm a bioregistry.schema:0000001 ;
     foaf:homepage bioportal:SWEET ;
     bioregistry.schema:0000005 "ANOVA"^^xsd:string ;
     bioregistry.schema:0000006 "http://sweetontology.net/matrMineral/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://github.com/EnvironmentOntology/envo/blob/master/src/envo/sources/sweetrealm.obo> ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/EnvironmentOntology/envo/master/src/envo/sources/sweetrealm.obo> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://sweetontology.net/matrMineral/"^^xsd:string ;
     bioregistry.schema:0000027 sweetrealm:ANOVA ;
@@ -34903,7 +34929,7 @@ bioregistry:t4fs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000127"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/T4FS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:t4fs.owl ;
+    bioregistry.schema:0000010 obo:t4fs.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7702-4495 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/T4FS_"^^xsd:string ;
@@ -35054,7 +35080,7 @@ bioregistry:to a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000630"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:to.owl ;
+    bioregistry.schema:0000010 obo:to.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro ;
     bioregistry.schema:0000019 orcid:0000-0002-1005-8383 ;
@@ -35082,7 +35108,7 @@ bioregistry:trans a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000024"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TRANS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:trans.owl ;
+    bioregistry.schema:0000010 obo:trans.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/TRANS_"^^xsd:string ;
@@ -35329,7 +35355,7 @@ bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "KW-1273"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/keywords/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^KW-\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://www.uniprot.org/keywords/?format=obo> ;
+    bioregistry.schema:0000010 <https://rest.uniprot.org/keywords/stream?compressed=true&fields=id%2Cname%2Ccategory%2Cgene_ontologies&format=tsv&query=%28%2A%29> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "SP_KW",
         "UniProtKB-KW",
@@ -35397,7 +35423,7 @@ bioregistry:upa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "UCR00513"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:upa.owl ;
+    bioregistry.schema:0000010 obo:upa.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000017 bioregistry:ro ;
     bioregistry.schema:0000019 orcid:0000-0002-1216-2969 ;
@@ -35546,7 +35572,7 @@ bioregistry:vt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000685"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VT_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vt.owl ;
+    bioregistry.schema:0000010 obo:vt.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-2346-5201 ;
@@ -35715,14 +35741,13 @@ bioregistry:xao a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <http://www.xenbase.org/anatomy/xao.do?method=display> ;
     bioregistry.schema:0000005 "0004486"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:xao.owl ;
+    bioregistry.schema:0000010 obo:xao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0002-9611-1279 ;
-    bioregistry.schema:0000024 "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/"^^xsd:string ;
-    bioregistry.schema:0000027 xao:0004486 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/XAO_"^^xsd:string ;
     bioregistry.schema:0000029 "xao" .
 
 bioregistry:ximbio a bioregistry.schema:0000001 ;
@@ -35796,7 +35821,7 @@ bioregistry:zeco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000171"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ZECO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:zeco.owl ;
+    bioregistry.schema:0000010 obo:zeco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0002-9900-7880 ;
@@ -35847,7 +35872,7 @@ bioregistry:zfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0005926"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ZFA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:zfa.owl ;
+    bioregistry.schema:0000010 obo:zfa.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2244-7917 ;
@@ -41529,7 +41554,7 @@ bioregistry:cteno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000047"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CTENO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cteno.owl ;
+    bioregistry.schema:0000010 obo:cteno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ro,
         bioregistry:uberon ;
@@ -42075,7 +42100,7 @@ bioregistry:eupath a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0010316"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EUPATH_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:eupath.owl ;
+    bioregistry.schema:0000010 obo:eupath.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
@@ -42112,7 +42137,7 @@ bioregistry:exo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000078"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ExO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:exo.owl ;
+    bioregistry.schema:0000010 obo:exo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ecto,
         bioregistry:scdo ;
@@ -42259,7 +42284,7 @@ bioregistry:fobi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "030719"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FOBI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4,6}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fobi.owl ;
+    bioregistry.schema:0000010 obo:fobi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:foodon ;
@@ -42416,7 +42441,7 @@ bioregistry:gsso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "002368"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GSSO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:gsso.owl ;
+    bioregistry.schema:0000010 obo:gsso.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ontoavida,
         bioregistry:scdo ;
@@ -42545,7 +42570,7 @@ bioregistry:hsapdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000194"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HsapDv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:hsapdv.owl ;
+    bioregistry.schema:0000010 obo:hsapdv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
@@ -42798,7 +42823,7 @@ bioregistry:ido a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000504"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/ido/terms?obo_id=IDO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ido.owl ;
+    bioregistry.schema:0000010 obo:ido.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0003-1617-8244 ;
@@ -43173,7 +43198,7 @@ bioregistry:mondo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.bioregistry.io/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mondo.owl ;
+    bioregistry.schema:0000010 obo:mondo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5208-3432 ;
     bioregistry.schema:0000024 "http://www.bioregistry.io/"^^xsd:string ;
@@ -43206,7 +43231,7 @@ bioregistry:mp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0005452"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mp.owl ;
+    bioregistry.schema:0000010 obo:mp.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:chiro,
         bioregistry:scdo ;
@@ -43234,7 +43259,7 @@ bioregistry:ms a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1000560"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/ms/terms?obo_id=MS:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ms.owl ;
+    bioregistry.schema:0000010 obo:ms.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:pato,
         bioregistry:uo ;
@@ -43683,7 +43708,7 @@ OGMS is based on the papers Toward an Ontological Treatment of Disease and Diagn
     bioregistry.schema:0000005 "0000031"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OGMS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ogms.owl ;
+    bioregistry.schema:0000010 obo:ogms.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:labo,
         bioregistry:scdo ;
@@ -43765,7 +43790,7 @@ bioregistry:opmi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000101"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OPMI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:opmi.owl ;
+    bioregistry.schema:0000010 obo:opmi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:labo,
         bioregistry:scdo ;
@@ -43953,7 +43978,7 @@ bioregistry:peco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0007114"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PECO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:peco.owl ;
+    bioregistry.schema:0000010 obo:peco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:mco ;
@@ -44019,7 +44044,7 @@ bioregistry:poro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000550"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PORO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:poro.owl ;
+    bioregistry.schema:0000010 obo:poro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ro,
         bioregistry:uberon ;
@@ -44064,7 +44089,7 @@ bioregistry:pso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000013"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PSO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pso.owl ;
+    bioregistry.schema:0000010 obo:pso.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ro ;
     bioregistry.schema:0000019 orcid:0000-0002-6379-8932 ;
@@ -44285,7 +44310,7 @@ bioregistry:rex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000512"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/REX_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:rex.owl ;
+    bioregistry.schema:0000010 obo:rex.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Chebi Administrators" ;
             foaf:mbox "chebi-help@ebi.ac.uk" ] ;
@@ -44565,7 +44590,7 @@ bioregistry:so a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001157"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.sequenceontology.org/miso/current_release/term/SO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:so.owl ;
+    bioregistry.schema:0000010 obo:so.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:pcl ;
     bioregistry.schema:0000019 orcid:0000-0002-0831-6427 ;
@@ -44680,7 +44705,7 @@ bioregistry:symp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0019171"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:symp.owl ;
+    bioregistry.schema:0000010 obo:symp.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 ;
@@ -44776,7 +44801,7 @@ bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "DI-04240"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/diseases/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^DI-\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://www.uniprot.org/diseases/?query=*&format=obo> ;
+    bioregistry.schema:0000010 <https://rest.uniprot.org/diseases/stream?compressed=true&format=obo&query=%28%2A%29> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "DI",
         "SP_DI" ;
@@ -44795,7 +44820,7 @@ bioregistry:uniprot.location a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "SL-0002"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/locations/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^SL-\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://www.uniprot.org/locations/?query=*&format=obo> ;
+    bioregistry.schema:0000010 <https://rest.uniprot.org/locations/stream?compressed=true&format=obo&query=%28%2A%29> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "SP_SL",
         "UPLOC",
@@ -44899,7 +44924,7 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000038"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VBO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vbo.owl ;
+    bioregistry.schema:0000010 obo:vbo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ncbitaxon ;
     bioregistry.schema:0000019 orcid:0000-0002-4142-7153 ;
@@ -44929,14 +44954,13 @@ bioregistry:vo a bioregistry.schema:0000001 ;
         "vaccine" ;
     foaf:homepage <http://www.violinet.org/vaccineontology> ;
     bioregistry.schema:0000005 "0000093"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:vo.owl ;
+    bioregistry.schema:0000010 obo:vo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/"^^xsd:string ;
-    bioregistry.schema:0000027 vo:0000093 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/VO_"^^xsd:string ;
     bioregistry.schema:0000029 "vo" .
 
 bioregistry:void a bioregistry.schema:0000001 ;
@@ -45005,7 +45029,7 @@ bioregistry:xco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000780"^^xsd:string ;
     bioregistry.schema:0000006 "https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:xco.owl ;
+    bioregistry.schema:0000010 obo:xco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:ecto ;
@@ -45169,7 +45193,7 @@ bioregistry:chmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002902"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:chmo.owl ;
+    bioregistry.schema:0000010 obo:chmo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:rbo,
         bioregistry:scdo ;
@@ -45193,7 +45217,7 @@ bioregistry:clyh a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1000100"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CLYH_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:clyh.owl ;
+    bioregistry.schema:0000010 obo:clyh.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:iao,
         bioregistry:ro,
@@ -45253,7 +45277,7 @@ bioregistry:doid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0110974"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:doid.owl ;
+    bioregistry.schema:0000010 obo:doid.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:clo,
         bioregistry:scdo ;
@@ -45288,7 +45312,7 @@ bioregistry:duo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000046"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DUO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:duo.owl ;
+    bioregistry.schema:0000010 obo:duo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:iao ;
@@ -45313,7 +45337,7 @@ bioregistry:ecao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0107180"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ECAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ecao.owl ;
+    bioregistry.schema:0000010 obo:ecao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:cl,
         bioregistry:ro,
@@ -45409,7 +45433,7 @@ bioregistry:ehdaa2 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EHDAA2_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ehdaa2.owl ;
+    bioregistry.schema:0000010 obo:ehdaa2.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000017 bioregistry:aeo,
         bioregistry:caro,
@@ -45508,11 +45532,11 @@ bioregistry:fbcv a bioregistry.schema:0000001 ;
         "life science",
         "obo",
         "ontology" ;
-    foaf:homepage vo:fbcv ;
+    foaf:homepage obo:fbcv ;
     bioregistry.schema:0000005 "0000586"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBcv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fbcv.owl ;
+    bioregistry.schema:0000010 obo:fbcv.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ontoavida ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
@@ -45651,7 +45675,7 @@ bioregistry:oae a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002959"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OAE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:oae.owl ;
+    bioregistry.schema:0000010 obo:oae.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OAE_"^^xsd:string ;
@@ -45699,7 +45723,7 @@ bioregistry:one a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001021"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ONE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:one.owl ;
+    bioregistry.schema:0000010 obo:one.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:foodon,
         bioregistry:obi,
@@ -45756,7 +45780,7 @@ bioregistry:plana a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PLANA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:plana.owl ;
+    bioregistry.schema:0000010 obo:plana.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ro,
         bioregistry:uberon ;
@@ -45874,7 +45898,7 @@ bioregistry:sbo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000485"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:sbo.owl ;
+    bioregistry.schema:0000010 obo:sbo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:proco,
         bioregistry:scdo ;
@@ -45903,7 +45927,7 @@ bioregistry:stato a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000288"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/STATO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:stato.owl ;
+    bioregistry.schema:0000010 obo:stato.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ontoavida,
         bioregistry:psdo,
@@ -46119,7 +46143,7 @@ bioregistry:hp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0011140"^^xsd:string ;
     bioregistry.schema:0000006 "https://hpo.jax.org/app/browse/term/HP:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:hp.owl ;
+    bioregistry.schema:0000010 obo:hp.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:chiro,
         bioregistry:maxo,
@@ -46168,7 +46192,7 @@ bioregistry:nbo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000564"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:nbo.owl ;
+    bioregistry.schema:0000010 obo:nbo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ecto,
         bioregistry:maxo,
@@ -46194,7 +46218,7 @@ bioregistry:planp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PLANP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:planp.owl ;
+    bioregistry.schema:0000010 obo:planp.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:go,
         bioregistry:pato,
@@ -46233,7 +46257,7 @@ bioregistry:po a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0009089"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:po.owl ;
+    bioregistry.schema:0000010 obo:po.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:ecocore,
@@ -46262,7 +46286,7 @@ Landis-Lewis Z, Stansbury C, Rincón J, Gross C. Performance Summary Display Ont
     bioregistry.schema:0000005 "0000055"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PSDO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:psdo.owl ;
+    bioregistry.schema:0000010 obo:psdo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:iao,
@@ -46319,7 +46343,7 @@ bioregistry:uo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000080"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/uo/terms?obo_id=UO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:uo.owl ;
+    bioregistry.schema:0000010 obo:uo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:ms,
@@ -46365,7 +46389,7 @@ bioregistry:bspo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000029"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BSPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:bspo.owl ;
+    bioregistry.schema:0000010 obo:bspo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:aism,
         bioregistry:colao,
@@ -46393,7 +46417,7 @@ bioregistry:cdno a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000013"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CDNO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cdno.owl ;
+    bioregistry.schema:0000010 obo:cdno.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -46428,7 +46452,7 @@ bioregistry:clo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000091"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:clo.owl ;
+    bioregistry.schema:0000010 obo:clo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:cl,
         bioregistry:doid,
@@ -46491,7 +46515,7 @@ bioregistry:genepio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001885"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GENEPIO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:genepio.owl ;
+    bioregistry.schema:0000010 obo:genepio.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:ncbitaxon,
@@ -46518,7 +46542,7 @@ bioregistry:hso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000062"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HSO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:hso.owl ;
+    bioregistry.schema:0000010 obo:hso.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:ncbitaxon,
@@ -46604,7 +46628,7 @@ bioregistry:ncit a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "C138986"^^xsd:string ;
     bioregistry.schema:0000006 "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^C\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ncit.owl ;
+    bioregistry.schema:0000010 obo:ncit.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ecto,
         bioregistry:mco,
@@ -46648,7 +46672,7 @@ More information can be found at https://obofoundry.org/ontology/ontoavida.html"
     bioregistry.schema:0000005 "00000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ONTOAVIDA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ontoavida.owl ;
+    bioregistry.schema:0000010 obo:ontoavida.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:fbcv,
         bioregistry:gsso,
@@ -46702,7 +46726,7 @@ bioregistry:caro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CARO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:caro.owl ;
+    bioregistry.schema:0000010 obo:caro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:aism,
         bioregistry:colao,
@@ -46781,7 +46805,7 @@ bioregistry:labo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000124"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/LABO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:labo.owl ;
+    bioregistry.schema:0000010 obo:labo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:iao,
         bioregistry:obi,
@@ -46856,7 +46880,7 @@ bioregistry:pr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "000000024"^^xsd:string ;
     bioregistry.schema:0000006 "https://proconsortium.org/app/entry/PR:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pr.owl ;
+    bioregistry.schema:0000010 obo:pr.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:chiro,
         bioregistry:cl,
@@ -46885,7 +46909,7 @@ bioregistry:proco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PROCO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:proco.owl ;
+    bioregistry.schema:0000010 obo:proco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:cheminf,
@@ -46919,7 +46943,7 @@ bioregistry:chiro a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <https://github.com/obophenotype/chiro> ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHIRO_$1"^^xsd:string ;
-    bioregistry.schema:0000010 vo:chiro.owl ;
+    bioregistry.schema:0000010 obo:chiro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:go,
@@ -46948,7 +46972,7 @@ bioregistry:colao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/COLAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:colao.owl ;
+    bioregistry.schema:0000010 obo:colao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:aism,
         bioregistry:bfo,
@@ -46977,7 +47001,7 @@ bioregistry:lepao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000005"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/LEPAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:lepao.owl ;
+    bioregistry.schema:0000010 obo:lepao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:aism,
         bioregistry:bfo,
@@ -47006,7 +47030,7 @@ bioregistry:rbo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000105"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/RBO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{6,8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:rbo.owl ;
+    bioregistry.schema:0000010 obo:rbo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chmo,
@@ -47036,7 +47060,7 @@ bioregistry:zp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0019030"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ZP_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:zp.owl ;
+    bioregistry.schema:0000010 obo:zp.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:bspo,
@@ -47065,7 +47089,7 @@ bioregistry:aism a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000027"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/AISM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:aism.owl ;
+    bioregistry.schema:0000010 obo:aism.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:bspo,
@@ -47095,7 +47119,7 @@ bioregistry:fovt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000009"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FOVT_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:fovt.owl ;
+    bioregistry.schema:0000010 obo:fovt.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bco,
         bioregistry:bfo,
@@ -47126,7 +47150,7 @@ bioregistry:xpo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0100002"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XPO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:xpo.owl ;
+    bioregistry.schema:0000010 obo:xpo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -47159,7 +47183,7 @@ bioregistry:ons a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000060"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ONS_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ons.owl ;
+    bioregistry.schema:0000010 obo:ons.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -47191,7 +47215,7 @@ bioregistry:ecocore a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ECOCORE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ecocore.owl ;
+    bioregistry.schema:0000010 obo:ecocore.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -47224,7 +47248,7 @@ bioregistry:maxo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000008"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MAXO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:maxo.owl ;
+    bioregistry.schema:0000010 obo:maxo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:foodon,
@@ -47265,7 +47289,7 @@ bioregistry:pco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000021"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PCO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pco.owl ;
+    bioregistry.schema:0000010 obo:pco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:caro,
@@ -47310,7 +47334,7 @@ bioregistry:iao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000030"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:iao.owl ;
+    bioregistry.schema:0000010 obo:iao.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:clyh,
@@ -47353,7 +47377,7 @@ bioregistry:obi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0400109"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:obi.owl ;
+    bioregistry.schema:0000010 obo:obi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:foodon,
@@ -47391,7 +47415,7 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0011124"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PCL_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pcl.owl ;
+    bioregistry.schema:0000010 obo:pcl.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -47426,7 +47450,7 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ECTO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ecto.owl ;
+    bioregistry.schema:0000010 obo:ecto.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:envo,
@@ -47468,7 +47492,7 @@ bioregistry:agro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00020007"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/AGRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:agro.owl ;
+    bioregistry.schema:0000010 obo:agro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:envo,
@@ -47513,7 +47537,7 @@ bioregistry:foodon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "03307879"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[0-9]{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:foodon.owl ;
+    bioregistry.schema:0000010 obo:foodon.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -47550,7 +47574,7 @@ bioregistry:mco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000858"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MCO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:mco.owl ;
+    bioregistry.schema:0000010 obo:mco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
@@ -47610,7 +47634,7 @@ bioregistry:envo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "09200010"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7,8}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:envo.owl ;
+    bioregistry.schema:0000010 obo:envo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:foodon,
@@ -47728,7 +47752,7 @@ bioregistry:cl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000062"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:cl.owl ;
+    bioregistry.schema:0000010 obo:cl.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:go,
@@ -47787,7 +47811,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "2170610"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ncbitaxon.owl ;
+    bioregistry.schema:0000010 obo:ncbitaxon.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:chiro,
@@ -47873,7 +47897,7 @@ bioregistry:go a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0032571"^^xsd:string ;
     bioregistry.schema:0000006 "http://amigo.geneontology.org/amigo/term/GO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:go.owl ;
+    bioregistry.schema:0000010 obo:go.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:cl,
         bioregistry:ncbitaxon,
@@ -47930,7 +47954,7 @@ bioregistry:pato a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001998"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/pato/terms?obo_id=PATO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:pato.owl ;
+    bioregistry.schema:0000010 obo:pato.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:aism,
@@ -47977,7 +48001,7 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:bfo.owl ;
+    bioregistry.schema:0000010 obo:bfo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ado,
         bioregistry:agro,
@@ -48036,7 +48060,7 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "24867"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:chebi.owl ;
+    bioregistry.schema:0000010 obo:chebi.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:cdno,
         bioregistry:chiro,
@@ -48134,7 +48158,7 @@ bioregistry:uberon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "2005080"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:uberon.owl ;
+    bioregistry.schema:0000010 obo:uberon.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:cl,
@@ -48192,7 +48216,7 @@ bioregistry:scdo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000728"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SCDO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:scdo.owl ;
+    bioregistry.schema:0000010 obo:scdo.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:apollosv,
         bioregistry:aro,
@@ -48299,7 +48323,7 @@ bioregistry:ro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002533"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/RO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 vo:ro.owl ;
+    bioregistry.schema:0000010 obo:ro.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:aism,
@@ -49281,6 +49305,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cohd,
         bioregistry:come,
         bioregistry:commoncoreontology,
+        bioregistry:conference,
         bioregistry:confident.event,
         bioregistry:confident.series,
         bioregistry:conso,
@@ -49563,6 +49588,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:sdis,
         bioregistry:seinet,
         bioregistry:semapv,
+        bioregistry:seo,
         bioregistry:sfam,
         bioregistry:sh,
         bioregistry:shex,
@@ -55188,6 +55214,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:complexportal,
         bioregistry:comptox,
         bioregistry:compulyeast,
+        bioregistry:conference,
         bioregistry:confident.event,
         bioregistry:confident.series,
         bioregistry:conoserver,
@@ -56307,6 +56334,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:seinet,
         bioregistry:semapv,
         bioregistry:senso,
+        bioregistry:seo,
         bioregistry:sep,
         bioregistry:sepio,
         bioregistry:sfam,

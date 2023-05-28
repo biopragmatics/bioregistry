@@ -516,7 +516,7 @@ aeo:
   deprecated: true
   description: AEO is an ontology of anatomical structures that expands CARO, the
     Common Anatomy Reference Ontology
-  download_obo: https://raw.githubusercontent.com/obophenotype/human-developmental-anatomy-ontology/master/src/ontology/aeo.obo
+  download_obo: http://purl.obolibrary.org/obo/aeo.obo
   download_owl: http://purl.obolibrary.org/obo/aeo.owl
   example: '0001017'
   homepage: https://github.com/obophenotype/human-developmental-anatomy-ontology/
@@ -6445,6 +6445,7 @@ chembl:
   - genomics
   - medicinal chemistry
   - molecules
+  license: CC-BY-4.0
   mappings:
     cheminf: '000412'
     fairsharing: FAIRsharing.m3jtpg
@@ -6529,6 +6530,7 @@ chembl.compound:
     abstracted and curated from the primary scientific literature.
   example: CHEMBL465070
   homepage: https://www.ebi.ac.uk/chembldb/
+  license: CC-BY-4.0
   mappings:
     biocontext: CHEMBL.COMPOUND
     edam: '2646'
@@ -6563,6 +6565,7 @@ chembl.target:
     abstracted and curated from the primary scientific literature.
   example: CHEMBL3467
   homepage: https://www.ebi.ac.uk/chembldb/
+  license: CC-BY-4.0
   mappings:
     biocontext: CHEMBL.TARGET
     cellosaurus: ChEMBL-Targets
@@ -9213,6 +9216,26 @@ compulyeast:
     uri_format: http://bio2rdf.org/compluyeast2dpage:$1
   provides: uniprot
   uri_format: http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1
+conference:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The conference-ontology is a new self-contained ontology for modelleing
+    knowledge about conferences. The conference-ontology adopts best ontology design
+    practices (e.g., Ontology Design Patterns, ontology reuse and interlinking) and
+    guarantees interoperability with SWC ontology and all other pertinent vocabularies.
+    (from homepage)
+  download_owl: https://w3id.org/scholarlydata/ontology/conference-ontology.owl
+  example: isDocumentRelatedTo
+  homepage: http://www.scholarlydata.org/ontology/doc/
+  keywords:
+  - ontology
+  license: CC-BY-3.0
+  name: Conference Ontology
+  preferred_prefix: conference
+  uri_format: https://w3id.org/scholarlydata/ontology/conference-ontology.owl#$1
 confident.event:
   contact:
     email: Philip.Stroemert@tib.eu
@@ -12907,6 +12930,7 @@ drugcentral:
   - drug repositioning
   - pharmacology
   - pharmacy
+  license: CC-BY-SA-4.0
   mappings:
     biolink: DrugCentral
     fairsharing: FAIRsharing.3me82d
@@ -14016,6 +14040,7 @@ efo:
   keywords:
   - functional genomics
   - ontology
+  license: Apache-2.0
   mappings:
     aberowl: EFO
     agroportal: EFO
@@ -21612,6 +21637,12 @@ hancestro:
     wikidata: null
   pattern: ^\d{4}$
   preferred_prefix: HANCESTRO
+  providers:
+  - code: legacy
+    description: Legacy URI
+    homepage: http://www.ebi.ac.uk/ancestro
+    name: Legacy
+    uri_format: http://www.ebi.ac.uk/ancestro/ancestro_$1
   publications:
   - doi: 10.1186/s13059-018-1396-2
     pmc: PMC5815218
@@ -41883,6 +41914,7 @@ pubmed:
     pubmed: '16381840'
     title: Database resources of the National Center for Biotechnology Information.
     year: 2006
+  rdf_uri_format: http://rdf.ncbi.nlm.nih/pubmed/$1
   synonyms:
   - MEDLINE
   - PMID
@@ -42109,6 +42141,12 @@ qudt:
     fairsharing: FAIRsharing.d3pqw7
   name: Quantities, Units, Dimensions, and Types Ontology
   preferred_prefix: qudt
+  providers:
+  - code: v11
+    description: Version 1.1 provider
+    homepage: http://qudt.org
+    name: Version 1.1
+    uri_format: http://qudt.org/1.1/schema/qudt#$1
   repository: https://github.com/qudt/qudt-public-repo
   uri_format: http://qudt.org/schema/qudt#$1
 radiomics:
@@ -44542,7 +44580,6 @@ sasap:
   description: An ontology which represents information about the State of Alaska's
     Salmon and People (SASAP) project, as well as knowledge about salmon, features
     of their habitats, salmon stakeholders, and related entities.
-  download_owl: https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/sasap-$1/SALMON/SASAP.owl
   example: '00000101'
   homepage: https://github.com/DataONEorg/sem-prov-ontologies
   keywords:
@@ -45386,6 +45423,20 @@ senso:
   pattern: ^\d+$
   preferred_prefix: senso
   uri_format: http://purl.dataone.org/odo/SENSO_$1
+seo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: SEO is a reference ontology for modelling data about scientific events
+    such as conferences, symposioums and workshops.
+  download_rdf: https://raw.githubusercontent.com/saidfathalla/SEOontology/master/SEO.ttl
+  example: Symposium
+  homepage: https://w3id.org/seo
+  name: Scientific Event Ontology
+  preferred_prefix: seo
+  uri_format: https://w3id.org/seo#$1
 sep:
   contact:
     email: psidev-gps-dev@lists.sourceforge.net
@@ -47266,8 +47317,8 @@ sphn:
     in order to make health-relevant data interoperable and shareable for research
     in Switzerland. The sphn RDF schema builds the foundation for all data exchanges
     within the sphn by integrating semantic information defined in the [sphn dataset](https://sphn.ch/document/sphn-dataset/).
-  download_owl: https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.owl?inline=false
-  download_rdf: https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.ttl?inline=false
+  download_owl: https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/rdf_schema/sphn_rdf_schema.owl
+  download_rdf: https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/rdf_schema/sphn_rdf_schema.ttl
   example: Allergy
   github_request_issue: 535
   homepage: https://www.sphn.ch
@@ -48089,7 +48140,7 @@ sweetrealm:
     Phenomena (macro-scale ecological and physical), Processes (micro-scale physical,
     biological, chemical, and mathematical), Human Activities (Decision, Commerce,
     Jurisdiction, Environmental, Research).
-  download_obo: https://github.com/EnvironmentOntology/envo/blob/master/src/envo/sources/sweetrealm.obo
+  download_obo: https://raw.githubusercontent.com/EnvironmentOntology/envo/master/src/envo/sources/sweetrealm.obo
   example: ANOVA
   homepage: https://bioportal.bioontology.org/ontologies/SWEET
   keywords:
@@ -48213,9 +48264,9 @@ swo:
     their types, tasks, versions, provenance and associated data. It contains detailed
     information on licensing and formats as well as software applications themselves,
     mainly (but not limited) to the bioinformatics community.
-  download_json: https://github.com/allysonlister/swo/raw/master/release/swo.json
-  download_obo: https://github.com/allysonlister/swo/raw/master/release/swo.obo
-  download_owl: https://github.com/allysonlister/swo/raw/master/release/swo.owl
+  download_json: https://raw.githubusercontent.com/allysonlister/swo/master/swo.json
+  download_obo: https://raw.githubusercontent.com/allysonlister/swo/master/swo.obo
+  download_owl: https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl
   example: '0000144'
   homepage: https://github.com/allysonlister/swo
   keywords:
@@ -50582,7 +50633,7 @@ uniprot.disease:
     orcid: 0000-0003-4423-4370
   description: The human diseases in which proteins are involved are described in
     UniProtKB entries with a controlled vocabulary.
-  download_obo: https://www.uniprot.org/diseases/?query=*&format=obo
+  download_obo: https://rest.uniprot.org/diseases/stream?compressed=true&format=obo&query=%28%2A%29
   example: DI-04240
   homepage: https://www.uniprot.org/diseases/
   keywords:
@@ -50655,7 +50706,7 @@ uniprot.journal:
 uniprot.keyword:
   description: UniProtKB entries are tagged with keywords that can be used to retrieve
     particular subsets of entries.
-  download_obo: https://www.uniprot.org/keywords/?format=obo
+  download_obo: https://rest.uniprot.org/keywords/stream?compressed=true&fields=id%2Cname%2Ccategory%2Cgene_ontologies&format=tsv&query=%28%2A%29
   example: KW-1273
   homepage: http://www.uniprot.org/keywords/
   keywords:
@@ -50693,7 +50744,7 @@ uniprot.location:
   description: The subcellular locations in which a protein is found are described
     in UniProtKB entries with a controlled vocabulary, which includes also membrane
     topology and orientation terms.
-  download_obo: https://www.uniprot.org/locations/?query=*&format=obo
+  download_obo: https://rest.uniprot.org/locations/stream?compressed=true&format=obo&query=%28%2A%29
   example: SL-0002
   homepage: https://www.uniprot.org/locations/
   keywords:
@@ -51089,9 +51140,7 @@ upheno:
     orcid: 0000-0001-5208-3432
   description: The uPheno ontology integrates multiple phenotype ontologies into a
     unified cross-species phenotype ontology.
-  download_json: https://github.com/obophenotype/upheno/blob/master/upheno.json
-  download_obo: https://github.com/obophenotype/upheno/blob/master/upheno.obo
-  download_owl: https://github.com/obophenotype/upheno/blob/master/upheno.owl
+  download_owl: http://purl.obolibrary.org/obo/upheno.owl
   homepage: https://github.com/obophenotype/upheno
   keywords:
   - evolutionary biology
@@ -52254,7 +52303,7 @@ vo:
     year: 2010
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
-  uri_format: http://purl.obolibrary.org/obo/$1
+  uri_format: http://purl.obolibrary.org/obo/VO_$1
   version: 1.1.218
 void:
   contributor:
@@ -53361,7 +53410,7 @@ xao:
     year: 2008
   rdf_uri_format: http://purl.obolibrary.org/obo/XAO_$1
   repository: https://github.com/xenopus-anatomy/xao
-  uri_format: http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1
+  uri_format: http://purl.obolibrary.org/obo/XAO_$1
   version: '2022-08-29'
 xco:
   appears_in:
@@ -53582,7 +53631,7 @@ xlmod:
     orcid: 0000-0003-4978-0864
   description: A structured controlled vocabulary for cross-linking reagents used
     with proteomics mass spectrometry.
-  download_obo: https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo
+  download_obo: http://purl.obolibrary.org/obo/xlmod.obo
   download_owl: http://purl.obolibrary.org/obo/xlmod.owl
   example: '00050'
   homepage: http://www.psidev.info/groups/controlled-vocabularies
