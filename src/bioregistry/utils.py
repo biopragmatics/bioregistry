@@ -31,6 +31,7 @@ from .constants import (
     METAREGISTRY_YAML_PATH,
     REGISTRY_YAML_PATH,
 )
+from .version import get_version
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +75,12 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     :return: A list of bindings
     """
     logger.debug("running query: %s", sparql)
-    res = requests.get(WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"})
+    headers = {
+        "User-Agent": f"bioregistry v{get_version()}",
+    }
+    res = requests.get(
+        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers
+    )
     res.raise_for_status()
     res_json = res.json()
     return res_json["results"]["bindings"]
