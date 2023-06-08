@@ -10,6 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import curies
+import pytest
 import rdflib
 
 import bioregistry
@@ -531,6 +532,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertIn(resource.has_canonical, self.registry)
 
+    @pytest.mark.slow
     def test_unique_iris(self):
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
         # TODO make sure there are also no HTTP vs HTTPS clashes,
@@ -574,6 +576,7 @@ class TestRegistry(unittest.TestCase):
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
 
+    @pytest.mark.slow
     def test_parse_http_vs_https(self):
         """Test parsing both HTTP and HTTPS, even when the provider is only set to one."""
         prefix = "neuronames"
@@ -648,6 +651,7 @@ class TestRegistry(unittest.TestCase):
         # Make sure sure primary URI prefix gets upgraded properly from vz -> canonical for -> viralzone
         self.assertIn("http://viralzone.expasy.org/", records["viralzone"].uri_prefix_synonyms)
 
+    @pytest.mark.slow
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""
         priorities = [
