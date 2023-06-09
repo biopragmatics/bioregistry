@@ -2021,6 +2021,38 @@ ascl:
     year: 2015
   twitter: asclnet
   uri_format: http://ascl.net/$1
+asfis:
+  comment: This resource is offered freely by FAO for download but no obvious licensing
+    is indicated, and no caution about appropriate reuse.
+  contributor:
+    email: null
+    github: ddooley
+    name: Damion Dooley
+    orcid: 0000-0002-8844-9165
+  description: The FAO Statistics Team (NFISS) of Fisheries and Aquaculture Division
+    collates world capture and aquaculture production statistics at either the species,
+    genus, family, or higher taxonomic levels in 3,169 statistical categories (2022
+    data release) referred to as species items. ASFIS list of species includes 13,417
+    species items selected according to their interest or relation to fisheries and
+    aquaculture. For each species item stored in a record, codes (ISSCAAP group, taxonomic
+    and 3-alpha) and taxonomic information (scientific name, author(s), family, and
+    higher taxonomic classification) are provided. An English name is available for
+    most of the records, and about one third of them have also a French and Spanish
+    name. Information is also provided about the availability of fishery production
+    statistics on the species item in the FAO databases. (from homepage)
+  example: fbm
+  github_request_issue: 872
+  homepage: https://www.fao.org/fishery/en/collection/asfis/en
+  name: Aquatic Sciences and Fisheries Information System
+  pattern: ^[a-z]+$
+  preferred_prefix: asfis
+  repository: bioregistry
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.fao.org/fishery/en/aqspecies/$1
 asin:
   description: Almost every product on our site has its own ASIN, a unique code we
     use to identify it. For books, the ASIN is the same as the ISBN number, but for
@@ -21887,6 +21919,34 @@ hcvdb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/hcv:$1
   uri_format: https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1
+hdl:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Welcome to the web site of the Handle.Net Registry (HNR), run by Corporation
+    for National Research Initiatives (CNRI). CNRI is a Multi-Primary Administrator
+    (MPA) of the Global Handle Registry (GHR), authorized by the DONA Foundation to
+    allot prefixes to users of the Handle System. The DONA Foundation is a non-profit
+    organization based in Geneva that has taken over responsibility for the evolution
+    of CNRI's Digital Object (DO) Architecture including outreach around the world.
+    One of the Foundation's responsibilities is to administer and maintain the overall
+    operation of the GHR, a task that was previously performed by CNRI. (from website)
+  example: 2381/12775
+  example_extras:
+  - 391/00-0000-0000-0009-3C7E-F
+  homepage: https://www.handle.net/
+  keywords:
+  - subject agnostic
+  mappings:
+    fairsharing: FAIRsharing.0b7e54
+  name: Handle
+  pattern: ^\d+/.+$
+  preferred_prefix: hdl
+  synonyms:
+  - handle
+  uri_format: http://hdl.handle.net/$1
 hdr:
   description: The Homeodomain Resource is a curated collection of sequence, structure,
     interaction, genomic and functional information on the homeodomain family. It
