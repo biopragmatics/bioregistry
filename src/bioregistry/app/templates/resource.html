@@ -32,8 +32,8 @@
     Therefore, you may see local unique identifiers for this resource that look like
     <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}{{ example }}</code>
     (instead of the canonical form <code>{{ example }}</code>) and CURIEs for this resource that look like
-    <code>{{ prefix }}:{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}{{ example }}</code>
-    (instead of the canonical form <code>{{ prefix }}:{{ example }}</code>).
+    <code>{{ resource.get_preferred_prefix() }}:{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}{{ example }}</code>
+    (instead of the canonical form <code>{{ resource.get_preferred_prefix() }}:{{ example }}</code>).
     The Bioregistry will automatically strip off the banana when standardizing local unique identifiers and CURIEs.
 {% endmacro %}
 
@@ -460,7 +460,7 @@
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
-                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code> with
+                    {{ mappings | length }} mappings to external registries for this resource with
                     {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
@@ -534,8 +534,8 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    {{ utils.code_curie(prefix, example) }} is used to demonstrate the provides available for
-                    <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
+                    {{ utils.code_curie(resource.get_preferred_prefix(), example) }} is used to demonstrate the provides available for
+                    this resource. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>
             </div>
