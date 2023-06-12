@@ -43,6 +43,4 @@ class AgroPortalAligner(OntoPortalAligner):
 
 
 if __name__ == "__main__":
-    EcoPortalAligner.align()
-    AgroPortalAligner.align()
-    BioPortalAligner.align()
+    BioPortalAligner.cli()
