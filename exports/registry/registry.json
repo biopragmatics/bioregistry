@@ -6042,6 +6042,46 @@
     ],
     "uri_format": "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=$1"
   },
+  "ccf": {
+    "contact": {
+      "email": "katy@indiana.edu",
+      "github": "katyb",
+      "name": "Katy Börner",
+      "orcid": "0000-0002-3321-6137"
+    },
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The Common Coordinate Framework (CCF) Ontology is an application ontology built to support the development of the Human Reference Atlas (HRA).  It unifies vocabulary for HRA construction and usage—making it possible to ingest external data sources; supporting uniform tissue sample registration that includes the spatial positioning and semantic annotations within 3D reference organs; and supporting user-formulated cross-domain queries over tissue donor properties, anatomical structures, cell types, biomarkers, and 3D space. The CCF Ontology consists of three major ontologies. The Biological Structure Ontology records anatomical structures, cell types, and biomarkers (ASCT+B) and the relationships between them.  The ASCT+B tables are authored by human experts using templated Google Sheets. The biomarkers, cell types, and anatomical structures are mapped to existing ontologies (Uberon/FMA, CL, HGNC) whenever possible.  All relationships between anatomical structures and from cell types to anatomical structures are valid Uberon and CL relationships. The Spatial Ontology defines the shape, size, location, and rotation of experimental tissue and data major anatomical structures in the 3D Reference Object Library. The Specimen Ontology captures the sex, age, and other information on donors that provided tissue data used in the construction of the HRA.",
+    "download_owl": "http://purl.org/ccf/releases/2.1.0/ccf.owl",
+    "example": "extraction_set",
+    "github_request_issue": 879,
+    "homepage": "https://bioportal.bioontology.org/ontologies/CCF",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bioportal": "CCF",
+      "ols": "ccf"
+    },
+    "name": "Human Reference Atlas Common Coordinate Framework Ontology",
+    "pattern": "^\\S+$",
+    "preferred_prefix": "ccf",
+    "rdf_uri_format": "http://purl.org/ccf/$1",
+    "repository": "https://github.com/hubmapconsortium/ccf-ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1",
+    "version": "2.1.0"
+  },
   "ccle": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -22494,7 +22534,8 @@
         "name": "Legacy OBO",
         "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
       }
-    ]
+    ],
+    "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
   },
   "gpcrdb": {
     "contact": {
@@ -50649,7 +50690,7 @@
         "uri_format": "http://bio2rdf.org/snap:$1"
       }
     ],
-    "uri_format": "http://snap.humgen.au.dk/views/geneview.cgi?gene=$1"
+    "uri_format": "http://www.ifomis.org/bfo/1.1/snap#$1"
   },
   "snomedct": {
     "contact": {
