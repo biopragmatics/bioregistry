@@ -2171,30 +2171,6 @@
     "twitter": "asclnet",
     "uri_format": "http://ascl.net/$1"
   },
-  "asfis": {
-    "comment": "This resource is offered freely by FAO for download but no obvious licensing is indicated, and no caution about appropriate reuse.",
-    "contributor": {
-      "email": null,
-      "github": "ddooley",
-      "name": "Damion Dooley",
-      "orcid": "0000-0002-8844-9165"
-    },
-    "description": "The FAO Statistics Team (NFISS) of Fisheries and Aquaculture Division collates world capture and aquaculture production statistics at either the species, genus, family, or higher taxonomic levels in 3,169 statistical categories (2022 data release) referred to as species items. ASFIS list of species includes 13,417 species items selected according to their interest or relation to fisheries and aquaculture. For each species item stored in a record, codes (ISSCAAP group, taxonomic and 3-alpha) and taxonomic information (scientific name, author(s), family, and higher taxonomic classification) are provided. An English name is available for most of the records, and about one third of them have also a French and Spanish name. Information is also provided about the availability of fishery production statistics on the species item in the FAO databases. (from homepage)",
-    "example": "fbm",
-    "github_request_issue": 872,
-    "homepage": "https://www.fao.org/fishery/en/collection/asfis/en",
-    "name": "Aquatic Sciences and Fisheries Information System",
-    "pattern": "^[a-z]+$",
-    "preferred_prefix": "asfis",
-    "repository": "bioregistry",
-    "reviewer": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "uri_format": "https://www.fao.org/fishery/en/aqspecies/$1"
-  },
   "asin": {
     "description": "Almost every product on our site has its own ASIN, a unique code we use to identify it. For books, the ASIN is the same as the ISBN number, but for all other products a new ASIN is created when the item is uploaded to our catalogue.",
     "example": "0471491039",
@@ -18056,6 +18032,33 @@
     "uri_format": "http://purl.obolibrary.org/obo/FAO_$1",
     "version": "2020-05-07"
   },
+  "fao.asfis": {
+    "comment": "This resource is offered freely by FAO for download but no obvious licensing is indicated, and no caution about appropriate reuse.",
+    "contributor": {
+      "email": null,
+      "github": "ddooley",
+      "name": "Damion Dooley",
+      "orcid": "0000-0002-8844-9165"
+    },
+    "description": "The FAO Statistics Team (NFISS) of Fisheries and Aquaculture Division collates world capture and aquaculture production statistics at either the species, genus, family, or higher taxonomic levels in 3,169 statistical categories (2022 data release) referred to as species items. ASFIS list of species includes 13,417 species items selected according to their interest or relation to fisheries and aquaculture. For each species item stored in a record, codes (ISSCAAP group, taxonomic and 3-alpha) and taxonomic information (scientific name, author(s), family, and higher taxonomic classification) are provided. An English name is available for most of the records, and about one third of them have also a French and Spanish name. Information is also provided about the availability of fishery production statistics on the species item in the FAO databases. (from homepage)",
+    "example": "20560",
+    "github_request_issue": 872,
+    "homepage": "https://www.fao.org/fishery/en/collection/asfis/en",
+    "name": "Aquatic Sciences and Fisheries Information System",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "fao.asfis",
+    "repository": "bioregistry",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "asfis"
+    ],
+    "uri_format": "https://www.fao.org/fishery/en/species/$1"
+  },
   "fbbi": {
     "contact": {
       "email": "wawong@gmail.com",
@@ -29299,6 +29302,27 @@
     "name": "Kerafast cell lines",
     "preferred_prefix": "kerafast",
     "uri_format": "https://www.kerafast.com/Search?SearchTerm=&quot;$1&quot;"
+  },
+  "kestrelo": {
+    "contact": {
+      "email": "lindsey.anderson@pnnl.gov",
+      "github": "lnanderson",
+      "name": "Lindsey N. Anderson",
+      "orcid": "0000-0002-8741-7823"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology for harmonizing and extending severeral existing resources in the vaccine and immunology domains",
+    "example": "0000001",
+    "homepage": "https://gitlab.pnnl.gov/kestrel/kestrel_ontology",
+    "name": "KESTREL Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "kestrelo",
+    "uri_format": "http://purl.obolibrary.org/obo/kestrelo_$1"
   },
   "knapsack": {
     "description": "KNApSAcK provides information on metabolites and the\ntaxonomic class with which they are associated.",

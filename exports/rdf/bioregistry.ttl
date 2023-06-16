@@ -45,7 +45,6 @@
 @prefix arxiv: <https://arxiv.org/abs/> .
 @prefix asap: <http://asap.ahabs.wisc.edu/asap/feature_info.php?LocationID=WIS&FeatureID=> .
 @prefix ascl: <http://ascl.net/> .
-@prefix asfis: <https://www.fao.org/fishery/en/aqspecies/> .
 @prefix asin: <https://amzn.com/> .
 @prefix aspgd.locus: <http://www.aspergillusgenome.org/cgi-bin/locus.pl?dbid=> .
 @prefix aspgd.protein: <http://www.aspergillusgenome.org/cgi-bin/protein/proteinPage.pl?dbid=> .
@@ -289,8 +288,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
 @prefix debio: <https://biopragmatics.github.io/debio/> .
@@ -408,6 +407,7 @@
 @prefix fairsharing.organization: <https://fairsharing.org/organisations/> .
 @prefix fairsharing.user: <https://fairsharing.org/users/> .
 @prefix faldo: <http://biohackathon.org/resource/faldo#> .
+@prefix fao.asfis: <https://www.fao.org/fishery/en/species/> .
 @prefix fbbt: <https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:> .
 @prefix fbrf: <https://flybase.org/reports/FBrf> .
 @prefix fbtc: <https://flybase.org/reports/FBtc> .
@@ -649,6 +649,7 @@
 @prefix kegg.brite: <http://www.genome.jp/kegg-bin/get_htext?-p+/kegg/brite/br+br> .
 @prefix kegg.orthology: <http://www.kegg.jp/entry/> .
 @prefix kegg.reaction: <https://www.kegg.jp/entry/> .
+@prefix kestrelo: <http://purl.obolibrary.org/obo/kestrelo_> .
 @prefix knapsack: <http://www.knapsackfamily.com/knapsack_core/information.php?word=> .
 @prefix langual: <https://www.langual.org/langual_thesaurus.asp?termid=> .
 @prefix lbo: <http://purl.obolibrary.org/obo/LBO_> .
@@ -20003,6 +20004,9 @@ orcid:0000-0002-8600-949X rdfs:label "Evan Patterson" ;
 orcid:0000-0002-8683-0050 rdfs:label "Montana Smith" ;
     foaf:mbox "montana.smith@pnnl.gov" .
 
+orcid:0000-0002-8741-7823 rdfs:label "Lindsey N. Anderson" ;
+    foaf:mbox "lindsey.anderson@pnnl.gov" .
+
 orcid:0000-0002-8786-1756 rdfs:label "Wes Schafer" ;
     foaf:mbox "wes_schafer@merck.com" .
 
@@ -27589,21 +27593,6 @@ bioregistry:arxiv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 arxiv:0807.4956v1 ;
     bioregistry.schema:0000029 "arxiv" .
 
-bioregistry:asfis a bioregistry.schema:0000001 ;
-    rdfs:label "Aquatic Sciences and Fisheries Information System" ;
-    dcterms:description "The FAO Statistics Team (NFISS) of Fisheries and Aquaculture Division collates world capture and aquaculture production statistics at either the species, genus, family, or higher taxonomic levels in 3,169 statistical categories (2022 data release) referred to as species items. ASFIS list of species includes 13,417 species items selected according to their interest or relation to fisheries and aquaculture. For each species item stored in a record, codes (ISSCAAP group, taxonomic and 3-alpha) and taxonomic information (scientific name, author(s), family, and higher taxonomic classification) are provided. An English name is available for most of the records, and about one third of them have also a French and Spanish name. Information is also provided about the availability of fishery production statistics on the species item in the FAO databases. (from homepage)"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <bioregistry> ;
-    foaf:homepage <https://www.fao.org/fishery/en/collection/asfis/en> ;
-    bioregistry.schema:0000005 "fbm"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.fao.org/fishery/en/aqspecies/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[a-z]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
-    bioregistry.schema:0000024 "https://www.fao.org/fishery/en/aqspecies/"^^xsd:string ;
-    bioregistry.schema:0000027 asfis:fbm ;
-    bioregistry.schema:0000029 "asfis" .
-
 bioregistry:asrp a bioregistry.schema:0000001 ;
     rdfs:label "Arabidopsis Small RNA Project" ;
     dcterms:description "Arabidopsis Small RNA Project is a repository of data on Arabidopsis small RNA genes."^^xsd:string ;
@@ -30157,6 +30146,22 @@ bioregistry:evm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "evm" .
 
+bioregistry:fao.asfis a bioregistry.schema:0000001 ;
+    rdfs:label "Aquatic Sciences and Fisheries Information System" ;
+    dcterms:description "The FAO Statistics Team (NFISS) of Fisheries and Aquaculture Division collates world capture and aquaculture production statistics at either the species, genus, family, or higher taxonomic levels in 3,169 statistical categories (2022 data release) referred to as species items. ASFIS list of species includes 13,417 species items selected according to their interest or relation to fisheries and aquaculture. For each species item stored in a record, codes (ISSCAAP group, taxonomic and 3-alpha) and taxonomic information (scientific name, author(s), family, and higher taxonomic classification) are provided. An English name is available for most of the records, and about one third of them have also a French and Spanish name. Information is also provided about the availability of fishery production statistics on the species item in the FAO databases. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <bioregistry> ;
+    foaf:homepage <https://www.fao.org/fishery/en/collection/asfis/en> ;
+    bioregistry.schema:0000005 "20560"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.fao.org/fishery/en/species/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000023 "asfis" ;
+    bioregistry.schema:0000024 "https://www.fao.org/fishery/en/species/"^^xsd:string ;
+    bioregistry.schema:0000027 fao.asfis:20560 ;
+    bioregistry.schema:0000029 "fao.asfis" .
+
 bioregistry:fbbt a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila gross anatomy" ;
     dcterms:description "An ontology of Drosophila melanogaster anatomy."^^xsd:string ;
@@ -31943,6 +31948,20 @@ bioregistry:kegg.reaction a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://www.kegg.jp/entry/"^^xsd:string ;
     bioregistry.schema:0000027 kegg.reaction:R00100 ;
     bioregistry.schema:0000029 "kegg.reaction" .
+
+bioregistry:kestrelo a bioregistry.schema:0000001 ;
+    rdfs:label "KESTREL Ontology" ;
+    dcterms:description "An ontology for harmonizing and extending severeral existing resources in the vaccine and immunology domains"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://gitlab.pnnl.gov/kestrel/kestrel_ontology> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/kestrelo_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8741-7823 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/kestrelo_"^^xsd:string ;
+    bioregistry.schema:0000027 kestrelo:0000001 ;
+    bioregistry.schema:0000029 "kestrelo" .
 
 bioregistry:knapsack a bioregistry.schema:0000001 ;
     rdfs:label "KNApSAcK" ;
@@ -37249,7 +37268,7 @@ orcid:0000-0002-8310-5195 rdfs:label "Pierre-Yves LeBail" ;
     foaf:mbox "pylebail@rennes.inra.fr" .
 
 orcid:0000-0002-8844-9165 rdfs:label "Damion Dooley" ;
-    dcterms:contributor bioregistry:asfis ;
+    dcterms:contributor bioregistry:fao.asfis ;
     foaf:mbox "damion_dooley@sfu.ca" .
 
 orcid:0000-0002-9136-9932 rdfs:label "Luis A. Gonzalez-Montana",
@@ -41770,7 +41789,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -49522,6 +49541,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:kcris,
         bioregistry:kegg.dgroup,
         bioregistry:kegg.rclass,
+        bioregistry:kestrelo,
         bioregistry:kupo,
         bioregistry:langual,
         bioregistry:lbctr,
@@ -55027,7 +55047,6 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:arxiv,
         bioregistry:asap,
         bioregistry:ascl,
-        bioregistry:asfis,
         bioregistry:asin,
         bioregistry:aspgd.locus,
         bioregistry:aspgd.protein,
@@ -55497,6 +55516,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fairsharing.user,
         bioregistry:faldo,
         bioregistry:fao,
+        bioregistry:fao.asfis,
         bioregistry:fbbi,
         bioregistry:fbbt,
         bioregistry:fbcv,
@@ -55832,6 +55852,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:kegg.rclass,
         bioregistry:kegg.reaction,
         bioregistry:kerafast,
+        bioregistry:kestrelo,
         bioregistry:knapsack,
         bioregistry:kupo,
         bioregistry:kyinno,
