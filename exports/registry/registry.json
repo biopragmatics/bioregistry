@@ -250,6 +250,14 @@
     "uri_format": "https://web.expasy.org/abcd/ABCD_$1"
   },
   "abm": {
+    "contributor_extras": [
+      {
+        "email": "benjamin_gyori@hms.harvard.edu",
+        "github": "bgyori",
+        "name": "Benjamin M. Gyori",
+        "orcid": "0000-0001-9439-5346"
+      }
+    ],
     "description": "Cell line collections",
     "example": "T0599",
     "homepage": "https://www.abmgood.com/Cell-Biology.html",
@@ -258,7 +266,7 @@
     },
     "name": "Applied Biological Materials cell line products",
     "preferred_prefix": "abm",
-    "uri_format": "https://www.abmgood.com/catalogsearch/result/?cat=&q=$1"
+    "uri_format": "https://www.abmgood.com/search?query=$1"
   },
   "abs": {
     "contact": {
@@ -576,7 +584,7 @@
     },
     "deprecated": true,
     "description": "AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology",
-    "download_obo": "https://raw.githubusercontent.com/obophenotype/human-developmental-anatomy-ontology/master/src/ontology/aeo.obo",
+    "download_obo": "http://purl.obolibrary.org/obo/aeo.obo",
     "download_owl": "http://purl.obolibrary.org/obo/aeo.owl",
     "example": "0001017",
     "homepage": "https://github.com/obophenotype/human-developmental-anatomy-ontology/",
@@ -1348,6 +1356,33 @@
       }
     ],
     "uri_format": "http://www.antweb.org/specimen.do?name=$1"
+  },
+  "anzctr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": " The Australian New Zealand Clinical Trials Registry (ANZCTR) is an online register of clinical trials being undertaken in Australia, New Zealand and elsewhere. The ANZCTR includes trials from the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle, devices, treatment and rehabilitation strategies and complementary therapies.\n\nIn 2007 the ANZCTR was one of the first three trial registries to be recognised by the World Health Organization International Clinical Trials Registry Platform (WHO ICTRP) as a Primary Registry. WHO recognises registries as Primary Registries if they fulfil certain criteria with respect to data content, quality and validity, accessibility, unique identification, technical capacity and administration. The ANZCTR contributes data to the WHO ICTRP, which was developed in 2007. Trials from all ICTRP Primary Registries can be searched at: www.who.int/trialsearch. (from website)",
+    "example": "ACTRN12623000498695",
+    "homepage": "https://anzctr.org.au",
+    "name": "Australian New Zealand Clinical Trials Registry",
+    "pattern": "^ACTRN\\d+$",
+    "preferred_prefix": "anzctr",
+    "providers": [
+      {
+        "code": "",
+        "description": "",
+        "homepage": "",
+        "name": "",
+        "uri_format": "https://anzctr.org.au/ACTRN$1.aspx"
+      }
+    ],
+    "synonyms": [
+      "ACTRN"
+    ],
+    "uri_format": "https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=$1"
   },
   "aop": {
     "description": "International repository of Adverse Outcome Pathways.",
@@ -5436,7 +5471,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins.",
-    "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
+    "download_obo": "https://raw.githubusercontent.com/calipho-sib/controlled-vocabulary/master/caloha.obo",
     "example": "TS-0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "keywords": [
@@ -5983,6 +6018,46 @@
     ],
     "uri_format": "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=$1"
   },
+  "ccf": {
+    "contact": {
+      "email": "katy@indiana.edu",
+      "github": "katyb",
+      "name": "Katy Börner",
+      "orcid": "0000-0002-3321-6137"
+    },
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The Common Coordinate Framework (CCF) Ontology is an application ontology built to support the development of the Human Reference Atlas (HRA).  It unifies vocabulary for HRA construction and usage—making it possible to ingest external data sources; supporting uniform tissue sample registration that includes the spatial positioning and semantic annotations within 3D reference organs; and supporting user-formulated cross-domain queries over tissue donor properties, anatomical structures, cell types, biomarkers, and 3D space. The CCF Ontology consists of three major ontologies. The Biological Structure Ontology records anatomical structures, cell types, and biomarkers (ASCT+B) and the relationships between them.  The ASCT+B tables are authored by human experts using templated Google Sheets. The biomarkers, cell types, and anatomical structures are mapped to existing ontologies (Uberon/FMA, CL, HGNC) whenever possible.  All relationships between anatomical structures and from cell types to anatomical structures are valid Uberon and CL relationships. The Spatial Ontology defines the shape, size, location, and rotation of experimental tissue and data major anatomical structures in the 3D Reference Object Library. The Specimen Ontology captures the sex, age, and other information on donors that provided tissue data used in the construction of the HRA.",
+    "download_owl": "http://purl.org/ccf/releases/2.1.0/ccf.owl",
+    "example": "extraction_set",
+    "github_request_issue": 879,
+    "homepage": "https://bioportal.bioontology.org/ontologies/CCF",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bioportal": "CCF",
+      "ols": "ccf"
+    },
+    "name": "Human Reference Atlas Common Coordinate Framework Ontology",
+    "pattern": "^\\S+$",
+    "preferred_prefix": "ccf",
+    "rdf_uri_format": "http://purl.org/ccf/$1",
+    "repository": "https://github.com/hubmapconsortium/ccf-ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1",
+    "version": "2.1.0"
+  },
   "ccle": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -6258,8 +6333,8 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The Code on Dental Procedures and Nomenclature (the CDT Code) assures consistency in documenting dental treatment.",
-    "download_owl": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology/blob/master/src/ontology/older/CDTCodes%20as%20Classes_pruned.owl",
+    "description": "The Code on Dental Procedures and Nomenclature (the CDT Code) assures consistency in documenting dental treatment.\n\nNote that CDT codes should look like D2150 but for some reason the ontology conversion that is reused across OBO rewrites them as CPT_000 + the four numbers without the leading D.",
+    "download_owl": "https://raw.githubusercontent.com/oral-health-and-disease-ontologies/ohd-ontology/f19378ff192b6f9ea16133e85671e8359fc371cd/src/ontology/archive/CDTCodes%20as%20Classes_pruned.owl",
     "example": "1000001",
     "homepage": "https://www.ada.org/publications/CDT",
     "keywords": [
@@ -6375,7 +6450,7 @@
       "orcid": "0000-0003-2826-6444"
     },
     "description": "The Cellosaurus is a knowledge resource on cell lines. It attempts to describe all cell lines used in biomedical research. Its scope includes: Immortalized cell lines; naturally immortal cell lines (example: stem cell lines); finite life cell lines when those are distributed and used widely; vertebrate cell line with an emphasis on human, mouse and rat cell lines; and invertebrate (insects and ticks) cell lines. Its scope does not include primary cell lines (with the exception of the finite life cell lines described above) and plant cell lines.",
-    "download_obo": "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo",
+    "download_obo": "https://github.com/calipho-sib/cellosaurus/raw/master/cellosaurus.obo",
     "example": "0440",
     "homepage": "https://cellosaurus.org",
     "keywords": [
@@ -6427,6 +6502,7 @@
         "year": 2018
       }
     ],
+    "repository": "https://github.com/calipho-sib/cellosaurus",
     "synonyms": [
       "CVCL"
     ],
@@ -6901,6 +6977,7 @@
       "medicinal chemistry",
       "molecules"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "cheminf": "000412",
       "fairsharing": "FAIRsharing.m3jtpg",
@@ -7001,6 +7078,7 @@
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
     "example": "CHEMBL465070",
     "homepage": "https://www.ebi.ac.uk/chembldb/",
+    "license": "CC-BY-4.0",
     "mappings": {
       "biocontext": "CHEMBL.COMPOUND",
       "edam": "2646",
@@ -7041,6 +7119,7 @@
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
     "example": "CHEMBL3467",
     "homepage": "https://www.ebi.ac.uk/chembldb/",
+    "license": "CC-BY-4.0",
     "mappings": {
       "biocontext": "CHEMBL.TARGET",
       "cellosaurus": "ChEMBL-Targets",
@@ -7334,6 +7413,24 @@
       }
     ],
     "uri_format": "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"
+  },
+  "chictr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Established in 2005 by professor Wu Taixiang and Li Youping team, West China Hospital, Sichuan University, and the Ministry of Health of China assigned it to be the representative of China to join WHO ICTRP in 2007. The Chinese Clinical Trial Registry provides the services include register for trials, consultation for trial design, central randomization for an allocation sequence, peer review for draft articles and training for peer reviewers. (from website)",
+    "example": "ChiCTR2300070727",
+    "homepage": "https://www.chictr.org.cn",
+    "logo": "https://www.chictr.org.cn/images/top.jpg",
+    "name": "Chinese Clinical Trial Registry",
+    "pattern": "^ChiCTR\\d+$",
+    "preferred_prefix": "chictr",
+    "references": [
+      "https://www.chictr.org.cn/showproj.html?proj=187605"
+    ]
   },
   "chiro": {
     "contact": {
@@ -7986,6 +8083,7 @@
       }
     ],
     "synonyms": [
+      "NCT",
       "clinicaltrial"
     ],
     "uri_format": "https://clinicaltrials.gov/ct2/show/$1"
@@ -9842,6 +9940,25 @@
     "provides": "uniprot",
     "uri_format": "http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1"
   },
+  "conference": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The conference-ontology is a new self-contained ontology for modelleing knowledge about conferences. The conference-ontology adopts best ontology design practices (e.g., Ontology Design Patterns, ontology reuse and interlinking) and guarantees interoperability with SWC ontology and all other pertinent vocabularies. (from homepage)",
+    "download_owl": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl",
+    "example": "isDocumentRelatedTo",
+    "homepage": "http://www.scholarlydata.org/ontology/doc/",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "Conference Ontology",
+    "preferred_prefix": "conference",
+    "uri_format": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#$1"
+  },
   "confident.event": {
     "contact": {
       "email": "Philip.Stroemert@tib.eu",
@@ -10924,6 +11041,21 @@
     "uri_format": "http://purl.obolibrary.org/obo/CTENO_$1",
     "version": "2016-10-19"
   },
+  "ctis": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This website supports the undertaking and oversight of clinical trials in the European Union (EU) and European Economic Area (EEA). It is part of a broad initiative to transform the EU/EEA clinical trials environment in support of large clinical trials in multiple European countries, to the benefit of medical innovation and patients. (from homepage)",
+    "example": "2023-503698-40-00",
+    "homepage": "https://euclinicaltrials.eu/",
+    "name": "Clinical Trials Information System",
+    "pattern": "^\\d{4}-\\d+-\\d+-\\d+$",
+    "preferred_prefix": "ctis",
+    "uri_format": "https://euclinicaltrials.eu/app/#/view/$1"
+  },
   "cto": {
     "contact": {
       "email": "alpha.tom.kodamullil@scai.fraunhofer.de",
@@ -10958,6 +11090,23 @@
     "repository": "https://github.com/ClinicalTrialOntology/CTO",
     "uri_format": "http://purl.obolibrary.org/obo/CTO_$1",
     "version": "1.0.0"
+  },
+  "ctri": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The mission of the Clinical Trials Registry-India (CTRI) is to ensure that all clinical trials conducted in India are prospectively registered, i.e. before the enrolment of the first participant. Additionally, post-marketing surveillance studies, BA/BE studies as well as clinical studies as part of PG thesis are also expected to be registered in the CTRI. (from homepage)\n\nNote that the identifier in this semantic space is not the one used in the webpages",
+    "example": "CTRI/2023/04/052053",
+    "homepage": "https://ctri.nic.in",
+    "name": "India Clinical Trials Registry",
+    "pattern": "^CTRI/\\d{4}/\\d{2}/\\d+$",
+    "preferred_prefix": "ctri",
+    "references": [
+      "https://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=82487"
+    ]
   },
   "cubedb": {
     "comment": "website down as of 2021-10-04",
@@ -13483,6 +13632,37 @@
     "preferred_prefix": "drduke",
     "uri_format": "https://phytochem.nal.usda.gov/phytochem/chemicals/show/$1"
   },
+  "drks": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The German Clinical Trials Register (DRKS) is the German WHO primary registry. It is competent for the registration of all patient-oriented clinical trials conducted in Germany. The DRKS now contains well over 14,000 studies. Currently, around 2,000 studies are added annually. (from website)",
+    "example": "DRKS00031815",
+    "homepage": "http://drks.de",
+    "name": "German Clinical Trials Register",
+    "pattern": "^DRKS\\d+$",
+    "preferred_prefix": "drks",
+    "providers": [
+      {
+        "code": "alt1",
+        "description": "German Language Provider",
+        "homepage": "http://drks.de",
+        "name": "German Language Provider",
+        "uri_format": "https://drks.de/search/de/trial/$1"
+      },
+      {
+        "code": "alt2",
+        "description": "Legacy Provider",
+        "homepage": "http://drks.de",
+        "name": "Legacy Provider",
+        "uri_format": "http://drks.de/en/trial/$1"
+      }
+    ],
+    "uri_format": "https://drks.de/search/en/trial/$1"
+  },
   "dron": {
     "appears_in": [
       "scdo"
@@ -13721,6 +13901,7 @@
       "pharmacology",
       "pharmacy"
     ],
+    "license": "CC-BY-SA-4.0",
     "mappings": {
       "biolink": "DrugCentral",
       "fairsharing": "FAIRsharing.3me82d",
@@ -14211,6 +14392,21 @@
       "ECGOntology"
     ],
     "uri_format": "http://www.cvrgrid.org/files/ECGOntologyv1.owl#ECG_$1"
+  },
+  "echinobase": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Echinobase supports the international research community by providing a centralized, integrated and easy to use web based resource to access the diverse and rich, functional genomics data of echinoderm species.",
+    "example": "23159291",
+    "homepage": "https://www.echinobase.org",
+    "name": "Echinobase",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "echinobase",
+    "uri_format": "https://www.echinobase.org/entry/gene/showgene.do?method=display&geneId=$1"
   },
   "echobase": {
     "description": "EchoBASE is a database designed to contain and manipulate information from post-genomic experiments using the model bacterium Escherichia coli K-12. The database is built on an enhanced annotation of the updated genome sequence of strain MG1655 and the association of experimental data with the E.coli genes and their products.",
@@ -14921,6 +15117,7 @@
       "functional genomics",
       "ontology"
     ],
+    "license": "Apache-2.0",
     "mappings": {
       "aberowl": "EFO",
       "agroportal": "EFO",
@@ -17286,6 +17483,9 @@
     "name": "EU Clinical Trials",
     "pattern": "^\\d{4}\\-\\d{6}\\-\\d{2}$",
     "preferred_prefix": "euclinicaltrials",
+    "synonyms": [
+      "EUCTR"
+    ],
     "uri_format": "https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1"
   },
   "eugenes": {
@@ -17831,6 +18031,33 @@
     "repository": "https://github.com/obophenotype/fungal-anatomy-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/FAO_$1",
     "version": "2020-05-07"
+  },
+  "fao.asfis": {
+    "comment": "This resource is offered freely by FAO for download but no obvious licensing is indicated, and no caution about appropriate reuse.",
+    "contributor": {
+      "email": null,
+      "github": "ddooley",
+      "name": "Damion Dooley",
+      "orcid": "0000-0002-8844-9165"
+    },
+    "description": "The FAO Statistics Team (NFISS) of Fisheries and Aquaculture Division collates world capture and aquaculture production statistics at either the species, genus, family, or higher taxonomic levels in 3,169 statistical categories (2022 data release) referred to as species items. ASFIS list of species includes 13,417 species items selected according to their interest or relation to fisheries and aquaculture. For each species item stored in a record, codes (ISSCAAP group, taxonomic and 3-alpha) and taxonomic information (scientific name, author(s), family, and higher taxonomic classification) are provided. An English name is available for most of the records, and about one third of them have also a French and Spanish name. Information is also provided about the availability of fishery production statistics on the species item in the FAO databases. (from homepage)",
+    "example": "20560",
+    "github_request_issue": 872,
+    "homepage": "https://www.fao.org/fishery/en/collection/asfis/en",
+    "name": "Aquatic Sciences and Fisheries Information System",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "fao.asfis",
+    "repository": "bioregistry",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "asfis"
+    ],
+    "uri_format": "https://www.fao.org/fishery/en/species/$1"
   },
   "fbbi": {
     "contact": {
@@ -22310,7 +22537,8 @@
         "name": "Legacy OBO",
         "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
       }
-    ]
+    ],
+    "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
   },
   "gpcrdb": {
     "contact": {
@@ -23260,6 +23488,15 @@
     ],
     "pattern": "^\\d{4}$",
     "preferred_prefix": "HANCESTRO",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "Legacy URI",
+        "homepage": "http://www.ebi.ac.uk/ancestro",
+        "name": "Legacy",
+        "uri_format": "http://www.ebi.ac.uk/ancestro/ancestro_$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1186/s13059-018-1396-2",
@@ -23498,6 +23735,33 @@
       }
     ],
     "uri_format": "https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1"
+  },
+  "hdl": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Welcome to the web site of the Handle.Net Registry (HNR), run by Corporation for National Research Initiatives (CNRI). CNRI is a Multi-Primary Administrator (MPA) of the Global Handle Registry (GHR), authorized by the DONA Foundation to allot prefixes to users of the Handle System. The DONA Foundation is a non-profit organization based in Geneva that has taken over responsibility for the evolution of CNRI's Digital Object (DO) Architecture including outreach around the world. One of the Foundation's responsibilities is to administer and maintain the overall operation of the GHR, a task that was previously performed by CNRI. (from website)",
+    "example": "2381/12775",
+    "example_extras": [
+      "391/00-0000-0000-0009-3C7E-F"
+    ],
+    "homepage": "https://www.handle.net/",
+    "keywords": [
+      "subject agnostic"
+    ],
+    "mappings": {
+      "fairsharing": "FAIRsharing.0b7e54"
+    },
+    "name": "Handle",
+    "pattern": "^\\d+/.+$",
+    "preferred_prefix": "hdl",
+    "synonyms": [
+      "handle"
+    ],
+    "uri_format": "http://hdl.handle.net/$1"
   },
   "hdr": {
     "description": "The Homeodomain Resource is a curated collection of sequence, structure, interaction, genomic and functional information on the homeodomain family. It contains sets of curated homeodomain sequences from fully sequenced genomes, including experimentally derived homeodomain structures, homeodomain protein-protein interactions, homeodomain DNA-binding sites and homeodomain proteins implicated in human genetic disorders.",
@@ -27598,6 +27862,23 @@
     ],
     "uri_format": "http://www.ebi.ac.uk/cgi-bin/dbfetch?db=IPI&id=$1&format=default"
   },
+  "irct": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Iranian Registry of Clinical Trials. This is a Primary Registry in the WHO Registry Network set up with the help from the Ministry of Health and Medical Education (MOHME) and hosted by Iran University of Medical Sciences (IUMS). (from homepage)\nNote that the website uses a different identifier then the one reported in this semantic space.",
+    "example": "IRCT20080904001199N7",
+    "homepage": "https://en.irct.ir/",
+    "name": "Iranian Registry of Clinical Trials",
+    "pattern": "^IRCT\\d+N\\d+$",
+    "preferred_prefix": "irct",
+    "references": [
+      "https://en.irct.ir/trial/65035"
+    ]
+  },
   "ird.segment": {
     "description": "Influenza Research Database (IRD) contains information related to influenza virus, including genomic sequence, strain, protein, epitope  and bibliographic information. The Segment Details page contains descriptive information and annotation data about a particular genomic segment and its encoded product(s).",
     "example": "CY077097",
@@ -27887,6 +28168,30 @@
     "preferred_prefix": "iso15926",
     "uri_format": "http://standards.iso.org/iso/15926/part14/$1"
   },
+  "isrctn": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The ISRCTN registry is a primary clinical trial registry recognised by WHO and ICMJE that accepts all clinical research studies (whether proposed, ongoing or completed), providing content validation and curation and the unique identification number necessary for publication. All study records in the database are freely accessible and searchable. (from homepage)",
+    "example": "ISRCTN10175490",
+    "homepage": "https://www.isrctn.com/",
+    "name": "International Traditional Medicine Clinical Trial Registry",
+    "pattern": "^ISRCTN\\d+$",
+    "preferred_prefix": "isrctn",
+    "providers": [
+      {
+        "code": "doi",
+        "description": "DOI resolution of ISRCTN",
+        "homepage": "https://doi.org/10.1186",
+        "name": "DOI",
+        "uri_format": "https://doi.org/10.1186/$1"
+      }
+    ],
+    "uri_format": "https://www.isrctn.com/$1"
+  },
   "issn": {
     "description": "The International Standard Serial Number (ISSN) is a unique eight-digit number used to identify a print or electronic periodical publication, rather than individual articles or books.",
     "example": "0745-4570",
@@ -27943,6 +28248,21 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "itis",
     "uri_format": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1"
+  },
+  "itmctr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The International Traditional Medicine Clinical Trial Registry (ITMCTR) is a non-profit online register of clinical trials being conducted in the field of traditional medicine. It isoperated by the China Academy of Chinese Medical Sciences and The China Center For Evidence Based Traditional Chinese Medicine. It is recognized as a Primary Registry of WHO, and contributes data to the WHO ICTRP. (from website)",
+    "example": "ITMCTR2023000002",
+    "homepage": "http://itmctr.ccebtcm.org.cn",
+    "logo": "http://itmctr.ccebtcm.org.cn/Content/images/ny_logo.png",
+    "name": "International Traditional Medicine Clinical Trial Registry",
+    "pattern": "^ITMCTR\\d+$",
+    "preferred_prefix": "itmctr"
   },
   "ito": {
     "banana": "ITO",
@@ -28278,6 +28598,30 @@
     },
     "uri_format": "https://genome.jgi.doe.gov/portal/lookup?keyName=proposalId&groupOnly=1&app=Info&keyValue=$1"
   },
+  "jrct": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This system submits an implementation plan to the Minister of Health, Labor and Welfare for clinical research conducted at medical institutions, etc. based on the provisions of the 'Clinical Research Act' and the 'Act on Ensuring Safety of Regenerative Medicine, etc.' It is a system for performing notification procedures such as In addition, based on the clinical research practice standards stipulated in the same law, we disclose information that the World Health Organization (WHO) requires to be disclosed, information that ensures the transparency of the research process, and information that contributes to the selection of participation in clinical research by the public. (translated from website)",
+    "example": "jRCTs041220087",
+    "homepage": "https://jrct.niph.go.jp",
+    "name": "Japan Registry of Clinical Trials",
+    "pattern": "^jRCT\\w?\\d+$",
+    "preferred_prefix": "jrct",
+    "providers": [
+      {
+        "code": "",
+        "description": "",
+        "homepage": "",
+        "name": "",
+        "uri_format": "https://jrct.niph.go.jp/latest-detail/$1"
+      }
+    ],
+    "uri_format": "https://jrct.niph.go.jp/en-latest-detail/$1"
+  },
   "jstor": {
     "description": "JSTOR (Journal Storage) is a digital library containing digital versions of historical academic journals, as well as books, pamphlets and current issues of journals. Some public domain content is free to access, while other articles require registration.",
     "example": "3075966",
@@ -28374,6 +28718,23 @@
     "name": "Korean Cell Line Bank",
     "preferred_prefix": "kclb",
     "uri_format": "https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=$1"
+  },
+  "kcris": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Clinical Research Information Service (CRIS) is a non-profit online registration system for clinical trials (researches) to be conducted in Korea. It has been established at the Korea Disease Control and Prevention Agency (KDCA) with support from the Ministry of Health and Welfare (MOHW). It joined the WHO International Clinical Trials Registry Platform (ICTRP) as 11th member of Primary Registry. (from about page)\nNote that the web page that resolves this trial does not correspond to the semantic space",
+    "example": "KCT0008394",
+    "homepage": "https://cris.nih.go.kr",
+    "name": "Korean Clinical Research Information Service",
+    "pattern": "^KCT\\d+$",
+    "preferred_prefix": "kcris",
+    "references": [
+      "https://cris.nih.go.kr/cris/search/detailSearchEn.do?seq=23973"
+    ]
   },
   "kegg": {
     "comment": "KEGG prefix has been split into several others",
@@ -28942,6 +29303,27 @@
     "preferred_prefix": "kerafast",
     "uri_format": "https://www.kerafast.com/Search?SearchTerm=&quot;$1&quot;"
   },
+  "kestrelo": {
+    "contact": {
+      "email": "lindsey.anderson@pnnl.gov",
+      "github": "lnanderson",
+      "name": "Lindsey N. Anderson",
+      "orcid": "0000-0002-8741-7823"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology for harmonizing and extending severeral existing resources in the vaccine and immunology domains",
+    "example": "0000001",
+    "homepage": "https://gitlab.pnnl.gov/kestrel/kestrel_ontology",
+    "name": "KESTREL Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "kestrelo",
+    "uri_format": "http://purl.obolibrary.org/obo/kestrelo_$1"
+  },
   "knapsack": {
     "description": "KNApSAcK provides information on metabolites and the\ntaxonomic class with which they are associated.",
     "example": "C00000001",
@@ -29052,6 +29434,23 @@
     "pattern": "^B\\d+$",
     "preferred_prefix": "langual",
     "uri_format": "https://www.langual.org/langual_thesaurus.asp?termid=$1"
+  },
+  "lbctr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Lebanese Clinical Trials Registry is an online register of clinical trials being undertaken in Lebanon. It includes trials that target humans from the full spectrum of therapeutic areas of pharmaceuticals, surgical procedures, preventive measures, lifestyle, devices, treatment and rehabilitation strategies and complementary therapies. (from homepage)",
+    "example": "LBCTR2023015204",
+    "homepage": "https://lbctr.moph.gov.lb/",
+    "name": "Lebanon Clinical Trials Registry",
+    "pattern": "^LBCTR\\d+$",
+    "preferred_prefix": "lbctr",
+    "references": [
+      "https://lbctr.moph.gov.lb/Trials/Details/5204"
+    ]
   },
   "lbo": {
     "contact": {
@@ -35448,7 +35847,7 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4802"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex).",
     "example": "4",
@@ -36171,7 +36570,7 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4804"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -36203,13 +36602,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4804"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4804"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXBR covers brain regions from the PHT00 macaque parcellation, Paxinos, Huang, and Tog The Rhesus Monkey Brain In Stereotaxic Coordinates (1999).",
     "example": "145",
@@ -36242,13 +36641,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4805"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4805"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXCELL conatins cell types with a focus on neuron types.",
     "example": "91005",
@@ -36282,13 +36681,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4806"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4806"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXCHEM covers chemicals. Most classes are also in ChEBI.",
     "example": "90801",
@@ -36322,7 +36721,7 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4804"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -36356,13 +36755,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4808"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4808"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXFUNC covers terms for cognitive function.",
     "example": "90801",
@@ -36393,13 +36792,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4809"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4809"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXINV includes funding agencies and some terms related to documenting scientific investigations data acquisition and analysis.",
     "example": "90901",
@@ -36425,13 +36824,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4810"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4810"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXMOL covers molecules, proteins, and molecular roles, similar to entities in the Protein Ontology, UniProt, and ChEBI, with a focus on those of particular relevance in the nervous system.",
     "example": "90806",
@@ -36465,13 +36864,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4811"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4811"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXOEN prefixed identifiers are from the version of the Ontology for Experimental Neurophysiology (OEN; https://github.com/G-Node/OEN) that were originally deposited in Neurolex (for examples, see https://scicrunch.org/scicrunch/interlex/search?q=NLXOEN results).",
     "example": "0001000",
@@ -36502,13 +36901,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4812"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4812"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXORG covers organisms.",
     "example": "090701",
@@ -36539,13 +36938,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4813"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4813"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXQUAL covers qualities and dispositions similar to the Phenotype And Trait Ontology (PATO).",
     "example": "100810",
@@ -36577,13 +36976,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4814"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4814"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXRES covers digital resources. Most classes are high level types covering everything from databases and sourcecode to source code licenses and instrument supplier websites",
     "example": "090924",
@@ -36614,13 +37013,13 @@
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4815"
+      "orcid": "0000-0002-7509-4801"
     },
     "contributor": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
       "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4815"
+      "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXSUB covers subcellular entities similar to the cellular component branch of the Gene Ontology (GO).",
     "example": "090803",
@@ -39903,6 +40302,24 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "p3db.site",
     "uri_format": "http://www.p3db.org/phosphosite.php?id=$1&ref=0"
+  },
+  "pactr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Pan African Clinical Trials Registry (PACTR) is a regional register of clinical trials conducted in Africa. The registry is an African initiative serving the needs of Africans. It provides an open-access platform where clinical trials can be registered free of charge. The PACTR aims to increase clinical trial registration in Africa by developing awareness of the need to register trials and supporting trialists during registration. (from homepage)",
+    "example": "PACTR202304525632216",
+    "homepage": "https://pactr.samrc.ac.za/",
+    "logo": "https://pactr.samrc.ac.za/images/Banner_Split.jpg",
+    "name": "Pan African Clinical Trials Registry",
+    "pattern": "^PACTR\\d+$",
+    "preferred_prefix": "pactr",
+    "references": [
+      "https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID=25488"
+    ]
   },
   "paleodb": {
     "description": "The Paleobiology Database seeks to provide researchers and the public with information about the entire fossil record. It stores global, collection-based occurrence and taxonomic data for marine and terrestrial animals and plants of any geological age, as well as web-based software for statistical analysis of the data.",
@@ -44940,6 +45357,7 @@
         "year": 2006
       }
     ],
+    "rdf_uri_format": "http://rdf.ncbi.nlm.nih/pubmed/$1",
     "synonyms": [
       "MEDLINE",
       "PMID",
@@ -45193,6 +45611,15 @@
     },
     "name": "Quantities, Units, Dimensions, and Types Ontology",
     "preferred_prefix": "qudt",
+    "providers": [
+      {
+        "code": "v11",
+        "description": "Version 1.1 provider",
+        "homepage": "http://qudt.org",
+        "name": "Version 1.1",
+        "uri_format": "http://qudt.org/1.1/schema/qudt#$1"
+      }
+    ],
     "repository": "https://github.com/qudt/qudt-public-repo",
     "uri_format": "http://qudt.org/schema/qudt#$1"
   },
@@ -45676,6 +46103,21 @@
     ],
     "uri_format": "http://rebase.neb.com/rebase/enz/$1.html"
   },
+  "rebec": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Presents the new fast tracks for clinical research and observational studies on INDIGENOUS PEOPLE AND TRADITIONAL COMMUNITIES and on NEGLECTED TROPICAL DISEASES (NTDs). Fast-track can reduce the normal approval period for clinical trials to less than 48 hours, if the documentation, information and any mandatory changes requested are provided by the registrant.",
+    "example": "RBR-6qvdftm",
+    "homepage": "https://ensaiosclinicos.gov.br",
+    "name": "Brazilian Registry of Clinical Trials",
+    "pattern": "^RBR-\\w+$",
+    "preferred_prefix": "rebec",
+    "uri_format": "https://ensaiosclinicos.gov.br/rg/$1"
+  },
   "receptome.family": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -45867,6 +46309,22 @@
     "pattern": "^[0-9][A-Za-z0-9]{3}[A-Za-z0-9][A-Za-z0-9]?[0-9]?[0-9]?$",
     "preferred_prefix": "repeatsdb.structure",
     "uri_format": "https://repeatsdb.org/structure/$1"
+  },
+  "repec": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Peruvian Clinical Trials Registry - REPEC is a non-profit online information system developed in 2007 by INS. It is a publicly accessible prospective registry aimed at providing information about clinical trials underway in Peru. REPEC also includes Registries for Trial Sites, Institutional Research Ethics Committees, Sponsors and Contract Research Organizations. REPEC contains records of clinical trials since 1995. Since December 14, 2012, the Peruvian National Institute of Health, by means of the General Office for Research and Technological Transfer (OGITT), has started a process to improve REPEC and to join the WHO International Clinical Trials Registry Platform (ICTRP) and to be acknowledged as a Primary Registry. More information about primary registries is available in ICRTP at http://apps.who.int/trialsearch/. (from website)",
+    "example": "046-19",
+    "homepage": "https://ensayosclinicos-repec.ins.gob.pe/en/",
+    "logo": "https://ensayosclinicos-repec.ins.gob.pe/images/plantilla/img_logo_principal_repec_en.png",
+    "name": "Peruvian Clinical Trial Registry",
+    "pattern": "^\\d+-\\d+$",
+    "preferred_prefix": "repec",
+    "uri_format": "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=$1"
   },
   "reproduceme": {
     "contact": {
@@ -47151,6 +47609,21 @@
     ],
     "uri_format": "https://www.kazusa.or.jp/rouge/gfpage/$1"
   },
+  "rpcec": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Cuban Public Registry of Clinical Trials (RPCEC) is a website with a database of clinical trials, with national coverage. It was established in 2007 under the leadership of the National Coordinating Center of Clinical Trials (CENCEC) and with INFOMED collaboration. (from homepage)",
+    "example": "RPCEC00000423",
+    "homepage": "https://rpcec.sld.cu/en/home",
+    "name": "Cuban Registry of Clinical Trials",
+    "pattern": "^RPCEC\\d+$",
+    "preferred_prefix": "rpcec",
+    "uri_format": "https://rpcec.sld.cu/en/trials/$1"
+  },
   "rrid": {
     "banana": "RRID",
     "description": "The Research Resource Identification Initiative provides RRIDs to 4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases / Software tools.: Antibodies, Model Organisms, and Databases / Software tools.\r\nThe initiative works with participating journals to intercept manuscripts in the publication process that use these resources, and allows publication authors to incorporate RRIDs within the methods sections. It also provides resolver services that access curated data from 10 data sources: the antibody registry (a curated catalog of antibodies), the SciCrunch registry (a curated catalog of software tools and databases), and model organism nomenclature authority databases (MGI, FlyBase, WormBase, RGD), as well as various stock centers. These RRIDs are aggregated and can be searched through SciCrunch.",
@@ -47697,7 +48170,6 @@
       "orcid": "0000-0002-0381-3766"
     },
     "description": "An ontology which represents information about the State of Alaska's Salmon and People (SASAP) project, as well as knowledge about salmon, features of their habitats, salmon stakeholders, and related entities.",
-    "download_owl": "https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/sasap-$1/SALMON/SASAP.owl",
     "example": "00000101",
     "homepage": "https://github.com/DataONEorg/sem-prov-ontologies",
     "keywords": [
@@ -48625,6 +49097,21 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "senso",
     "uri_format": "http://purl.dataone.org/odo/SENSO_$1"
+  },
+  "seo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SEO is a reference ontology for modelling data about scientific events such as conferences, symposioums and workshops.",
+    "download_rdf": "https://raw.githubusercontent.com/saidfathalla/SEOontology/master/SEO.ttl",
+    "example": "Symposium",
+    "homepage": "https://w3id.org/seo",
+    "name": "Scientific Event Ontology",
+    "preferred_prefix": "seo",
+    "uri_format": "https://w3id.org/seo#$1"
   },
   "sep": {
     "contact": {
@@ -49880,6 +50367,24 @@
     "preferred_prefix": "skosxl",
     "uri_format": "http://www.w3.org/2008/05/skos-xl#$1"
   },
+  "slctr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Sri Lanka Clinical Trials Registry (SLCTR) is a Registry for clinical trials involving human subjects, conducted in Sri Lanka or overseas. The SLCTR is a Primary Registry linked to the Registry Network of the International Clinical Trials Registry Platform of the WHO (WHO-ICTRP). It is a not-for-profit Registry, with free and open access to researchers, clinicians, and the general public. (from homepage)",
+    "example": "SLCTR/2023/010",
+    "homepage": "https://slctr.lk/",
+    "logo": "https://slctr.lk/images/logo.png",
+    "name": "Sri Lanka Clinical Trials Registry",
+    "pattern": "^SLCTR/\\d{4}/\\d+$",
+    "preferred_prefix": "slctr",
+    "references": [
+      "https://slctr.lk/trials/slctr-2023-010"
+    ]
+  },
   "slkbase": {
     "description": "Cell line databases/resources",
     "example": "3618",
@@ -50209,7 +50714,7 @@
         "uri_format": "http://bio2rdf.org/snap:$1"
       }
     ],
-    "uri_format": "http://snap.humgen.au.dk/views/geneview.cgi?gene=$1"
+    "uri_format": "http://www.ifomis.org/bfo/1.1/snap#$1"
   },
   "snomedct": {
     "contact": {
@@ -50678,8 +51183,8 @@
       "orcid": "0000-0002-3583-7340"
     },
     "description": "The Swiss Personalized Health Network is a national infrastructure initiative with the aim to develop, implement, and validate coordinated data infrastructures in order to make health-relevant data interoperable and shareable for research in Switzerland. The sphn RDF schema builds the foundation for all data exchanges within the sphn by integrating semantic information defined in the [sphn dataset](https://sphn.ch/document/sphn-dataset/).",
-    "download_owl": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.owl?inline=false",
-    "download_rdf": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.ttl?inline=false",
+    "download_owl": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/rdf_schema/sphn_rdf_schema.owl",
+    "download_rdf": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/rdf_schema/sphn_rdf_schema.ttl",
     "example": "Allergy",
     "github_request_issue": 535,
     "homepage": "https://www.sphn.ch",
@@ -51542,7 +52047,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology that contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level concepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research).",
-    "download_obo": "https://github.com/EnvironmentOntology/envo/blob/master/src/envo/sources/sweetrealm.obo",
+    "download_obo": "https://raw.githubusercontent.com/EnvironmentOntology/envo/master/src/envo/sources/sweetrealm.obo",
     "example": "ANOVA",
     "homepage": "https://bioportal.bioontology.org/ontologies/SWEET",
     "keywords": [
@@ -51682,9 +52187,9 @@
       "orcid": "0000-0002-7702-4495"
     },
     "description": "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community.",
-    "download_json": "https://github.com/allysonlister/swo/raw/master/release/swo.json",
-    "download_obo": "https://github.com/allysonlister/swo/raw/master/release/swo.obo",
-    "download_owl": "https://github.com/allysonlister/swo/raw/master/release/swo.owl",
+    "download_json": "https://raw.githubusercontent.com/allysonlister/swo/master/swo.json",
+    "download_obo": "https://raw.githubusercontent.com/allysonlister/swo/master/swo.obo",
+    "download_owl": "https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl",
     "example": "0000144",
     "homepage": "https://github.com/allysonlister/swo",
     "keywords": [
@@ -52481,6 +52986,21 @@
       "TC"
     ],
     "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
+  },
+  "tctr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The TCTR was estabished in 2009 and has been operated by Clinical Research Collaboration Network (CRCN), an organization under the Medical Research Foundation, which is a non-profit organization, and financially supported by Thailand Center of Excellence for Life Sciences (TCELS). CRCN has been retitled the Medical Research Network (MedResNet) since June 15, 2012. (from homepage)",
+    "example": "TCTR20230429001",
+    "homepage": "https://www.thaiclinicaltrials.org",
+    "name": "Thai Clinical Trials Registry",
+    "pattern": "^TCTR\\d+$",
+    "preferred_prefix": "tctr",
+    "uri_format": "https://www.thaiclinicaltrials.org/show/$1"
   },
   "te": {
     "contributor": {
@@ -53802,6 +54322,23 @@
     ],
     "uri_format": "http://www.umbbd.ethz.ch/servlets/rule.jsp?rule=$1"
   },
+  "uminctr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An additional Japanese clinical trial registry",
+    "example": "UMIN000049383",
+    "homepage": "https://www.umin.ac.jp/ctr/index.htm",
+    "name": "University hospital Medical Information Network Clinical Trial Registry",
+    "pattern": "^UMIN\\d+$",
+    "preferred_prefix": "uminctr",
+    "references": [
+      "https://center6.umin.ac.jp/cgi-open-bin/ctr_e/ctr_view.cgi?recptno=R000056224"
+    ]
+  },
   "umls": {
     "description": "The Unified Medical Language System is a repository of biomedical vocabularies. Vocabularies integrated in the UMLS Metathesaurus include the NCBI taxonomy, Gene Ontology, the Medical Subject Headings (MeSH), OMIM and the Digital Anatomist Symbolic Knowledge Base. UMLS concepts are not only inter-related, but may also be linked to external resources such as GenBank.",
     "example": "C2584994",
@@ -54175,7 +54712,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary.",
-    "download_obo": "https://www.uniprot.org/diseases/?query=*&format=obo",
+    "download_obo": "https://rest.uniprot.org/diseases/stream?compressed=true&format=obo&query=%28%2A%29",
     "example": "DI-04240",
     "homepage": "https://www.uniprot.org/diseases/",
     "keywords": [
@@ -54258,7 +54795,7 @@
   },
   "uniprot.keyword": {
     "description": "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries.",
-    "download_obo": "https://www.uniprot.org/keywords/?format=obo",
+    "download_obo": "https://rest.uniprot.org/keywords/stream?compressed=true&fields=id%2Cname%2Ccategory%2Cgene_ontologies&format=tsv&query=%28%2A%29",
     "example": "KW-1273",
     "homepage": "http://www.uniprot.org/keywords/",
     "keywords": [
@@ -54298,7 +54835,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The subcellular locations in which a protein is found are described in UniProtKB entries with a controlled vocabulary, which includes also membrane topology and orientation terms.",
-    "download_obo": "https://www.uniprot.org/locations/?query=*&format=obo",
+    "download_obo": "https://rest.uniprot.org/locations/stream?compressed=true&format=obo&query=%28%2A%29",
     "example": "SL-0002",
     "homepage": "https://www.uniprot.org/locations/",
     "keywords": [
@@ -54727,9 +55264,7 @@
       "orcid": "0000-0001-5208-3432"
     },
     "description": "The uPheno ontology integrates multiple phenotype ontologies into a unified cross-species phenotype ontology.",
-    "download_json": "https://github.com/obophenotype/upheno/blob/master/upheno.json",
-    "download_obo": "https://github.com/obophenotype/upheno/blob/master/upheno.obo",
-    "download_owl": "https://github.com/obophenotype/upheno/blob/master/upheno.owl",
+    "download_owl": "http://purl.obolibrary.org/obo/upheno.owl",
     "homepage": "https://github.com/obophenotype/upheno",
     "keywords": [
       "evolutionary biology",
@@ -55972,7 +56507,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
-    "uri_format": "http://purl.obolibrary.org/obo/$1",
+    "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "version": "1.1.218"
   },
   "void": {
@@ -56684,6 +57219,12 @@
       "name": "Egon Willighagen",
       "orcid": "0000-0001-7542-0286"
     },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "An ontology supporting data modeling in WikiPathways",
     "download_owl": "http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl",
     "example": "DataNode",
@@ -57185,7 +57726,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/XAO_$1",
     "repository": "https://github.com/xenopus-anatomy/xao",
-    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1",
+    "uri_format": "http://purl.obolibrary.org/obo/XAO_$1",
     "version": "2022-08-29"
   },
   "xco": {
@@ -57438,7 +57979,7 @@
       "orcid": "0000-0003-4978-0864"
     },
     "description": "A structured controlled vocabulary for cross-linking reagents used with proteomics mass spectrometry.",
-    "download_obo": "https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo",
+    "download_obo": "http://purl.obolibrary.org/obo/xlmod.obo",
     "download_owl": "http://purl.obolibrary.org/obo/xlmod.owl",
     "example": "00050",
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",

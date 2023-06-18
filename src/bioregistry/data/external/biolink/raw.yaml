@@ -6,7 +6,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 3.4.2
+version: 3.4.3
 
 
 ## ------------
@@ -4926,7 +4926,7 @@ slots:
     narrow_mappings:
       - RO:0002160
 
-  in_taxon_label:
+  in taxon label:
     is_a: node property
     domain: thing with taxon
     range: label type
@@ -6000,6 +6000,7 @@ classes:
     slots:
       - provided by
       - xref
+      - full name
     slot_usage:
       category:
         required: true
@@ -6765,6 +6766,7 @@ classes:
       entities; body parts; biological processes
     slots:
       - in taxon
+      - in taxon label
 
   biological entity:
     is_a: named thing

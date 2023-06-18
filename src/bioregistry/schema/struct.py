@@ -1882,7 +1882,7 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("caloha").get_download_obo()
-        'https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo'
+        'https://raw.githubusercontent.com/calipho-sib/controlled-vocabulary/master/caloha.obo'
 
         Get an ontology download link from the OBO Foundry:
 

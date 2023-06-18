@@ -1455,6 +1455,53 @@
     "prefix": "P11776",
     "uri_format": "https://www.wood-database.com/$1/"
   },
+  "P11803": {
+    "database": "Q113675145",
+    "description": "identifier for taxon in the World Arachnid Catalog",
+    "example": [
+      "urn:lsid:wac.nmbe.ch:name:57972691-0a3e-471a-8309-9d3185d5a840",
+      "urn:lsid:wac.nmbe.ch:name:6fe8b07d-010f-4568-b896-a99b826fab80",
+      "urn:lsid:wac.nmbe.ch:name:8df197cd-e137-4839-b75d-ca970ad59896"
+    ],
+    "name": "World Arachnid Catalog ID",
+    "pattern": "^urn:lsid:wac\\.nmbe\\.ch:name:[a-z0-9-]+$",
+    "prefix": "P11803",
+    "uri_format": "https://wac.nmbe.ch/lsid/$1"
+  },
+  "P11824": {
+    "database": "Q117750227",
+    "description": "identifier for a plant taxon in the KPU Plant Database of the Kwantlen Polytechnic University School of Horticulture",
+    "example": [
+      "acne",
+      "jues",
+      "lamp",
+      "pila"
+    ],
+    "homepage": "https://plantdatabase.kpu.ca/#gsc.tab=0",
+    "name": "KPU Plant Database ID",
+    "pattern": "^[a-z]{4}$",
+    "prefix": "P11824",
+    "uri_format": "https://plantdatabase.kpu.ca/Plant/$1"
+  },
+  "P11829": {
+    "database": "Q116213766",
+    "description": "identifier of a plant taxon in the Chicago Botanic Garden's Plant Finder database",
+    "example": [
+      "abelia_x_grandiflora_francis_mason--francis_mason_glossy_abelia",
+      "abies_alba--silver_fir",
+      "abies_concolor_candicans--hoary_white_fir",
+      "adromischus_rotundifolius--plover_eggs",
+      "aloe_x_spinosissima--spider_aloe",
+      "fraxinus_chinensis_ssp_rhynchophylla--korean_ash",
+      "pteris_cretica_var_albolineata--brake_fern",
+      "ruellia_nudiflora--runyons_wild_petunia"
+    ],
+    "homepage": "https://www.chicagobotanic.org/plantcollections/plantfinder",
+    "name": "Plant Finder ID (Chicago Botanic Garden)",
+    "pattern": "^[a-z\\_\\-]+$",
+    "prefix": "P11829",
+    "uri_format": "https://www.chicagobotanic.org/plantcollections/plantfinder/$1"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -1809,6 +1856,7 @@
     "database": "Q19816560",
     "description": "identifier in GrassBase - The Online World Grass Flora",
     "example": [
+      "gen00495",
       "imp10873"
     ],
     "homepage": "http://www.kew.org/data/grasses-syn/index.htm",
@@ -1850,9 +1898,7 @@
       "VO_0011559"
     ],
     "name": "Vaccine Ontology ID",
-    "prefix": "P1928",
-    "uri_format": "http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "P1928"
   },
   "P1929": {
     "database": "Q20023123",
@@ -2253,9 +2299,7 @@
     "homepage": "http://www.clo-ontology.org/",
     "name": "Cell Line Ontology ID",
     "pattern": "^CLO_\\d{7}$",
-    "prefix": "P2158",
-    "uri_format": "http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "P2158"
   },
   "P2240": {
     "database": "Q711849",
@@ -2422,14 +2466,15 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/gene/?term=($1%5BSYM%5D)+AND+Mus+musculus%5BOrganism%5D"
   },
   "P2409": {
-    "database": "Q107529324",
-    "description": "identifier for an article in CiNii",
+    "database": "Q118976435",
+    "description": "identifier for an article in scholarly literature databases operated by National Institute of Informatics (NII), Japan",
     "example": [
       "10016210320",
-      "130007941216"
+      "130007941216",
+      "500000543019"
     ],
     "homepage": "https://ci.nii.ac.jp/",
-    "name": "CiNii article ID",
+    "name": "NII article ID",
     "pattern": "^[1-9]\\d{10,11}$",
     "prefix": "P2409",
     "uri_format": "https://ci.nii.ac.jp/naid/$1",
@@ -3410,6 +3455,19 @@
     "prefix": "P3471",
     "uri_format": "https://www.wikiskripta.eu/index.php?curid=$1"
   },
+  "P3475": {
+    "database": "Q119052527",
+    "description": "identifier for a member of the Serbian Academy of Sciences and Arts",
+    "example": [
+      "askoli-gracijadio-isaija",
+      "petrovic-sava-2",
+      "tesla-nikola"
+    ],
+    "name": "SANU member ID",
+    "pattern": "^[a-z\u0458\u044c]+(-[a-z\u0458\u044c]+)+(-2)?$",
+    "prefix": "P3475",
+    "uri_format": "https://www.sanu.ac.rs/clan/$1/"
+  },
   "P351": {
     "database": "Q20641742",
     "description": "identifier for a gene per the NCBI Entrez database",
@@ -3521,8 +3579,7 @@
     "homepage": "https://github.com/oborel/obo-relations/",
     "name": "Relations Ontology ID",
     "pattern": "^(RO|BFO)_[0-9]{7}$",
-    "prefix": "P3590",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "P3590"
   },
   "P3591": {
     "database": "Q8035497",
@@ -3889,8 +3946,7 @@
     "homepage": "http://finess.esante.gouv.fr/fininter/jsp/rechercheSimple.jsp",
     "name": "FINESS ID",
     "pattern": "^\\d{9}$",
-    "prefix": "P4058",
-    "uri_format": "https://finess.esante.gouv.fr/fininter/jsp/actionDetailEntiteEtablissement.do?noFiness=$1"
+    "prefix": "P4058"
   },
   "P4122": {
     "database": "Q59786289",
@@ -4140,9 +4196,7 @@
       "XAO_0000010"
     ],
     "name": "Xenopus Anatomical Ontology ID",
-    "prefix": "P4495",
-    "uri_format": "http://www.ontobee.org/ontology/XAO?iri=http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "P4495"
   },
   "P4526": {
     "database": "Q4743180",
@@ -7186,7 +7240,7 @@
     "pattern": "^([1-3]\\d{7}|[1-9]\\d{0,6})$",
     "prefix": "P698",
     "uri_format": "https://pubmed.ncbi.nlm.nih.gov/$1",
-    "uri_format_rdf": "http://rdf.ncbi.nlm.nih/pubmed/$1"
+    "uri_format_rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/$1"
   },
   "P6982": {
     "database": "Q2784883",
@@ -7777,9 +7831,7 @@
     "miriam": "cl",
     "name": "Cell Ontology ID",
     "pattern": "^CL_[0-9]{7}$",
-    "prefix": "P7963",
-    "uri_format": "http://purl.obolibrary.org/obo/$1",
-    "uri_format_rdf": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "P7963"
   },
   "P7965": {
     "database": "Q77125337",
@@ -8098,7 +8150,7 @@
     "uri_format": "https://ui.adsabs.harvard.edu/abs/$1"
   },
   "P8204": {
-    "database": "Q116763078",
+    "database": "Q112193769",
     "description": "tabular data on Wikimedia Commons of confirmed cases, recoveries, deaths, etc. due to a medical event; corresponds to P8011, P1603, P8049, P8010, P1120. Try to avoid deleting such statements.",
     "example": [
       "http://commons.wikimedia.org/data/main/Data:COVID-19+cases+in+Santa+Clara+County,+California.tab",
@@ -8615,7 +8667,7 @@
     "name": "DBLP publication ID",
     "prefix": "P8978",
     "uri_format": "https://dblp.org/rec/$1",
-    "uri_format_rdf": "https://dblp.org/rec/$1.rdf"
+    "uri_format_rdf": "https://dblp.org/rec/$1"
   },
   "P9026": {
     "database": "Q107214677",
