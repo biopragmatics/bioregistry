@@ -1024,6 +1024,46 @@
     },
     "uri_format": "http://www.genomesize.com/result_species.php?id=$1"
   },
+  "aio": {
+    "contact": {
+      "email": "MJoachimiak@lbl.gov",
+      "github": "realmarcin",
+      "name": "Marcin Pawel Joachimiak",
+      "orcid": "0000-0001-8175-045X"
+    },
+    "contributor": {
+      "email": null,
+      "github": "lnanderson",
+      "name": "Lindsey N Anderson",
+      "orcid": "0000-0002-8741-7823"
+    },
+    "description": "This ontology models classes and relationships describing deep learning networks, their component layers and activation functions, as well as potential biases.",
+    "download_json": "https://raw.githubusercontent.com/berkeleybop/artificial-intelligence-ontology/main/aio.json",
+    "download_obo": "https://raw.githubusercontent.com/berkeleybop/artificial-intelligence-ontology/main/aio.obo",
+    "download_owl": "https://raw.githubusercontent.com/berkeleybop/artificial-intelligence-ontology/main/aio.owl",
+    "example": "Causal_Graphical_Model",
+    "github_request_issue": 884,
+    "homepage": "https://github.com/berkeleybop/artificial-intelligence-ontology",
+    "keywords": [
+      "artificial intelligence",
+      "bioinformatics",
+      "ontology"
+    ],
+    "mappings": {
+      "bioportal": "AIO",
+      "fairsharing": "FAIRsharing.8d6247"
+    },
+    "name": "The Artificial Intelligence Ontology",
+    "preferred_prefix": "aio",
+    "repository": "https://github.com/berkeleybop",
+    "reviewer": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://w3id.org/aio/$1"
+  },
   "aism": {
     "appears_in": [
       "colao",
@@ -1453,7 +1493,6 @@
     "homepage": "https://bioportal.bioontology.org/ontologies/APAONTO",
     "keywords": [
       "ontology",
-      "ontology and terminology",
       "psychology"
     ],
     "mappings": {
@@ -3208,9 +3247,23 @@
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=gene_family&action=family_details&gene_family_id=$1"
   },
   "bgee.gene": {
-    "description": "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (RNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee.",
+    "contact": {
+      "email": "sebastien.moretti@sib.swiss",
+      "github": "smoretti",
+      "name": "Sebastien Moretti",
+      "orcid": "0000-0003-3947-488X"
+    },
+    "contributor_extras": [
+      {
+        "email": "sebastien.moretti@sib.swiss",
+        "github": "smoretti",
+        "name": "Sebastien Moretti",
+        "orcid": "0000-0003-3947-488X"
+      }
+    ],
+    "description": "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (bulk RNA-Seq, scRNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee.",
     "example": "FBgn0000015",
-    "homepage": "https://bgee.org/",
+    "homepage": "https://www.bgee.org",
     "keywords": [
       "gene expression"
     ],
@@ -3221,7 +3274,7 @@
       "prefixcommons": "bgee"
     },
     "name": "Bgee gene",
-    "pattern": "^[A-Za-z]+\\d+$",
+    "pattern": "^[A-Za-z0-9]+$",
     "preferred_prefix": "bgee.gene",
     "providers": [
       {
@@ -3232,7 +3285,10 @@
         "uri_format": "http://bio2rdf.org/bgee:$1"
       }
     ],
-    "uri_format": "https://bgee.org/?page=gene&gene_id=$1"
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/890"
+    ],
+    "uri_format": "https://www.bgee.org/gene/$1"
   },
   "bgee.organ": {
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to anatomical structures.",
@@ -10472,7 +10528,6 @@
     "homepage": "https://casrai.org/credit/",
     "keywords": [
       "data quality",
-      "ontology and terminology",
       "subject agnostic"
     ],
     "mappings": {
@@ -14778,12 +14833,15 @@
     "description": "DataONE ontology of Carbon Flux measurements for MsTMIP and LTER Use Cases",
     "download_owl": "https://raw.githubusercontent.com/DataONEorg/sem-prov-ontologies/run4/observation/d1-ECSO.owl",
     "example": "00000532",
-    "homepage": "https://github.com/DataONEorg/sem-prov-ontologies",
+    "homepage": "http://bioportal.bioontology.org/ontologies/ECSO",
     "keywords": [
+      "earth science",
+      "ecosystem science",
       "ontology"
     ],
     "mappings": {
-      "bioportal": "ECSO"
+      "bioportal": "ECSO",
+      "fairsharing": "FAIRsharing.a4ww64"
     },
     "name": "The Ecosystem Ontology",
     "pattern": "^\\d+$",
@@ -39309,6 +39367,35 @@
     "repository": "https://github.com/enpadasi/Ontology-for-Nutritional-Studies",
     "uri_format": "http://purl.obolibrary.org/obo/ONS_$1",
     "version": "Release version 1.2.3"
+  },
+  "ontie": {
+    "contact": {
+      "email": "bpeters@lji.org",
+      "github": "bpeters42",
+      "name": "Bjoern Peters",
+      "orcid": "0000-0002-8457-6693"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Ontology of Immune Epitopes (ONTIE) is an effort to represent terms in the immunology domain in a formal ontology with the specific goal of representing experiments that identify and characterize immune epitopes.",
+    "download_owl": "https://raw.githubusercontent.com/IEDB/ONTIE/master/ontie.owl",
+    "example": "0000001",
+    "homepage": "https://ontology.iedb.org/",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "fairsharing": "FAIRsharing.kx2md1"
+    },
+    "name": "Ontology for Immune Epitopes",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "ontie",
+    "repository": "https://github.com/IEDB/ONTIE",
+    "uri_format": "https://ontology.iedb.org/ontology/ONTIE_$1"
   },
   "ontoavida": {
     "contact": {

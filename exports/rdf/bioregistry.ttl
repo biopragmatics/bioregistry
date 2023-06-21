@@ -19,6 +19,7 @@
 @prefix agroportal: <http://agroportal.lirmm.fr/ontologies/> .
 @prefix agrovoc: <http://aims.fao.org/aos/agrovoc/c_> .
 @prefix agsd: <http://www.genomesize.com/result_species.php?id=> .
+@prefix aio: <https://w3id.org/aio/> .
 @prefix alfred: <https://alfred.med.yale.edu/alfred/recordinfo.asp?UNID=> .
 @prefix allergome: <http://www.allergome.org/script/dettaglio.php?id_molecule=> .
 @prefix alzforum.mutation: <https://www.alzforum.org/mutations/> .
@@ -71,7 +72,7 @@
 @prefix beetlebase: <http://beetlebase.org/cgi-bin/gbrowse/BeetleBase3.gff3/?name=> .
 @prefix begdb: <http://www.begdb.com/index.php?action=oneMolecule&state=show&id=> .
 @prefix bgee.family: <http://bgee.unil.ch/bgee/bgee?page=gene_family&action=family_details&gene_family_id=> .
-@prefix bgee.gene: <https://bgee.org/?page=gene&gene_id=> .
+@prefix bgee.gene: <https://www.bgee.org/gene/> .
 @prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix bido: <http://purl.org/spar/bido/> .
 @prefix bigg.compartment: <http://bigg.ucsd.edu/compartments/> .
@@ -855,6 +856,7 @@
 @prefix omit: <https://www.ebi.ac.uk/ols/ontologies/omit/terms?short_form=OMIT_> .
 @prefix omop: <https://athena.ohdsi.org/search-terms/terms/> .
 @prefix oncotree: <http://oncotree.mskcc.org/api/tumorTypes/search/code/> .
+@prefix ontie: <https://ontology.iedb.org/ontology/ONTIE_> .
 @prefix ontobee: <http://www.ontobee.org/ontology/> .
 @prefix opb: <https://bioportal.bioontology.org/ontologies/OPB/?p=classes&conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23OPB_> .
 @prefix openalex: <https://openalex.org/> .
@@ -2244,7 +2246,6 @@ bioregistry:apaonto a bioregistry.schema:0000001 ;
         bioportal:APAONTO,
         fairsharing:FAIRsharing.gkw1w8 ;
     dcat:keyword "ontology",
-        "ontology and terminology",
         "psychology" ;
     foaf:homepage bioportal:APAONTO ;
     bioregistry.schema:0000005 "Abdomen"^^xsd:string ;
@@ -3000,19 +3001,20 @@ bioregistry:bgee.family a bioregistry.schema:0000001 ;
 
 bioregistry:bgee.gene a bioregistry.schema:0000001 ;
     rdfs:label "Bgee gene" ;
-    dcterms:description "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (RNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee."^^xsd:string ;
+    dcterms:description "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (bulk RNA-Seq, scRNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:BGEE.GENE,
         n2t:bgee.gene,
         prefixcommons:bgee,
         miriam:bgee.gene ;
     dcat:keyword "gene expression" ;
-    foaf:homepage <https://bgee.org/> ;
+    foaf:homepage <https://www.bgee.org> ;
     bioregistry.schema:0000005 "FBgn0000015"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bgee.org/?page=gene&gene_id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Za-z]+\\d+$"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.bgee.org/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Za-z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://bgee.org/?page=gene&gene_id="^^xsd:string ;
+    bioregistry.schema:0000019 orcid:0000-0003-3947-488X ;
+    bioregistry.schema:0000024 "https://www.bgee.org/gene/"^^xsd:string ;
     bioregistry.schema:0000027 bgee.gene:FBgn0000015 ;
     bioregistry.schema:0000029 "bgee.gene" .
 
@@ -6628,9 +6630,12 @@ bioregistry:ecso a bioregistry.schema:0000001 ;
     dcterms:description "DataONE ontology of Carbon Flux measurements for MsTMIP and LTER Use Cases"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/DataONEorg/sem-prov-ontologies> ;
-    skos:exactMatch bioportal:ECSO ;
-    dcat:keyword "ontology" ;
-    foaf:homepage <https://github.com/DataONEorg/sem-prov-ontologies> ;
+    skos:exactMatch bioportal:ECSO,
+        fairsharing:FAIRsharing.a4ww64 ;
+    dcat:keyword "earth science",
+        "ecosystem science",
+        "ontology" ;
+    foaf:homepage bioportal1:ECSO ;
     bioregistry.schema:0000005 "00000532"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.dataone.org/odo/ECSO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -19602,6 +19607,9 @@ orcid:0000-0001-8135-3489 rdfs:label "Lars Holm Nielsen" ;
 orcid:0000-0001-8149-5890 rdfs:label "Robert Hoehndorf" ;
     foaf:mbox "robert.hoehndorf@kaust.edu.sa" .
 
+orcid:0000-0001-8175-045X rdfs:label "Marcin Pawel Joachimiak" ;
+    foaf:mbox "MJoachimiak@lbl.gov" .
+
 orcid:0000-0001-8397-8810 rdfs:label "Clair Kronk" ;
     foaf:mbox "kronkcj@mail.uc.edu" .
 
@@ -19658,27 +19666,6 @@ orcid:0000-0001-9254-7318 rdfs:label "Rutger Vos" ;
 
 orcid:0000-0001-9370-918X rdfs:label "Daniel Sonenshine" ;
     foaf:mbox "dsonensh@odu.edu" .
-
-orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
-    dcterms:contributor bioregistry:biofactoid,
-        bioregistry:bko,
-        bioregistry:casspc,
-        bioregistry:ccf,
-        bioregistry:cemo,
-        bioregistry:cordis.project,
-        bioregistry:emaps,
-        bioregistry:nihreporter.project,
-        bioregistry:pdc.study,
-        bioregistry:phosphosite.sitegroup,
-        bioregistry:ribocentre,
-        bioregistry:rnaloops,
-        bioregistry:sharkipedia.species,
-        bioregistry:sharkipedia.trait,
-        bioregistry:sharkipedia.trend,
-        bioregistry:signor.relation,
-        bioregistry:uniprot.proteome,
-        bioregistry:zenodo.record ;
-    foaf:mbox "benjamin_gyori@hms.harvard.edu" .
 
 orcid:0000-0001-9472-2589 rdfs:label "Karel Berka" ;
     foaf:mbox "karel.berka@upol.cz" .
@@ -20004,7 +19991,9 @@ orcid:0000-0002-8600-949X rdfs:label "Evan Patterson" ;
 orcid:0000-0002-8683-0050 rdfs:label "Montana Smith" ;
     foaf:mbox "montana.smith@pnnl.gov" .
 
-orcid:0000-0002-8741-7823 rdfs:label "Lindsey N. Anderson" ;
+orcid:0000-0002-8741-7823 rdfs:label "Lindsey N Anderson",
+        "Lindsey N. Anderson" ;
+    dcterms:contributor bioregistry:aio ;
     foaf:mbox "lindsey.anderson@pnnl.gov" .
 
 orcid:0000-0002-8786-1756 rdfs:label "Wes Schafer" ;
@@ -20199,6 +20188,9 @@ orcid:0000-0003-3781-6962 rdfs:label "Meng LIU" ;
 
 orcid:0000-0003-3889-2879 rdfs:label "Kristian Axelsen" ;
     foaf:mbox "kristian.axelsen@sib.swiss" .
+
+orcid:0000-0003-3947-488X rdfs:label "Sebastien Moretti" ;
+    foaf:mbox "sebastien.moretti@sib.swiss" .
 
 orcid:0000-0003-4004-6479 rdfs:label "Christopher Baker" ;
     foaf:mbox "bakerc@unb.ca" .
@@ -22757,6 +22749,8 @@ bioportal:AERO dcterms:isPartOf bioregistry.registry:bioportal .
 bioportal:AFO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:AGRO dcterms:isPartOf bioregistry.registry:bioportal .
+
+bioportal:AIO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:AISM dcterms:isPartOf bioregistry.registry:bioportal .
 
@@ -27483,6 +27477,27 @@ bioregistry:agrovoc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 agrovoc:2842 ;
     bioregistry.schema:0000029 "agrovoc" .
 
+bioregistry:aio a bioregistry.schema:0000001 ;
+    rdfs:label "The Artificial Intelligence Ontology" ;
+    dcterms:description "This ontology models classes and relationships describing deep learning networks, their component layers and activation functions, as well as potential biases."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository github:berkeleybop ;
+    skos:exactMatch bioportal:AIO,
+        fairsharing:FAIRsharing.8d6247 ;
+    dcat:keyword "artificial intelligence",
+        "bioinformatics",
+        "ontology" ;
+    foaf:homepage <https://github.com/berkeleybop/artificial-intelligence-ontology> ;
+    bioregistry.schema:0000005 "Causal_Graphical_Model"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/aio/$1"^^xsd:string ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/berkeleybop/artificial-intelligence-ontology/main/aio.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-8175-045X ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://w3id.org/aio/"^^xsd:string ;
+    bioregistry.schema:0000027 aio:Causal_Graphical_Model ;
+    bioregistry.schema:0000029 "aio" .
+
 bioregistry:alzforum.mutation a bioregistry.schema:0000001 ;
     rdfs:label "Alzforum Mutations" ;
     dcterms:description "Alzforum mutations is a repository of genes and rare variants associated with Alzheimer's disease."^^xsd:string ;
@@ -28898,7 +28913,6 @@ bioregistry:credit a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.fe4816 ;
     dcat:keyword "data quality",
-        "ontology and terminology",
         "subject agnostic" ;
     foaf:homepage <https://casrai.org/credit/> ;
     bioregistry.schema:0000005 "Software"^^xsd:string ;
@@ -33266,6 +33280,24 @@ bioregistry:oncotree a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 oncotree:BLL ;
     bioregistry.schema:0000029 "oncotree" .
 
+bioregistry:ontie a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology for Immune Epitopes" ;
+    dcterms:description "The Ontology of Immune Epitopes (ONTIE) is an effort to represent terms in the immunology domain in a formal ontology with the specific goal of representing experiments that identify and characterize immune epitopes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/IEDB/ONTIE> ;
+    skos:exactMatch fairsharing:FAIRsharing.kx2md1 ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <https://ontology.iedb.org/> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://ontology.iedb.org/ontology/ONTIE_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/IEDB/ONTIE/master/ontie.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 ;
+    bioregistry.schema:0000024 "https://ontology.iedb.org/ontology/ONTIE_"^^xsd:string ;
+    bioregistry.schema:0000027 ontie:0000001 ;
+    bioregistry.schema:0000029 "ontie" .
+
 bioregistry:openalex a bioregistry.schema:0000001 ;
     rdfs:label "OpenAlex" ;
     dcterms:description "OpenAlex is a fully open catalog of the global research system that describes scholarly entities and how those entities are connected to each other."^^xsd:string ;
@@ -36276,6 +36308,8 @@ fairsharing:FAIRsharing.89e853 dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.8b6wfq dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.8d6247 dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.8hcczk dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.8jsya3 dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -36367,6 +36401,8 @@ fairsharing:FAIRsharing.Z8OKi5 dcterms:isPartOf bioregistry.registry:fairsharing
 fairsharing:FAIRsharing.a0k4cd dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.a14123 dcterms:isPartOf bioregistry.registry:fairsharing .
+
+fairsharing:FAIRsharing.a4ww64 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.a5sv8m dcterms:isPartOf bioregistry.registry:fairsharing .
 
@@ -36779,6 +36815,8 @@ fairsharing:FAIRsharing.knp11s dcterms:isPartOf bioregistry.registry:fairsharing
 fairsharing:FAIRsharing.kpbna7 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.kqt2h2 dcterms:isPartOf bioregistry.registry:fairsharing .
+
+fairsharing:FAIRsharing.kx2md1 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.l8Sf5x dcterms:isPartOf bioregistry.registry:fairsharing .
 
@@ -37208,6 +37246,27 @@ orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" ;
 
 orcid:0000-0001-9190-4256 rdfs:label "Satya S. Sahoo" ;
     foaf:mbox "satyasahoo@ieee.org" .
+
+orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
+    dcterms:contributor bioregistry:biofactoid,
+        bioregistry:bko,
+        bioregistry:casspc,
+        bioregistry:ccf,
+        bioregistry:cemo,
+        bioregistry:cordis.project,
+        bioregistry:emaps,
+        bioregistry:nihreporter.project,
+        bioregistry:pdc.study,
+        bioregistry:phosphosite.sitegroup,
+        bioregistry:ribocentre,
+        bioregistry:rnaloops,
+        bioregistry:sharkipedia.species,
+        bioregistry:sharkipedia.trait,
+        bioregistry:sharkipedia.trend,
+        bioregistry:signor.relation,
+        bioregistry:uniprot.proteome,
+        bioregistry:zenodo.record ;
+    foaf:mbox "benjamin_gyori@hms.harvard.edu" .
 
 orcid:0000-0001-9950-5209 rdfs:label "Richard Cyganiak" ;
     foaf:mbox "richard@cyganiak.de" .
@@ -45196,9 +45255,6 @@ orcid:0000-0002-7753-9042 rdfs:label "Mihail Anton" ;
         bioregistry:metatlas.reaction ;
     foaf:mbox "mihail.anton@chalmers.se" .
 
-orcid:0000-0002-8457-6693 rdfs:label "Bjoern Peters" ;
-    foaf:mbox "bpeters@lji.org" .
-
 orcid:0000-0003-1710-8256 rdfs:label "Christopher Mull" ;
     foaf:mbox "creeas@gmail.com" .
 
@@ -46035,6 +46091,9 @@ orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" ;
 orcid:0000-0002-6443-9376 rdfs:label "Jennifer R Smith",
         "Jennifer Smith" ;
     foaf:mbox "jrsmith@mcw.edu" .
+
+orcid:0000-0002-8457-6693 rdfs:label "Bjoern Peters" ;
+    foaf:mbox "bpeters@lji.org" .
 
 orcid:0000-0002-8688-6599 rdfs:label "Jim Balhoff" ;
     foaf:mbox "balhoff@renci.org" .
@@ -49598,6 +49657,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:omim.ps,
         bioregistry:omop,
         bioregistry:oncotree,
+        bioregistry:ontie,
         bioregistry:oslc,
         bioregistry:owl,
         bioregistry:owlstar,
@@ -51242,6 +51302,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:AERO,
         bioportal:AFO,
         bioportal:AGRO,
+        bioportal:AIO,
         bioportal:AISM,
         bioportal:AMPHX,
         bioportal:APAONTO,
@@ -52187,6 +52248,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.88v2k0,
         fairsharing:FAIRsharing.89e853,
         fairsharing:FAIRsharing.8b6wfq,
+        fairsharing:FAIRsharing.8d6247,
         fairsharing:FAIRsharing.8hcczk,
         fairsharing:FAIRsharing.8jsya3,
         fairsharing:FAIRsharing.8ktkqy,
@@ -52233,6 +52295,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.Z8OKi5,
         fairsharing:FAIRsharing.a0k4cd,
         fairsharing:FAIRsharing.a14123,
+        fairsharing:FAIRsharing.a4ww64,
         fairsharing:FAIRsharing.a5sv8m,
         fairsharing:FAIRsharing.a6r7zs,
         fairsharing:FAIRsharing.a8z6gz,
@@ -52439,6 +52502,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.knp11s,
         fairsharing:FAIRsharing.kpbna7,
         fairsharing:FAIRsharing.kqt2h2,
+        fairsharing:FAIRsharing.kx2md1,
         fairsharing:FAIRsharing.l8Sf5x,
         fairsharing:FAIRsharing.m3jtpg,
         fairsharing:FAIRsharing.m40bhw,
@@ -55015,6 +55079,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:agro,
         bioregistry:agrovoc,
         bioregistry:agsd,
+        bioregistry:aio,
         bioregistry:aism,
         bioregistry:alfred,
         bioregistry:allergome,
@@ -56143,6 +56208,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oncotree,
         bioregistry:one,
         bioregistry:ons,
+        bioregistry:ontie,
         bioregistry:ontoavida,
         bioregistry:ontoneo,
         bioregistry:oostt,
