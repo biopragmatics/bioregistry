@@ -26227,7 +26227,7 @@ ito:
     intelligence tasks.
   download_owl: http://aber-owl.net/media/ontologies/ITO/17/ito.owl
   example: '01625'
-  homepage: https://bioportal.bioontology.org/
+  homepage: https://openbiolink.github.io/ITOExplorer/
   keywords:
   - artificial intelligence
   - ontology
@@ -26257,7 +26257,8 @@ ito:
     title: A curated, ontology-based, large-scale knowledge graph of artificial intelligence
       tasks and benchmarks
     year: 2021
-  uri_format: https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:$1
+  repository: https://github.com/OpenBioLink/ITO
+  uri_format: https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:ITO_$1
 iuphar.family:
   description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
     properties of identified mammalian sodium, calcium and potassium channels, as
@@ -40926,6 +40927,11 @@ pr:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pr:$1
+  - code: ontorat
+    description: Misguided re-labeling of IRIs from ontorat tool
+    homepage: http://purl.obolibrary.org/obo/vo/ontorat
+    name: OntoRat
+    uri_format: http://purl.obolibrary.org/obo/vo/ontorat/PR_$1
   publications:
   - doi: 10.1093/nar/gkw1075
     pmc: PMC5210558
@@ -48551,6 +48557,11 @@ swo:
     homepage: http://www.ebi.ac.uk/swo/license
     name: Legacy EBI SWO
     uri_format: http://www.ebi.ac.uk/swo/license/SWO_$1
+  - code: ebi.maturity
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/maturity
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/maturity/SWO_$1
   publications:
   - doi: 10.1186/2041-1480-5-25
     pmc: PMC4098953
