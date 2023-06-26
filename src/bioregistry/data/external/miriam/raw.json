@@ -2379,13 +2379,13 @@
         "created": "2019-06-11T14:17:16.067+0000",
         "deprecated": false,
         "deprecationDate": null,
-        "description": "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (RNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee.",
+        "description": "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (bulk RNA-Seq, scRNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee.",
         "id": 1208,
         "mirId": "MIR:00000418",
-        "modified": "2019-06-11T14:17:16.067+0000",
+        "modified": "2023-06-21T08:14:55.477+0000",
         "name": "Bgee gene",
         "namespaceEmbeddedInLui": false,
-        "pattern": "^[A-Za-z]+\\d+$",
+        "pattern": "^[A-Za-z0-9]+$",
         "prefix": "bgee.gene",
         "resources": [
           {
@@ -2412,9 +2412,9 @@
             "name": "Bgee gene",
             "official": false,
             "providerCode": "sib",
-            "resourceHomeUrl": "https://bgee.org/",
+            "resourceHomeUrl": "https://www.bgee.org/",
             "sampleId": "FBgn0000015",
-            "urlPattern": "https://bgee.org/?page=gene&gene_id={$id}"
+            "urlPattern": "https://www.bgee.org/gene/{$id}"
           }
         ],
         "sampleId": "FBgn0000015"
@@ -2555,10 +2555,10 @@
         "created": "2019-06-11T14:17:47.850+0000",
         "deprecated": false,
         "deprecationDate": null,
-        "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It more published genome-scale metabolic networks into a single database with a set of stardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references individual metabolotes.",
+        "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It published genome-scale metabolic networks into a single database with a set of standardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references individual metabolites.",
         "id": 1555,
         "mirId": "MIR:00000556",
-        "modified": "2019-06-11T14:17:47.850+0000",
+        "modified": "2023-06-21T08:19:14.475+0000",
         "name": "BiGG Metabolite",
         "namespaceEmbeddedInLui": false,
         "pattern": "^[a-z_A-Z0-9]+$",
@@ -24912,9 +24912,9 @@
             "name": "ModelDB at SenseLab",
             "official": false,
             "providerCode": "CURATOR_REVIEW",
-            "resourceHomeUrl": "http://senselab.med.yale.edu/ModelDB/",
+            "resourceHomeUrl": "https://modeldb.science",
             "sampleId": "45539",
-            "urlPattern": "http://senselab.med.yale.edu/ModelDB/ShowModel.asp?model={$id}"
+            "urlPattern": "https://modeldb.science/{$id}"
           }
         ],
         "sampleId": "45539"
@@ -26106,10 +26106,10 @@
         "description": "The National Bibliography Number (NBN), is a URN-based publication identifier system employed by a variety of national libraries such as those of Germany, the Netherlands and Switzerland.  They are used to identify documents archived in national libraries, in their native format or language, and are typically used for documents which do not have a publisher-assigned identifier.",
         "id": 1097,
         "mirId": "MIR:00000381",
-        "modified": "2023-06-12T10:57:13.506+0000",
+        "modified": "2023-06-19T09:28:27.741+0000",
         "name": "National Bibliography Number",
         "namespaceEmbeddedInLui": false,
-        "pattern": "^(urn|URN):(nbn|NBN)(:[A-Za-z_0-9]+)*(:[A-Za-z_\\-\\.0-9]+)+$",
+        "pattern": "^(urn|URN):(nbn|NBN)(:[A-Za-z_0-9]+)*.+$",
         "prefix": "nbn",
         "resources": [
           {
