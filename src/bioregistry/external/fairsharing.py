@@ -79,11 +79,12 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
     if homepage:
         rv["homepage"] = homepage
 
-    rv["publications"] = [
-        {k: publication[k] for k in ("doi", "pubmed_id", "title")}  # TODO add "year"
-        for publication in record.get("publications", [])
-        if publication.get("doi") or publication.get("pubmed_id")
-    ]
+    rv["publications"] = list(
+        filter(
+            None,
+            (_process_publication(publication) for publication in record.get("publications", [])),
+        )
+    )
 
     contacts = [
         {removeprefix(k, "contact_"): v for k, v in contact.items()}
@@ -113,6 +114,31 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
             rv["license"] = license_standard
 
     return rv
+
+
+def _process_publication(publication):
+    rv = {}
+    doi = publication.get("doi")
+    if doi:
+        doi = doi.rstrip(".").lower()
+        doi = removeprefix(doi, "doi:")
+        doi = removeprefix(doi, "https://doi.org/")
+        if "/" not in doi:
+            doi = None
+        else:
+            rv["doi"] = doi
+    pubmed = publication.get("pubmed_id")
+    if pubmed:
+        rv["pubmed"] = str(pubmed)
+    if not doi and not pubmed:
+        return
+    title = publication.get("title")
+    if title:
+        title = title.replace("  ", " ").rstrip(".")
+        rv["title"] = title
+    return rv
+
+    # TODO add "year"
 
 
 if __name__ == "__main__":

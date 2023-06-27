@@ -9,6 +9,7 @@ from typing import Mapping
 import requests
 
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_uniprot",
@@ -69,9 +70,13 @@ def _process_record(record):
     pubmed = record.pop("pubMedId", None)
     publication = {}
     if doi:
-        publication["doi"] = doi.lower()
+        doi = doi.lower().rstrip(".")
+        doi = removeprefix(doi, "doi:")
+        doi = removeprefix(doi, "https://doi.org/")
+        if "/" in doi:
+            publication["doi"] = doi
     if pubmed:
-        publication["pubmed"] = pubmed
+        publication["pubmed"] = str(pubmed)
     if publication:
         rv["publications"] = [publication]
 
