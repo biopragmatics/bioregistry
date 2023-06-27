@@ -124,7 +124,7 @@ def _process_row(line: str):
     elif prefix in DISCARD_SYNONYMS:
         pass
     else:
-        synonyms_it = (s.strip() for s in synonyms.split(","))
+        synonyms_it = [s.strip() for s in synonyms.split(",")]
         synonyms_it = [
             synonym
             for synonym in synonyms_it
