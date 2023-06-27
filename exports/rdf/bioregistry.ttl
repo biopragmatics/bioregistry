@@ -654,6 +654,7 @@
 @prefix knapsack: <http://www.knapsackfamily.com/knapsack_core/information.php?word=> .
 @prefix langual: <https://www.langual.org/langual_thesaurus.asp?termid=> .
 @prefix lbo: <http://purl.obolibrary.org/obo/LBO_> .
+@prefix lcsh: <https://id.loc.gov/authorities/> .
 @prefix lei: <https://www.gleif.org/lei/> .
 @prefix lgai.cede: <https://s3.us-east-2.amazonaws.com/lg.cede/> .
 @prefix licebase: <https://licebase.org/?q=> .
@@ -22415,6 +22416,8 @@ wikidata:P235 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2410 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P244 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P2576 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2646 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -32018,6 +32021,22 @@ bioregistry:langual a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://www.langual.org/langual_thesaurus.asp?termid="^^xsd:string ;
     bioregistry.schema:0000027 langual:B2067 ;
     bioregistry.schema:0000029 "langual" .
+
+bioregistry:lcsh a bioregistry.schema:0000001 ;
+    rdfs:label "Library of Congress Subject Headings" ;
+    dcterms:description "Library of Congress Subject Headings (LCSH) has been actively maintained since 1898 to catalog materials held at the Library of Congress. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P244 ;
+    foaf:homepage <https://id.loc.gov/authorities> ;
+    bioregistry.schema:0000005 "nb2018006591"^^xsd:string ;
+    bioregistry.schema:0000006 "https://id.loc.gov/authorities/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w{1,2}\\d{8,10}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "lcnaf",
+        "lcnafid" ;
+    bioregistry.schema:0000024 "https://id.loc.gov/authorities/"^^xsd:string ;
+    bioregistry.schema:0000027 lcsh:nb2018006591 ;
+    bioregistry.schema:0000029 "lcsh" .
 
 bioregistry:lincs.smallmolecule a bioregistry.schema:0000001 ;
     rdfs:label "LINCS Small Molecule" ;
@@ -49605,6 +49624,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:kupo,
         bioregistry:langual,
         bioregistry:lbctr,
+        bioregistry:lcsh,
         bioregistry:linkml,
         bioregistry:lncipedia,
         bioregistry:loinc,
@@ -49838,6 +49858,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P234,
         wikidata:P235,
         wikidata:P2410,
+        wikidata:P244,
         wikidata:P2576,
         wikidata:P2646,
         wikidata:P267,
@@ -55926,6 +55947,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:langual,
         bioregistry:lbctr,
         bioregistry:lbo,
+        bioregistry:lcsh,
         bioregistry:leafsnap,
         bioregistry:lei,
         bioregistry:lepao,
