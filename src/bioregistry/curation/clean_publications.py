@@ -11,11 +11,15 @@ from bioregistry.schema.struct import deduplicate_publications
 
 
 def _main():
-    for resource in tqdm(bioregistry.resources()):
+    for resource in tqdm(bioregistry.manager.registry.values()):
         if resource.publications:
-            resource.publications = [
-                p for p in deduplicate_publications(resource.publications) if p.title
-            ]
+            new = []
+            for p in deduplicate_publications(resource.publications):
+                if not p.title:
+                    continue
+                p.title = p.title.rstrip(".").replace("  ", " ")
+                new.append(p)
+            resource.publications = new
     bioregistry.manager.write_registry()
 
 
