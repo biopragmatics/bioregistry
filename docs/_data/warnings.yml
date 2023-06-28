@@ -12,11 +12,6 @@ wrong_patterns:
   miriam: ^\d+$
   name: American Type Culture Collection
   prefix: atcc
-- correct: ^[A-Za-z0-9]+$
-  homepage: https://www.bgee.org
-  miriam: ^[A-Za-z]+\d+$
-  name: Bgee gene
-  prefix: bgee.gene
 - correct: ^\d+$
   homepage: https://github.com/SED-ML/KiSAO
   miriam: ^KISAO_\d+$
@@ -288,6 +283,11 @@ wrong_patterns:
   name: Universal Spectrum Identifier
   prefix: mzspec
 - correct: ^\d+$
+  homepage: https://nanbyodata.jp/
+  miriam: ^NANDO:[0-9]+$
+  name: Nanbyo Disease Ontology
+  prefix: nando
+- correct: ^\d+$
   homepage: https://github.com/SciCrunch/NIF-Ontology
   miriam: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
   name: 'NIF Standard Ontology: Neurolex'
@@ -387,7 +387,7 @@ wrong_patterns:
   miriam: ^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
   name: Reference Sequence Collection
   prefix: refseq
-- correct: ^\d{7}$
+- correct: ^(HOM)?\d{7}$
   homepage: https://oborel.github.io/
   miriam: ^RO_\d{7}$
   name: Relation Ontology
