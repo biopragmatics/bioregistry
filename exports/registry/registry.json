@@ -2429,6 +2429,10 @@
   "atcc": {
     "description": "The American Type Culture Collection (ATCC) is a private, nonprofit biological resource center whose mission focuses on the acquisition, authentication, production, preservation, development and distribution of standard reference microorganisms, cell lines and other materials for research in the life sciences.",
     "example": "11303",
+    "example_extras": [
+      "ccl-1.4",
+      "ccl-1"
+    ],
     "homepage": "https://www.lgcstandards-atcc.org",
     "keywords": [
       "epidemiology",
@@ -2445,7 +2449,7 @@
       "ncbi": "ATCC"
     },
     "name": "American Type Culture Collection",
-    "pattern": "^([A-Z]+-)?\\d+$",
+    "pattern": "^([a-zA-Z]+-)?\\d+(\\.\\d)?$",
     "preferred_prefix": "atcc",
     "synonyms": [
       "ATCC",
@@ -7165,6 +7169,7 @@
     },
     "name": "ChEMBL database of bioactive drug-like small molecules - Cell lines section",
     "part_of": "chembl",
+    "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.cell",
     "synonyms": [
       "ChEMBL-Cells"
@@ -14159,6 +14164,7 @@
       "re3data": "r3d100010219"
     },
     "name": "Deutsche Sammlung von Mikroorganismen und Zellkulturen",
+    "pattern": "^ACC-\\d+$",
     "preferred_prefix": "dsmz",
     "uri_format": "https://www.dsmz.de/collection/catalogue/details/culture/$1"
   },
@@ -14341,11 +14347,15 @@
   "ebisc": {
     "description": "Cell line collections",
     "example": "ESi007-A",
+    "example_extras": [
+      "EDi008-B"
+    ],
     "homepage": "https://www.ebisc.org",
     "mappings": {
       "cellosaurus": "EBiSC"
     },
     "name": "European Bank for induced pluripotent Stem Cells",
+    "pattern": "^E(S|D)i\\d+-\\w$",
     "preferred_prefix": "ebisc",
     "uri_format": "https://cells.ebisc.org/$1"
   },
@@ -26234,6 +26244,7 @@
       "cellosaurus": "ICLC"
     },
     "name": "Interlab Cell Line Collection",
+    "pattern": "^\\w{3}\\d+$",
     "preferred_prefix": "iclc",
     "uri_format": "http://www.iclc.it/details/det_list.php?line_id=$1"
   },
@@ -28811,6 +28822,7 @@
       "cellosaurus": "JCRB"
     },
     "name": "JRBC Cell Bank",
+    "pattern": "^JCRB\\d+$",
     "preferred_prefix": "jcrb",
     "uri_format": "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"
   },
@@ -45453,6 +45465,10 @@
         "year": 2006
       }
     ],
+    "synonyms": [
+      "pubchem.aid",
+      "pubchem.assay"
+    ],
     "twitter": "pubchem",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1"
   },
@@ -53722,6 +53738,7 @@
       "vendor"
     ],
     "name": "Thermo Fisher Scientific",
+    "pattern": "^\\w+$",
     "preferred_prefix": "thermofisher",
     "uri_format": "https://www.thermofisher.com/antibody/product/$1"
   },

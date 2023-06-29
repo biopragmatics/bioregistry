@@ -289,8 +289,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
 @prefix debio: <https://biopragmatics.github.io/debio/> .
@@ -6535,6 +6535,7 @@ bioregistry:ebisc a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.ebisc.org> ;
     bioregistry.schema:0000005 "ESi007-A"^^xsd:string ;
     bioregistry.schema:0000006 "https://cells.ebisc.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^E(S|D)i\\d+-\\w$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://cells.ebisc.org/"^^xsd:string ;
     bioregistry.schema:0000027 ebisc:ESi007-A ;
@@ -9671,6 +9672,7 @@ bioregistry:iclc a bioregistry.schema:0000001 ;
     foaf:homepage <http://www.iclc.it> ;
     bioregistry.schema:0000005 "ATL98012"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.iclc.it/details/det_list.php?line_id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w{3}\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://www.iclc.it/details/det_list.php?line_id="^^xsd:string ;
     bioregistry.schema:0000027 iclc:ATL98012 ;
@@ -27715,7 +27717,7 @@ bioregistry:atcc a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.lgcstandards-atcc.org> ;
     bioregistry.schema:0000005 "11303"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.atcc.org/products/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-Z]+-)?\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^([a-zA-Z]+-)?\\d+(\\.\\d)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "ATCC",
         "ATCC number",
@@ -29690,6 +29692,7 @@ bioregistry:dsmz a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.dsmz.de> ;
     bioregistry.schema:0000005 "ACC-1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.dsmz.de/collection/catalogue/details/culture/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^ACC-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.dsmz.de/collection/catalogue/details/culture/"^^xsd:string ;
     bioregistry.schema:0000027 dsmz:ACC-1 ;
@@ -31777,6 +31780,7 @@ bioregistry:jcrb a bioregistry.schema:0000001 ;
     foaf:homepage <https://cellbank.nibiohn.go.jp> ;
     bioregistry.schema:0000005 "JCRB1355"^^xsd:string ;
     bioregistry.schema:0000006 "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^JCRB\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO="^^xsd:string ;
     bioregistry.schema:0000027 jcrb:JCRB1355 ;
@@ -34088,6 +34092,8 @@ bioregistry:pubchem.bioassay a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "pubchem.aid",
+        "pubchem.assay" ;
     bioregistry.schema:0000024 "https://pubchem.ncbi.nlm.nih.gov/bioassay/"^^xsd:string ;
     bioregistry.schema:0000027 pubchem.bioassay:1018 ;
     bioregistry.schema:0000029 "pubchem.bioassay" .
@@ -35201,6 +35207,7 @@ bioregistry:thermofisher a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.thermofisher.com> ;
     bioregistry.schema:0000005 "OSR00185W"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.thermofisher.com/antibody/product/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.thermofisher.com/antibody/product/"^^xsd:string ;
     bioregistry.schema:0000027 thermofisher:OSR00185W ;
@@ -41466,6 +41473,7 @@ bioregistry:chembl.cell a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.ebi.ac.uk/chembldb> ;
     bioregistry.schema:0000005 "CHEMBL3307800"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/chembl/cell_line_report_card/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^CHEMBL\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0294-5484 ;
     bioregistry.schema:0000023 "ChEMBL-Cells" ;
@@ -41959,7 +41967,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
