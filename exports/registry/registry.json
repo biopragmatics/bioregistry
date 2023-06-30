@@ -217,6 +217,20 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/AAO_$1",
     "uri_format": "http://purl.obolibrary.org/obo/AAO_$1"
   },
+  "abcam": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Vendor for assays, cells, and antibodies",
+    "example": "ab275461",
+    "homepage": "https://www.abcam.com",
+    "name": "Abcam",
+    "preferred_prefix": "abcam",
+    "uri_format": "https://www.abcam.com/$1.html"
+  },
   "abcd": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -8206,9 +8220,10 @@
     ],
     "synonyms": [
       "NCT",
-      "clinicaltrial"
+      "clinicaltrial",
+      "ctgov"
     ],
-    "uri_format": "https://clinicaltrials.gov/ct2/show/$1"
+    "uri_format": "https://www.clinicaltrials.gov/study/$1"
   },
   "clinvar": {
     "description": "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Variant identifier.",
@@ -14166,6 +14181,9 @@
     "name": "Deutsche Sammlung von Mikroorganismen und Zellkulturen",
     "pattern": "^ACC-\\d+$",
     "preferred_prefix": "dsmz",
+    "synonyms": [
+      "DSMZCellDive"
+    ],
     "uri_format": "https://www.dsmz.de/collection/catalogue/details/culture/$1"
   },
   "dso": {
@@ -18608,6 +18626,9 @@
     "part_of": "flybase",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "fbtc",
+    "synonyms": [
+      "FlyBase_Cell_line"
+    ],
     "uri_format": "https://flybase.org/reports/FBtc$1"
   },
   "fcb": {
@@ -26247,6 +26268,26 @@
     "pattern": "^\\w{3}\\d+$",
     "preferred_prefix": "iclc",
     "uri_format": "http://www.iclc.it/details/det_list.php?line_id=$1"
+  },
+  "icldb": {
+    "contact": {
+      "email": "surjeet.arya@uky.edu",
+      "github": null,
+      "name": "Surjeet Kumar Arya",
+      "orcid": "0000-0002-2212-4771"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "We have developed an online database describing the known cell lines from Coleoptera, Diptera, Hemiptera, Hymenoptera, and Lepidoptera that originated from crop pest insects. Cell line information has been primarily obtained from previous compilations of insect cell lines. (from homepage)",
+    "example": "64ba",
+    "homepage": "https://entomology.ca.uky.edu/aginsectcellsdatabase",
+    "name": "Insect Cell Line Database",
+    "preferred_prefix": "icldb",
+    "uri_format": "https://entomology.ca.uky.edu/content/$1"
   },
   "ico": {
     "appears_in": [
@@ -35769,6 +35810,7 @@
     "synonyms": [
       "NCBI Taxonomy",
       "NCBITaxon",
+      "NCBITaxonomyID",
       "NCBI_Taxon_ID",
       "NCBI_taxid",
       "TAX",
@@ -36859,6 +36901,20 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/$1"
   },
+  "nihhesc": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The NIH registration number should be used on all NIH competing applications and annual progress reports to identify the stem cell line proposed for use. Identify the specific line(s) from the Registry using the NIH Registration Number (e.g., 0001), in the specified location in the application (from homepage)",
+    "example": "NIHhESC-10-0083",
+    "homepage": "https://grants.nih.gov/stem_cells/registry/current.htm",
+    "name": "NIH Human Embryonic Stem Cell Registry",
+    "preferred_prefix": "nihhesc",
+    "uri_format": "https://grants.nih.gov/stem_cells/registry/current.htm?ID=$1"
+  },
   "nihreporter.project": {
     "contributor": {
       "email": "benjamin_gyori@hms.harvard.edu",
@@ -37821,6 +37877,20 @@
     ],
     "repository": "https://github.com/sobolevnrm/npo",
     "uri_format": "http://purl.bioontology.org/ontology/npo#NPO_$1"
+  },
+  "nrfc": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The NRFC was established at ICAR-National Bureau of Fish Genetic Resources, Lucknow in the form of a research project entitled ‘Establishment of a National Repository at NBFGR, Lucknow for conservation and characterization of fish cell lines’ during 09 November, 2010 to 08 November, 2014 with the financial support from Department of Biotechnology, Govt. of India, New Delhi. NRFC aims to receive, authenticate, store and supply the fish cell lines to the researchers and academicians for Research & Development works and to serve as a National Referral Centre for fish cell lines in the country. NRFC also aims to provide need-based support for training and education to stakeholders. (from homepage)",
+    "example": "NRFC051",
+    "homepage": "https://mail.nbfgr.res.in/nrfc/index.php",
+    "name": "National Repository of Fish Cell Lines",
+    "pattern": "^NRFC\\d+$",
+    "preferred_prefix": "nrfc"
   },
   "nsc": {
     "contributor": {
