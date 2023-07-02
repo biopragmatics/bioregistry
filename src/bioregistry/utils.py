@@ -22,7 +22,7 @@ from typing import (
 import click
 import requests
 from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
+from pydantic.v1.json import ENCODERS_BY_TYPE
 from pystow.utils import get_hashes
 
 from .constants import (
