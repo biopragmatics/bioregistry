@@ -7,7 +7,7 @@ wrong_patterns:
   miriam: ^(ark\:)/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
   name: Archival Resource Key
   prefix: ark
-- correct: ^([A-Z]+-)?\d+$
+- correct: ^([a-zA-Z]+-)?\d+(\.\d)?$
   homepage: https://www.lgcstandards-atcc.org
   miriam: ^\d+$
   name: American Type Culture Collection
@@ -188,7 +188,7 @@ wrong_patterns:
   name: International Molecular Exchange
   prefix: imex
 - correct: ^\d+$
-  homepage: https://bioportal.bioontology.org/
+  homepage: https://openbiolink.github.io/ITOExplorer/
   miriam: ^.+$
   name: Intelligence Task Ontology
   prefix: ito
@@ -282,6 +282,11 @@ wrong_patterns:
   miriam: ^mzspec:.+$
   name: Universal Spectrum Identifier
   prefix: mzspec
+- correct: ^\d+$
+  homepage: https://nanbyodata.jp/
+  miriam: ^NANDO:[0-9]+$
+  name: Nanbyo Disease Ontology
+  prefix: nando
 - correct: ^\d+$
   homepage: https://github.com/SciCrunch/NIF-Ontology
   miriam: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
@@ -382,7 +387,7 @@ wrong_patterns:
   miriam: ^(((WP|AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
   name: Reference Sequence Collection
   prefix: refseq
-- correct: ^\d{7}$
+- correct: ^(HOM)?\d{7}$
   homepage: https://oborel.github.io/
   miriam: ^RO_\d{7}$
   name: Relation Ontology

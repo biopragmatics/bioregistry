@@ -251,6 +251,12 @@ def _get_wikidata():
                     )
                 )
 
+        for key in ["uri_format_rdf", URI_FORMAT_KEY]:
+            if key in bindings:
+                bindings[key] = tuple(
+                    k for k in bindings[key] if k != "http://purl.obolibrary.org/obo/$1"
+                )
+
         # remove URNs
         bindings["uri_format_rdf"] = [
             uri_format_rdf

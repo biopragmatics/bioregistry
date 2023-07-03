@@ -36,7 +36,6 @@ OLS_SKIP = {
     "phi": "this is low quality and has no associated metadata",
     "epso": "can't figure out / not sure if still exists",
     "epio": "can't figure out / not sure if still exists",
-    "ccf": "this is full of temporary annotations and is mostly nonsense",
     "cpont": "no own terms?",
     "schemaorg_https": "duplicate of canonical HTTP version",
     "hpi": "nonsensical duplication of HP",

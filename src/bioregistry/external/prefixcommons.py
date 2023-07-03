@@ -125,18 +125,20 @@ def _process_row(line: str):
         if values:
             rv[key] = [value.strip() for value in values.split(",")]
 
-    synonyms = rv.get("synonyms")
+    synonyms = rv.pop("synonyms", None)
     if not synonyms:
         pass
     elif prefix in DISCARD_SYNONYMS:
-        rv["synonyms"] = []
+        pass
     else:
-        synonyms_it = (s.strip() for s in synonyms.split(","))
-        rv["synonyms"] = [
+        synonyms_it = [s.strip() for s in synonyms.split(",")]
+        synonyms_it = [
             synonym
             for synonym in synonyms_it
             if synonym.lower() != prefix.lower() and " " not in synonym
         ]
+        if synonyms_it:
+            rv["synonyms"] = synonyms_it
 
     license_url = rv.pop("license_url", None)
     if license_url:
@@ -145,7 +147,10 @@ def _process_row(line: str):
     uri_format = rv.pop("uri_format", None)
     if uri_format:
         uri_format = uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
-        if uri_format != "http://purl.obolibrary.org/obo/$1":
+        if uri_format not in {
+            "http://purl.obolibrary.org/obo/$1",
+            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
+        }:
             rv["uri_format"] = uri_format
 
     uri_rdf_formats = _get_uri_formats(rv, "rdf_uri_prefix")

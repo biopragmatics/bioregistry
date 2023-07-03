@@ -45,12 +45,12 @@
                     {% endfor %}
                 </dd>
                 {% if entry.references %}
-                    <dt>Resources</dt>
+                    <dt>References</dt>
                     {% for reference in entry.references %}
                         <dd><a href="{{ reference }}">{{ reference }}</a></dd>
                     {% endfor %}
                 {% endif %}
-                <dt>Resources</dt>
+                <dt>Resources ({{ entry.resources | length }})</dt>
                 <dd>
                     <ul>
                         {% for prefix in entry.resources %}

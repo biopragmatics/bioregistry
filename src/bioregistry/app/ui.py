@@ -116,9 +116,11 @@ def resource(prefix: str):
         return serialize_model(_resource, resource_to_rdf_str, negotiate=True)
 
     example = _resource.get_example()
-    example_curie = _resource.get_example_curie()
+    example_curie = _resource.get_example_curie(use_preferred=True)
     example_extras = _resource.example_extras or []
-    example_curie_extras = [_resource.get_curie(example_extra) for example_extra in example_extras]
+    example_curie_extras = [
+        _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
+    ]
     return render_template(
         "resource.html",
         zip=zip,
@@ -146,7 +148,7 @@ def resource(prefix: str):
         homepage=_resource.get_homepage(),
         repository=_resource.get_repository(),
         pattern=manager.get_pattern(prefix),
-        curie_pattern=manager.get_curie_pattern(prefix),
+        curie_pattern=manager.get_curie_pattern(prefix, use_preferred=True),
         version=_resource.get_version(),
         has_no_terms=manager.has_no_terms(prefix),
         obo_download=_resource.get_download_obo(),
