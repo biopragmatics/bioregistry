@@ -13,6 +13,7 @@ from fastapi import FastAPI
 from starlette.testclient import TestClient
 
 from bioregistry import Resource
+from bioregistry.app.api import MappingResponse
 from bioregistry.app.impl import get_app
 
 
@@ -224,3 +225,17 @@ class TestWeb(unittest.TestCase):
             with self.subTest(query=q):
                 res = self.client.get(f"/api/autocomplete?q={q}")
                 self.assertEqual(200, res.status_code)
+
+    def test_external_registry_mappings(self):
+        """Test external registry mappings."""
+        url = "/api/metaregistry/obofoundry/mapping/bioportal"
+        res = self.client.get(url)
+        res_parsed = MappingResponse.parse_obj(res.json())
+        self.assertEqual("obofoundry", res_parsed.meta.source)
+        self.assertEqual("bioportal", res_parsed.meta.target)
+        self.assertIn("gaz", res_parsed.mappings)
+        self.assertEqual("GAZ", res_parsed.mappings["gaz"])
+        # This is an obsolete OBO Foundry ontology so it won't get uploaded to BioPortal
+        self.assertIn("loggerhead", res_parsed.meta.source_only)
+        # This is a non-ontology so it won't get in OBO Foundry
+        self.assertIn("DCTERMS", res_parsed.meta.target_only)
