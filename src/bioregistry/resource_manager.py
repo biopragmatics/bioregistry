@@ -1587,9 +1587,9 @@ class Manager:
         source_only: Set[str] = set()
         target_only: Set[str] = set()
         for resource in self.registry.values():
-            mappings = resource.get_mappings()
-            mp1_prefix = mappings.get(source_metaprefix)
-            mp2_prefix = mappings.get(target_metaprefix)
+            metaprefix_to_prefix = resource.get_mappings()
+            mp1_prefix = metaprefix_to_prefix.get(source_metaprefix)
+            mp2_prefix = metaprefix_to_prefix.get(target_metaprefix)
             if mp1_prefix and mp2_prefix:
                 mappings[mp1_prefix] = mp2_prefix
             elif mp1_prefix and not mp2_prefix:
