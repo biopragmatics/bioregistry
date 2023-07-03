@@ -22,6 +22,8 @@ from typing import (
     cast,
 )
 
+from pydantic import BaseModel
+
 import curies
 
 from .constants import (
@@ -92,6 +94,13 @@ def _safe_curie_to_str(prefix: Optional[str], identifier: Optional[str]) -> Opti
         return None
     return curie_to_str(prefix, identifier)
 
+
+class Diff(BaseModel):
+    """A difference between two mappings sets."""
+
+    source_only: Set[str]
+    target_only: Set[str]
+    mappings: Dict[str, str]
 
 class Manager:
     """A manager for functionality related to a metaregistry."""
@@ -1565,6 +1574,29 @@ class Manager:
             contexts=self.contexts,
             direct_only=direct_only,
         )
+
+    def get_xxx_mappings(self, metaprefix: str, target: str) -> Diff:
+        if metaprefix not in self.metaregistry:
+            raise KeyError(f"invalid source metaprefix: {metaprefix}")
+        if target not in self.metaregistry:
+            raise KeyError(f"invalid target metaprefix: {target}")
+        rv = {}
+        source_only = set()
+        target_only = set()
+        for resource in self.registry.values():
+            mappings = resource.get_mappings()
+            mp1_prefix = mappings.get(metaprefix)
+            mp2_prefix = mappings.get(target)
+            if mp1_prefix and mp2_prefix:
+                rv[mp1_prefix] = mp2_prefix
+            elif mp1_prefix and not mp2_prefix:
+                source_only.add(mp1_prefix)
+            elif not mp1_prefix and mp2_prefix:
+                target_only.add(mp2_prefix)
+        return Diff(source_only=source_only, target_only=target_only, mappings=rv)
+
+
+
 
 
 def _read_contributors(
