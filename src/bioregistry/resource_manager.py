@@ -23,6 +23,7 @@ from typing import (
 )
 
 import curies
+from pydantic import BaseModel
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -91,6 +92,16 @@ def _safe_curie_to_str(prefix: Optional[str], identifier: Optional[str]) -> Opti
     if prefix is None or identifier is None:
         return None
     return curie_to_str(prefix, identifier)
+
+
+class MappingsDiff(BaseModel):
+    """A difference between two mappings sets."""
+
+    source_metaprefix: str
+    source_only: Set[str]
+    target_metaprefix: str
+    target_only: Set[str]
+    mappings: Dict[str, str]
 
 
 class Manager:
@@ -1564,6 +1575,33 @@ class Manager:
             collections=self.collections,
             contexts=self.contexts,
             direct_only=direct_only,
+        )
+
+    def get_external_mappings(self, source_metaprefix: str, target_metaprefix: str) -> MappingsDiff:
+        """Get mappings between two external registries."""
+        if source_metaprefix not in self.metaregistry:
+            raise KeyError(f"invalid source metaprefix: {source_metaprefix}")
+        if target_metaprefix not in self.metaregistry:
+            raise KeyError(f"invalid target metaprefix: {target_metaprefix}")
+        mappings: Dict[str, str] = {}
+        source_only: Set[str] = set()
+        target_only: Set[str] = set()
+        for resource in self.registry.values():
+            metaprefix_to_prefix = resource.get_mappings()
+            mp1_prefix = metaprefix_to_prefix.get(source_metaprefix)
+            mp2_prefix = metaprefix_to_prefix.get(target_metaprefix)
+            if mp1_prefix and mp2_prefix:
+                mappings[mp1_prefix] = mp2_prefix
+            elif mp1_prefix and not mp2_prefix:
+                source_only.add(mp1_prefix)
+            elif not mp1_prefix and mp2_prefix:
+                target_only.add(mp2_prefix)
+        return MappingsDiff(
+            source_metaprefix=source_metaprefix,
+            source_only=source_only,
+            target_metaprefix=target_metaprefix,
+            target_only=target_only,
+            mappings=mappings,
         )
 
 
