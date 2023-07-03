@@ -284,7 +284,7 @@ def get_metaresource_external_mappings(
     """Get mappings between two external prefixes."""
     manager = request.app.manager
     try:
-        diff = manager.get_xxx_mappings(metaprefix, target)
+        diff = manager.get_external_mappings(metaprefix, target)
     except KeyError as e:
         return {"message": str(e)}, 400
     return MappingResponse(

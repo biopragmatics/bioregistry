@@ -22,9 +22,8 @@ from typing import (
     cast,
 )
 
-from pydantic import BaseModel
-
 import curies
+from pydantic import BaseModel
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -95,12 +94,15 @@ def _safe_curie_to_str(prefix: Optional[str], identifier: Optional[str]) -> Opti
     return curie_to_str(prefix, identifier)
 
 
-class Diff(BaseModel):
+class MappingsDiff(BaseModel):
     """A difference between two mappings sets."""
 
+    source_metaprefix: str
     source_only: Set[str]
+    target_metaprefix: str
     target_only: Set[str]
     mappings: Dict[str, str]
+
 
 class Manager:
     """A manager for functionality related to a metaregistry."""
@@ -1575,28 +1577,32 @@ class Manager:
             direct_only=direct_only,
         )
 
-    def get_xxx_mappings(self, metaprefix: str, target: str) -> Diff:
-        if metaprefix not in self.metaregistry:
-            raise KeyError(f"invalid source metaprefix: {metaprefix}")
-        if target not in self.metaregistry:
-            raise KeyError(f"invalid target metaprefix: {target}")
-        rv = {}
-        source_only = set()
-        target_only = set()
+    def get_external_mappings(self, source_metaprefix: str, target_metaprefix: str) -> MappingsDiff:
+        """Get mappings between two external registries."""
+        if source_metaprefix not in self.metaregistry:
+            raise KeyError(f"invalid source metaprefix: {source_metaprefix}")
+        if target_metaprefix not in self.metaregistry:
+            raise KeyError(f"invalid target metaprefix: {target_metaprefix}")
+        mappings: Dict[str, str] = {}
+        source_only: Set[str] = set()
+        target_only: Set[str] = set()
         for resource in self.registry.values():
             mappings = resource.get_mappings()
-            mp1_prefix = mappings.get(metaprefix)
-            mp2_prefix = mappings.get(target)
+            mp1_prefix = mappings.get(source_metaprefix)
+            mp2_prefix = mappings.get(target_metaprefix)
             if mp1_prefix and mp2_prefix:
-                rv[mp1_prefix] = mp2_prefix
+                mappings[mp1_prefix] = mp2_prefix
             elif mp1_prefix and not mp2_prefix:
                 source_only.add(mp1_prefix)
             elif not mp1_prefix and mp2_prefix:
                 target_only.add(mp2_prefix)
-        return Diff(source_only=source_only, target_only=target_only, mappings=rv)
-
-
-
+        return MappingsDiff(
+            source_metaprefix=source_metaprefix,
+            source_only=source_only,
+            target_metaprefix=target_metaprefix,
+            target_only=target_only,
+            mappings=mappings,
+        )
 
 
 def _read_contributors(
