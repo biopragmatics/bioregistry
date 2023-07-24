@@ -37,6 +37,17 @@
     "prefix": "P10022",
     "uri_format": "https://www.treccani.it/enciclopedia/$1_(Dizionario-di-Medicina)"
   },
+  "P10025": {
+    "database": "Q80474554",
+    "description": "identifier of a tool in Toolhub",
+    "example": [
+      "mm_petscan",
+      "toolforge-croptool"
+    ],
+    "name": "Toolhub ID",
+    "prefix": "P10025",
+    "uri_format": "https://toolhub.wikimedia.org/tools/$1"
+  },
   "P10064": {
     "database": "Q109289360",
     "description": "identifier for a taxon in the Northwest Territories in the NWT Species database",
@@ -656,7 +667,6 @@
       "10.1186/1756-0500-2-265",
       "10.7603/s40632-015-0036-1"
     ],
-    "homepage": "https://scigraph.springernature.com/explorer",
     "name": "Springer Nature article ID",
     "pattern": "^10\\.\\d{4,9}/[0-9a-z._-]+$",
     "prefix": "P10863",
@@ -1502,6 +1512,41 @@
     "prefix": "P11829",
     "uri_format": "https://www.chicagobotanic.org/plantcollections/plantfinder/$1"
   },
+  "P11901": {
+    "database": "Q116291148",
+    "description": "identifier for an entry in the NCI Dictionary of Cancer Terms",
+    "example": [
+      "3-aminopyridine-2-carboxaldehyde-thiosemicarbazone",
+      "3-d-mammography",
+      "aat-deficiency",
+      "cancer-cell-line",
+      "galvanic-skin-response",
+      "germ-cell",
+      "jakafi",
+      "prostate"
+    ],
+    "name": "NCI Dictionary of Cancer Terms entry",
+    "pattern": "^[a-z0-9\\-]+$",
+    "prefix": "P11901",
+    "uri_format": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/$1"
+  },
+  "P11902": {
+    "database": "Q116303969",
+    "description": "identifier for an entry in the NCI Dictionary of Genetics Terms",
+    "example": [
+      "acrochordon",
+      "allele",
+      "deoxyribonucleic-acid and dna",
+      "locus-heterogeneity",
+      "phenotype",
+      "skin-tag",
+      "z-score"
+    ],
+    "name": "NCI Dictionary of Genetics Terms entry",
+    "pattern": "^[a-z0-9\\-]+$",
+    "prefix": "P11902",
+    "uri_format": "https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/$1"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -1607,7 +1652,7 @@
     "uri_format": "https://patient.info/doctor/$1"
   },
   "P1550": {
-    "database": "Q929833",
+    "database": "Q1515833",
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
     "example": [
       "723",
@@ -2529,6 +2574,25 @@
     "prefix": "P2434",
     "uri_format": "http://panarcticflora.org/results?name=#paf-$1"
   },
+  "P244": {
+    "database": "Q131454",
+    "description": "Library of Congress name authority (persons, families, corporate bodies, events, places, works and expressions) and subject authority identifier [Format: 1-2 specific letters followed by 8-10 digits (see regex). For manifestations, use P1144]",
+    "example": [
+      "n79022935",
+      "n81082970",
+      "n81092084",
+      "n84023326",
+      "sh2008005914",
+      "sh2020006558",
+      "sh85037527"
+    ],
+    "homepage": "https://id.loc.gov",
+    "name": "Library of Congress authority ID",
+    "pattern": "^(gf|n|nb|nr|no|ns|sh|sj)([4-9][0-9]|00|20[0-2][0-9])[0-9]{6}$",
+    "prefix": "P244",
+    "uri_format": "https://id.loc.gov/authorities/$1",
+    "uri_format_rdf": "http://id.loc.gov/authorities/names/$1"
+  },
   "P2454": {
     "database": "Q21491701",
     "description": "identifier for a person in the Royal Netherlands Academy of Arts and Sciences past member database",
@@ -2618,6 +2682,7 @@
     "database": "Q22279816",
     "description": "identifier in the BARTOC Terminology Registry",
     "example": [
+      "18801",
       "241"
     ],
     "homepage": "https://bartoc.org/",
@@ -2781,8 +2846,7 @@
     "database": "Q455338",
     "description": "NLM Unified Medical Language System (UMLS) controlled biomedical vocabulary unique identifier",
     "example": [
-      "C1274928",
-      "C3192263"
+      "C1274928"
     ],
     "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/",
     "miriam": "umls",
@@ -3316,14 +3380,14 @@
     "database": "Q107212889",
     "description": "identifier in the list of members of the Royal Swedish Academy of Letters, History and Antiquities",
     "example": [
-      "1",
-      "181"
+      "jens-walter",
+      "schive-claudius-jacob"
     ],
-    "homepage": "http://www.vitterhetsakad.se/ledamoter/matrikel/",
+    "homepage": "https://www.vitterhetsakademien.se/ledamoter/ledamoter",
     "name": "Royal Swedish Academy of Letters member ID",
-    "pattern": "^[1-9]\\d{0,3}$",
+    "pattern": "^[a-zA-Z]+(?:-[a-zA-Z]+)*$",
     "prefix": "P3389",
-    "uri_format": "http://www.vitterhetsakad.se/ledamoter/matrikel/$1"
+    "uri_format": "https://www.vitterhetsakademien.se/ledamoter/ledamoter/$1.html"
   },
   "P3398": {
     "database": "Q26879218",
@@ -4011,7 +4075,8 @@
     "homepage": "http://finess.esante.gouv.fr/fininter/jsp/rechercheSimple.jsp",
     "name": "FINESS ID",
     "pattern": "^\\d{9}$",
-    "prefix": "P4058"
+    "prefix": "P4058",
+    "uri_format": "http://finess.esante.gouv.fr/finess/jsp/actionDetailEtablissement.do?noFiness=$1"
   },
   "P4122": {
     "database": "Q59786289",
@@ -6516,7 +6581,7 @@
     "name": "Weeds in Ontario ID",
     "pattern": "^[a-z]+(_[a-z]+)*$",
     "prefix": "P6285",
-    "uri_format": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/$1.htm"
+    "uri_format": "https://www.ontario.ca/document/weed-identification-guide-ontario-crops/$1"
   },
   "P6289": {
     "database": "Q7080799",
@@ -7533,6 +7598,18 @@
     "pattern": "^\\d|(\\d\\.[A-Z](\\.(\\d{1,3}){0,3}))$",
     "prefix": "P7260",
     "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
+  },
+  "P7292": {
+    "database": "Q4794722",
+    "description": "ID of a publication in Arnet Miner",
+    "example": [
+      "5b1643998fbcbf6e5a9bc273",
+      "5c2c7a6717c44a4e7cf30b95",
+      "5c2ea7c6df5b8c0b3ced3327"
+    ],
+    "name": "Arnet Miner publication ID",
+    "prefix": "P7292",
+    "uri_format": "https://www.aminer.cn/pub/$1"
   },
   "P7329": {
     "database": "Q55695727",
@@ -8730,15 +8807,15 @@
   },
   "P894": {
     "database": "Q18241050",
-    "description": "identifier in the zbMath database",
+    "description": "identifier in the zbMATH Open database",
     "example": [
       "0118.26104",
       "1147.91001"
     ],
     "homepage": "https://zbmath.org/",
-    "name": "zbMATH document ID",
+    "name": "zbMATH Open document ID",
     "prefix": "P894",
-    "uri_format": "https://zbmath.org/?q=an:$1"
+    "uri_format": "https://zbmath.org/$1"
   },
   "P8968": {
     "database": "Q56476926",

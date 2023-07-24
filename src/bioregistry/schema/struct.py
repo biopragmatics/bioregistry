@@ -1153,7 +1153,7 @@ class Resource(BaseModel):
         publications = self.publications or []
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
-                url, title = publication["id"], publication["title"]
+                url, title = publication["id"], publication["title"].rstrip(".")
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
                     publications.append(
@@ -1177,19 +1177,18 @@ class Resource(BaseModel):
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pubmed = publication.get("pubmed_id")
+                pubmed = publication.get("pubmed")
                 doi = publication.get("doi")
-                if doi:
-                    doi = removeprefix(doi.lower(), "https://doi.org/")
                 title = publication.get("title")
+                year = publication.get("year")
                 if pubmed or doi:
                     publications.append(
                         Publication(
-                            pubmed=pubmed and str(pubmed),
+                            pubmed=pubmed,
                             doi=doi,
                             title=title,
                             pmc=None,
-                            year=None,
+                            year=year,
                         )
                     )
         if self.prefixcommons:

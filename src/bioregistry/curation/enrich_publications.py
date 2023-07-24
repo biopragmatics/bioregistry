@@ -49,13 +49,16 @@ def _main() -> None:  # noqa:C901
             if publication.pubmed:
                 pubmed_ids.add(publication.pubmed)
             elif publication.doi:
-                doi = removeprefix(publication.doi, "https://doi.org/")
+                doi = publication.doi.lower()
+                doi = removeprefix(doi, "https://doi.org/")
+                doi = removeprefix(doi, "http://doi.org/")
+                doi = removeprefix(doi, "doi:")
                 tqdm.write(f"getting pubmed from DOI:{doi}")
                 pubmed = _get_pubmed_from_doi(doi)
                 if pubmed:
                     pubmed_ids.add(pubmed)
                 else:
-                    dois.add(doi)
+                    dois.add(doi.lower())
         if pubmed_ids:
             resources.append((resource, pubmed_ids))
         if dois:
@@ -71,7 +74,7 @@ def _main() -> None:  # noqa:C901
             csl_item = _get_doi_csl_item(doi)
             if not csl_item:
                 continue
-            title = csl_item.get("title", "").strip() or None
+            title = csl_item.get("title", "").strip().rstrip(".") or None
             pubmed = csl_item.get("PMID") or None
             pmc = csl_item.get("PMCID") or None
             year = csl_item.get("issued", {}).get("date-parts", [[None]])[0][0]
@@ -82,7 +85,7 @@ def _main() -> None:  # noqa:C901
                 Publication(
                     pubmed=pubmed,
                     title=title,
-                    doi=doi and doi.lower(),
+                    doi=doi,
                     pmc=pmc,
                     year=year,
                 )
@@ -110,10 +113,13 @@ def _main() -> None:  # noqa:C901
             csl_item = _get_pubmed_csl_item(pubmed)
             if not csl_item:
                 continue
-            title = csl_item.get("title", "").strip() or None
+            title = csl_item.get("title", "").strip().rstrip(".") or None
             doi = csl_item.get("DOI") or None
             if doi:
-                doi = removeprefix(doi.lower(), "https://doi.org/")
+                doi = doi.lower()
+                doi = removeprefix(doi, "https://doi.org/")
+                doi = removeprefix(doi, "http://doi.org/")
+                doi = removeprefix(doi, "doi:")
             pmc = csl_item.get("PMCID") or None
             year = csl_item.get("issued", {}).get("date-parts", [[None]])[0][0]
             if not title:
