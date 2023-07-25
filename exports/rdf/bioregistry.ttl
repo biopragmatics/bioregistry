@@ -554,6 +554,7 @@
 @prefix hms.lincs.cell: <https://lincs.hms.harvard.edu/db/cells/> .
 @prefix hms.lincs.compound: <https://lincs.hms.harvard.edu/db/sm/> .
 @prefix hms.lincs.dataset: <https://lincs.hms.harvard.edu/db/datasets/> .
+@prefix hoelzel: <https://www.hoelzel-biotech.com/de/catalogsearch/result/?q=> .
 @prefix hog: <https://biopragmatics.github.io/providers/hog/> .
 @prefix hogenom: <http://pbil.univ-lyon1.fr/cgi-bin/view-tree.pl?db=HOGENOM5&query=> .
 @prefix hoip: <http://purl.bioontology.org/ontology/HOIP/HOIP_> .
@@ -20291,6 +20292,9 @@ orcid:0000-0003-4871-5569 rdfs:label "Rebecca Jackson" ;
 orcid:0000-0003-4978-0864 rdfs:label "Lutz Fischer" ;
     foaf:mbox "lutz.fischer@tu-berlin.de" .
 
+orcid:0009-0009-3816-8777 rdfs:label "Carsten Linder" ;
+    foaf:mbox "info@hoelzel.de" .
+
 aberowl:ADCAD dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:ADO dcterms:isPartOf bioregistry.registry:aberowl .
@@ -31264,6 +31268,28 @@ bioregistry:hms.lincs.dataset a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://lincs.hms.harvard.edu/db/datasets/"^^xsd:string ;
     bioregistry.schema:0000027 hms.lincs.dataset:20003 ;
     bioregistry.schema:0000029 "hms.lincs.dataset" .
+
+bioregistry:hoelzel a bioregistry.schema:0000001 ;
+    rdfs:label "Hölzel Diagnostika" ;
+    dcterms:description "Hölzel is a life science reagent vendor based in Cologne, Germany. As a distributor, they offer products suitable for many kinds of research areas such as oncology, neuroscience, immunology, and more. Their portfolio consists of antibodies, recombinant proteins, inhibitors, ELISA-kits as well as other assays, arrays and kits. Their inhibitor portfolio can be easily accessed via the CAS-register catalog."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "antibodies",
+        "assays",
+        "biologics",
+        "elisa-kits",
+        "inhibitors",
+        "life sciences",
+        "proteins",
+        "vendor" ;
+    foaf:homepage <https://www.hoelzel-biotech.com> ;
+    bioregistry.schema:0000005 "40592-R001-100"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.hoelzel-biotech.com/de/catalogsearch/result/?q=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0009-0009-3816-8777 ;
+    bioregistry.schema:0000023 "hölzel" ;
+    bioregistry.schema:0000024 "https://www.hoelzel-biotech.com/de/catalogsearch/result/?q="^^xsd:string ;
+    bioregistry.schema:0000027 hoelzel:40592-R001-100 ;
+    bioregistry.schema:0000029 "hoelzel" .
 
 bioregistry:hog a bioregistry.schema:0000001 ;
     rdfs:label "Homologous Organ Groups" ;
@@ -49755,6 +49781,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:hms.lincs.cell,
         bioregistry:hms.lincs.compound,
         bioregistry:hms.lincs.dataset,
+        bioregistry:hoelzel,
         bioregistry:hog,
         bioregistry:hsdb,
         bioregistry:icd10cm,
@@ -55990,6 +56017,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hms.lincs.cell,
         bioregistry:hms.lincs.compound,
         bioregistry:hms.lincs.dataset,
+        bioregistry:hoelzel,
         bioregistry:hog,
         bioregistry:hogenom,
         bioregistry:hoip,
