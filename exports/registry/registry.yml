@@ -20815,6 +20815,7 @@ goche:
   name: GO Chemicals
   pattern: ^\d+$
   preferred_prefix: GOCHE
+  rdf_uri_format: http://purl.obolibrary.org/obo/GOCHE_$1
   references:
   - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638472847049400
   - https://github.com/geneontology/go-ontology/issues/19535
@@ -35656,6 +35657,10 @@ obo:
     orcid: 0000-0002-7356-1779
   description: The OBO namespace is the top-level namespace used by Open Biological
     and Biomedical Ontology (OBO) Foundry ontologies.
+  example: uberon
+  example_extras:
+  - go
+  - uberon.owl
   homepage: http://www.obofoundry.org/
   keywords:
   - ontology and terminology
@@ -35671,8 +35676,13 @@ obo:
     title: 'The OBO Foundry: coordinated evolution of ontologies to support biomedical
       data integration'
     year: 2007
+  rdf_uri_format: http://purl.obolibrary.org/obo/$1
+  references:
+  - https://github.com/biopragmatics/bioregistry/pull/913
+  - https://github.com/biopragmatics/bioregistry/issues/910
   repository: https://github.com/OBOFoundry/OBOFoundry.github.io
   twitter: OBOFoundry
+  uri_format: http://purl.obolibrary.org/obo/$1
 oboinowl:
   contributor:
     email: cthoyt@gmail.com

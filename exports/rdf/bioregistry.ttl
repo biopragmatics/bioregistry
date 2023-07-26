@@ -290,8 +290,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
 @prefix debio: <https://biopragmatics.github.io/debio/> .
@@ -13404,8 +13404,12 @@ bioregistry:obo a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.847069 ;
     dcat:keyword "ontology and terminology" ;
     foaf:homepage <http://www.obofoundry.org/> ;
+    bioregistry.schema:0000005 "uberon"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7356-1779 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/"^^xsd:string ;
+    bioregistry.schema:0000027 obo:uberon ;
     bioregistry.schema:0000029 "obo" .
 
 bioregistry:obv a bioregistry.schema:0000001 ;
@@ -42064,7 +42068,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
