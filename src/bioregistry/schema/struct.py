@@ -2565,7 +2565,6 @@ class Context(BaseModel):
     maintainers: List[Author] = Field(
         ...,
         description="A list of maintainers for the context",
-        min_length=1,
     )
     prefix_priority: Optional[List[str]] = Field(
         ...,
