@@ -8,7 +8,6 @@ import unittest
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
-from bioregistry.utils import extended_encoder
 
 
 class TestContexts(unittest.TestCase):
@@ -33,7 +32,6 @@ class TestContexts(unittest.TestCase):
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=extended_encoder,
         )
         self.assertEqual(linted_text, text)
 

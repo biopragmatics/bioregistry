@@ -20,7 +20,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, extended_encoder
+from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +46,10 @@ class TestRegistry(unittest.TestCase):
         """
         text = BIOREGISTRY_PATH.read_text(encoding="utf8")
         linted_text = json.dumps(
-            json.loads(text), indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
+            json.loads(text),
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
         )
         self.assertEqual(
             linted_text,
