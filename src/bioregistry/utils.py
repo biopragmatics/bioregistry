@@ -90,8 +90,6 @@ def extended_encoder(obj: Any) -> Any:
     """Encode objects similarly to :func:`pydantic.json.pydantic_encoder`."""
     if isinstance(obj, BaseModel):
         return obj.dict(exclude_none=True)
-    elif is_dataclass(obj):
-        return asdict(obj)
 
     # Check the class type and its superclasses for a matching encoder
     for base in obj.__class__.__mro__[:-1]:

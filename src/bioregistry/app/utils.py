@@ -20,7 +20,6 @@ from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
 from bioregistry.schema import sanitize_model
-from bioregistry.utils import extended_encoder
 
 from .proxies import manager
 from ..utils import _norm
@@ -159,27 +158,10 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     )
 
 
-def jsonify(data):
-    """Dump data as JSON, like like :func:`flask.jsonify`."""
-    return current_app.response_class(
-        json.dumps(data, ensure_ascii=False, default=extended_encoder),
-        mimetype="application/json",
-    )
-
-
-def yamlify(data):
-    """Dump data as YAML, like :func:`flask.jsonify`."""
-    if isinstance(data, BaseModel):
-        data = sanitize_model(data)
-
-    return current_app.response_class(
-        yaml.safe_dump(data=data),
-        mimetype="text/plain",
-    )
-
-
 def serialize(
-    data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None, negotiate: bool = False
+    data: BaseModel,
+    serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None,
+    negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""
     if negotiate:
@@ -193,16 +175,14 @@ def serialize(
         accept = FORMAT_MAP[arg]
 
     if accept == "application/json":
-        return jsonify(
-            data.dict(exclude_unset=True, exclude_none=True)
-            if isinstance(data, BaseModel)
-            else data
+        return current_app.response_class(
+            json.dumps(data.dict(exclude_unset=True, exclude_none=True), ensure_ascii=False),
+            mimetype="application/json",
         )
     elif accept in "application/yaml":
-        return yamlify(
-            data.dict(exclude_unset=True, exclude_none=True)
-            if isinstance(data, BaseModel)
-            else data
+        return current_app.response_class(
+            yaml.safe_dump(data.dict(exclude_unset=True, exclude_none=True), allow_unicode=True),
+            mimetype="text/plain",
         )
     for _name, mimetype, func in serializers or []:
         if accept == mimetype:
