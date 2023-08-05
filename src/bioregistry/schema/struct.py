@@ -2454,11 +2454,7 @@ class Registry(BaseModel):
 class Collection(BaseModel):
     """A collection of resources."""
 
-    identifier: str = Field(
-        ...,
-        description="The collection's identifier",
-        regex=r"^\d{7}$",
-    )
+    identifier: str = Field(..., description="The collection's identifier")
     name: str = Field(
         ...,
         description="The name of the collection",
