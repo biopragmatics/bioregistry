@@ -93,12 +93,12 @@ class OLSConfig(BaseModel):
 
     prefix: str
     version_type: VersionType
-    version_date_format: Optional[str]
-    version_prefix: Optional[str]
-    version_suffix: Optional[str]
-    version_suffix_split: Optional[str]
-    version_iri_prefix: Optional[str]
-    version_iri_suffix: Optional[str]
+    version_date_format: Optional[str] = None
+    version_prefix: Optional[str] = None
+    version_suffix: Optional[str] = None
+    version_suffix_split: Optional[str] = None
+    version_iri_prefix: Optional[str] = None
+    version_iri_suffix: Optional[str] = None
 
 
 def _get_email(ols_id, config) -> Optional[str]:
