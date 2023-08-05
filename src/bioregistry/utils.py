@@ -20,8 +20,6 @@ from typing import (
 
 import click
 import requests
-from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
 from pystow.utils import get_hashes
 
 from .constants import (
@@ -83,22 +81,6 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     res.raise_for_status()
     res_json = res.json()
     return res_json["results"]["bindings"]
-
-
-def extended_encoder(obj: Any) -> Any:
-    """Encode objects similarly to :func:`pydantic.json.pydantic_encoder`."""
-    if isinstance(obj, BaseModel):
-        return obj.dict(exclude_none=True)
-
-    # Check the class type and its superclasses for a matching encoder
-    for base in obj.__class__.__mro__[:-1]:
-        try:
-            encoder = ENCODERS_BY_TYPE[base]
-        except KeyError:
-            continue
-        return encoder(obj)
-    else:  # We have exited the for loop without finding a suitable encoder
-        raise TypeError(f"Object of type '{obj.__class__.__name__}' is not JSON serializable")
 
 
 class NormDict(dict):
