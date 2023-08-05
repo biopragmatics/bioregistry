@@ -33,9 +33,10 @@ from .constants import (
 from .version import get_version
 
 try:
-    from pydantic.v1 import ENCODERS_BY_TYPE
-except ImportError:
     from pydantic.json import ENCODERS_BY_TYPE
+except ImportError:
+    from pydantic.v1.utils import ENCODERS_BY_TYPE
+
 
 logger = logging.getLogger(__name__)
 
