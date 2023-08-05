@@ -155,7 +155,7 @@ class Organization(BaseModel):
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
-    name: str = Field(description="The full name of the researcher")
+    name: str = Field(..., description="The full name of the researcher")
 
     orcid: Optional[str] = Field(
         title="Open Researcher and Contributor Identifier",
@@ -2055,18 +2055,21 @@ class RegistryGovernance(BaseModel):
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
     curates: bool = Field(
+        ...,
         description="This field denotes if the registry's maintainers and "
-        "potentially contributors curate novel prefixes."
+        "potentially contributors curate novel prefixes.",
     )
     imports: bool = Field(
-        description="This field denotes if the registry imports and aligns prefixes from other registries."
+        ...,
+        description="This field denotes if the registry imports and aligns prefixes from other registries.",
     )
     scope: str = Field(
+        ...,
         description="This field denotes the scope of prefixes which the registry covers. For example,"
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
-        " and some are general purpose."
+        " and some are general purpose.",
     )
-    comments: Optional[str]
+    comments: Optional[str] = None
     accepts_external_contributions: bool = Field(
         description="This field denotes if the registry (in theory) accepts external contributions, either via "
         "suggestion or proactive improvement. This field does not pass judgement on the difficult of this"
@@ -2075,6 +2078,7 @@ class RegistryGovernance(BaseModel):
         " to the maintainers) to affect change."
     )
     public_version_controlled_data: bool = Field(
+        ...,
         title="Public Version-Controlled Data",
         description="This field denotes if the registry stores its data in publicly available version control"
         " system, such as GitHub or GitLab",
@@ -2086,18 +2090,20 @@ class RegistryGovernance(BaseModel):
         description="This field denotes the address of the registry's code version control repository."
     )
     review_team: Literal["public", "inferrable", "private", "democratic", "n/a"] = Field(
+        ...,
         description="This field denotes if the registry's reviewers/moderators for external contributions known? If "
         "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
         "reading the commit history on a version control system, then it can be marked as inferrable. A closed"
         " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
         " accept external contributions can be marked with N/A. An unmoderated regitry like Prefix.cc is marked with "
-        " 'democratic'."
+        " 'democratic'.",
     )
     status: Literal["active", "unresponsive", "inactive"] = Field(
+        ...,
         description="This field denotes the maitenance status of the repository. An active repository is still being "
         "maintained and also is responsive to external requests for improvement. An unresponsive repository is still "
         "being maintained in some capacity but is not responsive to external requests for improvement. An inactive "
-        "repository is no longer being proactively maintained (though may receive occasional patches)."
+        "repository is no longer being proactively maintained (though may receive occasional patches).",
     )
     issue_tracker: Optional[str] = Field(
         description="This field denotes the public issue tracker for issues related to the code and data of the "
@@ -2137,21 +2143,24 @@ class RegistryQualities(BaseModel):
     """Qualities about a registry."""
 
     structured_data: bool = Field(
+        ...,
         description="This field denotes if the registry provides structured access to its data? For example,"
         " this can be through an API (e.g., FAIRsharing, OLS) or a bulk download (e.g., OBO Foundry) in a "
         "structured file format. A counter-example is a site that must be scraped to acquire its content "
-        "(e.g, the NCBI GenBank)."
+        "(e.g, the NCBI GenBank).",
     )
     bulk_data: bool = Field(
+        ...,
         description="This field denotes if the registry provides a bulk dump of its data? For example,"
         " the OBO Foundry provides its bulk data in a file and Identifiers.org provides its bulk data in"
         " an API endpoint. A counterexample is FAIRsharing, which requires slow, expensive pagination"
         " through its data. Another counterexample is HL7 which requires manually navigating a form to"
-        " download its content. While GenBank is not structured, it is still bulk downloadable."
+        " download its content. While GenBank is not structured, it is still bulk downloadable.",
     )
     no_authentication: bool = Field(
+        ...,
         description="This field denotes if the registry provides access to its data without an API key? For example,"
-        " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
+        " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data.",
     )
     automatable_download: bool = Field(
         default=True,
@@ -2177,50 +2186,61 @@ class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
     name: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a name is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     homepage: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a homepage is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     description: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a description is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     example: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if an example local unique identifier is "
-        "required, optional, or never captured for each record in the registry."
+        "required, optional, or never captured for each record in the registry.",
     )
     pattern: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a regular expression pattern for matching "
-        "local unique identifiers is required, optional, or never captured for each record in the registry."
+        "local unique identifiers is required, optional, or never captured for each record in the registry.",
     )
     provider: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a URI format string for converting local "
-        "unique identifiers into URIs is required, optional, or never captured for each record in the registry."
+        "unique identifiers into URIs is required, optional, or never captured for each record in the registry.",
     )
     alternate_providers: Literal["present", "missing"] = Field(
+        ...,
         description="This field denotes if additional/secondary URI format strings "
         "for converting local unique identifiers into URIs is required, optional, or never captured for "
-        "each record in the registry."
+        "each record in the registry.",
     )
     synonyms: Literal["present", "missing"] = Field(
+        ...,
         description="This field denotes if alternative prefixes (e.g., taxonomy for NCBITaxon) "
-        "is required, optional, or never captured for each record in the registry."
+        "is required, optional, or never captured for each record in the registry.",
     )
     license: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if capturing the data license is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     version: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if capturing the current data version is required, "
-        "optional, or never captured for each record in the registry."
+        "optional, or never captured for each record in the registry.",
     )
     contact: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if capturing the primary responsible person's contact "
         "information (e.g., name, ORCID, email) is required, optional, or never captured for each "
-        "record in the registry."
+        "record in the registry.",
     )
     search: bool = Field(
         ...,
@@ -2454,11 +2474,7 @@ class Registry(BaseModel):
 class Collection(BaseModel):
     """A collection of resources."""
 
-    identifier: str = Field(
-        ...,
-        description="The collection's identifier",
-        regex=r"^\d{7}$",
-    )
+    identifier: str = Field(..., description="The collection's identifier")
     name: str = Field(
         ...,
         description="The name of the collection",
@@ -2475,8 +2491,7 @@ class Collection(BaseModel):
         ...,
         description="A list of authors/contributors to the collection",
     )
-    #: JSON-LD context name
-    context: Optional[str]
+    context: Optional[str] = Field(description="The JSON-LD context's name")
     references: Optional[List[str]] = Field(description="URL references")
 
     def add_triples(self, graph):
@@ -2540,13 +2555,17 @@ class Context(BaseModel):
     """  # noqa:D400,D205
 
     name: str = Field(
+        ...,
         description="The name of the context",
     )
     description: str = Field(
+        ...,
         description="A description of the context, can include Markdown",
     )
     maintainers: List[Author] = Field(
+        ...,
         description="A list of maintainers for the context",
+        min_length=1,
     )
     prefix_priority: Optional[List[str]] = Field(
         ...,
