@@ -22,7 +22,6 @@ from typing import (
 import click
 import requests
 from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
 from pystow.utils import get_hashes
 
 from .constants import (
@@ -32,6 +31,11 @@ from .constants import (
     REGISTRY_YAML_PATH,
 )
 from .version import get_version
+
+try:
+    from pydantic.v1 import ENCODERS_BY_TYPE
+except ImportError:
+    from pydantic.json import ENCODERS_BY_TYPE
 
 logger = logging.getLogger(__name__)
 
