@@ -281,35 +281,42 @@ class Resource(BaseModel):
         integration_status="required",
     )
     name: Optional[str] = Field(
-        description="The name of the resource", integration_status="required"
+        default=None, description="The name of the resource", integration_status="required"
     )
     description: Optional[str] = Field(
-        description="A description of the resource", integration_status="required"
+        default=None, description="A description of the resource", integration_status="required"
     )
     pattern: Optional[str] = Field(
+        default=None,
         description="The regular expression pattern for local unique identifiers in the resource",
         integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
+        default=None,
         title="URI format string",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
         integration_status="required_for_new",
     )
     rdf_uri_format: Optional[str] = Field(
+        default=None,
         title="RDF URI format string",
         description=f"The RDF URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
     providers: Optional[List[Provider]] = Field(
+        default=None,
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
+        default=None,
         description="The URL for the homepage of the resource, preferably using HTTPS",
         integration_status="required",
     )
     repository: Optional[str] = Field(
+        default=None,
         description="The URL for the repository of the resource",
     )
     contact: Optional[Attributable] = Field(
+        default=None,
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
@@ -317,34 +324,42 @@ class Resource(BaseModel):
         integration_status="suggested",
     )
     owners: Optional[List[Organization]] = Field(
+        default=None,
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
-        "bioregistry/issues/755."
+        "bioregistry/issues/755.",
     )
     example: Optional[str] = Field(
+        default=None,
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
         integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
+        default=None,
         description="Extra example identifiers",
     )
     example_decoys: Optional[List[str]] = Field(
+        default=None,
         description="Extra example identifiers that explicitly fail regex tests",
     )
     license: Optional[str] = Field(
+        default=None,
         description="The license for the resource",
     )
     version: Optional[str] = Field(
+        default=None,
         description="The version for the resource",
     )
     part_of: Optional[str] = Field(
+        default=None,
         description=(
             "An annotation between this prefix and a super-prefix. For example, "
             "``chembl.compound`` is a part of ``chembl``."
-        )
+        ),
     )
     provides: Optional[str] = Field(
+        default=None,
         description=(
             "An annotation between this prefix and a prefix for which it is redundant. "
             "For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it "
@@ -352,6 +367,7 @@ class Resource(BaseModel):
         ),
     )
     download_owl: Optional[str] = Field(
+        default=None,
         title="OWL Download URL",
         description=_dedent(
             """\
@@ -361,6 +377,7 @@ class Resource(BaseModel):
         ),
     )
     download_obo: Optional[str] = Field(
+        default=None,
         title="OBO Download URL",
         description=_dedent(
             """\
@@ -370,6 +387,7 @@ class Resource(BaseModel):
         ),
     )
     download_json: Optional[str] = Field(
+        default=None,
         title="OBO Graph JSON Download URL",
         description=_dedent(
             """
@@ -379,6 +397,7 @@ class Resource(BaseModel):
         ),
     )
     download_rdf: Optional[str] = Field(
+        default=None,
         title="RDF Download URL",
         description=_dedent(
             """
@@ -387,6 +406,7 @@ class Resource(BaseModel):
         ),
     )
     banana: Optional[str] = Field(
+        default=None,
         description=_dedent(
             """\
     The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
@@ -403,8 +423,9 @@ class Resource(BaseModel):
     """
         ),
     )
-    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
+    banana_peel: Optional[str] = Field(default=None, description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag denoting if this resource is deprecated. Currently, this is a blanket term
@@ -2069,7 +2090,9 @@ class RegistryGovernance(BaseModel):
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
         " and some are general purpose.",
     )
-    comments: Optional[str] = None
+    comments: Optional[str] = Field(
+        description="Optional additional comments about the registry's governance model"
+    )
     accepts_external_contributions: bool = Field(
         description="This field denotes if the registry (in theory) accepts external contributions, either via "
         "suggestion or proactive improvement. This field does not pass judgement on the difficult of this"
