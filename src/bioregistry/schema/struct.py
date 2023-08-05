@@ -2699,24 +2699,40 @@ def get_json_schema():
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://bioregistry.io/schema.json",
     }
-    rv.update(
-        pydantic.schema.schema(
-            [
-                Author,
-                Collection,
-                Provider,
-                Resource,
-                Registry,
-                RegistrySchema,
-                Context,
-                Publication,
-            ],
-            title="Bioregistry JSON Schema",
-            description="The Bioregistry JSON Schema describes the shapes of the objects in"
-            " the registry, metaregistry, collections, and their other related"
-            " resources",
-        )
+    models = [
+        Author,
+        Collection,
+        Provider,
+        Resource,
+        Registry,
+        RegistrySchema,
+        Context,
+        Publication,
+    ]
+
+    title = "Bioregistry JSON Schema"
+    description = (
+        "The Bioregistry JSON Schema describes the shapes of the objects in"
+        " the registry, metaregistry, collections, and their other related"
+        " resources"
     )
+
+    try:
+        # see https://docs.pydantic.dev/latest/usage/json_schema/#general-notes-on-json-schema-generation
+        from pydantic.json_schema import models_json_schema
+    except ImportError:
+        _schema = pydantic.schema.schema(
+            models,
+            title=title,
+            description=description,
+        )
+    else:
+        _schema = models_json_schema(
+            [(model, "validation") for model in models],
+            title=title,
+            description=description,
+        )
+    rv.update(_schema)
     return rv
 
 
