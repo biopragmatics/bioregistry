@@ -19,7 +19,6 @@ from flask import (
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
-from bioregistry.schema import sanitize_model
 
 from .proxies import manager
 from ..utils import _norm

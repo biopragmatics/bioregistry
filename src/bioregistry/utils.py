@@ -3,7 +3,6 @@
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
-from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import (
