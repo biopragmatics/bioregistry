@@ -2721,18 +2721,18 @@ def get_json_schema():
         # see https://docs.pydantic.dev/latest/usage/json_schema/#general-notes-on-json-schema-generation
         from pydantic.json_schema import models_json_schema
     except ImportError:
-        _schema = pydantic.schema.schema(
+        schema_dict = pydantic.schema.schema(
             models,
             title=title,
             description=description,
         )
     else:
-        _schema = models_json_schema(
+        _, schema_dict = models_json_schema(
             [(model, "validation") for model in models],
             title=title,
             description=description,
         )
-    rv.update(_schema)
+    rv.update(schema_dict)
     return rv
 
 
