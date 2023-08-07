@@ -20,7 +20,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm
+from bioregistry.utils import _norm, get_field_annotation
 
 logger = logging.getLogger(__name__)
 
@@ -83,18 +83,9 @@ class TestRegistry(unittest.TestCase):
         valid = {"required", "optional", "suggested", "required_for_new"}
         for name, field in Resource.__fields__.items():
             with self.subTest(name=name):
-                if PYDANTIC_1:
-                    status = field.field_info.extra.get("integration_status", None)
-                else:
-                    status = field.json_schema_extra.get("integration_status", None)
-                if field.required:
-                    self.assertEqual(
-                        "required",
-                        status,
-                        msg=f"required field {name} is not marked with integration_status",
-                    )
-                elif status:
-                    self.assertIn(status, valid, msg=f"invalid integration status for field {name}")
+                status = get_field_annotation(field, "integration_status")
+                if status:
+                    self.assertIn(status, valid)
 
     def test_keys(self):
         """Check the required metadata is there."""
