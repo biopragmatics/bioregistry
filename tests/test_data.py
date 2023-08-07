@@ -83,7 +83,10 @@ class TestRegistry(unittest.TestCase):
         valid = {"required", "optional", "suggested", "required_for_new"}
         for name, field in Resource.__fields__.items():
             with self.subTest(name=name):
-                status = field.field_info.extra.get("integration_status", None)
+                if PYDANTIC_1:
+                    status = field.field_info.extra.get("integration_status", None)
+                else:
+                    status = field.json_schema_extra.get("integration_status", None)
                 if field.required:
                     self.assertEqual(
                         "required",
