@@ -248,4 +248,4 @@ def get_field_annotation(field, key, default=None):
     if PYDANTIC_1:
         return field.field_info.extra.get(key, default)
     else:
-        return field.json_schema_extra.get(key, default)
+        return (field.json_schema_extra or {}).get(key, default)
