@@ -120,10 +120,12 @@ class Organization(BaseModel):
     """Model for organizataions."""
 
     ror: Optional[str] = Field(
+        default=None,
         title="Research Organization Registry identifier",
         description="ROR identifier for a record about the organization",
     )
     wikidata: Optional[str] = Field(
+        default=None,
         title="Wikidata identifier",
         description="Wikidata identifier for a record about the organization",
     )
@@ -158,11 +160,13 @@ class Attributable(BaseModel):
     name: str = Field(..., description="The full name of the researcher")
 
     orcid: Optional[str] = Field(
+        default=None,
         title="Open Researcher and Contributor Identifier",
         description=ORCID_DESCRIPTION,
     )
 
     email: Optional[str] = Field(
+        default=None,
         title="Email address",
         description="The email address specific to the researcher.",
         # regex=EMAIL_RE_STR,
@@ -170,6 +174,7 @@ class Attributable(BaseModel):
 
     #: The GitHub handle for the author
     github: Optional[str] = Field(
+        default=None,
         title="GitHub handle",
         description=_dedent(
             """\
@@ -238,18 +243,19 @@ class Publication(BaseModel):
     """Metadata about a publication."""
 
     pubmed: Optional[str] = Field(
-        title="PubMed", description="The PubMed identifier for the article"
+        default=None, title="PubMed", description="The PubMed identifier for the article"
     )
     doi: Optional[str] = Field(
+        default=None,
         title="DOI",
         description="The DOI for the article. DOIs are case insensitive, so these are "
         "required by the Bioregistry to be standardized to their lowercase form.",
     )
     pmc: Optional[str] = Field(
-        title="PMC", description="The PubMed Central identifier for the article"
+        default=None, title="PMC", description="The PubMed Central identifier for the article"
     )
-    title: Optional[str] = Field(description="The title of the article")
-    year: Optional[int] = Field(description="The year the article was published")
+    title: Optional[str] = Field(default=None, description="The title of the article")
+    year: Optional[int] = Field(default=None, description="The year the article was published")
 
     def key(self) -> Tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -281,35 +287,42 @@ class Resource(BaseModel):
         integration_status="required",
     )
     name: Optional[str] = Field(
-        description="The name of the resource", integration_status="required"
+        default=None, description="The name of the resource", integration_status="required"
     )
     description: Optional[str] = Field(
-        description="A description of the resource", integration_status="required"
+        default=None, description="A description of the resource", integration_status="required"
     )
     pattern: Optional[str] = Field(
+        default=None,
         description="The regular expression pattern for local unique identifiers in the resource",
         integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
+        default=None,
         title="URI format string",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
         integration_status="required_for_new",
     )
     rdf_uri_format: Optional[str] = Field(
+        default=None,
         title="RDF URI format string",
         description=f"The RDF URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
     providers: Optional[List[Provider]] = Field(
+        default=None,
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
+        default=None,
         description="The URL for the homepage of the resource, preferably using HTTPS",
         integration_status="required",
     )
     repository: Optional[str] = Field(
+        default=None,
         description="The URL for the repository of the resource",
     )
     contact: Optional[Attributable] = Field(
+        default=None,
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
@@ -317,34 +330,42 @@ class Resource(BaseModel):
         integration_status="suggested",
     )
     owners: Optional[List[Organization]] = Field(
+        default=None,
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
-        "bioregistry/issues/755."
+        "bioregistry/issues/755.",
     )
     example: Optional[str] = Field(
+        default=None,
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
         integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
+        default=None,
         description="Extra example identifiers",
     )
     example_decoys: Optional[List[str]] = Field(
+        default=None,
         description="Extra example identifiers that explicitly fail regex tests",
     )
     license: Optional[str] = Field(
+        default=None,
         description="The license for the resource",
     )
     version: Optional[str] = Field(
+        default=None,
         description="The version for the resource",
     )
     part_of: Optional[str] = Field(
+        default=None,
         description=(
             "An annotation between this prefix and a super-prefix. For example, "
             "``chembl.compound`` is a part of ``chembl``."
-        )
+        ),
     )
     provides: Optional[str] = Field(
+        default=None,
         description=(
             "An annotation between this prefix and a prefix for which it is redundant. "
             "For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it "
@@ -352,6 +373,7 @@ class Resource(BaseModel):
         ),
     )
     download_owl: Optional[str] = Field(
+        default=None,
         title="OWL Download URL",
         description=_dedent(
             """\
@@ -361,6 +383,7 @@ class Resource(BaseModel):
         ),
     )
     download_obo: Optional[str] = Field(
+        default=None,
         title="OBO Download URL",
         description=_dedent(
             """\
@@ -370,6 +393,7 @@ class Resource(BaseModel):
         ),
     )
     download_json: Optional[str] = Field(
+        default=None,
         title="OBO Graph JSON Download URL",
         description=_dedent(
             """
@@ -379,6 +403,7 @@ class Resource(BaseModel):
         ),
     )
     download_rdf: Optional[str] = Field(
+        default=None,
         title="RDF Download URL",
         description=_dedent(
             """
@@ -387,6 +412,7 @@ class Resource(BaseModel):
         ),
     )
     banana: Optional[str] = Field(
+        default=None,
         description=_dedent(
             """\
     The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
@@ -403,8 +429,9 @@ class Resource(BaseModel):
     """
         ),
     )
-    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
+    banana_peel: Optional[str] = Field(default=None, description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag denoting if this resource is deprecated. Currently, this is a blanket term
@@ -418,6 +445,7 @@ class Resource(BaseModel):
         ),
     )
     mappings: Optional[Dict[str, str]] = Field(
+        default=None,
         description=_dedent(
             """\
     A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
@@ -426,6 +454,7 @@ class Resource(BaseModel):
         ),
     )
     synonyms: Optional[List[str]] = Field(
+        default=None,
         description=_dedent(
             """\
     A list of synonyms for the prefix of this resource. These are used in normalization of
@@ -436,21 +465,28 @@ class Resource(BaseModel):
     """
         ),
     )
-    keywords: Optional[List[str]] = Field(description="A list of keywords for the resource")
+    keywords: Optional[List[str]] = Field(
+        default=None, description="A list of keywords for the resource"
+    )
     references: Optional[List[str]] = Field(
+        default=None,
         description="A list of URLs to also see, such as publications describing the resource",
     )
     publications: Optional[List[Publication]] = Field(
+        default=None,
         description="A list of URLs to also see, such as publications describing the resource",
     )
     appears_in: Optional[List[str]] = Field(
+        default=None,
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
     depends_on: Optional[List[str]] = Field(
+        default=None,
         description="A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
     )
 
     namespace_in_lui: Optional[bool] = Field(
+        default=None,
         title="Namespace Embedded in Local Unique Identifier",
         description=_dedent(
             """\
@@ -461,6 +497,7 @@ class Resource(BaseModel):
         ),
     )
     no_own_terms: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag denoting if the resource mints its own identifiers. Omission or explicit marking as false means
@@ -471,10 +508,12 @@ class Resource(BaseModel):
     )
     #: A field for a free text comment.
     comment: Optional[str] = Field(
+        default=None,
         description="A field for a free text comment",
     )
 
     contributor: Optional[Author] = Field(
+        default=None,
         description=_dedent(
             """\
     The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
@@ -485,10 +524,12 @@ class Resource(BaseModel):
         integration_status="required_for_new",
     )
     contributor_extras: Optional[List[Author]] = Field(
+        default=None,
         description="Additional contributors besides the original submitter.",
     )
 
     reviewer: Optional[Author] = Field(
+        default=None,
         description=_dedent(
             """\
     The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
@@ -499,6 +540,7 @@ class Resource(BaseModel):
         integration_status="required_for_new",
     )
     proprietary: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag to denote if this database is proprietary and therefore can not be included in normal quality control
@@ -513,9 +555,11 @@ class Resource(BaseModel):
     #:
     #:    This field was added and described in detail in https://github.com/biopragmatics/bioregistry/pull/164
     has_canonical: Optional[str] = Field(
+        default=None,
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
     preferred_prefix: Optional[str] = Field(
+        default=None,
         description=_dedent(
             """\
     An annotation of stylization of the prefix. This appears in OBO ontologies like
@@ -524,12 +568,14 @@ class Resource(BaseModel):
     """
         ),
     )
-    twitter: Optional[str] = Field(description="The twitter handle for the project")
-    mastodon: Optional[str] = Field(description="The mastodon handle for the project")
+    twitter: Optional[str] = Field(default=None, description="The twitter handle for the project")
+    mastodon: Optional[str] = Field(default=None, description="The mastodon handle for the project")
     github_request_issue: Optional[int] = Field(
-        description="The GitHub issue for the new prefix request"
+        default=None, description="The GitHub issue for the new prefix request"
     )
-    logo: Optional[str] = Field(description="The URL of the logo for the project/resource")
+    logo: Optional[str] = Field(
+        default=None, description="The URL of the logo for the project/resource"
+    )
 
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]] = None
@@ -2069,13 +2115,17 @@ class RegistryGovernance(BaseModel):
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
         " and some are general purpose.",
     )
-    comments: Optional[str] = None
+    comments: Optional[str] = Field(
+        default=None,
+        description="Optional additional comments about the registry's governance model",
+    )
     accepts_external_contributions: bool = Field(
+        ...,
         description="This field denotes if the registry (in theory) accepts external contributions, either via "
         "suggestion or proactive improvement. This field does not pass judgement on the difficult of this"
         " process from the perspective of the submitter nor the responsiveness of the registry."
         " This field does not consider the ability for insiders (i.e., people with private relationships"
-        " to the maintainers) to affect change."
+        " to the maintainers) to affect change.",
     )
     public_version_controlled_data: bool = Field(
         ...,
@@ -2084,10 +2134,12 @@ class RegistryGovernance(BaseModel):
         " system, such as GitHub or GitLab",
     )
     data_repository: Optional[str] = Field(
-        description="This field denotes the address of the registry's data version control repository."
+        default=None,
+        description="This field denotes the address of the registry's data version control repository.",
     )
     code_repository: Optional[str] = Field(
-        description="This field denotes the address of the registry's code version control repository."
+        default=None,
+        description="This field denotes the address of the registry's code version control repository.",
     )
     review_team: Literal["public", "inferrable", "private", "democratic", "n/a"] = Field(
         ...,
@@ -2106,8 +2158,9 @@ class RegistryGovernance(BaseModel):
         "repository is no longer being proactively maintained (though may receive occasional patches).",
     )
     issue_tracker: Optional[str] = Field(
+        default=None,
         description="This field denotes the public issue tracker for issues related to the code and data of the "
-        "repository."
+        "repository.",
     )
 
     @property
@@ -2284,7 +2337,9 @@ class Registry(BaseModel):
     description: str = Field(..., description="A full description of the registry.")
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     example: str = Field(..., description="An example prefix inside the registry.")
-    bibtex: Optional[str] = Field(description="Citation key used in BibTex for this registry.")
+    bibtex: Optional[str] = Field(
+        default=None, description="Citation key used in BibTex for this registry."
+    )
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
     )
@@ -2295,32 +2350,37 @@ class Registry(BaseModel):
         ..., description="A structured description of the governance for the registry"
     )
     download: Optional[str] = Field(
-        description="A download link for the data contained in the registry"
+        default=None, description="A download link for the data contained in the registry"
     )
     provider_uri_format: Optional[str] = Field(
-        description="A URL with a $1 for a prefix to resolve in the registry"
+        default=None, description="A URL with a $1 for a prefix to resolve in the registry"
     )
     search_uri_format: Optional[str] = Field(
-        description="A URL with a $1 for a prefix or string for searching for prefixes"
+        default=None,
+        description="A URL with a $1 for a prefix or string for searching for prefixes",
     )
     resolver_uri_format: Optional[str] = Field(
-        description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry"
+        default=None,
+        description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry",
     )
     resolver_type: Optional[str] = Field(
-        description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)"
+        default=None,
+        description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
     contact: Attributable = Field(..., description="The contact for the registry.")
     bioregistry_prefix: Optional[str] = Field(
-        description="The prefix for this registry in the Bioregistry"
+        default=None, description="The prefix for this registry in the Bioregistry"
     )
     logo_url: Optional[str] = Field(
+        default=None,
         description="The URL for the logo of the resource",
     )
     license: Optional[str] = Field(
+        default=None,
         description="The license under which the resource is redistributed",
     )
     short_name: Optional[str] = Field(
-        description="A short name for the resource, e.g., for use in charts"
+        default=None, description="A short name for the resource, e.g., for use in charts"
     )
 
     def score(self) -> int:
@@ -2491,8 +2551,8 @@ class Collection(BaseModel):
         ...,
         description="A list of authors/contributors to the collection",
     )
-    context: Optional[str] = Field(description="The JSON-LD context's name")
-    references: Optional[List[str]] = Field(description="URL references")
+    context: Optional[str] = Field(default=None, description="The JSON-LD context's name")
+    references: Optional[List[str]] = Field(default=None, description="URL references")
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.
@@ -2639,24 +2699,40 @@ def get_json_schema():
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://bioregistry.io/schema.json",
     }
-    rv.update(
-        pydantic.schema.schema(
-            [
-                Author,
-                Collection,
-                Provider,
-                Resource,
-                Registry,
-                RegistrySchema,
-                Context,
-                Publication,
-            ],
-            title="Bioregistry JSON Schema",
-            description="The Bioregistry JSON Schema describes the shapes of the objects in"
-            " the registry, metaregistry, collections, and their other related"
-            " resources",
-        )
+    models = [
+        Author,
+        Collection,
+        Provider,
+        Resource,
+        Registry,
+        RegistrySchema,
+        Context,
+        Publication,
+    ]
+
+    title = "Bioregistry JSON Schema"
+    description = (
+        "The Bioregistry JSON Schema describes the shapes of the objects in"
+        " the registry, metaregistry, collections, and their other related"
+        " resources"
     )
+
+    try:
+        # see https://docs.pydantic.dev/latest/usage/json_schema/#general-notes-on-json-schema-generation
+        from pydantic.json_schema import models_json_schema
+    except ImportError:
+        schema_dict = pydantic.schema.schema(
+            models,
+            title=title,
+            description=description,
+        )
+    else:
+        _, schema_dict = models_json_schema(
+            [(model, "validation") for model in models],
+            title=title,
+            description=description,
+        )
+    rv.update(schema_dict)
     return rv
 
 
