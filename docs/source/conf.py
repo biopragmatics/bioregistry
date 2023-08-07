@@ -27,7 +27,7 @@ copyright = f"{date.today().year}, Charles Tapley Hoyt"
 author = "Charles Tapley Hoyt"
 
 # The full version, including alpha/beta/rc tags.
-release = "0.9.86-dev"
+release = "0.10.0-dev"
 
 # The short X.Y version.
 parsed_version = re.match(
@@ -63,7 +63,6 @@ extensions = [
     "sphinx.ext.todo",
     # 'sphinx.ext.mathjax',
     "sphinx.ext.viewcode",
-    "sphinx_autodoc_typehints",
     "sphinx_click.ext",
     "sphinx_automodapi.automodapi",
     "sphinx_automodapi.smart_resolver",

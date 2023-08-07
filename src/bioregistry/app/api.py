@@ -5,6 +5,7 @@
 from typing import Any, List, Mapping, Optional, Set
 
 import yaml
+from curies import Reference
 from curies.mapping_service.utils import handle_header
 from fastapi import APIRouter, Header, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse, Response
@@ -455,13 +456,6 @@ def get_contributor(
         registries=sorted(read_registry_contributions(manager.metaregistry).get(orcid, [])),
         collections=sorted(read_collections_contributions(manager.collections).get(orcid, [])),
     )
-
-
-class Reference(BaseModel):
-    """A reference to a prefix and local unique identifier."""
-
-    prefix: str
-    identifier: str
 
 
 class IdentifierResponse(BaseModel):
