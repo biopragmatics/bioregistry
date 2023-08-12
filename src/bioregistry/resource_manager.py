@@ -1044,6 +1044,22 @@ class Manager:
             return None
         return entry.get_default_uri(identifier)
 
+    def get_rdf_uri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the RDF URI for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the canonical RDF provider, if available.
+
+        >>> from bioregistry import manager
+        >>> manager.get_default_iri('chebi', '24867')
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        """
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_rdf_uri(identifier)
+
     def get_miriam_curie(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org CURIE for the given CURIE."""
         resource = self.get_resource(prefix)
@@ -1173,6 +1189,7 @@ class Manager:
         """Return a mapping of provider functions."""
         return {
             "default": self.get_default_iri,
+            "rdf": self.get_rdf_uri,
             "miriam": self.get_miriam_iri,
             "obofoundry": self.get_obofoundry_iri,
             "ols": self.get_ols_iri,
@@ -1199,12 +1216,22 @@ class Manager:
             return rv
 
         bioregistry_link = self.get_bioregistry_iri(prefix, identifier)
-        if not bioregistry_link:
-            return rv
+        if bioregistry_link:
+            rv.append(("bioregistry", bioregistry_link))
 
-        # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
-        rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
+        def _key(t):
+            if t[0] == "default":
+                return 0
+            elif t[0] == "rdf":
+                return 1
+            elif t[0] == "bioregistry":
+                return 2
+            else:
+                return 3
+        rv = sorted(rv, key=_key)
         return rv
+        # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
+        # rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
 
     def get_providers(self, prefix: str, identifier: str) -> Dict[str, str]:
         """Get all providers for the CURIE.
