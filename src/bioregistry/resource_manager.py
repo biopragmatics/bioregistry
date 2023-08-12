@@ -1052,8 +1052,8 @@ class Manager:
         :return: A IRI string corresponding to the canonical RDF provider, if available.
 
         >>> from bioregistry import manager
-        >>> manager.get_default_iri('chebi', '24867')
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        >>> manager.get_default_iri('edam', 'data_1153')
+        'http://edamontology.org/data_1153'
         """
         entry = self.get_resource(prefix)
         if entry is None:
