@@ -1228,6 +1228,7 @@ class Manager:
                 return 2
             else:
                 return 3
+
         rv = sorted(rv, key=_key)
         return rv
         # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
