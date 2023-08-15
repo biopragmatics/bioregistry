@@ -124,11 +124,16 @@ SKIP = {
     "P9107": "is a data property",
     "Q112586709": "should not be annotated like a property",
     "Q111831044": "should not be annotated like a property",
+    "Q115916376": "should not be annotated like a property",
     "P1104": "is a data property",
     "P10676": "is a data property",
     "P181": "is a data property",
     "P1843": "is a data property",
     "P225": "is a data property",
+    "P3752": "is a data property",
+    "P8558": "is a data property",
+    "P6507": "is a data property",
+    "P428": "is a data property",
 }
 RENAMES = {"propLabel": "name", "propDescription": "description"}
 CANONICAL_DATABASES = {
