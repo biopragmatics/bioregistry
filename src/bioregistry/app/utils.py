@@ -36,7 +36,7 @@ def _get_resource_providers(
             name = manager.get_name(prefix)
             homepage = manager.get_homepage(prefix)
         elif metaprefix == "rdf":
-            name = manager.get_name(prefix) + " (RDF)"
+            name = f"{manager.get_name(prefix)} (RDF)"
             homepage = manager.get_homepage(prefix)
         else:
             name = manager.get_registry_name(metaprefix)
