@@ -1052,7 +1052,7 @@ class Manager:
         :return: A IRI string corresponding to the canonical RDF provider, if available.
 
         >>> from bioregistry import manager
-        >>> manager.get_default_iri('edam', 'data_1153')
+        >>> manager.get_rdf_uri('edam', 'data_1153')
         'http://edamontology.org/data_1153'
         """
         entry = self.get_resource(prefix)
