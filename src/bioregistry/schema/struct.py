@@ -685,6 +685,21 @@ class Resource(BaseModel):
             return None
         return fmt.replace("$1", identifier)
 
+    def get_rdf_uri(self, identifier: str) -> Optional[str]:
+        """Return the RDF URI for the identifier.
+
+        :param identifier: The local identifier in the nomenclature represented by this resource
+        :returns: The canonical RDF URI for the local identifier, if one can be constructed
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("edam").get_rdf_uri("data_1153")
+        'http://edamontology.org/data_1153'
+        """
+        fmt = self.get_rdf_uri_format()
+        if fmt is None:
+            return None
+        return fmt.replace("$1", identifier)
+
     def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)
 
