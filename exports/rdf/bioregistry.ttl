@@ -780,6 +780,7 @@
 @prefix ncbigene: <https://www.ncbi.nlm.nih.gov/gene/> .
 @prefix ncbigi: <http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=> .
 @prefix ncbitaxon: <https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=> .
+@prefix nci.drug: <https://www.cancer.gov/publications/dictionaries/cancer-drug/def/> .
 @prefix ncim: <http://ncim.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=> .
 @prefix ncit: <http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=> .
 @prefix ndc: <http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/> .
@@ -802,6 +803,7 @@
 @prefix ngl: <https://genelab-data.ndc.nasa.gov/genelab/accession/> .
 @prefix nhcdr: <https://stemcells.nindsgenetics.org?line=> .
 @prefix niaest: <http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=> .
+@prefix niaid.chemdb: <http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO=> .
 @prefix nif.ext: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
 @prefix nif.std: <http://uri.neuinfo.org/nif/nifstd/> .
 @prefix nihhesc: <https://grants.nih.gov/stem_cells/registry/current.htm?ID=> .
@@ -826,6 +828,7 @@
 @prefix nmr: <https://www.ebi.ac.uk/ols/ontologies/nmrcv/terms?short_form=NMR:> .
 @prefix nmrshiftdb2: <https://nmrshiftdb.nmr.uni-koeln.de/molecule/> .
 @prefix noaa: <https://www.fisheries.noaa.gov/species/> .
+@prefix noaa.cameo: <https://cameochemicals.noaa.gov/chemical/> .
 @prefix noncodev3: <http://www.noncode.org/NONCODERv3/ncrna.php?ncid=> .
 @prefix noncodev4.gene: <http://www.bioinfo.org/NONCODEv4/show_gene.php?id=> .
 @prefix noncodev4.rna: <http://www.bioinfo.org/NONCODEv4/show_rna.php?id=> .
@@ -912,6 +915,7 @@
 @prefix peptideatlas.dataset: <http://www.peptideatlas.org/PASS/> .
 @prefix perkinelmer: <https://www.perkinelmer.com/searchresult?searchName=> .
 @prefix peroxibase: <http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id=> .
+@prefix pesticideinfo: <https://www.pesticideinfo.org/chemical/> .
 @prefix pfam: <https://www.ebi.ac.uk/interpro/entry/pfam/> .
 @prefix pfam.clan: <https://www.ebi.ac.uk/interpro/set/pfam/> .
 @prefix pfr: <http://repository.topdownproteomics.org/proteoforms/> .
@@ -12823,6 +12827,19 @@ bioregistry:nbrc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 nbrc:00001234 ;
     bioregistry.schema:0000029 "nbrc" .
 
+bioregistry:nci.drug a bioregistry.schema:0000001 ;
+    rdfs:label "NCI Drug Dictionary ID" ;
+    dcterms:description "identifier of an entry in the NCI Drug Dictionary"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P11623 ;
+    foaf:homepage <https://www.cancer.gov/publications/dictionaries/cancer-drug> ;
+    bioregistry.schema:0000005 "beta-carotene"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/"^^xsd:string ;
+    bioregistry.schema:0000027 nci.drug:beta-carotene ;
+    bioregistry.schema:0000029 "nci.drug" .
+
 bioregistry:ncim a bioregistry.schema:0000001 ;
     rdfs:label "NCI Metathesaurus" ;
     dcterms:description "NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database that covers most terminologies used by NCI for clinical care, translational and basic research, and public information and administrative activities. It integrates terms and definitions from different terminologies, including NCI Thesaurus, however the representation is not identical."^^xsd:string ;
@@ -13113,6 +13130,19 @@ bioregistry:niaest a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 niaest:J0705A10 ;
     bioregistry.schema:0000029 "niaest" .
 
+bioregistry:niaid.chemdb a bioregistry.schema:0000001 ;
+    rdfs:label "NIAID ChemDB ID" ;
+    dcterms:description "ID in NIAID ChemDB"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P2065 ;
+    foaf:homepage <http://chemdb.niaid.nih.gov> ;
+    bioregistry.schema:0000005 "112081"^^xsd:string ;
+    bioregistry.schema:0000006 "http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO="^^xsd:string ;
+    bioregistry.schema:0000027 niaid.chemdb:112081 ;
+    bioregistry.schema:0000029 "niaid.chemdb" .
+
 bioregistry:nlfff a bioregistry.schema:0000001 ;
     rdfs:label "NLFFF Database" ;
     dcterms:description "Nonlinear Force-Free Field Three-Dimensional Magnetic Fields Data of Solar Active Regions Database"^^xsd:string ;
@@ -13187,6 +13217,20 @@ bioregistry:nmrshiftdb2 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://nmrshiftdb.nmr.uni-koeln.de/molecule/"^^xsd:string ;
     bioregistry.schema:0000027 nmrshiftdb2:234 ;
     bioregistry.schema:0000029 "nmrshiftdb2" .
+
+bioregistry:noaa.cameo a bioregistry.schema:0000001 ;
+    rdfs:label "CAMEO Chemicals ID" ;
+    dcterms:description "chemical in the database supplied by National Oceanic and Atmospheric Administration"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P11931 ;
+    foaf:homepage <https://cameochemicals.noaa.gov> ;
+    bioregistry.schema:0000005 "19757"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cameochemicals.noaa.gov/chemical/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://cameochemicals.noaa.gov/chemical/"^^xsd:string ;
+    bioregistry.schema:0000027 noaa.cameo:19757 ;
+    bioregistry.schema:0000029 "noaa.cameo" .
 
 bioregistry:nomen a bioregistry.schema:0000001 ;
     rdfs:label "A nomenclatural ontology for biological names" ;
@@ -14604,6 +14648,20 @@ bioregistry:peroxibase a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id="^^xsd:string ;
     bioregistry.schema:0000027 peroxibase:5282 ;
     bioregistry.schema:0000029 "peroxibase" .
+
+bioregistry:pesticideinfo a bioregistry.schema:0000001 ;
+    rdfs:label "PesticideInfo chemical ID" ;
+    dcterms:description "chemical in the database supplied by Pesticide Action Network North America"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P11949 ;
+    foaf:homepage <https://www.pesticideinfo.org> ;
+    bioregistry.schema:0000005 "PRI10"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.pesticideinfo.org/chemical/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PRI\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.pesticideinfo.org/chemical/"^^xsd:string ;
+    bioregistry.schema:0000027 pesticideinfo:PRI10 ;
+    bioregistry.schema:0000029 "pesticideinfo" .
 
 bioregistry:pgdso a bioregistry.schema:0000001 ;
     rdfs:label "Plant Growth and Development Stage" ;
@@ -22429,6 +22487,16 @@ wikidata:P1155 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P1156 dcterms:isPartOf bioregistry.registry:wikidata .
 
+wikidata:P11623 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P11931 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P11949 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P11955 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P11956 dcterms:isPartOf bioregistry.registry:wikidata .
+
 wikidata:P1294 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P1391 dcterms:isPartOf bioregistry.registry:wikidata .
@@ -22455,6 +22523,8 @@ wikidata:P1748 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P1832 dcterms:isPartOf bioregistry.registry:wikidata .
 
+wikidata:P1925 dcterms:isPartOf bioregistry.registry:wikidata .
+
 wikidata:P1928 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P1929 dcterms:isPartOf bioregistry.registry:wikidata .
@@ -22468,6 +22538,8 @@ wikidata:P2062 dcterms:isPartOf bioregistry.registry:wikidata .
 wikidata:P2063 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P2064 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P2065 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P2084 dcterms:isPartOf bioregistry.registry:wikidata .
 
@@ -35163,6 +35235,7 @@ bioregistry:sty a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:STY,
         agroportal:STY,
         ecoportal:STY,
+        wikidata:P11955,
         bioportal:STY,
         biolink:UMLSSG ;
     dcat:keyword "ontology" ;
@@ -35798,6 +35871,7 @@ bioregistry:violinnet a bioregistry.schema:0000001 ;
     rdfs:label "ViolinNet" ;
     dcterms:description "Defunct vaccine information source from the He Lab"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P1925 ;
     bioregistry.schema:0000005 "4140"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.violinet.org/vaxquery/vaccine_detail.php?c_vaccine_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -45714,6 +45788,7 @@ bioregistry:efo a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:EFO,
         agroportal:EFO,
         ontobee:EFO,
+        wikidata:P11956,
         bioportal:EFO,
         biocontext:EFO,
         biolink:EFO,
@@ -46399,7 +46474,7 @@ bioregistry:drugbank a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "drugbank" .
 
 bioregistry:edam a bioregistry.schema:0000001 ;
-    rdfs:label "Bioinformatics operations, data types, formats, identifiers and topics" ;
+    rdfs:label "EDAM Ontology" ;
     dcterms:description "EDAM is an ontology of general bioinformatics concepts, including topics, data types, formats, identifiers and operations. EDAM provides a controlled vocabulary for the description, in semantic terms, of things such as: web services (e.g. WSDL files), applications, tool collections and packages, work-benches and workflow software, databases and ontologies, XSD data schema and data objects, data syntax and file formats, web portals and pages, resource catalogues and documents (such as scientific publications)."^^xsd:string ;
     dcterms:hasPart bioregistry:edam.data,
         bioregistry:edam.format,
@@ -50033,6 +50108,11 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P1154,
         wikidata:P1155,
         wikidata:P1156,
+        wikidata:P11623,
+        wikidata:P11931,
+        wikidata:P11949,
+        wikidata:P11955,
+        wikidata:P11956,
         wikidata:P1294,
         wikidata:P1391,
         wikidata:P1402,
@@ -50046,6 +50126,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P1693,
         wikidata:P1748,
         wikidata:P1832,
+        wikidata:P1925,
         wikidata:P1928,
         wikidata:P1929,
         wikidata:P1930,
@@ -50053,6 +50134,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P2062,
         wikidata:P2063,
         wikidata:P2064,
+        wikidata:P2065,
         wikidata:P2084,
         wikidata:P2106,
         wikidata:P2115,
@@ -56345,6 +56427,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ncbigi,
         bioregistry:ncbiprotein,
         bioregistry:ncbitaxon,
+        bioregistry:nci.drug,
         bioregistry:ncim,
         bioregistry:ncit,
         bioregistry:ncro,
@@ -56371,6 +56454,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ngl,
         bioregistry:nhcdr,
         bioregistry:niaest,
+        bioregistry:niaid.chemdb,
         bioregistry:nif.cell,
         bioregistry:nif.dysfunction,
         bioregistry:nif.ext,
@@ -56400,6 +56484,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nmr,
         bioregistry:nmrshiftdb2,
         bioregistry:noaa,
+        bioregistry:noaa.cameo,
         bioregistry:nomen,
         bioregistry:noncodev3,
         bioregistry:noncodev4.gene,
@@ -56532,6 +56617,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:peptideatlas.dataset,
         bioregistry:perkinelmer,
         bioregistry:peroxibase,
+        bioregistry:pesticideinfo,
         bioregistry:pesticides,
         bioregistry:pfam,
         bioregistry:pfam.clan,
