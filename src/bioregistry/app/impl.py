@@ -18,6 +18,7 @@ from bioregistry import curie_to_str, resource_manager, version
 from .api import api_router
 from .constants import BIOSCHEMAS
 from .ui import ui_blueprint
+from ..constants import PYDANTIC_1
 
 if TYPE_CHECKING:
     import bioregistry
@@ -192,6 +193,7 @@ def get_app(
         curie_to_str=curie_to_str,
         fastapi_url_for=fast_api.url_path_for,
         markdown=markdown,
+        is_pydantic_1=PYDANTIC_1,
     )
 
     if return_flask:

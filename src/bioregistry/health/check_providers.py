@@ -44,7 +44,10 @@ class Summary(BaseModel):
     total_failed: int
     total_success: int
     failure_percent: float = Field(
-        ge=0.0, le=100.0, description="The percentage of providers that did not successfully ping."
+        ...,
+        ge=0.0,
+        le=100.0,
+        description="The percentage of providers that did not successfully ping.",
     )
 
 

@@ -14133,7 +14133,7 @@ edam:
     ols: edam
     ontobee: EDAM
     prefixcommons: edam
-  name: Bioinformatics operations, data types, formats, identifiers and topics
+  name: EDAM Ontology
   pattern: ^(data|topic|operation|format)\_\d{4}$
   preferred_prefix: edam
   providers:
@@ -14153,6 +14153,7 @@ edam:
     title: 'EDAM: an ontology of bioinformatics operations, types of data and identifiers,
       topics and formats'
     year: 2013
+  rdf_uri_format: http://edamontology.org/$1
   repository: https://github.com/edamontology/edamontology
   twitter: edamontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
@@ -14331,6 +14332,7 @@ efo:
     n2t: efo
     ols: efo
     ontobee: EFO
+    wikidata: P11956
   name: Experimental Factor Ontology
   owners:
   - name: European Bioinformatics Institute
@@ -31735,7 +31737,7 @@ mondo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
-  uri_format: http://www.bioregistry.io/$1
+  uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   version: '2023-06-01'
 mop:
   contact:
@@ -33229,6 +33231,15 @@ ncbitaxon:
   - uniprot.taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
   version: '2023-06-20'
+nci.drug:
+  description: identifier of an entry in the NCI Drug Dictionary
+  example: beta-carotene
+  homepage: https://www.cancer.gov/publications/dictionaries/cancer-drug
+  mappings:
+    wikidata: P11623
+  name: NCI Drug Dictionary ID
+  preferred_prefix: nci.drug
+  uri_format: https://www.cancer.gov/publications/dictionaries/cancer-drug/def/$1
 ncim:
   description: NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database
     that covers most terminologies used by NCI for clinical care, translational and
@@ -34082,6 +34093,15 @@ niaest:
     title: The NIA cDNA project in mouse stem cells and early embryos
     year: 2003
   uri_format: http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1
+niaid.chemdb:
+  description: ID in NIAID ChemDB
+  example: '112081'
+  homepage: http://chemdb.niaid.nih.gov
+  mappings:
+    wikidata: P2065
+  name: NIAID ChemDB ID
+  preferred_prefix: niaid.chemdb
+  uri_format: http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO=$1
 nif.cell:
   contact:
     email: smtifahim@gmail.com
@@ -34917,6 +34937,17 @@ noaa:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://www.fisheries.noaa.gov/species/$1
+noaa.cameo:
+  description: chemical in the database supplied by National Oceanic and Atmospheric
+    Administration
+  example: '19757'
+  homepage: https://cameochemicals.noaa.gov
+  mappings:
+    wikidata: P11931
+  name: CAMEO Chemicals ID
+  pattern: ^\d*$
+  preferred_prefix: noaa.cameo
+  uri_format: https://cameochemicals.noaa.gov/chemical/$1
 nomen:
   contact:
     email: diapriid@gmail.com
@@ -39335,6 +39366,17 @@ peroxibase:
       from Viridiplantae'
     year: 2008
   uri_format: http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id=$1
+pesticideinfo:
+  description: chemical in the database supplied by Pesticide Action Network North
+    America
+  example: PRI10
+  homepage: https://www.pesticideinfo.org
+  mappings:
+    wikidata: P11949
+  name: PesticideInfo chemical ID
+  pattern: ^PRI\d*$
+  preferred_prefix: pesticideinfo
+  uri_format: https://www.pesticideinfo.org/chemical/$1
 pesticides:
   contributor:
     email: cthoyt@gmail.com
@@ -48668,6 +48710,7 @@ sty:
     biolink: UMLSSG
     bioportal: STY
     ecoportal: STY
+    wikidata: P11955
   name: UMLS Semantic Types Ontology
   pattern: ^T\d{3}$
   preferred_prefix: sty
@@ -52626,6 +52669,8 @@ violinnet:
   deprecated: true
   description: Defunct vaccine information source from the He Lab
   example: '4140'
+  mappings:
+    wikidata: P1925
   name: ViolinNet
   pattern: ^\d+$
   preferred_prefix: violinnet
