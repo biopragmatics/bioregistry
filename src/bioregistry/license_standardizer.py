@@ -35,6 +35,8 @@ CC_BY_ND_4 = "CC BY-ND 4.0"
 CC_BY_NC_SA_4 = "CC BY-NC-SA 4.0"
 #: http://creativecommons.org/licenses/by-nc/4.0
 CC_BY_NC_4 = "CC BY-NC 4.0"
+#: http://creativecommons.org/licenses/by-nc-sa/2.5
+CC_BY_NC_SA_25 = "CC BY-NC-SA 2.5"
 
 CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC BY-SA"
@@ -93,6 +95,10 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "CC-BY-2.5",
         "https://creativecommons.org/licenses/by/2.5/",
         "https://creativecommons.org/licenses/by/2.5/dk",
+    ],
+    CC_BY_NC_SA_25: [
+        CC_BY_NC_SA_25,
+        "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
     ],
     "CC-BY-3.0-IGO": [
         CC_BY_3_IGO,
