@@ -157,7 +157,7 @@ def _process_row(line: str):
     if uri_rdf_formats:
         if len(uri_rdf_formats) > 1:
             logger.warning("got multiple RDF formats for %s", prefix)
-        rv["uri_rdf_formats"] = uri_rdf_formats[0]
+        rv["rdf_uri_format"] = uri_rdf_formats[0]
 
     alt_uri_formats_clean = _get_uri_formats(rv, "alternate_uri_formats")
     if alt_uri_formats_clean:

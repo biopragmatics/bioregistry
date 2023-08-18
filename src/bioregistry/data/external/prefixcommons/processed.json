@@ -266,7 +266,7 @@
     "keywords": [
       "allergen"
     ],
-    "license": "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
+    "license": "CC BY-NC-SA 2.5",
     "miriam": "allergome",
     "name": "Allergome: a platform for allergen knowledge",
     "pattern": "^\\d+$",
@@ -1780,8 +1780,8 @@
     "name": "Cognitive Atlas",
     "pattern": "^CAO_\\d+$",
     "prefix": "cogat",
-    "uri_format": "http://www.cognitiveatlas.org/ontology/cogat.owl#$1",
-    "uri_rdf_formats": "http://www.cognitiveatlas.org/ontology/cogat.owl#$1"
+    "rdf_uri_format": "http://www.cognitiveatlas.org/ontology/cogat.owl#$1",
+    "uri_format": "http://www.cognitiveatlas.org/ontology/cogat.owl#$1"
   },
   "come": {
     "description": "COMe is an attempt to classify metalloproteins and some other complex proteins using the concept of bioinorganic motif.",
@@ -5401,10 +5401,10 @@
     "name": "Kinetic Simulation Algorithm Ontology",
     "pattern": "^KISAO_\\d+$",
     "prefix": "kisao",
+    "rdf_uri_format": "http://www.biomodels.net/kisao/KISAO#$1",
     "synonyms": [
       "biomodels.kisao"
-    ],
-    "uri_rdf_formats": "http://www.biomodels.net/kisao/KISAO#$1"
+    ]
   },
   "kznf": {
     "description": "A database of Kr\u00fcppel-type zinc finger (ZNF) proteins",
@@ -5884,12 +5884,12 @@
     "name": "Medical Subject Headings",
     "pattern": "^[A-Za-z0-9]+$",
     "prefix": "mesh",
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/MSH/$1",
     "synonyms": [
       "msh",
       "bionto.mesh",
       "mesh_cui"
-    ],
-    "uri_rdf_formats": "http://purl.bioontology.org/ontology/MSH/$1"
+    ]
   },
   "metagrowth": {
     "description": "Metagrowth is a new type knowledge base aiming to guide the experimental studies on the culture conditions of obligate parasitic bacteria. The database entry is composed of the evidences and specific hypotheses derived from them. Currently 200 entries are available for Coxiella burnetii.",
@@ -6833,14 +6833,14 @@
     "pubmed_ids": [
       "19789731"
     ],
+    "rdf_uri_format": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#$1",
     "synonyms": [
       "ncithesaurus",
       "nci",
       "nci2009_04d",
       "nci_thesaurus_code"
     ],
-    "uri_format": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1",
-    "uri_rdf_formats": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#$1"
+    "uri_format": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1"
   },
   "ndfrt": {
     "bioportal": "1352",
@@ -6850,7 +6850,7 @@
     "name": "National Drug File",
     "pattern": "^N\\d+$",
     "prefix": "ndfrt",
-    "uri_rdf_formats": "http://purl.bioontology.org/ontology/NDFRT/$1"
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/NDFRT/$1"
   },
   "neibank": {
     "description": "NEIBank is an integrated resource for genomics and bioinformatics in vision research. It includes expressed sequence tag (EST) data and sequence-verified cDNA clones for multiple eye tissues of several species, web-based access to human eye-specific SAGE data through EyeSAGE, and comprehensive, annotated databases of known human eye disease genes and candidate disease gene loci. All expression- and disease-related data are integrated in EyeBrowse, an eye-centric genome browser.",
@@ -6915,8 +6915,8 @@
     "name": "Neural Motor Recovery Ontology",
     "pattern": "^\\w+$",
     "prefix": "neumore",
-    "uri_format": "http://neumore.cis.usouthal.edu/ontologies/NeuMORE-v0.1.owl#$1",
-    "uri_rdf_formats": "http://neumore.cis.usouthal.edu/ontologies/NeuMORE-v0.1.owl#$1"
+    "rdf_uri_format": "http://neumore.cis.usouthal.edu/ontologies/NeuMORE-v0.1.owl#$1",
+    "uri_format": "http://neumore.cis.usouthal.edu/ontologies/NeuMORE-v0.1.owl#$1"
   },
   "neurolex": {
     "description": "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex).",
@@ -7028,10 +7028,10 @@
     "name": "NMR-instrument specific component of metabolomics investigations",
     "pattern": "^NMR_\\d+$",
     "prefix": "nmr",
+    "rdf_uri_format": "http://msi-ontology.sourceforge.net/ontology/NMR.owl#$1",
     "synonyms": [
       "msi.nmr"
-    ],
-    "uri_rdf_formats": "http://msi-ontology.sourceforge.net/ontology/NMR.owl#$1"
+    ]
   },
   "noncode": {
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics.",
@@ -7274,10 +7274,10 @@
     "name": "Ontology of Physics for Biology",
     "pattern": "^OPB_\\d+$",
     "prefix": "opb",
+    "rdf_uri_format": "http://bhi.washington.edu/OPB#$1",
     "synonyms": [
       "opb.properties"
-    ],
-    "uri_rdf_formats": "http://bhi.washington.edu/OPB#$1"
+    ]
   },
   "operondb": {
     "description": "OperonDB is a database containing the results of a computational algorithm for locating operon structures in microbial genomes. OperonDB has grown from 34 genomes in its initial release to more than 500 genomes today.",
@@ -7911,8 +7911,8 @@
       "9399864",
       "9223186"
     ],
-    "uri_format": "http://pfam.sanger.ac.uk/family?entry=$1",
-    "uri_rdf_formats": "http://pfam.janelia.org/family/#$1"
+    "rdf_uri_format": "http://pfam.janelia.org/family/#$1",
+    "uri_format": "http://pfam.sanger.ac.uk/family?entry=$1"
   },
   "pgc": {
     "description": "The list of plant sequencing projects in this page includes those that have reached the stage where active sequence determination is currently producing, or is expected to produce in the near future, GenBank accessions toward the goal of determining the sequence of that plant genome.",
@@ -8740,7 +8740,7 @@
     "name": "Proteomics data and process provenance",
     "pattern": "^\\w+$",
     "prefix": "propreo",
-    "uri_rdf_formats": "http://lsdis.cs.uga.edu/projects/glycomics/propreo#$1"
+    "rdf_uri_format": "http://lsdis.cs.uga.edu/projects/glycomics/propreo#$1"
   },
   "prosite": {
     "description": "PROSITE consists of documentation entries describing protein domains, families and functional sites as well as associated patterns and profiles to identify them",
@@ -9179,8 +9179,8 @@
     "name": "Read Codes, Clinical Terms Version 3 (CTV3)",
     "pattern": "^\\w+$",
     "prefix": "rcd",
-    "uri_format": "http://purl.bioontology.org/ontology/RCD/$1",
-    "uri_rdf_formats": "http://purl.bioontology.org/ontology/RCD/$1"
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/RCD/$1",
+    "uri_format": "http://purl.bioontology.org/ontology/RCD/$1"
   },
   "reactome": {
     "description": "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology.",
@@ -9330,11 +9330,11 @@
     "name": "Reproductive trait and phenotype ontology",
     "pattern": "^\\w+$",
     "prefix": "repo",
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/REPO$1",
     "synonyms": [
       "rtpo"
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/REPO.owl#$1",
-    "uri_rdf_formats": "http://purl.bioontology.org/ontology/REPO$1"
+    "uri_format": "http://purl.bioontology.org/ontology/REPO.owl#$1"
   },
   "reproduction2dpage": {
     "description": "Two-dimensional polyacrylamide gel electrophoresis database",
@@ -9749,10 +9749,10 @@
     "name": "Subcellular Anatomy Ontology (SAO)",
     "pattern": "^sao\\d+$",
     "prefix": "sao",
+    "rdf_uri_format": "http://ccdb.ucsd.edu/SAO/1.2#$1",
     "synonyms": [
       "sao:"
-    ],
-    "uri_rdf_formats": "http://ccdb.ucsd.edu/SAO/1.2#$1"
+    ]
   },
   "sbase": {
     "description": "SBASE is a collection of protein domain sequences collected from the literature, from protein sequence databases and from genomic databases",
@@ -10038,8 +10038,8 @@
     "name": "Student Health Record",
     "pattern": "^\\w$",
     "prefix": "shr",
-    "uri_format": "http://www.shojaee.com/shr/shr.owl#$1",
-    "uri_rdf_formats": "http://www.shojaee.com/shr/shr.owl#$1"
+    "rdf_uri_format": "http://www.shojaee.com/shr/shr.owl#$1",
+    "uri_format": "http://www.shojaee.com/shr/shr.owl#$1"
   },
   "siege": {
     "description": "Smoking Induced Epithelial Gene Expression Database",
@@ -10138,7 +10138,7 @@
     "name": "Situation-Based Access Control",
     "pattern": "^\\w$",
     "prefix": "sitbac",
-    "uri_rdf_formats": "http://www.semanticweb.org/ontologies/2008/1/Ontology1204037102846.owl#$1"
+    "rdf_uri_format": "http://www.semanticweb.org/ontologies/2008/1/Ontology1204037102846.owl#$1"
   },
   "sitex": {
     "description": "SitEx is a database containing information on eukaryotic protein functional sites. It stores the amino acid sequence positions in the functional site, in relation to the exon structure of encoding gene This can be used to detect the exons involved in shuffling in protein evolution, or to design protein-engineering experiments.",
@@ -10473,7 +10473,7 @@
     "name": "Syndromic Surveillance Ontology",
     "pattern": "^\\w$",
     "prefix": "sso",
-    "uri_rdf_formats": "http://surveillance.mcgill.ca/sso/syndromes.owl#$1"
+    "rdf_uri_format": "http://surveillance.mcgill.ca/sso/syndromes.owl#$1"
   },
   "sstoss": {
     "description": "SSToSS is a database which provides sequence-structural templates of single member protein domain superfamilies like PASS2. Sequence-structural templates are recognized by considering the content and overlap of sequence similarity and structural parameters like, solvent inaccessibility, secondary structural content, hydrogen bonding and spatial packing of the residues among the protein of single member superfamilies.",
@@ -10703,7 +10703,7 @@
     "name": "Software Ontology",
     "pattern": "^SWO_\\d{7}$",
     "prefix": "swo",
-    "uri_rdf_formats": "http://www.ebi.ac.uk/efo/swo/$1"
+    "rdf_uri_format": "http://www.ebi.ac.uk/efo/swo/$1"
   },
   "syfpeithi": {
     "description": "SYFPEITHI is a database comprising more than 7000 peptide sequences known to bind class I and class II MHC molecules.",
@@ -11079,7 +11079,7 @@
     "name": "thesaurus alternativa",
     "pattern": "^\\w$",
     "prefix": "thealternativa",
-    "uri_rdf_formats": "http://www.owl-ontologies.com/thesaurus.owl#$1"
+    "rdf_uri_format": "http://www.owl-ontologies.com/thesaurus.owl#$1"
   },
   "thesaurus": {
     "bioportal": "3034",
@@ -11093,7 +11093,7 @@
     "name": "thesaurus",
     "pattern": "^\\w$",
     "prefix": "thesaurus",
-    "uri_rdf_formats": "http://www.owl-ontologies.com/thesaurus.owl#$1"
+    "rdf_uri_format": "http://www.owl-ontologies.com/thesaurus.owl#$1"
   },
   "tied": {
     "description": "The IEDB contains data related to antibody and T cell epitopes for humans, non-human primates, rodents, and other animal species.",
@@ -11135,7 +11135,7 @@
     "name": "Traditional Medicine Constitution Value Set",
     "pattern": "^TM\\d$",
     "prefix": "tm-const",
-    "uri_rdf_formats": "http://who.int/ictm/constitution#$1"
+    "rdf_uri_format": "http://who.int/ictm/constitution#$1"
   },
   "tm-other-factors": {
     "bioportal": "1571",
@@ -11149,7 +11149,7 @@
     "name": "Traditional Medicine Other Factors Value Set",
     "pattern": "^TM\\d$",
     "prefix": "tm-other-factors",
-    "uri_rdf_formats": "http://who.int/ictm/otherFactors#$1"
+    "rdf_uri_format": "http://who.int/ictm/otherFactors#$1"
   },
   "tm-signs-and-sympts": {
     "bioportal": "1572",
@@ -11163,7 +11163,7 @@
     "name": "Traditional Medicine Signs and Symptoms Value Set",
     "pattern": "^TM\\d$",
     "prefix": "tm-signs-and-sympts",
-    "uri_rdf_formats": "http://who.int/ictm/signsAndSymptoms#$1"
+    "rdf_uri_format": "http://who.int/ictm/signsAndSymptoms#$1"
   },
   "tomatest_db": {
     "description": "This database has been designed to manage and to explore the huge amount of EST reads from 14 Solanaceae and 2 Rubiaceae species.",
@@ -11408,7 +11408,7 @@
     "name": "uni-ece",
     "pattern": "^\\w$",
     "prefix": "uni-ece",
-    "uri_rdf_formats": "http://www.semanticweb.org/ontologies/2012/2/Ontology1331685116337.owl#$1"
+    "rdf_uri_format": "http://www.semanticweb.org/ontologies/2012/2/Ontology1331685116337.owl#$1"
   },
   "unigene": {
     "description": "Each UniGene entry is a set of transcript sequences that appear to come from the same transcription locus (gene or expressed pseudogene), together with information on protein similarities, gene expression, cDNA clone reagents, and genomic location.",
@@ -11466,6 +11466,7 @@
     "pubmed_ids": [
       "16381842"
     ],
+    "rdf_uri_format": "http://purl.uniprot.org/uniprot/$1",
     "synonyms": [
       "uniprotkb",
       "uniprotkb/trembl",
@@ -11473,8 +11474,7 @@
       "sp",
       "UNIPROTKB/SWISSPROT"
     ],
-    "uri_format": "http://www.uniprot.org/uniprot/$1",
-    "uri_rdf_formats": "http://purl.uniprot.org/uniprot/$1"
+    "uri_format": "http://www.uniprot.org/uniprot/$1"
   },
   "uniprot.kw": {
     "description": "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries. There are 10 categories of keywords.",
