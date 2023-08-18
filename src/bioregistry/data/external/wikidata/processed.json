@@ -37,6 +37,17 @@
     "prefix": "P10022",
     "uri_format": "https://www.treccani.it/enciclopedia/$1_(Dizionario-di-Medicina)"
   },
+  "P10025": {
+    "database": "Q80474554",
+    "description": "identifier of a tool in Toolhub",
+    "example": [
+      "mm_petscan",
+      "toolforge-croptool"
+    ],
+    "name": "Toolhub ID",
+    "prefix": "P10025",
+    "uri_format": "https://toolhub.wikimedia.org/tools/$1"
+  },
   "P10064": {
     "database": "Q109289360",
     "description": "identifier for a taxon in the Northwest Territories in the NWT Species database",
@@ -656,7 +667,6 @@
       "10.1186/1756-0500-2-265",
       "10.7603/s40632-015-0036-1"
     ],
-    "homepage": "https://scigraph.springernature.com/explorer",
     "name": "Springer Nature article ID",
     "pattern": "^10\\.\\d{4,9}/[0-9a-z._-]+$",
     "prefix": "P10863",
@@ -1502,6 +1512,93 @@
     "prefix": "P11829",
     "uri_format": "https://www.chicagobotanic.org/plantcollections/plantfinder/$1"
   },
+  "P11901": {
+    "database": "Q116291148",
+    "description": "identifier for an entry in the NCI Dictionary of Cancer Terms",
+    "example": [
+      "3-aminopyridine-2-carboxaldehyde-thiosemicarbazone",
+      "3-d-mammography",
+      "aat-deficiency",
+      "cancer-cell-line",
+      "galvanic-skin-response",
+      "germ-cell",
+      "jakafi",
+      "prostate"
+    ],
+    "name": "NCI Dictionary of Cancer Terms entry",
+    "pattern": "^[a-z0-9\\-]+$",
+    "prefix": "P11901",
+    "uri_format": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/$1"
+  },
+  "P11902": {
+    "database": "Q116303969",
+    "description": "identifier for an entry in the NCI Dictionary of Genetics Terms",
+    "example": [
+      "acrochordon",
+      "allele",
+      "deoxyribonucleic-acid and dna",
+      "locus-heterogeneity",
+      "phenotype",
+      "skin-tag",
+      "z-score"
+    ],
+    "name": "NCI Dictionary of Genetics Terms entry",
+    "pattern": "^[a-z0-9\\-]+$",
+    "prefix": "P11902",
+    "uri_format": "https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/$1"
+  },
+  "P11931": {
+    "database": "http://www.wikidata.org/.well-known/genid/4a2681f823464601994d25a19df58aae",
+    "description": "chemical in the database supplied by National Oceanic and Atmospheric Administration",
+    "example": [
+      "19757",
+      "667",
+      "8754"
+    ],
+    "homepage": "https://cameochemicals.noaa.gov",
+    "name": "CAMEO Chemicals ID",
+    "pattern": "^\\d*$",
+    "prefix": "P11931",
+    "uri_format": "https://cameochemicals.noaa.gov/chemical/$1"
+  },
+  "P11949": {
+    "database": "Q55464433",
+    "description": "chemical in the database supplied by Pesticide Action Network North America",
+    "example": [
+      "PRI10",
+      "PRI1700",
+      "PRI381"
+    ],
+    "homepage": "https://www.pesticideinfo.org",
+    "name": "PesticideInfo chemical ID",
+    "pattern": "^PRI\\d*$",
+    "prefix": "P11949",
+    "uri_format": "https://www.pesticideinfo.org/chemical/$1"
+  },
+  "P11955": {
+    "description": "identifier for a concept in the Semantic Network vocabulary of the Unified Medical Language System",
+    "example": [
+      "T005",
+      "T015"
+    ],
+    "homepage": "https://uts.nlm.nih.gov/uts/umls/semantic-network/root",
+    "name": "UMLS Semantic Network ID",
+    "prefix": "P11955",
+    "uri_format": "https://uts.nlm.nih.gov/uts/umls/semantic-network/$1"
+  },
+  "P11956": {
+    "database": "Q16251642",
+    "description": "identifier for an experimental factor in the Experimental Factor Ontology",
+    "example": [
+      "0000408",
+      "0003894",
+      "0008559"
+    ],
+    "homepage": "https://www.ebi.ac.uk/efo/",
+    "name": "Experimental Factor Ontology ID",
+    "prefix": "P11956",
+    "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -1607,7 +1704,7 @@
     "uri_format": "https://patient.info/doctor/$1"
   },
   "P1550": {
-    "database": "Q929833",
+    "database": "Q1515833",
     "description": "identifier in the Orpha.net database (without ORPHA prefix)",
     "example": [
       "723",
@@ -2107,7 +2204,7 @@
     "name": "CITES Species+ ID",
     "pattern": "^\\d{1,5}$",
     "prefix": "P2040",
-    "uri_format": "https://speciesplus.net/#/taxon_concepts/$1/legal"
+    "uri_format": "https://speciesplus.net/#/taxon_concepts/$1"
   },
   "P2057": {
     "database": "Q5937262",
@@ -2224,7 +2321,7 @@
     ],
     "homepage": "http://zinc.docking.org/",
     "name": "ZINC ID",
-    "pattern": "^\\d{7,9}$",
+    "pattern": "^\\d{5,9}$",
     "prefix": "P2084",
     "uri_format": "http://zinc.docking.org/substances/ZINC$1"
   },
@@ -2637,6 +2734,7 @@
     "database": "Q22279816",
     "description": "identifier in the BARTOC Terminology Registry",
     "example": [
+      "18801",
       "241"
     ],
     "homepage": "https://bartoc.org/",
@@ -2800,8 +2898,7 @@
     "database": "Q455338",
     "description": "NLM Unified Medical Language System (UMLS) controlled biomedical vocabulary unique identifier",
     "example": [
-      "C1274928",
-      "C3192263"
+      "C1274928"
     ],
     "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/",
     "miriam": "umls",
@@ -3335,14 +3432,14 @@
     "database": "Q107212889",
     "description": "identifier in the list of members of the Royal Swedish Academy of Letters, History and Antiquities",
     "example": [
-      "1",
-      "181"
+      "jens-walter",
+      "schive-claudius-jacob"
     ],
-    "homepage": "http://www.vitterhetsakad.se/ledamoter/matrikel/",
+    "homepage": "https://www.vitterhetsakademien.se/ledamoter/ledamoter",
     "name": "Royal Swedish Academy of Letters member ID",
-    "pattern": "^[1-9]\\d{0,3}$",
+    "pattern": "^[a-zA-Z]+(?:-[a-zA-Z]+)*$",
     "prefix": "P3389",
-    "uri_format": "http://www.vitterhetsakad.se/ledamoter/matrikel/$1"
+    "uri_format": "https://www.vitterhetsakademien.se/ledamoter/ledamoter/$1.html"
   },
   "P3398": {
     "database": "Q26879218",
@@ -3714,15 +3811,6 @@
     "pattern": "^[1-9]\\d{0,3}$",
     "prefix": "P3746",
     "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
-  },
-  "P3752": {
-    "database": "Q2393193",
-    "description": "time complexity of an algorithm at most",
-    "example": [
-      "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" alttext=\"{\\displaystyle O(n^{2})}\">\n  <semantics>\n    <mrow class=\"MJX-TeXAtom-ORD\">\n      <mstyle displaystyle=\"true\" scriptlevel=\"0\">\n        <mi>O</mi>\n        <mo stretchy=\"false\">(</mo>\n        <msup>\n          <mi>n</mi>\n          <mrow class=\"MJX-TeXAtom-ORD\">\n            <mn>2</mn>\n          </mrow>\n        </msup>\n        <mo stretchy=\"false\">)</mo>\n      </mstyle>\n    </mrow>\n    <annotation encoding=\"application/x-tex\">{\\displaystyle O(n^{2})}</annotation>\n  </semantics>\n</math>"
-    ],
-    "name": "worst-case time complexity",
-    "prefix": "P3752"
   },
   "P3753": {
     "database": "Q2393193",
@@ -4098,13 +4186,13 @@
     "database": "Q3368754",
     "description": "identifier for a condition on PatientsLikeMe, a website where patients can share health information",
     "example": [
-      "610",
+      "restrictive-lung-disease",
       "turner-s-syndrome",
       "ulcerative-colitis"
     ],
     "homepage": "https://www.patientslikeme.com/",
     "name": "PatientsLikeMe condition ID",
-    "pattern": "^[1-9]\\d*$",
+    "pattern": "^[-0-9a-zA-Z]+$",
     "prefix": "P4233",
     "uri_format": "https://www.patientslikeme.com/conditions/$1"
   },
@@ -4131,18 +4219,6 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4236",
     "uri_format": "https://www.patientslikeme.com/symptoms/show/$1"
-  },
-  "P428": {
-    "database": "Q922063",
-    "description": "standard form (official abbreviation) of a personal name for use in an author citation (only for names of algae, fungi and plants)",
-    "example": [
-      "Darwin",
-      "L."
-    ],
-    "name": "botanist author abbreviation",
-    "pattern": "^(.*^(?!.*(\\-|\\')\\s.*).*)^.{1,42}(f\\.|bis)?$",
-    "prefix": "P428",
-    "uri_format": "https://www.ipni.org/ipni/advAuthorSearch.do?find_abbreviation=$1"
   },
   "P4288": {
     "description": "identifier of a fruit (plant) variety or cultivar, in the United Kingdom National Fruit Collection",
@@ -6528,15 +6604,15 @@
     "database": "Q59848752",
     "description": "identifier for a taxon on the Weeds in Ontario website",
     "example": [
-      "common_mullein",
-      "curled_dock",
+      "common-mullein",
+      "docks",
       "velvetleaf"
     ],
     "homepage": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/weedgalfam.htm",
     "name": "Weeds in Ontario ID",
-    "pattern": "^[a-z]+(_[a-z]+)*$",
+    "pattern": "^[a-z]+(-[a-z]+)*$",
     "prefix": "P6285",
-    "uri_format": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/$1.htm"
+    "uri_format": "https://www.ontario.ca/document/weed-identification-guide-ontario-crops/$1"
   },
   "P6289": {
     "database": "Q7080799",
@@ -6747,16 +6823,6 @@
     "prefix": "P6487",
     "uri_format": "https://www.hemiptera-databases.org/cgi-bin/Tessaratomidae/tessaratomidae.pl?db=tessaratomidae&lang=en&card=taxon&rank=species&id=$1"
   },
-  "P6507": {
-    "description": "valid author citation for a taxon using the appropriate nomenclature (ICBN, ICZN, ect.)",
-    "example": [
-      "(Rupr.) Kom. (1932)",
-      "(Thomson, 1877)",
-      "Sharpe, 1902"
-    ],
-    "name": "taxon author citation",
-    "prefix": "P6507"
-  },
   "P6516": {
     "database": "Q61686004",
     "description": "identifier for a taxon in ScaleNet",
@@ -6784,7 +6850,7 @@
     "name": "UNII",
     "pattern": "^[0-9A-Za-z]{10}$",
     "prefix": "P652",
-    "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
+    "uri_format": "https://gsrs.ncats.nih.gov/ginas/app/beta/substances/$1"
   },
   "P653": {
     "database": "Q180686",
@@ -7554,6 +7620,18 @@
     "prefix": "P7260",
     "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
   },
+  "P7292": {
+    "database": "Q4794722",
+    "description": "ID of a publication in Arnet Miner",
+    "example": [
+      "5b1643998fbcbf6e5a9bc273",
+      "5c2c7a6717c44a4e7cf30b95",
+      "5c2ea7c6df5b8c0b3ced3327"
+    ],
+    "name": "Arnet Miner publication ID",
+    "prefix": "P7292",
+    "uri_format": "https://www.aminer.cn/pub/$1"
+  },
   "P7329": {
     "database": "Q55695727",
     "description": "identifier in ICD terminology of diseases - Version 11 (Mortality and Morbidity Statistics) linearization (not the foundation ID)",
@@ -8043,7 +8121,7 @@
     "name": "FHF hospital group ID",
     "pattern": "^\\d+$",
     "prefix": "P8078",
-    "uri_format": "https://etablissements.fhf.fr/annuaire/hopital-fiche.php?id_struct=$1"
+    "uri_format": "https://etablissements.fhf.fr/annuaire/structure/structure$1"
   },
   "P8082": {
     "database": "Q89591574",
@@ -8327,7 +8405,7 @@
     ],
     "name": "Web of Science ID (work)",
     "prefix": "P8372",
-    "uri_format": "https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL"
+    "uri_format": "https://www.webofscience.com/wos/woscc/full-record/WOS:$1"
   },
   "P838": {
     "database": "Q12345690",
@@ -8450,17 +8528,6 @@
     "name": "ChemSynthesis ID",
     "prefix": "P8508",
     "uri_format": "https://www.chemsynthesis.com/base/chemical-structure-$1.html"
-  },
-  "P8558": {
-    "database": "Q51846190",
-    "description": "table containing the coefficients of a Runge-Kutta method",
-    "example": [
-      "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" alttext=\"{\\displaystyle {\\begin{array}{l|l}0&amp;\\\\2/3&amp;2/3\\\\\\hline &amp;1/4\\end{array}}}\">\n  <semantics>\n    <mrow class=\"MJX-TeXAtom-ORD\">\n      <mstyle displaystyle=\"true\" scriptlevel=\"0\">\n        <mrow class=\"MJX-TeXAtom-ORD\">\n          <mtable columnalign=\"left left\" rowspacing=\"4pt\" columnspacing=\"1em\" rowlines=\"none solid\" columnlines=\"solid\">\n            <mtr>\n              <mtd>\n                <mn>0</mn>\n              </mtd>\n              <mtd />\n            </mtr>\n            <mtr>\n              <mtd>\n                <mn>2</mn>\n                <mrow class=\"MJX-TeXAtom-ORD\">\n                  <mo>/</mo>\n                </mrow>\n                <mn>3</mn>\n              </mtd>\n              <mtd>\n                <mn>2</mn>\n                <mrow class=\"MJX-TeXAtom-ORD\">\n                  <mo>/</mo>\n                </mrow>\n                <mn>3</mn>\n              </mtd>\n            </mtr>\n            <mtr>\n              <mtd />\n              <mtd>\n                <mn>1</mn>\n                <mrow class=\"MJX-TeXAtom-ORD\">\n                  <mo>/</mo>\n                </mrow>\n                <mn>4</mn>\n              </mtd>\n            </mtr>\n          </mtable>\n        </mrow>\n      </mstyle>\n    </mrow>\n    <annotation encoding=\"application/x-tex\">{\\displaystyle {\\begin{array}{l|l}0&amp;\\\\2/3&amp;2/3\\\\\\hline &amp;1/4\\end{array}}}</annotation>\n  </semantics>\n</math>",
-      "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" alttext=\"{\\displaystyle {\\begin{array}{l|l}1&amp;1\\\\\\hline &amp;1\\end{array}}}\">\n  <semantics>\n    <mrow class=\"MJX-TeXAtom-ORD\">\n      <mstyle displaystyle=\"true\" scriptlevel=\"0\">\n        <mrow class=\"MJX-TeXAtom-ORD\">\n          <mtable columnalign=\"left left\" rowspacing=\"4pt\" columnspacing=\"1em\" rowlines=\"solid\" columnlines=\"solid\">\n            <mtr>\n              <mtd>\n                <mn>1</mn>\n              </mtd>\n              <mtd>\n                <mn>1</mn>\n              </mtd>\n            </mtr>\n            <mtr>\n              <mtd />\n              <mtd>\n                <mn>1</mn>\n              </mtd>\n            </mtr>\n          </mtable>\n        </mrow>\n      </mstyle>\n    </mrow>\n    <annotation encoding=\"application/x-tex\">{\\displaystyle {\\begin{array}{l|l}1&amp;1\\\\\\hline &amp;1\\end{array}}}</annotation>\n  </semantics>\n</math>",
-      "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" alttext=\"{\\displaystyle {\\begin{array}{r|lllll}0&amp;&amp;&amp;&amp;&amp;\\\\c_{2}&amp;a_{21}&amp;&amp;&amp;\\\\c_{3}&amp;a_{31}&amp;a_{32}&amp;&amp;\\\\\\vdots &amp;\\vdots &amp;&amp;\\ddots &amp;\\\\c_{s}&amp;a_{s1}&amp;a_{s2}&amp;\\cdots &amp;a_{s,s-1}\\\\\\hline &amp;b_{1}&amp;b_{2}&amp;\\cdots &amp;b_{s-1}&amp;b_{s}\\end{array}}}\">\n  <semantics>\n    <mrow class=\"MJX-TeXAtom-ORD\">\n      <mstyle displaystyle=\"true\" scriptlevel=\"0\">\n        <mrow class=\"MJX-TeXAtom-ORD\">\n          <mtable columnalign=\"right left left left left left\" rowspacing=\"4pt\" columnspacing=\"1em\" rowlines=\"none none none none solid\" columnlines=\"solid none none none none\">\n            <mtr>\n              <mtd>\n                <mn>0</mn>\n              </mtd>\n              <mtd />\n              <mtd />\n              <mtd />\n              <mtd />\n              <mtd />\n            </mtr>\n            <mtr>\n              <mtd>\n                <msub>\n                  <mi>c</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>2</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>a</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>21</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd />\n              <mtd />\n              <mtd />\n            </mtr>\n            <mtr>\n              <mtd>\n                <msub>\n                  <mi>c</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>3</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>a</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>31</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>a</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>32</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd />\n              <mtd />\n            </mtr>\n            <mtr>\n              <mtd>\n                <mo>&#x22EE;<!-- \u22ee --></mo>\n              </mtd>\n              <mtd>\n                <mo>&#x22EE;<!-- \u22ee --></mo>\n              </mtd>\n              <mtd />\n              <mtd>\n                <mo>&#x22F1;<!-- \u22f1 --></mo>\n              </mtd>\n              <mtd />\n            </mtr>\n            <mtr>\n              <mtd>\n                <msub>\n                  <mi>c</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mi>s</mi>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>a</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mi>s</mi>\n                    <mn>1</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>a</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mi>s</mi>\n                    <mn>2</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <mo>&#x22EF;<!-- \u22ef --></mo>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>a</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mi>s</mi>\n                    <mo>,</mo>\n                    <mi>s</mi>\n                    <mo>&#x2212;<!-- \u2212 --></mo>\n                    <mn>1</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n            </mtr>\n            <mtr>\n              <mtd />\n              <mtd>\n                <msub>\n                  <mi>b</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>1</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>b</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mn>2</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <mo>&#x22EF;<!-- \u22ef --></mo>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>b</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mi>s</mi>\n                    <mo>&#x2212;<!-- \u2212 --></mo>\n                    <mn>1</mn>\n                  </mrow>\n                </msub>\n              </mtd>\n              <mtd>\n                <msub>\n                  <mi>b</mi>\n                  <mrow class=\"MJX-TeXAtom-ORD\">\n                    <mi>s</mi>\n                  </mrow>\n                </msub>\n              </mtd>\n            </mtr>\n          </mtable>\n        </mrow>\n      </mstyle>\n    </mrow>\n    <annotation encoding=\"application/x-tex\">{\\displaystyle {\\begin{array}{r|lllll}0&amp;&amp;&amp;&amp;&amp;\\\\c_{2}&amp;a_{21}&amp;&amp;&amp;\\\\c_{3}&amp;a_{31}&amp;a_{32}&amp;&amp;\\\\\\vdots &amp;\\vdots &amp;&amp;\\ddots &amp;\\\\c_{s}&amp;a_{s1}&amp;a_{s2}&amp;\\cdots &amp;a_{s,s-1}\\\\\\hline &amp;b_{1}&amp;b_{2}&amp;\\cdots &amp;b_{s-1}&amp;b_{s}\\end{array}}}</annotation>\n  </semantics>\n</math>"
-    ],
-    "name": "Butcher tableau",
-    "prefix": "P8558"
   },
   "P8586": {
     "database": "Q50426299",
@@ -9807,11 +9874,5 @@
     "pattern": "^[a-z]+(-[a-z]+)+$",
     "prefix": "P9985",
     "uri_format": "https://people.embo.org/profile/$1"
-  },
-  "Q115916376": {
-    "description": "Species identifier for HKBU \"Hong Kong Wildtracks\" digital database",
-    "homepage": "https://digital.lib.hkbu.edu.hk/hkwildtracks/",
-    "name": "HKBU Hong Kong Wildtracks Species ID",
-    "prefix": "Q115916376"
   }
 }

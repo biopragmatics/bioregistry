@@ -2,6 +2,7 @@
 
 """Constants and utilities for registries."""
 
+import importlib.metadata
 import os
 import pathlib
 import re
@@ -18,6 +19,8 @@ __all__ = [
     "MISMATCH_PATH",
     "BIOREGISTRY_MODULE",
 ]
+
+PYDANTIC_1 = importlib.metadata.version("pydantic").startswith("1.")
 
 HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 DATA_DIRECTORY = HERE / "data"

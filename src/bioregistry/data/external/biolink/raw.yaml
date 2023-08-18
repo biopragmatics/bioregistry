@@ -6,7 +6,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 3.5.0
+version: 3.5.4
 
 
 ## ------------
@@ -663,10 +663,19 @@ slots:
       - gff3:Dbxref
       - gpi:DB_Xrefs
 
+  semmed agreement count:
+    is_a: association slot
+    range: integer
+    description: >-
+      The number of times this concept has been asserted in the SemMedDB literature database.
+    in_subset:
+      - translator_minimal
+
   support graphs:
     description: >-
       A list of knowledge graphs that support the existence of this node.
     multivalued: true
+    is_a: association slot
     in_subset:
       - translator_minimal
   
@@ -3122,8 +3131,8 @@ slots:
     description: >-
       holds between a gene and a disease or phenotypic feature that the gene or its alleles/products may influence,
       contribute to, or correlate with
-    domain: disease or phenotypic feature
-    range: gene
+    domain: gene
+    range: disease or phenotypic feature
     annotations:
       canonical_predicate: true
     in_subset:
@@ -3142,8 +3151,8 @@ slots:
     aliases: ['disease associated with gene']
     description: >-
       holds between a gene and a disease or phenotypic feature that may be influenced, contribute to, or be correlated with the gene or its alleles/products
-    domain: gene
-    range: disease or phenotypic feature
+    domain: disease or phenotypic feature
+    range: gene
     in_subset:
       - translator_minimal
     inverse: gene associated with condition
@@ -5999,6 +6008,7 @@ classes:
       - provided by
       - xref
       - full name
+      - synonym
     slot_usage:
       category:
         required: true
@@ -7355,7 +7365,6 @@ classes:
       A property of a phenotype
     examples:
       - value: weight
-
     mappings:
       - PATO:0000001
 
@@ -7870,7 +7879,6 @@ classes:
       - ontology class
     slots:
       - symbol
-      - synonym
       - xref
     exact_mappings:
       - SO:0000704
@@ -9423,7 +9431,7 @@ classes:
       subject derivative qualifier:
         range: ChemicalEntityDerivativeEnum
       subject aspect qualifier:
-        range: GeneOrGeneProductOrChemicalPartQualifierEnum
+        range: GeneOrGeneProductOrChemicalEntityAspectEnum
       subject context qualifier:
         range: anatomical entity
       subject direction qualifier:
@@ -9439,7 +9447,7 @@ classes:
       object part qualifier:
         range: GeneOrGeneProductOrChemicalPartQualifierEnum
       object aspect qualifier:
-        range: GeneOrGeneProductOrChemicalPartQualifierEnum
+        range: GeneOrGeneProductOrChemicalEntityAspectEnum
       object context qualifier:
         range: anatomical entity
       object direction qualifier:
@@ -10824,6 +10832,8 @@ enums:
         is_a: transport
       uptake:
         is_a: transport
+      splicing:
+      molecular_interaction:
       molecular_modification:
       acetylation:
         is_a: molecular_modification

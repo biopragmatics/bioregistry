@@ -98,12 +98,6 @@ rules:
 - In general, contexts should not be deleted.
 - Contexts that are created then immediately abandoned are subject to removal
 
-#### Bootstrapping governance
-
-Governance will go into effect either after the second maintainer is added to
-the OBO entry or when a second context is added, after which this notice can be
-removed.
-
 #### Updating governance
 
 This governance must updated through the following steps:

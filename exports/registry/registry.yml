@@ -2417,6 +2417,35 @@ autdb:
   pattern: ^[A-Z]+[A-Z-0-9]{2,}$
   preferred_prefix: autdb
   uri_format: http://autism.mindspec.org/GeneDetail/$1
+babelon:
+  contact:
+    email: nicolas.matentzoglu@gmail.com
+    github: matentzn
+    name: Nicolas Matentzoglu
+    orcid: 0000-0002-7356-1779
+  contributor:
+    email: nicolas.matentzoglu@gmail.com
+    github: matentzn
+    name: Nicolas Matentzoglu
+    orcid: 0000-0002-7356-1779
+  description: Babelon is a simple standard for managing ontology translations and
+    language profiles. Profiles are managed as TSV files, see for example https://github.com/obophenotype/hpo-translations/tree/main/babelon.
+    The goal of Babelon as a data model and vocabulary is to capture the minimum data
+    required to capture important metadata such as confidence and precision of translation.
+  example: translation_language
+  github_request_issue: 903
+  homepage: https://monarch-initiative.github.io/babelon/
+  license: MIT
+  name: Babelon
+  pattern: ^[a-z][a-z0-9_]+[a-z0-9]$
+  preferred_prefix: babelon
+  repository: https://github.com/monarch-initiative/babelon
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://w3id.org/babelon/$1
 bacdive:
   contact:
     email: contact@bacdive.de
@@ -5348,6 +5377,11 @@ cas:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/cas:$1
+  - code: hoelzel
+    description: Vendor page
+    homepage: https://www.hoelzel-biotech.com
+    name: Hölzel Diagnostika
+    uri_format: https://www.hoelzel-biotech.com/de/casinfo/cas/index/number/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -14099,7 +14133,7 @@ edam:
     ols: edam
     ontobee: EDAM
     prefixcommons: edam
-  name: Bioinformatics operations, data types, formats, identifiers and topics
+  name: EDAM Ontology
   pattern: ^(data|topic|operation|format)\_\d{4}$
   preferred_prefix: edam
   providers:
@@ -14119,6 +14153,7 @@ edam:
     title: 'EDAM: an ontology of bioinformatics operations, types of data and identifiers,
       topics and formats'
     year: 2013
+  rdf_uri_format: http://edamontology.org/$1
   repository: https://github.com/edamontology/edamontology
   twitter: edamontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
@@ -14297,6 +14332,7 @@ efo:
     n2t: efo
     ols: efo
     ontobee: EFO
+    wikidata: P11956
   name: Experimental Factor Ontology
   owners:
   - name: European Bioinformatics Institute
@@ -20781,6 +20817,7 @@ goche:
   name: GO Chemicals
   pattern: ^\d+$
   preferred_prefix: GOCHE
+  rdf_uri_format: http://purl.obolibrary.org/obo/GOCHE_$1
   references:
   - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638472847049400
   - https://github.com/geneontology/go-ontology/issues/19535
@@ -22702,6 +22739,40 @@ hms.lincs.dataset:
   pattern: ^2\d{4}$
   preferred_prefix: hms.lincs.dataset
   uri_format: https://lincs.hms.harvard.edu/db/datasets/$1
+hoelzel:
+  contact:
+    email: info@hoelzel.de
+    github: null
+    name: Carsten Linder
+    orcid: 0009-0009-3816-8777
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Hölzel is a life science reagent vendor based in Cologne, Germany.
+    As a distributor, they offer products suitable for many kinds of research areas
+    such as oncology, neuroscience, immunology, and more. Their portfolio consists
+    of antibodies, recombinant proteins, inhibitors, ELISA-kits as well as other assays,
+    arrays and kits. Their inhibitor portfolio can be easily accessed via the CAS-register
+    catalog.
+  example: 40592-R001-100
+  homepage: https://www.hoelzel-biotech.com
+  keywords:
+  - antibodies
+  - assays
+  - biologics
+  - elisa-kits
+  - inhibitors
+  - life sciences
+  - proteins
+  - vendor
+  logo: https://www.hoelzel-biotech.com/skin/frontend/ultimo/custom/images/logo.png
+  name: Hölzel Diagnostika
+  preferred_prefix: hoelzel
+  synonyms:
+  - hölzel
+  uri_format: https://www.hoelzel-biotech.com/de/catalogsearch/result/?q=$1
 hog:
   contributor:
     email: cthoyt@gmail.com
@@ -31666,7 +31737,7 @@ mondo:
   rdf_uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
-  uri_format: http://www.bioregistry.io/$1
+  uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   version: '2023-06-01'
 mop:
   contact:
@@ -33160,6 +33231,15 @@ ncbitaxon:
   - uniprot.taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
   version: '2023-06-20'
+nci.drug:
+  description: identifier of an entry in the NCI Drug Dictionary
+  example: beta-carotene
+  homepage: https://www.cancer.gov/publications/dictionaries/cancer-drug
+  mappings:
+    wikidata: P11623
+  name: NCI Drug Dictionary ID
+  preferred_prefix: nci.drug
+  uri_format: https://www.cancer.gov/publications/dictionaries/cancer-drug/def/$1
 ncim:
   description: NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database
     that covers most terminologies used by NCI for clinical care, translational and
@@ -34013,6 +34093,15 @@ niaest:
     title: The NIA cDNA project in mouse stem cells and early embryos
     year: 2003
   uri_format: http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1
+niaid.chemdb:
+  description: ID in NIAID ChemDB
+  example: '112081'
+  homepage: http://chemdb.niaid.nih.gov
+  mappings:
+    wikidata: P2065
+  name: NIAID ChemDB ID
+  preferred_prefix: niaid.chemdb
+  uri_format: http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO=$1
 nif.cell:
   contact:
     email: smtifahim@gmail.com
@@ -34848,6 +34937,17 @@ noaa:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://www.fisheries.noaa.gov/species/$1
+noaa.cameo:
+  description: chemical in the database supplied by National Oceanic and Atmospheric
+    Administration
+  example: '19757'
+  homepage: https://cameochemicals.noaa.gov
+  mappings:
+    wikidata: P11931
+  name: CAMEO Chemicals ID
+  pattern: ^\d*$
+  preferred_prefix: noaa.cameo
+  uri_format: https://cameochemicals.noaa.gov/chemical/$1
 nomen:
   contact:
     email: diapriid@gmail.com
@@ -35588,6 +35688,10 @@ obo:
     orcid: 0000-0002-7356-1779
   description: The OBO namespace is the top-level namespace used by Open Biological
     and Biomedical Ontology (OBO) Foundry ontologies.
+  example: uberon
+  example_extras:
+  - go
+  - uberon.owl
   homepage: http://www.obofoundry.org/
   keywords:
   - ontology and terminology
@@ -35603,8 +35707,13 @@ obo:
     title: 'The OBO Foundry: coordinated evolution of ontologies to support biomedical
       data integration'
     year: 2007
+  rdf_uri_format: http://purl.obolibrary.org/obo/$1
+  references:
+  - https://github.com/biopragmatics/bioregistry/pull/913
+  - https://github.com/biopragmatics/bioregistry/issues/910
   repository: https://github.com/OBOFoundry/OBOFoundry.github.io
   twitter: OBOFoundry
+  uri_format: http://purl.obolibrary.org/obo/$1
 oboinowl:
   contributor:
     email: cthoyt@gmail.com
@@ -39257,6 +39366,17 @@ peroxibase:
       from Viridiplantae'
     year: 2008
   uri_format: http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id=$1
+pesticideinfo:
+  description: chemical in the database supplied by Pesticide Action Network North
+    America
+  example: PRI10
+  homepage: https://www.pesticideinfo.org
+  mappings:
+    wikidata: P11949
+  name: PesticideInfo chemical ID
+  pattern: ^PRI\d*$
+  preferred_prefix: pesticideinfo
+  uri_format: https://www.pesticideinfo.org/chemical/$1
 pesticides:
   contributor:
     email: cthoyt@gmail.com
@@ -48590,6 +48710,7 @@ sty:
     biolink: UMLSSG
     bioportal: STY
     ecoportal: STY
+    wikidata: P11955
   name: UMLS Semantic Types Ontology
   pattern: ^T\d{3}$
   preferred_prefix: sty
@@ -52548,6 +52669,8 @@ violinnet:
   deprecated: true
   description: Defunct vaccine information source from the He Lab
   example: '4140'
+  mappings:
+    wikidata: P1925
   name: ViolinNet
   pattern: ^\d+$
   preferred_prefix: violinnet
