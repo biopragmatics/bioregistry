@@ -54,7 +54,7 @@ HEADER_DEFAULT = dedent(
         <dd class="col-lg-10">
             A collection of prefixes and metadata for ontologies, controlled vocabularies, and other semantic
             spaces. Some other well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
-            <a href="https://identifiers.org">Identifiers.org</a>, and the
+            <a href="https://identifiers.org">Identifiers.org</a>, and
             the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>.
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
