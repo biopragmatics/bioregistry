@@ -47499,6 +47499,11 @@ smiles:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: null
+    github: NishaSharma14
+    name: Nisha Sharma
+    orcid: 0000-0002-2564-3243
   description: Documentation of SMILES (Simplified Molecular Input Line Entry System),
     a line notation (a typographical method using printable characters) for entering
     and representing molecules and reactions.
@@ -47513,6 +47518,12 @@ smiles:
   name: Simplified molecular-input line-entry system
   pattern: ^[A-Za-z0-9+\-\*=#$:().>/\\\[\]%]+$
   preferred_prefix: smiles
+  providers:
+  - code: cms.descriptor
+    description: Returns descriptors calculated from the molecule with RDKit
+    homepage: https://api.naturalproducts.net/latest/docs#/chem/get_descriptors_chem_descriptors_get
+    name: RDKit Descriptor via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/chem/descriptors?format=json&toolkit=rdkit&smiles=$1
   publications:
   - doi: 10.1186/1758-2946-4-24
     pmc: PMC3551648
@@ -47536,6 +47547,8 @@ smiles:
     title: SMILES, a chemical language and information system. 1. Introduction to
       methodology and encoding rules
     year: 1988
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/931
   repository: https://github.com/timvdm/OpenSMILES/blob/master/discussion_summary.txt
   uri_format: https://chemapps.stolaf.edu/jmol/jmol.php?model=$1
 smpdb:
