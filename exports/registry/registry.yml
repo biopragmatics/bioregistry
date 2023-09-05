@@ -47503,7 +47503,7 @@ smiles:
   - email: null
     github: NishaSharma14
     name: Nisha Sharma
-    orcid: 0000-0002-2564-3243
+    orcid: 0009-0006-4755-1039
   description: Documentation of SMILES (Simplified Molecular Input Line Entry System),
     a line notation (a typographical method using printable characters) for entering
     and representing molecules and reactions.
@@ -47519,11 +47519,70 @@ smiles:
   pattern: ^[A-Za-z0-9+\-\*=#$:().>/\\\[\]%]+$
   preferred_prefix: smiles
   providers:
+  - code: cms.canonicalize
+    description: Canonicalizes a given SMILES string according to the allowed toolkits.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/SMILES_Canonicalise_convert_canonicalsmiles_get
+    name: Canonicalizes a SMILES via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/canonicalsmiles?smiles=$1
+  - code: cms.convert
+    description: Convert SMILES to various molecular formats using different toolkits.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/SMILES_convert_to_Formats_convert_formats_get
+    name: Convert SMILES to various molecular formats via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/formats?smiles=$1
+  - code: cms.coordinates2d
+    description: Generates 2D Coordinates using the CDK Structure diagram generator/RDKit/Open
+      Babel and returns the mol block.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/Create2D_Coordinates_convert_mol2D_get
+    name: Generate 2D coordinates via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/mol2D?smiles=$1
+  - code: cms.coordinates3d
+    description: Generates a random 3D conformer from SMILES using the specified molecule
+      toolkit.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/Create3D_Coordinates_convert_mol3D_get
+    name: Generate 3D conformer via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/mol3D?smiles=$1
+  - code: cms.cxsmiles
+    description: Convert SMILES to CXSMILES. For more informations.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/SMILES_to_CXSMILES_convert_cxsmiles_get
+    name: Convert SMILES to CXSMILES via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/cxsmiles?smiles=$1
+  - code: cms.depict2d
+    description: Generates a 2D depiction of a molecule using CDK or RDKit with the
+      given parameters.
+    homepage: https://api.naturalproducts.net/latest/docs#/depict/Depict2D_molecule_depict_2D_get
+    name: Depict 2D via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/depict/2D?smiles=$1
+  - code: cms.depict3d
+    description: Generate 3D depictions of molecules using OpenBabel or RDKit.
+    homepage: https://api.naturalproducts.net/latest/docs#/depict/Depict3D_Molecule_depict_3D_get
+    name: Depict 3D via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/depict/3D?smiles=$1
   - code: cms.descriptor
     description: Returns descriptors calculated from the molecule with RDKit
     homepage: https://api.naturalproducts.net/latest/docs#/chem/get_descriptors_chem_descriptors_get
     name: RDKit Descriptor via the Cheminformatics Microservice
-    uri_format: https://api.naturalproducts.net/latest/chem/descriptors?format=json&toolkit=rdkit&smiles=$1
+    uri_format: https://api.naturalproducts.net/latest/chem/descriptors?smiles=$1
+  - code: cms.inchi
+    description: Convert SMILES to InChI.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/SMILES_to_InChI_convert_inchi_get
+    name: Convert SMILES to InChI via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/inchi?smiles=$1
+  - code: cms.inchikey
+    description: Convert SMILES to InChIKey.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/SMILES_to_InChIKey_convert_inchikey_get
+    name: Convert SMILES to InChIKey via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/inchikey?smiles=$1
+  - code: cms.iupac
+    description: Generates IUPAC name for given SMILES using [STOUT](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00512-4)
+      package.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/SMILES_to_IUPACname_convert_iupac_get
+    name: Generate IUPAC name from SMILES via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/iupac?smiles=$1
+  - code: cms.selfies
+    description: Generates SELFIES string for a given SMILES string.
+    homepage: https://api.naturalproducts.net/latest/docs#/convert/encode_SELFIES_convert_selfies_get
+    name: Generates SELFIES for a SMILES via the Cheminformatics Microservice
+    uri_format: https://api.naturalproducts.net/latest/convert/selfies?smiles=$1
   publications:
   - doi: 10.1186/1758-2946-4-24
     pmc: PMC3551648
