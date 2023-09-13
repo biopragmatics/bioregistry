@@ -27,7 +27,7 @@ copyright = f"{date.today().year}, Charles Tapley Hoyt"
 author = "Charles Tapley Hoyt"
 
 # The full version, including alpha/beta/rc tags.
-release = "0.10.34-dev"
+release = "0.10.34"
 
 # The short X.Y version.
 parsed_version = re.match(
