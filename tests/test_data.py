@@ -675,16 +675,28 @@ class TestRegistry(unittest.TestCase):
                         )
                         self.assertIn(metaprefix, set(resource.mappings))
 
-    def test_provider_codes(self):
+    def test_providers(self):
         """Make sure provider codes are unique."""
         for prefix, resource in self.registry.items():
             if not resource.providers:
                 continue
-            with self.subTest(prefix=prefix):
-                for provider in resource.providers:
+            for provider in resource.providers:
+                with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
                     self.assertNotIn(provider.code, self.metaregistry)
                     self.assertNotIn(provider.code, {"custom", "default"})
+                    self.assertEqual(
+                        provider.code.lower(),
+                        provider.code,
+                        msg="Provider codes must be lowercase. Ideally, they should be simple and memorable",
+                    )
+                    # self.assertIn("$1", provider.uri_format)
+                    self.assertNotIn(
+                        "$2",
+                        provider.uri_format,
+                        msg="Multiple parameters not supported. See discussion on "
+                        "https://github.com/biopragmatics/bioregistry/issues/933",
+                    )
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
