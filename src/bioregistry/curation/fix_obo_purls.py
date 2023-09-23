@@ -13,9 +13,11 @@ __all__ = [
 def main():
     """Fix OBO PURLs as default URI prefixes."""
     for resource in manager.registry.values():
-        if resource.is_deprecated():
-            continue
-        if not resource.get_obofoundry_prefix():
+        if (
+            not resource.get_obofoundry_prefix()
+            or resource.is_deprecated()
+            or resource.no_own_terms
+        ):
             continue
         resource.uri_format = resource.get_rdf_uri_format()
     manager.write_registry()
