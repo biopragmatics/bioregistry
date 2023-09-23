@@ -1,10 +1,8 @@
 """Fix OBO PURLs as default URI prefixes."""
 
 import click
-from tqdm import tqdm
 
 from bioregistry import manager
-from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
     "main",
@@ -13,7 +11,7 @@ __all__ = [
 
 @click.command(name="standardize-obo-uris")
 def main():
-    """Standardize OBO Foundry URIs."""
+    """Fix OBO PURLs as default URI prefixes."""
     for resource in manager.registry.values():
         if resource.is_deprecated():
             continue
