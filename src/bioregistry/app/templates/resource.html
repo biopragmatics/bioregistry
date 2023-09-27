@@ -406,13 +406,13 @@
                 {% endif %}
                 {% if has_parts %}
                     <dt>
-                        Has Parts ({{ utils.code_curie("bfo", "0000051") }})
+                        Has Parts ({{ utils.link_code_curie("bfo", "0000051") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, has_parts) }}</dd>
                 {% endif %}
                 {% if has_canonical %}
                     <dt>
-                        Has Canonical ({{ utils.code_curie("bioregistry.schema", "0000016") }})
+                        Has Canonical ({{ utils.link_code_curie("bioregistry.schema", "0000016") }})
                     </dt>
                     <dd>{{ get_tooltip(manager, has_canonical) }}</dd>
                 {% endif %}
@@ -424,13 +424,13 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }}) ({{ utils.code_curie("bioregistry.schema", "0000017") }})
+                        Depends On ({{ depends_on | length }}) ({{ utils.link_code_curie("bioregistry.schema", "0000017") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, depends_on) }}</dd>
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }}) ({{ utils.code_curie("bioregistry.schema", "0000018") }})
+                        Appears In ({{ appears_in | length }}) ({{ utils.link_code_curie("bioregistry.schema", "0000018") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, appears_in) }}</dd>
                 {% endif %}

@@ -2,6 +2,14 @@
     <code>{{ curie_to_str(prefix, identifier) }}</code>
 {% endmacro %}
 
+{% macro link_curie(prefix, identifier, text) -%}
+    <a href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=identifier) }}">{{ text }}</a>
+{% endmacro %}
+
+{% macro link_code_curie(prefix, identifier) -%}
+    {{ link_curie(prefix, identifier, code_curie(prefix, identifier)) }}
+{% endmacro %}
+
 {% macro render_prefix(prefix, classes="") -%}
     <a class="{{ classes }}" href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
         <code>{{ prefix }}</code>
@@ -48,10 +56,11 @@
             Provider <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% elif resource.has_canonical %}
+        {% set canonical_name = manager.get_name(resource.has_canonical) %}
         <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
            href="{{ url_for("metaregistry_ui.resource", prefix=resource.has_canonical) }}"
-           title="{{ manager.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
-            Has Canonical <i class="fas fa-exclamation-triangle"></i>
+           title="This resource shares a URI format string with {{ canonical_name }} ({{ resource.has_canonical }}). When generating an extended prefix map from the Bioregistry,  {{ resource.prefix }}, its CURIE prefix synonyms, and its URI prefix synonyms are merged into the record for {{ canonical_name }}.">
+            Has URI Collision <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% endif %}
     {% if resource.proprietary %}

@@ -27,10 +27,13 @@
         </div>
         <div class="card-body">
             <p>This page provides an overview on canonical/part of/provides relationships</p>
+            <a id="canonical"></a>
             <h3>Canonical</h3>
             {{ render_dict(manager.canonical_for) }}
+            <a id="providers"></a>
             <h3>Provided By</h3>
             {{ render_dict(manager.provided_by) }}
+            <a id="parts"></a>
             <h3>Has Parts</h3>
             {{ render_dict(manager.has_parts) }}
         </div>
