@@ -363,9 +363,12 @@
 @prefix drsanv0: <https://data.terra.bio/ga4gh/drs/v1/objects/> .
 @prefix drsc: <http://www.flyrnai.org/cgi-bin/RNAi_gene_lookup_public.pl?gname=> .
 @prefix drugbank: <http://www.drugbank.ca/drugs/> .
+@prefix drugbank.bioentity: <https://go.drugbank.com/bio_entities/> .
 @prefix drugbank.category: <https://www.drugbank.ca/categories/> .
+@prefix drugbank.condition: <https://go.drugbank.com/indications/> .
+@prefix drugbank.metabolite: <https://go.drugbank.com/metabolites/> .
+@prefix drugbank.reaction: <https://go.drugbank.com/reactions/> .
 @prefix drugbank.salt: <https://go.drugbank.com/salts/> .
-@prefix drugbankv4.target: <http://www.drugbank.ca/biodb/bio_entities/> .
 @prefix drugcentral: <http://drugcentral.org/drugcard/> .
 @prefix dsmz: <https://www.dsmz.de/collection/catalogue/details/culture/> .
 @prefix dso: <https://www.datascienceontology.org/concept/> .
@@ -758,6 +761,9 @@
 @prefix mdm: <https://medical-data-models.org/forms/> .
 @prefix meddra: <http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=> .
 @prefix medgen: <https://www.ncbi.nlm.nih.gov/medgen/> .
+@prefix mediadive.ingredient: <https://mediadive.dsmz.de/ingredients/> .
+@prefix mediadive.medium: <https://mediadive.dsmz.de/medium/> .
+@prefix mediadive.solution: <https://mediadive.dsmz.de/solutions/> .
 @prefix merops.clan: <https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=> .
 @prefix merops.entry: <https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=> .
 @prefix merops.family: <https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=> .
@@ -800,7 +806,7 @@
 @prefix miriam.collection: <https://www.ebi.ac.uk/miriam/main/> .
 @prefix miriam.resource: <https://www.ebi.ac.uk/miriam/main/resources/> .
 @prefix mirnest: <http://rhesus.amu.edu.pl/mirnest/copy/details.php?id=> .
-@prefix mirtarbase: <http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=> .
+@prefix mirtarbase: <https://mirtarbase.cuhk.edu.cn/~miRTarBase/miRTarBase_2022/php/detail.php?mirtid=> .
 @prefix mixs: <https://w3id.org/mixs/> .
 @prefix mlc: <https://www.mlcommons.org/mlc-id/> .
 @prefix mmdb: <http://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?uid=> .
@@ -6263,7 +6269,7 @@ bioregistry:dc_cl a bioregistry.schema:0000001 ;
 
 bioregistry:ddanat a bioregistry.schema:0000001 ;
     rdfs:label "Dictyostelium discoideum anatomy" ;
-    dcterms:description "A structured controlled vocabulary of the anatomy of the slime-mold Dictyostelium discoideum"^^xsd:string ;
+    dcterms:description "A structured controlled vocabulary of anatomies of the slime-mold Dictyostelium discoideum."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/dictyBase/migration-data> ;
     skos:exactMatch aberowl:DDANAT,
@@ -7008,7 +7014,7 @@ bioregistry:enm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "8000221"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.enanomapper.org/onto/ENM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://enanomapper.github.io/ontologies/releases/9.0/enanomapper.owl> ;
+    bioregistry.schema:0000010 <http://enanomapper.github.io/ontologies/releases/10.0/enanomapper.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-7542-0286 ;
     bioregistry.schema:0000024 "http://purl.enanomapper.org/onto/ENM_"^^xsd:string ;
@@ -9240,7 +9246,7 @@ bioregistry:hancestro a bioregistry.schema:0000001 ;
         "obo",
         "ontology",
         "population genetics" ;
-    foaf:homepage <https://github.com/EBISPOT/ancestro> ;
+    foaf:homepage <https://ebispot.github.io/hancestro/> ;
     bioregistry.schema:0000005 "0290"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/HANCESTRO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
@@ -12139,13 +12145,13 @@ bioregistry:mirtarbase a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.f0bxfg,
         miriam:mirtarbase ;
     dcat:keyword "life science" ;
-    foaf:homepage <http://mirtarbase.mbc.nctu.edu.tw/> ;
+    foaf:homepage <https://mirtarbase.cuhk.edu.cn/> ;
     bioregistry.schema:0000005 "MIRT000002"^^xsd:string ;
-    bioregistry.schema:0000006 "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mirtarbase.cuhk.edu.cn/~miRTarBase/miRTarBase_2022/php/detail.php?mirtid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^MIRT\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8214-1696 ;
-    bioregistry.schema:0000024 "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid="^^xsd:string ;
+    bioregistry.schema:0000024 "https://mirtarbase.cuhk.edu.cn/~miRTarBase/miRTarBase_2022/php/detail.php?mirtid="^^xsd:string ;
     bioregistry.schema:0000027 mirtarbase:MIRT000002 ;
     bioregistry.schema:0000029 "mirtarbase" .
 
@@ -13959,7 +13965,7 @@ bioregistry:olatdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OlatDv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:olatdv.owl ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OlatDv_"^^xsd:string ;
     bioregistry.schema:0000027 olatdv:0000210 ;
@@ -14744,7 +14750,7 @@ bioregistry:pdumdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PdumDv_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:pdumdv.owl ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
     bioregistry.schema:0000023 "PdumDv" ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PdumDv_"^^xsd:string ;
@@ -17730,33 +17736,6 @@ bioregistry:swissregulon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 swissregulon:AHR ;
     bioregistry.schema:0000029 "swissregulon" .
 
-bioregistry:swo a bioregistry.schema:0000001 ;
-    rdfs:label "Software ontology" ;
-    dcterms:description "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/allysonlister/swo> ;
-    skos:exactMatch aberowl:SWO,
-        obofoundry:swo,
-        ontobee:SWO,
-        bioportal:SWO,
-        biocontext:SWO,
-        fairsharing:FAIRsharing.sp3szt,
-        prefixcommons:swo,
-        ols:swo ;
-    dcat:keyword "bioinformatics",
-        "computer science",
-        "obo",
-        "ontology" ;
-    foaf:homepage <https://github.com/allysonlister/swo> ;
-    bioregistry.schema:0000005 "0000144"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SWO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-7702-4495 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SWO_"^^xsd:string ;
-    bioregistry.schema:0000029 "swo" .
-
 bioregistry:t3db a bioregistry.schema:0000001 ;
     rdfs:label "Toxin and Toxin Target Database" ;
     dcterms:description "Toxin and Toxin Target Database (T3DB) is a bioinformatics resource that combines detailed toxin data with comprehensive toxin target information."^^xsd:string ;
@@ -20425,7 +20404,7 @@ orcid:0000-0003-0728-781X rdfs:label "William Hayes" ;
     foaf:mbox "support@bel.bio" .
 
 orcid:0000-0003-1058-2668 rdfs:label "Danielle Welter" ;
-    foaf:mbox "danielle.welter@uni.lu" .
+    foaf:mbox "dwelter.ontologist@gmail.com" .
 
 orcid:0000-0003-1082-8760 rdfs:label "Alvin Walker" ;
     foaf:mbox "awalker@apa.org" .
@@ -20533,6 +20512,9 @@ orcid:0000-0003-4308-6337 rdfs:label "Ana Rath" ;
 
 orcid:0000-0003-4312-9552 rdfs:label "Daniel C. Berrios" ;
     foaf:mbox "daniel.c.berrios@nasa.gov" .
+
+orcid:0000-0003-4333-1857 rdfs:label "Tuan Amith" ;
+    foaf:mbox "muamith@utmb.edu" .
 
 orcid:0000-0003-4494-839X rdfs:label "Xeni Kechagioglou" ;
     foaf:mbox "xeni.kechagioglou@lifewatch.eu" .
@@ -21347,6 +21329,8 @@ agroportal:NCBITAXON dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:OM dcterms:isPartOf bioregistry.registry:agroportal .
 
+agroportal:ONS dcterms:isPartOf bioregistry.registry:agroportal .
+
 agroportal:PATO dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:PCO dcterms:isPartOf bioregistry.registry:agroportal .
@@ -21955,6 +21939,8 @@ obofoundry:maxo dcterms:isPartOf bioregistry.registry:obofoundry .
 
 obofoundry:mco dcterms:isPartOf bioregistry.registry:obofoundry .
 
+obofoundry:mcro dcterms:isPartOf bioregistry.registry:obofoundry .
+
 obofoundry:mf dcterms:isPartOf bioregistry.registry:obofoundry .
 
 obofoundry:mfmo dcterms:isPartOf bioregistry.registry:obofoundry .
@@ -22428,6 +22414,8 @@ ontobee:MAMO dcterms:isPartOf bioregistry.registry:ontobee .
 ontobee:MAXO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:MCO dcterms:isPartOf bioregistry.registry:ontobee .
+
+ontobee:MCRO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:MF dcterms:isPartOf bioregistry.registry:ontobee .
 
@@ -24118,8 +24106,6 @@ biocontext:DRON dcterms:isPartOf bioregistry.registry:biocontext .
 biocontext:DRSC dcterms:isPartOf bioregistry.registry:biocontext .
 
 biocontext:DRUGBANK.TARGET dcterms:isPartOf bioregistry.registry:biocontext .
-
-biocontext:DRUGBANKV4.TARGET dcterms:isPartOf bioregistry.registry:biocontext .
 
 biocontext:DUO dcterms:isPartOf bioregistry.registry:biocontext .
 
@@ -27811,7 +27797,7 @@ bioregistry:afo a bioregistry.schema:0000001 ;
         "ontology",
         "veterinary medicine" ;
     foaf:homepage <https://www.allotrope.org/> ;
-    bioregistry.schema:0000010 <http://purl.allotrope.org/voc/afo/merged/REC/2023/03/merged-without-qudt-and-inferred> ;
+    bioregistry.schema:0000010 <http://purl.allotrope.org/voc/afo/merged/REC/2023/06/merged-without-qudt-and-inferred> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Allotrope Foundation" ;
             foaf:mbox "more.info@allotrope.org" ] ;
@@ -29954,22 +29940,63 @@ bioregistry:dron a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 dron:00023232 ;
     bioregistry.schema:0000029 "dron" .
 
-bioregistry:drugbankv4.target a bioregistry.schema:0000001 ;
+bioregistry:drugbank.bioentity a bioregistry.schema:0000001 ;
     rdfs:label "DrugBank Target v4" ;
     dcterms:description "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references target information from version 4 of the database."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry,
         bioregistry:drugbank ;
-    skos:exactMatch biocontext:DRUGBANKV4.TARGET,
+    skos:exactMatch biocontext:DRUGBANK.TARGET,
         n2t:drugbankv4.target,
         miriam:drugbankv4.target ;
     foaf:homepage <http://www.drugbank.ca/targets> ;
     bioregistry.schema:0000005 "BE0000048"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.drugbank.ca/biodb/bio_entities/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://go.drugbank.com/bio_entities/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^BE\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "http://www.drugbank.ca/biodb/bio_entities/"^^xsd:string ;
-    bioregistry.schema:0000027 drugbankv4.target:BE0000048 ;
-    bioregistry.schema:0000029 "drugbankv4.target" .
+    bioregistry.schema:0000023 "drugbank.target",
+        "drugbankv4.target" ;
+    bioregistry.schema:0000024 "https://go.drugbank.com/bio_entities/"^^xsd:string ;
+    bioregistry.schema:0000027 drugbank.bioentity:BE0000048 ;
+    bioregistry.schema:0000029 "drugbank.bioentity" .
+
+bioregistry:drugbank.condition a bioregistry.schema:0000001 ;
+    rdfs:label "DrugBank Condition" ;
+    dcterms:description "Indications and other conditions in drugbank"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://go.drugbank.com> ;
+    bioregistry.schema:0000005 "DBCOND0066902"^^xsd:string ;
+    bioregistry.schema:0000006 "https://go.drugbank.com/indications/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DBCOND\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://go.drugbank.com/indications/"^^xsd:string ;
+    bioregistry.schema:0000027 drugbank.condition:DBCOND0066902 ;
+    bioregistry.schema:0000029 "drugbank.condition" .
+
+bioregistry:drugbank.metabolite a bioregistry.schema:0000001 ;
+    rdfs:label "DrugBank Metabolite" ;
+    dcterms:description "Metabolites in drugbank"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://go.drugbank.com> ;
+    bioregistry.schema:0000005 "DBMET02292"^^xsd:string ;
+    bioregistry.schema:0000006 "https://go.drugbank.com/metabolites/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DBMET\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://go.drugbank.com/metabolites/"^^xsd:string ;
+    bioregistry.schema:0000027 drugbank.metabolite:DBMET02292 ;
+    bioregistry.schema:0000029 "drugbank.metabolite" .
+
+bioregistry:drugbank.reaction a bioregistry.schema:0000001 ;
+    rdfs:label "DrugBank Reaction" ;
+    dcterms:description "Reactions in drugbank"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://go.drugbank.com> ;
+    bioregistry.schema:0000005 "1537"^^xsd:string ;
+    bioregistry.schema:0000006 "https://go.drugbank.com/reactions/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://go.drugbank.com/reactions/"^^xsd:string ;
+    bioregistry.schema:0000027 drugbank.reaction:1537 ;
+    bioregistry.schema:0000029 "drugbank.reaction" .
 
 bioregistry:drugcentral a bioregistry.schema:0000001 ;
     rdfs:label "Drug Central" ;
@@ -30012,14 +30039,22 @@ bioregistry:dsm4 a bioregistry.schema:0000001 ;
 
 bioregistry:dsmz a bioregistry.schema:0000001 ;
     rdfs:label "Deutsche Sammlung von Mikroorganismen und Zellkulturen" ;
-    dcterms:description "The Leibniz Institute DSMZ is the most diverse biological resource center in the world and one of the largest collections of microorganisms and cell cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages, plant viruses, genomic bacterial DNA as well as human and animal cell lines)."^^xsd:string ;
+    dcterms:description """The Leibniz Institute DSMZ is the most diverse biological resource center in the world and one of the largest collections of microorganisms and cell cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages, plant viruses, genomic bacterial DNA as well as human and animal cell lines). The following designations are used as part of local unique identifiers:
+
+- `PC`: positive control
+- `NC`: negative control
+- `AS`: antiserum
+- `PV`: plant viruses
+- `RT`: recommended test
+- `ACC`: human or animal cell line
+- `DSM`: microorganism cell line"""^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch cellosaurus.resource:DSMZ,
         re3data:r3d100010219 ;
     foaf:homepage <https://www.dsmz.de> ;
     bioregistry.schema:0000005 "ACC-1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.dsmz.de/collection/catalogue/details/culture/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^ACC-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(ACC|DSM|NC|PC|RT|AS|PV)-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "DSMZCellDive" ;
     bioregistry.schema:0000024 "https://www.dsmz.de/collection/catalogue/details/culture/"^^xsd:string ;
@@ -32706,6 +32741,49 @@ bioregistry:matrixdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value="^^xsd:string ;
     bioregistry.schema:0000027 matrixdb:MULT_4_VAR1_bovine ;
     bioregistry.schema:0000029 "matrixdb" .
+
+bioregistry:mediadive.ingredient a bioregistry.schema:0000001 ;
+    rdfs:label "MediaDive Ingredient" ;
+    dcterms:description "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://mediadive.dsmz.de/solutions> ;
+    bioregistry.schema:0000005 "13"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mediadive.dsmz.de/ingredients/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3909-7201 ;
+    bioregistry.schema:0000024 "https://mediadive.dsmz.de/ingredients/"^^xsd:string ;
+    bioregistry.schema:0000027 mediadive.ingredient:13 ;
+    bioregistry.schema:0000029 "mediadive.ingredient" .
+
+bioregistry:mediadive.medium a bioregistry.schema:0000001 ;
+    rdfs:label "MediaDive Medium" ;
+    dcterms:description "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://mediadive.dsmz.de/media> ;
+    bioregistry.schema:0000005 "77"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mediadive.dsmz.de/medium/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+\\w?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3909-7201 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://mediadive.dsmz.de/medium/"^^xsd:string ;
+    bioregistry.schema:0000027 mediadive.medium:77 ;
+    bioregistry.schema:0000029 "mediadive.medium" .
+
+bioregistry:mediadive.solution a bioregistry.schema:0000001 ;
+    rdfs:label "MediaDive Solution" ;
+    dcterms:description "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://mediadive.dsmz.de/solutions> ;
+    bioregistry.schema:0000005 "S6"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mediadive.dsmz.de/solutions/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^S\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3909-7201 ;
+    bioregistry.schema:0000024 "https://mediadive.dsmz.de/solutions/"^^xsd:string ;
+    bioregistry.schema:0000027 mediadive.solution:S6 ;
+    bioregistry.schema:0000029 "mediadive.solution" .
 
 bioregistry:merops dcterms:hasPart bioregistry:merops.clan,
         bioregistry:merops.family .
@@ -35492,6 +35570,34 @@ bioregistry:sweetrealm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://sweetontology.net/matrMineral/"^^xsd:string ;
     bioregistry.schema:0000027 sweetrealm:ANOVA ;
     bioregistry.schema:0000029 "sweetrealm" .
+
+bioregistry:swo a bioregistry.schema:0000001 ;
+    rdfs:label "Software ontology" ;
+    dcterms:description "The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and associated data. It contains detailed information on licensing and formats as well as software applications themselves, mainly (but not limited) to the bioinformatics community."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/allysonlister/swo> ;
+    skos:exactMatch aberowl:SWO,
+        obofoundry:swo,
+        ontobee:SWO,
+        bioportal:SWO,
+        biocontext:SWO,
+        fairsharing:FAIRsharing.sp3szt,
+        prefixcommons:swo,
+        ols:swo ;
+    dcat:keyword "bioinformatics",
+        "computer science",
+        "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/allysonlister/swo> ;
+    bioregistry.schema:0000005 "0000144"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SWO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:mcro ;
+    bioregistry.schema:0000019 orcid:0000-0002-7702-4495 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SWO_"^^xsd:string ;
+    bioregistry.schema:0000029 "swo" .
 
 bioregistry:syoid a bioregistry.schema:0000001 ;
     rdfs:label "Gemina Symptom Ontology" ;
@@ -42543,13 +42649,11 @@ bioregistry:drugbank.salt a bioregistry.schema:0000001 ;
     dcterms:description "DrugBank is a web-enabled database containing comprehensive molecular information about drugs, their mechanisms, their interactions and their targets."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry,
         bioregistry:drugbank ;
-    skos:exactMatch biocontext:DRUGBANK.TARGET ;
     foaf:homepage <http://www.drugbank.ca> ;
     bioregistry.schema:0000005 "DBSALT001211"^^xsd:string ;
     bioregistry.schema:0000006 "https://go.drugbank.com/salts/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^DBSALT\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "drugbank.target" ;
     bioregistry.schema:0000024 "https://go.drugbank.com/salts/"^^xsd:string ;
     bioregistry.schema:0000027 drugbank.salt:DBSALT001211 ;
     bioregistry.schema:0000029 "drugbank.salt" .
@@ -43731,6 +43835,26 @@ bioregistry:mba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://biopragmatics.github.io/providers/mba/"^^xsd:string ;
     bioregistry.schema:0000027 mba:688 ;
     bioregistry.schema:0000029 "mba" .
+
+bioregistry:mcro a bioregistry.schema:0000001 ;
+    rdfs:label "Model Card Report Ontology" ;
+    dcterms:description "An ontology representing the structure of model card reports - reports that describe basic characteristics of machine learning models for the public and consumers."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/UTHealth-Ontology/MCRO> ;
+    skos:exactMatch obofoundry:mcro,
+        ontobee:MCRO ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/UTHealth-Ontology/MCRO> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MCRO_$1"^^xsd:string ;
+    bioregistry.schema:0000010 obo:mcro.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:iao,
+        bioregistry:swo ;
+    bioregistry.schema:0000019 orcid:0000-0003-4333-1857 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MCRO_"^^xsd:string ;
+    bioregistry.schema:0000029 "mcro" .
 
 bioregistry:merops.clan a bioregistry.schema:0000001 ;
     rdfs:label "MEROPS Clan" ;
@@ -45796,6 +45920,9 @@ orcid:0000-0002-7753-9042 rdfs:label "Mihail Anton" ;
 orcid:0000-0003-1710-8256 rdfs:label "Christopher Mull" ;
     foaf:mbox "creeas@gmail.com" .
 
+orcid:0000-0003-3909-7201 rdfs:label "Jörg Overmann" ;
+    foaf:mbox "joerg.overmann@dsmz.de" .
+
 orcid:0000-0003-4446-6200 rdfs:label "Jessica Kissinger",
         "Omar Harb" ;
     foaf:mbox "jkissing@uga.edu",
@@ -46654,8 +46781,7 @@ orcid:0000-0002-8688-6599 rdfs:label "Jim Balhoff" ;
 
 orcid:0000-0002-9881-1017 rdfs:label "Bill Hogan",
         "William Hogan" ;
-    foaf:mbox "hoganwr@gmail.com",
-        "hoganwr@ufl.edu" .
+    foaf:mbox "hoganwr@gmail.com" .
 
 orcid:0000-0003-1834-3856 rdfs:label "Mathias Brochhausen" ;
     foaf:mbox "mbrochhausen@gmail.com",
@@ -46698,9 +46824,9 @@ bioregistry:chembl a bioregistry.schema:0000001 ;
 bioregistry:drugbank a bioregistry.schema:0000001 ;
     rdfs:label "DrugBank" ;
     dcterms:description "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information."^^xsd:string ;
-    dcterms:hasPart bioregistry:drugbank.category,
-        bioregistry:drugbank.salt,
-        bioregistry:drugbankv4.target ;
+    dcterms:hasPart bioregistry:drugbank.bioentity,
+        bioregistry:drugbank.category,
+        bioregistry:drugbank.salt ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch edam.data:2326,
         wikidata:P715,
@@ -47853,6 +47979,7 @@ bioregistry:ons a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/enpadasi/Ontology-for-Nutritional-Studies> ;
     skos:exactMatch aberowl:ONS,
+        agroportal:ONS,
         obofoundry:ons,
         ontobee:ONS,
         bioportal:ONS,
@@ -47996,49 +48123,6 @@ orcid:0000-0001-9189-9661 rdfs:label "Yongqun Oliver He",
         "Yongqunh He" ;
     foaf:mbox "yongqunh@med.umich.edu" .
 
-bioregistry:iao a bioregistry.schema:0000001 ;
-    rdfs:label "Information Artifact Ontology" ;
-    dcterms:description "An ontology of information entities, originally driven by work by the Ontology of Biomedical Investigation (OBI) digital entity and realizable information entity branch."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/information-artifact-ontology/IAO> ;
-    skos:exactMatch aberowl:IAO,
-        obofoundry:iao,
-        ontobee:IAO,
-        bioportal:IAO,
-        biocontext:IAO,
-        go.resource:IAO,
-        n2t:iao,
-        fairsharing:FAIRsharing.gq1xtx,
-        miriam:iao,
-        ols:iao ;
-    dcat:keyword "biomedical science",
-        "data management",
-        "knowledge and information systems",
-        "obo",
-        "ontology",
-        "subject agnostic" ;
-    foaf:homepage <https://github.com/information-artifact-ontology/IAO/> ;
-    bioregistry.schema:0000005 "0000030"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IAO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:iao.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:clyh,
-        bioregistry:duo,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:fovt,
-        bioregistry:labo,
-        bioregistry:maxo,
-        bioregistry:pco,
-        bioregistry:psdo,
-        bioregistry:xpo ;
-    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/IAO_"^^xsd:string ;
-    bioregistry.schema:0000027 iao:0000030 ;
-    bioregistry.schema:0000029 "iao" .
-
 bioregistry:obi a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for Biomedical Investigations" ;
     dcterms:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
@@ -48081,6 +48165,50 @@ bioregistry:obi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBI_"^^xsd:string ;
     bioregistry.schema:0000027 obi:0400109 ;
     bioregistry.schema:0000029 "obi" .
+
+bioregistry:iao a bioregistry.schema:0000001 ;
+    rdfs:label "Information Artifact Ontology" ;
+    dcterms:description "An ontology of information entities, originally driven by work by the Ontology of Biomedical Investigation (OBI) digital entity and realizable information entity branch."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/information-artifact-ontology/IAO> ;
+    skos:exactMatch aberowl:IAO,
+        obofoundry:iao,
+        ontobee:IAO,
+        bioportal:IAO,
+        biocontext:IAO,
+        go.resource:IAO,
+        n2t:iao,
+        fairsharing:FAIRsharing.gq1xtx,
+        miriam:iao,
+        ols:iao ;
+    dcat:keyword "biomedical science",
+        "data management",
+        "knowledge and information systems",
+        "obo",
+        "ontology",
+        "subject agnostic" ;
+    foaf:homepage <https://github.com/information-artifact-ontology/IAO/> ;
+    bioregistry.schema:0000005 "0000030"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IAO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:iao.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:clyh,
+        bioregistry:duo,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:fovt,
+        bioregistry:labo,
+        bioregistry:maxo,
+        bioregistry:mcro,
+        bioregistry:pco,
+        bioregistry:psdo,
+        bioregistry:xpo ;
+    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/IAO_"^^xsd:string ;
+    bioregistry.schema:0000027 iao:0000030 ;
+    bioregistry.schema:0000029 "iao" .
 
 bioregistry:pcl a bioregistry.schema:0000001 ;
     rdfs:label "Provisional Cell Ontology" ;
@@ -48294,6 +48422,7 @@ orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
         bioregistry:gnps.task,
         bioregistry:insdc.run,
         bioregistry:jgi.proposal,
+        bioregistry:mediadive.medium,
         bioregistry:mixs,
         bioregistry:uniprot.arba,
         bioregistry:wwf.ecoregion ;
@@ -49241,6 +49370,7 @@ bioregistry.registry:agroportal a bioregistry.schema:0000002 ;
         agroportal:LPT,
         agroportal:NCBITAXON,
         agroportal:OM,
+        agroportal:ONS,
         agroportal:PATO,
         agroportal:PCO,
         agroportal:PECO,
@@ -50054,6 +50184,9 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:dolce,
         bioregistry:drks,
         bioregistry:drugbank.category,
+        bioregistry:drugbank.condition,
+        bioregistry:drugbank.metabolite,
+        bioregistry:drugbank.reaction,
         bioregistry:drugbank.salt,
         bioregistry:drugcentral,
         bioregistry:dsm4,
@@ -50202,6 +50335,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:lter,
         bioregistry:matrixdb,
         bioregistry:mba,
+        bioregistry:mediadive.ingredient,
+        bioregistry:mediadive.solution,
         bioregistry:merops.clan,
         bioregistry:mesh.vocab,
         bioregistry:mgnify.analysis,
@@ -50864,6 +50999,7 @@ bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
         ontobee:MAMO,
         ontobee:MAXO,
         ontobee:MCO,
+        ontobee:MCRO,
         ontobee:MF,
         ontobee:MFMO,
         ontobee:MFOEM,
@@ -51113,6 +51249,7 @@ bioregistry.registry:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:mat,
         obofoundry:maxo,
         obofoundry:mco,
+        obofoundry:mcro,
         obofoundry:mf,
         obofoundry:mfmo,
         obofoundry:mfo,
@@ -55004,7 +55141,6 @@ bioregistry.registry:biocontext a bioregistry.schema:0000002 ;
         biocontext:DRON,
         biocontext:DRSC,
         biocontext:DRUGBANK.TARGET,
-        biocontext:DRUGBANKV4.TARGET,
         biocontext:DUO,
         biocontext:DrugBank,
         biocontext:EC-CODE,
@@ -56096,9 +56232,12 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:drsanv0,
         bioregistry:drsc,
         bioregistry:drugbank,
+        bioregistry:drugbank.bioentity,
         bioregistry:drugbank.category,
+        bioregistry:drugbank.condition,
+        bioregistry:drugbank.metabolite,
+        bioregistry:drugbank.reaction,
         bioregistry:drugbank.salt,
-        bioregistry:drugbankv4.target,
         bioregistry:drugcentral,
         bioregistry:dsm4,
         bioregistry:dsm5,
@@ -56590,9 +56729,13 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:mba,
         bioregistry:mcc,
         bioregistry:mco,
+        bioregistry:mcro,
         bioregistry:mdm,
         bioregistry:meddra,
         bioregistry:medgen,
+        bioregistry:mediadive.ingredient,
+        bioregistry:mediadive.medium,
+        bioregistry:mediadive.solution,
         bioregistry:medlineplus,
         bioregistry:merops.clan,
         bioregistry:merops.entry,
