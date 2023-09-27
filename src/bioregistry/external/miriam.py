@@ -56,7 +56,11 @@ def get_miriam(force_download: bool = False, force_process: bool = False):
 
 
 #: Pairs of MIRIAM prefix and provider codes to skip
-PROVIDER_BLACKLIST = {("ega.study", "omicsdi")}
+PROVIDER_BLACKLIST = {
+    ("ega.study", "omicsdi"),
+    # see discussion at https://github.com/biopragmatics/bioregistry/pull/944
+    ("bioproject", "ebi"),
+}
 
 
 def _process(record):
