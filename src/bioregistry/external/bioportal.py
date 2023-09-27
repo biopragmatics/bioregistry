@@ -131,7 +131,8 @@ class OntoPortalClient:
             record["license"] = standardize_license(license_stub)
 
         contacts = [
-            {k: v.strip() for k, v in contact.items()} for contact in res_json.get("contact", [])
+            {k: v.strip() for k, v in contact.items() if not k.startswith("@")}
+            for contact in res_json.get("contact", [])
         ]
         contacts = [contact for contact in contacts if EMAIL_RE.match(contact.get("email", ""))]
         if contacts:
