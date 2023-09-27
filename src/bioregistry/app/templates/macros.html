@@ -55,13 +55,6 @@
            title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
             Provider <i class="fas fa-exclamation-triangle"></i>
         </a>
-    {% elif resource.has_canonical %}
-        {% set canonical_name = manager.get_name(resource.has_canonical) %}
-        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
-           href="{{ url_for("metaregistry_ui.resource", prefix=resource.has_canonical) }}"
-           title="This resource shares a URI format string with {{ canonical_name }} ({{ resource.has_canonical }}). When generating an extended prefix map from the Bioregistry,  {{ resource.prefix }}, its CURIE prefix synonyms, and its URI prefix synonyms are merged into the record for {{ canonical_name }}.">
-            Has URI Collision <i class="fas fa-exclamation-triangle"></i>
-        </a>
     {% endif %}
     {% if resource.proprietary %}
         <span class="badge badge-warning" style="display: inline-block;">
