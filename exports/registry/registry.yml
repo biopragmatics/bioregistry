@@ -199,6 +199,8 @@ abcam:
   description: Vendor for assays, cells, and antibodies
   example: ab275461
   homepage: https://www.abcam.com
+  mappings:
+    cellosaurus: Abcam
   name: Abcam
   preferred_prefix: abcam
   uri_format: https://www.abcam.com/$1.html
@@ -234,7 +236,7 @@ abm:
     github: bgyori
     name: Benjamin M. Gyori
     orcid: 0000-0001-9439-5346
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: T0599
   homepage: https://www.abmgood.com/Cell-Biology.html
   mappings:
@@ -377,7 +379,7 @@ adcad:
     orcid: 0000-0003-4423-4370
   uri_format: https://purl.dataone.org/odo/ADCAD_$1
 addexbio:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: C0020004/4992
   homepage: https://www.addexbio.com/productshow?id=4
   mappings:
@@ -2832,7 +2834,7 @@ bcrc:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: '60316'
   homepage: https://catalog.bcrc.firdi.org.tw
   keywords:
@@ -2844,7 +2846,7 @@ bcrc:
   preferred_prefix: bcrc
   uri_format: https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=$1
 bcrj:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: 0278
   homepage: https://bcrj.org.br/pesquisa/
   mappings:
@@ -2999,7 +3001,7 @@ beiresources:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: MRA-253
   homepage: https://www.beiresources.org
   keywords:
@@ -3090,6 +3092,7 @@ bfo:
   uri_format: http://purl.obolibrary.org/obo/BFO_$1
   version: '2019-08-26'
 bgee.family:
+  deprecated: true
   description: Bgee is a database of gene expression patterns within particular anatomical
     structures within a species, and between different animal species. This collection
     refers to expression across species.
@@ -3144,6 +3147,7 @@ bgee.gene:
   - https://github.com/biopragmatics/bioregistry/issues/890
   uri_format: https://www.bgee.org/gene/$1
 bgee.organ:
+  deprecated: true
   description: Bgee is a database of gene expression patterns within particular anatomical
     structures within a species, and between different animal species. This collection
     refers to anatomical structures.
@@ -3158,6 +3162,7 @@ bgee.organ:
   preferred_prefix: bgee.organ
   uri_format: http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organ_details&organ_children=on&organ_id=$1
 bgee.stage:
+  deprecated: true
   description: Bgee is a database of gene expression patterns within particular anatomical
     structures within a species, and between different animal species. This collection
     refers to developmental stages.
@@ -4048,8 +4053,7 @@ bioproject:
     different databases. It provides information about a project’s scope, material,
     objectives, funding source and general relevance categories.
   example: PRJDB3
-  has_canonical: ena.embl
-  homepage: http://trace.ddbj.nig.ac.jp/bioproject/
+  homepage: https://www.ncbi.nlm.nih.gov/bioproject
   keywords:
   - life science
   mappings:
@@ -4062,16 +4066,11 @@ bioproject:
   pattern: ^PRJ[DEN][A-Z]\d+$
   preferred_prefix: bioproject
   providers:
-  - code: ebi
-    description: BioProject at European Nucleotide Archive (ENA)
-    homepage: https://www.ebi.ac.uk/ena/
-    name: BioProject at European Nucleotide Archive (ENA)
-    uri_format: https://www.ebi.ac.uk/ena/browser/view/$1
-  - code: ncbi
-    description: BioProject at NCBI
-    homepage: https://www.ncbi.nlm.nih.gov/bioproject
-    name: BioProject at NCBI
-    uri_format: https://www.ncbi.nlm.nih.gov/bioproject?term=$1
+  - code: CURATOR_REVIEW
+    description: BioProject at DNA Data Bank of Japan
+    homepage: http://trace.ddbj.nig.ac.jp/bioproject/
+    name: BioProject at DNA Data Bank of Japan
+    uri_format: http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1
   publications:
   - doi: 10.1093/nar/gkr1163
     pmc: PMC3245069
@@ -6085,7 +6084,7 @@ cdt:
   pattern: ^\d{7}$
   preferred_prefix: cdt
 cell_biolabs:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: AKR-270
   homepage: https://www.cellbiolabs.com
   mappings:
@@ -7908,7 +7907,7 @@ clo:
   uri_format: http://purl.obolibrary.org/obo/CLO_$1
   version: 2.1.178
 cls:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: 300108/p3934_A-172
   homepage: https://cls.shop/
   mappings:
@@ -9085,6 +9084,7 @@ cog:
     biolink: COG
     fairsharing: FAIRsharing.djsbw2
     go: COG_Cluster
+    miriam: cog
     prefixcommons: cog
   name: Cluster of orthologous genes
   pattern: ^COG\d+$
@@ -11841,7 +11841,7 @@ dg5b0d:
   preferred_prefix: dg5b0d
   uri_format: https://data.bloodpac.org/ga4gh/drs/v1/objects/$1
 dgrc:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: '215'
   homepage: https://dgrc.bio.indiana.edu/cells/Catalog
   mappings:
@@ -12137,7 +12137,7 @@ dip:
     year: 2000
   uri_format: https://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$1
 discoverx:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: 95-0166C6
   homepage: https://www.discoverx.com/products-applications/cell-lines
   mappings:
@@ -13349,7 +13349,7 @@ dsmz:
   - PV-0998
   homepage: https://www.dsmz.de
   mappings:
-    cellosaurus: DSMZ
+    cellosaurus: DSMZCellDive
     re3data: r3d100010219
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
   pattern: ^(ACC|DSM|NC|PC|RT|AS|PV)-\d+$
@@ -13508,7 +13508,7 @@ easychair.topic:
   preferred_prefix: easychair.topic
   uri_format: https://easychair.org/cfp/topic.cgi?tid=$1
 ebisc:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: ESi007-A
   example_extras:
   - EDi008-B
@@ -15076,6 +15076,7 @@ ena.embl:
     Sequence Read Archive (SRA) and the Trace Archive each with their own data formats
     and standards. This collection references Embl-Bank identifiers.
   example: BN000065
+  has_canonical: insdc.run
   homepage: https://www.ebi.ac.uk/ena/
   keywords:
   - biodiversity
@@ -16031,6 +16032,11 @@ eo:
   pattern: ^\d{7}$
   preferred_prefix: EO
   providers:
+  - code: CURATOR_REVIEW
+    description: Plant Environment Ontology through Gramene
+    homepage: http://archive.gramene.org/db/ontology/search_term?id=EO:0007359
+    name: Plant Environment Ontology through Gramene
+    uri_format: http://archive.gramene.org/db/ontology/search?query=EO:$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -16048,7 +16054,7 @@ eo:
     year: 2012
   rdf_uri_format: http://purl.obolibrary.org/obo/EO_$1
   repository: https://github.com/Planteome/plant-environment-ontology
-  uri_format: http://archive.gramene.org/db/ontology/search?query=EO:$1
+  uri_format: http://purl.obolibrary.org/obo/EO_$1
 eol:
   contact:
     email: pylebail@rennes.inra.fr
@@ -17368,6 +17374,8 @@ fbtc:
   description: The cell line vocabulary inside FlyBase
   example: 0000190
   homepage: https://flybase.org
+  mappings:
+    cellosaurus: FlyBase_Cell_line
   name: Flybase Cell Line
   part_of: flybase
   pattern: ^\d{7}$
@@ -22658,7 +22666,7 @@ hipsci:
   preferred_prefix: hipsci
   uri_format: https://www.hipsci.org/lines/#/lines/$1
 hivreagentprogram:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: ARP-1513
   homepage: https://www.hivreagentprogram.org/
   mappings:
@@ -23120,7 +23128,7 @@ homologene:
     year: 2010
   uri_format: https://www.ncbi.nlm.nih.gov/homologene/$1
 horizon_discovery:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: HD+118-001
   homepage: https://horizondiscovery.com/
   mappings:
@@ -24446,7 +24454,7 @@ icf:
   preferred_prefix: icf
   uri_format: http://id.who.int/icd/entity/$1
 iclc:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: ATL98012
   homepage: http://www.iclc.it
   mappings:
@@ -24472,6 +24480,8 @@ icldb:
     previous compilations of insect cell lines. (from homepage)
   example: 64ba
   homepage: https://entomology.ca.uky.edu/aginsectcellsdatabase
+  mappings:
+    cellosaurus: ICLDB
   name: Insect Cell Line Database
   preferred_prefix: icldb
   uri_format: https://entomology.ca.uky.edu/content/$1
@@ -25013,7 +25023,7 @@ illumina.probe:
   references:
   - https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-9184/A-GEOD-9184_comments.txt
 imanis:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: CL070
   homepage: https://www.imanislife.com/collections/cell-lines/
   mappings:
@@ -25813,10 +25823,10 @@ insdc.gca:
     uri_format: https://www.ncbi.nlm.nih.gov/datasets/genome/$1
   uri_format: https://www.ebi.ac.uk/ena/data/view/$1
 insdc.run:
-  comment: 'https://www.insdc.org/ is the authoritative source for INSDC. However,
-    confusingly, they don''t mention runs in this table. I think we should ask them
-    to include. ENA is a partner and they have documentation here: https://ena-docs.readthedocs.io/en/latest/submit/general-guide/accessions.html
-    Runs | (E\|D\|S)RR[0-9]{6,} | ERR123456 -- | -- | --'
+  comment: https://www.insdc.org/ is the authoritative source for INSDC. However,
+    confusingly, they don't mention runs in this table. I think we should ask them
+    to include. ENA is a partner and they have documentation [here](https://ena-docs.readthedocs.io/en/latest/submit/general-guide/accessions.html).
+    Runs | (E\|D\|S)RR[0-9]{6,} | ERR123456 -- | -- | --
   contributor:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -25825,7 +25835,6 @@ insdc.run:
   description: An experimental run, served thrugh the ENA
   example: ERR436051
   github_request_issue: 131
-  has_canonical: ena.embl
   homepage: https://www.insdc.org/
   name: International Nucleotide Sequence Database Collaboration (INSDC) Run
   pattern: ^(E|D|S)RR[0-9]{6,}$
@@ -26849,7 +26858,7 @@ jcrb:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: JCRB1355
   homepage: https://cellbank.nibiohn.go.jp
   mappings:
@@ -27026,7 +27035,7 @@ kclb:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: '10020.2'
   homepage: https://cellbank.snu.ac.kr/english
   mappings:
@@ -27584,7 +27593,7 @@ kegg.reaction:
   - KEGG_REACTION
   uri_format: https://www.kegg.jp/entry/$1
 kerafast:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: EJH014
   homepage: https://www.kerafast.com/
   mappings:
@@ -27644,7 +27653,7 @@ kupo:
   references:
   - https://jbiomedsem.biomedcentral.com/articles/10.1186/2041-1480-2-S2-S7
 kyinno:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: KC-0979
   homepage: https://www.kyinno.com/
   mappings:
@@ -30640,7 +30649,7 @@ microsporidia:
     year: 2009
   uri_format: http://microsporidiadb.org/micro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1
 millipore:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: SCC111
   homepage: https://www.merckmillipore.com/
   mappings:
@@ -30753,6 +30762,11 @@ mint:
   pattern: ^\d{1,7}$
   preferred_prefix: mint
   providers:
+  - code: CURATOR_REVIEW
+    description: The Molecular INTeraction database (MINT)
+    homepage: http://mint.bio.uniroma2.it/mint/
+    name: The Molecular INTeraction database (MINT)
+    uri_format: http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -30762,11 +30776,6 @@ mint:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/mint:$1
-  - code: ebi
-    description: MINT subset through IntAct
-    homepage: https://www.ebi.ac.uk/intact/
-    name: MINT subset through IntAct
-    uri_format: https://www.ebi.ac.uk/intact/query/interaction_id:$1
   publications:
   - doi: 10.1093/nar/gkr930
     pmc: PMC3244991
@@ -31656,14 +31665,8 @@ mo:
   name: Microarray experimental conditions
   pattern: ^\w+$
   preferred_prefix: MO
-  providers:
-  - code: ebi
-    description: MGED Ontology at SourceForge
-    homepage: https://mged.sourceforge.net/ontologies/MGEDontology.php
-    name: MGED Ontology at SourceForge
-    uri_format: https://mged.sourceforge.net/ontologies/MGEDontology.php#$1
   rdf_uri_format: http://purl.obolibrary.org/obo/MO_$1
-  uri_format: http://purl.obolibrary.org/obo/MO_$1
+  uri_format: https://mged.sourceforge.net/ontologies/MGEDontology.php#$1
 mobidb:
   contact:
     email: silvio.tosatto@unipd.it
@@ -32118,6 +32121,11 @@ mp:
   pattern: ^\d{7}$
   preferred_prefix: MP
   providers:
+  - code: CURATOR_REVIEW
+    description: Mammalian Phenotype Ontology at The Jackson Lab
+    homepage: http://www.informatics.jax.org/
+    name: Mammalian Phenotype Ontology at The Jackson Lab
+    uri_format: http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -34300,7 +34308,7 @@ ngl:
   preferred_prefix: ngl
   uri_format: https://genelab-data.ndc.nasa.gov/genelab/accession/$1
 nhcdr:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: ND50028
   homepage: https://stemcells.nindsgenetics.org
   mappings:
@@ -34509,6 +34517,8 @@ nihhesc:
     0001), in the specified location in the application (from homepage)
   example: NIHhESC-10-0083
   homepage: https://grants.nih.gov/stem_cells/registry/current.htm
+  mappings:
+    cellosaurus: NIHhESC
   name: NIH Human Embryonic Stem Cell Registry
   preferred_prefix: nihhesc
   uri_format: https://grants.nih.gov/stem_cells/registry/current.htm?ID=$1
@@ -35424,6 +35434,8 @@ nrfc:
     training and education to stakeholders. (from homepage)
   example: NRFC051
   homepage: https://mail.nbfgr.res.in/nrfc/index.php
+  mappings:
+    cellosaurus: NRFC
   name: National Repository of Fish Cell Lines
   pattern: ^NRFC\d+$
   preferred_prefix: nrfc
@@ -39581,7 +39593,7 @@ peptideatlas.dataset:
   preferred_prefix: peptideatlas.dataset
   uri_format: http://www.peptideatlas.org/PASS/$1
 perkinelmer:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: SCC111
   homepage: https://www.perkinelmer.com/
   mappings:
@@ -41268,6 +41280,11 @@ po:
   pattern: ^\d+$
   preferred_prefix: PO
   providers:
+  - code: amigo
+    description: Plant Ontology through Amigo
+    homepage: http://www.plantontology.org/
+    name: Plant Ontology through Amigo
+    uri_format: http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -41658,6 +41675,11 @@ pr:
   pattern: ^\d+$
   preferred_prefix: PR
   providers:
+  - code: CURATOR_REVIEW
+    description: Protein Ontology at Georgetown
+    homepage: https://proconsortium.org/
+    name: Protein Ontology at Georgetown
+    uri_format: https://proconsortium.org/app/entry/PR:$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -50382,7 +50404,7 @@ tkg:
   preferred_prefix: tkg
   uri_format: http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html
 tngb:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: '67035'
   homepage: http://biobanknetwork.telethon.it/
   mappings:
@@ -53928,7 +53950,7 @@ wgs84:
   preferred_prefix: wgs84
   uri_format: http://www.w3.org/2003/01/geo/wgs84_pos#$1
 wicell:
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: ai10e-kctd13b
   homepage: https://www.wicell.org
   mappings:
@@ -54488,7 +54510,7 @@ wos:
   synonyms:
   - wosid
   - wosuid
-  uri_format: https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL
+  uri_format: https://www.webofscience.com/wos/woscc/full-record/WOS:$1
 wwf.ecoregion:
   comment: ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658
   contributor:
@@ -54756,7 +54778,7 @@ ximbio:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Cell line collections
+  description: Cell line collections (Providers)
   example: '151022'
   homepage: https://ximbio.com
   mappings:
