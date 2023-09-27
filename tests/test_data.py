@@ -564,12 +564,12 @@ class TestRegistry(unittest.TestCase):
         )
 
         # This is a "canonical" situation
-        self.assertIn("ena.embl", set(records))
-        record = records["ena.embl"]
+        self.assertIn("insdc.run", set(records))
+        record = records["insdc.run"]
         self.assertIsInstance(record, curies.Record)
-        self.assertEqual("ena.embl", record.prefix)
-        self.assertEqual("ena.embl", record.prefix)
-        self.assertIn("ena.embl:", record.uri_prefix_synonyms)
+        self.assertEqual("insdc.run", record.prefix)
+        self.assertEqual("insdc.run", record.prefix)
+        self.assertIn("insdc.run:", record.uri_prefix_synonyms)
 
         # part of but different stuff
         self.assertNotIn("biogrid.interaction", records["biogrid"].prefix_synonyms)
@@ -590,7 +590,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIn("kegg:", record.uri_prefix_synonyms)
         self.assertIn("kegg.module:", record.uri_prefix_synonyms)
 
-        # Make sure sure primary URI prefix gets upgraded properly from vz -> canonical for -> viralzone
+        # Make sure primary URI prefix gets upgraded properly from vz -> canonical for -> viralzone
         self.assertIn("http://viralzone.expasy.org/", records["viralzone"].uri_prefix_synonyms)
 
     def test_default_prefix_map_no_miriam(self):
