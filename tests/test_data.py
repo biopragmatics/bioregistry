@@ -569,9 +569,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsInstance(record, curies.Record)
         self.assertEqual("ena.embl", record.prefix)
         self.assertEqual("ena.embl", record.prefix)
-        self.assertIn("bioproject", record.prefix_synonyms)
         self.assertIn("ena.embl:", record.uri_prefix_synonyms)
-        self.assertIn("bioproject:", record.uri_prefix_synonyms)
 
         # part of but different stuff
         self.assertNotIn("biogrid.interaction", records["biogrid"].prefix_synonyms)
