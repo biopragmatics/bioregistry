@@ -378,7 +378,12 @@
     <div class="card" style="margin-top: 20px">
         <a id="ontology"></a>
         <h5 class="card-header">Ontology</h5>
+
         <div class="card-body">
+            <p>
+                A summary of the relations in the Bioregistry schema
+                can be found <a href="{{ url_for("metaregistry_ui.schema") }}">here</a>.
+            </p>
             <dl>
                 {% if provides %}
                     <dt>
@@ -406,31 +411,55 @@
                 {% endif %}
                 {% if has_parts %}
                     <dt>
-                        Has Parts ({{ utils.code_curie("bfo", "0000051") }})
+                        Has Parts ({{ utils.link_code_curie("bfo", "0000051") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, has_parts) }}</dd>
                 {% endif %}
                 {% if has_canonical %}
                     <dt>
-                        Has Canonical ({{ utils.code_curie("bioregistry.schema", "0000016") }})
+                        Has URI collision with ({{ utils.link_code_curie("bioregistry.schema", "0000016") }})
                     </dt>
-                    <dd>{{ get_tooltip(manager, has_canonical) }}</dd>
+                    <dd>
+                        <p>
+                            This resource shares one or more URI format strings with {{ get_tooltip(manager, has_canonical) }}.
+                        </p>
+                        <p>
+                            Therefore, when generating an extended prefix map, <code>{{ resource.prefix }}</code>,
+                            its CURIE prefix synonyms, and its URI prefix synonyms are merged into the
+                            record for {{ get_tooltip(manager, has_canonical) }}.
+                            If you believe that these are two distinct semantic spaces and should not be merged,
+                            please open a new issue on the <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&projects=&template=update-misc.yml&prefix={{ resource.prefix }}&title=Discussion+about+URI+collisions+for+`{{ resource.prefix }}`">Bioregistry issue tracker</a>
+                            for discussion.
+                        </p>
+                    </dd>
                 {% endif %}
                 {% if canonical_for %}
                     <dt>
-                        Canonical For ({{ canonical_for | length }})
+                        Has incoming URI collisions
                     </dt>
-                    <dd>{{ get_tooltips(manager, canonical_for) }}</dd>
+                    <dd>
+                        <p>
+                            The following resources share a URI format string with <code>{{ resource.prefix }}</code>:
+                            <br/>{{ get_tooltips(manager, canonical_for) }}
+                        </p>
+                        <p>
+                            When generating an extended prefix map, their respective CURIE prefixes and URI
+                            prefixes are merged into the record for <code>{{ resource.prefix }}</code>.
+                            If you believe that these are distinct semantic spaces and should not be merged,
+                            please open a new issue on the <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&projects=&template=update-misc.yml&prefix={{ resource.prefix }}&title=Discussion+about+URI+collisions+for+`{{ resource.prefix }}`">Bioregistry issue tracker</a>
+                            for discussion.
+                        </p>
+                    </dd>
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On ({{ depends_on | length }}) ({{ utils.code_curie("bioregistry.schema", "0000017") }})
+                        Depends On ({{ depends_on | length }}) ({{ utils.link_code_curie("bioregistry.schema", "0000017") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, depends_on) }}</dd>
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In ({{ appears_in | length }}) ({{ utils.code_curie("bioregistry.schema", "0000018") }})
+                        Appears In ({{ appears_in | length }}) ({{ utils.link_code_curie("bioregistry.schema", "0000018") }})
                     </dt>
                     <dd>{{ get_tooltips(manager, appears_in) }}</dd>
                 {% endif %}

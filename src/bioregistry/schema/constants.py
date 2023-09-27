@@ -192,7 +192,8 @@ bioregistry_schema_terms = [
         "Property",
         "has canonical",
         "A property connecting two prefixes that share an IRI where the subject is "
-        "the non-preferred prefix and the target is the preferred prefix",
+        "the non-preferred prefix and the target is the preferred prefix. "
+        "See examples [here](https://bioregistry.io/highlights/relations#canonical).",
         domain="0000001",
         range="0000001",
     ),
