@@ -399,9 +399,9 @@ def get_default_format(prefix: str) -> Optional[str]:
 
     >>> import bioregistry
     >>> bioregistry.get_default_format('ncbitaxon')
-    'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
+    'http://purl.obolibrary.org/obo/NCBITaxon_$1'
     >>> bioregistry.get_default_format('go')
-    'http://amigo.geneontology.org/amigo/term/GO:$1'
+    'http://purl.obolibrary.org/obo/GO_$1'
     >>> assert bioregistry.get_default_format('nope') is None
     """
     entry = get_resource(prefix)

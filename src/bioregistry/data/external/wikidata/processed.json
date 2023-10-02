@@ -1645,6 +1645,21 @@
     "prefix": "P11956",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1"
   },
+  "P12049": {
+    "database": "Q64515875",
+    "description": "identifier in the registry of monumental trees in the Netherlands",
+    "example": [
+      "1679463",
+      "1680745",
+      "1684865",
+      "1686124"
+    ],
+    "homepage": "https://bomen.meetnetportaal.nl",
+    "name": "National Register of Monumental Trees ID",
+    "pattern": "^\\d+$",
+    "prefix": "P12049",
+    "uri_format": "https://bomen.meetnetportaal.nl/index.php?c=portal&mm=claim&m=custom&options=monumentale_bomen/claimformulier.xml&boomnr=$1"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -6084,7 +6099,7 @@
       "1121320"
     ],
     "homepage": "http://orthoptera.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
-    "name": "OSF Online ID",
+    "name": "Orthoptera Species File ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6050",
     "uri_format": "http://orthoptera.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -6115,7 +6130,7 @@
     "name": "Cockroach Species File ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6052",
-    "uri_format": "http://cockroach.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
+    "uri_format": "https://cockroach.speciesfile.org/otus/$1/overview"
   },
   "P6053": {
     "database": "Q57714687",
@@ -8609,7 +8624,7 @@
   },
   "P8502": {
     "database": "Q12056889",
-    "description": "identifier for substances assigned by the Czech State Institute for Drug Control",
+    "description": "identifier for medicinal products assigned by the Czech State Institute for Drug Control",
     "example": [
       "0170689",
       "0180745",
@@ -8618,7 +8633,7 @@
     "homepage": "http://www.sukl.cz",
     "name": "S\u00daKL code",
     "prefix": "P8502",
-    "uri_format": "http://www.sukl.cz/modules/medication/detail.php?code=$1&tab=info"
+    "uri_format": "https://prehledy.sukl.cz/prehled_leciv.html#/leciva/$1"
   },
   "P8508": {
     "database": "Q105343122",
@@ -9150,7 +9165,7 @@
     ],
     "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
     "name": "PMCID",
-    "pattern": "^[1-9]\\d{0,6}$",
+    "pattern": "^[1-9]\\d{0,7}$",
     "prefix": "P932",
     "uri_format": "http://europepmc.org/articles/PMC$1"
   },

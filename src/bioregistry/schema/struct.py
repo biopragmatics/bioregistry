@@ -678,7 +678,7 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_default_uri("24867")
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
         """
         fmt = self.get_default_format()
         if fmt is None:
@@ -763,9 +763,9 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("ncbitaxon").get_default_format()
-        'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
+        'http://purl.obolibrary.org/obo/NCBITaxon_$1'
         >>> get_resource("go").get_default_format()
-        'http://amigo.geneontology.org/amigo/term/GO:$1'
+        'http://purl.obolibrary.org/obo/GO_$1'
         """
         if self.uri_format is not None:
             return self.uri_format
@@ -1669,7 +1669,7 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_uri_format()
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
+        'http://purl.obolibrary.org/obo/CHEBI_$1'
 
         If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
         is of particular interest to ontologists and semantic web people who might want to use ``purl.obolibrary.org``
@@ -1694,7 +1694,7 @@ class Resource(BaseModel):
 
         >>> import bioregistry
         >>> bioregistry.get_uri_prefix('chebi')
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
+        'http://purl.obolibrary.org/obo/CHEBI_'
         """
         for uri_format in self._iterate_uri_formats(priority):
             uri_prefix = self._clip_uri_format(uri_format)

@@ -227,6 +227,9 @@
     "description": "Vendor for assays, cells, and antibodies",
     "example": "ab275461",
     "homepage": "https://www.abcam.com",
+    "mappings": {
+      "cellosaurus": "Abcam"
+    },
     "name": "Abcam",
     "preferred_prefix": "abcam",
     "uri_format": "https://www.abcam.com/$1.html"
@@ -272,7 +275,7 @@
         "orcid": "0000-0001-9439-5346"
       }
     ],
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "T0599",
     "homepage": "https://www.abmgood.com/Cell-Biology.html",
     "mappings": {
@@ -425,7 +428,7 @@
     "uri_format": "https://purl.dataone.org/odo/ADCAD_$1"
   },
   "addexbio": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "C0020004/4992",
     "homepage": "https://www.addexbio.com/productshow?id=4",
     "mappings": {
@@ -553,7 +556,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ADO_$1",
     "repository": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
     "uri_format": "http://purl.obolibrary.org/obo/ADO_$1",
-    "version": "2022-06-11"
+    "version": "2023-09-20"
   },
   "adw": {
     "contact": {
@@ -741,7 +744,7 @@
       "orcid": null
     },
     "description": "Allotrope Merged Ontology Suite",
-    "download_owl": "http://purl.allotrope.org/voc/afo/merged/REC/2023/03/merged-without-qudt-and-inferred",
+    "download_owl": "http://purl.allotrope.org/voc/afo/merged/REC/2023/06/merged-without-qudt-and-inferred",
     "homepage": "https://www.allotrope.org/",
     "keywords": [
       "agricultural engineering",
@@ -763,7 +766,7 @@
     "name": "Allotrope Merged Ontology Suite",
     "no_own_terms": true,
     "preferred_prefix": "afo",
-    "version": "2023/03"
+    "version": "2023/06"
   },
   "aftol.taxonomy": {
     "contributor_extras": [
@@ -1685,15 +1688,15 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/APO_$1",
     "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
     "twitter": "yeastgenome",
-    "uri_format": "https://www.yeastgenome.org/observable/APO:$1",
-    "version": "2023-04-27"
+    "uri_format": "http://purl.obolibrary.org/obo/APO_$1",
+    "version": "2023-09-05"
   },
   "apollosv": {
     "appears_in": [
       "scdo"
     ],
     "contact": {
-      "email": "hoganwr@ufl.edu",
+      "email": "hoganwr@gmail.com",
       "github": "hoganwr",
       "name": "William Hogan",
       "orcid": "0000-0002-9881-1017"
@@ -2825,8 +2828,8 @@
     "synonyms": [
       "BAO"
     ],
-    "uri_format": "http://bioportal.bioontology.org/ontologies/BAO/bao:BAO_$1",
-    "version": "2.8.4"
+    "uri_format": "http://www.bioassayontology.org/bao#BAO_$1",
+    "version": "2.8.8"
   },
   "bartoc": {
     "contact": {
@@ -2961,7 +2964,7 @@
     "pattern": "^\\d{6}$",
     "preferred_prefix": "bcio",
     "uri_format": "https://w3id.org/BCI-ontology#$1",
-    "version": "2022-08-24"
+    "version": "2023-08-30"
   },
   "bco": {
     "appears_in": [
@@ -3021,7 +3024,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "60316",
     "homepage": "https://catalog.bcrc.firdi.org.tw",
     "keywords": [
@@ -3036,7 +3039,7 @@
     "uri_format": "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=$1"
   },
   "bcrj": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "0278",
     "homepage": "https://bcrj.org.br/pesquisa/",
     "mappings": {
@@ -3202,7 +3205,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "MRA-253",
     "homepage": "https://www.beiresources.org",
     "keywords": [
@@ -3305,6 +3308,7 @@
     "version": "2019-08-26"
   },
   "bgee.family": {
+    "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to expression across species.",
     "example": "ENSFM00500000270089",
     "homepage": "http://bgee.unil.ch/bgee/bgee",
@@ -3363,6 +3367,7 @@
     "uri_format": "https://www.bgee.org/gene/$1"
   },
   "bgee.organ": {
+    "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to anatomical structures.",
     "example": "EHDAA:2185",
     "homepage": "http://bgee.unil.ch/bgee/bgee",
@@ -3377,6 +3382,7 @@
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organ_details&organ_children=on&organ_id=$1"
   },
   "bgee.stage": {
+    "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to developmental stages.",
     "example": "HsapDO:0000004",
     "homepage": "http://bgee.unil.ch/bgee/bgee",
@@ -3730,6 +3736,13 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/bib/bbx085",
+        "pmc": null,
+        "pubmed": "29447345",
+        "title": null,
+        "year": null
+      },
       {
         "doi": "10.1093/nar/gkv1164",
         "pmc": "PMC4702838",
@@ -4131,7 +4144,7 @@
       "biomodels.kisao",
       "kisao"
     ],
-    "uri_format": "https://bioportal.bioontology.org/ontologies/KISAO?p=classes&conceptid=kisao:KISAO_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/KISAO_$1",
     "version": "2.30"
   },
   "biomodels.teddy": {
@@ -4324,8 +4337,7 @@
   "bioproject": {
     "description": "BioProject provides an organizational framework to access metadata about research projects and the data from the projects that are deposited into different databases. It provides information about a project’s scope, material, objectives, funding source and general relevance categories.",
     "example": "PRJDB3",
-    "has_canonical": "ena.embl",
-    "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
+    "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
     "keywords": [
       "life science"
     ],
@@ -4341,18 +4353,11 @@
     "preferred_prefix": "bioproject",
     "providers": [
       {
-        "code": "ebi",
-        "description": "BioProject at European Nucleotide Archive (ENA)",
-        "homepage": "https://www.ebi.ac.uk/ena/",
-        "name": "BioProject at European Nucleotide Archive (ENA)",
-        "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
-      },
-      {
-        "code": "ncbi",
-        "description": "BioProject at NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
-        "name": "BioProject at NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
+        "code": "CURATOR_REVIEW",
+        "description": "BioProject at DNA Data Bank of Japan",
+        "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
+        "name": "BioProject at DNA Data Bank of Japan",
+        "uri_format": "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1"
       }
     ],
     "publications": [
@@ -5409,7 +5414,7 @@
     "synonyms": [
       "BTO"
     ],
-    "uri_format": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3&id_go=$1",
+    "uri_format": "http://purl.obolibrary.org/obo/BTO_$1",
     "version": "2021-10-26"
   },
   "bugbase.expt": {
@@ -6037,6 +6042,13 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkab1045",
+        "pmc": null,
+        "pubmed": "34850161",
+        "title": null,
+        "year": null
+      },
+      {
         "doi": "10.1093/nar/gkt1178",
         "pmc": "PMC3965031",
         "pubmed": "24270786",
@@ -6164,6 +6176,13 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkx1031",
+        "pmc": null,
+        "pubmed": "29126148",
+        "title": null,
+        "year": null
+      },
       {
         "doi": "10.1101/gr.080531.108",
         "pmc": "PMC2704439",
@@ -6395,6 +6414,13 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkac1096",
+        "pmc": null,
+        "pubmed": "36477806",
+        "title": null,
+        "year": null
+      },
+      {
         "doi": "10.1093/nar/gku1221",
         "pmc": "PMC4383992",
         "pubmed": "25414356",
@@ -6500,7 +6526,7 @@
     "preferred_prefix": "cdt"
   },
   "cell_biolabs": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "AKR-270",
     "homepage": "https://www.cellbiolabs.com",
     "mappings": {
@@ -7072,8 +7098,8 @@
       "ChEBI"
     ],
     "twitter": "chebit",
-    "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
-    "version": "222"
+    "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
+    "version": "225"
   },
   "chembank": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -7464,8 +7490,8 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CHEMINF_$1",
     "repository": "https://github.com/semanticchemistry/semanticchemistry",
-    "uri_format": "https://semanticscience.org/resource/CHEMINF_$1",
-    "version": "2.0"
+    "uri_format": "http://purl.obolibrary.org/obo/CHEMINF_$1",
+    "version": "2.1.0"
   },
   "chemrof": {
     "contact": {
@@ -8094,8 +8120,8 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CL_$1",
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/$1",
-    "version": "2023-06-22"
+    "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
+    "version": "2023-09-21"
   },
   "clao": {
     "contact": {
@@ -8422,11 +8448,11 @@
     "synonyms": [
       "CLO"
     ],
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/clo/terms?short_form=CLO_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/CLO_$1",
     "version": "2.1.178"
   },
   "cls": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "300108/p3934_A-172",
     "homepage": "https://cls.shop/",
     "mappings": {
@@ -8576,7 +8602,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2019-02-19"
+    "version": "2.191"
   },
   "cmpo": {
     "contact": {
@@ -9737,6 +9763,7 @@
       "biolink": "COG",
       "fairsharing": "FAIRsharing.djsbw2",
       "go": "COG_Cluster",
+      "miriam": "cog",
       "prefixcommons": "cog"
     },
     "name": "Cluster of orthologous genes",
@@ -11391,7 +11418,8 @@
     },
     "name": "Vaccine administered code set",
     "pattern": "^\\d+$",
-    "preferred_prefix": "cvx"
+    "preferred_prefix": "cvx",
+    "uri_format": "https://biopragmatics.github.io/providers/cvx/$1"
   },
   "d1id": {
     "description": "DataONE provides infrastructure facilitating long-term access to scientific research data of relevance to the earth sciences.",
@@ -11917,6 +11945,13 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkaa892",
+        "pmc": null,
+        "pubmed": "33095870",
+        "title": null,
+        "year": null
+      },
+      {
         "doi": "10.1093/nar/gkl1031",
         "pmc": "PMC1781113",
         "pubmed": "17170002",
@@ -12127,7 +12162,7 @@
       "name": "Petra Fey",
       "orcid": "0000-0002-4532-2703"
     },
-    "description": "A structured controlled vocabulary of the anatomy of the slime-mold Dictyostelium discoideum",
+    "description": "A structured controlled vocabulary of anatomies of the slime-mold Dictyostelium discoideum.",
     "download_obo": "http://purl.obolibrary.org/obo/ddanat.obo",
     "download_owl": "http://purl.obolibrary.org/obo/ddanat.owl",
     "example": "0000006",
@@ -12175,8 +12210,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/DDANAT_$1",
     "repository": "https://github.com/dictyBase/migration-data",
     "twitter": "dictybase",
-    "uri_format": "http://purl.obolibrary.org/obo/DDANAT_$1",
-    "version": "2020-04-13"
+    "uri_format": "http://purl.obolibrary.org/obo/DDANAT_$1"
   },
   "ddinter.drug": {
     "contact": {
@@ -12292,7 +12326,7 @@
     "repository": "https://github.com/obophenotype/dicty-phenotype-ontology",
     "twitter": "dictybase",
     "uri_format": "http://purl.obolibrary.org/obo/DDPHENO_$1",
-    "version": "2023-02-19"
+    "version": "2023-08-26"
   },
   "debio": {
     "contact": {
@@ -12318,7 +12352,7 @@
     ],
     "name": "Decentralized Biomedical Ontology",
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "DeBiO",
+    "preferred_prefix": "debio",
     "providers": [
       {
         "code": "obo2",
@@ -12327,6 +12361,9 @@
         "name": "Placeholder OBO PURL",
         "uri_format": "http://purl.obolibrary.org/obo/debio_$1"
       }
+    ],
+    "synonyms": [
+      "DeBiO"
     ],
     "uri_format": "https://biopragmatics.github.io/debio/$1"
   },
@@ -12622,7 +12659,7 @@
     "uri_format": "https://data.bloodpac.org/ga4gh/drs/v1/objects/$1"
   },
   "dgrc": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "215",
     "homepage": "https://dgrc.bio.indiana.edu/cells/Catalog",
     "mappings": {
@@ -12695,7 +12732,7 @@
       }
     ],
     "uri_format": "http://dicom.nema.org/resources/ontology/DCM/$1",
-    "version": "2023b_20230403"
+    "version": "2023d_20230907"
   },
   "dictybase": {
     "description": "A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics",
@@ -12959,7 +12996,7 @@
     "uri_format": "https://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$1"
   },
   "discoverx": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "95-0166C6",
     "homepage": "https://www.discoverx.com/products-applications/cell-lines",
     "mappings": {
@@ -13539,8 +13576,8 @@
       "do"
     ],
     "twitter": "diseaseontology",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/doid/terms?obo_id=DOID:$1",
-    "version": "2023-05-31"
+    "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
+    "version": "2023-08-08"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -13722,7 +13759,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
     "repository": "https://github.com/FlyBase/drosophila-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2023-05-03"
+    "version": "2023-08-02"
   },
   "dpv": {
     "description": "Description of Plant Viruses (DPV) provides information about viruses, viroids and satellites of plants, fungi and protozoa. It provides taxonomic information, including brief descriptions of each family and genus, and classified lists of virus sequences. The database also holds detailed information for all sequences of viruses, viroids and satellites of plants, fungi and protozoa that are complete or that contain at least one complete gene.",
@@ -13931,7 +13968,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/DRON_$1",
     "repository": "https://github.com/ufbmi/dron",
     "uri_format": "http://purl.obolibrary.org/obo/DRON_$1",
-    "version": "2023-06-11"
+    "version": "2023-08-17"
   },
   "drsanv0": {
     "description": "This namespace is used for GA4GH Data Repository Service (DRS) access to the USA National Institutes of Health (NIH), National Human Genome Research Institute (NHGRI), Genomic Analysis, Visualization and Informatics Lab-space (AnVIL) program data. AnVIL is a cloud-based genomic data sharing and analysis platform which facilitates integration and computing on and across large datasets generated by NHGRI programs, as well as initiatives funded by the National Institutes of Health (NIH) or by other agencies that support human genomics research.   ",
@@ -14003,6 +14040,13 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkx1037",
+        "pmc": null,
+        "pubmed": "29126136",
+        "title": null,
+        "year": null
+      },
+      {
         "doi": "10.1093/nar/gkt1068",
         "pmc": "PMC3965102",
         "pubmed": "24203711",
@@ -14038,6 +14082,25 @@
     "twitter": "DrugBankDB",
     "uri_format": "http://www.drugbank.ca/drugs/$1"
   },
+  "drugbank.bioentity": {
+    "description": "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references target information from version 4 of the database.",
+    "example": "BE0000048",
+    "homepage": "http://www.drugbank.ca/targets",
+    "mappings": {
+      "biocontext": "DRUGBANK.TARGET",
+      "miriam": "drugbankv4.target",
+      "n2t": "drugbankv4.target"
+    },
+    "name": "DrugBank Target v4",
+    "part_of": "drugbank",
+    "pattern": "^BE\\d{7}$",
+    "preferred_prefix": "drugbank.bioentity",
+    "synonyms": [
+      "drugbank.target",
+      "drugbankv4.target"
+    ],
+    "uri_format": "https://go.drugbank.com/bio_entities/$1"
+  },
   "drugbank.category": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -14060,6 +14123,51 @@
     "preferred_prefix": "drugbank.category",
     "uri_format": "https://www.drugbank.ca/categories/$1"
   },
+  "drugbank.condition": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Indications and other conditions in drugbank",
+    "example": "DBCOND0066902",
+    "homepage": "https://go.drugbank.com",
+    "name": "DrugBank Condition",
+    "pattern": "^DBCOND\\d+$",
+    "preferred_prefix": "drugbank.condition",
+    "uri_format": "https://go.drugbank.com/indications/$1"
+  },
+  "drugbank.metabolite": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Metabolites in drugbank",
+    "example": "DBMET02292",
+    "homepage": "https://go.drugbank.com",
+    "name": "DrugBank Metabolite",
+    "pattern": "^DBMET\\d+$",
+    "preferred_prefix": "drugbank.metabolite",
+    "uri_format": "https://go.drugbank.com/metabolites/$1"
+  },
+  "drugbank.reaction": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Reactions in drugbank",
+    "example": "1537",
+    "homepage": "https://go.drugbank.com",
+    "name": "DrugBank Reaction",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "drugbank.reaction",
+    "uri_format": "https://go.drugbank.com/reactions/$1"
+  },
   "drugbank.salt": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -14070,32 +14178,11 @@
     "description": "DrugBank is a web-enabled database containing comprehensive molecular information about drugs, their mechanisms, their interactions and their targets.",
     "example": "DBSALT001211",
     "homepage": "http://www.drugbank.ca",
-    "mappings": {
-      "biocontext": "DRUGBANK.TARGET"
-    },
     "name": "DrugBank Salts",
     "part_of": "drugbank",
     "pattern": "^DBSALT\\d{6}$",
     "preferred_prefix": "drugbank.salt",
-    "synonyms": [
-      "drugbank.target"
-    ],
     "uri_format": "https://go.drugbank.com/salts/$1"
-  },
-  "drugbankv4.target": {
-    "description": "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references target information from version 4 of the database.",
-    "example": "BE0000048",
-    "homepage": "http://www.drugbank.ca/targets",
-    "mappings": {
-      "biocontext": "DRUGBANKV4.TARGET",
-      "miriam": "drugbankv4.target",
-      "n2t": "drugbankv4.target"
-    },
-    "name": "DrugBank Target v4",
-    "part_of": "drugbank",
-    "pattern": "^BE\\d{7}$",
-    "preferred_prefix": "drugbankv4.target",
-    "uri_format": "http://www.drugbank.ca/biodb/bio_entities/$1"
   },
   "drugcentral": {
     "contact": {
@@ -14208,15 +14295,22 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The Leibniz Institute DSMZ is the most diverse biological resource center in the world and one of the largest collections of microorganisms and cell cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages, plant viruses, genomic bacterial DNA as well as human and animal cell lines).",
+    "description": "The Leibniz Institute DSMZ is the most diverse biological resource center in the world and one of the largest collections of microorganisms and cell cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages, plant viruses, genomic bacterial DNA as well as human and animal cell lines). The following designations are used as part of local unique identifiers:\n\n- `PC`: positive control\n- `NC`: negative control\n- `AS`: antiserum\n- `PV`: plant viruses\n- `RT`: recommended test\n- `ACC`: human or animal cell line\n- `DSM`: microorganism cell line",
     "example": "ACC-1",
+    "example_extras": [
+      "DSM-2",
+      "RT-0753",
+      "PC-0754",
+      "AS-0753",
+      "PV-0998"
+    ],
     "homepage": "https://www.dsmz.de",
     "mappings": {
-      "cellosaurus": "DSMZ",
+      "cellosaurus": "DSMZCellDive",
       "re3data": "r3d100010219"
     },
     "name": "Deutsche Sammlung von Mikroorganismen und Zellkulturen",
-    "pattern": "^ACC-\\d+$",
+    "pattern": "^(ACC|DSM|NC|PC|RT|AS|PV)-\\d+$",
     "preferred_prefix": "dsmz",
     "synonyms": [
       "DSMZCellDive"
@@ -14400,7 +14494,7 @@
     "uri_format": "https://easychair.org/cfp/topic.cgi?tid=$1"
   },
   "ebisc": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "ESi007-A",
     "example_extras": [
       "EDi008-B"
@@ -14804,8 +14898,8 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ECO_$1",
     "repository": "https://github.com/evidenceontology/evidenceontology",
-    "uri_format": "http://www.evidenceontology.org/browse/#ECO_$1",
-    "version": "2023-04-07"
+    "uri_format": "http://purl.obolibrary.org/obo/ECO_$1",
+    "version": "2023-09-03"
   },
   "ecocore": {
     "contact": {
@@ -15403,7 +15497,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo/",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.55.0"
+    "version": "3.58.0"
   },
   "ega.dataset": {
     "description": "The EGA is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects. The EGA contains exclusive data collected from individuals whose consent agreements authorize data release only for specific research use or to bona fide researchers. Strict protocols govern how information is managed, stored and distributed by the EGA project. This collection references 'Datasets'.",
@@ -15820,7 +15914,7 @@
     "synonyms": [
       "EMAPA_RETIRED"
     ],
-    "uri_format": "http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/EMAPA_$1",
     "version": "2023-05-05"
   },
   "emaps": {
@@ -16069,6 +16163,7 @@
     },
     "description": "The European Nucleotide Archive (ENA) captures and presents information relating to experimental workflows that are based around nucleotide sequencing. ENA is made up of a number of distinct databases that includes EMBL-Bank, the Sequence Read Archive (SRA) and the Trace Archive each with their own data formats and standards. This collection references Embl-Bank identifiers.",
     "example": "BN000065",
+    "has_canonical": "insdc.run",
     "homepage": "https://www.ebi.ac.uk/ena/",
     "keywords": [
       "biodiversity",
@@ -16316,7 +16411,7 @@
       "orcid": "0000-0001-7542-0286"
     },
     "description": "The eNanoMapper project (https://www.enanomapper.net/), NanoCommons project (https://www.nanocommons.eu/) and ACEnano project (http://acenano-project.eu/) are creating a pan-European computational infrastructure for toxicological data management for ENMs, based on semantic web standards and ontologies. This ontology is an application ontology targeting the full domain of nanomaterial safety assessment. It re-uses several other ontologies including the NPO, CHEMINF, ChEBI, and ENVO.",
-    "download_owl": "http://enanomapper.github.io/ontologies/releases/9.0/enanomapper.owl",
+    "download_owl": "http://enanomapper.github.io/ontologies/releases/10.0/enanomapper.owl",
     "example": "8000221",
     "homepage": "http://www.enanomapper.net/",
     "keywords": [
@@ -16342,7 +16437,7 @@
       }
     ],
     "uri_format": "http://purl.enanomapper.org/onto/ENM_$1",
-    "version": "9.0"
+    "version": "10.0"
   },
   "ensembl": {
     "description": "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms.",
@@ -17216,6 +17311,13 @@
     "preferred_prefix": "EO",
     "providers": [
       {
+        "code": "CURATOR_REVIEW",
+        "description": "Plant Environment Ontology through Gramene",
+        "homepage": "http://archive.gramene.org/db/ontology/search_term?id=EO:0007359",
+        "name": "Plant Environment Ontology through Gramene",
+        "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
+      },
+      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
@@ -17234,7 +17336,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/EO_$1",
     "repository": "https://github.com/Planteome/plant-environment-ontology",
-    "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
+    "uri_format": "http://purl.obolibrary.org/obo/EO_$1"
   },
   "eol": {
     "contact": {
@@ -18454,8 +18556,8 @@
       "FBbt",
       "FBbt_root"
     ],
-    "uri_format": "https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1",
-    "version": "2023-05-03"
+    "uri_format": "http://purl.obolibrary.org/obo/FBbt_$1",
+    "version": "2023-08-02"
   },
   "fbcv": {
     "appears_in": [
@@ -18519,7 +18621,7 @@
       "FBcv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2023-05-04"
+    "version": "2023-08-02"
   },
   "fbdv": {
     "contact": {
@@ -18571,7 +18673,7 @@
       "FBdv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBdv_$1",
-    "version": "2023-05-03"
+    "version": "2023-08-02"
   },
   "fbol": {
     "comment": "Website down, checked on 2021-10-07",
@@ -18661,6 +18763,9 @@
     "description": "The cell line vocabulary inside FlyBase",
     "example": "0000190",
     "homepage": "https://flybase.org",
+    "mappings": {
+      "cellosaurus": "FlyBase_Cell_line"
+    },
     "name": "Flybase Cell Line",
     "part_of": "flybase",
     "pattern": "^\\d{7}$",
@@ -19617,7 +19722,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FOODON_$1",
     "repository": "https://github.com/FoodOntology/foodon",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/foodon/terms?obo_id=FOODON:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/FOODON_$1",
     "version": "2023-05-03"
   },
   "fossilworks.journal": {
@@ -20159,7 +20264,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2023-06-21"
+    "version": "2023-09-06"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -21076,7 +21181,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GENEPIO_$1",
     "repository": "https://github.com/GenEpiO/genepio",
     "uri_format": "http://purl.obolibrary.org/obo/GENEPIO_$1",
-    "version": "2022-02-06"
+    "version": "2023-08-19"
   },
   "genetree": {
     "description": "Genetree displays the maximum likelihood phylogenetic (protein) trees representing the evolutionary history of the genes. These are constructed using the canonical protein for every gene in Ensembl.",
@@ -22111,7 +22216,7 @@
       "gnome"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/GNO_$1",
-    "version": "2023-05-08"
+    "version": "2023-08-09"
   },
   "gnomad": {
     "contact": {
@@ -22420,8 +22525,8 @@
       "gomfid"
     ],
     "twitter": "news4go",
-    "uri_format": "http://amigo.geneontology.org/amigo/term/GO:$1",
-    "version": "2023-06-11"
+    "uri_format": "http://purl.obolibrary.org/obo/GO_$1",
+    "version": "2023-07-27"
   },
   "go.gpi": {
     "contributor": {
@@ -23752,7 +23857,7 @@
   },
   "hancestro": {
     "contact": {
-      "email": "danielle.welter@uni.lu",
+      "email": "dwelter.ontologist@gmail.com",
       "github": "daniwelter",
       "name": "Danielle Welter",
       "orcid": "0000-0003-1058-2668"
@@ -23760,7 +23865,7 @@
     "description": "Human ancestry ontology for the NHGRI GWAS Catalog",
     "download_owl": "http://purl.obolibrary.org/obo/hancestro.owl",
     "example": "0290",
-    "homepage": "https://github.com/EBISPOT/ancestro",
+    "homepage": "https://ebispot.github.io/hancestro/",
     "keywords": [
       "demographics",
       "human genetics",
@@ -23810,7 +23915,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/HANCESTRO_$1",
     "repository": "https://github.com/EBISPOT/ancestro",
     "uri_format": "http://purl.obolibrary.org/obo/HANCESTRO_$1",
-    "version": "2023-06-20"
+    "version": "2023-07-31"
   },
   "hao": {
     "contact": {
@@ -24375,7 +24480,7 @@
     "uri_format": "https://www.hipsci.org/lines/#/lines/$1"
   },
   "hivreagentprogram": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "ARP-1513",
     "homepage": "https://www.hivreagentprogram.org/",
     "mappings": {
@@ -24882,7 +24987,7 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/homologene/$1"
   },
   "horizon_discovery": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "HD+118-001",
     "homepage": "https://horizondiscovery.com/",
     "mappings": {
@@ -25072,8 +25177,8 @@
       "hpo"
     ],
     "twitter": "hp_ontology",
-    "uri_format": "https://hpo.jax.org/app/browse/term/HP:$1",
-    "version": "2023-06-17"
+    "uri_format": "http://purl.obolibrary.org/obo/HP_$1",
+    "version": "2023-09-01"
   },
   "hpa": {
     "contact": {
@@ -25426,8 +25531,7 @@
     "synonyms": [
       "HsapDv"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/HsapDv_$1",
-    "version": "2020-03-10"
+    "uri_format": "http://purl.obolibrary.org/obo/HsapDv_$1"
   },
   "hsdb": {
     "contributor": {
@@ -25629,6 +25733,7 @@
       "fovt",
       "labo",
       "maxo",
+      "mcro",
       "pco",
       "psdo",
       "xpo"
@@ -26332,7 +26437,7 @@
     "uri_format": "http://id.who.int/icd/entity/$1"
   },
   "iclc": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "ATL98012",
     "homepage": "http://www.iclc.it",
     "mappings": {
@@ -26359,6 +26464,9 @@
     "description": "We have developed an online database describing the known cell lines from Coleoptera, Diptera, Hemiptera, Hymenoptera, and Lepidoptera that originated from crop pest insects. Cell line information has been primarily obtained from previous compilations of insect cell lines. (from homepage)",
     "example": "64ba",
     "homepage": "https://entomology.ca.uky.edu/aginsectcellsdatabase",
+    "mappings": {
+      "cellosaurus": "ICLDB"
+    },
     "name": "Insect Cell Line Database",
     "preferred_prefix": "icldb",
     "uri_format": "https://entomology.ca.uky.edu/content/$1"
@@ -26487,7 +26595,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/IDO_$1",
     "repository": "https://github.com/infectious-disease-ontology/infectious-disease-ontology",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ido/terms?obo_id=IDO:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/IDO_$1",
     "version": "2017-11-03"
   },
   "idocovid19": {
@@ -26964,7 +27072,7 @@
     ]
   },
   "imanis": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "CL070",
     "homepage": "https://www.imanislife.com/collections/cell-lines/",
     "mappings": {
@@ -27859,7 +27967,7 @@
     "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
   },
   "insdc.run": {
-    "comment": "https://www.insdc.org/ is the authoritative source for INSDC. However, confusingly, they don't mention runs in this table. I think we should ask them to include. ENA is a partner and they have documentation here: https://ena-docs.readthedocs.io/en/latest/submit/general-guide/accessions.html Runs | (E\\|D\\|S)RR[0-9]{6,} | ERR123456 -- | -- | --",
+    "comment": "https://www.insdc.org/ is the authoritative source for INSDC. However, confusingly, they don't mention runs in this table. I think we should ask them to include. ENA is a partner and they have documentation [here](https://ena-docs.readthedocs.io/en/latest/submit/general-guide/accessions.html). Runs | (E\\|D\\|S)RR[0-9]{6,} | ERR123456 -- | -- | --",
     "contributor": {
       "email": "cjmungall@lbl.gov",
       "github": "cmungall",
@@ -27869,7 +27977,6 @@
     "description": "An experimental run, served thrugh the ENA",
     "example": "ERR436051",
     "github_request_issue": 131,
-    "has_canonical": "ena.embl",
     "homepage": "https://www.insdc.org/",
     "name": "International Nucleotide Sequence Database Collaboration (INSDC) Run",
     "pattern": "^(E|D|S)RR[0-9]{6,}$",
@@ -28195,7 +28302,7 @@
       "InterPro"
     ],
     "twitter": "InterProDB",
-    "uri_format": "https://www.ebi.ac.uk/interpro/entry/$1"
+    "uri_format": "http://purl.obolibrary.org/obo/IPR_$1"
   },
   "iobc": {
     "contact": {
@@ -28930,7 +29037,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "JCRB1355",
     "homepage": "https://cellbank.nibiohn.go.jp",
     "mappings": {
@@ -29125,7 +29232,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "10020.2",
     "homepage": "https://cellbank.snu.ac.kr/english",
     "mappings": {
@@ -29709,7 +29816,7 @@
     "uri_format": "https://www.kegg.jp/entry/$1"
   },
   "kerafast": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "EJH014",
     "homepage": "https://www.kerafast.com/",
     "mappings": {
@@ -29777,7 +29884,7 @@
     ]
   },
   "kyinno": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "KC-0979",
     "homepage": "https://www.kyinno.com/",
     "mappings": {
@@ -30845,7 +30952,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MA_$1",
     "repository": "https://github.com/obophenotype/mouse-anatomy-ontology",
-    "uri_format": "http://www.informatics.jax.org/searches/AMA.cgi?id=MA:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/MA_$1",
     "version": "2017-02-07"
   },
   "macie": {
@@ -30930,6 +31037,13 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1186/s12870-021-03173-5",
+        "pmc": null,
+        "pubmed": "34416864",
+        "title": null,
+        "year": null
+      },
       {
         "doi": "10.3389/fpls.2019.01050",
         "pmc": "PMC6724615",
@@ -31462,6 +31576,45 @@
     "uri_format": "http://purl.obolibrary.org/obo/MCO_$1",
     "version": "2019-05-15"
   },
+  "mcro": {
+    "contact": {
+      "email": "muamith@utmb.edu",
+      "github": "ProfTuan",
+      "name": "Tuan Amith",
+      "orcid": "0000-0003-4333-1857"
+    },
+    "depends_on": [
+      "iao",
+      "swo"
+    ],
+    "description": "An ontology representing the structure of model card reports - reports that describe basic characteristics of machine learning models for the public and consumers.",
+    "download_owl": "http://purl.obolibrary.org/obo/mcro.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/UTHealth-Ontology/MCRO",
+    "keywords": [
+      "obo",
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "obofoundry": "mcro",
+      "ontobee": "MCRO"
+    },
+    "name": "Model Card Report Ontology",
+    "preferred_prefix": "MCRO",
+    "publications": [
+      {
+        "doi": "10.1186/s12859-022-04797-6",
+        "pmc": null,
+        "pubmed": null,
+        "title": "Toward a standard formal semantic representation of the model card report",
+        "year": null
+      }
+    ],
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/MCRO_$1",
+    "repository": "https://github.com/UTHealth-Ontology/MCRO",
+    "uri_format": "http://purl.obolibrary.org/obo/MCRO_$1"
+  },
   "mdm": {
     "contact": {
       "email": "bernd.mueller@zbmed.de",
@@ -31572,6 +31725,84 @@
     "pattern": "^[CN]*\\d{4,7}$",
     "preferred_prefix": "medgen",
     "uri_format": "https://www.ncbi.nlm.nih.gov/medgen/$1"
+  },
+  "mediadive.ingredient": {
+    "contact": {
+      "email": "joerg.overmann@dsmz.de",
+      "github": null,
+      "name": "Jörg Overmann",
+      "orcid": "0000-0003-3909-7201"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]",
+    "example": "13",
+    "github_request_issue": 941,
+    "homepage": "https://mediadive.dsmz.de/solutions",
+    "license": "CC-BY-4.0",
+    "name": "MediaDive Ingredient",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "mediadive.ingredient",
+    "uri_format": "https://mediadive.dsmz.de/ingredients/$1"
+  },
+  "mediadive.medium": {
+    "contact": {
+      "email": "joerg.overmann@dsmz.de",
+      "github": null,
+      "name": "Jörg Overmann",
+      "orcid": "0000-0003-3909-7201"
+    },
+    "contributor": {
+      "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
+      "name": "Chris Mungall",
+      "orcid": "0000-0002-6601-2165"
+    },
+    "description": "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]",
+    "example": "77",
+    "example_extras": [
+      "54b"
+    ],
+    "github_request_issue": 941,
+    "homepage": "https://mediadive.dsmz.de/media",
+    "license": "CC-BY-4.0",
+    "name": "MediaDive Medium",
+    "pattern": "^\\d+\\w?$",
+    "preferred_prefix": "mediadive.medium",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://mediadive.dsmz.de/medium/$1"
+  },
+  "mediadive.solution": {
+    "contact": {
+      "email": "joerg.overmann@dsmz.de",
+      "github": null,
+      "name": "Jörg Overmann",
+      "orcid": "0000-0003-3909-7201"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]",
+    "example": "S6",
+    "github_request_issue": 941,
+    "homepage": "https://mediadive.dsmz.de/solutions",
+    "license": "CC-BY-4.0",
+    "name": "MediaDive Solution",
+    "pattern": "^S\\d+$",
+    "preferred_prefix": "mediadive.solution",
+    "uri_format": "https://mediadive.dsmz.de/solutions/$1"
   },
   "medlineplus": {
     "contact": {
@@ -32686,7 +32917,7 @@
     "synonyms": [
       "PSI-MI"
     ],
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mi/terms?obo_id=MI:$1"
+    "uri_format": "http://purl.obolibrary.org/obo/MI_$1"
   },
   "miaa": {
     "comment": "same as MAT",
@@ -32861,7 +33092,7 @@
     "uri_format": "http://microsporidiadb.org/micro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1"
   },
   "millipore": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "SCC111",
     "homepage": "https://www.merckmillipore.com/",
     "mappings": {
@@ -32983,18 +33214,18 @@
     "preferred_prefix": "mint",
     "providers": [
       {
+        "code": "CURATOR_REVIEW",
+        "description": "The Molecular INTeraction database (MINT)",
+        "homepage": "http://mint.bio.uniroma2.it/mint/",
+        "name": "The Molecular INTeraction database (MINT)",
+        "uri_format": "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"
+      },
+      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/mint:$1"
-      },
-      {
-        "code": "ebi",
-        "description": "MINT subset through IntAct",
-        "homepage": "https://www.ebi.ac.uk/intact/",
-        "name": "MINT subset through IntAct",
-        "uri_format": "https://www.ebi.ac.uk/intact/query/interaction_id:$1"
       }
     ],
     "publications": [
@@ -33478,9 +33709,23 @@
       "name": "Sheng-Da Hsu",
       "orcid": "0000-0002-8214-1696"
     },
+    "contributor_extras": [
+      {
+        "email": "benjamin_gyori@hms.harvard.edu",
+        "github": "bgyori",
+        "name": "Benjamin M. Gyori",
+        "orcid": "0000-0001-9439-5346"
+      },
+      {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370"
+      }
+    ],
     "description": "miRTarBase is a database of miRNA-target interactions (MTIs), collected manually from relevant literature, following Natural Language Processing of the text to identify research articles related to functional studies of miRNAs. Generally, the collected MTIs are validated experimentally by reporter assay, western blot, microarray and next-generation sequencing experiments.",
     "example": "MIRT000002",
-    "homepage": "http://mirtarbase.mbc.nctu.edu.tw/",
+    "homepage": "https://mirtarbase.cuhk.edu.cn/",
     "keywords": [
       "life science"
     ],
@@ -33496,6 +33741,41 @@
     "preferred_prefix": "mirtarbase",
     "publications": [
       {
+        "doi": "10.1093/nar/gkab1079",
+        "pmc": "PMC8728135",
+        "pubmed": "34850920",
+        "title": "miRTarBase update 2022: an informative resource for experimentally validated miRNA–target interactions",
+        "year": 2022
+      },
+      {
+        "doi": "10.1093/nar/gkz896",
+        "pmc": "PMC7145596 ",
+        "pubmed": "31647101",
+        "title": "miRTarBase 2020: updates to the experimentally validated microRNA-target interaction database",
+        "year": 2020
+      },
+      {
+        "doi": "10.1093/nar/gkx1067",
+        "pmc": "PMC5753222 ",
+        "pubmed": "29126174",
+        "title": "miRTarBase update 2018: a resource for experimentally validated microRNA-target interactions",
+        "year": 2018
+      },
+      {
+        "doi": "10.1093/nar/gkv1258",
+        "pmc": "PMC4702890",
+        "pubmed": "26590260",
+        "title": "miRTarBase 2016: updates to the experimentally validated miRNA-target interactions database",
+        "year": 2016
+      },
+      {
+        "doi": "10.1093/nar/gkt1266",
+        "pmc": "PMC3965058",
+        "pubmed": "24304892",
+        "title": "miRTarBase update 2014: an information resource for experimentally validated miRNA-target interactions",
+        "year": 2014
+      },
+      {
         "doi": "10.1093/nar/gkq1107",
         "pmc": "PMC3013699",
         "pubmed": "21071411",
@@ -33503,7 +33783,10 @@
         "year": 2010
       }
     ],
-    "uri_format": "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1"
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/940"
+    ],
+    "uri_format": "https://mirtarbase.cuhk.edu.cn/~miRTarBase/miRTarBase_2022/php/detail.php?mirtid=$1"
   },
   "mirte": {
     "contributor": {
@@ -33719,7 +34002,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.39"
+    "version": "2.115"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -33893,8 +34176,7 @@
     "synonyms": [
       "MmusDv"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/MmusDv_$1",
-    "version": "2020-03-10"
+    "uri_format": "http://purl.obolibrary.org/obo/MmusDv_$1"
   },
   "mo": {
     "contact": {
@@ -33923,17 +34205,8 @@
     "name": "Microarray experimental conditions",
     "pattern": "^\\w+$",
     "preferred_prefix": "MO",
-    "providers": [
-      {
-        "code": "ebi",
-        "description": "MGED Ontology at SourceForge",
-        "homepage": "https://mged.sourceforge.net/ontologies/MGEDontology.php",
-        "name": "MGED Ontology at SourceForge",
-        "uri_format": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1"
-      }
-    ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MO_$1",
-    "uri_format": "http://purl.obolibrary.org/obo/MO_$1"
+    "uri_format": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1"
   },
   "mobidb": {
     "contact": {
@@ -34061,7 +34334,7 @@
     "synonyms": [
       "PSI-MOD"
     ],
-    "uri_format": "http://bioportal.bioontology.org/ontologies/1041?p=terms&conceptid=MOD:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/MOD_$1",
     "version": "1.031.6"
   },
   "modeldb": {
@@ -34300,7 +34573,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2023-06-01"
+    "version": "2023-09-12"
   },
   "mop": {
     "contact": {
@@ -34433,6 +34706,13 @@
     "preferred_prefix": "MP",
     "providers": [
       {
+        "code": "CURATOR_REVIEW",
+        "description": "Mammalian Phenotype Ontology at The Jackson Lab",
+        "homepage": "http://www.informatics.jax.org/",
+        "name": "Mammalian Phenotype Ontology at The Jackson Lab",
+        "uri_format": "http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1"
+      },
+      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
@@ -34479,7 +34759,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
-    "uri_format": "http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1"
+    "uri_format": "http://purl.obolibrary.org/obo/MP_$1"
   },
   "mpath": {
     "contact": {
@@ -34664,7 +34944,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
     "repository": "https://github.com/IEDB/MRO",
     "uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
-    "version": "2023-06-06"
+    "version": "2023-08-05"
   },
   "ms": {
     "banana": "MS",
@@ -34714,7 +34994,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.1.127"
+    "version": "4.1.131"
   },
   "msigdb": {
     "contributor": {
@@ -35395,7 +35675,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/NBO_$1",
     "repository": "https://github.com/obo-behavior/behavior-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/NBO_$1",
-    "version": "2023-05-02"
+    "version": "2023-07-04"
   },
   "nbrc": {
     "description": "NITE Biological Research Center (NBRC) provides a collection of microbial resources, performing taxonomic characterization of individual microorganisms such as bacteria including actinomycetes and archaea, yeasts, fungi, algaes, bacteriophages and DNA resources for academic research and industrial applications. A catalogue is maintained which states strain nomenclature, synonyms, and culture and sequence information.",
@@ -35644,6 +35924,13 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gku1055",
+        "pmc": null,
+        "pubmed": "25355515",
+        "title": null,
+        "year": null
+      },
       {
         "doi": "10.1093/nar/gkq1237",
         "pmc": "PMC3013746",
@@ -35894,8 +36181,8 @@
       "taxonomy",
       "uniprot.taxonomy"
     ],
-    "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
-    "version": "2023-06-20"
+    "uri_format": "http://purl.obolibrary.org/obo/NCBITaxon_$1",
+    "version": "2023-09-19"
   },
   "nci.drug": {
     "description": "identifier of an entry in the NCI Drug Dictionary",
@@ -36029,7 +36316,7 @@
       "NCit",
       "ncithesaurus"
     ],
-    "uri_format": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1",
+    "uri_format": "http://purl.obolibrary.org/obo/NCIT_$1",
     "version": "2022-08-19"
   },
   "ncro": {
@@ -36771,7 +37058,7 @@
     "uri_format": "https://genelab-data.ndc.nasa.gov/genelab/accession/$1"
   },
   "nhcdr": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "ND50028",
     "homepage": "https://stemcells.nindsgenetics.org",
     "mappings": {
@@ -37007,6 +37294,9 @@
     "description": "The NIH registration number should be used on all NIH competing applications and annual progress reports to identify the stem cell line proposed for use. Identify the specific line(s) from the Registry using the NIH Registration Number (e.g., 0001), in the specified location in the application (from homepage)",
     "example": "NIHhESC-10-0083",
     "homepage": "https://grants.nih.gov/stem_cells/registry/current.htm",
+    "mappings": {
+      "cellosaurus": "NIHhESC"
+    },
     "name": "NIH Human Embryonic Stem Cell Registry",
     "preferred_prefix": "nihhesc",
     "uri_format": "https://grants.nih.gov/stem_cells/registry/current.htm?ID=$1"
@@ -37996,6 +38286,9 @@
     "description": "The NRFC was established at ICAR-National Bureau of Fish Genetic Resources, Lucknow in the form of a research project entitled ‘Establishment of a National Repository at NBFGR, Lucknow for conservation and characterization of fish cell lines’ during 09 November, 2010 to 08 November, 2014 with the financial support from Department of Biotechnology, Govt. of India, New Delhi. NRFC aims to receive, authenticate, store and supply the fish cell lines to the researchers and academicians for Research & Development works and to serve as a National Referral Centre for fish cell lines in the country. NRFC also aims to provide need-based support for training and education to stakeholders. (from homepage)",
     "example": "NRFC051",
     "homepage": "https://mail.nbfgr.res.in/nrfc/index.php",
+    "mappings": {
+      "cellosaurus": "NRFC"
+    },
     "name": "National Repository of Fish Cell Lines",
     "pattern": "^NRFC\\d+$",
     "preferred_prefix": "nrfc"
@@ -38291,7 +38584,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
     "repository": "https://github.com/obophenotype/bio-attribute-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
-    "version": "2023-06-07"
+    "version": "2023-08-24"
   },
   "oban": {
     "contributor": {
@@ -38481,7 +38774,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OBI_$1",
     "repository": "https://github.com/obi-ontology/obi",
     "uri_format": "http://purl.obolibrary.org/obo/OBI_$1",
-    "version": "2023-03-10"
+    "version": "2023-07-25"
   },
   "obib": {
     "contact": {
@@ -39035,7 +39328,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OHD_$1",
     "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OHD_$1",
-    "version": "2023-04-14"
+    "version": "2023-07-22"
   },
   "ohmi": {
     "contact": {
@@ -39169,6 +39462,7 @@
       "name": "Frédéric Bastian",
       "orcid": "0000-0002-9415-5104"
     },
+    "deprecated": true,
     "description": "Life cycle stages for Medaka",
     "download_obo": "http://purl.obolibrary.org/obo/olatdv.obo",
     "download_owl": "http://purl.obolibrary.org/obo/olatdv.owl",
@@ -39223,7 +39517,7 @@
     "preferred_prefix": "om",
     "repository": "https://github.com/HajoRijgersberg/OM",
     "uri_format": "http://www.ontology-of-units-of-measure.org/resource/om-2/$1",
-    "version": "2.0.39"
+    "version": "2.0.46"
   },
   "oma.grp": {
     "description": "OMA (Orthologous MAtrix) is a database that identifies orthologs among publicly available, complete genome sequences. It identifies orthologous relationships which can be accessed either group-wise, where all group members are orthologous to all other group members, or on a sequence-centric basis, where for a given protein all its orthologs in all other species are displayed. This collection references groupings of orthologs.",
@@ -39583,7 +39877,7 @@
     "synonyms": [
       "OMIT"
     ],
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/omit/terms?short_form=OMIT_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/OMIT_$1",
     "version": "dev"
   },
   "omo": {
@@ -39598,6 +39892,7 @@
     },
     "description": "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO).",
     "download_owl": "http://purl.obolibrary.org/obo/omo.owl",
+    "example": "0003003",
     "homepage": "https://github.com/information-artifact-ontology/ontology-metadata",
     "keywords": [
       "obo",
@@ -39612,12 +39907,12 @@
       "ontobee": "OMO"
     },
     "name": "OBO Metadata Ontology",
-    "no_own_terms": true,
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "OMO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OMO_$1",
     "repository": "https://github.com/information-artifact-ontology/ontology-metadata",
     "uri_format": "http://purl.obolibrary.org/obo/OMO_$1",
-    "version": "2023-06-09"
+    "version": "2023-08-23"
   },
   "omop": {
     "contributor": {
@@ -39713,7 +40008,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OMP_$1",
     "repository": "https://github.com/microbialphenotypes/OMP-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OMP_$1",
-    "version": "2023-06-09"
+    "version": "2023-09-01"
   },
   "omrse": {
     "appears_in": [
@@ -39764,7 +40059,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OMRSE_$1",
     "repository": "https://github.com/ufbmi/OMRSE",
     "uri_format": "http://purl.obolibrary.org/obo/OMRSE_$1",
-    "version": "2023-05-19"
+    "version": "2023-09-20"
   },
   "oncotree": {
     "appears_in": [
@@ -39869,6 +40164,7 @@
     "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "ONS",
+      "agroportal": "ONS",
       "bioportal": "ONS",
       "fairsharing": "FAIRsharing.rfec93",
       "obofoundry": "ons",
@@ -39957,6 +40253,15 @@
     "name": "Ontology for Avida digital evolution platform",
     "pattern": "^\\d{8}$",
     "preferred_prefix": "ONTOAVIDA",
+    "publications": [
+      {
+        "doi": "10.1038/s41597-023-02514-3",
+        "pmc": null,
+        "pubmed": null,
+        "title": "Ontology for the Avida digital evolution platform",
+        "year": null
+      }
+    ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ONTOAVIDA_$1",
     "repository": "https://gitlab.com/fortunalab/ontoavida",
     "uri_format": "http://purl.obolibrary.org/obo/ONTOAVIDA_$1",
@@ -40180,7 +40485,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OPL_$1",
     "repository": "https://github.com/OPL-ontology/OPL",
     "uri_format": "http://purl.obolibrary.org/obo/OPL_$1",
-    "version": "2023-06-23"
+    "version": "2023-08-28"
   },
   "opm": {
     "description": "The Orientations of Proteins in Membranes (OPM) database provides spatial positions of membrane-bound peptides and proteins of known three-dimensional structure in the lipid bilayer, together with their structural classification, topology and intracellular localization.",
@@ -40517,7 +40822,7 @@
       "ordo"
     ],
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1",
-    "version": "4.2"
+    "version": "4.3"
   },
   "orth": {
     "contact": {
@@ -41329,6 +41634,13 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkz946/5606621",
+        "pmc": null,
+        "pubmed": "31647099",
+        "title": null,
+        "year": null
+      },
+      {
         "doi": "10.1093/nar/gkq1039",
         "pmc": "PMC3013659",
         "pubmed": "21071392",
@@ -42120,6 +42432,7 @@
       "name": "Frédéric Bastian",
       "orcid": "0000-0002-9415-5104"
     },
+    "deprecated": true,
     "description": "Life cycle stages for Platynereis dumerilii",
     "download_obo": "http://purl.obolibrary.org/obo/pdumdv.obo",
     "download_owl": "http://purl.obolibrary.org/obo/pdumdv.owl",
@@ -42200,7 +42513,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PECO_$1",
     "repository": "https://github.com/Planteome/plant-experimental-conditions-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PECO_$1",
-    "version": "2020-08-21"
+    "version": "2023-07-25"
   },
   "ped": {
     "description": "The Protein Ensemble Database is an open access database for the deposition of structural ensembles, including intrinsically disordered proteins.",
@@ -42381,7 +42694,7 @@
     "uri_format": "http://www.peptideatlas.org/PASS/$1"
   },
   "perkinelmer": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "SCC111",
     "homepage": "https://www.perkinelmer.com/",
     "mappings": {
@@ -43207,7 +43520,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PHIPO_$1",
     "repository": "https://github.com/PHI-base/phipo",
     "uri_format": "http://purl.obolibrary.org/obo/PHIPO_$1",
-    "version": "2023-06-22"
+    "version": "2023-09-07"
   },
   "phosphopoint.kinase": {
     "description": "PhosphoPOINT is a database of the human kinase and phospho-protein interactome. It describes the interactions among kinases, their potential substrates and their interacting (phospho)-proteins. It also incorporates gene expression and uses gene ontology (GO) terms to annotate interactions. This collection references kinase information.",
@@ -44219,6 +44532,13 @@
     "preferred_prefix": "PO",
     "providers": [
       {
+        "code": "amigo",
+        "description": "Plant Ontology through Amigo",
+        "homepage": "http://www.plantontology.org/",
+        "name": "Plant Ontology through Amigo",
+        "uri_format": "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1"
+      },
+      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
@@ -44280,8 +44600,8 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PO_$1",
     "repository": "https://github.com/Planteome/plant-ontology",
     "twitter": "planteome",
-    "uri_format": "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1",
-    "version": "2021-08-13"
+    "uri_format": "http://purl.obolibrary.org/obo/PO_$1",
+    "version": "2023-07-13"
   },
   "pocketome": {
     "description": "Pocketome is an encyclopedia of conformational ensembles of all druggable binding sites that can be identified experimentally from co-crystal structures in the Protein Data Bank. Each Pocketome entry corresponds to a small molecule binding site in a protein which has been co-crystallized in complex with at least one drug-like small molecule, and is represented in at least two PDB entries.",
@@ -44671,6 +44991,13 @@
     "preferred_prefix": "PR",
     "providers": [
       {
+        "code": "CURATOR_REVIEW",
+        "description": "Protein Ontology at Georgetown",
+        "homepage": "https://proconsortium.org/",
+        "name": "Protein Ontology at Georgetown",
+        "uri_format": "https://proconsortium.org/app/entry/PR:$1"
+      },
+      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
@@ -44735,7 +45062,7 @@
       "PR",
       "PRO"
     ],
-    "uri_format": "https://proconsortium.org/app/entry/PR:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/PR_$1",
     "version": "68.0"
   },
   "prefixcommons": {
@@ -46149,8 +46476,8 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PW_$1",
     "repository": "https://github.com/rat-genome-database/PW-Pathway-Ontology",
     "twitter": "ratgenome",
-    "uri_format": "http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=PW:$1",
-    "version": "7.52"
+    "uri_format": "http://purl.obolibrary.org/obo/PW_$1",
+    "version": "7.81"
   },
   "pwo": {
     "contact": {
@@ -46533,7 +46860,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
     "repository": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
     "uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
-    "version": "2023-06-15"
+    "version": "2023-09-05"
   },
   "rcb": {
     "contributor": {
@@ -48183,7 +48510,7 @@
       "oborel"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/RO_$1",
-    "version": "2023-02-22"
+    "version": "2023-08-18"
   },
   "roleo": {
     "banana": "RoleO",
@@ -48431,7 +48758,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.107"
+    "version": "6.205"
   },
   "rtecs": {
     "contributor": {
@@ -48509,7 +48836,7 @@
     "preferred_prefix": "RXNO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RXNO_$1",
     "repository": "https://github.com/rsc-ontologies/rxno",
-    "uri_format": "http://www.rsc.org/publishing/journals/prospect/ontology.asp?id=$1",
+    "uri_format": "http://purl.obolibrary.org/obo/RXNO_$1",
     "version": "2021-12-16"
   },
   "rxnorm": {
@@ -48741,6 +49068,13 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkx1065",
+        "pmc": null,
+        "pubmed": "29092055",
+        "title": null,
+        "year": null
+      },
       {
         "doi": "10.1093/nar/gkr1046",
         "pmc": "PMC3245076",
@@ -48999,7 +49333,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SBO_$1",
     "repository": "https://github.com/EBI-BioModels/SBO",
     "twitter": "biomodels",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/sbo/terms?obo_id=SBO:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/SBO_$1",
     "version": "2021-08-28"
   },
   "scdo": {
@@ -49893,7 +50227,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SEPIO_$1",
     "repository": "https://github.com/monarch-initiative/SEPIO-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/SEPIO_$1",
-    "version": "2023-02-21"
+    "version": "2023-06-13"
   },
   "sfam": {
     "contributor": {
@@ -51789,7 +52123,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SO_$1",
     "repository": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
-    "uri_format": "http://www.sequenceontology.org/miso/current_release/term/SO:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/SO_$1",
     "version": "2021-11-22"
   },
   "sopharm": {
@@ -51975,8 +52309,7 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SPD_$1",
     "repository": "https://github.com/obophenotype/spider-ontology",
-    "uri_format": "http://purl.obolibrary.org/obo/SPD_$1",
-    "version": "1.0"
+    "uri_format": "http://purl.obolibrary.org/obo/SPD_$1"
   },
   "spdx": {
     "description": "The SPDX License List is a list of commonly found licenses and exceptions used in free and open source and other collaborative software or documentation. The purpose of the SPDX License List is to enable easy and efficient identification of such licenses and exceptions in an SPDX document, in source files or elsewhere. The SPDX License List includes a standardized short identifier, full name, vetted license text including matching guidelines markup as appropriate, and a canonical permanent URL for each license and exception.",
@@ -52858,6 +53191,13 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gky1130",
+        "pmc": null,
+        "pubmed": "30445555",
+        "title": null,
+        "year": null
+      },
+      {
         "doi": "10.1006/jmbi.2001.5080",
         "pmc": null,
         "pubmed": "11697912",
@@ -53008,6 +53348,9 @@
     "uri_format": "http://swissregulon.unibas.ch/query/$1"
   },
   "swo": {
+    "appears_in": [
+      "mcro"
+    ],
     "contact": {
       "email": "allyson.lister@oerc.ox.ac.uk",
       "github": "allysonlister",
@@ -53180,7 +53523,7 @@
     "synonyms": [
       "SYMP"
     ],
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/symp/terms?iri=http://purl.obolibrary.org/obo/SYMP_$1",
+    "uri_format": "http://purl.obolibrary.org/obo/SYMP_$1",
     "version": "2022-11-30"
   },
   "syoid": {
@@ -53796,20 +54139,6 @@
         "year": 2013
       },
       {
-        "doi": "10.1093/nar/gkv1103",
-        "pmc": "PMC4702804",
-        "pubmed": "19022853",
-        "title": "The Transporter Classification Database (TCDB): recent advances",
-        "year": null
-      },
-      {
-        "doi": "10.1093/nar/gkv1103",
-        "pmc": "PMC2686586",
-        "pubmed": "19022853",
-        "title": null,
-        "year": null
-      },
-      {
         "doi": "10.1093/nar/gkn862",
         "pmc": "PMC2686586",
         "pubmed": "19022853",
@@ -54136,7 +54465,7 @@
     "uri_format": "http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html"
   },
   "tngb": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "67035",
     "homepage": "http://biobanknetwork.telethon.it/",
     "mappings": {
@@ -54206,7 +54535,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/TO_$1",
     "repository": "https://github.com/Planteome/plant-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/TO_$1",
-    "version": "2022-04-13"
+    "version": "2023-07-17"
   },
   "togovar": {
     "description": "TogoVar (A comprehensive Japanese genetic variation database) is a database that has collected and organized genome sequence differences between individuals (variants) in the Japanese population and disease information associated with them.",
@@ -54905,8 +55234,8 @@
       "Uberon"
     ],
     "twitter": "uberanat",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/uberon/terms?obo_id=UBERON:$1",
-    "version": "2023-05-23"
+    "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
+    "version": "2023-09-05"
   },
   "ubio.namebank": {
     "description": "NameBank is a \"biological name server\" focused on storing names and objectively-derived nomenclatural attributes. NameBank is a repository for all recorded names including scientific names, vernacular (or common names), misspelled names, as well as ad-hoc nomenclatural labels that may have limited context.",
@@ -55454,6 +55783,13 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/uniprot:$1"
+      },
+      {
+        "code": "drugbank",
+        "description": "DrugBank PolyPeptide.",
+        "homepage": "https://go.drugbank.com",
+        "name": "DrugBank Polypeptide",
+        "uri_format": "https://go.drugbank.com/polypeptides/$1"
       },
       {
         "code": "indra",
@@ -57375,7 +57711,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "1.1.218"
+    "version": "1.1.245"
   },
   "void": {
     "contributor": {
@@ -57718,8 +58054,8 @@
     "synonyms": [
       "WBbt"
     ],
-    "uri_format": "http://wormbase.org/db/ontology/anatomy?name=$1",
-    "version": "2023-04-07"
+    "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
+    "version": "2023-09-14"
   },
   "wbls": {
     "contact": {
@@ -57780,8 +58116,8 @@
     "synonyms": [
       "WBls"
     ],
-    "uri_format": "http://www.wormbase.org/get?name=$1",
-    "version": "2023-05-17"
+    "uri_format": "http://purl.obolibrary.org/obo/WBls_$1",
+    "version": "2023-07-10"
   },
   "wbphenotype": {
     "contact": {
@@ -57842,7 +58178,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBPhenotype_$1",
-    "version": "2023-05-18"
+    "version": "2023-07-10"
   },
   "webelements": {
     "contributor": {
@@ -57880,7 +58216,7 @@
     "uri_format": "http://www.w3.org/2003/01/geo/wgs84_pos#$1"
   },
   "wicell": {
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "ai10e-kctd13b",
     "homepage": "https://www.wicell.org",
     "mappings": {
@@ -58507,7 +58843,7 @@
       "wosid",
       "wosuid"
     ],
-    "uri_format": "https://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=Publons&SrcAuth=Publons_CEL&KeyUT=WOS:$1&DestLinkType=FullRecord&DestApp=WOS_CPL"
+    "uri_format": "https://www.webofscience.com/wos/woscc/full-record/WOS:$1"
   },
   "wwf.ecoregion": {
     "comment": "ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658",
@@ -58669,8 +59005,8 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
-    "uri_format": "https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1",
-    "version": "4.46"
+    "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
+    "version": "4.140"
   },
   "xenbase": {
     "contact": {
@@ -58817,7 +59153,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Cell line collections",
+    "description": "Cell line collections (Providers)",
     "example": "151022",
     "homepage": "https://ximbio.com",
     "mappings": {

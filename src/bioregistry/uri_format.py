@@ -43,7 +43,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
     >>> import bioregistry
     >>> bioregistry.get_uri_format('chebi')
-    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
+    'http://purl.obolibrary.org/obo/CHEBI_$1'
 
     If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
     is of particular interest to ontologists and semantic web people who might want to use ``purl.obolibrary.org``
@@ -67,7 +67,7 @@ def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
     >>> import bioregistry
     >>> bioregistry.get_uri_prefix('chebi')
-    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
+    'http://purl.obolibrary.org/obo/CHEBI_'
     """
     return manager.get_uri_prefix(prefix=prefix, priority=priority)
 

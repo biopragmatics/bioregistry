@@ -1037,7 +1037,7 @@ class Manager:
 
         >>> from bioregistry import manager
         >>> manager.get_default_iri('chebi', '24867')
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
         """
         entry = self.get_resource(prefix)
         if entry is None:
@@ -1288,23 +1288,21 @@ class Manager:
         A pre-parse CURIE can be given as the first two arguments
         >>> from bioregistry import manager
         >>> manager.get_iri("chebi", "24867")
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
 
         A CURIE can be given directly as a single argument
         >>> manager.get_iri("chebi:24867")
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
 
         A priority list can be given
-        >>> priority = ["obofoundry", "default", "bioregistry"]
+        >>> priority = ["miriam", "default", "bioregistry"]
         >>> manager.get_iri("chebi:24867", priority=priority)
-        'http://purl.obolibrary.org/obo/CHEBI_24867'
+        'https://identifiers.org/CHEBI:24867'
 
         A custom prefix map can be supplied.
         >>> prefix_map = {"chebi": "https://example.org/chebi/"}
         >>> manager.get_iri("chebi:24867", prefix_map=prefix_map)
         'https://example.org/chebi/24867'
-        >>> manager.get_iri("fbbt:00007294")
-        'https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:00007294'
 
         A custom prefix map can be supplied in combination with a priority list
         >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}

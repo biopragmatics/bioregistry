@@ -17,6 +17,7 @@ from pydantic import BaseModel
 
 from bioregistry.constants import DATA_DIRECTORY, EXTERNAL
 from bioregistry.parse_version_iri import parse_obo_version_iri
+from bioregistry.utils import OLSBroken
 
 __all__ = [
     "get_ols",
@@ -49,6 +50,8 @@ def get_ols(force_download: bool = False):
             return json.load(file)
 
     data = requests.get(URL).json()
+    if "_embedded" not in data:
+        raise OLSBroken
     data["_embedded"]["ontologies"] = sorted(
         data["_embedded"]["ontologies"],
         key=itemgetter("ontologyId"),
