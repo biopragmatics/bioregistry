@@ -124,7 +124,7 @@ $ cd bioregistry
 $ pip install --editable .
 ```
 
-Build the docs locally with `tox -e ldocs` then view by opening
+Build the docs locally with `tox -e docs` then view by opening
 `docs/build/html/index.html`.
 
 ## 💪 Usage
