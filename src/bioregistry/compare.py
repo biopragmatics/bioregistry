@@ -686,16 +686,18 @@ def plot_xrefs(registry_infos, watermark: bool):
         data=xrefs_df,
         x="frequency",
         y="count",
+        hue="frequency",
         errorbar=None,
         palette=xrefs_colors,
         alpha=1.0,
         ax=ax,
+        legend=False,
     )
     # There should only be one container here
     _labels = xrefs_df["count"].to_list()
     _labels[0] = f"{_labels[0]}\nNovel"
-    for i in ax.containers:
-        ax.bar_label(i, _labels)
+    for i, label in zip(ax.containers, _labels):
+        ax.bar_label(i, [label])
     ax.set_xlabel(
         f"Number of the {n_mappable_metaprefixes} Mapped External Registries Capturing a Given Identifier Resource"
     )
