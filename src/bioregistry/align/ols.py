@@ -2,7 +2,7 @@
 
 """Align the OLS with the Bioregistry."""
 
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.ols import OLS_SKIP, get_ols
@@ -24,12 +24,6 @@ class OLSAligner(Aligner):
         """Get skipped entries from OLS."""
         return OLS_SKIP
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned BioPortal registry entries."""
-        return [
-            external_entry["name"].strip(),
-        ]
-
 
 if __name__ == "__main__":
-    OLSAligner.align()
+    OLSAligner.cli()

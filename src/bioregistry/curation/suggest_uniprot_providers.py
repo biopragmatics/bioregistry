@@ -23,7 +23,7 @@ def _main():
             continue
         if resource.provides:
             continue
-        if bioregistry.is_known_identifier("uniprot", example):
+        if bioregistry.is_standardizable_identifier("uniprot", example):
             rows.append((prefix, example, bioregistry.get_uri_format(prefix)))
     click.echo(tabulate(rows, headers=["prefix", "example", "uri_format"]))
 

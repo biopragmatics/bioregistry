@@ -127,7 +127,7 @@ def get_registry_rows():
     """Get a dataframe of all resources."""
     rows = []
     for prefix, data in read_registry().items():
-        mappings = data.get_mappings() or {}
+        mappings = data.get_mappings()
         rows.append(
             (
                 prefix,

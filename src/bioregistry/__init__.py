@@ -13,7 +13,7 @@ from .metaresource_api import (  # noqa:F401
     get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import curie_from_iri, parse_iri, parse_obolibrary_purl  # noqa:F401
+from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     count_mappings,
     get_appears_in,
@@ -26,7 +26,9 @@ from .resolve import (  # noqa:F401
     get_contact_github,
     get_contact_name,
     get_contact_orcid,
+    get_converter,
     get_curie_pattern,
+    get_default_converter,
     get_default_format,
     get_depends_on,
     get_description,
@@ -38,6 +40,7 @@ from .resolve import (  # noqa:F401
     get_homepage,
     get_identifiers_org_prefix,
     get_json_download,
+    get_keywords,
     get_license,
     get_license_conflicts,
     get_mappings,
@@ -46,6 +49,7 @@ from .resolve import (  # noqa:F401
     get_n2t_prefix,
     get_name,
     get_namespace_in_lui,
+    get_obo_context_prefix_map,
     get_obo_download,
     get_obo_health_url,
     get_obofoundry_prefix,
@@ -56,11 +60,13 @@ from .resolve import (  # noqa:F401
     get_ols_uri_prefix,
     get_owl_download,
     get_part_of,
+    get_parts_collections,
     get_pattern,
     get_preferred_prefix,
     get_prefixcommons_uri_format,
     get_provided_by,
     get_provides_for,
+    get_rdf_download,
     get_registry_invmap,
     get_registry_map,
     get_repository,
@@ -77,6 +83,7 @@ from .resolve import (  # noqa:F401
     normalize_parsed_curie,
     normalize_prefix,
     parse_curie,
+    read_contributors,
 )
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
@@ -91,7 +98,12 @@ from .resolve_identifier import (  # noqa:F401
     get_ols_iri,
     get_providers,
     get_providers_list,
-    is_known_identifier,
+    is_standardizable_curie,
+    is_standardizable_identifier,
+    is_valid_curie,
+    is_valid_identifier,
+    miriam_standardize_identifier,
+    standardize_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
 from .schema.struct import (  # noqa:F401
@@ -106,16 +118,19 @@ from .schema_utils import (  # noqa:F401
     is_mismatch,
     read_collections,
     read_contexts,
-    read_contributors,
     read_metaregistry,
     read_mismatches,
     read_registry,
+    registries,
+    resources,
     write_contexts,
     write_registry,
 )
 from .uri_format import (  # noqa:F401
+    get_extended_prefix_map,
     get_pattern_map,
     get_prefix_map,
     get_uri_format,
     get_uri_prefix,
 )
+from .utils import curie_to_str  # noqa:F401

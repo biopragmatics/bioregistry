@@ -43,6 +43,18 @@ def get_headers(token: Optional[str] = None):
     return headers
 
 
+def requests_get(
+    path: str, token: Optional[str] = None, params: Optional[Mapping[str, Any]] = None
+):
+    """Send a get request to the GitHub API."""
+    path = path.lstrip("/")
+    return requests.get(
+        f"https://api.github.com/{path}",
+        headers=get_headers(token=token),
+        params=params,
+    ).json()
+
+
 def list_pulls(
     *,
     owner: str,
@@ -57,10 +69,7 @@ def list_pulls(
         you make many more queries before getting rate limited.
     :returns: JSON response from GitHub
     """
-    return requests.get(
-        f"https://api.github.com/repos/{owner}/{repo}/pulls",
-        headers=get_headers(token=token),
-    ).json()
+    return requests_get(f"repos/{owner}/{repo}/pulls", token=token)
 
 
 def open_bioregistry_pull_request(
@@ -156,9 +165,9 @@ def get_form_data(
     :return: A mapping from github issue issue data
     """
     labels = labels if isinstance(labels, str) else ",".join(labels)
-    res = requests.get(
-        f"https://api.github.com/repos/{owner}/{repo}/issues",
-        headers=get_headers(token=token),
+    res_json = requests_get(
+        f"repos/{owner}/{repo}/issues",
+        token=token,
         params={
             "labels": labels,
             "state": "open",
@@ -166,7 +175,7 @@ def get_form_data(
     )
     rv = {
         issue["number"]: parse_body(issue["body"])
-        for issue in res.json()
+        for issue in res_json
         if "pull_request" not in issue
     }
     if remapping:

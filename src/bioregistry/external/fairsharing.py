@@ -6,14 +6,11 @@
 """
 
 import json
-from typing import Any, Iterable, Mapping, MutableMapping, Optional
-
-import pystow
-import requests
-from tqdm import tqdm
+from typing import Any, MutableMapping, Optional
 
 from bioregistry.constants import EXTERNAL
-from bioregistry.utils import removeprefix
+from bioregistry.license_standardizer import standardize_license
+from bioregistry.utils import removeprefix, removesuffix
 
 __all__ = [
     "get_fairsharing",
@@ -23,13 +20,10 @@ DIRECTORY = EXTERNAL / "fairsharing"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
-BASE_URL = "https://api.fairsharing.org"
-SIGNIN_URL = f"{BASE_URL}/users/sign_in"
-RECORDS_URL = f"{BASE_URL}/fairsharing_records"
-
 
 ALLOWED_TYPES = {
     "terminology_artefact",
+    "identifier_schema",
     # "knowledgebase",
     # "knowledgebase_and_repository",
     # "repository",
@@ -42,125 +36,109 @@ def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    client = FairsharingClient()
-    # As of 2021-12-13, there are a bit less than 4k records that take about 3 minutes to download
-    rv = {
-        row.pop("prefix"): row
-        for row in tqdm(
-            client.iter_records(),
-            unit_scale=True,
-            unit="record",
-            desc="Downloading FAIRsharing",
-            disable=not use_tqdm,
-        )
-    }
+    from fairsharing_client import load_fairsharing
+
+    data = load_fairsharing(force_download=force_download, use_tqdm=use_tqdm)
+    rv = {}
+    for prefix, record in data.items():
+        new_record = _process_record(record)
+        if new_record:
+            rv[prefix] = new_record
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, ensure_ascii=False, sort_keys=True)
-
     return rv
 
 
 KEEP = {
     "abbreviation",
     "description",
-    "id",
     "name",
-    "prefix",
     "subjects",
 }
 
 
-class FairsharingClient:
-    """A client for programmatic access to the FAIRsharing private API."""
+def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping[str, Any]]:
+    if record.get("record_type") not in ALLOWED_TYPES:
+        return None
+    rv = {key: record[key] for key in KEEP}
+    for suf in [
+        " CT",
+        " CV",
+        " Controlled Vocabulary",
+        " Terminology",
+        " Ontology",
+        " Thesaurus",
+        " Vocabulary",
+        " Taxonomy",
+    ]:
+        rv["abbreviation"] = removesuffix(rv["abbreviation"], suf)
 
-    def __init__(self, user: Optional[str] = None, password: Optional[str] = None):
-        """Instantiate the client and get an appropriate JWT token.
+    metadata = record.get("metadata", {})
 
-        :param user: FAIRsharing username
-        :param password: Corresponding FAIRsharing password
-        """
-        self.username = pystow.get_config(
-            "fairsharing", "login", passthrough=user, raise_on_missing=True
+    homepage = metadata.get("homepage")
+    if homepage:
+        rv["homepage"] = homepage
+
+    rv["publications"] = list(
+        filter(
+            None,
+            (_process_publication(publication) for publication in record.get("publications", [])),
         )
-        self.password = pystow.get_config(
-            "fairsharing", "password", passthrough=password, raise_on_missing=True
-        )
-        self.jwt = self.get_jwt()
-        self.session = requests.Session()
-        self.session.headers.update(
-            {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {self.jwt}",
-            }
-        )
+    )
 
-    def get_jwt(self) -> str:
-        """Get the JWT."""
-        payload = {
-            "user": {
-                "login": self.username,
-                "password": self.password,
-            },
-        }
-        res = requests.post(SIGNIN_URL, json=payload).json()
-        return res["jwt"]
+    contacts = [
+        {removeprefix(k, "contact_"): v for k, v in contact.items()}
+        for contact in metadata.get("contacts", [])
+        if contact.get("contact_orcid")  # make sure ORCID is available
+    ]
+    for contact in contacts:
+        if "orcid" in contact:
+            contact["orcid"] = contact["orcid"].replace(" ", "")
+    if contacts:
+        rv["contact"] = contacts[0]
 
-    def iter_records(self) -> Iterable[Mapping[str, Any]]:
-        """Iterate over all FAIRsharing records."""
-        yield from self._iter_records_helper(RECORDS_URL)
+    for support_link in metadata.get("support_links", []):
+        if support_link["type"] == "Twitter":
+            rv["twitter"] = removeprefix(support_link["url"], "https://twitter.com/")
+        if support_link["type"] == "Github":
+            rv["repository"] = support_link["url"]
 
-    def _preprocess_record(
-        self, record: MutableMapping[str, Any]
-    ) -> Optional[MutableMapping[str, Any]]:
-        if "type" in record:
-            del record["type"]
-        record = {"id": record["id"], **record["attributes"]}
-        if record.get("record_type") not in ALLOWED_TYPES:
-            return None
-
-        doi = record.get("doi")
-        if doi is None:
-            # tqdm.write(f"{record['id']} has no DOI: {record['url']}")
-            # these records are not possible to resolve
-            return None
-        if doi.startswith("10.25504/"):
-            record["prefix"] = record.pop("doi")[len("10.25504/") :]
+    for license_link in record.get("licence_links", []):
+        url = license_link.get("licence_url")
+        if not url:
+            continue
+        license_standard = standardize_license(url)
+        if license_standard == url:
+            continue  # TODO curate additional normalizations
         else:
-            tqdm.write(f"DOI has unexpected prefix: {record['doi']}")
+            rv["license"] = license_standard
 
-        record["description"] = removeprefix(
-            record.get("description"), "This FAIRsharing record describes: "
-        )
-        record["name"] = removeprefix(record.get("name"), "FAIRsharing record for: ")
-        # for key in [
-        #     "created-at",
-        #     "domains",  # maybe use later
-        #     "subjects",  # maybe use later
-        #     "legacy-ids",
-        #     "fairsharing-licence",  # redundant across all records
-        #     "licence-links",
-        #     "publications",
-        #     "taxonomies",
-        #     "updated-at",
-        #     "url-for-logo",
-        #     "user-defined-tags",
-        #     "countries",
-        #     "fairsharing-registry",
-        #     "record-type",
-        #     "url",  # redundant of doi
-        # ]
-        return {key: value for key, value in record.items() if key in KEEP}
+    return rv
 
-    def _iter_records_helper(self, url: str) -> Iterable[Mapping[str, Any]]:
-        res = self.session.get(url).json()
-        for record in res["data"]:
-            yv = self._preprocess_record(record)
-            if yv:
-                yield yv
-        next_url = res["links"].get("next")
-        if next_url:
-            yield from self._iter_records_helper(next_url)
+
+def _process_publication(publication):
+    rv = {}
+    doi = publication.get("doi")
+    if doi:
+        doi = doi.rstrip(".").lower()
+        doi = removeprefix(doi, "doi:")
+        doi = removeprefix(doi, "https://doi.org/")
+        if "/" not in doi:
+            doi = None
+        else:
+            rv["doi"] = doi
+    pubmed = publication.get("pubmed_id")
+    if pubmed:
+        rv["pubmed"] = str(pubmed)
+    if not doi and not pubmed:
+        return
+    title = publication.get("title")
+    if title:
+        title = title.replace("  ", " ").rstrip(".")
+        rv["title"] = title
+    return rv
+
+    # TODO add "year"
 
 
 if __name__ == "__main__":

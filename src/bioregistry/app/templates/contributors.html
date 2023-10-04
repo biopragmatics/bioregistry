@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Contributors{% endblock %}
 
 {% block styles %}
     {{ super() }}
@@ -43,7 +43,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.contributors", format=key) }}">
+                                   href="{{ fastapi_url_for("get_contributors") }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -54,7 +54,7 @@
         </div>
         <div class="card-body">
             <p style="margin-bottom: 0">
-                The following users have made contributions to the Bioregistry either directly
+                The following users have made contributions to the {{ config.METAREGISTRY_TITLE }} either directly
                 (i.e., {{ unique_direct_count }} unique researchers have submitted a prefix, contributed
                 an update for a prefix, reviewed a prefix, submitted a collection, or taken responsibility
                 for a context) or indirectly (i.e., {{ unique_indirect_count }} unique researchers are
@@ -77,7 +77,7 @@
             </thead>
             {% for row in rows %}
                 <tr>
-                    <td><a href="{{ url_for('ui.contributor', orcid=row.orcid) }}">{{ row.name }}</a></td>
+                    <td><a href="{{ url_for('metaregistry_ui.contributor', orcid=row.orcid) }}">{{ row.name }}</a></td>
                     <td class="text-nowrap"><a href="https://orcid.org/{{ row.orcid }}">{{ row.orcid }}</a></td>
                     {#
                     <td class="text-nowrap">

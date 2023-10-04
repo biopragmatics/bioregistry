@@ -10,19 +10,23 @@ from more_click import verbose_option
 
 import bioregistry
 import bioregistry.version
+from bioregistry import manager
+from bioregistry.constants import NDEX_UUID
 
 if TYPE_CHECKING:
     import ndex2
-
-NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
 
 
 @click.command()
 @verbose_option
 def main():
     """Upload the Bioregistry KG to NDEx."""
-    upload()
-    click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")
+    try:
+        upload()
+    except IOError:
+        click.secho("Failed to upload to NDEx", fg="red")
+    else:
+        click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")
 
 
 def upload():
@@ -35,8 +39,11 @@ def upload():
         "description",
         "An integrative meta-registry of biological databases, ontologies, and nomenclatures",
     )
-    cx.add_network_attribute("hash", bioregistry.version.get_git_hash())
-    cx.add_network_attribute("version", bioregistry.version.get_version())
+    cx.add_network_attribute("hash", bioregistry.version.get_git_hash(), type="string")
+    cx.add_network_attribute("version", bioregistry.version.get_version(), type="string")
+    cx.add_network_attribute("rights", "Waiver-No rights reserved (CC0)", type="string")
+    cx.add_network_attribute("rightsHolder", "Charles Tapley Hoyt", type="string")
+    cx.add_network_attribute("author", "Charles Tapley Hoyt", type="string")
     cx.set_context(
         {
             "bioregistry.collection": "https://bioregistry.io/collection/",
@@ -74,10 +81,16 @@ def upload():
                 target=resource_nodes[entry.has_canonical],
                 interaction="has_canonical",
             )
+        for dependent_prefix in manager.get_depends_on(prefix) or []:
+            cx.add_edge(
+                source=resource_nodes[prefix],
+                target=resource_nodes[dependent_prefix],
+                interaction="depends_on",
+            )
 
         # Which registries does it map to?
         for metaprefix in metaregistry:
-            if metaprefix not in entry:
+            if not getattr(entry, metaprefix, None):
                 continue
             cx.add_edge(
                 source=resource_nodes[prefix],
@@ -91,7 +104,7 @@ def upload():
             represents=f"bioregistry.collection:{collection_id}",
         )
         if collection.description:
-            cx.add_node_attribute(source, "description", collection.description)
+            cx.add_node_attribute(source, "description", collection.description, type="string")
         for prefix in collection.resources:
             cx.add_edge(
                 source=source,
@@ -116,10 +129,10 @@ def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
     )
     homepage = bioregistry.get_registry_homepage(metaprefix)
     if homepage:
-        cx.add_node_attribute(node, "homepage", homepage)
+        cx.add_node_attribute(node, "homepage", homepage, type="string")
     description = bioregistry.get_registry_description(metaprefix)
     if description:
-        cx.add_node_attribute(node, "description", description)
+        cx.add_node_attribute(node, "description", description, type="string")
     return node
 
 
@@ -131,13 +144,13 @@ def make_resource_node(cx: "ndex2.NiceCXBuilder", prefix: str) -> int:
     )
     homepage = bioregistry.get_homepage(prefix)
     if homepage:
-        cx.add_node_attribute(node, "homepage", homepage)
+        cx.add_node_attribute(node, "homepage", homepage, type="string")
     description = bioregistry.get_description(prefix)
     if description:
-        cx.add_node_attribute(node, "description", description)
+        cx.add_node_attribute(node, "description", description, type="string")
     pattern = bioregistry.get_pattern(prefix)
     if pattern:
-        cx.add_node_attribute(node, "pattern", pattern)
+        cx.add_node_attribute(node, "pattern", pattern, type="string")
     # TODO add more
     return node
 

@@ -4,7 +4,10 @@
 
 import unittest
 
+import rdflib
+
 import bioregistry
+from bioregistry import manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -12,9 +15,13 @@ from bioregistry.schema import Registry
 class TestMetaregistry(unittest.TestCase):
     """Tests for the metaregistry."""
 
+    def setUp(self) -> None:
+        """Set up the test case."""
+        self.manager = bioregistry.manager
+
     def test_minimum_metadata(self):
         """Test the metaregistry entries have a minimum amount of data."""
-        for metaprefix, registry in bioregistry.read_metaregistry().items():
+        for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
@@ -66,20 +73,15 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIn("$2", registry.resolver_uri_format)
                     self.assertIsNotNone(registry.resolver_type)
                     self.assertIn(registry.resolver_type, {"lookup", "resolver"})
-                else:
-                    self.assertIsNone(registry.resolver_type)
 
                 invalid_keys = set(registry.dict()).difference(Registry.__fields__)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
-                if not registry.availability.fair:
-                    self.assertIsNone(
-                        registry.download,
-                        msg="If bulk download available, resource should be annotated as FAIR",
-                    )
-                    self.assertIsNotNone(
-                        registry.availability.fair_note,
-                        msg="All non-FAIR resources require an explanation",
-                    )
+                self.assertIsNotNone(registry.qualities)
+                self.assertIsInstance(registry.qualities.bulk_data, bool)
+
+                if registry.governance.public_version_controlled_data:
+                    self.assertIsNotNone(registry.governance.data_repository)
+                    self.assertIsNotNone(registry.governance.issue_tracker)
 
     def test_get_registry(self):
         """Test getting a registry."""
@@ -105,7 +107,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertEqual(name, registry.name)
         self.assertEqual(name, bioregistry.get_registry_name(metaprefix))
 
-        example = "0174"
+        example = "DB-0174"
         self.assertEqual(example, registry.example)
         self.assertEqual(example, bioregistry.get_registry_example(metaprefix))
 
@@ -124,5 +126,31 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = metaresource_to_rdf_str("uniprot")
+        registry = self.manager.metaregistry["uniprot"]
+        s = metaresource_to_rdf_str(registry, manager=manager)
         self.assertIsInstance(s, str)
+        g = rdflib.Graph()
+        g.parse(data=s)
+
+    def test_corresponding(self):
+        """Test data corresponds between the registry and metaregistry."""
+        for metaprefix, registry in self.manager.metaregistry.items():
+            if registry.bioregistry_prefix:
+                resource = self.manager.registry[registry.bioregistry_prefix]
+            elif metaprefix in self.manager.registry:
+                resource = self.manager.registry[metaprefix]
+            else:
+                continue
+
+            # Test pattern
+            pattern = resource.get_pattern()
+            if pattern is None:
+                continue
+            with self.subTest(metaprefix=metaprefix):
+                self.assertRegex(registry.example, pattern)
+
+            # Test URI format string
+            if registry.provider_uri_format:
+                uri_formats = resource.get_uri_formats()
+                self.assertLess(0, len(uri_formats))
+                self.assertIn(registry.provider_uri_format, uri_formats)

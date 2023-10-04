@@ -2,8 +2,6 @@
 
 """Align MIRIAM with the Bioregistry."""
 
-from typing import Sequence
-
 from bioregistry.align.utils import Aligner
 from bioregistry.external.miriam import get_miriam
 
@@ -20,14 +18,6 @@ class MiriamAligner(Aligner):
     curation_header = ("deprecated", "name", "description")
     include_new = True
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned MIRIAM registry entries."""
-        return [
-            external_entry["deprecated"],
-            external_entry["name"].strip(),
-            external_entry.get("description", "").strip(),
-        ]
-
 
 if __name__ == "__main__":
-    MiriamAligner.align()
+    MiriamAligner.cli()

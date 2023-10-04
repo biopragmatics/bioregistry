@@ -2,7 +2,7 @@
 
 """Utilities for registry alignment."""
 
-from abc import ABC, abstractmethod
+import csv
 from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
 
 import click
@@ -11,7 +11,7 @@ from tabulate import tabulate
 from ..constants import EXTERNAL
 from ..resource_manager import Manager
 from ..schema import Resource
-from ..schema_utils import is_mismatch, read_metaregistry
+from ..schema_utils import is_mismatch
 from ..utils import norm
 
 __all__ = [
@@ -19,7 +19,7 @@ __all__ = [
 ]
 
 
-class Aligner(ABC):
+class Aligner:
     """A class for aligning new registries."""
 
     #: The key for the external registry
@@ -42,25 +42,39 @@ class Aligner(ABC):
     #: Set this if there's another part of the data besides the ID that should be matched
     alt_key_match: ClassVar[Optional[str]] = None
 
+    alt_keys_match: ClassVar[Optional[str]] = None
+
     #: Set to true if you don't want to align to deprecated resources
     skip_deprecated: ClassVar[bool] = False
 
     subkey: ClassVar[str] = "prefix"
 
-    def __init__(self):
+    normalize_invmap: ClassVar[bool] = False
+
+    def __init__(self, force_download: Optional[bool] = None):
         """Instantiate the aligner."""
-        if self.key not in read_metaregistry():
-            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+        if not hasattr(self.__class__, "key"):
+            raise TypeError
+        if not hasattr(self.__class__, "curation_header"):
+            raise TypeError
 
         self.manager = Manager()
 
-        kwargs = self.getter_kwargs or {}
+        if self.key not in self.manager.metaregistry:
+            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+
+        kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
+        if force_download is not None:
+            kwargs["force_download"] = force_download
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
         # Get all of the pre-curated mappings from the Bioregistry
-        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(self.key)
+        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
+            self.key,
+            normalize=self.normalize_invmap,
+        )
 
         # Run lexical alignment
         self._align()
@@ -76,51 +90,64 @@ class Aligner(ABC):
 
     def _align(self):
         """Align the external registry."""
-        for external_id, external_entry in self.external_registry.items():
+        for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
                 continue
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
+            # There's already a mapping for this external ID to a bioregistry
+            # entry. Just add all of the latest metadata and move on
+            if bioregistry_id is not None:
+                self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
             # try to lookup with lexical match
-            if bioregistry_id is None:
-                if not self.alt_key_match:
-                    bioregistry_id = self.manager.normalize_prefix(external_id)
-                else:
-                    alt_match = external_entry.get(self.alt_key_match)
-                    if alt_match:
-                        bioregistry_id = self.manager.normalize_prefix(alt_match)
+            if not self.alt_key_match:
+                bioregistry_id = self.manager.normalize_prefix(external_id)
+            else:
+                alt_match = external_entry.get(self.alt_key_match)
+                if alt_match:
+                    bioregistry_id = self.manager.normalize_prefix(alt_match)
+
+            if bioregistry_id is None and self.alt_keys_match:
+                for alt_match in external_entry.get(self.alt_keys_match, []):
+                    bioregistry_id = self.manager.normalize_prefix(alt_match)
+                    if bioregistry_id:
+                        break
+
+            # A lexical match was possible
+            if bioregistry_id is not None:
+                # check this external ID for curated mismatches, and move
+                # on if one has already been curated
+                if is_mismatch(bioregistry_id, self.key, external_id):
+                    continue
+                if self.skip_deprecated and self.manager.is_deprecated(bioregistry_id):
+                    continue
+                self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
             # add the identifier from an external resource if it's been marked as high quality
-            if bioregistry_id is None and self.include_new:
+            elif self.include_new:
                 bioregistry_id = norm(external_id)
+                if is_mismatch(bioregistry_id, self.key, external_id):
+                    continue
                 self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
-
-            if self._do_align_action(bioregistry_id):
                 self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
-    def _do_align_action(self, prefix: Optional[str]) -> bool:
-        # a match was found if the prefix is not None
-        return prefix is not None and (
-            not self.skip_deprecated or not self.manager.is_deprecated(prefix)
-        )
-
-    def _align_action(self, bioregistry_id, external_id, external_entry):
-        # skip mismatches
-        if is_mismatch(bioregistry_id, self.key, external_id):
-            return
-
-        # Add mapping
+    def _align_action(
+        self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
+    ) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
-        self.internal_registry[bioregistry_id].mappings[self.key] = external_id
+        self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
         _entry = self.prepare_external(external_id, external_entry)
         _entry[self.subkey] = external_id
         self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
         The default implementation returns `external_entry` unchanged.
@@ -137,9 +164,19 @@ class Aligner(ABC):
         self.manager.write_registry()
 
     @classmethod
-    def align(cls, dry: bool = False, show: bool = False):
-        """Align and output the curation sheet."""
-        instance = cls()
+    def align(
+        cls,
+        dry: bool = False,
+        show: bool = False,
+        force_download: Optional[bool] = None,
+    ) -> None:
+        """Align and output the curation sheet.
+
+        :param dry: If true, don't write changes to the registry
+        :param show: If true, print a curation table
+        :param force_download: Force re-download of the data
+        """
+        instance = cls(force_download=force_download)
         if not dry:
             instance.write_registry()
         if show:
@@ -151,27 +188,48 @@ class Aligner(ABC):
         """Construct a CLI for the aligner."""
 
         @click.command()
-        @click.option("--dry", is_flag=True)
-        @click.option("--show", is_flag=True)
-        def _main(dry: bool, show: bool):
-            cls.align(dry=dry, show=show)
+        @click.option("--dry", is_flag=True, help="if set, don't write changes to the registry")
+        @click.option("--show", is_flag=True, help="if set, print a curation table")
+        @click.option(
+            "--no-force", is_flag=True, help="if set, do not force re-downloading the data"
+        )
+        def _main(dry: bool, show: bool, no_force: bool):
+            cls.align(dry=dry, show=show, force_download=not no_force)
 
         _main()
 
-    @abstractmethod
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
         :return: A sequence of cells to add to the curation table.
+        :raises TypeError: If an invalid value is encountered
+
+        The default implementation of this function iterates over all of the keys
+        in the class variable :data:`curation_header` and looks inside each record
+        for those in order.
 
         .. note:: You don't need to pass the external ID. this will automatically be the first element.
         """  # noqa:DAR202
+        rv = []
+        for k in self.curation_header:
+            value = external_entry.get(k)
+            if value is None:
+                rv.append("")
+            elif isinstance(value, str):
+                rv.append(value.strip())
+            elif isinstance(value, bool):
+                rv.append("true" if value else "false")
+            elif isinstance(value, (list, tuple, set)):
+                rv.append("|".join(sorted(v.strip() for v in value)))
+            else:
+                raise TypeError(f"unexpected type in curation header: {value}")
+        return rv
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(
-            self.external_registry.items(), key=lambda s: s[0].casefold()
+            self.external_registry.items(), key=lambda s: (s[0].casefold(), s[0])
         ):
             if external_id in self.skip_external:
                 continue
@@ -185,16 +243,18 @@ class Aligner(ABC):
 
     def write_curation_table(self) -> None:
         """Write the curation table to a TSV."""
+        path = EXTERNAL.joinpath(self.key, "curation.tsv")
         rows = list(self._iter_curation_rows())
         if not rows:
+            if path.is_file():
+                path.unlink()
             return
 
-        directory = EXTERNAL / self.key
-        directory.mkdir(parents=True, exist_ok=True)
-        with (directory / "curation.tsv").open("w") as file:
-            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T201
-            for row in rows:
-                print(*row, sep="\t", file=file)  # noqa:T201
+        path.parent.mkdir(exist_ok=True, parents=True)
+        with path.open("w") as file:
+            writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_MINIMAL)
+            writer.writerow((self.subkey, *self.curation_header))
+            writer.writerows(rows)
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""

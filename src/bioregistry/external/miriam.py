@@ -3,6 +3,7 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from operator import itemgetter
 
 import click
 from pystow.utils import download
@@ -18,27 +19,54 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 MIRIAM_URL = "https://registry.api.identifiers.org/resolutionApi/getResolverDataset"
+SKIP = {
+    "merops",
+    "hgnc.family",
+    # Appear to be unreleased records
+    "f82a1a",
+    "4503",
+    "6vts",
+}
 
 
-def get_miriam(force_download: bool = False):
+def get_miriam(force_download: bool = False, force_process: bool = False):
     """Get the MIRIAM registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=MIRIAM_URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
+    download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
+    with open(RAW_PATH) as file:
         data = json.load(file)
 
-    rv = {record["prefix"]: _process(record) for record in data["payload"]["namespaces"]}
+    data["payload"]["namespaces"] = sorted(data["payload"]["namespaces"], key=itemgetter("prefix"))
+    if force_download:
+        with open(RAW_PATH, "w") as file:
+            json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
+
+    rv = {
+        record["prefix"]: _process(record)
+        for record in data["payload"]["namespaces"]
+        # records whose prefixes start with `dg.` appear to be unreleased
+        if not record["prefix"].startswith("dg.") and record["prefix"] not in SKIP
+    }
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
+#: Pairs of MIRIAM prefix and provider codes to skip
+PROVIDER_BLACKLIST = {
+    ("ega.study", "omicsdi"),
+    # see discussion at https://github.com/biopragmatics/bioregistry/pull/944
+    ("bioproject", "ebi"),
+}
+
+
 def _process(record):
+    prefix = record["prefix"]
     rv = {
-        "prefix": record["prefix"],
+        "prefix": prefix,
         "id": record["mirId"][len("MIR:") :],
         "name": record["name"],
         "deprecated": record["deprecated"],
@@ -66,7 +94,8 @@ def _process(record):
 
     extras = []
     for provider in rest:
-        if provider["code"] in SKIP_PROVIDERS:
+        code = provider["code"]
+        if code in SKIP_PROVIDERS or (prefix, code) in PROVIDER_BLACKLIST:
             continue
         del provider["official"]
         extras.append(provider)
@@ -75,10 +104,10 @@ def _process(record):
     return rv
 
 
-#: These provider codes are handled by the Bioregistry's metaregistry
 SKIP_PROVIDERS = {
-    "ols",
-    "bptl",
+    "ols",  # handled by the Bioregistry's metaregistry
+    "bptl",  # handled by the Bioregistry's metaregistry
+    "bioentitylink",
 }
 
 

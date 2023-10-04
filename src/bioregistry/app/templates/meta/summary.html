@@ -87,12 +87,12 @@
     <p>
         This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of
         Wikidata, it's difficult to know exactly how many relevant properties there are.
-        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/bioregistry_coverage.svg"
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/bioregistry_coverage_bar.svg"
              alt="Bioregistry Coverage" class="img-fluid"/>
     </p>
     <p>
         More information about each external resource covered in this image can be found on the
-        <a href="{{ url_for("ui.metaresources") }}">registries</a> page.
+        <a href="{{ url_for("metaregistry_ui.metaresources") }}">registries</a> page.
         Additional external registries that have been queued for alignment can be listed via the
         <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22">GitHub
             issue tracker</a>.
@@ -207,11 +207,11 @@
     </p>
     <h3>Pattern</h3>
     <p>
-        MIRIAM and Wikidata are only registries that report patterns, though OBO Foundry has a very consistent
-        pattern of most OBO ontologies using the <code>^&lt;prefix&gt;:\d{7}$</code> pattern. However, this
+        While only a few registries report patterns (e.g., MIRIAM, Prefix Commons, Wikidata), though OBO Foundry
+        ontologies are usually consistent in using the <code>^&lt;prefix&gt;:\d{7}$</code> pattern. However, this
         isn't a rule, so it can't be assumed without inspection of some terms from the ontology itself. The
-        Bioregistry also has a place to curate patterns for all the entries that do not have a reference in
-        MIRIAM.
+        Bioregistry also has a place to curate patterns for all the entries that do not have one imported from
+        an external registry.
     </p>
     <h3>Wikidata Database</h3>
     <p>
@@ -226,15 +226,15 @@
     <ol>
         <li>
             The prefix is not registered with the Bioregistry.<br/>Example:
-            <a href="{{ url_for('ui.resolve', prefix='nope', identifier='1234') }}"><code>nope:1234</code></a>.
+            <a href="{{ url_for('metaregistry_ui.resolve', prefix='nope', identifier='1234') }}"><code>nope:1234</code></a>.
         </li>
         <li>
             The prefix has a validation pattern and the identifier does not match it.<br/>Example:
-            <a href="{{ url_for('ui.resolve', prefix='chebi', identifier='ABCD') }}"><code>chebi:ABCD</code></a>.
+            <a href="{{ url_for('metaregistry_ui.resolve', prefix='chebi', identifier='ABCD') }}"><code>chebi:ABCD</code></a>.
         </li>
         <li>
             There are no providers available for the prefix.<br/>Example:
-            <a href="{{ url_for('ui.resolve', prefix='gmelin', identifier='1466') }}"><code>gmelin:1466</code></a>.
+            <a href="{{ url_for('metaregistry_ui.resolve', prefix='gmelin', identifier='1466') }}"><code>gmelin:1466</code></a>.
         </li>
     </ol>
     <h3>Resources that Aren't Authorities</h3>
@@ -242,22 +242,22 @@
         While entries in the Bioregistry are <i>supposed</i> to represent nomenclature authorities, this is not always
         true because it imports from external sources that don't enforce this constraint.
         For example, the Comparative Toxicogenomics Database uses
-        <a href="{{ url_for('ui.resource', prefix='ncbigene') }}">NCBI Gene</a> for naming genes and
-        <a href="{{ url_for('ui.resource', prefix='mesh') }}">MeSH</a> for naming diseases and chemicals.
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='ncbigene') }}">NCBI Gene</a> for naming genes and
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='mesh') }}">MeSH</a> for naming diseases and chemicals.
         Identifiers.org has minted 3 prefixes
-        (<a href="{{ url_for('ui.resource', prefix='ctd.gene') }}"><code>ctd.gene</code></a>,
-        <a href="{{ url_for('ui.resource', prefix='ctd.disease') }}"><code>ctd.disease</code></a>, and
-        <a href="{{ url_for('ui.resource', prefix='ctd.chemical') }}"><code>ctd.chemical</code></a>) that
+        (<a href="{{ url_for('metaregistry_ui.resource', prefix='ctd.gene') }}"><code>ctd.gene</code></a>,
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='ctd.disease') }}"><code>ctd.disease</code></a>, and
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='ctd.chemical') }}"><code>ctd.chemical</code></a>) that
         mostly reflect the entries of the authorities for which they are providers. Another example is
-        <a href="{{ url_for('ui.resource', prefix='validatordb') }}">ValidatorDB</a>, which provides information
-        based on <a href="{{ url_for('ui.resource', prefix='pdb') }}">Protein Databank</a> records.
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='validatordb') }}">ValidatorDB</a>, which provides information
+        based on <a href="{{ url_for('metaregistry_ui.resource', prefix='pdb') }}">Protein Databank</a> records.
     </p>
     <p>
-        An even more exotic example are the <a href="{{ url_for('ui.resource', prefix='goa') }}">
+        An even more exotic example are the <a href="{{ url_for('metaregistry_ui.resource', prefix='goa') }}">
         Gene Ontology Annotations</a> provided by the EBI because it provides for several types of identifiers
-        including those from <a href="{{ url_for('ui.resource', prefix='uniprot') }}">UniProt</a>,
-        <a href="{{ url_for('ui.resource', prefix='rnacentral') }}">RNA Central</a>, and the
-        <a href="{{ url_for('ui.resource', prefix='complexportal') }}">ComplexPortal</a>. This is more similar to
+        including those from <a href="{{ url_for('metaregistry_ui.resource', prefix='uniprot') }}">UniProt</a>,
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='rnacentral') }}">RNA Central</a>, and the
+        <a href="{{ url_for('metaregistry_ui.resource', prefix='complexportal') }}">ComplexPortal</a>. This is more similar to
         providers like the OLS and OntoBee since it can accept prefix/identifier pairs instead of just identifiers
         for the single prefix that it serves.
     </p>

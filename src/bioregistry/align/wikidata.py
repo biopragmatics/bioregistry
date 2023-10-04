@@ -2,10 +2,10 @@
 
 """Align Wikidata with the Bioregistry."""
 
-from typing import Sequence
+from typing import Mapping
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external.wikidata import get_wikidata
+from bioregistry.external.wikidata import SKIP, get_wikidata
 
 __all__ = [
     "WikidataAligner",
@@ -21,25 +21,12 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header = ("miriam", "databaseMiriam", "name", "database", "databaseLabel")
+    curation_header = ("name", "homepage", "description", "uri_format", "example")
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned Wikidata properties."""
-        return [
-            external_entry.get("miriam"),
-            external_entry.get("database.miriam"),
-            external_entry["name"],
-            external_entry["database"],
-            external_entry["database.label"],
-        ]
-
-    def prepare_external(self, external_id, external_entry):
-        """Prepare the external Wikidata data dictionary for alignment."""
-        # If it's already aligned, we don't need these extra MIRIAM annotations
-        external_entry.pop("miriam", None)
-        external_entry.pop("database.miriam", None)
-        return external_entry
+    def get_skip(self) -> Mapping[str, str]:
+        """Get entries to skip."""
+        return SKIP
 
 
 if __name__ == "__main__":
-    WikidataAligner.align()
+    WikidataAligner.cli()

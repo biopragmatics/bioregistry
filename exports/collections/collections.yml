@@ -43,6 +43,7 @@
   name: Semantic Web Context
   resources:
   - ac
+  - bibo
   - dc
   - dcat
   - dcterms
@@ -52,11 +53,21 @@
   - idot
   - oa
   - oboinowl
+  - oslc
   - owl
+  - pav
   - prov
+  - qb
+  - qudt
   - rdf
   - rdfs
+  - schema
+  - sh
+  - shex
   - skos
+  - skosxl
+  - swrl
+  - vann
   - void
   - xsd
 '0000003':
@@ -127,3 +138,284 @@
   - hba
   - mba
   - pba
+'0000006':
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  context: spar
+  description: The [Semantic Publishing and Referencing (SPAR) Ontologies](http://www.sparontologies.net/ontologies)
+    are a suite of orthogonal and complementary OWL 2 ontologies that enable all aspects
+    of the publishing process to be described in machine-readable metadata statements,
+    encoded using RDF.
+  identifier: '0000006'
+  name: SPAR Ontologies
+  resources:
+  - bido
+  - biro
+  - c4o
+  - cito
+  - datacite
+  - deo
+  - doco
+  - fabio
+  - frapo
+  - pso
+  - puro
+  - pwo
+  - scoro
+'0000007':
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Prefixes useful in annotating documentation provenance.
+  identifier: '0000007'
+  name: Publication Provenance Prefixes
+  resources:
+  - arxiv
+  - doi
+  - pmc
+  - pubmed
+0000008:
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Prefixes exported for the epidemiology domain knowledge graph in the
+    ASKEM project.
+  identifier: 0000008
+  name: ASKEM Epidemiology Prefixes
+  resources:
+  - bfo
+  - caro
+  - doi
+  - doid
+  - dso
+  - hp
+  - ido
+  - oae
+  - oboinowl
+  - ovae
+  - owl
+  - pmc
+  - pubmed
+  - rdfs
+  - ro
+  - symp
+  - trans
+  - vo
+0000009:
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'Prefixes mentioned on the _external_ list on the FHIR [Code Systems](https://hl7.org/fhir/terminologies-systems.html)
+    page. This list is mostly complete. Notably, some entries that have not been curated:
+
+
+    - HGVS (see discussion at [#460](https://github.com/biopragmatics/bioregistry/issues/460))
+
+    - [NUBC](http://www.nubc.org) (National Uniform Billing Committee) - could not
+    find information about the terminology or its entries
+
+    - [ICPC](http://www.ph3c.org/) (International Classification of Primary Care)
+    _same_
+
+    - [GTIN](https://www.gs1.org/standards/id-keys/gtin) (Global Trade Item Number)
+    _same_
+
+    - [MDC](https://www.iso.org/standard/37890.html) (Medical Device Codes) since
+    that appears to be part of a larger ISO standard vocabulary that needs further
+    investigation'
+  identifier: 0000009
+  name: FHIR External Terminologies
+  resources:
+  - atcc
+  - clinicaltrials
+  - clinvar
+  - cosmic
+  - cpt
+  - cvx
+  - dbsnp
+  - dicom
+  - dsm5
+  - ensembl
+  - hc.din
+  - hc.npn
+  - hgnc
+  - hl7.v2codesystem
+  - hl7.v3codesystem
+  - icd10
+  - icd9
+  - icf
+  - ietf.language
+  - imgt.hla
+  - iso.3166
+  - loinc
+  - lrg
+  - ncit
+  - ndc
+  - ndfrt
+  - nucc.taxonomy
+  - omim
+  - pharmgkb.gene
+  - pubmed
+  - radlex
+  - refseq
+  - rxnorm
+  - snomedct
+  - so
+  - ucum
+  - unii
+'0000010':
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The [Global Biodata Coalition](https://globalbiodata.org) released
+    a [curated list](https://globalbiodata.org/scientific-activities/global-core-biodata-resources/)
+    of 37 life sciences databases in December 2022 that they consider as having significant
+    importance (see criteria [here](https://doi.org/10.5281/zenodo.5845116)). While
+    it''s not a primary goal of the Bioregistry to cover life science databases (other
+    resources like Wikidata and [FAIRsharing](https://fairsharing.org) already do
+    an excellent job of this), many notable databases induce one or more semantic
+    spaces that are relevant for curation and prefix assignment in the Bioregistry.
+    Therefore, a large number of the resources in this list correspond 1-to-1 with
+    prefixes in the Bioregistry, a small number (e.g., Orphanet, CIViC, PharmGKB)
+    correspond to multiple prefixes, some have a complicated relationship with many-to-1
+    relationships to prefixes (DNA Data Bank of Japan, European Nucleotide Archive),
+    and some constitute databases that simply reuse other key vocabularies (e.g.,
+    STRING reuses UniProt, GWAS Catalog reuses dbSNP and EFO). Among the databases
+    that don''t induce semantic spaces or have simple relationships to prefixes are:
+
+
+    - [Clinical Genome Resource](https://www.clinicalgenome.org/) (uses HGNC, MONDO,
+    PharmGKB, etc.)
+
+    - [DNA Data Bank of Japan](https://www.ddbj.nig.ac.jp/) (uses INSDC)
+
+    - [GENCODE](https://www.gencodegenes.org/) (uses GenBank)
+
+    - [GWAS Catalog](https://www.ebi.ac.uk/gwas/) (uses dbSNP, EFO, etc)
+
+    - [STRING](https://string-db.org/) (uses UniProt)'
+  identifier: '0000010'
+  name: Global Biodata Coalition - Global Core Biodata Resources
+  resources:
+  - agrkb
+  - bacdive
+  - brenda
+  - brenda.ligand
+  - brenda.ligandgroup
+  - bto
+  - chebi
+  - chembl
+  - civic.aid
+  - civic.did
+  - civic.eid
+  - civic.gid
+  - civic.sid
+  - civic.tid
+  - civic.vid
+  - ecocyc
+  - ena.embl
+  - ensembl
+  - eupath
+  - flybase
+  - gbif
+  - gnomad
+  - go
+  - hgnc
+  - interpro
+  - mgi
+  - orphanet
+  - orphanet.ordo
+  - panther.family
+  - panther.node
+  - panther.pathway
+  - panther.pthcmp
+  - pdb
+  - pharmgkb.disease
+  - pharmgkb.drug
+  - pharmgkb.gene
+  - pharmgkb.pathways
+  - pmc
+  - pombase
+  - px
+  - reactome
+  - rgd
+  - rhea
+  - sgd
+  - ucsc
+  - uniprot
+  - wormbase
+  - zfin
+'0000011':
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'A collection of ontologies relevant for chemistry.
+
+
+    Skipped:
+
+    - DOLCE (dead links)'
+  identifier: '0000011'
+  name: NDFI4Chem Collection
+  references:
+  - https://nfdi4cat.org/services/ontologie-sammlung/
+  resources:
+  - afo
+  - bfo
+  - chebi
+  - cheminf
+  - chmo
+  - dolce
+  - emmo
+  - emmo.cif
+  - iso15926
+  - nfdi4chem.cao
+  - nfdi4chem.ontocape
+  - nfdi4chem.osmo
+  - rex
+  - rxno
+  - sbo
+'0000012':
+  authors:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A collection of clinical trial registries appearing in the World Health
+    Organization's [International Clinical Trials Registry Platform (ICTRP)](https://trialsearch.who.int/)
+  identifier: '0000012'
+  name: Clinical Trial Registries
+  resources:
+  - anzctr
+  - chictr
+  - clinicaltrials
+  - ctis
+  - ctri
+  - drks
+  - euclinicaltrials
+  - irct
+  - isrctn
+  - itmctr
+  - jrct
+  - kcris
+  - lbctr
+  - pactr
+  - rebec
+  - repec
+  - rpcec
+  - slctr
+  - tctr
+  - uminctr

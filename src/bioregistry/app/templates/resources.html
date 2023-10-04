@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }}{% endblock %}
 
 {% block styles %}
     {{ super() }}
@@ -42,7 +42,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.resources", format=key) }}">
+                                   href="{{ fastapi_url_for("get_resources") }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -56,12 +56,9 @@
                 The registry contains metadata about ontologies, controlled vocabularies, and resources including their
                 preferred prefix, name, description, homepage, mappings to other registries, and more.
             </p>
-            <p style="margin-bottom: 0">
-                Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-                improvements</a> or make pull requests to update the underlying database, which is stored in
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
-                    JSON</a> on GitHub where the community can engage in an open review process.
-            </p>
+            {% if config.METAREGISTRY_RESOURCES_SUBHEADER %}
+            {{ config.METAREGISTRY_RESOURCES_SUBHEADER | safe}}
+            {% endif %}
         </div>
         <table id="table-entries" class="table table-striped table-hover ">
             <thead>
@@ -73,7 +70,11 @@
             </thead>
             {% for prefix, resource in registry.items() %}
                 <tr>
-                    <td><a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ resource.get_name() }}</a></td>
+                    <td>
+                        <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">{{ resource.get_name() }}</a>
+                        {# FIXME adding all bioschemas annotations slows down pretty dramatically #}
+                        {# <script type="application/ld+json">{{ resource.get_bioschemas_jsonld() | safe }}</script> #}
+                    </td>
                     <td class="text-nowrap"><code>{{ prefix }}</code></td>
                     {% set description = resource.get_short_description(use_markdown=True) %}
                     <td>{% if description %}<small>{{ description }}</small>{% endif %}</td>

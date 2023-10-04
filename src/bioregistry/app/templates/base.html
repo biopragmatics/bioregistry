@@ -29,13 +29,15 @@
 
         <script src="https://kit.fontawesome.com/4c86883252.js" crossorigin="anonymous"></script>
         <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="{{ config.METAREGISTRY_DESCRIPTION }}" />
+        <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
     {% endblock %}
 </head>
 <body {% block bodyattr %}{% endblock %}>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for("home") }}">
+    <a class="navbar-brand" href="{{ url_for("metaregistry_ui.home") }}">
         <img src="{{ url_for('static', filename='logo.svg') }}" width="30" height="30" alt="">
-        Bioregistry
+        {{ config.METAREGISTRY_TITLE }}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,48 +46,118 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.resources") }}">Registry</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.resources") }}">Registry</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.metaresources") }}">Metaregistry</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.metaresources") }}">Metaregistry</a>
             </li>
+            {% if manager.collections | length > 0 %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.collections") }}">Collections</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.collections") }}">Collections</a>
             </li>
+            {% endif %}
+            {% if config.METAREGISTRY_FIRST_PARTY %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.contexts") }}">Contexts</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.contexts") }}">Contexts</a>
             </li>
-
+            {% endif %}
 
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     About
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ url_for("summary") }}">Summary</a>
-                    <a class="dropdown-item" href="{{ url_for("usage") }}">Programmatic Usage</a>
-                    <a class="dropdown-item" href="{{ url_for("schema") }}">JSON and RDF Schemata</a>
-                    <a class="dropdown-item" href="{{ url_for("sustainability") }}">Deployment and Sustainability</a>
-                    <a class="dropdown-item" href="{{ url_for("related") }}">Related</a>
-                    <a class="dropdown-item" href="{{ url_for("ui.contributors") }}">Contributors</a>
-                    <a class="dropdown-item" href="{{ url_for("acknowledgements") }}">How to Cite and Acknowledge</a>
+                    {% if config.METAREGISTRY_FIRST_PARTY %}
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.summary") }}">Summary</a>
+                    {% else %}
+                    <a class="dropdown-item" target="_blank" href="https://bioregistry.io/summary">
+                        Summary <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/glossary/">
+                        Glossary <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/datamodel/">
+                        Data Model <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
+                    {% if config.METAREGISTRY_FIRST_PARTY %}
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Maintenance</h6>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/health/">
+                        Health Report <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Attribution</h6>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.related") }}">Related Work</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.contributors") }}">Contributors</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.acknowledgements") }}">How to Cite and Acknowledge</a>
+                    <!--<div class="dropdown-divider"></div>-->
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Workshops</h6>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2021">
+                        WPCI 2021 <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2022">
+                        WPCI 2022 <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2023">
+                        WPCI 2023 (upcoming) <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </li>
+            {% if config.METAREGISTRY_FIRST_PARTY %}
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contribute
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <h6 class="dropdown-header">Project Info</h6>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">
+                        Contribution Guidelines <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">
+                        Code of Conduct <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">
+                        Project Governance <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Getting Started</h6>
+                    <a class="dropdown-item" target="_blank" href="https://github.com/biopragmatics/bioregistry/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D">
+                        Request a Prefix <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/curation/">
+                        Good First Contributions <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
                     <!--<div class="dropdown-divider"></div>-->
                 </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('download') }}">Downloads</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>
+            {% endif %}
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Access
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if config.METAREGISTRY_FIRST_PARTY %}
+                    <a class="dropdown-item" href="{{ url_for('metaregistry_ui.download') }}">Downloads</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="{{ url_for('metaregistry_ui.apidocs') }}">API Documentation</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.usage") }}">Programmatic Usage Guide</a>
+                </div>
             </li>
         </ul>
+        {% if config.METAREGISTRY_VERSION %}
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item active">
                 <span class="text-muted">
-                    Version {{ config.bioregistry_version }}
+                    Version {{ config.METAREGISTRY_VERSION }}
                 </span>
             </li>
         </ul>
+        {% endif %}
     </div>
 </nav>
 
@@ -101,11 +173,7 @@
 
 <footer class="footer">
     <p class="small text-center text-muted">
-        Developed with ❤️ by the <a href="https://indralab.github.io">INDRA Lab</a> in the
-        <a href="https://hits.harvard.edu">Harvard Program in Therapeutic Science (HiTS)</a>.<br/>
-        Funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).<br/>
-        Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
-        (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
+        {{ config.METAREGISTRY_FOOTER | safe }}
     </p>
 </footer>
 

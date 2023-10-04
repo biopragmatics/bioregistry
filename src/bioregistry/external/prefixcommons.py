@@ -9,15 +9,19 @@
 """
 
 import json
-from typing import Any, Dict
+import logging
+from typing import Any, Dict, List
 
 from pystow.utils import download
 
 from bioregistry.constants import EXTERNAL
+from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
     "get_prefixcommons",
 ]
+
+logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "prefixcommons"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -27,9 +31,9 @@ GOOGLE_DOCUMENT_ID = "1c4DmQqTGS4ZvJU_Oq2MFnLk-3UUND6pWhuMoP8jgZhg"
 URL = f"https://docs.google.com/spreadsheets/d/{GOOGLE_DOCUMENT_ID}/export?format=tsv&gid=0"
 COLUMNS = [
     "prefix",  # "Preferred Prefix",
-    "Alt-prefix",
-    "Provider Base URI",
-    "Alternative Base URI",
+    "synonyms",
+    "rdf_uri_prefix",  # this is the RDF-useful version
+    "alternate_uri_formats",  # these are alternative URI prefixes
     "MIRIAM",
     "BiodbcoreID",
     "bioportal",  # "BioPortal Ontology ID",
@@ -43,9 +47,9 @@ COLUMNS = [
     "keywords",
     "homepage",  # "Homepage",
     "Functional?",
-    "sub-namespace in dataset",
+    "part_of",  # sub-namespace in dataset
     "part of collection",
-    "License URL",
+    "license_url",
     "License Text",
     "Rights",
     "pattern",  # "ID regex",
@@ -64,6 +68,7 @@ COLUMNS = [
 ]
 KEEP = {
     "prefix",
+    "synonyms",
     "bioportal",
     "miriam",
     "name",
@@ -74,16 +79,21 @@ KEEP = {
     "pattern",
     "example",
     "uri_format",
+    "license_url",
+    "alternate_uri_formats",
+    "rdf_uri_prefix",
 }
+#: These contain synonyms with mismatches
+DISCARD_SYNONYMS = {"biogrid", "cath", "zfa"}
 
 
-def get_prefixcommons(force_download: bool = False):
+def get_prefixcommons(force_download: bool = False, force_process: bool = False):
     """Get the Life Science Registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not (force_download or force_process):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=URL, path=RAW_PATH, force=True)
+    download(url=URL, path=RAW_PATH, force=force_download)
     rows = {}
     with RAW_PATH.open() as file:
         lines = iter(file)
@@ -99,6 +109,7 @@ def get_prefixcommons(force_download: bool = False):
 
 def _process_row(line: str):
     cells = line.strip().split("\t")
+    prefix = cells[0]
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
     rv: Dict[str, Any] = {
         key: value.strip()
@@ -114,9 +125,43 @@ def _process_row(line: str):
         if values:
             rv[key] = [value.strip() for value in values.split(",")]
 
-    uri_format = rv.get("uri_format")
+    synonyms = rv.pop("synonyms", None)
+    if not synonyms:
+        pass
+    elif prefix in DISCARD_SYNONYMS:
+        pass
+    else:
+        synonyms_it = [s.strip() for s in synonyms.split(",")]
+        synonyms_it = [
+            synonym
+            for synonym in synonyms_it
+            if synonym.lower() != prefix.lower() and " " not in synonym
+        ]
+        if synonyms_it:
+            rv["synonyms"] = synonyms_it
+
+    license_url = rv.pop("license_url", None)
+    if license_url:
+        rv["license"] = standardize_license(license_url)
+
+    uri_format = rv.pop("uri_format", None)
     if uri_format:
-        rv["uri_format"] = uri_format.replace("$id", "$1")
+        uri_format = uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
+        if uri_format not in {
+            "http://purl.obolibrary.org/obo/$1",
+            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
+        }:
+            rv["uri_format"] = uri_format
+
+    uri_rdf_formats = _get_uri_formats(rv, "rdf_uri_prefix")
+    if uri_rdf_formats:
+        if len(uri_rdf_formats) > 1:
+            logger.warning("got multiple RDF formats for %s", prefix)
+        rv["rdf_uri_format"] = uri_rdf_formats[0]
+
+    alt_uri_formats_clean = _get_uri_formats(rv, "alternate_uri_formats")
+    if alt_uri_formats_clean:
+        rv["alt_uri_formats"] = alt_uri_formats_clean
 
     pattern = rv.get("pattern")
     if pattern:
@@ -126,8 +171,29 @@ def _process_row(line: str):
             pattern = f"{pattern}$"
         rv["pattern"] = pattern
 
-    return cells[0], rv
+    return prefix, rv
+
+
+def _get_uri_formats(rv, key) -> List[str]:
+    uri_formats = rv.pop(key, None)
+    if not uri_formats:
+        return []
+    rv = []
+    for uri_format in uri_formats.split(","):
+        uri_format = uri_format.strip()
+        if not uri_format:
+            continue
+        if "identifiers.org" in uri_format:  # FIXME some non-miriam resources might use this
+            continue
+        if "obofoundry.org" in uri_format:  # FIXME some non-obo resources might use this
+            continue
+        if "obolibrary.org" in uri_format:  # FIXME take this check out
+            continue
+        if "$1" in uri_format or "[?id]" in uri_format:  # FIXME check if these come at the end
+            continue
+        rv.append(f"{uri_format}$1")
+    return rv
 
 
 if __name__ == "__main__":
-    print(len(get_prefixcommons(force_download=True)))  # noqa:T201
+    print(len(get_prefixcommons(force_process=True)))  # noqa:T201

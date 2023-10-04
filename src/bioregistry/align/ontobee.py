@@ -3,7 +3,7 @@
 """Align OntoBee with the Bioregistry."""
 
 import textwrap
-from typing import List
+from typing import Sequence
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.ontobee import get_ontobee
@@ -18,7 +18,7 @@ class OntobeeAligner(Aligner):
     getter = get_ontobee
     curation_header = ("name", "url")
 
-    def get_curation_row(self, external_id, external_entry) -> List[str]:
+    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
             textwrap.shorten(external_entry["name"], 50),
@@ -27,4 +27,4 @@ class OntobeeAligner(Aligner):
 
 
 if __name__ == "__main__":
-    OntobeeAligner.align(dry=False)
+    OntobeeAligner.cli()

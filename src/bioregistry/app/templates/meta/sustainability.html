@@ -104,9 +104,37 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
         The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
         the <a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager</a>.
     </p>
-    <h2>Data Maintenance, Interoperability with other Projects, and Project Governance</h2>
+
+    <h2>Project Longevity</h2>
     <p>
-        Potential stakeholders in the Bioregistry have been interested in questions like:
+        The deployment of the Bioregistry is currently funded by the DARPA Young Faculty Award W911NF2010255
+        grant. Due to its low cost, the Laboratory of Systems Pharmacology at Harvard Medical School has
+        additionally committed discretionary (i.e., not tied to a project) funding to continue running the
+        Bioregistry instance at https://bioregistry.io.
+    </p>
+    <p>
+        The Bioregistry project is also interested in acquiring grants to help ensure its longevity. We give a
+        conservative estimate of around $100-200/year to support domain registration, AWS costs, and
+        personnel time for maintenance. This means that the Bioregistry could cost as little as $1,000
+        to run for 10 years (which is much longer than most scientific databases/websites are able to persist).
+    </p>
+
+    <h3>Mirroring</h3>
+    <p>
+        The Bioregistry can be mirrored following
+        <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html">these instructions</a>.
+    </p>
+
+    <h3>Deploying with Custom Content</h3>
+    <p>
+        The Bioregistry can be deployed using custom content by following
+        <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html#deploying-a-custom-bioregistry">these
+        instructions</a>.
+    </p>
+    
+    <h2>Project Governance</h2>
+    <p>
+        Stakeholders in the Bioregistry have been interested in questions including:
     </p>
     <ul>
         <li>Will the service still be running in 10 years?</li>
@@ -121,16 +149,38 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
             by Identifiers.org?
         </li>
         <li>How should inevitable prefix/namespace collisions be handled?</li>
-        <li>... and many more</li>
     </ul>
     <p>
         These questions do not have easy answers and apply to most databases, software, and web applications in the life
-        sciences. However, we have begun to explicitly codify our
-        <a href="https://github.com/biopragmatics/bioregistry/blob/main/CONTRIBUTING.md">contribution guidelines</a> and
-        <a href="https://github.com/biopragmatics/bioregistry/blob/main/GOVERNANCE.md">governance policies</a> to
-        address these points. If you would like to be part of this discussion and/or development of these policies,
-        please <a href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">
-        join us</a> on the OBO Community Slack workspace's
-        <a href="https://obo-communitygroup.slack.com/archives/C023P0Z304T">#prefixes</a> channel.
+        sciences.
+
+        As first steps towards addressing those, we have written explicit, public, well-defined
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
+                guidelines</a>,
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
+                conduct</a>, and
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
+                governance</a>.
+    </p>
+    <p>
+       If you would like to be part of this discussion and/or development of these policies, you can try the
+       following:
+    </p>
+    <ul>
+        <li>
+            Join the<a href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">
+            OBO Community Slack workspace</a> and participate in discussions on the
+            <a href="https://obo-communitygroup.slack.com/archives/C023P0Z304T">#prefixes</a> channel.
+        </li>
+        <li>
+            Participate in discussion labeled with
+            <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+label%3APolicy">Policy</a> on the Bioregistry's GitHub issue tracker
+        </li>
+    </ul>
+    <h2>Evaluation of FAIR Data Principles</h2>
+    <p>
+        Content negotiation was implemented in <a href="https://github.com/biopragmatics/bioregistry/pull/682">
+        PR #682</a> in order to better comply with FAIR-ness evaluations such as th
+        <a href="https://fair-enough.semanticscience.org">FAIR Enough Evaluation</a>
     </p>
 {% endblock %}

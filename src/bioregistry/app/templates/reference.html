@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ prefix }}:{{ identifier }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ prefix }}:{{ identifier }}{% endblock %}
 
 {% block container %}
     <div class="card">
@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0">
-                        <a href="{{ url_for("ui.resource", prefix=prefix) }}">{{ name }}</a>&nbsp;&nbsp;
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">{{ name }}</a>&nbsp;&nbsp;
                         <i class="fas fa-angle-right"></i>&nbsp;&nbsp;{{ identifier }}
                     </h5>
                 </div>
@@ -23,7 +23,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.reference", prefix=prefix, identifier=identifier, format=key) }}">
+                                   href="{{ fastapi_url_for("get_reference", prefix=prefix, identifier=identifier) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -35,8 +35,8 @@
         <div class="card-body">
             {% if providers %}
                 <a class="btn btn-success btn-lg"
-                   href="{{ url_for("ui.resolve", prefix=prefix, identifier=identifier) }}">
-                    Resolve <code>{{ prefix }}:{{ identifier }}</code> with Default Provider&nbsp;&nbsp;
+                   href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=identifier) }}">
+                    Resolve {{ utils.code_curie(prefix, identifier) }} with Default Provider&nbsp;&nbsp;
                     <i class="fas fa-share-square"></i>
                 </a>
             {% else %}

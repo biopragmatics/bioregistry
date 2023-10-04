@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 41.0
- Last update: 17-March-2022
+ Version: 46.0
+ Last update: 29-June-2023
 
 ----------------------------------------------------------------------------
 
@@ -46,11 +46,11 @@ c) If you want to do the reverse of what is described in this document, ie
 establishing web links to the Cellosaurus, you can do so by using the
 following Db_URL:
 
- https://web.expasy.org/cellosaurus/%s
+ https://www.cellosaurus.org/%s
 
 where %s is the accession number of the cell line. Example:
 
- https://web.expasy.org/cellosaurus/CVCL_0033
+ https://www.cellosaurus.org/CVCL_0033
 
 The format of the various lines that include cross-references are described
 here:
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CBA|CCLE|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|eagle-i|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TCB|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -66,6 +66,14 @@ Format: RX   Resource_abbrev=%s;
 Where : Resource_abbrev is one of: CelloPub|DOI|Patent|PubMed
 
 3) CC lines (except "sequence variation")
+
+Topic:  Cell type
+Format: CC   Cell type: Cell_type_name; Resource_abbrev=%s.
+Where : Resource_abbrev is: CL
+
+Topic:  Derived from site
+Format: CC   Derived from site: Site_flag; Site_term; Resource_abbrev=%s[+Resource_abbrev=%s].
+Where : Resource_abbrev is: UBERON
 
 Topic:  Knockout cell
 Format: CC   Knockout cell: Method=Method_name; Resource_abbrev; %s; Gene/protein_name.
@@ -85,13 +93,13 @@ Where : Resource_abbrev is one of: FlyBase_Gene|HGNC|MGI|RGD|UniProtKB|VGNC
 
 Topic:  Transformant
 Format: CC   Transformant: Resource_abbrev; %s; Transformant_name.
-Where : Resource_abbrev is one of: ChEBI|NCBI_TaxID|NCIt|PubChem
+Where : Resource_abbrev is one of: ChEBI|DrugBank|NCBI_TaxID|NCIt|PubChem
 
 4) CC lines "Sequence variation"
 
 The "Sequence variation" CC topic has 4 subtopics:
 
-Format: CC   Sequence variation: Gene amplification; Resource_abbrev; %s; Gene_name; Duplication|Triplication; Zygosity=Zyg_value [; Note=Free_text] (Sources).
+Format: CC   Sequence variation: Gene amplification; Resource_abbrev; %s; Gene_name; Amplification_type; Zygosity=Zyg_value [; Note=Free_text] (Sources).
 Format: CC   Sequence variation: Gene deletion; Resource_abbrev; %s; Gene_name; Zygosity=Zyg_value [; Note=Free_text] (Sources).
 Format: CC   Sequence variation: Gene fusion; Resource_abbrev; %s; Gene_name + Resource_abbrev; %s; Gene_name; Names(s)=Name1[, Name2][, NameX] [; Note=Free_text] (Sources).
 Format: CC   Sequence variation: Mutation; Resource_abbrev; %s; Gene_name; Mutation_type; Mutation_description [; ClinVar=%s|dbSNP=%s]; Zygosity=Zyg_value [; Note=Free_text] (Sources).
@@ -99,7 +107,8 @@ Format: CC   Sequence variation: Mutation; Resource_abbrev; %s; Gene_name; Mutat
 Where:
 
 Resource_abbrev is one of: HGNC|MGI|RGD|UniProtKB|VGNC
-Mutation_type is one of: Simple|Simple_corrected|Simple_edited|Repeat_expansion|Repeat_expansion_corrected|Unexplicit|Unexplicit_corrected|None_reported
+Amplification_type is one of: Duplication|Triplication|Quadruplication|Extensive
+Mutation_type is one of: Simple|Simple_corrected|Simple_edited|Repeat_expansion|Repeat_expansion_corrected|Repeat_expansion_edited|Unexplicit|Unexplicit_corrected|Unexplicit_edited|None_reported
 Mutation_description is: the description of the mutation using, when possible the HGVS nomenclature.
 Zyg_value is one of: Hemizygous|Heteroplasmic|Heterozygous|Homoplasmic|Homozygous|Mosaic|Unspecified|-
 
@@ -127,7 +136,7 @@ Name  : Abcam cell line products
 Server: https://www.abcam.com/nav/cell-lines-and-lysates
 Db_URL: https://www.abcam.com/%s.html
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: ABCD
 Name  : AntiBodies Chemically Defined database
@@ -141,7 +150,7 @@ Name  : Applied Biological Materials cell line products
 Server: https://www.abmgood.com/Cell-Biology.html
 Db_URL: https://www.abmgood.com/catalogsearch/result/?cat=&q=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: AddexBio
 Name  : AddexBio cell line products
@@ -150,12 +159,12 @@ Db_URL: https://www.addexbio.com/productdetail?pid=%s
         Note: %s is the value after the slash "/" in the DR line.
         Example: for "DR   AddexBio; T0016001/4918": %s=4918
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: ArrayExpress
 Name  : ArrayExpress Archive of Functional Genomics
-Server: https://www.ebi.ac.uk/arrayexpress/
-Db_URL: https://www.ebi.ac.uk/arrayexpress/experiments/%s/
+Server: https://www.ebi.ac.uk/biostudies/arrayexpress
+Db_URL: https://www.ebi.ac.uk/biostudies/ArrayExpress/studies/%s
 Term. : No
 Cat   : Gene expression databases
 //
@@ -164,7 +173,7 @@ Name  : American Type Culture Collection
 Server: https://www.atcc.org/
 Db_URL: https://www.atcc.org/Products/%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: BCGO
 Name  : Beta Cell Genomics Ontology
@@ -178,21 +187,21 @@ Name  : Taiwan Bioresource Collection and Research Center
 Server: https://catalog.bcrc.firdi.org.tw/
 Db_URL: https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: BCRJ
 Name  : Banco de Celulas do Rio de Janeiro
-Server: http://bcrj.org.br/celula/bcrj
+Server: https://bcrj.org.br/pesquisa/
 Db_URL: http://bcrj.org.br/celula/%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: BEI_Resources
 Name  : BEI Resources
 Server: https://www.beiresources.org/Home.aspx
 Db_URL: https://www.beiresources.org/Catalog/cellBanks/%s.aspx
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: BioSample
 Name  : BioSample database
@@ -216,26 +225,26 @@ Db_URL: https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=htt
 Term. : No
 Cat   : Anatomy/cell type resources
 //
+Abbrev: CancerTools
+Name  : CancerTools.org
+Server: https://www.cancertools.org/cell-lines
+Db_URL: https://www.cancertools.org/cell-lines/%s
+Term. : No
+Cat   : Cell line collections (Providers)
+//
 Abbrev: CBA
 Name  : CellBank Australia
-Server: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
-Db_URL: http://www.cellbankaustralia.com/%s
+Server: https://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
+Db_URL: https://www.cellbankaustralia.com/%s
 Term. : No
-Cat   : Cell line collections
-//
-Abbrev: CCLE
-Name  : Cancer Cell Line Encyclopedia
-Server: https://portals.broadinstitute.org/ccle
-Db_URL: https://portals.broadinstitute.org/ccle/page?cell_line=%s
-Term. : No
-Cat   : Cell line databases/resources
+Cat   : Cell line collections (Providers)
 //
 Abbrev: CCLV
 Name  : Collection of Cell Lines in Veterinary Medicine
 Server: https://www.fli.de/en/services/collection-of-cell-lines-in-veterinary-medicine-cclv/
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: CCRID
 Name  : Chinese Cell Resource Information Database
@@ -248,14 +257,14 @@ Abbrev: CCTCC
 Name  : China Center for Type Culture Collection
 Server: http://www.cctcc.org/
 Db_URL: None
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Cell_Biolabs
 Name  : Cell Biolabs cell line products
 Server: https://www.cellbiolabs.com
 Db_URL: https://www.cellbiolabs.com/search?keywords=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Cell_Model_Passport
 Name  : Sanger Cell Model Passports
@@ -266,15 +275,15 @@ Cat   : Cell line databases/resources
 //
 Abbrev: CelloPub
 Name  : Cellosaurus Publication
-Server: https://web.expasy.org/cellosaurus/
-Db_URL: https://web.expasy.org/cellosaurus/cellopub/%s
+Server: https://www.cellosaurus.org/
+Db_URL: https://www.cellosaurus.org/cellopub/%s
 Term. : No
 Cat   : Reference resources
 //
 Abbrev: Cellosaurus
 Name  : Cellosaurus - a knowledge resource on cell lines
-Server: https://web.expasy.org/cellosaurus/
-Db_URL: https://web.expasy.org/cellosaurus/%s
+Server: https://www.cellosaurus.org/
+Db_URL: https://www.cellosaurus.org/%s
 Term. : No
 Cat   : Cell line databases/resources
 //
@@ -339,11 +348,9 @@ Cat   : Cell line databases/resources
 Abbrev: CLS
 Name  : Cell Lines Service
 Server: https://cls.shop/
-Db_URL: https://www.clsgmbh.de/%s.html
-        Note: %s is the value after the slash "/" in the DR line.
-        Example: for "DR   CLS; 400294/p2677_MSC-P5": %s=p2677_MSC-P5
+Db_URL: https://cls.shop/%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: ColonAtlas
 Name  : Colorectal Cancer Atlas
@@ -357,7 +364,7 @@ Name  : Coriell Institute Biorepositories
 Server: https://catalog.coriell.org
 Db_URL: https://catalog.coriell.org/0/Sections/Search/Sample_Detail.aspx?Ref=%s&Product=CC
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Cosmic
 Name  : Catalogue of somatic mutations in cancer
@@ -372,6 +379,13 @@ Server: https://cancer.sanger.ac.uk/cell_lines
 Db_URL: https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=%s
 Term. : No
 Cat   : Cell line databases/resources
+//
+Abbrev: dbGAP
+Name  : Database of Genotypes and Phenotypes
+Server: https://www.ncbi.nlm.nih.gov/gap/
+Db_URL: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=%s
+Term. : No
+Cat   : Sequence databases
 //
 Abbrev: dbMHC
 Name  : dbMHC database
@@ -399,14 +413,14 @@ Name  : Drosophila Genomics Resource Center
 Server: https://dgrc.bio.indiana.edu/cells/Catalog
 Db_URL: https://dgrc.bio.indiana.edu/product/View?product=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: DiscoverX
 Name  : DiscoverX cell line products
 Server: https://www.discoverx.com/products-applications/cell-lines
 Db_URL: https://www.discoverx.com/searchproduct?searchtext=%s&searchmode=exact
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: DOI
 Name  : Digital Object Identifier
@@ -415,13 +429,6 @@ Db_URL: https://dx.doi.org/%s
 Term. : No
 Cat   : Reference resources
 //
-Abbrev: DSMZ
-Name  : Deutsche Sammlung von Mikroorganismen und Zellkulturen
-Server: https://www.dsmz.de/collection/catalogue/human-and-animal-cell-lines/catalogue
-Db_URL: https://www.dsmz.de/collection/catalogue/details/culture/%s
-Term. : No
-Cat   : Cell line collections
-//
 Abbrev: DrugBank
 Name  : DrugBank database
 Server: https://go.drugbank.com/
@@ -429,19 +436,26 @@ Db_URL: https://go.drugbank.com/drugs/%s
 Term. : Yes
 Cat   : Chemistry resources
 //
-Abbrev: eagle-i
-Name  : eagle-i resource discovery tool
-Server: https://www.eagle-i.net/
-Db_URL: https://%s
+Abbrev: DSMZ
+Name  : Deutsche Sammlung von Mikroorganismen und Zellkulturen
+Server: https://www.dsmz.de/collection/catalogue/human-and-animal-cell-lines/catalogue
+Db_URL: https://www.dsmz.de/collection/catalogue/details/culture/%s
 Term. : No
-Cat   : Biological sample resources
+Cat   : Cell line collections (Providers)
+//
+Abbrev: DSMZCellDive
+Name  : DSMZ Tools for Diving into Cell Line Data
+Server: https://celldive.dsmz.de/
+Db_URL: https://celldive.dsmz.de/cellline/%s
+Term. : No
+Cat   : Cell line databases/resources
 //
 Abbrev: EBiSC
 Name  : European Bank for induced pluripotent Stem Cells
 Server: https://www.ebisc.org
 Db_URL: https://cells.ebisc.org/%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: ECACC
 Name  : European Collection of Cell Cultures
@@ -459,7 +473,7 @@ Db_URL: https://www.phe-culturecollections.org.uk/products/celllines/generalcell
         For cell lines with a CC 'Part of' with "Motor Neurone Disease (MND) collection" use:
         https://www.phe-culturecollections.org.uk/products/celllines/diseaseandnormalcohortcollections/detail.jsp?refId=%s&collection=ecacc_mnd
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: EFO
 Name  : Experimental Factor Ontology
@@ -494,7 +508,7 @@ Name  : FujiFilm Cellular Dynamics, Inc
 Server: https://www.fujifilmcdi.com/cirm-ipsc-products/
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: FCS-free
 Name  : Fetal Calf Serum-Free Database
@@ -540,24 +554,24 @@ Cat   : Organism-specific databases
 //
 Abbrev: HipSci
 Name  : Human Induced Pluripotent Stem Cells Initiative
-Server: http://www.hipsci.org
-Db_URL: http://www.hipsci.org/lines/#/lines/%s
+Server: https://www.hipsci.org
+Db_URL: https://www.hipsci.org/lines/#/lines/%s
 Term. : No
 Cat   : Cell line databases/resources
 //
 Abbrev: HIVReagentProgram
 Name  : NIH HIV Reagent Program
-Server: https://www.hivreagentprogram.org/Home.aspx
+Server: https://www.hivreagentprogram.org/
 Db_URL: https://www.hivreagentprogram.org/Catalog/HRPCellLines/%s.aspx
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Horizon_Discovery
 Name  : Horizon Discovery cell line collection
 Server: https://horizondiscovery.com/
 Db_URL: https://horizondiscovery.com/en/search?searchterm=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: hPSCreg
 Name  : Human Pluripotent Stem Cell Registry
@@ -578,14 +592,21 @@ Name  : Iranian Biological Research Center cell line collection
 Server: http://www.en.ibrc.ir/
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: ICLC
 Name  : Interlab Cell Line Collection
 Server: http://www.iclc.it
 Db_URL: http://www.iclc.it/details/det_list.php?line_id=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
+//
+Abbrev: ICLDB
+Name  : Insect Cell Lines DataBase
+Server: https://entomology.ca.uky.edu/aginsectcellsdatabase
+Db_URL: https://entomology.ca.uky.edu/content/%s
+Term. : No
+Cat   : Cell line databases/resources
 //
 Abbrev: IGRhCellID
 Name  : Integrated Genomic Resources of human Cell Lines for Identification
@@ -613,19 +634,19 @@ Name  : Imanis Life Sciences cell line products
 Server: https://www.imanislife.com/collections/cell-lines/
 Db_URL: https://www.imanislife.com/?s=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Innoprot
 Name  : Innoprot cell line products
 Server: https://innoprot.com/
 Db_URL: https://innoprot.com/?s=%s&lang=en
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: IPD-IMGT/HLA
 Name  : IPD-IMGT/HLA database
 Server: https://www.ebi.ac.uk/ipd/imgt/hla/
-Db_URL: https://www.ebi.ac.uk/cgi-bin/imgt/hla/fetch_cell.cgi?%s
+Db_URL: https://www.ebi.ac.uk/ipd/imgt/hla/cells/cell/?cellid=%s
 Term. : No
 Cat   : Cell line databases/resources
 //
@@ -641,42 +662,42 @@ Name  : Istituto Zooprofilattico Sperimentale della Lombardia e dell'Emilia Roma
 Server: http://www.ibvr.org/Services/CellCultures.aspx
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: JCRB
 Name  : Japanese Collection of Research Bioresources Cell Bank
 Server: http://cellbank.nibiohn.go.jp/english/
 Db_URL: http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: KCB
 Name  : Kunming Cell Bank of Type Culture Collection
 Server: http://www.kmcellbank.com/
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: KCLB
 Name  : Korean Cell Line Bank
-Server: https://cellbank.snu.ac.kr/main/index.html
-Db_URL: https://cellbank.snu.ac.kr/english/sub/catalog.php?page=detail&CatNo=59&strQ=%s&submit1=Find+it
+Server: https://cellbank.snu.ac.kr/eng/
+Db_URL: https://cellbank.snu.ac.kr/main/tmpl/sub_main.php?m_cd=6&m_id=0201&strQ=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Kerafast
 Name  : Kerafast cell lines
 Server: https://www.kerafast.com/
 Db_URL: https://www.kerafast.com/Search?SearchTerm=&quot;%s&quot;
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: KYinno
 Name  : KYinno cell lines
 Server: https://www.kyinno.com/
 Db_URL: https://innopedia.kyinno.com/DataBase/CellLine.aspx?file=%s.pdf
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: LiGeA
 Name  : Cancer cell LInes GEne fusions portAl
@@ -746,21 +767,21 @@ Name  : Merck Millipore (EMD Millipore)
 Server: https://www.merckmillipore.com/
 Db_URL: https://www.merckmillipore.com/catalogue/item/%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: MMRRC
 Name  : Mutant Mouse Resource & Research Centers
 Server: https://www.mmrrc.org/
 Db_URL: https://www.mmrrc.org/catalog/getSDS.php?mmrrc_id=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: NCBI_Iran
 Name  : National Cell Bank of Iran
-Server: http://en.pasteur.ac.ir/pages.aspx?id=823
+Server: https://en.pasteur.ac.ir/Department%20of%20Cell%20Bank
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: NCBI_TaxID
 Name  : NCBI taxonomy database
@@ -774,7 +795,7 @@ Name  : NCI Development Therapeutics Program
 Server: https://dtp.cancer.gov/repositories/
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: NCIt
 Name  : NCI thesaurus
@@ -788,21 +809,28 @@ Name  : NINDS Human Cell and Data Repository
 Server: https://stemcells.nindsgenetics.org
 Db_URL: https://stemcells.nindsgenetics.org?line=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
+//
+Abbrev: NIHhESC
+Name  : NIH Human Embryonic Stem Cell Registry
+Server: https://grants.nih.gov/stem_cells/registry/current.htm
+Db_URL: https://grants.nih.gov/stem_cells/registry/current.htm?ID=%s
+Term. : No
+Cat   : Cell line databases/resources
 //
 Abbrev: NISES
 Name  : National Institute of Sericultural and Entomological Science Cell Database
 Server: https://web.archive.org/web/20160709065305/https://www.gene.affrc.go.jp/ex-nises/NISESCells/CellindexE1.html
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: NRFC
 Name  : National Repository of Fish Cell Line
 Server: https://mail.nbfgr.res.in/nrfc/
-Db_URL: https://mail.nbfgr.res.in/nrfc/celldetail.php?id=%s
+Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: ORDO
 Name  : Orphanet Rare Disease Ontology
@@ -823,7 +851,7 @@ Name  : PerkinElmer cell line collection
 Server: https://www.perkinelmer.com/
 Db_URL: https://www.perkinelmer.com/searchresult?searchName=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: PharmacoDB
 Name  : PharmacoDB integrative pharmacogenomic database
@@ -853,6 +881,13 @@ Db_URL: https://pubchem.ncbi.nlm.nih.gov/compound/%s
 Term. : Yes
 Cat   : Chemistry resources
 //
+Abbrev: PubChem_Cell_line
+Name  : PubChem compound database; cell line pages
+Server: https://pubchem.ncbi.nlm.nih.gov
+Db_URL: https://pubchem.ncbi.nlm.nih.gov/cell/%s
+Term. : No
+Cat   : Chemistry resources
+//
 Abbrev: PubMed
 Name  : PubMed
 Server: https://www.ncbi.nlm.nih.gov/pubmed
@@ -865,7 +900,7 @@ Name  : RIKEN Bioresource Center Cell Bank
 Server: https://cell.brc.riken.jp/en/rcb
 Db_URL: http://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=%s&lang=En
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: RGD
 Name  : Rat Genome Database
@@ -879,14 +914,14 @@ Name  : Rockland cell line products
 Server: https://www.rockland.com/categories/cell-lines-and-lysates/
 Db_URL: https://www.rockland.com/search/?searchString=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: RSCB
 Name  : Royan Stem Cell Bank
 Server: https://web.archive.org/web/20201001144644/http://www.royaninstitute.org/cmsen/index.php?option=com_content&task=view&id=205&Itemid=40
 Db_URL: None
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: SKIP
 Name  : Stemcell Knowledge and Information Portal
@@ -909,13 +944,6 @@ Db_URL: https://sumlineknowledgebase.com/?page_id=%s
 Term. : No
 Cat   : Cell line databases/resources
 //
-Abbrev: TCB
-Name  : Tick Cell Biobank
-Server: https://www.pirbright.ac.uk/tick-cell-lines-views-page
-Db_URL: https://www.pirbright.ac.uk/node/%s
-Term. : No
-Cat   : Cell line collections
-//
 Abbrev: TKG
 Name  : Tohoku University cell line catalog
 Server: http://www2.idac.tohoku.ac.jp/dep/ccr/
@@ -923,14 +951,14 @@ Db_URL: http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvo10%n/%s.html
         Note: n% is the second digit of the cell line AC and %s is the cell line AC without the 'TKG'
         Example: for "DR   TKG; TKG 0377": %n=3 %s=0377
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: TNGB
 Name  : Telethon Network of Genetic Biobanks
 Server: http://biobanknetwork.telethon.it/
 Db_URL: http://biobanknetwork.telethon.it/Sample/View?sampleId=%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: TOKU-E
 Name  : TOKU-E Cell-culture Database
@@ -949,7 +977,7 @@ Cat   : Anatomy/cell type resources
 Abbrev: UniProtKB
 Name  : UniProt knowledgebase
 Server  https://www.uniprot.org
-Db_URL: https://www.uniprot.org/uniprot/%s
+Db_URL: https://www.uniprot.org/uniprotkb/%s/entry
 Term. : No
 Cat   : Sequence databases
 //
@@ -965,7 +993,7 @@ Name  : WiCell Research Institute Cell Collection
 Server: https://www.wicell.org
 Db_URL: https://www.wicell.org/home/stem-cells/catalog-of-stem-cell-lines/%s.cmsx?closable=true
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //
 Abbrev: Wikidata
 Name  : Wikidata
@@ -979,5 +1007,5 @@ Name  : Ximbio reagents online portal
 Server: https://ximbio.com
 Db_URL: https://ximbio.com/reagent/%s
 Term. : No
-Cat   : Cell line collections
+Cat   : Cell line collections (Providers)
 //

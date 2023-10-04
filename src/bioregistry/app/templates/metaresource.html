@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ name }}{% endblock %}
 
 {% block container %}
     <div class="card">
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("ui.metaresources") }}">Metaregistry</a> <i
+                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.metaresources") }}">Metaregistry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}</h5>
                 </div>
                 <div class="col-4 text-right">
@@ -21,7 +21,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.metaresource", metaprefix=metaprefix, format=key) }}">
+                                   href="{{ fastapi_url_for("get_metaresource", metaprefix=metaprefix) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -32,12 +32,21 @@
         </div>
         <div class="card-body">
             {% if entry.logo_url %}
-                <img style="max-height: 100px;" src="{{ entry.logo_url }}"/>
+                <img style="max-height: 100px; float: right;" src="{{ entry.logo_url }}" alt="Logo for {{ name }}"/>
             {% endif %}
             <p>{{ description }}</p>
             <dl>
                 <dt>Metaprefix</dt>
                 <dd><code>{{ metaprefix }}</code></dd>
+                {% if entry.bioregistry_prefix and metaprefix != entry.bioregistry_prefix %}
+                <dt>Bioregistry Prefix</dt>
+                <dd>
+                    For this registry, the metaprefix (i.e., the key for the registry)
+                    is not the same as the Bioregistry prefix. Follow this link for additional
+                    information.
+                </dd>
+                <dd>{{ utils.render_prefix(entry.bioregistry_prefix) }}</dd>
+                {% endif %}
                 <dt>Links</dt>
                 <dd>
                     {% if homepage %}
@@ -47,6 +56,13 @@
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
+                    {% if entry.governance.issue_tracker %}
+                        <a class="badge badge-pill badge-light" href="{{ entry.governance.issue_tracker }}">
+                            Issue Tracker <i class="fas fa-check"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-light text-muted">No Issue Tracker</span>
+                    {% endif %}
                     {% if entry.download %}
                         <a class="badge badge-pill badge-light" href="{{ entry.download }}">
                             Download <i class="fas fa-download"></i>
@@ -54,6 +70,33 @@
                     {% else %}
                         <span class="badge badge-pill badge-light text-muted">No Download Available</span>
                     {% endif %}
+
+                    <a class="badge badge-pill badge-light"
+                       title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
+                       href="{{ fastapi_url_for("get_metaresource_mappings", metaprefix=entry.prefix) }}">
+                        Download Prefix Mappings
+                    </a>
+                    <a class="badge badge-pill badge-light"
+                       title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
+                       href="{{ fastapi_url_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
+                        Download Slim Registry
+                    </a>
+                    <span class="dropdown">
+                        <span class="badge badge-pill badge-light" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                            External Mappings <i class="bi bi-caret-down-fill"></i>
+                        </span>
+                        <span class="dropdown-menu">
+                            {% for target, target_registry in manager.metaregistry.items() %}
+                            {% if target != entry.prefix and target != "bioregistry" %}
+                            <a class="dropdown-item"
+                               href="{{ fastapi_url_for("get_metaresource_external_mappings", metaprefix=entry.prefix, target=target) }}">
+                                {{ target_registry.get_short_name() }}
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        </span>
+                    </span>
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>

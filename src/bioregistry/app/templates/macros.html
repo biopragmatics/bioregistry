@@ -1,3 +1,68 @@
+{% macro code_curie(prefix, identifier) -%}
+    <code>{{ curie_to_str(prefix, identifier) }}</code>
+{% endmacro %}
+
+{% macro link_curie(prefix, identifier, text) -%}
+    <a href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=identifier) }}">{{ text }}</a>
+{% endmacro %}
+
+{% macro link_code_curie(prefix, identifier) -%}
+    {{ link_curie(prefix, identifier, code_curie(prefix, identifier)) }}
+{% endmacro %}
+
+{% macro render_prefix(prefix, classes="") -%}
+    <a class="{{ classes }}" href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
+        <code>{{ prefix }}</code>
+    </a>
+{% endmacro %}
+
+{% macro render_metaprefix(metaprefix) -%}
+    <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=metaprefix) }}">
+        <code>{{ metaprefix }}</code>
+    </a>
+{% endmacro %}
+
+{% macro render_publication(publication) -%}
+    {% if publication.year %}
+        <span class="badge badge-info">{{ publication.year }}</span>
+    {% endif %}
+    <a href="{{ publication.get_url() }}">{{ publication.title or publication.get_url() }}</a>
+{% endmacro %}
+
+{% macro render_reference(reference) -%}
+    {% if reference.startswith("https://twitter.com") %}
+        <span class="badge badge-info">Tweet</span>
+    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
+        <span class="badge badge-info">GitHub Issue</span>
+    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
+        <span class="badge badge-info">GitHub PR</span>
+    {% elif reference.startswith("https://doi.org/") %}
+        <span class="badge badge-info">DOI</span>
+    {% else %}
+        <span class="badge badge-info">Other</span>
+    {% endif %}
+    <a href="{{ reference }}">{{ reference }}</a>
+{% endmacro %}
+
+{% macro render_resource_warnings(resource) -%}
+    {% if resource.deprecated %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Deprecated <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% elif resource.provides %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("metaregistry_ui.resource", prefix=resource.provides) }}"
+           title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
+            Provider <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% endif %}
+    {% if resource.proprietary %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Proprietary <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% endif %}
+{% endmacro %}
+
 {% macro render_provider_table(prefix, identifier, providers) -%}
     {% if providers %}
         <table class="table table-hover table-striped">
@@ -10,6 +75,7 @@
             </thead>
             <tbody>
             {% for provider in providers %}
+                {% if provider.name %}
                 <tr>
                     <td>
                         {% if provider.homepage %}
@@ -23,6 +89,7 @@
                         <a href="{{ provider.uri }}">{{ provider.uri }}</a>
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>
@@ -96,7 +163,7 @@
                         </p>
                         <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
 &gt;&gt;&gt; br.get_contact_github("{{ prefix }}")
-'{{ author.github }}''</code></pre>
+'{{ author.github }}'</code></pre>
                     {% endif %}
                     {% if author.orcid %}
                         <p>

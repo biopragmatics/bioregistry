@@ -16,38 +16,38 @@
 {% block content %}
     <h2>API Usage</h2>
     <p>
-        The Bioregistry web application is built on <a href="https://flask.palletsprojects.com">Flask</a>
+        The {{ config.METAREGISTRY_TITLE }} web application is built on <a href="https://flask.palletsprojects.com">Flask</a>
         as a thin wrapper around the <a href="https://github.com/biopragmatics/bioregistry"><code>bioregistry</code></a>
         Python package. It exposes several endpoints for accessing the registry, metaregistry, collections, and search
         functionality for which <a href="https://swagger.io/">Swagger</a> API documentation is automatically generated
-        by <a href="https://github.com/flasgger/flasgger">Flasgger</a>.
+        by <a href="https://fastapi.tiangolo.com/">FastAPI</a>.
     </p>
     <p>
-        See the remaining Bioregistry <a href="{{ url_for('flasgger.apidocs') }}"><i class="fas fa-book"></i> API
-        documentation</a> or follow some of these examples using Python:
+        See the remaining {{ config.METAREGISTRY_TITLE }} <a href="/docs">
+        <i class="fas fa-book"></i> API documentation</a> or follow some of these examples using Python:
     </p>
     <h3>Registry</h3>
     <p>
         Get the whole registry:
     </p>
     <pre><code class="language-python">import requests
-res = requests.get('https://bioregistry.io/api/registry').json()</code></pre>
+res = requests.get('{{ manager.base_url }}/api/registry').json()</code></pre>
     <p>
-        Just get metadata for ChEBI:
+        Just get metadata for {{ resource.get_name() }}:
     </p>
     <pre><code class="language-python">import requests
-res = requests.get('https://bioregistry.io/api/registry/chebi').json()</code></pre>
+res = requests.get('{{ manager.base_url }}/api/registry/{{ resource.prefix }}').json()</code></pre>
     <p>
-        Get metadata about ChEBI entry 138488 (alsterpaullone):
+        Get metadata about {{ resource.get_name() }} entry {{ resource.get_example() }}:
     </p>
     <pre><code
-            class="language-python">res = requests.get('https://bioregistry.io/api/reference/chebi:138488').json()</code></pre>
+            class="language-python">res = requests.get('{{ manager.base_url }}/api/reference/{{ resource.prefix }}:{{ resource.get_example() }}').json()</code></pre>
     <p>
-        Search prefixes containing <code>che</code>:
+        Search prefixes containing <code>{{ resource.prefix[:2] }}</code>:
     </p>
     <pre><code class="language-python">res = requests.get(
-    'https://bioregistry.io/api/search',
-    params={'q': 'che'},
+    '{{ manager.base_url }}/api/search',
+    params={'q': '{{ resource.prefix[:2] }}'},
 ).json()</code></pre>
     {#
     <h3>Metaregistry</h3>
@@ -55,6 +55,7 @@ res = requests.get('https://bioregistry.io/api/registry/chebi').json()</code></p
     <h3>Collections</h3>
     <p>TODO</p>
     #}
+    {% if config.METAREGISTRY_FIRST_PARTY %}
     <h2>Python Package Usage</h2>
     <p>
         The Python source code can be found at
@@ -116,4 +117,5 @@ $ bioregistry web</code></pre>
         see the dockerfile in <a href="https://github.com/biopragmatics/bioregistry-docker">
         <i class="fab fa-github"></i> biopragmatics/bioregistry-docker</a> for inspiration.
     </p>
+    {% endif %}
 {% endblock %}

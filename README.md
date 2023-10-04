@@ -57,7 +57,7 @@ Aggregated data are redistributed under their original licenses.
 
 Contributions are both welcomed and encouraged. Contribution guidelines for new
 prefix requests, record edits, record removals, and code updates are available
-in [CONTRIBUTING.md](docs/CONTRIBUTING.md). 
+in [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 The most simple contribution is to submit an issue:
 
@@ -84,12 +84,11 @@ whose memberships and duties are described in the
 
 ### 🫀 Health Report
 
-[![Health Report](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml)
-
 The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
-it checks that the homepages are still available and that each provider URL is still able to resolve. The
-tests fail if even a single metadata is out of place, so don't be frightened that this badge is almost always
-red.
+it checks that the homepages are still available and that each provider URL is still able to resolve.
+
+It has a dedicated [dashboard](https://biopragmatics.github.io/bioregistry/health) that is not part of the main
+Bioregistry site.
 
 ### ♻️ Update
 
@@ -105,7 +104,7 @@ If you want to manually update the database, run the following:
 $ tox -e update
 ```
 
-Make sure that you have valid environment variables or `pystow` configurations 
+Make sure that you have valid environment variables or `pystow` configurations
 for `BIOPORTAL_API_KEY`, `ECOPORTAL_API_KEY`, `AGROPORTAL_API_KEY`,
 `FAIRSHARING_LOGIN`, and `FAIRSHARING_PASSWORD`.
 
@@ -125,7 +124,7 @@ $ cd bioregistry
 $ pip install --editable .
 ```
 
-Build the docs locally with `tox -e ldocs` then view by opening
+Build the docs locally with `tox -e docs` then view by opening
 `docs/build/html/index.html`.
 
 ## 💪 Usage
@@ -144,7 +143,7 @@ assert 'ncbitaxon' == normalize_prefix('ncbitaxon')
 # This works for uppercased prefixes, like:
 assert 'chebi' == normalize_prefix("CHEBI")
 
-# This works for mixed case prefies like
+# This works for mixed case prefixes like
 assert 'fbbt' == normalize_prefix("FBbt")
 
 # This works for synonym prefixes, like:
@@ -251,19 +250,6 @@ assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/
 assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
 ```
 
-You can add to (or override) the default prefix map from the Bioregistry by
-passing a dictionary with the `prefix_map` keyword:
-
-```python
-from bioregistry import curie_from_iri, parse_iri
-
-prefix_map = {
-   "myprefix": "https://example.org/myprefix/"
-}
-assert ('myprefix', '1234') == parse_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
-assert 'myprefix:24867' == curie_from_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
-```
-
 ### Generating IRIs
 
 You can generate an IRI from either a CURIE or a pre-parsed CURIE
@@ -294,7 +280,7 @@ priority and when OBO PURLs can't be generated, default to something else:
 from bioregistry import get_iri
 
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
+assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867'
 assert get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
 ```
 
@@ -342,8 +328,8 @@ assert br.get_default_iri('chebi', '24867') == 'https://www.ebi.ac.uk/chebi/sear
 assert br.get_obofoundry_iri('chebi', '24867') == 'http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # OLS IRI
-assert br.get_ols_iri('chebi', '24867') == \
-    'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
+assert br.get_ols_iri('chebi', '24867') ==
+       'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # Bioportal IRI
 assert br.get_bioportal_iri('chebi', '24867') == \
@@ -373,7 +359,7 @@ prefix_map = get_prefix_map()
 
 # Prioritize OBO prefixes over bioregistry
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-prefix_map = get_prefix_map(priority=priority)
+prefix_map = get_prefix_map(uri_prefix_priority=priority)
 
 # Provide custom remapping that doesn't have prioritization logic
 remapping = {"chebi": "CHEBI"}
@@ -429,7 +415,7 @@ $ bioregistry web
 ```
 
 to run a web app that functions like Identifiers.org, but backed by the Bioregistry.
-A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at 
+A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at
 https://bioregistry.io.
 
 ## 👋 Attribution
@@ -460,8 +446,33 @@ It looks like this: [![Powered by the Bioregistry](https://img.shields.io/static
 
 ### 📖 Citation
 
-Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
-Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
+> [Unifying the identification of biomedical entities with the Bioregistry](https://bioregistry.io/doi:10.1038/s41597-022-01807-3)
+> <br />Hoyt, C. T., Balk, M., Callahan, T. J., Domingo-Fernandez, D., Haendel, M. A., Hegde, H. B., Himmelstein, D. S., Karis, K., Kunze, J., Lubiana, T., Matentzoglu, N., McMurry, J., Moxon, S., Mungall, C. J., Rutz, A., Unni, D. R., Willighagen, E., Winston, D., and Gyori, B. M. (2022)
+> <br />*Nature Scientific Data*, s41597-022-01807-3
+
+```bibtex
+@article{Hoyt2022Bioregistry,
+    author = {Hoyt, Charles Tapley and Balk, Meghan and Callahan, Tiffany J and Domingo-Fern{\'{a}}ndez, Daniel and Haendel, Melissa A and Hegde, Harshad B and Himmelstein, Daniel S and Karis, Klas and Kunze, John and Lubiana, Tiago and Matentzoglu, Nicolas and McMurry, Julie and Moxon, Sierra and Mungall, Christopher J and Rutz, Adriano and Unni, Deepak R and Willighagen, Egon and Winston, Donald and Gyori, Benjamin M},
+    doi = {10.1038/s41597-022-01807-3},
+    issn = {2052-4463},
+    journal = {Sci. Data},
+    number = {1},
+    pages = {714},
+    title = {{Unifying the identification of biomedical entities with the Bioregistry}},
+    url = {https://doi.org/10.1038/s41597-022-01807-3},
+    volume = {9},
+    year = {2022}
+}
+```
+
+Talks on the Bioregistry:
+
+- [Future Curation in the Bioregistry](https://bit.ly/wpci2022-bioregistry-maintenance) (WPCI, December 2022)
+- [The Bioregistry - Governance and Review Team](https://bit.ly/wpci2022-bioregistry-governance) (WPCI, December 2022)
+- [Development, Maintenance, and Expansion of the Bioregistry](https://bit.ly/sorger-lab-bioregistry-2022)
+  (Sorger Lab Meeting, October 2022)
+- [The Bioregistry, CURIEs, and OBO Community Health](https://bit.ly/icbo2022-cth) (ICBO 2022 (September))
+- [Introduction to the Bioregistry](https://bit.ly/bioregistry-short-talk) (Sorger Lab Meeting, July 2021)
 
 ### 🎁 Support
 

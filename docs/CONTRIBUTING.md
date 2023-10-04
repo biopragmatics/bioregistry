@@ -61,7 +61,7 @@ that's required to go with a given prefix.
 6. New prefixes must be lowercase. However, lexical variants can be stored as
    synonyms for reference (e.g., FBbt).
 7. New prefixes must validate against the following regular expression:
-   ^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$
+   `^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$`
 8. New prefixes must pass all metadata checks, which are canonically defined by
    the quality assurance workflow.
 
@@ -73,6 +73,10 @@ as a synonym.
 
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.
+
+#### Miscellaneous Requirements
+
+- Do not include titles (e.g., Dr.) in contact information for the requester, reviewer, nor contact for a resource.
 
 #### Choosing a Good Prefix
 
@@ -91,6 +95,8 @@ https://github.com/biopragmatics/bioregistry/issues/158.
    would be better.
 5. Prefixes should not end in "O" for "Ontology", "T" for "Terminology" or any
    letters denoting related words about vocabularies
+6. New prefixes should not end with "ID" as a way to signify that the prefix is used for
+   identifiers, like in `doid` for the Disease Ontology or `caid` for ClinGen Canonical Allele identifier.
 
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
@@ -147,6 +153,69 @@ issues in a bulk request is much less ergonomic and more time-consuming than in
 individual prefix requests, which each get their own discussion thread, pull
 request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
+
+#### Prefix Parking
+
+A prefix and its corresponding semantic space are **substantiated** when it's
+provable that a semantic space exists by one or more of the following:
+
+1. There's a public place where you can get the entire list of terms.
+   Ontologies (e.g., [Gene Ontology](https://bioregistry.io/go)) and databases
+   (e.g., [HGNC](https://bioregistry.io/hgnc)) usually make this pretty
+   straightforwards by offering download links for the ontology or full
+   database.
+2. There's a working, public URI format string that either lets you get HTML,
+   JSON, RDF, or some other kind of information artifact for a given local
+   unique identifier. For example, [OMIM.PS](https://bioregistry.io/omim.ps)
+   doesn't have a way to get a full list of terms but if you have a given local
+   unique identifier, you can use it with the URI format string to retrieve some
+   information about the entity corresponding to that LUI.
+
+A potential less strict third criteria for substantiation could be when
+references to entities in a semantic space (i.e., in the form of CURIEs) can be
+found in public resources or ontologies that are external to the resource in
+which the prefix/semantic space are defined. This is more common for historical
+prefixes (e.g., OpenCyc references appear quite frequently, but this resource
+was taken down more than a decade ago) and is less applicable to new prefix
+requests. Therefore, this relaxed criteria will not be considered as sufficient
+for substantiation.
+
+We define **prefix parking** as a special case of a prefix request in which the
+corresponding resource/semantic space for the prefix does not yet exist or is
+currently under development (and by definition, is not yet substantiated). The
+Bioregistry does not explicitly discourage prefix parking, but new prefix
+requests qualifying as prefix parking require additional guidelines, partially
+motivated by the difficulty of the discussion on
+https://github.com/biopragmatics/bioregistry/issues/359.
+
+1. While it's not typically under the purview of the Bioregistry Review Team to
+   judge the utility of a prefix nor comment on its corresponding design
+   decisions (e.g., choice of local unique identifier scheme, regular expression
+   pattern, URI format string), submitters seeking to park a prefix must both
+   actively publicly seek out and seriously consider suggestions and advice from
+   the Bioregistry Review Team with regards to these matters (e.g., in the issue
+   corresponding to a new prefix request). Submissions unable/unwilling to
+   follow these guidelines may be dismissed and asked to re-submit after their
+   prefix has been substantiated.
+2. Submissions to park a prefix must include a primary contact person for the
+   resource that is available for public discussion on GitHub. Even though this
+   is likely the same as the submitter, it is important that this person can be
+   contacted. If they are unresponsive within two weeks of contact regarding the
+   parked prefix, then the parked prefix is subject to removal.
+3. Parked prefixes that are not substantiated within three months are subject to
+   removal. In the case that someone else wants to use that prefix, the fact
+   that the parked prefix has not been substantiated will, by definition, result
+   in no impact or confusion that would normally result from the removal of a
+   prefix. It is the responsibility of the submitter/primary contact person for
+   the prefix to inform the Bioregistry Review Team of the updates and/or to
+   submit the updates to their prefix record themselves that demonstrates it has
+   been substantiated.
+4. It's not the job of the Bioregistry to support parking prefixes for semantic
+   spaces that will not be public or that won't be used in other public
+   resources - these can be rejected without further discussion.
+
+Original discussion about prefix parking can be found at
+https://github.com/biopragmatics/bioregistry/issues/365.
 
 #### Review of New Prefix Requests
 
@@ -211,6 +280,18 @@ in legacy resources.
 Review of removals of existing records is handled by the Bioregistry Review
 Team, whose membership and conduct is described in the Bioregistry's
 [Project Governance](GOVERNANCE.md).
+
+## Adding a new Registry
+
+New registries can be added by anyone, similarly to prefixes, but there is a lot more required curation.
+See the source [metaregistry.json](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/metaregistry.json)
+file for inspiration. Entries in this file should follow the schema defined by the 
+[`Registry` pydantic model class](https://bioregistry.readthedocs.io/en/latest/api/bioregistry.Registry.html#bioregistry.Registry).
+See also the corresponding entry in the Bioregistry's [JSON schema](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/schema/schema.json)
+
+While not strictly required, it's also useful for each registry to add a corresponding getter script and aligner
+class in `bioregistry.external` and `bioregistry.align`, respectively. See examples there, or get in touch on the
+issue tracker for help.
 
 ## Code Contribution
 

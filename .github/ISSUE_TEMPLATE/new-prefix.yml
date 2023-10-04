@@ -4,7 +4,7 @@ description: Add metadata about a database, ontology, or other authority that is
 title: Add prefix [X]
 labels: [ New, Prefix ]
 assignees:
-  - cthoyt
+  - "biopragmatics/bioregistry-reviewers"
 body:
   - type: markdown
     attributes:
@@ -39,6 +39,15 @@ body:
       placeholder: ex. https://www.ebi.ac.uk/chebi/
     validations:
       required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+      description: |
+        What is the version control repository associated with this prefix?
+
+        Typically, this is a URL to a repository on GitHub, GitLab, BitBucket, etc. for resources like ontologies. This is useful in two ways: first, it allows to quickly find the related issue tracker. Second, it enables external contributions.
+      placeholder: ex. https://github.com/ebi-chebi/ChEBI
   - type: textarea
     id: description
     attributes:
@@ -48,6 +57,13 @@ body:
       # value: "A bug happened!"
     validations:
       required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: |
+        What is the repository's license? Write with a SPDX identifier, if possible.
+      placeholder: ex. CC0
   - type: input
     id: example
     attributes:
@@ -66,32 +82,43 @@ body:
         Do include a carat `^` at the beginning and a dollar sign `$` at the end to signify that your pattern only matches the identifier, and not potentially any other parts of the string.
 
         Do not include a redundant prefix within the pattern (e.g., do not write `^CHEBI:\d+$`).
-        If your identifiers contain a redundant prefix, simply write it as write it simply as `^\d+$` and follow the instructions below in the  "Redundant Prefix" section to capture the redundant `CHEBI:`. This is important for some communities using the Bioregistry.
       placeholder: ex. ^\d+$
-    validations:
-      required: false
-  - type: input
-    id: banana
-    attributes:
-      label: Redundant Prefix in Regular Expression Pattern
-      description: If your nomenclature authority's regex pattern includes a redundant prefix, then you can write it out exactly as it appears in the identifier here. For example, ChEBI's redundant prefix should be written as `CHEBI:`.
-      placeholder: "ex. CHEBI:"
     validations:
       required: false
   - type: input
     id: url
     attributes:
       label: URI Format String
-      description: A URI format string is a URI with a placeholder (`$1`) for the local unique identifier that can be used in combination with a given local unique identifier to make a webpage for the local unique identifier.
-      placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1`
+      description: |
+        A URI format string is a URI with a placeholder (`$1`) for the local unique identifier that can be used in combination with a given local unique identifier to make a URI for the local unique identifier.
+
+        While it is encouraged that these URIs can resolved to a webpage, it is not strictly necessary, e.g in the case of many ontologies, URIs are auto-generated.
+      placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1`
     validations:
       required: false
+  - type: input
+    id: wikidata_property
+    attributes:
+      label: Wikidata Property
+      description: A Wikidata property for connecting to local unique identifiers in this resource, e.g., [P683](https://www.wikidata.org/wiki/Property:P683) for ChEBI
+      placeholder: ex. P683
+    validations:
+      required: false
+
   - type: input
     id: contributor_name
     attributes:
       label: Contributor Name
       description: Please provide your name so we can attribute this contribution to you.
       placeholder: ex. Charles Tapley Hoyt
+    validations:
+      required: true
+  - type: input
+    id: contributor_github
+    attributes:
+      label: Contributor GitHub
+      description: Please provide your GitHub username (no @ symbol) so we can attribute this contribution to you.
+      placeholder: ex. cthoyt
     validations:
       required: true
   - type: input
@@ -102,6 +129,32 @@ body:
       placeholder: ex. 0000-0003-4423-4370
     validations:
       required: true
+      
+  - type: input
+    id: contact_name
+    attributes:
+      label: Contact Name
+      description: Please provide the name of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      placeholder: ex. Charles Tapley Hoyt
+  - type: input
+    id: contact_orcid
+    attributes:
+      label: Contact ORCiD
+      description: Please provide the ORCiD identifier of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      placeholder: ex. 0000-0003-4423-4370
+  - type: input
+    id: contact_github
+    attributes:
+      label: Contact GitHub
+      description: Please provide the GitHub handle of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      placeholder: ex. cthoyt
+  - type: input
+    id: contact_email
+    attributes:
+      label: Contact Email
+      description: Please provide the email address of the primary contact for this resource, if known.
+      placeholder: ex. cthoyt@gmail.com
+
   - type: textarea
     id: comments
     attributes:

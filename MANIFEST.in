@@ -14,8 +14,10 @@ prune docs/build
 prune docs/_data
 prune docs/source/api
 prune exports
+prune notebooks
+prune tests/.pytest_cache
 exclude docs/*.md
 exclude docs/_config.yml
 
-exclude .appveyor.yml .bumpversion.cfg .coveragerc .flake8 .travis.yml .readthedocs.yml tox.ini .pre-commit-config.yaml Dockerfile
+exclude .appveyor.yml .bumpversion.cfg .coveragerc .flake8 .travis.yml .readthedocs.yml tox.ini .pre-commit-config.yaml Dockerfile CITATION.cff
 include LICENSE *.md *.rst

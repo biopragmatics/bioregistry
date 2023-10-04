@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - Collections{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Collections{% endblock %}
 
 {% block container %}
     <div class="card">
@@ -18,7 +18,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.collections", format=key) }}">
+                                   href="{{ fastapi_url_for("get_collections") }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -59,7 +59,7 @@
             {% for identifier, row in rows %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('ui.collection', identifier=identifier) }}">{{ row.name }}</a>
+                        <a href="{{ url_for('metaregistry_ui.collection', identifier=identifier) }}">{{ row.name }}</a>
                     </td>
                     <td class="text-right">{{ row.resources | length }}</td>
                     <td><small>{{ markdown(row.description) | safe }}</small></td>

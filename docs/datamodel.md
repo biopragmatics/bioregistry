@@ -11,6 +11,11 @@ tests that are run on any change to the Bioregistry to ensure that not only the
 schema is conformant, but also enables higher-level tests for style and content
 to be implemented.
 
+<details>
+   <summary>Expand for a UML diagram of the datamodel</summary>
+   <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/datamodel_umls.svg" alt="Bioregistry data model in a UML diagram"/>
+</details>
+
 ## Metadata and Properties
 
 ### Prefixes

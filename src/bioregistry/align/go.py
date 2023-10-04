@@ -81,10 +81,6 @@ class GoAligner(Aligner):
 
         return rv
 
-    def get_curation_row(self, external_id, external_entry):
-        """Prepare curation rows for unaligned GO registry entries."""
-        return [external_entry["name"], external_entry.get("description")]
-
 
 if __name__ == "__main__":
-    GoAligner.align()
+    GoAligner.cli()

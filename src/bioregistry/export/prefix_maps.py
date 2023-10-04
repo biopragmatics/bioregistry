@@ -3,93 +3,71 @@
 """Export the Bioregistry as a JSON-LD context."""
 
 import json
-from collections import ChainMap
 from pathlib import Path
 from textwrap import dedent
-from typing import Mapping, Optional, Tuple
+from typing import Iterable, Mapping, Optional
 
 import click
+import curies
 
-import bioregistry
-from bioregistry import get_pattern_map, get_prefix_map
 from bioregistry.constants import (
     CONTEXT_BIOREGISTRY_PATH,
     EXPORT_CONTEXTS,
     SHACL_TURTLE_PATH,
 )
-from bioregistry.schema import Collection
+from bioregistry.resource_manager import manager
+
+REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.rpm.json")
+EXTENDED_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.epm.json")
 
 
 @click.command()
 def generate_contexts():
     """Generate various context files."""
+    reverse_prefix_map = manager.get_reverse_prefix_map(include_prefixes=True, strict=False)
+    REVERSE_PREFIX_MAP_PATH.write_text(json.dumps(reverse_prefix_map, indent=4, sort_keys=True))
+
     _context_prefix_maps()
     _collection_prefix_maps()
 
-    prefix_map = get_prefix_map()
-    pattern_map = get_pattern_map()
+    prefix_map = manager.get_prefix_map()
+    pattern_map = manager.get_pattern_map()
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map=prefix_map)
     _write_shacl(SHACL_TURTLE_PATH, prefix_map=prefix_map, pattern_map=pattern_map)
 
+    records = manager.get_curies_records(include_prefixes=True, strict=False)
+    _write_extended_prefix_map(EXTENDED_PREFIX_MAP_PATH, records)
+
 
 def _collection_prefix_maps():
-    for collection in bioregistry.read_collections().values():
+    for collection in manager.collections.values():
         name = collection.context
         if name is None:
             continue
         path_stub = EXPORT_CONTEXTS.joinpath(name)
         prefix_map = collection.as_prefix_map()
-        pattern_map = get_pattern_map()
+        pattern_map = manager.get_pattern_map()
         _write_prefix_map(path_stub.with_suffix(".context.jsonld"), prefix_map=prefix_map)
         _write_shacl(
             path_stub.with_suffix(".context.ttl"), prefix_map=prefix_map, pattern_map=pattern_map
         )
 
 
-def get_prescriptive_artifacts(
-    key: str, include_synonyms: Optional[bool] = None
-) -> Tuple[Mapping[str, str], Mapping[str, str]]:
-    """Get a prescriptive prefix map."""
-    context = bioregistry.get_context(key)
-    if context is None:
-        raise KeyError
-    remapping = dict(
-        ChainMap(
-            *(
-                bioregistry.get_registry_map(metaprefix)
-                for metaprefix in context.prefix_priority or []
-            ),
-            context.prefix_remapping or {},
-        )
-    )
-    include_synonyms = (
-        include_synonyms if include_synonyms is not None else context.include_synonyms
-    )
-    prescriptive_prefix_map = get_prefix_map(
-        remapping=remapping,
-        priority=context.uri_prefix_priority,
-        include_synonyms=include_synonyms,
-        use_preferred=context.use_preferred,
-    )
-    prescriptive_pattern_map = get_pattern_map(
-        remapping=remapping,
-        include_synonyms=include_synonyms,
-        use_preferred=context.use_preferred,
-    )
-    return prescriptive_prefix_map, prescriptive_pattern_map
-
-
 def _context_prefix_maps():
-    for key in bioregistry.read_contexts():
-        prefix_map, pattern_map = get_prescriptive_artifacts(key)
+    for key in manager.contexts:
+        prefix_map, pattern_map = manager.get_context_artifacts(key)
         stub = EXPORT_CONTEXTS.joinpath(key)
         _write_prefix_map(stub.with_suffix(".context.jsonld"), prefix_map=prefix_map)
         _write_shacl(
             stub.with_suffix(".context.ttl"), prefix_map=prefix_map, pattern_map=pattern_map
         )
+        _write_extended_prefix_map(
+            stub.with_suffix(".epm.json"),
+            manager.get_records_from_context(key),
+        )
 
         if key == "obo":  # Special case, maybe put this in data model
-            prefix_map, pattern_map = get_prescriptive_artifacts(key, include_synonyms=True)
+            prefix_map, pattern_map = manager.get_context_artifacts(key, include_synonyms=True)
             stub_double = EXPORT_CONTEXTS.joinpath(f"{key}_synonyms")
             _write_prefix_map(stub_double.with_suffix(".context.jsonld"), prefix_map=prefix_map)
             _write_shacl(
@@ -133,19 +111,25 @@ def _write_prefix_map(path: Path, *, prefix_map: Mapping[str, str]) -> None:
         )
 
 
-def collection_to_context_jsonlds(collection: Collection) -> str:
-    """Get the JSON-LD context as a string from a given collection."""
-    return json.dumps(collection.as_context_jsonld())
+def record_to_dict(record: curies.Record):
+    """Convert a record to a dict."""
+    rv = {"prefix": record.prefix, "uri_prefix": record.uri_prefix}
+    if record.prefix_synonyms:
+        rv["prefix_synonyms"] = sorted(record.prefix_synonyms)
+    if record.uri_prefix_synonyms:
+        rv["uri_prefix_synonyms"] = sorted(record.uri_prefix_synonyms)
+    return rv
 
 
-def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
-    """Get the OBO Foundry prefix map.
-
-    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
-        the same URL prefix?
-    :return: A mapping from prefixes to prefix URLs.
-    """
-    return get_prescriptive_artifacts("obo")[0]
+def _write_extended_prefix_map(path: Path, records: Iterable[curies.Record]) -> None:
+    path.write_text(
+        json.dumps(
+            [record_to_dict(record) for record in records],
+            indent=4,
+            sort_keys=True,
+            ensure_ascii=False,
+        )
+    )
 
 
 if __name__ == "__main__":

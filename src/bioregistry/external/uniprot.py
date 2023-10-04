@@ -6,10 +6,10 @@ import json
 import logging
 from typing import Mapping
 
-from defusedxml import ElementTree
-from pystow.utils import download
+import requests
 
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_uniprot",
@@ -18,28 +18,11 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 #: Download URL for the UniProt registry
-URL = "https://www.uniprot.org/database/?format=rdf"
+URL = "https://rest.uniprot.org/database/stream?format=json&query=*"
 DIRECTORY = EXTERNAL / "uniprot"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / "raw.xml"
+RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
-
-PREFIX = "{http://purl.uniprot.org/core/}abbreviation"
-
-kz = {
-    "identifier": "{http://purl.org/dc/terms/}identifier",
-    "name": "{http://www.w3.org/2000/01/rdf-schema#}label",
-    "type": "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}type",
-    "primary_topic_of": "{http://xmlns.com/foaf/0.1/}primaryTopicOf",
-    "category": "{http://purl.uniprot.org/core/}category",
-    "link_is_explicit": "{http://purl.uniprot.org/core/}linkIsExplicit",
-    "see_also": "{http://www.w3.org/2000/01/rdf-schema#}seeAlso",
-    URI_FORMAT_KEY: "{http://purl.uniprot.org/core/}urlTemplate",
-    "citation": "{http://purl.uniprot.org/core/}citation",
-    "exact_match": "{http://www.w3.org/2004/02/skos/core#}exactMatch",
-    "comment": "{http://www.w3.org/2000/01/rdf-schema#}comment",
-}
-kzi = {v: k for k, v in kz.items()}
 
 #: resources with these UniProt prefixes don't exist anymore
 skip_prefixes = {
@@ -56,35 +39,65 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     if PROCESSED_PATH.is_file() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
-    download(url=URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
-        tree = ElementTree.parse(file)
-    root = tree.getroot()
+
+    RAW_PATH.write_text(
+        json.dumps(requests.get(URL).json(), indent=2, sort_keys=True, ensure_ascii=False)
+    )
     rv = {}
-    for element in root.findall("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description"):
-        prefix = element.findtext(PREFIX)
+    for record in json.loads(RAW_PATH.read_text())["results"]:
+        processed_record = _process_record(record)
+        if processed_record is None:
+            continue
+        prefix = processed_record.pop("prefix")
         if prefix in skip_prefixes:
             continue
-        entry = dict(prefix=prefix)
-        for key, path in kz.items():
-            value = element.findtext(path)
-            if not value:
-                continue
-            if key == URI_FORMAT_KEY:
-                if "%s" in value and "%u" in value:
-                    logger.warning(f"{prefix} has both formats: {value}")
-                    pass  # FIXME
-                else:
-                    value = value.replace("%s", "$1").replace("%u", "$1")
-            entry[key] = value
-        prefix = entry.get("prefix")
-        if prefix is not None:
-            rv[prefix] = entry
+        rv[prefix] = processed_record
 
     with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2)
+        json.dump(rv, file, indent=2, sort_keys=True)
+    return rv
+
+
+def _process_record(record):
+    rv = {
+        "prefix": record.pop("id"),
+        "name": record.pop("name"),
+        "abbreviation": record.pop("abbrev"),
+        "homepage": record.pop("server"),
+        "category": record.pop("category"),
+    }
+    doi = record.pop("doiId", None)
+    pubmed = record.pop("pubMedId", None)
+    publication = {}
+    if doi:
+        doi = doi.lower().rstrip(".")
+        doi = removeprefix(doi, "doi:")
+        doi = removeprefix(doi, "https://doi.org/")
+        if "/" in doi:
+            publication["doi"] = doi
+    if pubmed:
+        publication["pubmed"] = str(pubmed)
+    if publication:
+        rv["publications"] = [publication]
+
+    del record["linkType"]
+    del record["statistics"]
+    rv = {k: v for k, v in rv.items() if k and v}
+
+    value = record.pop("dbUrl")
+    if "%s" in value and "%u" in value:
+        logger.debug(f"has both formats: {value}")
+        return None
+    else:
+        value = value.replace("%s", "$1").replace("%u", "$1")
+        if "$1" in value:
+            rv[URI_FORMAT_KEY] = value
+        else:
+            logger.debug("no annotation in %s", rv["prefix"])
+    if record:
+        logger.debug("forgot something: %s", record)
     return rv
 
 
 if __name__ == "__main__":
-    get_uniprot(force_download=True)
+    get_uniprot(force_download=False)

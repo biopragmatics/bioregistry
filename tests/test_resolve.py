@@ -62,42 +62,51 @@ class TestResolve(unittest.TestCase):
             ("go.ref", "0000041"),
             ("go.ref", "GO_REF:0000041"),
             # bananas from OBO
-            ("fbbt", "00007294"),
-            ("fbbt", "FBbt:00007294"),
+            ("go", "0000001"),
+            ("go", "GO:0000001"),
+            ("go", "go:0000001"),
+            # banana are strange
+            ("omim.ps", "PS214100"),
+            ("omim.ps", "214100"),
+            ("OMIMPS", "214100"),
+            ("PS", "214100"),
+            ("PS", "PS214100"),
+            ("agrovoc", "1234"),
+            ("agrovoc", "c_1234"),
         ]
-        for prefix in bioregistry.read_registry():
+        for prefix, resource in bioregistry.read_registry().items():
             if bioregistry.is_deprecated(prefix):
                 continue
             banana = bioregistry.get_banana(prefix)
             if banana is None or bioregistry.has_no_terms(prefix):
                 continue
+            peel = resource.get_banana_peel()
             example = bioregistry.get_example(prefix)
             with self.subTest(prefix=prefix):
                 if example is None:
                     self.fail(msg=f"{prefix} has a banana {banana} but is missing an example")
                 else:
-                    tests.append(("prefix", example))
-                    tests.append(("prefix", f"{banana}:{example}"))
+                    tests.append((prefix, example))
+                    tests.append((prefix, f"{banana}{peel}{example}"))
         self.assert_known_identifiers(tests)
 
     def assert_known_identifiers(self, examples: Iterable[Tuple[str, str]]) -> None:
         """Validate the examples."""
         for prefix, identifier in examples:
-            is_known = bioregistry.is_known_identifier(prefix, identifier)
-            if is_known is False:
-                with self.subTest(prefix=prefix, identifier=identifier):
-                    self.fail(
-                        msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}"
-                    )
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertTrue(
+                    bioregistry.is_standardizable_identifier(prefix, identifier),
+                    msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}",
+                )
 
     def test_validate_false(self):
         """Test that validation returns false."""
         for prefix, identifier in [
             ("chebi", "A1234"),
-            ("chebi", "chebi:1234"),
+            ("chebi", "GO:A1234"),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
-                self.assertFalse(bioregistry.is_known_identifier(prefix, identifier))
+                self.assertFalse(bioregistry.is_standardizable_identifier(prefix, identifier))
 
     def test_lui(self):
         """Test the LUI makes sense (spoilers, they don't).
@@ -127,7 +136,8 @@ class TestResolve(unittest.TestCase):
 
         .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
         """
-        self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi"))
+        self.assertEqual("^chebi:\\d+$", bioregistry.get_curie_pattern("chebi"))
+        self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi", use_preferred=True))
         self.assertEqual(
             "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
         )

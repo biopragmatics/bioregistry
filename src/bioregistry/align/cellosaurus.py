@@ -2,7 +2,7 @@
 
 """Align Cellosaurus with the Bioregistry."""
 
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.constants import URI_FORMAT_KEY
@@ -27,15 +27,6 @@ class CellosaurusAligner(Aligner):
             "CCLV": "stub website, URL dead",
         }
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned BioPortal registry entries."""
-        return [
-            external_entry["name"],
-            external_entry["homepage"],
-            external_entry["category"],
-            external_entry.get(URI_FORMAT_KEY, ""),
-        ]
-
 
 if __name__ == "__main__":
-    CellosaurusAligner.align()
+    CellosaurusAligner.cli()
