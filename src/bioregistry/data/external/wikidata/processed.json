@@ -1293,6 +1293,10 @@
   "P11430": {
     "database": "Q905695",
     "description": "identifier for a disease in the UniProt database",
+    "example": [
+      "DI-00005",
+      "DI-00012"
+    ],
     "name": "UniProt disease ID",
     "pattern": "^DI-\\d{5}$",
     "prefix": "P11430",
@@ -1818,7 +1822,7 @@
     ],
     "homepage": "http://malacards.org",
     "name": "MalaCards ID",
-    "pattern": "^[a-z_]{5,30}$",
+    "pattern": "^[a-z0-9_]+$",
     "prefix": "P1583",
     "uri_format": "https://www.malacards.org/card/$1"
   },
@@ -2568,7 +2572,7 @@
     "name": "canonical SMILES",
     "pattern": "^[A-Za-z0-9+\\-\\*=#$:().>/\\\\\\[\\]%]+$",
     "prefix": "P233",
-    "uri_format": "https://chemapps.stolaf.edu/jmol/jmol.php?model=$1"
+    "uri_format": "https://www.simolecule.com/cdkdepict/depict/bow/svg?smi=$1&zoom=2.0&annotate=cip"
   },
   "P234": {
     "database": "Q203250",
@@ -6303,7 +6307,7 @@
       "4204",
       "8243"
     ],
-    "homepage": "https://www.hemiptera-databases.org/flow/?db=flow&page=explorer&card=speciess&lang=en",
+    "homepage": "https://flow.hemiptera-databases.org/flow/",
     "name": "FLOW ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6096",
