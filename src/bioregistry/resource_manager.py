@@ -1163,6 +1163,20 @@ class Manager:
         """
         return self.get_formatted_iri("n2t", prefix, identifier)
 
+    def get_rrid_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the RRID URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the RRID resolver, if the prefix exists and is
+            mapped to RRID.
+
+        >>> from bioregistry import manager
+        >>> manager.get_rrid_iri("antibodyregistry", "493771")
+        'https://scicrunch.org/resolver/RRID:AB_493771'
+        """
+        return self.get_formatted_iri("rrid", prefix, identifier)
+
     def get_scholia_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get a Scholia IRI, if possible.
 
@@ -1196,6 +1210,7 @@ class Manager:
             "n2t": self.get_n2t_iri,
             "bioportal": self.get_bioportal_iri,
             "scholia": self.get_scholia_iri,
+            "rrid": self.get_rrid_iri,
         }
 
     def get_providers_list(self, prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:

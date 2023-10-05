@@ -1572,6 +1572,21 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_rrid_uri_format(self) -> Optional[str]:
+        """Get the RRID URI format.
+
+        :returns: The RRID format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("antibodyregistry").get_rrid_uri_format()  # standard
+        'https://scicrunch.org/resolver/RRID:AB_$1'
+        >>> assert get_resource("go").get_rrid_uri_format() is None
+        """
+        if not self.rrid:
+            return None
+        prefix = self.rrid["prefix"]
+        return f"https://scicrunch.org/resolver/RRID:{prefix}_$1"
+
     def get_rdf_uri_format(self) -> Optional[str]:
         """Get the URI format string for the given prefix for RDF usages."""
         if self.rdf_uri_format:
@@ -1600,6 +1615,7 @@ class Resource(BaseModel):
         "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
+        "rrid": get_rrid_uri_format,
     }
 
     #: The point of this priority order is to figure out what URI format string
