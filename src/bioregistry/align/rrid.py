@@ -15,6 +15,8 @@ class RRIDAligner(Aligner):
 
     key = "rrid"
     getter = get_rrid
+    alt_key_match = "abbreviation"
+    curation_header = ("name",)
 
 
 if __name__ == "__main__":
