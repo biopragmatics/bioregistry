@@ -113,6 +113,7 @@ URI_FORMAT_PATHS = [
     ("uniprot", URI_FORMAT_KEY),
     ("cellosaurus", URI_FORMAT_KEY),
     ("prefixcommons", URI_FORMAT_KEY),
+    ("rrid", URI_FORMAT_KEY),
 ]
 
 
@@ -624,9 +625,9 @@ class Resource(BaseModel):
     #: External data from hl7
     hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
-    bartoc: Optional[Mapping[str, Any]] = None
+    bartoc: Optional[Mapping[str, Any]] = Field(default=None, title="BARTOC")
     #: External data from RRID
-    rrid: Optional[Mapping[str, Any]] = None
+    rrid: Optional[Mapping[str, Any]] = Field(default=None, title="RRID")
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
@@ -843,6 +844,7 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "rrid",
             ),
         )
 
@@ -1002,6 +1004,7 @@ class Resource(BaseModel):
                 "bioportal",
                 "agroportal",
                 "ecoportal",
+                "rrid",
             ),
         )
 
@@ -1012,6 +1015,8 @@ class Resource(BaseModel):
             keywords.extend(self.keywords)
         if self.prefixcommons:
             keywords.extend(self.prefixcommons.get("keywords", []))
+        if self.rrid:
+            keywords.extend(self.rrid.get("keywords", []))
         if self.fairsharing:
             keywords.extend(self.fairsharing.get("subjects", []))
         if self.obofoundry:
@@ -1256,6 +1261,11 @@ class Resource(BaseModel):
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(
+                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
+                )
+        if self.rrid:
+            for pubmed in self.rrid.get("pubmeds", []):
                 publications.append(
                     Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
                 )
