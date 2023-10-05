@@ -23,6 +23,10 @@ UNCURATABLE = {
     "IMSR_CMMR": "just a wrapper around MGI",
     "IMSR_CRL": "Massive site, too cryptic, can't find",
     "IMSR_GPT": "actual URLs don't match accession numbers",
+    "IMSR_HAR": "could not find evidence that this is an identifier resource",
+    "IMSR_NM-KI": "multiple conflicting identifiers - actual URLs don't match accession numbers",
+    "IMSR_NIG": "could not find evidence that this is an identifier resource",
+    "IMSR_TIGM": "could not find evidence that this is an identifier resource",
 }
 
 
