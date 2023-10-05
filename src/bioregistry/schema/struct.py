@@ -625,6 +625,8 @@ class Resource(BaseModel):
     hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
     bartoc: Optional[Mapping[str, Any]] = None
+    #: External data from RRID
+    rrid: Optional[Mapping[str, Any]] = None
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
