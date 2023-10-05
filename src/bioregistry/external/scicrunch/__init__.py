@@ -64,8 +64,8 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
     return rv
 
 
-def _split(l: str):
-    return [c.strip() for c in l.split(",")]
+def _split(s: str):
+    return [c.strip() for c in s.split(",")]
 
 
 if __name__ == "__main__":
