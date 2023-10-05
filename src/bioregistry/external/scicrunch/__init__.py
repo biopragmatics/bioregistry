@@ -32,12 +32,13 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
             if not rrid_pattern or not rrid_pattern.startswith("RRID:"):
                 continue
 
+            prefix = rrid_pattern[len("RRID:") :].rstrip("_")
             ddd = {
                 "name": record["Resource_Name"],
                 "homepage": record["Resource_URL"],
+                # "uri_format": f"https://scicrunch.org/resolver/RRID:{prefix}_$1",
             }
 
-            prefix = rrid_pattern[len("RRID:") :].rstrip("_")
             pubmeds = [
                 x[len("PMID:") :]
                 for x in _split(record["Defining_Citation"])
@@ -51,7 +52,7 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
                 ddd["keywords"] = keywords
 
             abbreviation = record["Abbreviation"]
-            if abbreviation:
+            if abbreviation and abbreviation != prefix:
                 ddd["abbreviation"] = abbreviation
             twitter = record["Twitter_Handle"]
             if twitter:
