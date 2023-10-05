@@ -36,6 +36,7 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
             ddd = {
                 "name": record["Resource_Name"],
                 "homepage": record["Resource_URL"],
+                "scr": record["scr_id"][len("SCR_") :],
                 # "uri_format": f"https://scicrunch.org/resolver/RRID:{prefix}_$1",
             }
 
@@ -56,7 +57,7 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
                 ddd["abbreviation"] = abbreviation
             twitter = record["Twitter_Handle"]
             if twitter:
-                ddd["twitter"] = twitter
+                ddd["twitter"] = twitter.lstrip("@")
 
             # could get license
             rv[prefix] = ddd
