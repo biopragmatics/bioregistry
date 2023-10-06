@@ -23,10 +23,17 @@ class TestMetaregistry(unittest.TestCase):
         """Test the metaregistry entries have a minimum amount of data."""
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
+            external_prefixes = set(self.manager.get_registry_invmap(metaprefix))
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
                 self.assertIsNotNone(registry.homepage)
                 self.assertIsNotNone(registry.example)
+                if metaprefix != "bioregistry" and external_prefixes:
+                    self.assertIn(
+                        registry.example,
+                        external_prefixes,
+                        msg="Examples should be external-registry specific and mapped",
+                    )
                 self.assertIsNotNone(registry.description)
                 self.assertIsNotNone(registry.contact)
                 self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")

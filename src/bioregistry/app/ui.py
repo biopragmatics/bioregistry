@@ -189,7 +189,18 @@ def metaresource(metaprefix: str):
     if accept != "text/html":
         return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
-    example_identifier = manager.get_example(entry.example)
+    external_prefix = entry.example
+    bioregistry_prefix: Optional[str]
+    if metaprefix == "bioregistry":
+        bioregistry_prefix = external_prefix
+    else:
+        # TODO change this to [external_prefix] instead of .get(external_prefix)
+        #  when all metaregistry entries are required to have corresponding schema slots
+        bioregistry_prefix = manager.get_registry_invmap(metaprefix).get(external_prefix)
+
+    # In the case that we can't map from the external registry's prefix to Bioregistry
+    # prefix, the example identifier can't be looked up
+    example_identifier = bioregistry_prefix and manager.get_example(bioregistry_prefix)
     return render_template(
         "metaresource.html",
         entry=entry,
@@ -198,15 +209,16 @@ def metaresource(metaprefix: str):
         description=entry.description,
         homepage=entry.homepage,
         download=entry.download,
-        example_prefix=entry.example,
-        example_prefix_url=entry.get_provider_uri_format(entry.example),
+        example_prefix=external_prefix,
+        example_prefix_url=entry.get_provider_uri_format(external_prefix),
         example_identifier=example_identifier,
         example_curie=(
-            curie_to_str(entry.example, example_identifier) if example_identifier else None
+            curie_to_str(external_prefix, example_identifier) if example_identifier else None
         ),
         example_curie_url=(
-            manager.get_registry_uri(metaprefix, entry.example, example_identifier)
-            if example_identifier
+            # TODO there must be a more direct way for this
+            manager.get_registry_uri(metaprefix, bioregistry_prefix, example_identifier)
+            if bioregistry_prefix and example_identifier
             else None
         ),
         formats=[

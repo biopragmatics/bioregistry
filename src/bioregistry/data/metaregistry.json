@@ -124,7 +124,7 @@
       },
       "description": "The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.\\nThe main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO).",
       "download": "https://bartoc.org/data/dumps/latest.ndjson",
-      "example": "241",
+      "example": "181",
       "governance": {
         "accepts_external_contributions": true,
         "code_repository": "https://github.com/gbv/bartoc.org",
@@ -482,7 +482,7 @@
       },
       "description": "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms",
       "download": "https://cropontology.org/metadata",
-      "example": "CO_010",
+      "example": "CO_325",
       "governance": {
         "accepts_external_contributions": true,
         "curates": true,
@@ -499,7 +499,7 @@
       "logo_url": "https://cropontology.org/cropontology_static/crop_ontology_logo_2.png",
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
-      "provider_uri_format": "https://www.cropontology.org/ontology/$1",
+      "provider_uri_format": "https://cropontology.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -533,7 +533,7 @@
         "orcid": "0000-0003-4494-839X"
       },
       "description": "The LifeWatch ERIC repository of semantic resources for the ecological domain.",
-      "example": "ALIENSPECIES",
+      "example": "AGROVOC",
       "governance": {
         "accepts_external_contributions": true,
         "curates": true,
@@ -935,7 +935,7 @@
       },
       "description": "The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate.",
       "download": "http://www.obofoundry.org/registry/ontologies.yml",
-      "example": "chebi",
+      "example": "CHEBI",
       "governance": {
         "accepts_external_contributions": true,
         "code_repository": "https://github.com/OBOFoundry/OBOFoundry.github.io",
@@ -954,7 +954,7 @@
       "logo_url": "https://obofoundry.org/images/foundrylogo.png",
       "name": "OBO Foundry",
       "prefix": "obofoundry",
-      "provider_uri_format": "http://www.obofoundry.org/ontology/$1",
+      "provider_uri_format": "https://www.obofoundry.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -1140,7 +1140,7 @@
       },
       "description": "A registry of commonly used prefixes in the life sciences and linked data. The source data for this registry is a spreadsheet on Google called the Life Science Registry. This registry was previously known as Prefix Commons and was available at https://prefixcommons.org.",
       "download": "http://tinyurl.com/lsregistry",
-      "example": "CHEBI",
+      "example": "doi",
       "governance": {
         "accepts_external_contributions": true,
         "curates": true,
@@ -1152,7 +1152,7 @@
         "status": "active"
       },
       "homepage": "https://registry.bio2kg.org",
-      "license": "Public Domain",
+      "license": "CC0",
       "logo_url": "https://avatars.githubusercontent.com/u/15466415",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
@@ -1188,7 +1188,7 @@
         "orcid": "0000-0003-4221-7956"
       },
       "description": "Re3data is a global registry of research data repositories that covers research data repositories from different academic disciplines.",
-      "example": "r3d100010772",
+      "example": "r3d100014165",
       "governance": {
         "accepts_external_contributions": true,
         "curates": true,
@@ -1237,6 +1237,7 @@
         "orcid": "0000-0002-5497-0243"
       },
       "description": "The Research Resource Identification Initiative provides RRIDs to 4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases / Software tools",
+      "download": "https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true",
       "example": "AB",
       "governance": {
         "accepts_external_contributions": true,
@@ -1259,8 +1260,9 @@
         "no_authentication": true,
         "structured_data": true
       },
-      "resolver_type": "resolver",
-      "resolver_uri_format": "https://scicrunch.org/resolver/RRID:$1_$2"
+      "resolver_type": "lookup",
+      "resolver_uri_format": "https://scicrunch.org/resolver/RRID:$1_$2",
+      "short_name": "RRID"
     },
     {
       "availability": {
