@@ -131,7 +131,7 @@ bartoc:
     all across Europe and BARTOC has been approved by the International Society for
     Knowledge Organization (ISKO).'
   download: https://bartoc.org/data/dumps/latest.ndjson
-  example: '241'
+  example: '181'
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/gbv/bartoc.org
@@ -472,7 +472,7 @@ cropoct:
     on trait measurement and methods as well as on Germplasm with the multi-crop passport
     terms
   download: https://cropontology.org/metadata
-  example: CO_010
+  example: CO_325
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -491,7 +491,7 @@ cropoct:
   logo_url: https://cropontology.org/cropontology_static/crop_ontology_logo_2.png
   name: Crop Ontology Curation Tool
   prefix: cropoct
-  provider_uri_format: https://www.cropontology.org/ontology/$1
+  provider_uri_format: https://cropontology.org/ontology/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -522,7 +522,7 @@ ecoportal:
     orcid: 0000-0003-4494-839X
   description: The LifeWatch ERIC repository of semantic resources for the ecological
     domain.
-  example: ALIENSPECIES
+  example: AGROVOC
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -921,7 +921,7 @@ obofoundry:
   description: The mission of the OBO Foundry is to develop a family of interoperable
     ontologies that are both logically well-formed and scientifically accurate.
   download: http://www.obofoundry.org/registry/ontologies.yml
-  example: chebi
+  example: CHEBI
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/OBOFoundry/OBOFoundry.github.io
@@ -940,7 +940,7 @@ obofoundry:
   logo_url: https://obofoundry.org/images/foundrylogo.png
   name: OBO Foundry
   prefix: obofoundry
-  provider_uri_format: http://www.obofoundry.org/ontology/$1
+  provider_uri_format: https://www.obofoundry.org/ontology/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1117,7 +1117,7 @@ prefixcommons:
     Life Science Registry. This registry was previously known as Prefix Commons and
     was available at https://prefixcommons.org.
   download: http://tinyurl.com/lsregistry
-  example: CHEBI
+  example: doi
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -1132,7 +1132,7 @@ prefixcommons:
     scope: life sciences
     status: active
   homepage: https://registry.bio2kg.org
-  license: Public Domain
+  license: CC0
   logo_url: https://avatars.githubusercontent.com/u/15466415
   name: Prefix Commons
   prefix: prefixcommons
@@ -1165,7 +1165,7 @@ re3data:
     orcid: 0000-0003-4221-7956
   description: Re3data is a global registry of research data repositories that covers
     research data repositories from different academic disciplines.
-  example: r3d100010772
+  example: r3d100014165
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -1214,6 +1214,7 @@ rrid:
   description: 'The Research Resource Identification Initiative provides RRIDs to
     4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases
     / Software tools'
+  download: https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true
   example: AB
   governance:
     accepts_external_contributions: true
@@ -1238,8 +1239,9 @@ rrid:
     bulk_data: true
     no_authentication: true
     structured_data: true
-  resolver_type: resolver
+  resolver_type: lookup
   resolver_uri_format: https://scicrunch.org/resolver/RRID:$1_$2
+  short_name: RRID
 uniprot:
   availability:
     alternate_providers: missing
