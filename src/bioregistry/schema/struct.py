@@ -2503,6 +2503,8 @@ class Registry(BaseModel):
         'https://identifiers.org/go:0032571'
         >>> get_registry("cellosaurus").resolve("go", "0032571")
         'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
+        >>> get_registry("rrid").resolve("AB", "493771")
+        'https://scicrunch.org/resolver/RRID:AB_493771'
         """
         return self.get_resolver_uri_format(prefix).replace("$1", identifier)
 
