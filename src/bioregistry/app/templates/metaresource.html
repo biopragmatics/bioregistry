@@ -144,7 +144,7 @@
                     </dd>
                 {% endif %}
                 {% if entry.resolver_uri_format %}
-                    {% set example_resolution = entry.resolve(entry.example, example_identifier) %}
+                    {% set example_resolution = example_identifier and entry.resolve(entry.example, example_identifier) %}
                     <dt>
                         {% if entry.resolver_type == "lookup" %}
                             Example CURIE Page

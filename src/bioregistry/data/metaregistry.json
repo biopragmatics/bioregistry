@@ -499,7 +499,7 @@
       "logo_url": "https://cropontology.org/cropontology_static/crop_ontology_logo_2.png",
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
-      "provider_uri_format": "https://www.cropontology.org/ontology/$1",
+      "provider_uri_format": "https://cropontology.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -954,7 +954,7 @@
       "logo_url": "https://obofoundry.org/images/foundrylogo.png",
       "name": "OBO Foundry",
       "prefix": "obofoundry",
-      "provider_uri_format": "http://www.obofoundry.org/ontology/$1",
+      "provider_uri_format": "https://www.obofoundry.org/ontology/$1",
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
@@ -1152,7 +1152,7 @@
         "status": "active"
       },
       "homepage": "https://registry.bio2kg.org",
-      "license": "Public Domain",
+      "license": "CC0",
       "logo_url": "https://avatars.githubusercontent.com/u/15466415",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
@@ -1229,7 +1229,6 @@
         "version": "missing"
       },
       "bibtex": "",
-      "short_name": "RRID",
       "bioregistry_prefix": "rrid",
       "contact": {
         "email": "bandrow@gmail.com",
@@ -1238,6 +1237,7 @@
         "orcid": "0000-0002-5497-0243"
       },
       "description": "The Research Resource Identification Initiative provides RRIDs to 4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases / Software tools",
+      "download": "https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true",
       "example": "AB",
       "governance": {
         "accepts_external_contributions": true,
@@ -1260,8 +1260,9 @@
         "no_authentication": true,
         "structured_data": true
       },
-      "resolver_type": "resolver",
-      "resolver_uri_format": "https://scicrunch.org/resolver/RRID:$1_$2"
+      "resolver_type": "lookup",
+      "resolver_uri_format": "https://scicrunch.org/resolver/RRID:$1_$2",
+      "short_name": "RRID"
     },
     {
       "availability": {

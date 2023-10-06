@@ -2456,10 +2456,10 @@ class Registry(BaseModel):
             return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/resolve/"
         return self.provider_uri_format.replace("$1", "")
 
-    def get_provider_uri_format(self, prefix: str) -> Optional[str]:
+    def get_provider_uri_format(self, external_prefix: str) -> Optional[str]:
         """Get the provider string.
 
-        :param prefix: The prefix used in the metaregistry
+        :param external_prefix: The prefix used in the metaregistry
         :return: The URL in the registry for the prefix, if it's able to provide one
 
         >>> from bioregistry import get_registry
@@ -2470,7 +2470,7 @@ class Registry(BaseModel):
         >>> get_registry("n2t").get_provider_uri_format("go")
         'https://bioregistry.io/metaregistry/n2t/resolve/go'
         """
-        return self.get_provider_uri_prefix() + prefix
+        return self.get_provider_uri_prefix() + external_prefix
 
     def get_resolver_uri_format(self, prefix: str) -> str:
         """Generate a provider URI string based on mapping through this registry's vocabulary.
