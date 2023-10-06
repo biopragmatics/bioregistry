@@ -113,6 +113,7 @@ URI_FORMAT_PATHS = [
     ("uniprot", URI_FORMAT_KEY),
     ("cellosaurus", URI_FORMAT_KEY),
     ("prefixcommons", URI_FORMAT_KEY),
+    ("rrid", URI_FORMAT_KEY),
 ]
 
 
@@ -624,7 +625,9 @@ class Resource(BaseModel):
     #: External data from hl7
     hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
-    bartoc: Optional[Mapping[str, Any]] = None
+    bartoc: Optional[Mapping[str, Any]] = Field(default=None, title="BARTOC")
+    #: External data from RRID
+    rrid: Optional[Mapping[str, Any]] = Field(default=None, title="RRID")
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
@@ -841,6 +844,7 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "rrid",
             ),
         )
 
@@ -1000,6 +1004,7 @@ class Resource(BaseModel):
                 "bioportal",
                 "agroportal",
                 "ecoportal",
+                "rrid",
             ),
         )
 
@@ -1010,6 +1015,8 @@ class Resource(BaseModel):
             keywords.extend(self.keywords)
         if self.prefixcommons:
             keywords.extend(self.prefixcommons.get("keywords", []))
+        if self.rrid:
+            keywords.extend(self.rrid.get("keywords", []))
         if self.fairsharing:
             keywords.extend(self.fairsharing.get("subjects", []))
         if self.obofoundry:
@@ -1254,6 +1261,11 @@ class Resource(BaseModel):
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(
+                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
+                )
+        if self.rrid:
+            for pubmed in self.rrid.get("pubmeds", []):
                 publications.append(
                     Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
                 )
@@ -1560,6 +1572,21 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_rrid_uri_format(self) -> Optional[str]:
+        """Get the RRID URI format.
+
+        :returns: The RRID format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("antibodyregistry").get_rrid_uri_format()  # standard
+        'https://scicrunch.org/resolver/RRID:AB_$1'
+        >>> assert get_resource("go").get_rrid_uri_format() is None
+        """
+        if not self.rrid:
+            return None
+        prefix = self.rrid["prefix"]
+        return f"https://scicrunch.org/resolver/RRID:{prefix}_$1"
+
     def get_rdf_uri_format(self) -> Optional[str]:
         """Get the URI format string for the given prefix for RDF usages."""
         if self.rdf_uri_format:
@@ -1588,6 +1615,7 @@ class Resource(BaseModel):
         "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
+        "rrid": get_rrid_uri_format,
     }
 
     #: The point of this priority order is to figure out what URI format string
