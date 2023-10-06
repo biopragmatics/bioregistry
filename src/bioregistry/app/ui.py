@@ -190,6 +190,7 @@ def metaresource(metaprefix: str):
         return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
     external_prefix = entry.example
+    bioregistry_prefix: Optional[str]
     if metaprefix == "bioregistry":
         bioregistry_prefix = external_prefix
     else:
@@ -217,7 +218,7 @@ def metaresource(metaprefix: str):
         example_curie_url=(
             # TODO there must be a more direct way for this
             manager.get_registry_uri(metaprefix, bioregistry_prefix, example_identifier)
-            if example_identifier
+            if bioregistry_prefix and example_identifier
             else None
         ),
         formats=[
