@@ -92,6 +92,7 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
         if contact.get("contact_orcid")  # make sure ORCID is available
     ]
     for contact in contacts:
+        contact["name"] = removeprefix(removeprefix(contact["name"], "Dr. "), "Dr ")
         if "orcid" in contact:
             contact["orcid"] = contact["orcid"].replace(" ", "")
     if contacts:

@@ -18,6 +18,7 @@ __all__ = [
     "get_obofoundry_example",
 ]
 
+
 logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "obofoundry"
