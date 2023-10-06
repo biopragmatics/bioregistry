@@ -1262,7 +1262,23 @@ class Manager:
         return dict(self.get_providers_list(prefix, identifier))
 
     def get_registry_uri(self, metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
-        """Get the URL to resolve the given prefix/identifier pair with the given resolver."""
+        """Get the URL to resolve the given prefix/identifier pair with the given resolver.
+
+        :param metaprefix: The metaprefix for an external registry
+        :param prefix: The prefix within the external registry
+        :param identifier: The local unique identifier for a concept in the semantic space
+            denoted by the prefix
+        :returns: The external registry's URI (either for resolving or lookup) of the entity
+            denoted by the prefix/identifier pair.
+
+        >>> from bioregistry import manager
+        >>> manager.get_registry_uri("rrid", "AB", "493771")
+        'https://scicrunch.org/resolver/RRID:AB_493771'
+
+        GO is not in RRID so this should return None
+
+        >>> manager.get_registry_uri("rrid", "GO", "493771")
+        """
         providers = self.get_providers(prefix, identifier)
         if not providers:
             return None
