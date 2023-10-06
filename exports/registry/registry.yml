@@ -394,14 +394,20 @@ addgene:
   example: '50943'
   homepage: http://addgene.org/
   keywords:
+  - bio.tools
+  - faseb list
   - life science
+  - molecular biology
   - plasmid
+  - repository
+  - sequence alignment
   mappings:
     fairsharing: FAIRsharing.8hcczk
     miriam: addgene
     n2t: addgene
     prefixcommons: addgene
     re3data: r3d100010741
+    rrid: Addgene
   name: Addgene Plasmid Repository
   pattern: ^[0-9]{5}(-[a-zA-Z0-9-]{0,7})?$|^[0-9]{10}$
   preferred_prefix: addgene
@@ -942,6 +948,31 @@ agrovoc:
   - https://en.wikipedia.org/wiki/AGROVOC
   twitter: FAOAIMS
   uri_format: http://aims.fao.org/aos/agrovoc/c_$1
+agsc:
+  description: The Ambystoma Genetic Stock Center (AGSC) maintains a breeding colony
+    of Mexican axolotls (Ambystoma mexicanum) and distributes axolotl embryos, larvae,
+    and adults to laboratories and classrooms throughout the United States and abroad.
+    [from homepage]
+  example: 100E
+  homepage: https://ambystoma.uky.edu/genetic-stock-center/
+  keywords:
+  - adult
+  - ambystoma
+  - embryo
+  - k-12 teacher
+  - larvae
+  - salamander
+  mappings:
+    rrid: AGSC
+  name: Ambystoma Genetic Stock Center
+  preferred_prefix: agsc
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '16359543'
+    title: null
+    year: null
+  uri_format: https://scicrunch.org/resolver/RRID:AGSC_$1
 agsd:
   description: A comprehensive catalogue of animal genome size data where haploid
     DNA contents (C-values, in picograms) are currently available for 4972 species
@@ -1275,10 +1306,15 @@ antibodyregistry:
     and vendor information.
   example: '493771'
   homepage: http://antibodyregistry.org/
+  keywords:
+  - antibody
+  - reagent
+  - unique identifiers
   mappings:
     biocontext: ANTIBODYREGISTRY
     miriam: antibodyregistry
     n2t: antibodyregistry
+    rrid: AB
   name: Antibody Registry
   pattern: ^\d{6}$
   preferred_prefix: antibodyregistry
@@ -2730,6 +2766,50 @@ bbtp:
   pattern: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   preferred_prefix: bbtp
   uri_format: https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:$1
+bcbc:
+  description: One of the many goals of the BCBC was to develop and maintain databases
+    of useful research resources. A total of 813 different scientific resources were
+    generated and submitted by BCBC investigators over the 14 years it existed. Information
+    pertaining to 495 selected resources, judged to be the most scientifically-useful,
+    has been converted into a static catalog, as shown below. In addition, the metadata
+    for these 495 resources have been transferred to dkNET in the form of RDF descriptors,
+    and all genomics data have been deposited to either ArrayExpress or GEO. [from
+    homepage]
+  example: '4623'
+  homepage: http://www.betacell.org/
+  keywords:
+  - adenovirus
+  - antibody
+  - basic research
+  - basic science
+  - beta cell
+  - cell line
+  - cell regeneration
+  - cell replacement
+  - cell reprogramming
+  - data set
+  - data sharing
+  - embryonic stem cell
+  - embryonic stem cell line
+  - functional genomics
+  - gene
+  - gene expression
+  - genomics
+  - mouse
+  - mouse embryonic stem cell line
+  - mouse strain
+  - pancreas
+  - pancreatic development
+  - pancreatic islet
+  - pancreatic islet development
+  - pancreatic islet function
+  - protocol
+  mappings:
+    rrid: BCBC
+  name: Beta Cell Biology Consortium
+  pattern: ^\d+$
+  preferred_prefix: bcbc
+  uri_format: https://scicrunch.org/resolver/RRID:BCBC_$1
 bcgo:
   contact:
     email: jiezheng@pennmedicine.upenn.edu
@@ -2923,9 +3003,34 @@ bdsc:
     Drosophila melanogaster strains for research.
   example: '33607'
   homepage: https://bdsc.indiana.edu/about/mission.html
+  keywords:
+  - database
+  - deficiency
+  - deletion
+  - disease model
+  - duplication
+  - faseb list
+  - fly
+  - gene
+  - genetic
+  - genetic analysis
+  - genetic construct
+  - germline
+  - human disease model
+  - insertion
+  - invertebrate
+  - mutation
+  - protein trap
+  - scientist
+  - sequenced strain
+  - somatic
+  - stock
+  - transposon
+  - transposon insertion
   mappings:
     miriam: bdsc
     n2t: bdsc
+    rrid: BDSC
   name: Bloomington Drosophila Stock Center
   pattern: ^\d+$
   preferred_prefix: bdsc
@@ -4221,6 +4326,13 @@ biosample:
   homepage: https://www.ebi.ac.uk/biosamples/
   keywords:
   - biology
+  - biomaterial
+  - cell
+  - cell line
+  - dna
+  - gold standard
+  - rna
+  - stem cell
   mappings:
     biocontext: BIOSAMPLE
     cellosaurus: BioSamples
@@ -4228,6 +4340,7 @@ biosample:
     miriam: biosample
     n2t: biosample
     re3data: r3d100012828
+    rrid: SAMN
   name: BioSample
   pattern: ^SAM[NED](\w)?\d+$
   preferred_prefix: biosample
@@ -6185,8 +6298,12 @@ cellosaurus:
   example: '0440'
   homepage: https://cellosaurus.org
   keywords:
+  - cell lines
+  - controlled vocabularies
   - life science
+  - ontologies
   - ontology
+  - thesaurus
   mappings:
     biocontext: CELLOSAURUS
     cellosaurus: Cellosaurus
@@ -6194,6 +6311,7 @@ cellosaurus:
     miriam: cellosaurus
     n2t: cellosaurus
     re3data: r3d100013293
+    rrid: CVCL
     wikidata: P3289
   mastodon: cellosaurus@fediscience.org
   name: Cellosaurus
@@ -11840,6 +11958,23 @@ dg5b0d:
   pattern: ^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$
   preferred_prefix: dg5b0d
   uri_format: https://data.bloodpac.org/ga4gh/drs/v1/objects/$1
+dggr:
+  description: Organism supplier which collects Drosophila stocks from laboratories
+    all over the world, maintains them, and provides them to researchers upon request.
+    [from RRID]
+  example: '918902'
+  homepage: http://kyotofly.kit.jp/cgi-bin/stocks/data_search.cgi
+  keywords:
+  - drosophila
+  - genetic resource
+  - genomics
+  - organism supplier
+  mappings:
+    rrid: DGGR
+  name: Kyoto Stock Center
+  pattern: ^\d+$
+  preferred_prefix: dggr
+  uri_format: https://kyotofly.kit.jp/cgi-bin/stocks/search_res_det.cgi?DB_NUM=1&DG_NUM=$1
 dgrc:
   description: Cell line collections (Providers)
   example: '215'
@@ -17675,18 +17810,37 @@ flybase:
   example: FBgn0011293
   homepage: http://flybase.org/
   keywords:
+  - allele
   - anatomy
+  - bio.tools
   - bioinformatics
+  - blast
   - comparative genomics
+  - controlled term
   - dna
+  - drosophilidae
+  - expression
+  - faseb list
   - functional genomics
+  - gene
   - genetics
   - genome
   - genomics
+  - genotype
+  - image
+  - image collection
   - interaction
   - life science
+  - life-cycle
   - molecular biology
   - molecular genetics
+  - movie
+  - mutant
+  - phenotype
+  - rna-seq
+  - sequence
+  - stock
+  - video resource
   mappings:
     biocontext: FlyBase
     cellosaurus: FlyBase
@@ -17698,6 +17852,7 @@ flybase:
     ncbi: FLYBASE
     prefixcommons: flybase
     re3data: r3d100010591
+    rrid: FlyBase
     uniprot: DB-0026
     wikidata: P3852
   name: FlyBase Gene
@@ -17739,6 +17894,11 @@ flybase:
     pubmed: '8594600'
     title: 'FlyBase: the Drosophila database'
     year: 1996
+  - doi: null
+    pmc: null
+    pubmed: '8578603'
+    title: null
+    year: null
   - doi: 10.1093/nar/22.17.3456
     pmc: PMC308301
     pubmed: '7937045'
@@ -17857,6 +18017,11 @@ flybase:
     pubmed: '11752267'
     title: The FlyBase database of the Drosophila genome projects and community literature
     year: 2002
+  - doi: null
+    pmc: null
+    pubmed: '11465064'
+    title: null
+    year: null
   - doi: 10.1093/nar/gkn788.
     pmc: null
     pubmed: null
@@ -25414,6 +25579,100 @@ imr:
     uri_format: http://bio2rdf.org/imr:$1
   rdf_uri_format: http://purl.obolibrary.org/obo/IMR_$1
   uri_format: http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=$1
+imsr.apb:
+  description: 'The NHMRC Australian PhenomeBank (APB) is a non-profit repository
+    of mouse strains used in Medical Research. The database allows you to search for
+    murine strains, housed or archived in Australia, carrying mutations in particular
+    genes, strains with transgenic alterations and for mice with particular phenotypes.
+    1876 publicly available strains, 922 genes, 439 transgenes The APB has two roles:
+    Provide and maintain a central database of genetically modified mice held in Australia
+    either live or as cryopreserved material; Establish and maintain a mouse strain
+    archive. Strains are archived as cryopreserved sperm or embryos. [from RRID]'
+  example: '7345'
+  homepage: https://pb.apf.edu.au/phenbank/homePage.html
+  keywords:
+  - allele
+  - alteration
+  - chromosome
+  - database
+  - embryo
+  - gene
+  - live mouse
+  - murine
+  - mutation
+  - phenotype
+  - sperm
+  - strain
+  - transgene
+  - transgenic
+  mappings:
+    rrid: IMSR_APB
+  name: NHMRC Australian PhenomeBank
+  pattern: ^\d+$
+  preferred_prefix: imsr.apb
+  uri_format: https://pb.apf.edu.au/phenbank/strain.html?id=$1
+imsr_em:
+  description: Non-profit repository for the collection, archiving (via cryopreservation)
+    and distribution of relevant mutant strains essential for basic biomedical research.
+    Users may browse by strain, gene, phenotype, or human disease. Its primary objective
+    is to establish and manage a unified repository for maintaining medically relevant
+    mouse mutants and making them available to the scientific community. Therefore,
+    EMMA archives mutant strains and distributes them to requesting researchers. EMMA
+    also hosts courses in cryopreservation, to promote the use and dissemination of
+    frozen embryos and spermatozoa. Dissemination of knowledge is further fostered
+    by a dedicated resource database. Anybody who wants their mutant mouse strains
+    cryopreserved may deposit strains with EMMA. However depositors must be aware
+    that these strains become freely available to other researchers after being deposited.With
+    more than 8400 mutant mouse strains and asmall but increasing number of rat mutant
+    strains available, EMMA is the primary mouse repository in Europe and the third
+    largest non-profit repository worldwide. [from RRID]
+  example: '11478'
+  homepage: https://www.infrafrontier.eu/emma/
+  keywords:
+  - ''
+  - mouse
+  - mutant mouse repository
+  - mutant mouse strain
+  - mutant strain
+  mappings:
+    rrid: IMSR_EM
+  name: European Mouse Mutant Archive
+  pattern: ^\d+$
+  preferred_prefix: imsr_em
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '19783817'
+    title: null
+    year: null
+  - doi: null
+    pmc: null
+    pubmed: '17709347'
+    title: null
+    year: null
+  uri_format: https://www.infrafrontier.eu/emma/strain-search/straindetails/?q=$1
+imsr_tac:
+  description: Supplier of mice for research purposes. [from RRID]
+  example: '1178'
+  homepage: https://www.taconic.com/
+  keywords:
+  - gene
+  - genetic engineering
+  - knockout
+  - mice
+  - model
+  - mouse
+  - repository
+  - research
+  - strain
+  - subject
+  - supply
+  - transgenic
+  mappings:
+    rrid: IMSR_TAC
+  name: Taconic Biosciences
+  preferred_prefix: imsr_tac
+  uri_format: https://scicrunch.org/resolver/RRID:IMSR_TAC_$1
 inaturalist.observation:
   contributor:
     email: null
@@ -26784,10 +27043,22 @@ jax:
   example: '004435'
   homepage: https://www.jax.org/strain
   keywords:
+  - gene
+  - genetic engineering
+  - knockout
   - life science
+  - mice
+  - model
+  - mouse
+  - repository
+  - research
+  - strain
+  - subject
+  - supply
   mappings:
     biocontext: JAX
     fairsharing: FAIRsharing.5701h1
+    rrid: IMSR_JAX
   name: Jackson Laboratories Strain
   pattern: ^\d{6}$
   preferred_prefix: jax
@@ -30270,11 +30541,33 @@ mgi:
   example: '6017782'
   homepage: http://www.informatics.jax.org/
   keywords:
+  - animal model
+  - blast
+  - data analysis service
   - expression
+  - function
+  - gene
+  - gene expression
+  - genetics
+  - genome
+  - genotype
+  - gold standard
+  - human disease
+  - human health
+  - image
   - life science
+  - model
+  - molecular neuroanatomy resource
   - ontology and terminology
+  - orthology
+  - pathology
+  - pathway
   - phenotype
+  - recombinase
   - sequence
+  - single nucleotide polymorphism
+  - strain
+  - tumor
   mappings:
     biocontext: MGI
     cellosaurus: MGI
@@ -30286,6 +30579,7 @@ mgi:
     ncbi: MGI
     prefixcommons: mgi
     re3data: r3d100010266
+    rrid: MGI
     uniprot: DB-0060
     wikidata: P671
   name: Mouse Genome Informatics
@@ -30364,6 +30658,16 @@ mgi:
     title: 'The Mouse Genome Database (MGD): comprehensive resource for genetics and
       genomics of the laboratory mouse'
     year: 2011
+  - doi: null
+    pmc: null
+    pubmed: '19274630'
+    title: null
+    year: null
+  - doi: null
+    pmc: null
+    pubmed: '18428715'
+    title: null
+    year: null
   - doi: 10.1093/nar/gki113
     pmc: PMC540067
     pubmed: '15608240'
@@ -31539,6 +31843,16 @@ mmrrc:
   homepage: https://www.mmrrc.org
   keywords:
   - biology
+  - cryopreserved
+  - database
+  - embryonic stem cell
+  - embryonic stem cell line
+  - faseb list
+  - mouse strain
+  - mutant
+  - mutant mouse strain
+  - stem cell
+  - transgenic
   mappings:
     biocontext: MMRRC
     cellosaurus: MMRRC
@@ -31546,6 +31860,7 @@ mmrrc:
     miriam: mmrrc
     n2t: mmrrc
     re3data: r3d100013715
+    rrid: MMRRC
   name: Mutant Mouse Resource and Research Centers
   pattern: ^\d+$
   preferred_prefix: mmrrc
@@ -35476,6 +35791,37 @@ nsf.award:
   pattern: ^\d+$
   preferred_prefix: nsf.award
   uri_format: https://www.nsf.gov/awardsearch/showAward?AWD_ID=$1
+nsrrc:
+  description: Provides access to critically needed swine models of human health and
+    disease as well as a central resource for reagents, creation of new genetically
+    modified swine, and information and training related to use of swine models in
+    biomedical research. [from RRID]
+  example: '0005'
+  homepage: http://www.nsrrc.missouri.edu/
+  keywords:
+  - biomaterial manufacture
+  - breeding
+  - consulting
+  - cryopreservation
+  - fetal fibroblast
+  - fetus
+  - fibroblast
+  - genetically modified pig
+  - genetics
+  - genome
+  - genotyping
+  - health monitoring
+  - live animal
+  - phenotyping
+  - pig
+  - reproduction
+  - tissue
+  mappings:
+    rrid: NSRRC
+  name: National Swine Resource and Research Center
+  pattern: ^\d+$
+  preferred_prefix: nsrrc
+  uri_format: https://nsrrc.missouri.edu/nsrrc$1info/
 nucc.characteristic:
   contributor:
     email: cthoyt@gmail.com
@@ -35580,6 +35926,22 @@ nucleotide:
   pattern: ^[a-zA-Z0-9_\.]+$
   preferred_prefix: nucleotide
   uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
+nxr:
+  description: National stock center for X. laevis and X. tropicalis and training
+    center for advanced technologies (e.g. husbandry, cell biology, imaging, genetics,
+    transgenesis, genomics). [from RRID]
+  example: '0024'
+  homepage: http://www.mbl.edu/xenopus/
+  keywords:
+  - laevis
+  - tropicalis
+  - xenopus
+  mappings:
+    rrid: NXR
+  name: National Xenopus Resource
+  pattern: ^\d+$
+  preferred_prefix: nxr
+  uri_format: https://scicrunch.org/resolver/RRID:NXR_$1
 oa:
   contributor:
     email: cthoyt@gmail.com
@@ -43428,11 +43790,44 @@ rcb:
     animals, preserved by the RIKEN BioResource Research Center.
   example: RCB0002
   homepage: https://cell.brc.riken.jp/en/rcb
+  keywords:
+  - animal
+  - bioresource
+  - cell
+  - cell line
+  - cultured cell
+  - cultured cell line
+  - dna
+  - embryo
+  - experimental animal
+  - experimental plant
+  - faseb list
+  - gene
+  - genetic material
+  - organ
+  - plant
+  - recombinant host
+  - seed
+  - sperm
+  - tissue
+  - virus
   mappings:
     cellosaurus: RCB
+    rrid: IMSR_RBRC
   name: RIKEN Bioresource Center Cell Bank
   pattern: ^RCB\d+$
   preferred_prefix: rcb
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '34532769'
+    title: null
+    year: null
+  - doi: null
+    pmc: null
+    pubmed: '19448331'
+    title: null
+    year: null
   uri_format: https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=$1
 rdf:
   contact:
@@ -44143,17 +44538,48 @@ rgd:
   example: '7499841'
   homepage: http://rgd.mcw.edu/
   keywords:
+  - behavior
   - biomedical science
   - comparative genomics
+  - congenic rat
+  - data analysis service
+  - disease
   - dna
+  - est
+  - faseb list
+  - function
   - gene
+  - genetic
   - genome
+  - genomic
   - genomics
+  - genotype
+  - gold standard
+  - human
+  - immunology
+  - inbred rat strain
+  - knockout
+  - map
+  - marker
+  - model organism
   - molecular medicine
+  - mouse
+  - mutant
   - ontology
+  - organism supplier
+  - pathway
   - phenomics
+  - phenotype
+  - physiology
+  - proteomics
+  - qtl
   - quantitative genetics
+  - rat
+  - recombinant inbred rat
+  - sequence
+  - strain
   - translational medicine
+  - variation
   - veterinary medicine
   mappings:
     aberowl: RGD
@@ -44168,6 +44594,7 @@ rgd:
     ncbi: RGD
     prefixcommons: rgd
     re3data: r3d100010417
+    rrid: RGD
     uniprot: DB-0091
     wikidata: P3853
   name: Rat Genome Database
@@ -44284,11 +44711,21 @@ rgd:
     pubmed: '23603846'
     title: 'PhenoMiner: quantitative phenotype curation at the rat genome database'
     year: 2013
+  - doi: null
+    pmc: null
+    pubmed: '23434633'
+    title: null
+    year: null
   - doi: 10.1371/journal.pcbi.1000582
     pmc: PMC2775909
     pubmed: '19956751'
     title: 'The rat genome database curators: who, what, where, why'
     year: 2009
+  - doi: null
+    pmc: null
+    pubmed: '18996890'
+    title: null
+    year: null
   - doi: 10.1093/nar/gkl988
     pmc: PMC1761441
     pubmed: '17151068'
@@ -45187,6 +45624,52 @@ rrid:
       in the biomedical literature'
     year: 2013
   uri_format: https://scicrunch.org/resolver/RRID:$1
+rrrc:
+  description: Supplies biomedical investigators with rat models, embryonic stem cells,
+    related reagents, and protocols they require for their research. In addition to
+    repository, cryostorage and distribution functions, RRRC can facilitate acquisition
+    of rat strains from other international repositories as well as provide consultation
+    and technical training to investigators using rat models. [from RRID]
+  example: '961'
+  homepage: http://www.rrrc.us/
+  keywords:
+  - animal
+  - biomedical
+  - catalog
+  - cell line
+  - cryopreserved
+  - database
+  - disease
+  - drug
+  - embryo
+  - embryonic stem cell
+  - gamete
+  - genome
+  - genotyping
+  - germplasma
+  - human
+  - hybrid
+  - inbred
+  - infectious
+  - molecular
+  - mutant
+  - nuclear
+  - ovarian
+  - pathogen
+  - protocol
+  - rat
+  - rat model
+  - reagent
+  - research
+  - stem cell
+  - strain
+  - tissue
+  mappings:
+    rrid: RRRC
+  name: Rat Resource and Research Center
+  pattern: ^\d+$
+  preferred_prefix: rrrc
+  uri_format: https://www.rrrc.us/Strain/?x=$1
 rs:
   contact:
     email: sjwang@mcw.edu
@@ -46233,10 +46716,14 @@ scr:
   github_request_issue: 421
   homepage: https://scicrunch.org/browse/resourcedashboard
   keywords:
+  - interactive portal
   - life science
   - neurobiology
+  - nih initiative
+  - rrid
   mappings:
     fairsharing: FAIRsharing.kj4pvk
+    rrid: SCR
   name: SciCrunch Registry
   pattern: ^\d+$
   preferred_prefix: scr
@@ -46246,6 +46733,11 @@ scr:
     pubmed: '26599696'
     title: 'The Resource Identification Initiative: A Cultural Shift in Publishing'
     year: 2016
+  - doi: null
+    pmc: null
+    pubmed: '22434839'
+    title: null
+    year: null
   synonyms:
   - scicrunch
   uri_format: http://scicrunch.org/resolver/SCR_$1
@@ -50967,6 +51459,37 @@ trnadbce:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://trna.nagahama-i-bio.ac.jp/cgi-bin/trnadb/whole_detail.cgi?SID=$1
+tsc:
+  description: Centralized repository and distribution site for variety of Tetrahymena
+    strains and species. Maintains diverse array of wild type, mutant, and genetically
+    engineered strains of T. thermophila, the most commonly used laboratory species,
+    and variety of other species derived from both laboratory maintained stocks and
+    wild isolates. All stocks are stored in liquid nitrogen to maintain genetic integrity
+    and prevent senescence. In addition to providing worldwide access to strains currently
+    in collection, TSC continually upgrades collection by accepting deposition of
+    newly developed laboratory strains and well characterized wild isolates collected
+    from clearly defined natural sites. [from RRID]
+  example: SD00043
+  homepage: https://tetrahymena.vet.cornell.edu/
+  keywords:
+  - biology
+  - cell
+  - cellular
+  - culture
+  - eukaryota
+  - genetics
+  - model
+  - molecular
+  - protozoan
+  - repository
+  - research
+  - tetrahymena thermophila
+  mappings:
+    rrid: TSC
+  name: Tetrahymena Stock Center
+  pattern: ^SD\d+$
+  preferred_prefix: tsc
+  uri_format: https://tetrahymena.vet.cornell.edu/display.php?stockid=$1
 ttd.drug:
   description: The Therapeutic Target Database (TTD) is designed to provide information
     about the known therapeutic protein and nucleic acid targets described in the
@@ -52718,6 +53241,25 @@ vcell:
   pattern: ^\d{5,}$
   preferred_prefix: vcell
   uri_format: https://vcell.org/biomodel-$1
+vdrc:
+  description: Biomaterial supply resource which collects, maintains, and distributes
+    independent transgenic fly lines. Most of the 38,000 fly lines are RNAi lines,
+    but VDRC also maintains a collection of enhancer-GAL4 driver lines. Nearly all
+    lines are in duplicate. Users can search for the stocks or DNA constructs for
+    the gene of interest by entering CG number, synonym, or Transformant ID. [from
+    RRID]
+  example: '100291'
+  homepage: http://stockcenter.vdrc.at/control/main
+  keywords:
+  - biomaterial supply resource
+  - drosophila
+  - fly lines
+  mappings:
+    rrid: VDRC
+  name: Vienna Drosophila Resource Center
+  pattern: ^\d+$
+  preferred_prefix: vdrc
+  uri_format: https://shop.vbc.ac.at/vdrc_store/$1.html
 vectorbase:
   description: 'VectorBase is an NIAID-funded Bioinformatic Resource Center focused
     on invertebrate vectors of human pathogens. VectorBase annotates and curates vector
@@ -54360,9 +54902,27 @@ wormbase:
   homepage: https://www.wormbase.org/
   keywords:
   - anatomy
+  - blast
+  - c elegans
+  - catalog
+  - database
+  - faseb list
   - gene
+  - gene expression
+  - gene function
+  - gene mapping
+  - gene prediction
+  - geneotype
   - genome
+  - genomic sequence
+  - genomics
   - life science
+  - ortholog
+  - orthology assignment
+  - phenotype
+  - roundworm
+  - transposon family
+  - wormmart
   mappings:
     biocontext: WormBase
     biolink: WBVocab
@@ -54374,6 +54934,7 @@ wormbase:
     ncbi: WormBase
     prefixcommons: wormbase
     re3data: r3d100010424
+    rrid: WB-STRAIN:WBStrain
     uniprot: DB-0110
     wikidata: P3860
   name: Wormbase Gene
@@ -54410,6 +54971,11 @@ wormbase:
     pubmed: '29069413'
     title: 'WormBase 2017: molting into a new stage'
     year: 2018
+  - doi: null
+    pmc: null
+    pubmed: '24194605'
+    title: null
+    year: null
   - doi: 10.1186/1471-2105-12-175
     pmc: PMC3213741
     pubmed: '21595960'
@@ -54458,6 +55024,16 @@ wormbase:
     pubmed: '19099578'
     title: nGASP--the nematode genome annotation assessment project
     year: 2008
+  - doi: null
+    pmc: null
+    pubmed: '17991679'
+    title: null
+    year: null
+  - doi: null
+    pmc: null
+    pubmed: '15608221'
+    title: null
+    year: null
   - doi: 10.1093/nar/29.1.82
     pmc: PMC29781
     pubmed: '11125056'
@@ -55410,13 +55986,22 @@ zfin:
   example: ZDB-GENE-041118-11
   homepage: http://zfin.org
   keywords:
+  - adult
   - animal physiology
+  - antibody
+  - cdna
   - developmental biology
+  - embryo
+  - expressed sequence tag
+  - fish
   - gene
   - genetics
   - genome
   - genomics
+  - pathology
+  - research
   - zebrafish
+  - zebrafish line
   mappings:
     biocontext: ZFIN
     fairsharing: FAIRsharing.ybxnhg
@@ -55426,6 +56011,7 @@ zfin:
     ncbi: ZFIN
     prefixcommons: zfin
     re3data: r3d100010421
+    rrid: ZIRC
     uniprot: DB-0113
     wikidata: P3870
   name: Zebrafish Information Network Gene

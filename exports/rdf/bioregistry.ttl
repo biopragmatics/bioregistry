@@ -20,6 +20,7 @@
 @prefix agro: <http://purl.obolibrary.org/obo/AGRO_> .
 @prefix agroportal: <http://agroportal.lirmm.fr/ontologies/> .
 @prefix agrovoc: <http://aims.fao.org/aos/agrovoc/c_> .
+@prefix agsc: <https://scicrunch.org/resolver/RRID:AGSC_> .
 @prefix agsd: <http://www.genomesize.com/result_species.php?id=> .
 @prefix aio: <https://w3id.org/aio/> .
 @prefix aism: <http://purl.obolibrary.org/obo/AISM_> .
@@ -70,6 +71,7 @@
 @prefix bao: <http://www.bioassayontology.org/bao#BAO_> .
 @prefix bartoc: <https://bartoc.org/en/node/> .
 @prefix bbtp: <https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:> .
+@prefix bcbc: <https://scicrunch.org/resolver/RRID:BCBC_> .
 @prefix bcgo: <http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/> .
 @prefix bcio: <https://w3id.org/BCI-ontology#> .
 @prefix bco: <http://purl.obolibrary.org/obo/BCO_> .
@@ -335,6 +337,7 @@
 @prefix dg.anv0: <https://gen3.theanvil.io/ga4gh/drs/v1/objects/> .
 @prefix dg.f82a1a: <https://data.kidsfirstdrc.org/ga4gh/drs/v1/objects/> .
 @prefix dg5b0d: <https://data.bloodpac.org/ga4gh/drs/v1/objects/> .
+@prefix dggr: <https://kyotofly.kit.jp/cgi-bin/stocks/search_res_det.cgi?DB_NUM=1&DG_NUM=> .
 @prefix dgrc: <https://dgrc.bio.indiana.edu/product/View?product=> .
 @prefix dhba: <https://biopragmatics.github.io/providers/dhba/> .
 @prefix dicom: <http://dicom.nema.org/resources/ontology/DCM/> .
@@ -668,6 +671,9 @@
 @prefix imgt.ligm: <http://www.imgt.org/ligmdb/view?id=> .
 @prefix imotdb: <http://caps.ncbs.res.in/cgi-bin/mini/databases/imotdb/imotdb.cgi?sfcode=> .
 @prefix imr: <http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=> .
+@prefix imsr.apb: <https://pb.apf.edu.au/phenbank/strain.html?id=> .
+@prefix imsr_em: <https://www.infrafrontier.eu/emma/strain-search/straindetails/?q=> .
+@prefix imsr_tac: <https://scicrunch.org/resolver/RRID:IMSR_TAC_> .
 @prefix inaturalist.observation: <https://www.inaturalist.org/observations/> .
 @prefix inaturalist.place: <https://www.inaturalist.org/places/> .
 @prefix inaturalist.taxon: <https://www.inaturalist.org/taxa/> .
@@ -926,6 +932,7 @@
 @prefix nsf.award: <https://www.nsf.gov/awardsearch/showAward?AWD_ID=> .
 @prefix nucleardb: <http://www.receptors.org/nucleardb/proteins/> .
 @prefix nucleotide: <https://www.ncbi.nlm.nih.gov/nuccore/> .
+@prefix nxr: <https://scicrunch.org/resolver/RRID:NXR_> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix oae: <http://purl.obolibrary.org/obo/OAE_> .
 @prefix oarcs: <http://purl.obolibrary.org/obo/OARCS_> .
@@ -1161,7 +1168,9 @@
 @prefix ror: <https://ror.org/> .
 @prefix rouge: <https://www.kazusa.or.jp/rouge/gfpage/> .
 @prefix rpcec: <https://rpcec.sld.cu/en/trials/> .
-@prefix rrid: <https://scicrunch.org/resolver/RRID:> .
+@prefix rrid: <https://bioregistry.io/metaregistry/rrid/resolve/> .
+@prefix rrid1: <https://scicrunch.org/resolver/RRID:> .
+@prefix rrrc: <https://www.rrrc.us/Strain/?x=> .
 @prefix rs: <http://purl.obolibrary.org/obo/RS_> .
 @prefix runbiosimulations: <https://run.biosimulations.org/simulations/> .
 @prefix rxno: <http://purl.obolibrary.org/obo/RXNO_> .
@@ -1303,6 +1312,7 @@
 @prefix trichdb: <http://trichdb.org/trichdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=> .
 @prefix tritrypdb: <http://tritrypdb.org/tritrypdb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=> .
 @prefix trnadbce: <http://trna.nagahama-i-bio.ac.jp/cgi-bin/trnadb/whole_detail.cgi?SID=> .
+@prefix tsc: <https://tetrahymena.vet.cornell.edu/display.php?stockid=> .
 @prefix ttd.drug: <http://bidd.nus.edu.sg/group/TTD/ZFTTDDRUG.asp?ID=> .
 @prefix ttd.target: <http://bidd.nus.edu.sg/group/TTD/ZFTTDDetail.asp?ID=> .
 @prefix tto: <http://purl.obolibrary.org/obo/TTO_> .
@@ -2076,12 +2086,18 @@ bioregistry:addgene a bioregistry.schema:0000001 ;
     dcterms:description "Addgene is a non-profit plasmid repository. Addgene facilitates the exchange of genetic material between laboratories by offering plasmids and their associated cloning data to not-for-profit laboratories around the world."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:addgene,
+        rrid:Addgene,
         fairsharing:FAIRsharing.8hcczk,
         prefixcommons:addgene,
         miriam:addgene,
         re3data:r3d100010741 ;
-    dcat:keyword "life science",
-        "plasmid" ;
+    dcat:keyword "bio.tools",
+        "faseb list",
+        "life science",
+        "molecular biology",
+        "plasmid",
+        "repository",
+        "sequence alignment" ;
     foaf:homepage addgene: ;
     bioregistry.schema:0000005 "50943"^^xsd:string ;
     bioregistry.schema:0000006 "http://addgene.org/$1"^^xsd:string ;
@@ -2196,6 +2212,25 @@ bioregistry:agricola a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 agricola:50018 ;
     bioregistry.schema:0000029 "agricola" .
 
+bioregistry:agsc a bioregistry.schema:0000001 ;
+    rdfs:label "Ambystoma Genetic Stock Center" ;
+    dcterms:description "The Ambystoma Genetic Stock Center (AGSC) maintains a breeding colony of Mexican axolotls (Ambystoma mexicanum) and distributes axolotl embryos, larvae, and adults to laboratories and classrooms throughout the United States and abroad. [from homepage]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:AGSC ;
+    dcat:keyword "adult",
+        "ambystoma",
+        "embryo",
+        "k-12 teacher",
+        "larvae",
+        "salamander" ;
+    foaf:homepage <https://ambystoma.uky.edu/genetic-stock-center/> ;
+    bioregistry.schema:0000005 "100E"^^xsd:string ;
+    bioregistry.schema:0000006 "https://scicrunch.org/resolver/RRID:AGSC_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://scicrunch.org/resolver/RRID:AGSC_"^^xsd:string ;
+    bioregistry.schema:0000027 agsc:100E ;
+    bioregistry.schema:0000029 "agsc" .
+
 bioregistry:agsd a bioregistry.schema:0000001 ;
     rdfs:label "Animal Genome Size Database" ;
     dcterms:description "A comprehensive catalogue of animal genome size data where haploid DNA contents (C-values, in picograms) are currently available for 4972 species (3231 vertebrates and 1741 non-vertebrates) based on 6518 records from 669 published sources."^^xsd:string ;
@@ -2298,7 +2333,11 @@ bioregistry:antibodyregistry a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:ANTIBODYREGISTRY,
         n2t:antibodyregistry,
+        rrid:AB,
         miriam:antibodyregistry ;
+    dcat:keyword "antibody",
+        "reagent",
+        "unique identifiers" ;
     foaf:homepage <http://antibodyregistry.org/> ;
     bioregistry.schema:0000005 "493771"^^xsd:string ;
     bioregistry.schema:0000006 "http://antibodyregistry.org/AB_$1"^^xsd:string ;
@@ -2986,6 +3025,46 @@ bioregistry:bbtp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 bbtp:f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a ;
     bioregistry.schema:0000029 "bbtp" .
 
+bioregistry:bcbc a bioregistry.schema:0000001 ;
+    rdfs:label "Beta Cell Biology Consortium" ;
+    dcterms:description "One of the many goals of the BCBC was to develop and maintain databases of useful research resources. A total of 813 different scientific resources were generated and submitted by BCBC investigators over the 14 years it existed. Information pertaining to 495 selected resources, judged to be the most scientifically-useful, has been converted into a static catalog, as shown below. In addition, the metadata for these 495 resources have been transferred to dkNET in the form of RDF descriptors, and all genomics data have been deposited to either ArrayExpress or GEO. [from homepage]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:BCBC ;
+    dcat:keyword "adenovirus",
+        "antibody",
+        "basic research",
+        "basic science",
+        "beta cell",
+        "cell line",
+        "cell regeneration",
+        "cell replacement",
+        "cell reprogramming",
+        "data set",
+        "data sharing",
+        "embryonic stem cell",
+        "embryonic stem cell line",
+        "functional genomics",
+        "gene",
+        "gene expression",
+        "genomics",
+        "mouse",
+        "mouse embryonic stem cell line",
+        "mouse strain",
+        "pancreas",
+        "pancreatic development",
+        "pancreatic islet",
+        "pancreatic islet development",
+        "pancreatic islet function",
+        "protocol" ;
+    foaf:homepage <http://www.betacell.org/> ;
+    bioregistry.schema:0000005 "4623"^^xsd:string ;
+    bioregistry.schema:0000006 "https://scicrunch.org/resolver/RRID:BCBC_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://scicrunch.org/resolver/RRID:BCBC_"^^xsd:string ;
+    bioregistry.schema:0000027 bcbc:4623 ;
+    bioregistry.schema:0000029 "bcbc" .
+
 bioregistry:bcgo a bioregistry.schema:0000001 ;
     rdfs:label "Beta Cell Genomics Ontology" ;
     dcterms:description "An application ontology built for beta cell genomics studies."^^xsd:string ;
@@ -3088,7 +3167,31 @@ bioregistry:bdsc a bioregistry.schema:0000001 ;
     dcterms:description "The Bloomington Drosophila Stock Center collects, maintains and distributes Drosophila melanogaster strains for research."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:bdsc,
+        rrid:BDSC,
         miriam:bdsc ;
+    dcat:keyword "database",
+        "deficiency",
+        "deletion",
+        "disease model",
+        "duplication",
+        "faseb list",
+        "fly",
+        "gene",
+        "genetic",
+        "genetic analysis",
+        "genetic construct",
+        "germline",
+        "human disease model",
+        "insertion",
+        "invertebrate",
+        "mutation",
+        "protein trap",
+        "scientist",
+        "sequenced strain",
+        "somatic",
+        "stock",
+        "transposon",
+        "transposon insertion" ;
     foaf:homepage <https://bdsc.indiana.edu/about/mission.html> ;
     bioregistry.schema:0000005 "33607"^^xsd:string ;
     bioregistry.schema:0000006 "https://bdsc.indiana.edu/stocks/$1"^^xsd:string ;
@@ -3651,10 +3754,18 @@ bioregistry:biosample a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:BIOSAMPLE,
         cellosaurus.resource:BioSamples,
         n2t:biosample,
+        rrid:SAMN,
         fairsharing:FAIRsharing.qr6pqk,
         miriam:biosample,
         re3data:r3d100012828 ;
-    dcat:keyword "biology" ;
+    dcat:keyword "biology",
+        "biomaterial",
+        "cell",
+        "cell line",
+        "dna",
+        "gold standard",
+        "rna",
+        "stem cell" ;
     foaf:homepage <https://www.ebi.ac.uk/biosamples/> ;
     bioregistry.schema:0000005 "SAMEA2397676"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/biosamples/sample/$1"^^xsd:string ;
@@ -6460,6 +6571,24 @@ bioregistry:dg5b0d a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://data.bloodpac.org/ga4gh/drs/v1/objects/"^^xsd:string ;
     bioregistry.schema:0000027 dg5b0d:00000d53-99bc-4d3e-8ed7-6dc358baccb7 ;
     bioregistry.schema:0000029 "dg5b0d" .
+
+bioregistry:dggr a bioregistry.schema:0000001 ;
+    rdfs:label "Kyoto Stock Center" ;
+    dcterms:description "Organism supplier which collects Drosophila stocks from laboratories all over the world, maintains them, and provides them to researchers upon request. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:DGGR ;
+    dcat:keyword "drosophila",
+        "genetic resource",
+        "genomics",
+        "organism supplier" ;
+    foaf:homepage <http://kyotofly.kit.jp/cgi-bin/stocks/data_search.cgi> ;
+    bioregistry.schema:0000005 "918902"^^xsd:string ;
+    bioregistry.schema:0000006 "https://kyotofly.kit.jp/cgi-bin/stocks/search_res_det.cgi?DB_NUM=1&DG_NUM=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://kyotofly.kit.jp/cgi-bin/stocks/search_res_det.cgi?DB_NUM=1&DG_NUM="^^xsd:string ;
+    bioregistry.schema:0000027 dggr:918902 ;
+    bioregistry.schema:0000029 "dggr" .
 
 bioregistry:dgrc a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila Genomics Resource Center" ;
@@ -10147,6 +10276,78 @@ bioregistry:imr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 imr:0000001 ;
     bioregistry.schema:0000029 "imr" .
 
+bioregistry:imsr.apb a bioregistry.schema:0000001 ;
+    rdfs:label "NHMRC Australian PhenomeBank" ;
+    dcterms:description "The NHMRC Australian PhenomeBank (APB) is a non-profit repository of mouse strains used in Medical Research. The database allows you to search for murine strains, housed or archived in Australia, carrying mutations in particular genes, strains with transgenic alterations and for mice with particular phenotypes. 1876 publicly available strains, 922 genes, 439 transgenes The APB has two roles: Provide and maintain a central database of genetically modified mice held in Australia either live or as cryopreserved material; Establish and maintain a mouse strain archive. Strains are archived as cryopreserved sperm or embryos. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:IMSR_APB ;
+    dcat:keyword "allele",
+        "alteration",
+        "chromosome",
+        "database",
+        "embryo",
+        "gene",
+        "live mouse",
+        "murine",
+        "mutation",
+        "phenotype",
+        "sperm",
+        "strain",
+        "transgene",
+        "transgenic" ;
+    foaf:homepage <https://pb.apf.edu.au/phenbank/homePage.html> ;
+    bioregistry.schema:0000005 "7345"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pb.apf.edu.au/phenbank/strain.html?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://pb.apf.edu.au/phenbank/strain.html?id="^^xsd:string ;
+    bioregistry.schema:0000027 imsr.apb:7345 ;
+    bioregistry.schema:0000029 "imsr.apb" .
+
+bioregistry:imsr_em a bioregistry.schema:0000001 ;
+    rdfs:label "European Mouse Mutant Archive" ;
+    dcterms:description "Non-profit repository for the collection, archiving (via cryopreservation) and distribution of relevant mutant strains essential for basic biomedical research. Users may browse by strain, gene, phenotype, or human disease. Its primary objective is to establish and manage a unified repository for maintaining medically relevant mouse mutants and making them available to the scientific community. Therefore, EMMA archives mutant strains and distributes them to requesting researchers. EMMA also hosts courses in cryopreservation, to promote the use and dissemination of frozen embryos and spermatozoa. Dissemination of knowledge is further fostered by a dedicated resource database. Anybody who wants their mutant mouse strains cryopreserved may deposit strains with EMMA. However depositors must be aware that these strains become freely available to other researchers after being deposited.With more than 8400 mutant mouse strains and asmall but increasing number of rat mutant strains available, EMMA is the primary mouse repository in Europe and the third largest non-profit repository worldwide. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:IMSR_EM ;
+    dcat:keyword "",
+        "mouse",
+        "mutant mouse repository",
+        "mutant mouse strain",
+        "mutant strain" ;
+    foaf:homepage <https://www.infrafrontier.eu/emma/> ;
+    bioregistry.schema:0000005 "11478"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.infrafrontier.eu/emma/strain-search/straindetails/?q=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.infrafrontier.eu/emma/strain-search/straindetails/?q="^^xsd:string ;
+    bioregistry.schema:0000027 imsr_em:11478 ;
+    bioregistry.schema:0000029 "imsr_em" .
+
+bioregistry:imsr_tac a bioregistry.schema:0000001 ;
+    rdfs:label "Taconic Biosciences" ;
+    dcterms:description "Supplier of mice for research purposes. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:IMSR_TAC ;
+    dcat:keyword "gene",
+        "genetic engineering",
+        "knockout",
+        "mice",
+        "model",
+        "mouse",
+        "repository",
+        "research",
+        "strain",
+        "subject",
+        "supply",
+        "transgenic" ;
+    foaf:homepage <https://www.taconic.com/> ;
+    bioregistry.schema:0000005 "1178"^^xsd:string ;
+    bioregistry.schema:0000006 "https://scicrunch.org/resolver/RRID:IMSR_TAC_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://scicrunch.org/resolver/RRID:IMSR_TAC_"^^xsd:string ;
+    bioregistry.schema:0000027 imsr_tac:1178 ;
+    bioregistry.schema:0000029 "imsr_tac" .
+
 bioregistry:inchi a bioregistry.schema:0000001 ;
     rdfs:label "InChI" ;
     dcterms:description "The IUPAC International Chemical Identifier (InChI) is a non-proprietary identifier for chemical substances that can be used in printed and electronic data sources. It is derived solely from a structural representation of that substance, such that a single compound always yields the same identifier."^^xsd:string ;
@@ -12311,10 +12512,21 @@ bioregistry:mmrrc a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:MMRRC,
         cellosaurus.resource:MMRRC,
         n2t:mmrrc,
+        rrid:MMRRC,
         fairsharing:FAIRsharing.9dpd18,
         miriam:mmrrc,
         re3data:r3d100013715 ;
-    dcat:keyword "biology" ;
+    dcat:keyword "biology",
+        "cryopreserved",
+        "database",
+        "embryonic stem cell",
+        "embryonic stem cell line",
+        "faseb list",
+        "mouse strain",
+        "mutant",
+        "mutant mouse strain",
+        "stem cell",
+        "transgenic" ;
     foaf:homepage <https://www.mmrrc.org> ;
     bioregistry.schema:0000005 "70"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.mmrrc.org/catalog/getSDS.php?mmrrc_id=$1"^^xsd:string ;
@@ -13513,6 +13725,37 @@ bioregistry:norine a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 norine:NOR00681 ;
     bioregistry.schema:0000029 "norine" .
 
+bioregistry:nsrrc a bioregistry.schema:0000001 ;
+    rdfs:label "National Swine Resource and Research Center" ;
+    dcterms:description "Provides access to critically needed swine models of human health and disease as well as a central resource for reagents, creation of new genetically modified swine, and information and training related to use of swine models in biomedical research. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:NSRRC ;
+    dcat:keyword "biomaterial manufacture",
+        "breeding",
+        "consulting",
+        "cryopreservation",
+        "fetal fibroblast",
+        "fetus",
+        "fibroblast",
+        "genetically modified pig",
+        "genetics",
+        "genome",
+        "genotyping",
+        "health monitoring",
+        "live animal",
+        "phenotyping",
+        "pig",
+        "reproduction",
+        "tissue" ;
+    foaf:homepage <http://www.nsrrc.missouri.edu/> ;
+    bioregistry.schema:0000005 "0005"^^xsd:string ;
+    bioregistry.schema:0000006 "https://nsrrc.missouri.edu/nsrrc$1info/"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://bioregistry.io/nsrrc:"^^xsd:string ;
+    bioregistry.schema:0000027 <https://nsrrc.missouri.edu/nsrrc0005info/> ;
+    bioregistry.schema:0000029 "nsrrc" .
+
 bioregistry:nucleardb a bioregistry.schema:0000001 ;
     rdfs:label "NucleaRDB" ;
     dcterms:description "NucleaRDB is an information system that stores heterogenous data on Nuclear Hormone Receptors (NHRs). It contains data on sequences, ligand binding constants and mutations for NHRs."^^xsd:string ;
@@ -13546,6 +13789,23 @@ bioregistry:nucleotide a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://www.ncbi.nlm.nih.gov/nuccore/"^^xsd:string ;
     bioregistry.schema:0000027 nucleotide:880798137 ;
     bioregistry.schema:0000029 "nucleotide" .
+
+bioregistry:nxr a bioregistry.schema:0000001 ;
+    rdfs:label "National Xenopus Resource" ;
+    dcterms:description "National stock center for X. laevis and X. tropicalis and training center for advanced technologies (e.g. husbandry, cell biology, imaging, genetics, transgenesis, genomics). [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:NXR ;
+    dcat:keyword "laevis",
+        "tropicalis",
+        "xenopus" ;
+    foaf:homepage <http://www.mbl.edu/xenopus/> ;
+    bioregistry.schema:0000005 "0024"^^xsd:string ;
+    bioregistry.schema:0000006 "https://scicrunch.org/resolver/RRID:NXR_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://scicrunch.org/resolver/RRID:NXR_"^^xsd:string ;
+    bioregistry.schema:0000027 nxr:0024 ;
+    bioregistry.schema:0000029 "nxr" .
 
 bioregistry:oarcs a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Arthropod Circulatory Systems" ;
@@ -16440,8 +16700,53 @@ The initiative works with participating journals to intercept manuscripts in the
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5497-0243 ;
     bioregistry.schema:0000024 "https://scicrunch.org/resolver/RRID:"^^xsd:string ;
-    bioregistry.schema:0000027 rrid:AB_262044 ;
+    bioregistry.schema:0000027 rrid1:AB_262044 ;
     bioregistry.schema:0000029 "rrid" .
+
+bioregistry:rrrc a bioregistry.schema:0000001 ;
+    rdfs:label "Rat Resource and Research Center" ;
+    dcterms:description "Supplies biomedical investigators with rat models, embryonic stem cells, related reagents, and protocols they require for their research. In addition to repository, cryostorage and distribution functions, RRRC can facilitate acquisition of rat strains from other international repositories as well as provide consultation and technical training to investigators using rat models. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:RRRC ;
+    dcat:keyword "animal",
+        "biomedical",
+        "catalog",
+        "cell line",
+        "cryopreserved",
+        "database",
+        "disease",
+        "drug",
+        "embryo",
+        "embryonic stem cell",
+        "gamete",
+        "genome",
+        "genotyping",
+        "germplasma",
+        "human",
+        "hybrid",
+        "inbred",
+        "infectious",
+        "molecular",
+        "mutant",
+        "nuclear",
+        "ovarian",
+        "pathogen",
+        "protocol",
+        "rat",
+        "rat model",
+        "reagent",
+        "research",
+        "stem cell",
+        "strain",
+        "tissue" ;
+    foaf:homepage <http://www.rrrc.us/> ;
+    bioregistry.schema:0000005 "961"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.rrrc.us/Strain/?x=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.rrrc.us/Strain/?x="^^xsd:string ;
+    bioregistry.schema:0000027 rrrc:961 ;
+    bioregistry.schema:0000029 "rrrc" .
 
 bioregistry:rs a bioregistry.schema:0000001 ;
     rdfs:label "Rat Strain Ontology" ;
@@ -18323,6 +18628,32 @@ bioregistry:trnadbce a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 trnadbce:265912 ;
     bioregistry.schema:0000029 "trnadbce" .
 
+bioregistry:tsc a bioregistry.schema:0000001 ;
+    rdfs:label "Tetrahymena Stock Center" ;
+    dcterms:description "Centralized repository and distribution site for variety of Tetrahymena strains and species. Maintains diverse array of wild type, mutant, and genetically engineered strains of T. thermophila, the most commonly used laboratory species, and variety of other species derived from both laboratory maintained stocks and wild isolates. All stocks are stored in liquid nitrogen to maintain genetic integrity and prevent senescence. In addition to providing worldwide access to strains currently in collection, TSC continually upgrades collection by accepting deposition of newly developed laboratory strains and well characterized wild isolates collected from clearly defined natural sites. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:TSC ;
+    dcat:keyword "biology",
+        "cell",
+        "cellular",
+        "culture",
+        "eukaryota",
+        "genetics",
+        "model",
+        "molecular",
+        "protozoan",
+        "repository",
+        "research",
+        "tetrahymena thermophila" ;
+    foaf:homepage <https://tetrahymena.vet.cornell.edu/> ;
+    bioregistry.schema:0000005 "SD00043"^^xsd:string ;
+    bioregistry.schema:0000006 "https://tetrahymena.vet.cornell.edu/display.php?stockid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^SD\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://tetrahymena.vet.cornell.edu/display.php?stockid="^^xsd:string ;
+    bioregistry.schema:0000027 tsc:SD00043 ;
+    bioregistry.schema:0000029 "tsc" .
+
 bioregistry:ttd.drug a bioregistry.schema:0000001 ;
     rdfs:label "TTD Drug" ;
     dcterms:description "The Therapeutic Target Database (TTD) is designed to provide information about the known therapeutic protein and nucleic acid targets described in the literature, the targeted disease conditions, the pathway information and the corresponding drugs/ligands directed at each of these targets. Cross-links to other databases allow the access to information about the sequence, 3D structure, function, nomenclature, drug/ligand binding properties, drug usage and effects, and related literature for each target."^^xsd:string ;
@@ -18762,6 +19093,23 @@ bioregistry:vcell a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://vcell.org/biomodel-"^^xsd:string ;
     bioregistry.schema:0000027 vcell:201022999 ;
     bioregistry.schema:0000029 "vcell" .
+
+bioregistry:vdrc a bioregistry.schema:0000001 ;
+    rdfs:label "Vienna Drosophila Resource Center" ;
+    dcterms:description "Biomaterial supply resource which collects, maintains, and distributes independent transgenic fly lines. Most of the 38,000 fly lines are RNAi lines, but VDRC also maintains a collection of enhancer-GAL4 driver lines. Nearly all lines are in duplicate. Users can search for the stocks or DNA constructs for the gene of interest by entering CG number, synonym, or Transformant ID. [from RRID]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch rrid:VDRC ;
+    dcat:keyword "biomaterial supply resource",
+        "drosophila",
+        "fly lines" ;
+    foaf:homepage <http://stockcenter.vdrc.at/control/main> ;
+    bioregistry.schema:0000005 "100291"^^xsd:string ;
+    bioregistry.schema:0000006 "https://shop.vbc.ac.at/vdrc_store/$1.html"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://bioregistry.io/vdrc:"^^xsd:string ;
+    bioregistry.schema:0000027 <https://shop.vbc.ac.at/vdrc_store/100291.html> ;
+    bioregistry.schema:0000029 "vdrc" .
 
 bioregistry:vectorbase a bioregistry.schema:0000001 ;
     rdfs:label "Bioinformatics Resource Center for Invertebrate Vectors of Human Pathogens" ;
@@ -20172,9 +20520,6 @@ orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" ;
 
 orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
     foaf:mbox "Maciej.Antczak@cs.put.poznan.pl" .
-
-orcid:0000-0002-5497-0243 rdfs:label "Anita Bandrowski" ;
-    foaf:mbox "bandrow@gmail.com" .
 
 orcid:0000-0002-5520-6597 rdfs:label "Imke Tammen" ;
     foaf:mbox "imke.tammen@sydney.edu.au" .
@@ -27644,6 +27989,56 @@ ncbi.resource:niaEST dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:taxon dcterms:isPartOf bioregistry.metaresource:ncbi .
 
+rrid:AB dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:AGSC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:Addgene dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:BCBC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:BDSC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:CVCL dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:DGGR dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:FlyBase dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:IMSR_APB dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:IMSR_EM dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:IMSR_JAX dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:IMSR_RBRC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:IMSR_TAC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:MGI dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:MMRRC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:NSRRC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:NXR dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:RGD dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:RRRC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:SAMN dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:SCR dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:TSC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:VDRC dcterms:isPartOf bioregistry.metaresource:rrid .
+
+<https://bioregistry.io/metaregistry/rrid/resolve/WB-STRAIN:WBStrain> dcterms:isPartOf bioregistry.metaresource:rrid .
+
+rrid:ZIRC dcterms:isPartOf bioregistry.metaresource:rrid .
+
 bioregistry:4dn.replicate a bioregistry.schema:0000001 ;
     rdfs:label "4D Nucleome Data Portal Experiment Replicate" ;
     dcterms:description "Database portal containing replicate experiments of different assays and samples"^^xsd:string ;
@@ -28775,11 +29170,16 @@ bioregistry:cellosaurus a bioregistry.schema:0000001 ;
         biocontext:CELLOSAURUS,
         cellosaurus.resource:Cellosaurus,
         n2t:cellosaurus,
+        rrid:CVCL,
         fairsharing:FAIRsharing.hkk309,
         miriam:cellosaurus,
         re3data:r3d100013293 ;
-    dcat:keyword "life science",
-        "ontology" ;
+    dcat:keyword "cell lines",
+        "controlled vocabularies",
+        "life science",
+        "ontologies",
+        "ontology",
+        "thesaurus" ;
     foaf:homepage <https://cellosaurus.org> ;
     bioregistry.schema:0000005 "0440"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cellosaurus.org/CVCL_$1"^^xsd:string ;
@@ -32195,8 +32595,20 @@ bioregistry:jax a bioregistry.schema:0000001 ;
     dcterms:description "Information about the C57BL/6J. Includes genetic background and disease data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:JAX,
+        rrid:IMSR_JAX,
         fairsharing:FAIRsharing.5701h1 ;
-    dcat:keyword "life science" ;
+    dcat:keyword "gene",
+        "genetic engineering",
+        "knockout",
+        "life science",
+        "mice",
+        "model",
+        "mouse",
+        "repository",
+        "research",
+        "strain",
+        "subject",
+        "supply" ;
     foaf:homepage <https://www.jax.org/strain> ;
     bioregistry.schema:0000005 "004435"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.jax.org/strain/$1"^^xsd:string ;
@@ -32901,16 +33313,39 @@ bioregistry:mgi a bioregistry.schema:0000001 ;
         go.resource:MGI,
         n2t:mgi,
         ncbi.resource:MGI,
+        rrid:MGI,
         fairsharing:FAIRsharing.fcwyhz,
         prefixcommons:mgi,
         miriam:mgi,
         re3data:r3d100010266,
         uniprot.resource:DB-0060 ;
-    dcat:keyword "expression",
+    dcat:keyword "animal model",
+        "blast",
+        "data analysis service",
+        "expression",
+        "function",
+        "gene",
+        "gene expression",
+        "genetics",
+        "genome",
+        "genotype",
+        "gold standard",
+        "human disease",
+        "human health",
+        "image",
         "life science",
+        "model",
+        "molecular neuroanatomy resource",
         "ontology and terminology",
+        "orthology",
+        "pathology",
+        "pathway",
         "phenotype",
-        "sequence" ;
+        "recombinase",
+        "sequence",
+        "single nucleotide polymorphism",
+        "strain",
+        "tumor" ;
     foaf:homepage <http://www.informatics.jax.org/> ;
     bioregistry.schema:0000005 "6017782"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.informatics.jax.org/accession/MGI:$1"^^xsd:string ;
@@ -34706,7 +35141,28 @@ bioregistry:rcb a bioregistry.schema:0000001 ;
     rdfs:label "RIKEN Bioresource Center Cell Bank" ;
     dcterms:description "Collection of many cell lines derived from human and other various animals, preserved by the RIKEN BioResource Research Center."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch cellosaurus.resource:RCB ;
+    skos:exactMatch cellosaurus.resource:RCB,
+        rrid:IMSR_RBRC ;
+    dcat:keyword "animal",
+        "bioresource",
+        "cell",
+        "cell line",
+        "cultured cell",
+        "cultured cell line",
+        "dna",
+        "embryo",
+        "experimental animal",
+        "experimental plant",
+        "faseb list",
+        "gene",
+        "genetic material",
+        "organ",
+        "plant",
+        "recombinant host",
+        "seed",
+        "sperm",
+        "tissue",
+        "virus" ;
     foaf:homepage <https://cell.brc.riken.jp/en/rcb> ;
     bioregistry.schema:0000005 "RCB0002"^^xsd:string ;
     bioregistry.schema:0000006 "https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=$1"^^xsd:string ;
@@ -34888,22 +35344,54 @@ bioregistry:rgd a bioregistry.schema:0000001 ;
         go.resource:RGD,
         n2t:rgd,
         ncbi.resource:RGD,
+        rrid:RGD,
         fairsharing:FAIRsharing.pfg82t,
         prefixcommons:rgd,
         miriam:rgd,
         re3data:r3d100010417,
         uniprot.resource:DB-0091 ;
-    dcat:keyword "biomedical science",
+    dcat:keyword "behavior",
+        "biomedical science",
         "comparative genomics",
+        "congenic rat",
+        "data analysis service",
+        "disease",
         "dna",
+        "est",
+        "faseb list",
+        "function",
         "gene",
+        "genetic",
         "genome",
+        "genomic",
         "genomics",
+        "genotype",
+        "gold standard",
+        "human",
+        "immunology",
+        "inbred rat strain",
+        "knockout",
+        "map",
+        "marker",
+        "model organism",
         "molecular medicine",
+        "mouse",
+        "mutant",
         "ontology",
+        "organism supplier",
+        "pathway",
         "phenomics",
+        "phenotype",
+        "physiology",
+        "proteomics",
+        "qtl",
         "quantitative genetics",
+        "rat",
+        "recombinant inbred rat",
+        "sequence",
+        "strain",
         "translational medicine",
+        "variation",
         "veterinary medicine" ;
     foaf:homepage <http://rgd.mcw.edu/> ;
     bioregistry.schema:0000005 "7499841"^^xsd:string ;
@@ -35174,9 +35662,13 @@ bioregistry:scr a bioregistry.schema:0000001 ;
     rdfs:label "SciCrunch Registry" ;
     dcterms:description "The SciCrunch Registry holds metadata records that describe digital resources, e.g., software, databases, projects and also services. Most of these are produced as a result of government funding and are available to the scientific community. Resources are manually curated to make sure the information is accurate. We also use a web crawler to find literature mentions for the resources."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.kj4pvk ;
-    dcat:keyword "life science",
-        "neurobiology" ;
+    skos:exactMatch rrid:SCR,
+        fairsharing:FAIRsharing.kj4pvk ;
+    dcat:keyword "interactive portal",
+        "life science",
+        "neurobiology",
+        "nih initiative",
+        "rrid" ;
     foaf:homepage <https://scicrunch.org/browse/resourcedashboard> ;
     bioregistry.schema:0000005 "022586"^^xsd:string ;
     bioregistry.schema:0000006 "http://scicrunch.org/resolver/SCR_$1"^^xsd:string ;
@@ -36418,15 +36910,34 @@ bioregistry:wormbase a bioregistry.schema:0000001 ;
         go.resource:WB_REF,
         n2t:wb,
         ncbi.resource:WormBase,
+        <https://bioregistry.io/metaregistry/rrid/resolve/WB-STRAIN:WBStrain>,
         fairsharing:FAIRsharing.zx1td8,
         prefixcommons:wormbase,
         miriam:wb,
         re3data:r3d100010424,
         uniprot.resource:DB-0110 ;
     dcat:keyword "anatomy",
+        "blast",
+        "c elegans",
+        "catalog",
+        "database",
+        "faseb list",
         "gene",
+        "gene expression",
+        "gene function",
+        "gene mapping",
+        "gene prediction",
+        "geneotype",
         "genome",
-        "life science" ;
+        "genomic sequence",
+        "genomics",
+        "life science",
+        "ortholog",
+        "orthology assignment",
+        "phenotype",
+        "roundworm",
+        "transposon family",
+        "wormmart" ;
     foaf:homepage <https://www.wormbase.org/> ;
     bioregistry.schema:0000005 "WBGene00000001"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.wormbase.org/get?name=$1"^^xsd:string ;
@@ -36627,18 +37138,28 @@ bioregistry:zfin a bioregistry.schema:0000001 ;
         go.resource:ZFIN,
         n2t:zfin,
         ncbi.resource:ZFIN,
+        rrid:ZIRC,
         fairsharing:FAIRsharing.ybxnhg,
         prefixcommons:zfin,
         miriam:zfin,
         re3data:r3d100010421,
         uniprot.resource:DB-0113 ;
-    dcat:keyword "animal physiology",
+    dcat:keyword "adult",
+        "animal physiology",
+        "antibody",
+        "cdna",
         "developmental biology",
+        "embryo",
+        "expressed sequence tag",
+        "fish",
         "gene",
         "genetics",
         "genome",
         "genomics",
-        "zebrafish" ;
+        "pathology",
+        "research",
+        "zebrafish",
+        "zebrafish line" ;
     foaf:homepage <http://zfin.org> ;
     bioregistry.schema:0000005 "ZDB-GENE-041118-11"^^xsd:string ;
     bioregistry.schema:0000006 "http://zfin.org/$1"^^xsd:string ;
@@ -37969,6 +38490,9 @@ orcid:0000-0002-4532-2703 rdfs:label "Petra Fey" ;
 
 orcid:0000-0002-5379-5359 rdfs:label "Asiyah Yu Lin" ;
     foaf:mbox "linikujp@gmail.com" .
+
+orcid:0000-0002-5497-0243 rdfs:label "Anita Bandrowski" ;
+    foaf:mbox "bandrow@gmail.com" .
 
 orcid:0000-0002-6309-7327 rdfs:label "Nicolas Le Novere",
         "Nicolas Le Novère" ;
@@ -47583,23 +48107,43 @@ bioregistry:flybase a bioregistry.schema:0000001 ;
         go.resource:FB,
         n2t:fb,
         ncbi.resource:FLYBASE,
+        rrid:FlyBase,
         fairsharing:FAIRsharing.wrvze3,
         prefixcommons:flybase,
         miriam:fb,
         re3data:r3d100010591,
         uniprot.resource:DB-0026 ;
-    dcat:keyword "anatomy",
+    dcat:keyword "allele",
+        "anatomy",
+        "bio.tools",
         "bioinformatics",
+        "blast",
         "comparative genomics",
+        "controlled term",
         "dna",
+        "drosophilidae",
+        "expression",
+        "faseb list",
         "functional genomics",
+        "gene",
         "genetics",
         "genome",
         "genomics",
+        "genotype",
+        "image",
+        "image collection",
         "interaction",
         "life science",
+        "life-cycle",
         "molecular biology",
-        "molecular genetics" ;
+        "molecular genetics",
+        "movie",
+        "mutant",
+        "phenotype",
+        "rna-seq",
+        "sequence",
+        "stock",
+        "video resource" ;
     foaf:homepage <http://flybase.org/> ;
     bioregistry.schema:0000005 "FBgn0011293"^^xsd:string ;
     bioregistry.schema:0000006 "https://flybase.org/reports/$1"^^xsd:string ;
@@ -48990,6 +49534,39 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://purl.uniprot.org/uniprot/"^^xsd:string ;
     bioregistry.schema:0000027 uniprot:P0DP23 ;
     bioregistry.schema:0000029 "uniprot" .
+
+bioregistry.metaresource:rrid a bioregistry.schema:0000002 ;
+    rdfs:label "Research Resource Identifiers" ;
+    dc:description "The Research Resource Identification Initiative provides RRIDs to 4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases / Software tools" ;
+    dcterms:hasPart rrid:AB,
+        rrid:AGSC,
+        rrid:Addgene,
+        rrid:BCBC,
+        rrid:BDSC,
+        rrid:CVCL,
+        rrid:DGGR,
+        rrid:FlyBase,
+        rrid:IMSR_APB,
+        rrid:IMSR_EM,
+        rrid:IMSR_JAX,
+        rrid:IMSR_RBRC,
+        rrid:IMSR_TAC,
+        rrid:MGI,
+        rrid:MMRRC,
+        rrid:NSRRC,
+        rrid:NXR,
+        rrid:RGD,
+        rrid:RRRC,
+        rrid:SAMN,
+        rrid:SCR,
+        rrid:TSC,
+        rrid:VDRC,
+        <https://bioregistry.io/metaregistry/rrid/resolve/WB-STRAIN:WBStrain>,
+        rrid:ZIRC ;
+    foaf:homepage "https://rrid.site" ;
+    bioregistry.schema:0000005 "AB" ;
+    bioregistry.schema:0000007 "https://scicrunch.org/resolver/RRID:$1_$2" ;
+    bioregistry.schema:0000019 orcid:0000-0002-5497-0243 .
 
 bioregistry:uberon a bioregistry.schema:0000001 ;
     rdfs:label "Uber Anatomy Ontology" ;
@@ -55857,6 +56434,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:agrkb,
         bioregistry:agro,
         bioregistry:agrovoc,
+        bioregistry:agsc,
         bioregistry:agsd,
         bioregistry:aio,
         bioregistry:aism,
@@ -55913,6 +56491,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bartoc,
         bioregistry:bbkg,
         bioregistry:bbtp,
+        bioregistry:bcbc,
         bioregistry:bcgo,
         bioregistry:bcio,
         bioregistry:bco,
@@ -56220,6 +56799,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dg.anv0,
         bioregistry:dg.f82a1a,
         bioregistry:dg5b0d,
+        bioregistry:dggr,
         bioregistry:dgrc,
         bioregistry:dhba,
         bioregistry:dicom,
@@ -56629,6 +57209,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:imgt.primerdb,
         bioregistry:imotdb,
         bioregistry:imr,
+        bioregistry:imsr.apb,
+        bioregistry:imsr_em,
+        bioregistry:imsr_tac,
         bioregistry:inaturalist.observation,
         bioregistry:inaturalist.place,
         bioregistry:inaturalist.taxon,
@@ -56955,10 +57538,12 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nrfc,
         bioregistry:nsc,
         bioregistry:nsf.award,
+        bioregistry:nsrrc,
         bioregistry:nucc.characteristic,
         bioregistry:nucc.taxonomy,
         bioregistry:nucleardb,
         bioregistry:nucleotide,
+        bioregistry:nxr,
         bioregistry:oa,
         bioregistry:oae,
         bioregistry:oarcs,
@@ -57231,6 +57816,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:rouge,
         bioregistry:rpcec,
         bioregistry:rrid,
+        bioregistry:rrrc,
         bioregistry:rs,
         bioregistry:rtecs,
         bioregistry:runbiosimulations,
@@ -57399,6 +57985,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:trichdb,
         bioregistry:tritrypdb,
         bioregistry:trnadbce,
+        bioregistry:tsc,
         bioregistry:ttd.drug,
         bioregistry:ttd.target,
         bioregistry:tto,
@@ -57457,6 +58044,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:vbo,
         bioregistry:vbrc,
         bioregistry:vcell,
+        bioregistry:vdrc,
         bioregistry:vectorbase,
         bioregistry:vega,
         bioregistry:vegbank,
