@@ -6752,6 +6752,7 @@
       "ontology",
       "thesaurus"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "biocontext": "CELLOSAURUS",
       "cellosaurus": "Cellosaurus",
@@ -45358,10 +45359,25 @@
       "name": "Darren Natale",
       "orcid": "0000-0001-5809-9523"
     },
+    "contributor_extras": [
+      {
+        "email": "dan5@georgetown.edu",
+        "github": "nataled",
+        "name": "Darren Natale",
+        "orcid": "0000-0001-5809-9523"
+      }
+    ],
     "description": "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies.",
     "download_obo": "http://purl.obolibrary.org/obo/pr.obo",
     "download_owl": "http://purl.obolibrary.org/obo/pr.owl",
     "example": "000000024",
+    "example_extras": [
+      "P0DP23",
+      "Q15796",
+      "Q15796-1",
+      "A0A0G2QC33",
+      "A0A0G2QC33-2"
+    ],
     "homepage": "http://proconsortium.org",
     "keywords": [
       "biology",
@@ -45389,7 +45405,7 @@
     },
     "name": "Protein Ontology",
     "namespace_in_lui": true,
-    "pattern": "^\\d+$",
+    "pattern": "^(?:\\d{9}|[OPQ][0-9][A-Z0-9]{3}[0-9](?:-\\d+)?|[A-NR-Z][0-9](?:[A-Z][A-Z0-9]{2}[0-9]){1,2}(?:-\\d+)?)$",
     "preferred_prefix": "PR",
     "providers": [
       {
@@ -45459,6 +45475,9 @@
       }
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PR_$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/959"
+    ],
     "repository": "https://github.com/PROconsortium/PRoteinOntology",
     "synonyms": [
       "PR",
