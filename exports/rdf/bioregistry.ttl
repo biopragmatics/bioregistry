@@ -30292,6 +30292,15 @@ bioregistry:emdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 emdb:EMD-1001 ;
     bioregistry.schema:0000029 "emdb" .
 
+bioregistry:emea a bioregistry.schema:0000001 ;
+    rdfs:label "European Medicines Evaluation Agency" ;
+    dcterms:description "Product number for the European Medicines Agency"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://www.ema.europa.eu/en/medicines> ;
+    bioregistry.schema:0000005 "EMEA/H/C/000181"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "emea" .
+
 bioregistry:emolecules a bioregistry.schema:0000001 ;
     rdfs:label "Reaxys eMolecules" ;
     dcterms:description "Catalog of purchasable reagents and building blocks"^^xsd:string ;
@@ -35559,6 +35568,15 @@ bioregistry:sssom a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://w3id.org/sssom/"^^xsd:string ;
     bioregistry.schema:0000027 sssom:mapping_justification ;
     bioregistry.schema:0000029 "sssom" .
+
+bioregistry:stn a bioregistry.schema:0000001 ;
+    rdfs:label "FDA Submission Tracking Number" ;
+    dcterms:description "The pre-IND tracking number for submissions to the FDA"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://www.fda.gov/media/128698/download> ;
+    bioregistry.schema:0000005 "125768"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "stn" .
 
 bioregistry:sty a bioregistry.schema:0000001 ;
     rdfs:label "UMLS Semantic Types Ontology" ;
@@ -50874,6 +50892,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:edam.format,
         bioregistry:edam.operation,
         bioregistry:edam.topic,
+        bioregistry:emea,
         bioregistry:emmo,
         bioregistry:emmo.cif,
         bioregistry:emolecules,
@@ -51132,6 +51151,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:span,
         bioregistry:ssbd.dataset,
         bioregistry:ssbd.project,
+        bioregistry:stn,
         bioregistry:storedb.dataset,
         bioregistry:storedb.file,
         bioregistry:storedb.study,
@@ -56961,6 +56981,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:emapa,
         bioregistry:emaps,
         bioregistry:emdb,
+        bioregistry:emea,
         bioregistry:emmo,
         bioregistry:emmo.cif,
         bioregistry:emolecules,
@@ -57994,6 +58015,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:stap,
         bioregistry:stato,
         bioregistry:stitch,
+        bioregistry:stn,
         bioregistry:storedb,
         bioregistry:storedb.dataset,
         bioregistry:storedb.file,
