@@ -147,6 +147,7 @@
 @prefix c4o: <http://purl.org/spar/c4o/> .
 @prefix caloha: <https://www.nextprot.org/term/> .
 @prefix cameo: <https://www.cameo3d.org/sp/targets/target/> .
+@prefix cao: <http://champ-project.org/images/ontology/cao.owl#CAO_> .
 @prefix caps: <http://www.bioinsilico.org/cgi-bin/CAPSDB/getCAPScluster?nidcl=> .
 @prefix caro: <http://purl.obolibrary.org/obo/CARO_> .
 @prefix cas: <https://commonchemistry.cas.org/detail?cas_rn=> .
@@ -318,8 +319,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -891,7 +892,6 @@
 @prefix nextdb: <http://nematode.lab.nig.ac.jp/db2/ShowCloneInfo.php?clone=> .
 @prefix nextprot: <https://www.nextprot.org/db/entry/> .
 @prefix nextprot.family: <https://www.nextprot.org/term/FA-> .
-@prefix nfdi4chem.cao: <http://champ-project.org/images/ontology/cao.owl#CAO_> .
 @prefix ngbo: <http://purl.obolibrary.org/obo/NGBO_> .
 @prefix ngl: <https://genelab-data.ndc.nasa.gov/genelab/accession/> .
 @prefix nhcdr: <https://stemcells.nindsgenetics.org?line=> .
@@ -1700,14 +1700,19 @@ bioregistry.collection:0000010 a bioregistry.schema:0000003 ;
         bioregistry:zfin .
 
 bioregistry.collection:0000011 a bioregistry.schema:0000003 ;
-    rdfs:label "NDFI4Chem Collection" ;
-    dc:creator orcid:0000-0003-4423-4370 ;
+    rdfs:label "NDFI4Cat Collection" ;
+    dc:creator orcid:0000-0001-5886-7860,
+        orcid:0000-0003-4423-4370 ;
     dc:description """A collection of ontologies relevant for chemistry.
 
-Skipped:
-- DOLCE (dead links)""" ;
+The NFDI program deploys a [custom instance](https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1) of the Ontology Lookup Service (OLS) that provides the ontologies in this list.
+
+A further analysis of the metadata landscape of the ontologies in this list can be found [here](https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat).
+
+OntoCompChem and OntoKin appear on the NFDI4Cat list but have not yet been registered in the Bioregistry because the resources are missing/incomplete such that they do not meet minimum Bioregistry metadata standards. These might be added in the future if additional metadata can be found.""" ;
     dcterms:hasPart bioregistry:afo,
         bioregistry:bfo,
+        bioregistry:cao,
         bioregistry:chebi,
         bioregistry:cheminf,
         bioregistry:chmo,
@@ -1715,12 +1720,12 @@ Skipped:
         bioregistry:emmo,
         bioregistry:emmo.cif,
         bioregistry:iso15926,
-        bioregistry:nfdi4chem.cao,
         bioregistry:nfdi4chem.ontocape,
         bioregistry:nfdi4chem.osmo,
         bioregistry:rex,
         bioregistry:rxno,
-        bioregistry:sbo .
+        bioregistry:sbo,
+        bioregistry:voc4cat .
 
 bioregistry.collection:0000012 a bioregistry.schema:0000003 ;
     rdfs:label "Clinical Trial Registries" ;
@@ -20190,6 +20195,9 @@ orcid:0000-0001-5809-9523 rdfs:label "Darren Natale" ;
 orcid:0000-0001-5831-7439 rdfs:label "Doug Howe" ;
     foaf:mbox "dhowe@zfin.org" .
 
+orcid:0000-0001-5886-7860 rdfs:label " Hendrik Borgelt" ;
+    foaf:mbox "hendrik.borgelt@tu-dortmund.de" .
+
 orcid:0000-0001-5889-4463 rdfs:label "Mark Engelstad" ;
     foaf:mbox "engelsta@ohsu.edu" .
 
@@ -36264,22 +36272,6 @@ bioregistry:violinnet a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 violinnet:4140 ;
     bioregistry.schema:0000029 "violinnet" .
 
-bioregistry:voc4cat a bioregistry.schema:0000001 ;
-    rdfs:label "A vocabulary for the catalysis disciplines" ;
-    dcterms:description "Voc4Cat is a [SKOS](https://www.w3.org/TR/2009/REC-skos-reference-20090818/) vocabulary for the catalysis disciplines. The vocabulary was created in the [NFDI4Cat](http://www.nfdi4cat.org/) initiative. The first collection of terms was published in June 2023 with a focus on photo catalysis. Our goal is to continuously extend the vocabulary to other areas of catalysis and related disciplines like chemical engineering or materials science."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/nfdi4cat/voc4cat> ;
-    foaf:homepage <https://nfdi4cat.github.io/voc4cat/> ;
-    bioregistry.schema:0000005 "0000123"^^xsd:string ;
-    bioregistry.schema:0000006 "https://w3id.org/nfdi4cat/voc4cat_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7,}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-6242-2167 ;
-    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
-    bioregistry.schema:0000024 "https://w3id.org/nfdi4cat/voc4cat_"^^xsd:string ;
-    bioregistry.schema:0000027 voc4cat:0000123 ;
-    bioregistry.schema:0000029 "voc4cat" .
-
 bioregistry:vsdb a bioregistry.schema:0000001 ;
     rdfs:label "Veterinary Substances DataBase" ;
     dcterms:description "Veterinary pharmaceuticals are biologically active and potentially persistent substances which are recognised as a continuing threat to environmental quality. Whilst the environmental risk of agricultural pesticides has had considerable attention in recent decades, risks assessments for veterinary pharmaceuticals have only relatively recently began to be addressed. Risk assessments and risk modelling tend to be inherently data hungry processes and one of the main obstacles to consistent, accurate and efficient assessments is the need for a reliable, quality and comprehensive data source."^^xsd:string ;
@@ -42583,6 +42575,25 @@ bioregistry:c4o a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 c4o:InTextReferencePointer ;
     bioregistry.schema:0000029 "c4o" .
 
+bioregistry:cao a bioregistry.schema:0000001 ;
+    rdfs:label "Chemical Analysis Ontology" ;
+    dcterms:description "An ontology developed as part of the Chemical Analysis Metadata Project (ChAMP) as a resource to semantically annotate standards developed using the ChAMP platform. (source: CAO ontology)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch ols:cao ;
+    dcat:keyword "characterisation data heat",
+        "ontology",
+        "transport and kinetic data" ;
+    foaf:homepage <https://champ.stuchalk.domains.unf.edu> ;
+    bioregistry.schema:0000005 "000064"^^xsd:string ;
+    bioregistry.schema:0000006 "http://champ-project.org/images/ontology/cao.owl#CAO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://champ.stuchalk.domains.unf.edu/images/ontology/cao.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2668-4821 ;
+    bioregistry.schema:0000024 "http://champ-project.org/images/ontology/cao.owl#CAO_"^^xsd:string ;
+    bioregistry.schema:0000027 cao:000064 ;
+    bioregistry.schema:0000029 "cao" .
+
 bioregistry:chembl.cell a bioregistry.schema:0000001 ;
     rdfs:label "ChEMBL database of bioactive drug-like small molecules - Cell lines section" ;
     dcterms:description "Chemistry resources"^^xsd:string ;
@@ -43093,7 +43104,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -44729,25 +44740,6 @@ bioregistry:ndfrt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#"^^xsd:string ;
     bioregistry.schema:0000027 ndfrt:N0000001662 ;
     bioregistry.schema:0000029 "ndfrt" .
-
-bioregistry:nfdi4chem.cao a bioregistry.schema:0000001 ;
-    rdfs:label "Chemical Analysis Ontology" ;
-    dcterms:description "An ontology developed as part of the Chemical Analysis Metadata Project (ChAMP) as a resource to semantically annotate standards developed using the ChAMP platform. (source: CAO ontology)"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:cao ;
-    dcat:keyword "characterisation data heat",
-        "ontology",
-        "transport and kinetic data" ;
-    foaf:homepage <https://champ.stuchalk.domains.unf.edu> ;
-    bioregistry.schema:0000005 "000064"^^xsd:string ;
-    bioregistry.schema:0000006 "http://champ-project.org/images/ontology/cao.owl#CAO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://champ.stuchalk.domains.unf.edu/images/ontology/cao.owl> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-2668-4821 ;
-    bioregistry.schema:0000024 "http://champ-project.org/images/ontology/cao.owl#CAO_"^^xsd:string ;
-    bioregistry.schema:0000027 nfdi4chem.cao:000064 ;
-    bioregistry.schema:0000029 "nfdi4chem.cao" .
 
 bioregistry:nfdi4chem.ontocape a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for computer aided process engineering" ;
@@ -46402,6 +46394,22 @@ bioregistry:vo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/VO_"^^xsd:string ;
     bioregistry.schema:0000027 vo:0000093 ;
     bioregistry.schema:0000029 "vo" .
+
+bioregistry:voc4cat a bioregistry.schema:0000001 ;
+    rdfs:label "A vocabulary for the catalysis disciplines" ;
+    dcterms:description "Voc4Cat is a [SKOS](https://www.w3.org/TR/2009/REC-skos-reference-20090818/) vocabulary for the catalysis disciplines. The vocabulary was created in the [NFDI4Cat](http://www.nfdi4cat.org/) initiative. The first collection of terms was published in June 2023 with a focus on photo catalysis. Our goal is to continuously extend the vocabulary to other areas of catalysis and related disciplines like chemical engineering or materials science."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/nfdi4cat/voc4cat> ;
+    foaf:homepage <https://nfdi4cat.github.io/voc4cat/> ;
+    bioregistry.schema:0000005 "0000123"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/nfdi4cat/voc4cat_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7,}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6242-2167 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://w3id.org/nfdi4cat/voc4cat_"^^xsd:string ;
+    bioregistry.schema:0000027 voc4cat:0000123 ;
+    bioregistry.schema:0000029 "voc4cat" .
 
 bioregistry:void a bioregistry.schema:0000001 ;
     rdfs:label "Vocabulary of Interlinked Datasets" ;
@@ -50811,6 +50819,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:bs,
         bioregistry:c4o,
         bioregistry:caloha,
+        bioregistry:cao,
         bioregistry:cba,
         bioregistry:ccle,
         bioregistry:ccrid,
@@ -51046,7 +51055,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ndfrt,
         bioregistry:neuronames,
         bioregistry:nextprot.family,
-        bioregistry:nfdi4chem.cao,
         bioregistry:nfdi4chem.ontocape,
         bioregistry:nfdi4chem.osmo,
         bioregistry:nihhesc,
@@ -56663,6 +56671,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cadsr,
         bioregistry:caloha,
         bioregistry:cameo,
+        bioregistry:cao,
         bioregistry:caps,
         bioregistry:caro,
         bioregistry:cas,
@@ -57577,7 +57586,6 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nextdb,
         bioregistry:nextprot,
         bioregistry:nextprot.family,
-        bioregistry:nfdi4chem.cao,
         bioregistry:nfdi4chem.ontocape,
         bioregistry:nfdi4chem.osmo,
         bioregistry:ngbo,
