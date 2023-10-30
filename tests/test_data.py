@@ -681,7 +681,11 @@ class TestRegistry(unittest.TestCase):
             for provider in resource.providers:
                 with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
-                    self.assertNotIn(provider.code, self.metaregistry)
+                    self.assertNotIn(
+                        provider.code,
+                        set(self.metaregistry),
+                        msg="Provider code is duplicate of metaregistry prefix.",
+                    )
                     self.assertNotIn(provider.code, {"custom", "default"})
                     self.assertEqual(
                         provider.code.lower(),
