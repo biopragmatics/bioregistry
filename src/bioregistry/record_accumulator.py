@@ -170,14 +170,15 @@ def get_records(  # noqa: C901
         return primary_prefix
 
     def _add_synonym(*, synonym: str, prefix: str) -> None:
-        if synonym in reverse_prefix_lookup:
-            if reverse_prefix_lookup[synonym] == prefix:
+        for s in [synonym, synonym.lower(), synonym.upper()]:
+            if s in reverse_prefix_lookup:
+                if reverse_prefix_lookup[s] == prefix:
+                    return
+                msg = f"duplicate prefix in {reverse_prefix_lookup[s]} and {prefix}: {s}"
+                _debug_or_raise(msg, strict=strict)
                 return
-            msg = f"duplicate prefix in {reverse_prefix_lookup[synonym]} and {prefix}: {synonym}"
-            _debug_or_raise(msg, strict=strict)
-            return
-        reverse_prefix_lookup[synonym] = prefix
-        secondary_prefixes[prefix].add(synonym)
+            reverse_prefix_lookup[s] = prefix
+            secondary_prefixes[prefix].add(s)
 
     def _add_uri_synonym(*, uri_prefix: str, prefix: str) -> None:
         if (prefix, uri_prefix) in prefix_resource_blacklist:
