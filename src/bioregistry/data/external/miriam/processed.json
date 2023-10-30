@@ -4812,9 +4812,9 @@
     "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database does not extend to viruses, viroids and bacteriophage.",
     "homepage": "https://www.ebi.ac.uk/ena/browse/genome-assembly-database",
     "id": "00000607",
-    "name": "Genome assembly database",
+    "name": "Genome assembly database - INSDC accessions",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^GC[AF]_[0-9]{9}\\.[0-9]+$",
+    "pattern": "^GCA_[0-9]{9}(\\.[0-9]+)?$",
     "prefix": "insdc.gca",
     "providers": [
       {
@@ -4827,6 +4827,18 @@
     ],
     "sampleId": "GCA_000155495.1",
     "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
+  },
+  "insdc.gcf": {
+    "deprecated": false,
+    "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database RefSeq accessions does not extend to viroids and bacteriophage.",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00001030",
+    "name": "Genome assembly database - RefSeq accessions",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
+    "prefix": "insdc.gcf",
+    "sampleId": "GCF_000001405",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
   },
   "insdc.sra": {
     "deprecated": false,
@@ -5645,6 +5657,18 @@
     "prefix": "matrixdb.association",
     "sampleId": "P00747__P07355",
     "uri_format": "http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association"
+  },
+  "maxo": {
+    "deprecated": false,
+    "description": "An ontology to represent medically relevant actions, procedures, therapies, interventions, and recommendations.",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/maxo",
+    "id": "00001032",
+    "name": "Medical Action Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "\\d{7}",
+    "prefix": "maxo",
+    "sampleId": "0001073",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/maxo/terms?obo_id=MAXO:$1"
   },
   "mdm": {
     "deprecated": false,

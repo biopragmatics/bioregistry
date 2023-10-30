@@ -24576,10 +24576,10 @@
         "id": 1685,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000607",
-        "modified": "2020-03-31T12:32:16.941+0000",
-        "name": "Genome assembly database",
+        "modified": "2023-10-30T09:41:30.572+0000",
+        "name": "Genome assembly database - INSDC accessions",
         "namespaceEmbeddedInLui": false,
-        "pattern": "^GC[AF]_[0-9]{9}\\.[0-9]+$",
+        "pattern": "^GCA_[0-9]{9}(\\.[0-9]+)?$",
         "prefix": "insdc.gca",
         "renderDeprecatedLanding": false,
         "resources": [
@@ -24655,6 +24655,62 @@
           }
         ],
         "sampleId": "GCA_000155495.1",
+        "successor": null
+      },
+      {
+        "created": "2023-10-30T09:39:26.272+0000",
+        "deprecated": false,
+        "deprecationDate": null,
+        "deprecationOfflineDate": null,
+        "deprecationStatement": null,
+        "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database RefSeq accessions does not extend to viroids and bacteriophage.",
+        "id": 3719,
+        "infoOnPostmortemAccess": null,
+        "mirId": "MIR:00001030",
+        "modified": "2023-10-30T10:34:56.198+0000",
+        "name": "Genome assembly database - RefSeq accessions",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
+        "prefix": "insdc.gcf",
+        "renderDeprecatedLanding": false,
+        "resources": [
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "The National Center for Biotechnology Information advances science and health by providing access to biomedical and genomic information.",
+            "id": 3720,
+            "institution": {
+              "description": "The National Center for Biotechnology Information advances science and health by providing access to biomedical and genomic information.",
+              "homeUrl": "https://www.ncbi.nlm.nih.gov/",
+              "id": 26,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "National Center for Biotechnology Information",
+              "rorId": "https://ror.org/02meqm098"
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00001029",
+            "name": "National Center for Biotechnology Information",
+            "official": true,
+            "protectedUrls": false,
+            "providerCode": "ncbi",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://www.ncbi.nlm.nih.gov/",
+            "sampleId": "GCF_000001405",
+            "urlPattern": "https://www.ncbi.nlm.nih.gov/datasets/genome/{$id}"
+          }
+        ],
+        "sampleId": "GCF_000001405",
         "successor": null
       },
       {
@@ -28512,6 +28568,62 @@
           }
         ],
         "sampleId": "P00747__P07355",
+        "successor": null
+      },
+      {
+        "created": "2023-10-30T09:40:47.492+0000",
+        "deprecated": false,
+        "deprecationDate": null,
+        "deprecationOfflineDate": null,
+        "deprecationStatement": null,
+        "description": "An ontology to represent medically relevant actions, procedures, therapies, interventions, and recommendations.",
+        "id": 3723,
+        "infoOnPostmortemAccess": null,
+        "mirId": "MIR:00001032",
+        "modified": "2023-10-30T09:40:47.492+0000",
+        "name": "Medical Action Ontology",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "\\d{7}",
+        "prefix": "maxo",
+        "renderDeprecatedLanding": false,
+        "resources": [
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "The Ontology Lookup Service (OLS) is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. You can browse the ontologies through the website as well as programmatically via the OLS API. OLS is developed and maintained by the Samples, Phenotypes and Ontologies Team (SPOT)  at EMBL-EBI.",
+            "id": 3724,
+            "institution": {
+              "description": "The Monarch Initiative is an integrative data and analytic platform connecting phenotypes to genotypes across species, bridging basic and applied research with semantics-based analysis. We have created or currently contribute to many essential bio-ontologies that together enable sophisticated and semantically integrated computational analysis across gene, genotype, variant, disease, and phenotype data. ",
+              "homeUrl": "https://monarchinitiative.org/",
+              "id": 3722,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "Monarch Initiative",
+              "rorId": null
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00001031",
+            "name": "MAXO via OLS",
+            "official": true,
+            "protectedUrls": false,
+            "providerCode": "ols",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/maxo",
+            "sampleId": "0001073",
+            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/maxo/terms?obo_id=MAXO:{$id}"
+          }
+        ],
+        "sampleId": "0001073",
         "successor": null
       },
       {
