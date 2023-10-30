@@ -60,6 +60,7 @@ PROVIDER_BLACKLIST = {
     ("ega.study", "omicsdi"),
     # see discussion at https://github.com/biopragmatics/bioregistry/pull/944
     ("bioproject", "ebi"),
+    ("pmc", "ncbi"),
 }
 
 
