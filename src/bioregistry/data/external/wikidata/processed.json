@@ -1712,9 +1712,7 @@
     "database": "Q122629978",
     "description": "identifier for a plant taxon in the FloraVeg.EU online database",
     "example": [
-      "Bambusa multiplex",
-      "Biarum arundanum",
-      "Cryptomeria japonica",
+      "Antirrhinum hispanicum subsp. mollissimum",
       "Davallia",
       "Davallia canariensis",
       "Davalliaceae",
@@ -1725,9 +1723,67 @@
     ],
     "homepage": "https://floraveg.eu/taxon",
     "name": "FloraVeg.EU taxon ID",
-    "pattern": "^[A-Za-z]+(\\ [A-Za-z]+)*$",
+    "pattern": "^[A-Za-z]+(\\ [A-Za-z\\.]+)*$",
     "prefix": "P12100",
     "uri_format": "https://floraveg.eu/taxon/overview/$1"
+  },
+  "P12104": {
+    "database": "Q123134962",
+    "description": "identifier of a person on the Royal Irish Academy's official website (ria.ie)",
+    "example": [
+      "eunan-ohalpin",
+      "fearghal-patrick-mcgarry",
+      "michael-anthony-cronin",
+      "peter-murray-simons"
+    ],
+    "homepage": "https://www.ria.ie/search?f%5B0%5D=type:bio",
+    "name": "Royal Irish Academy ID",
+    "pattern": "^[a-z]+(-[a-z]+)*$",
+    "prefix": "P12104",
+    "uri_format": "https://www.ria.ie/$1"
+  },
+  "P12113": {
+    "database": "Q122653218",
+    "description": "identifier for a plant species in The Vascular Plants of Iowa website",
+    "example": [
+      "SPEd1e11118",
+      "SPEd1e736",
+      "SPEd1e8457"
+    ],
+    "name": "Vascular Plants of Iowa species ID",
+    "pattern": "^SPEd1e[0-9]+$",
+    "prefix": "P12113",
+    "uri_format": "http://uipress.lib.uiowa.edu/vpi/DetailsPage.aspx?species_id=$1"
+  },
+  "P12114": {
+    "database": "Q122619607",
+    "description": "identifier for a plant species in the Flora of New Jersey Project atlas",
+    "example": [
+      "datura-stamonium-l-jimsonweed-thorn-apple",
+      "dicentra-eximia-ker-gawl-torr",
+      "dichanthelium-latifolium-l-gould-and-c-a-clark",
+      "equisetum-arvense-l",
+      "lobelia-siphilitica-l-great-blue-lobelia",
+      "quercus-rubra"
+    ],
+    "homepage": "https://www.njflora.org",
+    "name": "Flora of New Jersey Project atlas ID",
+    "pattern": "^[a-z\\d]+(\\-[a-z\\d]+)*$",
+    "prefix": "P12114",
+    "uri_format": "https://www.njflora.org/0/0/$1/"
+  },
+  "P12121": {
+    "database": "http://www.wikidata.org/.well-known/genid/8024d1f0cc19f7f67a084e5731443dda",
+    "description": "standardized six-letter alphabetic code for bird species by the Institute for Bird Populations",
+    "example": [
+      "POERUF",
+      "RALLIM",
+      "SETTOW"
+    ],
+    "homepage": "https://birdpop.org/docs/misc/IBPAOU.zip",
+    "name": "IBP 6-letter bird species alpha code",
+    "pattern": "^[A-Z]{6}$",
+    "prefix": "P12121"
   },
   "P1294": {
     "database": "Q6617741",
@@ -3847,7 +3903,7 @@
     ],
     "miriam": "doi",
     "name": "DOI",
-    "pattern": "^(?i)10.\\d{4,9}/[-._;()/:A-Z0-9]+$",
+    "pattern": "^(?i)10.\\d{4,9}/[^\\s]+$",
     "prefix": "P356",
     "uri_format": "https://doi.org/$1",
     "uri_format_rdf": "http://dx.doi.org/$1"
@@ -6500,7 +6556,7 @@
       "4793"
     ],
     "homepage": "http://floraofalabama.org/Search.aspx",
-    "name": "APA ID",
+    "name": "Alabama Plant Atlas ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6137",
     "uri_format": "http://floraofalabama.org/Plant.aspx?id=$1"
@@ -8054,7 +8110,7 @@
     "uri_format": "https://list.worldfloraonline.org/$1"
   },
   "P7718": {
-    "database": "Q420927",
+    "database": "Q47196990",
     "description": "accession number of protein complex at the Complex Portal",
     "example": [
       "CPX-2165",
@@ -9887,7 +9943,7 @@
       "https://incubator.wikimedia.org/wiki/Wt/ace",
       "https://incubator.wikimedia.org/wiki/Wt/lvk"
     ],
-    "homepage": "https://incubator.wikimedia.org/wiki/User:Ace111/Table2",
+    "homepage": "https://incubator.wikimedia.org",
     "name": "Wikimedia Incubator URL",
     "prefix": "P9748"
   },
