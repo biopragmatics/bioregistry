@@ -232,6 +232,7 @@ def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, 
     return dict(rv)
 
 
+@lru_cache(1)
 def read_contexts() -> Mapping[str, Context]:
     """Get a mapping from context keys to contexts."""
     return _contexts_from_path(CONTEXTS_PATH)
