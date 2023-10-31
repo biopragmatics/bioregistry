@@ -6,6 +6,7 @@ Get an API key by logging up, signing in, and navigating to https://bioportal.bi
 """
 
 import json
+import math
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
@@ -112,6 +113,10 @@ class OntoPortalClient:
         ]:
             value = res_json.get(key)
             if value:
+                if isinstance(value, list) and len(value) == 1:
+                    value = value[0]
+                if isinstance(value, float) and not math.isnan(value):
+                    value = str(value)
                 if not isinstance(value, str):
                     tqdm.write(f"got non-string value ({type(value)}) for {key}: {value}")
                     continue
