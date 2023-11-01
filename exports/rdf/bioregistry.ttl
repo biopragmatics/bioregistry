@@ -12938,14 +12938,18 @@ bioregistry:msio a bioregistry.schema:0000001 ;
     dcterms:description "an application ontology for supporting description and annotation of mass-spectrometry and nmr-spectroscopy based metabolomics experiments and fluxomics studies."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO> ;
-    skos:exactMatch ols:msio ;
-    dcat:keyword "ontology" ;
+    skos:exactMatch fairsharing:FAIRsharing.4c7f91,
+        ols:msio ;
+    dcat:keyword "metabolomics",
+        "omics",
+        "ontology" ;
     foaf:homepage <https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO> ;
     bioregistry.schema:0000005 "0000111"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MSIO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl> ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9853-5668 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MSIO_"^^xsd:string ;
     bioregistry.schema:0000027 msio:0000111 ;
     bioregistry.schema:0000029 "msio" .
@@ -19953,9 +19957,13 @@ bioregistry:xlmod a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:XLMOD,
         ontobee:XLMOD,
         bioportal:XLMOD,
+        fairsharing:FAIRsharing.6ccbe6,
         ols:xlmod,
         obofoundry:xlmod ;
-    dcat:keyword "obo",
+    dcat:keyword "chemical biology",
+        "metabolomics",
+        "obo",
+        "omics",
         "ontology" ;
     foaf:homepage <http://www.psidev.info/groups/controlled-vocabularies> ;
     bioregistry.schema:0000005 "00050"^^xsd:string ;
@@ -20377,6 +20385,9 @@ orcid:0000-0001-9727-2544 rdfs:label "Hans Ienasescu" ;
 
 orcid:0000-0001-9842-9718 rdfs:label "Stian Soiland-Reyes" ;
     foaf:mbox "stian@soiland-reyes.com" .
+
+orcid:0000-0001-9853-5668 rdfs:label "Philippe Rocca-Serra" ;
+    foaf:mbox "philippe.rocca-serra@oerc.ox.ac.uk" .
 
 orcid:0000-0001-9921-8234 rdfs:label "Georgeta Bordea" ;
     foaf:mbox "georgeta.bordea@u-bordeaux.fr" .
@@ -27810,7 +27821,6 @@ bioregistry:aio a bioregistry.schema:0000001 ;
         bioportal:AIO,
         fairsharing:FAIRsharing.8d6247 ;
     dcat:keyword "artificial intelligence",
-        "bioinformatics",
         "ontology" ;
     foaf:homepage <https://github.com/berkeleybop/artificial-intelligence-ontology> ;
     bioregistry.schema:0000005 "Causal_Graphical_Model"^^xsd:string ;
@@ -36938,6 +36948,8 @@ fairsharing:FAIRsharing.4Vs9VM dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.4c0b6b dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.4c7f91 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.4cvwxa dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.4dvtcz dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -37030,9 +37042,13 @@ fairsharing:FAIRsharing.68b03f dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.6L6MjA dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.6b77ac dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.6bc7h9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6bd5k6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.6ccbe6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6dba71 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -37133,6 +37149,8 @@ fairsharing:FAIRsharing.91yrz6 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.93ee19 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.93g1th dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.945c78 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.96f3gm dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -37905,6 +37923,8 @@ fairsharing:FAIRsharing.wkaakq dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.wkdjpb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wnk2eq dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.wp0134 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wpt5mp dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -42614,9 +42634,13 @@ bioregistry:cao a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:CAO,
         bioportal:CAO,
+        fairsharing:FAIRsharing.wp0134,
         ols:cao ;
     dcat:keyword "characterisation data heat",
+        "genetics",
+        "life science",
         "ontology",
+        "phylogenetics",
         "transport and kinetic data" ;
     foaf:homepage <https://champ.stuchalk.domains.unf.edu> ;
     bioregistry.schema:0000005 "000064"^^xsd:string ;
@@ -47182,7 +47206,7 @@ bioregistry:one a bioregistry.schema:0000001 ;
         ols:one,
         obofoundry:one ;
     dcat:keyword "epidemiology",
-        "life science",
+        "metabolomics",
         "nutritional science",
         "obo",
         "ontology" ;
@@ -47567,7 +47591,8 @@ bioregistry:edam a bioregistry.schema:0000001 ;
     dcat:keyword "bioinformatics",
         "life science",
         "obo",
-        "ontology" ;
+        "ontology",
+        "subject agnostic" ;
     foaf:homepage <http://edamontology.org> ;
     bioregistry.schema:0000005 "data_1664"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"^^xsd:string ;
@@ -48761,10 +48786,12 @@ bioregistry:maxo a bioregistry.schema:0000001 ;
         ontobee:MAXO,
         bioportal:MAXO,
         biolink:MAXO,
+        fairsharing:FAIRsharing.945c78,
         miriam:maxo,
         ols:maxo,
         obofoundry:maxo ;
-    dcat:keyword "obo",
+    dcat:keyword "medicine",
+        "obo",
         "ontology" ;
     foaf:homepage <https://github.com/monarch-initiative/MAxO> ;
     bioregistry.schema:0000005 "0000008"^^xsd:string ;
@@ -48968,9 +48995,11 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
         ontobee:ECTO,
         bioportal:ECTO,
         biolink:ECTO,
+        fairsharing:FAIRsharing.6b77ac,
         ols:ecto,
         obofoundry:ecto ;
-    dcat:keyword "obo",
+    dcat:keyword "environmental science",
+        "obo",
         "ontology" ;
     foaf:homepage <https://github.com/EnvironmentOntology/environmental-exposure-ontology> ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
@@ -53674,6 +53703,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.493qns,
         fairsharing:FAIRsharing.4Vs9VM,
         fairsharing:FAIRsharing.4c0b6b,
+        fairsharing:FAIRsharing.4c7f91,
         fairsharing:FAIRsharing.4cvwxa,
         fairsharing:FAIRsharing.4dvtcz,
         fairsharing:FAIRsharing.4e3qh9,
@@ -53720,8 +53750,10 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.67sssf,
         fairsharing:FAIRsharing.68b03f,
         fairsharing:FAIRsharing.6L6MjA,
+        fairsharing:FAIRsharing.6b77ac,
         fairsharing:FAIRsharing.6bc7h9,
         fairsharing:FAIRsharing.6bd5k6,
+        fairsharing:FAIRsharing.6ccbe6,
         fairsharing:FAIRsharing.6dba71,
         fairsharing:FAIRsharing.6dfe9b,
         fairsharing:FAIRsharing.6h8d2r,
@@ -53772,6 +53804,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.91yrz6,
         fairsharing:FAIRsharing.93ee19,
         fairsharing:FAIRsharing.93g1th,
+        fairsharing:FAIRsharing.945c78,
         fairsharing:FAIRsharing.96f3gm,
         fairsharing:FAIRsharing.97805c,
         fairsharing:FAIRsharing.99da5f,
@@ -54158,6 +54191,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.wkaakq,
         fairsharing:FAIRsharing.wkdjpb,
         fairsharing:FAIRsharing.wnk2eq,
+        fairsharing:FAIRsharing.wp0134,
         fairsharing:FAIRsharing.wpt5mp,
         fairsharing:FAIRsharing.wpxab1,
         fairsharing:FAIRsharing.wqsxtg,
