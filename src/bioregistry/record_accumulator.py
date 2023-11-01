@@ -129,6 +129,11 @@ def get_records(  # noqa: C901
         or resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
+    pattern_map = {
+        prefix: pattern
+        for prefix in primary_prefixes
+        if (pattern := resource_dict[prefix].get_pattern()) is not None
+    }
     secondary_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
     secondary_uri_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
 
@@ -301,6 +306,7 @@ def get_records(  # noqa: C901
             prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
             uri_prefix=primary_uri_prefix,
             uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
+            pattern=pattern_map.get(prefix),
         )
 
     return [record for _, record in sorted(records.items())]

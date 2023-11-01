@@ -1569,7 +1569,11 @@ class Manager:
         return self.contexts.get(key)
 
     def get_records_from_context(
-        self, context: Union[str, Context], strict: bool = False
+        self,
+        context: Union[str, Context],
+        *,
+        strict: bool = False,
+        include_prefixes: bool = False,
     ) -> List[curies.Record]:
         """Get records based on a context."""
         if isinstance(context, str):
@@ -1580,15 +1584,20 @@ class Manager:
             strict=strict,
             remapping=context.prefix_remapping,
             blacklist=context.blacklist,
-            # include_synonyms is not necessary here
+            include_prefixes=include_prefixes,
         )
 
     def get_converter_from_context(
-        self, context: Union[str, Context], strict: bool = False
+        self,
+        context: Union[str, Context],
+        strict: bool = False,
+        include_prefixes: bool = False,
     ) -> curies.Converter:
         """Get a converter based on a context."""
         return curies.Converter(
-            records=self.get_records_from_context(context=context, strict=strict)
+            records=self.get_records_from_context(
+                context=context, strict=strict, include_prefixes=include_prefixes
+            )
         )
 
     def get_context_artifacts(
