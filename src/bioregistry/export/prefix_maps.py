@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-"""Export the Bioregistry as a JSON-LD context."""
+"""Export extended prefix maps (EPMs), JSON-LD contexts, and SHACL RDF documents.
+
+.. seealso:: https://github.com/biopragmatics/bioregistry/pull/972
+"""
 
 import json
 
