@@ -914,17 +914,6 @@ agrovoc:
   pattern: ^[a-z0-9]+$
   preferred_prefix: agrovoc
   publications:
-  - doi: https://doi.org/10.4060/cb2838en
-    pmc: null
-    pubmed: null
-    title: AGROVOC – Semantic data interoperability on food and agriculture
-    year: null
-  - doi: https://doi.org/10.3390/engproc2021009017
-    pmc: null
-    pubmed: null
-    title: 'How Agricultural Digital Innovation Can Benefit from Semantics: The Case
-      of the AGROVOC Multilingual Thesaurus'
-    year: null
   - doi: 10.4060/cb2838en
     pmc: null
     pubmed: null
@@ -1028,7 +1017,6 @@ aio:
   homepage: https://github.com/berkeleybop/artificial-intelligence-ontology
   keywords:
   - artificial intelligence
-  - bioinformatics
   - ontology
   mappings:
     aberowl: AIO
@@ -2666,11 +2654,6 @@ bao:
     pubmed: '25093074'
     title: 'Evolving BioAssay Ontology (BAO): modularization, integration and applications'
     year: 2014
-  - doi: 10.1186/2041-1480-5-S1-S5
-    pmc: PMC4108877
-    pubmed: '25093074'
-    title: 'Evolving BioAssay Ontology (BAO): modularization, integration and applications'
-    year: null
   - doi: 10.1371/journal.pone.0049198
     pmc: PMC3498356
     pubmed: '23155465'
@@ -5410,16 +5393,26 @@ cao:
   homepage: https://champ.stuchalk.domains.unf.edu
   keywords:
   - characterisation data heat
+  - genetics
+  - life science
   - ontology
+  - phylogenetics
   - transport and kinetic data
   license: CC-BY-3.0
   mappings:
     aberowl: CAO
     bioportal: CAO
+    fairsharing: FAIRsharing.wp0134
     ols: cao
   name: Chemical Analysis Ontology
   pattern: ^\d+$
   preferred_prefix: cao
+  publications:
+  - doi: 10.1126/science.278.5338.631
+    pmc: null
+    pubmed: '9381173'
+    title: A genomic perspective on protein families
+    year: null
   uri_format: http://champ-project.org/images/ontology/cao.owl#CAO_$1
   version: '0.2'
 caps:
@@ -7437,11 +7430,6 @@ citexplore:
     pubmed: '23759795'
     title: Cerebrotendinous xanthomatosis
     year: 2013
-  - doi: 10.1097/MOL.0b013e328362df13
-    pmc: null
-    pubmed: '23759795'
-    title: Cerebrotendinous xanthomatosis
-    year: null
   references:
   - https://www.embl.de/aboutus/communication_outreach/media_relations/2006/061127_hinxton/
   synonyms:
@@ -11782,11 +11770,6 @@ deo:
   name: Discourse Elements Ontology
   preferred_prefix: DEO
   publications:
-  - doi: https://doi.org/10.3233/SW-150177
-    pmc: null
-    pubmed: null
-    title: The Document Components Ontology (DoCO)
-    year: null
   - doi: 10.3233/sw-150177
     pmc: null
     pubmed: null
@@ -12557,11 +12540,6 @@ doco:
     pubmed: null
     title: The Document Components Ontology (DoCO)
     year: 2016
-  - doi: 10.3233/SW-150177
-    pmc: null
-    pubmed: null
-    title: The Document Components Ontology (DoCO)
-    year: null
   repository: https://github.com/sparontologies/doco
   twitter: sparontologies
   uri_format: http://purl.org/spar/doco/$1
@@ -12739,11 +12717,6 @@ doid:
     pubmed: '32180547'
     title: Wikidata as a knowledge graph for the life sciences
     year: 2020
-  - doi: 10.7554/eLife.52614
-    pmc: PMC7077981
-    pubmed: '32180547'
-    title: Wikidata as a knowledge graph for the life sciences
-    year: null
   - doi: 10.1093/nar/gky1036
     pmc: PMC6323956
     pubmed: '30407590'
@@ -12800,11 +12773,6 @@ doid:
     pubmed: '19594883'
     title: Annotating the human genome with Disease Ontology
     year: 2009
-  - doi: 10.1186/1471-2164-10-S1-S6
-    pmc: PMC2709267
-    pubmed: '19594883'
-    title: Annotating the human genome with Disease Ontology
-    year: null
   - doi: 10.1093/bioinformatics/btp193
     pmc: PMC2687947
     pubmed: '19478018'
@@ -14270,6 +14238,7 @@ ecto:
   example: '0000001'
   homepage: https://github.com/EnvironmentOntology/environmental-exposure-ontology
   keywords:
+  - environmental science
   - obo
   - ontology
   license: CC0-1.0
@@ -14278,12 +14247,20 @@ ecto:
     aberowl: ECTO
     biolink: ECTO
     bioportal: ECTO
+    fairsharing: FAIRsharing.6b77ac
     obofoundry: ecto
     ols: ecto
     ontobee: ECTO
   name: Environmental conditions, treatments and exposures ontology
   pattern: ^\d{7}$
   preferred_prefix: ECTO
+  publications:
+  - doi: 10.1186/s13326-023-00283-x
+    pmc: null
+    pubmed: '36823605'
+    title: 'The Environmental Conditions, Treatments, and Exposures Ontology (ECTO):
+      connecting toxicology and exposure to human health and beyond'
+    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/ECTO_$1
   repository: https://github.com/EnvironmentOntology/environmental-exposure-ontology
   uri_format: http://purl.obolibrary.org/obo/ECTO_$1
@@ -14383,6 +14360,7 @@ edam:
   - life science
   - obo
   - ontology
+  - subject agnostic
   mappings:
     aberowl: EDAM
     agroportal: EDAM
@@ -14414,6 +14392,16 @@ edam:
     title: 'EDAM: an ontology of bioinformatics operations, types of data and identifiers,
       topics and formats'
     year: 2013
+  - doi: 10.7490/f1000research.1118900.1
+    pmc: null
+    pubmed: null
+    title: 'EDAM: the bioscientific data analysis ontology (update 2021)'
+    year: null
+  - doi: 10.5281/zenodo.3899895
+    pmc: null
+    pubmed: null
+    title: 'edamontology/edamontology: EDAM 1.25'
+    year: null
   rdf_uri_format: http://edamontology.org/$1
   repository: https://github.com/edamontology/edamontology
   twitter: edamontology
@@ -16556,11 +16544,6 @@ ero:
     pubmed: '29599662'
     title: 'Automating data citation: the eagle-i experience'
     year: 2017
-  - doi: 10.1109/JCDL.2017.7991571
-    pmc: PMC5868434
-    pubmed: '29599662'
-    title: 'Automating data citation: the eagle-i experience'
-    year: null
   - doi: 10.1093/database/bar067
     pmc: PMC3308157
     pubmed: '22434835'
@@ -17774,11 +17757,6 @@ flopo:
     pubmed: '25057255'
     title: Enriched biodiversity data as a resource and service
     year: 2014
-  - doi: 10.3897/BDJ.2.e1125
-    pmc: PMC4092319
-    pubmed: '25057255'
-    title: Enriched biodiversity data as a resource and service
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
   repository: https://github.com/flora-phenotype-ontology/flopoontology
   uri_format: http://purl.obolibrary.org/obo/FLOPO_$1
@@ -23488,11 +23466,6 @@ hp:
     pubmed: '30476213'
     title: Expansion of the Human Phenotype Ontology (HPO) knowledge base and resources
     year: 2019
-  - doi: https://doi.org/10.1093/nar/gkw1039
-    pmc: PMC5210535
-    pubmed: '27899602'
-    title: The Human Phenotype Ontology in 2017
-    year: null
   - doi: 10.1093/nar/gkw1039
     pmc: PMC5210535
     pubmed: '27899602'
@@ -25846,11 +25819,6 @@ inchi:
     pubmed: '34030732'
     title: 'InChI version 1.06: now more than 99.99% reliable'
     year: 2021
-  - doi: https://doi.org/10.1186/s13321-015-0068-4
-    pmc: PMC4486400
-    pubmed: '26136848'
-    title: InChI, the IUPAC International Chemical Identifier
-    year: null
   - doi: 10.1186/s13321-015-0068-4
     pmc: PMC4486400
     pubmed: '26136848'
@@ -26028,12 +25996,6 @@ ino:
     title: Mining of vaccine-associated IFN-γ gene interaction networks using the
       Vaccine Ontology
     year: 2011
-  - doi: 10.1186/2041-1480-2-S2-S8
-    pmc: PMC3102897
-    pubmed: '21624163'
-    title: Mining of vaccine-associated IFN-gamma gene interaction networks using
-      the Vaccine Ontology
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/INO_$1
   repository: https://github.com/INO-ontology/ino
   uri_format: http://purl.obolibrary.org/obo/INO_$1
@@ -26989,12 +26951,6 @@ ito:
     title: A curated, ontology-based, large-scale knowledge graph of artificial intelligence
       tasks and benchmarks
     year: 2021
-  - doi: 10.48550/arXiv.2110.01434
-    pmc: null
-    pubmed: null
-    title: A curated, ontology-based, large-scale knowledge graph of artificial intelligence
-      tasks and benchmarks
-    year: null
   repository: https://github.com/OpenBioLink/ITO
   uri_format: https://bioportal.bioontology.org/ontologies/ITO/?p=classes&conceptid=https://identifiers.org/ito:ITO_$1
 iuphar.family:
@@ -29450,6 +29406,7 @@ maxo:
   example: 0000008
   homepage: https://github.com/monarch-initiative/MAxO
   keywords:
+  - medicine
   - obo
   - ontology
   license: CC-BY-4.0
@@ -29458,6 +29415,7 @@ maxo:
     aberowl: MAXO
     biolink: MAXO
     bioportal: MAXO
+    fairsharing: FAIRsharing.945c78
     miriam: maxo
     obofoundry: maxo
     ols: maxo
@@ -29465,6 +29423,13 @@ maxo:
   name: Medical Action Ontology
   pattern: ^\d{7}$
   preferred_prefix: MAXO
+  publications:
+  - doi: 10.1101/2023.07.13.23292612
+    pmc: null
+    pubmed: '37503136'
+    title: 'The Medical Action Ontology: A Tool for Annotating and Analyzing Treatments
+      and Clinical Management of Human Disease'
+    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/MAXO_$1
   repository: https://github.com/monarch-initiative/MAxO
   twitter: MonarchInit
@@ -32386,6 +32351,12 @@ mondo:
   pattern: ^\d{7}$
   preferred_prefix: MONDO
   publications:
+  - doi: 10.1093/nar/gkw1128
+    pmc: null
+    pubmed: '27899636'
+    title: 'The Monarch Initiative: an integrative data and analytic platform connecting
+      phenotypes to genotypes across species'
+    year: null
   - doi: 10.1101/2022.04.13.22273750
     pmc: null
     pubmed: null
@@ -32808,6 +32779,11 @@ msigdb:
   - msig
   uri_format: https://biopragmatics.github.io/providers/msigdb/$1
 msio:
+  contact:
+    email: philippe.rocca-serra@oerc.ox.ac.uk
+    github: null
+    name: Philippe Rocca-Serra
+    orcid: 0000-0001-9853-5668
   description: an application ontology for supporting description and annotation of
     mass-spectrometry and nmr-spectroscopy based metabolomics experiments and fluxomics
     studies.
@@ -32815,12 +32791,21 @@ msio:
   example: '0000111'
   homepage: https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO
   keywords:
+  - metabolomics
+  - omics
   - ontology
   mappings:
+    fairsharing: FAIRsharing.4c7f91
     ols: msio
   name: Metabolomics Standards Initiative Ontology
   pattern: ^\d{7}$
   preferred_prefix: msio
+  publications:
+  - doi: 10.1007/s11306-007-0069-z
+    pmc: null
+    pubmed: null
+    title: 'Metabolomics standards initiative: ontology working group work in progress'
+    year: null
   repository: https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO
   uri_format: http://purl.obolibrary.org/obo/MSIO_$1
   version: 1.0.1
@@ -33433,12 +33418,6 @@ nbo:
     title: 'The neurobehavior ontology: an ontology for annotation and integration
       of behavior and behavioral phenotypes'
     year: 2012
-  - doi: 10.1016/B978-0-12-388408-4.00004-6
-    pmc: null
-    pubmed: '23195121'
-    title: 'The neurobehavior ontology: an ontology for annotation and integration
-      of behavior and behavioral phenotypes'
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/NBO_$1
   repository: https://github.com/obo-behavior/behavior-ontology
   uri_format: http://purl.obolibrary.org/obo/NBO_$1
@@ -36311,12 +36290,6 @@ obi:
     title: 'Query enhancement through the practical application of ontology: the IEDB
       and OBI'
     year: 2013
-  - doi: 10.1186/2041-1480-4-S1-S6
-    pmc: PMC3633001
-    pubmed: '23734660'
-    title: 'Query enhancement through the practical application of ontology: the IEDB
-      and OBI'
-    year: null
   - doi: 10.4056/sigs.1994602
     pmc: PMC3235517
     pubmed: '22180825'
@@ -36327,11 +36300,6 @@ obi:
     pubmed: '20626927'
     title: Modeling biomedical experimental processes with OBI
     year: 2010
-  - doi: 10.1186/2041-1480-1-S1-S7
-    pmc: PMC2903726
-    pubmed: '20626927'
-    title: Modeling biomedical experimental processes with OBI
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/OBI_$1
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
@@ -37579,7 +37547,7 @@ one:
   homepage: https://github.com/cyang0128/Nutritional-epidemiologic-ontologies
   keywords:
   - epidemiology
-  - life science
+  - metabolomics
   - nutritional science
   - obo
   - ontology
@@ -40725,11 +40693,6 @@ phenx:
     pubmed: '20154612'
     title: 'PhenX: a toolkit for interdisciplinary genetics research'
     year: 2010
-  - doi: 10.1097/MOL.0b013e3283377395
-    pmc: PMC8038872
-    pubmed: '20154612'
-    title: 'PhenX: a toolkit for interdisciplinary genetics research'
-    year: null
   synonyms:
   - phenxtoolkit
   uri_format: https://www.phenxtoolkit.org/protocols/view/$1
@@ -42199,11 +42162,6 @@ pr:
     pubmed: '18047702'
     title: Framework for a protein ontology
     year: 2007
-  - doi: 10.1186/1471-2105-8-S9-S1
-    pmc: PMC2217659
-    pubmed: '18047702'
-    title: Framework for a protein ontology
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/PR_$1
   references:
   - https://github.com/biopragmatics/bioregistry/issues/959
@@ -43546,11 +43504,6 @@ pwo:
   name: Publishing Workflow Ontology
   preferred_prefix: PWO
   publications:
-  - doi: https://doi.org/10.3233/SW-160230
-    pmc: null
-    pubmed: null
-    title: The Publishing Workflow Ontology (PWO)
-    year: null
   - doi: 10.3233/sw-160230
     pmc: null
     pubmed: null
@@ -45383,12 +45336,6 @@ rnao:
     title: 'The RNA Ontology (RNAO): An ontology for integrating RNA sequence and
       structure data'
     year: 2011
-  - doi: 10.3233/AO-2011-0082
-    pmc: null
-    pubmed: null
-    title: 'The RNA Ontology (RNAO): An Ontology for Integrating RNA Sequence and
-      Structure Data'
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/RNAO_$1
   repository: https://github.com/BGSU-RNA/rnao
   uri_format: http://purl.obolibrary.org/obo/RNAO_$1
@@ -45981,11 +45928,6 @@ rxnorm:
     pubmed: null
     title: 'RxNorm: prescription for electronic drug information exchange'
     year: 2005
-  - doi: 10.1109/MITP.2005.122
-    pmc: null
-    pubmed: null
-    title: 'RxNorm: prescription for electronic drug information exchange'
-    year: null
   synonyms:
   - RXCUI
   uri_format: https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1
@@ -46777,11 +46719,6 @@ scoro:
   name: Scholarly Contributions and Roles Ontology
   preferred_prefix: SCoRO
   publications:
-  - doi: https://doi.org/10.3233/SW-150177
-    pmc: null
-    pubmed: null
-    title: The Document Components Ontology (DoCO)
-    year: null
   - doi: 10.3233/sw-150177
     pmc: null
     pubmed: null
@@ -54204,12 +54141,6 @@ vo:
     title: Bioinformatics analysis of Brucella vaccines and vaccine targets using
       VIOLIN
     year: 2010
-  - doi: 10.1186/1745-7580-6-S1-S5
-    pmc: PMC2946783
-    pubmed: '20875156'
-    title: Bioinformatics analysis of Brucella vaccines and vaccine targets using
-      VIOLIN
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
@@ -55387,11 +55318,6 @@ xao:
     pubmed: '18817563'
     title: An ontology for Xenopus anatomy and development
     year: 2008
-  - doi: 10.1186/1471-213X-8-92
-    pmc: PMC2561031
-    pubmed: '18817563'
-    title: An ontology for Xenopus anatomy and development
-    year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/XAO_$1
   repository: https://github.com/xenopus-anatomy/xao
   uri_format: http://purl.obolibrary.org/obo/XAO_$1
@@ -55620,12 +55546,16 @@ xlmod:
   example: '00050'
   homepage: http://www.psidev.info/groups/controlled-vocabularies
   keywords:
+  - chemical biology
+  - metabolomics
   - obo
+  - omics
   - ontology
   license: CC-BY-3.0
   mappings:
     aberowl: XLMOD
     bioportal: XLMOD
+    fairsharing: FAIRsharing.6ccbe6
     obofoundry: xlmod
     ols: xlmod
     ontobee: XLMOD
