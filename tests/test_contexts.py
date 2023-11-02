@@ -47,6 +47,9 @@ class TestContexts(unittest.TestCase):
         self.assertIn("GEO", prefix_map)
         self.assertEqual(f"{p}/GEO_", prefix_map["GEO"])
         self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", prefix_map["PMID"])
+        self.assertEqual("http://purl.obolibrary.org/obo/GEO_", prefix_map["GEO"])
+        self.assertNotIn("geo", prefix_map)
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", prefix_map["ncbi.geo"])
 
         self.assertNotIn("biomodels.kisao", prefix_map)
 
@@ -61,6 +64,10 @@ class TestContexts(unittest.TestCase):
     def test_obo_converter(self):
         """Test getting a converter from a context."""
         converter = manager.get_converter_from_context("obo")
+        self.assertEqual("http://purl.obolibrary.org/obo/GEO_", converter.bimap["GEO"])
+        self.assertNotIn("geo", converter.bimap)
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", converter.bimap["ncbi.geo"])
+
         self.assertEqual("ICD10WHO", converter.standardize_prefix("icd10"))
         self.assertEqual("Orphanet", converter.standardize_prefix("ordo"))
         self.assertEqual("GO", converter.standardize_prefix("GO"))
