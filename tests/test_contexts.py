@@ -57,6 +57,7 @@ class TestContexts(unittest.TestCase):
             msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
         )
 
+    @pytest.mark.slow
     def test_get_obo_converter(self):
         """Test getting a converter from a context."""
         converter = manager.get_converter_from_context("obo")
@@ -66,8 +67,8 @@ class TestContexts(unittest.TestCase):
         self.assertEqual("PMID", converter.standardize_prefix("pmid", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("pubmed", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("PubMed", strict=True))
-        # self.assertEqual("PMID", converter.standardize_prefix("PUBMED"))
-        # self.assertEqual("PMID", converter.standardize_prefix("PMID"))
+        self.assertEqual("PMID", converter.standardize_prefix("PUBMED"))
+        self.assertEqual("PMID", converter.standardize_prefix("PMID"))
 
     def test_data(self):
         """Test the data integrity."""

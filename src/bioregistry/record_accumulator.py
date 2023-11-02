@@ -175,15 +175,14 @@ def get_records(  # noqa: C901
         return primary_prefix
 
     def _add_synonym(*, synonym: str, prefix: str) -> None:
-        for s in [synonym, synonym.lower(), synonym.upper()]:
-            if s in reverse_prefix_lookup:
-                if reverse_prefix_lookup[s] == prefix:
-                    return
-                msg = f"duplicate prefix in {reverse_prefix_lookup[s]} and {prefix}: {s}"
-                _debug_or_raise(msg, strict=strict)
+        if synonym in reverse_prefix_lookup:
+            if reverse_prefix_lookup[synonym] == prefix:
                 return
-            reverse_prefix_lookup[s] = prefix
-            secondary_prefixes[prefix].add(s)
+            msg = f"duplicate prefix in {reverse_prefix_lookup[synonym]} and {prefix}: {synonym}"
+            _debug_or_raise(msg, strict=strict)
+            return
+        reverse_prefix_lookup[synonym] = prefix
+        secondary_prefixes[prefix].add(synonym)
 
     def _add_uri_synonym(*, uri_prefix: str, prefix: str) -> None:
         if (prefix, uri_prefix) in prefix_resource_blacklist:
@@ -226,8 +225,6 @@ def get_records(  # noqa: C901
         primary_prefix = _add_primary_prefix(resource.prefix)
         if primary_prefix is None:
             continue
-        # TODO fix next line, since it seems to delete PUBMED from the OBO EPM
-        _add_synonym(synonym=resource.prefix, prefix=resource.prefix)
         for synonym in resource.get_synonyms():
             _add_synonym(synonym=synonym, prefix=resource.prefix)
         for uri_prefix in resource.get_uri_prefixes():
@@ -304,12 +301,31 @@ def get_records(  # noqa: C901
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if not primary_prefix or not primary_uri_prefix:
             continue
-        records[prefix] = curies.Record(
-            prefix=primary_prefix,
-            prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
-            uri_prefix=primary_uri_prefix,
-            uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
-            pattern=pattern_map.get(prefix),
+        records[prefix] = _enrich_synonyms(
+            curies.Record(
+                prefix=primary_prefix,
+                prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
+                uri_prefix=primary_uri_prefix,
+                uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
+                pattern=pattern_map.get(prefix),
+            )
         )
 
     return [record for _, record in sorted(records.items())]
+
+
+def _enrich_synonyms(record: curies.Record) -> curies.Record:
+    sss = set()
+    for s in [record.prefix, *record.prefix_synonyms]:
+        sss.update(_generate_variants(s))
+    record.prefix_synonyms = sorted(sss - {record.prefix})
+    return record
+
+
+def _generate_variants(s: str) -> List[str]:
+    yield s
+    yield s.lower()
+    yield s.upper()
+    yield s.replace("_", "")
+    yield s.replace("_", "").upper()
+    yield s.replace("_", "").lower()
