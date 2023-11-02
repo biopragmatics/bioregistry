@@ -5,11 +5,11 @@
 import json
 import unittest
 
+import pytest
+
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
-
-import pytest
 
 
 class TestContexts(unittest.TestCase):
