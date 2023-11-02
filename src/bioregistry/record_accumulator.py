@@ -133,6 +133,7 @@ def get_converter(
         converter = curies.remap_curie_prefixes(converter, remapping)
     if rewiring:
         converter = curies.rewire(converter, rewiring)
+    converter = _enrich_converter_synonyms(converter)
     return converter
 
 
@@ -159,13 +160,6 @@ def _get_records(  # noqa: C901
         resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
-    dd = defaultdict(list)
-    for k, v in primary_prefixes.items():
-        dd[v.lower()].append(k)
-    dd = {k: v for k, v in dd.items() if len(v) > 1}
-    if dd:
-        raise ValueError(f"Duplicate prefixes: {dd}")
-
     pattern_map = {
         prefix: pattern
         for prefix in primary_prefixes
@@ -338,20 +332,22 @@ def _get_records(  # noqa: C901
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if not primary_prefix or not primary_uri_prefix:
             continue
-        record = curies.Record(
+        records[prefix] = curies.Record(
             prefix=primary_prefix,
             prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
             uri_prefix=primary_uri_prefix,
             uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
             pattern=pattern_map.get(prefix),
         )
-        record = _enrich_synonyms(record)
-        records[prefix] = record
 
     return [record for _, record in sorted(records.items())]
 
 
-def _enrich_synonyms(record: curies.Record) -> curies.Record:
+def _enrich_converter_synonyms(converter: Converter) -> Converter:
+    return Converter([_enrich_record_synonyms(r) for r in converter.records])
+
+
+def _enrich_record_synonyms(record: curies.Record) -> curies.Record:
     sss = set()
     for s in [record.prefix, *record.prefix_synonyms]:
         sss.update(_generate_variants(s))
