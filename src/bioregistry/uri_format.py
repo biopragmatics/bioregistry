@@ -170,7 +170,8 @@ def get_extended_prefix_map(
 
     :returns: A list of records for :class:`curies.Converter`
     """
-    return manager.get_curies_records(
+    # TODO delete this unused function
+    converter = manager.get_converter(
         prefix_priority=prefix_priority,
         uri_prefix_priority=uri_prefix_priority,
         include_prefixes=include_prefixes,
@@ -178,3 +179,4 @@ def get_extended_prefix_map(
         remapping=remapping,
         blacklist=blacklist,
     )
+    return converter.records
