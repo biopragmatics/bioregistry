@@ -3,6 +3,7 @@
 import itertools as itt
 import logging
 from collections import defaultdict
+import collections
 from typing import (
     Collection,
     DefaultDict,
@@ -15,6 +16,7 @@ from typing import (
     Set,
     Tuple,
     cast,
+    Counter,
 )
 
 import curies
@@ -129,6 +131,14 @@ def get_records(  # noqa: C901
         or resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
+    counter = collections.Counter(
+        v.lower()
+        for v in primary_prefixes.values()
+    )
+    counter= collections.Counter({k:v for k,v in counter.items() if v > 1})
+    if counter:
+        raise ValueError(f"Duplicate prefixes: {counter}")
+
     pattern_map = {
         prefix: pattern
         for prefix in primary_prefixes
@@ -301,15 +311,15 @@ def get_records(  # noqa: C901
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if not primary_prefix or not primary_uri_prefix:
             continue
-        records[prefix] = _enrich_synonyms(
-            curies.Record(
-                prefix=primary_prefix,
-                prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
-                uri_prefix=primary_uri_prefix,
-                uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
-                pattern=pattern_map.get(prefix),
-            )
+        record = curies.Record(
+            prefix=primary_prefix,
+            prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
+            uri_prefix=primary_uri_prefix,
+            uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
+            pattern=pattern_map.get(prefix),
         )
+        record = _enrich_synonyms(record)
+        records[prefix] = record
 
     return [record for _, record in sorted(records.items())]
 

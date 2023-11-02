@@ -9,6 +9,8 @@ import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
 
+import pytest
+
 
 class TestContexts(unittest.TestCase):
     """A test case for checking the integrity of the contexts."""
