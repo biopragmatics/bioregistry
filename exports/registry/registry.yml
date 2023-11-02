@@ -33601,6 +33601,18 @@ ncbibook:
   pattern: ^NBK\d+$
   preferred_prefix: ncbibook
   uri_format: https://www.ncbi.nlm.nih.gov/books/$1
+ncbidrs:
+  description: 'This is the namespace for the archive of sequence and other files
+    provided by NCBI e.g. in SRA and dbGaP. These files are related to objects in
+    the sequencing data model managed under the insdc.sra namespace. '
+  example: 72ff6ff882ec447f12df018e6183de59
+  homepage: https://www.ncbi.nlm.nih.gov/
+  mappings:
+    miriam: ncbidrs
+  name: NCBI Data Repository Service
+  pattern: ^[0-9a-fA-F]{32}$
+  preferred_prefix: ncbidrs
+  uri_format: https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/$1
 ncbigene:
   description: Entrez Gene is the NCBI's database for gene-specific information, focusing
     on completely sequenced genomes, those with an active research community to contribute
