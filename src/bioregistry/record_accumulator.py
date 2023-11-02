@@ -117,6 +117,7 @@ def get_converter(
     strict: bool = False,
     blacklist: Optional[Collection[str]] = None,
     remapping: Optional[Mapping[str, str]] = None,
+    rewiring: Optional[Mapping[str, str]] = None,
 ) -> Converter:
     """Generate a converter from resources."""
     records = _get_records(
@@ -130,6 +131,8 @@ def get_converter(
     converter = curies.Converter(records)
     if remapping:
         converter = curies.remap_curie_prefixes(converter, remapping)
+    if rewiring:
+        converter = curies.rewire(converter, rewiring)
     return converter
 
 
