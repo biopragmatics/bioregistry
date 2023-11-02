@@ -85,6 +85,11 @@ KEEP = {
 }
 #: These contain synonyms with mismatches
 DISCARD_SYNONYMS = {"biogrid", "cath", "zfa"}
+SKIP_URI_FORMATS = {
+    "http://purl.obolibrary.org/obo/$1",
+    "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
+    "http://arabidopsis.org/servlets/TairObject?accession=$1",
+}
 
 
 def get_prefixcommons(force_download: bool = False, force_process: bool = False):
@@ -147,10 +152,7 @@ def _process_row(line: str):
     uri_format = rv.pop("uri_format", None)
     if uri_format:
         uri_format = uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
-        if uri_format not in {
-            "http://purl.obolibrary.org/obo/$1",
-            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
-        }:
+        if uri_format not in SKIP_URI_FORMATS:
             rv["uri_format"] = uri_format
 
     uri_rdf_formats = _get_uri_formats(rv, "rdf_uri_prefix")
@@ -191,9 +193,12 @@ def _get_uri_formats(rv, key) -> List[str]:
             continue
         if "$1" in uri_format or "[?id]" in uri_format:  # FIXME check if these come at the end
             continue
-        rv.append(f"{uri_format}$1")
+        uri_format = f"{uri_format}$1"
+        if uri_format in SKIP_URI_FORMATS:
+            continue
+        rv.append(uri_format)
     return rv
 
 
 if __name__ == "__main__":
-    print(len(get_prefixcommons(force_process=True)))  # noqa:T201
+    print(len(get_prefixcommons(force_process=True, force_download=True)))  # noqa:T201

@@ -534,9 +534,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_records(self):
         """Test generating records."""
+        converter = bioregistry.manager.get_converter(include_prefixes=True)
         records: Mapping[str, curies.Record] = {
-            record.prefix: record
-            for record in bioregistry.manager.get_curies_records(include_prefixes=True)
+            record.prefix: record for record in converter.records
         }
 
         # This is a "provides" situation
