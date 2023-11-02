@@ -19,7 +19,6 @@ __all__ = [
     "get_uri_prefix",
     "get_prefix_map",
     "get_pattern_map",
-    "get_extended_prefix_map",
 ]
 
 
@@ -122,61 +121,3 @@ def get_pattern_map(
         remapping=remapping,
         blacklist=blacklist,
     )
-
-
-def get_extended_prefix_map(
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
-    include_prefixes: bool = False,
-    strict: bool = False,
-    remapping: Optional[Mapping[str, str]] = None,
-    blacklist: Optional[Collection[str]] = None,
-) -> List[curies.Record]:
-    """Get an extended prefix map.
-
-    An extended prefix map is a collection of :class:`curies.Record` objects,
-    each of which has the following fields:
-
-    - ``prefix`` - the canonical prefix
-    - ``uri_prefix`` - the canonical URI prefix (i.e., namespace)
-    - ``prefix_synonyms`` - optional extra prefixes such as capitialization variants. No prefix
-      synonyms are allowed to be duplicate across any canonical prefixes or synonyms in other
-      records in the extended prefix
-    - ``uri_prefix_synonyms`` - optional extra URI prefixes such as variants of Identifiers.org
-      URLs, PURLs, etc. No URI prefix synyonms are allowed to be duplicates of either canonical
-      or other URI prefix synonyms.
-
-    Extended prefix maps have the benefit over regular prefix maps in that they keep extra
-    information. This can be utilized by :class:`curies.Converter` to make URI compression
-    and CURIE expansion aware of synonyms and other lexical variants. Further, an extended
-    prefix map can be readily collapsed into a normal prefix map by getting the ``prefix``
-    and ``uri_prefix`` fields.
-
-    :param prefix_priority:
-        The order of metaprefixes OR "preferred" for choosing a primary prefix
-        OR "default" for Bioregistry prefixes
-    :param uri_prefix_priority:
-        The order of metaprefixes for choosing the primary URI prefix OR
-        "default" for Bioregistry prefixes
-    :param include_prefixes: Should prefixes be included with colon delimiters?
-        Setting this to true makes an "omni"-reverse prefix map that can be
-        used to parse both URIs and CURIEs
-    :param strict:
-        If true, errors on URI prefix collisions. If false, sends logging
-        and skips them.
-    :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
-    :param blacklist:
-        A collection of prefixes to skip
-
-    :returns: A list of records for :class:`curies.Converter`
-    """
-    # TODO delete this unused function
-    converter = manager.get_converter(
-        prefix_priority=prefix_priority,
-        uri_prefix_priority=uri_prefix_priority,
-        include_prefixes=include_prefixes,
-        strict=strict,
-        remapping=remapping,
-        blacklist=blacklist,
-    )
-    return converter.records
