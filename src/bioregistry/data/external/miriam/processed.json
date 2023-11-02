@@ -4828,18 +4828,6 @@
     "sampleId": "GCA_000155495.1",
     "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
   },
-  "insdc.gcf": {
-    "deprecated": false,
-    "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database RefSeq accessions does not extend to viroids and bacteriophage.",
-    "homepage": "https://www.ncbi.nlm.nih.gov/",
-    "id": "00001030",
-    "name": "Genome assembly database - RefSeq accessions",
-    "namespaceEmbeddedInLui": false,
-    "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
-    "prefix": "insdc.gcf",
-    "sampleId": "GCF_000001405",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
-  },
   "insdc.sra": {
     "deprecated": false,
     "description": "The Sequence Read Archive (SRA) stores raw sequencing data from the next generation of sequencing platforms Data submitted to SRA. It is organized using a metadata model consisting of six objects: study, sample, experiment, run, analysis and submission. The SRA study contains high-level information including goals of the study and literature references, and may be linked to the INSDC BioProject database.",
@@ -6660,6 +6648,18 @@
     "prefix": "nbrc",
     "sampleId": "00001234",
     "uri_format": "http://www.nbrc.nite.go.jp/NBRC2/NBRCCatalogueDetailServlet?ID=NBRC&CAT=$1"
+  },
+  "ncbidrs": {
+    "deprecated": false,
+    "description": "This is the namespace for the archive of sequence and other files provided by NCBI e.g. in SRA and dbGaP. These files are related to objects in the sequencing data model managed under the insdc.sra namespace. ",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00001034",
+    "name": "NCBI Data Repository Service",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-fA-F]{32}$",
+    "prefix": "ncbidrs",
+    "sampleId": "72ff6ff882ec447f12df018e6183de59",
+    "uri_format": "https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/$1"
   },
   "ncbigene": {
     "deprecated": false,
@@ -8513,6 +8513,18 @@
     "prefix": "refseq",
     "sampleId": "NP_012345",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
+  },
+  "refseq.gcf": {
+    "deprecated": false,
+    "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database RefSeq accessions does not extend to viroids and bacteriophage.",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00001030",
+    "name": "Genome assembly database - RefSeq accessions",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
+    "prefix": "refseq.gcf",
+    "sampleId": "GCF_000001405",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
   },
   "repeatsdb.protein": {
     "deprecated": false,

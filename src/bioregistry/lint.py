@@ -21,6 +21,17 @@ from bioregistry.schema_utils import (
 @click.command()
 def lint():
     """Run the lint commands."""
+    # clear LRU caches so if this is run after some functions that update
+    # these resources, such as the align() pipeline, they don't get overwritten.
+    for read_resource_func in (
+        read_registry,
+        read_metaregistry,
+        read_mismatches,
+        read_collections,
+        read_contexts,
+    ):
+        read_resource_func.cache_clear()
+
     registry = read_registry()
     for resource in registry.values():
         if resource.synonyms:
