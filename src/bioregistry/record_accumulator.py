@@ -117,32 +117,35 @@ def get_converter(
     strict: bool = False,
     blacklist: Optional[Collection[str]] = None,
     remapping: Optional[Mapping[str, str]] = None,
+    rewiring: Optional[Mapping[str, str]] = None,
 ) -> Converter:
     """Generate a converter from resources."""
-    records = get_records(
+    records = _get_records(
         resources,
         prefix_priority=prefix_priority,
         uri_prefix_priority=uri_prefix_priority,
         include_prefixes=include_prefixes,
         strict=strict,
         blacklist=blacklist,
-        remapping=remapping,
     )
-    return curies.Converter(records)
+    converter = curies.Converter(records)
+    if remapping:
+        converter = curies.remap_curie_prefixes(converter, remapping)
+    if rewiring:
+        converter = curies.rewire(converter, rewiring)
+    return converter
 
 
-def get_records(  # noqa: C901
+def _get_records(  # noqa: C901
     resources: List[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
     uri_prefix_priority: Optional[Sequence[str]] = None,
     include_prefixes: bool = False,
     strict: bool = False,
     blacklist: Optional[Collection[str]] = None,
-    remapping: Optional[Mapping[str, str]] = None,
 ) -> List[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
-    remapping = dict(remapping or {})
     resource_dict: Mapping[str, Resource] = {
         resource.prefix: resource
         for resource in resources
@@ -153,8 +156,7 @@ def get_records(  # noqa: C901
         for resource in resource_dict.values()
     }
     primary_prefixes: Dict[str, str] = {
-        resource.prefix: remapping.get(resource.prefix)
-        or resource.get_priority_prefix(priority=prefix_priority)
+        resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
     dd = defaultdict(list)

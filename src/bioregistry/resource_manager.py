@@ -640,6 +640,7 @@ class Manager:
         include_prefixes: bool = False,
         strict: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
+        rewiring: Optional[Mapping[str, str]] = None,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> curies.Converter:
         """Get a converter from this manager.
@@ -657,6 +658,7 @@ class Manager:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
         :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+        :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
         :param blacklist:
             A collection of prefixes to skip
 
@@ -677,6 +679,7 @@ class Manager:
             strict=strict,
             blacklist=blacklist,
             remapping=remapping,
+            rewiring=rewiring,
         )
         return converter
 
@@ -727,6 +730,7 @@ class Manager:
         prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
+        rewiring: Optional[Mapping[str, str]] = None,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
@@ -740,6 +744,7 @@ class Manager:
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
+        :param rewiring: A mapping from Bioregistry prefixes to URI prefixes.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
@@ -747,15 +752,10 @@ class Manager:
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             remapping=remapping,
+            rewiring=rewiring,
             blacklist=blacklist,
         )
-        rv = {}
-        for record in converter.records:
-            rv[record.prefix] = record.uri_prefix
-            if include_synonyms:
-                for prefix in record.prefix_synonyms:
-                    rv[prefix] = record.uri_prefix
-        return rv
+        return converter.prefix_map if include_synonyms else converter.bimap
 
     def get_curie_pattern(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
@@ -1586,6 +1586,7 @@ class Manager:
             uri_prefix_priority=context.uri_prefix_priority,
             strict=strict,
             remapping=context.prefix_remapping,
+            rewiring=context.custom_prefix_map,
             blacklist=context.blacklist,
             include_prefixes=include_prefixes,
         )
@@ -1606,6 +1607,7 @@ class Manager:
             prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
             blacklist=context.blacklist,
+            rewiring=context.custom_prefix_map,
         )
         prescriptive_pattern_map = self.get_pattern_map(
             remapping=context.prefix_remapping,
