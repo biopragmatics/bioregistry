@@ -127,7 +127,6 @@ from .schema_utils import (  # noqa:F401
     write_registry,
 )
 from .uri_format import (  # noqa:F401
-    get_extended_prefix_map,
     get_pattern_map,
     get_prefix_map,
     get_uri_format,

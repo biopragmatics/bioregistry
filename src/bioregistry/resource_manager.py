@@ -4,6 +4,7 @@
 
 import logging
 import typing
+import warnings
 from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -190,7 +191,7 @@ class Manager:
     def converter(self) -> curies.Converter:
         """Get the default converter."""
         if self._converter is None:
-            self._converter = curies.Converter(records=self.get_curies_records())
+            self._converter = self.get_converter()
         return self._converter
 
     def write_registry(self):
@@ -631,11 +632,7 @@ class Manager:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
-    def get_converter(self, **kwargs) -> curies.Converter:
-        """Get a converter from this manager."""
-        return curies.Converter(records=self.get_curies_records(**kwargs))
-
-    def get_curies_records(
+    def get_converter(
         self,
         *,
         prefix_priority: Optional[Sequence[str]] = None,
@@ -644,8 +641,8 @@ class Manager:
         strict: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         blacklist: Optional[typing.Collection[str]] = None,
-    ) -> List[curies.Record]:
-        """Get a list of records for all resources in this manager.
+    ) -> curies.Converter:
+        """Get a converter from this manager.
 
         :param prefix_priority:
             The order of metaprefixes OR "preferred" for choosing a primary prefix
@@ -665,14 +662,14 @@ class Manager:
 
         :returns: A list of records for :class:`curies.Converter`
         """
-        from .record_accumulator import get_records
+        from .record_accumulator import get_converter
 
         # first step - filter to resources that have *anything* for a URI prefix
         # TODO maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
         resources = [
             resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
         ]
-        return get_records(
+        converter = get_converter(
             resources,
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
@@ -681,6 +678,12 @@ class Manager:
             blacklist=blacklist,
             remapping=remapping,
         )
+        return converter
+
+    def get_curies_records(self, **kwargs) -> List[curies.Record]:
+        """Get a list of records for all resources in this manager."""
+        warnings.warn("use Manager.get_converter().records", DeprecationWarning)
+        return self.get_converter(**kwargs).records
 
     def get_reverse_prefix_map(
         self, include_prefixes: bool = False, strict: bool = False
@@ -692,7 +695,8 @@ class Manager:
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        for record in self.get_curies_records(include_prefixes=include_prefixes, strict=strict):
+        converter = self.get_converter(include_prefixes=include_prefixes, strict=strict)
+        for record in converter.records:
             rv[record.uri_prefix] = record.prefix
             for uri_prefix in record.uri_prefix_synonyms:
                 if uri_prefix not in rv:
@@ -739,14 +743,14 @@ class Manager:
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
-        records = self.get_curies_records(
+        converter = self.get_converter(
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             remapping=remapping,
             blacklist=blacklist,
         )
         rv = {}
-        for record in records:
+        for record in converter.records:
             rv[record.prefix] = record.uri_prefix
             if include_synonyms:
                 for prefix in record.prefix_synonyms:
@@ -1568,25 +1572,6 @@ class Manager:
         """
         return self.contexts.get(key)
 
-    def get_records_from_context(
-        self,
-        context: Union[str, Context],
-        *,
-        strict: bool = False,
-        include_prefixes: bool = False,
-    ) -> List[curies.Record]:
-        """Get records based on a context."""
-        if isinstance(context, str):
-            context = self.contexts[context]
-        return self.get_curies_records(
-            prefix_priority=context.prefix_priority,
-            uri_prefix_priority=context.uri_prefix_priority,
-            strict=strict,
-            remapping=context.prefix_remapping,
-            blacklist=context.blacklist,
-            include_prefixes=include_prefixes,
-        )
-
     def get_converter_from_context(
         self,
         context: Union[str, Context],
@@ -1594,10 +1579,15 @@ class Manager:
         include_prefixes: bool = False,
     ) -> curies.Converter:
         """Get a converter based on a context."""
-        return curies.Converter(
-            records=self.get_records_from_context(
-                context=context, strict=strict, include_prefixes=include_prefixes
-            )
+        if isinstance(context, str):
+            context = self.contexts[context]
+        return self.get_converter(
+            prefix_priority=context.prefix_priority,
+            uri_prefix_priority=context.uri_prefix_priority,
+            strict=strict,
+            remapping=context.prefix_remapping,
+            blacklist=context.blacklist,
+            include_prefixes=include_prefixes,
         )
 
     def get_context_artifacts(

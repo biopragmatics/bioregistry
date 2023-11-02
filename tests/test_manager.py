@@ -33,8 +33,8 @@ class TestResourceManager(unittest.TestCase):
             msg="uniprot.isoform isn't registered with a URI prefix properly",
         )
 
-        records = self.manager.get_curies_records()
-        prefixes = {record.prefix for record in records}
+        converter = self.manager.get_converter()
+        prefixes = {record.prefix for record in converter.records}
         self.assertIn("uniprot.isoform", prefixes)
 
     def test_prefix_map(self):

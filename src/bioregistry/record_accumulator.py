@@ -18,8 +18,13 @@ from typing import (
 )
 
 import curies
+from curies import Converter
 
 from bioregistry import Resource
+
+__all__ = [
+    "get_converter",
+]
 
 logger = logging.getLogger(__name__)
 prefix_blacklist = {"bgee.gene"}
@@ -33,6 +38,7 @@ uri_prefix_blacklist = {
     "http://www.ncbi.nlm.nih.gov/nuccore/",
     "https://www.ebi.ac.uk/ena/data/view/",
     "http://www.ebi.ac.uk/ena/data/view/",
+    "http://arabidopsis.org/servlets/TairObject?accession=",
 }
 prefix_resource_blacklist = {
     ("orphanet", "http://www.orpha.net/ORDO/Orphanet_"),  # biocontext is wrong
@@ -101,6 +107,28 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str):
 
 # TODO handle when one URI is a subspace of another
 #  (e.g., uniprot.isoform and uniprot)
+
+
+def get_converter(
+    resources: List[Resource],
+    prefix_priority: Optional[Sequence[str]] = None,
+    uri_prefix_priority: Optional[Sequence[str]] = None,
+    include_prefixes: bool = False,
+    strict: bool = False,
+    blacklist: Optional[Collection[str]] = None,
+    remapping: Optional[Mapping[str, str]] = None,
+) -> Converter:
+    """Generate a converter from resources."""
+    records = get_records(
+        resources,
+        prefix_priority=prefix_priority,
+        uri_prefix_priority=uri_prefix_priority,
+        include_prefixes=include_prefixes,
+        strict=strict,
+        blacklist=blacklist,
+        remapping=remapping,
+    )
+    return curies.Converter(records)
 
 
 def get_records(  # noqa: C901
