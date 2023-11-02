@@ -185,9 +185,6 @@ def _get_uri_formats(rv, key) -> List[str]:
         uri_format = uri_format.strip()
         if not uri_format:
             continue
-        if "arabidopsis" in uri_format:
-            print(uri_format)
-
         if "identifiers.org" in uri_format:  # FIXME some non-miriam resources might use this
             continue
         if "obofoundry.org" in uri_format:  # FIXME some non-obo resources might use this
