@@ -61,13 +61,14 @@ class TestContexts(unittest.TestCase):
         )
 
     @pytest.mark.slow
-    def test_get_obo_converter(self):
+    def test_obo_converter(self):
         """Test getting a converter from a context."""
         converter = manager.get_converter_from_context("obo")
         self.assertEqual("ICD10WHO", converter.standardize_prefix("icd10"))
         self.assertEqual("Orphanet", converter.standardize_prefix("ordo"))
         self.assertEqual("GO", converter.standardize_prefix("GO", strict=True))
         self.assertEqual("GO", converter.standardize_prefix("gomf", strict=True))
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", converter.bimap["PMID"])
         self.assertEqual("GO", converter.standardize_prefix("go", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("pmid", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("pubmed", strict=True))
