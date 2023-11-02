@@ -226,6 +226,8 @@ def get_records(  # noqa: C901
         primary_prefix = _add_primary_prefix(resource.prefix)
         if primary_prefix is None:
             continue
+        # TODO fix next line, since it seems to delete PUBMED from the OBO EPM
+        _add_synonym(synonym=resource.prefix, prefix=resource.prefix)
         for synonym in resource.get_synonyms():
             _add_synonym(synonym=synonym, prefix=resource.prefix)
         for uri_prefix in resource.get_uri_prefixes():
