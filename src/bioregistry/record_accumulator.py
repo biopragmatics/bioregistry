@@ -3,7 +3,6 @@
 import itertools as itt
 import logging
 from collections import defaultdict
-import collections
 from typing import (
     Collection,
     DefaultDict,
@@ -16,7 +15,6 @@ from typing import (
     Set,
     Tuple,
     cast,
-    Counter,
 )
 
 import curies
@@ -131,13 +129,12 @@ def get_records(  # noqa: C901
         or resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
-    counter = collections.Counter(
-        v.lower()
-        for v in primary_prefixes.values()
-    )
-    counter= collections.Counter({k:v for k,v in counter.items() if v > 1})
-    if counter:
-        raise ValueError(f"Duplicate prefixes: {counter}")
+    dd = defaultdict(list)
+    for k, v in primary_prefixes.items():
+        dd[v.lower()].append(k)
+    dd = {k: v for k, v in dd.items() if len(v) > 1}
+    if dd:
+        raise ValueError(f"Duplicate prefixes: {dd}")
 
     pattern_map = {
         prefix: pattern
