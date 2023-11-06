@@ -7,11 +7,15 @@ permalink: /health/
 
 Of the {{ run.summary.total_measured }} prefixes in the Bioregistry that have
 both an example local unique identifiers and at least one URI format string,
-{{ run.summary.total_failed }} ({{ run.summary.failure_percent }}%) were able to
-resolve with a HTTP 200. This comes with a few caveats:
+{{ run.summary.total_measured - run.summary.total_failed }} ({{ 1 - run.summary.failure_percent }}%) 
+were able to resolve (with a HTTP 200 status code) and {{ run.summary.total_failed }}
+({{ run.summary.failure_percent }}%) were not.
+
+This comes with a few caveats:
 
 1. Some websites do not send appropriate HTTP statuses, and may return HTTP 200
-   even when redirecting to a default "Page Not Found" page.
+   even when redirecting to a default "Page Not Found" page. This means that this
+   number might be artificially high.
 2. There are several reasons why resolution might fail, some of which are false
    positives (see below).
 
