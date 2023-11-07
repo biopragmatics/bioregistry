@@ -274,7 +274,7 @@
     "reviews": [
       "https://data.ecoportal.lifewatch.eu/reviews/30f25c90-019c-0139-be80-000c29c082c0"
     ],
-    "version": "5.0.4",
+    "version": "5.0.5",
     "viewingRestriction": "public"
   },
   {
@@ -685,6 +685,133 @@
     "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
     "publication": "https://hal.archives-ouvertes.fr/hal-02907484",
     "version": "2.1",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "I-ADOPT",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/mabablue"
+    ],
+    "description": "The I-ADOPT Framework is an ontology designed to facilitate interoperability between existing variable description models (including ontologies, taxonomy, and structured controlled vocabularies). One of the challenges in representing semantic descriptions of variables is getting people to agree about what they mean when describing the components that define the variables. The I-ADOPT ontology addresses this by providing core components and their relations that can be applied to define machine-interpretable variable descriptions that re-use FAIR vocabulary terms. It was developed by a core group of terminology experts and users from the Research Data Alliance (RDA) InteroperAble Descriptions of Observable Property Terminology (I-ADOPT) Working Group. The first published versions of the ontology up to v0.9.1 satisfied the basic cross-domain interoperability requirements. It defines four classes or \"concepts\" (Variable, Property, Entity, Constraint), and six object properties (hasProperty, hasObjectOfInterest, hasContextObject, hasMatrix, hasConstraint, constrains). The Variable is the top concept. It represents the description of something observed or mathematically derived. It minimally consists of one entity (the ObjectOfInterest) and its Property; a Property being a type of characteristic (i.e. a quantity or a quality). More complex variables can involve additional entities, for example an entity may have the role of Matrix and/or of ContextObject(s). The framework does not capture units, instruments, methods, and geographical location information; however its usage recommendation will make explicit reference to these by connecting the I-ADOPT framework to existing and complementary ontologies. This new version of the ontology (v1.0) adds one optional new class (VariableSet) and four optional new object properties (hasApplicableProperty, hasApplicableObjectOfInterest, hasApplicableMatrix, hasApplicableContextObject). This was necessary in order to enable flexibility in assigning optional and user-defined machine-interpretable categorizations of I-ADOPT variables under one or multiple coarser grouping concepts to facilitate dataset discovery and dataset aggregation. With the introduction of these concepts and properties, the framework enables different user communities or product developers to develop their own grouping criteria. While the Variable class must be connected to at least two classes via the mandatory properties hasProperty and hasObjectOIfInterest, the VariableSet class can have either of the new properties. Additionally, the VariableSet class can also be optionally connected to the Variable class using the property [ro:hasMember](http://purl.obolibrary.org/obo/RO_0002351) from the [OBO Relations Ontology](https://obofoundry.org/ontology/ro.html).",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/Ecology"
+    ],
+    "links": {
+      "@context": {
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/latest_submission",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/I-ADOPT",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/I-ADOPT/skos_xl_labels"
+    },
+    "name": "I-ADOPT Framework ontology",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "publication": "https://doi.org/10.15497/RDA00071/2",
+    "version": "1.0.3",
+    "viewingRestriction": "public"
+  },
+  {
+    "@id": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "ELTER_CL",
+    "administeredBy": [
+      "https://data.ecoportal.lifewatch.eu/users/mabablue"
+    ],
+    "description": "eLTER_CL is a thesaurus for controlled lists used by the eLTER community",
+    "hasDomain": [
+      "https://data.ecoportal.lifewatch.eu/categories/Ecology",
+      "https://data.ecoportal.lifewatch.eu/categories/Biodiversity"
+    ],
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "identifier_requests": "http://data.bioontology.org/metadata/IdentifierRequest",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "analytics": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/analytics",
+      "categories": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/categories",
+      "classes": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/classes",
+      "collections": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/collections",
+      "download": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/download",
+      "groups": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/groups",
+      "identifier_requests": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/identifier_requests",
+      "instances": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/instances",
+      "latest_submission": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/latest_submission",
+      "metrics": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/metrics",
+      "notes": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/notes",
+      "projects": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/projects",
+      "properties": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/properties",
+      "reviews": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/reviews",
+      "roots": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/classes/roots",
+      "schemes": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/schemes",
+      "single_class": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/classes/{class_id}",
+      "submissions": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/submissions",
+      "ui": "http://ecoportal.lifewatch.eu/ontologies/ELTER_CL",
+      "views": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/views",
+      "xl_labels": "https://data.ecoportal.lifewatch.eu/ontologies/ELTER_CL/skos_xl_labels"
+    },
+    "name": "eLTER Controlled Lists",
+    "ontologyType": "https://data.ecoportal.lifewatch.eu/ontology_types/ONTOLOGY",
+    "version": "1.1.0",
     "viewingRestriction": "public"
   },
   {
