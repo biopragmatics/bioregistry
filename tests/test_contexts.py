@@ -8,7 +8,6 @@ import unittest
 import pytest
 
 import bioregistry
-import curies
 from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
 
