@@ -31190,6 +31190,53 @@
     "preferred_prefix": "lter",
     "uri_format": "https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1"
   },
+  "m4i": {
+    "contact": {
+      "email": "giacomo.lanza@ptb.de",
+      "github": "Zack-83",
+      "name": "Giacomo Lanza",
+      "orcid": "0000-0002-2239-3955"
+    },
+    "contributor": {
+      "email": "giacomo.lanza@ptb.de",
+      "github": "Zack-83",
+      "name": "Giacomo Lanza",
+      "orcid": "0000-0002-2239-3955"
+    },
+    "description": "The ontology Metadata4Ing is developed within the NFDI Consortium NFDI4Ing with the aim of providing a thorough framework for the semantic description of research data, with a particular focus on engineering sciences and neighbouring disciplines. This ontology allows a description of the whole data generation process (experiment, observation, simulation), embracing the object of investigation, all sample and data manipulation procedures, a summary of the data files and the information contained, and all personal and institutional roles. The subordinate classes and relations can be built according to the two principles of inheritance and modularity. \"Inheritance\" means that a subclass inherits all properties of its superordinate class, possibly adding some new ones. Modularity means that all expansions are independent of each other; this makes possible for instance to generate expanded ontologies for any possible combinations of method × object of research.",
+    "download_owl": "https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.xml",
+    "download_rdf": "https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.ttl",
+    "example": "Method",
+    "github_request_issue": 970,
+    "homepage": "https://w3id.org/nfdi4ing/metadata4ing/",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "wikidata": "Q111516803"
+    },
+    "mastodon": "nfdi4ing@nfdi.social",
+    "name": "Metadata4Ing",
+    "owners": [
+      {
+        "name": "Physikalisch-Technische Bundesanstalt",
+        "partnered": false,
+        "ror": "02meqm098",
+        "wikidata": null
+      }
+    ],
+    "pattern": "^\\w+$",
+    "preferred_prefix": "m4i",
+    "repository": "https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing/",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://w3id.org/nfdi4ing/metadata4ing#$1"
+  },
   "ma": {
     "banana": "MA",
     "contact": {
@@ -38267,6 +38314,14 @@
       "name": "Donny Winston",
       "orcid": "0000-0002-8424-0604"
     },
+    "contributor_extras": [
+      {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370"
+      }
+    ],
     "description": "An initiative to empower the research community to harness microbiome data exploration and discovery through a collaborative integrative data science ecosystem.",
     "example": "y3ax-8bq3-60",
     "homepage": "https://microbiomedata.org/",
@@ -38277,15 +38332,28 @@
       "miriam": "nmdc"
     },
     "name": "National Microbiome Data Collaborative",
-    "pattern": "^[\\w\\-.]{3,}$",
+    "pattern": "^.{2,}$",
     "preferred_prefix": "nmdc",
+    "providers": [
+      {
+        "code": "web",
+        "description": "Direct link",
+        "homepage": "https://drs.microbiomedata.org",
+        "name": "NMDC Web Page",
+        "uri_format": "https://drs.microbiomedata.org/objects/$1"
+      }
+    ],
+    "rdf_uri_format": "https://w3id.org/nmdc/$1",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/982"
+    ],
     "reviewer": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "uri_format": "https://drs.microbiomedata.org/objects/$1"
+    "uri_format": "https://w3id.org/nmdc/$1"
   },
   "nmpdr": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -39279,6 +39347,12 @@
     "uri_format": "http://purl.obolibrary.org/obo/$1"
   },
   "oboinowl": {
+    "contact": {
+      "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
+      "name": "Chris Mungall",
+      "orcid": "0000-0002-6601-2165"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -39286,9 +39360,14 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
-    "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
-    "download_owl": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.owl",
+    "download_obo": "http://www.geneontology.org/formats/oboInOwl.obo",
+    "download_owl": "http://www.geneontology.org/formats/oboInOwl.owl",
     "example": "hasDbXref",
+    "example_extras": [
+      "hasExactSynonym",
+      "hasBroadSynonym",
+      "hasNarrowSynonym"
+    ],
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
     "keywords": [
       "life science",
@@ -39301,7 +39380,12 @@
       "ols": "oboinowl"
     },
     "name": "OBO in OWL",
+    "pattern": "^\\w+$",
     "preferred_prefix": "oboInOwl",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/973",
+      "https://github.com/geneontology/go-site/issues/2157"
+    ],
     "repository": "https://github.com/geneontology/go-ontology",
     "synonyms": [
       "oboformat",
