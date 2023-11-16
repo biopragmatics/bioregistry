@@ -20,7 +20,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, get_field_annotation
+from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
 
