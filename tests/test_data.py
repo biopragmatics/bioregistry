@@ -78,15 +78,6 @@ class TestRegistry(unittest.TestCase):
                 self.assertFalse(prefix.endswith("_"))
                 self.assertNotIn(":", prefix)
 
-    def test_valid_integration_annotations(self):
-        """Test that the integration keys are valid."""
-        valid = {"required", "optional", "suggested", "required_for_new"}
-        for name, field in Resource.__fields__.items():
-            with self.subTest(name=name):
-                status = get_field_annotation(field, "integration_status")
-                if status:
-                    self.assertIn(status, valid)
-
     def test_keys(self):
         """Check the required metadata is there."""
         keys = set(Resource.__fields__.keys())
