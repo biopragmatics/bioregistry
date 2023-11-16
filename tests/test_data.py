@@ -20,7 +20,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, get_field_annotation
+from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
 
@@ -77,15 +77,6 @@ class TestRegistry(unittest.TestCase):
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
                 self.assertNotIn(":", prefix)
-
-    def test_valid_integration_annotations(self):
-        """Test that the integration keys are valid."""
-        valid = {"required", "optional", "suggested", "required_for_new"}
-        for name, field in Resource.__fields__.items():
-            with self.subTest(name=name):
-                status = get_field_annotation(field, "integration_status")
-                if status:
-                    self.assertIn(status, valid)
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -534,9 +525,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_records(self):
         """Test generating records."""
+        converter = bioregistry.manager.get_converter(include_prefixes=True)
         records: Mapping[str, curies.Record] = {
-            record.prefix: record
-            for record in bioregistry.manager.get_curies_records(include_prefixes=True)
+            record.prefix: record for record in converter.records
         }
 
         # This is a "provides" situation

@@ -4,6 +4,7 @@
 
 import logging
 import typing
+import warnings
 from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -190,7 +191,7 @@ class Manager:
     def converter(self) -> curies.Converter:
         """Get the default converter."""
         if self._converter is None:
-            self._converter = curies.Converter(records=self.get_curies_records())
+            self._converter = self.get_converter()
         return self._converter
 
     def write_registry(self):
@@ -631,11 +632,7 @@ class Manager:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
-    def get_converter(self, **kwargs) -> curies.Converter:
-        """Get a converter from this manager."""
-        return curies.Converter(records=self.get_curies_records(**kwargs))
-
-    def get_curies_records(
+    def get_converter(
         self,
         *,
         prefix_priority: Optional[Sequence[str]] = None,
@@ -643,9 +640,10 @@ class Manager:
         include_prefixes: bool = False,
         strict: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
+        rewiring: Optional[Mapping[str, str]] = None,
         blacklist: Optional[typing.Collection[str]] = None,
-    ) -> List[curies.Record]:
-        """Get a list of records for all resources in this manager.
+    ) -> curies.Converter:
+        """Get a converter from this manager.
 
         :param prefix_priority:
             The order of metaprefixes OR "preferred" for choosing a primary prefix
@@ -660,19 +658,20 @@ class Manager:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
         :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+        :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
         :param blacklist:
             A collection of prefixes to skip
 
         :returns: A list of records for :class:`curies.Converter`
         """
-        from .record_accumulator import get_records
+        from .record_accumulator import get_converter
 
         # first step - filter to resources that have *anything* for a URI prefix
         # TODO maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
         resources = [
             resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
         ]
-        return get_records(
+        converter = get_converter(
             resources,
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
@@ -680,7 +679,14 @@ class Manager:
             strict=strict,
             blacklist=blacklist,
             remapping=remapping,
+            rewiring=rewiring,
         )
+        return converter
+
+    def get_curies_records(self, **kwargs) -> List[curies.Record]:
+        """Get a list of records for all resources in this manager."""
+        warnings.warn("use Manager.get_converter().records", DeprecationWarning)
+        return self.get_converter(**kwargs).records
 
     def get_reverse_prefix_map(
         self, include_prefixes: bool = False, strict: bool = False
@@ -692,7 +698,8 @@ class Manager:
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        for record in self.get_curies_records(include_prefixes=include_prefixes, strict=strict):
+        converter = self.get_converter(include_prefixes=include_prefixes, strict=strict)
+        for record in converter.records:
             rv[record.uri_prefix] = record.prefix
             for uri_prefix in record.uri_prefix_synonyms:
                 if uri_prefix not in rv:
@@ -723,6 +730,7 @@ class Manager:
         prefix_priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
+        rewiring: Optional[Mapping[str, str]] = None,
         blacklist: Optional[typing.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
@@ -736,22 +744,18 @@ class Manager:
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
+        :param rewiring: A mapping from Bioregistry prefixes to URI prefixes.
         :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
-        records = self.get_curies_records(
+        converter = self.get_converter(
             prefix_priority=prefix_priority,
             uri_prefix_priority=uri_prefix_priority,
             remapping=remapping,
+            rewiring=rewiring,
             blacklist=blacklist,
         )
-        rv = {}
-        for record in records:
-            rv[record.prefix] = record.uri_prefix
-            if include_synonyms:
-                for prefix in record.prefix_synonyms:
-                    rv[prefix] = record.uri_prefix
-        return rv
+        return converter.prefix_map if include_synonyms else converter.bimap
 
     def get_curie_pattern(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
@@ -1568,27 +1572,23 @@ class Manager:
         """
         return self.contexts.get(key)
 
-    def get_records_from_context(
-        self, context: Union[str, Context], strict: bool = False
-    ) -> List[curies.Record]:
-        """Get records based on a context."""
+    def get_converter_from_context(
+        self,
+        context: Union[str, Context],
+        strict: bool = False,
+        include_prefixes: bool = False,
+    ) -> curies.Converter:
+        """Get a converter based on a context."""
         if isinstance(context, str):
             context = self.contexts[context]
-        return self.get_curies_records(
+        return self.get_converter(
             prefix_priority=context.prefix_priority,
             uri_prefix_priority=context.uri_prefix_priority,
             strict=strict,
             remapping=context.prefix_remapping,
+            rewiring=context.custom_prefix_map,
             blacklist=context.blacklist,
-            # include_synonyms is not necessary here
-        )
-
-    def get_converter_from_context(
-        self, context: Union[str, Context], strict: bool = False
-    ) -> curies.Converter:
-        """Get a converter based on a context."""
-        return curies.Converter(
-            records=self.get_records_from_context(context=context, strict=strict)
+            include_prefixes=include_prefixes,
         )
 
     def get_context_artifacts(
@@ -1607,6 +1607,7 @@ class Manager:
             prefix_priority=context.prefix_priority,
             include_synonyms=include_synonyms,
             blacklist=context.blacklist,
+            rewiring=context.custom_prefix_map,
         )
         prescriptive_pattern_map = self.get_pattern_map(
             remapping=context.prefix_remapping,

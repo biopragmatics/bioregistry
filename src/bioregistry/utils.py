@@ -26,7 +26,6 @@ from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
     METAREGISTRY_YAML_PATH,
-    PYDANTIC_1,
     REGISTRY_YAML_PATH,
 )
 from .version import get_version
@@ -241,11 +240,3 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
     return sorted(rv, key=_key, reverse=True)
-
-
-def get_field_annotation(field, key, default=None):
-    """Get a field annotation."""
-    if PYDANTIC_1:
-        return field.field_info.extra.get(key, default)
-    else:
-        return (field.json_schema_extra or {}).get(key, default)

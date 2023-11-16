@@ -1785,6 +1785,52 @@
     "pattern": "^[A-Z]{6}$",
     "prefix": "P12121"
   },
+  "P12130": {
+    "database": "Q123284169",
+    "description": "identifier for a bird species in the Aves de Chile database",
+    "example": [
+      "025",
+      "088",
+      "236"
+    ],
+    "name": "Aves de Chile ID",
+    "prefix": "P12130",
+    "uri_format": "https://www.avesdechile.cl/$1.htm"
+  },
+  "P12136": {
+    "database": "Q123199826",
+    "description": "identifier for a plant species, subspecies, or variety in the Indiana Plant Atlas",
+    "example": [
+      "1000",
+      "166",
+      "3488",
+      "457",
+      "6",
+      "97"
+    ],
+    "homepage": "https://indiana.plantatlas.usf.edu/",
+    "name": "Indiana Plant Atlas ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12136",
+    "uri_format": "https://indiana.plantatlas.usf.edu/plant.aspx?id=$1"
+  },
+  "P12138": {
+    "database": "Q123174785",
+    "description": "identifier for a plant species, subspecies, or variety in the Tennessee-Kentucky Plant Atlas",
+    "example": [
+      "14",
+      "167",
+      "2",
+      "38",
+      "4000",
+      "978"
+    ],
+    "homepage": "https://tennessee-kentucky.plantatlas.usf.edu/",
+    "name": "Tennessee-Kentucky Plant Atlas ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12138",
+    "uri_format": "https://tennessee-kentucky.plantatlas.usf.edu/plant.aspx?id=$1"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -1958,6 +2004,18 @@
     "name": "Dialnet article ID",
     "prefix": "P1610",
     "uri_format": "https://dialnet.unirioja.es/servlet/articulo?codigo=$1"
+  },
+  "P1645": {
+    "database": "Q735279",
+    "description": "identifier for a physical constant",
+    "example": [
+      "c",
+      "h"
+    ],
+    "homepage": "http://physics.nist.gov/cuu/Constants/index.html",
+    "name": "NIST/CODATA ID",
+    "prefix": "P1645",
+    "uri_format": "http://physics.nist.gov/cgi-bin/cuu/Value?$1"
   },
   "P1668": {
     "database": "Q192093",
@@ -2182,6 +2240,7 @@
       "VO_0011559"
     ],
     "name": "Vaccine Ontology ID",
+    "pattern": "^VO_[0-9]{7}$",
     "prefix": "P1928"
   },
   "P1929": {
@@ -3368,7 +3427,7 @@
     "name": "iNaturalist taxon ID",
     "pattern": "^[1-9]\\d{0,6}$",
     "prefix": "P3151",
-    "uri_format": "https://www.inaturalist.org/taxa/$1"
+    "uri_format": "https://inaturalist.org/taxa/$1"
   },
   "P3165": {
     "description": "identifier for a horse on Horsetelex database",
@@ -3901,7 +3960,6 @@
       "10.12987/YALE/9780300197051.003.0010",
       "10.1371/JOURNAL.PONE.0029797"
     ],
-    "miriam": "doi",
     "name": "DOI",
     "pattern": "^(?i)10.\\d{4,9}/[^\\s]+$",
     "prefix": "P356",
@@ -4098,7 +4156,7 @@
     "description": "identifier in the Evidence & Conclusion Ontology for capturing evidence in biological research",
     "homepage": "http://evidenceontology.org/",
     "name": "Evidence & Conclusion Ontology ID",
-    "pattern": "^ECO:[0-9]{7}$",
+    "pattern": "^ECO_[0-9]{7}$",
     "prefix": "P3811"
   },
   "P3841": {
@@ -4567,6 +4625,7 @@
       "XAO_0000010"
     ],
     "name": "Xenopus Anatomical Ontology ID",
+    "pattern": "^XAO_\\d{7}$",
     "prefix": "P4495"
   },
   "P4526": {
@@ -4591,6 +4650,7 @@
     ],
     "miriam": "SPD",
     "name": "Spider Ontology ID",
+    "pattern": "^[0-9]{7}$",
     "prefix": "P4537",
     "uri_format": "http://purl.obolibrary.org/obo/SPD_$1",
     "uri_format_rdf": "http://purl.obolibrary.org/obo/SPD_$1"
@@ -5259,17 +5319,16 @@
     "database": "Q27468140",
     "description": "identifier for an entity in the Mondo Disease Ontology",
     "example": [
-      "MONDO:0005301",
-      "MONDO:0005344"
+      "MONDO_0005301",
+      "MONDO_0005344"
     ],
     "homepage": "https://github.com/monarch-initiative/mondo",
     "name": "Mondo ID",
-    "pattern": "^MONDO:([0-9]{1,7})$",
+    "pattern": "^MONDO_([0-9]{1,7})$",
     "prefix": "P5270",
     "short_name": [
       "MONDO"
-    ],
-    "uri_format": "http://www.bioregistry.io/$1"
+    ]
   },
   "P5299": {
     "database": "Q2507304",
@@ -5978,7 +6037,7 @@
     ],
     "homepage": "http://www.oiseaux.net/oiseaux/",
     "name": "Oiseaux.net ID",
-    "pattern": "^[a-z]+(\\.[a-z]+)*$",
+    "pattern": "^[a-z]+((\\.|-)[a-z]+)*$",
     "prefix": "P6025",
     "uri_format": "http://www.oiseaux.net/oiseaux/$1.html"
   },
@@ -9301,13 +9360,14 @@
     "database": "Q11801904",
     "description": "identifier for a scientific work issued by PubMed Central (without \"PMC\" prefix)",
     "example": [
-      "1201091"
+      "1201091",
+      "3682911"
     ],
     "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
     "name": "PMCID",
     "pattern": "^[1-9]\\d{0,7}$",
     "prefix": "P932",
-    "uri_format": "http://europepmc.org/articles/PMC$1"
+    "uri_format": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC$1"
   },
   "P9334": {
     "database": "Q104030182",

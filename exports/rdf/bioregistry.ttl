@@ -869,6 +869,7 @@
 @prefix ncbi.resource: <https://bioregistry.io/metaregistry/ncbi/resolve/> .
 @prefix ncbi.resource1: <https://bioregistry.io/metaregistry/ncbi/> .
 @prefix ncbibook: <https://www.ncbi.nlm.nih.gov/books/> .
+@prefix ncbidrs: <https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/> .
 @prefix ncbigene: <https://www.ncbi.nlm.nih.gov/gene/> .
 @prefix ncbigi: <http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=> .
 @prefix ncbitaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
@@ -901,6 +902,7 @@
 @prefix nif.std: <http://uri.neuinfo.org/nif/nifstd/> .
 @prefix nihhesc: <https://grants.nih.gov/stem_cells/registry/current.htm?ID=> .
 @prefix nihreporter.project: <https://reporter.nih.gov/project-details/> .
+@prefix nist.codata: <http://physics.nist.gov/cgi-bin/cuu/Value?> .
 @prefix nkos: <http://w3id.org/nkos/> .
 @prefix nlfff: <http://database.deepsolar.space:18080/dbs/nlfff/> .
 @prefix nlm: <https://www.ncbi.nlm.nih.gov/nlmcatalog/> .
@@ -13265,6 +13267,20 @@ bioregistry:nbrc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 nbrc:00001234 ;
     bioregistry.schema:0000029 "nbrc" .
 
+bioregistry:ncbidrs a bioregistry.schema:0000001 ;
+    rdfs:label "NCBI Data Repository Service" ;
+    dcterms:description "This is the namespace for the archive of sequence and other files provided by NCBI e.g. in SRA and dbGaP. These files are related to objects in the sequencing data model managed under the insdc.sra namespace. "^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch miriam:ncbidrs ;
+    foaf:homepage <https://www.ncbi.nlm.nih.gov/> ;
+    bioregistry.schema:0000005 "72ff6ff882ec447f12df018e6183de59"^^xsd:string ;
+    bioregistry.schema:0000006 "https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9a-fA-F]{32}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/"^^xsd:string ;
+    bioregistry.schema:0000027 ncbidrs:72ff6ff882ec447f12df018e6183de59 ;
+    bioregistry.schema:0000029 "ncbidrs" .
+
 bioregistry:nci.drug a bioregistry.schema:0000001 ;
     rdfs:label "NCI Drug Dictionary ID" ;
     dcterms:description "identifier of an entry in the NCI Drug Dictionary"^^xsd:string ;
@@ -13582,6 +13598,19 @@ bioregistry:niaid.chemdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO="^^xsd:string ;
     bioregistry.schema:0000027 niaid.chemdb:112081 ;
     bioregistry.schema:0000029 "niaid.chemdb" .
+
+bioregistry:nist.codata a bioregistry.schema:0000001 ;
+    rdfs:label "NIST/CODATA ID" ;
+    dcterms:description "identifier for a physical constant"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P1645 ;
+    foaf:homepage <http://physics.nist.gov/cuu/Constants/index.html> ;
+    bioregistry.schema:0000005 "c"^^xsd:string ;
+    bioregistry.schema:0000006 "http://physics.nist.gov/cgi-bin/cuu/Value?$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://physics.nist.gov/cgi-bin/cuu/Value?"^^xsd:string ;
+    bioregistry.schema:0000027 nist.codata:c ;
+    bioregistry.schema:0000029 "nist.codata" .
 
 bioregistry:nlfff a bioregistry.schema:0000001 ;
     rdfs:label "NLFFF Database" ;
@@ -13926,7 +13955,7 @@ bioregistry:obib a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:obib.owl ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
+    bioregistry.schema:0000019 orcid:0009-0003-4268-6207 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBIB_"^^xsd:string ;
     bioregistry.schema:0000027 obib:0000389 ;
     bioregistry.schema:0000029 "obib" .
@@ -20946,6 +20975,9 @@ orcid:0000-0003-4871-5569 rdfs:label "Rebecca Jackson" ;
 orcid:0000-0003-4978-0864 rdfs:label "Lutz Fischer" ;
     foaf:mbox "lutz.fischer@tu-berlin.de" .
 
+orcid:0009-0003-4268-6207 rdfs:label "Justin Whorton" ;
+    foaf:mbox "jmwhorton@uams.edu" .
+
 orcid:0009-0009-3816-8777 rdfs:label "Carsten Linder" ;
     foaf:mbox "info@hoelzel.de" .
 
@@ -22607,6 +22639,8 @@ wikidata:P1578 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1579 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P1645 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P1690 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1692 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -23212,6 +23246,8 @@ bioportal:GALEN dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:GAZ dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:GECKO dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:GENEPIO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:GENO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -40121,6 +40157,8 @@ miriam:nbn dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:nbrc dcterms:isPartOf bioregistry.metaresource:miriam .
 
+miriam:ncbidrs dcterms:isPartOf bioregistry.metaresource:miriam .
+
 miriam:ncbigene dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:ncbiprotein dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -47872,6 +47910,9 @@ orcid:0000-0002-1005-8383 rdfs:label "Pankaj Jaiswal" ;
 orcid:0000-0002-1373-1705 rdfs:label "Clare Pilgrim" ;
     foaf:mbox "cp390@cam.ac.uk" .
 
+orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
+    foaf:mbox "jiezheng@pennmedicine.upenn.edu" .
+
 orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" ;
     dcterms:contributor bioregistry:hepro,
         bioregistry:hoso ;
@@ -48013,6 +48054,7 @@ bioregistry:genepio a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/GenEpiO/genepio> ;
     skos:exactMatch aberowl:GENEPIO,
         ontobee:GENEPIO,
+        bioportal:GENEPIO,
         biocontext:GENEPIO,
         fairsharing:FAIRsharing.y1mmbv,
         ols:genepio,
@@ -48212,9 +48254,6 @@ orcid:0000-0002-0381-3766 rdfs:label "Bryce Mecum" ;
 
 orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" ;
     foaf:mbox "matus.kalas@uib.no" .
-
-orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
-    foaf:mbox "jiezheng@pennmedicine.upenn.edu" .
 
 wikidata:P665 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -51328,6 +51367,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P1554,
         wikidata:P1578,
         wikidata:P1579,
+        wikidata:P1645,
         wikidata:P1690,
         wikidata:P1692,
         wikidata:P1693,
@@ -52596,6 +52636,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:GALEN,
         bioportal:GAZ,
         bioportal:GECKO,
+        bioportal:GENEPIO,
         bioportal:GENO,
         bioportal:GEO,
         bioportal:GEXO,
@@ -55445,6 +55486,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:nasc,
         miriam:nbn,
         miriam:nbrc,
+        miriam:ncbidrs,
         miriam:ncbigene,
         miriam:ncbiprotein,
         miriam:ncim,
@@ -57662,6 +57704,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ncbi.genome,
         bioregistry:ncbi.resource,
         bioregistry:ncbibook,
+        bioregistry:ncbidrs,
         bioregistry:ncbigene,
         bioregistry:ncbigi,
         bioregistry:ncbiprotein,
@@ -57701,6 +57744,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nihhesc,
         bioregistry:nihreporter.project,
         bioregistry:nist,
+        bioregistry:nist.codata,
         bioregistry:nkos,
         bioregistry:nlfff,
         bioregistry:nlm,
