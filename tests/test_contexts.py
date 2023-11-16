@@ -46,6 +46,7 @@ class TestContexts(unittest.TestCase):
         self.assertEqual(f"{p}/FBcv_", prefix_map["FBcv"])
         self.assertIn("GEO", prefix_map)
         self.assertEqual(f"{p}/GEO_", prefix_map["GEO"])
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", prefix_map["PMID"])
 
         self.assertNotIn("biomodels.kisao", prefix_map)
 
@@ -57,11 +58,14 @@ class TestContexts(unittest.TestCase):
             msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
         )
 
-    def get_obo_converter(self):
+    def test_obo_converter(self):
         """Test getting a converter from a context."""
         converter = manager.get_converter_from_context("obo")
+        self.assertEqual("ICD10WHO", converter.standardize_prefix("icd10"))
+        self.assertEqual("Orphanet", converter.standardize_prefix("ordo"))
         self.assertEqual("GO", converter.standardize_prefix("GO"))
         self.assertEqual("GO", converter.standardize_prefix("gomf"))
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", converter.bimap["PMID"])
         # FIXME later, handle adding canonical bioregistry prefix
         #  as synonym when non-default prefix priority ordering is given
         # self.assertEqual("GO", converter.standardize_prefix("go"))
