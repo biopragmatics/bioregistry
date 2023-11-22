@@ -43,6 +43,12 @@ class Summary(BaseModel):
     total_measured: int
     total_failed: int
     total_success: int
+    success_percent: float = Field(
+        ...,
+        ge=0.0,
+        le=100.0,
+        description="The percentage of providers that successfully ping'd.",
+    )
     failure_percent: float = Field(
         ...,
         ge=0.0,
@@ -144,6 +150,7 @@ def main() -> None:
             total_failed=total_failed,
             total_success=total - total_failed,
             failure_percent=round(100 * failure_percent, 1),
+            success_percent=round(100 * (1 - failure_percent), 1),
         ),
         delta=delta,
     )

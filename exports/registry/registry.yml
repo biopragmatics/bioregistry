@@ -6747,7 +6747,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '226'
+  version: '227'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -7351,7 +7351,7 @@ cido:
   rdf_uri_format: http://purl.obolibrary.org/obo/CIDO_$1
   repository: https://github.com/cido-ontology/cido
   uri_format: http://purl.obolibrary.org/obo/CIDO_$1
-  version: 1.0.337
+  version: 1.0.369
 cio:
   contact:
     email: frederic.bastian@unil.ch
@@ -8179,7 +8179,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.195'
+  version: '2.198'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -12701,6 +12701,12 @@ doid:
     name: Legacy PURL
     uri_format: http://purl.org/obo/owl/DOID#DOID_$1
   publications:
+  - doi: 10.1093/nar/gkad1051
+    pmc: null
+    pubmed: '37953304'
+    title: 'The DO-KB Knowledgebase: a 20-year journey developing the disease open
+      science ecosystem'
+    year: null
   - doi: 10.1093/nar/gkab1063
     pmc: PMC8728220
     pubmed: '34755882'
@@ -18911,7 +18917,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2023-10-06'
+  version: '2023-11-13'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -19723,6 +19729,7 @@ genepio:
   mappings:
     aberowl: GENEPIO
     biocontext: GENEPIO
+    bioportal: GENEPIO
     fairsharing: FAIRsharing.y1mmbv
     obofoundry: genepio
     ols: genepio
@@ -20696,7 +20703,7 @@ gno:
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: '2023-08-09'
+  version: '2023-11-09'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -28903,6 +28910,59 @@ lter:
   pattern: ^\d+$
   preferred_prefix: lter
   uri_format: https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1
+m4i:
+  contact:
+    email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
+  contributor:
+    email: giacomo.lanza@ptb.de
+    github: Zack-83
+    name: Giacomo Lanza
+    orcid: 0000-0002-2239-3955
+  description: The ontology Metadata4Ing is developed within the NFDI Consortium NFDI4Ing
+    with the aim of providing a thorough framework for the semantic description of
+    research data, with a particular focus on engineering sciences and neighbouring
+    disciplines. This ontology allows a description of the whole data generation process
+    (experiment, observation, simulation), embracing the object of investigation,
+    all sample and data manipulation procedures, a summary of the data files and the
+    information contained, and all personal and institutional roles. The subordinate
+    classes and relations can be built according to the two principles of inheritance
+    and modularity. "Inheritance" means that a subclass inherits all properties of
+    its superordinate class, possibly adding some new ones. Modularity means that
+    all expansions are independent of each other; this makes possible for instance
+    to generate expanded ontologies for any possible combinations of method × object
+    of research.
+  download_owl: https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.xml
+  download_rdf: https://nfdi4ing.pages.rwth-aachen.de/metadata4ing/metadata4ing/ontology.ttl
+  example: Method
+  github_request_issue: 970
+  homepage: https://w3id.org/nfdi4ing/metadata4ing/
+  keywords:
+  - engineering science
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    bartoc: '20402'
+    fairsharing: FAIRsharing.f8b3ec
+    wikidata: Q111516803
+  mastodon: nfdi4ing@nfdi.social
+  name: Metadata4Ing
+  owners:
+  - name: Physikalisch-Technische Bundesanstalt
+    partnered: false
+    ror: 02meqm098
+    wikidata: null
+  pattern: ^\w+$
+  preferred_prefix: m4i
+  repository: https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing/
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://w3id.org/nfdi4ing/metadata4ing#$1
 ma:
   banana: MA
   contact:
@@ -29762,9 +29822,9 @@ mediadive.solution:
   uri_format: https://mediadive.dsmz.de/solutions/$1
 medlineplus:
   contact:
-    email: custserv@nlm.nih.gov
+    email: willisj@mail.nlm.nih.gov
     github: null
-    name: NLM Customer Service
+    name: Jan Willis, NLM
     orcid: null
   description: MedlinePlus is the National Institutes of Health's Web site for patients
     and their families and friends. Produced by the National Library of Medicine,
@@ -29927,9 +29987,9 @@ merops.family:
   uri_format: https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1
 mesh:
   contact:
-    email: custserv@nlm.nih.gov
+    email: willisj@mail.nlm.nih.gov
     github: null
-    name: NLM Customer Service
+    name: Jan Willis, NLM
     orcid: null
   description: MeSH (Medical Subject Headings) is the National Library of Medicine's
     controlled vocabulary thesaurus. It consists of sets of terms naming descriptors
@@ -31833,7 +31893,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.117'
+  version: '2.120'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -32759,7 +32819,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.131
+  version: 4.1.134
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -34935,6 +34995,15 @@ nist:
   synonyms:
   - NIST
   - NIST Chemistry WebBook
+nist.codata:
+  description: identifier for a physical constant
+  example: c
+  homepage: http://physics.nist.gov/cuu/Constants/index.html
+  mappings:
+    wikidata: P1645
+  name: NIST/CODATA ID
+  preferred_prefix: nist.codata
+  uri_format: http://physics.nist.gov/cgi-bin/cuu/Value?$1
 nkos:
   contributor:
     email: cthoyt@gmail.com
@@ -35418,6 +35487,11 @@ nmdc:
     github: dwinston
     name: Donny Winston
     orcid: 0000-0002-8424-0604
+  contributor_extras:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: An initiative to empower the research community to harness microbiome
     data exploration and discovery through a collaborative integrative data science
     ecosystem.
@@ -35428,14 +35502,23 @@ nmdc:
   mappings:
     miriam: nmdc
   name: National Microbiome Data Collaborative
-  pattern: ^[\w\-.]{3,}$
+  pattern: ^.{2,}$
   preferred_prefix: nmdc
+  providers:
+  - code: web
+    description: Direct link
+    homepage: https://drs.microbiomedata.org
+    name: NMDC Web Page
+    uri_format: https://drs.microbiomedata.org/objects/$1
+  rdf_uri_format: https://w3id.org/nmdc/$1
+  references:
+  - https://github.com/biopragmatics/bioregistry/pull/982
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  uri_format: https://drs.microbiomedata.org/objects/$1
+  uri_format: https://w3id.org/nmdc/$1
 nmpdr:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -36318,10 +36401,10 @@ obi:
   version: '2023-09-20'
 obib:
   contact:
-    email: jiezheng@pennmedicine.upenn.edu
-    github: zhengj2007
-    name: Jie Zheng
-    orcid: 0000-0002-2999-0103
+    email: jmwhorton@uams.edu
+    github: jmwhorton
+    name: Justin Whorton
+    orcid: 0009-0003-4268-6207
   description: The Ontology for Biobanking (OBIB) is an ontology for the annotation
     and modeling of the activities, contents, and administration of a biobank. Biobanks
     are facilities that store specimens, such as bodily fluids and tissues, typically
@@ -36394,6 +36477,11 @@ obo:
   twitter: OBOFoundry
   uri_format: http://purl.obolibrary.org/obo/$1
 oboinowl:
+  contact:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -36401,9 +36489,13 @@ oboinowl:
     orcid: 0000-0003-4423-4370
   description: This meta-ontology is self-describing. OBO metamodel properties are
     described using OBO metamodel properties
-  download_obo: https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo
-  download_owl: https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.owl
+  download_obo: http://www.geneontology.org/formats/oboInOwl.obo
+  download_owl: http://www.geneontology.org/formats/oboInOwl.owl
   example: hasDbXref
+  example_extras:
+  - hasExactSynonym
+  - hasBroadSynonym
+  - hasNarrowSynonym
   homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
   keywords:
   - life science
@@ -36414,7 +36506,11 @@ oboinowl:
     fairsharing: FAIRsharing.aa0eat
     ols: oboinowl
   name: OBO in OWL
+  pattern: ^\w+$
   preferred_prefix: oboInOwl
+  references:
+  - https://github.com/biopragmatics/bioregistry/pull/973
+  - https://github.com/geneontology/go-site/issues/2157
   repository: https://github.com/geneontology/go-ontology
   synonyms:
   - oboformat
@@ -37391,7 +37487,7 @@ omo:
   rdf_uri_format: http://purl.obolibrary.org/obo/OMO_$1
   repository: https://github.com/information-artifact-ontology/ontology-metadata
   uri_format: http://purl.obolibrary.org/obo/OMO_$1
-  version: '2023-10-12'
+  version: '2023-11-02'
 omop:
   contributor:
     email: cthoyt@gmail.com
@@ -43016,7 +43112,7 @@ pso:
   rdf_uri_format: http://purl.obolibrary.org/obo/PSO_$1
   repository: https://github.com/Planteome/plant-stress-ontology
   uri_format: http://purl.obolibrary.org/obo/PSO_$1
-  version: '2020-05-19'
+  version: '2023-10-19'
 pspub:
   contributor:
     email: cthoyt@gmail.com
@@ -43493,7 +43589,7 @@ pw:
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/PW_$1
-  version: '7.81'
+  version: '7.82'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -45802,7 +45898,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.208'
+  version: '6.209'
 rtecs:
   contributor:
     email: cthoyt@gmail.com
@@ -45887,9 +45983,9 @@ rxno:
   version: '2021-12-16'
 rxnorm:
   contact:
-    email: custserv@nlm.nih.gov
+    email: willisj@mail.nlm.nih.gov
     github: null
-    name: NLM Customer Service
+    name: Jan Willis, NLM
     orcid: null
   contributor:
     email: cthoyt@gmail.com
@@ -48617,9 +48713,9 @@ snctp:
   preferred_prefix: snctp
 snomedct:
   contact:
-    email: custserv@nlm.nih.gov
+    email: willisj@mail.nlm.nih.gov
     github: null
-    name: NLM Customer Service
+    name: Jan Willis, NLM
     orcid: null
   contributor_extras:
   - email: nicolas.matentzoglu@gmail.com
@@ -49246,7 +49342,7 @@ srao:
   repository: https://github.com/FAIRsharing/subject-ontology
   twitter: FAIRsharing_org
   uri_format: http://www.fairsharing.org/ontology/subject/SRAO_$1
-  version: 0.3.0
+  version: '2023-10-10'
 ssbd.dataset:
   contributor:
     email: cthoyt@gmail.com
@@ -51826,7 +51922,7 @@ uberon:
   - Uberon
   twitter: uberanat
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2023-09-05'
+  version: '2023-10-27'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -55395,7 +55491,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.141'
+  version: '4.144'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

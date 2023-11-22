@@ -285,24 +285,17 @@ class Resource(BaseModel):
     prefix: str = Field(
         ...,
         description="The prefix for this resource",
-        integration_status="required",
     )
-    name: Optional[str] = Field(
-        default=None, description="The name of the resource", integration_status="required"
-    )
-    description: Optional[str] = Field(
-        default=None, description="A description of the resource", integration_status="required"
-    )
+    name: Optional[str] = Field(default=None, description="The name of the resource")
+    description: Optional[str] = Field(default=None, description="A description of the resource")
     pattern: Optional[str] = Field(
         default=None,
         description="The regular expression pattern for local unique identifiers in the resource",
-        integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
         default=None,
         title="URI format string",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
-        integration_status="required_for_new",
     )
     rdf_uri_format: Optional[str] = Field(
         default=None,
@@ -314,9 +307,7 @@ class Resource(BaseModel):
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
-        default=None,
-        description="The URL for the homepage of the resource, preferably using HTTPS",
-        integration_status="required",
+        default=None, description="The URL for the homepage of the resource, preferably using HTTPS"
     )
     repository: Optional[str] = Field(
         default=None,
@@ -328,7 +319,6 @@ class Resource(BaseModel):
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
         ),
-        integration_status="suggested",
     )
     owners: Optional[List[Organization]] = Field(
         default=None,
@@ -340,7 +330,6 @@ class Resource(BaseModel):
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
-        integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
         default=None,
@@ -518,11 +507,10 @@ class Resource(BaseModel):
         description=_dedent(
             """\
     The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
-    optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
+    optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow must contain this field.
     """
         ),
-        integration_status="required_for_new",
     )
     contributor_extras: Optional[List[Author]] = Field(
         default=None,
@@ -534,11 +522,10 @@ class Resource(BaseModel):
         description=_dedent(
             """\
     The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
-    optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
+    optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
         ),
-        integration_status="required_for_new",
     )
     proprietary: Optional[bool] = Field(
         default=None,
@@ -2781,67 +2768,6 @@ def get_json_schema():
     return rv
 
 
-def write_bulk_prefix_request_template():
-    """Write a template for bulk prefix requests."""
-    import bioregistry
-
-    required = []
-    optional = []
-
-    metaprefixes = set(bioregistry.read_metaregistry())
-
-    for name, field in Resource.__fields__.items():
-        if name in {
-            "providers",
-            "example_extras",
-            "example_decoys",
-            "contributor_extras",
-            "mappings",
-            "reviewer",
-            "contact",
-            "contributor",
-            "github_request_issue",
-            "banana_peel",
-            "publications",
-        }:
-            continue
-        if name in metaprefixes:
-            continue
-        status = field.field_info.extra.get("integration_status", "optional")
-        if status in {"required", "required_for_new"}:
-            required.append(name)
-        elif status == "skip":
-            continue
-        else:
-            optional.append(name)
-    required.extend(
-        ("contributor_name", "contributor_github", "contributor_orcid", "contributor_email")
-    )
-    optional.extend(("contact_name", "contact_github", "contact_orcid", "contact_email"))
-
-    with BULK_UPLOAD_FORM.open("w") as file:
-        print(  # noqa:T201
-            "request_id",
-            *required,
-            *(f"{c} (optional)" for c in optional),
-            sep="\t",
-            file=file,
-        )
-        # add examples
-        for i, prefix in enumerate(["chebi", "tkg", "mondo", "nmdc"], start=1):
-            resource = bioregistry.get_resource(prefix)
-            assert resource is not None
-            print(  # noqa:T201
-                f"example_{i} (delete this row)",
-                *(_get(resource, c) for c in required),
-                *(_get(resource, c) for c in optional),
-                sep="\t",
-                file=file,
-            )
-        for i in range(1, 6):
-            print(i, *[""] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
-
-
 def _get(resource, key):
     getter_key = f"get_{key}"
     if hasattr(resource, getter_key):
@@ -2871,8 +2797,6 @@ def deduplicate_publications(publications: Iterable[Publication]) -> List[Public
 
 def main():
     """Dump the JSON schemata."""
-    write_bulk_prefix_request_template()
-
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
