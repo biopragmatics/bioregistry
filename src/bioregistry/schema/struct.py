@@ -1996,7 +1996,7 @@ class Resource(BaseModel):
 
     def get_download_rdf(self) -> Optional[str]:
         """Get the download link for the latest RDF file."""
-        return self.download_rdf
+        return self.download_rdf or self.get_external("ols").get("download_rdf")
 
     def get_download_owl(self) -> Optional[str]:
         """Get the download link for the latest OWL file.

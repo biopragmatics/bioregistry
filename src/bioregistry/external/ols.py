@@ -71,7 +71,7 @@ def get_ols(force_download: bool = False):
         config = get_ols_processing().get(ols_id)
         if config is None:
             if ols_id not in OLS_SKIP:
-                logger.warning("need to curate processing file for OLS prefix %s", ols_id)
+                logger.warning("[%s] need to curate processing file", ols_id)
             continue
         processed[ols_id] = _process(ontology, config)
 
@@ -212,7 +212,6 @@ def _process(  # noqa:C901
         "prefix": ols_id,
         # "preferred_prefix": config["preferredPrefix"],
         "name": title,
-        "download": _clean_url(config["fileLocation"]),
         "version.iri": _clean_url(version_iri),
         "version": _get_version(ols_id, config, processing),
         "description": description,
@@ -221,6 +220,17 @@ def _process(  # noqa:C901
         "contact": _get_email(ols_id, config),
         "license": _get_license(ols_id, config),
     }
+    download = _clean_url(config["fileLocation"])
+    if download is None:
+        pass
+    elif download.endswith(".obo"):
+        rv["download_obo"] = download
+    elif download.endswith(".owl"):
+        rv["download_owl"] = download
+    elif download.endswith(".rdf") or download.endswith(".ttl"):
+        rv["download_rdf"] = download
+    else:
+        logger.warning(f"[%s] unknown download type %s", ols_id, download)
     rv = {k: v.strip() for k, v in rv.items() if v}
     return rv
 
