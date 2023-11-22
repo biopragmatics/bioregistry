@@ -963,7 +963,8 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if resource.uri_format_resolvable is not False:
                 continue
-            self.assertIsNotNone(
-                resource.comment,
-                msg="Any resource with a non-resolvable URI format needs a comment as to why",
-            )
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.comment,
+                    msg="Any resource with a non-resolvable URI format needs a comment as to why",
+                )
