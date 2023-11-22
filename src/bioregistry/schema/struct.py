@@ -297,6 +297,11 @@ class Resource(BaseModel):
         title="URI format string",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
+    uri_format_resolvable: Optional[bool] = Field(
+        default=None,
+        title="URI format string resolvable",
+        description="If false, denotes if the URI format string is known to be not resolvable",
+    )
     rdf_uri_format: Optional[str] = Field(
         default=None,
         title="RDF URI format string",
@@ -1964,6 +1969,10 @@ class Resource(BaseModel):
         >>> get_resource("bfo").get_download_obo()
         'http://purl.obolibrary.org/obo/bfo.obo'
 
+        Get ontology download link from OLS where OWL isn't available
+        >>> get_resource("hpath").get_download_obo()
+        'https://raw.githubusercontent.com/Novartis/hpath/master/src/hpath.obo'
+
         Get ontology download link in AberOWL but not OBO Foundry
         (note this might change over time so the exact value isn't
         used in the doctest):
@@ -1973,9 +1982,11 @@ class Resource(BaseModel):
         """
         if self.download_obo:
             return self.download_obo
-        return self.get_external("obofoundry").get("download.obo") or self.get_external(
-            "aberowl"
-        ).get("download_obo")
+        return (
+            self.get_external("obofoundry").get("download.obo")
+            or self.get_external("ols").get("download_obo")
+            or self.get_external("aberowl").get("download_obo")
+        )
 
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
@@ -1985,7 +1996,7 @@ class Resource(BaseModel):
 
     def get_download_rdf(self) -> Optional[str]:
         """Get the download link for the latest RDF file."""
-        return self.download_rdf
+        return self.download_rdf or self.get_external("ols").get("download_rdf")
 
     def get_download_owl(self) -> Optional[str]:
         """Get the download link for the latest OWL file.
@@ -2017,7 +2028,7 @@ class Resource(BaseModel):
         return (
             self.get_external("obofoundry").get("download.owl")
             or self.get_external("ols").get("version.iri")
-            or self.get_external("ols").get("download")
+            or self.get_external("ols").get("download_owl")
             or self.get_external("aberowl").get("download_owl")
         )
 
