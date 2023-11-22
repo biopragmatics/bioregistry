@@ -415,7 +415,7 @@ $ bioregistry web
 ```
 
 to run a web app that functions like Identifiers.org, but backed by the Bioregistry.
-A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at
+A public instance of this app is hosted by the [Gyori Lab for Computational Biomedicine](https://gyorilab.github.io) at
 https://bioregistry.io.
 
 ## 👋 Attribution
@@ -476,11 +476,14 @@ Talks on the Bioregistry:
 
 ### 🎁 Support
 
-The Bioregistry was developed by the [INDRA Lab](https://indralab.github.io), a part of the
+The Bioregistry was primarily developed by the [Gyori Lab for Computational Biomedicine](https://gyorilab.github.io)
+at Northeastern University, which was previously a part of the
 [Laboratory of Systems Pharmacology](https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/)
-and the [Harvard Program in Therapeutic Science (HiTS)](https://hits.harvard.edu)
+in the [Harvard Program in Therapeutic Science (HiTS)](https://hits.harvard.edu)
 at [Harvard Medical School](https://hms.harvard.edu/).
 
 ### 💰 Funding
 
-The development of the Bioregistry is funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
+1. Chan Zuckerberg Initiative (CZI) 2023-329850
+2. DARPA Automating Scientific Knowledge Extraction and Modeling (ASKEM) HR00112220036
+3. DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
