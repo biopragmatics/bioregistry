@@ -39,7 +39,7 @@ FOOTER_DEFAULT = dedent(
     Developed with ❤️ by the <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
     at Northeastern University.<br/>
     Funded by Chan Zuckerberg Initiative (CZI) Award 
-    <a href="https://gyorilab.github.io/#czi-bioregistry">W911NF2010255</a>.<br/>
+    <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
     Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
     (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
 """
