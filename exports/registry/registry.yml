@@ -14610,7 +14610,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.59.0
+  version: 3.60.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -15005,7 +15005,7 @@ emapa:
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/EMAPA_$1
-  version: '2023-05-05'
+  version: '2023-11-14'
 emaps:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -33674,6 +33674,11 @@ ncbidrs:
   preferred_prefix: ncbidrs
   uri_format: https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/$1
 ncbigene:
+  contributor_extras:
+  - email: rcameron@sfu.com
+    github: cmrn-rhi
+    name: Rhiannon Cameron
+    orcid: 0000-0002-9578-0788
   description: Entrez Gene is the NCBI's database for gene-specific information, focusing
     on completely sequenced genomes, those with an active research community to contribute
     gene-specific information, or those that are scheduled for intense sequence analysis.
@@ -33751,6 +33756,8 @@ ncbigene:
     title: 'Entrez Gene: gene-centered information at NCBI'
     year: 2005
   rdf_uri_format: http://purl.uniprot.org/geneid/$1
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/983
   synonyms:
   - EGID
   - EntrezGene
@@ -33758,6 +33765,7 @@ ncbigene:
   - NCBI_GeneID
   - entrez
   - entrez gene/locuslink
+  - nihgeneid
   uri_format: https://www.ncbi.nlm.nih.gov/gene/$1
 ncbigi:
   contributor:
@@ -43112,7 +43120,7 @@ pso:
   rdf_uri_format: http://purl.obolibrary.org/obo/PSO_$1
   repository: https://github.com/Planteome/plant-stress-ontology
   uri_format: http://purl.obolibrary.org/obo/PSO_$1
-  version: '2023-10-19'
+  version: '2023-11-14'
 pspub:
   contributor:
     email: cthoyt@gmail.com
@@ -54183,12 +54191,9 @@ vo:
     github: yongqunh
     name: Yongqunh He
     orcid: 0000-0001-9189-9661
-  description: The Vaccine Ontology (VO) is a community-based biomedical ontology
-    in the domain of vaccine and vaccination. VO aims to standardize vaccine types
-    and annotations, integrate various vaccine data, and support computer-assisted
-    reasoning. The VO supports basic vaccine R&D and clincal vaccine usage. VO is
-    being developed as a community-based ontology with support and collaborations
-    from the vaccine and bio-ontology communities.
+  description: An ontology specifies terms that are used to annotate ontology terms
+    for all OBO ontologies. The ontology was developed as part of Information Artifact
+    Ontology (IAO).
   download_owl: http://purl.obolibrary.org/obo/vo.owl
   example: 0000093
   homepage: http://www.violinet.org/vaccineontology
@@ -54252,7 +54257,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: 1.1.245
+  version: 1.1.248
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
