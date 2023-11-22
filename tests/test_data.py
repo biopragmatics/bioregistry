@@ -957,3 +957,13 @@ class TestRegistry(unittest.TestCase):
                     self.assert_contact_metadata(resource.contact)
                 for owner in resource.owners:
                     self.assertTrue(owner.ror is not None or owner.wikidata is not None)
+
+    def test_resolvable_annotation(self):
+        """Test resolvability annotations."""
+        for prefix, resource in self.registry.items():
+            if resource.uri_format_resolvable is not False:
+                continue
+            self.assertIsNotNone(
+                resource.comment,
+                msg="Any resource with a non-resolvable URI format needs a comment as to why",
+            )
