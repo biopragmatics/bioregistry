@@ -25,15 +25,11 @@
         and supported by the <a
             href="https://gyorilab.github.io/">Gyori Lab for Computaional Biomedicine</a> at Northeastern University.
     </p>
-    <h3>Hardware</h3>
-    <p>
-        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
-        and highly available.
-        It is managed and supported by the <a href="https://gyorilab.github.io/">Gyori Lab for Computational
-        Biomedicine</a> at Northeastern University.
-    </p>
     <h3>Software</h3>
     <p>
+        The Bioregistry source code is licensed under the MIT License and is hosted openly on GitHub at
+        <a href="https://github.com/biopragmatics/bioregistry">https://github.com/biopragmatics/bioregistry</a>.
+
         These are the software and operating system specifications for the currently running instance of the
         Bioregistry:
     </p>
@@ -41,13 +37,26 @@
         <dt>Bioregistry Version</dt>
         <dd>{{ software_version }}</dd>
         {% if software_git_hash %}
-            <dt>Git Hash</dt>
-            <dd>
-                <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
-                    {{ software_git_hash }}
-                </a>
-            </dd>
+        <dt>Git Hash</dt>
+        <dd>
+            <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
+                {{ software_git_hash }}
+            </a>
+        </dd>
         {% endif %}
+    </dl>
+    <h3>Hardware</h3>
+    <p>
+        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
+        and highly available.
+        It is managed and supported by the <a href="https://gyorilab.github.io/">Gyori Lab for Computational
+        Biomedicine</a> at Northeastern University.
+    </p>
+    <p>
+        These are the hardware and operating system specifications for the currently running instance of the
+        Bioregistry:
+    </p>
+    <dl>
         <dt>Python</dt>
         <dd>{{ python_version }}</dd>
         <dt>Platform</dt>
@@ -111,7 +120,9 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
     <p>
         The Bioregistry implements the <a href="https://doi.org/10.31219/osf.io/vuzt3">Open Code, Open Data,
         Open Infrastructure (O3) Guidelines</a> as a means to enable and encourage community contribution and
-        maintenance in the medium- and long term.
+        maintenance in the medium- and long term. All code is permissively licensed with the MIT License
+        and all data is under the Creative Commons Zero (CCO) license, meaning anyone can reuse the data
+        as they see fit.
     </p>
 
     <h3>Mirroring</h3>
