@@ -355,7 +355,7 @@ def _enrich_record_synonyms(record: curies.Record) -> curies.Record:
     return record
 
 
-def _generate_variants(s: str) -> List[str]:
+def _generate_variants(s: str):
     yield s
     yield s.lower()
     yield s.upper()
