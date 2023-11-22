@@ -300,7 +300,7 @@ class Resource(BaseModel):
     uri_format_resolvable: Optional[bool] = Field(
         default=None,
         title="URI format string resolvable",
-        description=f"If false, denotes if the URI format string is known to be not resolvable",
+        description="If false, denotes if the URI format string is known to be not resolvable",
     )
     rdf_uri_format: Optional[str] = Field(
         default=None,
@@ -1983,9 +1983,9 @@ class Resource(BaseModel):
         if self.download_obo:
             return self.download_obo
         return (
-                self.get_external("obofoundry").get("download.obo")
-                or self.get_external("ols").get("download_obo")
-                or self.get_external("aberowl").get("download_obo")
+            self.get_external("obofoundry").get("download.obo")
+            or self.get_external("ols").get("download_obo")
+            or self.get_external("aberowl").get("download_obo")
         )
 
     def get_download_obograph(self) -> Optional[str]:

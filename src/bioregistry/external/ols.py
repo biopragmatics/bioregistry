@@ -230,7 +230,7 @@ def _process(  # noqa:C901
     elif download.endswith(".rdf") or download.endswith(".ttl"):
         rv["download_rdf"] = download
     else:
-        logger.warning(f"[%s] unknown download type %s", ols_id, download)
+        logger.warning("[%s] unknown download type %s", ols_id, download)
     rv = {k: v.strip() for k, v in rv.items() if v}
     return rv
 
