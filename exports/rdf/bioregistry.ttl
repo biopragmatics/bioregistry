@@ -332,6 +332,7 @@
 @prefix depmap: <https://depmap.org/portal/cell_line/> .
 @prefix depod: <http://www.depod.bioss.uni-freiburg.de/showp.php?gene=> .
 @prefix dermo: <http://purl.obolibrary.org/obo/DERMO_> .
+@prefix devtox: <https://www.devtox.org/nomenclature/ml_manus.php?mno=> .
 @prefix dg.4503: <https://gen3.biodatacatalyst.nhlbi.nih.gov/ga4gh/drs/v1/objects/> .
 @prefix dg.4dfc: <https://nci-crdc.datacommons.io/ga4gh/drs/v1/objects/> .
 @prefix dg.6vts: <https://jcoin.datacommons.io/ga4gh/drs/v1/objects/> .
@@ -849,6 +850,7 @@
 @prefix msio: <http://purl.obolibrary.org/obo/MSIO_> .
 @prefix mtbd: <http://tumor.informatics.jax.org/mtbwi/strainDetails.do?key=> .
 @prefix multicellds.snapshot: <http://multicellds.org/MultiCellDB/> .
+@prefix mvx: <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.12.227&code=> .
 @prefix mw.project: <http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&ProjectID=> .
 @prefix mw.study: <http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=> .
 @prefix myco.lepra: <http://mycobrowser.epfl.ch/leprosysearch.php?gene+name=> .
@@ -2990,7 +2992,7 @@ bioregistry:bao a bioregistry.schema:0000001 ;
     rdfs:label "BioAssay Ontology" ;
     dcterms:description "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/BioAssayOntology/BAO/wiki> ;
+    doap:GitRepository <https://github.com/BioAssayOntology/BAO> ;
     skos:exactMatch aberowl:BAO,
         ontobee:BAO,
         bioportal:BAO,
@@ -4797,13 +4799,11 @@ bioregistry:co_320 a bioregistry.schema:0000001 ;
         ols:co_320 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_320/Rice> ;
     bioregistry.schema:0000005 "0000618"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_320:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_320/Rice/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6680-578X ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_320:"^^xsd:string ;
@@ -4820,13 +4820,11 @@ bioregistry:co_321 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.czzmpg,
         ols:co_321 ;
     dcat:keyword "agriculture",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_321/Wheat> ;
     bioregistry.schema:0000005 "0000449"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_321:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_321/Wheat/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9399-8003 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_321:"^^xsd:string ;
@@ -4844,13 +4842,11 @@ bioregistry:co_322 a bioregistry.schema:0000001 ;
         ols:co_322 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_322/Maize> ;
     bioregistry.schema:0000005 "0000773"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_322:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_322/Maize/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -4868,13 +4864,11 @@ bioregistry:co_323 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.f69084,
         ols:co_323 ;
     dcat:keyword "agriculture",
-        "botany",
-        "ontology" ;
+        "botany" ;
     foaf:homepage <https://cropontology.org/ontology/CO_323/Barley> ;
     bioregistry.schema:0000005 "0000252"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_323:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_323/Barley/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Ramesh Verna" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -4892,13 +4886,11 @@ bioregistry:co_324 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.dxx0c,
         ols:co_324 ;
     dcat:keyword "agriculture",
-        "botany",
-        "ontology" ;
+        "botany" ;
     foaf:homepage <https://cropontology.org/ontology/CO_324/Sorghum> ;
     bioregistry.schema:0000005 "0000111"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_324:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_324/Sorghum/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -4916,13 +4908,11 @@ bioregistry:co_325 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.gdszhh,
         ols:co_325 ;
     dcat:keyword "agriculture",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_325/Banana> ;
     bioregistry.schema:0000005 "0000519"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_325:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_325/Banana/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6020-5919 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_325:"^^xsd:string ;
@@ -4936,12 +4926,10 @@ bioregistry:co_326 a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/bioversity/Crop-Ontology> ;
     skos:exactMatch cropoct:CO_326,
         ols:co_326 ;
-    dcat:keyword "ontology" ;
     foaf:homepage <https://cropontology.org/ontology/CO_326/Coconut> ;
     bioregistry.schema:0000005 "0000254"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_326:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_326/Coconut/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_326:"^^xsd:string ;
     bioregistry.schema:0000027 co_326:0000254 ;
@@ -4957,13 +4945,11 @@ bioregistry:co_327 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.4e3qh9,
         ols:co_327 ;
     dcat:keyword "agriculture",
-        "botany",
-        "ontology" ;
+        "botany" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_327/Pearl%20millet> ;
     bioregistry.schema:0000005 "0000095"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_327:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_327/Pearl%20millet/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -4982,13 +4968,11 @@ bioregistry:co_330 a bioregistry.schema:0000001 ;
         ols:co_330 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_330/Potato> ;
     bioregistry.schema:0000005 "0000106"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_330:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_330/Potato/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5007,13 +4991,11 @@ bioregistry:co_331 a bioregistry.schema:0000001 ;
         ols:co_331 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_331/Sweet%20Potato> ;
     bioregistry.schema:0000005 "0000088"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_331:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_331/Sweet%20Potato/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0595-5271 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_331:"^^xsd:string ;
@@ -5032,13 +5014,11 @@ bioregistry:co_333 a bioregistry.schema:0000001 ;
     dcat:keyword "agriculture",
         "botany",
         "life science",
-        "ontology",
         "plant breeding" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_333/Beet%20Ontology> ;
     bioregistry.schema:0000005 "3000045"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_333:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_333/Beet%20Ontology/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5057,13 +5037,11 @@ bioregistry:co_334 a bioregistry.schema:0000001 ;
         ols:co_334 ;
     dcat:keyword "agriculture",
         "botany",
-        "nutritional science",
-        "ontology" ;
+        "nutritional science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_334/Cassava> ;
     bioregistry.schema:0000005 "0000070"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_334:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_334/Cassava/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5081,13 +5059,11 @@ bioregistry:co_335 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.a14123,
         ols:co_335 ;
     dcat:keyword "agriculture",
-        "botany",
-        "ontology" ;
+        "botany" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_335/Common%20Bean> ;
     bioregistry.schema:0000005 "0000189"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_335:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_335/Common%20Bean/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5105,13 +5081,11 @@ bioregistry:co_336 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.j75srj,
         ols:co_336 ;
     dcat:keyword "agriculture",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_336/Soybean> ;
     bioregistry.schema:0000005 "0000339"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_336:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_336/Soybean/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6020-5919 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_336:"^^xsd:string ;
@@ -5129,13 +5103,11 @@ bioregistry:co_337 a bioregistry.schema:0000001 ;
         ols:co_337 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_337/Groundnut> ;
     bioregistry.schema:0000005 "0000054"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_337:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_337/Groundnut/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0091-7981 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_337:"^^xsd:string ;
@@ -5152,13 +5124,11 @@ bioregistry:co_338 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.js20q3,
         ols:co_338 ;
     dcat:keyword "agriculture",
-        "botany",
-        "ontology" ;
+        "botany" ;
     foaf:homepage <https://cropontology.org/ontology/CO_338/Chickpea> ;
     bioregistry.schema:0000005 "0000138"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_338:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_338/Chickpea/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-0091-7981 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_338:"^^xsd:string ;
@@ -5176,13 +5146,11 @@ bioregistry:co_339 a bioregistry.schema:0000001 ;
         ols:co_339 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_339/Lentil> ;
     bioregistry.schema:0000005 "0000032"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_339:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_339/Lentil/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5200,13 +5168,11 @@ bioregistry:co_340 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.31apg2,
         ols:co_340 ;
     dcat:keyword "agriculture",
-        "botany",
-        "ontology" ;
+        "botany" ;
     foaf:homepage <https://cropontology.org/ontology/CO_340/Cowpea> ;
     bioregistry.schema:0000005 "0000639"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_340:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_340/Cowpea/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5225,13 +5191,11 @@ bioregistry:co_341 a bioregistry.schema:0000001 ;
         ols:co_341 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_341/Pigeonpea> ;
     bioregistry.schema:0000005 "0000140"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_341:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_341/Pigeonpea/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6020-5919 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_341:"^^xsd:string ;
@@ -5249,13 +5213,11 @@ bioregistry:co_343 a bioregistry.schema:0000001 ;
         ols:co_343 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_343/Yam> ;
     bioregistry.schema:0000005 "0100010"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_343:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_343/Yam/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5274,13 +5236,11 @@ bioregistry:co_345 a bioregistry.schema:0000001 ;
         ols:co_345 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_345/Brachiaria> ;
     bioregistry.schema:0000005 "0000127"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_345:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_345/Brachiaria/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5298,13 +5258,11 @@ bioregistry:co_346 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.fgd5gq,
         ols:co_346 ;
     dcat:keyword "agriculture",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_346/Mungbean> ;
     bioregistry.schema:0000005 "0000199"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_346:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_346/Mungbean/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5323,13 +5281,11 @@ bioregistry:co_347 a bioregistry.schema:0000001 ;
         ols:co_347 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_347/Castor%20bean> ;
     bioregistry.schema:0000005 "0000108"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_347:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_347/Castor%20bean/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5348,13 +5304,11 @@ bioregistry:co_348 a bioregistry.schema:0000001 ;
         ols:co_348 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_348/Brassica> ;
     bioregistry.schema:0000005 "1100107"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_348:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_348/Brassica/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "helpdesk cropontology" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5373,13 +5327,11 @@ bioregistry:co_350 a bioregistry.schema:0000001 ;
         ols:co_350 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_350/Oat> ;
     bioregistry.schema:0000005 "0000215"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_350:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_350/Oat/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-4849-628X ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_350:"^^xsd:string ;
@@ -5397,13 +5349,11 @@ bioregistry:co_356 a bioregistry.schema:0000001 ;
         ols:co_356 ;
     dcat:keyword "agriculture",
         "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <https://cropontology.org/ontology/CO_356/Vitis> ;
     bioregistry.schema:0000005 "4000027"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_356:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_356/Vitis/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5421,13 +5371,11 @@ bioregistry:co_357 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.2b04ae,
         ols:co_357 ;
     dcat:keyword "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_357/Woody%20Plant%20Ontology> ;
     bioregistry.schema:0000005 "1000290"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_357:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_357/Woody%20Plant%20Ontology/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1877-1703 ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_357:"^^xsd:string ;
@@ -5442,12 +5390,10 @@ bioregistry:co_358 a bioregistry.schema:0000001 ;
     skos:exactMatch agroportal:CO_358,
         cropoct:CO_358,
         ols:co_358 ;
-    dcat:keyword "ontology" ;
     foaf:homepage <https://cropontology.org/ontology/CO_358/Cotton> ;
     bioregistry.schema:0000005 "0000139"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_358:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_358/Cotton/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5463,12 +5409,10 @@ bioregistry:co_359 a bioregistry.schema:0000001 ;
     skos:exactMatch agroportal:CO_359,
         cropoct:CO_359,
         ols:co_359 ;
-    dcat:keyword "ontology" ;
     foaf:homepage <https://cropontology.org/ontology/CO_359/Sunflower> ;
     bioregistry.schema:0000005 "0000947"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_359:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_359/Sunflower/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5486,13 +5430,11 @@ bioregistry:co_360 a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.1c1738,
         ols:co_360 ;
     dcat:keyword "botany",
-        "life science",
-        "ontology" ;
+        "life science" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait> ;
     bioregistry.schema:0000005 "0000071"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_360:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5508,12 +5450,10 @@ bioregistry:co_365 a bioregistry.schema:0000001 ;
     skos:exactMatch agroportal:CO_365,
         cropoct:CO_365,
         ols:co_365 ;
-    dcat:keyword "ontology" ;
     foaf:homepage <https://cropontology.org/ontology/CO_365/Fababean> ;
     bioregistry.schema:0000005 "0000205"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_365:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://cropontology.org/ontology/CO_365/Fababean/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "ICARDA Ethiopia" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -5529,12 +5469,10 @@ bioregistry:co_366 a bioregistry.schema:0000001 ;
     skos:exactMatch agroportal:CO_366,
         cropoct:CO_366,
         ols:co_366 ;
-    dcat:keyword "ontology" ;
     foaf:homepage <http://www.cropontology.org/ontology/CO_366/Bambara%20groundnut> ;
     bioregistry.schema:0000005 "0000072"^^xsd:string ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_366:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.cropontology.org/ontology/CO_366/Bambara%20groundnut/owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
             foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
@@ -7620,6 +7558,39 @@ bioregistry:fbbi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 fbbi:00000268 ;
     bioregistry.schema:0000029 "fbbi" .
 
+bioregistry:fbbt a bioregistry.schema:0000001 ;
+    rdfs:label "Drosophila gross anatomy" ;
+    dcterms:description "An ontology of Drosophila melanogaster anatomy."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/FlyBase/drosophila-anatomy-developmental-ontology> ;
+    skos:exactMatch aberowl:FBBT,
+        ontobee:FBbt,
+        bioportal:FB-BT,
+        biocontext:FBbt,
+        go.resource:FBbt,
+        fairsharing:FAIRsharing.y2qkst,
+        prefixcommons:fbbt,
+        ols:fbbt,
+        obofoundry:fbbt ;
+    dcat:keyword "anatomy",
+        "developmental biology",
+        "fly",
+        "life science",
+        "obo",
+        "ontology" ;
+    foaf:homepage obo:fbbt ;
+    bioregistry.schema:0000005 "00007294"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBbt_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:fbbt.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
+    bioregistry.schema:0000023 "FBbt",
+        "FBbt_root" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FBbt_"^^xsd:string ;
+    bioregistry.schema:0000027 fbbt:00007294 ;
+    bioregistry.schema:0000029 "fbbt" .
+
 bioregistry:fbdv a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila development" ;
     dcterms:description "An ontology of Drosophila melanogaster developmental stages."^^xsd:string ;
@@ -8447,7 +8418,8 @@ bioregistry:geogeo a bioregistry.schema:0000001 ;
     dcterms:description "An ontology and inventory of geopolitical entities such as nations and their components (states, provinces, districts, counties) and the actual physical territories over which they have jurisdiction.  We thus distinguish and assign different identifiers to the US in \"The US declared war on Germany\" vs. the US in \"The plane entered US airspace\"."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/ufbmi/geographical-entity-ontology> ;
-    skos:exactMatch ontobee:GEO,
+    skos:exactMatch aberowl:GEO,
+        ontobee:GEO,
         bioportal:GEO,
         biocontext:GEO,
         fairsharing:FAIRsharing.27rndz,
@@ -9781,27 +9753,6 @@ bioregistry:hpa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://www.proteinatlas.org/"^^xsd:string ;
     bioregistry.schema:0000027 hpa:ENSG00000026508 ;
     bioregistry.schema:0000029 "hpa" .
-
-bioregistry:hpath a bioregistry.schema:0000001 ;
-    rdfs:label "Histopathology Ontology" ;
-    dcterms:description "An ontology of histopathological morphologies used by pathologists to classify/categorise animal lesions observed histologically during regulatory toxicology studies. The ontology was developed using real data from over 6000 regulatory toxicology studies donated by 13 companies spanning nine species."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/Novartis/hpath> ;
-    skos:exactMatch fairsharing:FAIRsharing.kj336a,
-        ols:hpath ;
-    dcat:keyword "microbiology",
-        "ontology",
-        "taxonomy" ;
-    foaf:homepage <https://github.com/Novartis/hpath> ;
-    bioregistry.schema:0000005 "2000191"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MC_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://raw.githubusercontent.com/Novartis/hpath/master/src/hpath.obo> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "MC" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MC_"^^xsd:string ;
-    bioregistry.schema:0000027 hpath:2000191 ;
-    bioregistry.schema:0000029 "hpath" .
 
 bioregistry:hpm.peptide a bioregistry.schema:0000001 ;
     rdfs:label "Human Proteome Map Peptide" ;
@@ -14317,7 +14268,7 @@ bioregistry:om a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/HajoRijgersberg/OM> ;
     bioregistry.schema:0000005 "Dimension"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ontology-of-units-of-measure.org/resource/om-2/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/OM/24/om.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Hajo Rijgersberg" ;
             foaf:mbox "hajo.rijgersberg@wur.nl" ] ;
@@ -15824,14 +15775,12 @@ bioregistry:probonto a bioregistry.schema:0000001 ;
         ols:probonto ;
     dcat:keyword "computational biology",
         "mathematics",
-        "ontology",
         "statistics",
         "systems biology" ;
     foaf:homepage <http://probonto.org> ;
     bioregistry.schema:0000005 "c0000005"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.probonto.org/ontology#PROB_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(c|k)\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <file:///nfs/production/parkinso/spot/ols4/prod/local_ontologies/probonto.ttl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-4614-562X ;
     bioregistry.schema:0000024 "http://www.probonto.org/ontology#PROB_"^^xsd:string ;
@@ -16330,7 +16279,7 @@ bioregistry:reproduceme a bioregistry.schema:0000001 ;
     foaf:homepage <https://w3id.org/reproduceme/research> ;
     bioregistry.schema:0000005 "MicrobeamManipulation"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/reproduceme#$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://sheeba-samuel.github.io/REPRODUCE-ME/doc/reproduce-me.xml> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/REPRODUCE-ME/7/reproduce-me.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7981-8504 ;
     bioregistry.schema:0000024 "https://w3id.org/reproduceme#"^^xsd:string ;
@@ -17603,13 +17552,11 @@ bioregistry:slm a bioregistry.schema:0000001 ;
         re3data:r3d100012603,
         uniprot.resource:DB-0197 ;
     dcat:keyword "life science",
-        "metabolomics",
-        "ontology" ;
+        "metabolomics" ;
     foaf:homepage <http://www.swisslipids.org/#/> ;
     bioregistry.schema:0000005 "000000341"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.swisslipids.org/#/entity/SLM:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <file:///nfs/production/parkinso/spot/ols4/prod/local_ontologies/swisslipids.ttl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-2148-9135 ;
     bioregistry.schema:0000023 "swisslipid",
@@ -19974,9 +19921,7 @@ bioregistry:xl a bioregistry.schema:0000001 ;
         ontobee:XL,
         biocontext:XL,
         ols:xl ;
-    dcat:keyword "ontology" ;
     foaf:homepage <http://www.psidev.info/groups/controlled-vocabularies> ;
-    bioregistry.schema:0000010 obo:xl.owl ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "xl" .
 
@@ -20342,6 +20287,9 @@ orcid:0000-0001-8149-5890 rdfs:label "Robert Hoehndorf" ;
 orcid:0000-0001-8175-045X rdfs:label "Marcin Pawel Joachimiak" ;
     foaf:mbox "MJoachimiak@lbl.gov" .
 
+orcid:0000-0001-8372-8387 rdfs:label "Carlo Ravagli" ;
+    foaf:mbox "carlo.ravagli@novartis.com" .
+
 orcid:0000-0001-8397-8810 rdfs:label "Clair Kronk" ;
     foaf:mbox "kronkcj@mail.uc.edu" .
 
@@ -20667,6 +20615,9 @@ orcid:0000-0002-6704-7538 rdfs:label "Zhiliang Hu" ;
 orcid:0000-0002-6772-2775 rdfs:label "Dylan McGagh" ;
     foaf:mbox "dylan.mcgagh@magd.ox.ac.uk" .
 
+orcid:0000-0002-6807-8731 rdfs:label "Rupert Kellner" ;
+    foaf:mbox "rupert.kellner@item.fraunhofer.de" .
+
 orcid:0000-0002-7073-9172 rdfs:label "David Osumi-Sutherland" ;
     foaf:mbox "davidos@ebi.ac.uk" .
 
@@ -20736,8 +20687,10 @@ orcid:0000-0002-8600-949X rdfs:label "Evan Patterson" ;
 orcid:0000-0002-8683-0050 rdfs:label "Montana Smith" ;
     foaf:mbox "montana.smith@pnnl.gov" .
 
-orcid:0000-0002-8741-7823 rdfs:label "Lindsey N. Anderson" ;
-    dcterms:contributor bioregistry:aio ;
+orcid:0000-0002-8741-7823 rdfs:label "Lindsey Anderson",
+        "Lindsey N. Anderson" ;
+    dcterms:contributor bioregistry:aio,
+        bioregistry:mvx ;
     foaf:mbox "lindsey.anderson@pnnl.gov" .
 
 orcid:0000-0002-8786-1756 rdfs:label "Wes Schafer" ;
@@ -24226,6 +24179,8 @@ biocontext:GENO dcterms:isPartOf bioregistry.registry:biocontext .
 biocontext:GENPEPT dcterms:isPartOf bioregistry.registry:biocontext .
 
 biocontext:GENPROP dcterms:isPartOf bioregistry.registry:biocontext .
+
+biocontext:GEO dcterms:isPartOf bioregistry.registry:biocontext .
 
 biocontext:GIARDIADB dcterms:isPartOf bioregistry.registry:biocontext .
 
@@ -29623,6 +29578,21 @@ bioregistry:dermo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 dermo:0000000 ;
     bioregistry.schema:0000029 "dermo" .
 
+bioregistry:devtox a bioregistry.schema:0000001 ;
+    rdfs:label "DevTox" ;
+    dcterms:description "The DevTox Project harmonizes the nomenclature used to describe developmental anomalies in laboratory animals, assists in the visual recognition of developmental anomalies with the aid of photographs, and provides a historical control database of developmental effects in laboratory animals."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.devtox.org/> ;
+    bioregistry.schema:0000005 "311935300"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.devtox.org/nomenclature/ml_manus.php?mno=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6807-8731 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://www.devtox.org/nomenclature/ml_manus.php?mno="^^xsd:string ;
+    bioregistry.schema:0000027 devtox:311935300 ;
+    bioregistry.schema:0000029 "devtox" .
+
 bioregistry:dicom a bioregistry.schema:0000001 ;
     rdfs:label "DICOM Controlled Terminology" ;
     dcterms:description "DICOM Controlled Terminology"^^xsd:string ;
@@ -30664,40 +30634,6 @@ bioregistry:fao.asfis a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 fao.asfis:20560 ;
     bioregistry.schema:0000029 "fao.asfis" .
 
-bioregistry:fbbt a bioregistry.schema:0000001 ;
-    rdfs:label "Drosophila gross anatomy" ;
-    dcterms:description "An ontology of Drosophila melanogaster anatomy."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry,
-        bioregistry:flybase ;
-    doap:GitRepository <https://github.com/FlyBase/drosophila-anatomy-developmental-ontology> ;
-    skos:exactMatch aberowl:FBBT,
-        ontobee:FBbt,
-        bioportal:FB-BT,
-        biocontext:FBbt,
-        go.resource:FBbt,
-        fairsharing:FAIRsharing.y2qkst,
-        prefixcommons:fbbt,
-        ols:fbbt,
-        obofoundry:fbbt ;
-    dcat:keyword "anatomy",
-        "developmental biology",
-        "fly",
-        "life science",
-        "obo",
-        "ontology" ;
-    foaf:homepage obo:fbbt ;
-    bioregistry.schema:0000005 "00007294"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FBbt_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:fbbt.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
-    bioregistry.schema:0000023 "FBbt",
-        "FBbt_root" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FBbt_"^^xsd:string ;
-    bioregistry.schema:0000027 fbbt:00007294 ;
-    bioregistry.schema:0000029 "fbbt" .
-
 bioregistry:fbql a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Qualifiers" ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
@@ -31020,9 +30956,7 @@ bioregistry:geo a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Gene Expression Omnibus" ;
     dcterms:description "The Gene Expression Omnibus (GEO) is a gene expression repository providing a curated, online resource for gene expression data browsing, query and retrieval."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch aberowl:GEO,
-        edam.data:1147,
-        biocontext:GEO,
+    skos:exactMatch edam.data:1147,
         cellosaurus.resource:GEO,
         go.resource:GEO,
         n2t:geo,
@@ -31037,14 +30971,12 @@ bioregistry:geo a bioregistry.schema:0000001 ;
         "genomics",
         "life science",
         "omics",
-        "ontology",
         "phenomics",
         "transcriptomics" ;
     foaf:homepage <https://www.ncbi.nlm.nih.gov/geo/> ;
     bioregistry.schema:0000005 "GDS1234"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^G(PL|SM|SE|DS)\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/GEO/5/geo.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc="^^xsd:string ;
     bioregistry.schema:0000027 geo1:GDS1234 ;
@@ -31708,6 +31640,26 @@ bioregistry:hoso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-3336-2476 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
     bioregistry.schema:0000029 "hoso" .
+
+bioregistry:hpath a bioregistry.schema:0000001 ;
+    rdfs:label "Histopathology Ontology" ;
+    dcterms:description """An ontology of histopathological morphologies used by pathologists to classify/categorise animal lesions observed histologically during regulatory toxicology studies. The ontology was developed using real data from over 6000 regulatory toxicology studies donated by 13 companies spanning nine species.
+
+The original structure of the histopathology ontology was designed ab initio when the [INHAND](http://www.goreni.org/) manuscripts were not available. However, the ontology has been repetitively reviewed and updated to align with the subsequently published INHAND manuscripts. During this process cross references to INHAND lesion identifiers were added to the ontology. [from GitHub]"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/Novartis/hpath> ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <https://github.com/Novartis/hpath> ;
+    bioregistry.schema:0000005 "2000191"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MC_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/Novartis/hpath/master/src/hpath.obo> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-8372-8387 ;
+    bioregistry.schema:0000023 "MC" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MC_"^^xsd:string ;
+    bioregistry.schema:0000027 hpath:2000191 ;
+    bioregistry.schema:0000029 "hpath" .
 
 bioregistry:hsdb a bioregistry.schema:0000001 ;
     rdfs:label "Hazardous Substances Data Bank" ;
@@ -33197,6 +33149,20 @@ bioregistry:multicellds.snapshot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://multicellds.org/MultiCellDB/"^^xsd:string ;
     bioregistry.schema:0000027 multicellds.snapshot:MCDS_S_0000000001 ;
     bioregistry.schema:0000029 "multicellds.snapshot" .
+
+bioregistry:mvx a bioregistry.schema:0000001 ;
+    rdfs:label "Manufacturers of Vaccines" ;
+    dcterms:description "The CDC's National Center for Immunization and Respiratory Diseases ([NCIRD](https://www.cdc.gov/ncird/)) developed and maintains HL7 Table 0227, Manufacturers of Vaccines (MVX). It includes both active and inactive manufacturers of vaccines in the US. Inactive MVX codes allow transmission of historical immunization records. When [MVX code is paired with a CVX code](https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=tradename) (vaccine administered code), the specific trade named vaccine may be indicated."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=mvx> ;
+    bioregistry.schema:0000005 "ASZ"^^xsd:string ;
+    bioregistry.schema:0000006 "https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.12.227&code=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.12.227&code="^^xsd:string ;
+    bioregistry.schema:0000027 mvx:ASZ ;
+    bioregistry.schema:0000029 "mvx" .
 
 bioregistry:n2t a bioregistry.schema:0000001 ;
     rdfs:label "Name-to-Thing" ;
@@ -37669,8 +37635,6 @@ fairsharing:FAIRsharing.kd39j4 dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.kg1x4z dcterms:isPartOf bioregistry.registry:fairsharing .
 
-fairsharing:FAIRsharing.kj336a dcterms:isPartOf bioregistry.registry:fairsharing .
-
 fairsharing:FAIRsharing.kj3m5n dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.kj4pvk dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -38123,6 +38087,7 @@ orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
         bioregistry:ccf,
         bioregistry:cemo,
         bioregistry:cordis.project,
+        bioregistry:devtox,
         bioregistry:emaps,
         bioregistry:nihreporter.project,
         bioregistry:pdc.study,
@@ -41070,8 +41035,6 @@ ols:hom dcterms:isPartOf bioregistry.registry:ols .
 
 ols:hp dcterms:isPartOf bioregistry.registry:ols .
 
-ols:hpath dcterms:isPartOf bioregistry.registry:ols .
-
 ols:hsapdv dcterms:isPartOf bioregistry.registry:ols .
 
 ols:hso dcterms:isPartOf bioregistry.registry:ols .
@@ -42492,8 +42455,6 @@ bioportal:SWEET dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:VSO dcterms:isPartOf bioregistry.registry:bioportal .
 
-biocontext:GEO dcterms:isPartOf bioregistry.registry:biocontext .
-
 bioregistry:ac a bioregistry.schema:0000001 ;
     rdfs:label "Activity Streams" ;
     dcterms:description "Activity Streams is an open format specification for activity stream protocols, which are used to syndicate activities taken in social web applications and services, similar to those in Facebook's, Instagram's, and Twitter's. The standard provides a general way to represent activities."^^xsd:string ;
@@ -43150,7 +43111,7 @@ bioregistry:dc a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/> ;
     bioregistry.schema:0000005 "contributor"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/dc/elements/1.1/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_elements.rdf> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/dcelements/1/dcelements.owl> ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-9052-2854 ;
     bioregistry.schema:0000023 "dc.elements",
@@ -43198,7 +43159,7 @@ bioregistry:dcterms a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/> ;
     bioregistry.schema:0000005 "title"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/dc/terms/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.rdf> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/dcterms/1/dcterms.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Michelle Futornick" ;
             foaf:mbox "futo@stanford.edu" ] ;
@@ -45633,7 +45594,7 @@ bioregistry:prov a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.w3.org/ns/prov> ;
     bioregistry.schema:0000005 "Activity"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/prov#$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://www.w3.org/ns/prov-o> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/PROV/1/prov.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://www.w3.org/ns/prov#"^^xsd:string ;
     bioregistry.schema:0000027 prov:Activity ;
@@ -45942,7 +45903,7 @@ bioregistry:schema a bioregistry.schema:0000001 ;
     foaf:homepage <https://schema.org> ;
     bioregistry.schema:0000005 "Person"^^xsd:string ;
     bioregistry.schema:0000006 "https://schema.org/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://schema.org/version/latest/schemaorg-all-http.rdf> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/SCHEMAORG/2/schemaorg.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Josef Hardi" ;
             foaf:mbox "johardi@stanford.edu" ] ;
@@ -46084,7 +46045,7 @@ bioregistry:skos a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.w3.org/2004/02/skos/> ;
     bioregistry.schema:0000005 "prefLabel"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2004/02/skos/core#$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://www.w3.org/TR/skos-reference/skos.rdf> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/skos/1/skos.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9018-4680 ;
     bioregistry.schema:0000024 "http://www.w3.org/2004/02/skos/core#"^^xsd:string ;
@@ -46513,7 +46474,7 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
 
 bioregistry:vo a bioregistry.schema:0000001 ;
     rdfs:label "Vaccine Ontology" ;
-    dcterms:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
+    dcterms:description "The Vaccine Ontology (VO) is a community-based biomedical ontology in the domain of vaccine and vaccination. VO aims to standardize vaccine types and annotations, integrate various vaccine data, and support computer-assisted reasoning. The VO supports basic vaccine R&D and clincal vaccine usage. VO is being developed as a community-based ontology with support and collaborations from the vaccine and bio-ontology communities."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/vaccineontology/VO> ;
     skos:exactMatch aberowl:VO,
@@ -48085,6 +48046,69 @@ bioregistry:ensembl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 ensembl:ENSG00000139618 ;
     bioregistry.schema:0000029 "ensembl" .
 
+bioregistry:flybase a bioregistry.schema:0000001 ;
+    rdfs:label "FlyBase Gene" ;
+    dcterms:description "FlyBase is the database of the Drosophila Genome Projects and of associated literature."^^xsd:string ;
+    dcterms:hasPart bioregistry:fbcv,
+        bioregistry:fbrf,
+        bioregistry:fbsp,
+        bioregistry:fbtc ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch edam.data:1089,
+        wikidata:P3852,
+        biocontext:FlyBase,
+        cellosaurus.resource:FlyBase,
+        go.resource:FB,
+        n2t:fb,
+        ncbi.resource:FLYBASE,
+        rrid:FlyBase,
+        fairsharing:FAIRsharing.wrvze3,
+        prefixcommons:flybase,
+        miriam:fb,
+        re3data:r3d100010591,
+        uniprot.resource:DB-0026 ;
+    dcat:keyword "allele",
+        "anatomy",
+        "bio.tools",
+        "bioinformatics",
+        "blast",
+        "comparative genomics",
+        "controlled term",
+        "dna",
+        "drosophilidae",
+        "expression",
+        "faseb list",
+        "functional genomics",
+        "gene",
+        "genetics",
+        "genome",
+        "genomics",
+        "genotype",
+        "image",
+        "image collection",
+        "interaction",
+        "life science",
+        "life-cycle",
+        "molecular biology",
+        "molecular genetics",
+        "movie",
+        "mutant",
+        "phenotype",
+        "rna-seq",
+        "sequence",
+        "stock",
+        "video resource" ;
+    foaf:homepage <http://flybase.org/> ;
+    bioregistry.schema:0000005 "FBgn0011293"^^xsd:string ;
+    bioregistry.schema:0000006 "https://flybase.org/reports/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^FB\\w{2}\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "FB",
+        "FlyBase" ;
+    bioregistry.schema:0000024 "https://flybase.org/reports/"^^xsd:string ;
+    bioregistry.schema:0000027 flybase:FBgn0011293 ;
+    bioregistry.schema:0000029 "flybase" .
+
 bioregistry:genepio a bioregistry.schema:0000001 ;
     rdfs:label "Genomic Epidemiology Ontology" ;
     dcterms:description "The Genomic Epidemiology Ontology (GenEpiO) covers vocabulary necessary to identify, document and research foodborne pathogens and associated outbreaks."^^xsd:string ;
@@ -48335,70 +48359,6 @@ bioregistry:civic dcterms:hasPart bioregistry:civic.aid,
         bioregistry:civic.sid,
         bioregistry:civic.tid,
         bioregistry:civic.vid .
-
-bioregistry:flybase a bioregistry.schema:0000001 ;
-    rdfs:label "FlyBase Gene" ;
-    dcterms:description "FlyBase is the database of the Drosophila Genome Projects and of associated literature."^^xsd:string ;
-    dcterms:hasPart bioregistry:fbbt,
-        bioregistry:fbcv,
-        bioregistry:fbrf,
-        bioregistry:fbsp,
-        bioregistry:fbtc ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch edam.data:1089,
-        wikidata:P3852,
-        biocontext:FlyBase,
-        cellosaurus.resource:FlyBase,
-        go.resource:FB,
-        n2t:fb,
-        ncbi.resource:FLYBASE,
-        rrid:FlyBase,
-        fairsharing:FAIRsharing.wrvze3,
-        prefixcommons:flybase,
-        miriam:fb,
-        re3data:r3d100010591,
-        uniprot.resource:DB-0026 ;
-    dcat:keyword "allele",
-        "anatomy",
-        "bio.tools",
-        "bioinformatics",
-        "blast",
-        "comparative genomics",
-        "controlled term",
-        "dna",
-        "drosophilidae",
-        "expression",
-        "faseb list",
-        "functional genomics",
-        "gene",
-        "genetics",
-        "genome",
-        "genomics",
-        "genotype",
-        "image",
-        "image collection",
-        "interaction",
-        "life science",
-        "life-cycle",
-        "molecular biology",
-        "molecular genetics",
-        "movie",
-        "mutant",
-        "phenotype",
-        "rna-seq",
-        "sequence",
-        "stock",
-        "video resource" ;
-    foaf:homepage <http://flybase.org/> ;
-    bioregistry.schema:0000005 "FBgn0011293"^^xsd:string ;
-    bioregistry.schema:0000006 "https://flybase.org/reports/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^FB\\w{2}\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000023 "FB",
-        "FlyBase" ;
-    bioregistry.schema:0000024 "https://flybase.org/reports/"^^xsd:string ;
-    bioregistry.schema:0000027 flybase:FBgn0011293 ;
-    bioregistry.schema:0000029 "flybase" .
 
 bioregistry:labo a bioregistry.schema:0000001 ;
     rdfs:label "clinical LABoratory Ontology" ;
@@ -51143,6 +51103,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:hms.lincs.dataset,
         bioregistry:hoelzel,
         bioregistry:hog,
+        bioregistry:hpath,
         bioregistry:hsdb,
         bioregistry:icd10cm,
         bioregistry:icd10pcs,
@@ -52391,7 +52352,6 @@ bioregistry.registry:ols a bioregistry.schema:0000002 ;
         ols:hcao,
         ols:hom,
         ols:hp,
-        ols:hpath,
         ols:hsapdv,
         ols:hso,
         ols:htn,
@@ -54119,7 +54079,6 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.kbz5jh,
         fairsharing:FAIRsharing.kd39j4,
         fairsharing:FAIRsharing.kg1x4z,
-        fairsharing:FAIRsharing.kj336a,
         fairsharing:FAIRsharing.kj3m5n,
         fairsharing:FAIRsharing.kj4pvk,
         fairsharing:FAIRsharing.kkq6pw,
@@ -57070,6 +57029,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:depod,
         bioregistry:dermo,
         bioregistry:dev.ga4ghdos,
+        bioregistry:devtox,
         bioregistry:dg.4503,
         bioregistry:dg.4dfc,
         bioregistry:dg.6vts,
@@ -57722,6 +57682,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:multicellds.cell_line,
         bioregistry:multicellds.collection,
         bioregistry:multicellds.snapshot,
+        bioregistry:mvx,
         bioregistry:mw.project,
         bioregistry:mw.study,
         bioregistry:myco.lepra,
