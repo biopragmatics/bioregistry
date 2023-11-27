@@ -12,7 +12,6 @@ from typing import Dict, Iterable, Mapping, Optional, Sequence
 from uuid import uuid4
 
 import click
-from curies import Reference
 from more_click import force_option, verbose_option
 
 import bioregistry
@@ -143,7 +142,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     return rv
 
 
-def _yield_publications(data) -> List[Publication]:
+def _yield_publications(data) -> Iterable[Publication]:
     for curie in data.pop("publications", "").split("|"):
         curie = curie.strip().lower()
         try:
