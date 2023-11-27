@@ -49,7 +49,7 @@ MAPPING = {
     "Contact GitHub": "contact_github",
     "Wikidata Property": "wikidata_prefix",
     "License": "license",
-    "Repository": "repository",
+    "Source Code Repository": "repository",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
