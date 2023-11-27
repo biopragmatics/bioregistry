@@ -12,13 +12,14 @@ from typing import Dict, Iterable, Mapping, Optional, Sequence
 from uuid import uuid4
 
 import click
+from curies import Reference
 from more_click import force_option, verbose_option
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.schema import Author, Resource
+from bioregistry.schema import Author, Publication, Resource
 from bioregistry.schema_utils import add_resource
 from bioregistry.utils import removeprefix
 
@@ -41,7 +42,7 @@ MAPPING = {
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
     "Contributor GitHub": "contributor_github",
-    "Contributor Email": "contributor_email",
+    "Contributor Email": "contributor_email",  # enabled in https://github.com/biopragmatics/bioregistry/pull/1000
     "Contact ORCiD": "contact_orcid",
     "Contact Name": "contact_name",
     "Contact Email": "contact_email",
@@ -119,6 +120,8 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         if data_license:
             resource_data["license"] = standardize_license(data_license) or data_license
 
+        publications = list(_yield_publications(resource_data))
+
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue
             logger.warning(
@@ -134,9 +137,23 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             github_request_issue=issue_id,
             wikidata=wikidata,
             mappings=mappings,
+            publications=publications,
             **resource_data,  # type:ignore
         )
     return rv
+
+
+def _yield_publications(data) -> List[Publication]:
+    for curie in data.pop("publications", "").split("|"):
+        curie = curie.strip().lower()
+        try:
+            prefix, luid = curie.split(":", 1)
+        except ValueError:
+            click.echo(f"invalid CURIE: {curie}")
+            continue
+        if prefix == "pmid":
+            prefix = "pubmed"
+        yield Publication(**{prefix: luid})
 
 
 def _pop_orcid(data: Dict[str, str]) -> str:
