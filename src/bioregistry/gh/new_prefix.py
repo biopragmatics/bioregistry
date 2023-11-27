@@ -48,6 +48,7 @@ MAPPING = {
     "Contact GitHub": "contact_github",
     "Wikidata Property": "wikidata_prefix",
     "License": "license",
+    "Repository": "repository",  # old
     "Source Code Repository": "repository",
 }
 
