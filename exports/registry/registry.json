@@ -3023,7 +3023,7 @@
     "pattern": "^\\d{6}$",
     "preferred_prefix": "bcio",
     "uri_format": "https://w3id.org/BCI-ontology#$1",
-    "version": "2023-11-20"
+    "version": "2023-11-22"
   },
   "bco": {
     "appears_in": [
@@ -8181,6 +8181,14 @@
       "name": "Alexander Diehl",
       "orcid": "0000-0001-9990-8331"
     },
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "anitacaron",
+        "name": "Anita Caron",
+        "orcid": "0000-0002-6523-4866"
+      }
+    ],
     "depends_on": [
       "chebi",
       "go",
@@ -8232,6 +8240,13 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/cl:$1"
+      },
+      {
+        "code": "cellguide",
+        "description": "CellGuide is a comprehensive resource for knowledge about cell types.",
+        "homepage": "https://cellxgene.cziscience.com/cellguide",
+        "name": "Cell Guide",
+        "uri_format": "https://cellxgene.cziscience.com/cellguide/CL_$1"
       },
       {
         "code": "cellxgene",
@@ -8742,7 +8757,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.198"
+    "version": "2.199"
   },
   "cmpo": {
     "contact": {
@@ -22686,7 +22701,7 @@
     ],
     "twitter": "news4go",
     "uri_format": "http://purl.obolibrary.org/obo/GO_$1",
-    "version": "2023-10-09"
+    "version": "2023-11-15"
   },
   "go.gpi": {
     "contributor": {
@@ -31324,6 +31339,18 @@
       }
     ],
     "uri_format": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$1"
+  },
+  "maggot": {
+    "description": "Sharing descriptive Metadata is the first essential step towards Open Scientific Data. With this in mind, Maggot was specifically designed to annotate datasets by creating a metadata file to attach to the storage space. Indeed, it allows users to easily add descriptive metadata to datasets produced within a collective of people (research unit, platform, multi-partner project, etc.). This approach fits perfectly into a data management plan as it addresses the issues of data organization and documentation, data storage and frictionless metadata sharing within this same collective and beyond.",
+    "example": "frim1",
+    "homepage": "https://eng-bfp.bordeaux-aquitaine.hub.inrae.fr/resources/metabolome-platform",
+    "mappings": {
+      "miriam": "maggot"
+    },
+    "name": "Maggot",
+    "pattern": "^[A-Za-z0-9]+$",
+    "preferred_prefix": "maggot",
+    "uri_format": "https://pmb-bordeaux.fr/maggot/metadata/$1"
   },
   "maizegdb.locus": {
     "description": "MaizeGDB is the maize research community's central repository for genetics and genomics information.",
@@ -46846,18 +46873,14 @@
     "homepage": "https://www.ncbi.nlm.nih.gov/PubMed/",
     "keywords": [
       "bibliography",
-      "biomedical science",
-      "earth science",
-      "environmental science",
-      "life science",
-      "traditional medicine"
+      "biomedical science"
     ],
     "mappings": {
       "biocontext": "PUBMED",
       "cellosaurus": "PubMed",
       "cheminf": "000302",
       "edam": "1187",
-      "fairsharing": "FAIRsharing.a5sv8m",
+      "fairsharing": "FAIRsharing.2b9b61",
       "go": "PMID",
       "miriam": "pubmed",
       "n2t": "pubmed",
@@ -55673,6 +55696,18 @@
     ],
     "uri_format": "http://www.treefam.org/family/$1"
   },
+  "tricdb": {
+    "description": "Tri©DB is a newly developed integrated platform functioning as a knowledge base and reporting system for cancer precision medicine. This platform harmonizes and mines cancer-related data from various aspects, presenting them on a centralized platform with enhanced accessibility, rich annotations, and robust analysis capabilities. The development of Tri©DB is aimed at meeting the needs of a broad range of researchers, thereby propelling both foundational and translational research in cancer precision medicine.",
+    "example": "1eec8393-e598-41ed-9d8b-6d5b0db94470",
+    "homepage": "http://www.biomeddb.org/",
+    "mappings": {
+      "miriam": "tricdb"
+    },
+    "name": "tricdb",
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "preferred_prefix": "tricdb",
+    "uri_format": "http://biomeddb.org/Disease/Details?DISEASEID=$1"
+  },
   "trichdb": {
     "contact": {
       "email": "oharb@pcbi.upenn.edu",
@@ -56008,6 +56043,13 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "UBERON",
     "providers": [
+      {
+        "code": "cellguide",
+        "description": "CellGuide is a comprehensive resource for knowledge about cell types.",
+        "homepage": "https://cellxgene.cziscience.com/cellguide",
+        "name": "Cell Guide",
+        "uri_format": "https://cellxgene.cziscience.com/cellguide/tissues/UBERON_$1"
+      },
       {
         "code": "cellxgene",
         "description": "Explore single cell data through the CZ CELLxGENE portal",
@@ -59889,7 +59931,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.144"
+    "version": "4.145"
   },
   "xenbase": {
     "contact": {
