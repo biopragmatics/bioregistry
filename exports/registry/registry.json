@@ -35564,6 +35564,9 @@
     "example": "ASZ",
     "github_request_issue": 986,
     "homepage": "https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=mvx",
+    "mappings": {
+      "hl7": "2.16.840.1.113883.6.60"
+    },
     "name": "Manufacturers of Vaccines",
     "pattern": "^\\w+$",
     "preferred_prefix": "mvx",
@@ -39613,6 +39616,31 @@
     "name": "Open Digital Rights Language Ontology",
     "preferred_prefix": "odrl",
     "uri_format": "http://www.w3.org/ns/odrl/2/$1"
+  },
+  "oecd.template": {
+    "comment": "The identifiers have two numbers separated by a dot. The first one corresponds to the template number which can be found on the homepage. The second number referes to the row within the corresponding spreadsheet.",
+    "contributor": {
+      "email": null,
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The Organisation for Economic Co-operation and Development (OECD) Harmonised Templates (OHTs) are standard data formats for reporting information used for the risk assessment of chemicals, mainly studies done on chemicals to determine their properties or effects on human health and the environment, but also for storing data on use and exposure.",
+    "example": "74.186",
+    "github_request_issue": 997,
+    "homepage": "https://www.oecd.org/ehs/templates/",
+    "name": "OECD Harmonised Templates",
+    "pattern": "^\\d+\\.\\d+$",
+    "preferred_prefix": "oecd.template",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/991"
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
   },
   "ogg": {
     "contact": {
