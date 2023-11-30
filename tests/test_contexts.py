@@ -69,7 +69,6 @@ class TestContexts(unittest.TestCase):
         self.assertEqual("GO", converter.standardize_prefix("go"))
         self.assertEqual("oboInOwl", converter.standardize_prefix("oboinowl"))
 
-
     def test_data(self):
         """Test the data integrity."""
         for key, context in self.contexts.items():
