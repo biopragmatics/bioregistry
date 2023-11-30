@@ -66,9 +66,8 @@ class TestContexts(unittest.TestCase):
         self.assertEqual("GO", converter.standardize_prefix("GO"))
         self.assertEqual("GO", converter.standardize_prefix("gomf"))
         self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", converter.bimap["PMID"])
-        # FIXME later, handle adding canonical bioregistry prefix
-        #  as synonym when non-default prefix priority ordering is given
-        # self.assertEqual("GO", converter.standardize_prefix("go"))
+        self.assertEqual("GO", converter.standardize_prefix("go"))
+        self.assertEqual("oboInOwl", converter.standardize_prefix("oboinowl"))
 
     def test_data(self):
         """Test the data integrity."""
