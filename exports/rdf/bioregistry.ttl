@@ -156,6 +156,7 @@
 @prefix cath.superfamily: <http://www.cathdb.info/cathnode/> .
 @prefix cba: <https://europepmc.org/article/CBA/> .
 @prefix cbioportal: <https://www.cbioportal.org/study/summary?id=> .
+@prefix cc: <https://creativecommons.org/ns#> .
 @prefix ccds: <http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=> .
 @prefix ccf: <https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F> .
 @prefix ccle: <https://www.cbioportal.org/patient?studyId=ccle_broad_2019&caseId=> .
@@ -1137,6 +1138,7 @@
 @prefix rbo: <http://purl.obolibrary.org/obo/RBO_> .
 @prefix rcb: <https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfa: <http://www.w3.org/ns/rdfa#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdo: <http://www.semanticweb.org/mca/ontologies/2018/8/untitled-ontology-47#> .
 @prefix re3data: <https://www.re3data.org/repository/> .
@@ -20831,6 +20833,9 @@ orcid:0000-0003-0719-3485 rdfs:label "Elvira Mitraka" ;
 orcid:0000-0003-0728-781X rdfs:label "William Hayes" ;
     foaf:mbox "support@bel.bio" .
 
+orcid:0000-0003-0782-2704 rdfs:label "Ivan Herman" ;
+    foaf:mbox "ivan@w3.org" .
+
 orcid:0000-0003-1058-2668 rdfs:label "Danielle Welter" ;
     foaf:mbox "dwelter.ontologist@gmail.com" .
 
@@ -28656,6 +28661,19 @@ bioregistry:cba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 cba:375364 ;
     bioregistry.schema:0000029 "cba" .
 
+bioregistry:cc a bioregistry.schema:0000001 ;
+    rdfs:label "Creative Commons Rights Expression Language" ;
+    dcterms:description " The Creative Commons Rights Expression Language (ccREL) lets you describe copyright licenses in RDF. For more information on describing licenses in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL) in the [Creative Commons wiki](https://wiki.creativecommons.org/)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://creativecommons.org/ns> ;
+    bioregistry.schema:0000005 "Work"^^xsd:string ;
+    bioregistry.schema:0000006 "https://creativecommons.org/ns#$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://creativecommons.org/ns#"^^xsd:string ;
+    bioregistry.schema:0000027 cc:Work ;
+    bioregistry.schema:0000029 "cc" .
+
 bioregistry:ccf a bioregistry.schema:0000001 ;
     rdfs:label "Human Reference Atlas Common Coordinate Framework Ontology" ;
     dcterms:description "The Common Coordinate Framework (CCF) Ontology is an application ontology built to support the development of the Human Reference Atlas (HRA).  It unifies vocabulary for HRA construction and usage—making it possible to ingest external data sources; supporting uniform tissue sample registration that includes the spatial positioning and semantic annotations within 3D reference organs; and supporting user-formulated cross-domain queries over tissue donor properties, anatomical structures, cell types, biomarkers, and 3D space. The CCF Ontology consists of three major ontologies. The Biological Structure Ontology records anatomical structures, cell types, and biomarkers (ASCT+B) and the relationships between them.  The ASCT+B tables are authored by human experts using templated Google Sheets. The biomarkers, cell types, and anatomical structures are mapped to existing ontologies (Uberon/FMA, CL, HGNC) whenever possible.  All relationships between anatomical structures and from cell types to anatomical structures are valid Uberon and CL relationships. The Spatial Ontology defines the shape, size, location, and rotation of experimental tissue and data major anatomical structures in the 3D Reference Object Library. The Specimen Ontology captures the sex, age, and other information on donors that provided tissue data used in the construction of the HRA."^^xsd:string ;
@@ -34804,6 +34822,19 @@ bioregistry:rcb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo="^^xsd:string ;
     bioregistry.schema:0000027 rcb:RCB0002 ;
     bioregistry.schema:0000029 "rcb" .
+
+bioregistry:rdfa a bioregistry.schema:0000001 ;
+    rdfs:label "RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting" ;
+    dcterms:description "RDFa Core is a specification for attributes to express structured data in any markup language. The embedded data already available in the markup language (e.g., HTML) can often be reused by the RDFa markup, so that publishers don't need to repeat significant data in the document content. (from https://www.w3.org/TR/rdfa-core/)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <http://www.w3.org/ns/rdfa> ;
+    bioregistry.schema:0000005 "PrefixOrTermMapping"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/ns/rdfa#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-0782-2704 ;
+    bioregistry.schema:0000024 "http://www.w3.org/ns/rdfa#"^^xsd:string ;
+    bioregistry.schema:0000027 rdfa:PrefixOrTermMapping ;
+    bioregistry.schema:0000029 "rdfa" .
 
 bioregistry:rdo a bioregistry.schema:0000001 ;
     rdfs:label "RGD Disease Ontology" ;
@@ -46076,13 +46107,17 @@ bioregistry:shex a bioregistry.schema:0000001 ;
     rdfs:label "Shape Expression Vocabulary" ;
     dcterms:description "The Shape Expressions (ShEx) language describes RDF nodes and graph structures. A node constraint describes an RDF node (IRI, blank node or literal) and a shape describes the triples involving nodes in an RDF graph. These descriptions identify predicates and their associated cardinalities and datatypes. ShEx shapes can be used to communicate data structures associated with some process or interface, generate or validate data, or drive user interfaces."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/shexspec/shexspec.github.io> ;
     dcat:keyword "metadata",
         "rdf",
         "semantic web" ;
     foaf:homepage shex: ;
     bioregistry.schema:0000005 "TripleExpression"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/shex#$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Gregg Kellogg" ;
+            foaf:mbox "gregg@greggkellogg.net" ] ;
     bioregistry.schema:0000024 "http://www.w3.org/ns/shex#"^^xsd:string ;
     bioregistry.schema:0000027 shex:TripleExpression ;
     bioregistry.schema:0000029 "shex" .
@@ -51010,6 +51045,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:caloha,
         bioregistry:cao,
         bioregistry:cba,
+        bioregistry:cc,
         bioregistry:ccle,
         bioregistry:ccrid,
         bioregistry:cdt,
@@ -51305,6 +51341,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:radlex,
         bioregistry:rcb,
         bioregistry:rdf,
+        bioregistry:rdfa,
         bioregistry:rdfs,
         bioregistry:rdo,
         bioregistry:reaxys,
@@ -56892,6 +56929,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cazy,
         bioregistry:cba,
         bioregistry:cbioportal,
+        bioregistry:cc,
         bioregistry:ccdc,
         bioregistry:ccds,
         bioregistry:ccf,
@@ -58082,6 +58120,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:rbo,
         bioregistry:rcb,
         bioregistry:rdf,
+        bioregistry:rdfa,
         bioregistry:rdfs,
         bioregistry:rdo,
         bioregistry:re3data,

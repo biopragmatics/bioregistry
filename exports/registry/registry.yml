@@ -5834,6 +5834,25 @@ cbioportal:
   repository: https://github.com/cBioPortal/cbioportal
   twitter: cbioportal
   uri_format: https://www.cbioportal.org/study/summary?id=$1
+cc:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ' The Creative Commons Rights Expression Language (ccREL) lets you
+    describe copyright licenses in RDF. For more information on describing licenses
+    in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL)
+    in the [Creative Commons wiki](https://wiki.creativecommons.org/).'
+  download_rdf: https://creativecommons.org/schema.rdf
+  example: Work
+  homepage: https://creativecommons.org/ns
+  license: CC0-1.0
+  name: Creative Commons Rights Expression Language
+  pattern: ^\w+$
+  preferred_prefix: cc
+  twitter: cc_opensource
+  uri_format: https://creativecommons.org/ns#$1
 ccdc:
   description: The Cambridge Crystallographic Data Centre (CCDC) develops and maintains
     the Cambridge Stuctural Database, the world's most comprehensive archive of small-molecule
@@ -44129,6 +44148,27 @@ rdf:
   name: Resource Description Framework
   preferred_prefix: rdf
   uri_format: http://www.w3.org/1999/02/22-rdf-syntax-ns#$1
+rdfa:
+  contact:
+    email: ivan@w3.org
+    github: iherman
+    name: Ivan Herman
+    orcid: 0000-0003-0782-2704
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: RDFa Core is a specification for attributes to express structured data
+    in any markup language. The embedded data already available in the markup language
+    (e.g., HTML) can often be reused by the RDFa markup, so that publishers don't
+    need to repeat significant data in the document content. (from https://www.w3.org/TR/rdfa-core/)
+  download_rdf: http://www.w3.org/ns/rdfa.ttl
+  example: PrefixOrTermMapping
+  homepage: http://www.w3.org/ns/rdfa
+  name: RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting
+  preferred_prefix: rdfa
+  uri_format: http://www.w3.org/ns/rdfa#$1
 rdfs:
   contact:
     email: danbri@w3.org
@@ -47938,6 +47978,11 @@ sheepqtldb:
     uri_format: http://bio2rdf.org/sheepqtldb:$1
   uri_format: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1
 shex:
+  contact:
+    email: gregg@greggkellogg.net
+    github: gkellogg
+    name: Gregg Kellogg
+    orcid: null
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -47949,6 +47994,7 @@ shex:
     identify predicates and their associated cardinalities and datatypes. ShEx shapes
     can be used to communicate data structures associated with some process or interface,
     generate or validate data, or drive user interfaces.
+  download_rdf: https://www.w3.org/ns/shex.ttl
   example: TripleExpression
   homepage: http://www.w3.org/ns/shex#
   keywords:
@@ -47956,7 +48002,9 @@ shex:
   - rdf
   - semantic web
   name: Shape Expression Vocabulary
+  pattern: ^\w+$
   preferred_prefix: shex
+  repository: https://github.com/shexspec/shexspec.github.io
   uri_format: http://www.w3.org/ns/shex#$1
 shibase:
   comment: This resource doesn't exist on the web anymore
