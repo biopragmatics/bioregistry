@@ -320,8 +320,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -21037,6 +21037,8 @@ aberowl:CAO dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:CARO dcterms:isPartOf bioregistry.registry:aberowl .
 
+aberowl:CC dcterms:isPartOf bioregistry.registry:aberowl .
+
 aberowl:CCF dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:CCO dcterms:isPartOf bioregistry.registry:aberowl .
@@ -28665,6 +28667,7 @@ bioregistry:cc a bioregistry.schema:0000001 ;
     rdfs:label "Creative Commons Rights Expression Language" ;
     dcterms:description " The Creative Commons Rights Expression Language (ccREL) lets you describe copyright licenses in RDF. For more information on describing licenses in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL) in the [Creative Commons wiki](https://wiki.creativecommons.org/)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch aberowl:CC ;
     foaf:homepage <https://creativecommons.org/ns> ;
     bioregistry.schema:0000005 "Work"^^xsd:string ;
     bioregistry.schema:0000006 "https://creativecommons.org/ns#$1"^^xsd:string ;
@@ -43278,7 +43281,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -52993,6 +52996,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:BTO,
         aberowl:CAO,
         aberowl:CARO,
+        aberowl:CC,
         aberowl:CCF,
         aberowl:CCO,
         aberowl:CDAO,
