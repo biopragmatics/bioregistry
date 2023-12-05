@@ -6,7 +6,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 3.6.0
+version: 4.0.0
 
 
 ## ------------
@@ -505,12 +505,9 @@ slots:
     designates_type: true
     description: >-
       Name of the high level ontology class in which this entity is categorized. Corresponds to the label for the
-      biolink entity type class.
-       * In a neo4j database this MAY correspond to the neo4j label tag.
-       * In an RDF database it should be a biolink model class URI.
+      biolink entity type class. In a neo4j database this MAY correspond to the neo4j label tag. In an RDF database it should be a biolink model class URI.
       This field is multi-valued. It should include values for ancestors of the biolink class; for example,
-      a protein such as Shh would have category values `biolink:Protein`, `biolink:GeneProduct`, `biolink:MolecularEntity`, ...
-
+      a protein such as Shh would have category values `biolink:Protein`, `biolink:GeneProduct`, `biolink:MolecularEntity`.
       In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific biolink
       class, or potentially to a class more specific than something in biolink. For example, a sequence feature `f`
       may have a rdf:type assertion to a SO class such as TF_binding_site,
@@ -9345,14 +9342,9 @@ classes:
     description: >-
       A causal relationship between two chemical entities, where the subject
       represents the upstream entity and the object represents the downstream.
-      For any such association there is an implicit reaction:
-        IF
-        R has-input C1 AND
-        R has-output C2 AND
-        R enabled-by P AND
-        R type Reaction
-        THEN
-        C1 derives-into C2 <<catalyst qualifier P>>
+      For any such association there is an implicit reaction: IF R has-input C1 AND
+      R has-output C2 AND R enabled-by P AND
+      R type Reaction THEN C1 derives-into C2 catalyst qualifier P
     is_a: chemical to chemical association
     defining_slots:
       - subject
