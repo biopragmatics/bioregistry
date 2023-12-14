@@ -320,8 +320,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -4399,7 +4399,7 @@ bioregistry:cellrepo a bioregistry.schema:0000001 ;
     dcterms:description "The Cell Version Control Repository is the single worldwide version control repository for engineered and natural cell lines"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch miriam:cellrepo ;
-    foaf:homepage <https://cellrepo.ico2s.org/> ;
+    foaf:homepage <https://www.cellrepo.com/> ;
     bioregistry.schema:0000005 "82"^^xsd:string ;
     bioregistry.schema:0000006 "https://cellrepo.ico2s.org/repositories/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
@@ -28940,7 +28940,7 @@ bioregistry:chemrof a bioregistry.schema:0000001 ;
     foaf:homepage chemrof: ;
     bioregistry.schema:0000005 "FullySpecifiedAtom"^^xsd:string ;
     bioregistry.schema:0000006 "https://chemkg.github.io/chemrof/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/CHEMROF/2/chemrof.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/CHEMROF/3/chemrof.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "https://chemkg.github.io/chemrof/"^^xsd:string ;
@@ -43307,7 +43307,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
