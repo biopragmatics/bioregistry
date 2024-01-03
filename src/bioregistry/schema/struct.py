@@ -837,6 +837,7 @@ class Resource(BaseModel):
                 "edam",
                 "prefixcommons",
                 "rrid",
+                "bartoc",
             ),
         )
 
@@ -864,6 +865,7 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "bartoc",
             ),
         )
         if rv is not None:
@@ -879,10 +881,11 @@ class Resource(BaseModel):
             1. Custom
             2. MIRIAM
             3. Wikidata
+            4. BARTOC
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc"))
         if rv is None:
             return None
         return _clean_pattern(rv)
@@ -997,6 +1000,7 @@ class Resource(BaseModel):
                 "agroportal",
                 "ecoportal",
                 "rrid",
+                "bartoc",
             ),
         )
 
@@ -1385,6 +1389,17 @@ class Resource(BaseModel):
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
         return self.get_external("biocontext").get(URI_FORMAT_KEY)
+
+    def get_bartoc_uri_format(self) -> Optional[str]:
+        """Get the BARTOC URI format string for this entry, if available.
+
+        :returns: The BARTOC URI format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("ddc").get_bartoc_uri_format()
+        'http://dewey.info/class/$1/e23/'
+        """
+        return self.get_external("bartoc").get(URI_FORMAT_KEY)
 
     def get_prefixcommons_prefix(self) -> Optional[str]:
         """Get the Prefix Commons prefix."""
