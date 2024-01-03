@@ -69,8 +69,10 @@ def _process_bartoc_record(record):
             rv["license"] = license_key
 
     uri_pattern = record.get("uriPattern")
-    if uri_pattern:
-        rv[URI_FORMAT_KEY] = uri_pattern.replace("(.+)", "$1")
+    if uri_pattern and "(" in uri_pattern and ")" in uri_pattern:
+        left_pos = uri_pattern.find("(")
+        right_pos = uri_pattern.find(")")
+        rv[URI_FORMAT_KEY] = uri_pattern[:left_pos] + "$1" + uri_pattern[1 + right_pos:]
 
     return {k: v for k, v in rv.items() if k and v}
 

@@ -1389,6 +1389,17 @@ class Resource(BaseModel):
         """
         return self.get_external("biocontext").get(URI_FORMAT_KEY)
 
+    def get_bartoc_uri_format(self) -> Optional[str]:
+        """Get the BARTOC URI format string for this entry, if available.
+
+        :returns: The BARTOC URI format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("ddc").get_bartoc_uri_format()
+        'http://dewey.info/class/$1/e23/'
+        """
+        return self.get_external("bartoc").get(URI_FORMAT_KEY)
+
     def get_prefixcommons_prefix(self) -> Optional[str]:
         """Get the Prefix Commons prefix."""
         return self.get_mapped_prefix("prefixcommons")
