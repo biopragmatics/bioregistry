@@ -1314,6 +1314,8 @@ class Resource(BaseModel):
             return self.logo
         if self.obofoundry and "logo" in self.obofoundry:
             return self.obofoundry["logo"]
+        if self.fairsharing and "logo" in self.fairsharing:
+            return self.fairsharing["logo"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:

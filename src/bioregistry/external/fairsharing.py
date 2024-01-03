@@ -7,7 +7,7 @@
 
 import json
 import logging
-from typing import Any, MutableMapping, Optional
+from typing import Any, MutableMapping, Optional, Set
 
 from bioregistry.constants import EXTERNAL
 from bioregistry.license_standardizer import standardize_license
@@ -33,9 +33,11 @@ ALLOWED_TYPES = {
 }
 
 
-def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
+def get_fairsharing(
+    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = False
+):
     """Get the FAIRsharing registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not force_download and not force_reload:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
@@ -53,7 +55,6 @@ def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
 
 
 KEEP = {
-    "abbreviation",
     "description",
     "name",
     "subjects",
@@ -66,19 +67,26 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
     rv = {key: record[key] for key in KEEP if record[key]}
-    for suf in [
-        " CT",
-        " CV",
-        " Controlled Vocabulary",
-        " Terminology",
-        " Ontology",
-        " Thesaurus",
-        " Vocabulary",
-        " Taxonomy",
-    ]:
-        rv["abbreviation"] = removesuffix(rv["abbreviation"], suf)
+
+    abbreviation = record.get("abbreviation")
+    if abbreviation:
+        for suf in [
+            " CT",
+            " CV",
+            " Controlled Vocabulary",
+            " Terminology",
+            " Ontology",
+            " Thesaurus",
+            " Vocabulary",
+            " Taxonomy",
+        ]:
+            rv["abbreviation"] = removesuffix(abbreviation, suf)
 
     metadata = record.get("metadata", {})
+
+    url_for_logo = record.get("url_for_logo")
+    if url_for_logo is not None:
+        rv["logo"] = "https://api.fairsharing.org" + url_for_logo
 
     homepage = metadata.get("homepage")
     if homepage:
@@ -123,11 +131,12 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
         else:
             rv["license"] = license_standard
 
+    rv = {k: v for k, v in rv.items() if k and v}
     return rv
 
 
 #: Licenses that are one-off and don't need curating
-SKIP_LICENSES = set()
+SKIP_LICENSES: Set[str] = set()
 
 
 def _process_publication(publication):
@@ -157,4 +166,4 @@ def _process_publication(publication):
 
 
 if __name__ == "__main__":
-    get_fairsharing(force_download=True)
+    get_fairsharing(force_download=False, force_reload=True)
