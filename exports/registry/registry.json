@@ -774,7 +774,33 @@
     "preferred_prefix": "afo",
     "version": "2023/09"
   },
+  "aftol.category": {
+    "contact": {
+      "email": "davem@umn.edu",
+      "github": null,
+      "name": "David J. McLaughlin",
+      "orcid": null
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Categories in the AFTOL database",
+    "example": "229",
+    "homepage": "https://aftol.umn.edu",
+    "name": "Assembling the Fungal Tree of Life - Category",
+    "preferred_prefix": "aftol.category",
+    "uri_format": "https://aftol.umn.edu/glossary?category=$1"
+  },
   "aftol.taxonomy": {
+    "contact": {
+      "email": "davem@umn.edu",
+      "github": null,
+      "name": "David J. McLaughlin",
+      "orcid": null
+    },
     "contributor_extras": [
       {
         "email": "laylamichan@ciencias.unam.mx",
@@ -12316,6 +12342,29 @@
     "twitter": "dictybase",
     "uri_format": "http://purl.obolibrary.org/obo/DDANAT_$1"
   },
+  "ddc": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Dewey Decimal Classification (DDC) system, devised by library pioneer Melvil Dewey in the 1870s and owned by OCLC since 1988, provides a dynamic structure for the organization of library collections. Now in its 23rd edition, and available in print and Web versions, the DDC is the world's most widely used library classification system.",
+    "example": "325.4",
+    "example_extras": [
+      "325.4-325.9",
+      "325",
+      "32",
+      "3"
+    ],
+    "homepage": "http://www.oclc.org/dewey/",
+    "mappings": {
+      "bartoc": "241"
+    },
+    "name": "Dewey Decimal Classification",
+    "pattern": "^[0-9][0-9]?|[0-9]{3}(-[0-9]{3})?|[0-9]{3}\\.[0-9]+(-[0-9]{3}\\.[0-9]+)?|[1-9][A-Z]?--[0-9]+|[1-9][A-Z]?--[0-9]+(-[1-9][A-Z]?--[0-9]+)?(:[0-9]+)?$",
+    "preferred_prefix": "ddc"
+  },
   "ddinter.drug": {
     "contact": {
       "email": "oriental-cds@163.com",
@@ -22143,6 +22192,12 @@
     "uri_format": "http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=$1"
   },
   "glygen": {
+    "contact": {
+      "email": "jeetvora@gwmail.gwu.edu",
+      "github": "jeet-vora",
+      "name": "Jeet Vora",
+      "orcid": "0000-0002-5317-1458"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -22150,17 +22205,29 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. GlyGen retrieves information from multiple international data sources and integrates and harmonizes this data.",
-    "example": "G24361QY",
-    "homepage": "https://glygen.org/glycan/",
+    "example": "G17689DH",
+    "homepage": "https://glygen.org/",
     "keywords": [
+      "genomics",
       "glycomics",
-      "life science"
+      "glycoproteomics",
+      "life science",
+      "proteomics"
     ],
     "mappings": {
       "fairsharing": "FAIRsharing.aI1J5W",
       "uniprot": "DB-0254"
     },
-    "name": "Computational and Informatics Resources for Glycoscience",
+    "name": "GlyGen Computational and Informatics Resources for Glycoscience",
+    "owners": [
+      {
+        "name": "George Washington University",
+        "partnered": false,
+        "ror": "00y4zzh67",
+        "wikidata": null
+      }
+    ],
+    "pattern": "^G[0-9]{5}[A-Z]{2}$",
     "preferred_prefix": "glygen",
     "publications": [
       {
@@ -22178,6 +22245,7 @@
         "year": null
       }
     ],
+    "repository": "https://github.com/glygener",
     "twitter": "gly_gen",
     "uri_format": "https://glygen.org/glycan/$1"
   },
@@ -35084,7 +35152,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2023-09-12"
+    "version": "2023-12-12"
   },
   "mop": {
     "contact": {
@@ -36766,7 +36834,7 @@
       "uniprot.taxonomy"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/NCBITaxon_$1",
-    "version": "2023-09-19"
+    "version": "2023-12-12"
   },
   "nci.drug": {
     "description": "identifier of an entry in the NCI Drug Dictionary",
@@ -41510,7 +41578,7 @@
       "ordo"
     ],
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1",
-    "version": "4.3"
+    "version": "4.4"
   },
   "orth": {
     "contact": {
@@ -55267,6 +55335,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "deprecated": true,
+    "description": "TGN is a structured vocabulary currently containing around 1,106,000 names and other information about places. Names for a place may include names in the vernacular language, English, other languages, historical names, names and in natural order and inverted order. Among these names, one is flagged as the preferred name. TGN is a thesaurus, compliant with ISO and NISO standards for thesaurus construction; it contains hierarchical, equivalence, and associative relationships. Note that TGN is not a GIS (Geographic Information System). While many records in TGN include coordinates, these coordinates are approximate and are intended for reference only. The focus of each TGN record is a place. There are around 912,000 places in the TGN. In the database, each place record (also called a subject) is identified by a unique numeric ID. Linked to the record for the place are names, the place's parent or position in the hierarchy, other relationships, geographic coordinates, notes, sources for the data, and place types, which are terms describing the role of the place (e.g., inhabited place and state capital). The temporal coverage of the TGN ranges from prehistory to the present and the scope is global. The TGN is a hierarchical database; its trees branch from a root called Top of the TGN hierarchies (Subject_ID: 1000000). Currently there are two TGN facets, World and Extraterrestrial Places. Under the facet World, places are arranged in hierarchies generally representing the current political and physical world, although some historical nations and empires are also included. There may be multiple broader contexts, making the TGN polyhierarchical. The primary users of the Getty vocabularies include museums, art libraries, archives, visual resource collection catalogers, bibliographic projects concerned with art, researchers in art and art history, and the information specialists who are dealing with the needs of these users. In addition, a significant number of users of the Getty vocabularies are students or members of the general public.",
     "example": "1023371",
     "homepage": "https://www.getty.edu/research/tools/vocabularies/tgn/",
     "mappings": {
