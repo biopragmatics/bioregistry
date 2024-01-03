@@ -1022,7 +1022,7 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        return sorted({keyword.lower() for keyword in keywords})
+        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
