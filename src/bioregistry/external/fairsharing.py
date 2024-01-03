@@ -65,7 +65,7 @@ KEEP = {
 def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping[str, Any]]:
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
-    rv = {key: record[key] for key in KEEP}
+    rv = {key: record[key] for key in KEEP if record[key]}
     for suf in [
         " CT",
         " CV",
