@@ -14,6 +14,7 @@
 @prefix adw: <https://animaldiversity.org/accounts/> .
 @prefix aeon: <http://purl.obolibrary.org/obo/AEON_> .
 @prefix affy.probeset: <https://www.affymetrix.com/LinkServlet?probeset=> .
+@prefix aftol.category: <https://aftol.umn.edu/glossary?category=> .
 @prefix aftol.taxonomy: <http://wasabi.lutzonilab.net/pub/displayTaxonInfo?aftol_id=> .
 @prefix agricola: <https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=> .
 @prefix agrkb: <https://www.alliancegenome.org/accession/> .
@@ -2218,6 +2219,8 @@ bioregistry:aftol.taxonomy a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://wasabi.lutzonilab.net/pub/displayTaxonInfo?aftol_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "David J. McLaughlin" ;
+            foaf:mbox "davem@umn.edu" ] ;
     bioregistry.schema:0000024 "http://wasabi.lutzonilab.net/pub/displayTaxonInfo?aftol_id="^^xsd:string ;
     bioregistry.schema:0000027 aftol.taxonomy:959 ;
     bioregistry.schema:0000029 "aftol.taxonomy" .
@@ -20595,6 +20598,9 @@ orcid:0000-0002-5171-1668 rdfs:label "Urmas Kõljalg" ;
 orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" ;
     foaf:mbox "dr.sebastian.koehler@gmail.com" .
 
+orcid:0000-0002-5317-1458 rdfs:label "Jeet Vora" ;
+    foaf:mbox "jeetvora@gwmail.gwu.edu" .
+
 orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
     foaf:mbox "Maciej.Antczak@cs.put.poznan.pl" .
 
@@ -27823,6 +27829,20 @@ bioregistry:afo a bioregistry.schema:0000001 ;
             foaf:mbox "more.info@allotrope.org" ] ;
     bioregistry.schema:0000029 "afo" .
 
+bioregistry:aftol.category a bioregistry.schema:0000001 ;
+    rdfs:label "Assembling the Fungal Tree of Life - Category" ;
+    dcterms:description "Categories in the AFTOL database"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://aftol.umn.edu> ;
+    bioregistry.schema:0000005 "229"^^xsd:string ;
+    bioregistry.schema:0000006 "https://aftol.umn.edu/glossary?category=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "David J. McLaughlin" ;
+            foaf:mbox "davem@umn.edu" ] ;
+    bioregistry.schema:0000024 "https://aftol.umn.edu/glossary?category="^^xsd:string ;
+    bioregistry.schema:0000027 aftol.category:229 ;
+    bioregistry.schema:0000029 "aftol.category" .
+
 bioregistry:agilent.probe a bioregistry.schema:0000001 ;
     rdfs:label "Agilent Probe" ;
     dcterms:description "This is the Agilent SurePrint G3 Human GE v2 8x60k Microarray, Agilent design ID 039494, GridName 039494_D_F_20120628. Probe layout is 1 x 1 x 384 rows x 164 cols, which is different from a similar ADF A-GEOD-16699 (1 x 1 x 328 rows x 192 cols). Version 2 of this array  contains long intergenic non-coding RNA (lincRNA) probes designed to the human catalog of lincRNAs from the Broad Institute, along with an update of mRNA content when compared to version 1. Probes were designed using GRCh37 assembly of the human genome. Annotation of probes came from the following database: RefSeq Build 50, Ensembl Release 52, Unigene Build 216, GenBank (April 2009), Broad Institute Human lincRNA catalog (Nov 2011), Broad Institute TUCP transcripts catalog (Nov 2011).  Probe annotation was taken from A-GEOD-16699."^^xsd:string ;
@@ -29536,6 +29556,17 @@ bioregistry:dbvar.variant a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 dbvar.variant:nsv3875336 ;
     bioregistry.schema:0000029 "dbvar.variant" .
 
+bioregistry:ddc a bioregistry.schema:0000001 ;
+    rdfs:label "Dewey Decimal Classification" ;
+    dcterms:description "The Dewey Decimal Classification (DDC) system, devised by library pioneer Melvil Dewey in the 1870s and owned by OCLC since 1988, provides a dynamic structure for the organization of library collections. Now in its 23rd edition, and available in print and Web versions, the DDC is the world's most widely used library classification system."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bartoc:241 ;
+    foaf:homepage <http://www.oclc.org/dewey/> ;
+    bioregistry.schema:0000005 "325.4"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9][0-9]?|[0-9]{3}(-[0-9]{3})?|[0-9]{3}\\.[0-9]+(-[0-9]{3}\\.[0-9]+)?|[1-9][A-Z]?--[0-9]+|[1-9][A-Z]?--[0-9]+(-[1-9][A-Z]?--[0-9]+)?(:[0-9]+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "ddc" .
+
 bioregistry:ddinter.drug a bioregistry.schema:0000001 ;
     rdfs:label "Curated Drug-Drug Interactions Database - Drug" ;
     dcterms:description "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety."^^xsd:string ;
@@ -31157,19 +31188,26 @@ bioregistry:glycosciencesdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "glycosciencesdb" .
 
 bioregistry:glygen a bioregistry.schema:0000001 ;
-    rdfs:label "Computational and Informatics Resources for Glycoscience" ;
+    rdfs:label "GlyGen Computational and Informatics Resources for Glycoscience" ;
     dcterms:description "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. GlyGen retrieves information from multiple international data sources and integrates and harmonizes this data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository github:glygener ;
     skos:exactMatch fairsharing:FAIRsharing.aI1J5W,
         uniprot.resource:DB-0254 ;
-    dcat:keyword "glycomics",
-        "life science" ;
-    foaf:homepage glygen: ;
-    bioregistry.schema:0000005 "G24361QY"^^xsd:string ;
+    dcat:keyword "genomics",
+        "glycomics",
+        "glycoproteomics",
+        "life science",
+        "proteomics" ;
+    foaf:homepage <https://glygen.org/> ;
+    bioregistry.schema:0000005 "G17689DH"^^xsd:string ;
     bioregistry.schema:0000006 "https://glygen.org/glycan/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^G[0-9]{5}[A-Z]{2}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5317-1458 ;
     bioregistry.schema:0000024 "https://glygen.org/glycan/"^^xsd:string ;
-    bioregistry.schema:0000027 glygen:G24361QY ;
+    bioregistry.schema:0000026 ror:00y4zzh67 ;
+    bioregistry.schema:0000027 glygen:G17689DH ;
     bioregistry.schema:0000029 "glygen" .
 
 bioregistry:glytoucan a bioregistry.schema:0000001 ;
@@ -35907,6 +35945,7 @@ bioregistry:tfclass a bioregistry.schema:0000001 ;
 
 bioregistry:tgn a bioregistry.schema:0000001 ;
     rdfs:label "Getty Thesaurus of Geographic Names" ;
+    dcterms:description "TGN is a structured vocabulary currently containing around 1,106,000 names and other information about places. Names for a place may include names in the vernacular language, English, other languages, historical names, names and in natural order and inverted order. Among these names, one is flagged as the preferred name. TGN is a thesaurus, compliant with ISO and NISO standards for thesaurus construction; it contains hierarchical, equivalence, and associative relationships. Note that TGN is not a GIS (Geographic Information System). While many records in TGN include coordinates, these coordinates are approximate and are intended for reference only. The focus of each TGN record is a place. There are around 912,000 places in the TGN. In the database, each place record (also called a subject) is identified by a unique numeric ID. Linked to the record for the place are names, the place's parent or position in the hierarchy, other relationships, geographic coordinates, notes, sources for the data, and place types, which are terms describing the role of the place (e.g., inhabited place and state capital). The temporal coverage of the TGN ranges from prehistory to the present and the scope is global. The TGN is a hierarchical database; its trees branch from a root called Top of the TGN hierarchies (Subject_ID: 1000000). Currently there are two TGN facets, World and Extraterrestrial Places. Under the facet World, places are arranged in hierarchies generally representing the current political and physical world, although some historical nations and empires are also included. There may be multiple broader contexts, making the TGN polyhierarchical. The primary users of the Getty vocabularies include museums, art libraries, archives, visual resource collection catalogers, bibliographic projects concerned with art, researchers in art and art history, and the information specialists who are dealing with the needs of these users. In addition, a significant number of users of the Getty vocabularies are students or members of the general public."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch bartoc:109 ;
     foaf:homepage <https://www.getty.edu/research/tools/vocabularies/tgn/> ;
@@ -42564,6 +42603,8 @@ uniprot.resource:DB-0256 dcterms:isPartOf bioregistry.metaresource:uniprot .
 uniprot.resource:DB-0258 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:DB-0266 dcterms:isPartOf bioregistry.metaresource:uniprot .
+
+bartoc:241 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bioportal:APAONTO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -50176,6 +50217,7 @@ bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
         bartoc:2053,
         bartoc:2054,
         bartoc:216,
+        bartoc:241,
         bartoc:305,
         bartoc:391,
         bartoc:400,
@@ -51045,6 +51087,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:abcd,
         bioregistry:ac,
         bioregistry:adms,
+        bioregistry:aftol.category,
         bioregistry:agilent.probe,
         bioregistry:agrovoc,
         bioregistry:alzforum.mutation,
@@ -51122,6 +51165,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:dcat,
         bioregistry:dcterms,
         bioregistry:dctypes,
+        bioregistry:ddc,
         bioregistry:ddinter.interaction,
         bioregistry:debio,
         bioregistry:decipher,
@@ -56803,6 +56847,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:aero,
         bioregistry:affy.probeset,
         bioregistry:afo,
+        bioregistry:aftol.category,
         bioregistry:aftol.taxonomy,
         bioregistry:agilent.probe,
         bioregistry:agricola,
@@ -57159,6 +57204,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dcterms,
         bioregistry:dctypes,
         bioregistry:ddanat,
+        bioregistry:ddc,
         bioregistry:ddinter.drug,
         bioregistry:ddinter.interaction,
         bioregistry:ddpheno,

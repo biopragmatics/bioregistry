@@ -4353,7 +4353,7 @@ ontologies:
     user: https://futres.org/
 - activity_status: active
   contact:
-    email: jiezheng@pennmedicine.upenn.edu
+    email: jiezhen@med.umich.edu
     github: zhengj2007
     label: Jie Zheng
     orcid: 0000-0002-2999-0103
@@ -4364,9 +4364,9 @@ ontologies:
   in_foundry: false
   layout: ontology_detail
   license:
-    label: CC BY 3.0
+    label: CC BY 4.0
     logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: http://creativecommons.org/licenses/by/3.0/
+    url: http://creativecommons.org/licenses/by/4.0/
   ontology_purl: http://purl.obolibrary.org/obo/obcs.owl
   preferredPrefix: OBCS
   products:
@@ -4377,6 +4377,14 @@ ontologies:
   - statistics
   title: Ontology of Biological and Clinical Statistics
   tracker: https://github.com/obcs/obcs/issues
+  usages:
+  - description: The Ontology of Biological and Clinical Statistics (OBCS)-based statistical
+      method standardization and meta-analysis of host responses to yellow fever vaccines
+    examples:
+    - description: In Methods, "Both OBCS and the Vaccine Ontology (VO) were used
+        to ontologically model various components and relations ..."
+      url: https://doi.org/10.1007/s40484-017-0122-5
+    user: https://doi.org/10.1007/s40484-017-0122-5
 - activity_status: active
   browsers:
   - label: BioPortal
@@ -4517,6 +4525,39 @@ ontologies:
       Branch (BBRB) is an international leader in research and policy activities related
       to biospecimen collection, processing, and storage, also known as biobanking.
     user: https://biospecimens.cancer.gov/resources/vocabularies.asp
+- activity_status: active
+  browsers:
+  - label: BioPortal
+    title: BioPortal Ontology Browser
+    url: https://bioportal.bioontology.org/ontologies/OCCO?p=classes
+  contact:
+    email: zhengj2007@gmail.com
+    github: zhengj2007
+    label: Jie Zheng
+    orcid: 0000-0002-2999-0103
+  description: An ontology representing occupations. It is designed to facilitate
+    harmonization of existing occupation standards, such as the US Bureau of Labor
+    Statistics Standard Occupational Classification (US SOC), the International Standard
+    Classification of Occupations (ISCO), the UK National Statistics Standard Occupational
+    Classification (UK SOC), and the European Skills, Competences, Qualifications
+    and Occupations (ESCO) of the European Union.
+  domain: information
+  homepage: https://github.com/Occupation-Ontology/OccO
+  id: occo
+  issue_requested: 2428
+  layout: ontology_detail
+  license:
+    label: CC BY 4.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
+    url: https://creativecommons.org/licenses/by/4.0/
+  ontology_purl: http://purl.obolibrary.org/obo/occo.owl
+  preferredPrefix: OCCO
+  products:
+  - id: occo.owl
+    ontology_purl: http://purl.obolibrary.org/obo/occo.owl
+  repository: https://github.com/Occupation-Ontology/OccO
+  title: Occupation Ontology
+  tracker: https://github.com/Occupation-Ontology/OccO/issues
 - activity_status: active
   contact:
     email: yongqunh@med.umich.edu
@@ -6814,13 +6855,13 @@ ontologies:
     orcid: 0000-0001-9189-9661
   description: VO is a biomedical ontology in the domain of vaccine and vaccination.
   domain: health
-  homepage: http://www.violinet.org/vaccineontology
+  homepage: https://violinet.org/vaccineontology
   id: vo
   layout: ontology_detail
   license:
-    label: CC BY 3.0
+    label: CC BY 4.0
     logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: http://creativecommons.org/licenses/by/3.0/
+    url: http://creativecommons.org/licenses/by/4.0/
   ontology_purl: http://purl.obolibrary.org/obo/vo.owl
   preferredPrefix: VO
   products:
@@ -6836,6 +6877,35 @@ ontologies:
   repository: https://github.com/vaccineontology/VO
   title: Vaccine Ontology
   tracker: https://github.com/vaccineontology/VO/issues
+  usages:
+  - description: VIOLIN uses VO to standardize vaccine information
+    examples:
+    - description: VIOLIN using VO grouped all SARS-CoV-2 vaccines
+      url: https://violinet.org/canvaxkb/vaccine_detail.php?c_vaccine_id=5339
+    - description: A specific vaccine ‘Allogeneic Tumor Cell Vaccine’ curated in VO
+        for VIOLIN vaccine record
+      url: https://violinet.org/vaxquery/query_detail.php?c_pathogen_id=321#vaccine_5878
+    user: https://violinet.org
+  - description: Vaccine Adjuvant Compendium (VAC) uses Vaccine Ontology to standard
+      vaccine adjuvants developed by NIH
+    examples:
+    - description: A specific vaccine adjuvant, such as CaPNP (CaPtivant)(TM), in
+        Vaccine Adjuvant Compendium, uses VO_0005295 ‘CaPNP (CaPtivant)(TM) vaccine
+        adjuvant’
+      url: https://vac.niaid.nih.gov/view?id=11
+    user: https://www.niaid.nih.gov/research/vaccine-adjuvant-compendium-vac
+  - description: ImmPort uses Vaccine Ontology to standardize vaccine recorded collected
+      in NIH funded ImmPort studies
+    examples:
+    - description: ImmPort data used VO for annotation shown in its dataModel
+      url: https://www.immport.org/shared/dataModel
+    user: https://www.immport.org/
+  - description: Human Immunology Project Consortium (HIPC) uses VO to standardize
+      vaccine records
+    examples:
+    - description: Influenza Vaccine Live, Intranasal used VO_0000044
+      url: http://www.hipc-dashboard.org/#vaccine/vo-0000044
+    user: https://immunespace.org/
 - activity_status: active
   build:
     checkout: svn co http://phenotype-ontologies.googlecode.com/svn/trunk/src/ontology/vt
