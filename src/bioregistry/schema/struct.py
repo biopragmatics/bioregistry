@@ -837,6 +837,7 @@ class Resource(BaseModel):
                 "edam",
                 "prefixcommons",
                 "rrid",
+                "bartoc",
             ),
         )
 
@@ -864,6 +865,7 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "bartoc",
             ),
         )
         if rv is not None:
@@ -997,6 +999,7 @@ class Resource(BaseModel):
                 "agroportal",
                 "ecoportal",
                 "rrid",
+                "bartoc",
             ),
         )
 

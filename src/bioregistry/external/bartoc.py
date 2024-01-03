@@ -8,7 +8,7 @@ from typing import Any, Mapping
 import requests
 from tqdm import tqdm
 
-from bioregistry.constants import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
 DIRECTORY = EXTERNAL / "bartoc"
@@ -67,6 +67,10 @@ def _process_bartoc_record(record):
         license_key = standardize_license(license_dict["uri"].strip())
         if license_key:
             rv["license"] = license_key
+
+    uri_pattern = record.get("uriPattern")
+    if uri_pattern:
+        rv[URI_FORMAT_KEY] = uri_pattern.replace("(.+)", "$1")
 
     return {k: v for k, v in rv.items() if k and v}
 
