@@ -572,7 +572,7 @@ def highlights_relations():
     return render_template("highlights/relations.html")
 
 
-@ui_blueprint.route("/highlights/keywords")
+@ui_blueprint.route("/keywords")
 def highlights_keywords():
     """Render the keywords highlights page."""
     keyword_to_prefix = defaultdict(list)
