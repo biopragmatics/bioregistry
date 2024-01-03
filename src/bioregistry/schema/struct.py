@@ -1015,6 +1015,8 @@ class Resource(BaseModel):
             keywords.extend(self.rrid.get("keywords", []))
         if self.fairsharing:
             keywords.extend(self.fairsharing.get("subjects", []))
+            keywords.extend(self.fairsharing.get("user_defined_tags", []))
+            keywords.extend(self.fairsharing.get("domains", []))
         if self.obofoundry:
             keywords.append("obo")
             keywords.append("ontology")
