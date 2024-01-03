@@ -6,6 +6,7 @@
 """
 
 import json
+import logging
 from typing import Any, MutableMapping, Optional
 
 from bioregistry.constants import EXTERNAL
@@ -15,6 +16,8 @@ from bioregistry.utils import removeprefix, removesuffix
 __all__ = [
     "get_fairsharing",
 ]
+
+logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "fairsharing"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -54,6 +57,8 @@ KEEP = {
     "description",
     "name",
     "subjects",
+    "user_defined_tags",
+    "domains",
 }
 
 
@@ -104,17 +109,25 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
         if support_link["type"] == "Github":
             rv["repository"] = support_link["url"]
 
+    missed = set()
     for license_link in record.get("licence_links", []):
         url = license_link.get("licence_url")
         if not url:
             continue
         license_standard = standardize_license(url)
         if license_standard == url:
-            continue  # TODO curate additional normalizations
+            if license_standard not in missed and license_standard not in SKIP_LICENSES:
+                missed.add(license_standard)
+                logger.debug("Need to curate license URL: %s", license_standard)
+            continue
         else:
             rv["license"] = license_standard
 
     return rv
+
+
+#: Licenses that are one-off and don't need curating
+SKIP_LICENSES = set()
 
 
 def _process_publication(publication):
@@ -137,9 +150,10 @@ def _process_publication(publication):
     if title:
         title = title.replace("  ", " ").rstrip(".")
         rv["title"] = title
+    year = publication.get("year")
+    if year:
+        rv["year"] = int(year)
     return rv
-
-    # TODO add "year"
 
 
 if __name__ == "__main__":
