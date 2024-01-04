@@ -5963,7 +5963,7 @@ ccf:
     tissue and data major anatomical structures in the 3D Reference Object Library.
     The Specimen Ontology captures the sex, age, and other information on donors that
     provided tissue data used in the construction of the HRA.
-  download_owl: http://purl.org/ccf/releases/2.2.1/ccf.owl
+  download_owl: http://purl.org/ccf/releases/2.3.0/ccf.owl
   example: extraction_set
   github_request_issue: 879
   homepage: https://bioportal.bioontology.org/ontologies/CCF
@@ -5986,7 +5986,7 @@ ccf:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1
-  version: 2.2.1
+  version: 2.3.0
 ccle:
   contributor:
     email: cthoyt@gmail.com
@@ -6442,7 +6442,7 @@ cellrepo:
   name: Cell Version Control Repository
   pattern: ^[0-9]+$
   preferred_prefix: cellrepo
-  uri_format: https://cellrepo.ico2s.org/repositories/$1
+  uri_format: https://www.cellrepo.com/repositories/$1
 cemo:
   contact:
     email: n.queralt_rosinach@lumc.nl
@@ -12369,6 +12369,7 @@ disdriv:
   repository: https://github.com/DiseaseOntology/DiseaseDriversOntology
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DISDRIV_$1
+  version: '2023-12-15'
 diseaseclass:
   appears_in:
   - efo
@@ -14655,7 +14656,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.60.0
+  version: 3.61.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -17666,7 +17667,7 @@ fideo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FIDEO_$1
   repository: https://gitub.u-bordeaux.fr/erias/fideo
   uri_format: http://purl.obolibrary.org/obo/FIDEO_$1
-  version: '2023-02-01'
+  version: '2023-12-18'
 fishbase.species:
   contributor:
     email: cthoyt@gmail.com
@@ -32052,7 +32053,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.122'
+  version: '2.123'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -36453,7 +36454,7 @@ oban:
   uri_format: http://purl.org/oban/$1
 obcs:
   contact:
-    email: jiezheng@pennmedicine.upenn.edu
+    email: jiezhen@med.umich.edu
     github: zhengj2007
     name: Jie Zheng
     orcid: 0000-0002-2999-0103
@@ -36474,7 +36475,7 @@ obcs:
   - obo
   - ontology
   - statistics
-  license: CC-BY-3.0
+  license: CC-BY-4.0
   mappings:
     aberowl: OBCS
     biocontext: OBCS
@@ -36740,6 +36741,34 @@ occ:
   pattern: ^[a-z][a-z]/[0-9]+$
   preferred_prefix: occ
   uri_format: https://w3id.org/oc/corpus/$1
+occo:
+  contact:
+    email: zhengj2007@gmail.com
+    github: zhengj2007
+    name: Jie Zheng
+    orcid: 0000-0002-2999-0103
+  description: An ontology representing occupations. It is designed to facilitate
+    harmonization of existing occupation standards, such as the US Bureau of Labor
+    Statistics Standard Occupational Classification (US SOC), the International Standard
+    Classification of Occupations (ISCO), the UK National Statistics Standard Occupational
+    Classification (UK SOC), and the European Skills, Competences, Qualifications
+    and Occupations (ESCO) of the European Union.
+  download_owl: http://purl.obolibrary.org/obo/occo.owl
+  example: '00000001'
+  homepage: https://github.com/Occupation-Ontology/OccO
+  keywords:
+  - obo
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    bioportal: OCCO
+    obofoundry: occo
+    ontobee: OCCO
+  name: Occupation Ontology
+  preferred_prefix: OCCO
+  rdf_uri_format: http://purl.obolibrary.org/obo/OCCO_$1
+  repository: https://github.com/Occupation-Ontology/OccO
+  uri_format: http://purl.obolibrary.org/obo/OCCO_$1
 oci:
   description: 'Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>,
     where “oci:” is the identifier prefix, and is used to identify a citation as a
@@ -41813,16 +41842,11 @@ pmc:
   homepage: http://europepmc.org/
   keywords:
   - bibliography
-  - biomedical science
-  - earth science
-  - environmental science
-  - epidemiology
-  - life science
-  - virology
+  - knowledge and information systems
   mappings:
     biocontext: PMCID
     biolink: PMC
-    fairsharing: FAIRsharing.wpt5mp
+    fairsharing: FAIRsharing.2b4316
     go: PMCID
     miriam: pmc
     n2t: pmc
@@ -46162,7 +46186,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.211'
+  version: '6.212'
 rtecs:
   contributor:
     email: cthoyt@gmail.com
@@ -54515,7 +54539,7 @@ vo:
     from the vaccine and bio-ontology communities.
   download_owl: http://purl.obolibrary.org/obo/vo.owl
   example: 0000093
-  homepage: http://www.violinet.org/vaccineontology
+  homepage: https://violinet.org/vaccineontology
   keywords:
   - biomedical science
   - immunology
@@ -54524,7 +54548,7 @@ vo:
   - pathobiochemistry
   - small molecule
   - vaccine
-  license: CC-BY-3.0
+  license: CC-BY-4.0
   mappings:
     aberowl: VO
     biocontext: VO
@@ -55815,7 +55839,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.148'
+  version: '4.149'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
