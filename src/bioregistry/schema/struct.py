@@ -1015,12 +1015,14 @@ class Resource(BaseModel):
             keywords.extend(self.rrid.get("keywords", []))
         if self.fairsharing:
             keywords.extend(self.fairsharing.get("subjects", []))
+            keywords.extend(self.fairsharing.get("user_defined_tags", []))
+            keywords.extend(self.fairsharing.get("domains", []))
         if self.obofoundry:
             keywords.append("obo")
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        return sorted({keyword.lower() for keyword in keywords})
+        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
@@ -1314,6 +1316,8 @@ class Resource(BaseModel):
             return self.logo
         if self.obofoundry and "logo" in self.obofoundry:
             return self.obofoundry["logo"]
+        if self.fairsharing and "logo" in self.fairsharing:
+            return self.fairsharing["logo"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
