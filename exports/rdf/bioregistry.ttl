@@ -174,7 +174,7 @@
 @prefix cellosaurus: <https://www.cellosaurus.org/CVCL_> .
 @prefix cellosaurus.resource: <https://bioregistry.io/metaregistry/cellosaurus/resolve/> .
 @prefix cellosaurus.resource1: <https://bioregistry.io/metaregistry/cellosaurus/> .
-@prefix cellrepo: <https://cellrepo.ico2s.org/repositories/> .
+@prefix cellrepo: <https://www.cellrepo.com/repositories/> .
 @prefix cemo: <https://biopragmatics.github.io/providers/cemo/> .
 @prefix cgd: <http://www.candidagenome.org/cgi-bin/locus.pl?dbid=> .
 @prefix cgnc: <http://birdgenenames.org/cgnc/GeneReport?id=> .
@@ -4404,10 +4404,10 @@ bioregistry:cellrepo a bioregistry.schema:0000001 ;
     skos:exactMatch miriam:cellrepo ;
     foaf:homepage <https://www.cellrepo.com/> ;
     bioregistry.schema:0000005 "82"^^xsd:string ;
-    bioregistry.schema:0000006 "https://cellrepo.ico2s.org/repositories/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.cellrepo.com/repositories/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://cellrepo.ico2s.org/repositories/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.cellrepo.com/repositories/"^^xsd:string ;
     bioregistry.schema:0000027 cellrepo:82 ;
     bioregistry.schema:0000029 "cellrepo" .
 
@@ -13987,6 +13987,25 @@ bioregistry:occ a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 <https://w3id.org/oc/corpus/br/1> ;
     bioregistry.schema:0000029 "occ" .
 
+bioregistry:occo a bioregistry.schema:0000001 ;
+    rdfs:label "Occupation Ontology" ;
+    dcterms:description "An ontology representing occupations. It is designed to facilitate harmonization of existing occupation standards, such as the US Bureau of Labor Statistics Standard Occupational Classification (US SOC), the International Standard Classification of Occupations (ISCO), the UK National Statistics Standard Occupational Classification (UK SOC), and the European Skills, Competences, Qualifications and Occupations (ESCO) of the European Union."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/Occupation-Ontology/OccO> ;
+    skos:exactMatch ontobee:OCCO,
+        bioportal:OCCO,
+        obofoundry:occo ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/Occupation-Ontology/OccO> ;
+    bioregistry.schema:0000005 "00000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OCCO_$1"^^xsd:string ;
+    bioregistry.schema:0000010 obo:occo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OCCO_"^^xsd:string ;
+    bioregistry.schema:0000029 "occo" .
+
 bioregistry:oci a bioregistry.schema:0000001 ;
     rdfs:label "Open Citation Identifier" ;
     dcterms:description "Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>, where “oci:” is the identifier prefix, and is used to identify a citation as a first-class data entity - see https://doi.org/10.6084/m9.figshare.7127816.v2 for additional information. In each OCI, the first <identifier> is the identifier for the citing bibliographic resource, while the second <identifier> is the identifier for the cited bibliographic resource."^^xsd:string ;
@@ -22426,6 +22445,8 @@ ontobee:OBI dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:OBIB dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:OCCO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:OGG dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:OGI dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -23449,6 +23470,8 @@ bioportal:OBI dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:OBIB dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:OBOREL dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:OCCO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:OGG dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -28716,7 +28739,7 @@ bioregistry:ccf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "extraction_set"^^xsd:string ;
     bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://purl.org/ccf/releases/2.2.1/ccf.owl> ;
+    bioregistry.schema:0000010 <http://purl.org/ccf/releases/2.3.0/ccf.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3321-6137 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
@@ -37031,6 +37054,8 @@ fairsharing:FAIRsharing.2ajtcf dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.2b04ae dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.2b4316 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.2b9b61 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2basyz dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -38104,8 +38129,6 @@ fairsharing:FAIRsharing.wkdjpb dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.wnk2eq dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wp0134 dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.wpt5mp dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wpxab1 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -41833,6 +41856,8 @@ obofoundry:obcs dcterms:isPartOf bioregistry.metaresource:obofoundry .
 obofoundry:obi dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:obib dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
+obofoundry:occo dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:ogg dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -46666,7 +46691,7 @@ bioregistry:vo a bioregistry.schema:0000001 ;
         "pathobiochemistry",
         "small molecule",
         "vaccine" ;
-    foaf:homepage <http://www.violinet.org/vaccineontology> ;
+    foaf:homepage <https://violinet.org/vaccineontology> ;
     bioregistry.schema:0000005 "0000093"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -47504,16 +47529,11 @@ bioregistry:pmc a bioregistry.schema:0000001 ;
         biolink:PMC,
         go.resource:PMCID,
         n2t:pmc,
-        fairsharing:FAIRsharing.wpt5mp,
+        fairsharing:FAIRsharing.2b4316,
         prefixcommons:pmc,
         miriam:pmc ;
     dcat:keyword "bibliography",
-        "biomedical science",
-        "earth science",
-        "environmental science",
-        "epidemiology",
-        "life science",
-        "virology" ;
+        "knowledge and information systems" ;
     foaf:homepage <http://europepmc.org/> ;
     bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
     bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
@@ -48081,11 +48101,6 @@ orcid:0000-0002-1005-8383 rdfs:label "Pankaj Jaiswal" ;
 orcid:0000-0002-1373-1705 rdfs:label "Clare Pilgrim" ;
     foaf:mbox "cp390@cam.ac.uk" .
 
-orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
-    foaf:mbox "jiezhen@med.umich.edu",
-        "jiezheng@pennmedicine.upenn.edu",
-        "zhengj2007@gmail.com" .
-
 orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" ;
     dcterms:contributor bioregistry:hepro,
         bioregistry:hoso ;
@@ -48490,6 +48505,11 @@ orcid:0000-0002-0381-3766 rdfs:label "Bryce Mecum" ;
 
 orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" ;
     foaf:mbox "matus.kalas@uib.no" .
+
+orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
+    foaf:mbox "jiezhen@med.umich.edu",
+        "jiezheng@pennmedicine.upenn.edu",
+        "zhengj2007@gmail.com" .
 
 wikidata:P665 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -52037,6 +52057,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:OBCS,
         ontobee:OBI,
         ontobee:OBIB,
+        ontobee:OCCO,
         ontobee:OGG,
         ontobee:OGI,
         ontobee:OGMS,
@@ -52293,6 +52314,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:obcs,
         obofoundry:obi,
         obofoundry:obib,
+        obofoundry:occo,
         obofoundry:ogg,
         obofoundry:ogi,
         obofoundry:ogms,
@@ -52912,6 +52934,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:OBI,
         bioportal:OBIB,
         bioportal:OBOREL,
+        bioportal:OCCO,
         bioportal:OGG,
         bioportal:OGI,
         bioportal:OGMS,
@@ -53878,6 +53901,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.2abjs5,
         fairsharing:FAIRsharing.2ajtcf,
         fairsharing:FAIRsharing.2b04ae,
+        fairsharing:FAIRsharing.2b4316,
         fairsharing:FAIRsharing.2b9b61,
         fairsharing:FAIRsharing.2basyz,
         fairsharing:FAIRsharing.2bdvmk,
@@ -54415,7 +54439,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.wkdjpb,
         fairsharing:FAIRsharing.wnk2eq,
         fairsharing:FAIRsharing.wp0134,
-        fairsharing:FAIRsharing.wpt5mp,
         fairsharing:FAIRsharing.wpxab1,
         fairsharing:FAIRsharing.wqsxtg,
         fairsharing:FAIRsharing.wrvze3,
@@ -57988,6 +58011,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oboinowl,
         bioregistry:obv,
         bioregistry:occ,
+        bioregistry:occo,
         bioregistry:oci,
         bioregistry:ocid,
         bioregistry:oclc,

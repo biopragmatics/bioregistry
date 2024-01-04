@@ -6394,7 +6394,7 @@
       "orcid": "0000-0001-9439-5346"
     },
     "description": "The Common Coordinate Framework (CCF) Ontology is an application ontology built to support the development of the Human Reference Atlas (HRA).  It unifies vocabulary for HRA construction and usage—making it possible to ingest external data sources; supporting uniform tissue sample registration that includes the spatial positioning and semantic annotations within 3D reference organs; and supporting user-formulated cross-domain queries over tissue donor properties, anatomical structures, cell types, biomarkers, and 3D space. The CCF Ontology consists of three major ontologies. The Biological Structure Ontology records anatomical structures, cell types, and biomarkers (ASCT+B) and the relationships between them.  The ASCT+B tables are authored by human experts using templated Google Sheets. The biomarkers, cell types, and anatomical structures are mapped to existing ontologies (Uberon/FMA, CL, HGNC) whenever possible.  All relationships between anatomical structures and from cell types to anatomical structures are valid Uberon and CL relationships. The Spatial Ontology defines the shape, size, location, and rotation of experimental tissue and data major anatomical structures in the 3D Reference Object Library. The Specimen Ontology captures the sex, age, and other information on donors that provided tissue data used in the construction of the HRA.",
-    "download_owl": "http://purl.org/ccf/releases/2.2.1/ccf.owl",
+    "download_owl": "http://purl.org/ccf/releases/2.3.0/ccf.owl",
     "example": "extraction_set",
     "github_request_issue": 879,
     "homepage": "https://bioportal.bioontology.org/ontologies/CCF",
@@ -6420,7 +6420,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1",
-    "version": "2.2.1"
+    "version": "2.3.0"
   },
   "ccle": {
     "contributor": {
@@ -6909,7 +6909,7 @@
     "name": "Cell Version Control Repository",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "cellrepo",
-    "uri_format": "https://cellrepo.ico2s.org/repositories/$1"
+    "uri_format": "https://www.cellrepo.com/repositories/$1"
   },
   "cemo": {
     "contact": {
@@ -13236,7 +13236,8 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/DISDRIV_$1",
     "repository": "https://github.com/DiseaseOntology/DiseaseDriversOntology",
     "twitter": "diseaseontology",
-    "uri_format": "http://purl.obolibrary.org/obo/DISDRIV_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/DISDRIV_$1",
+    "version": "2023-12-15"
   },
   "diseaseclass": {
     "appears_in": [
@@ -15711,7 +15712,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo/",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.60.0"
+    "version": "3.61.0"
   },
   "ega.dataset": {
     "description": "The EGA is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects. The EGA contains exclusive data collected from individuals whose consent agreements authorize data release only for specific research use or to bona fide researchers. Strict protocols govern how information is managed, stored and distributed by the EGA project. This collection references 'Datasets'.",
@@ -19068,7 +19069,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FIDEO_$1",
     "repository": "https://gitub.u-bordeaux.fr/erias/fideo",
     "uri_format": "http://purl.obolibrary.org/obo/FIDEO_$1",
-    "version": "2023-02-01"
+    "version": "2023-12-18"
   },
   "fishbase.species": {
     "contributor": {
@@ -34563,7 +34564,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.122"
+    "version": "2.123"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -39313,7 +39314,7 @@
   },
   "obcs": {
     "contact": {
-      "email": "jiezheng@pennmedicine.upenn.edu",
+      "email": "jiezhen@med.umich.edu",
       "github": "zhengj2007",
       "name": "Jie Zheng",
       "orcid": "0000-0002-2999-0103"
@@ -39331,7 +39332,7 @@
       "ontology",
       "statistics"
     ],
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "OBCS",
       "biocontext": "OBCS",
@@ -39618,6 +39619,33 @@
     "pattern": "^[a-z][a-z]/[0-9]+$",
     "preferred_prefix": "occ",
     "uri_format": "https://w3id.org/oc/corpus/$1"
+  },
+  "occo": {
+    "contact": {
+      "email": "zhengj2007@gmail.com",
+      "github": "zhengj2007",
+      "name": "Jie Zheng",
+      "orcid": "0000-0002-2999-0103"
+    },
+    "description": "An ontology representing occupations. It is designed to facilitate harmonization of existing occupation standards, such as the US Bureau of Labor Statistics Standard Occupational Classification (US SOC), the International Standard Classification of Occupations (ISCO), the UK National Statistics Standard Occupational Classification (UK SOC), and the European Skills, Competences, Qualifications and Occupations (ESCO) of the European Union.",
+    "download_owl": "http://purl.obolibrary.org/obo/occo.owl",
+    "example": "00000001",
+    "homepage": "https://github.com/Occupation-Ontology/OccO",
+    "keywords": [
+      "obo",
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "bioportal": "OCCO",
+      "obofoundry": "occo",
+      "ontobee": "OCCO"
+    },
+    "name": "Occupation Ontology",
+    "preferred_prefix": "OCCO",
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/OCCO_$1",
+    "repository": "https://github.com/Occupation-Ontology/OccO",
+    "uri_format": "http://purl.obolibrary.org/obo/OCCO_$1"
   },
   "oci": {
     "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>, where “oci:” is the identifier prefix, and is used to identify a citation as a first-class data entity - see https://doi.org/10.6084/m9.figshare.7127816.v2 for additional information. In each OCI, the first <identifier> is the identifier for the citing bibliographic resource, while the second <identifier> is the identifier for the cited bibliographic resource.",
@@ -45026,17 +45054,12 @@
     "homepage": "http://europepmc.org/",
     "keywords": [
       "bibliography",
-      "biomedical science",
-      "earth science",
-      "environmental science",
-      "epidemiology",
-      "life science",
-      "virology"
+      "knowledge and information systems"
     ],
     "mappings": {
       "biocontext": "PMCID",
       "biolink": "PMC",
-      "fairsharing": "FAIRsharing.wpt5mp",
+      "fairsharing": "FAIRsharing.2b4316",
       "go": "PMCID",
       "miriam": "pmc",
       "n2t": "pmc",
@@ -49736,7 +49759,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.211"
+    "version": "6.212"
   },
   "rtecs": {
     "contributor": {
@@ -58721,7 +58744,7 @@
     "description": "The Vaccine Ontology (VO) is a community-based biomedical ontology in the domain of vaccine and vaccination. VO aims to standardize vaccine types and annotations, integrate various vaccine data, and support computer-assisted reasoning. The VO supports basic vaccine R&D and clincal vaccine usage. VO is being developed as a community-based ontology with support and collaborations from the vaccine and bio-ontology communities.",
     "download_owl": "http://purl.obolibrary.org/obo/vo.owl",
     "example": "0000093",
-    "homepage": "http://www.violinet.org/vaccineontology",
+    "homepage": "https://violinet.org/vaccineontology",
     "keywords": [
       "biomedical science",
       "immunology",
@@ -58731,7 +58754,7 @@
       "small molecule",
       "vaccine"
     ],
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "VO",
       "biocontext": "VO",
@@ -60147,7 +60170,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.148"
+    "version": "4.149"
   },
   "xenbase": {
     "contact": {
