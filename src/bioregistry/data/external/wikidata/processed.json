@@ -2059,7 +2059,7 @@
     ],
     "homepage": "https://naturalhistory2.si.edu/botany/hawaiianflora/index.htm",
     "name": "Flora of the Hawaiian Islands URL",
-    "pattern": "^https?://naturalhistory2\\.si\\.edu/botany/hawaiianflora/speciesdescr\\.cfm\\?genus=[A-Za-z]+&species=[a-z]+(?:&rank1=(?:subsp|var)\\.&epithet1=[a-z]+)?$",
+    "pattern": "^https?://naturalhistory2\\.si\\.edu/botany/hawaiianflora/(?:speciesdescr|genusdescr)\\.cfm\\?genus=[A-Za-z]+(?:&species=[a-z]+(?:&rank1=(?:subsp|var)\\.&epithet1=[a-z]+)?)?$",
     "prefix": "P12270"
   },
   "P12271": {
@@ -2076,6 +2076,25 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P12271",
     "uri_format": "https://millibase.org/aphia.php?p=taxdetails&id=$1"
+  },
+  "P12273": {
+    "database": "Q123558951",
+    "description": "URL for a plant family, genus, or species on the Montana Plant Life website",
+    "example": [
+      "http://montana.plant-life.org/cgi-bin/family03.cgi?Brassicaceae",
+      "http://montana.plant-life.org/cgi-bin/family03.cgi?Cactaceae",
+      "http://montana.plant-life.org/cgi-bin/family03.cgi?Orchidaceae",
+      "http://montana.plant-life.org/cgi-bin/genus03.cgi?Caryophyllaceae_Silene",
+      "http://montana.plant-life.org/cgi-bin/genus03.cgi?Orchidaceae_Corallorhiza",
+      "http://montana.plant-life.org/cgi-bin/genus03.cgi?Saxifragaceae_Parnassia",
+      "http://montana.plant-life.org/cgi-bin/species03.cgi?Cactaceae_Escobariamissouriensis",
+      "http://montana.plant-life.org/cgi-bin/species03.cgi?Caprifoliaceae_Linnaeaborealis",
+      "http://montana.plant-life.org/cgi-bin/species03.cgi?Ranunculaceae_Ranunculusglaberrimus"
+    ],
+    "homepage": "http://montana.plant-life.org/index.html",
+    "name": "Montana Plant Life URL",
+    "pattern": "^http://montana\\.plant-life\\.org/cgi-bin/(?:(?:species|genus|family)03)\\.cgi\\?[A-Za-z]+(?:\\_[A-Za-z]+)*$",
+    "prefix": "P12273"
   },
   "P1294": {
     "database": "Q6617741",
