@@ -15,7 +15,7 @@ class LOVAligner(Aligner):
 
     key = "lov"
     getter = get_lov
-    curation_header = ("prefix", "name", "homepage", "uri_prefix")
+    curation_header = ("name", "homepage", "uri_prefix")
 
 
 if __name__ == "__main__":
