@@ -620,6 +620,8 @@ class Resource(BaseModel):
     bartoc: Optional[Mapping[str, Any]] = Field(default=None, title="BARTOC")
     #: External data from RRID
     rrid: Optional[Mapping[str, Any]] = Field(default=None, title="RRID")
+    #: External data from LOV
+    lov: Optional[Mapping[str, Any]] = Field(default=None, title="LOV")
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
