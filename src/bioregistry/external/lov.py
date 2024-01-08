@@ -64,7 +64,10 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
             d["keywords"] = sorted(k)
         if "uri_prefix" in d:
             d["uri_prefix"] = d["uri_prefix"] + "$1"
-        del d["vocab"]
+        if "homepage" in d:
+            del d["vocab"]
+        else:
+            d["homepage"] = d.pop("vocab")
         records[d["prefix"]] = d
 
     PROCESSED_PATH.write_text(json.dumps(records, indent=2))
