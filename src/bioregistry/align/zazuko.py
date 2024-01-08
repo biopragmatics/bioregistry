@@ -3,7 +3,7 @@
 """Align the Zazuko with the Bioregistry."""
 
 from bioregistry.align.utils import Aligner
-from bioregistry.constants import DATA_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.external.zazuko import get_zazuko
 
 __all__ = [

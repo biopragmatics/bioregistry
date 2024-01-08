@@ -5,10 +5,9 @@
 import json
 from typing import Any, Mapping
 
-from pystow.utils import download
+import requests
 
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
-import requests
 
 __all__ = [
     "get_zazuko",
