@@ -7,10 +7,9 @@ import tempfile
 from collections import defaultdict
 from pathlib import Path
 
-from pystow.utils import download
+from pystow.utils import download, read_rdf
 
 from bioregistry.constants import EXTERNAL
-from pystow.utils import read_rdf
 
 __all__ = [
     "get_lov",
