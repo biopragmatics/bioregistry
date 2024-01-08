@@ -62,6 +62,9 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
         d = {k: str(v) for k, v in zip(columns, result) if v}
         if k := keywords.get(str(result[0])):
             d["keywords"] = sorted(k)
+        if "uri_prefix" in d:
+            d["uri_prefix"] = d["uri_prefix"] + "$1"
+        del d["vocab"]
         records[d["prefix"]] = d
 
     PROCESSED_PATH.write_text(json.dumps(records, indent=2))
