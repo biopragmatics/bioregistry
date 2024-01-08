@@ -1,0 +1,72 @@
+# -*- coding: utf-8 -*-
+
+"""Download the LOV registry."""
+
+import json
+import tempfile
+from collections import defaultdict
+from pathlib import Path
+
+from pystow.utils import download
+
+from bioregistry.constants import EXTERNAL
+from pystow.utils import read_rdf
+
+__all__ = [
+    "get_lov",
+]
+
+DIRECTORY = EXTERNAL / "lov"
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+PROCESSED_PATH = DIRECTORY / "processed.json"
+URL = "https://lov.linkeddata.es/lov.n3.gz"
+
+
+RECORD_SPARQL = """\
+    SELECT ?vocab ?title ?prefix ?uri_prefix ?description ?modified ?homepage
+    WHERE {
+        ?vocab vann:preferredNamespacePrefix ?prefix .
+        ?vocab dcterms:title ?title .
+        OPTIONAL { ?vocab vann:preferredNamespaceUri ?uri_prefix . }
+        OPTIONAL { ?vocab dcterms:description ?description . }
+        OPTIONAL { ?vocab dcterms:modified ?modified . }
+        OPTIONAL { ?vocab foaf:homepage ?homepage . }
+    }
+    ORDER BY ?vocab
+"""
+KEYWORD_SPARQL = """\
+    SELECT ?vocab ?keyword
+    WHERE { ?vocab dcat:keyword ?keyword . }
+"""
+
+columns = ["vocab", "title", "prefix", "uri_prefix", "description", "modified", "homepage"]
+
+
+def get_lov(*, force_download: bool = False, force_refresh: bool = False):
+    """Get the LOV data cloud registry."""
+    if PROCESSED_PATH.exists() and not force_download and not force_refresh:
+        return json.loads(PROCESSED_PATH.read_text())
+
+    with tempfile.TemporaryDirectory() as dir:
+        path = Path(dir).joinpath("lov.n3.gz")
+        download(url=URL, path=path)
+        graph = read_rdf(path)
+
+    keywords = defaultdict(set)
+    for vocab, keyword in graph.query(KEYWORD_SPARQL):
+        keywords[str(vocab)].add(str(keyword))
+    keywords = dict(keywords)
+
+    records = {}
+    for result in graph.query(RECORD_SPARQL):
+        d = {k: str(v) for k, v in zip(columns, result) if v}
+        if k := keywords.get(str(result[0])):
+            d["keywords"] = sorted(k)
+        records[d["prefix"]] = d
+
+    PROCESSED_PATH.write_text(json.dumps(records, indent=2))
+    return records
+
+
+if __name__ == "__main__":
+    get_lov(force_download=True, force_refresh=True)
