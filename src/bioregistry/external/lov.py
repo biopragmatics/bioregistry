@@ -6,6 +6,7 @@ import json
 import tempfile
 from collections import defaultdict
 from pathlib import Path
+from typing import Dict, List, Union
 
 from pystow.utils import download, read_rdf
 
@@ -54,15 +55,14 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
     keywords = defaultdict(set)
     for vocab, keyword in graph.query(KEYWORD_SPARQL):
         keywords[str(vocab)].add(str(keyword))
-    keywords = dict(keywords)
 
     records = {}
     for result in graph.query(RECORD_SPARQL):
-        d = {k: str(v) for k, v in zip(columns, result) if v}
+        d: Dict[str, Union[str, List[str]]] = {k: str(v) for k, v in zip(columns, result) if v}
         if k := keywords.get(str(result[0])):
             d["keywords"] = sorted(k)
         if "uri_prefix" in d:
-            d["uri_prefix"] = d["uri_prefix"] + "$1"
+            d["uri_prefix"] = d["uri_prefix"] + "$1"  # type:ignore
         if "homepage" in d:
             del d["vocab"]
         else:
