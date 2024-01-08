@@ -16,7 +16,7 @@ class ZazukoAligner(Aligner):
 
     key = "zazuko"
     getter = get_zazuko
-    curation_header = [URI_FORMAT_KEY, "identifiers", "purl"]
+    curation_header = [URI_FORMAT_KEY]
 
 
 if __name__ == "__main__":
