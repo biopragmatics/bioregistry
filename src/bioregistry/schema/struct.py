@@ -840,6 +840,7 @@ class Resource(BaseModel):
                 "prefixcommons",
                 "rrid",
                 "bartoc",
+                "lov",
             ),
         )
 
@@ -868,6 +869,7 @@ class Resource(BaseModel):
                 "edam",
                 "prefixcommons",
                 "bartoc",
+                "lov",
             ),
         )
         if rv is not None:
@@ -1003,6 +1005,7 @@ class Resource(BaseModel):
                 "ecoportal",
                 "rrid",
                 "bartoc",
+                "lov",
             ),
         )
 
@@ -1024,6 +1027,8 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
+        if self.lov:
+            keywords.extend(self.lov.get("keywords", []))
         return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
 
     def get_repository(self) -> Optional[str]:

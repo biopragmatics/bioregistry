@@ -23,10 +23,10 @@ URL = "https://lov.linkeddata.es/lov.n3.gz"
 
 
 RECORD_SPARQL = """\
-    SELECT ?vocab ?title ?prefix ?uri_prefix ?description ?modified ?homepage
+    SELECT ?vocab ?name ?prefix ?uri_prefix ?description ?modified ?homepage
     WHERE {
         ?vocab vann:preferredNamespacePrefix ?prefix .
-        ?vocab dcterms:title ?title .
+        ?vocab dcterms:title ?name .
         OPTIONAL { ?vocab vann:preferredNamespaceUri ?uri_prefix . }
         OPTIONAL { ?vocab dcterms:description ?description . }
         OPTIONAL { ?vocab dcterms:modified ?modified . }
@@ -39,7 +39,7 @@ KEYWORD_SPARQL = """\
     WHERE { ?vocab dcat:keyword ?keyword . }
 """
 
-columns = ["vocab", "title", "prefix", "uri_prefix", "description", "modified", "homepage"]
+columns = ["vocab", "name", "prefix", "uri_prefix", "description", "modified", "homepage"]
 
 
 def get_lov(*, force_download: bool = False, force_refresh: bool = False):
