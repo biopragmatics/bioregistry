@@ -345,6 +345,19 @@
     "prefix": "P10529",
     "uri_format": "https://www.madreandiscovery.org/fauna/taxa/index.php?tid=$1"
   },
+  "P1053": {
+    "database": "Q7315186",
+    "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
+    "example": [
+      "J-3403-2017",
+      "K-8011-2013"
+    ],
+    "homepage": "https://access.clarivate.com/login?app=wos",
+    "name": "ResearcherID",
+    "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
+    "prefix": "P1053",
+    "uri_format": "https://www.webofscience.com/wos/author/record/$1"
+  },
   "P10534": {
     "database": "Q108850872",
     "description": "identifier for a taxon in the Australian Reptile Online Database",
@@ -3141,7 +3154,7 @@
     ],
     "homepage": "http://www.xeno-canto.org/",
     "name": "Xeno-canto species ID",
-    "pattern": "^[A-Z][a-z]+\\-[a-z]$",
+    "pattern": "^[A-Z][a-z]+\\-[ ]+\\-[a-z]$",
     "prefix": "P2426",
     "uri_format": "https://xeno-canto.org/explore?query=$1"
   },
@@ -3202,6 +3215,20 @@
     "name": "Species Profile and Threats Database ID",
     "prefix": "P2455",
     "uri_format": "https://www.environment.gov.au/cgi-bin/sprat/public/publicspecies.pl?taxon_id=$1"
+  },
+  "P2456": {
+    "database": "Q1224715",
+    "description": "identifier for author entries in the DBLP computer science bibliography (use portion of DBLP person key after pid/)",
+    "example": [
+      "181/8944",
+      "d/JeffreyDean",
+      "z/LixiaZhang1"
+    ],
+    "homepage": "https://dblp.org/",
+    "name": "DBLP author ID",
+    "prefix": "P2456",
+    "uri_format": "https://dblp.org/pid/$1",
+    "uri_format_rdf": "https://dblp.org/pid/$1.rdf"
   },
   "P2464": {
     "database": "Q4986057",
@@ -5399,6 +5426,19 @@
     "prefix": "P5037",
     "uri_format": "https://powo.science.kew.org/taxon/$1",
     "uri_format_rdf": "http://lsid.tdwg.org/$1"
+  },
+  "P5039": {
+    "database": "Q50315950",
+    "description": "identifier for an author on the Authorea writing service",
+    "example": [
+      "106",
+      "229233"
+    ],
+    "homepage": "https://www.authorea.com",
+    "name": "Authorea author ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P5039",
+    "uri_format": "https://www.authorea.com/users/$1"
   },
   "P5055": {
     "database": "Q51885189",
@@ -8427,6 +8467,19 @@
     "pattern": "^MX\\.[0-9]+$",
     "prefix": "P7552",
     "uri_format": "https://laji.fi/taxon/$1"
+  },
+  "P7671": {
+    "description": "identifier of an author or reviewer, in Semion",
+    "example": [
+      "1085144",
+      "17963667",
+      "2975999"
+    ],
+    "homepage": "https://www.semion.io",
+    "name": "Semion author ID",
+    "pattern": "^\\d+$",
+    "prefix": "P7671",
+    "uri_format": "https://www.semion.io/Author/$1"
   },
   "P7710": {
     "database": "Q22666524",
