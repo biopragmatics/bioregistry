@@ -513,7 +513,13 @@
     "description": "A vocabulary for describing semantic assets, defined as highly reusable metadata (e.g. XML1 schemata, generic data models) and reference data (e.g. code lists, taxonomies, dictionaries, vocabularies).",
     "example": "Asset",
     "homepage": "http://www.w3.org/ns/adms",
+    "keywords": [
+      "metadata"
+    ],
     "license": "CC-BY-4.0",
+    "mappings": {
+      "lov": "adms"
+    },
     "name": "Asset Description Metadata Schema Vocabulary",
     "preferred_prefix": "adms",
     "repository": "https://github.com/SEMICeu/ADMS/",
@@ -754,7 +760,7 @@
       "orcid": null
     },
     "description": "Allotrope Merged Ontology Suite",
-    "download_owl": "http://purl.allotrope.org/voc/afo/merged/REC/2023/09/merged-without-qudt-and-inferred",
+    "download_owl": "http://purl.allotrope.org/voc/afo/merged/REC/2023/12/merged-without-qudt-and-inferred",
     "homepage": "https://www.allotrope.org/",
     "keywords": [
       "agricultural engineering",
@@ -777,7 +783,7 @@
     "name": "Allotrope Merged Ontology Suite",
     "no_own_terms": true,
     "preferred_prefix": "afo",
-    "version": "2023/09"
+    "version": "2023/12"
   },
   "aftol.category": {
     "contact": {
@@ -3568,8 +3574,13 @@
     "example": "authorList",
     "homepage": "https://bibliontology.com/",
     "keywords": [
-      "bibliometrics"
+      "bibliometrics",
+      "catalogs"
     ],
+    "mappings": {
+      "lov": "bibo",
+      "zazuko": "bibo"
+    },
     "name": "The Bibliographic Ontology",
     "preferred_prefix": "bibo",
     "uri_format": "http://purl.org/ontology/bibo/$1"
@@ -4994,10 +5005,12 @@
       "citation",
       "data model",
       "report",
+      "spar",
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.99da5f"
+      "fairsharing": "FAIRsharing.99da5f",
+      "lov": "biro"
     },
     "name": "Bibliographic Reference Ontology",
     "preferred_prefix": "BiRO",
@@ -5709,10 +5722,12 @@
       "citation",
       "data model",
       "report",
+      "spar",
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.beb855"
+      "fairsharing": "FAIRsharing.beb855",
+      "lov": "c4o"
     },
     "name": "Citation Counting and Context Characterisation Ontology",
     "preferred_prefix": "C4O",
@@ -6386,9 +6401,14 @@
     "download_rdf": "https://creativecommons.org/schema.rdf",
     "example": "Work",
     "homepage": "https://creativecommons.org/ns",
+    "keywords": [
+      "metadata"
+    ],
     "license": "CC0-1.0",
     "mappings": {
-      "aberowl": "CC"
+      "aberowl": "CC",
+      "lov": "cc",
+      "zazuko": "cc"
     },
     "name": "Creative Commons Rights Expression Language",
     "pattern": "^\\w+$",
@@ -7377,7 +7397,7 @@
     ],
     "twitter": "chebit",
     "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
-    "version": "227"
+    "version": "228"
   },
   "chembank": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -8175,10 +8195,12 @@
     "keywords": [
       "citation",
       "data model",
-      "knowledge and information systems"
+      "knowledge and information systems",
+      "spar"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.b220d4"
+      "fairsharing": "FAIRsharing.b220d4",
+      "lov": "cito"
     },
     "name": "Citation Typing Ontology",
     "preferred_prefix": "CiTO",
@@ -8427,7 +8449,7 @@
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2023-12-05"
+    "version": "2024-01-04"
   },
   "clao": {
     "contact": {
@@ -12190,6 +12212,9 @@
       "dbpedia",
       "ontology"
     ],
+    "mappings": {
+      "zazuko": "dbo"
+    },
     "name": "DBPedia Ontology",
     "preferred_prefix": "dbo",
     "uri_format": "https://dbpedia.org/ontology/$1"
@@ -12348,6 +12373,7 @@
       "annotation",
       "biomedical science",
       "life science",
+      "metadata",
       "metadata standardization",
       "ontology",
       "resource metadata",
@@ -12358,7 +12384,9 @@
       "biocontext": "dc",
       "bioportal": "DC",
       "fairsharing": "FAIRsharing.3nx7t",
-      "ols": "dc"
+      "lov": "dce",
+      "ols": "dc",
+      "zazuko": "dc11"
     },
     "name": "Dublin Core Elements (1.1)",
     "preferred_prefix": "dc",
@@ -12413,14 +12441,17 @@
     "keywords": [
       "data management",
       "ontology",
-      "subject agnostic"
+      "subject agnostic",
+      "w3c rec"
     ],
     "mappings": {
       "aberowl": "DCAT",
       "biocontext": "dcat",
       "biolink": "dcat",
       "bioportal": "DCAT",
-      "fairsharing": "FAIRsharing.h4j3qm"
+      "fairsharing": "FAIRsharing.h4j3qm",
+      "lov": "dcat",
+      "zazuko": "dcat"
     },
     "name": "Data Catalog",
     "preferred_prefix": "dcat",
@@ -12446,6 +12477,7 @@
     "example": "title",
     "homepage": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
     "keywords": [
+      "metadata",
       "metadata standardization",
       "ontology",
       "resource metadata",
@@ -12457,7 +12489,9 @@
       "biolink": "dct",
       "bioportal": "DCTERMS",
       "fairsharing": "FAIRsharing.9vtwjs",
-      "ols": "dcterms"
+      "lov": "dcterms",
+      "ols": "dcterms",
+      "zazuko": "dcterms"
     },
     "name": "Dublin Core Metadata Initiative Terms",
     "preferred_prefix": "dcterms",
@@ -12795,10 +12829,12 @@
       "citation",
       "data model",
       "report",
+      "spar",
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.39fd58"
+      "fairsharing": "FAIRsharing.39fd58",
+      "lov": "deo"
     },
     "name": "Discourse Elements Ontology",
     "preferred_prefix": "DEO",
@@ -13647,8 +13683,13 @@
     "keywords": [
       "metadata",
       "rdf",
-      "semantic web"
+      "semantic web",
+      "society"
     ],
+    "mappings": {
+      "lov": "doap",
+      "zazuko": "doap"
+    },
     "name": "Description of a Project",
     "preferred_prefix": "doap",
     "references": [
@@ -13678,10 +13719,12 @@
       "citation",
       "data model",
       "report",
+      "spar",
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.162003"
+      "fairsharing": "FAIRsharing.162003",
+      "lov": "doco"
     },
     "name": "Document Components Ontology",
     "preferred_prefix": "DoCO",
@@ -13985,7 +14028,7 @@
     ],
     "twitter": "diseaseontology",
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2023-11-30"
+    "version": "2023-12-20"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -18638,12 +18681,14 @@
       "protocol",
       "publication",
       "report",
+      "spar",
       "subject agnostic"
     ],
     "mappings": {
       "aberowl": "FaBiO",
       "biolink": "fabio",
-      "fairsharing": "FAIRsharing.2f3180"
+      "fairsharing": "FAIRsharing.2f3180",
+      "lov": "fabio"
     },
     "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
     "preferred_prefix": "fabio",
@@ -18830,6 +18875,7 @@
       "binding site",
       "gene feature",
       "genetics",
+      "geography",
       "nucleic acid sequence",
       "ontology",
       "sequence annotation",
@@ -18840,7 +18886,8 @@
       "agroportal": "FALDO",
       "biocontext": "faldo",
       "bioportal": "FALDO",
-      "fairsharing": "FAIRsharing.haxp7g"
+      "fairsharing": "FAIRsharing.haxp7g",
+      "lov": "faldo"
     },
     "name": "Feature Annotation Location Description Ontology ",
     "preferred_prefix": "faldo",
@@ -20073,13 +20120,16 @@
     "example": "familyName",
     "homepage": "http://xmlns.com/foaf/spec/",
     "keywords": [
-      "ontology"
+      "ontology",
+      "people"
     ],
     "mappings": {
       "aberowl": "foaf",
       "biocontext": "foaf",
       "biolink": "foaf",
-      "bioportal": "FOAF"
+      "bioportal": "FOAF",
+      "lov": "foaf",
+      "zazuko": "foaf"
     },
     "name": "Friend of a Friend",
     "preferred_prefix": "foaf",
@@ -20463,6 +20513,7 @@
     "example": "Grant",
     "homepage": "http://www.sparontologies.net/ontologies/frapo",
     "keywords": [
+      "academy",
       "data model",
       "funding bodies",
       "grant application",
@@ -20472,7 +20523,8 @@
     ],
     "mappings": {
       "aberowl": "FRAPO",
-      "fairsharing": "FAIRsharing.0a2576"
+      "fairsharing": "FAIRsharing.0a2576",
+      "lov": "frapo"
     },
     "name": "Funding, Research Administration and Projects Ontology",
     "preferred_prefix": "FRAPO",
@@ -20500,11 +20552,14 @@
       "bibliography",
       "citation",
       "data model",
+      "frbr",
       "report",
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.b34b43"
+      "fairsharing": "FAIRsharing.b34b43",
+      "lov": "frbr",
+      "zazuko": "frbr"
     },
     "name": "Functional Requirements for Bibliographic Records",
     "preferred_prefix": "FRBR",
@@ -20523,6 +20578,12 @@
     "download_rdf": "http://iflastandards.info/ns/fr/frbr/frbrer.jsonld",
     "example": "1001",
     "homepage": "https://www.iflastandards.info/fr/frbr/frbrer",
+    "keywords": [
+      "frbr"
+    ],
+    "mappings": {
+      "lov": "frbrer"
+    },
     "name": "Functional Requirements for Bibliographic Records Entity-Relationship Model",
     "part_of": "frbr",
     "preferred_prefix": "frbrer",
@@ -20838,7 +20899,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2023-11-13"
+    "version": "2023-12-29"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -31727,14 +31788,18 @@
     "github_request_issue": 970,
     "homepage": "https://w3id.org/nfdi4ing/metadata4ing/",
     "keywords": [
+      "academy",
       "engineering science",
+      "metadata",
       "ontology"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
       "bartoc": "20402",
       "fairsharing": "FAIRsharing.f8b3ec",
-      "wikidata": "Q111516803"
+      "lov": "m4i",
+      "wikidata": "Q111516803",
+      "zazuko": "m4i"
     },
     "mastodon": "nfdi4ing@nfdi.social",
     "name": "Metadata4Ing",
@@ -35613,7 +35678,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2023-12-12"
+    "version": "2024-01-03"
   },
   "mop": {
     "contact": {
@@ -35802,7 +35867,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2023-11-15"
+    "version": "2023-12-19"
   },
   "mpath": {
     "contact": {
@@ -35993,7 +36058,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
     "repository": "https://github.com/IEDB/MRO",
     "uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
-    "version": "2023-08-05"
+    "version": "2023-12-21"
   },
   "ms": {
     "banana": "MS",
@@ -39627,12 +39692,15 @@
     "example": "sourceDateStart",
     "homepage": "http://www.w3.org/ns/oa",
     "keywords": [
-      "ontology"
+      "ontology",
+      "quality"
     ],
     "mappings": {
       "aberowl": "OA",
       "biocontext": "oa",
-      "bioportal": "OA"
+      "bioportal": "OA",
+      "lov": "oa",
+      "zazuko": "oa"
     },
     "name": "Web Annotation Ontology",
     "preferred_prefix": "oa",
@@ -39857,7 +39925,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OBCS_$1",
     "repository": "https://github.com/obcs/obcs",
     "uri_format": "http://purl.obolibrary.org/obo/OBCS_$1",
-    "version": "2018-02-22"
+    "version": "2023-12-08"
   },
   "obi": {
     "appears_in": [
@@ -40029,11 +40097,14 @@
     ],
     "homepage": "http://www.obofoundry.org/",
     "keywords": [
+      "biology",
+      "health",
       "ontology and terminology"
     ],
     "mappings": {
       "biocontext": "OBO",
-      "fairsharing": "FAIRsharing.847069"
+      "fairsharing": "FAIRsharing.847069",
+      "lov": "obo"
     },
     "name": "Open Biological and Biomedical Ontologies",
     "preferred_prefix": "obo",
@@ -40145,6 +40216,7 @@
     ],
     "license": "CC-BY-4.0",
     "mappings": {
+      "aberowl": "OCCO",
       "bioportal": "OCCO",
       "obofoundry": "occo",
       "ontobee": "OCCO"
@@ -40330,6 +40402,12 @@
     "download_rdf": "https://www.w3.org/ns/odrl/2/ODRL22.rdf",
     "example": "assetConcepts",
     "homepage": "http://www.w3.org/ns/odrl/2",
+    "keywords": [
+      "metadata"
+    ],
+    "mappings": {
+      "lov": "odrl"
+    },
     "name": "Open Digital Rights Language Ontology",
     "preferred_prefix": "odrl",
     "uri_format": "http://www.w3.org/ns/odrl/2/$1"
@@ -42350,6 +42428,12 @@
     "description": "Core Vocabulary defines the OSLC Core RDF vocabulary terms and resources, that have broad applicability across various domains.",
     "example": "Property",
     "homepage": "http://open-services.net/ns/core",
+    "keywords": [
+      "plm"
+    ],
+    "mappings": {
+      "lov": "oslc"
+    },
     "name": "OASIS Open Services for Lifecycle Collaboration Core Vocabulary",
     "preferred_prefix": "oslc",
     "uri_format": "http://open-services.net/ns/core#$1"
@@ -42491,12 +42575,15 @@
       "informatics",
       "ontology",
       "ontology and terminology",
-      "subject agnostic"
+      "subject agnostic",
+      "w3c rec"
     ],
     "mappings": {
       "biocontext": "owl",
       "fairsharing": "FAIRsharing.atygwy",
-      "ols": "owl"
+      "lov": "owl",
+      "ols": "owl",
+      "zazuko": "owl"
     },
     "name": "Web Ontology Language",
     "preferred_prefix": "owl",
@@ -43137,6 +43224,7 @@
       "citation",
       "data management",
       "ontology",
+      "quality",
       "resource metadata",
       "subject agnostic"
     ],
@@ -43145,7 +43233,8 @@
       "biocontext": "pav",
       "biolink": "pav",
       "bioportal": "PAV",
-      "fairsharing": "FAIRsharing.nbfwwv"
+      "fairsharing": "FAIRsharing.nbfwwv",
+      "lov": "pav"
     },
     "name": "Provenance, Authoring, and Versioning Vocabulary",
     "pattern": "^[a-z][a-zA-Z]+$",
@@ -47155,13 +47244,16 @@
     "example": "Activity",
     "homepage": "https://www.w3.org/ns/prov",
     "keywords": [
-      "ontology"
+      "ontology",
+      "w3c rec"
     ],
     "mappings": {
       "aberowl": "PROV",
       "biocontext": "prov",
       "biolink": "prov",
-      "ols": "prov"
+      "lov": "prov",
+      "ols": "prov",
+      "zazuko": "prov"
     },
     "name": "PROV Namespace",
     "preferred_prefix": "prov",
@@ -47931,10 +48023,12 @@
       "citation",
       "data model",
       "report",
+      "spar",
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.c4e46c"
+      "fairsharing": "FAIRsharing.c4e46c",
+      "lov": "pwo"
     },
     "name": "Publishing Workflow Ontology",
     "preferred_prefix": "PWO",
@@ -47994,6 +48088,14 @@
     "download_rdf": "http://purl.org/linked-data/cube#",
     "example": "Observation",
     "homepage": "https://www.w3.org/TR/vocab-data-cube",
+    "keywords": [
+      "methods",
+      "w3c rec"
+    ],
+    "mappings": {
+      "lov": "qb",
+      "zazuko": "qb"
+    },
     "name": "The data cube vocabulary",
     "pattern": "^\\w+$",
     "preferred_prefix": "qb",
@@ -48027,6 +48129,7 @@
     "keywords": [
       "astrophysics and astronomy",
       "experimental measurement",
+      "methods",
       "ontology",
       "unit"
     ],
@@ -48035,7 +48138,9 @@
       "bartoc": "18206",
       "biolink": "qud",
       "bioportal": "QUDT",
-      "fairsharing": "FAIRsharing.d3pqw7"
+      "fairsharing": "FAIRsharing.d3pqw7",
+      "lov": "qudt",
+      "zazuko": "qudt"
     },
     "name": "Quantities, Units, Dimensions, and Types Ontology",
     "preferred_prefix": "qudt",
@@ -48369,11 +48474,14 @@
     "homepage": "http://www.w3.org/1999/02/22-rdf-syntax-ns",
     "keywords": [
       "computer science",
-      "subject agnostic"
+      "subject agnostic",
+      "w3c rec"
     ],
     "mappings": {
       "biocontext": "rdf",
-      "fairsharing": "FAIRsharing.p77ph9"
+      "fairsharing": "FAIRsharing.p77ph9",
+      "lov": "rdf",
+      "zazuko": "rdf"
     },
     "name": "Resource Description Framework",
     "preferred_prefix": "rdf",
@@ -48396,6 +48504,13 @@
     "download_rdf": "http://www.w3.org/ns/rdfa.ttl",
     "example": "PrefixOrTermMapping",
     "homepage": "http://www.w3.org/ns/rdfa",
+    "keywords": [
+      "rdf"
+    ],
+    "mappings": {
+      "lov": "rdfa",
+      "zazuko": "rdfa"
+    },
     "name": "RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting",
     "preferred_prefix": "rdfa",
     "uri_format": "http://www.w3.org/ns/rdfa#$1"
@@ -48422,14 +48537,17 @@
       "life science",
       "linguistics",
       "ontology",
-      "ontology and terminology"
+      "ontology and terminology",
+      "w3c rec"
     ],
     "mappings": {
       "aberowl": "RDFS",
       "biocontext": "rdfs",
       "bioportal": "RDFS",
       "fairsharing": "FAIRsharing.v9n3gk",
-      "ols": "rdfs"
+      "lov": "rdfs",
+      "ols": "rdfs",
+      "zazuko": "rdfs"
     },
     "name": "RDF Schema",
     "preferred_prefix": "rdfs",
@@ -51113,6 +51231,7 @@
     "homepage": "https://schema.org",
     "keywords": [
       "computer science",
+      "general & upper",
       "ontology",
       "subject agnostic"
     ],
@@ -51121,7 +51240,9 @@
       "biolink": "schema",
       "bioportal": "SCHEMA",
       "fairsharing": "FAIRsharing.hzdzq8",
-      "ols": "schemaorg_http"
+      "lov": "schema",
+      "ols": "schemaorg_http",
+      "zazuko": "schema"
     },
     "name": "Schema.org",
     "preferred_prefix": "schema",
@@ -51417,6 +51538,7 @@
     "example": "IntellectualContribution",
     "homepage": "http://www.sparontologies.net/ontologies/scoro",
     "keywords": [
+      "academy",
       "bibliography",
       "citation",
       "data model",
@@ -51424,7 +51546,8 @@
       "subject agnostic"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.c86b48"
+      "fairsharing": "FAIRsharing.c86b48",
+      "lov": "scoro"
     },
     "name": "Scholarly Contributions and Roles Ontology",
     "preferred_prefix": "SCoRO",
@@ -51808,6 +51931,13 @@
     "download_rdf": "https://raw.githubusercontent.com/saidfathalla/SEOontology/master/SEO.ttl",
     "example": "Symposium",
     "homepage": "https://w3id.org/seo",
+    "keywords": [
+      "academy",
+      "events"
+    ],
+    "mappings": {
+      "lov": "seo"
+    },
     "name": "Scientific Event Ontology",
     "preferred_prefix": "seo",
     "uri_format": "https://w3id.org/seo#$1"
@@ -52399,10 +52529,14 @@
       "informatics",
       "knowledge and information systems",
       "ontology",
-      "ontology and terminology"
+      "ontology and terminology",
+      "quality",
+      "w3c rec"
     ],
     "mappings": {
-      "fairsharing": "FAIRsharing.f1449d"
+      "fairsharing": "FAIRsharing.f1449d",
+      "lov": "sh",
+      "zazuko": "sh"
     },
     "name": "Shapes Constraint Language",
     "preferred_prefix": "sh",
@@ -52596,6 +52730,9 @@
       "rdf",
       "semantic web"
     ],
+    "mappings": {
+      "zazuko": "shex"
+    },
     "name": "Shape Expression Vocabulary",
     "pattern": "^\\w+$",
     "preferred_prefix": "shex",
@@ -52845,6 +52982,7 @@
     "example": "000912",
     "homepage": "https://github.com/micheldumontier/semanticscience",
     "keywords": [
+      "biology",
       "knowledge representation",
       "natural science",
       "ontology",
@@ -52857,6 +52995,7 @@
       "biolink": "SIO",
       "bioportal": "SIO",
       "fairsharing": "FAIRsharing.dpkb5f",
+      "lov": "sio",
       "miriam": "sio",
       "ols": "sio",
       "ontobee": "SIO"
@@ -53052,13 +53191,16 @@
     "homepage": "https://www.w3.org/2004/02/skos/",
     "keywords": [
       "ontology",
-      "subject agnostic"
+      "subject agnostic",
+      "w3c rec"
     ],
     "mappings": {
       "aberowl": "skos",
       "biocontext": "skos",
       "fairsharing": "FAIRsharing.48e326",
-      "ols": "skos"
+      "lov": "skos",
+      "ols": "skos",
+      "zazuko": "skos"
     },
     "name": "Simple Knowledge Organization System",
     "preferred_prefix": "skos",
@@ -53078,8 +53220,13 @@
       "data model",
       "metadata",
       "semantic web",
-      "skos"
+      "skos",
+      "w3c rec"
     ],
+    "mappings": {
+      "lov": "skosxl",
+      "zazuko": "skosxl"
+    },
     "name": "Simple Knowledge Organization System eXtension for Labels",
     "preferred_prefix": "skosxl",
     "uri_format": "http://www.w3.org/2008/05/skos-xl#$1"
@@ -55170,6 +55317,12 @@
     "description": "SWRL enables Horn-like rules to be combined with an OWL knowledge base.",
     "example": "Variable",
     "homepage": "https://www.w3.org/2003/11/swrl#",
+    "keywords": [
+      "vocabularies"
+    ],
+    "mappings": {
+      "lov": "swrl"
+    },
     "name": "A Semantic Web Rule Language Combining OWL and RuleML",
     "preferred_prefix": "swrl",
     "uri_format": "http://www.w3.org/2003/11/swrl#$1"
@@ -56171,12 +56324,15 @@
       "metadata standardization",
       "ontology",
       "resource metadata",
-      "subject agnostic"
+      "subject agnostic",
+      "time"
     ],
     "mappings": {
       "aberowl": "TIME",
       "bioportal": "TIME",
-      "fairsharing": "FAIRsharing.hw3bh2"
+      "fairsharing": "FAIRsharing.hw3bh2",
+      "lov": "time",
+      "zazuko": "time"
     },
     "name": "Time Ontology in OWL",
     "preferred_prefix": "time",
@@ -57143,6 +57299,7 @@
     "homepage": "https://ucum.org",
     "keywords": [
       "data identity and mapping",
+      "general & upper",
       "measurement",
       "subject agnostic",
       "unit"
@@ -57150,7 +57307,8 @@
     "mappings": {
       "bartoc": "1895",
       "fairsharing": "FAIRsharing.27w8k0",
-      "hl7": "2.16.840.1.113883.6.8"
+      "hl7": "2.16.840.1.113883.6.8",
+      "lov": "ucum"
     },
     "name": "Unified Code for Units of Measure",
     "preferred_prefix": "ucum",
@@ -57687,6 +57845,25 @@
       "UPPRO"
     ],
     "uri_format": "http://purl.uniprot.org/annotation/$1"
+  },
+  "uniprot.core": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Properties and classes used for protein annotation",
+    "example": "certain",
+    "homepage": "http://purl.uniprot.org/core/",
+    "keywords": [
+      "biology"
+    ],
+    "mappings": {
+      "lov": "uniprot"
+    },
+    "name": "Uniprot Core Ontology",
+    "preferred_prefix": "uniprot.core"
   },
   "uniprot.disease": {
     "contributor": {
@@ -58444,6 +58621,13 @@
     "description": "This document describes a vocabulary for annotating descriptions of vocabularies with examples and usage notes.",
     "example": "usageNote",
     "homepage": "https://vocab.org/vann/",
+    "keywords": [
+      "metadata"
+    ],
+    "mappings": {
+      "lov": "vann",
+      "zazuko": "vann"
+    },
     "name": "A vocabulary for annotating vocabulary descriptions",
     "preferred_prefix": "vann",
     "uri_format": "https://vocab.org/vann/$1"
@@ -58617,7 +58801,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
     "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
-    "version": "2023-09-28"
+    "version": "2024-01-04"
   },
   "vbrc": {
     "description": "The VBRC provides bioinformatics resources to support scientific research directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae, Flaviviridae, Paramyxoviridae, Poxviridae, and Togaviridae families. The Center consists of a relational database and web application that support the data storage, annotation, analysis, and information exchange goals of this work. Each data release contains the complete genomic sequences for all viral pathogens and related strains that are available for species in the above-named families. In addition to sequence data, the VBRC provides a curation for each virus species, resulting in a searchable, comprehensive mini-review of gene function relating genotype to biological phenotype, with special emphasis on pathogenesis.",
@@ -59529,7 +59713,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "2023-11-17"
+    "version": "2024-01-03"
   },
   "voc4cat": {
     "comment": "The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123 other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123. This is pretty unique and isn't tracked by the Bioregistry currently.",
@@ -59572,8 +59756,13 @@
     "description": "The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary for expressing metadata about RDF datasets. It is intended as a bridge between the publishers and users of RDF data, with applications ranging from data discovery to cataloging and archiving of datasets. This document provides a formal definition of the new RDF classes and properties introduced for VoID. It is a companion to the main specification document for VoID, Describing Linked Datasets with the VoID Vocabulary.",
     "example": "feature",
     "homepage": "http://vocab.deri.ie/void",
+    "keywords": [
+      "metadata"
+    ],
     "mappings": {
-      "biocontext": "void"
+      "biocontext": "void",
+      "lov": "void",
+      "zazuko": "void"
     },
     "name": "Vocabulary of Interlinked Datasets",
     "preferred_prefix": "void",
@@ -59910,7 +60099,7 @@
       "WBbt"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
-    "version": "2023-09-14"
+    "version": "2024-01-04"
   },
   "wbls": {
     "contact": {
@@ -60065,8 +60254,12 @@
     "description": "A vocabulary for representing latitude, longitude and altitude information in the WGS84 geodetic reference datum",
     "example": "latitude",
     "homepage": "https://www.w3.org/2003/01/geo/wgs84_pos",
+    "keywords": [
+      "geography"
+    ],
     "mappings": {
-      "biolink": "wgs"
+      "biolink": "wgs",
+      "lov": "geo"
     },
     "name": "WGS84 Geo Positioning",
     "preferred_prefix": "wgs84",
@@ -61224,8 +61417,13 @@
     "description": "This document describes the XML Schema namespace. It also contains a directory of links to these related resources, using Resource Directory Description Language.",
     "example": "decimal",
     "homepage": "http://www.w3.org/2001/XMLSchema",
+    "keywords": [
+      "w3c rec"
+    ],
     "mappings": {
-      "biocontext": "xsd"
+      "biocontext": "xsd",
+      "lov": "xsd",
+      "zazuko": "xsd"
     },
     "name": "XML Schema Definition",
     "preferred_prefix": "xsd",
@@ -61502,6 +61700,27 @@
       }
     ],
     "uri_format": "http://yeastrc.org/pdr/viewProtein.do?id=$1"
+  },
+  "zazuko": {
+    "contact": {
+      "email": "ktk@netlabs.org",
+      "github": "ktk",
+      "name": "Adrian Gschwend",
+      "orcid": "0000-0002-2079-9636"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This service fills a gap between services like prefix.cc and LOV or looking up the original vocabulary specification. Not all vocabularies (or schema or ontology, whatever you want to call them) provide an HTML view. If you resolve some of the common prefixes all you get back is some RDF serialization which is not ideal. (from <https://prefix.zazuko.com/about>)",
+    "example": "frbr",
+    "homepage": "https://prefix.zazuko.com/",
+    "license": "MIT",
+    "name": "Zazuko Prefix Server",
+    "preferred_prefix": "zazuko",
+    "uri_format": "https://prefix.zazuko.com/prefix/$1:"
   },
   "zea": {
     "contact": {

@@ -754,6 +754,7 @@
 @prefix lonza: <https://knowledge.lonza.com/cell?id=> .
 @prefix loqate: <http://www.weizmann.ac.il/molgen/loqate/gene/view/> .
 @prefix lotus: <https://lotus.naturalproducts.net/compound/lotus_id/> .
+@prefix lov: <https://lov.linkeddata.es/dataset/lov/vocabs/> .
 @prefix lpt: <http://purl.obolibrary.org/obo/LPT_> .
 @prefix lspci: <https://labsyspharm.github.io/lspci/> .
 @prefix lter: <https://vocab.lternet.edu/vocab/vocab/index.php?tema=> .
@@ -1442,6 +1443,7 @@
 @prefix yid: <http://metarray.ucsc.edu/cgi-bin/intron/yirIntrondb?orfName=> .
 @prefix ymdb: <http://www.ymdb.ca/compounds/> .
 @prefix yrcpdr: <http://yeastrc.org/pdr/viewProtein.do?id=> .
+@prefix zazuko: <https://bioregistry.io/metaregistry/zazuko/resolve/> .
 @prefix zeco: <http://purl.obolibrary.org/obo/ZECO_> .
 @prefix zenodo.record: <https://zenodo.org/record/> .
 @prefix zfa: <http://purl.obolibrary.org/obo/ZFA_> .
@@ -14188,8 +14190,11 @@ bioregistry:obo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/OBOFoundry/OBOFoundry.github.io> ;
     skos:exactMatch biocontext:OBO,
-        fairsharing:FAIRsharing.847069 ;
-    dcat:keyword "ontology and terminology" ;
+        fairsharing:FAIRsharing.847069,
+        lov:obo ;
+    dcat:keyword "biology",
+        "health",
+        "ontology and terminology" ;
     foaf:homepage <http://www.obofoundry.org/> ;
     bioregistry.schema:0000005 "uberon"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/$1"^^xsd:string ;
@@ -14234,7 +14239,8 @@ bioregistry:occo a bioregistry.schema:0000001 ;
     dcterms:description "An ontology representing occupations. It is designed to facilitate harmonization of existing occupation standards, such as the US Bureau of Labor Statistics Standard Occupational Classification (US SOC), the International Standard Classification of Occupations (ISCO), the UK National Statistics Standard Occupational Classification (UK SOC), and the European Skills, Competences, Qualifications and Occupations (ESCO) of the European Union."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/Occupation-Ontology/OccO> ;
-    skos:exactMatch ontobee:OCCO,
+    skos:exactMatch aberowl:OCCO,
+        ontobee:OCCO,
         bioportal:OCCO,
         obofoundry:occo ;
     dcat:keyword "obo",
@@ -17793,9 +17799,11 @@ bioregistry:sio a bioregistry.schema:0000001 ;
         biocontext:SIO,
         biolink:SIO,
         fairsharing:FAIRsharing.dpkb5f,
+        lov:sio,
         miriam:sio,
         ols:sio ;
-    dcat:keyword "knowledge representation",
+    dcat:keyword "biology",
+        "knowledge representation",
         "natural science",
         "ontology",
         "subject agnostic" ;
@@ -21175,6 +21183,9 @@ orcid:0000-0003-0443-9902 rdfs:label "Adriano Rutz" ;
 orcid:0000-0003-0533-3368 rdfs:label "Jörg Wicker" ;
     foaf:mbox "admin@envipath.org" .
 
+orcid:0000-0003-0591-6109 rdfs:label "Pierre-Yves Vandenbussche" ;
+    foaf:mbox "py.vandenbussche@gmail.com" .
+
 orcid:0000-0003-0595-5271 rdfs:label "Vilma Hualla Mamani" ;
     foaf:mbox "helpdesk@cropontology-curationtool.org" .
 
@@ -21759,6 +21770,8 @@ aberowl:OBCS dcterms:isPartOf bioregistry.registry:aberowl .
 aberowl:OBI dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:OBIB dcterms:isPartOf bioregistry.registry:aberowl .
+
+aberowl:OCCO dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:OGG dcterms:isPartOf bioregistry.registry:aberowl .
 
@@ -28004,6 +28017,60 @@ rrid:VDRC dcterms:isPartOf bioregistry.registry:rrid .
 
 rrid:ZIRC dcterms:isPartOf bioregistry.registry:rrid .
 
+zazuko:bibo dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:cc dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:dbo dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:dc11 dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:dcat dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:dcterms dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:doap dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:foaf dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:frbr dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:m4i dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:oa dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:owl dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:prov dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:qb dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:qudt dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:rdf dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:rdfa dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:rdfs dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:schema dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:sh dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:shex dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:skos dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:skosxl dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:time dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:vann dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:void dcterms:isPartOf bioregistry.registry:zazuko .
+
+zazuko:xsd dcterms:isPartOf bioregistry.registry:zazuko .
+
 bioregistry:4dn.replicate a bioregistry.schema:0000001 ;
     rdfs:label "4D Nucleome Data Portal Experiment Replicate" ;
     dcterms:description "Database portal containing replicate experiments of different assays and samples"^^xsd:string ;
@@ -28071,6 +28138,8 @@ bioregistry:adms a bioregistry.schema:0000001 ;
     dcterms:description "A vocabulary for describing semantic assets, defined as highly reusable metadata (e.g. XML1 schemata, generic data models) and reference data (e.g. code lists, taxonomies, dictionaries, vocabularies)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/SEMICeu/ADMS/> ;
+    skos:exactMatch lov:adms ;
+    dcat:keyword "metadata" ;
     foaf:homepage <http://www.w3.org/ns/adms> ;
     bioregistry.schema:0000005 "Asset"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/adms#$1"^^xsd:string ;
@@ -28175,7 +28244,7 @@ bioregistry:afo a bioregistry.schema:0000001 ;
         "ontology",
         "veterinary medicine" ;
     foaf:homepage <https://www.allotrope.org/> ;
-    bioregistry.schema:0000010 <http://purl.allotrope.org/voc/afo/merged/REC/2023/09/merged-without-qudt-and-inferred> ;
+    bioregistry.schema:0000010 <http://purl.allotrope.org/voc/afo/merged/REC/2023/12/merged-without-qudt-and-inferred> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Allotrope Foundation" ;
             foaf:mbox "more.info@allotrope.org" ] ;
@@ -29063,7 +29132,10 @@ bioregistry:cc a bioregistry.schema:0000001 ;
     rdfs:label "Creative Commons Rights Expression Language" ;
     dcterms:description " The Creative Commons Rights Expression Language (ccREL) lets you describe copyright licenses in RDF. For more information on describing licenses in RDF and attaching those descriptions to digital works, see [ccREL](https://wiki.creativecommons.org/CC_REL) in the [Creative Commons wiki](https://wiki.creativecommons.org/)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch aberowl:CC ;
+    skos:exactMatch aberowl:CC,
+        zazuko:cc,
+        lov:cc ;
+    dcat:keyword "metadata" ;
     foaf:homepage <https://creativecommons.org/ns> ;
     bioregistry.schema:0000005 "Work"^^xsd:string ;
     bioregistry.schema:0000006 "https://creativecommons.org/ns#$1"^^xsd:string ;
@@ -29902,6 +29974,7 @@ bioregistry:dbo a bioregistry.schema:0000001 ;
     rdfs:label "DBPedia Ontology" ;
     dcterms:description "This ontology is generated from the manually created specifications in the dbpedia mappings wiki. each release of this ontology corresponds to a new release of the dbpedia data set which contains instance data extracted from the different language versions of wikipedia. for information regarding changes in this ontology, please refer to the dbpedia mappings wiki."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch zazuko:dbo ;
     dcat:keyword "dbpedia",
         "ontology" ;
     foaf:homepage <https://dbpedia.org/ontology> ;
@@ -33212,8 +33285,12 @@ bioregistry:m4i a bioregistry.schema:0000001 ;
     doap:GitRepository <https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing/> ;
     skos:exactMatch wikidata:Q111516803,
         bartoc:20402,
-        fairsharing:FAIRsharing.f8b3ec ;
-    dcat:keyword "engineering science",
+        zazuko:m4i,
+        fairsharing:FAIRsharing.f8b3ec,
+        lov:m4i ;
+    dcat:keyword "academy",
+        "engineering science",
+        "metadata",
         "ontology" ;
     foaf:homepage <https://w3id.org/nfdi4ing/metadata4ing/> ;
     bioregistry.schema:0000005 "Method"^^xsd:string ;
@@ -34229,6 +34306,8 @@ bioregistry:odrl a bioregistry.schema:0000001 ;
     rdfs:label "Open Digital Rights Language Ontology" ;
     dcterms:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch lov:odrl ;
+    dcat:keyword "metadata" ;
     foaf:homepage <http://www.w3.org/ns/odrl/2> ;
     bioregistry.schema:0000005 "assetConcepts"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/odrl/2/$1"^^xsd:string ;
@@ -35337,6 +35416,9 @@ bioregistry:rdfa a bioregistry.schema:0000001 ;
     rdfs:label "RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting" ;
     dcterms:description "RDFa Core is a specification for attributes to express structured data in any markup language. The embedded data already available in the markup language (e.g., HTML) can often be reused by the RDFa markup, so that publishers don't need to repeat significant data in the document content. (from https://www.w3.org/TR/rdfa-core/)"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch zazuko:rdfa,
+        lov:rdfa ;
+    dcat:keyword "rdf" ;
     foaf:homepage <http://www.w3.org/ns/rdfa> ;
     bioregistry.schema:0000005 "PrefixOrTermMapping"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/rdfa#$1"^^xsd:string ;
@@ -35906,6 +35988,9 @@ bioregistry:seo a bioregistry.schema:0000001 ;
     rdfs:label "Scientific Event Ontology" ;
     dcterms:description "SEO is a reference ontology for modelling data about scientific events such as conferences, symposioums and workshops."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch lov:seo ;
+    dcat:keyword "academy",
+        "events" ;
     foaf:homepage <https://w3id.org/seo> ;
     bioregistry.schema:0000005 "Symposium"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/seo#$1"^^xsd:string ;
@@ -36457,13 +36542,16 @@ bioregistry:time a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/w3c/sdw/> ;
     skos:exactMatch aberowl:TIME,
         bioportal:TIME,
-        fairsharing:FAIRsharing.hw3bh2 ;
+        zazuko:time,
+        fairsharing:FAIRsharing.hw3bh2,
+        lov:time ;
     dcat:keyword "data coordination",
         "data model",
         "metadata standardization",
         "ontology",
         "resource metadata",
-        "subject agnostic" ;
+        "subject agnostic",
+        "time" ;
     foaf:homepage <https://www.w3.org/TR/owl-time/> ;
     bioregistry.schema:0000005 "DateTimeDescription"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2006/time#$1"^^xsd:string ;
@@ -36745,6 +36833,17 @@ bioregistry:uniprot.chain a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.uniprot.org/annotation/"^^xsd:string ;
     bioregistry.schema:0000027 uniprot.chain:PRO_0000016681 ;
     bioregistry.schema:0000029 "uniprot.chain" .
+
+bioregistry:uniprot.core a bioregistry.schema:0000001 ;
+    rdfs:label "Uniprot Core Ontology" ;
+    dcterms:description "Properties and classes used for protein annotation"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch lov:uniprot ;
+    dcat:keyword "biology" ;
+    foaf:homepage <http://purl.uniprot.org/core/> ;
+    bioregistry.schema:0000005 "certain"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "uniprot.core" .
 
 bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Isoform" ;
@@ -37036,7 +37135,9 @@ bioregistry:wgs84 a bioregistry.schema:0000001 ;
     rdfs:label "WGS84 Geo Positioning" ;
     dcterms:description "A vocabulary for representing latitude, longitude and altitude information in the WGS84 geodetic reference datum"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch biolink:wgs ;
+    skos:exactMatch biolink:wgs,
+        lov:geo ;
+    dcat:keyword "geography" ;
     foaf:homepage <https://www.w3.org/2003/01/geo/wgs84_pos> ;
     bioregistry.schema:0000005 "latitude"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2003/01/geo/wgs84_pos#$1"^^xsd:string ;
@@ -37265,6 +37366,19 @@ bioregistry:xuo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:hsapdv ;
     bioregistry.schema:0000029 "xuo" .
+
+bioregistry:zazuko a bioregistry.schema:0000001 ;
+    rdfs:label "Zazuko Prefix Server" ;
+    dcterms:description "This service fills a gap between services like prefix.cc and LOV or looking up the original vocabulary specification. Not all vocabularies (or schema or ontology, whatever you want to call them) provide an HTML view. If you resolve some of the common prefixes all you get back is some RDF serialization which is not ideal. (from <https://prefix.zazuko.com/about>)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://prefix.zazuko.com/> ;
+    bioregistry.schema:0000005 "frbr"^^xsd:string ;
+    bioregistry.schema:0000006 "https://prefix.zazuko.com/prefix/$1:"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2079-9636 ;
+    bioregistry.schema:0000024 "https://bioregistry.io/zazuko:"^^xsd:string ;
+    bioregistry.schema:0000027 <https://prefix.zazuko.com/prefix/frbr:> ;
+    bioregistry.schema:0000029 "zazuko" .
 
 bioregistry:zeco a bioregistry.schema:0000001 ;
     rdfs:label "Zebrafish Experimental Conditions Ontology" ;
@@ -38700,6 +38814,100 @@ fairsharing:FAIRsharing.zx2ztd dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.zzgvrv dcterms:isPartOf bioregistry.registry:fairsharing .
 
+lov:adms dcterms:isPartOf bioregistry.registry:lov .
+
+lov:bibo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:biro dcterms:isPartOf bioregistry.registry:lov .
+
+lov:c4o dcterms:isPartOf bioregistry.registry:lov .
+
+lov:cc dcterms:isPartOf bioregistry.registry:lov .
+
+lov:cito dcterms:isPartOf bioregistry.registry:lov .
+
+lov:dcat dcterms:isPartOf bioregistry.registry:lov .
+
+lov:dce dcterms:isPartOf bioregistry.registry:lov .
+
+lov:dcterms dcterms:isPartOf bioregistry.registry:lov .
+
+lov:deo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:doap dcterms:isPartOf bioregistry.registry:lov .
+
+lov:doco dcterms:isPartOf bioregistry.registry:lov .
+
+lov:fabio dcterms:isPartOf bioregistry.registry:lov .
+
+lov:faldo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:foaf dcterms:isPartOf bioregistry.registry:lov .
+
+lov:frapo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:frbr dcterms:isPartOf bioregistry.registry:lov .
+
+lov:frbrer dcterms:isPartOf bioregistry.registry:lov .
+
+lov:geo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:m4i dcterms:isPartOf bioregistry.registry:lov .
+
+lov:oa dcterms:isPartOf bioregistry.registry:lov .
+
+lov:obo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:odrl dcterms:isPartOf bioregistry.registry:lov .
+
+lov:oslc dcterms:isPartOf bioregistry.registry:lov .
+
+lov:owl dcterms:isPartOf bioregistry.registry:lov .
+
+lov:pav dcterms:isPartOf bioregistry.registry:lov .
+
+lov:prov dcterms:isPartOf bioregistry.registry:lov .
+
+lov:pwo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:qb dcterms:isPartOf bioregistry.registry:lov .
+
+lov:qudt dcterms:isPartOf bioregistry.registry:lov .
+
+lov:rdf dcterms:isPartOf bioregistry.registry:lov .
+
+lov:rdfa dcterms:isPartOf bioregistry.registry:lov .
+
+lov:rdfs dcterms:isPartOf bioregistry.registry:lov .
+
+lov:schema dcterms:isPartOf bioregistry.registry:lov .
+
+lov:scoro dcterms:isPartOf bioregistry.registry:lov .
+
+lov:seo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:sh dcterms:isPartOf bioregistry.registry:lov .
+
+lov:sio dcterms:isPartOf bioregistry.registry:lov .
+
+lov:skos dcterms:isPartOf bioregistry.registry:lov .
+
+lov:skosxl dcterms:isPartOf bioregistry.registry:lov .
+
+lov:swrl dcterms:isPartOf bioregistry.registry:lov .
+
+lov:time dcterms:isPartOf bioregistry.registry:lov .
+
+lov:ucum dcterms:isPartOf bioregistry.registry:lov .
+
+lov:uniprot dcterms:isPartOf bioregistry.registry:lov .
+
+lov:vann dcterms:isPartOf bioregistry.registry:lov .
+
+lov:void dcterms:isPartOf bioregistry.registry:lov .
+
+lov:xsd dcterms:isPartOf bioregistry.registry:lov .
+
 orcid:0000-0001-5084-9000 rdfs:label "Luana Licata" ;
     foaf:mbox "luana.licata@gmail.com" .
 
@@ -38784,6 +38992,9 @@ orcid:0000-0002-1798-9797 rdfs:label "Jeff Beck" ;
 
 orcid:0000-0002-1810-9886 rdfs:label "David Blackburn" ;
     foaf:mbox "david.c.blackburn@gmail.com" .
+
+orcid:0000-0002-2079-9636 rdfs:label "Adrian Gschwend" ;
+    foaf:mbox "ktk@netlabs.org" .
 
 orcid:0000-0002-2244-7917 rdfs:label "Ceri Van Slyke" ;
     foaf:mbox "van_slyke@zfin.org" .
@@ -43180,7 +43391,10 @@ bioregistry:bibo a bioregistry.schema:0000001 ;
     rdfs:label "The Bibliographic Ontology" ;
     dcterms:description "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    dcat:keyword "bibliometrics" ;
+    skos:exactMatch zazuko:bibo,
+        lov:bibo ;
+    dcat:keyword "bibliometrics",
+        "catalogs" ;
     foaf:homepage <https://bibliontology.com/> ;
     bioregistry.schema:0000005 "authorList"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/ontology/bibo/$1"^^xsd:string ;
@@ -43254,11 +43468,13 @@ bioregistry:biro a bioregistry.schema:0000001 ;
     dcterms:description "An ontology meant to define bibliographic records, bibliographic references, and their compilation into bibliographic collections and bibliographic lists, respectively."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/biro> ;
-    skos:exactMatch fairsharing:FAIRsharing.99da5f ;
+    skos:exactMatch fairsharing:FAIRsharing.99da5f,
+        lov:biro ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
         "report",
+        "spar",
         "subject agnostic" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/biro> ;
     bioregistry.schema:0000005 "BibliographicRecord"^^xsd:string ;
@@ -43305,11 +43521,13 @@ bioregistry:c4o a bioregistry.schema:0000001 ;
     dcterms:description "An ontology that permits the number of in-text citations of a cited source to be recorded, together with their textual citation contexts, along with the number of citations a cited entity has received globally on a particular date."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/c4o> ;
-    skos:exactMatch fairsharing:FAIRsharing.beb855 ;
+    skos:exactMatch fairsharing:FAIRsharing.beb855,
+        lov:c4o ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
         "report",
+        "spar",
         "subject agnostic" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/c4o> ;
     bioregistry.schema:0000005 "InTextReferencePointer"^^xsd:string ;
@@ -43416,10 +43634,12 @@ bioregistry:cito a bioregistry.schema:0000001 ;
     dcterms:description "An ontology that enables characterization of the nature or type of citations, both factually and rhetorically."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/cito> ;
-    skos:exactMatch fairsharing:FAIRsharing.b220d4 ;
+    skos:exactMatch fairsharing:FAIRsharing.b220d4,
+        lov:cito ;
     dcat:keyword "citation",
         "data model",
-        "knowledge and information systems" ;
+        "knowledge and information systems",
+        "spar" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/cito> ;
     bioregistry.schema:0000005 "sharesAuthorInstitutionWith"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/spar/cito/$1"^^xsd:string ;
@@ -43792,11 +44012,14 @@ bioregistry:dc a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:dcelements,
         bioportal:DC,
         biocontext:dc,
+        zazuko:dc11,
         fairsharing:FAIRsharing.3nx7t,
+        lov:dce,
         ols:dc ;
     dcat:keyword "annotation",
         "biomedical science",
         "life science",
+        "metadata",
         "metadata standardization",
         "ontology",
         "resource metadata",
@@ -43823,10 +44046,13 @@ bioregistry:dcat a bioregistry.schema:0000001 ;
         bioportal:DCAT,
         biocontext:dcat,
         biolink:dcat,
-        fairsharing:FAIRsharing.h4j3qm ;
+        zazuko:dcat,
+        fairsharing:FAIRsharing.h4j3qm,
+        lov:dcat ;
     dcat:keyword "data management",
         "ontology",
-        "subject agnostic" ;
+        "subject agnostic",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/ns/dcat> ;
     bioregistry.schema:0000005 "Dataset"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/dcat#$1"^^xsd:string ;
@@ -43845,9 +44071,12 @@ bioregistry:dcterms a bioregistry.schema:0000001 ;
         bioportal:DCTERMS,
         biocontext:dcterms,
         biolink:dct,
+        zazuko:dcterms,
         fairsharing:FAIRsharing.9vtwjs,
+        lov:dcterms,
         ols:dcterms ;
-    dcat:keyword "metadata standardization",
+    dcat:keyword "metadata",
+        "metadata standardization",
         "ontology",
         "resource metadata",
         "subject agnostic" ;
@@ -43882,11 +44111,13 @@ bioregistry:deo a bioregistry.schema:0000001 ;
     dcterms:description "An ontology that provides a structured vocabulary for rhetorical elements within documents (e.g., Introduction, Discussion, Acknowledgements, Reference List, Figures, Appendix). It is imported by DoCO."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/deo> ;
-    skos:exactMatch fairsharing:FAIRsharing.39fd58 ;
+    skos:exactMatch fairsharing:FAIRsharing.39fd58,
+        lov:deo ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
         "report",
+        "spar",
         "subject agnostic" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/deo> ;
     bioregistry.schema:0000005 "Reference"^^xsd:string ;
@@ -43958,9 +44189,12 @@ bioregistry:doap a bioregistry.schema:0000001 ;
     dcterms:description "DOAP is a project to create an XML/RDF vocabulary to describe software projects, and in particular open source projects."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/ewilderj/doap> ;
+    skos:exactMatch zazuko:doap,
+        lov:doap ;
     dcat:keyword "metadata",
         "rdf",
-        "semantic web" ;
+        "semantic web",
+        "society" ;
     foaf:homepage <https://github.com/ewilderj/doap/wiki> ;
     bioregistry.schema:0000005 "Project"^^xsd:string ;
     bioregistry.schema:0000006 "http://usefulinc.com/ns/doap#$1"^^xsd:string ;
@@ -43976,11 +44210,13 @@ bioregistry:doco a bioregistry.schema:0000001 ;
     dcterms:description "An ontology that provides a structured vocabulary written of document components, both structural (e.g., block, inline, paragraph, section, chapter) and rhetorical (e.g., introduction, discussion, acknowledgements, reference list, figure, appendix)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/doco> ;
-    skos:exactMatch fairsharing:FAIRsharing.162003 ;
+    skos:exactMatch fairsharing:FAIRsharing.162003,
+        lov:doco ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
         "report",
+        "spar",
         "subject agnostic" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/doco> ;
     bioregistry.schema:0000005 "Paragraph"^^xsd:string ;
@@ -44325,7 +44561,8 @@ bioregistry:fabio a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/sparontologies/fabio> ;
     skos:exactMatch aberowl:FaBiO,
         biolink:fabio,
-        fairsharing:FAIRsharing.2f3180 ;
+        fairsharing:FAIRsharing.2f3180,
+        lov:fabio ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
@@ -44333,6 +44570,7 @@ bioregistry:fabio a bioregistry.schema:0000001 ;
         "protocol",
         "publication",
         "report",
+        "spar",
         "subject agnostic" ;
     foaf:homepage <https://github.com/sparontologies/fabio> ;
     bioregistry.schema:0000005 "d4e2515"^^xsd:string ;
@@ -44383,10 +44621,12 @@ bioregistry:faldo a bioregistry.schema:0000001 ;
         agroportal:FALDO,
         bioportal:FALDO,
         biocontext:faldo,
-        fairsharing:FAIRsharing.haxp7g ;
+        fairsharing:FAIRsharing.haxp7g,
+        lov:faldo ;
     dcat:keyword "binding site",
         "gene feature",
         "genetics",
+        "geography",
         "nucleic acid sequence",
         "ontology",
         "sequence annotation",
@@ -44439,8 +44679,11 @@ bioregistry:foaf a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:foaf,
         bioportal:FOAF,
         biocontext:foaf,
-        biolink:foaf ;
-    dcat:keyword "ontology" ;
+        biolink:foaf,
+        zazuko:foaf,
+        lov:foaf ;
+    dcat:keyword "ontology",
+        "people" ;
     foaf:homepage <http://xmlns.com/foaf/spec/> ;
     bioregistry.schema:0000005 "familyName"^^xsd:string ;
     bioregistry.schema:0000006 "http://xmlns.com/foaf/0.1/$1"^^xsd:string ;
@@ -44516,8 +44759,10 @@ bioregistry:frapo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/frapo> ;
     skos:exactMatch aberowl:FRAPO,
-        fairsharing:FAIRsharing.0a2576 ;
-    dcat:keyword "data model",
+        fairsharing:FAIRsharing.0a2576,
+        lov:frapo ;
+    dcat:keyword "academy",
+        "data model",
         "funding bodies",
         "grant application",
         "report",
@@ -44538,10 +44783,13 @@ bioregistry:frbr a bioregistry.schema:0000001 ;
     dcterms:hasPart bioregistry:frbrer ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/frbr> ;
-    skos:exactMatch fairsharing:FAIRsharing.b34b43 ;
+    skos:exactMatch zazuko:frbr,
+        fairsharing:FAIRsharing.b34b43,
+        lov:frbr ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
+        "frbr",
         "report",
         "subject agnostic" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/frbr> ;
@@ -44558,6 +44806,8 @@ bioregistry:frbrer a bioregistry.schema:0000001 ;
     dcterms:description "This is the element set of native RDF classes and properties described in the current text (Feb 2009) of the Functional Requirements for Bibliographic Records (FRBR) entity-relationship model. (from https://www.iflastandards.info/fr/frbr/frbrer.html)"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry,
         bioregistry:frbr ;
+    skos:exactMatch lov:frbrer ;
+    dcat:keyword "frbr" ;
     foaf:homepage <https://www.iflastandards.info/fr/frbr/frbrer> ;
     bioregistry.schema:0000005 "1001"^^xsd:string ;
     bioregistry.schema:0000006 "http://iflastandards.info/ns/fr/frbr/frbrer/$1"^^xsd:string ;
@@ -45952,8 +46202,11 @@ bioregistry:oa a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch aberowl:OA,
         bioportal:OA,
-        biocontext:oa ;
-    dcat:keyword "ontology" ;
+        biocontext:oa,
+        zazuko:oa,
+        lov:oa ;
+    dcat:keyword "ontology",
+        "quality" ;
     foaf:homepage <http://www.w3.org/ns/oa> ;
     bioregistry.schema:0000005 "sourceDateStart"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/oa#$1"^^xsd:string ;
@@ -46092,6 +46345,8 @@ bioregistry:oslc a bioregistry.schema:0000001 ;
     rdfs:label "OASIS Open Services for Lifecycle Collaboration Core Vocabulary" ;
     dcterms:description "Core Vocabulary defines the OSLC Core RDF vocabulary terms and resources, that have broad applicability across various domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch lov:oslc ;
+    dcat:keyword "plm" ;
     foaf:homepage <http://open-services.net/ns/core> ;
     bioregistry.schema:0000005 "Property"^^xsd:string ;
     bioregistry.schema:0000006 "http://open-services.net/ns/core#$1"^^xsd:string ;
@@ -46217,10 +46472,12 @@ bioregistry:pav a bioregistry.schema:0000001 ;
         bioportal:PAV,
         biocontext:pav,
         biolink:pav,
-        fairsharing:FAIRsharing.nbfwwv ;
+        fairsharing:FAIRsharing.nbfwwv,
+        lov:pav ;
     dcat:keyword "citation",
         "data management",
         "ontology",
+        "quality",
         "resource metadata",
         "subject agnostic" ;
     foaf:homepage <https://pav-ontology.github.io/pav/> ;
@@ -46370,8 +46627,11 @@ bioregistry:prov a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:PROV,
         biocontext:prov,
         biolink:prov,
+        zazuko:prov,
+        lov:prov,
         ols:prov ;
-    dcat:keyword "ontology" ;
+    dcat:keyword "ontology",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/ns/prov> ;
     bioregistry.schema:0000005 "Activity"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/prov#$1"^^xsd:string ;
@@ -46482,11 +46742,13 @@ bioregistry:pwo a bioregistry.schema:0000001 ;
     dcterms:description "An ontology for describing the steps in the workflow associated with the publication of a document or other publication entity."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/pwo> ;
-    skos:exactMatch fairsharing:FAIRsharing.c4e46c ;
+    skos:exactMatch fairsharing:FAIRsharing.c4e46c,
+        lov:pwo ;
     dcat:keyword "bibliography",
         "citation",
         "data model",
         "report",
+        "spar",
         "subject agnostic" ;
     foaf:homepage <http://www.sparontologies.net/ontologies/pwo> ;
     bioregistry.schema:0000005 "Workflow"^^xsd:string ;
@@ -46502,6 +46764,10 @@ bioregistry:qb a bioregistry.schema:0000001 ;
     dcterms:description "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <UKGovLD/publishing-statistical-data> ;
+    skos:exactMatch zazuko:qb,
+        lov:qb ;
+    dcat:keyword "methods",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/TR/vocab-data-cube> ;
     bioregistry.schema:0000005 "Observation"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/linked-data/cube#$1"^^xsd:string ;
@@ -46521,9 +46787,12 @@ bioregistry:qudt a bioregistry.schema:0000001 ;
         bartoc:18206,
         bioportal:QUDT,
         biolink:qud,
-        fairsharing:FAIRsharing.d3pqw7 ;
+        zazuko:qudt,
+        fairsharing:FAIRsharing.d3pqw7,
+        lov:qudt ;
     dcat:keyword "astrophysics and astronomy",
         "experimental measurement",
+        "methods",
         "ontology",
         "unit" ;
     foaf:homepage <https://qudt.org> ;
@@ -46576,9 +46845,12 @@ bioregistry:rdf a bioregistry.schema:0000001 ;
     dcterms:description "This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace, defined in RDF 1.1 Concepts"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:rdf,
-        fairsharing:FAIRsharing.p77ph9 ;
+        zazuko:rdf,
+        fairsharing:FAIRsharing.p77ph9,
+        lov:rdf ;
     dcat:keyword "computer science",
-        "subject agnostic" ;
+        "subject agnostic",
+        "w3c rec" ;
     foaf:homepage <http://www.w3.org/1999/02/22-rdf-syntax-ns> ;
     bioregistry.schema:0000005 "RDF"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"^^xsd:string ;
@@ -46694,9 +46966,12 @@ bioregistry:schema a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:SCHEMAORG,
         bioportal:SCHEMA,
         biolink:schema,
+        zazuko:schema,
         fairsharing:FAIRsharing.hzdzq8,
+        lov:schema,
         ols:schemaorg_http ;
     dcat:keyword "computer science",
+        "general & upper",
         "ontology",
         "subject agnostic" ;
     foaf:homepage <https://schema.org> ;
@@ -46716,8 +46991,10 @@ bioregistry:scoro a bioregistry.schema:0000001 ;
     dcterms:description "An ontology based on PRO for describing the contributions that may be made, and the roles that may be held by a person with respect to a journal article or other publication (e.g. the role of article guarantor or illustrator)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/sparontologies/scoro> ;
-    skos:exactMatch fairsharing:FAIRsharing.c86b48 ;
-    dcat:keyword "bibliography",
+    skos:exactMatch fairsharing:FAIRsharing.c86b48,
+        lov:scoro ;
+    dcat:keyword "academy",
+        "bibliography",
         "citation",
         "data model",
         "report",
@@ -46736,11 +47013,15 @@ bioregistry:sh a bioregistry.schema:0000001 ;
     dcterms:description "A language for validating RDF graphs against a set of conditions"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/w3c/data-shapes> ;
-    skos:exactMatch fairsharing:FAIRsharing.f1449d ;
+    skos:exactMatch zazuko:sh,
+        fairsharing:FAIRsharing.f1449d,
+        lov:sh ;
     dcat:keyword "informatics",
         "knowledge and information systems",
         "ontology",
-        "ontology and terminology" ;
+        "ontology and terminology",
+        "quality",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/TR/shacl/> ;
     bioregistry.schema:0000005 "NodeShape"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/shacl#$1"^^xsd:string ;
@@ -46812,6 +47093,7 @@ bioregistry:shex a bioregistry.schema:0000001 ;
     dcterms:description "The Shape Expressions (ShEx) language describes RDF nodes and graph structures. A node constraint describes an RDF node (IRI, blank node or literal) and a shape describes the triples involving nodes in an RDF graph. These descriptions identify predicates and their associated cardinalities and datatypes. ShEx shapes can be used to communicate data structures associated with some process or interface, generate or validate data, or drive user interfaces."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/shexspec/shexspec.github.io> ;
+    skos:exactMatch zazuko:shex ;
     dcat:keyword "metadata",
         "rdf",
         "semantic web" ;
@@ -46845,10 +47127,13 @@ bioregistry:skos a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch aberowl:skos,
         biocontext:skos,
+        zazuko:skos,
         fairsharing:FAIRsharing.48e326,
+        lov:skos,
         ols:skos ;
     dcat:keyword "ontology",
-        "subject agnostic" ;
+        "subject agnostic",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/2004/02/skos/> ;
     bioregistry.schema:0000005 "prefLabel"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2004/02/skos/core#$1"^^xsd:string ;
@@ -46863,10 +47148,13 @@ bioregistry:skosxl a bioregistry.schema:0000001 ;
     rdfs:label "Simple Knowledge Organization System eXtension for Labels" ;
     dcterms:description "The Simple Knowledge Organization System (SKOS) is a common data model for sharing and linking knowledge organization systems via the Semantic Web. SKOS-XL defines an extension for the Simple Knowledge Organization System, providing additional support for describing and linking lexical entities.This document provides a brief description of the SKOS-XL vocabulary."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch zazuko:skosxl,
+        lov:skosxl ;
     dcat:keyword "data model",
         "metadata",
         "semantic web",
-        "skos" ;
+        "skos",
+        "w3c rec" ;
     foaf:homepage skosxl: ;
     bioregistry.schema:0000005 "literalForm"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2008/05/skos-xl#$1"^^xsd:string ;
@@ -47028,6 +47316,8 @@ bioregistry:swrl a bioregistry.schema:0000001 ;
     rdfs:label "A Semantic Web Rule Language Combining OWL and RuleML" ;
     dcterms:description "SWRL enables Horn-like rules to be combined with an OWL knowledge base."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch lov:swrl ;
+    dcat:keyword "vocabularies" ;
     foaf:homepage <https://www.w3.org/2003/11/swrl#> ;
     bioregistry.schema:0000005 "Variable"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2003/11/swrl#$1"^^xsd:string ;
@@ -47106,8 +47396,10 @@ bioregistry:ucum a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/ucum-org/ucum> ;
     skos:exactMatch oid:2.16.840.1.113883.6.8,
         bartoc:1895,
-        fairsharing:FAIRsharing.27w8k0 ;
+        fairsharing:FAIRsharing.27w8k0,
+        lov:ucum ;
     dcat:keyword "data identity and mapping",
+        "general & upper",
         "measurement",
         "subject agnostic",
         "unit" ;
@@ -47259,6 +47551,9 @@ bioregistry:vann a bioregistry.schema:0000001 ;
     rdfs:label "A vocabulary for annotating vocabulary descriptions" ;
     dcterms:description "This document describes a vocabulary for annotating descriptions of vocabularies with examples and usage notes."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch zazuko:vann,
+        lov:vann ;
+    dcat:keyword "metadata" ;
     foaf:homepage vann1: ;
     bioregistry.schema:0000005 "usageNote"^^xsd:string ;
     bioregistry.schema:0000006 "https://vocab.org/vann/$1"^^xsd:string ;
@@ -47348,7 +47643,10 @@ bioregistry:void a bioregistry.schema:0000001 ;
     rdfs:label "Vocabulary of Interlinked Datasets" ;
     dcterms:description "The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary for expressing metadata about RDF datasets. It is intended as a bridge between the publishers and users of RDF data, with applications ranging from data discovery to cataloging and archiving of datasets. This document provides a formal definition of the new RDF classes and properties introduced for VoID. It is a companion to the main specification document for VoID, Describing Linked Datasets with the VoID Vocabulary."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch biocontext:void ;
+    skos:exactMatch biocontext:void,
+        zazuko:void,
+        lov:void ;
+    dcat:keyword "metadata" ;
     foaf:homepage <http://vocab.deri.ie/void> ;
     bioregistry.schema:0000005 "feature"^^xsd:string ;
     bioregistry.schema:0000006 "http://rdfs.org/ns/void#$1"^^xsd:string ;
@@ -47429,7 +47727,10 @@ bioregistry:xsd a bioregistry.schema:0000001 ;
     rdfs:label "XML Schema Definition" ;
     dcterms:description "This document describes the XML Schema namespace. It also contains a directory of links to these related resources, using Resource Directory Description Language."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch biocontext:xsd ;
+    skos:exactMatch biocontext:xsd,
+        zazuko:xsd,
+        lov:xsd ;
+    dcat:keyword "w3c rec" ;
     foaf:homepage <http://www.w3.org/2001/XMLSchema> ;
     bioregistry.schema:0000005 "decimal"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2001/XMLSchema#$1"^^xsd:string ;
@@ -48125,13 +48426,16 @@ bioregistry:owl a bioregistry.schema:0000001 ;
     dcterms:description "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages. "^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:owl,
+        zazuko:owl,
         fairsharing:FAIRsharing.atygwy,
+        lov:owl,
         ols:owl ;
     dcat:keyword "computer science",
         "informatics",
         "ontology",
         "ontology and terminology",
-        "subject agnostic" ;
+        "subject agnostic",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/TR/owl-features/> ;
     bioregistry.schema:0000005 "Ontology"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2002/07/owl#$1"^^xsd:string ;
@@ -48247,13 +48551,16 @@ bioregistry:rdfs a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:RDFS,
         bioportal:RDFS,
         biocontext:rdfs,
+        zazuko:rdfs,
         fairsharing:FAIRsharing.v9n3gk,
+        lov:rdfs,
         ols:rdfs ;
     dcat:keyword "bioinformatics",
         "life science",
         "linguistics",
         "ontology",
-        "ontology and terminology" ;
+        "ontology and terminology",
+        "w3c rec" ;
     foaf:homepage <https://www.w3.org/TR/rdf-schema/> ;
     bioregistry.schema:0000005 "label"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2000/01/rdf-schema#$1"^^xsd:string ;
@@ -50728,6 +51035,42 @@ bioregistry.registry:rrid a bioregistry.schema:0000002 ;
     bioregistry.schema:0000007 "https://scicrunch.org/resolver/RRID:$1_$2" ;
     bioregistry.schema:0000019 orcid:0000-0002-5497-0243 .
 
+bioregistry.registry:zazuko a bioregistry.schema:0000002 ;
+    rdfs:label "Zazuko Prefix Server" ;
+    dc:description "This service fills a gap between services like prefix.cc and LOV or looking up the original vocabulary specification. Not all vocabularies (or schema or ontology, whatever you want to call them) provide an HTML view. If you resolve some of the common prefixes all you get back is some RDF serialization which is not ideal. (from <https://prefix.zazuko.com/about>)" ;
+    dcterms:hasPart zazuko:bibo,
+        zazuko:cc,
+        zazuko:dbo,
+        zazuko:dc11,
+        zazuko:dcat,
+        zazuko:dcterms,
+        zazuko:doap,
+        zazuko:foaf,
+        zazuko:frbr,
+        zazuko:m4i,
+        zazuko:oa,
+        zazuko:owl,
+        zazuko:prov,
+        zazuko:qb,
+        zazuko:qudt,
+        zazuko:rdf,
+        zazuko:rdfa,
+        zazuko:rdfs,
+        zazuko:schema,
+        zazuko:sh,
+        zazuko:shex,
+        zazuko:skos,
+        zazuko:skosxl,
+        zazuko:time,
+        zazuko:vann,
+        zazuko:void,
+        zazuko:xsd ;
+    foaf:homepage "https://prefix.zazuko.com/" ;
+    bioregistry.schema:0000005 "frbr" ;
+    bioregistry.schema:0000006 "https://prefix.zazuko.com/prefix/$1:" ;
+    bioregistry.schema:0000007 "https://prefix.zazuko.com/$1:$2" ;
+    bioregistry.schema:0000019 orcid:0000-0002-2079-9636 .
+
 bioregistry:uberon a bioregistry.schema:0000001 ;
     rdfs:label "Uber Anatomy Ontology" ;
     dcterms:description "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data."^^xsd:string ;
@@ -51075,6 +51418,61 @@ bioregistry.registry:hl7 a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://oid-info.com/get/$1" ;
     bioregistry.schema:0000019 [ rdfs:label "W. Ted Klein" ;
             foaf:mbox "ted@tklein.com" ] .
+
+bioregistry.registry:lov a bioregistry.schema:0000002 ;
+    rdfs:label "Linked Open Vocabularies" ;
+    dc:description "A vocabulary in LOV gathers definitions of a set of classes and properties (together simply called terms of the vocabulary), useful to describe specific types of things, or things in a given domain or industry, or things at large but for a specific usage. Terms of vocabularies also provide the links in linked data, in the above case between a Person and a City. The definitions of terms provided by the vocabularies bring clear semantics to descriptions and links, thanks to the formal language they use (some dialect of RDF such as RDFS or OWL). In short, vocabularies provide the semantic glue enabling Data to become meaningful Data. [from https://lov.linkeddata.es/dataset/lov/about]" ;
+    dcterms:hasPart lov:adms,
+        lov:bibo,
+        lov:biro,
+        lov:c4o,
+        lov:cc,
+        lov:cito,
+        lov:dcat,
+        lov:dce,
+        lov:dcterms,
+        lov:deo,
+        lov:doap,
+        lov:doco,
+        lov:fabio,
+        lov:faldo,
+        lov:foaf,
+        lov:frapo,
+        lov:frbr,
+        lov:frbrer,
+        lov:geo,
+        lov:m4i,
+        lov:oa,
+        lov:obo,
+        lov:odrl,
+        lov:oslc,
+        lov:owl,
+        lov:pav,
+        lov:prov,
+        lov:pwo,
+        lov:qb,
+        lov:qudt,
+        lov:rdf,
+        lov:rdfa,
+        lov:rdfs,
+        lov:schema,
+        lov:scoro,
+        lov:seo,
+        lov:sh,
+        lov:sio,
+        lov:skos,
+        lov:skosxl,
+        lov:swrl,
+        lov:time,
+        lov:ucum,
+        lov:uniprot,
+        lov:vann,
+        lov:void,
+        lov:xsd ;
+    foaf:homepage "https://lov.linkeddata.es" ;
+    bioregistry.schema:0000005 "m4i" ;
+    bioregistry.schema:0000006 "https://lov.linkeddata.es/dataset/lov/vocabs/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0003-0591-6109 .
 
 bioregistry.registry:agroportal a bioregistry.schema:0000002 ;
     rdfs:label "AgroPortal" ;
@@ -52267,6 +52665,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ukprn,
         bioregistry:uminctr,
         bioregistry:umls.aui,
+        bioregistry:uniprot.core,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.journal,
         bioregistry:uniprot.location,
@@ -52296,7 +52695,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:xml,
         bioregistry:xsd,
         bioregistry:xuo,
-        bioregistry:ymdb ;
+        bioregistry:ymdb,
+        bioregistry:zazuko ;
     foaf:mbox "cthoyt@gmail.com" .
 
 bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
@@ -54035,6 +54435,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:OBCS,
         aberowl:OBI,
         aberowl:OBIB,
+        aberowl:OCCO,
         aberowl:OGG,
         aberowl:OGI,
         aberowl:OGMS,
@@ -59238,6 +59639,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uniprot,
         bioregistry:uniprot.arba,
         bioregistry:uniprot.chain,
+        bioregistry:uniprot.core,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.isoform,
         bioregistry:uniprot.journal,
@@ -59345,6 +59747,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ymdb,
         bioregistry:ypo,
         bioregistry:yrcpdr,
+        bioregistry:zazuko,
         bioregistry:zea,
         bioregistry:zeco,
         bioregistry:zenodo.record,
