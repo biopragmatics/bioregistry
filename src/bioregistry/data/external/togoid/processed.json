@@ -1,0 +1,1476 @@
+{
+  "affy_probeset": {
+    "examples": [
+      "1553582_a_at",
+      "211531_x_at",
+      "202573_at",
+      "201640_x_at",
+      "205117_at",
+      "201017_at",
+      "205099_s_at",
+      "200614_at",
+      "201895_at",
+      "202666_s_at"
+    ],
+    "keywords": [
+      "Probe"
+    ],
+    "name": "Affymetrix probeset",
+    "pattern": "^(?\\d{3,}(?:_[a-z])?_at)$",
+    "prefix": "affy_probeset",
+    "uri_format": "http://identifiers.org/affy.probeset/$1"
+  },
+  "bioproject": {
+    "examples": [
+      "PRJDB575",
+      "PRJDB1880",
+      "PRJDB478",
+      "PRJDA45949",
+      "PRJEB6285",
+      "PRJEA28961",
+      "PRJEB2222",
+      "PRJNA30641",
+      "PRJNA68235",
+      "PRJNA42549"
+    ],
+    "keywords": [
+      "Project"
+    ],
+    "name": "BioProject",
+    "pattern": "^(?PRJ[DEN][A-Z]\\d+)$",
+    "prefix": "bioproject",
+    "uri_format": "http://identifiers.org/bioproject/$1"
+  },
+  "biosample": {
+    "examples": [
+      "SAMD00003683",
+      "SAMD00006315",
+      "SAMD00003741",
+      "SAMD00011226",
+      "SAMN13091859",
+      "SAMN05877962",
+      "SAMN05877838",
+      "SAMEA104232303",
+      "SAMEA4760552",
+      "SAMEA1572228"
+    ],
+    "keywords": [
+      "Sample"
+    ],
+    "name": "BioSample",
+    "pattern": "^(?SAM[NED]\\w?\\d+)$",
+    "prefix": "biosample",
+    "uri_format": "http://identifiers.org/biosample/$1"
+  },
+  "ccds": {
+    "examples": [
+      "CCDS1471",
+      "CCDS10913",
+      "CCDS14790",
+      "CCDS35175",
+      "CCDS2395",
+      "CCDS58412",
+      "CCDS55555",
+      "CCDS34401",
+      "CCDS41889",
+      "CCDS9052"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "Consensus CDS",
+    "pattern": "^(?CCDS\\d+)(?:\\.\\d+)?$",
+    "prefix": "ccds",
+    "uri_format": "http://identifiers.org/ccds/$1"
+  },
+  "chebi": {
+    "examples": [
+      "84824",
+      "40167",
+      "32807",
+      "87666",
+      "57524",
+      "64860",
+      "94440",
+      "18005",
+      "4806",
+      "50158"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "ChEBI compound",
+    "pattern": "^(?:CHEBI[:_])?(?\\d+)$",
+    "prefix": "chebi",
+    "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1"
+  },
+  "chembl_compound": {
+    "examples": [
+      "CHEMBL121649",
+      "CHEMBL190334",
+      "CHEMBL3103282",
+      "CHEMBL69329",
+      "CHEMBL2105131",
+      "CHEMBL2177390",
+      "CHEMBL3091820",
+      "CHEMBL1200335",
+      "CHEMBL3094412",
+      "CHEMBL67367"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "ChEMBL compound",
+    "pattern": "^(?CHEMBL\\d+)$",
+    "prefix": "chembl_compound",
+    "uri_format": "http://identifiers.org/chembl.compound/$1"
+  },
+  "chembl_target": {
+    "examples": [
+      "CHEMBL2788",
+      "CHEMBL3091264",
+      "CHEMBL3831324",
+      "CHEMBL5524",
+      "CHEMBL5597",
+      "CHEMBL3983",
+      "CHEMBL4187",
+      "CHEMBL3391681",
+      "CHEMBL5135",
+      "CHEMBL1255130"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "ChEMBL target",
+    "pattern": "^(?CHEMBL\\d+)$",
+    "prefix": "chembl_target",
+    "uri_format": "http://identifiers.org/chembl.target/$1"
+  },
+  "civic_gene": {
+    "keywords": [
+      "Gene"
+    ],
+    "name": "CIVIC gene",
+    "pattern": "^(?\\d+)$",
+    "prefix": "civic_gene",
+    "uri_format": "http://civic.genome.wustl.edu/links/genes/$1"
+  },
+  "clinvar": {
+    "examples": [
+      "658761",
+      "619209",
+      "745342",
+      "11955",
+      "731668",
+      "724289",
+      "725734",
+      "743127",
+      "789913",
+      "5302"
+    ],
+    "keywords": [
+      "Variant"
+    ],
+    "name": "ClinVar variant",
+    "pattern": "^(VCV0*)?(?(\\d{1,9}))$",
+    "prefix": "clinvar",
+    "uri_format": "http://identifiers.org/clinvar/$1"
+  },
+  "dbsnp": {
+    "examples": [
+      "rs746303788",
+      "rs1407020249",
+      "rs374003162",
+      "rs4647297",
+      "rs549539526",
+      "rs1387864740",
+      "rs1177577242",
+      "rs769848663",
+      "rs16961655",
+      "rs79135400"
+    ],
+    "keywords": [
+      "Variant"
+    ],
+    "name": "dbSNP",
+    "pattern": "^(?rs\\d+)$",
+    "prefix": "dbsnp",
+    "uri_format": "http://identifiers.org/dbsnp/$1"
+  },
+  "dgidb": {
+    "keywords": [
+      "Interaction"
+    ],
+    "name": "DGIdb",
+    "pattern": "^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}",
+    "prefix": "dgidb",
+    "uri_format": "FIXME$1"
+  },
+  "doid": {
+    "examples": [
+      "DO:9036",
+      "DO:3159",
+      "DO:10964",
+      "DO:12698",
+      "DO:0060459",
+      "DO:11840",
+      "DO:11339",
+      "DO:914",
+      "DO:9945",
+      "DO:1407"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "Disease ontology",
+    "pattern": "^DO(?:ID)?[:_](?\\d+)$",
+    "prefix": "doid",
+    "uri_format": "http://purl.obolibrary.org/obo/DOID_$1"
+  },
+  "drugbank": {
+    "examples": [
+      "DB15589",
+      "DB13471",
+      "DB05830",
+      "DB07423",
+      "DB07074",
+      "DB08912",
+      "DB02908",
+      "DB05088",
+      "DB05229",
+      "DB08910"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "DrugBank",
+    "pattern": "^(?DB\\d{5})$",
+    "prefix": "drugbank",
+    "uri_format": "http://identifiers.org/drugbank/$1"
+  },
+  "ec": {
+    "examples": [
+      "1.6.3.1",
+      "2.4.1.353",
+      "1.1.1.288",
+      "1.5.1.2",
+      "3.1.1.71",
+      "1.3.1.31",
+      "3.5.1.29",
+      "1.16.1.1",
+      "3.1.3.48",
+      "2.3.1.138"
+    ],
+    "keywords": [
+      "Function"
+    ],
+    "name": "Enzyme nomenclature",
+    "pattern": "^(?:EC:)?(?\\d+\\.(?:(?:-\\.-\\.-)|\\d+\\.(?:(?:-\\.-)|\\d+\\.(?:-|n?\\d+))))$",
+    "prefix": "ec",
+    "uri_format": "http://identifiers.org/ec-code/$1"
+  },
+  "ena": {
+    "keywords": [
+      "Gene"
+    ],
+    "name": "ENA",
+    "pattern": "^(?:ena\\.embl:)?(?[A-Z]+[0-9]+)(?:\\.\\d+)?$",
+    "prefix": "ena",
+    "uri_format": "http://identifiers.org/ena.embl/$1"
+  },
+  "ensembl_gene": {
+    "examples": [
+      "ENSG00000186283",
+      "ENSAMEG00000018238",
+      "ENSG00000167916",
+      "ENSG00000213417",
+      "ENSG00000133328",
+      "ENSG00000274404",
+      "ENSG00000184363",
+      "FBgn0021742",
+      "FBgn0030057",
+      "FBgn0265139"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "Ensembl gene",
+    "pattern": "^(?:(?:(?<id1>ENS[A-Z]*G\\d{11})(?:\\.\\d+)?)|(?<id2>FBgn\\d{7})|(?:(?<id3>MGP_[A-Za-z0-9]+_G\\d{7})(?:\\.\\d+)?)|(?<id4>LRG_\\d+)|(?<id5>WBGene\\d{8})|(?<id6>Y[A-Z]{2}\\d{3}[A-Z](?:-[A-Z])?)|(?<id7>Q\\d{4})|(?<id8>[A-Z]{3}\\d{1,3}(?:-\\d)?)|(?<id9>snR\\d+-?[A-Za-z]?)|(?<id10>t[A-Z]\\([ACGUX]{3}\\)[A-Z]\\d?))$",
+    "prefix": "ensembl_gene",
+    "uri_format": "http://identifiers.org/ensembl/$1"
+  },
+  "ensembl_protein": {
+    "examples": [
+      "ENSP00000365411",
+      "ENSP00000420674",
+      "ENSAZOP00000020796",
+      "FBpp0070277",
+      "FBpp0070535",
+      "ENSAZOP00000019433",
+      "ENSP00000372042",
+      "ENSAZOP00000017910",
+      "ENSP00000370977",
+      "ENSP00000481894"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "Ensembl protein",
+    "pattern": "^(?:(?:(?<id1>ENS[A-Z]*P\\d{11})(?:\\.\\d+)?)|(?<id2>FBpp\\d{7})|(?:(?<id3>MGP_[A-Za-z0-9]+_P\\d{7})(?:\\.\\d+)?)|(?<id4>LRG_\\d+p\\d+(?:-\\d)?)|(?<id5>(?:[A-Za-z0-9][A-Za-z0-9_]+)\\.t?\\d+[a-z]?(?:\\.\\d+)?)|(?<id6>Y[A-Z]{2}\\d{3}[A-Z](?:-[A-Z])?)|(?<id7>Q\\d{4}))$",
+    "prefix": "ensembl_protein",
+    "uri_format": "http://identifiers.org/ensembl/$1"
+  },
+  "ensembl_transcript": {
+    "examples": [
+      "ENST00000638000",
+      "ENST00000307864",
+      "ENSTRUT00000006732",
+      "ENSAMET00000021072",
+      "ENSAZOT00000021040",
+      "ENST00000622541",
+      "ENST00000462612",
+      "ENSBTAT00000072441",
+      "ENSAZOT00000005048",
+      "ENST00000475822"
+    ],
+    "keywords": [
+      "Transcript"
+    ],
+    "name": "Ensembl transcript",
+    "pattern": "^(?:(?:(?<id1>ENS[A-Z]*T\\d{11})(?:\\.\\d+)?)|(?<id2>FBtr\\d{7})|(?:(?<id3>MGP_[A-Za-z0-9]+_T\\d{7})(?:\\.\\d+)?)|(?<id4>LRG_\\d+t\\d+(?:-\\d)?)|(?<id5>(?:[A-Za-z0-9][A-Za-z0-9_]+)\\.t?\\d+[a-z]?(?:\\.\\d+)?)|(?<id6>Y[A-Z]{2}\\d{3}[A-Z](?:-[A-Z])?(?:_[a-z]{1,3}RNA)?)|(?<id7>Q\\d{4}_[a-z]{1,3}RNA)|(?<id8>[A-Z]{3}\\d{1,3}(?:-\\d)?_[a-z]{1,3}RNA)|(?<id9>snR\\d+-?[A-Za-z]?_sno?RNA)|(?<id10>t[A-Z]\\([ACGUX]{3}\\)[A-Z]\\d?_tRNA))$",
+    "prefix": "ensembl_transcript",
+    "uri_format": "http://identifiers.org/ensembl/$1"
+  },
+  "glytoucan": {
+    "examples": [
+      "G88006IV",
+      "G53085MI",
+      "G17896UT",
+      "G50341PG",
+      "G19379ID",
+      "G08110WX",
+      "G70101JE",
+      "G45504EY",
+      "G81263BG",
+      "G02815KT"
+    ],
+    "keywords": [
+      "Glycan"
+    ],
+    "name": "GlyTouCan",
+    "pattern": "^(?G[0-9]{5}[A-Z]{2})$",
+    "prefix": "glytoucan",
+    "uri_format": "http://identifiers.org/glytoucan/$1"
+  },
+  "go": {
+    "examples": [
+      "GO:0005643",
+      "GO:0097110",
+      "GO:0097225",
+      "GO:0052855",
+      "GO:2000012",
+      "GO:0042921",
+      "GO:0019774",
+      "GO:0085018",
+      "GO:0009508",
+      "GO:0046470"
+    ],
+    "keywords": [
+      "Function"
+    ],
+    "name": "Gene ontology",
+    "pattern": "^GO[:_](?\\d{7})$",
+    "prefix": "go",
+    "uri_format": "http://purl.obolibrary.org/obo/GO_$1"
+  },
+  "hgnc": {
+    "examples": [
+      "26199",
+      "38937",
+      "14027",
+      "21498",
+      "18185",
+      "1314",
+      "25960",
+      "2206",
+      "22224",
+      "19741"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "HGNC",
+    "pattern": "^(?:(?:HGNC|hgnc):)?(?\\d{1,5})$",
+    "prefix": "hgnc",
+    "uri_format": "http://identifiers.org/hgnc/$1"
+  },
+  "hgnc_symbol": {
+    "examples": [
+      "MBNL2",
+      "RGS20",
+      "LINC02011",
+      "IGHV1-14",
+      "SH3RF2",
+      "SPATA13",
+      "HNRNPCP10",
+      "LINC00334",
+      "TMEM241",
+      "RN7SL753P"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "HGNC gene symbol",
+    "pattern": "^(?[A-Za-z0-9_\\-]+\\@?)$",
+    "prefix": "hgnc_symbol",
+    "uri_format": "http://identifiers.org/hgnc.symbol/$1"
+  },
+  "hmdb": {
+    "examples": [
+      "HMDB0029433",
+      "HMDB0015609",
+      "HMDB0000042",
+      "HMDB0002360",
+      "HMDB0003345",
+      "HMDB0003550",
+      "HMDB0036769",
+      "HMDB0000935",
+      "HMDB0002755",
+      "HMDB0004369"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "HMDB",
+    "pattern": "^(?:hmdb:)?(?HMDB\\d+)$",
+    "prefix": "hmdb",
+    "uri_format": "http://identifiers.org/hmdb/$1"
+  },
+  "homologene": {
+    "examples": [
+      "117",
+      "17",
+      "6",
+      "142",
+      "55",
+      "132",
+      "61",
+      "109",
+      "137",
+      "134"
+    ],
+    "keywords": [
+      "Ortholog"
+    ],
+    "name": "HomoloGene",
+    "pattern": "^(?\\d+)$",
+    "prefix": "homologene",
+    "uri_format": "http://identifiers.org/homologene/$1"
+  },
+  "hp": {
+    "examples": [
+      "HP:0001947",
+      "HP:0031592",
+      "HP:0012085",
+      "HP:0000956",
+      "HP:0025238",
+      "HP:0002861",
+      "HP:0001680",
+      "HP:0004417",
+      "HP:0001701",
+      "HP:0025084"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "Human Phenotype Ontology",
+    "pattern": "^HP[:_](?\\d{7})$",
+    "prefix": "hp",
+    "uri_format": "http://purl.obolibrary.org/obo/HP_$1"
+  },
+  "human_protein_atlas": {
+    "keywords": [
+      "Protein"
+    ],
+    "name": "Human Protein Atlas",
+    "pattern": "^(?ENSG\\d{11})$",
+    "prefix": "human_protein_atlas",
+    "uri_format": "http://www.proteinatlas.org/$1"
+  },
+  "inchi_key": {
+    "examples": [
+      "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
+      "RZWGTXHSYZGXKF-UHFFFAOYSA-N",
+      "RQQIIXFYTHWFKW-ZETCQYMHSA-N",
+      "RALAARQREFCZJO-UHFFFAOYSA-N",
+      "HVFRJJDZWVSUIB-UHFFFAOYSA-N",
+      "KVNZVXVZQFTXNA-UHFFFAOYSA-N",
+      "KVQUJTYBWCGJRS-UHFFFAOYSA-N",
+      "AFGLQVAJWVTAJT-UHFFFAOYSA-N",
+      "LHISABQPMWXWCC-UHFFFAOYSA-N",
+      "ZSXCHLJCWRSMMS-UHFFFAOYSA-N"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "InChIKey",
+    "pattern": "^(?[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?)$",
+    "prefix": "inchi_key",
+    "uri_format": "https://identifiers.org/inchikey/$1"
+  },
+  "insdc": {
+    "examples": [
+      "U10991",
+      "AF116914",
+      "AK056978",
+      "DQ440258",
+      "U91725",
+      "AY301270",
+      "U32907",
+      "AY261360",
+      "AK001332",
+      "U13261"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "GenBank/ENA/DDBJ",
+    "pattern": "^(?:insdc:)?(?[A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5}|[A-Z]{4,}\\d{9})(?:\\.\\d+)?$",
+    "prefix": "insdc",
+    "uri_format": "http://identifiers.org/insdc/$1"
+  },
+  "intact": {
+    "examples": [
+      "EBI-7947422",
+      "EBI-15714708",
+      "EBI-16225271",
+      "EBI-4406290",
+      "EBI-9026465",
+      "EBI-6403471",
+      "EBI-1113651",
+      "EBI-562824",
+      "EBI-9014072",
+      "EBI-1784742"
+    ],
+    "keywords": [
+      "Interaction"
+    ],
+    "name": "IntAct",
+    "pattern": "^(?EBI\\-[0-9]+)$",
+    "prefix": "intact",
+    "uri_format": "http://identifiers.org/intact/$1"
+  },
+  "interpro": {
+    "examples": [
+      "IPR038152",
+      "IPR040448",
+      "IPR036748",
+      "IPR034266",
+      "IPR005479",
+      "IPR036365",
+      "IPR000174",
+      "IPR001334",
+      "IPR000731",
+      "IPR001767"
+    ],
+    "keywords": [
+      "Domain"
+    ],
+    "name": "InterPro",
+    "pattern": "^(?IPR\\d{6})$",
+    "prefix": "interpro",
+    "uri_format": "http://identifiers.org/interpro/$1"
+  },
+  "kegg_compound": {
+    "keywords": [
+      "Compound"
+    ],
+    "name": "KEGG Compound",
+    "pattern": "^(?C\\d+)$",
+    "prefix": "kegg_compound",
+    "uri_format": "http://identifiers.org/kegg.compound/$1"
+  },
+  "kegg_disease": {
+    "keywords": [
+      "Disease"
+    ],
+    "name": "KEGG Disease",
+    "pattern": "^KEGG:H(?\\d+)$",
+    "prefix": "kegg_disease",
+    "uri_format": "http://identifiers.org/kegg.disease/$1"
+  },
+  "kegg_drug": {
+    "keywords": [
+      "Drug"
+    ],
+    "name": "KEGG Drug",
+    "pattern": "^(?D\\d+)$",
+    "prefix": "kegg_drug",
+    "uri_format": "http://identifiers.org/kegg.drug/$1"
+  },
+  "kegg_genes": {
+    "keywords": [
+      "Gene, Protein"
+    ],
+    "name": "KEGG Genes",
+    "pattern": "^\\w+:[\\w\\d\\.-]*$",
+    "prefix": "kegg_genes",
+    "uri_format": "http://identifiers.org/kegg.genes/$1"
+  },
+  "kegg_orthology": {
+    "keywords": [
+      "Ortholog"
+    ],
+    "name": "KEGG Orthology",
+    "pattern": "^(?K\\d+)$",
+    "prefix": "kegg_orthology",
+    "uri_format": "http://identifiers.org/kegg.orthology/$1"
+  },
+  "kegg_pathway": {
+    "keywords": [
+      "Pathway"
+    ],
+    "name": "KEGG Pathway",
+    "pattern": "^(?\\w{2,4}\\d{5})$",
+    "prefix": "kegg_pathway",
+    "uri_format": "http://identifiers.org/kegg.pathway/$1"
+  },
+  "kegg_reaction": {
+    "keywords": [
+      "Interaction"
+    ],
+    "name": "KEGG Reaction",
+    "pattern": "^(?R\\d+)$",
+    "prefix": "kegg_reaction",
+    "uri_format": "http://identifiers.org/kegg.reaction/$1"
+  },
+  "lrg": {
+    "examples": [
+      "LRG_41",
+      "LRG_356",
+      "LRG_147",
+      "LRG_660",
+      "LRG_498",
+      "LRG_364",
+      "LRG_203",
+      "LRG_162",
+      "LRG_1271",
+      "LRG_884"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "LRG",
+    "pattern": "^(?LRG_\\d+)$",
+    "prefix": "lrg",
+    "uri_format": "http://identifiers.org/lrg/$1"
+  },
+  "mbgd_gene": {
+    "examples": [
+      "ash:AL1_RS04670",
+      "ash:AL1_RS08245",
+      "ash:AL1_RS02870",
+      "ash:AL1_RS06610",
+      "ash:AL1_RS06290",
+      "ash:AL1_RS07260",
+      "ash:AL1_RS08410",
+      "ash:AL1_RS01705",
+      "ash:AL1_RS02510",
+      "ash:AL1_RS07245"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "MBGD gene",
+    "pattern": "^(?[a-z0-9]+:[A-Z0-9_\\.-]+)$",
+    "prefix": "mbgd_gene",
+    "uri_format": "http://mbgd.genome.ad.jp/rdf/resource/gene/$1"
+  },
+  "mbgd_organism": {
+    "examples": [
+      "lac",
+      "pfl",
+      "cou",
+      "bvn",
+      "btd",
+      "ctjt",
+      "sha",
+      "lmoj",
+      "dpi",
+      "arp"
+    ],
+    "keywords": [
+      "Taxonomy"
+    ],
+    "name": "MBGD organism",
+    "pattern": "^(?[a-z0-9]+)$",
+    "prefix": "mbgd_organism",
+    "uri_format": "http://mbgd.genome.ad.jp/rdf/resource/organism/$1"
+  },
+  "meddra": {
+    "examples": [
+      "10008033",
+      "10027710",
+      "10062506",
+      "10040493",
+      "10013611",
+      "10065857",
+      "10063143",
+      "10022599",
+      "10042342",
+      "10047883"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "MedDRA",
+    "pattern": "^(?:(?:MedDRA|meddra):)?(?\\d+)$",
+    "prefix": "meddra",
+    "uri_format": "http://identifiers.org/meddra/$1"
+  },
+  "medgen": {
+    "examples": [
+      "C0264897",
+      "C0028860",
+      "C0018818",
+      "C1848392",
+      "C0006389",
+      "C0020517",
+      "C0000364",
+      "CN227118",
+      "CN203043",
+      "CN292950"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "MedGen",
+    "pattern": "^(?CN?\\d{4,7})$",
+    "prefix": "medgen",
+    "uri_format": "http://identifiers.org/medgen/$1"
+  },
+  "mesh": {
+    "examples": [
+      "D002065",
+      "C562829",
+      "C566582",
+      "D010623",
+      "D003327",
+      "D001715",
+      "D000453",
+      "D010260",
+      "C537322",
+      "C563418"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "MeSH",
+    "pattern": "^(?[CD]\\d{6,9})$",
+    "prefix": "mesh",
+    "uri_format": "http://identifiers.org/mesh/$1"
+  },
+  "mgi": {
+    "examples": [
+      "MGI:2387184",
+      "MGI:1920977",
+      "MGI:2442415",
+      "MGI:1098644",
+      "MGI:1196250",
+      "MGI:1914934",
+      "MGI:1914238",
+      "MGI:1919300",
+      "MGI:1914807",
+      "MGI:2145261"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "MGI",
+    "pattern": "^(?:MGI|mgi):(?\\d{5,})$",
+    "prefix": "mgi",
+    "uri_format": "http://identifiers.org/mgi/MGI:$1"
+  },
+  "mirbase": {
+    "examples": [
+      "MI0003587",
+      "MI0000252",
+      "MI0000811",
+      "MI0014201",
+      "MI0003578",
+      "MI0000293",
+      "MI0006384",
+      "MI0006361",
+      "MI0000480",
+      "MI0006419"
+    ],
+    "keywords": [
+      "Transcript"
+    ],
+    "name": "miRBase",
+    "pattern": "^(?MI\\d{7})$",
+    "prefix": "mirbase",
+    "uri_format": "http://identifiers.org/mirbase/$1"
+  },
+  "mondo": {
+    "examples": [
+      "MONDO:0000115",
+      "MONDO:0002345",
+      "MONDO:0011571",
+      "MONDO:0020035",
+      "MONDO:0020920",
+      "MONDO:0004627",
+      "MONDO:0005480",
+      "MONDO:0010852",
+      "MONDO:0002053",
+      "MONDO:0015758"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "MONDO",
+    "pattern": "^MONDO[:_](?\\d{7})$",
+    "prefix": "mondo",
+    "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1"
+  },
+  "nando": {
+    "examples": [
+      "NANDO:1200461",
+      "NANDO:1200466",
+      "NANDO:1200851",
+      "NANDO:1200061",
+      "NANDO:1200315",
+      "NANDO:1200365",
+      "NANDO:1200922",
+      "NANDO:1200705",
+      "NANDO:2200074",
+      "NANDO:1200030"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "NANDO",
+    "pattern": "^NANDO[:_](?\\d{7})$",
+    "prefix": "nando",
+    "uri_format": "http://nanbyodata.jp/ontology/NANDO_$1"
+  },
+  "ncbigene": {
+    "examples": [
+      "63962027",
+      "1046",
+      "63961921",
+      "102606930",
+      "100472895",
+      "407025",
+      "84148",
+      "88",
+      "31157",
+      "100463227"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "NCBI gene",
+    "pattern": "^(?\\d+)$",
+    "prefix": "ncbigene",
+    "uri_format": "http://identifiers.org/ncbigene/$1"
+  },
+  "ncbiprotein": {
+    "keywords": [
+      "Protein"
+    ],
+    "name": "NCBI protein",
+    "pattern": "^(?:(?:\\w+\\d+(?:\\.\\d+)?)|(?:NP_\\d+))$",
+    "prefix": "ncbiprotein",
+    "uri_format": "http://identifiers.org/ncbiprotein/$1"
+  },
+  "oma_group": {
+    "examples": [
+      "RVAAYKY",
+      "LFVHAIL",
+      "EMSPITC",
+      "NQSHFFA",
+      "AYTHYSY",
+      "PRPKYDP",
+      "WSRIHIV",
+      "DFGGWKI",
+      "FHVAHGE",
+      "PYVYVTH"
+    ],
+    "keywords": [
+      "Ortholog"
+    ],
+    "name": "OMA group",
+    "pattern": "^(?[A-Z]+)$",
+    "prefix": "oma_group",
+    "uri_format": "http://identifiers.org/oma.grp/$1"
+  },
+  "oma_protein": {
+    "examples": [
+      "ACIB400217",
+      "ACIB400465",
+      "HUMAN00333",
+      "HUMAN01170",
+      "HUMAN00470",
+      "HUMAN03367",
+      "ACIB400486",
+      "HUMAN01061",
+      "HUMAN02190",
+      "HUMAN02112"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "OMA protein",
+    "pattern": "^(?[A-Z]{3}[A-Z0-9]{2}[0-9]{5,6})$",
+    "prefix": "oma_protein",
+    "uri_format": "http://identifiers.org/oma.protein/$1"
+  },
+  "omim_gene": {
+    "examples": [
+      "604810",
+      "115460",
+      "608706",
+      "300181",
+      "102575",
+      "601280",
+      "602832",
+      "601604",
+      "177075",
+      "608977"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "OMIM gene",
+    "pattern": "^(?:O?MIM:)?(?\\d{6})$",
+    "prefix": "omim_gene",
+    "uri_format": "http://identifiers.org/mim/$1"
+  },
+  "omim_phenotype": {
+    "examples": [
+      "207780",
+      "236100",
+      "237500",
+      "300716",
+      "125310",
+      "165199",
+      "617175",
+      "137600",
+      "600089",
+      "601317"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "OMIM phenotype",
+    "pattern": "^(?:O?MIM:)?(?\\d{6})$",
+    "prefix": "omim_phenotype",
+    "uri_format": "http://identifiers.org/mim/$1"
+  },
+  "orphanet": {
+    "examples": [
+      "ORPHA:101078",
+      "ORPHA:596",
+      "ORPHA:1934",
+      "ORPHA:1047",
+      "ORPHA:60025",
+      "ORPHA:166090",
+      "ORPHA:275745",
+      "ORPHA:1171",
+      "ORPHA:93277",
+      "ORPHA:247598"
+    ],
+    "keywords": [
+      "Disease"
+    ],
+    "name": "Orphanet",
+    "pattern": "^(?:ORPHA|ORDO|Orphanet)[:_](?[A-Z0-9]+)$",
+    "prefix": "orphanet",
+    "uri_format": "http://identifiers.org/orphanet.ordo/Orphanet_$1"
+  },
+  "pdb": {
+    "examples": [
+      "3PFQ",
+      "2OUY",
+      "6EBX",
+      "5GHP",
+      "6ETH",
+      "1Y28",
+      "6FB2",
+      "5JO3",
+      "2JQZ",
+      "5L5P"
+    ],
+    "keywords": [
+      "Structure"
+    ],
+    "name": "PDB",
+    "pattern": "^(?[0-9][A-Za-z0-9]{3})$",
+    "prefix": "pdb",
+    "uri_format": "http://rdf.wwpdb.org/pdb/$1"
+  },
+  "pfam": {
+    "examples": [
+      "PF03719",
+      "PF03726",
+      "PF02809",
+      "PF00105",
+      "PF00250",
+      "PF00412",
+      "PF01412",
+      "PF00459",
+      "PF02532",
+      "PF01226"
+    ],
+    "keywords": [
+      "Domain"
+    ],
+    "name": "Pfam",
+    "pattern": "^(?PF\\d{5})$",
+    "prefix": "pfam",
+    "uri_format": "http://identifiers.org/pfam/$1"
+  },
+  "pubchem_compound": {
+    "examples": [
+      "9548669",
+      "160419",
+      "9869929",
+      "76333303",
+      "9868491",
+      "27854",
+      "76329169",
+      "3448",
+      "296",
+      "10371227"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "PubChem compound",
+    "pattern": "^(?:CID)?(?\\d+)$",
+    "prefix": "pubchem_compound",
+    "uri_format": "http://identifiers.org/pubchem.compound/$1"
+  },
+  "pubchem_substance": {
+    "examples": [
+      "15229855",
+      "15277848",
+      "15782795",
+      "16076657",
+      "16035895",
+      "12012900",
+      "15378994",
+      "14850434",
+      "14847540",
+      "15271473"
+    ],
+    "keywords": [
+      "Compound"
+    ],
+    "name": "PubChem substance",
+    "pattern": "^(?:SID)?(?\\d+)$",
+    "prefix": "pubchem_substance",
+    "uri_format": "http://identifiers.org/pubchem.substance/$1"
+  },
+  "pubmed": {
+    "examples": [
+      "19281226",
+      "19879151",
+      "20858243",
+      "10773016",
+      "16527252",
+      "28499733",
+      "10397770",
+      "15149666",
+      "23861362",
+      "10577920"
+    ],
+    "keywords": [
+      "Literature"
+    ],
+    "name": "PubMed",
+    "pattern": "^(?:pmid:|PMID:)?(?\\d+)$",
+    "prefix": "pubmed",
+    "uri_format": "http://identifiers.org/pubmed/$1"
+  },
+  "reactome_pathway": {
+    "examples": [
+      "R-HSA-165159",
+      "R-DRE-1630316",
+      "R-SCE-9634635",
+      "R-DRE-140834",
+      "R-HSA-2142753",
+      "R-BTA-383280",
+      "R-MMU-5218900",
+      "R-RNO-5654219",
+      "R-MMU-8875791",
+      "R-MMU-9648025"
+    ],
+    "keywords": [
+      "Pathway"
+    ],
+    "name": "Reactome pathway",
+    "pattern": "^(?R-[A-Z]{3}-\\d+)(?:\\.\\d+)?$",
+    "prefix": "reactome_pathway",
+    "uri_format": "http://identifiers.org/reactome/$1"
+  },
+  "reactome_reaction": {
+    "examples": [
+      "R-DRE-1482961",
+      "R-DRE-6814409",
+      "R-HSA-2395869",
+      "R-HSA-1222722",
+      "R-HSA-893583",
+      "R-MMU-158484",
+      "R-HSA-8875071",
+      "R-HSA-372519",
+      "R-HSA-6797627",
+      "R-DRE-975814"
+    ],
+    "keywords": [
+      "Reaction"
+    ],
+    "name": "Reactome reaction",
+    "pattern": "^(?R-[A-Z]{3}-\\d+)(?:\\.\\d+)?$",
+    "prefix": "reactome_reaction",
+    "uri_format": "http://identifiers.org/reactome/$1"
+  },
+  "refseq_genomic": {
+    "examples": [
+      "NG_004671",
+      "NG_011844",
+      "NG_008481",
+      "NG_007973",
+      "NG_001091",
+      "NG_008005",
+      "NG_023230",
+      "NG_046394",
+      "NG_009617",
+      "NG_016421",
+      "NG_021472"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "RefSeq genomic",
+    "pattern": "^(?(?:AC_|N[CGTW]_|NZ_[A-Z]+)\\d+)(?:\\.\\d+)?$",
+    "prefix": "refseq_genomic",
+    "uri_format": "http://identifiers.org/refseq/$1"
+  },
+  "refseq_protein": {
+    "examples": [
+      "NP_001171968",
+      "NP_001365494",
+      "NP_000015",
+      "XP_011522750",
+      "XP_011516190",
+      "XP_005265876",
+      "WP_016919164",
+      "WP_080513319",
+      "YP_001687722",
+      "YP_001966380"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "RefSeq protein",
+    "pattern": "^(?[ANXYWZ]P_\\d+)(?:\\.\\d+)?$",
+    "prefix": "refseq_protein",
+    "uri_format": "http://identifiers.org/refseq/$1"
+  },
+  "refseq_rna": {
+    "examples": [
+      "XR_001747779",
+      "XM_017013006",
+      "NM_001199636",
+      "XM_011532496",
+      "NM_001110",
+      "NR_170162",
+      "NM_020113",
+      "NM_001031805",
+      "NR_027673",
+      "XR_934019"
+    ],
+    "keywords": [
+      "Transcript"
+    ],
+    "name": "RefSeq RNA",
+    "pattern": "^(?(?:NM|NR|XM|XR)_\\d+)(?:\\.\\d+)?$",
+    "prefix": "refseq_rna",
+    "uri_format": "http://identifiers.org/refseq/$1"
+  },
+  "rgd": {
+    "examples": [
+      "1308312",
+      "1311120",
+      "1309724",
+      "1565514",
+      "7683241",
+      "1307957",
+      "71036",
+      "1307876",
+      "1308965",
+      "1305482"
+    ],
+    "keywords": [
+      "Gene"
+    ],
+    "name": "RGD",
+    "pattern": "^(?:(?:RGD|rgd):)?(?\\d{4,})$",
+    "prefix": "rgd",
+    "uri_format": "http://identifiers.org/rgd/$1"
+  },
+  "rhea": {
+    "examples": [
+      "10253",
+      "10818",
+      "13517",
+      "11136",
+      "13729",
+      "10240",
+      "11728",
+      "16870",
+      "10732",
+      "11278"
+    ],
+    "keywords": [
+      "Reaction"
+    ],
+    "name": "Rhea",
+    "pattern": "^(?\\d{5})$",
+    "prefix": "rhea",
+    "uri_format": "http://identifiers.org/rhea/$1"
+  },
+  "sra_accession": {
+    "examples": [
+      "DRA000741",
+      "DRA000768",
+      "DRA001014",
+      "DRA000833",
+      "SRA000144",
+      "SRA000605",
+      "SRA008879",
+      "ERA007227",
+      "ERA011638",
+      "ERA013580"
+    ],
+    "keywords": [
+      "Submission"
+    ],
+    "name": "SRA accession",
+    "pattern": "^(?[SED]RA\\d+)$",
+    "prefix": "sra_accession",
+    "uri_format": "http://identifiers.org/insdc.sra/$1"
+  },
+  "sra_analysis": {
+    "examples": [
+      "DRZ000249",
+      "DRZ000087",
+      "DRZ003045",
+      "DRZ000829",
+      "SRZ168127",
+      "SRZ008405",
+      "SRZ010259",
+      "SRZ011419",
+      "SRZ006662",
+      "SRZ010567"
+    ],
+    "keywords": [
+      "Analysis"
+    ],
+    "name": "SRA analysis",
+    "pattern": "^(?[SED]RZ\\d+)$",
+    "prefix": "sra_analysis",
+    "uri_format": "http://identifiers.org/insdc.sra/$1"
+  },
+  "sra_experiment": {
+    "examples": [
+      "DRX000585",
+      "DRX000114",
+      "DRX000613",
+      "DRX000681",
+      "SRX000921",
+      "SRX000254",
+      "SRX000626",
+      "ERX149204",
+      "ERX001260",
+      "ERX000427"
+    ],
+    "keywords": [
+      "Experiment"
+    ],
+    "name": "SRA experiment",
+    "pattern": "^(?[SED]RX\\d+)$",
+    "prefix": "sra_experiment",
+    "uri_format": "http://identifiers.org/insdc.sra/$1"
+  },
+  "sra_project": {
+    "examples": [
+      "DRP000994",
+      "DRP000877",
+      "DRP000649",
+      "DRP000147",
+      "SRP266466",
+      "SRP297268",
+      "SRP000065",
+      "ERP001266",
+      "ERP007720",
+      "ERP104141"
+    ],
+    "keywords": [
+      "Project"
+    ],
+    "name": "SRA project",
+    "pattern": "^(?[SED]RP\\d+)$",
+    "prefix": "sra_project",
+    "uri_format": "http://identifiers.org/insdc.sra/$1"
+  },
+  "sra_run": {
+    "examples": [
+      "DRR000834",
+      "DRR000683",
+      "DRR000264",
+      "DRR000453",
+      "SRR029947",
+      "SRR000290",
+      "SRR004854",
+      "ERR499402",
+      "ERR004130",
+      "ERR000715"
+    ],
+    "keywords": [
+      "SequenceRun"
+    ],
+    "name": "SRA run",
+    "pattern": "^(?[SED]RR\\d+)$",
+    "prefix": "sra_run",
+    "uri_format": "http://identifiers.org/insdc.sra/$1"
+  },
+  "sra_sample": {
+    "examples": [
+      "DRS001431",
+      "DRS001371",
+      "DRS000894",
+      "DRS000386",
+      "SRS2618009",
+      "SRS7846025",
+      "SRS000159",
+      "ERS452503",
+      "ERS000126",
+      "ERS010423"
+    ],
+    "keywords": [
+      "Sample"
+    ],
+    "name": "SRA sample",
+    "pattern": "^(?[SED]RS\\d+)$",
+    "prefix": "sra_sample",
+    "uri_format": "http://identifiers.org/insdc.sra/$1"
+  },
+  "taxonomy": {
+    "examples": [
+      "1171376",
+      "484906",
+      "1214242",
+      "1124991",
+      "1037911",
+      "1266844",
+      "243277",
+      "696747",
+      "263820",
+      "713604"
+    ],
+    "keywords": [
+      "Taxonomy"
+    ],
+    "name": "Taxonomy",
+    "pattern": "^(?\\d+)$",
+    "prefix": "taxonomy",
+    "uri_format": "http://identifiers.org/taxonomy/$1"
+  },
+  "togovar": {
+    "examples": [
+      "tgv100005930",
+      "tgv100000890",
+      "tgv16331",
+      "tgv10000341",
+      "tgv21330879",
+      "tgv15847",
+      "tgv1354996",
+      "tgv100002132",
+      "tgv16568524",
+      "tgv62035164"
+    ],
+    "keywords": [
+      "Variant"
+    ],
+    "name": "TogoVar variant",
+    "pattern": "^(?tgv\\d+)$",
+    "prefix": "togovar",
+    "uri_format": "http://togovar.biosciencedbc.jp/variation/$1"
+  },
+  "uniprot": {
+    "examples": [
+      "A0A174V9D2",
+      "A0A1V4U2Y9",
+      "Q7NXD4",
+      "P0AAM3",
+      "O43423",
+      "D4IJI4",
+      "Q66SS1",
+      "B5IDU9",
+      "D3TBR4",
+      "D4ILS5"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "UniProt",
+    "pattern": "^(?:(?<id1>[A-NR-Z][0-9](?:[A-Z][A-Z0-9][A-Z0-9][0-9]){1,2}(?:-\\d+)?)|(?<id2>[OPQ][0-9][A-Z0-9][A-Z0-9][A-Z0-9][0-9](?:-\\d+)?)(?:\\.\\d+)?)$",
+    "prefix": "uniprot",
+    "uri_format": "http://purl.uniprot.org/uniprot/$1"
+  },
+  "uniprot_mnemonic": {
+    "examples": [
+      "2ABA_ORYSJ",
+      "33K_ADES1",
+      "1003L_ASFK5",
+      "1A1D_VARPS",
+      "1B02_GORGO",
+      "1003L_ASFP4",
+      "1433B_MACFA",
+      "1107L_ASFWA",
+      "3BHS1_MOUSE",
+      "14331_SCHMA"
+    ],
+    "keywords": [
+      "Protein"
+    ],
+    "name": "UniProt mnemonic",
+    "pattern": "^(?[A-Z0-9]+_[A-Z0-9]{0,5})$",
+    "prefix": "uniprot_mnemonic",
+    "uri_format": "http://purl.uniprot.org/uniprot/$1"
+  },
+  "wikipathways": {
+    "examples": [
+      "WP1531",
+      "WP4312",
+      "WP4877",
+      "WP5020",
+      "WP4400",
+      "WP4474",
+      "WP4183",
+      "WP3650",
+      "WP4545",
+      "WP4462"
+    ],
+    "keywords": [
+      "Pathway"
+    ],
+    "name": "WikiPathways",
+    "pattern": "^(?WP\\d{1,5})(?:\\_r\\d+)?$",
+    "prefix": "wikipathways",
+    "uri_format": "http://identifiers.org/wikipathways/$1"
+  }
+}
