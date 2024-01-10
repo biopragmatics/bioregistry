@@ -3,14 +3,13 @@
 """Download TogoID."""
 
 import json
-from typing import List, Dict
+from typing import Dict
 
 import rdflib
 import requests
 import yaml
 
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
-from pystow.utils import read_rdf
 
 __all__ = [
     "get_togoid",
