@@ -624,6 +624,8 @@ class Resource(BaseModel):
     lov: Optional[Mapping[str, Any]] = Field(default=None, title="LOV")
     #: External data from Zazuko
     zazuko: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from TogoID
+    togoid: Optional[Mapping[str, Any]] = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
