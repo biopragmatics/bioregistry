@@ -15,7 +15,7 @@ class TogoIDAligner(Aligner):
 
     key = "togoid"
     getter = get_togoid
-    curation_header = ("name", "homepage", "uri_prefix")
+    curation_header = ("name", "uri_format")
 
 
 if __name__ == "__main__":

@@ -55,9 +55,9 @@ def _get_dataset():
         category = record.get("category")
         if category:
             rr["keywords"] = [category]
-        catalog = record.get("catalog")
-        if catalog and catalog != "FIXME":
-            rr["catalog"] = catalog
+        integbio_catalog_id = record.get("catalog")
+        if integbio_catalog_id and integbio_catalog_id != "FIXME":
+            rr["integbio"] = integbio_catalog_id
         rv[prefix] = rr
     return rv
 
