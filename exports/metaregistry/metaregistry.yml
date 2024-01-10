@@ -746,6 +746,62 @@ hl7:
     no_authentication: true
     structured_data: true
   short_name: HL7
+lov:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: present
+    example: missing
+    homepage: present
+    license: missing
+    name: required
+    pattern: missing
+    provider: present
+    search: true
+    synonyms: missing
+    version: missing
+  contact:
+    email: py.vandenbussche@gmail.com
+    github: pyvandenbussche
+    name: Pierre-Yves Vandenbussche
+    orcid: 0000-0003-0591-6109
+  description: A vocabulary in LOV gathers definitions of a set of classes and properties
+    (together simply called terms of the vocabulary), useful to describe specific
+    types of things, or things in a given domain or industry, or things at large but
+    for a specific usage. Terms of vocabularies also provide the links in linked data,
+    in the above case between a Person and a City. The definitions of terms provided
+    by the vocabularies bring clear semantics to descriptions and links, thanks to
+    the formal language they use (some dialect of RDF such as RDFS or OWL). In short,
+    vocabularies provide the semantic glue enabling Data to become meaningful Data.
+    [from https://lov.linkeddata.es/dataset/lov/about]
+  download: https://lov.linkeddata.es/lov.n3.gz
+  example: m4i
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/pyvandenbussche/lov
+    comments: null
+    curates: true
+    curation: import
+    data_repository: null
+    imports: true
+    issue_tracker: https://github.com/pyvandenbussche/lov/issues
+    public_version_controlled_data: false
+    review_team: n/a
+    scope: semantic web
+    status: active
+  homepage: https://lov.linkeddata.es
+  license: CC BY 4.0
+  logo_url: https://lov.linkeddata.es/img/icon-LOV.png
+  name: Linked Open Vocabularies
+  prefix: lov
+  provider_uri_format: https://lov.linkeddata.es/dataset/lov/vocabs/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  search_uri_format: https://lov.linkeddata.es/dataset/lov/vocabs?q=$1
+  short_name: LOV
 miriam:
   availability:
     alternate_providers: present
@@ -1342,3 +1398,56 @@ wikidata:
     no_authentication: true
     structured_data: true
   short_name: Wikidata
+zazuko:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    homepage: missing
+    license: missing
+    name: missing
+    pattern: missing
+    provider: present
+    search: true
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: zazuko
+  contact:
+    email: ktk@netlabs.org
+    github: ktk
+    name: Adrian Gschwend
+    orcid: 0000-0002-2079-9636
+  description: This service fills a gap between services like prefix.cc and LOV or
+    looking up the original vocabulary specification. Not all vocabularies (or schema
+    or ontology, whatever you want to call them) provide an HTML view. If you resolve
+    some of the common prefixes all you get back is some RDF serialization which is
+    not ideal. (from <https://prefix.zazuko.com/about>)
+  download: https://prefix.zazuko.com/api/v1/prefixes
+  example: frbr
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/zazuko/prefix-server
+    comments: null
+    curates: true
+    curation: open-review
+    data_repository: https://github.com/zazuko/rdf-vocabularies
+    imports: true
+    issue_tracker: https://github.com/zazuko/rdf-vocabularies/issues
+    public_version_controlled_data: true
+    review_team: public
+    scope: semantic web
+    status: active
+  homepage: https://prefix.zazuko.com/
+  license: MIT
+  logo_url: https://prefix.zazuko.com/_nuxt/img/zazuko-logo.2dc686c.svg
+  name: Zazuko Prefix Server
+  prefix: zazuko
+  provider_uri_format: 'https://prefix.zazuko.com/prefix/$1:'
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  resolver_type: lookup
+  resolver_uri_format: https://prefix.zazuko.com/$1:$2

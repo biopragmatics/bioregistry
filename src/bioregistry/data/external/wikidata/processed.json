@@ -345,6 +345,19 @@
     "prefix": "P10529",
     "uri_format": "https://www.madreandiscovery.org/fauna/taxa/index.php?tid=$1"
   },
+  "P1053": {
+    "database": "Q7315186",
+    "description": "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829",
+    "example": [
+      "J-3403-2017",
+      "K-8011-2013"
+    ],
+    "homepage": "https://access.clarivate.com/login?app=wos",
+    "name": "ResearcherID",
+    "pattern": "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$",
+    "prefix": "P1053",
+    "uri_format": "https://www.webofscience.com/wos/author/record/$1"
+  },
   "P10534": {
     "database": "Q108850872",
     "description": "identifier for a taxon in the Australian Reptile Online Database",
@@ -1137,7 +1150,7 @@
     "uri_format": "https://wwv.inhs.illinois.edu/data/plantdb/detail/$1"
   },
   "P11143": {
-    "database": "Q21830340",
+    "database": "Q4099686",
     "description": "identifier of a topic in WikiProjectMed",
     "example": [
       "Aliskiren",
@@ -2059,7 +2072,7 @@
     ],
     "homepage": "https://naturalhistory2.si.edu/botany/hawaiianflora/index.htm",
     "name": "Flora of the Hawaiian Islands URL",
-    "pattern": "^https?://naturalhistory2\\.si\\.edu/botany/hawaiianflora/speciesdescr\\.cfm\\?genus=[A-Za-z]+&species=[a-z]+(?:&rank1=(?:subsp|var)\\.&epithet1=[a-z]+)?$",
+    "pattern": "^https?://naturalhistory2\\.si\\.edu/botany/hawaiianflora/(?:speciesdescr|genusdescr)\\.cfm\\?genus=[A-Za-z]+(?:&species=[a-z]+(?:&rank1=(?:subsp|var)\\.&epithet1=[a-z]+)?)?$",
     "prefix": "P12270"
   },
   "P12271": {
@@ -2076,6 +2089,47 @@
     "pattern": "^[1-9]\\d*$",
     "prefix": "P12271",
     "uri_format": "https://millibase.org/aphia.php?p=taxdetails&id=$1"
+  },
+  "P12273": {
+    "database": "Q123558951",
+    "description": "URL for a plant family, genus, or species on the Montana Plant Life website",
+    "example": [
+      "http://montana.plant-life.org/cgi-bin/family03.cgi?Brassicaceae",
+      "http://montana.plant-life.org/cgi-bin/family03.cgi?Cactaceae",
+      "http://montana.plant-life.org/cgi-bin/family03.cgi?Orchidaceae",
+      "http://montana.plant-life.org/cgi-bin/genus03.cgi?Caryophyllaceae_Silene",
+      "http://montana.plant-life.org/cgi-bin/genus03.cgi?Orchidaceae_Corallorhiza",
+      "http://montana.plant-life.org/cgi-bin/genus03.cgi?Saxifragaceae_Parnassia",
+      "http://montana.plant-life.org/cgi-bin/species03.cgi?Cactaceae_Escobariamissouriensis",
+      "http://montana.plant-life.org/cgi-bin/species03.cgi?Caprifoliaceae_Linnaeaborealis",
+      "http://montana.plant-life.org/cgi-bin/species03.cgi?Ranunculaceae_Ranunculusglaberrimus"
+    ],
+    "homepage": "http://montana.plant-life.org/index.html",
+    "name": "Montana Plant Life URL",
+    "pattern": "^http:\\/\\/montana\\.plant-life\\.org/cgi-bin/(?:(?:species|genus|family)03)\\.cgi\\?[A-Za-z]+(?:\\_[A-Za-z\\-]+)*$",
+    "prefix": "P12273"
+  },
+  "P12278": {
+    "database": "Q123657094",
+    "description": "identifier for a plant taxon in the Mid-Atlantic Herbaria Consortium database",
+    "example": [
+      "10432",
+      "155",
+      "224004",
+      "33",
+      "5786",
+      "87135",
+      "9",
+      "92099",
+      "9257",
+      "95332",
+      "96632"
+    ],
+    "homepage": "https://midatlanticherbaria.org/portal/index.php",
+    "name": "Mid-Atlantic Herbaria Consortium taxon ID",
+    "pattern": "^[1-9][0-9]*$",
+    "prefix": "P12278",
+    "uri_format": "https://midatlanticherbaria.org/portal/taxa/index.php?tid=$1"
   },
   "P1294": {
     "database": "Q6617741",
@@ -3100,7 +3154,7 @@
     ],
     "homepage": "http://www.xeno-canto.org/",
     "name": "Xeno-canto species ID",
-    "pattern": "^[A-Z][a-z]+\\-[a-z]$",
+    "pattern": "^[A-Z][a-z]+\\-[ ]+\\-[a-z]$",
     "prefix": "P2426",
     "uri_format": "https://xeno-canto.org/explore?query=$1"
   },
@@ -3161,6 +3215,20 @@
     "name": "Species Profile and Threats Database ID",
     "prefix": "P2455",
     "uri_format": "https://www.environment.gov.au/cgi-bin/sprat/public/publicspecies.pl?taxon_id=$1"
+  },
+  "P2456": {
+    "database": "Q1224715",
+    "description": "identifier for author entries in the DBLP computer science bibliography (use portion of DBLP person key after pid/)",
+    "example": [
+      "181/8944",
+      "d/JeffreyDean",
+      "z/LixiaZhang1"
+    ],
+    "homepage": "https://dblp.org/",
+    "name": "DBLP author ID",
+    "prefix": "P2456",
+    "uri_format": "https://dblp.org/pid/$1",
+    "uri_format_rdf": "https://dblp.org/pid/$1.rdf"
   },
   "P2464": {
     "database": "Q4986057",
@@ -5353,11 +5421,24 @@
       "urn:lsid:ipni.org:names:561509-1",
       "urn:lsid:ipni.org:names:811804-1"
     ],
-    "name": "Plants of the World online ID",
+    "name": "Plants of the World Online ID",
     "pattern": "^urn:lsid:ipni\\.org:names:[1-9]\\d{0,7}-[1234]$",
     "prefix": "P5037",
     "uri_format": "https://powo.science.kew.org/taxon/$1",
     "uri_format_rdf": "http://lsid.tdwg.org/$1"
+  },
+  "P5039": {
+    "database": "Q50315950",
+    "description": "identifier for an author on the Authorea writing service",
+    "example": [
+      "106",
+      "229233"
+    ],
+    "homepage": "https://www.authorea.com",
+    "name": "Authorea author ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P5039",
+    "uri_format": "https://www.authorea.com/users/$1"
   },
   "P5055": {
     "database": "Q51885189",
@@ -8386,6 +8467,19 @@
     "pattern": "^MX\\.[0-9]+$",
     "prefix": "P7552",
     "uri_format": "https://laji.fi/taxon/$1"
+  },
+  "P7671": {
+    "description": "identifier of an author or reviewer, in Semion",
+    "example": [
+      "1085144",
+      "17963667",
+      "2975999"
+    ],
+    "homepage": "https://www.semion.io",
+    "name": "Semion author ID",
+    "pattern": "^\\d+$",
+    "prefix": "P7671",
+    "uri_format": "https://www.semion.io/Author/$1"
   },
   "P7710": {
     "database": "Q22666524",

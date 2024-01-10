@@ -455,7 +455,11 @@ adms:
     lists, taxonomies, dictionaries, vocabularies).
   example: Asset
   homepage: http://www.w3.org/ns/adms
+  keywords:
+  - metadata
   license: CC-BY-4.0
+  mappings:
+    lov: adms
   name: Asset Description Metadata Schema Vocabulary
   preferred_prefix: adms
   repository: https://github.com/SEMICeu/ADMS/
@@ -477,6 +481,7 @@ ado:
   example: '0000001'
   homepage: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
   keywords:
+  - alzheimer's disease
   - health science
   - obo
   - ontology
@@ -519,6 +524,7 @@ adw:
   - life science
   - obo
   - ontology
+  - taxonomic classification
   mappings:
     aberowl: ADW
     biocontext: ADW
@@ -626,7 +632,9 @@ aero:
   example: '0000125'
   homepage: http://purl.obolibrary.org/obo/aero
   keywords:
+  - adverse reaction
   - biomedical science
+  - electronic health record
   - health science
   - medicine
   - obo
@@ -672,13 +680,14 @@ afo:
     name: Allotrope Foundation
     orcid: null
   description: Allotrope Merged Ontology Suite
-  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2023/09/merged-without-qudt-and-inferred
+  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2023/12/merged-without-qudt-and-inferred
   homepage: https://www.allotrope.org/
   keywords:
   - agricultural engineering
   - agriculture
   - biology
   - environmental science
+  - food
   - food chemistry
   - forest management
   - ontology
@@ -692,7 +701,7 @@ afo:
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
-  version: 2023/09
+  version: 2023/12
 aftol.category:
   contact:
     email: davem@umn.edu
@@ -879,6 +888,7 @@ agro:
   keywords:
   - agriculture
   - agronomy
+  - cropping systems
   - farming systems research
   - obo
   - ontology
@@ -924,8 +934,10 @@ agrovoc:
   - data management
   - environmental science
   - fisheries science
+  - food
   - forest management
   - nutritional science
+  - thesaurus
   mappings:
     agroportal: AGROVOC
     bartoc: '305'
@@ -1039,6 +1051,9 @@ aio:
   homepage: https://github.com/berkeleybop/artificial-intelligence-ontology
   keywords:
   - artificial intelligence
+  - hidden markov model
+  - knowledge representation
+  - machine learning
   - ontology
   mappings:
     aberowl: AIO
@@ -1463,6 +1478,7 @@ apaonto:
   example: Abdomen
   homepage: https://bioportal.bioontology.org/ontologies/APAONTO
   keywords:
+  - behavior
   - ontology
   - psychology
   mappings:
@@ -1592,9 +1608,14 @@ apo:
   homepage: http://www.yeastgenome.org/
   keywords:
   - cell biology
+  - life cycle stage
   - life science
+  - morphology
+  - mutation
   - obo
   - ontology
+  - phenotype
+  - study design
   license: CC-BY-4.0
   mappings:
     aberowl: APO
@@ -1635,8 +1656,10 @@ apollosv:
   - biomedical science
   - ecology
   - epidemiology
+  - infection
   - obo
   - ontology
+  - pathogen
   - population genetics
   license: CC-BY-4.0
   mappings:
@@ -1838,8 +1861,11 @@ ark:
   example: /53355/cl010066723
   homepage: https://arks.org
   keywords:
+  - centrally registered identifier
   - data management
+  - data retrieval
   - subject agnostic
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline
   mappings:
     biocontext: ARK
     fairsharing: FAIRsharing.f928f1
@@ -2022,6 +2048,8 @@ arxiv:
   homepage: https://arxiv.org/
   keywords:
   - bibliography
+  - preprints
+  - publishing
   mappings:
     bartoc: '20434'
     biocontext: ARXIV
@@ -2277,10 +2305,14 @@ atc:
   example: A10BA02
   homepage: http://www.whocc.no/atc_ddd_index/
   keywords:
+  - anatomical therapeutic chemical code
+  - approved drug
   - biomedical science
   - chemical
   - chemical biology
+  - drug
   - ontology
+  - pharmacological family classification
   - pharmacology
   mappings:
     aberowl: ATC
@@ -2403,6 +2435,7 @@ ato:
   keywords:
   - obo
   - ontology
+  - taxonomic classification
   - taxonomy
   mappings:
     aberowl: ATO
@@ -2437,7 +2470,9 @@ atol:
   - agriculture
   - animal husbandry
   - life science
+  - livestock
   - ontology
+  - phenotype
   mappings:
     aberowl: ATOL
     agroportal: ATOL
@@ -2466,6 +2501,16 @@ autdb:
   pattern: ^[A-Z]+[A-Z-0-9]{2,}$
   preferred_prefix: autdb
   uri_format: http://autism.mindspec.org/GeneDetail/$1
+authorea.author:
+  description: identifier for an author on the Authorea writing service
+  example: '229233'
+  homepage: https://www.authorea.com
+  mappings:
+    wikidata: P5039
+  name: Authorea author ID
+  pattern: ^[1-9]\d*$
+  preferred_prefix: authorea.author
+  uri_format: https://www.authorea.com/users/$1
 babelon:
   contact:
     email: nicolas.matentzoglu@gmail.com
@@ -2654,10 +2699,18 @@ bao:
   example: 0002989
   homepage: http://bioassayontology.org
   keywords:
+  - assay
   - biochemistry
+  - biological process
   - biomedical science
+  - cell
+  - chemical entity
   - life science
+  - molecular entity
   - ontology
+  - protein
+  - reagent
+  - target
   mappings:
     aberowl: BAO
     biocontext: BAO
@@ -2884,10 +2937,14 @@ bco:
   homepage: https://github.com/BiodiversityOntologies/bco
   keywords:
   - biodiversity
+  - biological sample
+  - biological sample annotation
   - ecology
+  - environmental material
   - metagenomics
   - obo
   - ontology
+  - taxonomic classification
   - taxonomy
   license: CC0-1.0
   mappings:
@@ -3180,6 +3237,7 @@ bfo:
   example: '0000001'
   homepage: http://ifomis.org/bfo/
   keywords:
+  - data retrieval
   - obo
   - ontology
   - subject agnostic
@@ -3305,6 +3363,10 @@ bibo:
   homepage: https://bibliontology.com/
   keywords:
   - bibliometrics
+  - catalogs
+  mappings:
+    lov: bibo
+    zazuko: bibo
   name: The Bibliographic Ontology
   preferred_prefix: bibo
   uri_format: http://purl.org/ontology/bibo/$1
@@ -3325,6 +3387,10 @@ bido:
   example: CategorialBibliometricData
   homepage: http://www.sparontologies.net/ontologies/bido
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.d7f0a9
@@ -3933,8 +3999,11 @@ biomodels.kisao:
   example: '0000057'
   homepage: https://github.com/SED-ML/KiSAO
   keywords:
+  - algorithm
   - bioinformatics
   - computer science
+  - kinetic model
+  - modeling and simulation
   - obo
   - ontology
   license: Artistic License 2.0
@@ -3996,6 +4065,7 @@ biomodels.teddy:
   example: '0000066'
   homepage: http://teddyontology.sourceforge.net/
   keywords:
+  - modeling and simulation
   - neurophysiology
   - ontology
   - synthetic biology
@@ -4574,7 +4644,9 @@ birnlex:
   keywords:
   - anatomy
   - biomedical science
+  - disease
   - ontology
+  - study design
   mappings:
     aberowl: BIRNLEX
     bioportal: BIRNLEX
@@ -4600,9 +4672,15 @@ biro:
   example: BibliographicRecord
   homepage: http://www.sparontologies.net/ontologies/biro
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
+  - spar
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.99da5f
+    lov: biro
   name: Bibliographic Reference Ontology
   preferred_prefix: BiRO
   repository: https://github.com/sparontologies/biro
@@ -5078,10 +5156,14 @@ bto:
   example: 0000590
   homepage: http://www.brenda-enzymes.org
   keywords:
+  - cell
+  - enzyme
   - enzymology
   - life science
   - obo
   - ontology
+  - organ
+  - reaction data
   - tissue
   license: CC-BY-4.0
   mappings:
@@ -5254,9 +5336,15 @@ c4o:
   example: InTextReferencePointer
   homepage: http://www.sparontologies.net/ontologies/c4o
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
+  - spar
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.beb855
+    lov: c4o
   name: Citation Counting and Context Characterisation Ontology
   preferred_prefix: C4O
   repository: https://github.com/sparontologies/c4o
@@ -5414,11 +5502,17 @@ cao:
   example: '000064'
   homepage: https://champ.stuchalk.domains.unf.edu
   keywords:
+  - amino acid sequence
+  - annotation
   - characterisation data heat
+  - gene
   - genetics
   - life science
   - ontology
+  - orthologous
   - phylogenetics
+  - protein
+  - transcript
   - transport and kinetic data
   license: CC-BY-3.0
   mappings:
@@ -5434,7 +5528,7 @@ cao:
     pmc: null
     pubmed: '9381173'
     title: A genomic perspective on protein families
-    year: null
+    year: 1997
   uri_format: http://champ-project.org/images/ontology/cao.owl#CAO_$1
   version: '0.2'
 caps:
@@ -5476,6 +5570,8 @@ caro:
   homepage: https://github.com/obophenotype/caro/
   keywords:
   - anatomy
+  - annotation
+  - interoperability
   - life science
   - obo
   - ontology
@@ -5515,6 +5611,7 @@ cas:
   homepage: https://commonchemistry.cas.org/
   keywords:
   - chemical
+  - chemical entity
   - cheminformatics
   - structure
   mappings:
@@ -5869,9 +5966,13 @@ cc:
   download_rdf: https://creativecommons.org/schema.rdf
   example: Work
   homepage: https://creativecommons.org/ns
+  keywords:
+  - metadata
   license: CC0-1.0
   mappings:
     aberowl: CC
+    lov: cc
+    zazuko: cc
   name: Creative Commons Rights Expression Language
   pattern: ^\w+$
   preferred_prefix: cc
@@ -6019,10 +6120,12 @@ cco:
   example: '0000003'
   homepage: http://www.semantic-systems-biology.org/apo
   keywords:
+  - cell
   - cell cycle
   - functional genomics
   - genomics
   - life science
+  - molecular function
   - obo
   - ontology
   - proteomics
@@ -6099,6 +6202,7 @@ cdao:
   keywords:
   - bioinformatics
   - biomedical science
+  - evolution
   - evolutionary biology
   - life science
   - molecular biology
@@ -6498,6 +6602,7 @@ ceph:
   keywords:
   - anatomy
   - fisheries science
+  - life cycle
   - obo
   - ontology
   - zoology
@@ -6714,8 +6819,13 @@ chebi:
   - biochemistry
   - chemical
   - chemistry
+  - molecular entity
+  - molecular structure
+  - natural product
   - obo
   - ontology
+  - small molecule
+  - taxonomic classification
   license: CC-BY-4.0
   logo: https://www.ebi.ac.uk/chebi/images/ChEBI_logo.png
   mappings:
@@ -6790,7 +6900,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '227'
+  version: '228'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -7101,6 +7211,8 @@ cheminf:
   - biochemistry
   - chemistry
   - life science
+  - molecular entity
+  - molecular structure
   - obo
   - ontology
   license: CC0-1.0
@@ -7326,7 +7438,11 @@ chmo:
   example: 0002902
   homepage: https://github.com/rsc-ontologies/rsc-cmo
   keywords:
+  - assay
   - chemistry
+  - chromatography
+  - electron microscopy
+  - mass spectrometry assay
   - obo
   - ontology
   license: CC-BY-4.0
@@ -7361,9 +7477,14 @@ cido:
   homepage: https://github.com/cido-ontology/cido
   keywords:
   - bioinformatics
+  - covid-19
+  - disease
+  - drug
   - drug discovery
+  - drug interaction
   - drug repositioning
   - epidemiology
+  - infection
   - obo
   - ontology
   - virology
@@ -7407,6 +7528,7 @@ cio:
   example: '0000040'
   homepage: https://github.com/BgeeDB/confidence-information-ontology
   keywords:
+  - annotation
   - biology
   - obo
   - ontology
@@ -7450,7 +7572,11 @@ citexplore:
   homepage: https://www.ebi.ac.uk/citexplore/
   keywords:
   - biomedical science
+  - brain
+  - disease
   - genetics
+  - lipid
+  - phenotype
   - preclinical studies
   mappings:
     fairsharing: FAIRsharing.619eqr
@@ -7494,9 +7620,13 @@ cito:
   example: sharesAuthorInstitutionWith
   homepage: http://www.sparontologies.net/ontologies/cito
   keywords:
+  - citation
+  - data model
   - knowledge and information systems
+  - spar
   mappings:
     fairsharing: FAIRsharing.b220d4
+    lov: cito
   name: Citation Typing Ontology
   preferred_prefix: CiTO
   publications:
@@ -7709,9 +7839,11 @@ cl:
   homepage: https://obophenotype.github.io/cell-ontology/
   keywords:
   - anatomy
+  - annotation
   - cell
   - cell biology
   - life science
+  - morphology
   - obo
   - ontology
   license: CC-BY-4.0
@@ -7771,7 +7903,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2023-12-05'
+  version: '2024-01-04'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -8042,8 +8174,11 @@ clo:
   example: 0000091
   homepage: http://www.clo-ontology.org
   keywords:
+  - cell
   - cell biology
+  - cell line
   - life science
+  - morphology
   - obo
   - ontology
   license: CC-BY-3.0
@@ -8199,9 +8334,13 @@ cmo:
   homepage: http://rgd.mcw.edu/rgdweb/ontology/search.html
   keywords:
   - biomedical science
+  - disease
+  - electronic health record
   - life science
+  - model organism
   - obo
   - ontology
+  - phenotype
   - preclinical studies
   license: CC0-1.0
   logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
@@ -8246,8 +8385,12 @@ cmpo:
   example: '0000435'
   homepage: http://www.ebi.ac.uk/cmpo
   keywords:
+  - cell
   - cell biology
+  - cellular component
+  - microscopy
   - ontology
+  - phenotype
   mappings:
     aberowl: CMPO
     bioportal: CMPO
@@ -8296,7 +8439,10 @@ co_320:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_320
@@ -8320,7 +8466,9 @@ co_321:
   homepage: https://cropontology.org/ontology/CO_321/Wheat
   keywords:
   - agriculture
+  - food
   - life science
+  - phenotype
   license: CC-BY-4.0
   mappings:
     agroportal: CO_321
@@ -8352,7 +8500,10 @@ co_322:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_322
@@ -8377,6 +8528,8 @@ co_323:
   keywords:
   - agriculture
   - botany
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_323
@@ -8401,6 +8554,8 @@ co_324:
   keywords:
   - agriculture
   - botany
+  - food
+  - phenotype
   license: CC-BY-4.0
   mappings:
     agroportal: CO_324
@@ -8424,7 +8579,10 @@ co_325:
   homepage: https://cropontology.org/ontology/CO_325/Banana
   keywords:
   - agriculture
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_325
@@ -8463,6 +8621,8 @@ co_327:
   keywords:
   - agriculture
   - botany
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_327
@@ -8487,6 +8647,8 @@ co_330:
   - agriculture
   - botany
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_330
@@ -8511,6 +8673,7 @@ co_331:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
   license: CC-BY-4.0
   mappings:
@@ -8539,8 +8702,11 @@ co_333:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
   - plant breeding
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_333
@@ -8565,7 +8731,10 @@ co_334:
   keywords:
   - agriculture
   - botany
+  - food
   - nutritional science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_334
@@ -8590,6 +8759,7 @@ co_335:
   keywords:
   - agriculture
   - botany
+  - food
   license: CC-BY-4.0
   mappings:
     agroportal: CO_335
@@ -8612,7 +8782,10 @@ co_336:
   homepage: https://cropontology.org/ontology/CO_336/Soybean
   keywords:
   - agriculture
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_336
@@ -8637,7 +8810,10 @@ co_337:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_337
@@ -8662,6 +8838,9 @@ co_338:
   keywords:
   - agriculture
   - botany
+  - food
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_338
@@ -8686,7 +8865,10 @@ co_339:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_339
@@ -8711,6 +8893,9 @@ co_340:
   keywords:
   - agriculture
   - botany
+  - food
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_340
@@ -8743,7 +8928,10 @@ co_341:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_341
@@ -8768,7 +8956,10 @@ co_343:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_343
@@ -8794,6 +8985,8 @@ co_345:
   - agriculture
   - botany
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_345
@@ -8817,7 +9010,10 @@ co_346:
   homepage: https://cropontology.org/ontology/CO_346/Mungbean
   keywords:
   - agriculture
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_346
@@ -8842,7 +9038,10 @@ co_347:
   keywords:
   - agriculture
   - botany
+  - food
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_347
@@ -8870,6 +9069,8 @@ co_348:
   - agriculture
   - botany
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_348
@@ -8896,6 +9097,8 @@ co_350:
   - agriculture
   - botany
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_350
@@ -8922,6 +9125,8 @@ co_356:
   - agriculture
   - botany
   - life science
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_356
@@ -8949,6 +9154,7 @@ co_357:
   keywords:
   - botany
   - life science
+  - phenotype
   license: CC-BY-4.0
   mappings:
     agroportal: CO_357
@@ -9011,6 +9217,9 @@ co_360:
   keywords:
   - botany
   - life science
+  - marine environment
+  - phenotype
+  - plant phenotypes and traits
   license: CC-BY-4.0
   mappings:
     agroportal: CO_360
@@ -10061,8 +10270,12 @@ credit:
   example: Software
   homepage: https://casrai.org/credit/
   keywords:
+  - citation
+  - classification
   - data quality
+  - resource metadata
   - subject agnostic
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline
   mappings:
     fairsharing: FAIRsharing.fe4816
   name: CASRAI Contributor Roles Taxonomy
@@ -10082,7 +10295,7 @@ credit:
     pmc: null
     pubmed: null
     title: ANSI/NISO Z39.104-2022, CRediT, Contributor Roles Taxonomy
-    year: null
+    year: 2022
   - doi: 10.1087/20150211
     pmc: null
     pubmed: null
@@ -10194,6 +10407,7 @@ cryoem:
   example: '0000052'
   homepage: http://scipion.i2pc.es/ontology/cryoem
   keywords:
+  - electron microscopy
   - ontology
   - structural biology
   mappings:
@@ -10372,6 +10586,8 @@ csp:
   - biology
   - biomedical science
   - chemical biology
+  - disease
+  - food
   - medicine
   - ontology
   - social science
@@ -10630,6 +10846,7 @@ cto:
   homepage: https://github.com/ClinicalTrialOntology/CTO/
   keywords:
   - biomedical science
+  - disease
   - neurobiology
   - obo
   - ontology
@@ -10730,6 +10947,7 @@ cvdo:
   homepage: https://github.com/OpenLHS/CVDO
   keywords:
   - cardiology
+  - cardiovascular disease
   - obo
   - ontology
   license: CC-BY-4.0
@@ -10940,7 +11158,11 @@ datacite:
   example: AgentIdentifierScheme
   homepage: http://www.sparontologies.net/ontologies/datacite
   keywords:
+  - bibliography
+  - citation
+  - data model
   - ontology
+  - report
   - subject agnostic
   mappings:
     aberowl: DATACITE
@@ -11200,6 +11422,17 @@ dbgap:
     title: The NCBI dbGaP database of genotypes and phenotypes
     year: 2007
   uri_format: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=$1
+dblp.author:
+  description: identifier for author entries in the DBLP computer science bibliography
+    (use portion of DBLP person key after pid/)
+  example: 199/2168
+  homepage: https://dblp.org/
+  mappings:
+    wikidata: P2456
+  name: DBLP author ID
+  preferred_prefix: dblp.author
+  rdf_uri_format: https://dblp.org/pid/$1.rdf
+  uri_format: https://dblp.org/pid/$1
 dbmhc:
   appears_in:
   - cellosaurus
@@ -11229,6 +11462,8 @@ dbo:
   keywords:
   - dbpedia
   - ontology
+  mappings:
+    zazuko: dbo
   name: DBPedia Ontology
   preferred_prefix: dbo
   uri_format: https://dbpedia.org/ontology/$1
@@ -11373,16 +11608,22 @@ dc:
   example: contributor
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   keywords:
+  - annotation
   - biomedical science
   - life science
+  - metadata
+  - metadata standardization
   - ontology
+  - resource metadata
   - subject agnostic
   mappings:
     aberowl: dcelements
     biocontext: dc
     bioportal: DC
     fairsharing: FAIRsharing.3nx7t
+    lov: dce
     ols: dc
+    zazuko: dc11
   name: Dublin Core Elements (1.1)
   preferred_prefix: dc
   synonyms:
@@ -11430,12 +11671,15 @@ dcat:
   - data management
   - ontology
   - subject agnostic
+  - w3c rec
   mappings:
     aberowl: DCAT
     biocontext: dcat
     biolink: dcat
     bioportal: DCAT
     fairsharing: FAIRsharing.h4j3qm
+    lov: dcat
+    zazuko: dcat
   name: Data Catalog
   preferred_prefix: dcat
   repository: https://github.com/w3c/dxwg/
@@ -11459,7 +11703,10 @@ dcterms:
   example: title
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   keywords:
+  - metadata
+  - metadata standardization
   - ontology
+  - resource metadata
   - subject agnostic
   mappings:
     aberowl: dcterms
@@ -11467,7 +11714,9 @@ dcterms:
     biolink: dct
     bioportal: DCTERMS
     fairsharing: FAIRsharing.9vtwjs
+    lov: dcterms
     ols: dcterms
+    zazuko: dcterms
   name: Dublin Core Metadata Initiative Terms
   preferred_prefix: dcterms
   synonyms:
@@ -11504,6 +11753,7 @@ ddanat:
   homepage: http://dictybase.org/
   keywords:
   - anatomy
+  - cell
   - life science
   - obo
   - ontology
@@ -11645,6 +11895,7 @@ ddpheno:
   - life science
   - obo
   - ontology
+  - phenotype
   license: CC0-1.0
   mappings:
     aberowl: DDPHENO
@@ -11773,9 +12024,15 @@ deo:
   example: Reference
   homepage: http://www.sparontologies.net/ontologies/deo
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
+  - spar
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.39fd58
+    lov: deo
   name: Discourse Elements Ontology
   preferred_prefix: DEO
   publications:
@@ -11867,6 +12124,7 @@ dermo:
   homepage: https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0085-x
   keywords:
   - dermatology
+  - disease
   - ontology
   mappings:
     aberowl: DERMO
@@ -12209,6 +12467,9 @@ dideo:
   homepage: https://github.com/DIDEO/DIDEO
   keywords:
   - biochemistry
+  - drug interaction
+  - evidence
+  - natural product
   - obo
   - ontology
   license: CC-BY-4.0
@@ -12550,6 +12811,10 @@ doap:
   - metadata
   - rdf
   - semantic web
+  - society
+  mappings:
+    lov: doap
+    zazuko: doap
   name: Description of a Project
   preferred_prefix: doap
   references:
@@ -12574,9 +12839,15 @@ doco:
   example: Paragraph
   homepage: http://www.sparontologies.net/ontologies/doco
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
+  - spar
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.162003
+    lov: doco
   name: Document Components Ontology
   preferred_prefix: DoCO
   publications:
@@ -12623,6 +12894,7 @@ doi:
   homepage: https://www.doi.org/
   keywords:
   - bibliography
+  - centrally registered identifier
   - knowledge and information systems
   mappings:
     biocontext: DOI
@@ -12701,9 +12973,15 @@ doid:
   homepage: http://www.disease-ontology.org
   keywords:
   - biomedical science
+  - classification
   - disease
+  - disease phenotype
+  - disease process modeling
+  - genetic disorder
   - human
+  - infection
   - life science
+  - mental health
   - obo
   - ontology
   license: CC0-1.0
@@ -12751,7 +13029,7 @@ doid:
     pubmed: '37953304'
     title: 'The DO-KB Knowledgebase: a 20-year journey developing the disease open
       science ecosystem'
-    year: null
+    year: 2023
   - doi: 10.1093/nar/gkab1063
     pmc: PMC8728220
     pubmed: '34755882'
@@ -12836,7 +13114,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2023-11-30'
+  version: '2023-12-20'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -12864,6 +13142,7 @@ dolce:
     remains available for use.
   homepage: http://www.loa.istc.cnr.it/dolce/overview.html
   keywords:
+  - classification
   - computer science
   - knowledge and information systems
   - linguistics
@@ -13179,9 +13458,12 @@ dron:
   example: '00023232'
   homepage: https://github.com/ufbmi/dron
   keywords:
+  - approved drug
   - biomedical science
+  - drug
   - obo
   - ontology
+  - small molecule
   license: CC-BY-3.0
   mappings:
     aberowl: DRON
@@ -13588,8 +13870,11 @@ dto:
   homepage: https://github.com/DrugTargetOntology/DTO
   keywords:
   - biomedical science
+  - disease
   - drug discovery
+  - drug target
   - ontology
+  - protein
   mappings:
     aberowl: DTO
     bioportal: DTO
@@ -13622,10 +13907,12 @@ duo:
   homepage: https://github.com/EBISPOT/DUO
   keywords:
   - biomedical science
+  - metadata standardization
   - obo
   - ontology
   - subject agnostic
   license: CC-BY-4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmdCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9a42083efa91d79ee5c7ed8e7868db0f7faf0b76/DUO_logo_white_background.png?disposition=inline
   mappings:
     aberowl: DUO
     biocontext: DUO
@@ -13785,8 +14072,10 @@ eccode:
   homepage: https://www.enzyme-database.org/
   keywords:
   - biochemistry
+  - centrally registered identifier
   - classification
   - enzyme
+  - enzyme commission number
   - enzymology
   license: CC-BY-4.0
   mappings:
@@ -13870,6 +14159,8 @@ ecg:
   homepage: https://bioportal.bioontology.org/ontologies/ECG
   keywords:
   - biomedical science
+  - electrocardiography
+  - heart
   - ontology
   mappings:
     aberowl: ECG
@@ -13996,10 +14287,20 @@ eco:
   example: 0007807
   homepage: https://www.evidenceontology.org
   keywords:
+  - assay
+  - biocuration
+  - biological sample annotation
   - computational biology
+  - curated information
+  - digital curation
+  - evidence
   - life science
+  - literature curation
   - obo
   - ontology
+  - resource metadata
+  - study design
+  - text mining
   license: CC0-1.0
   logo: https://avatars1.githubusercontent.com/u/12802432
   mappings:
@@ -14244,6 +14545,7 @@ ecso:
   homepage: http://bioportal.bioontology.org/ontologies/ECSO
   keywords:
   - earth science
+  - ecosystem
   - ecosystem science
   - ontology
   mappings:
@@ -14290,7 +14592,9 @@ ecto:
   example: '0000001'
   homepage: https://github.com/EnvironmentOntology/environmental-exposure-ontology
   keywords:
+  - diet
   - environmental science
+  - exposure
   - obo
   - ontology
   license: CC0-1.0
@@ -14312,7 +14616,7 @@ ecto:
     pubmed: '36823605'
     title: 'The Environmental Conditions, Treatments, and Exposures Ontology (ECTO):
       connecting toxicology and exposure to human health and beyond'
-    year: null
+    year: 2023
   rdf_uri_format: http://purl.obolibrary.org/obo/ECTO_$1
   repository: https://github.com/EnvironmentOntology/environmental-exposure-ontology
   uri_format: http://purl.obolibrary.org/obo/ECTO_$1
@@ -14408,7 +14712,10 @@ edam:
   example: data_1664
   homepage: http://edamontology.org
   keywords:
+  - analysis
   - bioinformatics
+  - data acquisition
+  - data transformation
   - life science
   - obo
   - ontology
@@ -14448,12 +14755,12 @@ edam:
     pmc: null
     pubmed: null
     title: 'EDAM: the bioscientific data analysis ontology (update 2021)'
-    year: null
+    year: 2021
   - doi: 10.5281/zenodo.3899895
     pmc: null
     pubmed: null
     title: 'edamontology/edamontology: EDAM 1.25'
-    year: null
+    year: 2020
   rdf_uri_format: http://edamontology.org/$1
   repository: https://github.com/edamontology/edamontology
   twitter: edamontology
@@ -14618,8 +14925,14 @@ efo:
   example: '0005147'
   homepage: http://www.ebi.ac.uk/efo
   keywords:
+  - assay
+  - experimental condition
+  - experimental measurement
   - functional genomics
+  - genome-wide association study
+  - independent variable
   - ontology
+  - study design
   license: Apache-2.0
   mappings:
     aberowl: EFO
@@ -14880,7 +15193,9 @@ ehdaa2:
   homepage: https://github.com/obophenotype/human-developmental-anatomy-ontology
   keywords:
   - anatomy
+  - animal organ development
   - biomedical science
+  - life cycle stage
   - life science
   - obo
   - ontology
@@ -15498,7 +15813,10 @@ enm:
   example: '8000221'
   homepage: http://www.enanomapper.net/
   keywords:
+  - chemical entity
   - health science
+  - nanoparticle
+  - nanosafety
   - ontology
   mappings:
     aberowl: ENM
@@ -16142,9 +16460,12 @@ envo:
   homepage: http://environmentontology.org/
   keywords:
   - ecology
+  - environmental material
   - environmental science
   - epidemiology
   - life science
+  - marine metagenome
+  - microbiome
   - nutritional science
   - obo
   - ontology
@@ -16296,7 +16617,9 @@ eol:
   - agriculture
   - animal husbandry
   - environmental science
+  - livestock
   - ontology
+  - species-environment interaction
   mappings:
     aberowl: EOL
     agroportal: EOL
@@ -16511,8 +16834,10 @@ epso:
   example: '0000400'
   homepage: http://prism.case.edu/prism/index.php/EpilepsyOntology
   keywords:
+  - epilepsy
   - neurology
   - ontology
+  - patient care
   mappings:
     aberowl: EPSO
     bioportal: EPSO
@@ -16542,6 +16867,7 @@ erm:
   example: ERM00000044
   homepage: https://nanocommons.github.io/identifiers/
   keywords:
+  - chemical entity
   - materials informatics
   - nanotechnology
   mappings:
@@ -16574,10 +16900,14 @@ ero:
   example: '0001655'
   homepage: https://open.med.harvard.edu/wiki/display/eaglei/Ontology
   keywords:
+  - biological sample
   - biomedical science
   - life science
   - obo
   - ontology
+  - protocol
+  - reagent
+  - study design
   license: CC BY 2.0
   mappings:
     aberowl: ERO
@@ -16802,6 +17132,7 @@ eupath:
   - biomedical science
   - epidemiology
   - functional genomics
+  - microbiome
   - obo
   - ontology
   - population genetics
@@ -16966,8 +17297,10 @@ exo:
   example: 0000078
   homepage: https://github.com/CTDbase/exposure-ontology
   keywords:
+  - disease
   - environmental science
   - epigenetics
+  - exposure
   - obo
   - ontology
   - toxicology
@@ -17015,12 +17348,20 @@ fabio:
   example: d4e2515
   homepage: https://github.com/sparontologies/fabio
   keywords:
+  - bibliography
+  - citation
+  - data model
   - ontology
+  - protocol
+  - publication
+  - report
+  - spar
   - subject agnostic
   mappings:
     aberowl: FaBiO
     biolink: fabio
     fairsharing: FAIRsharing.2f3180
+    lov: fabio
   name: FaBiO, the FRBR-aligned Bibliographic Ontology
   preferred_prefix: fabio
   providers:
@@ -17186,14 +17527,21 @@ faldo:
   example: ForwardStrandPosition
   homepage: http://biohackathon.org/resource/faldo
   keywords:
+  - binding site
+  - gene feature
   - genetics
+  - geography
+  - nucleic acid sequence
   - ontology
+  - sequence annotation
+  - sequence feature
   mappings:
     aberowl: FALDO
     agroportal: FALDO
     biocontext: faldo
     bioportal: FALDO
     fairsharing: FAIRsharing.haxp7g
+    lov: faldo
   name: 'Feature Annotation Location Description Ontology '
   preferred_prefix: faldo
   publications:
@@ -17298,8 +17646,10 @@ fbbi:
   example: 00000268
   homepage: http://cellimagelibrary.org/
   keywords:
+  - assay
   - biomedical science
   - experiment
+  - image
   - imaging
   - life science
   - obo
@@ -17349,9 +17699,13 @@ fbbt:
   - anatomy
   - developmental biology
   - fly
+  - gene expression
+  - image
+  - life cycle stage
   - life science
   - obo
   - ontology
+  - phenotype
   license: CC-BY-4.0
   mappings:
     aberowl: FBBT
@@ -17421,10 +17775,12 @@ fbcv:
   homepage: http://purl.obolibrary.org/obo/fbcv
   keywords:
   - descriptor
+  - expression data
   - fly
   - life science
   - obo
   - ontology
+  - phenotype
   license: CC-BY-4.0
   mappings:
     aberowl: FBCV
@@ -17477,6 +17833,8 @@ fbdv:
   - development
   - developmental biology
   - fly
+  - life cycle
+  - life cycle stage
   - life science
   - obo
   - ontology
@@ -17706,6 +18064,10 @@ fivestars:
   example: hasOpenAccessRating
   homepage: http://www.sparontologies.net/ontologies/fivestars
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.6dfe9b
@@ -17734,9 +18096,11 @@ fix:
   keywords:
   - chemistry
   - experiment
+  - experimental measurement
   - obo
   - ontology
   - property
+  - protocol
   mappings:
     aberowl: FIX
     biocontext: FIX
@@ -17781,8 +18145,10 @@ flopo:
   keywords:
   - biodiversity
   - botany
+  - life cycle stage
   - obo
   - ontology
+  - phenotype
   - plant anatomy
   license: CC0-1.0
   mappings:
@@ -18170,12 +18536,15 @@ fma:
   keywords:
   - anatomy
   - biomedical science
+  - brain imaging
   - human
   - obo
   - ontology
   - owl
+  - phenotype
   - radiology
   license: CC-BY-3.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBYTg9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--16f323877b0cea5b9b3df9ea964ed441ad10cff1/fma.png?disposition=inline
   mappings:
     aberowl: FMA
     bartoc: '571'
@@ -18270,11 +18639,14 @@ foaf:
   homepage: http://xmlns.com/foaf/spec/
   keywords:
   - ontology
+  - people
   mappings:
     aberowl: foaf
     biocontext: foaf
     biolink: foaf
     bioportal: FOAF
+    lov: foaf
+    zazuko: foaf
   name: Friend of a Friend
   preferred_prefix: foaf
   uri_format: http://xmlns.com/foaf/0.1/$1
@@ -18417,10 +18789,13 @@ foodon:
   keywords:
   - agriculture
   - botany
+  - disease
   - environmental science
+  - food
   - medicine
   - obo
   - ontology
+  - sustainability
   license: CC-BY-3.0
   mappings:
     aberowl: FOODON
@@ -18584,6 +18959,10 @@ fr:
   example: ReviewVersion
   homepage: http://www.sparontologies.net/ontologies/fr
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.e7e609
@@ -18607,10 +18986,17 @@ frapo:
   example: Grant
   homepage: http://www.sparontologies.net/ontologies/frapo
   keywords:
+  - academy
+  - data model
+  - funding bodies
+  - grant application
+  - report
+  - research project
   - subject agnostic
   mappings:
     aberowl: FRAPO
     fairsharing: FAIRsharing.0a2576
+    lov: frapo
   name: Funding, Research Administration and Projects Ontology
   preferred_prefix: FRAPO
   repository: https://github.com/sparontologies/frapo
@@ -18634,9 +19020,16 @@ frbr:
   example: Expression
   homepage: http://www.sparontologies.net/ontologies/frbr
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - frbr
+  - report
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.b34b43
+    lov: frbr
+    zazuko: frbr
   name: Functional Requirements for Bibliographic Records
   preferred_prefix: FRBR
   repository: https://github.com/sparontologies/frbr
@@ -18654,6 +19047,10 @@ frbrer:
   download_rdf: http://iflastandards.info/ns/fr/frbr/frbrer.jsonld
   example: '1001'
   homepage: https://www.iflastandards.info/fr/frbr/frbrer
+  keywords:
+  - frbr
+  mappings:
+    lov: frbrer
   name: Functional Requirements for Bibliographic Records Entity-Relationship Model
   part_of: frbr
   preferred_prefix: frbrer
@@ -18934,10 +19331,12 @@ fypo:
   example: '0001707'
   homepage: https://github.com/pombase/fypo
   keywords:
+  - gene ontology enrichment
   - genetics
   - life science
   - obo
   - ontology
+  - phenotype
   - phylogenetics
   license: CC-BY-4.0
   logo: https://github.com/pombase/website/blob/master/src/assets/FYPO_logo_tiny.png
@@ -18963,7 +19362,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2023-11-13'
+  version: '2023-12-29'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -19104,6 +19503,7 @@ gaz:
   homepage: http://environmentontology.github.io/gaz/
   keywords:
   - environmental science
+  - geographical location
   - obo
   - ontology
   license: CC0-1.0
@@ -19270,11 +19670,14 @@ gecko:
   example: '0000044'
   homepage: https://github.com/IHCC-cohorts/GECKO
   keywords:
+  - biological sample
+  - experimental measurement
   - genomics
   - life science
   - obo
   - ontology
   - statistics
+  - survey
   license: CC-BY-4.0
   mappings:
     aberowl: GECKO
@@ -19768,9 +20171,12 @@ genepio:
   homepage: http://genepio.org/
   keywords:
   - epidemiology
+  - food
+  - genome
   - genomics
   - obo
   - ontology
+  - pathogen
   license: CC-BY-3.0
   mappings:
     aberowl: GENEPIO
@@ -19893,7 +20299,9 @@ geno:
   example: '0000632'
   homepage: https://github.com/monarch-initiative/GENO-ontology/
   keywords:
+  - disease phenotype
   - genomics
+  - genotype
   - obo
   - ontology
   license: CC-BY-4.0
@@ -20042,6 +20450,7 @@ geogeo:
   example: '000000021'
   homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
   keywords:
+  - geographical location
   - human geography
   - obo
   - ontology
@@ -20075,6 +20484,7 @@ geonames:
   example: '3532759'
   homepage: https://www.geonames.org
   keywords:
+  - geographical location
   - geography
   - geoinformatics
   mappings:
@@ -20113,6 +20523,8 @@ gexo:
   download_rdf: http://www.bio.ntnu.no/ontology/GeXO/gexo.rdf
   homepage: http://www.semantic-systems-biology.org/apo
   keywords:
+  - expression data
+  - gene expression
   - life science
   - ontology
   mappings:
@@ -20153,6 +20565,7 @@ gfo:
   keywords:
   - biomedical science
   - life science
+  - modeling and simulation
   - ontology
   mappings:
     aberowl: GFO
@@ -20703,6 +21116,7 @@ gnd:
   keywords:
   - culture
   - knowledge and information systems
+  - publication
   - social science
   mappings:
     bartoc: '430'
@@ -20893,10 +21307,23 @@ go:
   example: '0032571'
   homepage: http://geneontology.org/
   keywords:
+  - annotation
+  - biocuration
+  - biological process
+  - cellular component
+  - data model
+  - expression data
   - gene
+  - gene functional annotation
+  - gene ontology enrichment
+  - knowledge representation
   - life science
+  - molecular function
   - obo
   - ontology
+  - protein
+  - sequence annotation
+  - transcript
   license: CC-BY-4.0
   logo: https://obofoundry.org/images/go_logo.png
   mappings:
@@ -22332,6 +22759,7 @@ hancestro:
   homepage: https://ebispot.github.io/hancestro/
   keywords:
   - demographics
+  - genome-wide association study
   - human genetics
   - obo
   - ontology
@@ -22384,6 +22812,7 @@ hao:
   homepage: http://hymao.org
   keywords:
   - anatomy
+  - image
   - life science
   - obo
   - ontology
@@ -22539,6 +22968,17 @@ hcao:
   name: Human Cell Atlas Ontology
   no_own_terms: true
   preferred_prefix: hcao
+hco:
+  description: The Human Chromosome Ontology (HCO) provides simple and stable URIs
+    for human reference genome versions to semantically identify human chromosomes.
+  example: MT
+  homepage: https://dbcls.rois.ac.jp/
+  mappings:
+    miriam: hco
+  name: Human Chromosome Ontology
+  pattern: ^.+$
+  preferred_prefix: hco
+  uri_format: http://biohackathon.org/resource/hco#$1
 hcpcs:
   contact:
     email: Cynthia.Hake@cms.hhs.gov
@@ -22613,6 +23053,7 @@ hdl:
   - 391/00-0000-0000-0009-3C7E-F
   homepage: https://www.handle.net/
   keywords:
+  - centrally registered identifier
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.0b7e54
@@ -22741,8 +23182,12 @@ hgnc:
   keywords:
   - classification
   - gene
+  - gene name
   - life science
+  - non-coding rna
   - ontology
+  - protein
+  - pseudogene
   license: CC0-1.0
   mappings:
     aberowl: HGNC
@@ -23260,7 +23705,10 @@ hom:
   homepage: https://github.com/BgeeDB/homology-ontology
   keywords:
   - anatomy
+  - homologous
+  - life cycle stage
   - life science
+  - molecular entity
   - obo
   - ontology
   license: CC0-1.0
@@ -23501,10 +23949,12 @@ hp:
   homepage: http://www.human-phenotype-ontology.org/
   keywords:
   - biomedical science
+  - disease
   - genetics
   - obo
   - ontology
   - phenomics
+  - phenotype
   - preclinical studies
   license: hpo
   logo: https://raw.githubusercontent.com/obophenotype/human-phenotype-ontology/master/logo/HPO-logo-black_small.png
@@ -23886,6 +24336,7 @@ hsapdv:
   keywords:
   - anatomy
   - developmental biology
+  - life cycle stage
   - obo
   - ontology
   license: CC-BY-3.0
@@ -24107,11 +24558,18 @@ iao:
   example: '0000030'
   homepage: https://github.com/information-artifact-ontology/IAO/
   keywords:
+  - assay
   - biomedical science
+  - data identity and mapping
   - data management
+  - drug report
+  - experimental measurement
   - knowledge and information systems
   - obo
   - ontology
+  - protocol
+  - reagent
+  - study design
   - subject agnostic
   license: CC-BY-4.0
   logo: https://avatars0.githubusercontent.com/u/13591168?v=3&s=200
@@ -24194,6 +24652,7 @@ icd10:
   keywords:
   - biomedical science
   - classification
+  - diagnosis
   - disease
   - epidemiology
   - global health
@@ -24298,8 +24757,12 @@ icd10cm:
   homepage: https://www.icd10data.com/ICD10CM
   keywords:
   - biomedical science
+  - diagnosis
+  - disease
+  - electronic health record
   - health science
   - medicine
+  - morbidity
   - ontology
   mappings:
     aberowl: ICD10CM
@@ -24342,8 +24805,14 @@ icd10pcs:
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS
   keywords:
   - biomedical science
+  - classification
+  - diagnosis
+  - disease
+  - electronic health record
   - epidemiology
   - health science
+  - hospital
+  - morbidity
   - ontology
   mappings:
     aberowl: ICD10PCS
@@ -24371,9 +24840,13 @@ icd11:
   homepage: https://icd.who.int/
   keywords:
   - biomedical science
+  - diagnosis
+  - disease
+  - electronic health record
   - epidemiology
   - global health
   - health science
+  - morbidity
   mappings:
     fairsharing: FAIRsharing.97805c
     hl7: 2.16.840.1.113883.6.347
@@ -24424,9 +24897,12 @@ icd9cm:
   homepage: https://www.cdc.gov/nchs/icd/icd9cm.htm
   keywords:
   - biomedical science
+  - diagnosis
+  - disease
   - epidemiology
   - health science
   - medicine
+  - morbidity
   - ontology
   - preclinical studies
   mappings:
@@ -24731,6 +25207,7 @@ icf:
   homepage: https://icd.who.int/dev11/l-icf/en
   keywords:
   - biomedical science
+  - electronic health record
   - health science
   - medicine
   - ontology
@@ -24853,6 +25330,9 @@ ido:
   homepage: http://www.bioontology.org/wiki/index.php/Infectious_Disease_Ontology
   keywords:
   - biomedical science
+  - classification
+  - disease
+  - disease process modeling
   - molecular infection biology
   - obo
   - ontology
@@ -24999,10 +25479,14 @@ idomal:
   homepage: https://www.vectorbase.org/ontology-browser
   keywords:
   - biomedical science
+  - disease
+  - intervention design
   - life science
+  - malaria
   - molecular infection biology
   - obo
   - ontology
+  - pathogen
   license: CC0-1.0
   mappings:
     aberowl: IDOMAL
@@ -25233,7 +25717,9 @@ igsn:
   example: AU124
   homepage: http://www.geosamples.org/
   keywords:
+  - physical samples
   - subject agnostic
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline
   mappings:
     fairsharing: FAIRsharing.c7f365
     miriam: igsn
@@ -25755,7 +26241,6 @@ imsr_em:
   example: '11478'
   homepage: https://www.infrafrontier.eu/emma/
   keywords:
-  - ''
   - mouse
   - mutant mouse repository
   - mutant mouse strain
@@ -25873,9 +26358,15 @@ inchi:
   example: InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3
   homepage: http://www.chemspider.com/
   keywords:
+  - centrally registered identifier
+  - chemical descriptor
+  - chemical entity
+  - chemical structure
   - cheminformatics
   - chemistry
   - knowledge and information systems
+  - molecular entity
+  - molecular structure
   mappings:
     biocontext: INCHI
     fairsharing: FAIRsharing.ddk9t9
@@ -25957,6 +26448,8 @@ inhand:
   homepage: https://www.goreni.org/gr3_nomenclature.php
   keywords:
   - biomedical science
+  - disease
+  - toxicity
   mappings:
     fairsharing: FAIRsharing.9gqfpm
   name: The International Harmonization of Nomenclature and Diagnostic criteria
@@ -26051,6 +26544,8 @@ ino:
   homepage: https://github.com/INO-ontology/ino
   keywords:
   - life science
+  - molecular interaction
+  - network model
   - obo
   - ontology
   license: CC-BY-3.0
@@ -26417,6 +26912,8 @@ interlex:
   keywords:
   - anatomy
   - biomedical science
+  - brain
+  - imaging
   - neurobiology
   mappings:
     fairsharing: FAIRsharing.67sssf
@@ -27012,6 +27509,8 @@ ito:
   homepage: https://openbiolink.github.io/ITOExplorer/
   keywords:
   - artificial intelligence
+  - machine learning
+  - natural language processing
   - ontology
   mappings:
     aberowl: ITO
@@ -28767,9 +29266,14 @@ loinc:
   example: LL379-9
   homepage: https://loinc.org/
   keywords:
+  - assay
   - biomedical science
+  - diagnosis
+  - genetic disorder
+  - genetic polymorphism
   - life science
   - ontology
+  - phenotype
   - preclinical studies
   mappings:
     aberowl: LOINC
@@ -28910,6 +29414,7 @@ lpt:
   keywords:
   - animal husbandry
   - ontology
+  - phenotype
   mappings:
     aberowl: LPT
     agroportal: LPT
@@ -29021,13 +29526,17 @@ m4i:
   github_request_issue: 970
   homepage: https://w3id.org/nfdi4ing/metadata4ing/
   keywords:
+  - academy
   - engineering science
+  - metadata
   - ontology
   license: CC-BY-4.0
   mappings:
     bartoc: '20402'
     fairsharing: FAIRsharing.f8b3ec
+    lov: m4i
     wikidata: Q111516803
+    zazuko: m4i
   mastodon: nfdi4ing@nfdi.social
   name: Metadata4Ing
   owners:
@@ -29062,6 +29571,8 @@ ma:
   - mouse
   - obo
   - ontology
+  - organ
+  - tissue
   license: CC-BY-4.0
   mappings:
     aberowl: MA
@@ -29256,6 +29767,7 @@ mamo:
   keywords:
   - computational biology
   - mathematics
+  - modeling and simulation
   - obo
   - ontology
   - systems biology
@@ -29568,6 +30080,7 @@ maxo:
   - medicine
   - obo
   - ontology
+  - rare disease
   license: CC-BY-4.0
   logo: https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/maxo-logos/maxo_logo_black-banner.png
   mappings:
@@ -29588,7 +30101,7 @@ maxo:
     pubmed: '37503136'
     title: 'The Medical Action Ontology: A Tool for Annotating and Analyzing Treatments
       and Clinical Management of Human Disease'
-    year: null
+    year: 2023
   rdf_uri_format: http://purl.obolibrary.org/obo/MAXO_$1
   repository: https://github.com/monarch-initiative/MAxO
   twitter: MonarchInit
@@ -29783,6 +30296,7 @@ meddra:
   homepage: http://bioportal.bioontology.org/ontologies/MEDDRA
   keywords:
   - biomedical science
+  - disease
   - medicine
   - ontology
   - preclinical studies
@@ -29933,6 +30447,7 @@ medlineplus:
   homepage: http://www.nlm.nih.gov/medlineplus/
   keywords:
   - biomedical science
+  - disease
   - health science
   - medicine
   - ontology
@@ -30103,7 +30618,10 @@ mesh:
   - bioinformatics
   - biomedical science
   - classification
+  - data model
+  - data retrieval
   - life science
+  - literature curation
   - metascience
   - ontology
   - topics
@@ -30585,7 +31103,9 @@ mf:
   homepage: https://github.com/jannahastings/mental-functioning-ontology
   keywords:
   - biomedical science
+  - cognition
   - cognitive neuroscience
+  - mental health
   - obo
   - ontology
   license: CC-BY-3.0
@@ -30697,6 +31217,8 @@ mfoem:
   homepage: https://github.com/jannahastings/emotion-ontology
   keywords:
   - biomedical science
+  - emotion
+  - mental health
   - obo
   - ontology
   license: CC-BY-3.0
@@ -30735,6 +31257,7 @@ mfomd:
   example: '0000046'
   homepage: https://github.com/jannahastings/mental-functioning-ontology
   keywords:
+  - disease
   - obo
   - ontology
   - psychiatry
@@ -31010,9 +31533,12 @@ mi:
   keywords:
   - interaction
   - life science
+  - molecular interaction
   - molecule
   - obo
   - ontology
+  - protein
+  - protein interaction
   license: CC-BY-4.0
   mappings:
     aberowl: MI
@@ -31130,10 +31656,13 @@ micro:
   example: 0002999
   homepage: https://github.com/carrineblank/MicrO
   keywords:
+  - assay
   - bioinformatics
+  - cell culture
   - microbiology
   - obo
   - ontology
+  - phenotype
   license: CC BY 2.0
   mappings:
     aberowl: MICRO
@@ -31752,9 +32281,12 @@ miro:
   example: '40000617'
   homepage: https://github.com/VEuPathDB-ontology/MIRO
   keywords:
+  - insecticide resistance
   - life science
+  - mutation
   - obo
   - ontology
+  - phenotype
   mappings:
     aberowl: MIRO
     biocontext: MIRO
@@ -32022,8 +32554,10 @@ mmo:
   keywords:
   - biomedical science
   - life science
+  - model organism
   - obo
   - ontology
+  - phenotype
   - preclinical studies
   license: CC0-1.0
   mappings:
@@ -32205,6 +32739,7 @@ mmusdv:
   - anatomy
   - developmental biology
   - embryology
+  - life cycle stage
   - obo
   - ontology
   license: CC-BY-3.0
@@ -32320,6 +32855,7 @@ mod:
   example: '01467'
   homepage: http://www.psidev.info/MOD
   keywords:
+  - enzymatic reaction
   - life science
   - molecule
   - obo
@@ -32551,6 +33087,7 @@ mondo:
   example: '0000001'
   homepage: https://monarch-initiative.github.io/mondo
   keywords:
+  - biocuration
   - infectious disease medicine
   - medicine
   - obo
@@ -32576,7 +33113,7 @@ mondo:
     pubmed: '27899636'
     title: 'The Monarch Initiative: an integrative data and analytic platform connecting
       phenotypes to genotypes across species'
-    year: null
+    year: 2016
   - doi: 10.1101/2022.04.13.22273750
     pmc: null
     pubmed: null
@@ -32586,7 +33123,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2023-12-12'
+  version: '2024-01-03'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -32604,6 +33141,7 @@ mop:
   - molecular chemistry
   - obo
   - ontology
+  - reaction data
   license: CC-BY-4.0
   mappings:
     aberowl: MOP
@@ -32690,6 +33228,7 @@ mp:
   example: '0005452'
   homepage: http://www.informatics.jax.org/searches/MP_form.shtml
   keywords:
+  - behavior
   - developmental biology
   - life science
   - mammalian
@@ -32762,7 +33301,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2023-11-15'
+  version: '2023-12-19'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -32778,7 +33317,11 @@ mpath:
   keywords:
   - anatomy
   - biomedical science
+  - disease
+  - genetic strain
+  - histology
   - mouse
+  - mutation
   - obo
   - ontology
   - phenotype
@@ -32906,7 +33449,9 @@ mro:
   example: '0000634'
   homepage: https://github.com/IEDB/MRO
   keywords:
+  - immune system
   - immunology
+  - major histocompatibility complex
   - obo
   - ontology
   license: CC-BY-3.0
@@ -32930,7 +33475,7 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2023-08-05'
+  version: '2023-12-21'
 ms:
   banana: MS
   contact:
@@ -33012,8 +33557,14 @@ msio:
   example: '0000111'
   homepage: https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO
   keywords:
+  - annotation
+  - experimental measurement
+  - mass spectrum
   - metabolomics
+  - nmr
+  - nuclear magnetic resonance (nmr) spectroscopy
   - omics
+  - omics data analysis
   - ontology
   mappings:
     fairsharing: FAIRsharing.4c7f91
@@ -33026,7 +33577,7 @@ msio:
     pmc: null
     pubmed: null
     title: 'Metabolomics standards initiative: ontology working group work in progress'
-    year: null
+    year: 2007
   repository: https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO
   uri_format: http://purl.obolibrary.org/obo/MSIO_$1
   version: 1.0.1
@@ -33371,6 +33922,9 @@ mzspec:
   homepage: http://proteomecentral.proteomexchange.org/
   keywords:
   - data governance
+  - data retrieval
+  - data standards
+  - mass spectrum
   - metabolomics
   - proteomics
   mappings:
@@ -33637,8 +34191,10 @@ nbo:
   example: '0000564'
   homepage: https://github.com/obo-behavior/behavior-ontology/
   keywords:
+  - behavior
   - obo
   - ontology
+  - phenotype
   - social and behavioural science
   - systemic neuroscience
   license: CC-BY-3.0
@@ -34060,6 +34616,7 @@ ncbitaxon:
   - phylogenetics
   - protein
   - structure
+  - taxonomic classification
   - taxonomy
   license: CC0-1.0
   mappings:
@@ -34204,6 +34761,8 @@ ncit:
   homepage: https://github.com/NCI-Thesaurus/thesaurus-obo-edition
   keywords:
   - biomedical science
+  - cancer
+  - disease
   - obo
   - ontology
   - preclinical studies
@@ -34288,6 +34847,7 @@ ncro:
   homepage: http://omnisearch.soc.southalabama.edu/w/index.php/Ontology
   keywords:
   - genomics
+  - non-coding rna
   - obo
   - ontology
   license: CC-BY-4.0
@@ -34353,6 +34913,8 @@ nddf:
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF
   keywords:
   - biomedical science
+  - chemical entity
+  - drug
   - medicinal chemistry
   - ontology
   mappings:
@@ -34440,6 +35002,8 @@ ndfrt:
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
   keywords:
   - biomedical science
+  - chemical entity
+  - drug name
   - health science
   - medicine
   - ontology
@@ -34536,9 +35100,15 @@ nemo2:
   example: 0000196
   homepage: http://aimlab.cs.uoregon.edu/NEMO/web/index.html
   keywords:
+  - brain
+  - cognition
   - cognitive neuroscience
+  - electroencephalography
+  - imaging
+  - interoperability
   - life science
   - neurobiology
+  - neuron
   - ontology
   mappings:
     aberowl: NEMO
@@ -36053,7 +36623,10 @@ npo:
   homepage: https://bioportal.bioontology.org/ontologies/NPO
   keywords:
   - life science
+  - molecular entity
+  - nanoparticle
   - ontology
+  - structure
   mappings:
     aberowl: NPO
     bioportal: NPO
@@ -36288,10 +36861,13 @@ oa:
   homepage: http://www.w3.org/ns/oa
   keywords:
   - ontology
+  - quality
   mappings:
     aberowl: OA
     biocontext: oa
     bioportal: OA
+    lov: oa
+    zazuko: oa
   name: Web Annotation Ontology
   preferred_prefix: oa
   uri_format: http://www.w3.org/ns/oa#$1
@@ -36312,9 +36888,12 @@ oae:
   example: 0002959
   homepage: https://github.com/OAE-ontology/OAE/
   keywords:
+  - adverse reaction
   - biomedical science
+  - drug
   - obo
   - ontology
+  - vaccine
   license: CC-BY-3.0
   mappings:
     aberowl: OAE
@@ -36475,6 +37054,7 @@ obcs:
   - obo
   - ontology
   - statistics
+  - vaccine
   license: CC-BY-4.0
   mappings:
     aberowl: OBCS
@@ -36497,7 +37077,7 @@ obcs:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBCS_$1
   repository: https://github.com/obcs/obcs
   uri_format: http://purl.obolibrary.org/obo/OBCS_$1
-  version: '2018-02-22'
+  version: '2023-12-08'
 obi:
   appears_in:
   - agro
@@ -36529,11 +37109,18 @@ obi:
   example: 0400109
   homepage: http://obi-ontology.org
   keywords:
+  - assay
   - biomedical science
+  - data transformation
+  - device
   - functional genomics
   - life science
   - obo
   - ontology
+  - protocol
+  - reagent
+  - report
+  - study design
   license: CC-BY-4.0
   logo: https://svn.code.sf.net/p/obi/code/trunk/web/htdocs/images/obi-lotext.png
   mappings:
@@ -36612,6 +37199,7 @@ obib:
   example: 0000389
   homepage: https://github.com/biobanking/biobanking
   keywords:
+  - biobank
   - health science
   - obo
   - ontology
@@ -36651,10 +37239,13 @@ obo:
   - uberon.owl
   homepage: http://www.obofoundry.org/
   keywords:
+  - biology
+  - health
   - ontology and terminology
   mappings:
     biocontext: OBO
     fairsharing: FAIRsharing.847069
+    lov: obo
   name: Open Biological and Biomedical Ontologies
   preferred_prefix: obo
   publications:
@@ -36761,6 +37352,7 @@ occo:
   - ontology
   license: CC-BY-4.0
   mappings:
+    aberowl: OCCO
     bioportal: OCCO
     obofoundry: occo
     ontobee: OCCO
@@ -36933,6 +37525,10 @@ odrl:
   download_rdf: https://www.w3.org/ns/odrl/2/ODRL22.rdf
   example: assetConcepts
   homepage: http://www.w3.org/ns/odrl/2
+  keywords:
+  - metadata
+  mappings:
+    lov: odrl
   name: Open Digital Rights Language Ontology
   preferred_prefix: odrl
   uri_format: http://www.w3.org/ns/odrl/2/$1
@@ -36981,6 +37577,9 @@ ogg:
   homepage: https://bitbucket.org/hegroup/ogg
   keywords:
   - biology
+  - gene
+  - gene name
+  - genome
   - life science
   - obo
   - ontology
@@ -37075,6 +37674,10 @@ ogms:
   homepage: https://github.com/OGMS/ogms
   keywords:
   - biomedical science
+  - cancer
+  - diagnosis
+  - disease
+  - disease phenotype
   - medicine
   - obo
   - ontology
@@ -37127,8 +37730,11 @@ ogsf:
   example: '0000025'
   homepage: https://github.com/linikujp/OGSF
   keywords:
+  - adverse reaction
   - biomedical science
+  - disease
   - epidemiology
+  - genetic disorder
   - genetics
   - obo
   - ontology
@@ -37213,7 +37819,9 @@ ohmi:
   example: '0000460'
   homepage: https://github.com/ohmi-ontology/ohmi
   keywords:
+  - host
   - life science
+  - microbiome
   - obo
   - ontology
   license: CC-BY-4.0
@@ -37247,8 +37855,11 @@ ohpi:
   keywords:
   - bioinformatics
   - biomedical science
+  - host
+  - infection
   - obo
   - ontology
+  - pathogen
   license: CC-BY-4.0
   mappings:
     aberowl: OHPI
@@ -37324,6 +37935,7 @@ olatdv:
   keywords:
   - aquaculture
   - developmental biology
+  - life cycle stage
   - life science
   - obo
   - ontology
@@ -37530,9 +38142,14 @@ omim:
   homepage: https://omim.org/
   keywords:
   - biomedical science
+  - disease
+  - disease process modeling
   - gene
   - gene expression
+  - genetic disorder
+  - genotype
   - ontology
+  - phenotype
   mappings:
     aberowl: OMIM
     biocontext: OMIM
@@ -37667,10 +38284,20 @@ omit:
   example: 0000069
   homepage: http://omit.cis.usouthal.edu/
   keywords:
+  - annotation
   - biology
+  - cell
+  - computational biological predictions
+  - gene
+  - gene prediction
   - life science
+  - micro rna
+  - molecular entity
+  - molecular interaction
   - obo
   - ontology
+  - protein
+  - regulation of gene expression
   license: CC-BY-3.0
   mappings:
     aberowl: OMIT
@@ -37800,6 +38427,7 @@ omp:
   - microbiology
   - obo
   - ontology
+  - phenotype
   license: CC-BY-3.0
   mappings:
     aberowl: OMP
@@ -37843,8 +38471,10 @@ omrse:
   - biomedical science
   - demographics
   - health science
+  - hospital
   - obo
   - ontology
+  - patient care
   - social science
   license: CC-BY-4.0
   mappings:
@@ -37905,6 +38535,7 @@ one:
   example: '0001021'
   homepage: https://github.com/cyang0128/Nutritional-epidemiologic-ontologies
   keywords:
+  - diet
   - epidemiology
   - metabolomics
   - nutritional science
@@ -38001,7 +38632,9 @@ ontie:
   homepage: https://ontology.iedb.org/
   keywords:
   - immunology
+  - infection
   - life science
+  - major histocompatibility complex
   - ontology
   mappings:
     fairsharing: FAIRsharing.kx2md1
@@ -38081,6 +38714,7 @@ ontoneo:
   example: 00000098
   homepage: http://ontoneo.com
   keywords:
+  - electronic health record
   - obo
   - obstetrics
   - ontology
@@ -38161,7 +38795,10 @@ opb:
   example: '00573'
   homepage: http://bioportal.bioontology.org/ontologies/OPB
   keywords:
+  - concentration
+  - kinetic model
   - life science
+  - mathematical model
   - ontology
   - physics
   - structure
@@ -38270,9 +38907,13 @@ opl:
   keywords:
   - anatomy
   - developmental biology
+  - host
+  - life cycle
+  - life cycle stage
   - life science
   - obo
   - ontology
+  - parasite
   license: CC-BY-4.0
   mappings:
     aberowl: OPL
@@ -38332,6 +38973,7 @@ opmi:
   homepage: https://github.com/OPMI/opmi
   keywords:
   - clinical studies
+  - disease
   - obo
   - omics
   - ontology
@@ -38360,7 +39002,7 @@ orcid:
     community-based effort to create and maintain a registry of unique identifiers
     for individual researchers. ORCID records hold non-sensitive information such
     as name, email, organization name, and research activities.
-  example: 0000-0002-5355-2576
+  example: 0000-0003-4423-4370
   homepage: https://orcid.org
   keywords:
   - person
@@ -38585,8 +39227,13 @@ orphanet.ordo:
   homepage: https://www.ebi.ac.uk/ols/ontologies/ordo
   keywords:
   - biomedical science
+  - diagnosis
+  - disease
+  - gene
   - health science
   - ontology
+  - phenotype
+  - rare disease
   mappings:
     aberowl: ordo
     biocontext: ORPHANET.ORDO
@@ -38635,7 +39282,13 @@ orth:
   homepage: https://github.com/qfo/OrthologyOntology
   keywords:
   - comparative genomics
+  - gene
+  - homologous
   - ontology
+  - orthologous
+  - paralogous
+  - protein
+  - sequence
   mappings:
     aberowl: ORTH
     bioportal: ORTH
@@ -38806,6 +39459,10 @@ oslc:
     that have broad applicability across various domains.
   example: Property
   homepage: http://open-services.net/ns/core
+  keywords:
+  - plm
+  mappings:
+    lov: oslc
   name: OASIS Open Services for Lifecycle Collaboration Core Vocabulary
   preferred_prefix: oslc
   uri_format: http://open-services.net/ns/core#$1
@@ -38887,9 +39544,11 @@ ovae:
   example: 0000609
   homepage: http://www.violinet.org/ovae/
   keywords:
+  - adverse reaction
   - biomedical science
   - obo
   - ontology
+  - vaccine
   license: CC-BY-3.0
   mappings:
     aberowl: OVAE
@@ -38935,10 +39594,13 @@ owl:
   - ontology
   - ontology and terminology
   - subject agnostic
+  - w3c rec
   mappings:
     biocontext: owl
     fairsharing: FAIRsharing.atygwy
+    lov: owl
     ols: owl
+    zazuko: owl
   name: Web Ontology Language
   preferred_prefix: owl
   uri_format: http://www.w3.org/2002/07/owl#$1
@@ -39554,8 +40216,11 @@ pav:
   github_request_issue: 186
   homepage: https://pav-ontology.github.io/pav/
   keywords:
+  - citation
   - data management
   - ontology
+  - quality
+  - resource metadata
   - subject agnostic
   mappings:
     aberowl: PAV
@@ -39563,6 +40228,7 @@ pav:
     biolink: pav
     bioportal: PAV
     fairsharing: FAIRsharing.nbfwwv
+    lov: pav
   name: Provenance, Authoring, and Versioning Vocabulary
   pattern: ^[a-z][a-zA-Z]+$
   preferred_prefix: pav
@@ -39712,6 +40378,8 @@ pcl:
   homepage: https://github.com/obophenotype/provisional_cell_ontology
   keywords:
   - anatomy
+  - annotation
+  - cell
   - cell biology
   - life science
   - obo
@@ -39770,6 +40438,7 @@ pco:
   - biodiversity
   - community care
   - ecology
+  - evolution
   - obo
   - ontology
   - population genetics
@@ -40101,6 +40770,7 @@ pdro:
   example: 0010039
   homepage: https://github.com/OpenLHS/PDRO
   keywords:
+  - drug
   - obo
   - ontology
   - primary health care
@@ -40147,6 +40817,7 @@ pdumdv:
   homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/PdumDv
   keywords:
   - developmental biology
+  - life cycle stage
   - life science
   - obo
   - ontology
@@ -40185,8 +40856,12 @@ peco:
   homepage: http://planteome.org/
   keywords:
   - botany
+  - experimental condition
+  - experimental measurement
+  - experimentally determined
   - obo
   - ontology
+  - study design
   license: CC-BY-4.0
   logo: http://planteome.org/sites/default/files/garland_logo.PNG
   mappings:
@@ -41050,9 +41725,12 @@ phenx:
   homepage: https://www.phenxtoolkit.org/
   keywords:
   - biomedical science
+  - disease
   - environmental science
+  - exposure
   - life science
   - ontology
+  - phenotype
   mappings:
     aberowl: PHENX
     bioportal: PHENX
@@ -41570,6 +42248,9 @@ plana:
   - life science
   - obo
   - ontology
+  - organ
+  - organelle
+  - tissue
   license: CC-BY-3.0
   mappings:
     aberowl: PLANA
@@ -41842,6 +42523,7 @@ pmc:
   homepage: http://europepmc.org/
   keywords:
   - bibliography
+  - centrally registered identifier
   - knowledge and information systems
   mappings:
     biocontext: PMCID
@@ -42061,10 +42743,13 @@ po:
   keywords:
   - botany
   - classification
+  - expression data
+  - life cycle
   - life science
   - obo
   - ontology
   - plant anatomy
+  - plant development stage
   - structure
   license: CC-BY-4.0
   logo: http://planteome.org/sites/default/files/garland_logo.PNG
@@ -42307,6 +42992,7 @@ poro:
   - obo
   - ontology
   - phylogeny
+  - taxonomic classification
   - taxonomy
   license: CC-BY-3.0
   mappings:
@@ -42378,8 +43064,11 @@ ppo:
   homepage: https://github.com/PlantPhenoOntology/PPO
   keywords:
   - botany
+  - life cycle
   - obo
   - ontology
+  - phenology
+  - phenotype
   license: CC-BY-3.0
   mappings:
     aberowl: PPO
@@ -42467,10 +43156,19 @@ pr:
   - A0A0G2QC33-2
   homepage: http://proconsortium.org
   keywords:
+  - annotation
+  - biocuration
   - biology
+  - data model
+  - glycosylation
+  - methylation
   - obo
   - ontology
+  - phosphorylation
   - protein
+  - protein acetylation
+  - protein-containing complex
+  - ptm site prediction
   license: CC-BY-4.0
   logo: https://raw.githubusercontent.com/PROconsortium/logo/master/PROlogo_small.png
   mappings:
@@ -43184,11 +43882,14 @@ prov:
   homepage: https://www.w3.org/ns/prov
   keywords:
   - ontology
+  - w3c rec
   mappings:
     aberowl: PROV
     biocontext: prov
     biolink: prov
+    lov: prov
     ols: prov
+    zazuko: prov
   name: PROV Namespace
   preferred_prefix: prov
   uri_format: http://www.w3.org/ns/prov#$1
@@ -43356,7 +44057,9 @@ pso:
   example: '0000013'
   homepage: https://github.com/Planteome/plant-stress-ontology
   keywords:
+  - hospital
   - medical informatics
+  - monitoring
   - obo
   - occupational medicine
   - ontology
@@ -43672,6 +44375,8 @@ pubmed:
   keywords:
   - bibliography
   - biomedical science
+  - citation
+  - publication
   mappings:
     biocontext: PUBMED
     cellosaurus: PubMed
@@ -43763,6 +44468,10 @@ puro:
   example: RoleInTime
   homepage: http://www.sparontologies.net/ontologies/pro
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.3e88d6
@@ -43794,12 +44503,21 @@ pw:
   example: '0000423'
   homepage: http://rgd.mcw.edu/rgdweb/ontology/search.html
   keywords:
+  - biological regulation
+  - disease
+  - drug
   - drug metabolism
+  - enzymatic reaction
   - human
   - life science
+  - mathematical model
+  - molecular entity
+  - network model
   - obo
   - ontology
   - pathway
+  - pathway model
+  - signaling
   license: CC-BY-4.0
   logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
   mappings:
@@ -43871,9 +44589,15 @@ pwo:
   example: Workflow
   homepage: http://www.sparontologies.net/ontologies/pwo
   keywords:
+  - bibliography
+  - citation
+  - data model
+  - report
+  - spar
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.c4e46c
+    lov: pwo
   name: Publishing Workflow Ontology
   preferred_prefix: PWO
   publications:
@@ -43926,6 +44650,12 @@ qb:
   download_rdf: http://purl.org/linked-data/cube#
   example: Observation
   homepage: https://www.w3.org/TR/vocab-data-cube
+  keywords:
+  - methods
+  - w3c rec
+  mappings:
+    lov: qb
+    zazuko: qb
   name: The data cube vocabulary
   pattern: ^\w+$
   preferred_prefix: qb
@@ -43957,13 +44687,18 @@ qudt:
   homepage: https://qudt.org
   keywords:
   - astrophysics and astronomy
+  - experimental measurement
+  - methods
   - ontology
+  - unit
   mappings:
     aberowl: QUDT
     bartoc: '18206'
     biolink: qud
     bioportal: QUDT
     fairsharing: FAIRsharing.d3pqw7
+    lov: qudt
+    zazuko: qudt
   name: Quantities, Units, Dimensions, and Types Ontology
   preferred_prefix: qudt
   providers:
@@ -44034,6 +44769,8 @@ radlex:
   - anatomy
   - biomedical science
   - clinical studies
+  - diagnosis
+  - medical imaging
   - medical informatics
   - ontology
   - radiology
@@ -44291,9 +45028,12 @@ rdf:
   keywords:
   - computer science
   - subject agnostic
+  - w3c rec
   mappings:
     biocontext: rdf
     fairsharing: FAIRsharing.p77ph9
+    lov: rdf
+    zazuko: rdf
   name: Resource Description Framework
   preferred_prefix: rdf
   uri_format: http://www.w3.org/1999/02/22-rdf-syntax-ns#$1
@@ -44315,6 +45055,11 @@ rdfa:
   download_rdf: http://www.w3.org/ns/rdfa.ttl
   example: PrefixOrTermMapping
   homepage: http://www.w3.org/ns/rdfa
+  keywords:
+  - rdf
+  mappings:
+    lov: rdfa
+    zazuko: rdfa
   name: RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting
   preferred_prefix: rdfa
   uri_format: http://www.w3.org/ns/rdfa#$1
@@ -44340,12 +45085,15 @@ rdfs:
   - linguistics
   - ontology
   - ontology and terminology
+  - w3c rec
   mappings:
     aberowl: RDFS
     biocontext: rdfs
     bioportal: RDFS
     fairsharing: FAIRsharing.v9n3gk
+    lov: rdfs
     ols: rdfs
+    zazuko: rdfs
   name: RDF Schema
   preferred_prefix: rdfs
   uri_format: http://www.w3.org/2000/01/rdf-schema#$1
@@ -44819,6 +45567,8 @@ reto:
   keywords:
   - life science
   - ontology
+  - regulation of gene expression
+  - transcript
   - transcriptomics
   mappings:
     aberowl: RETO
@@ -44843,9 +45593,11 @@ rex:
   keywords:
   - biochemistry
   - chemistry
+  - enzymatic reaction
   - life science
   - obo
   - ontology
+  - reaction data
   mappings:
     aberowl: REX
     biocontext: REX
@@ -44884,8 +45636,11 @@ rexo:
   download_rdf: http://www.bio.ntnu.no/ontology/ReXO/rexo.rdf
   homepage: http://www.semantic-systems-biology.org/apo
   keywords:
+  - expression data
   - life science
   - ontology
+  - orthologous
+  - regulation of gene expression
   mappings:
     aberowl: REXO
     bioportal: REXO
@@ -45695,8 +46450,12 @@ rnao:
   keywords:
   - biochemistry
   - life science
+  - molecular structure
   - obo
   - ontology
+  - ribonucleic acid
+  - rna secondary structure
+  - sequence motif
   license: CC0-1.0
   mappings:
     aberowl: RNAO
@@ -46018,8 +46777,12 @@ rrid:
   example: AB_262044
   homepage: https://rrid.site
   keywords:
+  - annotation
   - chemistry
+  - citation
+  - data retrieval
   - life science
+  - resource metadata
   mappings:
     biocontext: RRID
     fairsharing: FAIRsharing.ATwSZG
@@ -46143,7 +46906,9 @@ rs:
   example: 0001807
   homepage: http://rgd.mcw.edu/rgdweb/search/strains.html
   keywords:
+  - genetic strain
   - life science
+  - mutation
   - obo
   - ontology
   license: CC-BY-4.0
@@ -46252,6 +47017,7 @@ rxno:
   - molecular chemistry
   - obo
   - ontology
+  - reaction data
   license: CC-BY-4.0
   mappings:
     aberowl: RXNO
@@ -46289,6 +47055,8 @@ rxnorm:
   homepage: https://www.nlm.nih.gov/research/umls/rxnorm/
   keywords:
   - biomedical science
+  - drug
+  - drug name
   - ontology
   - preclinical studies
   mappings:
@@ -46672,8 +47440,12 @@ sbo:
   example: 0000485
   homepage: http://www.ebi.ac.uk/sbo/
   keywords:
+  - mathematical model
+  - modeling and simulation
+  - molecular interaction
   - obo
   - ontology
+  - pathway model
   - systems biology
   license: Artistic License 2.0
   mappings:
@@ -46768,9 +47540,12 @@ scdo:
   homepage: https://scdontology.h3abionet.org/
   keywords:
   - biomedical science
+  - genetic disorder
   - obo
   - ontology
+  - sickle cell disease
   license: GPL-3.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbWtCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--69320a8be8ca6a407eaf142714307b4c7e6b5f45/cropped-Screenshot-from-2020-05-23-20-20-32-2.png?disposition=inline
   mappings:
     aberowl: SCDO
     bioportal: SCDO
@@ -46842,6 +47617,7 @@ schema:
   homepage: https://schema.org
   keywords:
   - computer science
+  - general & upper
   - ontology
   - subject agnostic
   mappings:
@@ -46849,7 +47625,9 @@ schema:
     biolink: schema
     bioportal: SCHEMA
     fairsharing: FAIRsharing.hzdzq8
+    lov: schema
     ols: schemaorg_http
+    zazuko: schema
   name: Schema.org
   preferred_prefix: schema
   repository: http://github.com/schemaorg/schemaorg
@@ -47110,9 +47888,15 @@ scoro:
   example: IntellectualContribution
   homepage: http://www.sparontologies.net/ontologies/scoro
   keywords:
+  - academy
+  - bibliography
+  - citation
+  - data model
+  - report
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.c86b48
+    lov: scoro
   name: Scholarly Contributions and Roles Ontology
   preferred_prefix: SCoRO
   publications:
@@ -47267,6 +48051,7 @@ sdgio:
   keywords:
   - environmental science
   - ontology
+  - sustainability
   mappings:
     agroportal: SDGIO
     fairsharing: FAIRsharing.d5ff6e
@@ -47436,6 +48221,16 @@ semapv:
   references:
   - https://github.com/biopragmatics/bioregistry/pull/714
   uri_format: https://w3id.org/semapv/vocab/$1
+semion:
+  description: identifier of an author or reviewer, in Semion
+  example: '22132778'
+  homepage: https://www.semion.io
+  mappings:
+    wikidata: P7671
+  name: Semion author ID
+  pattern: ^\d+$
+  preferred_prefix: semion
+  uri_format: https://www.semion.io/Author/$1
 senso:
   contact:
     email: brycemecum@gmail.com
@@ -47468,6 +48263,11 @@ seo:
   download_rdf: https://raw.githubusercontent.com/saidfathalla/SEOontology/master/SEO.ttl
   example: Symposium
   homepage: https://w3id.org/seo
+  keywords:
+  - academy
+  - events
+  mappings:
+    lov: seo
   name: Scientific Event Ontology
   preferred_prefix: seo
   uri_format: https://w3id.org/seo#$1
@@ -47967,8 +48767,12 @@ sh:
   - knowledge and information systems
   - ontology
   - ontology and terminology
+  - quality
+  - w3c rec
   mappings:
     fairsharing: FAIRsharing.f1449d
+    lov: sh
+    zazuko: sh
   name: Shapes Constraint Language
   preferred_prefix: sh
   repository: https://github.com/w3c/data-shapes
@@ -48150,6 +48954,8 @@ shex:
   - metadata
   - rdf
   - semantic web
+  mappings:
+    zazuko: shex
   name: Shape Expression Vocabulary
   pattern: ^\w+$
   preferred_prefix: shex
@@ -48376,6 +49182,8 @@ sio:
   example: 000912
   homepage: https://github.com/micheldumontier/semanticscience
   keywords:
+  - biology
+  - knowledge representation
   - natural science
   - ontology
   - subject agnostic
@@ -48386,6 +49194,7 @@ sio:
     biolink: SIO
     bioportal: SIO
     fairsharing: FAIRsharing.dpkb5f
+    lov: sio
     miriam: sio
     ols: sio
     ontobee: SIO
@@ -48572,11 +49381,14 @@ skos:
   keywords:
   - ontology
   - subject agnostic
+  - w3c rec
   mappings:
     aberowl: skos
     biocontext: skos
     fairsharing: FAIRsharing.48e326
+    lov: skos
     ols: skos
+    zazuko: skos
   name: Simple Knowledge Organization System
   preferred_prefix: skos
   uri_format: http://www.w3.org/2004/02/skos/core#$1
@@ -48598,6 +49410,10 @@ skosxl:
   - metadata
   - semantic web
   - skos
+  - w3c rec
+  mappings:
+    lov: skosxl
+    zazuko: skosxl
   name: Simple Knowledge Organization System eXtension for Labels
   preferred_prefix: skosxl
   uri_format: http://www.w3.org/2008/05/skos-xl#$1
@@ -49194,11 +50010,18 @@ so:
   keywords:
   - bioinformatics
   - biology
+  - deoxyribonucleic acid
   - dna
+  - gene
+  - genome
   - life science
   - obo
   - ontology
+  - ribonucleic acid
   - rna
+  - sequence
+  - sequence annotation
+  - sequence feature
   - structure
   license: CC-BY-4.0
   logo: https://obofoundry.org/images/so_logo.png
@@ -49395,6 +50218,7 @@ spd:
   homepage: http://research.amnh.org/atol/files/
   keywords:
   - anatomy
+  - behavior
   - life science
   - obo
   - ontology
@@ -49624,14 +50448,18 @@ srao:
   keywords:
   - agriculture
   - biomedical science
+  - classification
   - computer science
   - earth science
   - environmental science
+  - fair
   - humanities
   - life science
+  - metadata standardization
   - metascience
   - natural science
   - ontology
+  - resource metadata
   - topics
   mappings:
     fairsharing: FAIRsharing.b1xD9f
@@ -49825,9 +50653,13 @@ stato:
   homepage: http://stato-ontology.org/
   keywords:
   - data visualization
+  - experimental measurement
+  - graph
   - obo
   - ontology
+  - protocol
   - statistics
+  - study design
   license: CC-BY-3.0
   logo: https://raw.githubusercontent.com/ISA-tools/stato/dev/images/stato-logo-3.png
   mappings:
@@ -50444,10 +51276,13 @@ swo:
   example: '0000144'
   homepage: https://github.com/allysonlister/swo
   keywords:
+  - algorithm
   - bioinformatics
   - computer science
   - obo
   - ontology
+  - software
+  - workflow
   license: CC-BY-4.0
   mappings:
     aberowl: SWO
@@ -50516,6 +51351,10 @@ swrl:
   description: SWRL enables Horn-like rules to be combined with an OWL knowledge base.
   example: Variable
   homepage: https://www.w3.org/2003/11/swrl#
+  keywords:
+  - vocabularies
+  mappings:
+    lov: swrl
   name: A Semantic Web Rule Language Combining OWL and RuleML
   preferred_prefix: swrl
   uri_format: http://www.w3.org/2003/11/swrl#$1
@@ -50536,10 +51375,13 @@ symp:
   homepage: http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page
   keywords:
   - biomedical science
+  - diagnosis
+  - disease
   - life science
   - obo
   - ontology
   - pain medicine
+  - patient care
   license: CC0-1.0
   mappings:
     aberowl: SYMP
@@ -50661,10 +51503,14 @@ t4fs:
   example: '0000127'
   homepage: https://github.com/terms4fairskills/FAIRterminology
   keywords:
+  - curated information
+  - digital curation
+  - fair
   - obo
   - ontology
   - subject agnostic
   license: CC-BY-4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1VDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--692c3b4cc5ea2f7aa8cc80267dad833f16dcccbb/terms4FAIRskills.png?disposition=inline
   mappings:
     aberowl: T4FS
     fairsharing: FAIRsharing.fb99fa
@@ -50991,6 +51837,7 @@ taxrank:
   - life science
   - obo
   - ontology
+  - taxonomic classification
   - taxonomy
   license: CC0-1.0
   mappings:
@@ -51191,8 +52038,13 @@ tfclass:
   example: 2.1.1
   homepage: http://tfclass.bioinf.med.uni-goettingen.de
   keywords:
+  - binding
+  - binding site
   - bioinformatics
+  - expression data
   - phylogenetics
+  - transcription factor
+  - transcription factor binding site prediction
   - transcriptomics
   mappings:
     fairsharing: FAIRsharing.XykycZ
@@ -51431,12 +52283,19 @@ time:
   github_request_issue: 505
   homepage: https://www.w3.org/TR/owl-time/
   keywords:
+  - data coordination
+  - data model
+  - metadata standardization
   - ontology
+  - resource metadata
   - subject agnostic
+  - time
   mappings:
     aberowl: TIME
     bioportal: TIME
     fairsharing: FAIRsharing.hw3bh2
+    lov: time
+    zazuko: time
   name: Time Ontology in OWL
   preferred_prefix: time
   repository: https://github.com/w3c/sdw/
@@ -51483,9 +52342,12 @@ to:
   homepage: http://browser.planteome.org/amigo
   keywords:
   - botany
+  - life cycle
   - obo
   - ontology
+  - phenotype
   - plant
+  - structure
   - trait
   license: CC-BY-4.0
   logo: http://planteome.org/sites/default/files/garland_logo.PNG
@@ -52083,6 +52945,7 @@ tto:
   - obo
   - ontology
   - phenotype
+  - taxonomic classification
   license: CC0-1.0
   mappings:
     aberowl: TTO
@@ -52383,11 +53246,16 @@ ucum:
   - Wb
   homepage: https://ucum.org
   keywords:
+  - data identity and mapping
+  - general & upper
+  - measurement
   - subject agnostic
+  - unit
   mappings:
     bartoc: '1895'
     fairsharing: FAIRsharing.27w8k0
     hl7: 2.16.840.1.113883.6.8
+    lov: ucum
   name: Unified Code for Units of Measure
   preferred_prefix: ucum
   publications:
@@ -52777,6 +53645,7 @@ uniprot:
   keywords:
   - biology
   - protein
+  - taxonomic classification
   mappings:
     aberowl: UP
     biocontext: UniProtKB
@@ -52898,6 +53767,21 @@ uniprot.chain:
   synonyms:
   - UPPRO
   uri_format: http://purl.uniprot.org/annotation/$1
+uniprot.core:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Properties and classes used for protein annotation
+  example: certain
+  homepage: http://purl.uniprot.org/core/
+  keywords:
+  - biology
+  mappings:
+    lov: uniprot
+  name: Uniprot Core Ontology
+  preferred_prefix: uniprot.core
 uniprot.disease:
   contributor:
     email: cthoyt@gmail.com
@@ -53310,8 +54194,10 @@ uo:
   keywords:
   - life science
   - mathematics
+  - measurement
   - obo
   - ontology
+  - unit
   license: CC-BY-3.0
   mappings:
     aberowl: UO
@@ -53421,7 +54307,9 @@ upheno:
   - obo
   - ontology
   - phenomics
+  - phenotype
   license: CC0-1.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa01CIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3f5258d2bcf30a7e127b5a9fe209b27e25e88883/up.png?disposition=inline
   mappings:
     aberowl: UPHENO
     biocontext: UPHENO
@@ -53564,6 +54452,8 @@ vandf:
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF
   keywords:
   - biomedical science
+  - drug
+  - drug interaction
   - ontology
   - pharmacology
   mappings:
@@ -53598,6 +54488,11 @@ vann:
     vocabularies with examples and usage notes.
   example: usageNote
   homepage: https://vocab.org/vann/
+  keywords:
+  - metadata
+  mappings:
+    lov: vann
+    zazuko: vann
   name: A vocabulary for annotating vocabulary descriptions
   preferred_prefix: vann
   uri_format: https://vocab.org/vann/$1
@@ -53617,9 +54512,14 @@ vario:
   example: '0376'
   homepage: http://variationontology.org
   keywords:
+  - deoxyribonucleic acid
+  - dna structural variation
   - genetics
   - obo
   - ontology
+  - protein
+  - ribonucleic acid
+  - sequence variant
   license: CC-BY-4.0
   mappings:
     aberowl: VARIO
@@ -53743,7 +54643,7 @@ vbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2023-09-28'
+  version: '2024-01-04'
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
@@ -54541,14 +55441,18 @@ vo:
   example: 0000093
   homepage: https://violinet.org/vaccineontology
   keywords:
+  - biological process
   - biomedical science
   - immunology
   - obo
   - ontology
   - pathobiochemistry
+  - pathogen
   - small molecule
+  - vaccination
   - vaccine
   license: CC-BY-4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d3898a5618b34c0bc948bb0d101e906f212f05f/vo_banner.png?disposition=inline
   mappings:
     aberowl: VO
     biocontext: VO
@@ -54600,7 +55504,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2023-11-17'
+  version: '2024-01-03'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -54650,8 +55554,12 @@ void:
     VoID Vocabulary.
   example: feature
   homepage: http://vocab.deri.ie/void
+  keywords:
+  - metadata
   mappings:
     biocontext: void
+    lov: void
+    zazuko: void
   name: Vocabulary of Interlinked Datasets
   preferred_prefix: void
   uri_format: http://rdfs.org/ns/void#$1
@@ -54760,6 +55668,8 @@ vso:
   homepage: https://bioportal.bioontology.org/ontologies/VSO
   keywords:
   - biomedical science
+  - blood
+  - experimental measurement
   - health
   - health science
   - ontology
@@ -54802,8 +55712,10 @@ vt:
   - animal physiology
   - biology
   - developmental biology
+  - morphology
   - obo
   - ontology
+  - phenotype
   - physiology
   - trait
   - vertebrate
@@ -54853,6 +55765,7 @@ vto:
   example: '9008500'
   homepage: https://github.com/phenoscape/vertebrate-taxonomy-ontology
   keywords:
+  - bone
   - obo
   - ontology
   - taxonomy
@@ -54926,6 +55839,7 @@ wbbt:
   homepage: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
   keywords:
   - anatomy
+  - cell
   - life science
   - obo
   - ontology
@@ -54966,7 +55880,7 @@ wbbt:
   synonyms:
   - WBbt
   uri_format: http://purl.obolibrary.org/obo/WBbt_$1
-  version: '2023-09-14'
+  version: '2024-01-04'
 wbls:
   contact:
     email: cgrove@caltech.edu
@@ -54981,6 +55895,8 @@ wbls:
   keywords:
   - development
   - developmental biology
+  - life cycle
+  - life cycle stage
   - life science
   - obo
   - ontology
@@ -55102,8 +56018,11 @@ wgs84:
     in the WGS84 geodetic reference datum
   example: latitude
   homepage: https://www.w3.org/2003/01/geo/wgs84_pos
+  keywords:
+  - geography
   mappings:
     biolink: wgs
+    lov: geo
   name: WGS84 Geo Positioning
   preferred_prefix: wgs84
   uri_format: http://www.w3.org/2003/01/geo/wgs84_pos#$1
@@ -55122,7 +56041,7 @@ wikidata:
     of data which can be used by Wikimedia projects such as Wikipedia. Wikidata functions
     as a document-oriented database, centred on individual items. Items represent
     topics, for which basic information is stored that identifies each topic.
-  example: Q2207226
+  example: Q47475003
   homepage: https://www.wikidata.org/
   keywords:
   - chemistry
@@ -55222,8 +56141,16 @@ wikipathways:
   example: WP732
   homepage: http://www.wikipathways.org/
   keywords:
+  - biological regulation
+  - drug interaction
   - epidemiology
+  - genetic interaction
+  - molecular interaction
   - pathway
+  - pathway model
+  - protein interaction
+  - reaction data
+  - signaling
   - virology
   license: CC0-1.0
   logo: https://www.wikipathways.org/assets/img/wikipathways-logo-horizontal.svg
@@ -55703,6 +56630,17 @@ wos:
   - wosid
   - wosuid
   uri_format: https://www.webofscience.com/wos/woscc/full-record/WOS:$1
+wos.researcher:
+  description: identifier for a researcher in a system for scientific authors, redirects
+    to a Web of Science ID, along with P3829
+  example: B-5720-2018
+  homepage: https://access.clarivate.com/login?app=wos
+  mappings:
+    wikidata: P1053
+  name: ResearcherID
+  pattern: ^[A-Z]{1,3}-\d{4}-(19|20)\d\d$
+  preferred_prefix: wos.researcher
+  uri_format: https://www.webofscience.com/wos/author/record/$1
 wwf.ecoregion:
   comment: ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658
   contributor:
@@ -55745,9 +56683,13 @@ xao:
   keywords:
   - anatomy
   - developmental biology
+  - life cycle
+  - life cycle stage
   - life science
+  - morphology
   - obo
   - ontology
+  - structure
   license: CC-BY-3.0
   mappings:
     aberowl: XAO
@@ -55794,11 +56736,17 @@ xco:
   example: 0000780
   homepage: https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:0000000
   keywords:
+  - assay
   - biomedical science
+  - experimental condition
+  - experimental measurement
+  - experimentally determined
   - life science
   - measurement
   - obo
   - ontology
+  - protocol
+  - study design
   license: CC0-1.0
   logo: http://rgd.mcw.edu/common/images/rgd_LOGO_blue_rgd.gif
   mappings:
@@ -56000,6 +56948,9 @@ xlmod:
   homepage: http://www.psidev.info/groups/controlled-vocabularies
   keywords:
   - chemical biology
+  - experimental measurement
+  - mass spectrometry assay
+  - mass spectrum
   - metabolomics
   - obo
   - omics
@@ -56112,8 +57063,12 @@ xsd:
     Language.
   example: decimal
   homepage: http://www.w3.org/2001/XMLSchema
+  keywords:
+  - w3c rec
   mappings:
     biocontext: xsd
+    lov: xsd
+    zazuko: xsd
   name: XML Schema Definition
   preferred_prefix: xsd
   uri_format: http://www.w3.org/2001/XMLSchema#$1
@@ -56380,6 +57335,28 @@ yrcpdr:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/yrc:$1
   uri_format: http://yeastrc.org/pdr/viewProtein.do?id=$1
+zazuko:
+  contact:
+    email: ktk@netlabs.org
+    github: ktk
+    name: Adrian Gschwend
+    orcid: 0000-0002-2079-9636
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This service fills a gap between services like prefix.cc and LOV or
+    looking up the original vocabulary specification. Not all vocabularies (or schema
+    or ontology, whatever you want to call them) provide an HTML view. If you resolve
+    some of the common prefixes all you get back is some RDF serialization which is
+    not ideal. (from <https://prefix.zazuko.com/about>)
+  example: frbr
+  homepage: https://prefix.zazuko.com/
+  license: MIT
+  name: Zazuko Prefix Server
+  preferred_prefix: zazuko
+  uri_format: 'https://prefix.zazuko.com/prefix/$1:'
 zea:
   contact:
     email: Leszek@missouri.edu
@@ -56431,12 +57408,21 @@ zeco:
   example: '0000171'
   homepage: https://github.com/ybradford/zebrafish-experimental-conditions-ontology
   keywords:
+  - allele
   - animal physiology
+  - bibliography
   - developmental biology
+  - disease process modeling
+  - expression data
+  - gene
   - genetics
+  - genome
   - genomics
+  - model organism
+  - mutation
   - obo
   - ontology
+  - phenotype
   license: CC-BY-3.0
   mappings:
     aberowl: ZECO
@@ -56506,9 +57492,13 @@ zfa:
   keywords:
   - anatomy
   - developmental biology
+  - life cycle
+  - life cycle stage
   - life science
+  - morphology
   - obo
   - ontology
+  - structure
   - zebrafish
   license: CC-BY-3.0
   mappings:
@@ -56674,8 +57664,10 @@ zfs:
   example: '0000050'
   homepage: https://wiki.zfin.org/display/general/Anatomy+Atlases+and+Resources
   keywords:
+  - aging
   - anatomy
   - developmental biology
+  - life cycle
   - marine biology
   - obo
   - ontology

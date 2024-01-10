@@ -6,7 +6,8 @@
 """
 
 import json
-from typing import Any, MutableMapping, Optional
+import logging
+from typing import Any, MutableMapping, Optional, Set
 
 from bioregistry.constants import EXTERNAL
 from bioregistry.license_standardizer import standardize_license
@@ -15,6 +16,8 @@ from bioregistry.utils import removeprefix, removesuffix
 __all__ = [
     "get_fairsharing",
 ]
+
+logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "fairsharing"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -30,9 +33,11 @@ ALLOWED_TYPES = {
 }
 
 
-def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
+def get_fairsharing(
+    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = False
+):
     """Get the FAIRsharing registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not force_download and not force_reload:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
@@ -50,30 +55,38 @@ def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
 
 
 KEEP = {
-    "abbreviation",
     "description",
     "name",
     "subjects",
+    "user_defined_tags",
+    "domains",
 }
 
 
 def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping[str, Any]]:
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
-    rv = {key: record[key] for key in KEEP}
-    for suf in [
-        " CT",
-        " CV",
-        " Controlled Vocabulary",
-        " Terminology",
-        " Ontology",
-        " Thesaurus",
-        " Vocabulary",
-        " Taxonomy",
-    ]:
-        rv["abbreviation"] = removesuffix(rv["abbreviation"], suf)
+    rv = {key: record[key] for key in KEEP if record[key]}
+
+    abbreviation = record.get("abbreviation")
+    if abbreviation:
+        for suf in [
+            " CT",
+            " CV",
+            " Controlled Vocabulary",
+            " Terminology",
+            " Ontology",
+            " Thesaurus",
+            " Vocabulary",
+            " Taxonomy",
+        ]:
+            rv["abbreviation"] = removesuffix(abbreviation, suf)
 
     metadata = record.get("metadata", {})
+
+    url_for_logo = record.get("url_for_logo")
+    if url_for_logo is not None:
+        rv["logo"] = "https://api.fairsharing.org" + url_for_logo
 
     homepage = metadata.get("homepage")
     if homepage:
@@ -104,17 +117,26 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
         if support_link["type"] == "Github":
             rv["repository"] = support_link["url"]
 
+    missed = set()
     for license_link in record.get("licence_links", []):
         url = license_link.get("licence_url")
         if not url:
             continue
         license_standard = standardize_license(url)
         if license_standard == url:
-            continue  # TODO curate additional normalizations
+            if license_standard not in missed and license_standard not in SKIP_LICENSES:
+                missed.add(license_standard)
+                logger.debug("Need to curate license URL: %s", license_standard)
+            continue
         else:
             rv["license"] = license_standard
 
+    rv = {k: v for k, v in rv.items() if k and v}
     return rv
+
+
+#: Licenses that are one-off and don't need curating
+SKIP_LICENSES: Set[str] = set()
 
 
 def _process_publication(publication):
@@ -137,10 +159,11 @@ def _process_publication(publication):
     if title:
         title = title.replace("  ", " ").rstrip(".")
         rv["title"] = title
+    year = publication.get("year")
+    if year:
+        rv["year"] = int(year)
     return rv
-
-    # TODO add "year"
 
 
 if __name__ == "__main__":
-    get_fairsharing(force_download=True)
+    get_fairsharing(force_download=False, force_reload=True)
