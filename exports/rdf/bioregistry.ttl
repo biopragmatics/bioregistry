@@ -65,6 +65,7 @@
 @prefix atfdb.family: <http://www.bioguo.org/AnimalTFDB/family.php?fam=> .
 @prefix atol: <http://opendata.inra.fr/ATOL/ATOL_> .
 @prefix autdb: <http://autism.mindspec.org/GeneDetail/> .
+@prefix authorea.author: <https://www.authorea.com/users/> .
 @prefix babelon: <https://w3id.org/babelon/> .
 @prefix bacdive: <https://bacdive.dsmz.de/strain/> .
 @prefix bacmap.biog: <http://bacmap.wishartlab.com/organisms/> .
@@ -1229,6 +1230,7 @@
 @prefix seed.reaction: <http://modelseed.org/biochem/reactions/> .
 @prefix seinet: <https://swbiodiversity.org/seinet/taxa/index.php?taxon=> .
 @prefix semapv: <https://w3id.org/semapv/vocab/> .
+@prefix semion: <https://www.semion.io/Author/> .
 @prefix senso: <http://purl.dataone.org/odo/SENSO_> .
 @prefix seo: <https://w3id.org/seo#> .
 @prefix sepio: <http://purl.obolibrary.org/obo/SEPIO_> .
@@ -1425,6 +1427,7 @@
 @prefix wormpep: <https://www.wormbase.org/db/seq/protein?name=> .
 @prefix worms: <http://www.marinespecies.org/aphia.php?p=taxdetails&id=> .
 @prefix wos: <https://www.webofscience.com/wos/woscc/full-record/WOS:> .
+@prefix wos.researcher: <https://www.webofscience.com/wos/author/record/> .
 @prefix wwf.ecoregion: <https://www.worldwildlife.org/ecoregions/> .
 @prefix xao: <http://purl.obolibrary.org/obo/XAO_> .
 @prefix xco: <http://purl.obolibrary.org/obo/XCO_> .
@@ -2988,6 +2991,20 @@ bioregistry:autdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://autism.mindspec.org/GeneDetail/"^^xsd:string ;
     bioregistry.schema:0000027 autdb:ADA ;
     bioregistry.schema:0000029 "autdb" .
+
+bioregistry:authorea.author a bioregistry.schema:0000001 ;
+    rdfs:label "Authorea author ID" ;
+    dcterms:description "identifier for an author on the Authorea writing service"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P5039 ;
+    foaf:homepage <https://www.authorea.com> ;
+    bioregistry.schema:0000005 "229233"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.authorea.com/users/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.authorea.com/users/"^^xsd:string ;
+    bioregistry.schema:0000027 authorea.author:229233 ;
+    bioregistry.schema:0000029 "authorea.author" .
 
 bioregistry:bacmap.biog a bioregistry.schema:0000001 ;
     rdfs:label "BacMap Biography" ;
@@ -6417,6 +6434,19 @@ bioregistry:dbgap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id="^^xsd:string ;
     bioregistry.schema:0000027 dbgap:phs000768.v2.p1 ;
     bioregistry.schema:0000029 "dbgap" .
+
+bioregistry:dblp.author a bioregistry.schema:0000001 ;
+    rdfs:label "DBLP author ID" ;
+    dcterms:description "identifier for author entries in the DBLP computer science bibliography (use portion of DBLP person key after pid/)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P2456 ;
+    foaf:homepage <https://dblp.org/> ;
+    bioregistry.schema:0000005 "199/2168"^^xsd:string ;
+    bioregistry.schema:0000006 "https://dblp.org/pid/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://dblp.org/pid/"^^xsd:string ;
+    bioregistry.schema:0000027 <https://dblp.org/pid/199/2168> ;
+    bioregistry.schema:0000029 "dblp.author" .
 
 bioregistry:dbmhc a bioregistry.schema:0000001 ;
     rdfs:label "Database of human Major Histocompatibility Complex" ;
@@ -14814,7 +14844,7 @@ bioregistry:orcid a bioregistry.schema:0000001 ;
     dcat:keyword "person",
         "subject agnostic" ;
     foaf:homepage <https://orcid.org> ;
-    bioregistry.schema:0000005 "0000-0002-5355-2576"^^xsd:string ;
+    bioregistry.schema:0000005 "0000-0003-4423-4370"^^xsd:string ;
     bioregistry.schema:0000006 "https://orcid.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
@@ -14822,7 +14852,7 @@ bioregistry:orcid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "ORCID",
         "ORCiD" ;
     bioregistry.schema:0000024 "https://orcid.org/"^^xsd:string ;
-    bioregistry.schema:0000027 orcid:0000-0002-5355-2576 ;
+    bioregistry.schema:0000027 orcid:0000-0003-4423-4370 ;
     bioregistry.schema:0000029 "orcid" .
 
 bioregistry:ordb a bioregistry.schema:0000001 ;
@@ -17563,6 +17593,20 @@ bioregistry:seed.reaction a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 seed.reaction:rxn00001 ;
     bioregistry.schema:0000029 "seed.reaction" .
 
+bioregistry:semion a bioregistry.schema:0000001 ;
+    rdfs:label "Semion author ID" ;
+    dcterms:description "identifier of an author or reviewer, in Semion"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P7671 ;
+    foaf:homepage <https://www.semion.io> ;
+    bioregistry.schema:0000005 "22132778"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.semion.io/Author/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.semion.io/Author/"^^xsd:string ;
+    bioregistry.schema:0000027 semion:22132778 ;
+    bioregistry.schema:0000029 "semion" .
+
 bioregistry:senso a bioregistry.schema:0000001 ;
     rdfs:label "Sensitive Data Ontology" ;
     dcterms:description "The SENSO ontology is designed to provide classification terms for labeling sensitive data for data archival and sharing."^^xsd:string ;
@@ -20268,6 +20312,20 @@ bioregistry:wos a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 wos:000177759000002 ;
     bioregistry.schema:0000029 "wos" .
 
+bioregistry:wos.researcher a bioregistry.schema:0000001 ;
+    rdfs:label "ResearcherID" ;
+    dcterms:description "identifier for a researcher in a system for scientific authors, redirects to a Web of Science ID, along with P3829"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P1053 ;
+    foaf:homepage <https://access.clarivate.com/login?app=wos> ;
+    bioregistry.schema:0000005 "B-5720-2018"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.webofscience.com/wos/author/record/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z]{1,3}-\\d{4}-(19|20)\\d\\d$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.webofscience.com/wos/author/record/"^^xsd:string ;
+    bioregistry.schema:0000027 wos.researcher:B-5720-2018 ;
+    bioregistry.schema:0000029 "wos.researcher" .
+
 bioregistry:xenbase a bioregistry.schema:0000001 ;
     rdfs:label "Xenbase" ;
     dcterms:description "Xenbase is the model organism database for Xenopus laevis and X. (Silurana) tropicalis. It contains genomic, development data and community information for Xenopus research. it includes gene expression patterns that incorporates image data from the literature, large scale screens and community submissions."^^xsd:string ;
@@ -22967,6 +23025,8 @@ ontobee:miRNAO dcterms:isPartOf bioregistry.registry:ontobee .
 
 wikidata:P10074 dcterms:isPartOf bioregistry.registry:wikidata .
 
+wikidata:P1053 dcterms:isPartOf bioregistry.registry:wikidata .
+
 wikidata:P10538 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P11089 dcterms:isPartOf bioregistry.registry:wikidata .
@@ -23068,6 +23128,8 @@ wikidata:P235 dcterms:isPartOf bioregistry.registry:wikidata .
 wikidata:P2410 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P244 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P2456 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P2576 dcterms:isPartOf bioregistry.registry:wikidata .
 
@@ -23191,6 +23253,8 @@ wikidata:P496 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P4971 dcterms:isPartOf bioregistry.registry:wikidata .
 
+wikidata:P5039 dcterms:isPartOf bioregistry.registry:wikidata .
+
 wikidata:P5221 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P5270 dcterms:isPartOf bioregistry.registry:wikidata .
@@ -23264,6 +23328,8 @@ wikidata:P7260 dcterms:isPartOf bioregistry.registry:wikidata .
 wikidata:P7333 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P7471 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P7671 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P7718 dcterms:isPartOf bioregistry.registry:wikidata .
 
@@ -37165,14 +37231,14 @@ bioregistry:wikidata a bioregistry.schema:0000001 ;
         "proteomics",
         "subject agnostic" ;
     foaf:homepage <https://www.wikidata.org/> ;
-    bioregistry.schema:0000005 "Q2207226"^^xsd:string ;
+    bioregistry.schema:0000005 "Q47475003"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.wikidata.org/entity/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(Q|P)\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "WD_Entity",
         "wd" ;
     bioregistry.schema:0000024 "http://www.wikidata.org/entity/"^^xsd:string ;
-    bioregistry.schema:0000027 wikidata:Q2207226 ;
+    bioregistry.schema:0000027 wikidata:Q47475003 ;
     bioregistry.schema:0000029 "wikidata" .
 
 bioregistry:wikipathways.vocab a bioregistry.schema:0000001 ;
@@ -52703,6 +52769,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
     rdfs:label "Wikidata Property" ;
     dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
     dcterms:hasPart wikidata:P10074,
+        wikidata:P1053,
         wikidata:P10538,
         wikidata:P11089,
         wikidata:P11198,
@@ -52754,6 +52821,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P235,
         wikidata:P2410,
         wikidata:P244,
+        wikidata:P2456,
         wikidata:P2576,
         wikidata:P2646,
         wikidata:P267,
@@ -52815,6 +52883,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P494,
         wikidata:P496,
         wikidata:P4971,
+        wikidata:P5039,
         wikidata:P5221,
         wikidata:P5270,
         wikidata:P5299,
@@ -52854,6 +52923,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P7260,
         wikidata:P7333,
         wikidata:P7471,
+        wikidata:P7671,
         wikidata:P7718,
         wikidata:P7720,
         wikidata:P7807,
@@ -58084,6 +58154,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ato,
         bioregistry:atol,
         bioregistry:autdb,
+        bioregistry:authorea.author,
         bioregistry:babelon,
         bioregistry:bacdive,
         bioregistry:bacmap.biog,
@@ -58375,6 +58446,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dbest,
         bioregistry:dbg2introns,
         bioregistry:dbgap,
+        bioregistry:dblp.author,
         bioregistry:dbmhc,
         bioregistry:dbo,
         bioregistry:dbprobe,
@@ -59483,6 +59555,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:seed.reaction,
         bioregistry:seinet,
         bioregistry:semapv,
+        bioregistry:semion,
         bioregistry:senso,
         bioregistry:seo,
         bioregistry:sep,
@@ -59726,6 +59799,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:wormpep,
         bioregistry:worms,
         bioregistry:wos,
+        bioregistry:wos.researcher,
         bioregistry:wwf.ecoregion,
         bioregistry:xao,
         bioregistry:xco,
