@@ -171,7 +171,7 @@ class Attributable(BaseModel):
         default=None,
         title="Open Researcher and Contributor Identifier",
         description=ORCID_DESCRIPTION,
-        **{PATTERN_KEY: ORCID_PATTERN},
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
     email: Optional[str] = Field(
@@ -225,7 +225,7 @@ class Author(Attributable):
         ...,
         title="Open Researcher and Contributor Identifier",
         description=ORCID_DESCRIPTION,
-        **{PATTERN_KEY: ORCID_PATTERN},
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
 
