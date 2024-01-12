@@ -3,12 +3,10 @@
 """Download the Integbio registry."""
 
 import json
-
-import click
-import yaml
-from pystow.utils import download
-import pandas as pd
 import logging
+
+import pandas as pd
+
 from bioregistry.constants import EXTERNAL
 
 __all__ = [
@@ -19,7 +17,6 @@ logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "integbio"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_20240112_utf8.csv.zip"
 
@@ -76,12 +73,13 @@ def _parse_fairsharing(s):
         return s.removeprefix("https://fairsharing.org/10.25504/")
     elif s.startswith("https://fairsharing.org/"):
         return s.removeprefix("https://fairsharing.org/")
-    print(f"unhandled FAIRsharing: {s}")
+    logger.debug(f"unhandled FAIRsharing: {s}")
     return None
 
 
-def get_integbio():
-    URL = "/Users/cthoyt/Downloads/en_integbio_dbcatalog_ccbysa_20240112_utf8.csv"
+def get_integbio(*, force_download: bool = False):
+    """Get the integbio resource."""
+    # URL = "/Users/cthoyt/Downloads/en_integbio_dbcatalog_ccbysa_20240112_utf8.csv"
     df = pd.read_csv(URL)
     df.rename(
         columns={
@@ -93,7 +91,7 @@ def get_integbio():
             "Link to FAIRsharing": "fairsharing",
             "Reference(s) - PubMed ID/DOI": "references",
             "Language(s)": "languages",
-            "Database maintenance site": "maintening_institution",
+            "Database maintenance site": "maintainer",
             "Tag - Target": "target_keywords",
             "Tag - Information type": "information_keywords",
             "Operational status": "status",
@@ -103,20 +101,23 @@ def get_integbio():
     for key in SKIP:
         del df[key]
 
-    df["fairsharing"] = df["fairsharing"].map(
-        lambda s: s.strip("https://fairsharing.org"), na_action="ignore"
-    )
+    df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing, na_action="ignore")
     df = df[df["languages"] != "ja"]  # skip only japanese language database for now
     del df["languages"]
     # df["languages"] = df["languages"].map(_strip_split, na_action="ignore")
     df["target_keywords"] = df["target_keywords"].map(_strip_split, na_action="ignore")
     df["information_keywords"] = df["information_keywords"].map(_strip_split, na_action="ignore")
     df["pubmeds"] = df["references"].map(_parse_references, na_action="ignore")
+    df["description"] = df["description"].map(lambda s: s.replace("\r\n", "\n"), na_action="ignore")
 
     del df["references"]
     # TODO ground database maintenance with ROR?
-    return df.to_records(RAW_PATH, orient="records")
+    rv = {}
+    for _, row in df.iterrows():
+        rv[row["prefix"].lower()] = {k: v for k, v in row.items() if isinstance(v, (str, list))}
+    PROCESSED_PATH.write_text(json.dumps(rv, indent=True, ensure_ascii=False, sort_keys=True))
+    return rv
 
 
 if __name__ == "__main__":
-    get_integbio()
+    get_integbio(force_download=True)
