@@ -30,7 +30,14 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
+from bioregistry.constants import (
+    BIOREGISTRY_REMOTE_URL,
+    DOCS,
+    EMAIL_RE,
+    ORCID_PATTERN,
+    PATTERN_KEY,
+    URI_FORMAT_KEY,
+)
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
@@ -164,6 +171,7 @@ class Attributable(BaseModel):
         default=None,
         title="Open Researcher and Contributor Identifier",
         description=ORCID_DESCRIPTION,
+        **{PATTERN_KEY: ORCID_PATTERN},
     )
 
     email: Optional[str] = Field(
@@ -214,7 +222,10 @@ class Author(Attributable):
     #: This field is redefined on top of :class:`Attributable` to make
     #: it required. Otherwise, it has the same semantics.
     orcid: str = Field(
-        ..., title="Open Researcher and Contributor Identifier", description=ORCID_DESCRIPTION
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description=ORCID_DESCRIPTION,
+        **{PATTERN_KEY: ORCID_PATTERN},
     )
 
 
