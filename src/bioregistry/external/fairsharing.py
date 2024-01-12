@@ -7,9 +7,10 @@
 
 import json
 import logging
+import re
 from typing import Any, MutableMapping, Optional, Set
 
-from bioregistry.constants import EXTERNAL
+from bioregistry.constants import EXTERNAL, ORCID_PATTERN
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -31,6 +32,8 @@ ALLOWED_TYPES = {
     # "knowledgebase_and_repository",
     # "repository",
 }
+
+ORCID_RE = re.compile(ORCID_PATTERN)
 
 
 def get_fairsharing(
@@ -102,7 +105,8 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
     contacts = [
         {removeprefix(k, "contact_"): v for k, v in contact.items()}
         for contact in metadata.get("contacts", [])
-        if contact.get("contact_orcid")  # make sure ORCID is available
+        # make sure ORCID is available and valid
+        if (orcid := contact.get("contact_orcid")) and ORCID_RE.match(orcid)
     ]
     for contact in contacts:
         contact["name"] = removeprefix(removeprefix(contact["name"], "Dr. "), "Dr ")
