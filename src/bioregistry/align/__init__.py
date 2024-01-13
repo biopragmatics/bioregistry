@@ -32,6 +32,10 @@ from .re3data import Re3dataAligner
 from .uniprot import UniProtAligner
 from .utils import Aligner
 from .wikidata import WikidataAligner
+from .zazuko import ZazukoAligner
+from .lov import LOVAligner
+from .integbio import IntegbioAligner
+from .pathguide import PathguideAligner
 
 __all__ = [
     # Abstract
@@ -62,6 +66,10 @@ __all__ = [
     "Re3dataAligner",
     "HL7Aligner",
     "BartocAligner",
+    "ZazukoAligner",
+    "LOVAligner",
+    "IntegbioAligner",
+    "PathguideAligner",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(
