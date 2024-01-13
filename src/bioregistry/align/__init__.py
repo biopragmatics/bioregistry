@@ -32,6 +32,8 @@ from .ontobee import OntobeeAligner
 from .pathguide import PathguideAligner
 from .prefixcommons import PrefixCommonsAligner
 from .re3data import Re3dataAligner
+from .rrid import RRIDAligner
+from .togoid import TogoIDAligner
 from .uniprot import UniProtAligner
 from .utils import Aligner
 from .wikidata import WikidataAligner
@@ -70,6 +72,8 @@ __all__ = [
     "LOVAligner",
     "IntegbioAligner",
     "PathguideAligner",
+    "RRIDAligner",
+    "TogoIDAligner",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(

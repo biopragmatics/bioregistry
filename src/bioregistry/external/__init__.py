@@ -16,13 +16,19 @@ from .edam import get_edam
 from .fairsharing import get_fairsharing
 from .go import get_go
 from .hl7 import get_hl7
+from .integbio import get_integbio
+from .lov import get_lov
 from .miriam import get_miriam
 from .n2t import get_n2t
 from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
 from .ontobee import get_ontobee
+from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
+from .togoid import get_togoid
+from .zazuko import get_zazuko
+from .scicrunch import get_rrid
 from .re3data import get_re3data
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
@@ -50,6 +56,12 @@ __all__ = [
     "get_re3data",
     "get_hl7",
     "get_bartoc",
+    "get_integbio",
+    "get_lov",
+    "get_pathguide",
+    "get_togoid",
+    "get_zazuko",
+    "get_rrid",
 ]
 
 GETTERS: List[Tuple[str, str, Callable]] = [
@@ -77,4 +89,10 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("re3data", "re3data", get_re3data),
     ("hl7", "HL7", get_hl7),
     ("bartoc", "BARTOC", get_bartoc),
+    ("integbio", "Integbio", get_integbio),
+    ("lov", "LOV", get_lov),
+    ("pathguide", "Pathguide", get_pathguide),
+    ("togoid", "TogoID", get_togoid),
+    ("zazuko", "Zazuko", get_zazuko),
+    ("rrid", "RRID", get_rrid),
 ]
