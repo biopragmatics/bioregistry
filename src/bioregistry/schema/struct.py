@@ -906,7 +906,7 @@ class Resource(BaseModel):
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc"))
+        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc", "prefixcommons"))
         if rv is None:
             return None
         return _clean_pattern(rv)
