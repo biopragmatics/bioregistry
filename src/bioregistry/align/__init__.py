@@ -21,21 +21,21 @@ from .edam import EDAMAligner
 from .fairsharing import FairsharingAligner
 from .go import GoAligner
 from .hl7 import HL7Aligner
+from .integbio import IntegbioAligner
+from .lov import LOVAligner
 from .miriam import MiriamAligner
 from .n2t import N2TAligner
 from .ncbi import NcbiAligner
 from .obofoundry import OBOFoundryAligner
 from .ols import OLSAligner
 from .ontobee import OntobeeAligner
+from .pathguide import PathguideAligner
 from .prefixcommons import PrefixCommonsAligner
 from .re3data import Re3dataAligner
 from .uniprot import UniProtAligner
 from .utils import Aligner
 from .wikidata import WikidataAligner
 from .zazuko import ZazukoAligner
-from .lov import LOVAligner
-from .integbio import IntegbioAligner
-from .pathguide import PathguideAligner
 
 __all__ = [
     # Abstract
