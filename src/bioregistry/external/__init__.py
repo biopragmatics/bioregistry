@@ -26,12 +26,12 @@ from .ols import get_ols
 from .ontobee import get_ontobee
 from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
-from .togoid import get_togoid
-from .zazuko import get_zazuko
-from .scicrunch import get_rrid
 from .re3data import get_re3data
+from .scicrunch import get_rrid
+from .togoid import get_togoid
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
+from .zazuko import get_zazuko
 
 __all__ = [
     "GETTERS",
