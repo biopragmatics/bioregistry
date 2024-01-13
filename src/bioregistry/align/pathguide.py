@@ -14,9 +14,9 @@ class PathguideAligner(Aligner):
     """Aligner for the Pathguide."""
 
     key = "pathguide"
-    alt_key_match = "name"
+    alt_key_match = "abbreviation"
     getter = get_pathguide
-    curation_header = ("name", "alt_name", "homepage")
+    curation_header = ("abbreviation", "name", "homepage")
 
 
 if __name__ == "__main__":
