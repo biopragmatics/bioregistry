@@ -637,8 +637,10 @@ class Resource(BaseModel):
     zazuko: Optional[Mapping[str, Any]] = Field(default=None)
     #: External data from TogoID
     togoid: Optional[Mapping[str, Any]] = Field(default=None)
-    #: External data from IntegBio
+    #: External data from Integbio
     integbio: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from PathGuide
+    pathguide: Optional[Mapping[str, Any]] = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
