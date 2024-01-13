@@ -715,10 +715,10 @@ hl7:
   bibtex: Bender2013
   bioregistry_prefix: oid
   contact:
-    email: ted@tklein.com
-    github: ''
-    name: W. Ted Klein
-    orcid: ''
+    email: hq@HL7.org
+    github: null
+    name: HL7 Support
+    orcid: null
   description: HL7 External Code Systems are stored within the greater OID system
   example: 2.16.840.1.113883.6.88
   governance:
@@ -746,6 +746,61 @@ hl7:
     no_authentication: true
     structured_data: true
   short_name: HL7
+integbio:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: required
+    example: missing
+    homepage: present
+    license: missing
+    name: required
+    pattern: missing
+    provider: missing
+    search: false
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: integbio
+  contact:
+    email: kwsm@dbcls.rois.ac.jp
+    github: skwsm
+    name: Shuichi Kawashima
+    orcid: 0000-0001-7883-3756
+  description: 'Integbio Database Catalog provides whereabouts information (URL),
+    database description, biological species and other attributes (metadata) of Japanese
+    and international life science databases to make it easier for users to find databases
+    they need. This catalog has been developed as a part of the integration of life
+    science databases promoted by four ministries in Japan: the Ministry of Education,
+    Culture, Sports, Science, and Technology (MEXT), The Ministry of Health, Labor,
+    and Welfare (MHLW), the Ministry of Agriculture, Forestry, and Fisheries (MAFF),
+    and the Ministry of Economy, Trade, and Industry of Japan (METI). (from https://integbio.jp/dbcatalog/en/about)'
+  download: https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_cc0_20240112_utf8.csv.zip
+  example: nbdc01071
+  governance:
+    accepts_external_contributions: false
+    code_repository: null
+    comments: null
+    curates: false
+    curation: import
+    data_repository: null
+    imports: true
+    issue_tracker: null
+    public_version_controlled_data: false
+    review_team: n/a
+    scope: bio-ontologies
+    status: active
+  homepage: https://integbio.jp/en/
+  license: CC0
+  logo_url: https://integbio.jp/templates/integbio/images/logo/logo.png
+  name: Integbio
+  prefix: integbio
+  provider_uri_format: https://integbio.jp/dbcatalog/en/record/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  search_uri_format: https://integbio.jp/dbcatalog/dbsearch-en?cck=database_catalog&order_en=1&dbcat_search_all_en=$1&tag2_en=&tag3_en=&inst_country_en=&inst_country_others_en=&dbarchive_en=&togotv_en=&data_downloadable_en=&biosharing_en=&record_creation_en=&status_en=&dbcat_ministry=&taxonomy=&lang=en&search=database_catalog_search_en&task=search
 lov:
   availability:
     alternate_providers: missing
@@ -1298,6 +1353,58 @@ rrid:
   resolver_type: lookup
   resolver_uri_format: https://scicrunch.org/resolver/RRID:$1_$2
   short_name: RRID
+togoid:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: required
+    homepage: required
+    license: missing
+    name: required
+    pattern: required
+    provider: required
+    search: false
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: togoid
+  contact:
+    email: ktym@dbcls.jp
+    github: ktym
+    name: Toshiaki Katayama
+    orcid: 0000-0003-2391-0384
+  description: TogoID is an ID conversion service implementing unique features with
+    an intuitive web interface and an API for programmatic access. TogoID supports
+    datasets from various biological categories such as gene, protein, chemical compound,
+    pathway, disease, etc. TogoID users can perform exploratory multistep conversions
+    to find a path among IDs. To guide the interpretation of biological meanings in
+    the conversions, we crafted an ontology that defines the semantics of the dataset
+    relations. (from https://togoid.dbcls.jp/)
+  download: https://raw.githubusercontent.com/togoid/togoid-config/main/ontology/togoid-ontology.ttl
+  example: AffyProbeset
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/togoid/togoid-config
+    comments: null
+    curates: false
+    curation: import
+    data_repository: https://github.com/togoid/togoid-config
+    imports: true
+    issue_tracker: https://github.com/togoid/togoid-config/issues
+    public_version_controlled_data: true
+    review_team: inferrable
+    scope: bio-ontologies
+    status: active
+  homepage: https://togoid.dbcls.jp/
+  license: CC BY 4.0
+  name: TogoID
+  prefix: togoid
+  provider_uri_format: https://togoid.dbcls.jp/#$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
 uniprot:
   availability:
     alternate_providers: missing
@@ -1435,7 +1542,7 @@ zazuko:
     imports: true
     issue_tracker: https://github.com/zazuko/rdf-vocabularies/issues
     public_version_controlled_data: true
-    review_team: public
+    review_team: inferrable
     scope: semantic web
     status: active
   homepage: https://prefix.zazuko.com/
