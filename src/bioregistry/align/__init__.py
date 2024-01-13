@@ -21,17 +21,23 @@ from .edam import EDAMAligner
 from .fairsharing import FairsharingAligner
 from .go import GoAligner
 from .hl7 import HL7Aligner
+from .integbio import IntegbioAligner
+from .lov import LOVAligner
 from .miriam import MiriamAligner
 from .n2t import N2TAligner
 from .ncbi import NcbiAligner
 from .obofoundry import OBOFoundryAligner
 from .ols import OLSAligner
 from .ontobee import OntobeeAligner
+from .pathguide import PathguideAligner
 from .prefixcommons import PrefixCommonsAligner
 from .re3data import Re3dataAligner
+from .rrid import RRIDAligner
+from .togoid import TogoIDAligner
 from .uniprot import UniProtAligner
 from .utils import Aligner
 from .wikidata import WikidataAligner
+from .zazuko import ZazukoAligner
 
 __all__ = [
     # Abstract
@@ -62,6 +68,12 @@ __all__ = [
     "Re3dataAligner",
     "HL7Aligner",
     "BartocAligner",
+    "ZazukoAligner",
+    "LOVAligner",
+    "IntegbioAligner",
+    "PathguideAligner",
+    "RRIDAligner",
+    "TogoIDAligner",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(
