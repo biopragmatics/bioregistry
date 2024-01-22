@@ -5,7 +5,6 @@
 import json
 from typing import Dict
 
-import rdflib
 import requests
 import yaml
 
@@ -27,6 +26,8 @@ DATASET_URL = "https://raw.githubusercontent.com/togoid/togoid-config/main/confi
 
 
 def _get_ontology() -> Dict[str, str]:
+    import rdflib
+
     graph = rdflib.Graph()
     graph.parse(ONTOLOGY_URL, format="turtle")
     rows = graph.query("SELECT ?namespace ?prefix WHERE { ?namespace dcterms:identifier ?prefix }")
