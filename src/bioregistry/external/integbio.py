@@ -6,6 +6,8 @@ import json
 import logging
 
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
 from bioregistry.constants import EXTERNAL
 
@@ -18,7 +20,6 @@ logger = logging.getLogger(__name__)
 DIRECTORY = EXTERNAL / "integbio"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 PROCESSED_PATH = DIRECTORY / "processed.json"
-URL = "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_20240112_utf8.csv.zip"
 
 SKIP = [
     "Link(s) to Downloadable data",
@@ -40,6 +41,29 @@ SKIP = [
     "J-GLOBAL ID",  # about institutions?
     "Contact information of database",  # nice idea, but curation is bad so effectively unusable
 ]
+
+
+def get_url() -> str:
+    """Scrape the current download URL for Integbio.
+
+    :returns: The URL of the Integbio data download.
+    :raises ValueError: if the URL can't be found
+
+    .. warning::
+
+        Integbio deletes its old files, so it's impossible to download an old version of the
+        database
+    """
+    base = "https://integbio.jp/dbcatalog/en/download"
+    res = requests.get(base)
+    soup = BeautifulSoup(res.text, "html.parser")
+    for anchor in soup.find_all("a"):
+        href = anchor.attrs["href"]
+        if href.startswith(
+            "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
+        ) and href.endswith("_utf8.csv.zip"):
+            return href
+    raise ValueError(f"unable to find Integbio download link on {base}")
 
 
 def _parse_references(s):
@@ -79,8 +103,8 @@ def _parse_fairsharing(s):
 
 def get_integbio(*, force_download: bool = False):
     """Get the integbio resource."""
-    # URL = "/Users/cthoyt/Downloads/en_integbio_dbcatalog_ccbysa_20240112_utf8.csv"
-    df = pd.read_csv(URL)
+    url = get_url()
+    df = pd.read_csv(url)
     df.rename(
         columns={
             "Database ID": "prefix",
