@@ -1954,7 +1954,7 @@
     ],
     "homepage": "https://naturalhistory2.si.edu/botany/hawaiianflora/index.htm",
     "name": "Flora of the Hawaiian Islands URL",
-    "pattern": "^https?://naturalhistory2\\.si\\.edu/botany/hawaiianflora/(?:speciesdescr|genusdescr)\\.cfm\\?genus=[A-Za-z]+(?:&species=[a-z]+(?:&rank1=(?:subsp|var)\\.&epithet1=[a-z]+)?)?$",
+    "pattern": "^https?://naturalhistory2\\.si\\.edu/botany/hawaiianflora/(?:speciesdescr|genusdescr)\\.cfm\\?genus=[A-Za-z]+(?:&species=[a-z\\-]+(?:&rank1=(?:subsp|var)\\.&epithet1=[a-z\\-]+)?)?$",
     "prefix": "P12270"
   },
   "P12271": {
@@ -2165,6 +2165,45 @@
     "pattern": "^penstemon\\-[a-z\\-]+(\\-var\\-[a-z\\-]+)?$",
     "prefix": "P12298",
     "uri_format": "https://wolfelab.asc.ohio-state.edu/database/$1.php"
+  },
+  "P12336": {
+    "database": "Q111475261",
+    "description": "identifier for a species, subspecies, variety, form, or cultivar of cactus in the Encyclopedia of Cacti",
+    "example": [
+      "1",
+      "11980",
+      "1950",
+      "20355"
+    ],
+    "homepage": "https://www.llifle.com/Encyclopedia/CACTI/Species/all/",
+    "name": "Encyclopedia of Cacti species ID",
+    "pattern": "^[1-9]\\d{0,4}$",
+    "prefix": "P12336",
+    "uri_format": "https://www.llifle.com/Encyclopedia/CACTI/Family/Cactaceae/$1/"
+  },
+  "P12339": {
+    "database": "Q322775",
+    "example": [
+      "ass_cor_region/jean-martin-borella",
+      "membres-titulaires/dominique-flon",
+      "membres_honoraires/robert-mainard"
+    ],
+    "name": "Acad\u00e9mie de Stanislas member ID",
+    "prefix": "P12339",
+    "uri_format": "https://www.academie-stanislas.org/$1"
+  },
+  "P12357": {
+    "description": "ID of a chemical compound in BindingDB",
+    "example": [
+      "1",
+      "50408790",
+      "55121"
+    ],
+    "homepage": "https://www.bindingdb.org",
+    "name": "BindingDB ID",
+    "pattern": "^[1-9]\\d+$",
+    "prefix": "P12357",
+    "uri_format": "https://www.bindingdb.org/bind/chemsearch/marvin/MolStructure.jsp?monomerid=$1"
   },
   "P1294": {
     "database": "Q6617741",
@@ -6388,7 +6427,7 @@
     "uri_format": "http://www.seaslugforum.net/find/$1"
   },
   "P6052": {
-    "description": "identifier for a taxon on the Cockroach Species File website",
+    "description": "identifier for a taxon on the Cockroach Species File website (old archived version)",
     "example": [
       "1174511",
       "1177589",
@@ -6398,7 +6437,7 @@
     "name": "Cockroach Species File ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6052",
-    "uri_format": "https://cockroach.speciesfile.org/otus/$1/overview"
+    "uri_format": "http://cockroach.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
   },
   "P6053": {
     "description": "identifier for a taxon on the Coreoidea Species File website",

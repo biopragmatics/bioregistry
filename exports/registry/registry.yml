@@ -16965,6 +16965,13 @@ erm:
   name: European Registry of Materials
   pattern: ^ERM[0-9]{8}$
   preferred_prefix: erm
+  providers:
+  - code: erm.database
+    description: Database that provides links to onlnie information about materials
+      with an European Registry of Materials (ERM) identifier
+    homepage: https://nanocommons.github.io/erm-database/
+    name: ERM Identifier Database
+    uri_format: https://nanocommons.github.io/erm-database/substance/erm/$1
   publications:
   - doi: 10.1186/s13321-022-00614-7
     pmc: PMC9400299
@@ -24147,7 +24154,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2024-01-11'
+  version: '2024-01-16'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -27949,6 +27956,11 @@ jcrb:
   preferred_prefix: jcrb
   uri_format: https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1
 jcsd:
+  contributor_extras:
+  - email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
   description: The Japan Chemical Substance Dictionary is an organic compound dictionary
     database prepared by the Japan Science and Technology Agency (JST).
   example: J55.713G
@@ -36623,6 +36635,11 @@ nmrshiftdb2:
     github: null
     name: Stefan Kuhn
     orcid: 0000-0002-5990-4157
+  contributor_extras:
+  - email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
   description: NMR database for organic structures and their nuclear magnetic resonance
     (nmr) spectra. It allows for spectrum prediction (13C, 1H and other nuclei) as
     well as for searching spectra, structures and other properties.
@@ -36657,6 +36674,8 @@ nmrshiftdb2:
     title: NMRShiftDB-constructing a free chemical information system with open-source
       components
     year: 2003
+  synonyms:
+  - NMRShiftDB
   uri_format: https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1
 noaa:
   contributor:
@@ -56372,7 +56391,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://purl.obolibrary.org/obo/WBls_$1
-  version: '2023-09-26'
+  version: '2024-01-16'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -56427,7 +56446,7 @@ wbphenotype:
   synonyms:
   - WBPhenotype
   uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
-  version: '2023-09-26'
+  version: '2024-01-16'
 webelements:
   contributor:
     email: cthoyt@gmail.com
@@ -56625,6 +56644,11 @@ wikipathways:
     name: Scholia
     uri_format: https://scholia.toolforge.org/wikipathways/$1
   publications:
+  - doi: 10.1093/nar/gkad960
+    pmc: PMC10767877
+    pubmed: '37941138'
+    title: 'WikiPathways 2024: next generation pathway database'
+    year: 2024
   - doi: 10.1093/nar/gkaa1024
     pmc: PMC7779061
     pubmed: '33211851'
