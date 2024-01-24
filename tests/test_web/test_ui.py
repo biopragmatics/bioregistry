@@ -179,11 +179,17 @@ class TestUI(unittest.TestCase):
         """Test healthy redirects."""
         with self.app.test_client() as client:
             for endpoint in [
-                "metaregistry/miriam/chebi:24867",
-                "chebi:24867",
-                "ark:/53355/cl010066723",
-                "ark:53355/cl010066723",
-                "health/go",
+                "/metaregistry/miriam/chebi:24867",
+                "/chebi:24867",
+                "/ark:53355/cl010066723",
+                "/ark:/53355/cl010066723",  # test if slash at beginning of luid works
+                "/foaf:test/nope",  # test if slash in middle of luid works
+                # this isn't a real FOAF term, but it's just to make sure that the resolver
+                # doesn't blow up on a local unique identifier that has a colon inside it
+                # i.e., foaf should still get properly recognized
+                "/foaf:test:case",
+                "/foaf:test:case:2",
+                "/health/go",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=False)

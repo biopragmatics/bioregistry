@@ -314,6 +314,17 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
+    print(f"Got {prefix=} and {identifier=}")
+
+    if ":" in prefix:
+        # gotta reorganize
+        prefix, middle = prefix.split(":", 1)
+        if identifier:
+            identifier = f"{middle}:{identifier}"
+        else:
+            identifier = middle  # not sure how this could happen, though
+        print(f"Reorgg'd to {prefix=} and {identifier=}")
+
     _resource = manager.get_resource(prefix)
     if _resource is None:
         return (
