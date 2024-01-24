@@ -181,6 +181,8 @@ class TestUI(unittest.TestCase):
             for endpoint in [
                 "metaregistry/miriam/chebi:24867",
                 "chebi:24867",
+                "ark:/53355/cl010066723",
+                "ark:53355/cl010066723",
                 "health/go",
             ]:
                 with self.subTest(endpoint=endpoint):
