@@ -15150,6 +15150,11 @@ eggnog:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/eggnog:$1
   publications:
+  - doi: 10.1093/nar/gkac1022
+    pmc: null
+    pubmed: '36399505'
+    title: null
+    year: null
   - doi: 10.1093/nar/gkp951
     pmc: PMC2808932
     pubmed: '19900971'
@@ -15503,6 +15508,7 @@ emdb:
     miriam: emdb
     n2t: emdb
     re3data: r3d100010562
+    uniprot: DB-0272
   name: Electron Microscopy Data Bank
   owners:
   - name: European Bioinformatics Institute
@@ -23448,6 +23454,64 @@ hgnc.symbol:
     name: Pathway Commons Gene Interations
     uri_format: https://apps.pathwaycommons.org/interactions?source=$1
   uri_format: https://www.genenames.org/cgi-bin/gene_symbol_report?match=$1
+hgvs:
+  contact:
+    email: reecehart@gmail.com
+    github: reece
+    name: Reece Hart
+    orcid: 0000-0003-3463-0775
+  contributor:
+    email: miseming@sfu.ca
+    github: miseminger
+    name: Madeline Iseminger
+    orcid: 0000-0002-0548-891X
+  description: The HGVS Nomenclature is an internationally-recognized standard for
+    the description of DNA, RNA and protein sequence variants. It is used to convey
+    variants in clinical reports and to share variants in publications and databases.
+    The HGVS Nomenclature is administered by the [HGVS Variant Nomenclature Committee
+    (HVNC)](https://hgvs-nomenclature.org/stable/hvnc/) under the auspices of the
+    [Human Genome Organization (HUGO)](https://hugo-int.org/).
+  example: NP_003997.1:p.Trp24Cys
+  example_extras:
+  - NG_012337.3(NM_003002.4):c.274G>T
+  - NG_012337.3(NM_003002.4):r.(274g>u)
+  - NC_000011.10:g.112088970del
+  - NC_000011.10(NM_001276503.2):c.169+998del
+  - GRCh38(chr11):g.112088970del
+  github_request_issue: 1032
+  homepage: https://hgvs-nomenclature.org/stable/background/simple/
+  mappings:
+    wikidata: P3331
+  name: Human Genome Variation Society Nomenclature
+  preferred_prefix: hgvs
+  providers:
+  - code: mutalyzer
+    description: ' The Mutalyzer tool suite is designed to be of help when working
+      with HGVS sequence variant nomenclature descriptions.'
+    homepage: https://mutalyzer.nl
+    name: LUMC Mutalyzer 3
+    uri_format: https://mutalyzer.nl/api/description_to_model/$1
+  publications:
+  - doi: 10.1002/humu.22981
+    pmc: null
+    pubmed: '26931183'
+    title: 'HGVS Recommendations for the Description of Sequence Variants: 2016 Update'
+    year: 2016
+  - doi: 10.1093/bioinformatics/btu630
+    pmc: PMC4287946
+    pubmed: '25273102'
+    title: A Python package for parsing, validating, mapping and formatting sequence
+      variants using HGVS nomenclature
+    year: 2014
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/460
+  repository: https://github.com/HGVSnomenclature/hgvs-nomenclature
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://reg.clinicalgenome.org/allele?hgvs=$1
 hinv.locus:
   description: H-Invitational Database (H-InvDB) is an integrated database of human
     genes and transcripts. It provides curated annotations of human genes and transcripts

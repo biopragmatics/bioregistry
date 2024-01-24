@@ -1926,6 +1926,10 @@ orcid:0000-0001-5705-7831 rdfs:label "Harry Caufield" ;
         bioregistry:mosaic ;
     foaf:mbox "j.harry.caufield@gmail.com" .
 
+orcid:0000-0002-0548-891X rdfs:label "Madeline Iseminger" ;
+    dcterms:contributor bioregistry:hgvs ;
+    foaf:mbox "miseming@sfu.ca" .
+
 orcid:0000-0002-2239-3955 rdfs:label "Giacomo Lanza" ;
     dcterms:contributor bioregistry:m4i ;
     foaf:mbox "giacomo.lanza@ptb.de" .
@@ -21569,6 +21573,9 @@ orcid:0000-0003-3248-7899 rdfs:label "Sabine Oesterle" ;
 orcid:0000-0003-3456-2493 rdfs:label "Yaroslav Halchenko" ;
     foaf:mbox "yoh@dartmouth.edu" .
 
+orcid:0000-0003-3463-0775 rdfs:label "Reece Hart" ;
+    foaf:mbox "reecehart@gmail.com" .
+
 orcid:0000-0003-3499-8262 rdfs:label "Alejandra Gonzalez-Beltran" ;
     foaf:mbox "alejandra.gonzalez.beltran@gmail.com" .
 
@@ -23574,6 +23581,8 @@ wikidata:P3201 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P3289 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3329 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P3331 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3345 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -31377,7 +31386,8 @@ bioregistry:emdb a bioregistry.schema:0000001 ;
         n2t:emdb,
         fairsharing:FAIRsharing.651n9j,
         miriam:emdb,
-        re3data:r3d100010562 ;
+        re3data:r3d100010562,
+        uniprot.resource:DB-0272 ;
     dcat:keyword "epidemiology",
         "structural biology",
         "virology" ;
@@ -32558,6 +32568,22 @@ bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://www.genenames.org/cgi-bin/genefamilies/set/"^^xsd:string ;
     bioregistry.schema:0000027 hgnc.genegroup:141 ;
     bioregistry.schema:0000029 "hgnc.genegroup" .
+
+bioregistry:hgvs a bioregistry.schema:0000001 ;
+    rdfs:label "Human Genome Variation Society Nomenclature" ;
+    dcterms:description "The HGVS Nomenclature is an internationally-recognized standard for the description of DNA, RNA and protein sequence variants. It is used to convey variants in clinical reports and to share variants in publications and databases. The HGVS Nomenclature is administered by the [HGVS Variant Nomenclature Committee (HVNC)](https://hgvs-nomenclature.org/stable/hvnc/) under the auspices of the [Human Genome Organization (HUGO)](https://hugo-int.org/)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/HGVSnomenclature/hgvs-nomenclature> ;
+    skos:exactMatch wikidata:P3331 ;
+    foaf:homepage <https://hgvs-nomenclature.org/stable/background/simple/> ;
+    bioregistry.schema:0000005 "NP_003997.1:p.Trp24Cys"^^xsd:string ;
+    bioregistry.schema:0000006 "http://reg.clinicalgenome.org/allele?hgvs=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3463-0775 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "http://reg.clinicalgenome.org/allele?hgvs="^^xsd:string ;
+    bioregistry.schema:0000027 <http://reg.clinicalgenome.org/allele?hgvs=NP_003997.1:p.Trp24Cys> ;
+    bioregistry.schema:0000029 "hgvs" .
 
 bioregistry:hmdb a bioregistry.schema:0000001 ;
     rdfs:label "Human Metabolome Database" ;
@@ -44465,6 +44491,8 @@ uniprot.resource:DB-0258 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:DB-0266 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
+uniprot.resource:DB-0272 dcterms:isPartOf bioregistry.metaresource:uniprot .
+
 bartoc:241 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bioportal:APAONTO dcterms:isPartOf bioregistry.metaresource:bioportal .
@@ -53123,7 +53151,8 @@ bioregistry.metaresource:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:DB-0254,
         uniprot.resource:DB-0256,
         uniprot.resource:DB-0258,
-        uniprot.resource:DB-0266 ;
+        uniprot.resource:DB-0266,
+        uniprot.resource:DB-0272 ;
     foaf:homepage "https://www.uniprot.org/database/" ;
     bioregistry.schema:0000005 "DB-0174" ;
     bioregistry.schema:0000006 "https://www.uniprot.org/database/$1" ;
@@ -54158,6 +54187,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P3201,
         wikidata:P3289,
         wikidata:P3329,
+        wikidata:P3331,
         wikidata:P3345,
         wikidata:P3382,
         wikidata:P3406,
@@ -60357,6 +60387,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hgnc.genefamily,
         bioregistry:hgnc.genegroup,
         bioregistry:hgnc.symbol,
+        bioregistry:hgvs,
         bioregistry:hinv.locus,
         bioregistry:hinv.protein,
         bioregistry:hinv.transcript,
