@@ -50,6 +50,7 @@ MAPPING = {
     "License": "license",
     "Repository": "repository",  # old
     "Source Code Repository": "repository",
+    "Publications": "publications",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
