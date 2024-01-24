@@ -193,4 +193,4 @@ class TestUI(unittest.TestCase):
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=False)
-                    self.assertEqual(302, res.status_code, msg=res.text)
+                    self.assertEqual(302, res.status_code)  # , msg=res.text)
