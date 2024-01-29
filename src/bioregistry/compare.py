@@ -744,11 +744,11 @@ def _get_licenses_mapped_counter(threshold: int = 30) -> List[str]:
     licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
     licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [
-        "None"
-        if license_ is None
-        else license_
-        if licenses_counter[license_] > threshold
-        else "Other"
+        (
+            "None"
+            if license_ is None
+            else license_ if licenses_counter[license_] > threshold else "Other"
+        )
         for license_ in licenses
     ]
     return licenses_mapped
