@@ -87,7 +87,7 @@ def export_warnings():
                 "pattern": missing_pattern,
                 "formatter": missing_format_url,
                 "example": missing_example,
-                "prefix_xrefs": prefix_xrefs
+                "prefix_xrefs": prefix_xrefs,
                 # "unparsable": unparsable,
             },
             file,
