@@ -3497,6 +3497,14 @@
     "version": "2019-08-26"
   },
   "bgee.family": {
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "smoretti",
+        "name": "Sébastien Moretti",
+        "orcid": "0000-0003-3947-488X"
+      }
+    ],
     "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to expression across species.",
     "example": "ENSFM00500000270089",
@@ -3509,6 +3517,9 @@
     "name": "Bgee family",
     "pattern": "^(ENSFM|ENSGTV:)\\d+$",
     "preferred_prefix": "bgee.family",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/889"
+    ],
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=gene_family&action=family_details&gene_family_id=$1"
   },
   "bgee.gene": {
@@ -3556,6 +3567,14 @@
     "uri_format": "https://www.bgee.org/gene/$1"
   },
   "bgee.organ": {
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "smoretti",
+        "name": "Sébastien Moretti",
+        "orcid": "0000-0003-3947-488X"
+      }
+    ],
     "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to anatomical structures.",
     "example": "EHDAA:2185",
@@ -3568,9 +3587,20 @@
     "name": "Bgee organ",
     "pattern": "^(XAO|ZFA|EHDAA|EMAPA|EV|MA)\\:\\d+$",
     "preferred_prefix": "bgee.organ",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/889"
+    ],
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organ_details&organ_children=on&organ_id=$1"
   },
   "bgee.stage": {
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "smoretti",
+        "name": "Sébastien Moretti",
+        "orcid": "0000-0003-3947-488X"
+      }
+    ],
     "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to developmental stages.",
     "example": "HsapDO:0000004",
@@ -3583,6 +3613,9 @@
     "name": "Bgee stage",
     "pattern": "^(FBvd|XtroDO|HsapDO|MmusDO)\\:\\d+$",
     "preferred_prefix": "bgee.stage",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/889"
+    ],
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=$1"
   },
   "bibo": {
@@ -61454,6 +61487,7 @@
       }
     ],
     "synonyms": [
+      "WB",
       "WB_REF",
       "wb",
       "wormbase"
