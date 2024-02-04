@@ -334,7 +334,7 @@ def _get_records(  # noqa: C901
             continue
         records[prefix] = curies.Record(
             prefix=primary_prefix,
-            prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
+            prefix_synonyms=sorted(secondary_prefixes[prefix].union({prefix}) - {primary_prefix}),
             uri_prefix=primary_uri_prefix,
             uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
             pattern=pattern_map.get(prefix),

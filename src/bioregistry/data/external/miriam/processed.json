@@ -1363,14 +1363,14 @@
   "cellrepo": {
     "deprecated": false,
     "description": "The Cell Version Control Repository is the single worldwide version control repository for engineered and natural cell lines",
-    "homepage": "https://cellrepo.ico2s.org/",
+    "homepage": "https://www.cellrepo.com/",
     "id": "00000829",
     "name": "Cell Version Control Repository",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[0-9]+$",
     "prefix": "cellrepo",
     "sampleId": "82",
-    "uri_format": "https://cellrepo.ico2s.org/repositories/$1"
+    "uri_format": "https://www.cellrepo.com/repositories/$1"
   },
   "cgd": {
     "deprecated": false,
@@ -4136,6 +4136,18 @@
     "sampleId": "MF_01400",
     "uri_format": "https://hamap.expasy.org/unirule/$1"
   },
+  "hco": {
+    "deprecated": false,
+    "description": "The Human Chromosome Ontology (HCO) provides simple and stable URIs for human reference genome versions to semantically identify human chromosomes.",
+    "homepage": "https://dbcls.rois.ac.jp/",
+    "id": "00001040",
+    "name": "Human Chromosome Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^.+$",
+    "prefix": "hco",
+    "sampleId": "MT",
+    "uri_format": "http://biohackathon.org/resource/hco#$1"
+  },
   "hcvdb": {
     "deprecated": false,
     "description": "the European Hepatitis C Virus Database (euHCVdb, http://euhcvdb.ibcp.fr), a collection of computer-annotated sequences based on reference genomes.mainly dedicated to HCV protein sequences, 3D structures and functional analyses.",
@@ -5568,6 +5580,18 @@
     "sampleId": "M0001",
     "uri_format": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$1"
   },
+  "maggot": {
+    "deprecated": false,
+    "description": "Sharing descriptive Metadata is the first essential step towards Open Scientific Data. With this in mind, Maggot was specifically designed to annotate datasets by creating a metadata file to attach to the storage space. Indeed, it allows users to easily add descriptive metadata to datasets produced within a collective of people (research unit, platform, multi-partner project, etc.). This approach fits perfectly into a data management plan as it addresses the issues of data organization and documentation, data storage and frictionless metadata sharing within this same collective and beyond.",
+    "homepage": "https://eng-bfp.bordeaux-aquitaine.hub.inrae.fr/resources/metabolome-platform",
+    "id": "00001038",
+    "name": "Maggot",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[A-Za-z0-9]+$",
+    "prefix": "maggot",
+    "sampleId": "frim1",
+    "uri_format": "https://pmb-bordeaux.fr/maggot/metadata/$1"
+  },
   "maizegdb.locus": {
     "deprecated": false,
     "description": "MaizeGDB is the maize research community's central repository for genetics and genomics information.",
@@ -6874,26 +6898,26 @@
   "nmdc": {
     "deprecated": false,
     "description": "The National Microbiome Data Collaborative (NMDC) is an initiative to empower the research community to harness microbiome data exploration and discovery through a collaborative integrative data science ecosystem.",
-    "homepage": "https://ror.org/02jbv0t02",
+    "homepage": "http://www.lbl.gov/",
     "id": "00000837",
     "name": "National Microbiome Data Collaborative",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z0-9._~\\-\\:]+$",
     "prefix": "nmdc",
     "sampleId": "6m4e-1vbv-03",
-    "uri_format": "https://drs.microbiomedata.org/objects/$1"
+    "uri_format": "https://w3id.org/nmdc/$1"
   },
   "nmr": {
     "deprecated": false,
     "description": "nmrCV is a controlled vocabulary to deliver standardized descriptors for the open mark-up language for NMR raw and spectrum data, sanctioned by the metabolomics standards initiative msi.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/nmrcv",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv",
     "id": "00000639",
     "name": "Nuclear Magnetic Resonance Controlled Vocabulary",
     "namespaceEmbeddedInLui": true,
     "pattern": "^NMR:\\d+$",
     "prefix": "nmr",
     "sampleId": "1000003",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/nmrcv/terms?short_form=NMR:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:$1"
   },
   "nmrshiftdb2": {
     "deprecated": false,
@@ -7279,14 +7303,14 @@
   "orphanet.ordo": {
     "deprecated": false,
     "description": "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\r\nIt integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10).",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/ordo",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ordo",
     "id": "00000532",
     "name": "Orphanet Rare Disease Ontology",
     "namespaceEmbeddedInLui": false,
     "pattern": "^Orphanet(_|:)C?\\d+$",
     "prefix": "orphanet.ordo",
     "sampleId": "Orphanet_C023",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=$1"
   },
   "orthodb": {
     "deprecated": false,
@@ -8142,14 +8166,14 @@
   "probonto": {
     "deprecated": false,
     "description": "ProbOnto, is an ontology-based knowledge base of probability distributions, featuring uni- and multivariate distributions with their defining functions, characteristics, relationships and reparameterisation formulae.  It can be used for annotation of models, facilitating the encoding of distribution-based models, related functions and quantities.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/probonto",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/probonto",
     "id": "00000575",
     "name": "ProbOnto",
     "namespaceEmbeddedInLui": false,
     "pattern": "^PROB_c\\d+$",
     "prefix": "probonto",
     "sampleId": "PROB_c0000005",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms?short_form=$1"
   },
   "prodom": {
     "deprecated": false,
@@ -9668,6 +9692,18 @@
     "sampleId": "TF101014",
     "uri_format": "http://www.treefam.org/family/$1"
   },
+  "tricdb": {
+    "deprecated": false,
+    "description": "Tri\u00a9DB is a newly developed integrated platform functioning as a knowledge base and reporting system for cancer precision medicine. This platform harmonizes and mines cancer-related data from various aspects, presenting them on a centralized platform with enhanced accessibility, rich annotations, and robust analysis capabilities. The development of Tri\u00a9DB is aimed at meeting the needs of a broad range of researchers, thereby propelling both foundational and translational research in cancer precision medicine.",
+    "homepage": "http://www.biomeddb.org/",
+    "id": "00001036",
+    "name": "tricdb",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "prefix": "tricdb",
+    "sampleId": "1eec8393-e598-41ed-9d8b-6d5b0db94470",
+    "uri_format": "http://biomeddb.org/Disease/Details?DISEASEID=$1"
+  },
   "trichdb": {
     "deprecated": false,
     "description": "TrichDB is one of the databases that can be accessed through the EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens of the genera Cryptosporidium, Giardia, Leishmania, Neospora, Plasmodium, Toxoplasma, Trichomonas and Trypanosoma. While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an entry point to all these resources, and the opportunity to leverage orthology for searches across genera.",
@@ -10102,7 +10138,7 @@
   },
   "vectorbase": {
     "deprecated": false,
-    "description": "VectorBase is an NIAID-funded Bioinformatic Resource Center focused on invertebrate vectors of human pathogens. VectorBase annotates and curates vector genomes providing a web accessible integrated resource for the research community. Currently, VectorBase contains genome information for three mosquito species: Aedes aegypti, Anopheles gambiae and Culex quinquefasciatus, a body louse Pediculus humanus and a tick species Ixodes scapularis.",
+    "description": "VectorBase is part of the VEuPathDB, a NIAID-funded Bioinformatic Resource Center focused on invertebrate vectors of human pathogens and related species of interest. Currently, VectorBase contains genome information for approximately 80 organisms: mosquitoes, bed bugs, biting midges, ticks, tsetse flies, mites, sand flies, house flies, body lice, stable flies, kissing bugs, and a snail which is an intermediate host.",
     "homepage": "https://www.vectorbase.org/",
     "id": "00000232",
     "name": "VectorBase",

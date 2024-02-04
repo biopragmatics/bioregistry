@@ -96,7 +96,7 @@
   type: project
   wikidata: Q104225190
   homepage: https://lotus.naturalproducts.net/
-  logo:
+  logo: https://lotus.nprod.net/media/logo.svg
   uses:
     - description: Generates Bioregistry links for resolving CURIEs for taxa and natural products
       links:
@@ -308,3 +308,23 @@
     - description: Included in registry
       links:
         - https://bartoc.org/en/node/18951
+
+- name: DBPedia
+  type: project
+  wikidata: Q465
+  homepage: https://www.dbpedia.org/
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/DBpedia-Logo_.png/1200px-DBpedia-Logo_.png
+  uses:
+    - description: Uses Bioregistry for downloading ontologies and getting URI format strings
+      links:
+        - https://github.com/dbpedia/archivo/issues/23
+
+- name: refineGEMs
+  type: package
+  homepage: https://github.com/draeger-lab/refinegems
+  repository: https://github.com/draeger-lab/refinegems
+  logo: https://github.com/draeger-lab/refinegems/raw/main/docs/source/images/refineGEMs_logo.png
+  uses:
+    - description: CURIE validation
+      links:
+        - https://github.com/draeger-lab/refinegems/blob/3c3587a1de30a836326a73e6111769e04bd2bbf7/refinegems/polish.py#L565

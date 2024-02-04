@@ -30,7 +30,14 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
+from bioregistry.constants import (
+    BIOREGISTRY_REMOTE_URL,
+    DOCS,
+    EMAIL_RE,
+    ORCID_PATTERN,
+    PATTERN_KEY,
+    URI_FORMAT_KEY,
+)
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
@@ -164,6 +171,7 @@ class Attributable(BaseModel):
         default=None,
         title="Open Researcher and Contributor Identifier",
         description=ORCID_DESCRIPTION,
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
     email: Optional[str] = Field(
@@ -214,7 +222,10 @@ class Author(Attributable):
     #: This field is redefined on top of :class:`Attributable` to make
     #: it required. Otherwise, it has the same semantics.
     orcid: str = Field(
-        ..., title="Open Researcher and Contributor Identifier", description=ORCID_DESCRIPTION
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description=ORCID_DESCRIPTION,
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
 
@@ -620,6 +631,16 @@ class Resource(BaseModel):
     bartoc: Optional[Mapping[str, Any]] = Field(default=None, title="BARTOC")
     #: External data from RRID
     rrid: Optional[Mapping[str, Any]] = Field(default=None, title="RRID")
+    #: External data from LOV
+    lov: Optional[Mapping[str, Any]] = Field(default=None, title="LOV")
+    #: External data from Zazuko
+    zazuko: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from TogoID
+    togoid: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from Integbio
+    integbio: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from PathGuide
+    pathguide: Optional[Mapping[str, Any]] = Field(default=None)
 
     # Cached compiled pattern for identifiers
     _compiled_pattern: Optional[re.Pattern] = None
@@ -837,6 +858,8 @@ class Resource(BaseModel):
                 "edam",
                 "prefixcommons",
                 "rrid",
+                "bartoc",
+                "lov",
             ),
         )
 
@@ -864,6 +887,8 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "bartoc",
+                "lov",
             ),
         )
         if rv is not None:
@@ -879,10 +904,11 @@ class Resource(BaseModel):
             1. Custom
             2. MIRIAM
             3. Wikidata
+            4. BARTOC
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc"))
         if rv is None:
             return None
         return _clean_pattern(rv)
@@ -997,6 +1023,8 @@ class Resource(BaseModel):
                 "agroportal",
                 "ecoportal",
                 "rrid",
+                "bartoc",
+                "lov",
             ),
         )
 
@@ -1011,12 +1039,16 @@ class Resource(BaseModel):
             keywords.extend(self.rrid.get("keywords", []))
         if self.fairsharing:
             keywords.extend(self.fairsharing.get("subjects", []))
+            keywords.extend(self.fairsharing.get("user_defined_tags", []))
+            keywords.extend(self.fairsharing.get("domains", []))
         if self.obofoundry:
             keywords.append("obo")
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        return sorted({keyword.lower() for keyword in keywords})
+        if self.lov:
+            keywords.extend(self.lov.get("keywords", []))
+        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
@@ -1310,6 +1342,8 @@ class Resource(BaseModel):
             return self.logo
         if self.obofoundry and "logo" in self.obofoundry:
             return self.obofoundry["logo"]
+        if self.fairsharing and "logo" in self.fairsharing:
+            return self.fairsharing["logo"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
@@ -1385,6 +1419,17 @@ class Resource(BaseModel):
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
         return self.get_external("biocontext").get(URI_FORMAT_KEY)
+
+    def get_bartoc_uri_format(self) -> Optional[str]:
+        """Get the BARTOC URI format string for this entry, if available.
+
+        :returns: The BARTOC URI format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("ddc").get_bartoc_uri_format()
+        'http://dewey.info/class/$1/e23/'
+        """
+        return self.get_external("bartoc").get(URI_FORMAT_KEY)
 
     def get_prefixcommons_prefix(self) -> Optional[str]:
         """Get the Prefix Commons prefix."""

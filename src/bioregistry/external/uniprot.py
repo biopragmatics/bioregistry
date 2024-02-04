@@ -63,7 +63,7 @@ def _process_record(record):
         "prefix": record.pop("id"),
         "name": record.pop("name"),
         "abbreviation": record.pop("abbrev"),
-        "homepage": record.pop("server"),
+        "homepage": record.pop("servers")[0],
         "category": record.pop("category"),
     }
     doi = record.pop("doiId", None)

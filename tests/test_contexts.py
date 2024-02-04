@@ -72,11 +72,13 @@ class TestContexts(unittest.TestCase):
         self.assertEqual("GO", converter.standardize_prefix("gomf", strict=True))
         self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", converter.bimap["PMID"])
         self.assertEqual("GO", converter.standardize_prefix("go", strict=True))
+        self.assertEqual("GO", converter.standardize_prefix("go"))
         self.assertEqual("PMID", converter.standardize_prefix("pmid", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("pubmed", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("PubMed", strict=True))
         self.assertEqual("PMID", converter.standardize_prefix("PUBMED"))
         self.assertEqual("PMID", converter.standardize_prefix("PMID"))
+        self.assertEqual("oboInOwl", converter.standardize_prefix("oboinowl"))
 
     def test_data(self):
         """Test the data integrity."""

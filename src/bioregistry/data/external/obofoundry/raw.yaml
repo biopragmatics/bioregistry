@@ -317,11 +317,6 @@ ontologies:
   - id: bfo.obo
     ontology_purl: http://purl.obolibrary.org/obo/bfo.obo
   repository: https://github.com/BFO-ontology/BFO
-  review:
-    date: 2016
-    document:
-      label: PDF
-      link: https://drive.google.com/open?id=0B81h9ah4tAM_RnNTRUZnVGRyWXM
   title: Basic Formal Ontology
   tracker: https://github.com/BFO-ontology/BFO/issues
   usages:
@@ -549,8 +544,6 @@ ontologies:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/26467479
     title: 'ChEBI in 2016: Improved services and an expanding collection of metabolites.'
   repository: https://github.com/ebi-chebi/ChEBI
-  review:
-    date: 2010
   title: Chemical Entities of Biological Interest
   tracker: https://github.com/ebi-chebi/ChEBI/issues
   twitter: chebit
@@ -1369,7 +1362,7 @@ ontologies:
   browsers:
   - label: DO
     title: DO Browser
-    url: http://www.disease-ontology.org/
+    url: http://www.disease-ontology.org/do
   build:
     infallible: 1
     method: obo2owl
@@ -1408,11 +1401,6 @@ ontologies:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/34755882
     title: The Human Disease Ontology 2022 update
   repository: https://github.com/DiseaseOntology/HumanDiseaseOntology
-  review:
-    date: 2015
-    document:
-      label: PDF
-      link: https://drive.google.com/open?id=0B8vqEgF1N0NIZ082U2JETHlSTGs
   tags:
   - disease
   taxon:
@@ -1593,6 +1581,10 @@ ontologies:
   title: The Echinoderm Anatomy and Development Ontology
   tracker: https://github.com/echinoderm-ontology/ecao_ontology/issues
 - activity_status: active
+  browsers:
+  - label: ECO
+    title: ECO Browser
+    url: https://www.evidenceontology.org/browse
   contact:
     email: mgiglio@som.umaryland.edu
     github: mgiglio99
@@ -1629,7 +1621,7 @@ ontologies:
     title: Standardized description of scientific evidence using the Evidence Ontology
       (ECO)
   repository: https://github.com/evidenceontology/evidenceontology
-  title: Evidence ontology
+  title: Evidence and Conclusion Ontology
   tracker: https://github.com/evidenceontology/evidenceontology/issues
   usages:
   - description: ECO is used by the GO consortium for evidence on GO associations
@@ -1933,53 +1925,6 @@ ontologies:
   - disease
   title: Epilepsy Ontology
   tracker: https://github.com/SCAI-BIO/EpilepsyOntology/issues
-- activity_status: active
-  contact:
-    email: jiezheng@pennmedicine.upenn.edu
-    github: zhengj2007
-    label: Jie Zheng
-    orcid: 0000-0002-2999-0103
-  depicted_by: https://raw.githubusercontent.com/EuPathDB/communitysite/master/assets/images/VEuPathDB-logo-s.png
-  description: An ontology is developed to support Eukaryotic Pathogen, Host & Vector
-    Genomics Resource (VEuPathDB; https://veupathdb.org).
-  domain: organisms
-  homepage: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology
-  id: eupath
-  layout: ontology_detail
-  license:
-    label: CC BY 4.0
-    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: http://creativecommons.org/licenses/by/4.0/
-  ontology_purl: http://purl.obolibrary.org/obo/eupath.owl
-  preferredPrefix: EUPATH
-  products:
-  - id: eupath.owl
-    ontology_purl: http://purl.obolibrary.org/obo/eupath.owl
-  publications:
-  - id: https://doi.org/10.5281/zenodo.6685957
-    title: Malaria study data integration and information retrieval based on OBO Foundry
-      ontologies.
-  repository: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology
-  tags:
-  - functional genomics
-  - population biology
-  - clinical epidemiology
-  - microbiomes
-  title: VEuPathDB ontology
-  tracker: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology/issues
-  usages:
-  - description: The VEuPathDB ontology is used in the VEuPathDB (Eukaryotic Pathogen,
-      Vector & Host Informatics Resources) covers both functional genomics and population
-      biology.
-    type: annotation and query
-    user: https://veupathdb.org
-  - description: The VEuPathDB ontology is used in the clinical epidemiology resources.
-    type: annotation and query
-    user: https://clinepidb.org
-  - description: The VEuPathDB ontology is used in the MicrobiomeDB, a systems biology
-      platform for integrating, mining and analyzing microbiome experiments.
-    type: annotation and query
-    user: https://microbiomedb.org
 - activity_status: active
   contact:
     email: annethessen@gmail.com
@@ -2739,8 +2684,6 @@ ontologies:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/33290552
     title: 'The Gene Ontology resource: enriching a GOld mine'
   repository: https://github.com/geneontology/go-ontology
-  review:
-    date: 2010
   tags:
   - biology
   taxon:
@@ -3009,7 +2952,7 @@ ontologies:
     method: owl2obo
     source_url: http://purl.obolibrary.org/obo/iao.owl
   contact:
-    email: jiezheng@pennmedicine.upenn.edu
+    email: zhengj2007@gmail.com
     github: zhengj2007
     label: Jie Zheng
     orcid: 0000-0002-2999-0103
@@ -4400,7 +4343,7 @@ ontologies:
     user: https://futres.org/
 - activity_status: active
   contact:
-    email: jiezheng@pennmedicine.upenn.edu
+    email: jiezhen@med.umich.edu
     github: zhengj2007
     label: Jie Zheng
     orcid: 0000-0002-2999-0103
@@ -4411,9 +4354,9 @@ ontologies:
   in_foundry: false
   layout: ontology_detail
   license:
-    label: CC BY 3.0
+    label: CC BY 4.0
     logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: http://creativecommons.org/licenses/by/3.0/
+    url: http://creativecommons.org/licenses/by/4.0/
   ontology_purl: http://purl.obolibrary.org/obo/obcs.owl
   preferredPrefix: OBCS
   products:
@@ -4424,6 +4367,14 @@ ontologies:
   - statistics
   title: Ontology of Biological and Clinical Statistics
   tracker: https://github.com/obcs/obcs/issues
+  usages:
+  - description: The Ontology of Biological and Clinical Statistics (OBCS)-based statistical
+      method standardization and meta-analysis of host responses to yellow fever vaccines
+    examples:
+    - description: In Methods, "Both OBCS and the Vaccine Ontology (VO) were used
+        to ontologically model various components and relations ..."
+      url: https://doi.org/10.1007/s40484-017-0122-5
+    user: https://doi.org/10.1007/s40484-017-0122-5
 - activity_status: active
   browsers:
   - label: BioPortal
@@ -4474,11 +4425,6 @@ ontologies:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/27128319
     title: The Ontology for Biomedical Investigations
   repository: https://github.com/obi-ontology/obi
-  review:
-    date: 2013
-    document:
-      label: PDF
-      link: https://drive.google.com/open?id=0B8vqEgF1N0NIMFlSM3RvdUxGTnc
   title: Ontology for Biomedical Investigations
   tracker: http://purl.obolibrary.org/obo/obi/tracker
   usages:
@@ -4564,6 +4510,39 @@ ontologies:
       Branch (BBRB) is an international leader in research and policy activities related
       to biospecimen collection, processing, and storage, also known as biobanking.
     user: https://biospecimens.cancer.gov/resources/vocabularies.asp
+- activity_status: active
+  browsers:
+  - label: BioPortal
+    title: BioPortal Ontology Browser
+    url: https://bioportal.bioontology.org/ontologies/OCCO?p=classes
+  contact:
+    email: zhengj2007@gmail.com
+    github: zhengj2007
+    label: Jie Zheng
+    orcid: 0000-0002-2999-0103
+  description: An ontology representing occupations. It is designed to facilitate
+    harmonization of existing occupation standards, such as the US Bureau of Labor
+    Statistics Standard Occupational Classification (US SOC), the International Standard
+    Classification of Occupations (ISCO), the UK National Statistics Standard Occupational
+    Classification (UK SOC), and the European Skills, Competences, Qualifications
+    and Occupations (ESCO) of the European Union.
+  domain: information
+  homepage: https://github.com/Occupation-Ontology/OccO
+  id: occo
+  issue_requested: 2428
+  layout: ontology_detail
+  license:
+    label: CC BY 4.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
+    url: https://creativecommons.org/licenses/by/4.0/
+  ontology_purl: http://purl.obolibrary.org/obo/occo.owl
+  preferredPrefix: OCCO
+  products:
+  - id: occo.owl
+    ontology_purl: http://purl.obolibrary.org/obo/occo.owl
+  repository: https://github.com/Occupation-Ontology/OccO
+  title: Occupation Ontology
+  tracker: https://github.com/Occupation-Ontology/OccO/issues
 - activity_status: active
   contact:
     email: yongqunh@med.umich.edu
@@ -5036,7 +5015,7 @@ ontologies:
   tracker: https://github.com/OOSTT/OOSTT/issues
 - activity_status: active
   contact:
-    email: jiezheng@pennmedicine.upenn.edu
+    email: zhengj2007@gmail.com
     github: zhengj2007
     label: Jie Zheng
     orcid: 0000-0002-2999-0103
@@ -5181,8 +5160,6 @@ ontologies:
   - id: https://www.ncbi.nlm.nih.gov/pubmed/15642100
     title: Using ontologies to describe mouse phenotypes
   repository: https://github.com/pato-ontology/pato
-  review:
-    date: 2010
   title: Phenotype And Trait Ontology
   tracker: https://github.com/pato-ontology/pato/issues
   usages:
@@ -5500,11 +5477,6 @@ ontologies:
     title: 'The Planteome database: an integrated resource for reference ontologies,
       plant genomics and phenomics.'
   repository: https://github.com/Planteome/plant-ontology
-  review:
-    date: 2013
-    document:
-      label: PDF
-      link: https://drive.google.com/open?id=0B8vqEgF1N0NIV1o0N21UOHlLSmc
   taxon:
     id: NCBITaxon:33090
     label: Viridiplantae
@@ -5644,8 +5616,6 @@ ontologies:
     title: 'Protein Ontology (PRO): enhancing and scaling up the representation of
       protein entities'
   repository: https://github.com/PROconsortium/PRoteinOntology
-  review:
-    date: 2010
   tags:
   - proteins
   title: PRotein Ontology (PRO)
@@ -6861,13 +6831,13 @@ ontologies:
     orcid: 0000-0001-9189-9661
   description: VO is a biomedical ontology in the domain of vaccine and vaccination.
   domain: health
-  homepage: http://www.violinet.org/vaccineontology
+  homepage: https://violinet.org/vaccineontology
   id: vo
   layout: ontology_detail
   license:
-    label: CC BY 3.0
+    label: CC BY 4.0
     logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
-    url: http://creativecommons.org/licenses/by/3.0/
+    url: http://creativecommons.org/licenses/by/4.0/
   ontology_purl: http://purl.obolibrary.org/obo/vo.owl
   preferredPrefix: VO
   products:
@@ -6883,6 +6853,35 @@ ontologies:
   repository: https://github.com/vaccineontology/VO
   title: Vaccine Ontology
   tracker: https://github.com/vaccineontology/VO/issues
+  usages:
+  - description: VIOLIN uses VO to standardize vaccine information
+    examples:
+    - description: VIOLIN using VO grouped all SARS-CoV-2 vaccines
+      url: https://violinet.org/canvaxkb/vaccine_detail.php?c_vaccine_id=5339
+    - description: A specific vaccine ‘Allogeneic Tumor Cell Vaccine’ curated in VO
+        for VIOLIN vaccine record
+      url: https://violinet.org/vaxquery/query_detail.php?c_pathogen_id=321#vaccine_5878
+    user: https://violinet.org
+  - description: Vaccine Adjuvant Compendium (VAC) uses Vaccine Ontology to standard
+      vaccine adjuvants developed by NIH
+    examples:
+    - description: A specific vaccine adjuvant, such as CaPNP (CaPtivant)(TM), in
+        Vaccine Adjuvant Compendium, uses VO_0005295 ‘CaPNP (CaPtivant)(TM) vaccine
+        adjuvant’
+      url: https://vac.niaid.nih.gov/view?id=11
+    user: https://www.niaid.nih.gov/research/vaccine-adjuvant-compendium-vac
+  - description: ImmPort uses Vaccine Ontology to standardize vaccine recorded collected
+      in NIH funded ImmPort studies
+    examples:
+    - description: ImmPort data used VO for annotation shown in its dataModel
+      url: https://www.immport.org/shared/dataModel
+    user: https://www.immport.org/
+  - description: Human Immunology Project Consortium (HIPC) uses VO to standardize
+      vaccine records
+    examples:
+    - description: Influenza Vaccine Live, Intranasal used VO_0000044
+      url: http://www.hipc-dashboard.org/#vaccine/vo-0000044
+    user: https://immunespace.org/
 - activity_status: active
   build:
     checkout: svn co http://phenotype-ontologies.googlecode.com/svn/trunk/src/ontology/vt
@@ -7156,8 +7155,6 @@ ontologies:
     title: 'Enhanced XAO: the ontology of Xenopus anatomy and development underpins
       more accurate annotation of gene expression and queries on Xenbase.'
   repository: https://github.com/xenopus-anatomy/xao
-  review:
-    date: 2010
   taxon:
     id: NCBITaxon:8353
     label: Xenopus
@@ -7353,8 +7350,6 @@ ontologies:
     title: 'The zebrafish anatomy and stage ontologies: representing the anatomy and
       development of Danio rerio.'
   repository: https://github.com/cerivs/zebrafish-anatomical-ontology
-  review:
-    date: 2010
   taxon:
     id: NCBITaxon:7954
     label: Danio
@@ -7953,6 +7948,53 @@ ontologies:
     title: Types and effects of protein variations
   title: Variation Ontology
   tracker: http://variationontology.org/instructions.shtml
+- activity_status: inactive
+  contact:
+    email: jiezhen@med.umich.edu
+    github: zhengj2007
+    label: Jie Zheng
+    orcid: 0000-0002-2999-0103
+  depicted_by: https://raw.githubusercontent.com/EuPathDB/communitysite/master/assets/images/VEuPathDB-logo-s.png
+  description: An ontology is developed to support Eukaryotic Pathogen, Host & Vector
+    Genomics Resource (VEuPathDB; https://veupathdb.org).
+  domain: organisms
+  homepage: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology
+  id: eupath
+  layout: ontology_detail
+  license:
+    label: CC BY 4.0
+    logo: http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png
+    url: http://creativecommons.org/licenses/by/4.0/
+  ontology_purl: http://purl.obolibrary.org/obo/eupath.owl
+  preferredPrefix: EUPATH
+  products:
+  - id: eupath.owl
+    ontology_purl: http://purl.obolibrary.org/obo/eupath.owl
+  publications:
+  - id: https://doi.org/10.5281/zenodo.6685957
+    title: Malaria study data integration and information retrieval based on OBO Foundry
+      ontologies.
+  repository: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology
+  tags:
+  - functional genomics
+  - population biology
+  - clinical epidemiology
+  - microbiomes
+  title: VEuPathDB ontology
+  tracker: https://github.com/VEuPathDB-ontology/VEuPathDB-ontology/issues
+  usages:
+  - description: The VEuPathDB ontology is used in the VEuPathDB (Eukaryotic Pathogen,
+      Vector & Host Informatics Resources) covers both functional genomics and population
+      biology.
+    type: annotation and query
+    user: https://veupathdb.org
+  - description: The VEuPathDB ontology is used in the clinical epidemiology resources.
+    type: annotation and query
+    user: https://clinepidb.org
+  - description: The VEuPathDB ontology is used in the MicrobiomeDB, a systems biology
+      platform for integrating, mining and analyzing microbiome experiments.
+    type: annotation and query
+    user: https://microbiomedb.org
 - activity_status: inactive
   build:
     method: obo2owl
