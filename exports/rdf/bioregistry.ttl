@@ -322,8 +322,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -609,7 +609,7 @@
 @prefix hgmd: <http://www.hgmd.cf.ac.uk/ac/gene.php?gene=> .
 @prefix hgnc: <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/> .
 @prefix hgnc.genegroup: <https://www.genenames.org/cgi-bin/genefamilies/set/> .
-@prefix hgnc.symbol: <https://www.genenames.org/cgi-bin/gene_symbol_report?match=> .
+@prefix hgnc.symbol: <https://www.genenames.org/data/gene-symbol-report/#!/symbol/> .
 @prefix hinv.locus: <http://h-invitational.jp/hinv/spsoup/locus_view?hix_id=> .
 @prefix hinv.protein: <http://h-invitational.jp/hinv/protein/protein_view.cgi?hip_id=> .
 @prefix hinv.transcript: <http://h-invitational.jp/hinv/spsoup/transcript_view?hit_id=> .
@@ -45293,7 +45293,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -50059,10 +50059,10 @@ bioregistry:hgnc.symbol a bioregistry.schema:0000001 ;
         togoid:HgncSymbol ;
     foaf:homepage <https://www.genenames.org/> ;
     bioregistry.schema:0000005 "DAPK1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.genenames.org/cgi-bin/gene_symbol_report?match=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/symbol/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z-0-9_]+(\\@)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://www.genenames.org/cgi-bin/gene_symbol_report?match="^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.genenames.org/data/gene-symbol-report/#!/symbol/"^^xsd:string ;
     bioregistry.schema:0000027 hgnc.symbol:DAPK1 ;
     bioregistry.schema:0000029 "hgnc.symbol" .
 
