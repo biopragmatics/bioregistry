@@ -2276,15 +2276,19 @@
   },
   "P12390": {
     "database": "Q111076433",
-    "description": "identifier for fauna of China in the China Animal Scientific Database (.../dbb/...)",
+    "description": "identifier for an animal taxon of China in the China Animal Scientific Database (.../dbb/...)",
     "example": [
+      "ynbird/589",
+      "yninsect/5336",
       "ynswcvert/662",
       "ynswcvert/6801",
       "ynswrvert/3053",
-      "ynswrvert/3245"
+      "ynswrvert/3245",
+      "ynswrvert/609"
     ],
     "homepage": "http://www.zoology.csdb.cn",
     "name": "China Animal Scientific Database dbb ID",
+    "pattern": "^yn[a-z]+\\/[0-9]+$",
     "prefix": "P12390",
     "uri_format": "http://www.zoology.csdb.cn/dbb/$1"
   },
@@ -2330,7 +2334,7 @@
   },
   "P12432": {
     "database": "Q124393979",
-    "description": "the point in time after which an individual attains the ability to reproduce sexually",
+    "description": "point in time after which an individual attains the ability to reproduce sexually",
     "example": [
       "1.5",
       "2",
@@ -2338,6 +2342,37 @@
     ],
     "name": "age of onset of sexual maturity",
     "prefix": "P12432"
+  },
+  "P12444": {
+    "database": "Q15221937",
+    "description": "ID of fossil taxa in Mindat.org database",
+    "example": [
+      "4822933",
+      "4967108",
+      "P362521"
+    ],
+    "name": "Mindat taxon ID",
+    "prefix": "P12444",
+    "uri_format": "https://www.mindat.org/taxon-$1.html"
+  },
+  "P12445": {
+    "database": "Q111076433",
+    "description": "identifier for an animal taxon of China in the China Animal Scientific Database  (.../taxon/...)",
+    "example": [
+      "0104DD62-A8F9-4964-B877-FC46F95E852A",
+      "064D96C7-C335-4718-B4F2-F27352D98FE9",
+      "1197B884-FE8C-44DE-AD82-17FB60426CB5",
+      "1BA7ADC4-F826-408C-9D37-DE317EDEB502",
+      "2B4A392B-EB05-4E3A-B7FE-8593BC43DB8F",
+      "32DC5665-0D4F-4DBB-8B38-B70DFF6B61CB",
+      "B1E3B49F-BA31-408B-86D4-814E46ED98C1",
+      "B7DF16CE-B981-417C-90F8-374885D82DB6"
+    ],
+    "homepage": "http://www.zoology.csdb.cn",
+    "name": "China Animal Scientific Database taxon ID",
+    "pattern": "^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$",
+    "prefix": "P12445",
+    "uri_format": "http://www.zoology.csdb.cn/taxon/{$1}"
   },
   "P1294": {
     "database": "Q6617741",
@@ -3340,6 +3375,9 @@
     "name": "Library of Congress authority ID",
     "pattern": "^(gf|n|nb|nr|no|ns|sh|sj)([4-9][0-9]|00|20[0-2][0-9])[0-9]{6}$",
     "prefix": "P244",
+    "short_name": [
+      "LOC authority ID"
+    ],
     "uri_format": "https://id.loc.gov/authorities/$1",
     "uri_format_rdf": "http://id.loc.gov/authorities/names/$1"
   },
