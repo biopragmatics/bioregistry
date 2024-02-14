@@ -1,4 +1,5 @@
 3dmet:
+  deprecated: true
   description: 3DMET is a database collecting three-dimensional structures of natural
     metabolites.
   example: B00162
@@ -25935,8 +25936,13 @@ igsn:
   example: AU124
   homepage: http://www.geosamples.org/
   keywords:
+  - citation
+  - earth science
+  - environmental science
+  - geochemistry
+  - geology
+  - hydrogeology
   - physical samples
-  - subject agnostic
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline
   mappings:
     fairsharing: FAIRsharing.c7f365
@@ -25945,6 +25951,36 @@ igsn:
   name: International Geo Sample Number
   pattern: ^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$
   preferred_prefix: igsn
+  publications:
+  - doi: 10.5334/dsj-2023-005
+    pmc: null
+    pubmed: null
+    title: 'Scaling Identifiers and their Metadata to Gigascale: An Architecture to
+      Tackle the Challenges of Volume and Variety'
+    year: 2023
+  - doi: 10.5334/dsj-2021-033
+    pmc: null
+    pubmed: null
+    title: 'Towards Globally Unique Identification of Physical Samples: Governance
+      and Technical Implementation of the IGSN Global Sample Number'
+    year: 2021
+  - doi: 10.5334/dsj-2017-002
+    pmc: null
+    pubmed: null
+    title: Utilizing the International Geo Sample Number Concept in Continental Scientific
+      Drilling During ICDP Expedition COSC-1
+    year: 2017
+  - doi: 10.5281/zenodo.5118289
+    pmc: null
+    pubmed: null
+    title: 'IGSN 2040 Summary Report: Defining the Future of the IGSN as a Global
+      Persistent Identifier for Material Samples'
+    year: 2021
+  - doi: 10.1007/978-3-030-85040-1_162
+    pmc: null
+    pubmed: null
+    title: International Generic Sample Number
+    year: 2023
   uri_format: http://igsn.org/$1
 igsr:
   description: 'The International Genome Sample Resource (IGSR) was established to
@@ -30347,6 +30383,46 @@ matrixdb.association:
     0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$
   preferred_prefix: matrixdb.association
   uri_format: http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association
+mavedb:
+  comment: This is an interesting one as the full IDs as they appear on the page are
+    of the form `urn:mavedb:00000011-a` suggesting this is the preferred URI expansion
+    for identification purposes. However, mavedb hasn't been registered with IANA
+    https://www.iana.org/assignments/urn-namespaces/urn-namespaces.xhtml
+  contact:
+    email: alan.rubin@wehi.edu.au
+    github: afrubin
+    name: Alan Rubin
+    orcid: 0000-0003-1474-605X
+  contributor:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: Some IDs may represent experiment sets, e.g. https://www.mavedb.org/#/experiment-sets/urn:mavedb:00000011
+    Others represent genomic regions (specifically deep mutational scans thereof)
+    e.g. https://www.mavedb.org/#/experiment-sets/urn:mavedb:00000011-a
+  example: 00000011-a
+  example_extras:
+  - '00000011'
+  github_request_issue: 1045
+  homepage: https://www.mavedb.org
+  name: Multiplexed Assays of Variant Effect Database
+  pattern: ^\S+$
+  preferred_prefix: mavedb
+  publications:
+  - doi: 10.1186/s13059-019-1845-6
+    pmc: PMC6827219
+    pubmed: '31679514'
+    title: 'MaveDB: an open-source platform to distribute and interpret data from
+      multiplexed assays of variant effect'
+    year: 2019
+  repository: https://github.com/VariantEffect/mavedb-api
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.mavedb.org/#/experiments/urn:mavedb:$1
 maxo:
   appears_in:
   - ecto

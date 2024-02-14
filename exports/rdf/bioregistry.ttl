@@ -322,8 +322,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -771,6 +771,7 @@
 @prefix massbank: <https://massbank.jp/RecordDisplay?id=> .
 @prefix massive: <https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=> .
 @prefix matrixdb: <http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=> .
+@prefix mavedb: <https://www.mavedb.org/#/experiments/urn:mavedb:> .
 @prefix maxo: <http://purl.obolibrary.org/obo/MAXO_> .
 @prefix mba: <https://biopragmatics.github.io/providers/mba/> .
 @prefix mcc: <http://www.semanticweb.org/pallabi.d/ontologies/2014/2/untitled-ontology-11#> .
@@ -1998,7 +1999,7 @@ bioregistry:3dmet a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "B00162"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^B\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc="^^xsd:string ;
     bioregistry.schema:0000027 3dmet:B00162 ;
     bioregistry.schema:0000029 "3dmet" .
@@ -10390,8 +10391,13 @@ bioregistry:igsn a bioregistry.schema:0000001 ;
     skos:exactMatch n2t:igsn,
         fairsharing:FAIRsharing.c7f365,
         miriam:igsn ;
-    dcat:keyword "physical samples",
-        "subject agnostic" ;
+    dcat:keyword "citation",
+        "earth science",
+        "environmental science",
+        "geochemistry",
+        "geology",
+        "hydrogeology",
+        "physical samples" ;
     foaf:homepage <http://www.geosamples.org/> ;
     bioregistry.schema:0000005 "AU124"^^xsd:string ;
     bioregistry.schema:0000006 "http://igsn.org/$1"^^xsd:string ;
@@ -21515,6 +21521,9 @@ orcid:0000-0003-1355-892X rdfs:label "Richard Scheuermann" ;
 
 orcid:0000-0003-1384-116X rdfs:label "Barry Smith" ;
     foaf:mbox "phismith@buffalo.edu" .
+
+orcid:0000-0003-1474-605X rdfs:label "Alan Rubin" ;
+    foaf:mbox "alan.rubin@wehi.edu.au" .
 
 orcid:0000-0003-1613-5981 rdfs:label "Heather Piwowar" ;
     foaf:mbox "hpiwowar@gmail.com" .
@@ -33913,6 +33922,22 @@ bioregistry:matrixdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 matrixdb:MULT_4_VAR1_bovine ;
     bioregistry.schema:0000029 "matrixdb" .
 
+bioregistry:mavedb a bioregistry.schema:0000001 ;
+    rdfs:label "Multiplexed Assays of Variant Effect Database" ;
+    dcterms:description "Some IDs may represent experiment sets, e.g. https://www.mavedb.org/#/experiment-sets/urn:mavedb:00000011 Others represent genomic regions (specifically deep mutational scans thereof) e.g. https://www.mavedb.org/#/experiment-sets/urn:mavedb:00000011-a"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/VariantEffect/mavedb-api> ;
+    foaf:homepage <https://www.mavedb.org> ;
+    bioregistry.schema:0000005 "00000011-a"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.mavedb.org/#/experiments/urn:mavedb:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-1474-605X ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://www.mavedb.org/#/experiments/urn:mavedb:"^^xsd:string ;
+    bioregistry.schema:0000027 mavedb:00000011-a ;
+    bioregistry.schema:0000029 "mavedb" .
+
 bioregistry:mediadive.ingredient a bioregistry.schema:0000001 ;
     rdfs:label "MediaDive Ingredient" ;
     dcterms:description "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]"^^xsd:string ;
@@ -45293,7 +45318,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -51689,6 +51714,7 @@ orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
         bioregistry:gnps.task,
         bioregistry:insdc.run,
         bioregistry:jgi.proposal,
+        bioregistry:mavedb,
         bioregistry:mediadive.medium,
         bioregistry:mixs,
         bioregistry:uniprot.arba,
@@ -60609,6 +60635,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:mat,
         bioregistry:matrixdb,
         bioregistry:matrixdb.association,
+        bioregistry:mavedb,
         bioregistry:maxo,
         bioregistry:mba,
         bioregistry:mcc,
