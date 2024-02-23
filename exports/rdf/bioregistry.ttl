@@ -322,8 +322,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -4346,6 +4346,7 @@ bioregistry:cco a bioregistry.schema:0000001 ;
     dcterms:description "The Cell Cycle Ontology is an application ontology that captures and integrates detailed knowledge on the cell cycle process."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch aberowl:CCO,
+        bartoc:20461,
         bioportal:CCO,
         biocontext:CCO,
         n2t:cco,
@@ -23845,6 +23846,8 @@ bartoc:20428 dcterms:isPartOf bioregistry.registry:bartoc .
 bartoc:20430 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:20434 dcterms:isPartOf bioregistry.registry:bartoc .
+
+bartoc:20461 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:2053 dcterms:isPartOf bioregistry.registry:bartoc .
 
@@ -45318,7 +45321,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -52616,6 +52619,7 @@ bioregistry.registry:bartoc a bioregistry.schema:0000002 ;
         bartoc:20428,
         bartoc:20430,
         bartoc:20434,
+        bartoc:20461,
         bartoc:2053,
         bartoc:2054,
         bartoc:216,
