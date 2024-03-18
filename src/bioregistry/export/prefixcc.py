@@ -3,6 +3,8 @@
 .. seealso:: https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1038
 """
 
+import random
+
 import click
 import requests
 
@@ -20,6 +22,7 @@ def create(curie_prefix: str, uri_prefix: str) -> requests.Response:
 def main():
     """Add an OBO Foundry prefix to Prefix.cc."""
     prefix_cc_map = requests.get("https://prefix.cc/context").json()["@context"]
+    records = []
     for record in bioregistry.resources():
         if not record.get_obofoundry_prefix():
             continue
@@ -30,14 +33,23 @@ def main():
             # No need to re-create something that's already
             # both available and correct wrt Bioregistry/OBO
             continue
+        records.append(record)
 
-        click.echo(f"Attempting to create a record for {record.prefix} {uri_prefix}")
-        res = create(record.prefix, uri_prefix)
-        click.echo(res.text)
+    if not records:
+        click.echo("No records left to submit to Prefix.cc, good job!")
+        return
 
-        # We're breaking here since we can only make one
-        # update per day
-        break
+    click.echo(f"{len(records):,} records remain to submit to Prefix.cc")
+
+    # shuffle records to make sure that if there's an error, it doesn't
+    # lock the update permenantly
+    random.shuffle(records)
+
+    # Pick only the first record, since we can only make one update per day
+    record = records[0]
+    click.echo(f"Attempting to create a record for {record.prefix} {uri_prefix}")
+    res = create(record.prefix, uri_prefix)
+    click.echo(res.text)
 
 
 if __name__ == "__main__":
