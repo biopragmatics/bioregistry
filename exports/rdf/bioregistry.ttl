@@ -323,8 +323,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -7937,37 +7937,6 @@ bioregistry:fideo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FIDEO_"^^xsd:string ;
     bioregistry.schema:0000027 fideo:00000021 ;
     bioregistry.schema:0000029 "fideo" .
-
-bioregistry:flopo a bioregistry.schema:0000001 ;
-    rdfs:label "Flora Phenotype Ontology" ;
-    dcterms:description "Traits and phenotypes of flowering plants occurring in digitized Floras"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/flora-phenotype-ontology/flopoontology> ;
-    skos:exactMatch aberowl:FLOPO,
-        agroportal:FLOPO,
-        ontobee:FLOPO,
-        bioportal:FLOPO,
-        biocontext:FLOPO,
-        fairsharing:FAIRsharing.ny9vnm,
-        ols:flopo,
-        obofoundry:flopo ;
-    dcat:keyword "biodiversity",
-        "botany",
-        "life cycle stage",
-        "obo",
-        "ontology",
-        "phenotype",
-        "plant anatomy" ;
-    foaf:homepage <https://github.com/flora-phenotype-ontology/flopoontology> ;
-    bioregistry.schema:0000005 "0005250"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FLOPO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:flopo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-8149-5890 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FLOPO_"^^xsd:string ;
-    bioregistry.schema:0000027 flopo:0005250 ;
-    bioregistry.schema:0000029 "flopo" .
 
 bioregistry:flowrepository a bioregistry.schema:0000001 ;
     rdfs:label "FlowRepository" ;
@@ -21158,6 +21127,9 @@ orcid:0000-0002-2100-6351 rdfs:label "Carrine Blank" ;
 orcid:0000-0002-2118-035X rdfs:label "Adrien Rougny" ;
     foaf:mbox "adrienrougny@gmail.com" .
 
+orcid:0000-0002-2119-4663 rdfs:label "Andy Deans" ;
+    foaf:mbox "adeans@psu.edu" .
+
 orcid:0000-0002-2121-365X rdfs:label "Lin Huang" ;
     foaf:mbox "huanglin36@mail.sysu.edu.cn" .
 
@@ -22982,6 +22954,8 @@ ontobee:FOODON dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:FOVT dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:FYPO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+ontobee:GALLONT dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:GAZ dcterms:isPartOf bioregistry.metaresource:ontobee .
 
@@ -31860,6 +31834,38 @@ bioregistry:fix a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FIX_"^^xsd:string ;
     bioregistry.schema:0000026 ror:02catss52 ;
     bioregistry.schema:0000029 "fix" .
+
+bioregistry:flopo a bioregistry.schema:0000001 ;
+    rdfs:label "Flora Phenotype Ontology" ;
+    dcterms:description "Traits and phenotypes of flowering plants occurring in digitized Floras"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/flora-phenotype-ontology/flopoontology> ;
+    skos:exactMatch aberowl:FLOPO,
+        agroportal:FLOPO,
+        ontobee:FLOPO,
+        bioportal:FLOPO,
+        biocontext:FLOPO,
+        fairsharing:FAIRsharing.ny9vnm,
+        ols:flopo,
+        obofoundry:flopo ;
+    dcat:keyword "biodiversity",
+        "botany",
+        "life cycle stage",
+        "obo",
+        "ontology",
+        "phenotype",
+        "plant anatomy" ;
+    foaf:homepage <https://github.com/flora-phenotype-ontology/flopoontology> ;
+    bioregistry.schema:0000005 "0005250"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/FLOPO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:flopo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:gallont ;
+    bioregistry.schema:0000019 orcid:0000-0001-8149-5890 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FLOPO_"^^xsd:string ;
+    bioregistry.schema:0000027 flopo:0005250 ;
+    bioregistry.schema:0000029 "flopo" .
 
 bioregistry:flybrain.ndb a bioregistry.schema:0000001 ;
     rdfs:label "FlyBrain Neuron Database" ;
@@ -43646,6 +43652,8 @@ obofoundry:fovt dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:fypo dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
+obofoundry:gallont dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
 obofoundry:gaz dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:gecko dcterms:isPartOf bioregistry.metaresource:obofoundry .
@@ -45369,7 +45377,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -47870,37 +47878,6 @@ bioregistry:phrr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 phrr:4195 ;
     bioregistry.schema:0000029 "phrr" .
 
-bioregistry:poro a bioregistry.schema:0000001 ;
-    rdfs:label "Porifera Ontology" ;
-    dcterms:description "An ontology describing the anatomical structures and characteristics of Porifera (sponges)"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obophenotype/porifera-ontology> ;
-    skos:exactMatch aberowl:PORO,
-        ontobee:PORO,
-        bioportal:PORO,
-        biocontext:PORO,
-        fairsharing:FAIRsharing.93g1th,
-        ols:poro,
-        obofoundry:poro ;
-    dcat:keyword "anatomy",
-        "obo",
-        "ontology",
-        "phylogeny",
-        "taxonomic classification",
-        "taxonomy" ;
-    foaf:homepage <https://github.com/obophenotype/porifera-ontology> ;
-    bioregistry.schema:0000005 "0000550"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PORO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:poro.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000019 orcid:0000-0002-9654-0073 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PORO_"^^xsd:string ;
-    bioregistry.schema:0000027 poro:0000550 ;
-    bioregistry.schema:0000029 "poro" .
-
 bioregistry:prov a bioregistry.schema:0000001 ;
     rdfs:label "PROV Namespace" ;
     dcterms:description "The namespace name http://www.w3.org/ns/prov# is intended for use with the PROV family of documents that support the interchange of provenance on the web."^^xsd:string ;
@@ -49814,6 +49791,38 @@ bioregistry:pmc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 pmc:PMC3084216 ;
     bioregistry.schema:0000029 "pmc" .
 
+bioregistry:poro a bioregistry.schema:0000001 ;
+    rdfs:label "Porifera Ontology" ;
+    dcterms:description "An ontology describing the anatomical structures and characteristics of Porifera (sponges)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obophenotype/porifera-ontology> ;
+    skos:exactMatch aberowl:PORO,
+        ontobee:PORO,
+        bioportal:PORO,
+        biocontext:PORO,
+        fairsharing:FAIRsharing.93g1th,
+        ols:poro,
+        obofoundry:poro ;
+    dcat:keyword "anatomy",
+        "obo",
+        "ontology",
+        "phylogeny",
+        "taxonomic classification",
+        "taxonomy" ;
+    foaf:homepage <https://github.com/obophenotype/porifera-ontology> ;
+    bioregistry.schema:0000005 "0000550"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PORO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:poro.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000018 bioregistry:gallont ;
+    bioregistry.schema:0000019 orcid:0000-0002-9654-0073 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PORO_"^^xsd:string ;
+    bioregistry.schema:0000027 poro:0000550 ;
+    bioregistry.schema:0000029 "poro" .
+
 bioregistry:pubmed a bioregistry.schema:0000001 ;
     rdfs:label "PubMed" ;
     dcterms:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
@@ -50260,49 +50269,6 @@ bioregistry:planp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PLANP_"^^xsd:string ;
     bioregistry.schema:0000027 planp:0000001 ;
     bioregistry.schema:0000029 "planp" .
-
-bioregistry:po a bioregistry.schema:0000001 ;
-    rdfs:label "Plant Ontology" ;
-    dcterms:description "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/Planteome/plant-ontology> ;
-    skos:exactMatch aberowl:PO,
-        agroportal:PO,
-        edam.data:1180,
-        ontobee:PO,
-        bioportal:PO,
-        biocontext:PO,
-        go.resource:PO,
-        n2t:po,
-        fairsharing:FAIRsharing.3ngg40,
-        prefixcommons:po,
-        miriam:po,
-        ols:po,
-        obofoundry:po ;
-    dcat:keyword "botany",
-        "classification",
-        "expression data",
-        "life cycle",
-        "life science",
-        "obo",
-        "ontology",
-        "plant anatomy",
-        "plant development stage",
-        "structure" ;
-    foaf:homepage <http://browser.planteome.org/amigo> ;
-    bioregistry.schema:0000005 "0009089"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:po.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:ecocore,
-        bioregistry:envo,
-        bioregistry:genepio ;
-    bioregistry.schema:0000019 orcid:0000-0002-1005-8383 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PO_"^^xsd:string ;
-    bioregistry.schema:0000027 po:0009089 ;
-    bioregistry.schema:0000029 "po" .
 
 bioregistry:psdo a bioregistry.schema:0000001 ;
     rdfs:label "Performance Summary Display Ontology" ;
@@ -50807,6 +50773,50 @@ More information can be found at https://obofoundry.org/ontology/ontoavida.html"
     bioregistry.schema:0000027 ontoavida:00000001 ;
     bioregistry.schema:0000029 "ontoavida" .
 
+bioregistry:po a bioregistry.schema:0000001 ;
+    rdfs:label "Plant Ontology" ;
+    dcterms:description "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/Planteome/plant-ontology> ;
+    skos:exactMatch aberowl:PO,
+        agroportal:PO,
+        edam.data:1180,
+        ontobee:PO,
+        bioportal:PO,
+        biocontext:PO,
+        go.resource:PO,
+        n2t:po,
+        fairsharing:FAIRsharing.3ngg40,
+        prefixcommons:po,
+        miriam:po,
+        ols:po,
+        obofoundry:po ;
+    dcat:keyword "botany",
+        "classification",
+        "expression data",
+        "life cycle",
+        "life science",
+        "obo",
+        "ontology",
+        "plant anatomy",
+        "plant development stage",
+        "structure" ;
+    foaf:homepage <http://browser.planteome.org/amigo> ;
+    bioregistry.schema:0000005 "0009089"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:po.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:ecocore,
+        bioregistry:envo,
+        bioregistry:gallont,
+        bioregistry:genepio ;
+    bioregistry.schema:0000019 orcid:0000-0002-1005-8383 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PO_"^^xsd:string ;
+    bioregistry.schema:0000027 po:0009089 ;
+    bioregistry.schema:0000029 "po" .
+
 bioregistry:pubchem dcterms:hasPart bioregistry:pubchem.bioassay,
         bioregistry:pubchem.cell,
         bioregistry:pubchem.classification,
@@ -50835,41 +50845,6 @@ orcid:0000-0002-9415-5104 rdfs:label "Frederic Bastian",
         "frederic.bastian@unil.ch" .
 
 wikidata:P665 dcterms:isPartOf bioregistry.metaresource:wikidata .
-
-bioregistry:caro a bioregistry.schema:0000001 ;
-    rdfs:label "Common Anatomy Reference Ontology" ;
-    dcterms:description "The Common Anatomy Reference Ontology (CARO) is being developed to facilitate interoperability between existing anatomy ontologies for different species, and will provide a template for building new anatomy ontologies."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obophenotype/caro> ;
-    skos:exactMatch aberowl:CARO,
-        ontobee:CARO,
-        bioportal:CARO,
-        biocontext:CARO,
-        go.resource:CARO,
-        fairsharing:FAIRsharing.3kcgmr,
-        ols:caro,
-        obofoundry:caro ;
-    dcat:keyword "anatomy",
-        "annotation",
-        "interoperability",
-        "life science",
-        "obo",
-        "ontology" ;
-    foaf:homepage <https://github.com/obophenotype/caro/> ;
-    bioregistry.schema:0000005 "0000000"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CARO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:caro.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:aism,
-        bioregistry:colao,
-        bioregistry:ehdaa2,
-        bioregistry:lepao,
-        bioregistry:pco ;
-    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CARO_"^^xsd:string ;
-    bioregistry.schema:0000027 caro:0000000 ;
-    bioregistry.schema:0000029 "caro" .
 
 bioregistry:civic dcterms:hasPart bioregistry:civic.aid,
         bioregistry:civic.did,
@@ -51028,6 +51003,42 @@ bioregistry:proco a bioregistry.schema:0000001 ;
 
 orcid:0000-0002-7702-4495 rdfs:label "Allyson Lister" ;
     foaf:mbox "allyson.lister@oerc.ox.ac.uk" .
+
+bioregistry:caro a bioregistry.schema:0000001 ;
+    rdfs:label "Common Anatomy Reference Ontology" ;
+    dcterms:description "The Common Anatomy Reference Ontology (CARO) is being developed to facilitate interoperability between existing anatomy ontologies for different species, and will provide a template for building new anatomy ontologies."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obophenotype/caro> ;
+    skos:exactMatch aberowl:CARO,
+        ontobee:CARO,
+        bioportal:CARO,
+        biocontext:CARO,
+        go.resource:CARO,
+        fairsharing:FAIRsharing.3kcgmr,
+        ols:caro,
+        obofoundry:caro ;
+    dcat:keyword "anatomy",
+        "annotation",
+        "interoperability",
+        "life science",
+        "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/obophenotype/caro/> ;
+    bioregistry.schema:0000005 "0000000"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CARO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:caro.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:aism,
+        bioregistry:colao,
+        bioregistry:ehdaa2,
+        bioregistry:gallont,
+        bioregistry:lepao,
+        bioregistry:pco ;
+    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CARO_"^^xsd:string ;
+    bioregistry.schema:0000027 caro:0000000 ;
+    bioregistry.schema:0000029 "caro" .
 
 bioregistry:chiro a bioregistry.schema:0000001 ;
     rdfs:label "ChEBI Integrated Role Ontology" ;
@@ -51239,6 +51250,32 @@ bioregistry:fovt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 fovt:0000009 ;
     bioregistry.schema:0000029 "fovt" .
 
+bioregistry:gallont a bioregistry.schema:0000001 ;
+    rdfs:label "Plant Gall Ontology" ;
+    dcterms:description "Ontology of plant gall phenotypes. Plant galls are novel plant structures, generated by plants in response to biotic stressors. This ontology is used to annotate gall phenotypes (e.g., their colors, textures, sizes, locations on the plant) in a semantic way, in order to facilitate discoveries about the genetic and physiologic mechanisms responsible for such phenotypes. The ontology can also be used as a controlled vocabulary for natural language descriptions of plant galls."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/adeans/gallont> ;
+    skos:exactMatch ontobee:GALLONT,
+        obofoundry:gallont ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://adeans.github.io/gallont/> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GALLONT_$1"^^xsd:string ;
+    bioregistry.schema:0000010 obo:gallont.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:caro,
+        bioregistry:flopo,
+        bioregistry:ncbitaxon,
+        bioregistry:obi,
+        bioregistry:pato,
+        bioregistry:po,
+        bioregistry:poro,
+        bioregistry:ro ;
+    bioregistry.schema:0000019 orcid:0000-0002-2119-4663 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/GALLONT_"^^xsd:string ;
+    bioregistry.schema:0000029 "gallont" .
+
 bioregistry:xpo a bioregistry.schema:0000001 ;
     rdfs:label "Xenopus Phenotype Ontology" ;
     dcterms:description "XPO represents anatomical, cellular, and gene function phenotypes occurring throughout the development of the African frogs Xenopus laevis and tropicalis."^^xsd:string ;
@@ -51426,56 +51463,6 @@ orcid:0000-0001-9189-9661 rdfs:label "Yongqun Oliver He",
         "Yongqunh He" ;
     foaf:mbox "yongqunh@med.umich.edu" .
 
-bioregistry:obi a bioregistry.schema:0000001 ;
-    rdfs:label "Ontology for Biomedical Investigations" ;
-    dcterms:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obi-ontology/obi> ;
-    skos:exactMatch aberowl:OBI,
-        ontobee:OBI,
-        bioportal:OBI,
-        biocontext:OBI,
-        go.resource:OBI,
-        n2t:obi,
-        fairsharing:FAIRsharing.284e1z,
-        prefixcommons:obi,
-        miriam:obi,
-        ols:obi,
-        obofoundry:obi ;
-    dcat:keyword "assay",
-        "biomedical science",
-        "data transformation",
-        "device",
-        "functional genomics",
-        "life science",
-        "obo",
-        "ontology",
-        "protocol",
-        "reagent",
-        "report",
-        "study design" ;
-    foaf:homepage <http://obi-ontology.org> ;
-    bioregistry.schema:0000005 "0400109"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:obi.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:foodon,
-        bioregistry:hso,
-        bioregistry:labo,
-        bioregistry:maxo,
-        bioregistry:mco,
-        bioregistry:one,
-        bioregistry:ons,
-        bioregistry:proco,
-        bioregistry:rbo,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBI_"^^xsd:string ;
-    bioregistry.schema:0000027 obi:0400109 ;
-    bioregistry.schema:0000029 "obi" .
-
 bioregistry:iao a bioregistry.schema:0000001 ;
     rdfs:label "Information Artifact Ontology" ;
     dcterms:description "An ontology of information entities, originally driven by work by the Ontology of Biomedical Investigation (OBI) digital entity and realizable information entity branch."^^xsd:string ;
@@ -51526,6 +51513,57 @@ bioregistry:iao a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/IAO_"^^xsd:string ;
     bioregistry.schema:0000027 iao:0000030 ;
     bioregistry.schema:0000029 "iao" .
+
+bioregistry:obi a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology for Biomedical Investigations" ;
+    dcterms:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obi-ontology/obi> ;
+    skos:exactMatch aberowl:OBI,
+        ontobee:OBI,
+        bioportal:OBI,
+        biocontext:OBI,
+        go.resource:OBI,
+        n2t:obi,
+        fairsharing:FAIRsharing.284e1z,
+        prefixcommons:obi,
+        miriam:obi,
+        ols:obi,
+        obofoundry:obi ;
+    dcat:keyword "assay",
+        "biomedical science",
+        "data transformation",
+        "device",
+        "functional genomics",
+        "life science",
+        "obo",
+        "ontology",
+        "protocol",
+        "reagent",
+        "report",
+        "study design" ;
+    foaf:homepage <http://obi-ontology.org> ;
+    bioregistry.schema:0000005 "0400109"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:obi.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:foodon,
+        bioregistry:gallont,
+        bioregistry:hso,
+        bioregistry:labo,
+        bioregistry:maxo,
+        bioregistry:mco,
+        bioregistry:one,
+        bioregistry:ons,
+        bioregistry:proco,
+        bioregistry:rbo,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBI_"^^xsd:string ;
+    bioregistry.schema:0000027 obi:0400109 ;
+    bioregistry.schema:0000029 "obi" .
 
 bioregistry:pcl a bioregistry.schema:0000001 ;
     rdfs:label "Provisional Cell Ontology" ;
@@ -51945,79 +51983,6 @@ bioregistry:cl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 cl:0000062 ;
     bioregistry.schema:0000029 "cl" .
 
-bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
-    rdfs:label "NCBI Taxonomy" ;
-    dcterms:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obophenotype/ncbitaxon> ;
-    skos:exactMatch aberowl:NCBITAXON,
-        agroportal:NCBITAXON,
-        edam.data:1179,
-        oid:2.16.840.1.113883.6.205,
-        ontobee:NCBITaxon,
-        wikidata:P685,
-        bartoc:509,
-        bioportal:NCBITAXON,
-        biocontext:TAXONOMY,
-        cellosaurus.resource:NCBI_TaxID,
-        go.resource:taxon,
-        n2t:taxonomy,
-        ncbi.resource:taxon,
-        fairsharing:FAIRsharing.fj07xj,
-        prefixcommons:taxonomy,
-        miriam:taxonomy,
-        togoid:Taxonomy,
-        ols:ncbitaxon,
-        obofoundry:ncbitaxon,
-        re3data:r3d100010415 ;
-    dcat:keyword "classification",
-        "dna",
-        "life science",
-        "obo",
-        "ontology",
-        "phylogenetics",
-        "protein",
-        "structure",
-        "taxonomic classification",
-        "taxonomy" ;
-    foaf:homepage <https://github.com/obophenotype/ncbitaxon> ;
-    bioregistry.schema:0000005 "2170610"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NCBITaxon_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:ncbitaxon.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:clo,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:foodon,
-        bioregistry:genepio,
-        bioregistry:go,
-        bioregistry:hso,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:vbo ;
-    bioregistry.schema:0000019 orcid:0000-0003-1839-5322 ;
-    bioregistry.schema:0000023 "NCBI Taxonomy",
-        "NCBITaxon",
-        "NCBITaxonomyID",
-        "NCBI_Taxon_ID",
-        "NCBI_taxid",
-        "TAX",
-        "TaxonomyID",
-        "taxid",
-        "taxon",
-        "taxonomy",
-        "uniprot.taxonomy" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NCBITaxon_"^^xsd:string ;
-    bioregistry.schema:0000026 ror:02meqm098 ;
-    bioregistry.schema:0000027 ncbitaxon:2170610 ;
-    bioregistry.schema:0000029 "ncbitaxon" .
-
 bioregistry:nif dcterms:hasPart bioregistry:neurolex,
         bioregistry:nif.cell,
         bioregistry:nif.dysfunction,
@@ -52117,6 +52082,80 @@ bioregistry:go a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 go:0032571 ;
     bioregistry.schema:0000029 "go" .
 
+bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
+    rdfs:label "NCBI Taxonomy" ;
+    dcterms:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obophenotype/ncbitaxon> ;
+    skos:exactMatch aberowl:NCBITAXON,
+        agroportal:NCBITAXON,
+        edam.data:1179,
+        oid:2.16.840.1.113883.6.205,
+        ontobee:NCBITaxon,
+        wikidata:P685,
+        bartoc:509,
+        bioportal:NCBITAXON,
+        biocontext:TAXONOMY,
+        cellosaurus.resource:NCBI_TaxID,
+        go.resource:taxon,
+        n2t:taxonomy,
+        ncbi.resource:taxon,
+        fairsharing:FAIRsharing.fj07xj,
+        prefixcommons:taxonomy,
+        miriam:taxonomy,
+        togoid:Taxonomy,
+        ols:ncbitaxon,
+        obofoundry:ncbitaxon,
+        re3data:r3d100010415 ;
+    dcat:keyword "classification",
+        "dna",
+        "life science",
+        "obo",
+        "ontology",
+        "phylogenetics",
+        "protein",
+        "structure",
+        "taxonomic classification",
+        "taxonomy" ;
+    foaf:homepage <https://github.com/obophenotype/ncbitaxon> ;
+    bioregistry.schema:0000005 "2170610"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NCBITaxon_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:ncbitaxon.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:chiro,
+        bioregistry:cl,
+        bioregistry:clo,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:foodon,
+        bioregistry:gallont,
+        bioregistry:genepio,
+        bioregistry:go,
+        bioregistry:hso,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:vbo ;
+    bioregistry.schema:0000019 orcid:0000-0003-1839-5322 ;
+    bioregistry.schema:0000023 "NCBI Taxonomy",
+        "NCBITaxon",
+        "NCBITaxonomyID",
+        "NCBI_Taxon_ID",
+        "NCBI_taxid",
+        "TAX",
+        "TaxonomyID",
+        "taxid",
+        "taxon",
+        "taxonomy",
+        "uniprot.taxonomy" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NCBITaxon_"^^xsd:string ;
+    bioregistry.schema:0000026 ror:02meqm098 ;
+    bioregistry.schema:0000027 ncbitaxon:2170610 ;
+    bioregistry.schema:0000029 "ncbitaxon" .
+
 bioregistry:pato a bioregistry.schema:0000001 ;
     rdfs:label "Phenotype And Trait Ontology" ;
     dcterms:description "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation."^^xsd:string ;
@@ -52154,6 +52193,7 @@ bioregistry:pato a bioregistry.schema:0000001 ;
         bioregistry:ecocore,
         bioregistry:ecto,
         bioregistry:fovt,
+        bioregistry:gallont,
         bioregistry:lepao,
         bioregistry:mco,
         bioregistry:ms,
@@ -52615,6 +52655,7 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:envo,
         bioregistry:foodon,
         bioregistry:fovt,
+        bioregistry:gallont,
         bioregistry:genepio,
         bioregistry:go,
         bioregistry:hso,
@@ -54895,6 +54936,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:FOODON,
         ontobee:FOVT,
         ontobee:FYPO,
+        ontobee:GALLONT,
         ontobee:GAZ,
         ontobee:GECKO,
         ontobee:GENEPIO,
@@ -55137,6 +55179,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:foodon,
         obofoundry:fovt,
         obofoundry:fypo,
+        obofoundry:gallont,
         obofoundry:gaz,
         obofoundry:gecko,
         obofoundry:genepio,
@@ -60350,6 +60393,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gabi,
         bioregistry:gainesville.core,
         bioregistry:galen,
+        bioregistry:gallont,
         bioregistry:gard,
         bioregistry:gateway,
         bioregistry:gaz,
