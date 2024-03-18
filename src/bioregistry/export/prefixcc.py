@@ -3,7 +3,9 @@
 .. seealso:: https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1038
 """
 
+import click
 import requests
+
 import bioregistry
 
 
@@ -29,9 +31,9 @@ def main():
             # both available and correct wrt Bioregistry/OBO
             continue
 
-        print("Attempting to create a record for", record.prefix, uri_prefix)
+        click.echo(f"Attempting to create a record for {record.prefix} {uri_prefix}")
         res = create(record.prefix, uri_prefix)
-        print(res.text)
+        click.echo(res.text)
 
         # We're breaking here since we can only make one
         # update per day
