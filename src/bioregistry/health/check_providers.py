@@ -28,13 +28,13 @@ HEALTH_YAML_PATH = DOCS_DATA.joinpath("health.yaml")
 class ProviderStatus(BaseModel):
     """A container for provider information."""
 
-    prefix: str
-    example: str
-    url: str
-    status_code: Optional[int]
-    failed: bool
-    exception: Optional[str]
-    context: Optional[str]
+    prefix: str = Field(...)
+    example: str = Field(...)
+    url: str = Field(...)
+    status_code: Optional[int] = Field(None)
+    failed: bool = Field(...)
+    exception: Optional[str] = Field(None)
+    context: Optional[str] = Field(None)
 
 
 class Summary(BaseModel):
@@ -84,7 +84,9 @@ class Run(BaseModel):
     date: str = Field(default_factory=lambda: datetime.datetime.now().strftime("%Y-%m-%d"))
     results: List[ProviderStatus]
     summary: Summary
-    delta: Optional[Delta] = Field(description="Information about the changes since the last run")
+    delta: Optional[Delta] = Field(
+        None, description="Information about the changes since the last run"
+    )
 
 
 class Database(BaseModel):

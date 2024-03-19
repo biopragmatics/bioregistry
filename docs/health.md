@@ -7,7 +7,7 @@ permalink: /health/
 
 Of the {{ run.summary.total_measured }} prefixes in the Bioregistry that have
 both an example local unique identifiers and at least one URI format string,
-{{ run.summary.total_success }} 
+{{ run.summary.total_success }} ({{ run.summary.success_percent }}%)
 were able to resolve (with a HTTP 200 status code) and {{ run.summary.total_failed }}
 ({{ run.summary.failure_percent }}%) were not.
 
