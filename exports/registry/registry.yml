@@ -40005,6 +40005,53 @@ oslc:
   name: OASIS Open Services for Lifecycle Collaboration Core Vocabulary
   preferred_prefix: oslc
   uri_format: http://open-services.net/ns/core#$1
+osti.article:
+  comment: Corresponding GitHub linked to software registrations is located at https://github.com/doecode.
+    All related contact information can be found here https://www.osti.gov/contact
+  contributor:
+    email: Lindsey.Anderson@pnnl.gov
+    github: lnanderson
+    name: Lindsey Anderson
+    orcid: 0000-0002-8741-7823
+  description: 'The U.S. Department of Energy (DOE) Office of Scientific and Technical
+    Information (OSTI) is the main metadata archive for permanent storage of registered
+    [DOE DOI products](https://www.osti.gov/pids/doi-services/doe-data-id-service)
+    (datasets, code, articles, patents, multimedia, etc.). When a DOI is minted a
+    unique OSTI identifier for each record [{osti_id}](https://www.osti.gov/api/v1/docs#endpoints-singlerecord)
+    is provided as the suffix in the DOI schema ([{site-specific-prefix}/{user-supplied-doi-infix}/{osti_id}](https://www.osti.gov/pids/doi-services))
+    and can be alternatively used as the main product identifier endpoint when [searching
+    OSTI.GOV](https://www.osti.gov/search-tools) registry archive (see example below).
+    OSTI.GOV is the primary registry and search tool for all Department of Energy
+    (DOE) funded science, technology, and engineering research and development (R&D)
+    results and the organizational hub for information about the DOE Office of Scientific
+    and Technical Information (OSTI. **Data Product Type Example:** - https://www.osti.gov/biblio/1668761
+    - https://www.osti.gov/search/semantic:1668761 - https://www.osti.gov/dataexplorer/biblio/dataset/1668761
+    - https://www.osti.gov/api/v1/records/1668761 - https://doi.org/10.11578/1668761
+    **Other Core Product Registry Examples:** - Journal Articles: https://www.osti.gov/pages/biblio
+    - Datasets: https://www.osti.gov/dataexplorer/biblio/dataset/ - Software: https://www.osti.gov/doecode/biblio/
+    - Patents: https://www.osti.gov/doepatents/biblio/ - Multimedia: https://www.osti.gov/sciencecinema/biblio/'
+  example: '1668761'
+  github_request_issue: 1050
+  homepage: https://www.osti.gov/
+  keywords:
+  - article
+  - articles
+  - publication
+  - publications
+  license: https://www.osti.gov/disclaim
+  mappings:
+    wikidata: P3894
+  name: Office of Scientific and Technical Information (OSTI)
+  pattern: ^\d+$
+  preferred_prefix: osti.article
+  references:
+  - https://www.energy.gov/doe-public-access-plan
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.osti.gov/biblio/$1
 otl:
   description: Oryza Tag Line is a database that was developed to collect information
     generated from the characterization of rice (Oryza sativa L cv. Nipponbare) insertion
