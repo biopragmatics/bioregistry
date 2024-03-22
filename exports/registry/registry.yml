@@ -1114,7 +1114,7 @@ aism:
   rdf_uri_format: http://purl.obolibrary.org/obo/AISM_$1
   repository: https://github.com/insect-morphology/aism
   uri_format: http://purl.obolibrary.org/obo/AISM_$1
-  version: '2024-02-22'
+  version: '2024-03-16'
 alfred:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -3951,7 +3951,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/57/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/59/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   keywords:
@@ -7278,13 +7278,15 @@ chemidplus:
 cheminf:
   appears_in:
   - proco
+  banana: CHEMINF
   contact:
     email: egon.willighagen@gmail.com
     github: egonw
     name: Egon Willighagen
     orcid: 0000-0001-7542-0286
-  description: Includes terms for the descriptors commonly used in cheminformatics
-    software applications and the algorithms which generate them.
+  description: The chemical information ontology (cheminf) describes information entities
+    about chemical entities. It provides qualitative and quantitative attributes to
+    richly describe chemicals.
   download_owl: https://github.com/semanticchemistry/semanticchemistry/raw/master/ontology/cheminf.owl
   example: '000410'
   homepage: https://github.com/semanticchemistry/semanticchemistry
@@ -7302,10 +7304,12 @@ cheminf:
     biocontext: CHEMINF
     bioportal: CHEMINF
     fairsharing: FAIRsharing.sjhvyy
+    miriam: cheminf
     obofoundry: cheminf
     ols: cheminf
     ontobee: CHEMINF
   name: Chemical Information Ontology
+  namespace_in_lui: true
   pattern: ^\d{6}$
   preferred_prefix: CHEMINF
   providers:
@@ -10359,6 +10363,7 @@ credit:
   - citation
   - classification
   - data quality
+  - publication
   - resource metadata
   - subject agnostic
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline
@@ -17328,7 +17333,7 @@ ev:
   description: Provides structured controlled vocabularies for the annotation of expressed
     sequences with respect to anatomical system, cell type, developmental stage, experimental
     technique, microarray platform, pathology, pooling, tissue preparation and treatment.
-  example: EV_0100011
+  example: '0100011'
   homepage: http://www.evocontology.org/
   keywords:
   - anatomy
@@ -17342,6 +17347,7 @@ ev:
     obofoundry: ev
     prefixcommons: evoc
   name: eVOC (Expressed Sequence Annotation for Humans)
+  pattern: ^\d{7}$
   preferred_prefix: EV
   providers:
   - code: bio2rdf
@@ -19640,6 +19646,7 @@ gallont:
     obofoundry: gallont
     ontobee: GALLONT
   name: Plant Gall Ontology
+  pattern: ^\d{7}$
   preferred_prefix: GALLONT
   rdf_uri_format: http://purl.obolibrary.org/obo/GALLONT_$1
   repository: https://github.com/adeans/gallont
@@ -30237,7 +30244,7 @@ mao:
   deprecated: true
   description: An ontology for data retrieval and exchange in the fields of multiple
     DNA/RNA  alignment, protein sequence and protein structure alignment.
-  example: MAO:0000061
+  example: '0000061'
   homepage: http://www-igbmc.u-strasbg.fr/BioInfo/MAO/mao.html
   keywords:
   - alignment
@@ -30249,6 +30256,7 @@ mao:
     obofoundry: mao
     prefixcommons: mao
   name: Multiple alignment
+  pattern: ^\d{7}$
   preferred_prefix: MAO
   providers:
   - code: bio2rdf
@@ -30656,6 +30664,7 @@ mco:
   uri_format: http://purl.obolibrary.org/obo/MCO_$1
   version: '2019-05-15'
 mcro:
+  banana: MCRO
   contact:
     email: muamith@utmb.edu
     github: ProfTuan
@@ -30664,9 +30673,9 @@ mcro:
   depends_on:
   - iao
   - swo
-  description: An ontology representing the structure of model card reports - reports
-    that describe basic characteristics of machine learning models for the public
-    and consumers.
+  description: 'An ontology representing the model card structure, he aim of this
+    work is to describe machine learning models to communicate information about specific
+    details about the model (trade offs, intended users, licensing, etc.). '
   download_owl: http://purl.obolibrary.org/obo/mcro.owl
   example: '0000001'
   homepage: https://github.com/UTHealth-Ontology/MCRO
@@ -30676,9 +30685,12 @@ mcro:
   license: CC-BY-4.0
   mappings:
     aberowl: MCRO
+    miriam: mcro
     obofoundry: mcro
     ontobee: MCRO
   name: Model Card Report Ontology
+  namespace_in_lui: true
+  pattern: ^\d{7}$
   preferred_prefix: MCRO
   publications:
   - doi: 10.1186/s12859-022-04797-6
@@ -30688,7 +30700,7 @@ mcro:
     year: null
   rdf_uri_format: http://purl.obolibrary.org/obo/MCRO_$1
   repository: https://github.com/UTHealth-Ontology/MCRO
-  uri_format: http://purl.obolibrary.org/obo/MCRO_$1
+  uri_format: https://www.ebi.ac.uk/ols4/ontologies/mcro/classes?obo_id=MCRO:$1
 mdm:
   contact:
     email: bernd.mueller@zbmed.de
@@ -31640,7 +31652,7 @@ mfo:
     the Japanese medaka fish, <i>Oryzias latipes</i>.
   download_obo: http://aber-owl.net/media/ontologies/MFO/14/mfo.obo
   download_owl: http://purl.obolibrary.org/obo/mfo.owl
-  example: MFO_0000001
+  example: '0000001'
   homepage: http://ani.embl.de:8080/mepd/
   keywords:
   - anatomy
@@ -31655,6 +31667,7 @@ mfo:
     obofoundry: mfo
     prefixcommons: mfo
   name: Medaka fish anatomy and development
+  pattern: ^\d{7}$
   preferred_prefix: MFO
   providers:
   - code: bio2rdf
@@ -35994,6 +36007,7 @@ ngbo:
     ols: ngbo
     ontobee: NGBO
   name: Next Generation Biobanking Ontology
+  pattern: ^\d{7}$
   preferred_prefix: NGBO
   rdf_uri_format: http://purl.obolibrary.org/obo/NGBO_$1
   repository: https://github.com/Dalalghamdi/NGBO
@@ -37551,6 +37565,7 @@ oban:
   repository: https://github.com/EBISPOT/OBAN
   uri_format: http://purl.org/oban/$1
 obcs:
+  banana: OBCS
   contact:
     email: jiezhen@med.umich.edu
     github: zhengj2007
@@ -37559,9 +37574,7 @@ obcs:
   description: OBCS stands for the Ontology of Biological and Clinical Statistics.
     OBCS is an ontology in the domain of biological and clinical statistics. It is
     aligned with the Basic Formal Ontology (BFO) and the Ontology for Biomedical Investigations
-    (OBI). OBCS imports all possible biostatistics terms in OBI and includes many
-    additional biostatistics terms, some of which were proposed and discussed in the
-    OBI face-to-face workshop in Ann Arbor in 2012.
+    (OBI)
   download_owl: http://purl.obolibrary.org/obo/obcs.owl
   example: '0000121'
   homepage: https://github.com/obcs/obcs
@@ -37580,10 +37593,12 @@ obcs:
     biocontext: OBCS
     bioportal: OBCS
     fairsharing: FAIRsharing.5p12xh
+    miriam: obcs
     obofoundry: obcs
     ols: obcs
     ontobee: OBCS
   name: Ontology of Biological and Clinical Statistics
+  namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: OBCS
   publications:
@@ -37878,6 +37893,7 @@ occo:
     obofoundry: occo
     ontobee: OCCO
   name: Occupation Ontology
+  pattern: ^\d+$
   preferred_prefix: OCCO
   rdf_uri_format: http://purl.obolibrary.org/obo/OCCO_$1
   repository: https://github.com/Occupation-Ontology/OccO
@@ -39428,6 +39444,7 @@ openwemi:
   repository: https://github.com/dcmi/openwemi
   uri_format: https://dcmi.github.io/openwemi/ns#$1
 opl:
+  banana: OPL
   contact:
     email: zhengj2007@gmail.com
     github: zhengj2007
@@ -39435,10 +39452,7 @@ opl:
     orcid: 0000-0002-2999-0103
   description: The Ontology for Parasite Lifecycle (OPL) models the life cycle stage
     details of various parasites, including Trypanosoma sp., Leishmania major, and
-    Plasmodium sp., etc. In addition to life cycle stages, the ontology also models
-    necessary contextual details, such as host information, vector information, and
-    anatomical location. OPL is based on the Basic Formal Ontology (BFO) and follows
-    the rules set by the OBO Foundry consortium.
+    Plasmodium sp., etc.
   download_owl: http://purl.obolibrary.org/obo/opl.owl
   example: 0000319
   homepage: https://github.com/OPL-ontology/OPL
@@ -39458,10 +39472,12 @@ opl:
     biocontext: OPL
     bioportal: OPL
     fairsharing: FAIRsharing.ez2nhb
+    miriam: opl
     obofoundry: opl
     ols: opl
     ontobee: OPL
   name: Ontology for Parasite LifeCycle
+  namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: OPL
   publications:
@@ -39529,7 +39545,7 @@ opmi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OPMI_$1
   repository: https://github.com/OPMI/opmi
   uri_format: http://purl.obolibrary.org/obo/OPMI_$1
-  version: 1.0.161
+  version: 1.0.166
 orcid:
   contact:
     email: w.simpson@orcid.org
@@ -39774,6 +39790,7 @@ orphanet.ordo:
   - ontology
   - phenotype
   - rare disease
+  license: CC-BY-4.0
   mappings:
     aberowl: ordo
     biocontext: ORPHANET.ORDO
@@ -51333,6 +51350,7 @@ stato:
   - ontoavida
   - psdo
   - scdo
+  banana: STATO
   contact:
     email: alejandra.gonzalez.beltran@gmail.com
     github: agbeltran
@@ -51361,10 +51379,12 @@ stato:
     biocontext: STATO
     bioportal: STATO
     fairsharing: FAIRsharing.na5xp
+    miriam: stato
     obofoundry: stato
     ols: stato
     ontobee: STATO
   name: The Statistical Methods Ontology
+  namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: STATO
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
@@ -52125,6 +52145,17 @@ symp:
   - SYMP
   uri_format: http://purl.obolibrary.org/obo/SYMP_$1
   version: '2024-02-09'
+synapse:
+  description: Synapse is a collaborative, open-source research platform that allows
+    teams to share data, track analyses, and collaborate.
+  example: '41455251.1'
+  homepage: https://sagebionetworks.org
+  mappings:
+    miriam: synapse
+  name: Synapse Data Repository
+  pattern: ^[0-9]*\.*[0-9]*$
+  preferred_prefix: synapse
+  uri_format: https://repo-prod.prod.sagebase.org/ga4gh/drs/v1/objects/syn$1
 syoid:
   contributor:
     email: cthoyt@gmail.com
@@ -56340,7 +56371,7 @@ vsao:
   description: Vertebrate skeletal anatomy ontology.
   download_obo: http://aber-owl.net/media/ontologies/VSAO/20/vsao.obo
   download_owl: http://purl.obolibrary.org/obo/vsao.owl
-  example: VSAO_0000183
+  example: 0000183
   homepage: https://www.nescent.org/phenoscape/Main_Page
   keywords:
   - anatomy
@@ -56355,6 +56386,7 @@ vsao:
     ols: vsao
     prefixcommons: vao
   name: Vertebrate Skeletal Anatomy Ontology
+  pattern: ^\d{7}$
   preferred_prefix: VSAO
   providers:
   - code: bio2rdf
@@ -58149,7 +58181,7 @@ zea:
   deprecated: true
   description: Maize gross anatomy
   download_obo: http://aber-owl.net/media/ontologies/ZEA/2/zea.obo
-  example: ZEA_0015177
+  example: '0015177'
   homepage: http://www.maizemap.org/
   keywords:
   - anatomy
@@ -58163,6 +58195,7 @@ zea:
     obofoundry: zea
     prefixcommons: zea
   name: Maize gross anatomy
+  pattern: ^\d{7}$
   preferred_prefix: ZEA
   providers:
   - code: bio2rdf
