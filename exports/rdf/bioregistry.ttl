@@ -323,8 +323,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -13484,13 +13484,13 @@ bioregistry:mzspec a bioregistry.schema:0000001 ;
         "omics data analysis",
         "proteomics" ;
     foaf:homepage <http://www.psidev.info/usi> ;
-    bioregistry.schema:0000005 "PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2"^^xsd:string ;
+    bioregistry.schema:0000005 "PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2"^^xsd:string ;
     bioregistry.schema:0000006 "http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^.+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1767-2343 ;
     bioregistry.schema:0000024 "http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:"^^xsd:string ;
-    bioregistry.schema:0000027 <http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2> ;
+    bioregistry.schema:0000027 <http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2> ;
     bioregistry.schema:0000029 "mzspec" .
 
 bioregistry:nando a bioregistry.schema:0000001 ;
@@ -18666,7 +18666,9 @@ bioregistry:synapse a bioregistry.schema:0000001 ;
     rdfs:label "Synapse Data Repository" ;
     dcterms:description "Synapse is a collaborative, open-source research platform that allows teams to share data, track analyses, and collaborate."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch miriam:synapse ;
+    skos:exactMatch integbio:nbdc02162,
+        miriam:synapse,
+        re3data:r3d100011894 ;
     foaf:homepage <https://sagebionetworks.org> ;
     bioregistry.schema:0000005 "41455251.1"^^xsd:string ;
     bioregistry.schema:0000006 "https://repo-prod.prod.sagebase.org/ga4gh/drs/v1/objects/syn$1"^^xsd:string ;
@@ -35925,7 +35927,7 @@ bioregistry:pride a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PRIDE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl> ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-6579-6941 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PRIDE_"^^xsd:string ;
     bioregistry.schema:0000027 pride:0000006 ;
@@ -39950,6 +39952,8 @@ integbio:nbdc02116 dcterms:isPartOf bioregistry.registry:integbio .
 integbio:nbdc02124 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc02144 dcterms:isPartOf bioregistry.registry:integbio .
+
+integbio:nbdc02162 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc02174 dcterms:isPartOf bioregistry.registry:integbio .
 
@@ -44292,6 +44296,8 @@ re3data:r3d100011663 dcterms:isPartOf bioregistry.registry:re3data .
 
 re3data:r3d100011865 dcterms:isPartOf bioregistry.registry:re3data .
 
+re3data:r3d100011894 dcterms:isPartOf bioregistry.registry:re3data .
+
 re3data:r3d100011906 dcterms:isPartOf bioregistry.registry:re3data .
 
 re3data:r3d100011931 dcterms:isPartOf bioregistry.registry:re3data .
@@ -45442,7 +45448,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -54619,6 +54625,7 @@ bioregistry.registry:re3data a bioregistry.schema:0000002 ;
         re3data:r3d100011646,
         re3data:r3d100011663,
         re3data:r3d100011865,
+        re3data:r3d100011894,
         re3data:r3d100011906,
         re3data:r3d100011931,
         re3data:r3d100011936,
@@ -54895,6 +54902,7 @@ bioregistry.registry:integbio a bioregistry.schema:0000002 ;
         integbio:nbdc02116,
         integbio:nbdc02124,
         integbio:nbdc02144,
+        integbio:nbdc02162,
         integbio:nbdc02174,
         integbio:nbdc02180,
         integbio:nbdc02187,
