@@ -18,7 +18,7 @@ OUTPUT_PATH = Path("~/Desktop/bioregistry_health_report_failures.tsv").expanduse
 
 
 def _get_df() -> pd.DataFrame:
-    """Get the curation dataframe for recently failing prefixes via the health report"""
+    """Get the curation dataframe for recently failing prefixes via the health report."""
     data = yaml.safe_load(HEALTH.read_text())
     most_recent_run = data["runs"][0]
     rows = []
