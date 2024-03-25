@@ -20,7 +20,9 @@ This comes with a few caveats:
 2. There are several reasons why resolution might fail, some of which are false
    positives (see below).
 
-**Why Does Resolution Fail?**
+## Background
+
+### Why Does Resolution Fail?
 
 1. Often, the website suffered from a temporary issue and failed to resolve during
    check, but still works. Because this is possible, it's better to compare the
@@ -44,13 +46,15 @@ This comes with a few caveats:
    sporadically for the OBO PURL service).
 8. **curation-error** - The URI format string was curated incorrectly.
 
-**Why Store URI Formats for Dead Resources?**
+### Why Store URI Formats for Dead Resources?
 
 It's still valuable to store URI format strings, even if the websites don't work
 anymore (or never did in the first place), because URIs based on these URI
 format strings may appear in biomedical resources like ontologies or databases.
 This makes the Bioregistry a more valuable tool for parsing these URIs and
 ultimately for standardizing data.
+
+## Results
 
 {% if run.delta %}
 
@@ -97,7 +101,7 @@ Forgotten (i.e., tested in the previous check but not this check):
    <thead>
       <tr>
          <th>Prefix</th>
-         <th>Example</th>
+         <th>Example LUID</th>
          <th>Status</th>
       </tr>
    </thead>
