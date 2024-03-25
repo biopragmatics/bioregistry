@@ -68,7 +68,7 @@ New failures (passing in the previous check but not in the current check):
 
 <ul>
 {% for prefix in run.delta.new %}
-<li>[{{ prefix }}](https://bioregistry.io/{{ prefix }}) (first check)</li>
+<li><a href="https://bioregistry.io/{{ prefix }}">{{ prefix }}</a> (first check)</li>
 {% endfor %}
 {% for prefix in run.delta.fallen %}
 <li><a href="https://bioregistry.io/{{ prefix }}">{{ prefix }}</a></li>
