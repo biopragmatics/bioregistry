@@ -54,17 +54,16 @@ format strings may appear in biomedical resources like ontologies or databases.
 This makes the Bioregistry a more valuable tool for parsing these URIs and
 ultimately for standardizing data.
 
-## Results
-
 {% if run.delta %}
-
-### Changes
+## Changes
 
 There are {{ run.delta.alive }} prefixes that remain passing and
 {{ run.delta.dead }} that remained failing.
 
 {% if run.delta.new.size > 0 or run.delta.fallen.size > 0 %}
-New failures (passing in the previous check but not in the current check):
+### New failures
+
+The following resources were passing in the previous check but not in the current check:
 
 <ul>
 {% for prefix in run.delta.new %}
@@ -77,7 +76,10 @@ New failures (passing in the previous check but not in the current check):
 {% endif %}
 
 {% if run.delta.revived and run.delta.revived.size > 0 %}
-Revived (i.e., failed in the previous check but passed in the current check):
+### Revived
+
+The following resources failed in the previous check but passed in the current check:
+
 <ul>
 {% for prefix in run.delta.revived %}
 <li><a href="https://bioregistry.io/{{ prefix }}">{{ prefix }}</a></li>
@@ -86,7 +88,10 @@ Revived (i.e., failed in the previous check but passed in the current check):
 {% endif %}
 
 {% if run.delta.forgotten and run.delta.forgotten.size > 0 %}
-Forgotten (i.e., tested in the previous check but not this check):
+### Forgotten
+
+The following resources tested in the previous check but not this check:
+
 <ul>
 {% for prefix in run.delta.forgotten %}
 <li><a href="https://bioregistry.io/{{ prefix }}">{{ prefix }}</a></li>
@@ -95,7 +100,9 @@ Forgotten (i.e., tested in the previous check but not this check):
 {% endif %}
 {% endif %}
 
-### Results ({{ run.date }})
+## Results
+
+These results were run on {{ run.date }}.
 
 <table>
    <thead>
