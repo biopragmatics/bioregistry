@@ -3,6 +3,7 @@ layout: page
 title: Health Report
 permalink: /health/
 ---
+
 {% assign run = site.data.health.runs[0] %}
 
 Of the {{ run.summary.total_measured }} prefixes in the Bioregistry that have
@@ -21,25 +22,27 @@ This comes with a few caveats:
 
 **Why Does Resolution Fail?**
 
-1. The website has been updated, and the URI format does not correspond to an
-   existing endpoint anymore (solvable with additional curation).
-2. The website has been fully taken down
-3. The website has been replaced with another unrelated website, and the URI
-   format does not correspond to an existing endpoint anymore (e.g., the old
-   site for `atfdb.family` has been replaced by something unrelated).
-4. The website suffered from a temporary issue and failed to resolve during
+1. Often, the website suffered from a temporary issue and failed to resolve during
    check, but still works. Because this is possible, it's better to compare the
    last few checks for any newly failing prefixes.
-5. The website never existed in the first place. Some URI format strings are
+2. **gone** - The website has been fully taken down. This often happens to academic websites
+3. **hijacked** - The website has been replaced with another unrelated website, and the URI
+   format does not correspond to an existing endpoint anymore (e.g., the old
+   site for `atfdb.family` has been replaced by something unrelated).
+4. **moved** - The website has been updated, and the URI format does not correspond to an
+   existing endpoint anymore (solvable with additional curation).
+5. **degraded** - The website has been modified, and it's no longer possible to link directly to a page for an entity
+   (e.g., the site switched to using form data or has a single page application)
+6. **uri-only** - The website never existed in the first place. Some URI format strings are
    generated as artifacts of ontology curation,
    e.g., with [Protégé](https://protege.stanford.edu), and were not meant to
    resolve. Ontologies typically use IRIs (a superset of URIs), which do not
    necessarily imply that their content are resolvable as a URL.
-6. The URI corresponds to a redirect that is misconfigured in the redirection
+7. **misconfigured** - The URI corresponds to a redirect that is misconfigured in the redirection
    service (e.g., this happened for several CropOCT ontologies
    (ref: [#527](https://github.com/biopragmatics/bioregistry/issues/527)) and
    sporadically for the OBO PURL service).
-7. The URI format string was curated incorrectly.
+8. **curation-error** - The URI format string was curated incorrectly.
 
 **Why Store URI Formats for Dead Resources?**
 
