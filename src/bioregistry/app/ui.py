@@ -431,7 +431,7 @@ def contributors():
     unique_indirect_count = len(set(itt.chain(prefix_contacts, registries)))
     return render_template(
         "contributors.html",
-        rows=manager.read_contributors().values(),
+        rows=manager.read_contributors(direct_only=True).values(),
         collections=collections,
         contexts=contexts,
         prefix_contributions=prefix_contributions,
