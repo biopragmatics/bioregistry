@@ -505,7 +505,7 @@ class URIQuery(BaseModel):
     uri: str
 
 
-@api_router.post("/parse/", response_model=URIResponse, tags=["uri"])
+@api_router.post("/parse/", response_model=URIResponse, tags=["reference"])
 def get_parse_reference(request: Request, query: URIQuery):
     """Parse a URI, return a CURIE, and all equivalent URIs."""
     manager = request.app.manager
@@ -516,7 +516,7 @@ def get_parse_reference(request: Request, query: URIQuery):
     if not providers:
         raise HTTPException(404, "no providers available")
     return URIResponse(
-        query=query.uri,
+        uri=query.uri,
         reference=Reference(prefix=prefix, identifier=identifier),
         providers=providers,
     )
