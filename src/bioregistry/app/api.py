@@ -491,6 +491,37 @@ def get_reference(request: Request, prefix: str, identifier: str):
     )
 
 
+class URIResponse(BaseModel):
+    """A response for looking up a reference."""
+
+    uri: str
+    reference: Reference
+    providers: Mapping[str, str]
+
+
+class URIQuery(BaseModel):
+    """A query for parsing a URI."""
+
+    uri: str
+
+
+@api_router.post("/parse/", response_model=URIResponse, tags=["uri"])
+def get_parse_reference(request: Request, query: URIQuery):
+    """Parse a URI, return a CURIE, and all equivalent URIs."""
+    manager = request.app.manager
+    prefix, identifier = manager.parse_uri(query.uri)
+    if prefix is None:
+        raise HTTPException(404, f"can't parse URI: {query.uri}")
+    providers = manager.get_providers(prefix, identifier)
+    if not providers:
+        raise HTTPException(404, "no providers available")
+    return URIResponse(
+        query=query.uri,
+        reference=Reference(prefix=prefix, identifier=identifier),
+        providers=providers,
+    )
+
+
 @api_router.get("/context.jsonld", tags=["resource"])
 def generate_context_json_ld(
     request: Request,
