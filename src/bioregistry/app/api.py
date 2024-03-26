@@ -7,9 +7,9 @@ from typing import Any, List, Mapping, Optional, Set
 import yaml
 from curies import Reference
 from curies.mapping_service.utils import handle_header
-from fastapi import APIRouter, Header, HTTPException, Path, Query, Request
+from fastapi import APIRouter, Body, Header, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse, Response
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from bioregistry import Collection, Context, Registry, Resource
 from bioregistry.export.rdf_export import (
@@ -494,9 +494,17 @@ def get_reference(request: Request, prefix: str, identifier: str):
 class URIResponse(BaseModel):
     """A response for looking up a reference."""
 
-    uri: str
-    reference: Reference
-    providers: Mapping[str, str]
+    uri: str = Field(..., examples=["http://id.nlm.nih.gov/mesh/C063233"])
+    reference: Reference = Field(..., examples=[Reference(prefix="mesh", identifier="C063233")])
+    providers: Mapping[str, str] = Field(
+        ...,
+        examples=[
+            {
+                "default": "https://meshb.nlm.nih.gov/record/ui?ui=C063233",
+                "rdf": "http://id.nlm.nih.gov/mesh/C063233",
+            }
+        ],
+    )
 
 
 class URIQuery(BaseModel):
@@ -506,7 +514,10 @@ class URIQuery(BaseModel):
 
 
 @api_router.post("/parse/", response_model=URIResponse, tags=["reference"])
-def get_parse_reference(request: Request, query: URIQuery):
+def get_parse_reference(
+    request: Request,
+    query: URIQuery = Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")]),
+):
     """Parse a URI, return a CURIE, and all equivalent URIs."""
     manager = request.app.manager
     prefix, identifier = manager.parse_uri(query.uri)
