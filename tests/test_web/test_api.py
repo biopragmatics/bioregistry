@@ -251,3 +251,8 @@ class TestWeb(unittest.TestCase):
         data = URIResponse.parse_obj(res.json())
         self.assertEqual(uri, data.uri)
         self.assertIn("https://meshb.nlm.nih.gov/record/ui?ui=C063233", data.providers.values())
+
+        # Bad URI
+        uri = "xxxx"
+        res = self.client.post("/api/parse/", json={"uri": uri})
+        self.assertEqual(404, res.status_code)

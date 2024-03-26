@@ -513,8 +513,8 @@ class URIQuery(BaseModel):
     uri: str
 
 
-@api_router.post("/parse/", response_model=URIResponse, tags=["reference"])
-def get_parse_reference(
+@api_router.post("/parse/", response_model=URIResponse, tags=["reference"], summary="Parse a URI")
+def post_parse_uri(
     request: Request,
     query: URIQuery = Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")]),
 ):
@@ -523,13 +523,11 @@ def get_parse_reference(
     prefix, identifier = manager.parse_uri(query.uri)
     if prefix is None:
         raise HTTPException(404, f"can't parse URI: {query.uri}")
-    providers = manager.get_providers(prefix, identifier)
-    if not providers:
-        raise HTTPException(404, "no providers available")
     return URIResponse(
         uri=query.uri,
         reference=Reference(prefix=prefix, identifier=identifier),
-        providers=providers,
+        # Given the fact that we're able to parse the URI, there must be at least one provider
+        providers=manager.get_providers(prefix, identifier),
     )
 
 
