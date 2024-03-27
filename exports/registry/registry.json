@@ -33503,6 +33503,14 @@
       "name": "Jan Willis, NLM",
       "orcid": null
     },
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "rombaum",
+        "name": "Roman Baum",
+        "orcid": "0000-0001-5246-9351"
+      }
+    ],
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc.",
     "example": "C063233",
     "example_extras": [
@@ -33522,6 +33530,7 @@
       "topics"
     ],
     "license": "CC0-1.0",
+    "logo": "https://meshb.nlm.nih.gov/public/img/meshLogo.jpg",
     "mappings": {
       "aberowl": "MESH",
       "bartoc": "391",
@@ -33550,6 +33559,34 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/mesh:$1"
+      },
+      {
+        "code": "bioportal.purl",
+        "description": "The BioPortal version of MeSH. Should be re-coded to `bioportal`, see https://github.com/biopragmatics/bioregistry/pull/1066.",
+        "homepage": "https://bioportal.bioontology.org/ontologies/MESH",
+        "name": "BioPortal",
+        "uri_format": "http://purl.bioontology.org/ontology/MESH/$1"
+      },
+      {
+        "code": "mesh.json-ld",
+        "description": "The MeSH version in JSON-LD.",
+        "homepage": "http://id.nlm.nih.gov/mesh/",
+        "name": "Medical Subject Headings (JSON-LD)",
+        "uri_format": "https://id.nlm.nih.gov/mesh/$1.json-ld"
+      },
+      {
+        "code": "mesh.n3",
+        "description": "The MeSH version in N3.",
+        "homepage": "http://id.nlm.nih.gov/mesh/",
+        "name": "Medical Subject Headings (N3)",
+        "uri_format": "https://id.nlm.nih.gov/mesh/$1.n3"
+      },
+      {
+        "code": "mesh.ttl",
+        "description": "The MeSH version in TTL.",
+        "homepage": "http://id.nlm.nih.gov/mesh/",
+        "name": "Medical Subject Headings (TTL)",
+        "uri_format": "https://id.nlm.nih.gov/mesh/$1.ttl"
       }
     ],
     "publications": [
