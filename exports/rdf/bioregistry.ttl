@@ -323,8 +323,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -14737,7 +14737,7 @@ bioregistry:om a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/HajoRijgersberg/OM> ;
     bioregistry.schema:0000005 "Dimension"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ontology-of-units-of-measure.org/resource/om-2/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/OM/25/om.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/OM/26/om.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Hajo Rijgersberg" ;
             foaf:mbox "hajo.rijgersberg@wur.nl" ] ;
@@ -21948,8 +21948,6 @@ aberowl:ICD10CM dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:ICD10PCS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ICD9CM dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:ICDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ICEO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -45448,7 +45446,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -46558,17 +46556,14 @@ bioregistry:icdo a bioregistry.schema:0000001 ;
     rdfs:label "International Classification of Diseases for Oncology" ;
     dcterms:description "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:ICDO,
-        oid:2.16.840.1.113883.6.43,
+    skos:exactMatch oid:2.16.840.1.113883.6.43,
         wikidata:P563,
         bartoc:445,
         prefixcommons:icdo ;
-    dcat:keyword "ontology" ;
     foaf:homepage <https://www.who.int/classifications/icd/adaptations/oncology/en/> ;
     bioregistry.schema:0000005 "9861/3"^^xsd:string ;
     bioregistry.schema:0000006 "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[8-9]\\d{3}(/[0-3])?$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/ICDO/12/icdo.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "ICD-O",
         "ICDO" ;
@@ -56228,7 +56223,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:ICD10CM,
         aberowl:ICD10PCS,
         aberowl:ICD9CM,
-        aberowl:ICDO,
         aberowl:ICEO,
         aberowl:ICF,
         aberowl:ICO,
