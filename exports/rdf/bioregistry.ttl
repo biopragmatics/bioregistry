@@ -323,8 +323,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -1353,7 +1353,7 @@
 @prefix umbbd.pathway: <http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=> .
 @prefix umbbd.reaction: <http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=> .
 @prefix umbbd.rule: <http://www.umbbd.ethz.ch/servlets/rule.jsp?rule=> .
-@prefix umls: <http://linkedlifedata.com/resource/umls/id/> .
+@prefix umls: <https://uts.nlm.nih.gov/uts/umls/concept/> .
 @prefix unichem: <https://www.ebi.ac.uk/unichem/compoundsources?type=uci&compound=> .
 @prefix unigene: <http://www.ncbi.nlm.nih.gov/UniGene/clust.cgi?UGID=> .
 @prefix unii: <https://precision.fda.gov/uniisearch/srs/unii/> .
@@ -18850,6 +18850,7 @@ bioregistry:taxrank a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/phenoscape/taxrank> ;
     skos:exactMatch aberowl:TAXRANK,
+        agroportal:TAXRANK,
         ontobee:TAXRANK,
         bioportal:TAXRANK,
         biocontext:TAXRANK,
@@ -20957,6 +20958,9 @@ orcid:0000-0001-7628-5565 rdfs:label "Michelle Giglio" ;
 orcid:0000-0001-7663-9028 rdfs:label "Ardan Patwardhan" ;
     foaf:mbox "help@emdatabank.org" .
 
+orcid:0000-0001-7697-3026 rdfs:label "Eric Sid" ;
+    foaf:mbox "eric.sid@nih.gov" .
+
 orcid:0000-0001-7815-151X rdfs:label "Annika Jahnke-Bornemann" ;
     foaf:mbox "annika.jahnke-bornemann@uni-hamburg.de" .
 
@@ -22488,6 +22492,8 @@ agroportal:SIREN dcterms:isPartOf bioregistry.metaresource:agroportal .
 agroportal:SO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:STY dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:TAXRANK dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:TO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
@@ -29811,7 +29817,7 @@ bioregistry:cellosaurus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0440"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cellosaurus.org/CVCL_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z0-9]{4}$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://github.com/calipho-sib/cellosaurus/raw/master/cellosaurus.obo> ;
+    bioregistry.schema:0000010 <https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-2826-6444 ;
     bioregistry.schema:0000023 "CVCL" ;
@@ -32024,6 +32030,7 @@ bioregistry:gard a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://rarediseases.info.nih.gov/diseases/$1/index"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-7697-3026 ;
     bioregistry.schema:0000023 "GARD",
         "Genetic and Rare Diseases Information Center" ;
     bioregistry.schema:0000024 "https://bioregistry.io/gard:"^^xsd:string ;
@@ -37511,14 +37518,14 @@ bioregistry:umls a bioregistry.schema:0000001 ;
         miriam:umls ;
     foaf:homepage <https://www.nlm.nih.gov/research/umls> ;
     bioregistry.schema:0000005 "C2584994"^^xsd:string ;
-    bioregistry.schema:0000006 "http://linkedlifedata.com/resource/umls/id/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://uts.nlm.nih.gov/uts/umls/concept/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^C\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "UMLS",
         "UMLS CUI",
         "UMLS_CUI",
         "umls.cui" ;
-    bioregistry.schema:0000024 "http://linkedlifedata.com/resource/umls/id/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://uts.nlm.nih.gov/uts/umls/concept/"^^xsd:string ;
     bioregistry.schema:0000027 umls:C2584994 ;
     bioregistry.schema:0000029 "umls" .
 
@@ -45446,7 +45453,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -53061,6 +53068,7 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:SIREN,
         agroportal:SO,
         agroportal:STY,
+        agroportal:TAXRANK,
         agroportal:TO,
         agroportal:VARIO,
         agroportal:VT ;
