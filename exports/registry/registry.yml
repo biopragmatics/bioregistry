@@ -7034,7 +7034,7 @@ chembl:
   - genomics
   - medicinal chemistry
   - molecules
-  license: CC-BY-4.0
+  license: CC-BY-SA-3.0
   mappings:
     cheminf: '000412'
     fairsharing: FAIRsharing.m3jtpg
@@ -7101,6 +7101,7 @@ chembl.cell:
   keywords:
   - bioactivities
   - cell lines
+  license: CC-BY-SA-3.0
   mappings:
     cellosaurus: ChEMBL-Cells
   name: ChEMBL database of bioactive drug-like small molecules - Cell lines section
@@ -7121,7 +7122,7 @@ chembl.compound:
     abstracted and curated from the primary scientific literature.
   example: CHEMBL465070
   homepage: https://www.ebi.ac.uk/chembldb/
-  license: CC-BY-4.0
+  license: CC-BY-SA-3.0
   mappings:
     biocontext: CHEMBL.COMPOUND
     edam: '2646'
@@ -7157,7 +7158,7 @@ chembl.target:
     abstracted and curated from the primary scientific literature.
   example: CHEMBL3467
   homepage: https://www.ebi.ac.uk/chembldb/
-  license: CC-BY-4.0
+  license: CC-BY-SA-3.0
   mappings:
     biocontext: CHEMBL.TARGET
     cellosaurus: ChEMBL-Targets
@@ -7726,6 +7727,11 @@ cito:
   twitter: sparontologies
   uri_format: http://purl.org/spar/cito/$1
 civic.aid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: 'A CIViC assertion classifies the clinical significance of a variant-disease
     relationship under recognized guidelines. The CIViC Assertion (AID) summarizes
     a collection of Evidence Items (EIDs) that covers predictive/therapeutic, diagnostic,
@@ -7738,28 +7744,44 @@ civic.aid:
     and cancer type, then a corresponding assertion be created in CIViC.'
   example: '3'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.aid
   name: CIViC Assertion
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.aid
+  synonyms:
+  - civic.assertion
   uri_format: https://civicdb.org/links/assertions/$1
 civic.did:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: Within the CIViC database, the disease should be the cancer or cancer
     subtype that is a result of the described variant. The disease selected should
     be as specific as possible should reflect the disease type used in the source
     that supports the evidence statement.
   example: '46'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.did
   name: CIViC Disease
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.did
+  synonyms:
+  - civic.disease
   uri_format: https://civicdb.org/links/diseases/$1
 civic.eid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: Evidence Items are the central building block of the Clinical Interpretation
     of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece
     of information that has been manually curated from trustable medical literature
@@ -7774,14 +7796,22 @@ civic.eid:
     or conference abstract).
   example: '1199'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.eid
   name: CIViC Evidence
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.eid
+  synonyms:
+  - civic.evidence
   uri_format: https://civicdb.org/links/evidence/$1
 civic.gid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: A CIViC Gene Summary is created to provide a high-level overview of
     clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus
     on emphasizing the clinical relevance from a molecular perspective rather than
@@ -7792,6 +7822,7 @@ civic.gid:
     functions of the gene with associated roles in oncogenesis
   example: '272'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.gid
     wikidata: P11277
@@ -7799,8 +7830,15 @@ civic.gid:
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.gid
+  synonyms:
+  - civic.gene
   uri_format: https://civicdb.org/links/gene/$1
 civic.mpid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: CIViC Molecular Profiles are combinations of one or more CIViC variants.
     Most Molecular Profiles are “Simple” Molecular Profiles comprised of a single
     variant. In most cases, these can be considered equivalent to the CIViC concept
@@ -7812,13 +7850,21 @@ civic.mpid:
     in CIViC.
   example: '559'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.mpid
   name: CIViC Molecular Profile
   pattern: ^[0-9]+$
   preferred_prefix: civic.mpid
+  synonyms:
+  - civic.molecularprofile
   uri_format: https://civicdb.org/links/molecular_profile/$1
 civic.sid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: In CIViC, each Evidence Item must be associated with a Source Type
     and Source ID, which link the Evidence Item to the original source of information
     supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed
@@ -7828,14 +7874,22 @@ civic.sid:
     of information from this source.
   example: '62'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.sid
   name: CIViC Source
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.sid
+  synonyms:
+  - civic.source
   uri_format: https://civicdb.org/links/sources/$1
 civic.tid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: Therapies (often drugs) in CIViC are associated with Predictive Evidence
     Types, which describe sensitivity, resistance or adverse response to therapies
     when a given variant is present. The Therapy field may also be used to describe
@@ -7844,14 +7898,22 @@ civic.tid:
     the Therapy (treatment type) and the presence of the variant.
   example: '14'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.tid
   name: CIViC Therapy
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.tid
+  synonyms:
+  - civic.therapy
   uri_format: https://civicdb.org/links/drugs/$1
 civic.vgid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: Variant Groups in CIViC provide user-defined grouping of Variants within
     and between genes based on unifying characteristics. CIViC curators are required
     to define a cohesive rationale for grouping these variants together, summarize
@@ -7859,13 +7921,21 @@ civic.vgid:
     treatments or cancers of particular relevance
   example: '16'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.vgid
   name: CIViC Variant Group
   pattern: ^[0-9]+$
   preferred_prefix: civic.vgid
+  synonyms:
+  - civic.variantgroup
   uri_format: https://civicdb.org/links/variant_group/$1
 civic.vid:
+  contact:
+    email: mgriffit@wustl.edu
+    github: malachig
+    name: Malachi Griffith
+    orcid: 0000-0002-6388-446X
   description: CIViC variants are usually genomic alterations, including single nucleotide
     variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s
     such as amplification or deletion), structural variants (SVs such as translocations
@@ -7878,6 +7948,7 @@ civic.vid:
     aid clinical decision making.
   example: '12'
   homepage: https://civicdb.org/
+  license: CC0-1.0
   mappings:
     miriam: civic.vid
     wikidata: P3329
@@ -7885,6 +7956,8 @@ civic.vid:
   part_of: civic
   pattern: ^[0-9]+$
   preferred_prefix: civic.vid
+  synonyms:
+  - civic.variant
   uri_format: https://civicdb.org/links/variant/$1
 cl:
   appears_in:
@@ -10982,6 +11055,7 @@ ctri:
   preferred_prefix: ctri
   references:
   - https://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=82487
+  uri_format: https://trialsearch.who.int/Trial2.aspx?TrialID=$1
 cubedb:
   comment: website down as of 2021-10-04
   deprecated: true
@@ -27954,6 +28028,7 @@ iuphar.family:
   homepage: http://www.guidetopharmacology.org/
   keywords:
   - protein
+  license: CC-BY-SA-4.0
   mappings:
     biocontext: IUPHAR.FAMILY
     miriam: iuphar.family
@@ -27984,6 +28059,7 @@ iuphar.ligand:
     references ligands.
   example: '1755'
   homepage: http://www.guidetopharmacology.org/GRAC/LigandListForward?database=all
+  license: CC-BY-SA-4.0
   mappings:
     biocontext: IUPHAR.LIGAND
     biolink: GTOPDB
@@ -28007,6 +28083,7 @@ iuphar.receptor:
     receptors or subunits.
   example: '101'
   homepage: http://www.guidetopharmacology.org/targets.jsp
+  license: CC-BY-SA-4.0
   mappings:
     biocontext: IUPHAR.RECEPTOR
     go: IUPHAR_RECEPTOR
@@ -29705,6 +29782,7 @@ loinc:
   - ontology
   - phenotype
   - preclinical studies
+  license: https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf
   mappings:
     aberowl: LOINC
     bartoc: '1897'
@@ -31880,6 +31958,7 @@ mgi:
   - single nucleotide polymorphism
   - strain
   - tumor
+  license: CC-BY-4.0
   mappings:
     biocontext: MGI
     cellosaurus: MGI
@@ -35480,6 +35559,7 @@ nddf:
   - drug
   - medicinal chemistry
   - ontology
+  license: https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf
   mappings:
     aberowl: NDDF
     biolink: NDDF
@@ -39759,6 +39839,7 @@ orphanet:
   description: Orphanet is a reference portal for information on rare diseases and
     orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of
     patients with rare diseases.
+  download_owl: http://www.orphadata.org/data/ORDO/ordo_orphanet.owl
   example: '85163'
   homepage: http://www.orpha.net/consor/
   keywords:
@@ -39766,6 +39847,7 @@ orphanet:
   - drug
   - human
   - life science
+  - ontology
   - ontology and terminology
   license: CC-BY-4.0
   mappings:
@@ -46522,6 +46604,7 @@ rgd:
   - translational medicine
   - variation
   - veterinary medicine
+  license: CC-BY-4.0
   mappings:
     aberowl: RGD
     biocontext: RGD
@@ -47791,6 +47874,7 @@ rxnorm:
   - drug name
   - ontology
   - preclinical studies
+  license: https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf
   mappings:
     aberowl: RXNORM
     biocontext: RXCUI
@@ -50602,6 +50686,7 @@ snomedct:
   - medicine
   - ontology
   - preclinical studies
+  license: https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf
   mappings:
     aberowl: SNOMEDCT
     biocontext: SNOMEDCT

@@ -7574,7 +7574,7 @@
       "medicinal chemistry",
       "molecules"
     ],
-    "license": "CC-BY-4.0",
+    "license": "CC-BY-SA-3.0",
     "mappings": {
       "cheminf": "000412",
       "fairsharing": "FAIRsharing.m3jtpg",
@@ -7655,6 +7655,7 @@
       "bioactivities",
       "cell lines"
     ],
+    "license": "CC-BY-SA-3.0",
     "mappings": {
       "cellosaurus": "ChEMBL-Cells"
     },
@@ -7677,7 +7678,7 @@
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
     "example": "CHEMBL465070",
     "homepage": "https://www.ebi.ac.uk/chembldb/",
-    "license": "CC-BY-4.0",
+    "license": "CC-BY-SA-3.0",
     "mappings": {
       "biocontext": "CHEMBL.COMPOUND",
       "edam": "2646",
@@ -7719,7 +7720,7 @@
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
     "example": "CHEMBL3467",
     "homepage": "https://www.ebi.ac.uk/chembldb/",
-    "license": "CC-BY-4.0",
+    "license": "CC-BY-SA-3.0",
     "mappings": {
       "biocontext": "CHEMBL.TARGET",
       "cellosaurus": "ChEMBL-Targets",
@@ -8341,9 +8342,16 @@
     "uri_format": "http://purl.org/spar/cito/$1"
   },
   "civic.aid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "A CIViC assertion classifies the clinical significance of a variant-disease relationship under recognized guidelines. The CIViC Assertion (AID) summarizes a collection of Evidence Items (EIDs) that covers predictive/therapeutic, diagnostic, prognostic or predisposing clinical information for a variant in a specific cancer context. CIViC currently has two main types of Assertions: those based on variants of primarily somatic origin (predictive/therapeutic, prognostic, and diagnostic) and those based on variants of primarily germline origin (predisposing). When the number and quality of Predictive, Prognostic, Diagnostic or Predisposing Evidence Items (EIDs) in CIViC sufficiently cover what is known for a particular variant and cancer type, then a corresponding assertion be created in CIViC.",
     "example": "3",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.aid"
     },
@@ -8351,12 +8359,22 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.aid",
+    "synonyms": [
+      "civic.assertion"
+    ],
     "uri_format": "https://civicdb.org/links/assertions/$1"
   },
   "civic.did": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "Within the CIViC database, the disease should be the cancer or cancer subtype that is a result of the described variant. The disease selected should be as specific as possible should reflect the disease type used in the source that supports the evidence statement.",
     "example": "46",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.did"
     },
@@ -8364,12 +8382,22 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.did",
+    "synonyms": [
+      "civic.disease"
+    ],
     "uri_format": "https://civicdb.org/links/diseases/$1"
   },
   "civic.eid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "Evidence Items are the central building block of the Clinical Interpretation of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece of information that has been manually curated from trustable medical literature about a Variant or genomic ‘event’ that has implications in cancer Predisposition, Diagnosis (aka molecular classification), Prognosis, Predictive response to therapy, Oncogenicity or protein Function. For example, an Evidence Item might describe a line of evidence supporting the notion that tumors with a somatic BRAF V600 mutation generally respond well to the drug dabrafenib. A Variant may be a single nucleotide substitution, a small insertion or deletion, an RNA gene fusion, a chromosomal rearrangement, an RNA expression pattern (e.g. over-expression), etc. Each clinical Evidence statement corresponds to a single citable Source (a publication or conference abstract).",
     "example": "1199",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.eid"
     },
@@ -8377,12 +8405,22 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.eid",
+    "synonyms": [
+      "civic.evidence"
+    ],
     "uri_format": "https://civicdb.org/links/evidence/$1"
   },
   "civic.gid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene’s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis",
     "example": "272",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.gid",
       "wikidata": "P11277"
@@ -8391,24 +8429,44 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.gid",
+    "synonyms": [
+      "civic.gene"
+    ],
     "uri_format": "https://civicdb.org/links/gene/$1"
   },
   "civic.mpid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "CIViC Molecular Profiles are combinations of one or more CIViC variants. Most Molecular Profiles are “Simple” Molecular Profiles comprised of a single variant. In most cases, these can be considered equivalent to the CIViC concept of a Variant. However, increasingly clinical significance must be considered in the context of multiple variants simultaneously. Complex Molecular Profiles in CIViC allow for curation of such variant combinations. Regardless of the nature of the Molecular Profile (Simple or Complex), it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional clinical relevance to be entered in CIViC.",
     "example": "559",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.mpid"
     },
     "name": "CIViC Molecular Profile",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.mpid",
+    "synonyms": [
+      "civic.molecularprofile"
+    ],
     "uri_format": "https://civicdb.org/links/molecular_profile/$1"
   },
   "civic.sid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source.",
     "example": "62",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.sid"
     },
@@ -8416,12 +8474,22 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.sid",
+    "synonyms": [
+      "civic.source"
+    ],
     "uri_format": "https://civicdb.org/links/sources/$1"
   },
   "civic.tid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "Therapies (often drugs) in CIViC are associated with Predictive Evidence Types, which describe sensitivity, resistance or adverse response to therapies when a given variant is present. The Therapy field may also be used to describe more general treatment types and regimes, such as FOLFOX or Radiation, as long as the literature derived Evidence Item makes a scientific association between the Therapy (treatment type) and the presence of the variant.",
     "example": "14",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.tid"
     },
@@ -8429,24 +8497,44 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.tid",
+    "synonyms": [
+      "civic.therapy"
+    ],
     "uri_format": "https://civicdb.org/links/drugs/$1"
   },
   "civic.vgid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "Variant Groups in CIViC provide user-defined grouping of Variants within and between genes based on unifying characteristics. CIViC curators are required to define a cohesive rationale for grouping these variants together, summarize their relevance to cancer diagnosis, prognosis or treatment and highlight any treatments or cancers of particular relevance",
     "example": "16",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.vgid"
     },
     "name": "CIViC Variant Group",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.vgid",
+    "synonyms": [
+      "civic.variantgroup"
+    ],
     "uri_format": "https://civicdb.org/links/variant_group/$1"
   },
   "civic.vid": {
+    "contact": {
+      "email": "mgriffit@wustl.edu",
+      "github": "malachig",
+      "name": "Malachi Griffith",
+      "orcid": "0000-0002-6388-446X"
+    },
     "description": "CIViC variants are usually genomic alterations, including single nucleotide variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s such as amplification or deletion), structural variants (SVs such as translocations and inversions), and other events that differ from the “normal” genome. In some cases a CIViC variant may represent events of the transcriptome or proteome. For example, ‘expression’ or ‘over-expression’ is a valid variant. Regardless of the variant, it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional relevance that is clinical in nature to be entered in CIViC. i.e. There must be some rationale for why curation of this variant could ultimately aid clinical decision making.",
     "example": "12",
     "homepage": "https://civicdb.org/",
+    "license": "CC0-1.0",
     "mappings": {
       "miriam": "civic.vid",
       "wikidata": "P3329"
@@ -8455,6 +8543,9 @@
     "part_of": "civic",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "civic.vid",
+    "synonyms": [
+      "civic.variant"
+    ],
     "uri_format": "https://civicdb.org/links/variant/$1"
   },
   "cl": {
@@ -11791,7 +11882,8 @@
     "preferred_prefix": "ctri",
     "references": [
       "https://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=82487"
-    ]
+    ],
+    "uri_format": "https://trialsearch.who.int/Trial2.aspx?TrialID=$1"
   },
   "cubedb": {
     "comment": "website down as of 2021-10-04",
@@ -30179,6 +30271,7 @@
     "keywords": [
       "protein"
     ],
+    "license": "CC-BY-SA-4.0",
     "mappings": {
       "biocontext": "IUPHAR.FAMILY",
       "miriam": "iuphar.family",
@@ -30206,6 +30299,7 @@
     "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and the recently described transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references ligands.",
     "example": "1755",
     "homepage": "http://www.guidetopharmacology.org/GRAC/LigandListForward?database=all",
+    "license": "CC-BY-SA-4.0",
     "mappings": {
       "biocontext": "IUPHAR.LIGAND",
       "biolink": "GTOPDB",
@@ -30227,6 +30321,7 @@
     "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references individual receptors or subunits.",
     "example": "101",
     "homepage": "http://www.guidetopharmacology.org/targets.jsp",
+    "license": "CC-BY-SA-4.0",
     "mappings": {
       "biocontext": "IUPHAR.RECEPTOR",
       "go": "IUPHAR_RECEPTOR",
@@ -32030,6 +32125,7 @@
       "phenotype",
       "preclinical studies"
     ],
+    "license": "https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf",
     "mappings": {
       "aberowl": "LOINC",
       "bartoc": "1897",
@@ -34359,6 +34455,7 @@
       "strain",
       "tumor"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "biocontext": "MGI",
       "cellosaurus": "MGI",
@@ -38270,6 +38367,7 @@
       "medicinal chemistry",
       "ontology"
     ],
+    "license": "https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf",
     "mappings": {
       "aberowl": "NDDF",
       "biolink": "NDDF",
@@ -42843,6 +42941,7 @@
   },
   "orphanet": {
     "description": "Orphanet is a reference portal for information on rare diseases and orphan drugs. It’s aim is to help improve the diagnosis, care and treatment of patients with rare diseases.",
+    "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
     "example": "85163",
     "homepage": "http://www.orpha.net/consor/",
     "keywords": [
@@ -42850,6 +42949,7 @@
       "drug",
       "human",
       "life science",
+      "ontology",
       "ontology and terminology"
     ],
     "license": "CC-BY-4.0",
@@ -50099,6 +50199,7 @@
       "variation",
       "veterinary medicine"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "RGD",
       "biocontext": "RGD",
@@ -51454,6 +51555,7 @@
       "ontology",
       "preclinical studies"
     ],
+    "license": "https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf",
     "mappings": {
       "aberowl": "RXNORM",
       "biocontext": "RXCUI",
@@ -54590,6 +54692,7 @@
       "ontology",
       "preclinical studies"
     ],
+    "license": "https://uts.nlm.nih.gov/uts/assets/LicenseAgreement.pdf",
     "mappings": {
       "aberowl": "SNOMEDCT",
       "biocontext": "SNOMEDCT",
