@@ -494,10 +494,17 @@ def get_reference(request: Request, prefix: str, identifier: str):
 class URIResponse(BaseModel):
     """A response for looking up a reference."""
 
-    uri: str = Field(..., examples=["http://id.nlm.nih.gov/mesh/C063233"])
-    reference: Reference = Field(..., examples=[Reference(prefix="mesh", identifier="C063233")])
+    uri: str = Field(
+        ..., description="The query URI", examples=["http://id.nlm.nih.gov/mesh/C063233"]
+    )
+    reference: Reference = Field(
+        ...,
+        description="The compact URI (CURIE)",
+        examples=[Reference(prefix="mesh", identifier="C063233")],
+    )
     providers: Mapping[str, str] = Field(
         ...,
+        description="Equivalent URIs",
         examples=[
             {
                 "default": "https://meshb.nlm.nih.gov/record/ui?ui=C063233",
@@ -510,10 +517,12 @@ class URIResponse(BaseModel):
 class URIQuery(BaseModel):
     """A query for parsing a URI."""
 
-    uri: str
+    uri: str = Field(..., examples=["http://id.nlm.nih.gov/mesh/C063233"])
 
 
-@api_router.post("/parse/", response_model=URIResponse, tags=["reference"], summary="Parse a URI")
+@api_router.post(
+    "/uri/parse/", response_model=URIResponse, tags=["reference"], summary="Parse a URI"
+)
 def post_parse_uri(
     request: Request,
     query: URIQuery = Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")]),

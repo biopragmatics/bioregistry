@@ -246,7 +246,7 @@ class TestWeb(unittest.TestCase):
         .. seealso:: https://github.com/biopragmatics/bioregistry/issues/1065
         """
         uri = "http://id.nlm.nih.gov/mesh/C063233"
-        res = self.client.post("/api/parse/", json={"uri": uri})
+        res = self.client.post("/api/uri/parse/", json={"uri": uri})
         self.assertEqual(200, res.status_code)
         data = URIResponse.parse_obj(res.json())
         self.assertEqual(uri, data.uri)
@@ -254,5 +254,5 @@ class TestWeb(unittest.TestCase):
 
         # Bad URI
         uri = "xxxx"
-        res = self.client.post("/api/parse/", json={"uri": uri})
+        res = self.client.post("/api/uri/parse/", json={"uri": uri})
         self.assertEqual(404, res.status_code)
