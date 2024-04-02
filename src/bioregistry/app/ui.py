@@ -294,6 +294,7 @@ class ResponseWrapper(ValueError):
     """An exception that helps with code reuse that returns multiple value types."""
 
     def __init__(self, response, code=None):
+        """Instantiate this "exception", which is a tricky way of writing a macro."""
         self.response = response
         self.code = code
 
