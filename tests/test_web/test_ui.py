@@ -194,3 +194,14 @@ class TestUI(unittest.TestCase):
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(302, res.status_code)  # , msg=res.text)
+
+    def test_redirect_404(self):
+        """Test 404 errors."""
+        with self.app.test_client() as client:
+            for endpoint in [
+                "/chebi:abcd",  # wrong identifier pattern
+                "/gmelin:1234",  # no providers
+            ]:
+                with self.subTest(endpoint=endpoint):
+                    res = client.get(endpoint, follow_redirects=False)
+                    self.assertEqual(404, res.status_code)

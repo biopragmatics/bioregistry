@@ -291,17 +291,20 @@ def context(identifier: str):
 
 
 class ResponseWrapper(ValueError):
+    """An exception that helps with code reuse that returns multiple value types."""
+
     def __init__(self, response, code=None):
         self.response = response
         self.code = code
 
     def get_value(self):
-        if self.code:
+        """Get either the response, or a pair of response + code if a code is available."""
+        if self.code is not None:
             return self.response, self.code
         return self.response
 
 
-def _clean_reference(prefix: str, identifier: Optional[str]):
+def _clean_reference(prefix: str, identifier: Optional[str] = None):
     if ":" in prefix:
         # A colon might appear in the prefix if there are multiple colons
         # in the CURIE, since Flask/Werkzeug parses from right to left.
@@ -324,7 +327,6 @@ def _clean_reference(prefix: str, identifier: Optional[str]):
         raise ResponseWrapper(redirect(url_for("." + resource.__name__, prefix=_resource.prefix)))
 
     identifier = _resource.standardize_identifier(identifier)
-
     pattern = _resource.get_pattern()
     if pattern and not _resource.is_valid_identifier(identifier):
         raise ResponseWrapper(
