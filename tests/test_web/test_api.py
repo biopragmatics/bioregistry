@@ -151,10 +151,14 @@ class TestWeb(unittest.TestCase):
 
     def test_api_reference(self):
         """Test the reference endpoint."""
-        self.assert_endpoint(
+        for value in [
             "/api/reference/chebi:24867",
-            ["json", "yaml"],
-        )
+            "/api/reference/ctri:CTRI/2023/04/052053",  # check paths are accepted
+        ]:
+            self.assert_endpoint(
+                value,
+                ["json", "yaml"],
+            )
 
     def test_api_collections(self):
         """Test the collections endpoint."""

@@ -211,6 +211,7 @@ class TestUI(unittest.TestCase):
         with self.app.test_client() as client:
             for endpoint in [
                 "/reference/ctri:CTRI/2023/04/052053",  # check that slashes are okay
+                "/api/reference/ctri:CTRI/2023/04/052053",  # check that slashes are okay in API
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=False)
