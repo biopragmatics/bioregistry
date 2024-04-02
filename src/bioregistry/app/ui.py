@@ -290,15 +290,73 @@ def context(identifier: str):
     )
 
 
+class ResponseWrapper(ValueError):
+    """An exception that helps with code reuse that returns multiple value types."""
+
+    def __init__(self, response, code=None):
+        """Instantiate this "exception", which is a tricky way of writing a macro."""
+        self.response = response
+        self.code = code
+
+    def get_value(self):
+        """Get either the response, or a pair of response + code if a code is available."""
+        if self.code is not None:
+            return self.response, self.code
+        return self.response
+
+
+def _clean_reference(prefix: str, identifier: Optional[str] = None):
+    if ":" in prefix:
+        # A colon might appear in the prefix if there are multiple colons
+        # in the CURIE, since Flask/Werkzeug parses from right to left.
+        # This block reorganizes the parts of the CURIE based on that assumption
+        prefix, middle = prefix.split(":", 1)
+        if identifier:
+            identifier = f"{middle}:{identifier}"
+        else:
+            identifier = middle  # not sure how this could happen, though
+
+    _resource = manager.get_resource(prefix)
+    if _resource is None:
+        raise ResponseWrapper(
+            render_template(
+                "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
+            ),
+            404,
+        )
+    if identifier is None:
+        raise ResponseWrapper(redirect(url_for("." + resource.__name__, prefix=_resource.prefix)))
+
+    identifier = _resource.standardize_identifier(identifier)
+    pattern = _resource.get_pattern()
+    if pattern and not _resource.is_valid_identifier(identifier):
+        raise ResponseWrapper(
+            render_template(
+                "resolve_errors/invalid_identifier.html",
+                prefix=prefix,
+                identifier=identifier,
+                pattern=pattern,
+            ),
+            404,
+        )
+
+    return _resource, identifier
+
+
 @ui_blueprint.route("/reference/<prefix>:<path:identifier>")
+@ui_blueprint.route("/reference/<prefix>:/<path:identifier>")  # ARK hack, see below
 def reference(prefix: str, identifier: str):
     """Serve a reference page."""
+    try:
+        _resource, identifier = _clean_reference(prefix, identifier)
+    except ResponseWrapper as rw:
+        return rw.get_value()
     return render_template(
         "reference.html",
-        prefix=prefix,
-        name=manager.get_name(prefix),
+        prefix=_resource.prefix,
+        name=_resource.get_name(),
         identifier=identifier,
-        providers=_get_resource_providers(prefix, identifier),
+        providers=_get_resource_providers(_resource.prefix, identifier),
         formats=FORMATS,
     )
 
@@ -321,43 +379,12 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
-    if ":" in prefix:
-        # A colon might appear in the prefix if there are multiple colons
-        # in the CURIE, since Flask/Werkzeug parses from right to left.
-        # This block reorganizes the parts of the CURIE based on that assumption
-        prefix, middle = prefix.split(":", 1)
-        if identifier:
-            identifier = f"{middle}:{identifier}"
-        else:
-            identifier = middle  # not sure how this could happen, though
-
-    _resource = manager.get_resource(prefix)
-    if _resource is None:
-        return (
-            render_template(
-                "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
-            ),
-            404,
-        )
-    if identifier is None:
-        return redirect(url_for("." + resource.__name__, prefix=_resource.prefix))
-
-    identifier = _resource.standardize_identifier(identifier)
-
-    pattern = _resource.get_pattern()
-    if pattern and not _resource.is_valid_identifier(identifier):
-        return (
-            render_template(
-                "resolve_errors/invalid_identifier.html",
-                prefix=prefix,
-                identifier=identifier,
-                pattern=pattern,
-            ),
-            404,
-        )
-
+    try:
+        _resource, identifier = _clean_reference(prefix, identifier)
+    except ResponseWrapper as rw:
+        return rw.get_value()
     url = manager.get_iri(
-        prefix,
+        _resource.prefix,
         identifier,
         use_bioregistry_io=False,
         provider=request.args.get("provider"),
@@ -365,7 +392,9 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     if not url:
         return (
             render_template(
-                "resolve_errors/missing_providers.html", prefix=prefix, identifier=identifier
+                "resolve_errors/missing_providers.html",
+                prefix=_resource.prefix,
+                identifier=identifier,
             ),
             404,
         )
@@ -375,7 +404,9 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     except ValueError:  # headers could not be constructed
         return (
             render_template(
-                "resolve_errors/disallowed_identifier.html", prefix=prefix, identifier=identifier
+                "resolve_errors/disallowed_identifier.html",
+                prefix=_resource.prefix,
+                identifier=identifier,
             ),
             404,
         )

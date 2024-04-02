@@ -466,10 +466,12 @@ class IdentifierResponse(BaseModel):
 
 
 @api_router.get(
-    "/reference/{prefix}:{identifier}", response_model=IdentifierResponse, tags=["reference"]
+    "/reference/{prefix}:{identifier:path}", response_model=IdentifierResponse, tags=["reference"]
 )
 def get_reference(request: Request, prefix: str, identifier: str):
     """Look up information on the reference."""
+    # see https://fastapi.tiangolo.com/tutorial/path-params/#path-parameters-containing-paths
+    # for more understanding on how the identifier:path handling works
     manager = request.app.manager
     resource = manager.get_resource(prefix)
     if resource is None:
@@ -478,7 +480,7 @@ def get_reference(request: Request, prefix: str, identifier: str):
     if not resource.is_standardizable_identifier(identifier):
         raise HTTPException(
             404,
-            f"invalid identifier: {resource.get_curie(identifier)} for pattern {resource.get_pattern(prefix)}",
+            f"invalid identifier: {resource.get_curie(identifier)} for pattern {resource.get_pattern()}",
         )
 
     providers = manager.get_providers(resource.prefix, identifier)
