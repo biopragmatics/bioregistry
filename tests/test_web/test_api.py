@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from starlette.testclient import TestClient
 
 from bioregistry import Resource
-from bioregistry.app.api import MappingResponse
+from bioregistry.app.api import MappingResponse, URIResponse
 from bioregistry.app.impl import get_app
 
 
@@ -239,3 +239,20 @@ class TestWeb(unittest.TestCase):
         self.assertIn("loggerhead", res_parsed.meta.source_only)
         # This is a non-ontology so it won't get in OBO Foundry
         self.assertIn("DCTERMS", res_parsed.meta.target_only)
+
+    def test_iri_mapping(self):
+        """Test IRI mappings.
+
+        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/1065
+        """
+        uri = "http://id.nlm.nih.gov/mesh/C063233"
+        res = self.client.post("/api/uri/parse/", json={"uri": uri})
+        self.assertEqual(200, res.status_code)
+        data = URIResponse.parse_obj(res.json())
+        self.assertEqual(uri, data.uri)
+        self.assertIn("https://meshb.nlm.nih.gov/record/ui?ui=C063233", data.providers.values())
+
+        # Bad URI
+        uri = "xxxx"
+        res = self.client.post("/api/uri/parse/", json={"uri": uri})
+        self.assertEqual(404, res.status_code)
