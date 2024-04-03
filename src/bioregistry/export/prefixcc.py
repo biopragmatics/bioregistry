@@ -42,11 +42,12 @@ def main():
     click.echo(f"{len(records):,} records remain to submit to Prefix.cc")
 
     # shuffle records to make sure that if there's an error, it doesn't
-    # lock the update permenantly
+    # lock the update permanently
     random.shuffle(records)
 
     # Pick only the first record, since we can only make one update per day
     record = records[0]
+    uri_prefix = record.get_uri_prefix()
     click.echo(f"Attempting to create a record for {record.prefix} {uri_prefix}")
     res = create(record.prefix, uri_prefix)
     click.echo(res.text)
