@@ -10412,9 +10412,16 @@
     "uri_format": "http://www.ontologyrepository.com/CommonCoreOntologies/$1"
   },
   "complexportal": {
+    "contact": {
+      "email": "bmeldal@ebi.ac.uk",
+      "github": "bmeldal-eg",
+      "name": "Birgit Meldal",
+      "orcid": "0000-0003-4062-6158"
+    },
     "description": "A database that describes manually curated macromolecular complexes and provides links to details about these complexes in other databases.",
     "example": "CPX-263",
     "homepage": "https://www.ebi.ac.uk/complexportal",
+    "license": "CC0-1.0",
     "mappings": {
       "biocontext": "COMPLEXPORTAL",
       "biolink": "ComplexPortal",
@@ -10986,6 +10993,37 @@
       "ama-cpt"
     ],
     "uri_format": "https://www.aapc.com/codes/cpt-codes/$1"
+  },
+  "cran": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Repository of packages for the R programming language",
+    "example": "ggplot2",
+    "homepage": "https://cran.r-project.org/",
+    "mappings": {
+      "wikidata": "P5565"
+    },
+    "name": "The Comprehensive R Archive Network",
+    "preferred_prefix": "cran",
+    "uri_format": "https://cran.r-project.org/web/packages/$1"
+  },
+  "crates": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A repository of software packages written in Rust.",
+    "example": "curies",
+    "homepage": "https://crates.io",
+    "name": "Crates.io",
+    "preferred_prefix": "crates",
+    "uri_format": "https://crates.io/crates/$1"
   },
   "credit": {
     "contact": {
@@ -20354,6 +20392,7 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "aberowl": "FPLX",
       "biocontext": "FPLX",
@@ -39483,6 +39522,23 @@
     "pattern": "^NPC\\d+$",
     "preferred_prefix": "npass"
   },
+  "npm": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A repository of software packages written in Javascript, TypeScript, and related.",
+    "example": "@biopragmatics/curies",
+    "example_extras": [
+      "ansi-pad"
+    ],
+    "homepage": "https://www.npmjs.com",
+    "name": "Node Package Manager",
+    "preferred_prefix": "npm",
+    "uri_format": "https://www.npmjs.com/package/$1"
+  },
   "npo": {
     "contact": {
       "email": "nathan.baker@pnnl.gov",
@@ -39718,6 +39774,39 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "nxr",
     "uri_format": "https://scicrunch.org/resolver/RRID:NXR_$1"
+  },
+  "nztcs": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor_extras": [
+      {
+        "github": "SumirHPandit",
+        "name": "Sumir Pandit",
+        "orcid": "0000-0002-1216-4761"
+      }
+    ],
+    "description": "identifier for species classified under the New Zealand Threat Classification System",
+    "example": "11061",
+    "homepage": "https://nztcs.org.nz/",
+    "keywords": [
+      "taxon",
+      "taxonomy"
+    ],
+    "license": "CC-BY-4.0",
+    "mappings": {
+      "wikidata": "P9889"
+    },
+    "name": "New Zealand Threat Classification System",
+    "pattern": "^[1-9]\\d{3,7}$",
+    "preferred_prefix": "nztcs",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1083"
+    ],
+    "uri_format": "https://nztcs.org.nz/nztcs-species/$1"
   },
   "oa": {
     "contributor": {
@@ -42730,6 +42819,20 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "p3db.site",
     "uri_format": "http://www.p3db.org/phosphosite.php?id=$1&ref=0"
+  },
+  "packagist": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A repository of software packages written in PHP.",
+    "example": "florianv/swap",
+    "homepage": "https://packagist.org",
+    "name": "Packagist",
+    "preferred_prefix": "packagist",
+    "uri_format": "https://packagist.org/packages/$1"
   },
   "pactr": {
     "contributor": {
@@ -50600,6 +50703,20 @@
       "https://www.cdc.gov/niosh/npg/npgdrtec.html"
     ]
   },
+  "rubygems": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A repository of software packages written in Ruby.",
+    "example": "bel",
+    "homepage": "https://rubygems.org",
+    "name": "RubyGems",
+    "preferred_prefix": "rubygems",
+    "uri_format": "https://rubygems.org/gems/$1"
+  },
   "runbiosimulations": {
     "description": "runBioSimulations is a platform for sharing simulation experiments and their results. runBioSimulations enables investigators to use a wide range of simulation tools to execute a wide range of simulations. runBioSimulations permanently saves the results of these simulations, and investigators can share results by sharing URLs similar to sharing URLs for files with DropBox and Google Drive.",
     "example": "5fde96bdc5f1aa9ff0cce18a",
@@ -51242,6 +51359,7 @@
       "chemistry",
       "selventa"
     ],
+    "license": "Apache-2.0",
     "name": "Selventa Chemicals",
     "pattern": "^A\\d{4}$",
     "preferred_prefix": "schem",
@@ -51332,6 +51450,7 @@
       "protein complexes",
       "selventa"
     ],
+    "license": "Apache-2.0",
     "name": "Selventa Complexes",
     "pattern": "^C\\d{4}$",
     "preferred_prefix": "scomp",
@@ -51784,6 +51903,7 @@
       "diseases",
       "selventa"
     ],
+    "license": "Apache-2.0",
     "name": "Selventa Diseases",
     "pattern": "^D\\d{4}$",
     "preferred_prefix": "sdis",
@@ -52068,6 +52188,7 @@
       "protein families",
       "selventa"
     ],
+    "license": "Apache-2.0",
     "name": "Selventa Families",
     "pattern": "^F\\d{4}$",
     "preferred_prefix": "sfam",
@@ -60332,6 +60453,7 @@
       "proteomics",
       "subject agnostic"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "bartoc": "1940",
       "biocontext": "WIKIDATA",
@@ -60378,6 +60500,7 @@
     "description": "Wikidata is a free and open knowledge base that can be read and edited by both humans and machines.\nWikidata acts as central storage for the structured data of its Wikimedia sister projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others. ",
     "example": "P4355",
     "homepage": "https://www.wikidata.org",
+    "license": "CC0-1.0",
     "mappings": {
       "biocontext": "WD_Prop",
       "biolink": "WIKIDATA_PROPERTY"

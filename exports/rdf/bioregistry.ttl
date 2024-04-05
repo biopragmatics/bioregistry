@@ -286,6 +286,8 @@
 @prefix covid19: <https://covid19.sfb.uit.no/api/records/> .
 @prefix covoc: <http://purl.obolibrary.org/obo/COVOC_> .
 @prefix cpt: <https://www.aapc.com/codes/cpt-codes/> .
+@prefix cran: <https://cran.r-project.org/web/packages/> .
+@prefix crates: <https://crates.io/crates/> .
 @prefix crisprdb: <http://crispr.i2bc.paris-saclay.fr/cgi-bin/crispr/SpecieProperties_db.cgi?Taxon_id[]=> .
 @prefix cro: <http://purl.obolibrary.org/obo/CRO_> .
 @prefix crop2ml: <http://www.crop2ml.org/cropmdb/> .
@@ -323,8 +325,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -951,6 +953,7 @@
 @prefix nucleardb: <http://www.receptors.org/nucleardb/proteins/> .
 @prefix nucleotide: <https://www.ncbi.nlm.nih.gov/nuccore/> .
 @prefix nxr: <https://scicrunch.org/resolver/RRID:NXR_> .
+@prefix nztcs: <https://nztcs.org.nz/nztcs-species/> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix oae: <http://purl.obolibrary.org/obo/OAE_> .
 @prefix oarcs: <http://purl.obolibrary.org/obo/OARCS_> .
@@ -1195,6 +1198,7 @@
 @prefix rrid1: <https://scicrunch.org/resolver/RRID:> .
 @prefix rrrc: <https://www.rrrc.us/Strain/?x=> .
 @prefix rs: <http://purl.obolibrary.org/obo/RS_> .
+@prefix rubygems: <https://rubygems.org/gems/> .
 @prefix runbiosimulations: <https://run.biosimulations.org/simulations/> .
 @prefix rxno: <http://purl.obolibrary.org/obo/RXNO_> .
 @prefix rxnorm: <https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=> .
@@ -1782,6 +1786,17 @@ bioregistry.collection:0000012 a bioregistry.schema:0000003 ;
         bioregistry:snctp,
         bioregistry:tctr,
         bioregistry:uminctr .
+
+bioregistry.collection:0000013 a bioregistry.schema:0000003 ;
+    rdfs:label "Software Package Repositories" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "These resources represent software repositories" ;
+    dcterms:hasPart bioregistry:cran,
+        bioregistry:crates,
+        bioregistry:npm,
+        bioregistry:packagist,
+        bioregistry:pypi,
+        bioregistry:rubygems .
 
 bioregistry.registry:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
@@ -16609,20 +16624,6 @@ bioregistry:pw a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 pw:0000423 ;
     bioregistry.schema:0000029 "pw" .
 
-bioregistry:pypi a bioregistry.schema:0000001 ;
-    rdfs:label "PyPI" ;
-    dcterms:description "The Python Package Index (PyPI) is a repository for Python packages."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch miriam:pypi ;
-    foaf:homepage <https://www.python.org/psf/> ;
-    bioregistry.schema:0000005 "numpy"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pypi.org/project/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[a-zA-Z_][a-zA-Z0-9\\-_]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://pypi.org/project/"^^xsd:string ;
-    bioregistry.schema:0000027 pypi:numpy ;
-    bioregistry.schema:0000029 "pypi" .
-
 bioregistry:radiomics a bioregistry.schema:0000001 ;
     rdfs:label "Radiomics Ontology" ;
     dcterms:description "The Radiomics Ontology aims to cover the radiomics feature domain with a strong focus on first order, shape, textural radiomics features. In addition, in the original version. it includes classes about segmentation algorithms and imaging filters. Due to a recent collaboration with the IBSI (International Biomarkers Standardization Initiative), the ontology has been expanded (v 1.6) and it includes all the entities presented in the IBSI document. Therefore, a broad coverage of not only radiomics features, but also every entity (e.g. software properties, filter properties, features extraction parameters) involved into radiomics computation has been added. In the latest version (v2.0), the ontology URIs have been updated to reflect the codes avaialble in the IBSI latest manual. [bioportal]"^^xsd:string ;
@@ -21631,6 +21632,9 @@ orcid:0000-0003-4004-6479 rdfs:label "Christopher Baker" ;
 orcid:0000-0003-4028-811X rdfs:label "Josh Moore" ;
     foaf:mbox "j.a.moore@dundee.ac.uk" .
 
+orcid:0000-0003-4062-6158 rdfs:label "Birgit Meldal" ;
+    foaf:mbox "bmeldal@ebi.ac.uk" .
+
 orcid:0000-0003-4110-0748 rdfs:label "Inge Jonassen" ;
     foaf:mbox "Inge.Jonassen@uib.no" .
 
@@ -23719,6 +23723,8 @@ wikidata:P5458 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P5501 dcterms:isPartOf bioregistry.registry:wikidata .
 
+wikidata:P5565 dcterms:isPartOf bioregistry.registry:wikidata .
+
 wikidata:P557 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P563 dcterms:isPartOf bioregistry.registry:wikidata .
@@ -23826,6 +23832,8 @@ wikidata:P932 dcterms:isPartOf bioregistry.registry:wikidata .
 wikidata:P938 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P9405 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P9889 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:Q111516803 dcterms:isPartOf bioregistry.registry:wikidata .
 
@@ -30220,6 +30228,7 @@ bioregistry:complexportal a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/complexportal/complex/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^CPX-[0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4062-6158 ;
     bioregistry.schema:0000023 "ComplexPortal" ;
     bioregistry.schema:0000024 "https://www.ebi.ac.uk/complexportal/complex/"^^xsd:string ;
     bioregistry.schema:0000027 complexportal:CPX-263 ;
@@ -34936,6 +34945,22 @@ bioregistry:nucc.characteristic a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000029 "nucc.characteristic" .
 
+bioregistry:nztcs a bioregistry.schema:0000001 ;
+    rdfs:label "New Zealand Threat Classification System" ;
+    dcterms:description "identifier for species classified under the New Zealand Threat Classification System"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P9889 ;
+    dcat:keyword "taxon",
+        "taxonomy" ;
+    foaf:homepage <https://nztcs.org.nz/> ;
+    bioregistry.schema:0000005 "11061"^^xsd:string ;
+    bioregistry.schema:0000006 "https://nztcs.org.nz/nztcs-species/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d{3,7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://nztcs.org.nz/nztcs-species/"^^xsd:string ;
+    bioregistry.schema:0000027 nztcs:11061 ;
+    bioregistry.schema:0000029 "nztcs" .
+
 bioregistry:oba a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Biological Attributes" ;
     dcterms:description "A collection of biological attributes (traits) covering all kingdoms of life. Interoperable with VT (vertebrate trait ontology) and TO (plant trait ontology). Extends PATO."^^xsd:string ;
@@ -36107,6 +36132,20 @@ bioregistry:px a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID="^^xsd:string ;
     bioregistry.schema:0000027 px:PXD000500 ;
     bioregistry.schema:0000029 "px" .
+
+bioregistry:pypi a bioregistry.schema:0000001 ;
+    rdfs:label "PyPI" ;
+    dcterms:description "The Python Package Index (PyPI) is a repository for Python packages."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:pypi ;
+    foaf:homepage <https://www.python.org/psf/> ;
+    bioregistry.schema:0000005 "numpy"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pypi.org/project/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-zA-Z_][a-zA-Z0-9\\-_]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://pypi.org/project/"^^xsd:string ;
+    bioregistry.schema:0000027 pypi:numpy ;
+    bioregistry.schema:0000029 "pypi" .
 
 bioregistry:rcb a bioregistry.schema:0000001 ;
     rdfs:label "RIKEN Bioresource Center Cell Bank" ;
@@ -45246,6 +45285,31 @@ bioregistry:cpt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 cpt:00103 ;
     bioregistry.schema:0000029 "cpt" .
 
+bioregistry:cran a bioregistry.schema:0000001 ;
+    rdfs:label "The Comprehensive R Archive Network" ;
+    dcterms:description "Repository of packages for the R programming language"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P5565 ;
+    foaf:homepage <https://cran.r-project.org/> ;
+    bioregistry.schema:0000005 "ggplot2"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cran.r-project.org/web/packages/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://cran.r-project.org/web/packages/"^^xsd:string ;
+    bioregistry.schema:0000027 cran:ggplot2 ;
+    bioregistry.schema:0000029 "cran" .
+
+bioregistry:crates a bioregistry.schema:0000001 ;
+    rdfs:label "Crates.io" ;
+    dcterms:description "A repository of software packages written in Rust."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://crates.io> ;
+    bioregistry.schema:0000005 "curies"^^xsd:string ;
+    bioregistry.schema:0000006 "https://crates.io/crates/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://crates.io/crates/"^^xsd:string ;
+    bioregistry.schema:0000027 crates:curies ;
+    bioregistry.schema:0000029 "crates" .
+
 bioregistry:ctd dcterms:hasPart bioregistry:ctd.chemical,
         bioregistry:ctd.disease,
         bioregistry:ctd.gene .
@@ -45476,7 +45540,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -47567,6 +47631,18 @@ bioregistry:nlx.sub a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 nlx.sub:090803 ;
     bioregistry.schema:0000029 "nlx.sub" .
 
+bioregistry:npm a bioregistry.schema:0000001 ;
+    rdfs:label "Node Package Manager" ;
+    dcterms:description "A repository of software packages written in Javascript, TypeScript, and related."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.npmjs.com> ;
+    bioregistry.schema:0000005 "@biopragmatics/curies"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.npmjs.com/package/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.npmjs.com/package/"^^xsd:string ;
+    bioregistry.schema:0000027 <https://www.npmjs.com/package/@biopragmatics/curies> ;
+    bioregistry.schema:0000029 "npm" .
+
 bioregistry:nucc.taxonomy a bioregistry.schema:0000001 ;
     rdfs:label "National Uniform Claim Committee Taxonomy" ;
     dcterms:description """The Health Care Provider Taxonomy code set is an external, nonmedical data code set designed for use in an electronic environment, specifically within the ASC X12N Health Care transactions. This includes the transactions mandated under HIPAA.
@@ -47744,6 +47820,18 @@ bioregistry:oslc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://open-services.net/ns/core#"^^xsd:string ;
     bioregistry.schema:0000027 oslc:Property ;
     bioregistry.schema:0000029 "oslc" .
+
+bioregistry:packagist a bioregistry.schema:0000001 ;
+    rdfs:label "Packagist" ;
+    dcterms:description "A repository of software packages written in PHP."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://packagist.org> ;
+    bioregistry.schema:0000005 "florianv/swap"^^xsd:string ;
+    bioregistry.schema:0000006 "https://packagist.org/packages/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://packagist.org/packages/"^^xsd:string ;
+    bioregistry.schema:0000027 <https://packagist.org/packages/florianv/swap> ;
+    bioregistry.schema:0000029 "packagist" .
 
 bioregistry:pactr a bioregistry.schema:0000001 ;
     rdfs:label "Pan African Clinical Trials Registry" ;
@@ -48286,6 +48374,18 @@ bioregistry:rpcec a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://rpcec.sld.cu/en/trials/"^^xsd:string ;
     bioregistry.schema:0000027 rpcec:RPCEC00000423 ;
     bioregistry.schema:0000029 "rpcec" .
+
+bioregistry:rubygems a bioregistry.schema:0000001 ;
+    rdfs:label "RubyGems" ;
+    dcterms:description "A repository of software packages written in Ruby."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://rubygems.org> ;
+    bioregistry.schema:0000005 "bel"^^xsd:string ;
+    bioregistry.schema:0000006 "https://rubygems.org/gems/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://rubygems.org/gems/"^^xsd:string ;
+    bioregistry.schema:0000027 rubygems:bel ;
+    bioregistry.schema:0000029 "rubygems" .
 
 bioregistry:rxnorm a bioregistry.schema:0000001 ;
     rdfs:label "RxNorm" ;
@@ -53974,6 +54074,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cordis.article,
         bioregistry:cosmic.cell,
         bioregistry:cp,
+        bioregistry:cran,
+        bioregistry:crates,
         bioregistry:credit,
         bioregistry:ctcae,
         bioregistry:ctis,
@@ -54193,12 +54295,14 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:nlx.dys,
         bioregistry:novus,
         bioregistry:npass,
+        bioregistry:npm,
         bioregistry:npo,
         bioregistry:nrfc,
         bioregistry:nsc,
         bioregistry:nsf.award,
         bioregistry:nucc.characteristic,
         bioregistry:nucc.taxonomy,
+        bioregistry:nztcs,
         bioregistry:oa,
         bioregistry:oban,
         bioregistry:oboinowl,
@@ -54212,6 +54316,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:oslc,
         bioregistry:owl,
         bioregistry:owlstar,
+        bioregistry:packagist,
         bioregistry:pactr,
         bioregistry:panorama,
         bioregistry:pathbank,
@@ -54256,6 +54361,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:rnamod,
         bioregistry:rpcec,
         bioregistry:rtecs,
+        bioregistry:rubygems,
         bioregistry:rxnorm,
         bioregistry:sael,
         bioregistry:salk,
@@ -54475,6 +54581,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P5299,
         wikidata:P5458,
         wikidata:P5501,
+        wikidata:P5565,
         wikidata:P557,
         wikidata:P563,
         wikidata:P5683,
@@ -54531,6 +54638,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P932,
         wikidata:P938,
         wikidata:P9405,
+        wikidata:P9889,
         wikidata:Q111516803 ;
     foaf:homepage "https://www.wikidata.org" ;
     bioregistry.schema:0000005 "P683" ;
@@ -60235,6 +60343,8 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cp,
         bioregistry:cpc,
         bioregistry:cpt,
+        bioregistry:cran,
+        bioregistry:crates,
         bioregistry:credit,
         bioregistry:crisprdb,
         bioregistry:cro,
@@ -61055,6 +61165,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:norine,
         bioregistry:novus,
         bioregistry:npass,
+        bioregistry:npm,
         bioregistry:npo,
         bioregistry:nrfc,
         bioregistry:nsc,
@@ -61065,6 +61176,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nucleardb,
         bioregistry:nucleotide,
         bioregistry:nxr,
+        bioregistry:nztcs,
         bioregistry:oa,
         bioregistry:oae,
         bioregistry:oarcs,
@@ -61147,6 +61259,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:owlstar,
         bioregistry:p3db.protein,
         bioregistry:p3db.site,
+        bioregistry:packagist,
         bioregistry:pactr,
         bioregistry:paleodb,
         bioregistry:pandit,
@@ -61347,6 +61460,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:rrrc,
         bioregistry:rs,
         bioregistry:rtecs,
+        bioregistry:rubygems,
         bioregistry:runbiosimulations,
         bioregistry:rxno,
         bioregistry:rxnorm,

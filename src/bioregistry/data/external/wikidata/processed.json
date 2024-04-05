@@ -123,7 +123,7 @@
     "name": "Z\u00fcrich Herbaria collector ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P10168",
-    "uri_format": "https://www.herbarien.uzh.ch/en/herbarien-zzt/sammler-details.html?id=$1"
+    "uri_format": "https://www.herbarien.uzh.ch/de/herbarien-zzt/sammler-details.html?id=$1"
   },
   "P1019": {
     "database": "Q842397",
@@ -1868,9 +1868,9 @@
   "P12183": {
     "description": "identifier for species and subspecies of the flora and fauna of Japan in the Search System of Japanese Red Data",
     "example": [
-      "01030010089",
       "13067",
-      "3321"
+      "3321",
+      "89"
     ],
     "homepage": "http://jpnrdb.com",
     "name": "Search System of Japanese Red Data ID",
@@ -4574,7 +4574,7 @@
     "uri_format": "http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$1"
   },
   "P353": {
-    "description": "The official gene symbol approved by the HGNC, which is typically a short form of the gene name.",
+    "description": "the official gene symbol approved by the HGNC, which is typically a short form of the gene name",
     "example": [
       "ACHE",
       "RELN"
@@ -4587,7 +4587,7 @@
     "uri_format": "https://www.genenames.org/tools/search/#!/all?query=$1"
   },
   "P354": {
-    "description": "A unique ID provided by the HGNC for each gene with an approved symbol. HGNC IDs remain stable even if a name or symbol changes.",
+    "description": "a unique ID provided by the HGNC for each gene with an approved symbol. HGNC IDs remain stable even if a name or symbol changes",
     "example": [
       "108",
       "9957"
@@ -6234,6 +6234,17 @@
     "pattern": "^10.\\d{4,9}\\/[-._;()\\/:A-Za-z0-9]+$",
     "prefix": "P5530",
     "uri_format": "https://www.altmetric.com/details/doi/$1"
+  },
+  "P5565": {
+    "description": "name of a project in CRAN",
+    "example": [
+      "RGtk2",
+      "knitr",
+      "qdap"
+    ],
+    "name": "CRAN project",
+    "prefix": "P5565",
+    "uri_format": "https://CRAN.R-project.org/package=$1"
   },
   "P557": {
     "description": "identifier sourced on the Diseases Database",

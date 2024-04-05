@@ -9662,10 +9662,16 @@ commoncoreontology:
   repository: https://github.com/CommonCoreOntology/CommonCoreOntologies
   uri_format: http://www.ontologyrepository.com/CommonCoreOntologies/$1
 complexportal:
+  contact:
+    email: bmeldal@ebi.ac.uk
+    github: bmeldal-eg
+    name: Birgit Meldal
+    orcid: 0000-0003-4062-6158
   description: A database that describes manually curated macromolecular complexes
     and provides links to details about these complexes in other databases.
   example: CPX-263
   homepage: https://www.ebi.ac.uk/complexportal
+  license: CC0-1.0
   mappings:
     biocontext: COMPLEXPORTAL
     biolink: ComplexPortal
@@ -10197,6 +10203,32 @@ cpt:
   synonyms:
   - ama-cpt
   uri_format: https://www.aapc.com/codes/cpt-codes/$1
+cran:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Repository of packages for the R programming language
+  example: ggplot2
+  homepage: https://cran.r-project.org/
+  mappings:
+    wikidata: P5565
+  name: The Comprehensive R Archive Network
+  preferred_prefix: cran
+  uri_format: https://cran.r-project.org/web/packages/$1
+crates:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A repository of software packages written in Rust.
+  example: curies
+  homepage: https://crates.io
+  name: Crates.io
+  preferred_prefix: crates
+  uri_format: https://crates.io/crates/$1
 credit:
   contact:
     email: info@casrai.org
@@ -18761,6 +18793,7 @@ fplx:
   homepage: https://sorgerlab.github.io/famplex/
   keywords:
   - ontology
+  license: CC0-1.0
   mappings:
     aberowl: FPLX
     biocontext: FPLX
@@ -36522,6 +36555,21 @@ npass:
   name: Natural Product Activity and Species Source Database
   pattern: ^NPC\d+$
   preferred_prefix: npass
+npm:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A repository of software packages written in Javascript, TypeScript,
+    and related.
+  example: '@biopragmatics/curies'
+  example_extras:
+  - ansi-pad
+  homepage: https://www.npmjs.com
+  name: Node Package Manager
+  preferred_prefix: npm
+  uri_format: https://www.npmjs.com/package/$1
 npo:
   contact:
     email: nathan.baker@pnnl.gov
@@ -36768,6 +36816,32 @@ nxr:
   pattern: ^\d+$
   preferred_prefix: nxr
   uri_format: https://scicrunch.org/resolver/RRID:NXR_$1
+nztcs:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - github: SumirHPandit
+    name: Sumir Pandit
+    orcid: 0000-0002-1216-4761
+  description: identifier for species classified under the New Zealand Threat Classification
+    System
+  example: '11061'
+  homepage: https://nztcs.org.nz/
+  keywords:
+  - taxon
+  - taxonomy
+  license: CC-BY-4.0
+  mappings:
+    wikidata: P9889
+  name: New Zealand Threat Classification System
+  pattern: ^[1-9]\d{3,7}$
+  preferred_prefix: nztcs
+  references:
+  - https://github.com/biopragmatics/bioregistry/pull/1083
+  uri_format: https://nztcs.org.nz/nztcs-species/$1
 oa:
   contributor:
     email: cthoyt@gmail.com
@@ -39632,6 +39706,18 @@ p3db.site:
   pattern: ^\d+$
   preferred_prefix: p3db.site
   uri_format: http://www.p3db.org/phosphosite.php?id=$1&ref=0
+packagist:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A repository of software packages written in PHP.
+  example: florianv/swap
+  homepage: https://packagist.org
+  name: Packagist
+  preferred_prefix: packagist
+  uri_format: https://packagist.org/packages/$1
 pactr:
   contributor:
     email: cthoyt@gmail.com
@@ -46917,6 +47003,18 @@ rtecs:
   references:
   - https://www.cdc.gov/niosh/docs/97-119/pdfs/97-119.pdf
   - https://www.cdc.gov/niosh/npg/npgdrtec.html
+rubygems:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A repository of software packages written in Ruby.
+  example: bel
+  homepage: https://rubygems.org
+  name: RubyGems
+  preferred_prefix: rubygems
+  uri_format: https://rubygems.org/gems/$1
 runbiosimulations:
   description: runBioSimulations is a platform for sharing simulation experiments
     and their results. runBioSimulations enables investigators to use a wide range
@@ -47513,6 +47611,7 @@ schem:
   - bel
   - chemistry
   - selventa
+  license: Apache-2.0
   name: Selventa Chemicals
   pattern: ^A\d{4}$
   preferred_prefix: schem
@@ -47593,6 +47692,7 @@ scomp:
   - bel
   - protein complexes
   - selventa
+  license: Apache-2.0
   name: Selventa Complexes
   pattern: ^C\d{4}$
   preferred_prefix: scomp
@@ -47998,6 +48098,7 @@ sdis:
   - bel
   - diseases
   - selventa
+  license: Apache-2.0
   name: Selventa Diseases
   pattern: ^D\d{4}$
   preferred_prefix: sdis
@@ -48263,6 +48364,7 @@ sfam:
   - bel
   - protein families
   - selventa
+  license: Apache-2.0
   name: Selventa Families
   pattern: ^F\d{4}$
   preferred_prefix: sfam
@@ -55962,6 +56064,7 @@ wikidata:
   - metabolomics
   - proteomics
   - subject agnostic
+  license: CC0-1.0
   mappings:
     bartoc: '1940'
     biocontext: WIKIDATA
@@ -56003,6 +56106,7 @@ wikidata.property:
     projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others. '
   example: P4355
   homepage: https://www.wikidata.org
+  license: CC0-1.0
   mappings:
     biocontext: WD_Prop
     biolink: WIKIDATA_PROPERTY
