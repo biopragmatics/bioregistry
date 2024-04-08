@@ -18154,6 +18154,24 @@ bioregistry:slm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 slm:000000341 ;
     bioregistry.schema:0000029 "slm" .
 
+bioregistry:slso a bioregistry.schema:0000001 ;
+    rdfs:label "Space Life Sciences Ontology" ;
+    dcterms:description "The Space Life Sciences Ontology is an application ontology and is intended to support the operation of NASA's Life Sciences Data Archive and other systems that contain space life science research data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/nasa/LSDAO> ;
+    skos:exactMatch ontobee:SLSO,
+        obofoundry:slso ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/nasa/LSDAO> ;
+    bioregistry.schema:0000005 "0000000"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SLSO_$1"^^xsd:string ;
+    bioregistry.schema:0000010 obo:slso.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4312-9552 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/SLSO_"^^xsd:string ;
+    bioregistry.schema:0000029 "slso" .
+
 bioregistry:smart a bioregistry.schema:0000001 ;
     rdfs:label "Simple Modular Architecture Research Tool" ;
     dcterms:description "The Simple Modular Architecture Research Tool (SMART) is an online tool for the identification and annotation of protein domains, and the analysis of domain architectures."^^xsd:string ;
@@ -21644,9 +21662,6 @@ orcid:0000-0003-4221-7956 rdfs:label "Michael Witt" ;
 orcid:0000-0003-4308-6337 rdfs:label "Ana Rath" ;
     foaf:mbox "ordo.orphanet@inserm.fr" .
 
-orcid:0000-0003-4312-9552 rdfs:label "Daniel C. Berrios" ;
-    foaf:mbox "daniel.c.berrios@nasa.gov" .
-
 orcid:0000-0003-4333-1857 rdfs:label "Tuan Amith" ;
     foaf:mbox "muamith@utmb.edu" .
 
@@ -23228,6 +23243,8 @@ ontobee:SEPIO dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:SIBO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:SIO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+ontobee:SLSO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:SO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
@@ -40342,6 +40359,10 @@ orcid:0000-0003-3162-7490 rdfs:label "Wasila Dahdul" ;
 orcid:0000-0003-3604-3785 rdfs:label "Dongsheng Cao" ;
     foaf:mbox "oriental-cds@163.com" .
 
+orcid:0000-0003-4312-9552 rdfs:label "Dan Berrios",
+        "Daniel C. Berrios" ;
+    foaf:mbox "daniel.c.berrios@nasa.gov" .
+
 orcid:0000-0003-4525-7793 rdfs:label "Silvio C.E. Tosatto" ;
     foaf:mbox "silvio.tosatto@unipd.it" .
 
@@ -44037,6 +44058,8 @@ obofoundry:sep dcterms:isPartOf bioregistry.metaresource:obofoundry .
 obofoundry:sepio dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:sibo dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
+obofoundry:slso dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:so dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -55268,6 +55291,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:SEPIO,
         ontobee:SIBO,
         ontobee:SIO,
+        ontobee:SLSO,
         ontobee:SO,
         ontobee:SPD,
         ontobee:STATO,
@@ -55530,6 +55554,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:sep,
         obofoundry:sepio,
         obofoundry:sibo,
+        obofoundry:slso,
         obofoundry:so,
         obofoundry:sopharm,
         obofoundry:spd,
@@ -61539,6 +61564,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:slctr,
         bioregistry:slkbase,
         bioregistry:slm,
+        bioregistry:slso,
         bioregistry:smart,
         bioregistry:smid,
         bioregistry:smiles,
