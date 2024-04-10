@@ -21,7 +21,6 @@
 
 {% set mastodon = resource.get_mastodon() %}
 {% set mastodon_url = resource.get_mastodon_url() %}
-{% set twitter = resource.get_twitter() %}
 {% set keywords = resource.get_keywords() %}
 
 {% macro get_banana_text() %}
@@ -215,11 +214,6 @@
                     {% if mastodon %}
                         <a class="badge badge-pill badge-light" href="{{ mastodon_url }}">
                             <i class="fab fa-mastodon"></i> @{{ mastodon }}
-                        </a>
-                    {% endif %}
-                    {% if twitter %}
-                        <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
-                            <i class="fab fa-twitter"></i> @{{ twitter }}
                         </a>
                     {% endif %}
                 </dd>
