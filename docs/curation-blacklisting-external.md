@@ -9,7 +9,7 @@ excluded from the Bioregistry.
 
 > **Warning **
 > This is a first draft of a tutorial on explicitly curating non-alignments.
-> It's subject to change and additiona polishing.
+> It's subject to change and additional polishing.
 
 1. Identify a prefix of interest from BioPortal (or another) curation
    sheet (e.g., [here](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/external/bioportal/curation.tsv))
