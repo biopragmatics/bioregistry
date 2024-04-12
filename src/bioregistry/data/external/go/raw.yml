@@ -815,24 +815,30 @@
   generic_urls:
     - http://flybase.org/
   entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      id_syntax: '[0-9]{8}'
-      url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:[example_id]
-      example_id: FBbt:00005177
-      example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:00005177
     - type_name: cell
       type_id: GO:0005623
       id_syntax: '[0-9]{8}'
       url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:[example_id]
       example_id: FBbt:00007002
       example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:00007002
-    - type_name: metazoan anatomical entity
+    - type_name: anatomical entity
       type_id: UBERON:0001062
       id_syntax: '[0-9]{8}'
       url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:[example_id]
       example_id: FBbt:10000000
       example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:10000000
+- database: FBdv
+  name: Drosophila development
+  rdf_uri_prefix: http://purl.obolibrary.org/obo/FBdv_
+  generic_urls:
+    - http://flybase.org/
+  entity_types:
+    - type_name: life cycle stage
+      type_id: UBERON:0000105
+      id_syntax: '[0-9]{8}'
+      url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBdv:[example_id]
+      example_id: FBdv:00007012
+      example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBdv:00007012
 - database: FMA
   name: Foundational Model of Anatomy
   rdf_uri_prefix: http://purl.obolibrary.org/obo/FMA_
@@ -2883,7 +2889,7 @@
       url_syntax: http://www.wormbase.org/get?name=[example_id]
       example_id: WBbt:0005792
       example_url: http://www.wormbase.org/get?name=WBbt:0005792
-    - type_name: metazoan anatomical entity
+    - type_name: anatomical entity
       type_id: UBERON:0001062
       id_syntax: '[0-9]{7}'
       url_syntax: http://www.wormbase.org/get?name=[example_id]

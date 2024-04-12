@@ -1113,9 +1113,12 @@
     "homepage": "https://github.com/berkeleybop/artificial-intelligence-ontology",
     "keywords": [
       "artificial intelligence",
+      "computational biology",
       "hidden markov model",
       "knowledge representation",
       "machine learning",
+      "natural language processing",
+      "network model",
       "ontology"
     ],
     "mappings": {
@@ -1125,6 +1128,13 @@
     },
     "name": "The Artificial Intelligence Ontology",
     "preferred_prefix": "aio",
+    "publications": [
+      {
+        "doi": "10.48550/arxiv.2404.03044",
+        "title": "The Artificial Intelligence Ontology: LLM-assisted construction of AI concept hierarchies",
+        "year": 2024
+      }
+    ],
     "repository": "https://github.com/berkeleybop",
     "reviewer": {
       "email": "benjamin_gyori@hms.harvard.edu",
@@ -7987,6 +7997,7 @@
     "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "CHMO",
+      "bartoc": "20509",
       "biocontext": "CHMO",
       "bioportal": "CHMO",
       "fairsharing": "FAIRsharing.9j4wh2",
@@ -8520,7 +8531,7 @@
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2024-02-13"
+    "version": "2024-04-05"
   },
   "clao": {
     "contact": {
@@ -9008,7 +9019,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.206"
+    "version": "2.207"
   },
   "cmpo": {
     "contact": {
@@ -15651,6 +15662,7 @@
     "logo": "https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/ecto-logos/ecto-logo_black-banner.png",
     "mappings": {
       "aberowl": "ECTO",
+      "agroportal": "ECTO",
       "biolink": "ECTO",
       "bioportal": "ECTO",
       "fairsharing": "FAIRsharing.6b77ac",
@@ -39953,6 +39965,7 @@
     "license": "CC0-1.0",
     "mappings": {
       "aberowl": "OBA",
+      "agroportal": "OBA",
       "biocontext": "OBA",
       "bioportal": "OBA",
       "fairsharing": "FAIRsharing.mp0rwf",
@@ -48746,6 +48759,20 @@
     "uri_format": "https://www.re3data.org/repository/$1"
   },
   "reactome": {
+    "contact": {
+      "email": "deustp01@med.nyu.edu",
+      "github": "deustp01",
+      "name": "Peter D'Eustachio",
+      "orcid": "0000-0002-5494-626X"
+    },
+    "contributor_extras": [
+      {
+        "email": "smoxon@lbl.gov",
+        "github": "sierra-moxon",
+        "name": "Sierra Moxon",
+        "orcid": "0000-0002-8719-7760"
+      }
+    ],
     "description": "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology.",
     "example": "R-BTA-418592",
     "homepage": "https://www.reactome.org/",
@@ -48779,6 +48806,13 @@
         "uri_format": "http://bio2rdf.org/reactome:$1"
       },
       {
+        "code": "browser",
+        "description": "An interactive view over pathways.",
+        "homepage": "https://reactome.org/PathwayBrowser/",
+        "name": "Reactome Pathway Browser",
+        "uri_format": "https://reactome.org/PathwayBrowser/#/$1"
+      },
+      {
         "code": "pathwaycommons",
         "description": "Pathway diagram drawn with Cytoscape",
         "homepage": "https://www.pathwaycommons.org",
@@ -48795,9 +48829,13 @@
         "year": 2005
       }
     ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1086"
+    ],
     "synonyms": [
       "RE",
-      "REACT"
+      "REACT",
+      "reactome.pathway"
     ],
     "uri_format": "https://reactome.org/content/detail/$1"
   },
@@ -61326,7 +61364,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.161"
+    "version": "4.162"
   },
   "xenbase": {
     "contact": {

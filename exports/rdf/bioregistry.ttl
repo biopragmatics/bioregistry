@@ -325,8 +325,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -21294,6 +21294,9 @@ orcid:0000-0002-5317-1458 rdfs:label "Jeet Vora" ;
 orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
     foaf:mbox "Maciej.Antczak@cs.put.poznan.pl" .
 
+orcid:0000-0002-5494-626X rdfs:label "Peter D'Eustachio" ;
+    foaf:mbox "deustp01@med.nyu.edu" .
+
 orcid:0000-0002-5520-6597 rdfs:label "Imke Tammen" ;
     foaf:mbox "imke.tammen@sydney.edu.au" .
 
@@ -22462,6 +22465,8 @@ agroportal:CO_366 dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:CO_370 dcterms:isPartOf bioregistry.registry:agroportal .
 
+agroportal:ECTO dcterms:isPartOf bioregistry.registry:agroportal .
+
 agroportal:EDAM dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:EFO dcterms:isPartOf bioregistry.registry:agroportal .
@@ -22491,6 +22496,8 @@ agroportal:LBO dcterms:isPartOf bioregistry.registry:agroportal .
 agroportal:LPT dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:NCBITAXON dcterms:isPartOf bioregistry.registry:agroportal .
+
+agroportal:OBA dcterms:isPartOf bioregistry.registry:agroportal .
 
 agroportal:OM dcterms:isPartOf bioregistry.registry:agroportal .
 
@@ -23911,6 +23918,8 @@ bartoc:20464 dcterms:isPartOf bioregistry.registry:bartoc .
 bartoc:20466 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:20474 dcterms:isPartOf bioregistry.registry:bartoc .
+
+bartoc:20509 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:2053 dcterms:isPartOf bioregistry.registry:bartoc .
 
@@ -28874,9 +28883,12 @@ bioregistry:aio a bioregistry.schema:0000001 ;
         bioportal:AIO,
         fairsharing:FAIRsharing.8d6247 ;
     dcat:keyword "artificial intelligence",
+        "computational biology",
         "hidden markov model",
         "knowledge representation",
         "machine learning",
+        "natural language processing",
+        "network model",
         "ontology" ;
     foaf:homepage <https://github.com/berkeleybop/artificial-intelligence-ontology> ;
     bioregistry.schema:0000005 "Causal_Graphical_Model"^^xsd:string ;
@@ -34990,6 +35002,7 @@ bioregistry:oba a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/obophenotype/bio-attribute-ontology> ;
     skos:exactMatch aberowl:OBA,
+        agroportal:OBA,
         ontobee:OBA,
         bioportal:OBA,
         biocontext:OBA,
@@ -36259,8 +36272,10 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://reactome.org/content/detail/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5494-626X ;
     bioregistry.schema:0000023 "RE",
-        "REACT" ;
+        "REACT",
+        "reactome.pathway" ;
     bioregistry.schema:0000024 "https://reactome.org/content/detail/"^^xsd:string ;
     bioregistry.schema:0000027 reactome:R-BTA-418592 ;
     bioregistry.schema:0000029 "reactome" .
@@ -45569,7 +45584,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -49360,6 +49375,7 @@ bioregistry:chmo a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/rsc-ontologies/rsc-cmo> ;
     skos:exactMatch aberowl:CHMO,
         ontobee:CHMO,
+        bartoc:20509,
         bioportal:CHMO,
         biocontext:CHMO,
         fairsharing:FAIRsharing.9j4wh2,
@@ -51846,6 +51862,7 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/EnvironmentOntology/environmental-exposure-ontology> ;
     skos:exactMatch aberowl:ECTO,
+        agroportal:ECTO,
         ontobee:ECTO,
         bioportal:ECTO,
         biolink:ECTO,
@@ -53059,6 +53076,7 @@ bioregistry.registry:bartoc a bioregistry.schema:0000002 ;
         bartoc:20464,
         bartoc:20466,
         bartoc:20474,
+        bartoc:20509,
         bartoc:2053,
         bartoc:2054,
         bartoc:216,
@@ -53194,6 +53212,7 @@ bioregistry.registry:agroportal a bioregistry.schema:0000002 ;
         agroportal:CO_365,
         agroportal:CO_366,
         agroportal:CO_370,
+        agroportal:ECTO,
         agroportal:EDAM,
         agroportal:EFO,
         agroportal:ENVO,
@@ -53209,6 +53228,7 @@ bioregistry.registry:agroportal a bioregistry.schema:0000002 ;
         agroportal:LBO,
         agroportal:LPT,
         agroportal:NCBITAXON,
+        agroportal:OBA,
         agroportal:OM,
         agroportal:ONS,
         agroportal:PATO,
