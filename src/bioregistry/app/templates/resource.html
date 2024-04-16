@@ -58,6 +58,9 @@
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}
+                        <span type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="This name annotation comes from {{ name_source_name }} and is redistributed under the {{ name_source_license }}.">
+                          <i class="fas fa-book"></i>
+                        </span>
                         {{ utils.render_resource_warnings(resource) }}
                     </h5>
                 </div>
