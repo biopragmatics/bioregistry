@@ -62,9 +62,16 @@ def export_warnings():
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
+        and not bioregistry.has_no_terms(prefix)
     )
-    missing_pattern = _g(lambda prefix: bioregistry.get_pattern(prefix) is None)
-    missing_format_url = _g(lambda prefix: bioregistry.get_uri_format(prefix) is None)
+    missing_pattern = _g(
+        lambda prefix: bioregistry.get_pattern(prefix) is None
+        and not bioregistry.has_no_terms(prefix)
+    )
+    missing_format_url = _g(
+        lambda prefix: bioregistry.get_uri_format(prefix) is None
+        and not bioregistry.has_no_terms(prefix)
+    )
     missing_example = _g(
         lambda prefix: bioregistry.get_example(prefix) is None
         and not bioregistry.has_no_terms(prefix)
