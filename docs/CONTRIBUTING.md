@@ -3,6 +3,7 @@ layout: page
 title: Contributing
 permalink: /contributing/
 ---
+
 Contributions to the Bioregistry are welcomed and encouraged. Thanks for
 considering to participate.
 
@@ -25,14 +26,14 @@ There are several ways to request a new prefix in the Bioregistry:
    possible (e.g., name, homepage, format URL pattern, example identifier,
    pattern). Don't worry if you don't understand everything, our Review Team
    will guide you through the process.
-2. Add an entry yourself
+2. ~Add an entry yourself
    by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   in GitHub through the web browser. As the Bioregistry is getting bigger, this
-   is becoming more of an issue, so might not always be possible.
+   in GitHub through the web browser.~ As the Bioregistry has surpassed the size limit of in-browser editing on GitHub,
+   this is no longer possible.
 3. Make a pull request directly to the upstream repository
-   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
-4. Get in touch with us informally on
-   Twitter [@bioregistry](https://twitter.com/bioregistry)
+   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry). Make sure that you
+   run `tox -e bioregistry-lint` from the shell after editing the source JSON files in order to canonically order the
+   data.
 
 ### Submitting New Prefixes
 
@@ -236,8 +237,6 @@ There are several ways to update a prefix's record in the Bioregistry:
    is becoming more of an issue, so might not always be possible.
 3. Make a pull request directly to the upstream repository
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
-4. Get in touch with us informally on
-   Twitter [@bioregistry](https://twitter.com/bioregistry)
 
 #### Who can edit an existing prefix's record
 
