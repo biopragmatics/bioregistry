@@ -85,14 +85,14 @@ https://github.com/biopragmatics/bioregistry/issues/158.
    should correspond to the name of the resource they are minted for. Most
    commonly, people use acronyms.)
 2. Multiple prefixes will not be issued for multiple versions of a resource (
-   e.g., the fact that there is a mesh.2012 and mesh.2013 prefix registered in
+   e.g., the fact that there is a `mesh.2012` and `mesh.2013` prefix registered in
    Identifiers.org was a huge mistake and causes massive confusion)
 3. Prefixes must not be too generic or common entity types like gene or
    chemical. Reviewers will use their best judgment since it's hard to list all
-   possible generic entity types. For example, gene would be bad while hgnc.gene
+   possible generic entity types. For example, gene would be bad while `hgnc.gene`
    would be better.
 4. Subspacing should not be used unnecessarily, i.e., when a nomenclature only
-   has one entity type. For example, chebi.chemical would be bad while chebi
+   has one entity type. For example, `chebi.chemical` would be bad while `chebi`
    would be better.
 5. Prefixes should not end in "O" for "Ontology", "T" for "Terminology" or any
    letters denoting related words about vocabularies
@@ -232,11 +232,13 @@ There are several ways to update a prefix's record in the Bioregistry:
    requested information. If no template exists for your update, feel free to
    fill out a blank issue. We will help make the update and attribute you
    properly.
-2. Edit an entry yourself by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   in GitHub through the web browser. As the Bioregistry is getting bigger, this
-   is becoming more of an issue, so might not always be possible.
+2. ~Edit an entry yourself by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   in GitHub through the web browser.~ As the Bioregistry has surpassed the size limit of in-browser editing on GitHub,
+   this is no longer possible.
 3. Make a pull request directly to the upstream repository
-   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
+   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry). Make sure that you
+   run `tox -e bioregistry-lint` from the shell after editing the source JSON files in order to
+   canonically order the data.
 
 #### Who can edit an existing prefix's record
 
@@ -303,10 +305,12 @@ model for code contributions. Follow these steps:
    on your GitHub account (or in one of your organizations)
 2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
    with `git clone https://github.com/<your namespace here>/bioregistry.git`
-3. Make and commit changes to your fork with `git commit`
-4. Push changes to your fork with `git push`
-5. Repeat steps 3 and 4 as needed
-6. Submit a pull request back to the upstream repository
+3. Make changes to the code
+4. Test that your code passes quality assurance by running `tox`
+5. Commit changes to your fork with `git commit`
+6. Push changes to your fork with `git push`
+7. Repeat steps 3-6 as needed
+8. Submit a pull request back to the upstream repository
 
 ### Merge Model
 
