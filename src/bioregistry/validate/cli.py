@@ -43,7 +43,12 @@ def jsonld(location: str, relax: bool):
 
     messages = validate_jsonld(obj, strict=not relax)
     for message in messages:
-        error, prefix, solution, level = message["error"], message["prefix"], message["solution"], message['level']
+        error, prefix, solution, level = (
+            message["error"],
+            message["prefix"],
+            message["solution"],
+            message["level"],
+        )
         click.secho(f"{prefix} - {error}", fg=LEVEL_TO_COLOR[level], nl=False)
         if solution:
             click.echo(" > " + solution)

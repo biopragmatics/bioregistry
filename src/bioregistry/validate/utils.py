@@ -21,17 +21,21 @@ def validate_jsonld(obj: Mapping[str, Mapping[str, str]], strict: bool = True):
     for prefix, uri_prefix in context.items():
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
-            messages.append({
-                "prefix": prefix,
-                "error": "invalid",
-                "solution": None,
-                "level": "error",
-            })
+            messages.append(
+                {
+                    "prefix": prefix,
+                    "error": "invalid",
+                    "solution": None,
+                    "level": "error",
+                }
+            )
         elif norm_prefix != prefix:
-            messages.append({
-                "prefix": prefix,
-                "error": "nonstandard",
-                "solution": f"Switch to standard prefix: {norm_prefix}",
-                "level": "error" if strict else "warning"
-            })
+            messages.append(
+                {
+                    "prefix": prefix,
+                    "error": "nonstandard",
+                    "solution": f"Switch to standard prefix: {norm_prefix}",
+                    "level": "error" if strict else "warning",
+                }
+            )
     return messages
