@@ -325,8 +325,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -1492,7 +1492,7 @@ bioregistry.schema:0000025 a rdfs:Class ;
 bioregistry.collection:0000002 a bioregistry.schema:0000003 ;
     rdfs:label "Semantic Web Context" ;
     dc:creator orcid:0000-0003-4423-4370 ;
-    dc:description "Resources used in the semantic web, inspired by [this list](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) in BioContext." ;
+    dc:description "Resources used in the semantic web, drawing from lists in [BioContext](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) and [LinkML](https://github.com/linkml/prefixmaps/blob/main/src/prefixmaps/data/linked_data.curated.yaml) as well as W3C recommendations." ;
     dcterms:hasPart bioregistry:ac,
         bioregistry:bibo,
         bioregistry:dc,
@@ -45594,7 +45594,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -48351,12 +48351,12 @@ bioregistry:rdf a bioregistry.schema:0000001 ;
         "subject agnostic",
         "w3c rec" ;
     foaf:homepage <http://www.w3.org/1999/02/22-rdf-syntax-ns> ;
-    bioregistry.schema:0000005 "RDF"^^xsd:string ;
+    bioregistry.schema:0000005 "type"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5699-0515 ;
     bioregistry.schema:0000024 "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:string ;
-    bioregistry.schema:0000027 rdf:RDF ;
+    bioregistry.schema:0000027 rdf:type ;
     bioregistry.schema:0000029 "rdf" .
 
 bioregistry:rebec a bioregistry.schema:0000001 ;
@@ -50984,6 +50984,7 @@ bioregistry:ncit a bioregistry.schema:0000001 ;
         "NCI2004_11_17",
         "NCIT",
         "NCIT_Thesaurus",
+        "NCIThesaurus",
         "NCITm",
         "NCITt",
         "NCI_Thesaurus",

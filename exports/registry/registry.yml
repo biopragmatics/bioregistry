@@ -21213,6 +21213,11 @@ go:
     github: suzialeksander
     name: Suzi Aleksander
     orcid: 0000-0001-6787-2901
+  contributor_extras:
+  - email: jmcl@ebi.ac.uk
+    github: jamesamcl
+    name: James Alastair McLaughlin
+    orcid: 0000-0002-8361-2795
   depends_on:
   - cl
   - ncbitaxon
@@ -21279,11 +21284,6 @@ go:
     homepage: http://www.informatics.jax.org/searches/GO_form.shtml
     name: GO Browser
     uri_format: http://www.informatics.jax.org/searches/GO.cgi?id=GO:$1
-  - code: CURATOR_REVIEW
-    description: GO through PANTHER
-    homepage: http://www.pantherdb.org/
-    name: GO through PANTHER
-    uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -21313,10 +21313,20 @@ go:
     homepage: https://www.nextprot.org/
     name: neXtProt GO Browser
     uri_format: https://www.nextprot.org/term/GO:$1
+  - code: pantherdb
+    description: GO Browser in PantherDB
+    homepage: http://www.pantherdb.org/panther
+    name: PatherDB
+    uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
   - code: quickgo
+    description: Gene Ontology browser from the EBI
+    homepage: https://www.ebi.ac.uk/QuickGO/
+    name: QuickGO
+    uri_format: https://www.ebi.ac.uk/QuickGO/term/GO:$1
+  - code: quickgo.legacy
     description: QuickGO (Gene Ontology browser)
     homepage: https://www.ebi.ac.uk/QuickGO/
-    name: QuickGO (Gene Ontology browser)
+    name: QuickGO (Legacy URL)
     uri_format: https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1
   publications:
   - doi: 10.1093/nar/gkaa1113
@@ -34814,6 +34824,7 @@ ncit:
   - NCI2004_11_17
   - NCIT
   - NCIT_Thesaurus
+  - NCIThesaurus
   - NCITm
   - NCITt
   - NCI_Thesaurus
@@ -45063,7 +45074,7 @@ rdf:
     orcid: 0000-0003-4423-4370
   description: This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace,
     defined in RDF 1.1 Concepts
-  example: RDF
+  example: type
   homepage: http://www.w3.org/1999/02/22-rdf-syntax-ns
   keywords:
   - computer science
