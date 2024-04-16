@@ -12,6 +12,7 @@ from bioregistry import (
     Resource,
     get_identifiers_org_curie,
     get_identifiers_org_iri,
+    get_resource,
     manager,
 )
 from bioregistry.constants import IDOT_BROKEN, MIRIAM_BLACKLIST
@@ -141,3 +142,27 @@ class TestIdentifiersOrg(unittest.TestCase):
                 self.assertEqual(f"https://identifiers.org/{curie}", url, msg="wrong URL")
 
                 self.assert_url(prefix, identifier)
+
+    def test_miriam_uri(self):
+        """Test URI generation."""
+        self.assertEqual(
+            "https://identifiers.org/taxonomy:", get_resource("ncbitaxon").get_miriam_uri_prefix()
+        )
+        self.assertEqual("https://identifiers.org/GO:", get_resource("go").get_miriam_uri_prefix())
+        self.assertEqual(
+            "https://identifiers.org/doid/DOID:",
+            get_resource("doid").get_miriam_uri_prefix(legacy_banana=True),
+        )
+        self.assertEqual(
+            "https://identifiers.org/vario/VariO:",
+            get_resource("vario").get_miriam_uri_prefix(legacy_banana=True),
+        )
+        self.assertEqual(
+            "https://identifiers.org/cellosaurus/CVCL_",
+            get_resource("cellosaurus").get_miriam_uri_prefix(legacy_banana=True),
+        )
+        self.assertEqual(
+            "https://identifiers.org/DOID/",
+            get_resource("doid").get_miriam_uri_prefix(legacy_delimiter=True),
+        )
+        self.assertIsNone(get_resource("sty").get_miriam_uri_prefix())

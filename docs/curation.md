@@ -52,9 +52,9 @@ that show relevant metadata to help curate each record as one of the following:
 1. Record corresponds to a prefix in the Bioregistry. Tutorial TBD.
 2. Record is relevant but does not have a corresponding prefix in the
    Bioregistry. See the tutorial
-   on [importing external prefixes](/curation/import-external).
+   on [importing external prefixes](curation/import-external).
 3. Record is irrelevant for the bioregistry. See the tutorial
-   on [curating explicit prefix blacklists](/curation/blacklist-external).
+   on [curating explicit prefix blacklists](curation/blacklist-external).
 
 <table>
 <thead>

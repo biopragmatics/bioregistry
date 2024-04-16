@@ -18,6 +18,7 @@ __all__ = [
     "get_obofoundry_example",
 ]
 
+
 logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "obofoundry"
@@ -30,13 +31,13 @@ SKIP = {
 }
 
 
-def get_obofoundry(force_download: bool = False):
+def get_obofoundry(force_download: bool = False, force_process: bool = False):
     """Get the OBO Foundry registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=True)
+    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = yaml.full_load(file)
 
@@ -56,7 +57,7 @@ def get_obofoundry(force_download: bool = False):
 
 
 def _process(record):
-    for key in ("browsers", "usages", "depicted_by", "build", "layout", "taxon"):
+    for key in ("browsers", "usages", "build", "layout", "taxon"):
         if key in record:
             del record[key]
 
@@ -98,6 +99,12 @@ def _process(record):
         elif product["id"] == f"{oid}.owl":
             rv["download.owl"] = product["ontology_purl"]
 
+    logo = record.get("depicted_by")
+    if logo:
+        if logo.startswith("/images/"):
+            logo = f"https://obofoundry.org{logo}"
+        rv["logo"] = logo
+
     return {k: v for k, v in rv.items() if v is not None}
 
 
@@ -114,7 +121,7 @@ def get_obofoundry_example(prefix: str) -> Optional[str]:
 @click.command()
 def main():
     """Reload the OBO Foundry data."""
-    r = get_obofoundry(force_download=True)
+    r = get_obofoundry(force_download=False, force_process=True)
     click.echo(f"Got {len(r)} records")
 
 

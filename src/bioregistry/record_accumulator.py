@@ -18,8 +18,13 @@ from typing import (
 )
 
 import curies
+from curies import Converter
 
 from bioregistry import Resource
+
+__all__ = [
+    "get_converter",
+]
 
 logger = logging.getLogger(__name__)
 prefix_blacklist = {"bgee.gene"}
@@ -33,6 +38,7 @@ uri_prefix_blacklist = {
     "http://www.ncbi.nlm.nih.gov/nuccore/",
     "https://www.ebi.ac.uk/ena/data/view/",
     "http://www.ebi.ac.uk/ena/data/view/",
+    "http://arabidopsis.org/servlets/TairObject?accession=",
 }
 prefix_resource_blacklist = {
     ("orphanet", "http://www.orpha.net/ORDO/Orphanet_"),  # biocontext is wrong
@@ -103,7 +109,7 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str):
 #  (e.g., uniprot.isoform and uniprot)
 
 
-def get_records(  # noqa: C901
+def get_converter(
     resources: List[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
     uri_prefix_priority: Optional[Sequence[str]] = None,
@@ -111,10 +117,35 @@ def get_records(  # noqa: C901
     strict: bool = False,
     blacklist: Optional[Collection[str]] = None,
     remapping: Optional[Mapping[str, str]] = None,
+    rewiring: Optional[Mapping[str, str]] = None,
+) -> Converter:
+    """Generate a converter from resources."""
+    records = _get_records(
+        resources,
+        prefix_priority=prefix_priority,
+        uri_prefix_priority=uri_prefix_priority,
+        include_prefixes=include_prefixes,
+        strict=strict,
+        blacklist=blacklist,
+    )
+    converter = curies.Converter(records)
+    if remapping:
+        converter = curies.remap_curie_prefixes(converter, remapping)
+    if rewiring:
+        converter = curies.rewire(converter, rewiring)
+    return converter
+
+
+def _get_records(  # noqa: C901
+    resources: List[Resource],
+    prefix_priority: Optional[Sequence[str]] = None,
+    uri_prefix_priority: Optional[Sequence[str]] = None,
+    include_prefixes: bool = False,
+    strict: bool = False,
+    blacklist: Optional[Collection[str]] = None,
 ) -> List[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
-    remapping = dict(remapping or {})
     resource_dict: Mapping[str, Resource] = {
         resource.prefix: resource
         for resource in resources
@@ -125,9 +156,13 @@ def get_records(  # noqa: C901
         for resource in resource_dict.values()
     }
     primary_prefixes: Dict[str, str] = {
-        resource.prefix: remapping.get(resource.prefix)
-        or resource.get_priority_prefix(priority=prefix_priority)
+        resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
+    }
+    pattern_map = {
+        prefix: pattern
+        for prefix in primary_prefixes
+        if (pattern := resource_dict[prefix].get_pattern()) is not None
     }
     secondary_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
     secondary_uri_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
@@ -294,11 +329,14 @@ def get_records(  # noqa: C901
     records: Dict[str, curies.Record] = {}
     for prefix, primary_prefix in primary_prefixes.items():
         primary_uri_prefix = primary_uri_prefixes[prefix]
+        if not primary_prefix or not primary_uri_prefix:
+            continue
         records[prefix] = curies.Record(
             prefix=primary_prefix,
-            prefix_synonyms=sorted(secondary_prefixes[prefix] - {primary_prefix}),
+            prefix_synonyms=sorted(secondary_prefixes[prefix].union({prefix}) - {primary_prefix}),
             uri_prefix=primary_uri_prefix,
             uri_prefix_synonyms=sorted(secondary_uri_prefixes[prefix] - {primary_uri_prefix}),
+            pattern=pattern_map.get(prefix),
         )
 
     return [record for _, record in sorted(records.items())]

@@ -18,7 +18,6 @@ from .constants import (
     MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
-from .utils import extended_encoder
 
 logger = logging.getLogger(__name__)
 
@@ -57,7 +56,9 @@ def resources() -> List[Resource]:
 def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {prefix: Resource(prefix=prefix, **value) for prefix, value in data.items()}
+    for prefix, value in data.items():
+        value.setdefault("prefix", prefix)
+    return {prefix: Resource.parse_obj(value) for prefix, value in data.items()}
 
 
 def add_resource(resource: Resource) -> None:
@@ -123,12 +124,11 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
-            {"collections": values},
+            {"collections": [c.dict(exclude_none=True) for c in values]},
             file,
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=extended_encoder,
         )
 
 
@@ -138,7 +138,14 @@ def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = N
         path = BIOREGISTRY_PATH
     with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
-            registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
+            {
+                key: resource.dict(exclude_none=True, exclude={"prefix"})
+                for key, resource in registry.items()
+            },
+            file,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
         )
 
 
@@ -147,12 +154,11 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     values = [v for _, v in sorted(metaregistry.items())]
     with open(METAREGISTRY_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
-            {"metaregistry": values},
+            {"metaregistry": [m.dict(exclude_none=True) for m in values]},
             fp=file,
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=extended_encoder,
         )
 
 
@@ -160,12 +166,11 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
     """Write to contexts."""
     with open(CONTEXTS_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
-            contexts,
+            {key: context.dict(exclude_none=True) for key, context in contexts.items()},
             fp=file,
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=extended_encoder,
         )
 
 
@@ -227,6 +232,7 @@ def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, 
     return dict(rv)
 
 
+@lru_cache(1)
 def read_contexts() -> Mapping[str, Context]:
     """Get a mapping from context keys to contexts."""
     return _contexts_from_path(CONTEXTS_PATH)

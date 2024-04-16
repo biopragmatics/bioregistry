@@ -17,6 +17,7 @@
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
           "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
           "type": "string"
         },
         "email": {
@@ -43,7 +44,6 @@
         "identifier": {
           "title": "Identifier",
           "description": "The collection's identifier",
-          "pattern": "^\\d{7}$",
           "type": "string"
         },
         "name": {
@@ -74,7 +74,16 @@
         },
         "context": {
           "title": "Context",
+          "description": "The JSON-LD context's name",
           "type": "string"
+        },
+        "references": {
+          "title": "References",
+          "description": "URL references",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -112,7 +121,7 @@
         },
         "uri_format": {
           "title": "URI Format",
-          "description": "The URI format string, which must have at least one ``$1`` in it",
+          "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
           "type": "string"
         }
       },
@@ -137,6 +146,7 @@
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
           "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
           "type": "string"
         },
         "email": {
@@ -148,6 +158,37 @@
           "title": "GitHub handle",
           "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Organization": {
+      "title": "Organization",
+      "description": "Model for organizataions.",
+      "type": "object",
+      "properties": {
+        "ror": {
+          "title": "Research Organization Registry identifier",
+          "description": "ROR identifier for a record about the organization",
+          "type": "string"
+        },
+        "wikidata": {
+          "title": "Wikidata identifier",
+          "description": "Wikidata identifier for a record about the organization",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string"
+        },
+        "partnered": {
+          "title": "Partnered",
+          "description": "Has this organization made a specific connection with Bioregistry?",
+          "default": false,
+          "type": "boolean"
         }
       },
       "required": [
@@ -194,31 +235,36 @@
         "prefix": {
           "title": "Prefix",
           "description": "The prefix for this resource",
-          "integration_status": "required",
           "type": "string"
         },
         "name": {
           "title": "Name",
           "description": "The name of the resource",
-          "integration_status": "required",
           "type": "string"
         },
         "description": {
           "title": "Description",
           "description": "A description of the resource",
-          "integration_status": "required",
           "type": "string"
         },
         "pattern": {
           "title": "Pattern",
           "description": "The regular expression pattern for local unique identifiers in the resource",
-          "integration_status": "required_for_new",
           "type": "string"
         },
         "uri_format": {
           "title": "URI format string",
-          "description": "The URI format string, which must have at least one ``$1`` in it",
-          "integration_status": "required_for_new",
+          "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
+          "type": "string"
+        },
+        "uri_format_resolvable": {
+          "title": "URI format string resolvable",
+          "description": "If false, denotes if the URI format string is known to be not resolvable",
+          "type": "boolean"
+        },
+        "rdf_uri_format": {
+          "title": "RDF URI format string",
+          "description": "The RDF URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
           "type": "string"
         },
         "providers": {
@@ -232,7 +278,6 @@
         "homepage": {
           "title": "Homepage",
           "description": "The URL for the homepage of the resource, preferably using HTTPS",
-          "integration_status": "required",
           "type": "string"
         },
         "repository": {
@@ -243,17 +288,23 @@
         "contact": {
           "title": "Contact",
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
-          "integration_status": "suggested",
           "allOf": [
             {
               "$ref": "#/definitions/Attributable"
             }
           ]
         },
+        "owners": {
+          "title": "Owners",
+          "description": "The owner of the corresponding identifier space. See also https://github.com/biopragmatics/bioregistry/issues/755.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organization"
+          }
+        },
         "example": {
           "title": "Example",
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
-          "integration_status": "required",
           "type": "string"
         },
         "example_extras": {
@@ -400,8 +451,7 @@
         },
         "contributor": {
           "title": "Contributor",
-          "description": "The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow must contain this field.",
-          "integration_status": "required_for_new",
+          "description": "The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow must contain this field.",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -418,8 +468,7 @@
         },
         "reviewer": {
           "title": "Reviewer",
-          "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
-          "integration_status": "required_for_new",
+          "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -446,10 +495,20 @@
           "description": "The twitter handle for the project",
           "type": "string"
         },
+        "mastodon": {
+          "title": "Mastodon",
+          "description": "The mastodon handle for the project",
+          "type": "string"
+        },
         "github_request_issue": {
           "title": "Github Request Issue",
           "description": "The GitHub issue for the new prefix request",
           "type": "integer"
+        },
+        "logo": {
+          "title": "Logo",
+          "description": "The URL of the logo for the project/resource",
+          "type": "string"
         },
         "miriam": {
           "title": "Miriam",
@@ -544,7 +603,31 @@
           "type": "object"
         },
         "bartoc": {
-          "title": "Bartoc",
+          "title": "BARTOC",
+          "type": "object"
+        },
+        "rrid": {
+          "title": "RRID",
+          "type": "object"
+        },
+        "lov": {
+          "title": "LOV",
+          "type": "object"
+        },
+        "zazuko": {
+          "title": "Zazuko",
+          "type": "object"
+        },
+        "togoid": {
+          "title": "Togoid",
+          "type": "object"
+        },
+        "integbio": {
+          "title": "Integbio",
+          "type": "object"
+        },
+        "pathguide": {
+          "title": "Pathguide",
           "type": "object"
         }
       },
@@ -770,6 +853,7 @@
         },
         "comments": {
           "title": "Comments",
+          "description": "Optional additional comments about the registry's governance model",
           "type": "string"
         },
         "accepts_external_contributions": {

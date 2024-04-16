@@ -1,6 +1,6 @@
 {
   "3dmet": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "3DMET is a database collecting three-dimensional structures of natural metabolites.",
     "homepage": "http://www.3dmet.dna.affrc.go.jp/",
     "id": "00000066",
@@ -282,7 +282,7 @@
     "pattern": "^(ark\\:)/*[0-9A-Za-z]+(?:/[\\w/.=*+@\\$-]*)?(?:\\?.*)?$",
     "prefix": "ark",
     "sampleId": "/53355/cl010066723",
-    "uri_format": "http://n2t.net/ark:$1"
+    "uri_format": "https://n2t.net/ark:$1"
   },
   "arrayexpress": {
     "deprecated": false,
@@ -411,7 +411,7 @@
     "pattern": "^[a-zA-Z0-9_\\.]+$",
     "prefix": "assembly",
     "sampleId": "GCF_000005845.2",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/assembly/$1"
+    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
   },
   "atc": {
     "deprecated": false,
@@ -606,7 +606,7 @@
     "uri_format": "http://www.begdb.com/index.php?action=oneMolecule&state=show&id=$1"
   },
   "bgee.family": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to expression across species.",
     "homepage": "http://bgee.unil.ch/bgee/bgee",
     "id": "00000417",
@@ -619,18 +619,18 @@
   },
   "bgee.gene": {
     "deprecated": false,
-    "description": "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (RNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee.",
-    "homepage": "https://bgee.org/",
+    "description": "Bgee is a database to retrieve and compare gene expression patterns in multiple species, produced from multiple data types (bulk RNA-Seq, scRNA-Seq, Affymetrix, in situ hybridization, and EST data). This collection references genes in Bgee.",
+    "homepage": "https://www.bgee.org/",
     "id": "00000418",
     "name": "Bgee gene",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Za-z]+\\d+$",
+    "pattern": "^[A-Za-z0-9]+$",
     "prefix": "bgee.gene",
     "sampleId": "FBgn0000015",
-    "uri_format": "https://bgee.org/?page=gene&gene_id=$1"
+    "uri_format": "https://www.bgee.org/gene/$1"
   },
   "bgee.organ": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to anatomical structures.",
     "homepage": "http://bgee.unil.ch/bgee/bgee",
     "id": "00000420",
@@ -642,7 +642,7 @@
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organ_details&organ_id=$1&organ_children=on"
   },
   "bgee.stage": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Bgee is a database of gene expression patterns within particular anatomical structures within a species, and between different animal species. This collection refers to developmental stages.",
     "homepage": "http://bgee.unil.ch/bgee/bgee",
     "id": "00000419",
@@ -667,7 +667,7 @@
   },
   "bigg.metabolite": {
     "deprecated": false,
-    "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It more published genome-scale metabolic networks into a single database with a set of stardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references individual metabolotes.",
+    "description": "BiGG is a knowledgebase of Biochemically, Genetically and Genomically structured genome-scale metabolic network reconstructions. It published genome-scale metabolic networks into a single database with a set of standardized identifiers called BiGG IDs. Genes in the BiGG models are mapped to NCBI genome annotations, and metabolites are linked to many external databases (KEGG, PubChem, and many more). This collection references individual metabolites.",
     "homepage": "http://bigg.ucsd.edu/universal/metabolites",
     "id": "00000556",
     "name": "BiGG Metabolite",
@@ -760,6 +760,18 @@
     "prefix": "biogrid",
     "sampleId": "31623",
     "uri_format": "http://thebiogrid.org/$1"
+  },
+  "biokc": {
+    "deprecated": false,
+    "description": "BioKC (Biological Knowledge Curation), is a web-based collaborative platform for the curation and annotation of biomedical knowledge following the standard data model from Systems Biology Markup Language (SBML).",
+    "homepage": "https://wwwen.uni.lu/lcsb",
+    "id": "00000995",
+    "name": "BioKC",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "bkc[0-9]*",
+    "prefix": "biokc",
+    "sampleId": "bkc640",
+    "uri_format": "https://biokb.lcsb.uni.lu/fact/$1"
   },
   "biolink": {
     "deprecated": false,
@@ -876,7 +888,7 @@
   "bioproject": {
     "deprecated": false,
     "description": "BioProject provides an organizational framework to access metadata about research projects and the data from the projects that are deposited into different databases. It provides information about a project\u2019s scope, material, objectives, funding source and general relevance categories.",
-    "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
+    "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
     "id": "00000349",
     "name": "BioProject",
     "namespaceEmbeddedInLui": false,
@@ -884,22 +896,15 @@
     "prefix": "bioproject",
     "providers": [
       {
-        "code": "ncbi",
-        "description": "BioProject at NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
-        "name": "BioProject at NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
-      },
-      {
-        "code": "ebi",
-        "description": "BioProject at European Nucleotide Archive (ENA)",
-        "homepage": "https://www.ebi.ac.uk/ena/",
-        "name": "BioProject at European Nucleotide Archive (ENA)",
-        "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
+        "code": "CURATOR_REVIEW",
+        "description": "BioProject at DNA Data Bank of Japan",
+        "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
+        "name": "BioProject at DNA Data Bank of Japan",
+        "uri_format": "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1"
       }
     ],
     "sampleId": "PRJDB3",
-    "uri_format": "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1"
+    "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
   },
   "biosample": {
     "deprecated": false,
@@ -1076,14 +1081,14 @@
   "bto": {
     "deprecated": false,
     "description": "The Brenda tissue ontology is a structured controlled vocabulary eastablished to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/bto",
+    "homepage": "http://bioportal.bioontology.org/ontologies/BTO",
     "id": "00000111",
     "name": "Brenda Tissue Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^BTO:\\d{7}$",
     "prefix": "bto",
     "sampleId": "0000146",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/bto/terms?obo_id=BTO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/BTO/BTO:$1"
   },
   "bugbase.expt": {
     "deprecated": false,
@@ -1197,7 +1202,7 @@
       }
     ],
     "sampleId": "50-00-0",
-    "uri_format": "https://commonchemistry.cas.org/detail?ref=$1"
+    "uri_format": "https://commonchemistry.cas.org/detail?cas_rn=$1"
   },
   "cath": {
     "deprecated": false,
@@ -1305,7 +1310,7 @@
     "pattern": "^CCO:\\w+$",
     "prefix": "cco",
     "sampleId": "0000003",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cco/terms?obo_id=CCO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/cco/terms?obo_id=CCO:$1"
   },
   "cdd": {
     "deprecated": false,
@@ -1358,14 +1363,14 @@
   "cellrepo": {
     "deprecated": false,
     "description": "The Cell Version Control Repository is the single worldwide version control repository for engineered and natural cell lines",
-    "homepage": "https://cellrepo.ico2s.org/",
+    "homepage": "https://www.cellrepo.com/",
     "id": "00000829",
     "name": "Cell Version Control Repository",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[0-9]+$",
     "prefix": "cellrepo",
     "sampleId": "82",
-    "uri_format": "https://cellrepo.ico2s.org/repositories/$1"
+    "uri_format": "https://www.cellrepo.com/repositories/$1"
   },
   "cgd": {
     "deprecated": false,
@@ -1507,6 +1512,18 @@
     "sampleId": "57-27-2",
     "uri_format": "https://chem.nlm.nih.gov/chemidplus/rn/$1"
   },
+  "cheminf": {
+    "deprecated": false,
+    "description": "The chemical information ontology (cheminf) describes information entities about chemical entities. It provides qualitative and quantitative attributes to richly describe chemicals.",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/cheminf",
+    "id": "00001045",
+    "name": "Chemical Information Ontology",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^CHEMINF:\\d+$",
+    "prefix": "cheminf",
+    "sampleId": "000306",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/cheminf/classes?obo_id=CHEMINF:$1"
+  },
   "chemspider": {
     "deprecated": false,
     "description": "ChemSpider is a collection of compound data from across the web, which aggregates chemical structures and their associated information into a single searchable repository entry. These entries are supplemented with additional properties, related information and links back to original data sources.",
@@ -1642,14 +1659,14 @@
   "cl": {
     "deprecated": false,
     "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/cl",
+    "homepage": "http://bioportal.bioontology.org/ontologies/CL",
     "id": "00000110",
     "name": "Cell Type Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^CL:\\d{7}$",
     "prefix": "cl",
     "sampleId": "0000232",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/CL/CL:$1"
   },
   "classyfire": {
     "deprecated": false,
@@ -1750,7 +1767,7 @@
   "clo": {
     "deprecated": false,
     "description": "The Cell Line Ontology is a community-based ontology of cell lines. The CLO is developed to unify publicly available cell line entry data from multiple sources to a standardized logically defined format based on consensus design patterns.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/clo",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/clo",
     "id": "00000983",
     "name": "Cell Line Ontology",
     "namespaceEmbeddedInLui": false,
@@ -1766,7 +1783,19 @@
       }
     ],
     "sampleId": "0000091",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/clo/terms?short_form=CLO_$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/clo/terms?short_form=CLO_$1"
+  },
+  "cog": {
+    "deprecated": false,
+    "description": "Database of Clusters of Orthologous Genes (COGs). This database defines all orthologs of protein sequences coded by known genomes. The species name, protein name, and phylogenetic tree of orthologous clusters can be viewed through this site. Each cluster is comprised of individual proteins and its paralogs, matched to evolutionarily conserved molecular domains.",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00000930",
+    "name": "COG",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^COG[0-9]+$",
+    "prefix": "cog",
+    "sampleId": "COG1806",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/research/cog/cog/$1/"
   },
   "col": {
     "deprecated": false,
@@ -2005,6 +2034,18 @@
     "sampleId": "3305",
     "uri_format": "http://www.cellsignal.com/products/$1.html"
   },
+  "cstr": {
+    "deprecated": false,
+    "description": "CSTR is an identifier for Common Science and Technology Resources, to provide persistent identification services for the positioning, traceability, citation, statistics and evaluation of science and technology resources. ",
+    "homepage": "https://www.cstr.cn/en/",
+    "id": "00000998",
+    "name": "CSTR",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\w{5}\\.\\d{2}\\..*$",
+    "prefix": "cstr",
+    "sampleId": "31253.11.sciencedb.j00001.00123",
+    "uri_format": "https://cstr.cn/$1"
+  },
   "ctd.chemical": {
     "deprecated": false,
     "description": "The Comparative Toxicogenomics Database (CTD) presents scientifically reviewed and curated information on chemicals, relevant genes and proteins, and their interactions in vertebrates and invertebrates. It integrates sequence, reference, species, microarray, and general toxicology information to provide a unique centralized resource for toxicogenomic research. The database also provides visualization capabilities that enable cross-species comparisons of gene and protein sequences.",
@@ -2228,7 +2269,7 @@
   "dbgap": {
     "deprecated": false,
     "description": "The database of Genotypes and Phenotypes (dbGaP) archives and distributes the results of studies that have investigated the interaction of genotype and phenotype.",
-    "homepage": "https://www.ncbi.nlm.nih.gov/projects/gap",
+    "homepage": "https://www.ncbi.nlm.nih.gov/gap/",
     "id": "00000602",
     "name": "dbGaP",
     "namespaceEmbeddedInLui": false,
@@ -2426,7 +2467,7 @@
   "doid": {
     "deprecated": false,
     "description": "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/doid",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/doid",
     "id": "00000233",
     "name": "Human Disease Ontology",
     "namespaceEmbeddedInLui": true,
@@ -2442,7 +2483,7 @@
       }
     ],
     "sampleId": "11337",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/doid/terms?obo_id=DOID:$1"
   },
   "dommino": {
     "deprecated": false,
@@ -2552,6 +2593,18 @@
     "sampleId": "AMDEFA",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide"
   },
+  "drs.anv0": {
+    "deprecated": false,
+    "description": "This namespace is used for GA4GH Data Repository Service (DRS) access to the USA National Institutes of Health (NIH), National Human Genome Research Institute (NHGRI), Genomic Analysis, Visualization and Informatics Lab-space (AnVIL) program data. AnVIL is a cloud-based genomic data sharing and analysis platform which facilitates integration and computing on and across large datasets generated by NHGRI programs, as well as initiatives funded by the National Institutes of Health (NIH) or by other agencies that support human genomics research.   ",
+    "homepage": "https://www.genome.gov/",
+    "id": "00001014",
+    "name": "AnVIL DRS",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^v2_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+    "prefix": "drs.anv0",
+    "sampleId": "v2_1b0f158a-86e2-3887-b990-89e3cf2d9082",
+    "uri_format": "https://data.terra.bio/ga4gh/drs/v1/objects/$1"
+  },
   "drsc": {
     "deprecated": false,
     "description": "The DRSC (Drosophila RNAi Screening Cente) tracks both production of reagents for RNA interference (RNAi) screening in Drosophila cells and RNAi screen results. It maintains a list of Drosophila gene names, identifiers, symbols and synonyms and provides  information for cell-based or in vivo RNAi reagents, other types of reagents, screen results, etc. corresponding for a given gene.",
@@ -2657,14 +2710,14 @@
   "eco": {
     "deprecated": false,
     "description": "Evidence codes can be used to specify the type of supporting evidence for a piece of knowledge. This allows inference of a 'level of support' between an entity and an annotation made to an entity.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/eco",
+    "homepage": "http://bioportal.bioontology.org/ontologies/ECO",
     "id": "00000055",
     "name": "Evidence Code Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "ECO:\\d{7}$",
     "prefix": "eco",
     "sampleId": "0000006",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/ECO/ECO:$1"
   },
   "ecogene": {
     "deprecated": false,
@@ -2753,7 +2806,7 @@
   "efo": {
     "deprecated": false,
     "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by the EBI Functional Genomics Team.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/efo",
+    "homepage": "http://bioportal.bioontology.org/ontologies/EFO",
     "id": "00000391",
     "name": "Experimental Factor Ontology",
     "namespaceEmbeddedInLui": false,
@@ -2769,7 +2822,7 @@
       }
     ],
     "sampleId": "0004859",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/efo/terms?obo_id=EFO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/EFO/efo:EFO_$1"
   },
   "ega.dataset": {
     "deprecated": false,
@@ -2835,7 +2888,7 @@
     "id": "00000561",
     "name": "Electron Microscopy Data Bank",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^EMD-\\d{4}$",
+    "pattern": "^EMD-\\d{4,5}$",
     "prefix": "emdb",
     "sampleId": "EMD-1001",
     "uri_format": "https://www.ebi.ac.uk/pdbe/entry/emdb/$1"
@@ -2995,38 +3048,47 @@
   "envo": {
     "deprecated": false,
     "description": "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/envo",
+    "homepage": "http://purl.bioontology.org/ontology/ENVO/",
     "id": "00000591",
     "name": "Environment Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^ENVO:\\d{7,8}$",
     "prefix": "envo",
     "sampleId": "09200010",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/ENVO/ENVO:$1"
   },
   "eo": {
     "deprecated": false,
     "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
-    "homepage": "http://archive.gramene.org/db/ontology/search_term?id=EO:0007359",
+    "homepage": "http://bioportal.bioontology.org/ontologies/PECO",
     "id": "00000518",
     "name": "Plant Environment Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^(P)?EO\\:\\d{7}$",
     "prefix": "eo",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Plant Environment Ontology through Gramene",
+        "homepage": "http://archive.gramene.org/db/ontology/search_term?id=EO:0007359",
+        "name": "Plant Environment Ontology through Gramene",
+        "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
+      }
+    ],
     "sampleId": "0007404",
-    "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/PECO/EO:$1"
   },
   "epd": {
     "deprecated": false,
     "description": "The Eukaryotic Promoter Database (EPD) is an annotated non-redundant collection of eukaryotic POL II promoters, for which the transcription start site has been determined experimentally. Access to promoter sequences is provided by pointers to positions in nucleotide sequence entries. The annotation part of an entry includes description of the initiation site mapping data, cross-references to other databases, and bibliographic references. EPD is structured in a way that facilitates dynamic extraction of biologically meaningful promoter subsets for comparative sequence analysis.",
-    "homepage": "http://epd.vital-it.ch/",
+    "homepage": "https://epd.expasy.org/epd",
     "id": "00000408",
     "name": "EPD",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z-_0-9]+$",
     "prefix": "epd",
     "sampleId": "TA_H3",
-    "uri_format": "http://epd.vital-it.ch/cgi-bin/query_result.pl?out_format=NICE&Entry_0=$1"
+    "uri_format": "https://epd.expasy.org/cgi-bin/epd/query_result.pl?out_format=NICE&Entry_0=$1"
   },
   "erm": {
     "deprecated": false,
@@ -3196,14 +3258,14 @@
   "fma": {
     "deprecated": false,
     "description": "The Foundational Model of Anatomy Ontology (FMA) is a biomedical informatics ontology. It is concerned with the representation of classes or types and relationships necessary for the symbolic representation of the phenotypic structure of the human body.  Specifically, the FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/fma/",
+    "homepage": "http://bioportal.bioontology.org/ontologies/FMA",
     "id": "00000067",
     "name": "FMA",
     "namespaceEmbeddedInLui": true,
     "pattern": "^FMA:\\d+$",
     "prefix": "fma",
     "sampleId": "67112",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/fma/terms?obo_id=FMA:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/FMA_subset/FMA:$1"
   },
   "foodb.compound": {
     "deprecated": false,
@@ -3227,7 +3289,7 @@
     "pattern": "^FOODON:[0-9]{8}$",
     "prefix": "foodon",
     "sampleId": "03307879",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/foodon/terms?obo_id=FOODON:$1"
   },
   "fplx": {
     "deprecated": false,
@@ -3697,6 +3759,18 @@
     "sampleId": "8cf84adb-b4db-4807-ac98-0004247c35df",
     "uri_format": "http://gmd.mpimp-golm.mpg.de/ReferenceSubstances/$1"
   },
+  "gnd": {
+    "deprecated": false,
+    "description": "The Gemeinsame Normdatei (Integrated Authority File) or GND is an international authority file for person names, subject headings and corporate bodies. It is used mainly for documentation in libraries and increasingly also by archives and museums. The GND is managed by the German National Library in cooperation with various regional library networks in German-speaking Europe and other partners.",
+    "homepage": "https://lobid.org/",
+    "id": "00001002",
+    "name": "Gemeinsame Normdatei",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[0-9X\\-]+",
+    "prefix": "gnd",
+    "sampleId": "117145750",
+    "uri_format": "https://lobid.org/gnd/$1"
+  },
   "gnpis": {
     "deprecated": false,
     "description": "GnpIS is an integrative information system focused on plants and fungal pests. It provides both genetic (e.g. genetic maps, quantitative trait loci, markers, single nucleotide polymorphisms, germplasms and genotypes) and genomic data (e.g. genomic sequences, physical maps, genome annotation and expression data) for species of agronomical interest.",
@@ -4074,6 +4148,18 @@
     "sampleId": "MF_01400",
     "uri_format": "https://hamap.expasy.org/unirule/$1"
   },
+  "hco": {
+    "deprecated": false,
+    "description": "The Human Chromosome Ontology (HCO) provides simple and stable URIs for human reference genome versions to semantically identify human chromosomes.",
+    "homepage": "https://dbcls.rois.ac.jp/",
+    "id": "00001040",
+    "name": "Human Chromosome Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^.+$",
+    "prefix": "hco",
+    "sampleId": "MT",
+    "uri_format": "http://biohackathon.org/resource/hco#$1"
+  },
   "hcvdb": {
     "deprecated": false,
     "description": "the European Hepatitis C Virus Database (euHCVdb, http://euhcvdb.ibcp.fr), a collection of computer-annotated sequences based on reference genomes.mainly dedicated to HCV protein sequences, 3D structures and functional analyses.",
@@ -4156,7 +4242,7 @@
     "pattern": "^[A-Za-z-0-9_]+(\\@)?$",
     "prefix": "hgnc.symbol",
     "sampleId": "DAPK1",
-    "uri_format": "https://www.genenames.org/cgi-bin/gene_symbol_report?match=$1"
+    "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/symbol/$1"
   },
   "hinv.locus": {
     "deprecated": false,
@@ -4402,7 +4488,7 @@
     "pattern": "^[A-Z]\\d+(\\.[-\\d+])?$",
     "prefix": "icd",
     "sampleId": "C34",
-    "uri_format": "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"
+    "uri_format": "https://icd.who.int/browse10/2019/en#/$1"
   },
   "icdc": {
     "deprecated": false,
@@ -4467,14 +4553,14 @@
   "ido": {
     "deprecated": false,
     "description": "Infectious Disease Ontology holds entities relevant to both biomedical and clinical aspects of most infectious diseases.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/ido",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ido",
     "id": "00000677",
     "name": "Infectious Disease Ontology",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[0-9]+$",
     "prefix": "ido",
     "sampleId": "0000504",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ido/terms?obo_id=IDO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ido/terms?obo_id=IDO:$1"
   },
   "idoo": {
     "deprecated": false,
@@ -4689,7 +4775,7 @@
     "id": "00000029",
     "name": "Nucleotide Sequence Database",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
+    "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4,6}\\d{8,10}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
     "prefix": "insdc",
     "providers": [
       {
@@ -4750,17 +4836,17 @@
     "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database does not extend to viruses, viroids and bacteriophage.",
     "homepage": "https://www.ebi.ac.uk/ena/browse/genome-assembly-database",
     "id": "00000607",
-    "name": "Genome assembly database",
+    "name": "Genome assembly database - INSDC accessions",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^GC[AF]_[0-9]{9}\\.[0-9]+$",
+    "pattern": "^GCA_[0-9]{9}(\\.[0-9]+)?$",
     "prefix": "insdc.gca",
     "providers": [
       {
         "code": "ncbi",
         "description": "Genome assembly database NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/assembly/",
+        "homepage": "https://www.ncbi.nlm.nih.gov/datasets/genome/",
         "name": "Genome assembly database NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/assembly/$1"
+        "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
       }
     ],
     "sampleId": "GCA_000155495.1",
@@ -4786,9 +4872,9 @@
       {
         "code": "ddbj",
         "description": "DDBJ Sequence Read Archive (DRA)",
-        "homepage": "http://trace.ddbj.nig.ac.jp/dra/",
+        "homepage": "https://www.ddbj.nig.ac.jp/dra/index-e.html",
         "name": "DDBJ Sequence Read Archive (DRA)",
-        "uri_format": "http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=$1"
+        "uri_format": "https://ddbj.nig.ac.jp/resource/sra-experiment/$1"
       }
     ],
     "sampleId": "SRX000007",
@@ -5480,7 +5566,7 @@
       }
     ],
     "sampleId": "LRG_1",
-    "uri_format": "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"
+    "uri_format": "http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"
   },
   "ma": {
     "deprecated": false,
@@ -5505,6 +5591,18 @@
     "prefix": "macie",
     "sampleId": "M0001",
     "uri_format": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$1"
+  },
+  "maggot": {
+    "deprecated": false,
+    "description": "Sharing descriptive Metadata is the first essential step towards Open Scientific Data. With this in mind, Maggot was specifically designed to annotate datasets by creating a metadata file to attach to the storage space. Indeed, it allows users to easily add descriptive metadata to datasets produced within a collective of people (research unit, platform, multi-partner project, etc.). This approach fits perfectly into a data management plan as it addresses the issues of data organization and documentation, data storage and frictionless metadata sharing within this same collective and beyond.",
+    "homepage": "https://eng-bfp.bordeaux-aquitaine.hub.inrae.fr/resources/metabolome-platform",
+    "id": "00001038",
+    "name": "Maggot",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[A-Za-z0-9]+$",
+    "prefix": "maggot",
+    "sampleId": "frim1",
+    "uri_format": "https://pmb-bordeaux.fr/maggot/metadata/$1"
   },
   "maizegdb.locus": {
     "deprecated": false,
@@ -5583,6 +5681,30 @@
     "prefix": "matrixdb.association",
     "sampleId": "P00747__P07355",
     "uri_format": "http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association"
+  },
+  "maxo": {
+    "deprecated": false,
+    "description": "An ontology to represent medically relevant actions, procedures, therapies, interventions, and recommendations.",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/maxo",
+    "id": "00001032",
+    "name": "Medical Action Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "\\d{7}",
+    "prefix": "maxo",
+    "sampleId": "0001073",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/maxo/terms?obo_id=MAXO:$1"
+  },
+  "mcro": {
+    "deprecated": false,
+    "description": "An ontology representing the model card structure, he aim of this work is to describe machine learning models to communicate information about specific details about the model (trade offs, intended users, licensing, etc.). ",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/mcro",
+    "id": "00001049",
+    "name": "Model Card Ontology",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^MCRO:\\d+$",
+    "prefix": "mcro",
+    "sampleId": "0000027",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mcro/classes?obo_id=MCRO:$1"
   },
   "mdm": {
     "deprecated": false,
@@ -5878,14 +6000,14 @@
   "mi": {
     "deprecated": false,
     "description": "The Molecular Interactions (MI) ontology forms a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions. MI is developed by the HUPO Proteomics Standards Initiative.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/mi",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/mi",
     "id": "00000109",
     "name": "Molecular Interactions Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^MI:\\d{4}$",
     "prefix": "mi",
     "sampleId": "0308",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/mi/terms?obo_id=MI:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mi/terms?obo_id=MI:$1"
   },
   "microscope": {
     "deprecated": false,
@@ -5971,7 +6093,7 @@
   "mint": {
     "deprecated": false,
     "description": "The Molecular INTeraction database (MINT) stores, in a structured format, information about molecular interactions by extracting experimental details from work published in peer-reviewed journals.",
-    "homepage": "http://mint.bio.uniroma2.it/mint/",
+    "homepage": "https://www.ebi.ac.uk/intact/",
     "id": "00000042",
     "name": "MINT",
     "namespaceEmbeddedInLui": false,
@@ -5979,15 +6101,15 @@
     "prefix": "mint",
     "providers": [
       {
-        "code": "ebi",
-        "description": "MINT subset through IntAct",
-        "homepage": "https://www.ebi.ac.uk/intact/",
-        "name": "MINT subset through IntAct",
-        "uri_format": "https://www.ebi.ac.uk/intact/query/interaction_id:$1"
+        "code": "CURATOR_REVIEW",
+        "description": "The Molecular INTeraction database (MINT)",
+        "homepage": "http://mint.bio.uniroma2.it/mint/",
+        "name": "The Molecular INTeraction database (MINT)",
+        "uri_format": "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"
       }
     ],
     "sampleId": "MINT-10000",
-    "uri_format": "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"
+    "uri_format": "https://www.ebi.ac.uk/intact/query/interaction_id:$1"
   },
   "mipmod": {
     "deprecated": false,
@@ -6011,7 +6133,7 @@
     "pattern": "^MIR:\\d{8}$",
     "prefix": "mir",
     "sampleId": "00100037",
-    "uri_format": "https://registry.identifiers.org/registry?query=MIR:$1"
+    "uri_format": "https://resolver.api.identifiers.org/resolveMirId/MIR:$1"
   },
   "mirbase": {
     "deprecated": false,
@@ -6194,23 +6316,14 @@
   "mo": {
     "deprecated": false,
     "description": "The MGED Ontology (MO) provides terms for annotating all aspects of a microarray experiment from the design of the experiment and array layout, through to the preparation of the biological sample and the protocols used to hybridize the RNA and analyze the data.",
-    "homepage": "http://bioportal.bioontology.org/",
+    "homepage": "https://mged.sourceforge.net/ontologies/MGEDontology.php",
     "id": "00000303",
     "name": "MGED Ontology",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\w+$",
     "prefix": "mo",
-    "providers": [
-      {
-        "code": "ebi",
-        "description": "MGED Ontology at SourceForge",
-        "homepage": "https://mged.sourceforge.net/ontologies/MGEDontology.php",
-        "name": "MGED Ontology at SourceForge",
-        "uri_format": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1"
-      }
-    ],
     "sampleId": "ArrayGroup",
-    "uri_format": "http://purl.bioontology.org/ontology/MO/$1"
+    "uri_format": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1"
   },
   "mobidb": {
     "deprecated": false,
@@ -6227,26 +6340,26 @@
   "mod": {
     "deprecated": false,
     "description": "The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims to define a concensus nomenclature and ontology reconciling, in a hierarchical representation, the complementary descriptions of residue modifications.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/mod",
+    "homepage": "http://bioportal.bioontology.org/ontologies/PSIMOD",
     "id": "00000056",
     "name": "Protein Modification Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^MOD:\\d{5}",
     "prefix": "mod",
     "sampleId": "00001",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/mod/terms?obo_id=MOD:$1"
+    "uri_format": "http://bioportal.bioontology.org/ontologies/1041?p=terms&conceptid=MOD:$1"
   },
   "modeldb": {
     "deprecated": false,
     "description": "ModelDB is a curated, searchable database of published models in the computational neuroscience domain. It accommodates models expressed in textual form, including procedural or declarative languages (e.g. C++, XML dialects) and source code written for any simulation environment.",
-    "homepage": "http://senselab.med.yale.edu/ModelDB/",
+    "homepage": "https://modeldb.science",
     "id": "00000131",
     "name": "ModelDB",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "modeldb",
     "sampleId": "45539",
-    "uri_format": "http://senselab.med.yale.edu/ModelDB/ShowModel.asp?model=$1"
+    "uri_format": "https://modeldb.science/$1"
   },
   "modeldb.concept": {
     "deprecated": false,
@@ -6299,14 +6412,23 @@
   "mp": {
     "deprecated": false,
     "description": "The Mammalian Phenotype Ontology (MP) classifies and organises phenotypic information related to the mouse and other mammalian species. This ontology has been applied to mouse phenotype descriptions in various databases allowing comparisons of data from diverse mammalian sources. It can facilitate in the identification of appropriate experimental disease models, and aid in the discovery of candidate disease genes and molecular signaling pathways.",
-    "homepage": "http://www.informatics.jax.org/",
+    "homepage": "https://bioportal.bioontology.org/ontologies/MP",
     "id": "00000580",
     "name": "Mammalian Phenotype Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^MP:\\d{7}$",
     "prefix": "mp",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Mammalian Phenotype Ontology at The Jackson Lab",
+        "homepage": "http://www.informatics.jax.org/",
+        "name": "Mammalian Phenotype Ontology at The Jackson Lab",
+        "uri_format": "http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1"
+      }
+    ],
     "sampleId": "0005452",
-    "uri_format": "http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/MP/MP:$1"
   },
   "mpid": {
     "deprecated": false,
@@ -6332,14 +6454,14 @@
   "ms": {
     "deprecated": false,
     "description": "The PSI-Mass Spectrometry (MS) CV contains all the terms used in the PSI MS-related data standards. The CV contains a logical hierarchical structure to ensure ease of maintenance and the development of software that makes use of complex semantics. The CV contains terms required for a complete description of an MS analysis pipeline used in proteomics, including sample labeling, digestion enzymes, instrumentation parts and parameters, software used for identification and quantification of peptides/proteins and the parameters and scores used to determine their significance.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/ms",
+    "homepage": "https://bioportal.bioontology.org/ontologies/MS",
     "id": "00000590",
     "name": "Mass Spectrometry Controlled Vocabulary",
     "namespaceEmbeddedInLui": true,
     "pattern": "^MS:\\d{7}$",
     "prefix": "ms",
     "sampleId": "1000001",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ms/terms?obo_id=MS:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/MS/MS:$1"
   },
   "multicellds.cell_line": {
     "deprecated": false,
@@ -6488,8 +6610,20 @@
         "uri_format": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1"
       }
     ],
-    "sampleId": "PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
+    "sampleId": "PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
     "uri_format": "http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:$1"
+  },
+  "nando": {
+    "deprecated": false,
+    "description": "Nanbyo Disease Ontology (NANDO) is the ontology creating a comprehensive hierarchical controlled vocabulary for intractable and rare disease (i.e., nanbyo) representation in Japan.",
+    "homepage": "https://nanbyodata.jp/",
+    "id": "00001010",
+    "name": "Nanbyo Disease Ontology",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^NANDO:[0-9]+$",
+    "prefix": "nando",
+    "sampleId": "1200031",
+    "uri_format": "https://nanbyodata.jp/disease/NANDO:$1"
   },
   "napdi": {
     "deprecated": false,
@@ -6546,7 +6680,7 @@
     "id": "00000381",
     "name": "National Bibliography Number",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^urn\\:nbn\\:[A-Za-z_0-9]+\\:([A-Za-z_0-9]+)-[A-Za-z_0-9]+$",
+    "pattern": "^(urn|URN):(nbn|NBN)(:[A-Za-z_0-9]+)*.+$",
     "prefix": "nbn",
     "sampleId": "urn:nbn:fi:tkk-004781",
     "uri_format": "http://nbn-resolving.org/resolver?identifier=$1&verb=redirect"
@@ -6562,6 +6696,18 @@
     "prefix": "nbrc",
     "sampleId": "00001234",
     "uri_format": "http://www.nbrc.nite.go.jp/NBRC2/NBRCCatalogueDetailServlet?ID=NBRC&CAT=$1"
+  },
+  "ncbidrs": {
+    "deprecated": false,
+    "description": "This is the namespace for the archive of sequence and other files provided by NCBI e.g. in SRA and dbGaP. These files are related to objects in the sequencing data model managed under the insdc.sra namespace. ",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00001034",
+    "name": "NCBI Data Repository Service",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-fA-F]{32}$",
+    "prefix": "ncbidrs",
+    "sampleId": "72ff6ff882ec447f12df018e6183de59",
+    "uri_format": "https://locate.be-md.ncbi.nlm.nih.gov/ga4gh/drs/v1/objects/$1"
   },
   "ncbigene": {
     "deprecated": false,
@@ -6776,26 +6922,26 @@
   "nmdc": {
     "deprecated": false,
     "description": "The National Microbiome Data Collaborative (NMDC) is an initiative to empower the research community to harness microbiome data exploration and discovery through a collaborative integrative data science ecosystem.",
-    "homepage": "https://ror.org/02jbv0t02",
+    "homepage": "http://www.lbl.gov/",
     "id": "00000837",
     "name": "National Microbiome Data Collaborative",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z0-9._~\\-\\:]+$",
     "prefix": "nmdc",
     "sampleId": "6m4e-1vbv-03",
-    "uri_format": "https://drs.microbiomedata.org/objects/$1"
+    "uri_format": "https://w3id.org/nmdc/$1"
   },
   "nmr": {
     "deprecated": false,
     "description": "nmrCV is a controlled vocabulary to deliver standardized descriptors for the open mark-up language for NMR raw and spectrum data, sanctioned by the metabolomics standards initiative msi.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/nmrcv",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv",
     "id": "00000639",
     "name": "Nuclear Magnetic Resonance Controlled Vocabulary",
     "namespaceEmbeddedInLui": true,
     "pattern": "^NMR:\\d+$",
     "prefix": "nmr",
     "sampleId": "1000003",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/nmrcv/terms?short_form=NMR:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:$1"
   },
   "nmrshiftdb2": {
     "deprecated": false,
@@ -6881,6 +7027,18 @@
     "sampleId": "880798137",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
   },
+  "obcs": {
+    "deprecated": false,
+    "description": "OBCS stands for the Ontology of Biological and Clinical Statistics. OBCS is an ontology in the domain of biological and clinical statistics. It is aligned with the Basic Formal Ontology (BFO) and the Ontology for Biomedical Investigations (OBI)",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/obcs",
+    "id": "00001053",
+    "name": " Ontology of Biological and Clinical Statistics",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^OBCS:\\d+$",
+    "prefix": "obcs",
+    "sampleId": "0000086",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/obcs/classes?obo_id=OBCS:$1"
+  },
   "obi": {
     "deprecated": false,
     "description": "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO).",
@@ -6892,6 +7050,18 @@
     "prefix": "obi",
     "sampleId": "OBI_0000070",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
+  },
+  "obv": {
+    "deprecated": false,
+    "description": "The Austrian Library Network (OBV) is the largest network of scientific and administrative libraries in Austria with 70 participants, representing more than 90 individual institutions - including the Austrian National Library, university libraries, the colleges of education, individual ministries, numerous technical colleges and other important collections.",
+    "homepage": "https://www.obvsg.at/",
+    "id": "00001000",
+    "name": "Austrian Library Network",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "AC[0-9]{8}",
+    "prefix": "obv",
+    "sampleId": "AC00963334",
+    "uri_format": "https://permalink.obvsg.at/$1"
   },
   "occ": {
     "deprecated": false,
@@ -6907,14 +7077,14 @@
   },
   "oci": {
     "deprecated": false,
-    "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:number-number, where \u201coci:\u201d is the identifier prefix, and is used to identify a citation as a first-class data entitiy - see https://opencitations.wordpress.com/2018/02/19/citations-as-first-class-data-entities-introduction/ for additional information.\r\n\r\nOCIs for citations stored within the OpenCitations Corpus are constructed by combining the OpenCitations Corpus local identifiers for the citing and cited bibliographic resources, separating them with a dash. For example, oci:2544384-7295288 is a valid OCI for the citation between two papers stored within the OpenCitations Corpus.\r\n\r\nOCIs can also be created for bibliographic resources described in an external bibliographic database, if they are similarly identified there by identifiers having a unique numerical part. For example, the OCI for the citation that exists between Wikidata resources Q27931310 and Q22252312 is oci:01027931310\u201301022252312.\r\n\r\nOCIs can also be created for bibliographic resources described in external bibliographic database such as Crossref or DataCite where they are identified by alphanumeric Digital Object Identifiers (DOIs), rather than purely numerical strings.",
+    "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>, where \u201coci:\u201d is the identifier prefix, and is used to identify a citation as a first-class data entity - see https://doi.org/10.6084/m9.figshare.7127816.v2 for additional information. In each OCI, the first <identifier> is the identifier for the citing bibliographic resource, while the second <identifier> is the identifier for the cited bibliographic resource.",
     "homepage": "http://opencitations.net",
     "id": "00000660",
     "name": "OCI",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[0-9]+-[0-9]+$",
+    "pattern": "^0[1-9]+0[0-9]+-0[1-9]+0[0-9]+$",
     "prefix": "oci",
-    "sampleId": "1-18",
+    "sampleId": "01027931310-01022252312",
     "uri_format": "https://w3id.org/oc/oci/$1"
   },
   "ocid": {
@@ -7049,17 +7219,29 @@
     "sampleId": "1000",
     "uri_format": "http://omia.angis.org.au/$1/"
   },
+  "omid": {
+    "deprecated": false,
+    "description": "Every entity in OpenCitations Meta (https://opencitations.net/meta) is assigned persistent internal identifier called OpenCitations Meta Identifier (OMID). The OMID has structure [[entity_type_abbreviation]]/[[supplier_prefix]][[sequential_number]]. For example, the first journal article ever processed has OMID br/0601 (the full URI is https://w3id.org/oc/meta/br/0601), where br is the abbreviation of bibliographic resource, and 060 corresponds to the supplier prefix, helpful in recognising at a glance the index it belongs to (i.e., OpenCitations Meta). Finally, 1 indicates that this is the index's first bibliographic resource ever minted.",
+    "homepage": "http://opencitations.net/",
+    "id": "00001004",
+    "name": "OpenCitations Meta Identifier",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-z][a-z]/06[1-9]*0[1-9][0-9]*$",
+    "prefix": "omid",
+    "sampleId": "br/0601",
+    "uri_format": "https://w3id.org/oc/meta/$1"
+  },
   "omit": {
     "deprecated": false,
     "description": "The purpose of the OMIT ontology is to establish data exchange standards and common data elements in the microRNA (miR) domain. Biologists (cell biologists in particular) and bioinformaticians can make use of OMIT to leverage emerging semantic technologies in knowledge acquisition and discovery for more effective identification of important roles performed by miRs in humans' various diseases and biological processes (usually through miRs' respective target genes).",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/omit/",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/omit/",
     "id": "00000605",
     "name": "OMIT",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d{7}$",
     "prefix": "omit",
     "sampleId": "0005506",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/omit/terms?short_form=OMIT_$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/omit/terms?short_form=OMIT_$1"
   },
   "opb": {
     "deprecated": false,
@@ -7072,6 +7254,18 @@
     "prefix": "opb",
     "sampleId": "OPB_00573",
     "uri_format": "http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23$1"
+  },
+  "opl": {
+    "deprecated": false,
+    "description": "The Ontology for Parasite Lifecycle (OPL) models the life cycle stage details of various parasites, including Trypanosoma sp., Leishmania major, and Plasmodium sp., etc.",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/opl",
+    "id": "00001047",
+    "name": "Ontology for Parasite Lifecycle",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^OPL:\\d+$",
+    "prefix": "opl",
+    "sampleId": "0000134",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/opl/classes?obo_id=OPL:$1"
   },
   "opm": {
     "deprecated": false,
@@ -7157,14 +7351,14 @@
   "orphanet.ordo": {
     "deprecated": false,
     "description": "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\r\nIt integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10).",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/ordo",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/ordo",
     "id": "00000532",
     "name": "Orphanet Rare Disease Ontology",
     "namespaceEmbeddedInLui": false,
     "pattern": "^Orphanet(_|:)C?\\d+$",
     "prefix": "orphanet.ordo",
     "sampleId": "Orphanet_C023",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=$1"
   },
   "orthodb": {
     "deprecated": false,
@@ -7361,14 +7555,14 @@
   "pato": {
     "deprecated": false,
     "description": "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/pato",
+    "homepage": "http://bioportal.bioontology.org/ontologies/PATO",
     "id": "00000112",
     "name": "PATO",
     "namespaceEmbeddedInLui": true,
     "pattern": "^PATO:\\d{7}$",
     "prefix": "pato",
     "sampleId": "0001998",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/pato/terms?obo_id=PATO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/PATO/PATO:$1"
   },
   "paxdb.organism": {
     "deprecated": false,
@@ -7417,13 +7611,6 @@
     "prefix": "pdb",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "Proteopedia",
-        "homepage": "http://www.proteopedia.org/",
-        "name": "Proteopedia",
-        "uri_format": "http://proteopedia.org/wiki/index.php/$1"
-      },
-      {
         "code": "ebi",
         "description": "Protein Databank through PDBsum",
         "homepage": "https://www.ebi.ac.uk/pdbsum/",
@@ -7450,6 +7637,13 @@
         "homepage": "http://www.pdbe.org/",
         "name": "Protein Databank in Europe (PDBe)",
         "uri_format": "https://www.ebi.ac.uk/pdbe/entry/pdb/$1"
+      },
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Proteopedia",
+        "homepage": "http://www.proteopedia.org/",
+        "name": "Proteopedia",
+        "uri_format": "http://proteopedia.org/wiki/index.php/$1"
       }
     ],
     "sampleId": "2gc4",
@@ -7551,14 +7745,14 @@
   "pfam": {
     "deprecated": false,
     "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
-    "homepage": "https://pfam.xfam.org/",
+    "homepage": "https://www.ebi.ac.uk/interpro/",
     "id": "00000028",
     "name": "Pfam",
     "namespaceEmbeddedInLui": false,
     "pattern": "^PF\\d{5}$",
     "prefix": "pfam",
     "sampleId": "PF01234",
-    "uri_format": "https://pfam.xfam.org/family/$1"
+    "uri_format": "https://www.ebi.ac.uk/interpro/entry/pfam/$1"
   },
   "pgs": {
     "deprecated": false,
@@ -7845,15 +8039,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "PMC\\d+",
     "prefix": "pmc",
-    "providers": [
-      {
-        "code": "ncbi",
-        "description": "PubMed Central",
-        "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
-        "name": "PubMed Central",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/pmc/articles/$1/?tool=pubmed"
-      }
-    ],
     "sampleId": "PMC3084216",
     "uri_format": "http://europepmc.org/articles/$1"
   },
@@ -7906,14 +8091,23 @@
   "po": {
     "deprecated": false,
     "description": "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data.",
-    "homepage": "http://www.plantontology.org/",
+    "homepage": "http://bioportal.bioontology.org/ontologies/PO",
     "id": "00000307",
     "name": "Plant Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^PO:\\d+$",
     "prefix": "po",
+    "providers": [
+      {
+        "code": "amigo",
+        "description": "Plant Ontology through Amigo",
+        "homepage": "http://www.plantontology.org/",
+        "name": "Plant Ontology through Amigo",
+        "uri_format": "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1"
+      }
+    ],
     "sampleId": "0009089",
-    "uri_format": "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/PO/PO:$1"
   },
   "pocketome": {
     "deprecated": false,
@@ -7954,17 +8148,26 @@
   "pr": {
     "deprecated": false,
     "description": "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies.",
-    "homepage": "https://proconsortium.org/",
+    "homepage": "http://bioportal.bioontology.org/ontologies/PR",
     "id": "00000141",
     "name": "Protein Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^PR:P?\\d+$",
     "prefix": "pr",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Protein Ontology at Georgetown",
+        "homepage": "https://proconsortium.org/",
+        "name": "Protein Ontology at Georgetown",
+        "uri_format": "https://proconsortium.org/app/entry/PR:$1"
+      }
+    ],
     "sampleId": "000000024",
-    "uri_format": "https://proconsortium.org/app/entry/PR:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/PR/PR:$1"
   },
   "pride": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
     "homepage": "https://www.ebi.ac.uk/pride/",
     "id": "00000065",
@@ -8011,14 +8214,14 @@
   "probonto": {
     "deprecated": false,
     "description": "ProbOnto, is an ontology-based knowledge base of probability distributions, featuring uni- and multivariate distributions with their defining functions, characteristics, relationships and reparameterisation formulae.  It can be used for annotation of models, facilitating the encoding of distribution-based models, related functions and quantities.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/probonto",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/probonto",
     "id": "00000575",
     "name": "ProbOnto",
     "namespaceEmbeddedInLui": false,
     "pattern": "^PROB_c\\d+$",
     "prefix": "probonto",
     "sampleId": "PROB_c0000005",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms?short_form=$1"
   },
   "prodom": {
     "deprecated": false,
@@ -8383,6 +8586,18 @@
     "sampleId": "NP_012345",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
   },
+  "refseq.gcf": {
+    "deprecated": false,
+    "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database RefSeq accessions does not extend to viroids and bacteriophage.",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00001030",
+    "name": "Genome assembly database - RefSeq accessions",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^GCF_[0-9]{9}(\\.[0-9]+)?$",
+    "prefix": "refseq.gcf",
+    "sampleId": "GCF_000001405",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
+  },
   "repeatsdb.protein": {
     "deprecated": false,
     "description": "RepeatsDB is a database of annotated tandem repeat protein structures. This collection references protein entries in the database.",
@@ -8422,14 +8637,14 @@
   "rfam": {
     "deprecated": false,
     "description": "The Rfam database is a collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs). The families in Rfam break down into three broad functional classes: non-coding RNA genes, structured cis-regulatory elements and self-splicing RNAs. Typically these functional RNAs often have a conserved secondary structure which may be better preserved than the RNA sequence. The CMs used to describe each family are a slightly more complicated relative of the profile hidden Markov models (HMMs) used by Pfam. CMs can simultaneously model RNA sequence and the structure in an elegant and accurate fashion.",
-    "homepage": "https://rfam.xfam.org/",
+    "homepage": "https://rfam.org/",
     "id": "00000409",
     "name": "RFAM",
     "namespaceEmbeddedInLui": false,
     "pattern": "^RF\\d{5}$",
     "prefix": "rfam",
     "sampleId": "RF00230",
-    "uri_format": "https://rfam.xfam.org/family/$1"
+    "uri_format": "https://rfam.org/family/$1"
   },
   "rgd": {
     "deprecated": false,
@@ -8719,14 +8934,14 @@
   "sbo": {
     "deprecated": false,
     "description": "The goal of the Systems Biology Ontology is to develop controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modeling. SBO is a project of the BioModels.net effort.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/sbo",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/sbo",
     "id": "00000024",
     "name": "Systems Biology Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^SBO:\\d{7}$",
     "prefix": "sbo",
     "sampleId": "0000262",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/sbo/terms?obo_id=SBO:$1"
   },
   "sciflection": {
     "deprecated": false,
@@ -8958,14 +9173,14 @@
   "sio": {
     "deprecated": false,
     "description": "The semanticscience integrated ontology (SIO) provides a simple, integrated upper level ontology (types, relations) for consistent knowledge representation across physical, processual and informational entities.",
-    "homepage": "https://www.ebi.ac.uk",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/sio",
     "id": "00000851",
     "name": "Semanticscience Integrated Ontology",
     "namespaceEmbeddedInLui": false,
     "pattern": "^SIO_\\d{6,6}$",
     "prefix": "sio",
     "sampleId": "SIO_000276",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/sio/terms?short_form=$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/sio/terms?short_form=$1"
   },
   "sisu": {
     "deprecated": false,
@@ -9147,6 +9362,18 @@
     "sampleId": "1a24",
     "uri_format": "http://psb.kobic.re.kr/STAP/refinement1/result.php?search=$1"
   },
+  "stato": {
+    "deprecated": false,
+    "description": "STATO is the statistical methods ontology. It contains concepts and properties related to statistical methods, probability distributions and other concepts related to statistical analysis, including relationships to study designs and plots.",
+    "homepage": "https://www.ebi.ac.uk",
+    "id": "00001051",
+    "name": "Statistical Ontology",
+    "namespaceEmbeddedInLui": true,
+    "pattern": "^STATO:\\d+$",
+    "prefix": "stato",
+    "sampleId": "0000138",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/stato/classes?obo_id=STATO:$1"
+  },
   "stitch": {
     "deprecated": false,
     "description": "STITCH is a resource to explore known and predicted interactions of chemicals and proteins. Chemicals are linked to other chemicals and proteins by evidence derived from experiments, databases and the literature.",
@@ -9276,6 +9503,18 @@
     "sampleId": "AHR",
     "uri_format": "http://swissregulon.unibas.ch/query/$1"
   },
+  "synapse": {
+    "deprecated": false,
+    "description": "Synapse is a collaborative, open-source research platform that allows teams to share data, track analyses, and collaborate.",
+    "homepage": "https://sagebionetworks.org",
+    "id": "00001043",
+    "name": "Synapse Data Repository",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[0-9]*\\.*[0-9]*",
+    "prefix": "synapse",
+    "sampleId": "41455251.1",
+    "uri_format": "https://repo-prod.prod.sagebase.org/ga4gh/drs/v1/objects/syn$1"
+  },
   "t3db": {
     "deprecated": false,
     "description": "Toxin and Toxin Target Database (T3DB) is a bioinformatics resource that combines detailed toxin data with comprehensive toxin target information.",
@@ -9297,8 +9536,7 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^Gene:\\d{7}$",
     "prefix": "tair.gene",
-    "sampleId": "Gene:2200934",
-    "uri_format": "http://arabidopsis.org/servlets/TairObject?accession=$1"
+    "sampleId": "Gene:2200934"
   },
   "tair.locus": {
     "deprecated": false,
@@ -9333,8 +9571,7 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^AASequence:\\d{10}$",
     "prefix": "tair.protein",
-    "sampleId": "AASequence:1009107926",
-    "uri_format": "http://arabidopsis.org/servlets/TairObject?accession=$1"
+    "sampleId": "AASequence:1009107926"
   },
   "tarbase": {
     "deprecated": false,
@@ -9431,6 +9668,18 @@
     "sampleId": "TS-0285",
     "uri_format": "https://www.uniprot.org/tissues/$1"
   },
+  "togovar": {
+    "deprecated": false,
+    "description": "TogoVar (A comprehensive Japanese genetic variation database) is a database that has collected and organized genome sequence differences between individuals (variants) in the Japanese population and disease information associated with them.",
+    "homepage": "https://grch38.togovar.org/",
+    "id": "00001006",
+    "name": "TogoVar",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^tgv[0-9]+$",
+    "prefix": "togovar",
+    "sampleId": "tgv139393198",
+    "uri_format": "https://grch38.togovar.org/variant/$1"
+  },
   "tol": {
     "deprecated": false,
     "description": "The Tree of Life Web Project (ToL) is a collaborative effort of biologists and nature enthusiasts from around the world. On more than 10,000 World Wide Web pages, the project provides information about biodiversity, the characteristics of different groups of organisms, and their evolutionary history (phylogeny). \r\n\r\nEach page contains information about a particular group, with pages linked one to another hierarchically, in the form of the evolutionary tree of life. Starting with the root of all Life on Earth and moving out along diverging branches to individual species, the structure of the ToL project thus illustrates the genetic connections between all living things.",
@@ -9515,6 +9764,18 @@
     "sampleId": "TF101014",
     "uri_format": "http://www.treefam.org/family/$1"
   },
+  "tricdb": {
+    "deprecated": false,
+    "description": "Tri\u00a9DB is a newly developed integrated platform functioning as a knowledge base and reporting system for cancer precision medicine. This platform harmonizes and mines cancer-related data from various aspects, presenting them on a centralized platform with enhanced accessibility, rich annotations, and robust analysis capabilities. The development of Tri\u00a9DB is aimed at meeting the needs of a broad range of researchers, thereby propelling both foundational and translational research in cancer precision medicine.",
+    "homepage": "http://www.biomeddb.org/",
+    "id": "00001036",
+    "name": "tricdb",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "prefix": "tricdb",
+    "sampleId": "1eec8393-e598-41ed-9d8b-6d5b0db94470",
+    "uri_format": "http://biomeddb.org/Disease/Details?DISEASEID=$1"
+  },
   "trichdb": {
     "deprecated": false,
     "description": "TrichDB is one of the databases that can be accessed through the EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens of the genera Cryptosporidium, Giardia, Leishmania, Neospora, Plasmodium, Toxoplasma, Trichomonas and Trypanosoma. While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an entry point to all these resources, and the opportunity to leverage orthology for searches across genera.",
@@ -9566,14 +9827,14 @@
   "uberon": {
     "deprecated": false,
     "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/uberon",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/uberon",
     "id": "00000446",
     "name": "UBERON",
     "namespaceEmbeddedInLui": true,
     "pattern": "^UBERON:\\d+$",
     "prefix": "uberon",
     "sampleId": "0008203",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/uberon/terms?obo_id=UBERON:$1"
   },
   "ubio.namebank": {
     "deprecated": false,
@@ -9674,14 +9935,23 @@
   "unii": {
     "deprecated": false,
     "description": "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance\u2019s molecular structure and/or descriptive information.",
-    "homepage": "http://fdasis.nlm.nih.gov/srs/",
+    "homepage": "https://precision.fda.gov/uniisearch",
     "id": "00000531",
     "name": "UNII",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]+$",
     "prefix": "unii",
+    "providers": [
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "UNII at U.S. Food and Drug Administration",
+        "homepage": "http://fdasis.nlm.nih.gov/srs/",
+        "name": "UNII at U.S. Food and Drug Administration",
+        "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+      }
+    ],
     "sampleId": "3G6A5W338E",
-    "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
+    "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
   },
   "unimod": {
     "deprecated": false,
@@ -9836,14 +10106,14 @@
   "uo": {
     "deprecated": false,
     "description": "Ontology of standardized units",
-    "homepage": "https://www.ebi.ac.uk/ols/ontologies/uo",
+    "homepage": "http://bioportal.bioontology.org/ontologies/UO",
     "id": "00000136",
     "name": "Unit Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^UO:\\d{7}?",
     "prefix": "uo",
     "sampleId": "0000080",
-    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/uo/terms?obo_id=UO:$1"
+    "uri_format": "http://purl.bioontology.org/ontology/UO/UO:$1"
   },
   "uspto": {
     "deprecated": false,
@@ -9856,6 +10126,18 @@
     "prefix": "uspto",
     "sampleId": "4145692",
     "uri_format": "http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1"
+  },
+  "utrdb": {
+    "deprecated": false,
+    "description": "A curated database of 5' and 3' untranslated sequences of eukaryotic mRNAs. In the current update, the UTR entries are organized in a gene-centric structure to better visualize and retrieve 5' and 3'UTR variants generated by alternative initiation and termination of transcription and alternative splicing. Experimentally validated miRNA targets and conserved sequence elements are also annotated. The integration of UTRdb with genomic data has allowed the implementation of an efficient annotation system and a powerful retrieval resource for the selection and extraction of specific UTR subsets. ",
+    "homepage": "https://utrdb.cloud.ba.infn.it/utrdb/index_107.html",
+    "id": "00000993",
+    "name": "UTRdb",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "([3-5][A-Z])\\w+[^A-Z][0-9]",
+    "prefix": "utrdb",
+    "sampleId": "5UTR_107_ENST00000517291.2",
+    "uri_format": "https://utrdb.cloud.ba.infn.it/cgi-bin/utrdb/utrdb?e=$1"
   },
   "validatordb": {
     "deprecated": false,
@@ -9928,7 +10210,7 @@
   },
   "vectorbase": {
     "deprecated": false,
-    "description": "VectorBase is an NIAID-funded Bioinformatic Resource Center focused on invertebrate vectors of human pathogens. VectorBase annotates and curates vector genomes providing a web accessible integrated resource for the research community. Currently, VectorBase contains genome information for three mosquito species: Aedes aegypti, Anopheles gambiae and Culex quinquefasciatus, a body louse Pediculus humanus and a tick species Ixodes scapularis.",
+    "description": "VectorBase is part of the VEuPathDB, a NIAID-funded Bioinformatic Resource Center focused on invertebrate vectors of human pathogens and related species of interest. Currently, VectorBase contains genome information for approximately 80 organisms: mosquitoes, bed bugs, biting midges, ticks, tsetse flies, mites, sand flies, house flies, body lice, stable flies, kissing bugs, and a snail which is an intermediate host.",
     "homepage": "https://www.vectorbase.org/",
     "id": "00000232",
     "name": "VectorBase",

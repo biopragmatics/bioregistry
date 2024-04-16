@@ -27,10 +27,17 @@ from typing import (
 )
 
 import pydantic.schema
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PrivateAttr
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
+from bioregistry.constants import (
+    BIOREGISTRY_REMOTE_URL,
+    DOCS,
+    EMAIL_RE,
+    ORCID_PATTERN,
+    PATTERN_KEY,
+    URI_FORMAT_KEY,
+)
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
@@ -64,6 +71,12 @@ ORCID_TO_GITHUB = {
     "0000-0002-9903-4248": "mbaudis",
     "0000-0001-9018-4680": "alimanfoo",
 }
+
+URI_IRI_INFO = (
+    "Note that this field is generic enough to accept IRIs. "
+    "See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) "
+    "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
+)
 
 
 def _uri_sort(uri):
@@ -107,20 +120,62 @@ URI_FORMAT_PATHS = [
     ("uniprot", URI_FORMAT_KEY),
     ("cellosaurus", URI_FORMAT_KEY),
     ("prefixcommons", URI_FORMAT_KEY),
+    ("rrid", URI_FORMAT_KEY),
 ]
+
+
+class Organization(BaseModel):
+    """Model for organizataions."""
+
+    ror: Optional[str] = Field(
+        default=None,
+        title="Research Organization Registry identifier",
+        description="ROR identifier for a record about the organization",
+    )
+    wikidata: Optional[str] = Field(
+        default=None,
+        title="Wikidata identifier",
+        description="Wikidata identifier for a record about the organization",
+    )
+    name: str = Field(..., description="Name of the organization")
+    partnered: bool = Field(
+        False, description="Has this organization made a specific connection with Bioregistry?"
+    )
+
+    @property
+    def pair(self) -> Tuple[str, str]:
+        """Get a CURIE pair."""
+        if self.ror:
+            return "ror", self.ror
+        elif self.wikidata:
+            return "wikidata", self.wikidata
+        raise ValueError
+
+    @property
+    def link(self) -> str:
+        """Get a link for the organization."""
+        if self.ror:
+            return f"https://ror.org/{self.ror}"
+        elif self.wikidata:
+            return f"https://scholia.toolforge.org/{self.wikidata}"
+        else:
+            raise ValueError
 
 
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
-    name: str = Field(description="The full name of the researcher")
+    name: str = Field(..., description="The full name of the researcher")
 
     orcid: Optional[str] = Field(
+        default=None,
         title="Open Researcher and Contributor Identifier",
         description=ORCID_DESCRIPTION,
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
     email: Optional[str] = Field(
+        default=None,
         title="Email address",
         description="The email address specific to the researcher.",
         # regex=EMAIL_RE_STR,
@@ -128,6 +183,7 @@ class Attributable(BaseModel):
 
     #: The GitHub handle for the author
     github: Optional[str] = Field(
+        default=None,
         title="GitHub handle",
         description=_dedent(
             """\
@@ -166,7 +222,10 @@ class Author(Attributable):
     #: This field is redefined on top of :class:`Attributable` to make
     #: it required. Otherwise, it has the same semantics.
     orcid: str = Field(
-        ..., title="Open Researcher and Contributor Identifier", description=ORCID_DESCRIPTION
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description=ORCID_DESCRIPTION,
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
 
@@ -180,7 +239,7 @@ class Provider(BaseModel):
     uri_format: str = Field(
         ...,
         title="URI Format",
-        description="The URI format string, which must have at least one ``$1`` in it",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
 
     def resolve(self, identifier: str) -> str:
@@ -196,18 +255,19 @@ class Publication(BaseModel):
     """Metadata about a publication."""
 
     pubmed: Optional[str] = Field(
-        title="PubMed", description="The PubMed identifier for the article"
+        default=None, title="PubMed", description="The PubMed identifier for the article"
     )
     doi: Optional[str] = Field(
+        default=None,
         title="DOI",
         description="The DOI for the article. DOIs are case insensitive, so these are "
         "required by the Bioregistry to be standardized to their lowercase form.",
     )
     pmc: Optional[str] = Field(
-        title="PMC", description="The PubMed Central identifier for the article"
+        default=None, title="PMC", description="The PubMed Central identifier for the article"
     )
-    title: Optional[str] = Field(description="The title of the article")
-    year: Optional[int] = Field(description="The year the article was published")
+    title: Optional[str] = Field(default=None, description="The title of the article")
+    year: Optional[int] = Field(default=None, description="The year the article was published")
 
     def key(self) -> Tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -231,66 +291,82 @@ class Resource(BaseModel):
     prefix: str = Field(
         ...,
         description="The prefix for this resource",
-        exclude=True,
-        integration_status="required",
     )
-    name: Optional[str] = Field(
-        description="The name of the resource", integration_status="required"
-    )
-    description: Optional[str] = Field(
-        description="A description of the resource", integration_status="required"
-    )
+    name: Optional[str] = Field(default=None, description="The name of the resource")
+    description: Optional[str] = Field(default=None, description="A description of the resource")
     pattern: Optional[str] = Field(
+        default=None,
         description="The regular expression pattern for local unique identifiers in the resource",
-        integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
+        default=None,
         title="URI format string",
-        description="The URI format string, which must have at least one ``$1`` in it",
-        integration_status="required_for_new",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+    )
+    uri_format_resolvable: Optional[bool] = Field(
+        default=None,
+        title="URI format string resolvable",
+        description="If false, denotes if the URI format string is known to be not resolvable",
+    )
+    rdf_uri_format: Optional[str] = Field(
+        default=None,
+        title="RDF URI format string",
+        description=f"The RDF URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
     providers: Optional[List[Provider]] = Field(
+        default=None,
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
-        description="The URL for the homepage of the resource, preferably using HTTPS",
-        integration_status="required",
+        default=None, description="The URL for the homepage of the resource, preferably using HTTPS"
     )
     repository: Optional[str] = Field(
+        default=None,
         description="The URL for the repository of the resource",
     )
     contact: Optional[Attributable] = Field(
+        default=None,
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
         ),
-        integration_status="suggested",
+    )
+    owners: Optional[List[Organization]] = Field(
+        default=None,
+        description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
+        "bioregistry/issues/755.",
     )
     example: Optional[str] = Field(
+        default=None,
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
-        integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
+        default=None,
         description="Extra example identifiers",
     )
     example_decoys: Optional[List[str]] = Field(
+        default=None,
         description="Extra example identifiers that explicitly fail regex tests",
     )
     license: Optional[str] = Field(
+        default=None,
         description="The license for the resource",
     )
     version: Optional[str] = Field(
+        default=None,
         description="The version for the resource",
     )
     part_of: Optional[str] = Field(
+        default=None,
         description=(
             "An annotation between this prefix and a super-prefix. For example, "
             "``chembl.compound`` is a part of ``chembl``."
-        )
+        ),
     )
     provides: Optional[str] = Field(
+        default=None,
         description=(
             "An annotation between this prefix and a prefix for which it is redundant. "
             "For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it "
@@ -298,6 +374,7 @@ class Resource(BaseModel):
         ),
     )
     download_owl: Optional[str] = Field(
+        default=None,
         title="OWL Download URL",
         description=_dedent(
             """\
@@ -307,6 +384,7 @@ class Resource(BaseModel):
         ),
     )
     download_obo: Optional[str] = Field(
+        default=None,
         title="OBO Download URL",
         description=_dedent(
             """\
@@ -316,6 +394,7 @@ class Resource(BaseModel):
         ),
     )
     download_json: Optional[str] = Field(
+        default=None,
         title="OBO Graph JSON Download URL",
         description=_dedent(
             """
@@ -325,6 +404,7 @@ class Resource(BaseModel):
         ),
     )
     download_rdf: Optional[str] = Field(
+        default=None,
         title="RDF Download URL",
         description=_dedent(
             """
@@ -333,6 +413,7 @@ class Resource(BaseModel):
         ),
     )
     banana: Optional[str] = Field(
+        default=None,
         description=_dedent(
             """\
     The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
@@ -349,8 +430,9 @@ class Resource(BaseModel):
     """
         ),
     )
-    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
+    banana_peel: Optional[str] = Field(default=None, description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag denoting if this resource is deprecated. Currently, this is a blanket term
@@ -364,6 +446,7 @@ class Resource(BaseModel):
         ),
     )
     mappings: Optional[Dict[str, str]] = Field(
+        default=None,
         description=_dedent(
             """\
     A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
@@ -372,6 +455,7 @@ class Resource(BaseModel):
         ),
     )
     synonyms: Optional[List[str]] = Field(
+        default=None,
         description=_dedent(
             """\
     A list of synonyms for the prefix of this resource. These are used in normalization of
@@ -382,21 +466,28 @@ class Resource(BaseModel):
     """
         ),
     )
-    keywords: Optional[List[str]] = Field(description="A list of keywords for the resource")
+    keywords: Optional[List[str]] = Field(
+        default=None, description="A list of keywords for the resource"
+    )
     references: Optional[List[str]] = Field(
+        default=None,
         description="A list of URLs to also see, such as publications describing the resource",
     )
     publications: Optional[List[Publication]] = Field(
+        default=None,
         description="A list of URLs to also see, such as publications describing the resource",
     )
     appears_in: Optional[List[str]] = Field(
+        default=None,
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
     depends_on: Optional[List[str]] = Field(
+        default=None,
         description="A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
     )
 
     namespace_in_lui: Optional[bool] = Field(
+        default=None,
         title="Namespace Embedded in Local Unique Identifier",
         description=_dedent(
             """\
@@ -407,6 +498,7 @@ class Resource(BaseModel):
         ),
     )
     no_own_terms: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag denoting if the resource mints its own identifiers. Omission or explicit marking as false means
@@ -417,34 +509,37 @@ class Resource(BaseModel):
     )
     #: A field for a free text comment.
     comment: Optional[str] = Field(
+        default=None,
         description="A field for a free text comment",
     )
 
     contributor: Optional[Author] = Field(
+        default=None,
         description=_dedent(
             """\
     The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
-    optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
+    optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow must contain this field.
     """
         ),
-        integration_status="required_for_new",
     )
     contributor_extras: Optional[List[Author]] = Field(
+        default=None,
         description="Additional contributors besides the original submitter.",
     )
 
     reviewer: Optional[Author] = Field(
+        default=None,
         description=_dedent(
             """\
     The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
-    optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
+    optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
         ),
-        integration_status="required_for_new",
     )
     proprietary: Optional[bool] = Field(
+        default=None,
         description=_dedent(
             """\
     A flag to denote if this database is proprietary and therefore can not be included in normal quality control
@@ -459,9 +554,11 @@ class Resource(BaseModel):
     #:
     #:    This field was added and described in detail in https://github.com/biopragmatics/bioregistry/pull/164
     has_canonical: Optional[str] = Field(
+        default=None,
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
     preferred_prefix: Optional[str] = Field(
+        default=None,
         description=_dedent(
             """\
     An annotation of stylization of the prefix. This appears in OBO ontologies like
@@ -470,58 +567,78 @@ class Resource(BaseModel):
     """
         ),
     )
-    twitter: Optional[str] = Field(description="The twitter handle for the project")
+    twitter: Optional[str] = Field(default=None, description="The twitter handle for the project")
+    mastodon: Optional[str] = Field(default=None, description="The mastodon handle for the project")
     github_request_issue: Optional[int] = Field(
-        description="The GitHub issue for the new prefix request"
+        default=None, description="The GitHub issue for the new prefix request"
     )
+    logo: Optional[str] = Field(
+        default=None, description="The URL of the logo for the project/resource"
+    )
+
     #: External data from Identifiers.org's MIRIAM Database
-    miriam: Optional[Mapping[str, Any]]
+    miriam: Optional[Mapping[str, Any]] = None
     #: External data from the Name-to-Thing service
-    n2t: Optional[Mapping[str, Any]]
+    n2t: Optional[Mapping[str, Any]] = None
     #: External data from Prefix Commons
-    prefixcommons: Optional[Mapping[str, Any]]
+    prefixcommons: Optional[Mapping[str, Any]] = None
     #: External data from Wikidata Properties
-    wikidata: Optional[Mapping[str, Any]]
+    wikidata: Optional[Mapping[str, Any]] = None
     #: External data from the Gene Ontology's custom registry
-    go: Optional[Mapping[str, Any]]
+    go: Optional[Mapping[str, Any]] = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Optional[Mapping[str, Any]]
+    obofoundry: Optional[Mapping[str, Any]] = None
     #: External data from the BioPortal ontology repository
-    bioportal: Optional[Mapping[str, Any]]
+    bioportal: Optional[Mapping[str, Any]] = None
     #: External data from the EcoPortal ontology repository
-    ecoportal: Optional[Mapping[str, Any]]
+    ecoportal: Optional[Mapping[str, Any]] = None
     #: External data from the AgroPortal ontology repository
-    agroportal: Optional[Mapping[str, Any]]
+    agroportal: Optional[Mapping[str, Any]] = None
     #: External data from the CropOCT ontology curation tool
-    cropoct: Optional[Mapping[str, Any]]
+    cropoct: Optional[Mapping[str, Any]] = None
     #: External data from the Ontology Lookup Service
-    ols: Optional[Mapping[str, Any]]
+    ols: Optional[Mapping[str, Any]] = None
     #: External data from the AberOWL ontology repository
-    aberowl: Optional[Mapping[str, Any]]
+    aberowl: Optional[Mapping[str, Any]] = None
     #: External data from the NCBI Genbank's custom registry
-    ncbi: Optional[Mapping[str, Any]]
+    ncbi: Optional[Mapping[str, Any]] = None
     #: External data from UniProt's custom registry
-    uniprot: Optional[Mapping[str, Any]]
+    uniprot: Optional[Mapping[str, Any]] = None
     #: External data from the BioLink Model's custom registry
-    biolink: Optional[Mapping[str, Any]]
+    biolink: Optional[Mapping[str, Any]] = None
     #: External data from the Cellosaurus custom registry
-    cellosaurus: Optional[Mapping[str, Any]]
+    cellosaurus: Optional[Mapping[str, Any]] = None
     #: External data from the OntoBee
-    ontobee: Optional[Mapping[str, Any]]
+    ontobee: Optional[Mapping[str, Any]] = None
     #: External data from ChemInf
-    cheminf: Optional[Mapping[str, Any]]
+    cheminf: Optional[Mapping[str, Any]] = None
     #: External data from FAIRsharing
-    fairsharing: Optional[Mapping[str, Any]]
+    fairsharing: Optional[Mapping[str, Any]] = None
     #: External data from BioContext
-    biocontext: Optional[Mapping[str, Any]]
+    biocontext: Optional[Mapping[str, Any]] = None
     #: External data from EDAM ontology
-    edam: Optional[Mapping[str, Any]]
+    edam: Optional[Mapping[str, Any]] = None
     #: External data from re3data
-    re3data: Optional[Mapping[str, Any]]
+    re3data: Optional[Mapping[str, Any]] = None
     #: External data from hl7
-    hl7: Optional[Mapping[str, Any]]
+    hl7: Optional[Mapping[str, Any]] = None
     #: External data from bartoc
-    bartoc: Optional[Mapping[str, Any]]
+    bartoc: Optional[Mapping[str, Any]] = Field(default=None, title="BARTOC")
+    #: External data from RRID
+    rrid: Optional[Mapping[str, Any]] = Field(default=None, title="RRID")
+    #: External data from LOV
+    lov: Optional[Mapping[str, Any]] = Field(default=None, title="LOV")
+    #: External data from Zazuko
+    zazuko: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from TogoID
+    togoid: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from Integbio
+    integbio: Optional[Mapping[str, Any]] = Field(default=None)
+    #: External data from PathGuide
+    pathguide: Optional[Mapping[str, Any]] = Field(default=None)
+
+    # Cached compiled pattern for identifiers
+    _compiled_pattern: Optional[re.Pattern] = PrivateAttr(None)
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -572,9 +689,24 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_default_uri("24867")
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
         """
         fmt = self.get_default_format()
+        if fmt is None:
+            return None
+        return fmt.replace("$1", identifier)
+
+    def get_rdf_uri(self, identifier: str) -> Optional[str]:
+        """Return the RDF URI for the identifier.
+
+        :param identifier: The local identifier in the nomenclature represented by this resource
+        :returns: The canonical RDF URI for the local identifier, if one can be constructed
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("edam").get_rdf_uri("data_1153")
+        'http://edamontology.org/data_1153'
+        """
+        fmt = self.get_rdf_uri_format()
         if fmt is None:
             return None
         return fmt.replace("$1", identifier)
@@ -642,9 +774,9 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("ncbitaxon").get_default_format()
-        'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
+        'http://purl.obolibrary.org/obo/NCBITaxon_$1'
         >>> get_resource("go").get_default_format()
-        'http://amigo.geneontology.org/amigo/term/GO:$1'
+        'http://purl.obolibrary.org/obo/GO_$1'
         """
         if self.uri_format is not None:
             return self.uri_format
@@ -696,7 +828,7 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Mapping[str, str]:
+    def get_mappings(self) -> Dict[str, str]:
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
@@ -720,6 +852,9 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "rrid",
+                "bartoc",
+                "lov",
             ),
         )
 
@@ -747,6 +882,8 @@ class Resource(BaseModel):
                 "cheminf",
                 "edam",
                 "prefixcommons",
+                "bartoc",
+                "lov",
             ),
         )
         if rv is not None:
@@ -762,21 +899,24 @@ class Resource(BaseModel):
             1. Custom
             2. MIRIAM
             3. Wikidata
+            4. BARTOC
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc"))
         if rv is None:
             return None
         return _clean_pattern(rv)
 
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
+        if self._compiled_pattern:
+            return self._compiled_pattern
         pattern = self.get_pattern()
         if pattern is None:
             return None
-        # FIXME cache this
-        return re.compile(pattern)
+        self._compiled_pattern = re.compile(pattern)
+        return self._compiled_pattern
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
         r"""Get the pattern for the prefix including a banana if available.
@@ -877,6 +1017,9 @@ class Resource(BaseModel):
                 "bioportal",
                 "agroportal",
                 "ecoportal",
+                "rrid",
+                "bartoc",
+                "lov",
             ),
         )
 
@@ -887,14 +1030,20 @@ class Resource(BaseModel):
             keywords.extend(self.keywords)
         if self.prefixcommons:
             keywords.extend(self.prefixcommons.get("keywords", []))
+        if self.rrid:
+            keywords.extend(self.rrid.get("keywords", []))
         if self.fairsharing:
             keywords.extend(self.fairsharing.get("subjects", []))
+            keywords.extend(self.fairsharing.get("user_defined_tags", []))
+            keywords.extend(self.fairsharing.get("domains", []))
         if self.obofoundry:
             keywords.append("obo")
             keywords.append("ontology")
         if self.get_download_obo() or self.get_download_owl() or self.bioportal:
             keywords.append("ontology")
-        return sorted({keyword.lower() for keyword in keywords})
+        if self.lov:
+            keywords.extend(self.lov.get("keywords", []))
+        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
@@ -1091,7 +1240,7 @@ class Resource(BaseModel):
         publications = self.publications or []
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
-                url, title = publication["id"], publication["title"]
+                url, title = publication["id"], publication["title"].rstrip(".")
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
                     publications.append(
@@ -1115,23 +1264,27 @@ class Resource(BaseModel):
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pubmed = publication.get("pubmed_id")
+                pubmed = publication.get("pubmed")
                 doi = publication.get("doi")
-                if doi:
-                    doi = removeprefix(doi.lower(), "https://doi.org/")
                 title = publication.get("title")
+                year = publication.get("year")
                 if pubmed or doi:
                     publications.append(
                         Publication(
-                            pubmed=pubmed and str(pubmed),
+                            pubmed=pubmed,
                             doi=doi,
                             title=title,
                             pmc=None,
-                            year=None,
+                            year=year,
                         )
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(
+                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
+                )
+        if self.rrid:
+            for pubmed in self.rrid.get("pubmeds", []):
                 publications.append(
                     Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
                 )
@@ -1140,14 +1293,52 @@ class Resource(BaseModel):
                 publications.append(Publication.parse_obj(publication))
         return deduplicate_publications(publications)
 
+    def get_mastodon(self) -> Optional[str]:
+        """Get the Mastodon handle for the resource.
+
+        :return: The Mastodon handle. Note that this does **not** include a leading ``@``
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_mastodon()
+        'go@genomic.social'
+        """
+        if self.mastodon:
+            return self.mastodon
+        return None
+
+    def get_mastodon_url(self) -> Optional[str]:
+        """Get the Mastodon URL for the resource.
+
+        :return: The URL link for the mastodon account, if available
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_mastodon_url()
+        'https://genomic.social/@go'
+        """
+        mastodon = self.get_mastodon()
+        if mastodon is None:
+            return None
+        username, server = mastodon.split("@")
+        return f"https://{server}/@{username}"
+
     def get_twitter(self) -> Optional[str]:
-        """Get the Twitter handle for ther resource."""
+        """Get the Twitter handle for the resource."""
         if self.twitter:
             return self.twitter
         if self.obofoundry and "twitter" in self.obofoundry:
             return self.obofoundry["twitter"]
         if self.fairsharing and "twitter" in self.fairsharing:
             return self.fairsharing["twitter"]
+        return None
+
+    def get_logo(self) -> Optional[str]:
+        """Get the logo for the resource."""
+        if self.logo:
+            return self.logo
+        if self.obofoundry and "logo" in self.obofoundry:
+            return self.obofoundry["logo"]
+        if self.fairsharing and "logo" in self.fairsharing:
+            return self.fairsharing["logo"]
         return None
 
     def get_obofoundry_prefix(self) -> Optional[str]:
@@ -1183,6 +1374,19 @@ class Resource(BaseModel):
             return None
         return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
 
+    def get_bioregistry_uri_format(self) -> Optional[str]:
+        """Get the Bioregisry URI format string for this entry.
+
+        :returns: A Bioregistry URI, if this can be resolved.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_bioregistry_uri_format()
+        'https://bioregistry.io/go:$1'
+        """
+        if not self.get_default_format():
+            return None
+        return f"https://bioregistry.io/{self.prefix}:$1"
+
     def get_obofoundry_uri_format(self) -> Optional[str]:
         """Get the OBO Foundry URI format string for this entry, if possible.
 
@@ -1210,6 +1414,21 @@ class Resource(BaseModel):
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
         return self.get_external("biocontext").get(URI_FORMAT_KEY)
+
+    def get_bartoc_uri_format(self) -> Optional[str]:
+        """Get the BARTOC URI format string for this entry, if available.
+
+        :returns: The BARTOC URI format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("ddc").get_bartoc_uri_format()
+        'http://dewey.info/class/$1/e23/'
+        """
+        return self.get_external("bartoc").get(URI_FORMAT_KEY)
+
+    def get_prefixcommons_prefix(self) -> Optional[str]:
+        """Get the Prefix Commons prefix."""
+        return self.get_mapped_prefix("prefixcommons")
 
     def get_prefixcommons_uri_format(self) -> Optional[str]:
         """Get the Prefix Commons URI format string for this entry, if available.
@@ -1241,12 +1460,16 @@ class Resource(BaseModel):
         return self.get_identifiers_org_prefix()
 
     def get_miriam_uri_prefix(
-        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+        self,
+        legacy_delimiter: bool = False,
+        legacy_protocol: bool = False,
+        legacy_banana: bool = False,
     ) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1254,26 +1477,40 @@ class Resource(BaseModel):
         'https://identifiers.org/taxonomy:'
         >>> get_resource('go').get_miriam_uri_prefix()
         'https://identifiers.org/GO:'
+        >>> get_resource('doid').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/doid/DOID:'
+        >>> get_resource('vario').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/vario/VariO:'
+        >>> get_resource('cellosaurus').get_miriam_uri_prefix(legacy_banana=True)
+        'https://identifiers.org/cellosaurus/CVCL_'
+        >>> get_resource('doid').get_miriam_uri_prefix(legacy_delimiter=True)
+        'https://identifiers.org/DOID/'
         >>> assert get_resource('sty').get_miriam_uri_prefix() is None
         """
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
             return None
+        protocol = "http" if legacy_protocol else "https"
+        if legacy_banana and self.get_banana():
+            return f"{protocol}://identifiers.org/{miriam_prefix}/{self.get_banana()}{self.get_banana_peel()}"
         if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
-        protocol = "http" if legacy_protocol else "https"
         delimiter = "/" if legacy_delimiter else ":"
         return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
     def get_miriam_uri_format(
-        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+        self,
+        legacy_delimiter: bool = False,
+        legacy_protocol: bool = False,
+        legacy_banana: bool = False,
     ) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
         :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
+        :param legacy_banana: If true, uses a slash delimiter for CURIEs and a redundant namespace in prefix
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1284,7 +1521,9 @@ class Resource(BaseModel):
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
         miriam_url_prefix = self.get_miriam_uri_prefix(
-            legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol
+            legacy_delimiter=legacy_delimiter,
+            legacy_protocol=legacy_protocol,
+            legacy_banana=legacy_banana,
         )
         if miriam_url_prefix is None:
             return None
@@ -1293,6 +1532,12 @@ class Resource(BaseModel):
     def get_legacy_miriam_uri_format(self) -> Optional[str]:
         """Get the legacy Identifiers.org URI format string for this entry, if possible."""
         return self.get_miriam_uri_format(legacy_protocol=True, legacy_delimiter=True)
+
+    def get_legacy_alt_miriam_uri_format(self) -> Optional[str]:
+        """Get the legacy Identifiers.org URI format string for this entry, if possible."""
+        return self.get_miriam_uri_format(
+            legacy_protocol=True, legacy_delimiter=True, legacy_banana=True
+        )
 
     def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
@@ -1359,25 +1604,62 @@ class Resource(BaseModel):
             return None
         return f"{ols_url_prefix}$1"
 
+    def get_rrid_uri_format(self) -> Optional[str]:
+        """Get the RRID URI format.
+
+        :returns: The RRID format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("antibodyregistry").get_rrid_uri_format()  # standard
+        'https://scicrunch.org/resolver/RRID:AB_$1'
+        >>> assert get_resource("go").get_rrid_uri_format() is None
+        """
+        if not self.rrid:
+            return None
+        prefix = self.rrid["prefix"]
+        return f"https://scicrunch.org/resolver/RRID:{prefix}_$1"
+
+    def get_rdf_uri_format(self) -> Optional[str]:
+        """Get the URI format string for the given prefix for RDF usages."""
+        if self.rdf_uri_format:
+            return self.rdf_uri_format
+        if self.obofoundry:
+            return self.get_obofoundry_uri_format()
+        if self.wikidata and "uri_format_rdf" in self.wikidata:
+            return self.wikidata["uri_format_rdf"]
+        # TODO also pull from Prefix Commons
+        return None
+
+    def get_rdf_uri_prefix(self) -> Optional[str]:
+        """Get the URI prefix for the prefix for RDF usages."""
+        rdf_uri_format = self.get_rdf_uri_format()
+        return self._clip_uri_format(rdf_uri_format)
+
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
+        "rdf": get_rdf_uri_format,
+        "bioregistry": get_bioregistry_uri_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "miriam.legacy": get_legacy_miriam_uri_format,
+        "miriam.legacy_banana": get_legacy_alt_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
+        "rrid": get_rrid_uri_format,
     }
 
+    #: The point of this priority order is to figure out what URI format string
+    #: to give back. The "default" means it's goign to go into the metaregistry
+    #: and try and find a real URI, not a re-directed one. If it can't manage that,
+    #: try and get an OBO foundry redirect (though note this is only applicable to
+    #: a small number of prefixes corresponding to ontologies). Finally, if this
+    #: doesn't work, give a Bioregistry URI
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
-        "biocontext",
-        "miriam",
-        "n2t",
-        "ols",
-        "prefixcommons",
+        "bioregistry",
     )
 
     def get_priority_prefix(self, priority: Union[None, str, Sequence[str]] = None) -> str:
@@ -1418,26 +1700,36 @@ class Resource(BaseModel):
                 return mappings[metaprefix]
         return self.prefix
 
+    def _iterate_uri_formats(self, priority: Optional[Sequence[str]] = None):
+        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+            formatter = self.URI_FORMATTERS.get(metaprefix)
+            if formatter is None:
+                logger.warning("could not get formatter for %s", metaprefix)
+                continue
+            uri_format = formatter(self)
+            if uri_format is None:
+                continue
+            yield uri_format
+
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available.
 
         :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
-            1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
-            2. OBO Foundry
-            3. BioContext
-            4. MIRIAM/Identifiers.org
-            5. N2T
+            1. Manually curated URI Format in the Bioregistry
+            2. Default first party (e.g., MIRIAM, BioContext, Prefix Commons, Wikidata)
+            3. OBO Foundry
+            4. MIRIAM/Identifiers.org (i.e., make a URI like https://identifiers.org/<prefix>:<identifier>)
+            5. N2T (i.e., make a URI like https://n2t.org/<prefix>:<identifier>)
             6. OLS
-            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
 
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_uri_format()
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
+        'http://purl.obolibrary.org/obo/CHEBI_$1'
 
         If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
         is of particular interest to ontologists and semantic web people who might want to use ``purl.obolibrary.org``
@@ -1449,15 +1741,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
-        # TODO add examples in doctests for BioContext, MIRIAM/Identifiers.org, and OLS
-        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
-            formatter = self.URI_FORMATTERS.get(metaprefix)
-            if formatter is None:
-                logger.warning("could not get formatter for %s", metaprefix)
-                continue
-            rv = formatter(self)
-            if rv is not None:
-                return rv
+        for uri_format in self._iterate_uri_formats(priority):
+            return uri_format
         return None
 
     def get_uri_prefix(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -1469,15 +1754,17 @@ class Resource(BaseModel):
 
         >>> import bioregistry
         >>> bioregistry.get_uri_prefix('chebi')
-        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
+        'http://purl.obolibrary.org/obo/CHEBI_'
         """
-        uri_format = self.get_uri_format(priority=priority)
-        if uri_format is None:
-            logging.debug("term missing formatter: %s", self.name)
-            return None
-        return self._clip_uri_format(uri_format)
+        for uri_format in self._iterate_uri_formats(priority):
+            uri_prefix = self._clip_uri_format(uri_format)
+            if uri_prefix is not None:
+                return uri_prefix
+        return None
 
-    def _clip_uri_format(self, uri_format: str) -> Optional[str]:
+    def _clip_uri_format(self, uri_format: Optional[str]) -> Optional[str]:
+        if uri_format is None:
+            return None
         count = uri_format.count("$1")
         if 0 == count:
             logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
@@ -1525,15 +1812,38 @@ class Resource(BaseModel):
         miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
         if miriam_legacy_uri_prefix:
             yield miriam_legacy_uri_prefix
+        rdf_uri_format = self.get_rdf_uri_format()
+        if rdf_uri_format:
+            yield rdf_uri_format
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
         rv = []
-        if self.providers is not None:
-            rv.extend(self.providers)
+        providers = self.providers or []
+        provider_codes = {provider.code for provider in providers}
+        provider_uris = {provider.uri_format for provider in providers}
+        rv.extend(providers)
         if self.miriam:
-            for p in self.miriam.get("providers", []):
-                rv.append(Provider(**p))
+            for p_data in self.miriam.get("providers", []):
+                provider = Provider(**p_data)
+                if provider.code in provider_codes or provider.uri_format in provider_uris:
+                    # this means we've done an explicit override in the Bioregistry curated data
+                    continue
+                rv.append(provider)
+        prefixcommons_prefix = self.get_prefixcommons_prefix()
+        if prefixcommons_prefix:
+            rv.append(
+                Provider(
+                    code="bio2rdf",
+                    name="Bio2RDF",
+                    homepage="https://bio2rdf.org",
+                    uri_format=f"http://bio2rdf.org/{prefixcommons_prefix}:$1",
+                    description="Bio2RDF is an open-source project that uses Semantic Web technologies to "
+                    "build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF "
+                    "defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse "
+                    "set of heterogeneously formatted sources obtained from multiple data providers.",
+                )
+            )
         return sorted(rv, key=attrgetter("code"))
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
@@ -1577,6 +1887,8 @@ class Resource(BaseModel):
         '1234'
         >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
         '1234'
+        >>> get_resource("chebi").standardize_identifier('CHEBI_1234')
+        '1234'
 
         Examples from OBO Foundry that should not have a redundant
         prefix added:
@@ -1589,14 +1901,15 @@ class Resource(BaseModel):
         >>> get_resource("pdb").standardize_identifier('00000020')
         '00000020'
         """
-        banana = self.get_banana()
-        peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}".casefold()
         icf = identifier.casefold()
-        if banana and icf.startswith(prebanana):
-            return identifier[len(prebanana) :]
-        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
-            return identifier[len(self.prefix) + len(peel) :]
+        banana = self.get_banana()
+        peels = [self.get_banana_peel(), "_"]
+        for peel in peels:
+            prebanana = f"{banana}{peel}".casefold()
+            if banana and icf.startswith(prebanana):
+                return identifier[len(prebanana) :]
+            elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+                return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
@@ -1695,12 +2008,16 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> get_resource("caloha").get_download_obo()
-        'https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo'
+        'https://raw.githubusercontent.com/calipho-sib/controlled-vocabulary/master/caloha.obo'
 
         Get an ontology download link from the OBO Foundry:
 
         >>> get_resource("bfo").get_download_obo()
         'http://purl.obolibrary.org/obo/bfo.obo'
+
+        Get ontology download link from OLS where OWL isn't available
+        >>> get_resource("hpath").get_download_obo()
+        'https://raw.githubusercontent.com/Novartis/hpath/master/src/hpath.obo'
 
         Get ontology download link in AberOWL but not OBO Foundry
         (note this might change over time so the exact value isn't
@@ -1711,9 +2028,11 @@ class Resource(BaseModel):
         """
         if self.download_obo:
             return self.download_obo
-        return self.get_external("obofoundry").get("download.obo") or self.get_external(
-            "aberowl"
-        ).get("download_obo")
+        return (
+            self.get_external("obofoundry").get("download.obo")
+            or self.get_external("ols").get("download_obo")
+            or self.get_external("aberowl").get("download_obo")
+        )
 
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
@@ -1723,7 +2042,7 @@ class Resource(BaseModel):
 
     def get_download_rdf(self) -> Optional[str]:
         """Get the download link for the latest RDF file."""
-        return self.download_rdf
+        return self.download_rdf or self.get_external("ols").get("download_rdf")
 
     def get_download_owl(self) -> Optional[str]:
         """Get the download link for the latest OWL file.
@@ -1755,7 +2074,7 @@ class Resource(BaseModel):
         return (
             self.get_external("obofoundry").get("download.owl")
             or self.get_external("ols").get("version.iri")
-            or self.get_external("ols").get("download")
+            or self.get_external("ols").get("download_owl")
             or self.get_external("aberowl").get("download_owl")
         )
 
@@ -1869,53 +2188,66 @@ class RegistryGovernance(BaseModel):
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
     curates: bool = Field(
+        ...,
         description="This field denotes if the registry's maintainers and "
-        "potentially contributors curate novel prefixes."
+        "potentially contributors curate novel prefixes.",
     )
     imports: bool = Field(
-        description="This field denotes if the registry imports and aligns prefixes from other registries."
+        ...,
+        description="This field denotes if the registry imports and aligns prefixes from other registries.",
     )
     scope: str = Field(
+        ...,
         description="This field denotes the scope of prefixes which the registry covers. For example,"
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
-        " and some are general purpose."
+        " and some are general purpose.",
     )
-    comments: Optional[str]
+    comments: Optional[str] = Field(
+        default=None,
+        description="Optional additional comments about the registry's governance model",
+    )
     accepts_external_contributions: bool = Field(
+        ...,
         description="This field denotes if the registry (in theory) accepts external contributions, either via "
         "suggestion or proactive improvement. This field does not pass judgement on the difficult of this"
         " process from the perspective of the submitter nor the responsiveness of the registry."
         " This field does not consider the ability for insiders (i.e., people with private relationships"
-        " to the maintainers) to affect change."
+        " to the maintainers) to affect change.",
     )
     public_version_controlled_data: bool = Field(
+        ...,
         title="Public Version-Controlled Data",
         description="This field denotes if the registry stores its data in publicly available version control"
         " system, such as GitHub or GitLab",
     )
     data_repository: Optional[str] = Field(
-        description="This field denotes the address of the registry's data version control repository."
+        default=None,
+        description="This field denotes the address of the registry's data version control repository.",
     )
     code_repository: Optional[str] = Field(
-        description="This field denotes the address of the registry's code version control repository."
+        default=None,
+        description="This field denotes the address of the registry's code version control repository.",
     )
     review_team: Literal["public", "inferrable", "private", "democratic", "n/a"] = Field(
+        ...,
         description="This field denotes if the registry's reviewers/moderators for external contributions known? If "
         "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
         "reading the commit history on a version control system, then it can be marked as inferrable. A closed"
         " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
         " accept external contributions can be marked with N/A. An unmoderated regitry like Prefix.cc is marked with "
-        " 'democratic'."
+        " 'democratic'.",
     )
     status: Literal["active", "unresponsive", "inactive"] = Field(
+        ...,
         description="This field denotes the maitenance status of the repository. An active repository is still being "
         "maintained and also is responsive to external requests for improvement. An unresponsive repository is still "
         "being maintained in some capacity but is not responsive to external requests for improvement. An inactive "
-        "repository is no longer being proactively maintained (though may receive occasional patches)."
+        "repository is no longer being proactively maintained (though may receive occasional patches).",
     )
     issue_tracker: Optional[str] = Field(
+        default=None,
         description="This field denotes the public issue tracker for issues related to the code and data of the "
-        "repository."
+        "repository.",
     )
 
     @property
@@ -1951,21 +2283,24 @@ class RegistryQualities(BaseModel):
     """Qualities about a registry."""
 
     structured_data: bool = Field(
+        ...,
         description="This field denotes if the registry provides structured access to its data? For example,"
         " this can be through an API (e.g., FAIRsharing, OLS) or a bulk download (e.g., OBO Foundry) in a "
         "structured file format. A counter-example is a site that must be scraped to acquire its content "
-        "(e.g, the NCBI GenBank)."
+        "(e.g, the NCBI GenBank).",
     )
     bulk_data: bool = Field(
+        ...,
         description="This field denotes if the registry provides a bulk dump of its data? For example,"
         " the OBO Foundry provides its bulk data in a file and Identifiers.org provides its bulk data in"
         " an API endpoint. A counterexample is FAIRsharing, which requires slow, expensive pagination"
         " through its data. Another counterexample is HL7 which requires manually navigating a form to"
-        " download its content. While GenBank is not structured, it is still bulk downloadable."
+        " download its content. While GenBank is not structured, it is still bulk downloadable.",
     )
     no_authentication: bool = Field(
+        ...,
         description="This field denotes if the registry provides access to its data without an API key? For example,"
-        " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
+        " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data.",
     )
     automatable_download: bool = Field(
         default=True,
@@ -1991,50 +2326,61 @@ class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
     name: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a name is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     homepage: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a homepage is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     description: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a description is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     example: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if an example local unique identifier is "
-        "required, optional, or never captured for each record in the registry."
+        "required, optional, or never captured for each record in the registry.",
     )
     pattern: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a regular expression pattern for matching "
-        "local unique identifiers is required, optional, or never captured for each record in the registry."
+        "local unique identifiers is required, optional, or never captured for each record in the registry.",
     )
     provider: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if a URI format string for converting local "
-        "unique identifiers into URIs is required, optional, or never captured for each record in the registry."
+        "unique identifiers into URIs is required, optional, or never captured for each record in the registry.",
     )
     alternate_providers: Literal["present", "missing"] = Field(
+        ...,
         description="This field denotes if additional/secondary URI format strings "
         "for converting local unique identifiers into URIs is required, optional, or never captured for "
-        "each record in the registry."
+        "each record in the registry.",
     )
     synonyms: Literal["present", "missing"] = Field(
+        ...,
         description="This field denotes if alternative prefixes (e.g., taxonomy for NCBITaxon) "
-        "is required, optional, or never captured for each record in the registry."
+        "is required, optional, or never captured for each record in the registry.",
     )
     license: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if capturing the data license is required, optional, "
-        "or never captured for each record in the registry."
+        "or never captured for each record in the registry.",
     )
     version: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if capturing the current data version is required, "
-        "optional, or never captured for each record in the registry."
+        "optional, or never captured for each record in the registry.",
     )
     contact: SchemaStatus = Field(  # type:ignore
+        ...,
         description="This field denotes if capturing the primary responsible person's contact "
         "information (e.g., name, ORCID, email) is required, optional, or never captured for each "
-        "record in the registry."
+        "record in the registry.",
     )
     search: bool = Field(
         ...,
@@ -2078,7 +2424,9 @@ class Registry(BaseModel):
     description: str = Field(..., description="A full description of the registry.")
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     example: str = Field(..., description="An example prefix inside the registry.")
-    bibtex: Optional[str] = Field(description="Citation key used in BibTex for this registry.")
+    bibtex: Optional[str] = Field(
+        default=None, description="Citation key used in BibTex for this registry."
+    )
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
     )
@@ -2089,32 +2437,37 @@ class Registry(BaseModel):
         ..., description="A structured description of the governance for the registry"
     )
     download: Optional[str] = Field(
-        description="A download link for the data contained in the registry"
+        default=None, description="A download link for the data contained in the registry"
     )
     provider_uri_format: Optional[str] = Field(
-        description="A URL with a $1 for a prefix to resolve in the registry"
+        default=None, description="A URL with a $1 for a prefix to resolve in the registry"
     )
     search_uri_format: Optional[str] = Field(
-        description="A URL with a $1 for a prefix or string for searching for prefixes"
+        default=None,
+        description="A URL with a $1 for a prefix or string for searching for prefixes",
     )
     resolver_uri_format: Optional[str] = Field(
-        description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry"
+        default=None,
+        description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry",
     )
     resolver_type: Optional[str] = Field(
-        description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)"
+        default=None,
+        description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
     )
     contact: Attributable = Field(..., description="The contact for the registry.")
     bioregistry_prefix: Optional[str] = Field(
-        description="The prefix for this registry in the Bioregistry"
+        default=None, description="The prefix for this registry in the Bioregistry"
     )
     logo_url: Optional[str] = Field(
+        default=None,
         description="The URL for the logo of the resource",
     )
     license: Optional[str] = Field(
+        default=None,
         description="The license under which the resource is redistributed",
     )
     short_name: Optional[str] = Field(
-        description="A short name for the resource, e.g., for use in charts"
+        default=None, description="A short name for the resource, e.g., for use in charts"
     )
 
     def score(self) -> int:
@@ -2147,10 +2500,10 @@ class Registry(BaseModel):
             return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/resolve/"
         return self.provider_uri_format.replace("$1", "")
 
-    def get_provider_uri_format(self, prefix: str) -> Optional[str]:
+    def get_provider_uri_format(self, external_prefix: str) -> Optional[str]:
         """Get the provider string.
 
-        :param prefix: The prefix used in the metaregistry
+        :param external_prefix: The prefix used in the metaregistry
         :return: The URL in the registry for the prefix, if it's able to provide one
 
         >>> from bioregistry import get_registry
@@ -2161,7 +2514,7 @@ class Registry(BaseModel):
         >>> get_registry("n2t").get_provider_uri_format("go")
         'https://bioregistry.io/metaregistry/n2t/resolve/go'
         """
-        return self.get_provider_uri_prefix() + prefix
+        return self.get_provider_uri_prefix() + external_prefix
 
     def get_resolver_uri_format(self, prefix: str) -> str:
         """Generate a provider URI string based on mapping through this registry's vocabulary.
@@ -2194,6 +2547,8 @@ class Registry(BaseModel):
         'https://identifiers.org/go:0032571'
         >>> get_registry("cellosaurus").resolve("go", "0032571")
         'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
+        >>> get_registry("rrid").resolve("AB", "493771")
+        'https://scicrunch.org/resolver/RRID:AB_493771'
         """
         return self.get_resolver_uri_format(prefix).replace("$1", identifier)
 
@@ -2268,11 +2623,7 @@ class Registry(BaseModel):
 class Collection(BaseModel):
     """A collection of resources."""
 
-    identifier: str = Field(
-        ...,
-        description="The collection's identifier",
-        regex=r"^\d{7}$",
-    )
+    identifier: str = Field(..., description="The collection's identifier")
     name: str = Field(
         ...,
         description="The name of the collection",
@@ -2289,8 +2640,8 @@ class Collection(BaseModel):
         ...,
         description="A list of authors/contributors to the collection",
     )
-    #: JSON-LD context name
-    context: Optional[str]
+    context: Optional[str] = Field(default=None, description="The JSON-LD context's name")
+    references: Optional[List[str]] = Field(default=None, description="URL references")
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.
@@ -2353,12 +2704,15 @@ class Context(BaseModel):
     """  # noqa:D400,D205
 
     name: str = Field(
+        ...,
         description="The name of the context",
     )
     description: str = Field(
+        ...,
         description="A description of the context, can include Markdown",
     )
     maintainers: List[Author] = Field(
+        ...,
         description="A list of maintainers for the context",
     )
     prefix_priority: Optional[List[str]] = Field(
@@ -2434,86 +2788,41 @@ def get_json_schema():
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://bioregistry.io/schema.json",
     }
-    rv.update(
-        pydantic.schema.schema(
-            [
-                Author,
-                Collection,
-                Provider,
-                Resource,
-                Registry,
-                RegistrySchema,
-                Context,
-                Publication,
-            ],
-            title="Bioregistry JSON Schema",
-            description="The Bioregistry JSON Schema describes the shapes of the objects in"
-            " the registry, metaregistry, collections, and their other related"
-            " resources",
-        )
+    models = [
+        Author,
+        Collection,
+        Provider,
+        Resource,
+        Registry,
+        RegistrySchema,
+        Context,
+        Publication,
+    ]
+
+    title = "Bioregistry JSON Schema"
+    description = (
+        "The Bioregistry JSON Schema describes the shapes of the objects in"
+        " the registry, metaregistry, collections, and their other related"
+        " resources"
     )
+
+    try:
+        # see https://docs.pydantic.dev/latest/usage/json_schema/#general-notes-on-json-schema-generation
+        from pydantic.json_schema import models_json_schema
+    except ImportError:
+        schema_dict = pydantic.schema.schema(
+            models,
+            title=title,
+            description=description,
+        )
+    else:
+        _, schema_dict = models_json_schema(
+            [(model, "validation") for model in models],
+            title=title,
+            description=description,
+        )
+    rv.update(schema_dict)
     return rv
-
-
-def write_bulk_prefix_request_template():
-    """Write a template for bulk prefix requests."""
-    import bioregistry
-
-    required = []
-    optional = []
-
-    metaprefixes = set(bioregistry.read_metaregistry())
-
-    for name, field in Resource.__fields__.items():
-        if name in {
-            "providers",
-            "example_extras",
-            "example_decoys",
-            "contributor_extras",
-            "mappings",
-            "reviewer",
-            "contact",
-            "contributor",
-            "github_request_issue",
-            "banana_peel",
-            "publications",
-        }:
-            continue
-        if name in metaprefixes:
-            continue
-        status = field.field_info.extra.get("integration_status", "optional")
-        if status in {"required", "required_for_new"}:
-            required.append(name)
-        elif status == "skip":
-            continue
-        else:
-            optional.append(name)
-    required.extend(
-        ("contributor_name", "contributor_github", "contributor_orcid", "contributor_email")
-    )
-    optional.extend(("contact_name", "contact_github", "contact_orcid", "contact_email"))
-
-    with BULK_UPLOAD_FORM.open("w") as file:
-        print(  # noqa:T201
-            "request_id",
-            *required,
-            *(f"{c} (optional)" for c in optional),
-            sep="\t",
-            file=file,
-        )
-        # add examples
-        for i, prefix in enumerate(["chebi", "tkg", "mondo", "nmdc"], start=1):
-            resource = bioregistry.get_resource(prefix)
-            assert resource is not None
-            print(  # noqa:T201
-                f"example_{i} (delete this row)",
-                *(_get(resource, c) for c in required),
-                *(_get(resource, c) for c in optional),
-                sep="\t",
-                file=file,
-            )
-        for i in range(1, 6):
-            print(i, *[""] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
 
 
 def _get(resource, key):
@@ -2545,8 +2854,6 @@ def deduplicate_publications(publications: Iterable[Publication]) -> List[Public
 
 def main():
     """Dump the JSON schemata."""
-    write_bulk_prefix_request_template()
-
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 

@@ -3,7 +3,6 @@
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
-from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import (
@@ -21,8 +20,6 @@ from typing import (
 
 import click
 import requests
-from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
 from pystow.utils import get_hashes
 
 from .constants import (
@@ -31,6 +28,7 @@ from .constants import (
     METAREGISTRY_YAML_PATH,
     REGISTRY_YAML_PATH,
 )
+from .version import get_version
 
 logger = logging.getLogger(__name__)
 
@@ -74,28 +72,15 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     :return: A list of bindings
     """
     logger.debug("running query: %s", sparql)
-    res = requests.get(WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"})
+    headers = {
+        "User-Agent": f"bioregistry v{get_version()}",
+    }
+    res = requests.get(
+        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers
+    )
     res.raise_for_status()
     res_json = res.json()
     return res_json["results"]["bindings"]
-
-
-def extended_encoder(obj: Any) -> Any:
-    """Encode objects similarly to :func:`pydantic.json.pydantic_encoder`."""
-    if isinstance(obj, BaseModel):
-        return obj.dict(exclude_none=True)
-    elif is_dataclass(obj):
-        return asdict(obj)
-
-    # Check the class type and its superclasses for a matching encoder
-    for base in obj.__class__.__mro__[:-1]:
-        try:
-            encoder = ENCODERS_BY_TYPE[base]
-        except KeyError:
-            continue
-        return encoder(obj)
-    else:  # We have exited the for loop without finding a suitable encoder
-        raise TypeError(f"Object of type '{obj.__class__.__name__}' is not JSON serializable")
 
 
 class NormDict(dict):

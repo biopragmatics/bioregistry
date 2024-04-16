@@ -27,6 +27,9 @@ SKIP = {
     "4503",
     "6vts",
 }
+SKIP_URI_FORMATS = {
+    "http://arabidopsis.org/servlets/TairObject?accession=$1",
+}
 
 
 def get_miriam(force_download: bool = False, force_process: bool = False):
@@ -56,7 +59,12 @@ def get_miriam(force_download: bool = False, force_process: bool = False):
 
 
 #: Pairs of MIRIAM prefix and provider codes to skip
-PROVIDER_BLACKLIST = {("ega.study", "omicsdi")}
+PROVIDER_BLACKLIST = {
+    ("ega.study", "omicsdi"),
+    # see discussion at https://github.com/biopragmatics/bioregistry/pull/944
+    ("bioproject", "ebi"),
+    ("pmc", "ncbi"),
+}
 
 
 def _process(record):
@@ -86,7 +94,8 @@ def _process(record):
     else:
         primary, *rest = resources
     rv["homepage"] = primary["homepage"]
-    rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
+    if URI_FORMAT_KEY in primary:
+        rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
 
     extras = []
     for provider in rest:
@@ -108,14 +117,17 @@ SKIP_PROVIDERS = {
 
 
 def _preprocess_resource(resource):
-    return {
+    rv = {
         "official": resource["official"],
         "homepage": resource["resourceHomeUrl"],
         "code": resource["providerCode"],
-        URI_FORMAT_KEY: resource["urlPattern"].replace("{$id}", "$1"),
         "name": resource["name"],
         "description": resource["description"],
     }
+    uri_format = resource["urlPattern"].replace("{$id}", "$1")
+    if uri_format not in SKIP_URI_FORMATS:
+        rv[URI_FORMAT_KEY] = uri_format
+    return rv
 
 
 @click.command()

@@ -149,19 +149,6 @@
       url_syntax: https://www.ebi.ac.uk/biomodels/[example_id]
       example_id: BIOMD:BIOMD0000000045
       example_url: https://www.ebi.ac.uk/biomodels/BIOMD0000000045
-- database: bioRxiv
-  name: bioRxiv
-  synonyms:
-    - BIORXIV
-  generic_urls:
-    - https://www.biorxiv.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      id_syntax: '[0-9]+'
-      url_syntax: https://www.biorxiv.org/content/[example_id]
-      example_id: bioRxiv:10.1101/530881v2
-      example_url: https://www.biorxiv.org/content/10.1101/530881v2
 - database: BRENDA
   name: BRENDA, The Comprehensive Enzyme Information System
   generic_urls:
@@ -233,9 +220,9 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=[example_id] OK
+      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=[example_id]
       example_id: CASGEN:1040
-      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=1040   OK
+      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=1040
 - database: CASREF
   name: Catalog of Fishes publications database
   generic_urls:
@@ -243,9 +230,9 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=[example_id] OK
+      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=[example_id]
       example_id: CASREF:2031
-      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=2031 OK
+      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=2031
 - database: CASSPC
   name: Catalog of Fishes species database
   synonyms:
@@ -525,7 +512,7 @@
 - database: DisProt
   name: DisProt
   description: Database of intrinsically disordered proteins
-  generic_urls: 
+  generic_urls:
     - https://www.disprot.org
   entity_types:
     - type_name: entity
@@ -578,28 +565,51 @@
       example_id: ECO:0000315
       example_url: http://www.evidenceontology.org/browse/#ECO_0000315
 - database: EcoCyc
-  name: Encyclopedia of E. coli metabolism
+  name: Scientific database for the bacterium Escherichia coli K-12 MG1655
   generic_urls:
-    - http://ecocyc.org/
+    - https://ecocyc.org/
   entity_types:
     - type_name: biological_process
       type_id: GO:0008150
-      id_syntax: EG[0-9]{5}
-      url_syntax: http://biocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=[example_id]
+      id_syntax: ^[A-Za-z0-9+_.%-:]+$
+      url_syntax: https://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=[example_id]
       example_id: EcoCyc:P2-PWY
-      example_url: http://biocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=P2-PWY
+      example_url: https://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=P2-PWY
 - database: EcoCyc_REF
-  name: Encyclopedia of E. coli metabolism
+  name: Scientific database for the bacterium Escherichia coli K-12 MG1655
   synonyms:
     - ECOCYC_REF
   generic_urls:
-    - http://ecocyc.org/
+    - https://ecocyc.org/
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=[example_id]
+      url_syntax: https://ecocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=[example_id]
       example_id: EcoCyc_REF:COLISALII
-      example_url: http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=COLISALII
+      example_url: https://ecocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=COLISALII
+- database: EcoCyc_GENE
+  name: Scientific database for the bacterium Escherichia coli K-12 MG1655
+  generic_urls:
+    - https://ecocyc.org/
+  entity_types:
+    - type_name: protein
+      type_id: PR:000000001
+      id_syntax: ^[A-Za-z0-9+_.%-:]+$
+      url_syntax: https://ecocyc.org/gene?orgid=ECOLI&id=[example_id]
+      example_id: EcoCyc:RBSA-MONOMER
+      example_url: https://ecocyc.org/gene?orgid=ECOLI&id=RBSA-MONOMER
+    - type_name: ribonucleic acid
+      type_id: CHEBI:33697
+      id_syntax: ^[A-Za-z0-9+_.%-:]+$
+      url_syntax: https://ecocyc.org/gene?orgid=ECOLI&id=[example_id]
+      example_id: EcoCyc:EG30086
+      example_url: https://ecocyc.org/gene?orgid=ECOLI&id=EG30086
+    - type_name: protein-containing complex
+      type_id: GO:0032991
+      id_syntax: ^[A-Za-z0-9+_.%-:]+$
+      url_syntax: https://ecocyc.org/ECOLI/NEW-IMAGE?id=[example_id]
+      example_id: EcoCyc:ABC-28-CPLX
+      example_url: https://ecocyc.org/ECOLI/NEW-IMAGE?id=ABC-28-CPLX
 - database: EcoliWiki
   name: EcoliWiki from EcoliHub
   description: EcoliHub\'s subsystem for community annotation of E. coli K-12
@@ -788,7 +798,6 @@
 - database: FB
   name: FlyBase
   synonyms:
-    - FlyBase
     - FLYBASE
   rdf_uri_prefix: http://identifiers.org/flybase/
   generic_urls:
@@ -806,11 +815,30 @@
   generic_urls:
     - http://flybase.org/
   entity_types:
-    - type_name: entity
-      type_id: BET:0000000
+    - type_name: cell
+      type_id: GO:0005623
+      id_syntax: '[0-9]{8}'
       url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:[example_id]
-      example_id: FBbt:00005177
-      example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:00005177
+      example_id: FBbt:00007002
+      example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:00007002
+    - type_name: anatomical entity
+      type_id: UBERON:0001062
+      id_syntax: '[0-9]{8}'
+      url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:[example_id]
+      example_id: FBbt:10000000
+      example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:10000000
+- database: FBdv
+  name: Drosophila development
+  rdf_uri_prefix: http://purl.obolibrary.org/obo/FBdv_
+  generic_urls:
+    - http://flybase.org/
+  entity_types:
+    - type_name: life cycle stage
+      type_id: UBERON:0000105
+      id_syntax: '[0-9]{8}'
+      url_syntax: http://flybase.org/cgi-bin/fbcvq.html?query=FBdv:[example_id]
+      example_id: FBdv:00007012
+      example_url: http://flybase.org/cgi-bin/fbcvq.html?query=FBdv:00007012
 - database: FMA
   name: Foundational Model of Anatomy
   rdf_uri_prefix: http://purl.obolibrary.org/obo/FMA_
@@ -1180,7 +1208,7 @@
     - http://purl.obolibrary.org/obo/iao
 - database: iBB
   name: iBeetleBase
-  description: RNAi phenotypes for beetle (Tribolium) genes 
+  description: RNAi phenotypes for beetle (Tribolium) genes
   generic_urls:
     - https://ibeetle-base.uni-goettingen.de/
   entity_types:
@@ -1227,7 +1255,7 @@
       id_syntax: EBI-[0-9]+
       url_syntax: https://www.ebi.ac.uk/intact/pages/interactions/interactions.xhtml?query=[example_id]
       example_id: IntAct:EBI-17086
-      example_url: https://www.ebi.ac.uk/intact/pages/interactions/interactions.xhtml?query=EBI-17086      
+      example_url: https://www.ebi.ac.uk/intact/pages/interactions/interactions.xhtml?query=EBI-17086
     - type_name: protein-containing complex
       type_id: GO:0032991
       id_syntax: EBI-[0-9]+
@@ -1549,13 +1577,14 @@
     - METACYC
   rdf_uri_prefix: https://identifiers.org/metacyc.reaction
   generic_urls:
-    - http://metacyc.org/
+    - https://metacyc.org/
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://biocyc.org/META/NEW-IMAGE?type=NIL&object=[example_id]
+      id_syntax: ^[A-Za-z0-9+_.%-:]+$
+      url_syntax: https://biocyc.org/META/NEW-IMAGE?type=NIL&object=[example_id]
       example_id: MetaCyc:GLUTDEG-PWY
-      example_url: http://biocyc.org/META/NEW-IMAGE?type=NIL&object=GLUTDEG-PWY
+      example_url: https://biocyc.org/META/NEW-IMAGE?type=NIL&object=GLUTDEG-PWY
 - database: MGCSC_GENETIC_STOCKS
   name: Maize Genetics and Genomics Database
   generic_urls:
@@ -1783,6 +1812,18 @@
       url_syntax: http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
       example_id: PANTHER:PTHR11455
       example_url: http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000
+- database: orcid
+  name: Open Researcher and Contributor
+  description: ORCID (Open Researcher and Contributor ID) is an open, non-profit, community-based effort to create and maintain a registry of unique identifiers for individual researchers.
+  generic_urls:
+    - https://orcid.org/
+  entity_types:
+    - type_name: entity
+      type_id: BET:0000000
+      id_syntax: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
+      url_syntax: https://orcid.org/[example_id]
+      example_id: orcid:0000-0003-4423-4370
+      example_url: https://orcid.org/0000-0003-4423-4370
 - database: ParkinsonsUK-UCL
   name: Parkinsons Disease Gene Ontology Initiative
   generic_urls:
@@ -1912,7 +1953,7 @@
       example_url: http://www.plantsystematics.org/imagebyid_37658.html
 - database: PMCID
   name: Pubmed Central
-  synonyms: 
+  synonyms:
     - PMC
   generic_urls:
     - https://www.ncbi.nlm.nih.gov/pmc/
@@ -2015,7 +2056,7 @@
 - database: PPI
   name: Pseudomonas syringae community annotation project
   generic_urls:
-    - http://www.pseudomonas-syringae.org/    
+    - http://www.pseudomonas-syringae.org/
   entity_types:
     - type_name: entity
       type_id: BET:0000000
@@ -2030,9 +2071,9 @@
     - type_name: protein
       type_id: PR:000000001
       id_syntax: ([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}){1}(-[0-9]+){0,1}|[0-9]{9}
-      url_syntax: https://proconsortium.org/app/entry/PR_[example_id]
+      url_syntax: https://purl.obolibrary.org/obo/PR_[example_id]
       example_id: PR:Q64445
-      example_url: https://proconsortium.org/app/entry/PR_Q64445
+      example_url: https://purl.obolibrary.org/obo/PR_000060258
 - database: PRINTS
   name: PRINTS compendium of protein fingerprints
   generic_urls:
@@ -2246,7 +2287,7 @@
       id_syntax: '[0-9]{4,7}'
       url_syntax: https://rgd.mcw.edu/rgdweb/search/search.html?term=[example_id]
       example_id: RGD:2004
-      example_url: https://rgd.mcw.edu/rgdweb/search/search.html?term=2004          
+      example_url: https://rgd.mcw.edu/rgdweb/search/search.html?term=2004
 - database: RHEA
   name: Rhea, the Annotated Reactions Database
   description: Rhea is a manually annotated database of chemical reactions. All data in Rhea is freely accessible and available for anyone to use.
@@ -2344,9 +2385,9 @@
     - type_name: gene
       type_id: SO:0000704
       id_syntax: S[0-9]{9}
-      url_syntax:  https://www.yeastgenome.org/locus/[example_id]
+      url_syntax:  https://www.yeastgenome.org/search?q=[example_id]&is_quick=true
       example_id: SGD:S000006169
-      example_url: https://www.yeastgenome.org/locus/S000006169
+      example_url: https://www.yeastgenome.org/search?q=S000006169&is_quick=true
 - database: SGD_LOCUS
   name: Saccharomyces Genome Database
   generic_urls:
@@ -2354,9 +2395,9 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://www.yeastgenome.org/locus/[example_id]/overview
+      url_syntax: https://www.yeastgenome.org/search?q=[example_id]&is_quick=true
       example_id: SGD_LOCUS:GAL4
-      example_url: http://www.yeastgenome.org/locus/S000006169/overview
+      example_url: https://www.yeastgenome.org/search?q=S000006169&is_quick=true
 - database: SGD_REF
   name: Saccharomyces Genome Database
   generic_urls:
@@ -2367,6 +2408,16 @@
       url_syntax:  http://www.yeastgenome.org/reference/[example_id]/overview
       example_id: SGD_REF:S000049602
       example_url: http://www.yeastgenome.org/reference/S000049602/overview
+- database: SGD_PWY
+  name: Saccharomyces Genome Database YeastPathways
+  generic_urls:
+    - https://pathway.yeastgenome.org/
+  entity_types:
+    - type_name: entity
+      type_id: BET:0000000
+      url_syntax:  https://www.yeastgenome.org/locus/[example_id]
+      example_id: SGD_PWY:CYSTEINE-SYN2-PWY
+      example_url: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=SERSYN-PWY
 - database: SGN
   name: Sol Genomics Network
   synonyms:
@@ -2600,7 +2651,7 @@
       type_id: BET:0000000
       url_syntax: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=[example_id]
       example_id: TreeGenes:254
-      example_url: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=254  
+      example_url: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=254
 - database: TriTrypDB
   name: TriTrypDB
   rdf_uri_prefix: https://identifiers.org/tritrypdb
@@ -2612,7 +2663,7 @@
       id_syntax: ((LmjF|LinJ|LmxM|LINF)\.[0-9]{2}\.[0-9]{4})|(Tb[0-9]+\.[A-Za-z0-9]+\.[0-9]+)|(Tb\.[0-9]{6}\.[0-9]+)|
       url_syntax: https://tritrypdb.org/tritrypdb/app/record/gene/[example_id]
       example_id: Tb927.1.630
-      example_url: https://tritrypdb.org/tritrypdb/app/record/gene/Tb927.1.630   
+      example_url: https://tritrypdb.org/tritrypdb/app/record/gene/Tb927.1.630
 - database: UBERON
   name: Uber-anatomy ontology
   description: A multi-species anatomy ontology
@@ -2719,7 +2770,7 @@
   entity_types:
     - type_name: protein
       type_id: PR:000000001
-      id_syntax: ([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z]([0-9][A-Z][A-Z0-9]{2}){1,2}[0-9])((-[0-9]+)|:PRO_[0-9]{10}|:VAR_[0-9]{6}){0,1}
+      id_syntax: ([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z]([0-9][A-Z][A-Z0-9]{2}){1,2}[0-9])((-[0-9]+)|-PRO_[0-9]{10}|-VAR_[0-9]{6}){0,1}
       url_syntax: https://www.uniprot.org/uniprot/[example_id]
       example_id: UniProtKB:P51587
       example_url: https://www.uniprot.org/uniprot/
@@ -2758,6 +2809,17 @@
       id_syntax: UR[0-9]{9}|MF_[0-9]{5}|PIRNR[0-9]{6}|PRU[0-9]{5}|RU[0-9]{6}
       example_id: UniRule:UR000107224
       example_url: https://www.uniprot.org/unirule/UR000107224
+- database: ARBA
+  name: ARBA machine learning models for automatic annotation of UniProtKB unreviewed entries
+  generic_urls:
+    - https://www.uniprot.org/arba/
+  entity_types:
+    - type_name: entity
+      type_id: BET:0000000
+      url_syntax: https://www.uniprot.org/arba/[example_id]
+      id_syntax: ARBA[0-9]{8}
+      example_id: ARBA:ARBA00000001
+      example_url: https://www.uniprot.org/arba/ARBA00000001
 - database: VZ
   name: ViralZone
   generic_urls:
@@ -2827,7 +2889,7 @@
       url_syntax: http://www.wormbase.org/get?name=[example_id]
       example_id: WBbt:0005792
       example_url: http://www.wormbase.org/get?name=WBbt:0005792
-    - type_name: metazoan anatomical entity
+    - type_name: anatomical entity
       type_id: UBERON:0001062
       id_syntax: '[0-9]{7}'
       url_syntax: http://www.wormbase.org/get?name=[example_id]
@@ -2964,24 +3026,24 @@
   generic_urls:
     - https://www.animalgenome.org/QTLdb
   description: A database with curated publicly available trait mapping data (QTL and SNP associations) in livestock animal species. The link ID is called QTL_ID on QTLdb data dpownloads.
-  entity_types: 
+  entity_types:
     - type_name: QTL
       type_id: QTL_ID:0000000
       url_syntax: https://www.animalgenome.org/QTLdb/q?id=[example_id]
       id_syntax: \d+
-      example_id: 23155
+      example_id: Animal_QTLdb:23155
       example_url: https://www.animalgenome.org/QTLdb/q?id=23155
 - database: Animal_CorrDB
   name: CorrDB
   generic_urls:
     - https://www.animalgenome.org/CorrDB
   description: A database with curated publicly available trait correlation and inheritability data in livestock animal species. The link ID is called  The link ID is called Corr_ID on CorrDB data downloads.
-  entity_types: 
+  entity_types:
     - type_name: Correlation
       type_id: CorrID:000000
       url_syntax: https://www.animalgenome.org/CorrDB/q/?id=[example_id]
       id_syntax: \d+
-      example_id: 37232
+      example_id: Animal_CorrDB:37232
       example_url: https://www.animalgenome.org/CorrDB/q/?id=37232
 - database: AlphaFold
   name: AlphaFold Protein Structure Database
@@ -2990,7 +3052,7 @@
   entity_types:
     - type_name: protein
       type_id: PR:000000001
-      id_syntax: ([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z]([0-9][A-Z][A-Z0-9]{2}){1,2}[0-9])((-[0-9]+)|:PRO_[0-9]{10}|:VAR_[0-9]{6}){0,1}
+      id_syntax: ([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z]([0-9][A-Z][A-Z0-9]{2}){1,2}[0-9])((-[0-9]+)|-PRO_[0-9]{10}|-VAR_[0-9]{6}){0,1}
       url_syntax: https://alphafold.ebi.ac.uk/entry/[example_id]
       example_id: AlphaFold:Q5VSL9
       example_url: https://alphafold.ebi.ac.uk/entry/Q5VSL9

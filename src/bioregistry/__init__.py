@@ -13,12 +13,7 @@ from .metaresource_api import (  # noqa:F401
     get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import (  # noqa:F401
-    curie_from_iri,
-    ensure_prefix_list,
-    parse_iri,
-    parse_obolibrary_purl,
-)
+from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     count_mappings,
     get_appears_in,
@@ -132,7 +127,6 @@ from .schema_utils import (  # noqa:F401
     write_registry,
 )
 from .uri_format import (  # noqa:F401
-    get_extended_prefix_map,
     get_pattern_map,
     get_prefix_map,
     get_uri_format,

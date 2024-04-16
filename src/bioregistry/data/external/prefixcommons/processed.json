@@ -250,6 +250,7 @@
       "classification",
       "genome"
     ],
+    "license": "http://alfred.med.yale.edu/alfred/fullcopyrightpage.asp",
     "name": "The ALlele FREquency Database",
     "pattern": "^[A-Z]+\\d+$",
     "prefix": "alfred",
@@ -265,6 +266,7 @@
     "keywords": [
       "allergen"
     ],
+    "license": "CC BY-NC-SA 2.5",
     "miriam": "allergome",
     "name": "Allergome: a platform for allergen knowledge",
     "pattern": "^\\d+$",
@@ -361,6 +363,7 @@
       "classification",
       "anatomy"
     ],
+    "license": "CC BY-SA 3.0",
     "miriam": "antweb",
     "name": "AntWeb: Ant of the World",
     "pattern": "^casent\\d+(\\-\\w+\\d+)?$",
@@ -471,6 +474,7 @@
       "microarray",
       "nucleotide"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "miriam": "arrayexpress",
     "name": "ArrayExpress",
     "pattern": "^[AEP]-\\w{4}-\\d+$",
@@ -593,6 +597,9 @@
     "uri_format": "http://www.ebi.ac.uk/astd/geneview.html?acc=$1"
   },
   "atc": {
+    "alt_uri_formats": [
+      "http://purl.bioontology.org/ontology/UATC/$1"
+    ],
     "bioportal": "3021",
     "description": "The Anatomical Therapeutic Chemical (ATC) classification system, divides active substances into different groups according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. Drugs are classified in groups at five different levels; Drugs are divided into fourteen main groups (1st level), with pharmacological/therapeutic subgroups (2nd level). The 3rd and 4th levels are chemical/pharmacological/therapeutic subgroups and the 5th level is the chemical substance. The Anatomical Therapeutic Chemical (ATC) classification system and the Defined Daily Dose (DDD) is a tool for exchanging and comparing data on drug use at international, national or local levels.",
     "example": "A10BA02",
@@ -604,7 +611,6 @@
     "pattern": "^\\w(\\d+)?(\\w{1,2})?(\\d+)?$",
     "prefix": "atc",
     "synonyms": [
-      "atc",
       "uatc"
     ],
     "uri_format": "http://www.whocc.no/atc_ddd_index/?code=$1"
@@ -801,9 +807,6 @@
     "name": "Biomolecular Interaction Network Databank",
     "pattern": "^\\d+$",
     "prefix": "bind",
-    "synonyms": [
-      "bind_translation (irefindex)"
-    ],
     "uri_format": "http://www.bind.ca/Action?identifier=bindid&idsearch=$1"
   },
   "binding_moad": {
@@ -881,9 +884,6 @@
     "pubmed_ids": [
       "16381927"
     ],
-    "synonyms": [
-      "grid"
-    ],
     "uri_format": "http://thebiogrid.org/$1"
   },
   "biomagresbank": {
@@ -899,6 +899,9 @@
     "uri_format": "http://www.bmrb.wisc.edu/data_library/generate_summary.php?bmrbId=$1"
   },
   "biomodels": {
+    "alt_uri_formats": [
+      "http://biomodels.caltech.edu/$1"
+    ],
     "bioportal": "3022",
     "description": "BioModels Database is a data resource that allows biologists to store, search and retrieve published mathematical models of biological interests.",
     "example": "BIOMD0000000048",
@@ -906,6 +909,7 @@
     "keywords": [
       "model"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "A Database of Annotated Published Models",
     "pattern": "^((BIOMD|MODEL)\\d{10})|(BMID\\d{12})$",
     "prefix": "biomodels",
@@ -981,6 +985,7 @@
       "molecules",
       "pathways"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "BioSystems",
     "pattern": "^\\d+$",
     "prefix": "biosystems",
@@ -1082,6 +1087,7 @@
     "keywords": [
       "enzyme"
     ],
+    "license": "http://www.brenda-enzymes.org",
     "name": "The Comprehensive Enzyme Information System",
     "pattern": "^((\\d+\\.-\\.-\\.-)|(\\d+\\.\\d+\\.-\\.-)|(\\d+\\.\\d+\\.\\d+\\.-)|(\\d+\\.\\d+\\.\\d+\\.\\d+))$",
     "prefix": "brenda",
@@ -1091,6 +1097,9 @@
     "uri_format": "http://www.brenda-enzymes.org/php/result_flat.php4?ecno=$1"
   },
   "bto": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/BTO#$1"
+    ],
     "bioportal": "1005",
     "description": "The Brenda tissue ontology is a structured controlled vocabulary established to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms.",
     "example": "BTO:0000146",
@@ -1230,10 +1239,6 @@
     "pubmed_ids": [
       "9309224"
     ],
-    "synonyms": [
-      "cath.domain",
-      "cath.superfamily"
-    ],
     "uri_format": "http://www.cathdb.info/cathnode/$1"
   },
   "catma": {
@@ -1284,6 +1289,7 @@
       "chemical",
       "classification"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Chemical Component Dictionary",
     "pattern": "^\\w{3}$",
     "prefix": "ccd",
@@ -1326,6 +1332,9 @@
     "uri_format": "http://cancer.cellmap.org/cellmap/record.do?id=$1"
   },
   "cco": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/CCO#$1"
+    ],
     "bioportal": "1507",
     "description": "An application ontology integrating knowledge about the eukaryotic cell cycle.",
     "example": "CCO:P0000023",
@@ -1339,9 +1348,6 @@
     "prefix": "cco",
     "pubmed_ids": [
       "19480664"
-    ],
-    "synonyms": [
-      "cell cycle ontology"
     ]
   },
   "cdd": {
@@ -1352,6 +1358,7 @@
       "protein",
       "structure"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "Conserved Domain Database",
     "pattern": "^cd\\d{5}$",
     "prefix": "cdd",
@@ -1369,9 +1376,6 @@
     "name": "The Cell: An Image Library",
     "pattern": "^\\d+$",
     "prefix": "cellimage",
-    "synonyms": [
-      "cellimage"
-    ],
     "uri_format": "http://cellimagelibrary.org/images/$1"
   },
   "cgd": {
@@ -1411,6 +1415,7 @@
     "keywords": [
       "gene"
     ],
+    "license": "http://www.agnc.msstate.edu/About.htm",
     "name": "Chicken Gene Nomenclature Consortium",
     "pattern": "^\\d+$",
     "prefix": "cgnc",
@@ -1432,6 +1437,13 @@
     "uri_format": "http://cgsc.biology.yale.edu/Site.php?ID=$1"
   },
   "chebi": {
+    "alt_uri_formats": [
+      "http://www.ebi.ac.uk/chebi/searchId.do;?chebiId=$1",
+      "http://www.loria.fr/~coulet/ontology/sopharm$1",
+      "http://www.ebi.ac.uk/ontology-lookup//version2.1/chebi.owl#$1",
+      "http://purl.org/obo/owl/CHEBI#$1",
+      "http://www.ebi.ac.uk/ontology-lookup/?termId=CHEBI:#$1"
+    ],
     "bioportal": "1007",
     "description": "A structured classification of chemical compounds of biological relevance.",
     "example": "17234",
@@ -1440,6 +1452,7 @@
       "obo",
       "chemical"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Chemical Entities of Biological Interest",
     "pattern": "^\\d+$",
     "prefix": "chebi",
@@ -1447,7 +1460,6 @@
       "23180789"
     ],
     "synonyms": [
-      "obo.chebi (miriam)",
       "atp_chebi"
     ],
     "uri_format": "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1"
@@ -1475,6 +1487,7 @@
     "keywords": [
       "molecules"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "chEMBL",
     "pattern": "^\\d+$",
     "prefix": "chembl",
@@ -1506,6 +1519,7 @@
       "structure",
       "molecules"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "ChemIDplus",
     "pattern": "^\\d+$",
     "prefix": "chemidplus",
@@ -1519,6 +1533,7 @@
       "structure",
       "molecules"
     ],
+    "license": "http://www.rsc.org/Help/termsconditions.asp",
     "name": "ChemSpider - Database of Chemical Structures and Property Predictions",
     "pattern": "^\\d+$",
     "prefix": "chemspider",
@@ -1597,6 +1612,7 @@
     "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
     "example": "16333295",
     "homepage": "http://www.ebi.ac.uk/citexplore/",
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "CiteXplore",
     "pattern": "^\\d+$",
     "prefix": "citexplore",
@@ -1650,12 +1666,17 @@
       "drug",
       "human"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "ClinicalTrials.gov",
     "pattern": "^NCT\\d{8}$",
     "prefix": "clinicaltrials",
     "uri_format": "http://clinicaltrials.gov/ct2/show/$1"
   },
   "clo": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/CL#$1",
+      "http://purl.org/obo/owl/CLO#$1"
+    ],
     "bioportal": "1314",
     "description": "The Cell Line Ontology (CLO) is a community-based ontology in domain of biological cell lines with a focus on permanent cell lines from culture collections. Upper ontology structures that frame the skeleton of CLO include Basic Formal Ontology and Relation Ontology. Cell lines contained in CLO are associated with terms from other ontologies such as Cell Type Ontology, NCBI Taxonomy, and Ontology for Biomedical Investigation. A common design pattern for the cell line is used to model cell lines and their attributes, the Jurkat cell line provides ane xample.  Currently CLO contains over 36,000 cell line entries obtained from ATCC, HyperCLDB, Coriell, and bymanual curation. The cell lines are derived from 194 cell types, 656 anatomical entries, and 217 organisms. The OWL-based CLO is machine-readable and can be used in various applications.",
     "example": "CL:0000232",
@@ -1680,6 +1701,7 @@
     "keywords": [
       "protein"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "CluSTr",
     "pattern": "^[0-9A-Za-z]+:\\d+:\\d{1,5}(\\.\\d)?$",
     "prefix": "clustr",
@@ -1758,6 +1780,7 @@
     "name": "Cognitive Atlas",
     "pattern": "^CAO_\\d+$",
     "prefix": "cogat",
+    "rdf_uri_format": "http://www.cognitiveatlas.org/ontology/cogat.owl#$1",
     "uri_format": "http://www.cognitiveatlas.org/ontology/cogat.owl#$1"
   },
   "come": {
@@ -2270,6 +2293,7 @@
       "interaction",
       "protein"
     ],
+    "license": "http://dip.doe-mbi.ucla.edu/dip/termsofuse.html",
     "name": "Database of Interacting Proteins",
     "pattern": "^DIP[\\:\\-]\\d{3}[EN]$",
     "prefix": "dip",
@@ -2303,6 +2327,12 @@
     "uri_format": "http://www.disprot.org/protein.php?id=$1"
   },
   "do": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/DOID#$1",
+      "http://www.loria.fr/~coulet/ontology/sopharm/version2.1/disease_ontology.owl#$1",
+      "http://purl.org/obo/owl/DO#$1",
+      "http://www.owl-ontologies.com/NPOntology.owl#DOID_$1"
+    ],
     "bioportal": "1009",
     "description": "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts.",
     "example": "DOID:11337",
@@ -2319,12 +2349,14 @@
     "synonyms": [
       "doid",
       "diseaseontology",
-      "obo.do",
-      "human disease ontology"
+      "obo.do"
     ],
     "uri_format": "http://disease-ontology.org/term/$1"
   },
   "doi": {
+    "alt_uri_formats": [
+      "http://hdl.handle.net/#$1"
+    ],
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
     "example": "10.1038/nbt1156",
     "homepage": "http://www.doi.org/",
@@ -2368,6 +2400,7 @@
     "keywords": [
       "model"
     ],
+    "license": "http://doqcs.ncbs.res.in/template.php?&y=faq#q2",
     "name": "Database of Quantitative Cellular Signaling: Model",
     "pattern": "^\\d+$",
     "prefix": "doqcs.model",
@@ -2383,6 +2416,7 @@
     "keywords": [
       "pathway"
     ],
+    "license": "http://doqcs.ncbs.res.in/template.php?&y=faq#q2",
     "name": "Database of Quantitative Cellular Signaling: Pathway",
     "pattern": "^\\d+$",
     "prefix": "doqcs.pathway",
@@ -2440,6 +2474,7 @@
       "drug",
       "protein"
     ],
+    "license": "http://www.drugbank.ca/about",
     "name": "DrugBank",
     "pattern": "^DB\\d{5}$",
     "prefix": "drugbank",
@@ -2490,6 +2525,9 @@
     "uri_format": "http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=$1"
   },
   "eco": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/ECO#$1"
+    ],
     "bioportal": "1012",
     "description": "Evidence codes can be used to specify the type of supporting evidence for a piece of knowledge. This allows inference of a 'level of support' between an entity and an annotation made to an entity.",
     "example": "ECO:0000006",
@@ -2497,13 +2535,13 @@
       "obo",
       "ontology"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Evidence Code Ontology",
     "pattern": "^ECO:\\d{7}$",
     "prefix": "eco",
     "synonyms": [
-      "evidence codes ontologyobo.eco"
-    ],
-    "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
+      "obo.eco"
+    ]
   },
   "ecogene": {
     "description": "The EcoGene database contains updated information about the E. coli K-12 genome and proteome sequences, including extensive gene bibliographies. A major EcoGene focus has been the re-evaluation of translation start sites.",
@@ -2532,11 +2570,7 @@
     ],
     "name": "Bioinformatics operations, types of data, data formats and topics",
     "pattern": "^EDAM_(data|topic)\\:\\d{4}$",
-    "prefix": "edam",
-    "synonyms": [
-      "edam"
-    ],
-    "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
+    "prefix": "edam"
   },
   "egad": {
     "description": "A database used to store gene, protein and TIGRFam/HMM information. Shows description of given EGAD, including name, nucleotide and protein information, and accession information used to derive EGAD term.",
@@ -2635,6 +2669,7 @@
     "keywords": [
       "DNA"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "EMBL nucleotide sequence database",
     "pattern": "^[A-Z]+\\d+$",
     "prefix": "embl",
@@ -2690,6 +2725,7 @@
     "keywords": [
       "genome"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Ensembl",
     "pattern": "^ENS[A-Z]*[FPTG]\\d{11}(\\.\\d+)?$",
     "prefix": "ensembl",
@@ -2774,6 +2810,7 @@
     "keywords": [
       "enzyme"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Enzyme nomenclature database",
     "pattern": "^\\d.\\d.\\d.\\d$",
     "prefix": "enzyme",
@@ -3033,6 +3070,9 @@
     "prefix": "fbcv"
   },
   "fbdv": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/FBDV#$1"
+    ],
     "bioportal": "1016",
     "description": "A structured controlled vocabulary of the development of Drosophila melanogaster.",
     "example": "FBdv_00005291",
@@ -3117,6 +3157,7 @@
       "anatomy",
       "DNA"
     ],
+    "license": "http://flybase.org/static_pages/docs/copyright.html",
     "name": "Drosophila genome database",
     "pattern": "^FB\\w{2}\\d{7}$",
     "prefix": "flybase",
@@ -3192,6 +3233,11 @@
     "prefix": "flyview"
   },
   "fma": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owlapi/fma#$1",
+      "http://sig.uw.edu/fma#$1",
+      "http://purl.org/obo/owl/FMA#$1"
+    ],
     "bioportal": "1053",
     "description": "FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy.",
     "example": "FMA:67112",
@@ -3201,6 +3247,7 @@
       "anatomy",
       "human"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "The Foundational Model of Anatomy Ontology",
     "pattern": "^FMA:\\d+$",
     "prefix": "fma",
@@ -3305,6 +3352,7 @@
       "longevity",
       "genes"
     ],
+    "license": "http://genomics.senescence.info/legal.html",
     "name": "GenAge: The Ageing Gene Database",
     "pattern": "^\\d+$",
     "prefix": "genage",
@@ -3337,6 +3385,7 @@
     "keywords": [
       "DNA"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "GenBank",
     "pattern": "^\\w+$",
     "prefix": "genbank",
@@ -3371,6 +3420,7 @@
       "longevity",
       "genes"
     ],
+    "license": "http://genomics.senescence.info/legal.html",
     "name": "GenDR: The Dietary Restriction Gene Database",
     "pattern": "^\\d+$",
     "prefix": "gendr",
@@ -3416,6 +3466,7 @@
       "genome",
       "sequence"
     ],
+    "license": "http://www.sanger.ac.uk/legal",
     "name": "GeneDB",
     "pattern": "^[\\w\\d\\.-]*$",
     "prefix": "genedb",
@@ -3550,6 +3601,7 @@
       "gene expression",
       "genome"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "Gene Expression Omnibus",
     "pattern": "^GDS\\d+$",
     "prefix": "geo",
@@ -3632,6 +3684,9 @@
     "uri_format": "http://nava.liacs.nl/cgi-bin/nava.py?id=$1"
   },
   "go": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/GO#$1"
+    ],
     "bioportal": "1070",
     "description": "The Gene Ontology project provides an ontology of defined terms representing gene product properties. The ontology covers three domains: cellular component, molecular function, and biological process.",
     "example": "0006915",
@@ -3650,7 +3705,6 @@
     ],
     "synonyms": [
       "gene_ontology",
-      "gene ontology",
       "obo.go"
     ],
     "uri_format": "http://amigo.geneontology.org/cgi-bin/amigo/term-details.cgi?term=GO:$1"
@@ -3752,10 +3806,7 @@
     ],
     "name": "gpDB: a database of GPCRs, G-proteins, Effectors and their interactions",
     "pattern": "^GPR\\d+$",
-    "prefix": "gpdb",
-    "synonyms": [
-      "gpdb"
-    ]
+    "prefix": "gpdb"
   },
   "gpxmacrophage": {
     "description": "Macrophage Expression Atlas is a database for expression profiles of macrophages challenged with a a variety of pro-inflammatory, anti-inflammatory, benign and pathogen insults.",
@@ -4098,6 +4149,7 @@
       "human",
       "metabolite"
     ],
+    "license": "http://www.hmdb.ca/about#cite",
     "name": "The Human Metabolome Database",
     "pattern": "^HMDB\\d{5}$",
     "prefix": "hmdb",
@@ -4159,9 +4211,6 @@
     "pubmed_ids": [
       "20624719"
     ],
-    "synonyms": [
-      "homd.seq"
-    ],
     "uri_format": "http://www.homd.org/modules.php?op=modload&name=GenomeList&file=index&link=detailinfo&seqid=$1"
   },
   "homd.taxon": {
@@ -4176,9 +4225,6 @@
     "prefix": "homd.taxon",
     "pubmed_ids": [
       "20624719"
-    ],
-    "synonyms": [
-      "homd.taxon"
     ],
     "uri_format": "http://www.homd.org/modules.php?op=modload&name=HOMD&file=index&oraltaxonid=$1&view=dynamic"
   },
@@ -4260,6 +4306,7 @@
       "DNA",
       "protein"
     ],
+    "license": "http://pbil.univ-lyon1.fr/databases/hovergen.php",
     "name": "HOVERGEN: Homologous Vertebrate Genes Database",
     "pattern": "^HBG\\d+$",
     "prefix": "hovergen",
@@ -4345,6 +4392,7 @@
     "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
     "example": "16333295",
     "homepage": "http://www.hubmed.org/",
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "HubMed",
     "pattern": "^\\d+$",
     "prefix": "hubmed",
@@ -4403,6 +4451,7 @@
       "taxonomy",
       "classification"
     ],
+    "license": "http://www.who.int/about/copyright/en/index.html",
     "name": "International Classification of Diseases",
     "pattern": "^[A-Z]\\d+(\\.[-\\d+])?$",
     "prefix": "icd",
@@ -4508,6 +4557,7 @@
       "molecule",
       "interaction"
     ],
+    "license": "http://disber.net/imexdrupal/node/5",
     "name": "International Molecular Exchange",
     "pattern": "^IM-\\d+(-?)(\\d+?)$",
     "prefix": "imex",
@@ -4649,9 +4699,6 @@
     "name": "A Knowledge Resource for Innate Immunity Interactions and Pathways",
     "pattern": "^\\d+$",
     "prefix": "innatedb",
-    "synonyms": [
-      "innatedb allergy"
-    ],
     "uri_format": "http://www.innatedb.ca/getGeneCard.do?id=$1"
   },
   "insdc": {
@@ -4692,6 +4739,7 @@
       "protein",
       "interaction"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "The IntAct molecular interaction database",
     "pattern": "^EBI\\-\\d+$",
     "prefix": "intact",
@@ -4722,6 +4770,7 @@
       "classification",
       "enzyme"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Integrated relational Enzyme database",
     "pattern": "^\\d+$",
     "prefix": "intenz",
@@ -4792,6 +4841,7 @@
       "domain",
       "protein"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Integrated resource of protein families, domains and functional sites",
     "pattern": "^IPR\\d{6}$",
     "prefix": "interpro",
@@ -4850,6 +4900,7 @@
     "keywords": [
       "protein"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "International Protein Index",
     "pattern": "^IPI\\d{8}$",
     "prefix": "ipi",
@@ -5273,6 +5324,9 @@
     "uri_format": "http://www.genome.jp/dbget-bin/www_bget?ko:$1"
   },
   "kegg.pathway": {
+    "alt_uri_formats": [
+      "http://www.genome.jp/kegg-bin/show_pathway?#$1"
+    ],
     "description": "KEGG PATHWAY is a collection of manually drawn pathway maps (see new maps, change history, and last updates) representing our knowledge on the molecular interaction and reaction networks",
     "example": "map00071",
     "homepage": "http://www.genome.jp/kegg/pathway.html",
@@ -5347,6 +5401,7 @@
     "name": "Kinetic Simulation Algorithm Ontology",
     "pattern": "^KISAO_\\d+$",
     "prefix": "kisao",
+    "rdf_uri_format": "http://www.biomodels.net/kisao/KISAO#$1",
     "synonyms": [
       "biomodels.kisao"
     ]
@@ -5422,6 +5477,7 @@
       "protein",
       "sequence"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Ligand-Gated Ion Channel database",
     "pattern": "^\\w+$",
     "prefix": "lgicdb",
@@ -5458,6 +5514,7 @@
       "chemical",
       "nucleic acid"
     ],
+    "license": "http://ligand-depot.rutgers.edu/acknowledgements.html",
     "name": "Ligand Expo",
     "pattern": "^(\\w){3}$",
     "prefix": "ligandexpo",
@@ -5506,6 +5563,7 @@
       "structure",
       "taxonomy"
     ],
+    "license": "http://www.lipidmaps.org/about/terms_of_use.html",
     "name": "LIPID MAPS",
     "pattern": "^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$",
     "prefix": "lipidmaps",
@@ -5542,6 +5600,7 @@
     "description": "The data presented here is a result of systematically tracking the localization and abundance of 5330 yeast proteins at single-cell resolution under three different stress conditions (DTT, H2O2 and nitrogen starvation) using the GFP-tagged yeast library",
     "example": "1001",
     "homepage": "http://www.weizmann.ac.il/molgen/loqate/",
+    "license": "http://www.weizmann.ac.il/molgen/loqate/downloads",
     "name": "The localization and quantitation atlas of the yeast proteome",
     "pattern": "^\\d+$",
     "prefix": "loqate",
@@ -5578,6 +5637,9 @@
     "uri_format": "http://research.nhgri.nih.gov/lowe/db_retrieval.cgi?site_name=lowe&exon_intron_num=$1"
   },
   "ma": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/MA#$1"
+    ],
     "bioportal": "1000",
     "description": "A structured controlled vocabulary of the adult anatomy of the mouse (Mus).",
     "example": "MA:0000021",
@@ -5599,6 +5661,7 @@
       "enzyme",
       "pathway"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "MACiE",
     "pattern": "^M\\d{4}$",
     "prefix": "macie",
@@ -5728,6 +5791,7 @@
       "small molecule",
       "interaction"
     ],
+    "license": "http://dip.doe-mbi.ucla.edu/dip/termsofuse.html",
     "name": "MatrixDB: Extracellular Matrix interactions database",
     "pattern": "^[A-Z]\\d+_[A-Z]\\d+$",
     "prefix": "matrixdb",
@@ -5756,6 +5820,7 @@
     "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
     "example": "16333295",
     "homepage": "http://www.ebi.ac.uk/Databases/MEDLINE/medline.html",
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Medline literature database",
     "pattern": "^\\d+$",
     "prefix": "medline",
@@ -5796,6 +5861,7 @@
       "enzyme",
       "structure"
     ],
+    "license": "http://merops.sanger.ac.uk/about/availability.shtml",
     "name": "MEROPS - the Peptidase Database",
     "pattern": "^S\\d{2}\\.\\d{3}$",
     "prefix": "merops",
@@ -5805,6 +5871,9 @@
     "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
   },
   "mesh": {
+    "alt_uri_formats": [
+      "http://bioonto.de/mesh.owl#$1"
+    ],
     "bioportal": "1351",
     "description": "MeSH is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity",
     "example": "D018377",
@@ -5815,6 +5884,7 @@
     "name": "Medical Subject Headings",
     "pattern": "^[A-Za-z0-9]+$",
     "prefix": "mesh",
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/MSH/$1",
     "synonyms": [
       "msh",
       "bionto.mesh",
@@ -6073,9 +6143,6 @@
     "pubmed_ids": [
       "22053087"
     ],
-    "synonyms": [
-      "mimodb"
-    ],
     "uri_format": "http://immunet.cn/mimodb/browse.php?table=mimoset&ID=$1"
   },
   "mint": {
@@ -6086,6 +6153,7 @@
       "protein",
       "interaction"
     ],
+    "license": "http://dip.doe-mbi.ucla.edu/dip/termsofuse.html",
     "name": "Molecular INTeraction Database",
     "pattern": "^MINT\\-\\d{1,5}$",
     "prefix": "mint",
@@ -6107,9 +6175,6 @@
     "prefix": "mipmod",
     "pubmed_ids": [
       "22080560"
-    ],
-    "synonyms": [
-      "mipmod"
     ],
     "uri_format": "http://bioinfo.iitk.ac.in/MIPModDB/result.php?code=$1"
   },
@@ -6184,6 +6249,7 @@
     "keywords": [
       "registry"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "MIRIAM Resources",
     "pattern": "^MIR:001\\d{5}$",
     "prefix": "miriam.resource",
@@ -6221,9 +6287,6 @@
     "prefix": "mirnest",
     "pubmed_ids": [
       "22135287"
-    ],
-    "synonyms": [
-      "mirnest"
     ],
     "uri_format": "http://lemur.amu.edu.pl/share/php/mirnest/search.php?search_term=$1"
   },
@@ -6348,6 +6411,7 @@
     "description": "ModelDB is a curated, searchable database of published models in the computational neuroscience domain. It accommodates models expressed in textual form, including procedural or declarative languages (e.g. C++, XML dialects) and source code written for any simulation environment.",
     "example": "45539",
     "homepage": "http://senselab.med.yale.edu/ModelDB/",
+    "license": "http://senselab.med.yale.edu/ModelDB/HowToCite.html",
     "name": "ModelDB",
     "pattern": "^\\d+$",
     "prefix": "modeldb",
@@ -6442,6 +6506,9 @@
     "uri_format": "http://mousecyc.jax.org/MOUSE/NEW-IMAGE?type=NIL&object=$1"
   },
   "mp": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/MP#$1"
+    ],
     "bioportal": "1025",
     "description": "The Mammalian Phenotype Ontology is under development as a community effort to provide standard terms for annotating mammalian phenotypic data.",
     "example": "MP:0000001",
@@ -6488,6 +6555,7 @@
       "protein",
       "small molecule"
     ],
+    "license": "http://www.jcvi.org/cms/legal/privacy-statement",
     "name": "Microbial Protein Interaction Database",
     "pattern": "^\\d+$",
     "prefix": "mpi",
@@ -6765,6 +6833,7 @@
     "pubmed_ids": [
       "19789731"
     ],
+    "rdf_uri_format": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#$1",
     "synonyms": [
       "ncithesaurus",
       "nci",
@@ -6780,7 +6849,8 @@
     "homepage": "http://www.va.gov",
     "name": "National Drug File",
     "pattern": "^N\\d+$",
-    "prefix": "ndfrt"
+    "prefix": "ndfrt",
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/NDFRT/$1"
   },
   "neibank": {
     "description": "NEIBank is an integrated resource for genomics and bioinformatics in vision research. It includes expressed sequence tag (EST) data and sequence-verified cDNA clones for multiple eye tissues of several species, web-based access to human eye-specific SAGE data through EyeSAGE, and comprehensive, annotated databases of known human eye disease genes and candidate disease gene loci. All expression- and disease-related data are integrated in EyeBrowse, an eye-centric genome browser.",
@@ -6845,6 +6915,7 @@
     "name": "Neural Motor Recovery Ontology",
     "pattern": "^\\w+$",
     "prefix": "neumore",
+    "rdf_uri_format": "http://neumore.cis.usouthal.edu/ontologies/NeuMORE-v0.1.owl#$1",
     "uri_format": "http://neumore.cis.usouthal.edu/ontologies/NeuMORE-v0.1.owl#$1"
   },
   "neurolex": {
@@ -6872,6 +6943,7 @@
       "anatomy",
       "structure"
     ],
+    "license": "CC-BY-3.0",
     "name": "NeuroMorpho",
     "pattern": "^\\w+$",
     "prefix": "neuromorpho",
@@ -6888,6 +6960,7 @@
       "anatomy",
       "structure"
     ],
+    "license": "CC-BY-3.0",
     "name": "NeuronDB",
     "pattern": "^\\d+$",
     "prefix": "neurondb",
@@ -6926,6 +6999,7 @@
     "keywords": [
       "drug"
     ],
+    "license": "http://nikkajiweb.jst.go.jp/nikkaji_web/pages/top_e.jsp",
     "name": "Japan Chemical Substance Dictionary (Nikkaji)",
     "pattern": "^J\\d+$",
     "prefix": "nikkaji"
@@ -6954,6 +7028,7 @@
     "name": "NMR-instrument specific component of metabolomics investigations",
     "pattern": "^NMR_\\d+$",
     "prefix": "nmr",
+    "rdf_uri_format": "http://msi-ontology.sourceforge.net/ontology/NMR.owl#$1",
     "synonyms": [
       "msi.nmr"
     ]
@@ -7052,6 +7127,9 @@
     "uri_format": "http://www.nursa.org/molecule.cfm?molType=[?molecule_type]&molId=$1"
   },
   "obi": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/OBI#$1"
+    ],
     "bioportal": "1123",
     "description": "The Ontology for Biomedical Investigations (OBI) an ontology of investigations, the protocols and instrumentation used, the material used, the data generated and the types of analysis performed on it.",
     "example": "OBI_0000011",
@@ -7059,13 +7137,13 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC-BY-3.0",
     "name": "Ontology for Biomedical Investigations",
     "pattern": "^OBI_\\d{7}$",
     "prefix": "obi",
     "synonyms": [
       "obo.obi"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "odb": {
     "description": "ODB (Operon DataBase) aims to collect known operons in multiple species and to offer a system to predict operons by user definitions. All the known operons are derived from the literature and from publicly available database including operon information.",
@@ -7149,6 +7227,11 @@
     "uri_format": "http://omia.angis.org.au/retrieve.shtml?pid=$1"
   },
   "omim": {
+    "alt_uri_formats": [
+      "http://europe.omim.org/entry/#$1",
+      "http://us-east.omim.org/entry/#$1",
+      "http://omim.org/entry/#$1"
+    ],
     "description": "OMIM is a comprehensive, authoritative, and timely compendium of human genes and genetic phenotypes. The full-text, referenced overviews in OMIM contain information on all known mendelian disorders and over 12,000 genes. OMIM focuses on the relationship between phenotype and genotype.",
     "example": "603903",
     "homepage": "http://www.ncbi.nlm.nih.gov/omim/",
@@ -7156,6 +7239,7 @@
       "gene",
       "gene expression"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "Online Mendelian Inheritance in Man",
     "pattern": "^[*#+%^]?\\d{6}$",
     "prefix": "omim",
@@ -7190,6 +7274,7 @@
     "name": "Ontology of Physics for Biology",
     "pattern": "^OPB_\\d+$",
     "prefix": "opb",
+    "rdf_uri_format": "http://bhi.washington.edu/OPB#$1",
     "synonyms": [
       "opb.properties"
     ]
@@ -7302,6 +7387,7 @@
       "drug",
       "human"
     ],
+    "license": "CC BY-ND 3.0",
     "name": "Orphanet; a database dedicated to information on rare diseases and orphan drugs",
     "pattern": "^\\d+$",
     "prefix": "orphanet",
@@ -7429,6 +7515,7 @@
       "pathway",
       "ontology"
     ],
+    "license": "http://www.pantherdb.org/tou.jsp",
     "name": "Protein ANalysis THrough Evolutionary Relationships: Classification of Genes and Proteins",
     "pattern": "^PTHR\\d{5}(\\:SF{1,3})?$",
     "prefix": "panther",
@@ -7504,6 +7591,7 @@
     "keywords": [
       "pathway"
     ],
+    "license": "http://www.pathwaycommons.org/pc/about.do",
     "name": "Pathway Commons",
     "pattern": "^\\d+$",
     "prefix": "pathwaycommons",
@@ -7529,6 +7617,9 @@
     "uri_format": "http://rgd.mcw.edu/tools/ontology/ont_annot.cgi?term_key=$1&ontology=go"
   },
   "pato": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/PATO#$1"
+    ],
     "bioportal": "1107",
     "description": "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype annotation.",
     "example": "PATO:0001998",
@@ -7539,13 +7630,13 @@
       "quality",
       "phenotype"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "PATO",
     "pattern": "^PATO:\\d{7}$",
     "prefix": "pato",
     "synonyms": [
       "obo.pato"
-    ],
-    "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
+    ]
   },
   "patric": {
     "description": "PATRIC, the PathoSystems Resource Integration Center, is a multi-faceted bioinformatic website containing genomic and associated information on the eight important human pathogens",
@@ -7574,6 +7665,12 @@
     "uri_format": "http://www.pazar.info/cgi-bin/tf_search.cgi?searchtab=tfs&ID_list=PAZAR_TF&geneID=$1"
   },
   "pdb": {
+    "alt_uri_formats": [
+      "http://www.ebi.ac.uk/pdbsum/#$1",
+      "http://service.pdbj.org/mine/summary/#$1",
+      "http://proteopedia.org/wiki/index.php/#$1",
+      "http://www.pdbe.org/#$1"
+    ],
     "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules.",
     "example": "2gc4",
     "homepage": "http://www.pdb.org/",
@@ -7592,7 +7689,6 @@
     "synonyms": [
       "wwpdb",
       "pdbe",
-      "rcsb pdb",
       "proteindatabank",
       "pdbj",
       "pdbsumpdb"
@@ -7633,6 +7729,7 @@
       "protein",
       "structure"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Protein Data Bank Europe",
     "pattern": "^\\d+[A-Z]+$",
     "prefix": "pdbe",
@@ -7686,6 +7783,7 @@
       "structure",
       "interaction"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "PDBsum; at-a-glance overview of macromolecular structures",
     "pattern": "^[A-Z,0-9]+$",
     "prefix": "pdbsum",
@@ -7764,6 +7862,7 @@
       "protein",
       "structure"
     ],
+    "license": "http://www.peptideatlas.org/publications.php",
     "name": "PeptideAtlas",
     "pattern": "^PAp[0-9]{8}$",
     "prefix": "peptideatlas",
@@ -7790,6 +7889,9 @@
     "uri_format": "http://peroxibase.toulouse.inra.fr/listing.php?action=view&id=$1"
   },
   "pfam": {
+    "alt_uri_formats": [
+      "http://pfam.sbc.su.se/family/#$1"
+    ],
     "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
     "example": "PF01234",
     "homepage": "http://pfam.sanger.ac.uk/",
@@ -7797,6 +7899,7 @@
       "domain",
       "protein"
     ],
+    "license": "CC0-1.0",
     "name": "Sanger Pfam Mirror",
     "pattern": "^PF\\d{5}$",
     "prefix": "pfam",
@@ -7808,6 +7911,7 @@
       "9399864",
       "9223186"
     ],
+    "rdf_uri_format": "http://pfam.janelia.org/family/#$1",
     "uri_format": "http://pfam.sanger.ac.uk/family?entry=$1"
   },
   "pgc": {
@@ -7850,6 +7954,9 @@
     "uri_format": "http://pgn.cornell.edu/search/unigene_search_result.pl?unigene_id=$1"
   },
   "pharmgkb": {
+    "alt_uri_formats": [
+      "http://bioonto.de/pgkb.owl#$1"
+    ],
     "description": "PharmGKB curates primary genotype and phenotype data, annotates gene variants and gene-drug-disease relationships via literature review, and summarizes important PGx genes and drug pathways.",
     "example": "PA445062",
     "homepage": "http://www.pharmgkb.org/index.jsp",
@@ -8025,6 +8132,7 @@
       "gene",
       "protein"
     ],
+    "license": "http://www.cancer.gov/global/web/policies/allpages#5",
     "name": "Pathway Interaction Database",
     "pattern": "^\\w+$",
     "prefix": "pid",
@@ -8281,9 +8389,6 @@
     "pubmed_ids": [
       "18842634"
     ],
-    "synonyms": [
-      "pmap.substratedb"
-    ],
     "uri_format": "http://substrate.burnham.org/protein/annotation/$1/html"
   },
   "pmc": {
@@ -8462,6 +8567,9 @@
     ]
   },
   "pr": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/PR#$1"
+    ],
     "bioportal": "1062",
     "description": "PRO provides an ontological representation of protein-related entities by explicitly defining them and showing the relationships between them. Each PRO term represents a distinct class of entities (including specific modified forms, orthologous isoforms, and protein complexes) ranging from the taxon-neutral to the taxon-specific. The ontology has a meta-structure encompassing three areas: proteins based on evolutionary relatedness (ProEvo); protein forms produced from a given gene locus (ProForm); and protein-containing complexes (ProComp).",
     "example": "PR:000000024",
@@ -8478,8 +8586,7 @@
     ],
     "synonyms": [
       "obo.pr",
-      "pro",
-      "protein ontology"
+      "pro"
     ],
     "uri_format": "http://pir.georgetown.edu/cgi-bin/pro/entry_pro?id=$1"
   },
@@ -8540,6 +8647,7 @@
     "keywords": [
       "protein"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "PRoteomics IDEntifications database",
     "pattern": "^\\d+$",
     "prefix": "pride",
@@ -8631,7 +8739,8 @@
     ],
     "name": "Proteomics data and process provenance",
     "pattern": "^\\w+$",
-    "prefix": "propreo"
+    "prefix": "propreo",
+    "rdf_uri_format": "http://lsdis.cs.uga.edu/projects/glycomics/propreo#$1"
   },
   "prosite": {
     "description": "PROSITE consists of documentation entries describing protein domains, families and functional sites as well as associated patterns and profiles to identify them",
@@ -8641,6 +8750,7 @@
       "protein",
       "structure"
     ],
+    "license": "http://www.isb-sib.ch/disclaimer.html",
     "name": "PROSITE; a protein domain and family database",
     "pattern": "^PS\\d{5}$",
     "prefix": "prosite",
@@ -8723,9 +8833,6 @@
     "pubmed_ids": [
       "16672244"
     ],
-    "synonyms": [
-      "protonet.cluster"
-    ],
     "uri_format": "http://www.protonet.cs.huji.ac.il/requested/cluster_card.php?cluster=$1"
   },
   "protonet.proteincard": {
@@ -8739,9 +8846,6 @@
     "prefix": "protonet.proteincard",
     "pubmed_ids": [
       "16672244"
-    ],
-    "synonyms": [
-      "protonet.proteincard"
     ],
     "uri_format": "http://www.protonet.cs.huji.ac.il/requested/protein_card.php?protein_id=$1"
   },
@@ -8770,6 +8874,9 @@
     "uri_format": "http://tables.pseudogene.org/[?species_name]/$1"
   },
   "psi.mi": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/PSI-MI#$1"
+    ],
     "bioportal": "1040",
     "description": "The Molecular Interactions (MI) ontology forms a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions. MI is developed by the HUPO Proteomics Standards Initiative.",
     "example": "MI:0308",
@@ -8791,6 +8898,9 @@
     ]
   },
   "psi.mod": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/PSI-MOD#$1"
+    ],
     "bioportal": "1041",
     "description": "The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims to define a concensus nomenclature and ontology reconciling, in a hierarchical representation, the complementary descriptions of residue modifications.",
     "example": "MOD:00001",
@@ -8806,7 +8916,6 @@
     "prefix": "psi.mod",
     "synonyms": [
       "mod",
-      "protein modification ontology",
       "obo.psi-mod"
     ]
   },
@@ -8872,6 +8981,7 @@
     "keywords": [
       "small molecule"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "Pubchem: Bioassays",
     "pattern": "^\\d+$",
     "prefix": "pubchem.bioassay",
@@ -8881,6 +8991,9 @@
     "uri_format": "http://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$1"
   },
   "pubchem.compound": {
+    "alt_uri_formats": [
+      "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/$1"
+    ],
     "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records.",
     "example": "100101",
     "keywords": [
@@ -8897,6 +9010,9 @@
     "uri_format": "http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?db=pccompound&term=$1"
   },
   "pubchem.substance": {
+    "alt_uri_formats": [
+      "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/$1"
+    ],
     "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records.",
     "example": "100101",
     "keywords": [
@@ -8916,6 +9032,11 @@
     "uri_format": "http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=search&db=pcsubstance&term=$1"
   },
   "pubmed": {
+    "alt_uri_formats": [
+      "http://europepmc.org/abstract/MED/#$1",
+      "http://srs.ebi.ac.uk/srsbin/cgi-bin/wgetz?-view+MedlineFull+[medline-PMID:#]$1",
+      "http://www.hubmed.org/display.cgi?uids=#$1"
+    ],
     "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
     "example": "23735196",
     "homepage": "http://www.ncbi.nlm.nih.gov/pubmed/",
@@ -9054,9 +9175,11 @@
     "description": "Clinical Terms Version 3 (CTV3) (Read Codes) (Q199): National Health Service National Coding and Classification Centre",
     "example": "X79tP",
     "homepage": "http://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/RCD/",
+    "license": "https://uts.nlm.nih.gov/license.html",
     "name": "Read Codes, Clinical Terms Version 3 (CTV3)",
     "pattern": "^\\w+$",
     "prefix": "rcd",
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/RCD/$1",
     "uri_format": "http://purl.bioontology.org/ontology/RCD/$1"
   },
   "reactome": {
@@ -9075,7 +9198,6 @@
       "15608231"
     ],
     "synonyms": [
-      "reactome database",
       "identifier.reactome"
     ],
     "uri_format": "http://www.reactome.org/cgi-bin/eventbrowser_st_id?FROM_REACTOME=1&ST_ID=$1"
@@ -9199,12 +9321,16 @@
     "uri_format": "http://www.replicationdomain.com/view-dataset.php?RecordID=$1"
   },
   "repo": {
+    "alt_uri_formats": [
+      "http://purl.bioontology.org/ontology/REPO.owl#$1"
+    ],
     "bioportal": "1552",
     "description": "Ontology for livestock reproductive traits and phenotypes",
     "example": "AbnormalParturition",
     "name": "Reproductive trait and phenotype ontology",
     "pattern": "^\\w+$",
     "prefix": "repo",
+    "rdf_uri_format": "http://purl.bioontology.org/ontology/REPO$1",
     "synonyms": [
       "rtpo"
     ],
@@ -9231,6 +9357,7 @@
       "small molecule",
       "structure"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "RESID Database of Protein Modifications",
     "pattern": "^AA\\d{4}$",
     "prefix": "resid",
@@ -9296,6 +9423,7 @@
       "reaction",
       "small molecule"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Reaction database",
     "pattern": "^\\d{5}$",
     "prefix": "rhea",
@@ -9393,8 +9521,7 @@
     ],
     "name": "RNA ontology",
     "pattern": "^RNAO_\\d{7}$",
-    "prefix": "rnao",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "rnao"
   },
   "rnrdb": {
     "description": "The ribonucleotide reductase database (RNRdb) is a tool developed for RNR research that gives you the opportunity to retrieve RNR protein sequences from any organism that have been either experimentally characterised or predicted from genome sequence data.",
@@ -9410,6 +9537,10 @@
     "uri_format": "http://rnrdb.molbio.su.se/proteins_for_organism.html?organism_nr=$1"
   },
   "ro": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/RO_REL#$1",
+      "http://purl.org/obo/owlapi/relationship#$1"
+    ],
     "bioportal": "1042",
     "description": "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies.",
     "example": "part_of",
@@ -9418,6 +9549,7 @@
       "obo",
       "relations"
     ],
+    "license": "CC-BY-3.0",
     "name": "Relation Ontology",
     "pattern": "^\\w+$",
     "prefix": "ro",
@@ -9440,8 +9572,7 @@
     ],
     "name": "Role Ontology",
     "pattern": "^RoleO_\\d{7}$",
-    "prefix": "roleo",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "roleo"
   },
   "rouge": {
     "description": "The ROUGE protein database is a sister database of HUGE protein database which has accumulated the results of comprehensive sequence analysis of human long cDNAs (KIAA cDNAs). The ROUGE protein database has been created to publicize the information obtained from mouse homologues of the KIAA cDNAs (mKIAA cDNAs).",
@@ -9479,8 +9610,7 @@
     ],
     "name": "Rat Strain Ontology",
     "pattern": "^RS_\\d{7}$",
-    "prefix": "rs",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "rs"
   },
   "rtprimerdb": {
     "description": "RTPrimerDB is a public database for primer and probe sequences used in real-time PCR assays employing popular chemistries (SYBR Green I, Taqman, Hybridisation Probes, Molecular Beacon) to prevent time-consuming primer design and experimental optimisation, and to introduce a certain level of uniformity and standardisation among different laboratories.",
@@ -9619,6 +9749,7 @@
     "name": "Subcellular Anatomy Ontology (SAO)",
     "pattern": "^sao\\d+$",
     "prefix": "sao",
+    "rdf_uri_format": "http://ccdb.ucsd.edu/SAO/1.2#$1",
     "synonyms": [
       "sao:"
     ]
@@ -9637,6 +9768,9 @@
     "uri_format": "http://hydra.icgeb.trieste.it/sbase/sbase.php?sec=search&sub=group&group_id=$1"
   },
   "sbo": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/SBO#$1"
+    ],
     "bioportal": "1046",
     "description": "The Systems Biology Ontology is a set of controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modelling.",
     "example": "SBO:0000262",
@@ -9645,6 +9779,7 @@
       "obo",
       "systems biology"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Systems Biology Ontology",
     "pattern": "^SBO:\\d{7}$",
     "prefix": "sbo",
@@ -9658,6 +9793,9 @@
     "uri_format": "http://www.ebi.ac.uk/sbo/main/$1"
   },
   "sbro": {
+    "alt_uri_formats": [
+      "http://www.owl-ontologies.com/Ontology1171063716.owl#$1"
+    ],
     "bioportal": "1249",
     "description": "An ontology representing a causal model of smoking behavior risk, including genetic and environmental components.  It also includes concepts for describing smoking-related phenotypes.",
     "example": "elimination_of_nicotine",
@@ -9841,7 +9979,6 @@
       "14681421"
     ],
     "synonyms": [
-      "sgd.pathways",
       "spt"
     ],
     "uri_format": "http://pathway.yeastgenome.org/YEAST/new-image?type=PATHWAY&object=$1"
@@ -9901,6 +10038,7 @@
     "name": "Student Health Record",
     "pattern": "^\\w$",
     "prefix": "shr",
+    "rdf_uri_format": "http://www.shojaee.com/shr/shr.owl#$1",
     "uri_format": "http://www.shojaee.com/shr/shr.owl#$1"
   },
   "siege": {
@@ -9936,6 +10074,7 @@
       "protein",
       "small molecule"
     ],
+    "license": "http://www.signaling-gateway.org/copyright/afcs.html",
     "name": "The Signaling Gateway",
     "pattern": "^A\\d{6}$",
     "prefix": "signaling-gateway",
@@ -9998,7 +10137,8 @@
     ],
     "name": "Situation-Based Access Control",
     "pattern": "^\\w$",
-    "prefix": "sitbac"
+    "prefix": "sitbac",
+    "rdf_uri_format": "http://www.semanticweb.org/ontologies/2008/1/Ontology1204037102846.owl#$1"
   },
   "sitex": {
     "description": "SitEx is a database containing information on eukaryotic protein functional sites. It stores the amino acid sequence positions in the functional site, in relation to the exon structure of encoding gene This can be used to detect the exons involved in shuffling in protein evolution, or to design protein-engineering experiments.",
@@ -10027,6 +10167,7 @@
       "protein",
       "structure"
     ],
+    "license": "CC BY-SA 3.0",
     "name": "Simple Modular Architecture Research Tool; a protein domain database",
     "pattern": "^SM\\d{5}$",
     "prefix": "smart",
@@ -10045,6 +10186,7 @@
       "metabolite",
       "pathway"
     ],
+    "license": "http://www.smpdb.ca/about#cite",
     "name": "Small Molecule Pathway Database",
     "pattern": "^SMP\\d{5}$",
     "prefix": "smpdb",
@@ -10149,6 +10291,9 @@
     "uri_format": "http://snpeffect.vib.be/snp_main.php?id=$1"
   },
   "so": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/SO#$1"
+    ],
     "bioportal": "1109",
     "description": "The Sequence Ontology is a set of terms and relationships used to describe the features and attributes of biological sequence. SO includes different kinds of features which can be located on the sequence.",
     "example": "SO:0000704",
@@ -10160,6 +10305,7 @@
       "RNA",
       "structure"
     ],
+    "license": "http://www.sequenceontology.org/about/citing.html",
     "name": "Sequence Ontology",
     "pattern": "^SO:\\d{7}$",
     "prefix": "so",
@@ -10184,8 +10330,7 @@
     ],
     "name": "SoyOntology",
     "pattern": "^SOY_\\d{7}$",
-    "prefix": "soy",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "soy"
   },
   "spbase": {
     "description": "SpBase, is designed to present the results of the genome sequencing project for the purple sea urchin. THe sequences and annotations emerging from this effort are organized in a database that provides the research community access to those data not normally presented through NCBI and other large databases.",
@@ -10226,8 +10371,7 @@
     ],
     "name": "Spider Ontology",
     "pattern": "^SPD_\\d{7}$",
-    "prefix": "spdo",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "spdo"
   },
   "spike": {
     "description": "SPIKE (Signaling Pathway Integrated Knowledge Engine) is an interactive software environment that graphically displays biological signaling networks, allows dynamic layout and navigation through these networks, and enables the superposition of DNA microarray and other functional genomics data on interaction maps.",
@@ -10316,8 +10460,7 @@
     ],
     "name": "Solanaceae Phenotype Ontology",
     "pattern": "^SP_\\d{7}$",
-    "prefix": "spto",
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "spto"
   },
   "sso": {
     "bioportal": "1394",
@@ -10329,7 +10472,8 @@
     ],
     "name": "Syndromic Surveillance Ontology",
     "pattern": "^\\w$",
-    "prefix": "sso"
+    "prefix": "sso",
+    "rdf_uri_format": "http://surveillance.mcgill.ca/sso/syndromes.owl#$1"
   },
   "sstoss": {
     "description": "SSToSS is a database which provides sequence-structural templates of single member protein domain superfamilies like PASS2. Sequence-structural templates are recognized by considering the content and overlap of sequence similarity and structural parameters like, solvent inaccessibility, secondary structural content, hydrogen bonding and spatial packing of the residues among the protein of single member superfamilies.",
@@ -10558,7 +10702,8 @@
     "homepage": "http://theswo.sourceforge.net",
     "name": "Software Ontology",
     "pattern": "^SWO_\\d{7}$",
-    "prefix": "swo"
+    "prefix": "swo",
+    "rdf_uri_format": "http://www.ebi.ac.uk/efo/swo/$1"
   },
   "syfpeithi": {
     "description": "SYFPEITHI is a database comprising more than 7000 peptide sequences known to bind class I and class II MHC molecules.",
@@ -10588,8 +10733,7 @@
     "synonyms": [
       "symptomontology",
       "symp"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "sysbodyfluid": {
     "description": "Sys-BodyFluid, contains 11 body fluid proteomes, including plasma/serum, urine, cerebrospinal fluid, saliva, bronchoalveolar lavage fluid, synovial fluid, nipple aspirate fluid, tear fluid, seminal fluid, human milk, and amniotic fluid",
@@ -10634,6 +10778,7 @@
       "protein",
       "molecule"
     ],
+    "license": "http://www.t3db.org/about#cite",
     "name": "Toxin and Toxin Target Database",
     "pattern": "^T3D\\d+$",
     "prefix": "t3db",
@@ -10650,8 +10795,7 @@
     "prefix": "tair.gene",
     "pubmed_ids": [
       "12444417"
-    ],
-    "uri_format": "http://arabidopsis.org/servlets/TairObject?accession=$1"
+    ]
   },
   "tair.locus": {
     "description": "The locus name",
@@ -10678,8 +10822,7 @@
     "prefix": "tair.protein",
     "pubmed_ids": [
       "12444417"
-    ],
-    "uri_format": "http://arabidopsis.org/servlets/TairObject?accession=$1"
+    ]
   },
   "tao": {
     "bioportal": "1110",
@@ -10696,8 +10839,7 @@
     "prefix": "tao",
     "synonyms": [
       "teleost_anatomy"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "targetdb": {
     "description": "TargetDB, a target registration database, provides information on the experimental progress and status of targets selected for structure determination.",
@@ -10723,6 +10865,11 @@
     "prefix": "tassdb"
   },
   "taxonomy": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/NCBITaxon#$1",
+      "http://purl.org/obo/owl/TAXON#$1",
+      "http://bioportal.bioontology.org/ontologies/1132?p=terms&conceptid=obo:NCBITaxon_#$1"
+    ],
     "bioportal": "1132",
     "description": "The NCBI taxonomy database contains the names of all organisms that are represented in the genetic databases with at least one nucleotide or protein sequence.",
     "example": "9606",
@@ -10733,6 +10880,7 @@
       "structure",
       "classification"
     ],
+    "license": "http://www.nlm.nih.gov/copyright.html",
     "name": "NCBI Taxonomy",
     "pattern": "^\\d+$",
     "prefix": "taxonomy",
@@ -10761,8 +10909,7 @@
     "prefix": "taxrank",
     "synonyms": [
       "taxonomic_rank"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "tbdb": {
     "description": "TBDatabase (TBDB) makes available the tools and resources available at the Stanford Microarray Database and the Broad Institute.",
@@ -10848,6 +10995,10 @@
     "uri_format": "http://tcruzidb.org/tcruzidb/showRecord.do?name=GeneRecordClasses.GeneRecordClass&project_id=&primary_key=$1"
   },
   "teddy": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/TEDDY#$1",
+      "http://biomodels.net/teddy/TEDDY#$1"
+    ],
     "bioportal": "1407",
     "description": "The Terminology for Description of Dynamics (TEDDY) is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems Biology and Synthetic Biology.",
     "example": "TEDDY_0000066",
@@ -10855,6 +11006,7 @@
     "keywords": [
       "ontology"
     ],
+    "license": "http://www.ebi.ac.uk/Information/termsofuse.html",
     "name": "Terminology for the Description of Dynamics",
     "pattern": "^TEDDY_\\d{7}$",
     "prefix": "teddy",
@@ -10924,7 +11076,8 @@
     ],
     "name": "thesaurus alternativa",
     "pattern": "^\\w$",
-    "prefix": "thealternativa"
+    "prefix": "thealternativa",
+    "rdf_uri_format": "http://www.owl-ontologies.com/thesaurus.owl#$1"
   },
   "thesaurus": {
     "bioportal": "3034",
@@ -10937,7 +11090,8 @@
     ],
     "name": "thesaurus",
     "pattern": "^\\w$",
-    "prefix": "thesaurus"
+    "prefix": "thesaurus",
+    "rdf_uri_format": "http://www.owl-ontologies.com/thesaurus.owl#$1"
   },
   "tied": {
     "description": "The IEDB contains data related to antibody and T cell epitopes for humans, non-human primates, rodents, and other animal species.",
@@ -10978,7 +11132,8 @@
     ],
     "name": "Traditional Medicine Constitution Value Set",
     "pattern": "^TM\\d$",
-    "prefix": "tm-const"
+    "prefix": "tm-const",
+    "rdf_uri_format": "http://who.int/ictm/constitution#$1"
   },
   "tm-other-factors": {
     "bioportal": "1571",
@@ -10991,7 +11146,8 @@
     ],
     "name": "Traditional Medicine Other Factors Value Set",
     "pattern": "^TM\\d$",
-    "prefix": "tm-other-factors"
+    "prefix": "tm-other-factors",
+    "rdf_uri_format": "http://who.int/ictm/otherFactors#$1"
   },
   "tm-signs-and-sympts": {
     "bioportal": "1572",
@@ -11004,7 +11160,8 @@
     ],
     "name": "Traditional Medicine Signs and Symptoms Value Set",
     "pattern": "^TM\\d$",
-    "prefix": "tm-signs-and-sympts"
+    "prefix": "tm-signs-and-sympts",
+    "rdf_uri_format": "http://who.int/ictm/signsAndSymptoms#$1"
   },
   "tomatest_db": {
     "description": "This database has been designed to manage and to explore the huge amount of EST reads from 14 Solanaceae and 2 Rubiaceae species.",
@@ -11198,8 +11355,7 @@
     "prefix": "tto",
     "synonyms": [
       "teleost_taxonomy"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "tuberculist": {
     "description": "The TubercuList knowledge base integrates genome details, protein information, drug and transcriptome data, mutant and operon annotation, bibliography; structural views and comparative genomics, in a structured manner required for the rational development of new diagnostic, therapeutic and prophylactic measures against tuberculosis.",
@@ -11249,7 +11405,8 @@
     ],
     "name": "uni-ece",
     "pattern": "^\\w$",
-    "prefix": "uni-ece"
+    "prefix": "uni-ece",
+    "rdf_uri_format": "http://www.semanticweb.org/ontologies/2012/2/Ontology1331685116337.owl#$1"
   },
   "unigene": {
     "description": "Each UniGene entry is a set of transcript sequences that appear to come from the same transcription locus (gene or expressed pseudogene), together with information on protein similarities, gene expression, cDNA clone reagents, and genomic location.",
@@ -11307,12 +11464,12 @@
     "pubmed_ids": [
       "16381842"
     ],
+    "rdf_uri_format": "http://purl.uniprot.org/uniprot/$1",
     "synonyms": [
       "uniprotkb",
       "uniprotkb/trembl",
       "swiss-prot",
       "sp",
-      "uniprot knowledge base",
       "UNIPROTKB/SWISSPROT"
     ],
     "uri_format": "http://www.uniprot.org/uniprot/$1"
@@ -11343,6 +11500,7 @@
       "structure",
       "classification"
     ],
+    "license": "CC BY-ND 3.0",
     "name": "Uniprot Taxonomy",
     "pattern": "^\\d+$",
     "prefix": "uniprot.taxonomy",
@@ -11391,6 +11549,10 @@
     "uri_format": "http://unite.ut.ee/bl_forw.php?nimi=$1"
   },
   "uo": {
+    "alt_uri_formats": [
+      "http://purl.org/obo/owl/UO#$1",
+      "http://mimi.case.edu/ontologies/2009/1/UnitsOntology#$1"
+    ],
     "bioportal": "1112",
     "description": "Ontology of standardized units in conjunction with PATO",
     "example": "UO:0000080",
@@ -11399,14 +11561,14 @@
       "obo",
       "ontology"
     ],
+    "license": "CC-BY-3.0",
     "name": "Unit Ontology",
     "pattern": "^UO:\\d{7}?$",
     "prefix": "uo",
     "synonyms": [
       "obo.unit",
       "unit"
-    ],
-    "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
+    ]
   },
   "utrome": {
     "description": "The UTRome.org database is intended as a comprehensive resource for 3'UTR biology in C. elegans. The database provides detailed information on 3'UTR structures for all protein-coding mRNAs, and includes annotations extracted from other databases as well as new annotations generated as part of the NYU 3'UTRome project.",
@@ -11539,10 +11701,7 @@
     ],
     "name": "VirGen",
     "pattern": "^A[A-Z]\\d+$",
-    "prefix": "virgen",
-    "synonyms": [
-      "virgen"
-    ]
+    "prefix": "virgen"
   },
   "virmirdb": {
     "description": "A database containing predicted viral miRNA candidate hairpins.",
@@ -11576,6 +11735,7 @@
     "keywords": [
       "virus"
     ],
+    "license": "CC BY-NC-SA 4.0",
     "name": "Virus-HostDB",
     "pattern": "^\\d+$",
     "prefix": "virushostdb",
@@ -11715,8 +11875,7 @@
     "prefix": "wbls",
     "synonyms": [
       "worm_development"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "wbphenotype": {
     "bioportal": "1067",
@@ -11733,8 +11892,7 @@
     "prefix": "wbphenotype",
     "synonyms": [
       "worm_phenotype"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    ]
   },
   "wikipathways": {
     "description": "WikiPathways is a resource providing an open and public collection of  pathway maps created and curated by the community in a Wiki like style.",
@@ -11743,6 +11901,7 @@
     "keywords": [
       "pathway"
     ],
+    "license": "CC0-1.0",
     "name": "WikiPathways",
     "pattern": "^P\\d{1,5}(\\_r\\d+)?$",
     "prefix": "wikipathways",
@@ -11798,6 +11957,7 @@
       "gene",
       "anatomy"
     ],
+    "license": "http://wiki.wormbase.org/index.php/WormBaseWiki:Copyrights",
     "name": "WormBase",
     "pattern": "^WBGene\\d{8}$",
     "prefix": "wormbase",
@@ -11940,11 +12100,7 @@
     ],
     "name": "Zebrafish anatomy and development Ontology",
     "pattern": "^ZFS_\\d{7}$",
-    "prefix": "zfa",
-    "synonyms": [
-      "zfs"
-    ],
-    "uri_format": "http://purl.obolibrary.org/obo/$1"
+    "prefix": "zfa"
   },
   "zfin": {
     "description": "ZFIN serves as the zebrafish model organism database.",

@@ -592,6 +592,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
 
     fig, ax = plt.subplots(1, 1, figsize=(10, 7.5))
     plt.rc("legend", fontsize=12, loc="upper right")
+    fig.subplots_adjust(right=0.4)
     df.plot(
         kind="barh",
         stacked=True,
@@ -685,16 +686,18 @@ def plot_xrefs(registry_infos, watermark: bool):
         data=xrefs_df,
         x="frequency",
         y="count",
+        hue="frequency",
         errorbar=None,
         palette=xrefs_colors,
         alpha=1.0,
         ax=ax,
+        legend=False,
     )
     # There should only be one container here
     _labels = xrefs_df["count"].to_list()
     _labels[0] = f"{_labels[0]}\nNovel"
-    for i in ax.containers:
-        ax.bar_label(i, _labels)
+    for i, label in zip(ax.containers, _labels):
+        ax.bar_label(i, [label])
     ax.set_xlabel(
         f"Number of the {n_mappable_metaprefixes} Mapped External Registries Capturing a Given Identifier Resource"
     )
@@ -741,11 +744,11 @@ def _get_licenses_mapped_counter(threshold: int = 30) -> List[str]:
     licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
     licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [
-        "None"
-        if license_ is None
-        else license_
-        if licenses_counter[license_] > threshold
-        else "Other"
+        (
+            "None"
+            if license_ is None
+            else license_ if licenses_counter[license_] > threshold else "Other"
+        )
         for license_ in licenses
     ]
     return licenses_mapped

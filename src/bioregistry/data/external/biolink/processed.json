@@ -116,23 +116,20 @@
   "INO": {
     "uri_format": "http://purl.obolibrary.org/obo/INO_$1"
   },
+  "KEGG": {
+    "uri_format": "http://www.kegg.jp/entry/$1"
+  },
   "KEGG.BRITE": {
-    "uri_format": "http://www.kegg.jp/entry/$1"
+    "uri_format": "https://bioregistry.io/kegg.brite:$1"
   },
-  "KEGG.DGROUP": {
-    "uri_format": "http://www.kegg.jp/entry/$1"
-  },
-  "KEGG.ENZYME": {
-    "uri_format": "http://www.kegg.jp/entry/$1"
-  },
-  "KEGG.GENE": {
-    "uri_format": "http://www.kegg.jp/entry/$1"
+  "KEGG.GENES": {
+    "uri_format": "https://bioregistry.io/kegg.genes:bsu:$1"
   },
   "KEGG.PATHWAY": {
-    "uri_format": "https://www.kegg.jp/entry/$1"
+    "uri_format": "https://bioregistry.io/kegg.pathway:$1"
   },
   "KEGG.RCLASS": {
-    "uri_format": "http://www.kegg.jp/entry/$1"
+    "uri_format": "https://www.genome.jp/dbget-bin/www_bget?rc:$1"
   },
   "LOINC": {
     "uri_format": "http://loinc.org/rdf/$1"
@@ -182,8 +179,26 @@
   "PANTHER.FAMILY": {
     "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
   },
+  "PHARMGKB.CHEMICAL": {
+    "uri_format": "https://www.pharmgkb.org/chemical/$1"
+  },
+  "PHARMGKB.DISEASE": {
+    "uri_format": "https://www.pharmgkb.org/disease/$1"
+  },
+  "PHARMGKB.GENE": {
+    "uri_format": "https://www.pharmgkb.org/gene/$1"
+  },
+  "PHARMGKB.PATHWAYS": {
+    "uri_format": "https://www.pharmgkb.org/pathway/$1"
+  },
+  "PHARMGKB.VARIANT": {
+    "uri_format": "https://www.pharmgkb.org/variant/$1"
+  },
   "PHAROS": {
     "uri_format": "http://pharos.nih.gov$1"
+  },
+  "PMC": {
+    "uri_format": "http://europepmc.org/articles/PMC$1"
   },
   "PathWhiz": {
     "uri_format": "http://smpdb.ca/pathways/#$1"
@@ -258,16 +273,16 @@
     "uri_format": "http://bio2rdf.org/wormbase_vocabulary$1"
   },
   "WBbt": {
-    "uri_format": "http://purl.obolibrary.org/obo/WBBT_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1"
   },
   "WBls": {
-    "uri_format": "http://purl.obolibrary.org/obo/WBBL_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/WBls_$1"
   },
   "WIKIDATA": {
-    "uri_format": "https://www.wikidata.org/wiki/$1"
+    "uri_format": "https://www.wikidata.org/entity/$1"
   },
   "WIKIDATA_PROPERTY": {
-    "uri_format": "https://www.wikidata.org/wiki/Property:$1"
+    "uri_format": "https://www.wikidata.org/prop/$1"
   },
   "XPO": {
     "uri_format": "http://purl.obolibrary.org/obo/XPO_$1"
@@ -303,10 +318,10 @@
     "uri_format": "http://xmlns.com/foaf/0.1/$1"
   },
   "foodb.compound": {
-    "uri_format": "http://foodb.ca/foods/$1"
+    "uri_format": "http://foodb.ca/compounds/$1"
   },
   "foodb.food": {
-    "uri_format": "http://foodb.ca/compounds/$1"
+    "uri_format": "http://foodb.ca/foods/$1"
   },
   "gff3": {
     "uri_format": "https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md#$1"
@@ -349,9 +364,6 @@
   },
   "ncats.drug": {
     "uri_format": "https://drugs.ncats.io/drug/$1"
-  },
-  "oboformat": {
-    "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
   },
   "orphanet": {
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1"

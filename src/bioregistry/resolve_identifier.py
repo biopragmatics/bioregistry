@@ -272,7 +272,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
     :return: A IRI string corresponding to the default provider, if available.
 
     >>> get_default_iri('chebi', '24867')
-    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
     """
     return manager.get_default_iri(prefix, identifier)
 
@@ -448,23 +448,21 @@ def get_iri(
 
     A pre-parse CURIE can be given as the first two arguments
     >>> get_iri("chebi", "24867")
-    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A CURIE can be given directly as a single argument
     >>> get_iri("chebi:24867")
-    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A priority list can be given
-    >>> priority = ["obofoundry", "default", "bioregistry"]
+    >>> priority = ["miriam", "default", "bioregistry"]
     >>> get_iri("chebi:24867", priority=priority)
-    'http://purl.obolibrary.org/obo/CHEBI_24867'
+    'https://identifiers.org/CHEBI:24867'
 
     A custom prefix map can be supplied.
     >>> prefix_map = {"chebi": "https://example.org/chebi/"}
     >>> get_iri("chebi:24867", prefix_map=prefix_map)
     'https://example.org/chebi/24867'
-    >>> get_iri("fbbt:00007294")
-    'https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:00007294'
 
     A custom prefix map can be supplied in combination with a priority list
     >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}

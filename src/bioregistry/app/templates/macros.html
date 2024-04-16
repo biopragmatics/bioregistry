@@ -2,6 +2,14 @@
     <code>{{ curie_to_str(prefix, identifier) }}</code>
 {% endmacro %}
 
+{% macro link_curie(prefix, identifier, text) -%}
+    <a href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=identifier) }}">{{ text }}</a>
+{% endmacro %}
+
+{% macro link_code_curie(prefix, identifier) -%}
+    {{ link_curie(prefix, identifier, code_curie(prefix, identifier)) }}
+{% endmacro %}
+
 {% macro render_prefix(prefix, classes="") -%}
     <a class="{{ classes }}" href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
         <code>{{ prefix }}</code>
@@ -47,12 +55,11 @@
            title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
             Provider <i class="fas fa-exclamation-triangle"></i>
         </a>
-    {% elif resource.has_canonical %}
-        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
-           href="{{ url_for("metaregistry_ui.resource", prefix=resource.has_canonical) }}"
-           title="{{ manager.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
-            Has Canonical <i class="fas fa-exclamation-triangle"></i>
-        </a>
+    {% endif %}
+    {% if resource.proprietary %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Proprietary <i class="fas fa-exclamation-triangle"></i>
+        </span>
     {% endif %}
 {% endmacro %}
 
@@ -68,6 +75,7 @@
             </thead>
             <tbody>
             {% for provider in providers %}
+                {% if provider.name %}
                 <tr>
                     <td>
                         {% if provider.homepage %}
@@ -81,6 +89,7 @@
                         <a href="{{ provider.uri }}">{{ provider.uri }}</a>
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

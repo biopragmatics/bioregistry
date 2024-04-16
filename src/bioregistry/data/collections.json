@@ -43,7 +43,7 @@
         }
       ],
       "context": "semweb",
-      "description": "Resources used in the semantic web, inspired by [this list](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) in BioContext.",
+      "description": "Resources used in the semantic web, drawing from lists in [BioContext](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) and [LinkML](https://github.com/linkml/prefixmaps/blob/main/src/prefixmaps/data/linked_data.curated.yaml) as well as W3C recommendations.",
       "identifier": "0000002",
       "name": "Semantic Web Context",
       "resources": [
@@ -53,6 +53,7 @@
         "dcat",
         "dcterms",
         "dctypes",
+        "doap",
         "faldo",
         "foaf",
         "idot",
@@ -67,7 +68,7 @@
         "rdf",
         "rdfs",
         "schema",
-        "shacl",
+        "sh",
         "shex",
         "skos",
         "skosxl",
@@ -352,6 +353,107 @@
         "uniprot",
         "wormbase",
         "zfin"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "hendrik.borgelt@tu-dortmund.de",
+          "github": "HendrikBorgelt",
+          "name": " Hendrik Borgelt",
+          "orcid": "0000-0001-5886-7860"
+        },
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of ontologies relevant for chemistry.\n\nThe NFDI program deploys a [custom instance](https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1) of the Ontology Lookup Service (OLS) that provides the ontologies in this list.\n\nA further analysis of the metadata landscape of the ontologies in this list can be found [here](https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat).\n\nOntoCompChem and OntoKin appear on the NFDI4Cat list but have not yet been registered in the Bioregistry because the resources are missing/incomplete such that they do not meet minimum Bioregistry metadata standards. These might be added in the future if additional metadata can be found.",
+      "identifier": "0000011",
+      "name": "NDFI4Cat Collection",
+      "references": [
+        "https://nfdi4cat.org/services/ontologie-sammlung/",
+        "https://terminology.tib.eu/ts/ontologies?collection=NFDI4CAT&and=false&page=1",
+        "https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat"
+      ],
+      "resources": [
+        "afo",
+        "bfo",
+        "cao",
+        "chebi",
+        "cheminf",
+        "chmo",
+        "dolce",
+        "emmo",
+        "emmo.cif",
+        "iso15926",
+        "nfdi4chem.ontocape",
+        "nfdi4chem.osmo",
+        "rex",
+        "rxno",
+        "sbo",
+        "voc4cat"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "A collection of clinical trial registries appearing in the World Health Organization's [International Clinical Trials Registry Platform (ICTRP)](https://trialsearch.who.int/)",
+      "identifier": "0000012",
+      "name": "Clinical Trial Registries",
+      "resources": [
+        "anzctr",
+        "chictr",
+        "clinicaltrials",
+        "ctis",
+        "ctri",
+        "drks",
+        "euclinicaltrials",
+        "hc.trial",
+        "irct",
+        "isrctn",
+        "itmctr",
+        "jrct",
+        "kcris",
+        "lbctr",
+        "pactr",
+        "phrr",
+        "rebec",
+        "repec",
+        "rpcec",
+        "slctr",
+        "snctp",
+        "tctr",
+        "uminctr"
+      ]
+    },
+    {
+      "authors": [
+        {
+          "email": "cthoyt@gmail.com",
+          "github": "cthoyt",
+          "name": "Charles Tapley Hoyt",
+          "orcid": "0000-0003-4423-4370"
+        }
+      ],
+      "description": "These resources represent software repositories",
+      "identifier": "0000013",
+      "name": "Software Package Repositories",
+      "resources": [
+        "cran",
+        "crates",
+        "npm",
+        "packagist",
+        "pypi",
+        "rubygems"
       ]
     }
   ]

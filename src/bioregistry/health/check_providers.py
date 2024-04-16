@@ -28,13 +28,13 @@ HEALTH_YAML_PATH = DOCS_DATA.joinpath("health.yaml")
 class ProviderStatus(BaseModel):
     """A container for provider information."""
 
-    prefix: str
-    example: str
-    url: str
-    status_code: Optional[int]
-    failed: bool
-    exception: Optional[str]
-    context: Optional[str]
+    prefix: str = Field(...)
+    example: str = Field(...)
+    url: str = Field(...)
+    status_code: Optional[int] = Field(None)
+    failed: bool = Field(...)
+    exception: Optional[str] = Field(None)
+    context: Optional[str] = Field(None)
 
 
 class Summary(BaseModel):
@@ -43,8 +43,17 @@ class Summary(BaseModel):
     total_measured: int
     total_failed: int
     total_success: int
+    success_percent: float = Field(
+        ...,
+        ge=0.0,
+        le=100.0,
+        description="The percentage of providers that successfully ping'd.",
+    )
     failure_percent: float = Field(
-        ge=0.0, le=100.0, description="The percentage of providers that did not successfully ping."
+        ...,
+        ge=0.0,
+        le=100.0,
+        description="The percentage of providers that did not successfully ping.",
     )
 
 
@@ -75,7 +84,9 @@ class Run(BaseModel):
     date: str = Field(default_factory=lambda: datetime.datetime.now().strftime("%Y-%m-%d"))
     results: List[ProviderStatus]
     summary: Summary
-    delta: Optional[Delta] = Field(description="Information about the changes since the last run")
+    delta: Optional[Delta] = Field(
+        None, description="Information about the changes since the last run"
+    )
 
 
 class Database(BaseModel):
@@ -141,6 +152,7 @@ def main() -> None:
             total_failed=total_failed,
             total_success=total - total_failed,
             failure_percent=round(100 * failure_percent, 1),
+            success_percent=round(100 * (1 - failure_percent), 1),
         ),
         delta=delta,
     )

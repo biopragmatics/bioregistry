@@ -16,6 +16,8 @@ import requests
 from pydantic import BaseModel
 
 from bioregistry.constants import DATA_DIRECTORY, EXTERNAL
+from bioregistry.parse_version_iri import parse_obo_version_iri
+from bioregistry.utils import OLSBroken
 
 __all__ = [
     "get_ols",
@@ -25,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "ols"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-URL = "https://www.ebi.ac.uk/ols/api/ontologies?size=1000"
+URL = "https://www.ebi.ac.uk/ols4/api/ontologies?size=1000"
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 OLS_PROCESSING = DATA_DIRECTORY / "processing_ols.json"
@@ -35,7 +37,9 @@ OLS_SKIP = {
     "phi": "this is low quality and has no associated metadata",
     "epso": "can't figure out / not sure if still exists",
     "epio": "can't figure out / not sure if still exists",
-    "ccf": "this is full of temporary annotations and is mostly nonsense",
+    "cpont": "no own terms?",
+    "schemaorg_https": "duplicate of canonical HTTP version",
+    "hpi": "nonsensical duplication of HP",
 }
 
 
@@ -46,6 +50,8 @@ def get_ols(force_download: bool = False):
             return json.load(file)
 
     data = requests.get(URL).json()
+    if "_embedded" not in data:
+        raise OLSBroken
     data["_embedded"]["ontologies"] = sorted(
         data["_embedded"]["ontologies"],
         key=itemgetter("ontologyId"),
@@ -65,7 +71,7 @@ def get_ols(force_download: bool = False):
         config = get_ols_processing().get(ols_id)
         if config is None:
             if ols_id not in OLS_SKIP:
-                logger.warning("need to curate processing file for OLS prefix %s", ols_id)
+                logger.warning("[%s] need to curate processing file", ols_id)
             continue
         processed[ols_id] = _process(ontology, config)
 
@@ -90,52 +96,41 @@ class OLSConfig(BaseModel):
 
     prefix: str
     version_type: VersionType
-    version_date_format: Optional[str]
-    version_prefix: Optional[str]
-    version_suffix: Optional[str]
-    version_suffix_split: Optional[str]
-    version_iri_prefix: Optional[str]
-    version_iri_suffix: Optional[str]
+    version_date_format: Optional[str] = None
+    version_prefix: Optional[str] = None
+    version_suffix: Optional[str] = None
+    version_suffix_split: Optional[str] = None
+    version_iri_prefix: Optional[str] = None
+    version_iri_suffix: Optional[str] = None
 
 
-def _process(  # noqa:C901
-    ols_entry: Mapping[str, Any], processing: OLSConfig
-) -> Optional[Mapping[str, str]]:
-    ols_id = ols_entry["ontologyId"]
-    config = ols_entry["config"]
-    version_iri = config["versionIri"]
+def _get_email(ols_id, config) -> Optional[str]:
+    mailing_list = config.get("mailingList")
+    if not mailing_list:
+        return None
+    name, email = parseaddr(mailing_list)
+    if email.startswith("//"):
+        logger.debug("[%s] invalid email address: %s", ols_id, mailing_list)
+        return None
+    return email
 
-    title = config.get("title")
-    if not title:
-        title = config.get("localizedTitles", {}).get("en")
 
-    description = config.get("description")
-    if not description:
-        description = config.get("localizedDescriptions", {}).get("en")
-
-    rv = {
-        "prefix": ols_id,
-        "name": title,
-        "download": _clean_url(config["fileLocation"]),
-        "version.iri": _clean_url(version_iri),
-        "description": description,
-        "homepage": _clean_url(config["homepage"]),
-    }
-
-    email = config.get("mailingList")
-    if email:
-        name, email = parseaddr(email)
-        if email.startswith("//"):
-            logger.debug("[%s] invalid email address: %s", ols_id, config["mailingList"])
-        else:
-            rv["contact"] = email
-
-    license_value = config.get("annotations", {}).get("license", [None])[0]
+def _get_license(ols_id, config) -> Optional[str]:
+    license_value = (config.get("annotations") or {}).get("license", [None])[0]
     if license_value in {"Unspecified", "Unspecified"}:
-        license_value = None
+        logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
+        return None
     if not license_value:
         logger.info("[%s] missing license in OLS. Contact: %s", ols_id, config["mailingList"])
-    rv["license"] = license_value
+    return license_value
+
+
+def _get_version(ols_id, config, processing: OLSConfig) -> Optional[str]:
+    version_iri = config.get("versionIri")
+    if version_iri:
+        _, _, version = parse_obo_version_iri(version_iri, ols_id)
+        if version:
+            return version
 
     version = config.get("version")
     if version is None and processing.version_iri_prefix:
@@ -169,9 +164,9 @@ def _process(  # noqa:C901
                 raise ValueError(
                     dedent(
                         f"""\
-                [{ols_id}] version "{version}" does not start with prefix "{version_prefix}".
-                Update the ["{ols_id}"]["prefix"] entry in the OLS processing configuration.
-                """
+                    [{ols_id}] version "{version}" does not start with prefix "{version_prefix}".
+                    Update the ["{ols_id}"]["prefix"] entry in the OLS processing configuration.
+                    """
                     )
                 )
             version = version[len(version_prefix) :]
@@ -202,9 +197,41 @@ def _process(  # noqa:C901
         elif not version_type:
             logger.info("[%s] no type for version %s", ols_id, version)
 
-    rv["version"] = version
+    return version
 
-    rv = {k: v for k, v in rv.items() if v}
+
+def _process(  # noqa:C901
+    ols_entry: Mapping[str, Any], processing: OLSConfig
+) -> Optional[Mapping[str, str]]:
+    ols_id = ols_entry["ontologyId"]
+    config = ols_entry["config"]
+    version_iri = config["versionIri"]
+    title = config.get("title") or config.get("localizedTitles", {}).get("en")
+    description = config.get("description") or config.get("localizedDescriptions", {}).get("en")
+    rv = {
+        "prefix": ols_id,
+        # "preferred_prefix": config["preferredPrefix"],
+        "name": title,
+        "version.iri": _clean_url(version_iri),
+        "version": _get_version(ols_id, config, processing),
+        "description": description,
+        "homepage": _clean_url(config["homepage"]),
+        # "tracker": _clean_url(config["tracker"]),
+        "contact": _get_email(ols_id, config),
+        "license": _get_license(ols_id, config),
+    }
+    download = _clean_url(config["fileLocation"])
+    if download is None:
+        pass
+    elif download.endswith(".obo"):
+        rv["download_obo"] = download
+    elif download.endswith(".owl"):
+        rv["download_owl"] = download
+    elif download.endswith(".rdf") or download.endswith(".ttl"):
+        rv["download_rdf"] = download
+    else:
+        logger.warning("[%s] unknown download type %s", ols_id, download)
+    rv = {k: v.strip() for k, v in rv.items() if v}
     return rv
 
 

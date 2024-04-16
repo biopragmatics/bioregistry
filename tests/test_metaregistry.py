@@ -23,10 +23,17 @@ class TestMetaregistry(unittest.TestCase):
         """Test the metaregistry entries have a minimum amount of data."""
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
+            external_prefixes = set(self.manager.get_registry_invmap(metaprefix))
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
                 self.assertIsNotNone(registry.homepage)
                 self.assertIsNotNone(registry.example)
+                if metaprefix != "bioregistry" and external_prefixes:
+                    self.assertIn(
+                        registry.example,
+                        external_prefixes,
+                        msg="Examples should be external-registry specific and mapped",
+                    )
                 self.assertIsNotNone(registry.description)
                 self.assertIsNotNone(registry.contact)
                 self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
@@ -107,7 +114,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertEqual(name, registry.name)
         self.assertEqual(name, bioregistry.get_registry_name(metaprefix))
 
-        example = "0174"
+        example = "DB-0174"
         self.assertEqual(example, registry.example)
         self.assertEqual(example, bioregistry.get_registry_example(metaprefix))
 
@@ -131,3 +138,26 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsInstance(s, str)
         g = rdflib.Graph()
         g.parse(data=s)
+
+    def test_corresponding(self):
+        """Test data corresponds between the registry and metaregistry."""
+        for metaprefix, registry in self.manager.metaregistry.items():
+            if registry.bioregistry_prefix:
+                resource = self.manager.registry[registry.bioregistry_prefix]
+            elif metaprefix in self.manager.registry:
+                resource = self.manager.registry[metaprefix]
+            else:
+                continue
+
+            # Test pattern
+            pattern = resource.get_pattern()
+            if pattern is None:
+                continue
+            with self.subTest(metaprefix=metaprefix):
+                self.assertRegex(registry.example, pattern)
+
+            # Test URI format string
+            if registry.provider_uri_format:
+                uri_formats = resource.get_uri_formats()
+                self.assertLess(0, len(uri_formats))
+                self.assertIn(registry.provider_uri_format, uri_formats)
