@@ -1,15 +1,25 @@
 """Utilities."""
 
+import itertools as itt
 import logging
-from dataclasses import asdict, is_dataclass
+from collections import ChainMap, defaultdict
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Union, cast
+from typing import (
+    Any,
+    DefaultDict,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Union,
+    cast,
+)
 
 import click
 import requests
-from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
 from pystow.utils import get_hashes
 
 from .constants import (
@@ -18,11 +28,16 @@ from .constants import (
     METAREGISTRY_YAML_PATH,
     REGISTRY_YAML_PATH,
 )
+from .version import get_version
 
 logger = logging.getLogger(__name__)
 
 #: Wikidata SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
+
+
+class OLSBroken(RuntimeError):
+    """Raised when the OLS is having a problem."""
 
 
 def secho(s, fg="cyan", bold=True, **kwargs):
@@ -57,28 +72,15 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     :return: A list of bindings
     """
     logger.debug("running query: %s", sparql)
-    res = requests.get(WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"})
+    headers = {
+        "User-Agent": f"bioregistry v{get_version()}",
+    }
+    res = requests.get(
+        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers
+    )
     res.raise_for_status()
     res_json = res.json()
     return res_json["results"]["bindings"]
-
-
-def extended_encoder(obj: Any) -> Any:
-    """Encode objects similarly to :func:`pydantic.json.pydantic_encoder`."""
-    if isinstance(obj, BaseModel):
-        return obj.dict(exclude_none=True)
-    elif is_dataclass(obj):
-        return asdict(obj)
-
-    # Check the class type and its superclasses for a matching encoder
-    for base in obj.__class__.__mro__[:-1]:
-        try:
-            encoder = ENCODERS_BY_TYPE[base]
-        except KeyError:
-            continue
-        return encoder(obj)
-    else:  # We have exited the for loop without finding a suitable encoder
-        raise TypeError(f"Object of type '{obj.__class__.__name__}' is not JSON serializable")
 
 
 class NormDict(dict):
@@ -155,7 +157,10 @@ def get_ols_descendants(
     res = requests.get(url)
     res.raise_for_status()
     res_json = res.json()
-    terms = res_json["_embedded"]["terms"]
+    try:
+        terms = res_json["_embedded"]["terms"]
+    except KeyError:
+        raise OLSBroken from None
     return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 
@@ -187,3 +192,51 @@ def _clean(s: str) -> str:
     s = cast(str, removesuffix(s, "ID")).strip()
     s = cast(str, removesuffix(s, "accession")).strip()
     return s
+
+
+def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    """Backfill records that may have overlapping data."""
+    _key_set = set(keys)
+    index_dd: DefaultDict[str, DefaultDict[str, Dict[str, str]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
+
+    # Make a copy
+    records_copy = [record.copy() for record in records]
+
+    # 1. index existing mappings
+    for record in records_copy:
+        pairs = ((key, value) for key, value in record.items() if key in _key_set)
+        for (k1, v1), (k2, v2) in itt.combinations(pairs, 2):
+            index_dd[k1][v1][k2] = v2
+            index_dd[k2][v2][k1] = v1
+
+    index = {k: dict(v) for k, v in index_dd.items()}
+
+    for record in records_copy:
+        missing_keys = {key for key in keys if key not in record}
+        for _ in range(len(keys)):
+            if not missing_keys:
+                continue
+            values = {key: record[key] for key in keys if key in record}
+            for key, value in values.items():
+                for xref_key, xref_value in index.get(key, {}).get(value, {}).items():
+                    if xref_key in missing_keys:
+                        record[xref_key] = xref_value
+                        missing_keys.remove(xref_key)
+    return records_copy
+
+
+def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    """De-duplicate records that might have overlapping data."""
+    dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
+
+    def _key(r: Dict[str, Any]):
+        return tuple(r.get(key) or "" for key in keys)
+
+    for record in backfill(records, keys):
+        dd[_key(record)].append(record)
+
+    rv = [dict(ChainMap(*v)) for v in dd.values()]
+
+    return sorted(rv, key=_key, reverse=True)

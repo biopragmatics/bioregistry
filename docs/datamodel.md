@@ -12,10 +12,8 @@ schema is conformant, but also enables higher-level tests for style and content
 to be implemented.
 
 <details>
-   <summary>Expand for a UMLS diagram of the datamodel</summary>
-
-   ![](img/datamodel_umls.svg)
-   
+   <summary>Expand for a UML diagram of the datamodel</summary>
+   <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/datamodel_umls.svg" alt="Bioregistry data model in a UML diagram"/>
 </details>
 
 ## Metadata and Properties

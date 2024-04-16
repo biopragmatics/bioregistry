@@ -17,8 +17,10 @@ from more_click import force_option, verbose_option
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
-from bioregistry.schema import Author, Resource
+from bioregistry.license_standardizer import standardize_license
+from bioregistry.schema import Author, Publication, Resource
 from bioregistry.schema_utils import add_resource
+from bioregistry.utils import removeprefix
 
 logger = logging.getLogger(__name__)
 
@@ -35,16 +37,20 @@ MAPPING = {
     "Redundant Prefix in Regular Expression Pattern": "banana",
     "Provider Format URL": URI_FORMAT_KEY,  # old
     "URI Format String": URI_FORMAT_KEY,
-    "Contact": "contact",
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
     "Contributor GitHub": "contributor_github",
+    "Contributor Email": "contributor_email",  # enabled in https://github.com/biopragmatics/bioregistry/pull/1000
     "Contact ORCiD": "contact_orcid",
     "Contact Name": "contact_name",
     "Contact Email": "contact_email",
     "Contact GitHub": "contact_github",
     "Wikidata Property": "wikidata_prefix",
+    "License": "license",
+    "Repository": "repository",  # old
+    "Source Code Repository": "repository",
+    "Publications": "publications",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
@@ -71,24 +77,24 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     )
     rv: Dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
-        prefix = resource_data.pop("prefix")
+        prefix = resource_data.pop("prefix").lower()
         contributor = Author(
             name=resource_data.pop("contributor_name"),
             orcid=_pop_orcid(resource_data),
             email=resource_data.pop("contributor_email", None),
-            github=resource_data.pop("contributor_github"),
+            github=removeprefix(resource_data.pop("contributor_github"), "@"),
         )
 
         contact_name = resource_data.pop("contact_name", None)
         contact_orcid = resource_data.pop("contact_orcid", None)
         contact_email = resource_data.pop("contact_email", None)
-        contact_github = resource_data.pop("contact_github", None)
-        if contact_orcid:
+        contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
+        if contact_orcid and contact_name:
             contact = Author(
                 name=contact_name,
-                orcid=contact_orcid,
+                orcid=_trim_orcid(contact_orcid),
                 email=contact_email,
-                contact_github=contact_github,
+                github=contact_github,
             )
         else:
             contact = None
@@ -106,13 +112,16 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
 
-        # Capitalize the description
-        resource_data["description"] = resource_data["description"].capitalize()
-
         # Ensure the pattern is delimited properly
         pattern = resource_data.get("pattern")
         if pattern:
             resource_data["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
+
+        data_license = resource_data.get("license")
+        if data_license:
+            resource_data["license"] = standardize_license(data_license) or data_license
+
+        publications = list(_yield_publications(resource_data))
 
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue
@@ -129,17 +138,35 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             github_request_issue=issue_id,
             wikidata=wikidata,
             mappings=mappings,
-            **resource_data,
+            publications=publications,
+            **resource_data,  # type:ignore
         )
     return rv
 
 
-def _pop_orcid(d) -> str:
-    orcid = d.pop("contributor_orcid")
+def _yield_publications(data) -> Iterable[Publication]:
+    for curie in data.pop("publications", "").split("|"):
+        curie = curie.strip().lower()
+        try:
+            prefix, luid = curie.split(":", 1)
+        except ValueError:
+            click.echo(f"invalid CURIE: {curie}")
+            continue
+        if prefix == "pmid":
+            prefix = "pubmed"
+        yield Publication(**{prefix: luid})
+
+
+def _pop_orcid(data: Dict[str, str]) -> str:
+    orcid = data.pop("contributor_orcid")
+    return _trim_orcid(orcid)
+
+
+def _trim_orcid(orcid: str) -> str:
     if orcid.startswith(ORCID_HTTP_PREFIX):
-        orcid = orcid[len(ORCID_HTTP_PREFIX) :]
-    elif orcid.startswith(ORCID_HTTPS_PREFIX):
-        orcid = orcid[len(ORCID_HTTPS_PREFIX) :]
+        return orcid[len(ORCID_HTTP_PREFIX) :]
+    if orcid.startswith(ORCID_HTTPS_PREFIX):
+        return orcid[len(ORCID_HTTPS_PREFIX) :]
     return orcid
 
 

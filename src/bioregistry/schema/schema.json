@@ -17,6 +17,7 @@
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
           "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
           "type": "string"
         },
         "email": {
@@ -43,7 +44,6 @@
         "identifier": {
           "title": "Identifier",
           "description": "The collection's identifier",
-          "pattern": "^\\d{7}$",
           "type": "string"
         },
         "name": {
@@ -74,7 +74,16 @@
         },
         "context": {
           "title": "Context",
+          "description": "The JSON-LD context's name",
           "type": "string"
+        },
+        "references": {
+          "title": "References",
+          "description": "URL references",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -112,7 +121,7 @@
         },
         "uri_format": {
           "title": "URI Format",
-          "description": "The URI format string, which must have at least one ``$1`` in it",
+          "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
           "type": "string"
         }
       },
@@ -137,6 +146,7 @@
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
           "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
           "type": "string"
         },
         "email": {
@@ -154,6 +164,69 @@
         "name"
       ]
     },
+    "Organization": {
+      "title": "Organization",
+      "description": "Model for organizataions.",
+      "type": "object",
+      "properties": {
+        "ror": {
+          "title": "Research Organization Registry identifier",
+          "description": "ROR identifier for a record about the organization",
+          "type": "string"
+        },
+        "wikidata": {
+          "title": "Wikidata identifier",
+          "description": "Wikidata identifier for a record about the organization",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string"
+        },
+        "partnered": {
+          "title": "Partnered",
+          "description": "Has this organization made a specific connection with Bioregistry?",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Publication": {
+      "title": "Publication",
+      "description": "Metadata about a publication.",
+      "type": "object",
+      "properties": {
+        "pubmed": {
+          "title": "PubMed",
+          "description": "The PubMed identifier for the article",
+          "type": "string"
+        },
+        "doi": {
+          "title": "DOI",
+          "description": "The DOI for the article. DOIs are case insensitive, so these are required by the Bioregistry to be standardized to their lowercase form.",
+          "type": "string"
+        },
+        "pmc": {
+          "title": "PMC",
+          "description": "The PubMed Central identifier for the article",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "description": "The title of the article",
+          "type": "string"
+        },
+        "year": {
+          "title": "Year",
+          "description": "The year the article was published",
+          "type": "integer"
+        }
+      }
+    },
     "Resource": {
       "title": "Resource",
       "description": "Metadata about an ontology, database, or other resource.",
@@ -162,31 +235,36 @@
         "prefix": {
           "title": "Prefix",
           "description": "The prefix for this resource",
-          "integration_status": "required",
           "type": "string"
         },
         "name": {
           "title": "Name",
           "description": "The name of the resource",
-          "integration_status": "required",
           "type": "string"
         },
         "description": {
           "title": "Description",
           "description": "A description of the resource",
-          "integration_status": "required",
           "type": "string"
         },
         "pattern": {
           "title": "Pattern",
           "description": "The regular expression pattern for local unique identifiers in the resource",
-          "integration_status": "required_for_new",
           "type": "string"
         },
         "uri_format": {
           "title": "URI format string",
-          "description": "The URI format string, which must have at least one ``$1`` in it",
-          "integration_status": "required_for_new",
+          "description": "The URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
+          "type": "string"
+        },
+        "uri_format_resolvable": {
+          "title": "URI format string resolvable",
+          "description": "If false, denotes if the URI format string is known to be not resolvable",
+          "type": "boolean"
+        },
+        "rdf_uri_format": {
+          "title": "RDF URI format string",
+          "description": "The RDF URI format string, which must have at least one ``$1`` in it. Note that this field is generic enough to accept IRIs. See the URI specification (https://www.rfc-editor.org/rfc/rfc3986) and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information.",
           "type": "string"
         },
         "providers": {
@@ -200,7 +278,6 @@
         "homepage": {
           "title": "Homepage",
           "description": "The URL for the homepage of the resource, preferably using HTTPS",
-          "integration_status": "required",
           "type": "string"
         },
         "repository": {
@@ -211,17 +288,23 @@
         "contact": {
           "title": "Contact",
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
-          "integration_status": "suggested",
           "allOf": [
             {
               "$ref": "#/definitions/Attributable"
             }
           ]
         },
+        "owners": {
+          "title": "Owners",
+          "description": "The owner of the corresponding identifier space. See also https://github.com/biopragmatics/bioregistry/issues/755.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organization"
+          }
+        },
         "example": {
           "title": "Example",
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
-          "integration_status": "required",
           "type": "string"
         },
         "example_extras": {
@@ -275,6 +358,11 @@
           "description": "The URL to download the resource as an ontology encoded in the OBO Graph JSON format. More information about this format can be found at https://github.com/geneontology/obographs.",
           "type": "string"
         },
+        "download_rdf": {
+          "title": "RDF Download URL",
+          "description": "The URL to download the resource as an RDF file, in one of many formats.",
+          "type": "string"
+        },
         "banana": {
           "title": "Banana",
           "description": "The `banana` is a generalization of the concept of the \"namespace embedded in local unique identifier\". Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier, such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``. The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found. While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the OBO Foundry provides the \"preferredPrefix\" field, the banana can be annotated on non-OBO ontologies to more explicitly write the beginning part of the identifier that should be stripped. This allowed for solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.",
@@ -306,12 +394,28 @@
             "type": "string"
           }
         },
+        "keywords": {
+          "title": "Keywords",
+          "description": "A list of keywords for the resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "references": {
           "title": "References",
           "description": "A list of URLs to also see, such as publications describing the resource",
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "publications": {
+          "title": "Publications",
+          "description": "A list of URLs to also see, such as publications describing the resource",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Publication"
           }
         },
         "appears_in": {
@@ -347,8 +451,7 @@
         },
         "contributor": {
           "title": "Contributor",
-          "description": "The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow must contain this field.",
-          "integration_status": "required_for_new",
+          "description": "The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow must contain this field.",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -365,8 +468,7 @@
         },
         "reviewer": {
           "title": "Reviewer",
-          "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
-          "integration_status": "required_for_new",
+          "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -393,10 +495,20 @@
           "description": "The twitter handle for the project",
           "type": "string"
         },
+        "mastodon": {
+          "title": "Mastodon",
+          "description": "The mastodon handle for the project",
+          "type": "string"
+        },
         "github_request_issue": {
           "title": "Github Request Issue",
           "description": "The GitHub issue for the new prefix request",
           "type": "integer"
+        },
+        "logo": {
+          "title": "Logo",
+          "description": "The URL of the logo for the project/resource",
+          "type": "string"
         },
         "miriam": {
           "title": "Miriam",
@@ -485,6 +597,38 @@
         "re3data": {
           "title": "Re3Data",
           "type": "object"
+        },
+        "hl7": {
+          "title": "Hl7",
+          "type": "object"
+        },
+        "bartoc": {
+          "title": "BARTOC",
+          "type": "object"
+        },
+        "rrid": {
+          "title": "RRID",
+          "type": "object"
+        },
+        "lov": {
+          "title": "LOV",
+          "type": "object"
+        },
+        "zazuko": {
+          "title": "Zazuko",
+          "type": "object"
+        },
+        "togoid": {
+          "title": "Togoid",
+          "type": "object"
+        },
+        "integbio": {
+          "title": "Integbio",
+          "type": "object"
+        },
+        "pathguide": {
+          "title": "Pathguide",
+          "type": "object"
         }
       },
       "required": [
@@ -498,161 +642,134 @@
       "properties": {
         "name": {
           "title": "Name",
+          "description": "This field denotes if a name is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "homepage": {
           "title": "Homepage",
+          "description": "This field denotes if a homepage is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "description": {
           "title": "Description",
+          "description": "This field denotes if a description is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "example": {
           "title": "Example",
+          "description": "This field denotes if an example local unique identifier is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "pattern": {
           "title": "Pattern",
+          "description": "This field denotes if a regular expression pattern for matching local unique identifiers is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "provider": {
           "title": "Provider",
+          "description": "This field denotes if a URI format string for converting local unique identifiers into URIs is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "alternate_providers": {
           "title": "Alternate Providers",
+          "description": "This field denotes if additional/secondary URI format strings for converting local unique identifiers into URIs is required, optional, or never captured for each record in the registry.",
           "enum": [
-            "required",
-            "required*",
             "present",
-            "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "synonyms": {
           "title": "Synonyms",
+          "description": "This field denotes if alternative prefixes (e.g., taxonomy for NCBITaxon) is required, optional, or never captured for each record in the registry.",
           "enum": [
-            "required",
-            "required*",
             "present",
-            "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "license": {
           "title": "License",
+          "description": "This field denotes if capturing the data license is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "version": {
           "title": "Version",
+          "description": "This field denotes if capturing the current data version is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "contact": {
           "title": "Contact",
+          "description": "This field denotes if capturing the primary responsible person's contact information (e.g., name, ORCID, email) is required, optional, or never captured for each record in the registry.",
           "enum": [
             "required",
             "required*",
             "present",
             "present*",
-            "missing",
-            "irrelevant",
-            "irrelevant*"
+            "missing"
           ],
           "type": "string"
         },
         "search": {
-          "title": "Search",
-          "description": "Does this registry provide a URL into which a search query can be formatted to show a list of results?",
+          "title": "Prefix Search",
+          "description": "This field denotes if the registry provides either a dedicated page for searching for prefixes (e.g. AberOWL has a dedicated search page) OR a contextual search (e.g., AgroPortal has a prefix search built in its homepage).",
           "type": "boolean"
-        },
-        "fair": {
-          "title": "Fair",
-          "description": "Does this registry provide a structured bulk dump of its prefixes, records, and all associated metadata in an easily findable and accessible manner?",
-          "type": "boolean"
-        },
-        "fair_note": {
-          "title": "Fair Note",
-          "description": "Explanation for why data isn't FAIR",
-          "type": "string"
         }
       },
       "required": [
@@ -667,8 +784,40 @@
         "license",
         "version",
         "contact",
-        "search",
-        "fair"
+        "search"
+      ]
+    },
+    "RegistryQualities": {
+      "title": "RegistryQualities",
+      "description": "Qualities about a registry.",
+      "type": "object",
+      "properties": {
+        "structured_data": {
+          "title": "Structured Data",
+          "description": "This field denotes if the registry provides structured access to its data? For example, this can be through an API (e.g., FAIRsharing, OLS) or a bulk download (e.g., OBO Foundry) in a structured file format. A counter-example is a site that must be scraped to acquire its content (e.g, the NCBI GenBank).",
+          "type": "boolean"
+        },
+        "bulk_data": {
+          "title": "Bulk Data",
+          "description": "This field denotes if the registry provides a bulk dump of its data? For example, the OBO Foundry provides its bulk data in a file and Identifiers.org provides its bulk data in an API endpoint. A counterexample is FAIRsharing, which requires slow, expensive pagination through its data. Another counterexample is HL7 which requires manually navigating a form to download its content. While GenBank is not structured, it is still bulk downloadable.",
+          "type": "boolean"
+        },
+        "no_authentication": {
+          "title": "No Authentication",
+          "description": "This field denotes if the registry provides access to its data without an API key? For example, Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data.",
+          "type": "boolean"
+        },
+        "automatable_download": {
+          "title": "Automatable Download",
+          "description": "This field denotes if the registry makes its data available downloadable in an automated way?This includes websites that have bulk downloads, paginated API downloads, or even require scraping.A counter example is HL7, whose download can not be automated due to the need to interact with a web form.",
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "structured_data",
+        "bulk_data",
+        "no_authentication"
       ]
     },
     "RegistryGovernance": {
@@ -689,52 +838,69 @@
         },
         "curates": {
           "title": "Curates",
-          "description": "Does the registry curate novel prefixes?",
+          "description": "This field denotes if the registry's maintainers and potentially contributors curate novel prefixes.",
           "type": "boolean"
         },
         "imports": {
           "title": "Imports",
-          "description": "Does the registry import and align prefixes from other registries?",
+          "description": "This field denotes if the registry imports and aligns prefixes from other registries.",
           "type": "boolean"
         },
         "scope": {
           "title": "Scope",
-          "description": "What is the scope of prefixes which the registry covers? For example, some registries are limited to ontologies, some have a full scope over the life sciences, and some are general purpose.",
+          "description": "This field denotes the scope of prefixes which the registry covers. For example, some registries are limited to ontologies, some have a full scope over the life sciences, and some are general purpose.",
           "type": "string"
         },
         "comments": {
           "title": "Comments",
+          "description": "Optional additional comments about the registry's governance model",
           "type": "string"
         },
         "accepts_external_contributions": {
           "title": "Accepts External Contributions",
-          "description": "Does the registry (in theory) accept external contributions, either via suggestion or proactive improvement? This field does not pass judgement on the difficult of this process from the perspective of the submitter nor the responsiveness of the registry. This field does not consider the ability for insiders (i.e., people with private relationships to the maintainers) to affect change.",
+          "description": "This field denotes if the registry (in theory) accepts external contributions, either via suggestion or proactive improvement. This field does not pass judgement on the difficult of this process from the perspective of the submitter nor the responsiveness of the registry. This field does not consider the ability for insiders (i.e., people with private relationships to the maintainers) to affect change.",
           "type": "boolean"
         },
-        "public_version_control": {
-          "title": "Public Version Control",
-          "description": "Does the registry store its data/code in publicly available version control system, such as GitHub or GitLab? Currently there is no resource that does one but not the other, so this is grouped (for now).",
+        "public_version_controlled_data": {
+          "title": "Public Version-Controlled Data",
+          "description": "This field denotes if the registry stores its data in publicly available version control system, such as GitHub or GitLab",
           "type": "boolean"
+        },
+        "data_repository": {
+          "title": "Data Repository",
+          "description": "This field denotes the address of the registry's data version control repository.",
+          "type": "string"
+        },
+        "code_repository": {
+          "title": "Code Repository",
+          "description": "This field denotes the address of the registry's code version control repository.",
+          "type": "string"
         },
         "review_team": {
           "title": "Review Team",
-          "description": "Are the reviewers for external contributions known? If there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading the commit history on a version control system, then it can be marked as inferrable. A closed review team, e.g., like for Identifiers.org can be marked as private. Resources that do not accept external contributions can be marked with N/A.",
+          "description": "This field denotes if the registry's reviewers/moderators for external contributions known? If there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading the commit history on a version control system, then it can be marked as inferrable. A closed review team, e.g., like for Identifiers.org can be marked as private. Resources that do not accept external contributions can be marked with N/A. An unmoderated regitry like Prefix.cc is marked with  'democratic'.",
           "enum": [
             "public",
             "inferrable",
             "private",
+            "democratic",
             "n/a"
           ],
           "type": "string"
         },
         "status": {
           "title": "Status",
-          "description": "What is the status of the repository? An active repository is still being maintained and also is responsive to external requests for improvement. An unresponsive repository is still being maintained in some capacity but is not responsive to external requests for improvement. An inactive repository is no longer being proactively maintained (though may receive occasional patches).",
+          "description": "This field denotes the maitenance status of the repository. An active repository is still being maintained and also is responsive to external requests for improvement. An unresponsive repository is still being maintained in some capacity but is not responsive to external requests for improvement. An inactive repository is no longer being proactively maintained (though may receive occasional patches).",
           "enum": [
             "active",
             "unresponsive",
             "inactive"
           ],
+          "type": "string"
+        },
+        "issue_tracker": {
+          "title": "Issue Tracker",
+          "description": "This field denotes the public issue tracker for issues related to the code and data of the repository.",
           "type": "string"
         }
       },
@@ -744,7 +910,7 @@
         "imports",
         "scope",
         "accepts_external_contributions",
-        "public_version_control",
+        "public_version_controlled_data",
         "review_team",
         "status"
       ]
@@ -779,12 +945,26 @@
           "description": "An example prefix inside the registry.",
           "type": "string"
         },
+        "bibtex": {
+          "title": "Bibtex",
+          "description": "Citation key used in BibTex for this registry.",
+          "type": "string"
+        },
         "availability": {
           "title": "Availability",
           "description": "A structured description of the metadata that the registry collects",
           "allOf": [
             {
               "$ref": "#/definitions/RegistrySchema"
+            }
+          ]
+        },
+        "qualities": {
+          "title": "Qualities",
+          "description": "A structured description of the registry's qualities",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RegistryQualities"
             }
           ]
         },
@@ -805,6 +985,11 @@
         "provider_uri_format": {
           "title": "Provider Uri Format",
           "description": "A URL with a $1 for a prefix to resolve in the registry",
+          "type": "string"
+        },
+        "search_uri_format": {
+          "title": "Search Uri Format",
+          "description": "A URL with a $1 for a prefix or string for searching for prefixes",
           "type": "string"
         },
         "resolver_uri_format": {
@@ -854,6 +1039,7 @@
         "homepage",
         "example",
         "availability",
+        "qualities",
         "governance",
         "contact"
       ]
@@ -883,7 +1069,7 @@
         },
         "prefix_priority": {
           "title": "Prefix Priority",
-          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority.",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority. Add in \"preferred\" for explicitly using preferred prefixes or \"default\" for explicitly using Bioregistry canonical prefixes.",
           "type": "array",
           "items": {
             "type": "string"
@@ -892,12 +1078,6 @@
         "include_synonyms": {
           "title": "Include Synonyms",
           "description": "Should synonyms be included in the prefix map?",
-          "default": false,
-          "type": "boolean"
-        },
-        "use_preferred": {
-          "title": "Use Preferred",
-          "description": "Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
           "default": false,
           "type": "boolean"
         },
@@ -924,6 +1104,14 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "blacklist": {
+          "title": "Blacklist",
+          "description": "This is a list of canonical Bioregistry prefixes that should not be included in the context.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -933,7 +1121,8 @@
         "prefix_priority",
         "uri_prefix_priority",
         "prefix_remapping",
-        "custom_prefix_map"
+        "custom_prefix_map",
+        "blacklist"
       ]
     }
   }

@@ -126,10 +126,22 @@ integration tests before merging.
 
 ## Publications / Attribution
 
-- All members of the core development and review teams are automatically authors
-  on Bioregistry papers and can propose other co-authors
-- Larger external institutional contributors should be acknowledged on the
-  repository's main README.md as well as on https://bioregistry.io
+All members of the core development and review teams are automatically authors
+on Bioregistry papers and can propose other co-authors.
+
+All contributors to the data underlying the Bioregistry, regardless of curation
+size, should be considered for authorship on Bioregistry papers. These
+contributions are automatically summarized at
+https://bioregistry.io/contributors.
+
+Larger external institutional contributors should be acknowledged in the 
+following places, where appropriate:
+
+- On the [support](https://github.com/biopragmatics/bioregistry#-support) and 
+  [funding](https://github.com/biopragmatics/bioregistry#-funding) sections
+  of the repository's main README.md
+- On the [acknowledgements](https://bioregistry.io/acknowledgments) page of
+  https://bioregistry.io
 
 ## Bootstrapping governance
 
@@ -151,3 +163,9 @@ This governance must updated through the following steps:
 This procedure doesn't apply to cosmetic or ergonomics changes, which are
 allowed to be done in a more *ad-hoc* manner. The Bioregistry Review Team may
 later make explicit criteria for accepting changes to this governance.
+
+## Partners
+
+Please see https://github.com/biopragmatics/bioregistry/issues/755
+for discussions about a governance model for partnerships between
+the Bioregistry and identifier space owners.

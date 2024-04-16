@@ -20,10 +20,14 @@ registry.
 This file *should* contain all relevant fields. If you find something missing,
 please make an issue.
 
+This file can be accessed with the PURL: https://w3id.org/biopragmatics/bioregistry/registry.json
+
 ### [`registry.yml`](registry.yml)
 
 This is exactly the same as the consensus `registry.json` but dumped as a YAML
 file.
+
+This file can be accessed with the PURL: https://w3id.org/biopragmatics/bioregistry/registry.yml
 
 ### [`registry.tsv`](registry.tsv)
 
@@ -33,3 +37,10 @@ most important.
 
 If there's something additional you'd like included in this export, please open
 an issue.
+
+This file can be accessed with the PURL: https://w3id.org/biopragmatics/bioregistry/registry.tsv
+
+### [`publications.tsv`](publications.tsv)
+
+This is a derived view of all the publications referenced by various records
+in the Bioregistry.

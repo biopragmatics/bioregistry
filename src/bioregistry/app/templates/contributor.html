@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ contributor.name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ contributor.name }}{% endblock %}
 
 {% block scripts %}
     {{ super() }}
@@ -18,7 +18,7 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0">
-                        <a href="{{ url_for('ui.contributors') }}">Contributors</a>
+                        <a href="{{ url_for('metaregistry_ui.contributors') }}">Contributors</a>
                         <i class="fas fa-angle-right"></i> {{ contributor.name }}
                     </h5>
                 </div>
@@ -32,7 +32,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for('api.contributor', orcid=contributor.orcid, format=key) }}">
+                                   href="{{ fastapi_url_for('get_contributor', orcid=contributor.orcid) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -63,12 +63,15 @@
                         <ul>
                             {% for prefix, resource in prefix_reviews %}
                                 <li>
-                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}">
-                                        {{ bioregistry.get_name(prefix) }}
+                                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                                        {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
-                                    for
-                                    <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">{{ resource.contributor.name }}</a>
+                                    {% if resource.contributor and resource.contributor.orcid %}
+                                    for <a href="{{ url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid) }}">
+                                        {{ resource.contributor.name }}
+                                    </a>
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -80,7 +83,7 @@
                         <ul>
                             {% for collection, resource in collections %}
                                 <li>
-                                    <a href="{{ url_for("ui.collection", identifier=collection) }}">
+                                    <a href="{{ url_for("metaregistry_ui.collection", identifier=collection) }}">
                                         {{ resource.name }}
                                     </a>
                                 </li>
@@ -94,7 +97,7 @@
                         <ul>
                             {% for context_key, context in contexts %}
                                 <li>
-                                    <a href="{{ url_for("ui.context", identifier=context_key) }}">
+                                    <a href="{{ url_for("metaregistry_ui.context", identifier=context_key) }}">
                                         {{ context.name }}
                                     </a>
                                 </li>
@@ -108,8 +111,8 @@
                         <ul>
                             {% for prefix, resource in prefix_contacts %}
                                 <li>
-                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}">
-                                        {{ bioregistry.get_name(prefix) }}
+                                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                                        {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
                                 </li>
@@ -123,8 +126,8 @@
                         <ul>
                             {% for metaprefix, metaresource in registries %}
                                 <li>
-                                    <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
-                                        {{ bioregistry.get_registry_name(metaprefix) }}
+                                    <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=metaprefix) }}">
+                                        {{ manager.get_registry_name(metaprefix) }}
                                         (<code>{{ metaprefix }}</code>)
                                     </a>
                                 </li>
@@ -138,8 +141,8 @@
                         <ul>
                             {% for prefix, resource in prefix_contributions %}
                                 <li>
-                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}">
-                                        {{ bioregistry.get_name(prefix) }}
+                                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                                        {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
                                 </li>

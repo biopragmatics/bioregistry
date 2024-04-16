@@ -18,6 +18,7 @@ __all__ = [
     "get_obofoundry_example",
 ]
 
+
 logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "obofoundry"
@@ -25,19 +26,24 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.yaml"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 OBOFOUNDRY_URL = "https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml"
+SKIP = {
+    "obo_rel": "replaced",
+}
 
 
-def get_obofoundry(force_download: bool = False):
+def get_obofoundry(force_download: bool = False, force_process: bool = False):
     """Get the OBO Foundry registry."""
-    if PROCESSED_PATH.exists() and not force_download:
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=True)
+    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = yaml.full_load(file)
 
-    rv = {record["id"]: _process(record) for record in data["ontologies"]}
+    rv = {
+        record["id"]: _process(record) for record in data["ontologies"] if record["id"] not in SKIP
+    }
     for key, record in rv.items():
         for depends_on in record.get("depends_on", []):
             if depends_on not in rv:
@@ -51,7 +57,7 @@ def get_obofoundry(force_download: bool = False):
 
 
 def _process(record):
-    for key in ("browsers", "usages", "depicted_by", "build", "layout", "taxon"):
+    for key in ("browsers", "usages", "build", "layout", "taxon"):
         if key in record:
             del record[key]
 
@@ -69,6 +75,7 @@ def _process(record):
         "contact.github": record.get("contact", {}).get("github"),
         "contact.orcid": record.get("contact", {}).get("orcid"),
         "repository": record.get("repository"),
+        "domain": record.get("domain"),
     }
 
     for key in ("publications", "twitter"):
@@ -92,6 +99,12 @@ def _process(record):
         elif product["id"] == f"{oid}.owl":
             rv["download.owl"] = product["ontology_purl"]
 
+    logo = record.get("depicted_by")
+    if logo:
+        if logo.startswith("/images/"):
+            logo = f"https://obofoundry.org{logo}"
+        rv["logo"] = logo
+
     return {k: v for k, v in rv.items() if v is not None}
 
 
@@ -108,7 +121,7 @@ def get_obofoundry_example(prefix: str) -> Optional[str]:
 @click.command()
 def main():
     """Reload the OBO Foundry data."""
-    r = get_obofoundry(force_download=True)
+    r = get_obofoundry(force_download=False, force_process=True)
     click.echo(f"Got {len(r)} records")
 
 

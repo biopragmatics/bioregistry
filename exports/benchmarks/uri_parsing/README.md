@@ -6,7 +6,7 @@ function. See also https://github.com/biopragmatics/bioregistry/pull/481.
 ## Dataset
 
 The benchmarking dataset is available in [`data.tsv`](data.tsv). It contains
-4 columns:
+the following columns:
 
 1. `prefix` - a canonical Bioregistry prefix
 2. `identifier` - a local unique identifier in the prefix's semantic space

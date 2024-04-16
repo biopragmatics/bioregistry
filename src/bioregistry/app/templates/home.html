@@ -1,65 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry{% endblock %}
-
-{% block scripts %}
-    {{ super() }}
-    <script>
-        $(".basicAutoComplete").autoComplete({
-            resolverSettings: {
-                url: "{{ url_for('api.search') }}"
-            }
-        });
-    </script>
-{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }}{% endblock %}
 
 {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}
 
 {% block container %}
+    {% if bioschemas %}
+    <script type="application/ld+json">
+        {{ bioschemas | safe }}
+    </script>
+    {% endif %}
     <div class="card card-body bg-light">
-        <h1 class="display-3">Bioregistry</h1>
-        <p class="lead">
-            The Bioregistry is an open source, community curated registry, meta-registry, and compact
-            identifier resolver. Here's what that means:
-        </p>
-        <dl class="row">
-            <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
-            <dd class="col-lg-10">
-                A collection of prefixes and metadata for ontologies, controlled vocabularies, and other semantic
-                spaces. Some other well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
-                <a href="https://identifiers.org">Identifiers.org</a>, and the
-                the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
-            <dd class="col-lg-10">
-                A collection of metadata about registries and mappings between their constituent prefixes. For
-                example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
-                from above. So far, the Bioregistry is the <i>only</i> metaregistry.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
-            <dd class="col-lg-10">
-                A tool for mapping compact URIs (CURIEs) of the form <code>prefix:identifier</code> to HTML and
-                structured content providers. Some other well-known resolvers are
-                <a href="https://identifiers.org">Identifiers.org</a> and <a href="https://n2t.net/">Name-To-Thing</a>.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
-            <dd class="col-lg-10">
-                Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-                improvements</a> or make pull requests to update the underlying database, which is stored in
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
-                    JSON</a> on GitHub where the community can engage in an open review process.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Community</dt>
-            <dd class="col-lg-10">
-                Governed by public, well-defined
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
-                    guidelines</a>,
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
-                conduct</a>, and
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
-                    governance</a> to promote the project's inclusivity and longevity.
-            </dd>
-        </dl>
+        <h1 class="display-3">{{ config.METAREGISTRY_TITLE }}</h1>
+        {% if config.METAREGISTRY_HEADER %}
+        {{ config.METAREGISTRY_HEADER | safe}}
+        {% endif %}
 
         {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
         {% raw %}
@@ -93,11 +48,13 @@
                         current_result.pattern }}</kbd>
                     </div>
                     <div v-if="result_has_options && options_are_worth_showing" class="option-box">
-                        <div v-for="option in result_options"
-                             class="option-line"
-                             @click="setUserInput">
-                            {{ option }}
-                        </div>
+                        <a v-for="option in result_options"
+                           class="option-line"
+                           style="display: block;"
+                           :href="'/' + option[0]"
+                        >
+                            {{ option[0] }} <span v-if="option[1]">({{ option[1] }})</span>
+                        </a>
                     </div>
                     <div v-else-if="options_are_worth_showing" class="option-line">
                         <i class="fas fa-exclamation-circle" style="color: goldenrod"></i> No results
@@ -107,23 +64,26 @@
         </div>
         {% endraw %}
 
-        <p>Here's how to get started with the Bioregistry site:</p>
+        <p>Here's how to get started with the {{ config.METAREGISTRY_TITLE }} site:</p>
         <div class="list-group">
-            <a href="{{ example_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="{{ url_for(".resolve", prefix=example_prefix, identifier=example_identifier) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-share-square"></i> Resolve</h5>
                 </div>
-                <p class="mb-1">A compact identifier like <span class="badge badge-light">{{ example_url }}</span>.</p>
+                <p class="mb-1">
+                    A compact URI (CURIE) like <span class="badge badge-light">
+                    {{ curie_to_str(example_prefix, example_identifier) }}</span>.
+                </p>
             </a>
-            <a href="{{ url_for('ui.resources') }}"
+            <a href="{{ url_for('metaregistry_ui.resources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
-                    <small class="text-muted">{{ registry_size }} entries</small>
+                    <small class="text-muted">{{ "{:,}".format(registry_size) }} entries</small>
                 </div>
-                <p class="mb-1">The integrative registry of biological databases, ontologies, and resources.</p>
+                <p class="mb-1">The integrative registry of databases, ontologies, and resources.</p>
             </a>
-            <a href="{{ url_for('ui.metaresources') }}"
+            <a href="{{ url_for('metaregistry_ui.metaresources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-atom"></i> View Metaregistry</h5>
@@ -131,39 +91,56 @@
                 </div>
                 <p class="mb-1">The registry of registries.</p>
             </a>
-            <a href="{{ url_for('ui.collections') }}"
+            {% if manager.collections | length > 0 %}
+            <a href="{{ url_for('metaregistry_ui.collections') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-layer-group"></i> View Collections</h5>
-                    <small class="text-muted">{{ collections_size }} collections</small>
+                    <small class="text-muted">{{ manager.collections | length }} collections</small>
                 </div>
                 <p class="mb-1">Manually curated subsets of the registry.</p>
             </a>
-            <a href="{{ url_for('ui.contributors') }}"
+            {% endif %}
+            <a href="{{ url_for('metaregistry_ui.contributors') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-users"></i> View Contributors</h5>
                     <small class="text-muted">{{ contributors_size }} contributors</small>
                 </div>
-                <p class="mb-1">Contributors to the Bioregistry</p>
+                <p class="mb-1">Contributors to the {{ config.METAREGISTRY_TITLE }}</p>
             </a>
-            <a href="{{ url_for('summary') }}"
+            {% if config.METAREGISTRY_FIRST_PARTY %}
+            <a href="{{ url_for('metaregistry_ui.summary') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
                 </div>
-                <p class="mb-1">About the motivation for constructing the Bioregistry and insights gathered from the
-                    meta-registry.</p>
+                <p class="mb-1">
+                    About the motivation for constructing the {{ config.METAREGISTRY_TITLE }}.
+                </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
-            <a href="{{ url_for('download') }}"
+            <a href="https://github.com/biopragmatics/bioregistry/issues/new?labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-question"></i> Request a Prefix</h5>
+                </div>
+                <p class="mb-1">
+                    Request a new prefix in the Bioregistry via its GitHub Issue tracker.
+                </p>
+                {# <small class="text-muted">Donec id elit non mi porta.</small> #}
+            </a>
+            <a href="{{ url_for('metaregistry_ui.download') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
                 </div>
-                <p class="mb-1">All of the data in the Bioregistry (version {{ config.bioregistry_version }}).</p>
+                <p class="mb-1">
+                    All of the data in the {{ config.METAREGISTRY_TITLE }} (version {{ config.METAREGISTRY_VERSION }}).
+                </p>
                 <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
             </a>
+            {% endif %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -216,7 +193,7 @@
                 current_result: null,
                 last_yielding_result: null,
                 error_message: null,
-                autocomplete_url: "{{ url_for('api.autocomplete') }}"
+                autocomplete_url: "{{ fastapi_url_for('autocomplete') }}"
             },
             methods: {
                 /// Get the data to suggest auto-completes to the prefix.
@@ -240,14 +217,14 @@
                     }
 
                     // Get the suggestions from the server.
-                    console.log(`Getting autocomplete options for: "${this.user_input}".`);
+                    // console.log(`Getting autocomplete options for: "${this.user_input}".`);
                     const resp = await fetch(`${this.autocomplete_url}?q=${this.user_input}`);
                     if (resp.status !== 200) {
-                        console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
+                        console.log(`ERROR on input ${this.user_input}: ${resp.status}: ${resp.statusText}`);
                         this.error_message = "Unsuccessful response from the survey."
                     }
                     const resp_json = await resp.json();
-                    console.log(resp_json);
+                    // console.log(resp_json);
 
                     // Populate the results.
                     this.current_result = resp_json;
@@ -265,11 +242,6 @@
                     } else if (this.current_result.reason !== SEARCHED_PREFIX) {
                         this.last_yielding_result = null;
                     }
-                },
-
-                setUserInput: function (event) {
-                    this.user_input = event.target.innerText;
-                    this.getPrefix();
                 },
 
                 followLink: function () {

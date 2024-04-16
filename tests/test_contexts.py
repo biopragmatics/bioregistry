@@ -6,8 +6,8 @@ import json
 import unittest
 
 import bioregistry
+from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
-from bioregistry.utils import extended_encoder
 
 
 class TestContexts(unittest.TestCase):
@@ -32,9 +32,42 @@ class TestContexts(unittest.TestCase):
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=extended_encoder,
         )
         self.assertEqual(linted_text, text)
+
+    def test_obo_context(self):
+        """Test the OBO context map."""
+        p = "http://purl.obolibrary.org/obo"
+        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=False)
+
+        self.assertIn("KISAO", prefix_map)
+        self.assertEqual(f"{p}/KISAO_", prefix_map["KISAO"])
+        self.assertIn("FBcv", prefix_map)
+        self.assertEqual(f"{p}/FBcv_", prefix_map["FBcv"])
+        self.assertIn("GEO", prefix_map)
+        self.assertEqual(f"{p}/GEO_", prefix_map["GEO"])
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", prefix_map["PMID"])
+
+        self.assertNotIn("biomodels.kisao", prefix_map)
+
+        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
+        self.assertIn("KISAO", prefix_map)
+        self.assertIn(
+            "biomodels.kisao",
+            prefix_map,
+            msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
+        )
+
+    def test_obo_converter(self):
+        """Test getting a converter from a context."""
+        converter = manager.get_converter_from_context("obo")
+        self.assertEqual("ICD10WHO", converter.standardize_prefix("icd10"))
+        self.assertEqual("Orphanet", converter.standardize_prefix("ordo"))
+        self.assertEqual("GO", converter.standardize_prefix("GO"))
+        self.assertEqual("GO", converter.standardize_prefix("gomf"))
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", converter.bimap["PMID"])
+        self.assertEqual("GO", converter.standardize_prefix("go"))
+        self.assertEqual("oboInOwl", converter.standardize_prefix("oboinowl"))
 
     def test_data(self):
         """Test the data integrity."""
@@ -55,14 +88,16 @@ class TestContexts(unittest.TestCase):
                 self.assertRegex(maintainer.orcid, "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$")
 
             for metaprefix in context.uri_prefix_priority or []:
-                self.assertIn(metaprefix, self.valid_metaprefixes)
+                self.assertIn(metaprefix, self.valid_metaprefixes.union(Resource.URI_FORMATTERS))
             for metaprefix in context.prefix_priority or []:
-                self.assertIn(metaprefix, self.valid_metaprefixes)
+                self.assertIn(
+                    metaprefix,
+                    self.valid_metaprefixes.union({"obofoundry.preferred", "preferred", "default"}),
+                )
             remapping = context.prefix_remapping or {}
             _valid_remapping_prefixes = set(
                 bioregistry.get_prefix_map(
-                    priority=context.uri_prefix_priority,
-                    use_preferred=context.use_preferred,
+                    uri_prefix_priority=context.uri_prefix_priority,
                 )
             )
             for prefix in remapping:
@@ -72,8 +107,7 @@ class TestContexts(unittest.TestCase):
             _valid_custom_prefixes = set(
                 bioregistry.get_prefix_map(
                     remapping=remapping,
-                    priority=context.uri_prefix_priority,
-                    use_preferred=context.use_preferred,
+                    uri_prefix_priority=context.uri_prefix_priority,
                 )
             )
             invalid_custom_prefixes = {
@@ -91,3 +125,6 @@ class TestContexts(unittest.TestCase):
     Invalid prefixes: {", ".join(sorted(invalid_custom_prefixes))}
 """,
             )
+
+            for blacklist_prefix in context.blacklist or []:
+                self.assertIn(blacklist_prefix, self.valid_prefixes)

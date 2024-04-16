@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry Metaregistry{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} Metaregistry{% endblock %}
 
 {% block container %}
     <div class="card">
@@ -17,7 +17,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.metaresources", format=key) }}">
+                                   href="{{ fastapi_url_for("get_metaresources") }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -43,7 +43,7 @@
             {% for row in rows %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('ui.metaresource', metaprefix=row.prefix) }}">{{ row.name }}</a>
+                        <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=row.prefix) }}">{{ row.name }}</a>
                     </td>
                     <td class="text-nowrap"><code>{{ row.prefix }}</code></td>
                     <td><small>{{ row.description }}</small></td>

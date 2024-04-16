@@ -23,21 +23,13 @@
     <p>
         The <code>bioregistry.io</code> domain is registered with Namecheap and costs about $33 per year. It is managed
         and supported by the <a
-            href="https://indralab.github.io/">INDRA Lab</a>, a part of the <a
-            href="https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/">Laboratory of
-        Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
-        (HiTS)</a> at Harvard Medical School.
-    </p>
-    <h3>Hardware</h3>
-    <p>
-        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
-        and highly available. It is managed and supported by the <a href="https://indralab.github.io/">INDRA Lab</a>, a
-        part of the <a href="https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/">Laboratory of
-        Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
-        (HiTS)</a> at Harvard Medical School.
+            href="https://gyorilab.github.io/">Gyori Lab for Computaional Biomedicine</a> at Northeastern University.
     </p>
     <h3>Software</h3>
     <p>
+        The Bioregistry source code is licensed under the MIT License and is hosted openly on GitHub at
+        <a href="https://github.com/biopragmatics/bioregistry">https://github.com/biopragmatics/bioregistry</a>.
+
         These are the software and operating system specifications for the currently running instance of the
         Bioregistry:
     </p>
@@ -45,13 +37,26 @@
         <dt>Bioregistry Version</dt>
         <dd>{{ software_version }}</dd>
         {% if software_git_hash %}
-            <dt>Git Hash</dt>
-            <dd>
-                <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
-                    {{ software_git_hash }}
-                </a>
-            </dd>
+        <dt>Git Hash</dt>
+        <dd>
+            <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
+                {{ software_git_hash }}
+            </a>
+        </dd>
         {% endif %}
+    </dl>
+    <h3>Hardware</h3>
+    <p>
+        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
+        and highly available.
+        It is managed and supported by the <a href="https://gyorilab.github.io/">Gyori Lab for Computational
+        Biomedicine</a> at Northeastern University.
+    </p>
+    <p>
+        These are the hardware and operating system specifications for the currently running instance of the
+        Bioregistry:
+    </p>
+    <dl>
         <dt>Python</dt>
         <dd>{{ python_version }}</dd>
         <dt>Platform</dt>
@@ -104,9 +109,38 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
         The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
         the <a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager</a>.
     </p>
-    <h2>Data Maintenance, Interoperability with other Projects, and Project Governance</h2>
+
+    <h2>Project Longevity</h2>
     <p>
-        Potential stakeholders in the Bioregistry have been interested in questions like:
+        The Bioregistry is funded by the Chan Zuckerberg Initiative (CZI) Open Science Grant 2023-329850
+        which stipulates unlimited no-cost extensions. We have allocated part of this grant to ensure that
+        the domain registration, hosting, and hardware will be funded in the medium- and long term under
+        a conservative cost estimate of around $100-200/year.
+    </p>
+    <p>
+        The Bioregistry implements the <a href="https://doi.org/10.31219/osf.io/vuzt3">Open Code, Open Data,
+        Open Infrastructure (O3) Guidelines</a> as a means to enable and encourage community contribution and
+        maintenance in the medium- and long term. All code is permissively licensed with the MIT License
+        and all data is under the Creative Commons Zero (CCO) license, meaning anyone can reuse the data
+        as they see fit.
+    </p>
+
+    <h3>Mirroring</h3>
+    <p>
+        The Bioregistry can be mirrored following
+        <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html">these instructions</a>.
+    </p>
+
+    <h3>Deploying with Custom Content</h3>
+    <p>
+        The Bioregistry can be deployed using custom content by following
+        <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html#deploying-a-custom-bioregistry">these
+        instructions</a>.
+    </p>
+
+    <h2>Project Governance</h2>
+    <p>
+        Stakeholders in the Bioregistry have been interested in questions including:
     </p>
     <ul>
         <li>Will the service still be running in 10 years?</li>
@@ -121,16 +155,38 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
             by Identifiers.org?
         </li>
         <li>How should inevitable prefix/namespace collisions be handled?</li>
-        <li>... and many more</li>
     </ul>
     <p>
         These questions do not have easy answers and apply to most databases, software, and web applications in the life
-        sciences. However, we have begun to explicitly codify our
-        <a href="https://github.com/biopragmatics/bioregistry/blob/main/CONTRIBUTING.md">contribution guidelines</a> and
-        <a href="https://github.com/biopragmatics/bioregistry/blob/main/GOVERNANCE.md">governance policies</a> to
-        address these points. If you would like to be part of this discussion and/or development of these policies,
-        please <a href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">
-        join us</a> on the OBO Community Slack workspace's
-        <a href="https://obo-communitygroup.slack.com/archives/C023P0Z304T">#prefixes</a> channel.
+        sciences.
+
+        As first steps towards addressing those, we have written explicit, public, well-defined
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
+                guidelines</a>,
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
+                conduct</a>, and
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
+                governance</a>.
+    </p>
+    <p>
+       If you would like to be part of this discussion and/or development of these policies, you can try the
+       following:
+    </p>
+    <ul>
+        <li>
+            Join the<a href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">
+            OBO Community Slack workspace</a> and participate in discussions on the
+            <a href="https://obo-communitygroup.slack.com/archives/C023P0Z304T">#prefixes</a> channel.
+        </li>
+        <li>
+            Participate in discussion labeled with
+            <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+label%3APolicy">Policy</a> on the Bioregistry's GitHub issue tracker
+        </li>
+    </ul>
+    <h2>Evaluation of FAIR Data Principles</h2>
+    <p>
+        Content negotiation was implemented in <a href="https://github.com/biopragmatics/bioregistry/pull/682">
+        PR #682</a> in order to better comply with FAIR-ness evaluations such as th
+        <a href="https://fair-enough.semanticscience.org">FAIR Enough Evaluation</a>
     </p>
 {% endblock %}

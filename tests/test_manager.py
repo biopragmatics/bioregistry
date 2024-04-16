@@ -5,7 +5,9 @@
 import unittest
 
 import bioregistry
-from bioregistry import Manager
+from bioregistry import Manager, parse_curie
+from bioregistry.export.rdf_export import get_full_rdf
+from bioregistry.resource_manager import MappingsDiff
 
 
 class TestResourceManager(unittest.TestCase):
@@ -15,18 +17,45 @@ class TestResourceManager(unittest.TestCase):
         """Set up the test case with a resource manager."""
         self.manager = Manager()
 
+    def test_get_records(self):
+        """Test getting records."""
+        resource = self.manager.registry["uniprot.isoform"]
+        self.assertEqual("uniprot.isoform", resource.get_priority_prefix())
+
+        prefixes = {
+            resource.prefix
+            for resource in self.manager.registry.values()
+            if resource.get_uri_prefix()
+        }
+        self.assertIn(
+            "uniprot.isoform",
+            prefixes,
+            msg="uniprot.isoform isn't registered with a URI prefix properly",
+        )
+
+        converter = self.manager.get_converter()
+        prefixes = {record.prefix for record in converter.records}
+        self.assertIn("uniprot.isoform", prefixes)
+
+    def test_prefix_map(self):
+        """Test getting a prefix map."""
+        prefix_map = self.manager.get_prefix_map()
+        # Non-obo, but need to check it works right
+        self.assertIn("uniprot.isoform", prefix_map)
+        self.assertEqual("http://purl.uniprot.org/isoforms/", prefix_map["uniprot.isoform"])
+
     def test_prefix_map_preferred(self):
         """Test using preferred prefixes in the prefix map."""
         prefix_map = self.manager.get_prefix_map(
-            priority=["obofoundry", "default"],
-            use_preferred=True,
+            prefix_priority=["preferred", "default"],
+            uri_prefix_priority=["obofoundry", "default"],
         )
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
 
         prefix_map = bioregistry.get_prefix_map(
-            priority=["obofoundry", "default"],
-            use_preferred=True,
+            uri_prefix_priority=["obofoundry", "default"],
+            prefix_priority=["preferred", "default"],
         )
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
@@ -186,3 +215,49 @@ class TestResourceManager(unittest.TestCase):
         for curie in invalid:
             with self.subTest(curie=curie):
                 self.assertFalse(self.manager.is_standardizable_curie(curie))
+
+    def test_full_rdf(self):
+        """Test the full dump."""
+        full = get_full_rdf(self.manager)
+        prefixes = {
+            prefix[len("https://bioregistry.io/registry/") :]
+            for prefix, in full.query(
+                "SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }"
+            )
+        }
+        self.assertEqual(set(self.manager.registry), prefixes)
+
+    def test_parse_curie(self):
+        """Test parsing CURIEs."""
+        for curie, pref, sep, p, i in [
+            ("pdb:1234", False, ":", "pdb", "1234"),
+            ("go:GO:1234", False, ":", "go", "1234"),
+            ("go:go:1234", False, ":", "go", "1234"),
+            ("go:1234", False, ":", "go", "1234"),
+            ("fbbt:FBbt:1234", False, ":", "fbbt", "1234"),
+            ("fbbt:fbbt:1234", False, ":", "fbbt", "1234"),
+            ("fbbt:1234", False, ":", "fbbt", "1234"),
+            ("go.ref:GO_REF:1234", False, ":", "go.ref", "1234"),
+            ("go.ref:1234", False, ":", "go.ref", "1234"),
+            ("GO_1234", False, "_", "go", "1234"),
+            ("omim.ps:PS12345", False, ":", "omim.ps", "12345"),
+            ("GO_1234", True, "_", "GO", "1234"),
+            ("pdb:1234", True, ":", "pdb", "1234"),
+        ]:
+            with self.subTest(curie=curie, use_preferred=pref, sep=sep):
+                actual_prefix, actual_i = parse_curie(curie, sep=sep, use_preferred=pref)
+                self.assertEqual(p, actual_prefix)
+                self.assertEqual(i, actual_i)
+
+    def test_external_registry_mappings(self):
+        """Test external registry mappings."""
+        res = self.manager.get_external_mappings("obofoundry", "bioportal")
+        self.assertIsInstance(res, MappingsDiff)
+        self.assertEqual("obofoundry", res.source_metaprefix)
+        self.assertEqual("bioportal", res.target_metaprefix)
+        self.assertIn("gaz", res.mappings)
+        self.assertEqual("GAZ", res.mappings["gaz"])
+        # This is an obsolete OBO Foundry ontology so it won't get uploaded to BioPortal
+        self.assertIn("loggerhead", res.source_only)
+        # This is a non-ontology so it won't get in OBO Foundry
+        self.assertIn("DCTERMS", res.target_only)

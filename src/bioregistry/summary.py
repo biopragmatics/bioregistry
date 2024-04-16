@@ -8,8 +8,9 @@ from textwrap import dedent
 from typing import Mapping
 
 import click
+from more_click import force_option
 
-import bioregistry
+from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
 from bioregistry.version import get_version
 
@@ -97,11 +98,11 @@ class BioregistrySummary:
         )
 
     @classmethod
-    def make(cls):
+    def make(cls, force_download: bool = False):
         """Instantiate the class."""
-        registry = bioregistry.read_registry()
+        registry = manager.registry
 
-        metaprefix_to_mapping_count = bioregistry.count_mappings()
+        metaprefix_to_mapping_count = manager.count_mappings()
 
         #: The total number of mappings from all records to all external records
         total_mapping_count = sum(metaprefix_to_mapping_count.values())
@@ -115,7 +116,7 @@ class BioregistrySummary:
         novel_prefixes = {prefix for prefix, entry in registry.items() if not entry.mappings}
         number_novel_prefixes = len(novel_prefixes)
 
-        metaprefixes = set(bioregistry.read_metaregistry())
+        metaprefixes = set(manager.metaregistry)
         metaprefixes_aligned = set(metaprefix_to_mapping_count)
 
         #: The number of prefixes that have any overrides that are not novel to the Bioregistry
@@ -140,12 +141,15 @@ class BioregistrySummary:
             number_mappings=total_mapping_count,
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
-            number_mismatches_curated=sum(len(v) for v in bioregistry.read_mismatches().values()),
-            external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
-            number_collections=len(bioregistry.read_collections()),
-            number_contexts=len(bioregistry.read_contexts()),
-            number_direct_contributors=len(bioregistry.read_contributors(direct_only=True)),
-            number_total_contributors=len(bioregistry.read_contributors(direct_only=False)),
+            number_mismatches_curated=sum(len(v) for v in manager.mismatches.values()),
+            external_sizes={
+                metaprefix: len(getter(force_download=force_download))
+                for metaprefix, _, getter in GETTERS
+            },
+            number_collections=len(manager.collections),
+            number_contexts=len(manager.contexts),
+            number_direct_contributors=len(manager.read_contributors(direct_only=True)),
+            number_total_contributors=len(manager.read_contributors(direct_only=False)),
         )
 
 
@@ -186,11 +190,14 @@ class MappingBurdenSummary:
         )
 
     @classmethod
-    def make(cls):
+    def make(cls, force_download: bool = False):
         """Instantiate the class."""
         from bioregistry.external import GETTERS
 
-        registry_to_prefixes = {metaprefix: set(getter()) for metaprefix, _, getter in GETTERS}
+        registry_to_prefixes = {
+            metaprefix: set(getter(force_download=force_download))
+            for metaprefix, _, getter in GETTERS
+        }
 
         total_pairwise_upper_bound = sum(
             len(x) * len(y) for x, y in combinations(registry_to_prefixes.values(), 2)
@@ -200,7 +207,7 @@ class MappingBurdenSummary:
         )
         exclusive_direct_upper_bound = sum(len(x) for x in registry_to_prefixes.values())
 
-        registry = bioregistry.read_registry()
+        registry = manager.registry
         registry_to_mapped_prefixes = defaultdict(set)
         for resource in registry.values():
             for metaprefix, external_prefix in resource.get_mappings().items():
@@ -224,7 +231,8 @@ class MappingBurdenSummary:
 
 @click.command()
 @click.option("--split-lines", is_flag=True)
-def _main(split_lines: bool):
+@force_option
+def _main(split_lines: bool, force: bool):
     if split_lines:
         from textwrap import fill as _fill
     else:
@@ -232,8 +240,8 @@ def _main(split_lines: bool):
         def _fill(_s):  # type:ignore
             return _s
 
-    click.echo(_fill(MappingBurdenSummary.make().get_text()) + "\n")
-    s = BioregistrySummary.make()
+    click.echo(_fill(MappingBurdenSummary.make(force_download=force).get_text()) + "\n")
+    s = BioregistrySummary.make(force_download=force)
     click.echo(_fill(s.get_text()) + "\n")
     click.echo(s.get_table_text())
 

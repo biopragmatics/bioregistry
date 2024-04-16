@@ -5,6 +5,7 @@
 from typing import Callable, List, Tuple
 
 from .aberowl import get_aberowl
+from .bartoc import get_bartoc
 from .biocontext import get_biocontext
 from .biolink import get_biolink
 from .bioportal import get_agroportal, get_bioportal, get_ecoportal
@@ -14,16 +15,23 @@ from .cropoct import get_cropoct
 from .edam import get_edam
 from .fairsharing import get_fairsharing
 from .go import get_go
+from .hl7 import get_hl7
+from .integbio import get_integbio
+from .lov import get_lov
 from .miriam import get_miriam
 from .n2t import get_n2t
 from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
 from .ontobee import get_ontobee
+from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
 from .re3data import get_re3data
+from .scicrunch import get_rrid
+from .togoid import get_togoid
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
+from .zazuko import get_zazuko
 
 __all__ = [
     "GETTERS",
@@ -46,6 +54,14 @@ __all__ = [
     "get_wikidata",
     "get_edam",
     "get_re3data",
+    "get_hl7",
+    "get_bartoc",
+    "get_integbio",
+    "get_lov",
+    "get_pathguide",
+    "get_togoid",
+    "get_zazuko",
+    "get_rrid",
 ]
 
 GETTERS: List[Tuple[str, str, Callable]] = [
@@ -71,4 +87,12 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("cropoct", "CropOCT", get_cropoct),
     ("edam", "EDAM", get_edam),
     ("re3data", "re3data", get_re3data),
+    ("hl7", "HL7", get_hl7),
+    ("bartoc", "BARTOC", get_bartoc),
+    ("integbio", "Integbio", get_integbio),
+    ("lov", "LOV", get_lov),
+    ("pathguide", "Pathguide", get_pathguide),
+    ("togoid", "TogoID", get_togoid),
+    ("zazuko", "Zazuko", get_zazuko),
+    ("rrid", "RRID", get_rrid),
 ]

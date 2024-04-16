@@ -1,0 +1,330 @@
+- name: Global Alliance for Genomics and Health
+  abbreviation: GA4GH
+  homepage: https://www.ga4gh.org/
+  type: organization
+  logo: https://www.ga4gh.org/wp-content/themes/ga4gh_brochure/dist/assets/svg/logos/logo-full-color.svg
+  wikidata: Q60750423
+  uses:
+    - description: Gave a tutorial at ISMB 2022 on how to run a local instance of the Bioregistry
+      links:
+        - https://github.com/ga4gh/ismb-2022-ga4gh-tutorial/blob/06ce0eb33137ccbc2db6888c487bb1e9c24f7c55/supporting/bioregistry/README.md
+
+- name: LinkML
+  type: project
+  homepage: https://linkml.io
+  logo: https://linkml.io/uploads/linkml-logo_color.png
+  wikidata: Q108911530
+  uses:
+    - description: Uses the Bioregistry as a semantic space of other semantic spaces in prefix maps
+      links:
+        - https://github.com/linkml/linkml/blob/e8f6820d729c9d7e85fa751f3dee299ea4bb7bd8/docs/schemas/enums.md
+    - description: Caches the Bioregistry data with use case-specific preprocessing
+      links:
+        - https://github.com/linkml/prefixmaps/blob/a2d8c51e7c02cdbf0d2cbd07918c8314647fcd18/src/prefixmaps/ingest/ingest_bioregistry.py
+    - description: Uses the Bioregistry package for lookup of URI format strings
+      links:
+        - https://github.com/linkml/schemasheets/blob/2f64a5abcc01899a047e12b2261dadb88b9c3005/schemasheets/utils/prefixtool.py
+
+- name: Automating Scientific Knowledge Extraction and Modeling
+  abbreviation: ASKEM
+  logo: https://www.darpa.mil/ddm_gallery/askem.png
+  wikidata: Q116898517
+  type: project
+  homepage: https://indralab.github.io/#askem
+  uses:
+    - description: Deploys a custom instance of the Bioregistry including a subset of prefixes from the main services and additional custom prefixes for epidemiology modeling and space weather use cases
+
+- name: BioClients
+  wikidata: Q116898721
+  homepage: https://github.com/jeremyjyang/BioClients
+  repository: https://github.com/jeremyjyang/BioClients
+  logo: https://github.com/jeremyjyang/BioClients/raw/master/doc/images/BioClients_logo.png
+  type: package
+  uses:
+    - description: Wraps the API of bioregistry.io in a Python package
+      links:
+        - https://github.com/jeremyjyang/BioClients/blob/fc12590a57c4cc49d01bf364ce51dbd955b69b5e/doc/bioregistry.md
+        - https://github.com/jeremyjyang/BioClients/blob/fc12590a57c4cc49d01bf364ce51dbd955b69b5e/BioClients/bioregistry/Client.py
+
+- name: BridgeDb
+  homepage: https://www.bridgedb.org
+  logo: https://avatars.githubusercontent.com/u/5793302?s=280&v=4
+  type: project
+  wikidata: Q55582517
+  uses:
+    - description: Links prefixes used in BridgeDb's mapping database to Bioregistry prefixes, standardizing when possible
+      links:
+        - https://github.com/bridgedb/datasources/blob/09855e63b5db17fb27ac529192cad38396a3bf1f/scripts/align_bioregistry.py
+        - https://github.com/bridgedb/datasources/blob/76bcc4cb29e6d94b11661f0e54516f1c71435efb/tests/test_integrity.py
+    - description: Standardizes annotations of CURIEs that have been replaced in the TIWID database
+      links:
+        - https://github.com/bridgedb/tiwid/blob/f97575c7c48141acd5ec75c294c01e740fe014ea/tests/test_integrity.py
+
+- name: Ontology Lookup Service
+  abbreviation: OLS
+  type: project
+  wikidata: Q22230760
+  homepage: https://www.ebi.ac.uk/ols/index
+  logo: https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png
+  uses:
+    - description: Uses the Bioregistry to parse CURIEs in ontologies and generate links
+      links:
+        - https://github.com/EBISPOT/ols4/blob/cea7a92f46f05b78a8dd5f74a0c37fccf0c6ddb3/dataload/linker/src/main/java/Bioregistry.java
+
+- name: FAIRsFAIR Research Data Object Assessment Service
+  abbreviation: F-UJI
+  type: project
+  repository: https://github.com/pangaea-data-publisher/fuji
+  homepage: https://github.com/pangaea-data-publisher/
+  logo: https://www.f-uji.net/images/fuji_logo.png
+  uses:
+    - description: Uses the Bioregistry data file directly to implement its own URI parser
+      links:
+        - https://github.com/pangaea-data-publisher/fuji/blob/f28f51d49d95994e15ff265ada14dfeac0b0adf8/fuji_server/helper/linked_vocab_helper.py
+
+- name: Manubot
+  type: project
+  wikidata: Q96473455
+  homepage: https://manubot.org/
+  logo: https://manubot.org/share-thumbnail.png
+  uses:
+    - description: Uses the Bioregistry python package to parse CURIEs appearing in scholarly articles, generate links, and retrieve metadata
+      links:
+        - https://github.com/manubot/manubot/blob/f6c1fcd3781fd25574cd23100155b1b1d2783515/manubot/cite/curie/__init__.py
+
+- name: LOTUS Initiative
+  type: project
+  wikidata: Q104225190
+  homepage: https://lotus.naturalproducts.net/
+  logo: https://lotus.nprod.net/media/logo.svg
+  uses:
+    - description: Generates Bioregistry links for resolving CURIEs for taxa and natural products
+      links:
+        - https://github.com/lotusnprod/lotus-web/blob/f7b06f29de1a5e49b85c070ebc80e8f063954365/src/main/js/components/compoundcard/Representations.js
+
+- name: Text2Term Ontology Mapper
+  homepage: https://github.com/ccb-hms/ontology-mapper
+  type: package
+  wikidata: Q116924843
+  uses:
+    - description: Uses the Bioregistry python package for parsing URIs
+      links:
+        - https://github.com/ccb-hms/ontology-mapper/blob/0b4edd50da0144ec317e77b265f93e3d6655a64e/text2term/onto_utils.py
+
+- homepage: https://lamin.ai/docs/bionty
+  name: Bionty
+  type: project
+  repository: https://github.com/laminlabs/bionty
+  logo: https://raw.githubusercontent.com/laminlabs/lamin-profile/main/assets/logo.svg
+  uses:
+    - description: Uses the Bioregistry Python package to normalize prefixes
+      links:
+        - https://github.com/laminlabs/bionty/issues/199
+        - https://github.com/laminlabs/bionty/blob/3f2f3bf1f9acb2e0c33c4ee885997ea7fb681ba2/bionty/_table.py
+
+- name: Related Sciences
+  homepage: https://www.related.vc
+  type: organization
+  logo: https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dpdqcl2rgzjirhkqweh4
+  wikidata: Q116924914
+  uses:
+    - description: Uses the Bioregistry Python package to normalize prefixes and CURIEs in its ENSEMBL pre-processing pipeline
+      links:
+        - https://github.com/related-sciences/ensembl-genes/blob/d251894f4b8af164230a08849a81f8af76be8039/ensembl_genes/ensembl_genes.py
+        - https://github.com/related-sciences/ensembl-genes/blob/50af2fca19dab904b7f2a70737a9ee027f2f8205/ensembl_genes/notebooks/ensembl_genes_eda.ipynb
+
+- name: SciBite
+  homepage: https://scibite.com/
+  type: organization
+  logo: https://www.scibite.com/wp-content/uploads/2020/09/SciBite-Logo-Final-Horizontal.png
+  wikidata: Q105080220
+  uses:
+    - description: Uses the Bioregistry resolver
+
+- name: Gut-brain Axis Knowledge Graph
+  abbreviation: GBA-KG
+  homepage: https://github.com/liwenqingi/GBA-KG
+  repository: https://github.com/liwenqingi/GBA-KG
+  type: package
+  uses:
+    - description: Uses the Bioregistry via BERN2
+
+- name: WikiPathways
+  type: project
+  wikidata: Q7999828
+  homepage: https://www.wikipathways.org
+  logo: https://upload.wikimedia.org/wikipedia/commons/8/83/Wplogo_with_text_500.png
+  uses:
+    - description: Standardizes cross-references with the Bioregistry (via BridgeDB)
+      links:
+        - https://github.com/wikipathways/meta-data-action/blob/03e965afed8ae8837cc54d9e87f78ac12f8c4bf2/meta.data.action/src/main/java/meta/data/action/MetaDataExtractor.java
+
+- name: Ensmallen / Grape
+  type: package
+  wikidata: Q116924819
+  homepage: https://github.com/AnacletoLAB/ensmallen
+  uses:
+    - description: Uses the Bioregistry Python package to standardize CURIEs in knowledge graphs generated from ontologies and other sources
+      links:
+        - https://github.com/AnacletoLAB/ensmallen/blob/c4a931dea9b83df64b2d1dd6aa717e9f563f3aa2/bindings/python/ensmallen/datasets/kgobo.py
+
+- name: Advanced Biomedical Entity Recognition and Normalization
+  abbreviation: BERN2
+  wikidata: Q116924884
+  type: package
+  homepage: https://github.com/dmis-lab/BERN2
+  uses:
+    - description: Uses the Bioregistry web service for expanding CURIEs into URIs
+      links:
+        - https://github.com/dmis-lab/BERN2/blob/53a72b528e7a09bee2646c95ccf1103cfa9c8cf6/app/result_parser.py
+    - description: Uses the Bioregistry Python package for normalizing prefixes
+      links:
+        - https://github.com/dmis-lab/BERN2/blob/e783813c7a08852a18741057920e59949af7ca6b/bern2/bern2.py
+
+- name: OntoGPT
+  description: A knowledge extraction tool that uses a large language model to extract semantic information from text.
+  homepage: https://monarch-initiative.github.io/ontogpt/
+  type: package
+  repository: https://github.com/monarch-initiative/ontogpt
+  uses:
+    - description: Generate links from CURIEs
+      links:
+        - https://github.com/monarch-initiative/ontogpt/blob/d22fe590ca9bfcd1b7421d7c2399711ea19f5124/src/ontogpt/io/markdown_exporter.py
+        - https://github.com/monarch-initiative/ontogpt/blob/d22fe590ca9bfcd1b7421d7c2399711ea19f5124/src/ontogpt/io/html_exporter.py
+
+- name: OBO Foundry
+  wikidata: Q7072326
+  homepage: https://obofoundry.org/
+  logo: https://obofoundry.org/images/foundrylogo.png
+  repository: https://github.com/OBOFoundry/OBOFoundry.github.io
+  type: organization
+  uses:
+    - description: Uses the Bioregistry in order to identify if proposed ontologies' prefixes collide with existing prefixes
+      links:
+        - https://github.com/OBOFoundry/OBOFoundry.github.io/blob/af5bf3bb2fee6bfffde5dcf98a09a79b90520277/docs/ReservePrefix.md
+        - https://github.com/OBOFoundry/OBOFoundry.github.io/blob/334d2d6882f22094af29640fc126e0ab70c06e2a/id-policy.md
+
+- name: Ontology Quality 2022 Analysis
+  homepage: https://github.com/Ostrzyciel/ontology-quality-2022
+  repository: https://github.com/Ostrzyciel/ontology-quality-2022
+  type: analysis
+  uses:
+    - description: Uses Bioregistry data directly to identify prefixes in ontologies that aren't OBO Foundry prefixes
+      links:
+        - https://github.com/Ostrzyciel/ontology-quality-2022/blob/aca8bea664a99b52a39c8f727b59149730738952/obo/3_cross_refs/xrefs.ipynb
+
+- name: iSamples.org
+  repository: https://github.com/isamplesorg
+  type: organization
+  logo: https://isamplesorg.github.io/assets/isampleslogopetal.png
+  homepage: https://isamplesorg.github.io/
+  uses:
+    - description: Uses the Bioregistry as a semantic space for referencing prefixes (in LinkML)
+      links:
+        - https://github.com/isamplesorg/metadata/blob/28954e4b69ad40a47828bb631f4bf9f98b03bc1c/notes/evaluation/test_dynamic_vocab.yml
+
+- name: BioCypher
+  homepage: https://biocypher.org/
+  type: project
+  repository: https://github.com/saezlab/BioCypher
+  logo: https://biocypher.org/_images/banner.png
+  uses:
+    - description: Uses the Bioregistry Python package for normalizing CURIEs
+      links:
+        - https://github.com/saezlab/DepMap-BioCypher/blob/4c84fdc24f414a05ed68820096d55c09b6a81877/dmb/adapter.py
+
+- name: Babel Validator
+  homepage: https://github.com/TranslatorSRI/babel-validation
+  repository: https://github.com/TranslatorSRI/babel-validation
+  type: package
+  uses:
+    - description: Uses the Bioregistry resolver for creating resolvable links
+      links:
+        - https://github.com/TranslatorSRI/babel-validation/blob/827c26c27d5f49f6959f0dbded3cde48f1fcde44/website/src/models/tests.js
+
+- name: National Microbiome Data Collaborative
+  abbreviation: NMDC
+  wikidata: Q94461838
+  homepage: https://microbiomedata.org/
+  logo: https://microbiomedata.org/wp-content/uploads/sites/2/2019/08/logo-img.svg
+  type: organization
+  uses:
+    - description: Uses the Bioregistry Python package to normalize prefixes, look up patterns, etc.
+      links:
+        - https://github.com/microbiomedata/sample-annotator/blob/81b994d342945da0189aaf34e3a86d6a5acd30cc/sample_annotator/sample_annotator.py
+
+- name: PheKnowLator
+  repository: https://github.com/callahantiff/PheKnowLator
+  logo: https://user-images.githubusercontent.com/8030363/195494933-d0faba60-5643-4cc6-8a48-41b4a94a7afe.png
+  homepage: https://github.com/callahantiff/PheKnowLator/wiki
+  type: package
+  uses:
+    - description: Normalizing IRIs and CURIEs during the construction of the knowledge graph
+
+- name: Natural Product Knowledge Graph
+  abbreviation: NP-KG
+  repository: https://github.com/sanyabt/np-kg
+  homepage: https://github.com/sanyabt/np-kg
+  type: package
+  description: A graph framework that creates a biomedical knowledge graph to identify and generate mechanistic hypotheses for pharmacokinetic natural product-drug interactions.
+  uses:
+    - description: Normalizing IRIs and CURIEs during the construction of the knowledge graph via PheKnowLator
+
+- name: Ontology Quality Assessment Toolkit
+  repository: https://github.com/cthoyt/oquat
+  homepage: https://cthoyt.github.io/oquat
+  type: package
+  uses:
+    - description: Uses the Bioregistry Python package to check the standardization of prefixes in OBO Foundry ontologies
+    - description: Uses the Bioregistry to get a list of ontologies and their download links
+
+- name: PyOBO
+  repository: https://github.com/pyobo/pyobo
+  homepage: https://github.com/pyobo/pyobo
+  type: package
+  wikidata: Q116738054
+  logo: https://avatars.githubusercontent.com/u/62338397?s=200&v=4
+  uses:
+    - description: Uses the Bioregistry Python package to get a list of ontologies and their download links
+    - description: Uses the Bioregistry Python package to standardize prefixes, CURIEs, and IRIs in ontologies
+    - description: Uses the Bioregistry Python package to validate prefixes, CURIEs, and IRIs in ontologies during the construction of custom ontologies, e.g., from biological databases
+
+- name: SSSOM
+  type: project
+  wikidata: Q108394654
+  logo: https://github.com/jmcmurry/closed-illustrations/raw/master/logos/sssom-logos/sssom_logo_black-banner.png
+  homepage: https://mapping-commons.github.io/sssom/
+  repository: https://github.com/mapping-commons/sssom
+  uses:
+    - description: Uses the Bioregistry as a default prefix map
+
+- name: Basic Register of Thesauri, Ontologies & Classifications
+  abbreviation: BARTOC
+  homepage: https://bartoc.org
+  type: project
+  logo: https://bartoc.org/img/bartoc-logo.svg
+  wikidata: Q22279816
+  uses:
+    - description: Included in registry
+      links:
+        - https://bartoc.org/en/node/18951
+
+- name: DBPedia
+  type: project
+  wikidata: Q465
+  homepage: https://www.dbpedia.org/
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/DBpedia-Logo_.png/1200px-DBpedia-Logo_.png
+  uses:
+    - description: Uses Bioregistry for downloading ontologies and getting URI format strings
+      links:
+        - https://github.com/dbpedia/archivo/issues/23
+
+- name: refineGEMs
+  type: package
+  homepage: https://github.com/draeger-lab/refinegems
+  repository: https://github.com/draeger-lab/refinegems
+  logo: https://github.com/draeger-lab/refinegems/raw/main/docs/source/images/refineGEMs_logo.png
+  uses:
+    - description: CURIE validation
+      links:
+        - https://github.com/draeger-lab/refinegems/blob/3c3587a1de30a836326a73e6111769e04bd2bbf7/refinegems/polish.py#L565

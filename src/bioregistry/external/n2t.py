@@ -15,6 +15,20 @@ DIRECTORY = EXTERNAL / "n2t"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.yml"
 PROCESSED_PATH = DIRECTORY / "processed.json"
+SKIP = {
+    "zzztestprefix": "test prefix should not be considered",
+    "urn": "too meta",
+    "url": "too meta",
+    "purl": "too meta",
+    "lsid": "too meta",
+    "hdl": "paid service, too meta",
+    "repec": "irrelevant prefix from economics",
+    "merops": "issue with miriam having duplicate prefixes for this resource",  # FIXME
+    "hgnc.family": "issue with miriam having duplicate prefixes for this resource",  # FIXME
+}
+SKIP_URI_FORMATS = {
+    "http://arabidopsis.org/servlets/TairObject?accession=$1",
+}
 
 
 def get_n2t(force_download: bool = False):
@@ -31,7 +45,7 @@ def get_n2t(force_download: bool = False):
     rv = {
         key: _process(record)
         for key, record in data.items()
-        if record["type"] == "scheme" and "/" not in key
+        if record["type"] == "scheme" and "/" not in key and key not in SKIP
     }
 
     with PROCESSED_PATH.open("w") as file:
@@ -42,7 +56,7 @@ def get_n2t(force_download: bool = False):
 def _process(record):
     rv = {
         "name": record.get("name"),
-        URI_FORMAT_KEY: record["redirect"].replace("$id", "$1") if "redirect" in record else None,
+        URI_FORMAT_KEY: _get_uri_format(record),
         "description": record.get("description"),
         "homepage": record.get("more"),
         "pattern": record.get("pattern"),
@@ -50,6 +64,16 @@ def _process(record):
         "namespaceEmbeddedInLui": (record.get("prefixed") == "true"),
     }
     return {k: v for k, v in rv.items() if v is not None}
+
+
+def _get_uri_format(record):
+    raw_redirect = record.get("redirect")
+    if raw_redirect is None:
+        return None
+    uri_format = raw_redirect.replace("$id", "$1")
+    if uri_format in SKIP_URI_FORMATS:
+        return None
+    return uri_format
 
 
 @click.command()

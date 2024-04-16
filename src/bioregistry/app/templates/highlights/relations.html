@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Relations{% endblock %}
+
+{% macro render_dict(ddd) -%}
+    <dl class="row">
+        {% for k, v in ddd.items() %}
+            <dt class="col-3" style="text-align: right">{{ k }}
+                {% if k not in manager.registry %}
+                    <i class="far fa-question-circle" style="color: red;"></i>
+                {% endif %}
+            </dt>
+            <dd class="col-9">
+                {% for prefix in v %}
+                    {{ utils.render_prefix(prefix, classes="badge badge-pill badge-primary") }}
+                {% endfor %}
+            </dd>
+        {% endfor %}
+    </dl>
+{% endmacro %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            Relations
+        </div>
+        <div class="card-body">
+            <p>This page provides an overview on canonical/part of/provides relationships</p>
+            <a id="canonical"></a>
+            <h3>Canonical</h3>
+            {{ render_dict(manager.canonical_for) }}
+            <a id="providers"></a>
+            <h3>Provided By</h3>
+            {{ render_dict(manager.provided_by) }}
+            <a id="parts"></a>
+            <h3>Has Parts</h3>
+            {{ render_dict(manager.has_parts) }}
+        </div>
+    </div>
+{% endblock %}

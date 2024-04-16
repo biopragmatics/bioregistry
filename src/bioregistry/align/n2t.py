@@ -2,10 +2,10 @@
 
 """Align N2T with the Bioregistry."""
 
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external.n2t import get_n2t
+from bioregistry.external.n2t import SKIP, get_n2t
 
 
 class N2TAligner(Aligner):
@@ -17,18 +17,8 @@ class N2TAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in N2T that should be skipped."""
-        return {
-            "zzztestprefix": "test prefix should not be considered",
-        }
-
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned BioPortal registry entries."""
-        return [
-            external_entry["name"].strip(),
-            external_entry.get("homepage", "").strip(),
-            external_entry.get("description", "").strip(),
-        ]
+        return SKIP
 
 
 if __name__ == "__main__":
-    N2TAligner.align()
+    N2TAligner.cli()

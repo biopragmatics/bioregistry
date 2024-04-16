@@ -5,8 +5,11 @@
 import logging
 import typing
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Set
 
+import curies
+
+from .constants import MaybeCURIE
 from .resource_manager import manager
 from .schema import Attributable, Resource
 
@@ -17,6 +20,7 @@ __all__ = [
     "get_preferred_prefix",
     "get_mappings",
     "get_synonyms",
+    "get_keywords",
     "get_pattern",
     "get_curie_pattern",
     "get_namespace_in_lui",
@@ -34,6 +38,7 @@ __all__ = [
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
+    "get_rdf_download",
     "get_version",
     "get_banana",
     "get_obo_health_url",
@@ -58,6 +63,7 @@ __all__ = [
     "count_mappings",
     "get_versions",
     "get_parts_collections",
+    "get_obo_context_prefix_map",
 ]
 
 logger = logging.getLogger(__name__)
@@ -79,7 +85,7 @@ def get_name(prefix: str) -> Optional[str]:
     return manager.get_name(prefix)
 
 
-def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
+def get_description(prefix: str, *, use_markdown: bool = False) -> Optional[str]:
     """Get the description for the given prefix, if available.
 
     :param prefix: The prefix to lookup.
@@ -87,10 +93,7 @@ def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
         string
     :returns: The description, if available.
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_description(use_markdown=use_markdown)
+    return manager.get_description(prefix, use_markdown=use_markdown)
 
 
 def get_preferred_prefix(prefix: str) -> Optional[str]:
@@ -135,6 +138,11 @@ def count_mappings() -> typing.Counter[str]:
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
     """Get the synonyms for a given prefix, if available."""
     return manager.get_synonyms(prefix)
+
+
+def get_keywords(prefix: str) -> Optional[List[str]]:
+    """Return the keywords, if available."""
+    return manager.get_keywords(prefix)
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -391,9 +399,9 @@ def get_default_format(prefix: str) -> Optional[str]:
 
     >>> import bioregistry
     >>> bioregistry.get_default_format('ncbitaxon')
-    'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
+    'http://purl.obolibrary.org/obo/NCBITaxon_$1'
     >>> bioregistry.get_default_format('go')
-    'http://amigo.geneontology.org/amigo/term/GO:$1'
+    'http://purl.obolibrary.org/obo/GO_$1'
     >>> assert bioregistry.get_default_format('nope') is None
     """
     entry = get_resource(prefix)
@@ -402,10 +410,11 @@ def get_default_format(prefix: str) -> Optional[str]:
     return entry.get_default_format()
 
 
-def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
+def get_miriam_uri_prefix(prefix: str, **kwargs) -> Optional[str]:
     """Get the URI prefix for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
+    :param kwargs: Keyword arguments to pass to :meth:`Resource.get_miriam_uri_prefix`
     :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
     >>> import bioregistry
@@ -418,13 +427,14 @@ def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_miriam_uri_prefix()
+    return resource.get_miriam_uri_prefix(**kwargs)
 
 
-def get_miriam_uri_format(prefix: str) -> Optional[str]:
+def get_miriam_uri_format(prefix: str, **kwargs) -> Optional[str]:
     """Get the URI format for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
+    :param kwargs: Keyword arguments to pass to :meth:`Resource.get_miriam_uri_format`
     :returns: The Identifiers.org/MIRIAM URI format string, if available.
 
     >>> import bioregistry
@@ -437,7 +447,7 @@ def get_miriam_uri_format(prefix: str) -> Optional[str]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_miriam_uri_format()
+    return resource.get_miriam_uri_format(**kwargs)
 
 
 def get_obofoundry_uri_format(prefix: str) -> Optional[str]:
@@ -641,10 +651,7 @@ def get_contact_name(prefix: str) -> Optional[str]:
 
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_homepage()
+    return manager.get_homepage(prefix)
 
 
 def get_repository(prefix: str) -> Optional[str]:
@@ -677,6 +684,14 @@ def get_owl_download(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_download_owl()
+
+
+def get_rdf_download(prefix: str) -> Optional[str]:
+    """Get the download link for the RDF file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_download_rdf()
 
 
 def get_provides_for(prefix: str) -> Optional[str]:
@@ -758,12 +773,20 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     return entry.proprietary
 
 
-def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
+def parse_curie(
+    curie: str,
+    *,
+    sep: str = ":",
+    use_preferred: bool = False,
+) -> MaybeCURIE:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
         "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
 
     The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
@@ -798,29 +821,50 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
     Parse OBO PURL curies
     >>> parse_curie('GO_1234', sep="_")
     ('go', '1234')
+
+    Banana with no peel:
+    >>> parse_curie("omim.ps:PS12345")
+    ('omim.ps', '12345')
+
+    Use preferred (available)
+    >>> parse_curie('GO_1234', sep="_", use_preferred=True)
+    ('GO', '1234')
+
+    Use preferred (unavailable)
+    >>> parse_curie('pdb:1234', use_preferred=True)
+    ('pdb', '1234')
     """
-    return manager.parse_curie(curie, sep=sep)
+    return manager.parse_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
 def normalize_parsed_curie(
-    prefix: str, identifier: str
-) -> Union[Tuple[str, str], Tuple[None, None]]:
+    prefix: str,
+    identifier: str,
+    *,
+    use_preferred: bool = False,
+) -> MaybeCURIE:
     """Normalize a prefix/identifier pair.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
         prefixes or bananas, all lowercase.
     """
-    return manager.normalize_parsed_curie(prefix, identifier)
+    return manager.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
 
-def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
+def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> Optional[str]:
     """Normalize a CURIE.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
         "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :return: A normalized CURIE, if possible using the colon as a separator
 
     >>> normalize_curie('pdb:1234')
@@ -857,15 +901,22 @@ def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
     Parse OBO PURL curies
     >>> normalize_curie('GO_1234', sep="_")
     'go:1234'
+
+    Use preferred
+    >>> normalize_curie('GO_1234', sep="_", use_preferred=True)
+    'GO:1234'
     """
-    return manager.normalize_curie(curie, sep=sep)
+    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
-def normalize_prefix(prefix: str) -> Optional[str]:
+def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> Optional[str]:
     """Get the normalized prefix, or return None if not registered.
 
     :param prefix: The prefix to normalize, which could come from Bioregistry,
         OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+    :param use_preferred:
+        If set to true, uses the "preferred prefix", if available, instead
+        of the canonicalized Bioregistry prefix.
     :returns: The canonical Bioregistry prefix, it could be looked up. This
         will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
         in a few cases, such as NCBITaxon.
@@ -882,8 +933,13 @@ def normalize_prefix(prefix: str) -> Optional[str]:
 
     >>> assert 'eccode' == normalize_prefix('ec-code')
     >>> assert 'eccode' == normalize_prefix('EC_CODE')
+
+    Get a "preferred" prefix:
+
+    >>> normalize_prefix("go", use_preferred=True)
+    'GO'
     """
-    return manager.normalize_prefix(prefix)
+    return manager.normalize_prefix(prefix, use_preferred=use_preferred)
 
 
 def get_version(prefix: str) -> Optional[str]:
@@ -900,7 +956,7 @@ def get_versions() -> Mapping[str, str]:
     return manager.get_versions()
 
 
-def get_curie_pattern(prefix: str, use_preferred: bool = False) -> Optional[str]:
+def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> Optional[str]:
     """Get the CURIE pattern for this resource.
 
     :param prefix: The prefix to look up
@@ -916,19 +972,9 @@ def get_license_conflicts():
     return manager.get_license_conflicts()
 
 
-SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
-CH_BASE = "https://cthoyt.com/obo-community-health"
-HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
-EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
-
-
 def get_obo_health_url(prefix: str) -> Optional[str]:
     """Get the OBO community health badge."""
-    obo_prefix = manager.get_mapped_prefix(prefix, "obofoundry")
-    if obo_prefix is None:
-        return None
-    obo_pp = manager.get_preferred_prefix(prefix)
-    return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"
+    return manager.get_obo_health_url(prefix)
 
 
 def is_novel(prefix: str) -> Optional[bool]:
@@ -952,3 +998,28 @@ def get_parts_collections():
         resource and not a vocabulary.
     """
     return manager.get_parts_collections()
+
+
+def get_obo_context_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
+    """Get the OBO Foundry prefix map.
+
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
+    :return: A mapping from prefixes to prefix URLs.
+    """
+    return manager.get_context_artifacts("obo", include_synonyms=include_synonyms)[0]
+
+
+def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
+    """Get a mapping from contributor ORCID identifiers to author objects."""
+    return manager.read_contributors(direct_only=direct_only)
+
+
+def get_converter(**kwargs) -> curies.Converter:
+    """Get a converter from this manager."""
+    return manager.get_converter(**kwargs)
+
+
+def get_default_converter() -> curies.Converter:
+    """Get a converter from this manager."""
+    return manager.converter

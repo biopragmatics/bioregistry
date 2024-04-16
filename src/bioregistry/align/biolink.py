@@ -49,4 +49,4 @@ class BiolinkAligner(Aligner):
 
 
 if __name__ == "__main__":
-    BiolinkAligner.align()
+    BiolinkAligner.cli()
