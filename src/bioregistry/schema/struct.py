@@ -1819,11 +1819,17 @@ class Resource(BaseModel):
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
         rv = []
-        if self.providers is not None:
-            rv.extend(self.providers)
+        providers = self.providers or []
+        provider_codes = {provider.code for provider in providers}
+        provider_uris = {provider.uri_format for provider in providers}
+        rv.extend(providers)
         if self.miriam:
-            for p in self.miriam.get("providers", []):
-                rv.append(Provider(**p))
+            for p_data in self.miriam.get("providers", []):
+                provider = Provider(**p_data)
+                if provider.code in provider_codes or provider.uri_format in provider_uris:
+                    # this means we've done an explicit override in the Bioregistry curated data
+                    continue
+                rv.append(provider)
         prefixcommons_prefix = self.get_prefixcommons_prefix()
         if prefixcommons_prefix:
             rv.append(
