@@ -94,8 +94,7 @@ then annotated.
 
 ### Editing the Bioregistry
 
-1. Follow [this link](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   to edit directly on GitHub.
+1. Fork the repository, clone it, create a new branch, and edit the [src/bioregistry/data/bioregistry.json](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json) file locally. Check the [contribution guidelines](https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md) for help on working with Git and GitHub
 2. Here's an example of `3dmet`, which has the Wikidata database annotated
    properly.
 
