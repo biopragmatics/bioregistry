@@ -10,7 +10,7 @@ from typing import Any, Dict, Mapping
 import yaml
 from pystow.utils import download
 
-from bioregistry.constants import DATA_DIRECTORY, RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -41,7 +41,7 @@ DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "go.yml"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 GO_URL = "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml"
-PROCESSING_GO_PATH = DATA_DIRECTORY / "processing_go.json"
+PROCESSING_GO_PATH = DIRECTORY / "processing_go.json"
 
 
 def get_go(force_download: bool = False):

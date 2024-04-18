@@ -16,7 +16,7 @@ from typing import Any, Mapping, Optional
 import requests
 from pydantic import BaseModel
 
-from bioregistry.constants import DATA_DIRECTORY, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBroken
@@ -32,7 +32,7 @@ DIRECTORY = Path(__file__).parent.resolve()
 URL = "https://www.ebi.ac.uk/ols4/api/ontologies?size=1000"
 RAW_PATH = RAW_DIRECTORY / "ols.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
-OLS_PROCESSING = DATA_DIRECTORY / "processing_ols.json"
+OLS_PROCESSING = DIRECTORY / "processing_ols.json"
 
 OLS_SKIP = {
     "co_321:root": "this is a mistake in the way OLS imports CO",

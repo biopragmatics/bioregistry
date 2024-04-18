@@ -41,12 +41,21 @@ def download():
 @main.command()
 @click.option("--skip-fairsharing", is_flag=True)
 @click.option("--skip-re3data", is_flag=True)
+@click.option("--skip-bioportal", is_flag=True)
+@click.option("--skip-agroportal", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
 @click.option("--no-force", is_flag=True)
-def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force: bool):
+def align(
+    skip_fairsharing: bool,
+    skip_re3data: bool,
+    skip_bioportal: bool,
+    skip_agroportal: bool,
+    skip_slow: bool,
+    no_force: bool,
+):
     """Align all external registries."""
     try:
-        from .align import aligner_resolver
+        from .external.align import aligner_resolver
     except ImportError:
         click.secho(
             "Could not import alignment dependencies."
@@ -62,6 +71,10 @@ def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force:
         skip.add("fairsharing")
     if skip_re3data or skip_slow:
         skip.add("re3data")
+    if skip_bioportal or skip_slow:
+        skip.add("bioportal")
+    if skip_agroportal or skip_slow:
+        skip.add("agroportal")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue
