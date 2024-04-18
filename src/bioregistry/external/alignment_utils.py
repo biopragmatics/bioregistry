@@ -218,7 +218,7 @@ class Aligner:
             if value is None:
                 rv.append("")
             elif isinstance(value, str):
-                rv.append(value.strip())
+                rv.append(value.strip().replace("\n", " ").replace("  ", " "))
             elif isinstance(value, bool):
                 rv.append("true" if value else "false")
             elif isinstance(value, (list, tuple, set)):
