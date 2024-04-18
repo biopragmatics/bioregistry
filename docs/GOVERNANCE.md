@@ -18,7 +18,7 @@ on https://github.com/biopragmatics/bioregistry/issues/156.
   merging prefixes, splitting prefixes, or updating a prefix's associated
   metadata) must be done either in the form of an issue or a pull request.
 - The only updates that aren't considered manual are the ones done by the CI
-  system on a nightly basis.
+  system on a chronological basis.
 - Manual updates can be accepted if all continuous integration tests pass and a
   member of the Bioregistry Review Team approves. It's best practice that a
   member of the Review Team does not approve their own updates.
