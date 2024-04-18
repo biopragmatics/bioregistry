@@ -24,7 +24,7 @@ burden and enables the Bioregistry to benefit from upstream changes in external
 registries.
 
 Several exports to YAML, TSV, and RDF, including consensus views over the
-registry, are built on a nightly basis and can be downloaded via the
+registry, are built on a weekly basis and can be downloaded via the
 [`exports/`](https://github.com/biopragmatics/bioregistry/tree/main/exports)
 directory.
 
