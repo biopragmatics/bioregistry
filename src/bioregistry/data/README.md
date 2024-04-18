@@ -43,15 +43,3 @@ This file contains the mismatch dictionary, so the alignment algorithm doesn't
 accidentally create resources that are chimera of two different ones. Its keys
 correspond to bioregistry prefixes and its values are dictionaries mapping from
 metaprefixes to wrong external prefixes to avoid.
-
-## Processing Help Files
-
-This directory also houses several *ad hoc* files containing curated information
-for helping process and align external resources.
-
-| File Name                                              | Description                                                              |
-|--------------------------------------------------------|--------------------------------------------------------------------------|
-| [`processing_biolink.json`](processing_biolink.json)   | Contains which prefixes from BioLink should be skipped during alignment  |
-| [`processing_go.json`](processing_go.json)             | Contains which prefixes from GO should be skipped during alignment       |
-| [`processing_ols.json`](processing_ols.json)           | Contains version type and date format information for entries in the OLS |
-| [`processing_wikidata.json`](processing_wikidata.json) | Contains misc. data for WikiData processing                              |
