@@ -18,6 +18,7 @@ __all__ = [
     "COLLECTIONS_PATH",
     "MISMATCH_PATH",
     "BIOREGISTRY_MODULE",
+    "RAW_DIRECTORY",
 ]
 
 PYDANTIC_1 = importlib.metadata.version("pydantic").startswith("1.")
@@ -42,6 +43,8 @@ DOCS_IMG = DOCS.joinpath("img")
 
 EXPORT_DIRECTORY = ROOT.joinpath("exports")
 
+METADATA_CURATION_DIRECTORY = EXPORT_DIRECTORY.joinpath("alignment")
+RAW_DIRECTORY = EXPORT_DIRECTORY.joinpath("raw")
 EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
 CONTEXT_BIOREGISTRY_PATH = EXPORT_CONTEXTS / "bioregistry.context.jsonld"
 SHACL_TURTLE_PATH = EXPORT_CONTEXTS / "bioregistry.context.ttl"

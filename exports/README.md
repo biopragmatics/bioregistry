@@ -20,9 +20,11 @@ basis using GitHub Actions as a continuous integration server.
 | [`rdf`](rdf)                   | Build of an RDF triple-store representing the registry, metaregistry, and collections            |
 | [`sssom`](sssom)               | An export of prefix mappings in the Simple Standard for Sharing Ontology Mappings (SSSOM) format |
 | [`contexts`](contexts)         | Fit-for-purpose exports of JSON-LD contexts constructed from the Bioregistry                     |
+| [`alignment`](alignment)       | Curation sheets for aligning the metaregistry                                                    |
+| [`raw`](raw)                   | Raw data from select external registries                                                         |
 
 ## PURLs
 
 The Bioregistry uses https://w3id.org to create persistent uniform resource locators (PURLs) for various
-resources. These are configured on GitHub in the .htaccess file
+resources. These are configured on GitHub in the `.htaccess` file
 in https://github.com/perma-id/w3id.org/tree/master/biopragmatics.
