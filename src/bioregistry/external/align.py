@@ -33,7 +33,7 @@ from .ontobee import OntobeeAligner
 from .pathguide import PathguideAligner
 from .prefixcommons import PrefixCommonsAligner
 from .re3data import Re3dataAligner
-from .scicrunch import RRIDAligner
+from .rrid import RRIDAligner
 from .togoid import TogoIDAligner
 from .uniprot import UniProtAligner
 from .wikidata import WikidataAligner

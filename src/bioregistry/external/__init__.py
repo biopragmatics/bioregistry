@@ -27,7 +27,7 @@ from .ontobee import get_ontobee
 from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
 from .re3data import get_re3data
-from .scicrunch import get_rrid
+from .rrid import get_rrid
 from .togoid import get_togoid
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
