@@ -67,7 +67,7 @@ that show relevant metadata to help curate each record as one of the following:
 {% for entry in site.data.curation["prefix_xrefs"] %}
    <tr>
       <td>{{ entry.metaprefix }}</td>
-      <td><a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/external/{{ entry.metaprefix }}/curation.tsv">{{ entry.name }}</a></td>
+      <td><a href="https://github.com/biopragmatics/bioregistry/blob/main/exports/alignment{{ entry.metaprefix }}.tsv">{{ entry.name }}</a></td>
    </tr>
 {% endfor %}
 </tbody>
