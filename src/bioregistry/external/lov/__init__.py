@@ -10,10 +10,11 @@ from typing import Dict, List, Union
 
 from pystow.utils import download, read_rdf
 
-from bioregistry.constants import EXTERNAL
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "get_lov",
+    "LOVAligner",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
@@ -72,5 +73,13 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
     return records
 
 
+class LOVAligner(Aligner):
+    """Aligner for LOV."""
+
+    key = "lov"
+    getter = get_lov
+    curation_header = ("name", "homepage", "uri_prefix")
+
+
 if __name__ == "__main__":
-    get_lov(force_download=True, force_refresh=True)
+    LOVAligner.cli()

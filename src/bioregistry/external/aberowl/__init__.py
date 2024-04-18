@@ -8,7 +8,7 @@ from pathlib import Path
 import yaml
 from pystow.utils import download
 
-from bioregistry.constants import EXTERNAL, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [

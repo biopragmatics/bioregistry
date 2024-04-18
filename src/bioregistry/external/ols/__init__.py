@@ -16,12 +16,14 @@ from typing import Any, Mapping, Optional
 import requests
 from pydantic import BaseModel
 
-from bioregistry.constants import DATA_DIRECTORY, EXTERNAL, RAW_DIRECTORY
+from bioregistry.constants import DATA_DIRECTORY, RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBroken
 
 __all__ = [
     "get_ols",
+    "OLSAligner",
 ]
 
 logger = logging.getLogger(__name__)
@@ -251,5 +253,18 @@ def get_ols_processing() -> Mapping[str, OLSConfig]:
     return {record["prefix"]: OLSConfig(**record) for record in data["configurations"]}
 
 
+class OLSAligner(Aligner):
+    """Aligner for the OLS."""
+
+    key = "ols"
+    getter = get_ols
+    curation_header = ("name",)
+    include_new = True
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get skipped entries from OLS."""
+        return OLS_SKIP
+
+
 if __name__ == "__main__":
-    print(len(get_ols(force_download=True)))  # noqa:T201
+    OLSAligner.cli()

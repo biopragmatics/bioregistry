@@ -9,7 +9,7 @@ from typing import Mapping
 
 import requests
 
-from bioregistry.constants import URI_FORMAT_KEY, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 

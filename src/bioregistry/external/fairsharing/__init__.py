@@ -11,12 +11,14 @@ import re
 from pathlib import Path
 from typing import Any, MutableMapping, Optional, Set
 
-from bioregistry.constants import EXTERNAL, ORCID_PATTERN
+from bioregistry.constants import ORCID_PATTERN
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
 __all__ = [
     "get_fairsharing",
+    "FairsharingAligner",
 ]
 
 logger = logging.getLogger(__name__)
@@ -169,5 +171,15 @@ def _process_publication(publication):
     return rv
 
 
+class FairsharingAligner(Aligner):
+    """Aligner for the FAIRsharing."""
+
+    key = "fairsharing"
+    alt_key_match = "abbreviation"
+    skip_deprecated = True
+    getter = get_fairsharing
+    curation_header = ("abbreviation", "name", "description")
+
+
 if __name__ == "__main__":
-    get_fairsharing(force_download=False, force_reload=True)
+    FairsharingAligner.cli()

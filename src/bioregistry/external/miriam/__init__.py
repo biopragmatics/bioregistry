@@ -6,13 +6,14 @@ import json
 from operator import itemgetter
 from pathlib import Path
 
-import click
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "get_miriam",
+    "MiriamAligner",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
@@ -130,12 +131,14 @@ def _preprocess_resource(resource):
     return rv
 
 
-@click.command()
-def main():
-    """Reload the MIRIAM data."""
-    r = get_miriam(force_download=True)
-    click.echo(f"Got {len(r)} results")
+class MiriamAligner(Aligner):
+    """Aligner for the MIRIAM registry."""
+
+    key = "miriam"
+    getter = get_miriam
+    curation_header = ("deprecated", "name", "description")
+    include_new = True
 
 
 if __name__ == "__main__":
-    main()
+    MiriamAligner.cli()

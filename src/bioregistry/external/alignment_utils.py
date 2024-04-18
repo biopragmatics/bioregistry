@@ -8,7 +8,7 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 import click
 from tabulate import tabulate
 
-from ..constants import EXTERNAL, METADATA_CURATION_DIRECTORY
+from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
 from ..schema_utils import is_mismatch

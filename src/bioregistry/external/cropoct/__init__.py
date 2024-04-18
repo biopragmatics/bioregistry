@@ -7,14 +7,15 @@ import json
 import logging
 from pathlib import Path
 
-import click
 import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "get_cropoct",
+    "CropOCTAligner",
 ]
 
 logger = logging.getLogger(__name__)
@@ -71,5 +72,13 @@ def _process(record):
     return {k: v for k, v in rv.items() if k and v}
 
 
+class CropOCTAligner(Aligner):
+    """Aligner for CropOCT."""
+
+    key = "cropoct"
+    getter = get_cropoct
+    curation_header = ["name", "homepage", "description"]
+
+
 if __name__ == "__main__":
-    click.echo(len(get_cropoct(force_download=True)))
+    CropOCTAligner.cli()

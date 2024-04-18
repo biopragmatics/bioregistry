@@ -5,18 +5,20 @@
 import json
 import logging
 import re
+import textwrap
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Sequence
 from urllib.parse import urlsplit, urlunsplit
 
-import click
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "get_ncbi",
+    "NcbiAligner",
 ]
 
 logger = logging.getLogger(__name__)
@@ -144,12 +146,22 @@ def get_ncbi(force_download: bool = False) -> Dict[str, Dict[str, str]]:
     return rv
 
 
-@click.command()
-def main():
-    """Reload NCBI data."""
-    r = get_ncbi(force_download=True)
-    click.echo(f"Got {len(r)} records")
+class NcbiAligner(Aligner):
+    """Aligner for NCBI xref registry."""
+
+    key = "ncbi"
+    getter = get_ncbi
+    getter_kwargs = dict(force_download=False)
+    curation_header = ("name", "example", "homepage")
+
+    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+        """Return the relevant fields from an NCBI entry for pretty-printing."""
+        return [
+            textwrap.shorten(external_entry["name"], 50),
+            external_entry.get("example"),
+            external_entry.get("homepage"),
+        ]
 
 
 if __name__ == "__main__":
-    main()
+    NcbiAligner.cli()

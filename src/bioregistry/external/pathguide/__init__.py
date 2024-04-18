@@ -5,6 +5,13 @@
 import requests
 from bs4 import BeautifulSoup
 
+from bioregistry.external.alignment_utils import Aligner
+
+__all__ = [
+    "get_pathguide",
+    "PathguideAligner",
+]
+
 
 def get_pathguide(*, force_download: bool = False):
     """Get the Pathguide metdata."""
@@ -34,5 +41,14 @@ def get_pathguide(*, force_download: bool = False):
     return rv
 
 
+class PathguideAligner(Aligner):
+    """Aligner for the Pathguide."""
+
+    key = "pathguide"
+    alt_key_match = "abbreviation"
+    getter = get_pathguide
+    curation_header = ("abbreviation", "name", "homepage")
+
+
 if __name__ == "__main__":
-    get_pathguide()
+    PathguideAligner.cli()

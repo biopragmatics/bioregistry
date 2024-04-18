@@ -2,7 +2,7 @@
 
 """Align the BioPortal with the Bioregistry."""
 
-from bioregistry.align.utils import Aligner
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.external.bioportal import get_agroportal, get_bioportal, get_ecoportal
 
 __all__ = [

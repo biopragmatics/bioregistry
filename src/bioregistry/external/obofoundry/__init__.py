@@ -5,18 +5,19 @@
 import json
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Mapping, Optional
 
-import click
 import requests
 import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "get_obofoundry",
     "get_obofoundry_example",
+    "OBOFoundryAligner",
 ]
 
 
@@ -118,12 +119,31 @@ def get_obofoundry_example(prefix: str) -> Optional[str]:
     return examples[0].rsplit("_")[-1]
 
 
-@click.command()
-def main():
-    """Reload the OBO Foundry data."""
-    r = get_obofoundry(force_download=False, force_process=True)
-    click.echo(f"Got {len(r)} records")
+class OBOFoundryAligner(Aligner):
+    """Aligner for the OBO Foundry."""
+
+    key = "obofoundry"
+    getter = get_obofoundry
+    curation_header = ("deprecated", "name", "description")
+    include_new = True
+    normalize_invmap = True
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get the prefixes in the OBO Foundry that should be skipped."""
+        return SKIP
+
+    def _align_action(self, bioregistry_id, external_id, external_entry):
+        super()._align_action(bioregistry_id, external_id, external_entry)
+        if (
+            self.manager.get_example(bioregistry_id)
+            or self.manager.has_no_terms(bioregistry_id)
+            or self.manager.is_deprecated(bioregistry_id)
+        ):
+            return
+        example = get_obofoundry_example(external_id)
+        if example:
+            self.internal_registry[bioregistry_id]["example"] = example
 
 
 if __name__ == "__main__":
-    main()
+    OBOFoundryAligner.cli()

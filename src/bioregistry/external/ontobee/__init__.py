@@ -3,12 +3,20 @@
 """Download registry information from OntoBee."""
 
 import json
+import textwrap
 from pathlib import Path
+from typing import Sequence
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
+
+__all__ = [
+    "get_ontobee",
+    "OntobeeAligner",
+]
 
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "ontobee.html"
@@ -48,5 +56,20 @@ def get_ontobee(force_download: bool = False):
     return rv
 
 
+class OntobeeAligner(Aligner):
+    """Aligner for OntoBee xref registry."""
+
+    key = "ontobee"
+    getter = get_ontobee
+    curation_header = ("name", "url")
+
+    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+        """Return the relevant fields from an OntoBee entry for pretty-printing."""
+        return [
+            textwrap.shorten(external_entry["name"], 50),
+            external_entry.get("url"),
+        ]
+
+
 if __name__ == "__main__":
-    get_ontobee()
+    OntobeeAligner.cli()

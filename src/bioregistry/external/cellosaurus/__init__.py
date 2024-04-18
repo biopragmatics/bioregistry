@@ -5,10 +5,17 @@
 import itertools as itt
 import json
 from pathlib import Path
+from typing import Mapping
 
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner
+
+__all__ = [
+    "get_cellosaurus",
+    "CellosaurusAligner",
+]
 
 URL = "https://ftp.expasy.org/databases/cellosaurus/cellosaurus_xrefs.txt"
 DIRECTORY = Path(__file__).parent.resolve()
@@ -71,5 +78,20 @@ def _process_db_url(value):
     return value.rstrip("/").replace("%s", "$1")
 
 
+class CellosaurusAligner(Aligner):
+    """Aligner for the Cellosaurus."""
+
+    key = "cellosaurus"
+    getter = get_cellosaurus
+    curation_header = ("name", "homepage", "category", URI_FORMAT_KEY)
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get the skipped Cellosaurus identifiers."""
+        return {
+            "CCTCC": "dead site",
+            "CCLV": "stub website, URL dead",
+        }
+
+
 if __name__ == "__main__":
-    print(len(get_cellosaurus(force_download=True)))  # noqa:T201
+    CellosaurusAligner.cli()

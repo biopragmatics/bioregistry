@@ -10,11 +10,13 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from bioregistry.constants import EXTERNAL
-
 __all__ = [
     "get_integbio",
+    "IntegbioAligner",
 ]
+
+from bioregistry.external.alignment_utils import Aligner
+
 logger = logging.getLogger(__name__)
 
 
@@ -143,5 +145,14 @@ def get_integbio(*, force_download: bool = False):
     return rv
 
 
+class IntegbioAligner(Aligner):
+    """Aligner for the Integbio."""
+
+    key = "integbio"
+    alt_key_match = "name"
+    getter = get_integbio
+    curation_header = ("name", "alt_name", "homepage")
+
+
 if __name__ == "__main__":
-    get_integbio(force_download=True)
+    IntegbioAligner.cli()

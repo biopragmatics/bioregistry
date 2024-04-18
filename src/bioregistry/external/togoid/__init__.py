@@ -9,11 +9,14 @@ from typing import Dict
 import requests
 import yaml
 
-from bioregistry.constants import URI_FORMAT_KEY, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "get_togoid",
+    "TogoIDAligner",
 ]
+
 
 DIRECTORY = Path(__file__).parent.resolve()
 RAW_PATH = RAW_DIRECTORY / "togoid.json"
@@ -80,5 +83,13 @@ def get_togoid(*, force_download: bool = False, force_refresh: bool = False):
     return rv
 
 
+class TogoIDAligner(Aligner):
+    """Aligner for TogoID."""
+
+    key = "togoid"
+    getter = get_togoid
+    curation_header = ("name", "uri_format")
+
+
 if __name__ == "__main__":
-    get_togoid(force_refresh=True)
+    TogoIDAligner.cli()

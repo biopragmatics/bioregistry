@@ -4,12 +4,18 @@
 
 import json
 from pathlib import Path
+from typing import Mapping
 
-import click
 import yaml
 from pystow.utils import download
 
-from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY, RAW_DIRECTORY
+from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
+from bioregistry.external.alignment_utils import Aligner
+
+__all__ = [
+    "get_n2t",
+    "N2TAligner",
+]
 
 URL = "https://n2t.net/e/n2t_full_prefixes.yaml"
 DIRECTORY = Path(__file__).parent.resolve()
@@ -76,12 +82,17 @@ def _get_uri_format(record):
     return uri_format
 
 
-@click.command()
-def main():
-    """Reload the N2T data."""
-    rv = get_n2t(force_download=True)
-    click.echo(f"Got {len(rv)} entries from n2t.")
+class N2TAligner(Aligner):
+    """Aligner for the N2T."""
+
+    key = "n2t"
+    getter = get_n2t
+    curation_header = ("name", "homepage", "description")
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get the prefixes in N2T that should be skipped."""
+        return SKIP
 
 
 if __name__ == "__main__":
-    main()
+    N2TAligner.cli()

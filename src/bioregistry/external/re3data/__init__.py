@@ -13,12 +13,13 @@ from xml.etree import ElementTree
 
 import requests
 from tqdm.contrib.concurrent import thread_map
-from tqdm.contrib.logging import logging_redirect_tqdm
 
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_re3data",
+    "Re3dataAligner",
 ]
 
 logger = logging.getLogger(__name__)
@@ -184,6 +185,14 @@ def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
     return None
 
 
+class Re3dataAligner(Aligner):
+    """Aligner for the Registry of Research Data Repositoris (r3data)."""
+
+    key = "re3data"
+    alt_key_match = "name"
+    getter = get_re3data
+    curation_header = ("name", "homepage", "description")
+
+
 if __name__ == "__main__":
-    with logging_redirect_tqdm():
-        get_re3data(force_download=True)
+    Re3dataAligner.cli()
