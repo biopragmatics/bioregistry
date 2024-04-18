@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Workflows for downloading and aligning various external registries."""
+"""Acquisition, processing, and alignment of external registries."""
 
 from typing import Callable, List, Tuple
 
