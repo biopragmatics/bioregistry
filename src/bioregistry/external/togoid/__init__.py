@@ -60,7 +60,7 @@ def _get_dataset():
             rr["keywords"] = [category]
         integbio_catalog_id = record.get("catalog")
         if integbio_catalog_id and integbio_catalog_id != "FIXME":
-            rr["integbio"] = integbio_catalog_id
+            rr["catalog"] = integbio_catalog_id
         rv[prefix] = rr
     return rv
 
