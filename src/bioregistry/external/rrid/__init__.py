@@ -11,6 +11,7 @@ import csv
 from pathlib import Path
 from typing import Mapping
 
+from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -20,7 +21,7 @@ __all__ = [
 
 
 HERE = Path(__file__).parent.resolve()
-PATH = HERE.joinpath("input.tsv")
+PATH = RAW_DIRECTORY.joinpath("rrid.tsv")
 
 COLUMN_RENAMES = {"Resource_Name": "name"}
 skip = {"RIN", "Resource Information Network"}
