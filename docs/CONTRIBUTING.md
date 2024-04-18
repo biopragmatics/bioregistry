@@ -291,7 +291,7 @@ file for inspiration. Entries in this file should follow the schema defined by t
 See also the corresponding entry in the Bioregistry's [JSON schema](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/schema/schema.json)
 
 While not strictly required, it's also useful for each registry to add a corresponding getter script and aligner
-class in `bioregistry.external` and `bioregistry.align`, respectively. See examples there, or get in touch on the
+class in `bioregistry.external`. See examples there, or get in touch on the
 issue tracker for help.
 
 ## Code Contribution
