@@ -52,9 +52,9 @@ that show relevant metadata to help curate each record as one of the following:
 1. Record corresponds to a prefix in the Bioregistry. Tutorial TBD.
 2. Record is relevant but does not have a corresponding prefix in the
    Bioregistry. See the tutorial
-   on [importing external prefixes](curation/import-external).
+   on [importing external prefixes](import-external).
 3. Record is irrelevant for the bioregistry. See the tutorial
-   on [curating explicit prefix blacklists](curation/blacklist-external).
+   on [curating explicit prefix blacklists](blacklist-external).
 
 <table>
 <thead>
@@ -67,7 +67,7 @@ that show relevant metadata to help curate each record as one of the following:
 {% for entry in site.data.curation["prefix_xrefs"] %}
    <tr>
       <td>{{ entry.metaprefix }}</td>
-      <td><a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/external/{{ entry.metaprefix }}/curation.tsv">{{ entry.name }}</a></td>
+      <td><a href="https://github.com/biopragmatics/bioregistry/blob/main/exports/alignment{{ entry.metaprefix }}.tsv">{{ entry.name }}</a></td>
    </tr>
 {% endfor %}
 </tbody>
@@ -94,8 +94,7 @@ then annotated.
 
 ### Editing the Bioregistry
 
-1. Follow [this link](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   to edit directly on GitHub.
+1. Fork the repository, clone it, create a new branch, and edit the [src/bioregistry/data/bioregistry.json](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json) file locally. Check the [contribution guidelines](https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md) for help on working with Git and GitHub
 2. Here's an example of `3dmet`, which has the Wikidata database annotated
    properly.
 
