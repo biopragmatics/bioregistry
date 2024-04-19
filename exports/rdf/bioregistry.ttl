@@ -325,8 +325,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -2066,7 +2066,8 @@ bioregistry:aao a bioregistry.schema:0000001 ;
     rdfs:label "Amphibian gross anatomy" ;
     dcterms:description "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:AAO,
+    skos:exactMatch agroportal:AAO,
+        biocontext:AAO,
         fairsharing:FAIRsharing.mxx5rp,
         prefixcommons:aao,
         obofoundry:aao ;
@@ -2553,6 +2554,7 @@ bioregistry:apd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://aps.unmc.edu/AP/database/query_output.php?ID=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-4841-7927 ;
     bioregistry.schema:0000024 "http://aps.unmc.edu/AP/database/query_output.php?ID="^^xsd:string ;
     bioregistry.schema:0000027 apd:01001 ;
     bioregistry.schema:0000029 "apd" .
@@ -3666,7 +3668,7 @@ bioregistry:biolink a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Gene"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/biolink/vocab/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BIOLINK/59/biolink.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BIOLINK/60/biolink.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "https://w3id.org/biolink/vocab/"^^xsd:string ;
@@ -21233,6 +21235,9 @@ orcid:0000-0002-2993-2085 rdfs:label "Richard Boyce" ;
 orcid:0000-0002-3321-6137 rdfs:label "Katy Börner" ;
     foaf:mbox "katy@indiana.edu" .
 
+orcid:0000-0002-3354-822X rdfs:label "Dietmar Schomburg" ;
+    foaf:mbox "D.Schomburg@tu-braunschweig.de" .
+
 orcid:0000-0002-3375-1738 rdfs:label "Michael K. Gilson" ;
     foaf:mbox "mgilson@health.ucsd.edu" .
 
@@ -21267,6 +21272,9 @@ orcid:0000-0002-4142-7153 rdfs:label "Sabrina Toro" ;
 
 orcid:0000-0002-4299-7561 rdfs:label "David Gloriam" ;
     foaf:mbox "david.gloriam@sund.ku.dk" .
+
+orcid:0000-0002-4841-7927 rdfs:label "Guangshun Wang" ;
+    foaf:mbox "gwang@unmc.edu" .
 
 orcid:0000-0002-4855-2571 rdfs:label "Matthias Samwald" ;
     foaf:mbox "matthias.samwald@meduniwien.ac.at" .
@@ -22385,6 +22393,8 @@ aberowl:foaf dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:ordo dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:skos dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+agroportal:AAO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:AGRO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
@@ -29546,6 +29556,7 @@ bioregistry:brenda a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^((\\d+\\.-\\.-\\.-)|(\\d+\\.\\d+\\.-\\.-)|(\\d+\\.\\d+\\.\\d+\\.-)|(\\d+\\.\\d+\\.\\d+\\.\\d+))$"^^xsd:string ;
     bioregistry.schema:0000011 bioregistry:eccode ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3354-822X ;
     bioregistry.schema:0000024 "https://www.brenda-enzymes.org/php/result_flat.php4?ecno="^^xsd:string ;
     bioregistry.schema:0000027 brenda:1.1.1.1 ;
     bioregistry.schema:0000029 "brenda" .
@@ -45594,7 +45605,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -50714,7 +50725,7 @@ bioregistry:clo a bioregistry.schema:0000001 ;
         "morphology",
         "obo",
         "ontology" ;
-    foaf:homepage <http://www.clo-ontology.org> ;
+    foaf:homepage <https://github.com/CLO-Ontology/CLO> ;
     bioregistry.schema:0000005 "0000091"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CLO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -53186,7 +53197,8 @@ bioregistry.metaresource:togoid a bioregistry.schema:0000002 ;
 bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
     rdfs:label "AgroPortal" ;
     dc:description "A vocabulary and ontology repository for agronomy and related domains." ;
-    dcterms:hasPart agroportal:AGRO,
+    dcterms:hasPart agroportal:AAO,
+        agroportal:AGRO,
         agroportal:AGROVOC,
         agroportal:ATOL,
         agroportal:BCO,
