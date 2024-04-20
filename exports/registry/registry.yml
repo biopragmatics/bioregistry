@@ -3192,6 +3192,7 @@ bfo:
   - pco
   - psdo
   - rbo
+  - uberon
   - xpo
   - zp
   contact:
@@ -5095,6 +5096,7 @@ bspo:
   - colao
   - fovt
   - lepao
+  - uberon
   - zp
   contact:
     email: cjmungall@lbl.gov
@@ -16358,6 +16360,7 @@ envo:
   - pco
   - rbo
   - scdo
+  - uberon
   banana: ENVO
   contact:
     email: pier.buttigieg@awi.de
@@ -34198,6 +34201,7 @@ nbo:
   - maxo
   - pcl
   - scdo
+  - uberon
   contact:
     email: g.gkoutos@bham.ac.uk
     github: gkoutos
@@ -34604,6 +34608,7 @@ ncbitaxon:
   - ons
   - pcl
   - pco
+  - uberon
   - vbo
   contact:
     email: schoch2@ncbi.nlm.nih.gov
@@ -38359,6 +38364,7 @@ omit:
 omo:
   appears_in:
   - pcl
+  - uberon
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -40201,6 +40207,7 @@ pato:
   - planp
   - proco
   - rbo
+  - uberon
   - xpo
   - zp
   banana: PATO
@@ -46621,6 +46628,7 @@ ro:
   - psdo
   - pso
   - rbo
+  - uberon
   - upa
   - xpo
   - zp
@@ -53171,10 +53179,18 @@ uberon:
     name: Chris Mungall
     orcid: 0000-0002-6601-2165
   depends_on:
+  - bfo
+  - bspo
   - chebi
   - cl
+  - envo
   - go
+  - nbo
+  - ncbitaxon
+  - omo
+  - pato
   - pr
+  - ro
   description: Uberon is an integrated cross-species anatomy ontology representing
     a variety of entities classified according to traditional anatomical criteria
     such as structure, function and developmental lineage. The ontology includes comprehensive
@@ -55856,7 +55872,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-04-01'
+  version: '2024-04-15'
 vto:
   contact:
     email: balhoff@renci.org
