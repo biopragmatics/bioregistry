@@ -9,7 +9,7 @@ the Bioregistry's registry through the derived files below.
 ## Derived
 
 This folder contains the exports derived from the Bioregistry source files for
-the registry, metaregistry, and collections. They are re-generated on a nightly
+the registry, metaregistry, and collections. They are re-generated on a weekly
 basis using GitHub Actions as a continuous integration server.
 
 | Directory                      | Format                                                                                           |
