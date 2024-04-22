@@ -241,6 +241,9 @@ class Provider(BaseModel):
         title="URI Format",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
     )
+    first_party: Optional[bool] = Field(
+        None, description="Annotates whether a provider is from the first-party organization"
+    )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
