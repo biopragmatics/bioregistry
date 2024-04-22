@@ -1492,7 +1492,7 @@ bioregistry.schema:0000025 a rdfs:Class ;
 bioregistry.collection:0000002 a bioregistry.schema:0000003 ;
     rdfs:label "Semantic Web Context" ;
     dc:creator orcid:0000-0003-4423-4370 ;
-    dc:description "Resources used in the semantic web, inspired by [this list](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) in BioContext." ;
+    dc:description "Resources used in the semantic web, drawing from lists in [BioContext](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) and [LinkML](https://github.com/linkml/prefixmaps/blob/main/src/prefixmaps/data/linked_data.curated.yaml) as well as W3C recommendations." ;
     dcterms:hasPart bioregistry:ac,
         bioregistry:bibo,
         bioregistry:dc,
@@ -2066,7 +2066,8 @@ bioregistry:aao a bioregistry.schema:0000001 ;
     rdfs:label "Amphibian gross anatomy" ;
     dcterms:description "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:AAO,
+    skos:exactMatch agroportal:AAO,
+        biocontext:AAO,
         fairsharing:FAIRsharing.mxx5rp,
         prefixcommons:aao,
         obofoundry:aao ;
@@ -2553,6 +2554,7 @@ bioregistry:apd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://aps.unmc.edu/AP/database/query_output.php?ID=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-4841-7927 ;
     bioregistry.schema:0000024 "http://aps.unmc.edu/AP/database/query_output.php?ID="^^xsd:string ;
     bioregistry.schema:0000027 apd:01001 ;
     bioregistry.schema:0000029 "apd" .
@@ -3666,7 +3668,7 @@ bioregistry:biolink a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Gene"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/biolink/vocab/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BIOLINK/59/biolink.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BIOLINK/60/biolink.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "https://w3id.org/biolink/vocab/"^^xsd:string ;
@@ -7882,6 +7884,7 @@ bioregistry:fbdv a bioregistry.schema:0000001 ;
         ontobee:FBdv,
         bioportal:FB-DV,
         biocontext:FBdv,
+        go.resource:FBdv,
         fairsharing:FAIRsharing.p52pzj,
         prefixcommons:fbdv,
         ols:fbdv,
@@ -18159,7 +18162,8 @@ bioregistry:slso a bioregistry.schema:0000001 ;
     dcterms:description "The Space Life Sciences Ontology is an application ontology and is intended to support the operation of NASA's Life Sciences Data Archive and other systems that contain space life science research data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/nasa/LSDAO> ;
-    skos:exactMatch ontobee:SLSO,
+    skos:exactMatch aberowl:SLSO,
+        ontobee:SLSO,
         bioportal:SLSO,
         obofoundry:slso ;
     dcat:keyword "obo",
@@ -21231,6 +21235,9 @@ orcid:0000-0002-2993-2085 rdfs:label "Richard Boyce" ;
 orcid:0000-0002-3321-6137 rdfs:label "Katy Börner" ;
     foaf:mbox "katy@indiana.edu" .
 
+orcid:0000-0002-3354-822X rdfs:label "Dietmar Schomburg" ;
+    foaf:mbox "D.Schomburg@tu-braunschweig.de" .
+
 orcid:0000-0002-3375-1738 rdfs:label "Michael K. Gilson" ;
     foaf:mbox "mgilson@health.ucsd.edu" .
 
@@ -21266,6 +21273,9 @@ orcid:0000-0002-4142-7153 rdfs:label "Sabrina Toro" ;
 orcid:0000-0002-4299-7561 rdfs:label "David Gloriam" ;
     foaf:mbox "david.gloriam@sund.ku.dk" .
 
+orcid:0000-0002-4841-7927 rdfs:label "Guangshun Wang" ;
+    foaf:mbox "gwang@unmc.edu" .
+
 orcid:0000-0002-4855-2571 rdfs:label "Matthias Samwald" ;
     foaf:mbox "matthias.samwald@meduniwien.ac.at" .
 
@@ -21292,6 +21302,9 @@ orcid:0000-0002-5317-1458 rdfs:label "Jeet Vora" ;
 
 orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
     foaf:mbox "Maciej.Antczak@cs.put.poznan.pl" .
+
+orcid:0000-0002-5494-626X rdfs:label "Peter D'Eustachio" ;
+    foaf:mbox "deustp01@med.nyu.edu" .
 
 orcid:0000-0002-5520-6597 rdfs:label "Imke Tammen" ;
     foaf:mbox "imke.tammen@sydney.edu.au" .
@@ -22271,6 +22284,8 @@ aberowl:SIBO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:SIO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+aberowl:SLSO dcterms:isPartOf bioregistry.metaresource:aberowl .
+
 aberowl:SNOMEDCT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:SO dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -22379,6 +22394,8 @@ aberowl:ordo dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:skos dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+agroportal:AAO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
 agroportal:AGRO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:AGROVOC dcterms:isPartOf bioregistry.metaresource:agroportal .
@@ -22459,6 +22476,8 @@ agroportal:CO_366 dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:CO_370 dcterms:isPartOf bioregistry.metaresource:agroportal .
 
+agroportal:ECTO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
 agroportal:EDAM dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:EFO dcterms:isPartOf bioregistry.metaresource:agroportal .
@@ -22479,6 +22498,8 @@ agroportal:FOODEX2 dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:FOODON dcterms:isPartOf bioregistry.metaresource:agroportal .
 
+agroportal:GALLONT dcterms:isPartOf bioregistry.metaresource:agroportal .
+
 agroportal:GEMET dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:GO dcterms:isPartOf bioregistry.metaresource:agroportal .
@@ -22488,6 +22509,8 @@ agroportal:LBO dcterms:isPartOf bioregistry.metaresource:agroportal .
 agroportal:LPT dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:NCBITAXON dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:OBA dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:OM dcterms:isPartOf bioregistry.metaresource:agroportal .
 
@@ -22520,6 +22543,8 @@ agroportal:STY dcterms:isPartOf bioregistry.metaresource:agroportal .
 agroportal:TAXRANK dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:TO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:UO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:VARIO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
@@ -23908,6 +23933,8 @@ bartoc:20464 dcterms:isPartOf bioregistry.metaresource:bartoc .
 bartoc:20466 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bartoc:20474 dcterms:isPartOf bioregistry.metaresource:bartoc .
+
+bartoc:20509 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
 bartoc:2053 dcterms:isPartOf bioregistry.metaresource:bartoc .
 
@@ -26799,6 +26826,8 @@ go.resource:FB dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:FBbt dcterms:isPartOf bioregistry.metaresource:go .
 
+go.resource:FBdv dcterms:isPartOf bioregistry.metaresource:go .
+
 go.resource:FMA dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:FYPO dcterms:isPartOf bioregistry.metaresource:go .
@@ -28871,9 +28900,12 @@ bioregistry:aio a bioregistry.schema:0000001 ;
         bioportal:AIO,
         fairsharing:FAIRsharing.8d6247 ;
     dcat:keyword "artificial intelligence",
+        "computational biology",
         "hidden markov model",
         "knowledge representation",
         "machine learning",
+        "natural language processing",
+        "network model",
         "ontology" ;
     foaf:homepage <https://github.com/berkeleybop/artificial-intelligence-ontology> ;
     bioregistry.schema:0000005 "Causal_Graphical_Model"^^xsd:string ;
@@ -29524,6 +29556,7 @@ bioregistry:brenda a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^((\\d+\\.-\\.-\\.-)|(\\d+\\.\\d+\\.-\\.-)|(\\d+\\.\\d+\\.\\d+\\.-)|(\\d+\\.\\d+\\.\\d+\\.\\d+))$"^^xsd:string ;
     bioregistry.schema:0000011 bioregistry:eccode ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3354-822X ;
     bioregistry.schema:0000024 "https://www.brenda-enzymes.org/php/result_flat.php4?ecno="^^xsd:string ;
     bioregistry.schema:0000027 brenda:1.1.1.1 ;
     bioregistry.schema:0000029 "brenda" .
@@ -34987,6 +35020,7 @@ bioregistry:oba a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/obophenotype/bio-attribute-ontology> ;
     skos:exactMatch aberowl:OBA,
+        agroportal:OBA,
         ontobee:OBA,
         bioportal:OBA,
         biocontext:OBA,
@@ -35143,30 +35177,6 @@ bioregistry:omit a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OMIT_"^^xsd:string ;
     bioregistry.schema:0000027 omit:0000069 ;
     bioregistry.schema:0000029 "omit" .
-
-bioregistry:omo a bioregistry.schema:0000001 ;
-    rdfs:label "OBO Metadata Ontology" ;
-    dcterms:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/information-artifact-ontology/ontology-metadata> ;
-    skos:exactMatch aberowl:OMO,
-        ontobee:OMO,
-        bioportal:OMO,
-        ols:omo,
-        obofoundry:omo ;
-    dcat:keyword "obo",
-        "ontology" ;
-    foaf:homepage <https://github.com/information-artifact-ontology/ontology-metadata> ;
-    bioregistry.schema:0000005 "0003003"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:omo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:pcl ;
-    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OMO_"^^xsd:string ;
-    bioregistry.schema:0000027 omo:0003003 ;
-    bioregistry.schema:0000029 "omo" .
 
 bioregistry:omop a bioregistry.schema:0000001 ;
     rdfs:label "Observational Medical Outcomes Partnership" ;
@@ -36247,6 +36257,7 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
         prefixcommons:reactome,
         miriam:reactome,
         cheminf:000411,
+        togoid:ReactomePathway,
         re3data:r3d100010861 ;
     dcat:keyword "human",
         "pathway",
@@ -36256,8 +36267,10 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://reactome.org/content/detail/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5494-626X ;
     bioregistry.schema:0000023 "RE",
-        "REACT" ;
+        "REACT",
+        "reactome.pathway" ;
     bioregistry.schema:0000024 "https://reactome.org/content/detail/"^^xsd:string ;
     bioregistry.schema:0000027 reactome:R-BTA-418592 ;
     bioregistry.schema:0000029 "reactome" .
@@ -43026,6 +43039,8 @@ togoid:PubchemSubstance dcterms:isPartOf bioregistry.metaresource:togoid .
 
 togoid:Pubmed dcterms:isPartOf bioregistry.metaresource:togoid .
 
+togoid:ReactomePathway dcterms:isPartOf bioregistry.metaresource:togoid .
+
 togoid:Rgd dcterms:isPartOf bioregistry.metaresource:togoid .
 
 togoid:Rhea dcterms:isPartOf bioregistry.metaresource:togoid .
@@ -47802,6 +47817,31 @@ bioregistry:omim.ps a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 omim.ps:214100 ;
     bioregistry.schema:0000029 "omim.ps" .
 
+bioregistry:omo a bioregistry.schema:0000001 ;
+    rdfs:label "OBO Metadata Ontology" ;
+    dcterms:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/information-artifact-ontology/ontology-metadata> ;
+    skos:exactMatch aberowl:OMO,
+        ontobee:OMO,
+        bioportal:OMO,
+        ols:omo,
+        obofoundry:omo ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/information-artifact-ontology/ontology-metadata> ;
+    bioregistry.schema:0000005 "0003003"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:omo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:pcl,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OMO_"^^xsd:string ;
+    bioregistry.schema:0000027 omo:0003003 ;
+    bioregistry.schema:0000029 "omo" .
+
 bioregistry:opmi a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Precision Medicine and Investigation" ;
     dcterms:description "OPMI is a biomedical ontology in the area of precision medicine and its related investigations. It is community-driven and developed by following the OBO Foundry ontology development principles."^^xsd:string ;
@@ -48323,12 +48363,12 @@ bioregistry:rdf a bioregistry.schema:0000001 ;
         "subject agnostic",
         "w3c rec" ;
     foaf:homepage <http://www.w3.org/1999/02/22-rdf-syntax-ns> ;
-    bioregistry.schema:0000005 "RDF"^^xsd:string ;
+    bioregistry.schema:0000005 "type"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5699-0515 ;
     bioregistry.schema:0000024 "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:string ;
-    bioregistry.schema:0000027 rdf:RDF ;
+    bioregistry.schema:0000027 rdf:type ;
     bioregistry.schema:0000029 "rdf" .
 
 bioregistry:rebec a bioregistry.schema:0000001 ;
@@ -49357,6 +49397,7 @@ bioregistry:chmo a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/rsc-ontologies/rsc-cmo> ;
     skos:exactMatch aberowl:CHMO,
         ontobee:CHMO,
+        bartoc:20509,
         bioportal:CHMO,
         biocontext:CHMO,
         fairsharing:FAIRsharing.9j4wh2,
@@ -50436,39 +50477,6 @@ bioregistry:multicellds a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 multicellds.snapshot:MCDS_S_0000000001 ;
     bioregistry.schema:0000029 "multicellds" .
 
-bioregistry:nbo a bioregistry.schema:0000001 ;
-    rdfs:label "Neuro Behavior Ontology" ;
-    dcterms:description "An ontology of human and animal behaviours and behavioural phenotypes"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obo-behavior/behavior-ontology> ;
-    skos:exactMatch aberowl:NBO,
-        ontobee:NBO,
-        bioportal:NBO,
-        biocontext:NBO,
-        fairsharing:FAIRsharing.pktgc6,
-        ols:nbo,
-        obofoundry:nbo ;
-    dcat:keyword "behavior",
-        "obo",
-        "ontology",
-        "phenotype",
-        "social and behavioural science",
-        "systemic neuroscience" ;
-    foaf:homepage <https://github.com/obo-behavior/behavior-ontology/> ;
-    bioregistry.schema:0000005 "0000564"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:nbo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:ecto,
-        bioregistry:maxo,
-        bioregistry:pcl,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-2061-091X ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NBO_"^^xsd:string ;
-    bioregistry.schema:0000027 nbo:0000564 ;
-    bioregistry.schema:0000029 "nbo" .
-
 bioregistry:planp a bioregistry.schema:0000001 ;
     rdfs:label "Planarian Phenotype Ontology" ;
     dcterms:description "Planarian Phenotype Ontology is an ontology of phenotypes observed in the planarian Schmidtea mediterranea."^^xsd:string ;
@@ -50555,6 +50563,7 @@ bioregistry:uo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/bio-ontology-research-group/unit-ontology> ;
     skos:exactMatch aberowl:UO,
+        agroportal:UO,
         ontobee:UO,
         bioportal:UO,
         biocontext:UO,
@@ -50599,38 +50608,6 @@ orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" ;
     dcterms:contributor bioregistry:hepro,
         bioregistry:hoso ;
     foaf:mbox "paul.fabry@usherbrooke.ca" .
-
-bioregistry:bspo a bioregistry.schema:0000001 ;
-    rdfs:label "Biological Spatial Ontology" ;
-    dcterms:description "An ontology for respresenting spatial concepts, anatomical axes, gradients, regions, planes, sides and surfaces. These concepts can be used at multiple biological scales and in a diversity of taxa, including plants, animals and fungi. The BSPO is used to provide a source of anatomical location descriptors for logically defining anatomical entity classes in anatomy ontologies."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obophenotype/biological-spatial-ontology> ;
-    skos:exactMatch aberowl:BSPO,
-        ontobee:BSPO,
-        bioportal:BSPO,
-        biocontext:BSPO,
-        fairsharing:FAIRsharing.newa3z,
-        ols:bspo,
-        obofoundry:bspo ;
-    dcat:keyword "anatomy",
-        "life science",
-        "obo",
-        "ontology" ;
-    foaf:homepage <https://github.com/obophenotype/biological-spatial-ontology> ;
-    bioregistry.schema:0000005 "0000029"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BSPO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:bspo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:aism,
-        bioregistry:colao,
-        bioregistry:fovt,
-        bioregistry:lepao,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BSPO_"^^xsd:string ;
-    bioregistry.schema:0000027 bspo:0000029 ;
-    bioregistry.schema:0000029 "bspo" .
 
 bioregistry:cdno a bioregistry.schema:0000001 ;
     rdfs:label "Compositional Dietary Nutrition Ontology" ;
@@ -50684,7 +50661,7 @@ bioregistry:clo a bioregistry.schema:0000001 ;
         "morphology",
         "obo",
         "ontology" ;
-    foaf:homepage <http://www.clo-ontology.org> ;
+    foaf:homepage <https://github.com/CLO-Ontology/CLO> ;
     bioregistry.schema:0000005 "0000091"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CLO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -50913,6 +50890,40 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 mesh:C063233 ;
     bioregistry.schema:0000029 "mesh" .
 
+bioregistry:nbo a bioregistry.schema:0000001 ;
+    rdfs:label "Neuro Behavior Ontology" ;
+    dcterms:description "An ontology of human and animal behaviours and behavioural phenotypes"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obo-behavior/behavior-ontology> ;
+    skos:exactMatch aberowl:NBO,
+        ontobee:NBO,
+        bioportal:NBO,
+        biocontext:NBO,
+        fairsharing:FAIRsharing.pktgc6,
+        ols:nbo,
+        obofoundry:nbo ;
+    dcat:keyword "behavior",
+        "obo",
+        "ontology",
+        "phenotype",
+        "social and behavioural science",
+        "systemic neuroscience" ;
+    foaf:homepage <https://github.com/obo-behavior/behavior-ontology/> ;
+    bioregistry.schema:0000005 "0000564"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:nbo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ecto,
+        bioregistry:maxo,
+        bioregistry:pcl,
+        bioregistry:scdo,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 orcid:0000-0002-2061-091X ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/NBO_"^^xsd:string ;
+    bioregistry.schema:0000027 nbo:0000564 ;
+    bioregistry.schema:0000029 "nbo" .
+
 bioregistry:ncit a bioregistry.schema:0000001 ;
     rdfs:label "NCI Thesaurus" ;
     dcterms:description "NCI Thesaurus (NCIt) provides reference terminology covering vocabulary for clinical care, translational and basic research, and public information and administrative activities, providing a stable and unique identification code."^^xsd:string ;
@@ -50954,6 +50965,7 @@ bioregistry:ncit a bioregistry.schema:0000001 ;
         "NCI2004_11_17",
         "NCIT",
         "NCIT_Thesaurus",
+        "NCIThesaurus",
         "NCITm",
         "NCITt",
         "NCI_Thesaurus",
@@ -51071,6 +51083,39 @@ orcid:0000-0002-9415-5104 rdfs:label "Frederic Bastian",
         "frederic.bastian@unil.ch" .
 
 wikidata:P665 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+bioregistry:bspo a bioregistry.schema:0000001 ;
+    rdfs:label "Biological Spatial Ontology" ;
+    dcterms:description "An ontology for respresenting spatial concepts, anatomical axes, gradients, regions, planes, sides and surfaces. These concepts can be used at multiple biological scales and in a diversity of taxa, including plants, animals and fungi. The BSPO is used to provide a source of anatomical location descriptors for logically defining anatomical entity classes in anatomy ontologies."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obophenotype/biological-spatial-ontology> ;
+    skos:exactMatch aberowl:BSPO,
+        ontobee:BSPO,
+        bioportal:BSPO,
+        biocontext:BSPO,
+        fairsharing:FAIRsharing.newa3z,
+        ols:bspo,
+        obofoundry:bspo ;
+    dcat:keyword "anatomy",
+        "life science",
+        "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/obophenotype/biological-spatial-ontology> ;
+    bioregistry.schema:0000005 "0000029"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BSPO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:bspo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:aism,
+        bioregistry:colao,
+        bioregistry:fovt,
+        bioregistry:lepao,
+        bioregistry:uberon,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BSPO_"^^xsd:string ;
+    bioregistry.schema:0000027 bspo:0000029 ;
+    bioregistry.schema:0000029 "bspo" .
 
 bioregistry:civic dcterms:hasPart bioregistry:civic.aid,
         bioregistry:civic.did,
@@ -51482,6 +51527,7 @@ bioregistry:gallont a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/adeans/gallont> ;
     skos:exactMatch aberowl:GALLONT,
+        agroportal:GALLONT,
         ontobee:GALLONT,
         obofoundry:gallont ;
     dcat:keyword "obo",
@@ -51843,6 +51889,7 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/EnvironmentOntology/environmental-exposure-ontology> ;
     skos:exactMatch aberowl:ECTO,
+        agroportal:ECTO,
         ontobee:ECTO,
         bioportal:ECTO,
         biolink:ECTO,
@@ -52041,59 +52088,6 @@ orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
         bioregistry:wwf.ecoregion ;
     foaf:mbox "cjmungall@lbl.gov" .
 
-bioregistry:envo a bioregistry.schema:0000001 ;
-    rdfs:label "Environment Ontology" ;
-    dcterms:description "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/EnvironmentOntology/envo> ;
-    skos:exactMatch aberowl:ENVO,
-        agroportal:ENVO,
-        ontobee:ENVO,
-        bioportal:ENVO,
-        biocontext:ENVO,
-        n2t:envo,
-        fairsharing:FAIRsharing.azqskx,
-        miriam:envo,
-        ols:envo,
-        obofoundry:envo ;
-    dcat:keyword "ecology",
-        "environmental material",
-        "environmental science",
-        "epidemiology",
-        "life science",
-        "marine metagenome",
-        "microbiome",
-        "nutritional science",
-        "obo",
-        "ontology" ;
-    foaf:homepage <http://environmentontology.org/> ;
-    bioregistry.schema:0000005 "09200010"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ENVO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7,8}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:envo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:chebi,
-        bioregistry:foodon,
-        bioregistry:go,
-        bioregistry:ncbitaxon,
-        bioregistry:pco,
-        bioregistry:po,
-        bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:cdno,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:foodon,
-        bioregistry:ons,
-        bioregistry:pco,
-        bioregistry:rbo,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-4366-3088 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ENVO_"^^xsd:string ;
-    bioregistry.schema:0000027 envo:09200010 ;
-    bioregistry.schema:0000029 "envo" .
-
 bioregistry:kegg a bioregistry.schema:0000001 ;
     rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
     dcterms:description "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies."^^xsd:string ;
@@ -52213,6 +52207,60 @@ bioregistry:cl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CL_"^^xsd:string ;
     bioregistry.schema:0000027 cl:0000062 ;
     bioregistry.schema:0000029 "cl" .
+
+bioregistry:envo a bioregistry.schema:0000001 ;
+    rdfs:label "Environment Ontology" ;
+    dcterms:description "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/EnvironmentOntology/envo> ;
+    skos:exactMatch aberowl:ENVO,
+        agroportal:ENVO,
+        ontobee:ENVO,
+        bioportal:ENVO,
+        biocontext:ENVO,
+        n2t:envo,
+        fairsharing:FAIRsharing.azqskx,
+        miriam:envo,
+        ols:envo,
+        obofoundry:envo ;
+    dcat:keyword "ecology",
+        "environmental material",
+        "environmental science",
+        "epidemiology",
+        "life science",
+        "marine metagenome",
+        "microbiome",
+        "nutritional science",
+        "obo",
+        "ontology" ;
+    foaf:homepage <http://environmentontology.org/> ;
+    bioregistry.schema:0000005 "09200010"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ENVO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7,8}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:envo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:chebi,
+        bioregistry:foodon,
+        bioregistry:go,
+        bioregistry:ncbitaxon,
+        bioregistry:pco,
+        bioregistry:po,
+        bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:cdno,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:foodon,
+        bioregistry:ons,
+        bioregistry:pco,
+        bioregistry:rbo,
+        bioregistry:scdo,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 orcid:0000-0002-4366-3088 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/ENVO_"^^xsd:string ;
+    bioregistry.schema:0000027 envo:09200010 ;
+    bioregistry.schema:0000029 "envo" .
 
 bioregistry:nif dcterms:hasPart bioregistry:neurolex,
         bioregistry:nif.cell,
@@ -52369,6 +52417,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:ons,
         bioregistry:pcl,
         bioregistry:pco,
+        bioregistry:uberon,
         bioregistry:vbo ;
     bioregistry.schema:0000019 orcid:0000-0003-1839-5322 ;
     bioregistry.schema:0000023 "NCBI Taxonomy",
@@ -52434,12 +52483,80 @@ bioregistry:pato a bioregistry.schema:0000001 ;
         bioregistry:planp,
         bioregistry:proco,
         bioregistry:rbo,
+        bioregistry:uberon,
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2061-091X ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PATO_"^^xsd:string ;
     bioregistry.schema:0000027 pato:0001998 ;
     bioregistry.schema:0000029 "pato" .
+
+bioregistry:chebi a bioregistry.schema:0000001 ;
+    rdfs:label "Chemical Entities of Biological Interest" ;
+    dcterms:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
+    dcterms:hasPart bioregistry:fix,
+        bioregistry:rex ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/ebi-chebi/ChEBI> ;
+    skos:exactMatch aberowl:CHEBI,
+        edam.data:1174,
+        ontobee:CHEBI,
+        wikidata:P683,
+        bartoc:558,
+        bioportal:CHEBI,
+        biocontext:CHEBI,
+        cellosaurus.resource:ChEBI,
+        go.resource:CHEBI,
+        n2t:chebi,
+        fairsharing:FAIRsharing.62qk8w,
+        integbio:nbdc00027,
+        prefixcommons:chebi,
+        miriam:chebi,
+        cheminf:000407,
+        togoid:Chebi,
+        ols:chebi,
+        obofoundry:chebi,
+        re3data:r3d100012626 ;
+    dcat:keyword "biochemistry",
+        "chemical",
+        "chemistry",
+        "molecular entity",
+        "molecular structure",
+        "natural product",
+        "obo",
+        "ontology",
+        "small molecule",
+        "taxonomic classification" ;
+    foaf:homepage <http://www.ebi.ac.uk/chebi> ;
+    bioregistry.schema:0000005 "138488"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHEBI_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:chebi.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:cdno,
+        bioregistry:chiro,
+        bioregistry:cl,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:fobi,
+        bioregistry:foodon,
+        bioregistry:genepio,
+        bioregistry:maxo,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:proco,
+        bioregistry:scdo,
+        bioregistry:uberon,
+        bioregistry:xpo ;
+    bioregistry.schema:0000019 orcid:0000-0001-8123-5351 ;
+    bioregistry.schema:0000023 "CHEBI",
+        "CHEBIID",
+        "ChEBI" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CHEBI_"^^xsd:string ;
+    bioregistry.schema:0000027 chebi:138488 ;
+    bioregistry.schema:0000029 "chebi" .
 
 bioregistry:bfo a bioregistry.schema:0000001 ;
     rdfs:label "Basic Formal Ontology" ;
@@ -52483,79 +52600,13 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
         bioregistry:pco,
         bioregistry:psdo,
         bioregistry:rbo,
+        bioregistry:uberon,
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0003-1384-116X ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BFO_"^^xsd:string ;
     bioregistry.schema:0000027 bfo:0000001 ;
     bioregistry.schema:0000029 "bfo" .
-
-bioregistry:chebi a bioregistry.schema:0000001 ;
-    rdfs:label "Chemical Entities of Biological Interest" ;
-    dcterms:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
-    dcterms:hasPart bioregistry:fix,
-        bioregistry:rex ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/ebi-chebi/ChEBI> ;
-    skos:exactMatch aberowl:CHEBI,
-        edam.data:1174,
-        ontobee:CHEBI,
-        wikidata:P683,
-        bartoc:558,
-        bioportal:CHEBI,
-        biocontext:CHEBI,
-        cellosaurus.resource:ChEBI,
-        go.resource:CHEBI,
-        n2t:chebi,
-        fairsharing:FAIRsharing.62qk8w,
-        integbio:nbdc00027,
-        prefixcommons:chebi,
-        miriam:chebi,
-        cheminf:000407,
-        togoid:Chebi,
-        ols:chebi,
-        obofoundry:chebi,
-        re3data:r3d100012626 ;
-    dcat:keyword "biochemistry",
-        "chemical",
-        "chemistry",
-        "molecular entity",
-        "molecular structure",
-        "natural product",
-        "obo",
-        "ontology",
-        "small molecule",
-        "taxonomic classification" ;
-    foaf:homepage <http://www.ebi.ac.uk/chebi> ;
-    bioregistry.schema:0000005 "24867"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHEBI_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:chebi.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:cdno,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:fobi,
-        bioregistry:foodon,
-        bioregistry:genepio,
-        bioregistry:maxo,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:proco,
-        bioregistry:scdo,
-        bioregistry:uberon,
-        bioregistry:xpo ;
-    bioregistry.schema:0000019 orcid:0000-0001-8123-5351 ;
-    bioregistry.schema:0000023 "CHEBI",
-        "CHEBIID",
-        "ChEBI" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CHEBI_"^^xsd:string ;
-    bioregistry.schema:0000027 chebi:24867 ;
-    bioregistry.schema:0000029 "chebi" .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Protein" ;
@@ -52673,74 +52724,6 @@ bioregistry.metaresource:zazuko a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "https://prefix.zazuko.com/prefix/$1:" ;
     bioregistry.schema:0000007 "https://prefix.zazuko.com/$1:$2" ;
     bioregistry.schema:0000019 orcid:0000-0002-2079-9636 .
-
-bioregistry:uberon a bioregistry.schema:0000001 ;
-    rdfs:label "Uber Anatomy Ontology" ;
-    dcterms:description "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    doap:GitRepository <https://github.com/obophenotype/uberon> ;
-    skos:exactMatch aberowl:UBERON,
-        ontobee:UBERON,
-        wikidata:P1554,
-        bioportal:UBERON,
-        biocontext:UBERON,
-        cellosaurus.resource:UBERON,
-        go.resource:UBERON,
-        n2t:uberon,
-        fairsharing:FAIRsharing.4c0b6b,
-        miriam:uberon,
-        togoid:Uberon,
-        ols:uberon,
-        obofoundry:uberon ;
-    dcat:keyword "anatomy",
-        "developmental biology",
-        "life science",
-        "obo",
-        "ontology",
-        "taxonomy" ;
-    foaf:homepage <http://uberon.org> ;
-    bioregistry.schema:0000005 "2005080"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/UBERON_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:uberon.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:chebi,
-        bioregistry:cl,
-        bioregistry:go,
-        bioregistry:pr ;
-    bioregistry.schema:0000018 bioregistry:aism,
-        bioregistry:amphx,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:clo,
-        bioregistry:clyh,
-        bioregistry:colao,
-        bioregistry:cteno,
-        bioregistry:ecao,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:foodon,
-        bioregistry:fovt,
-        bioregistry:genepio,
-        bioregistry:go,
-        bioregistry:hso,
-        bioregistry:lepao,
-        bioregistry:maxo,
-        bioregistry:mco,
-        bioregistry:mfmo,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:plana,
-        bioregistry:poro,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
-    bioregistry.schema:0000023 "UBERON",
-        "Uber-anatomy ontology",
-        "Uberon" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/UBERON_"^^xsd:string ;
-    bioregistry.schema:0000027 uberon:2005080 ;
-    bioregistry.schema:0000029 "uberon" .
 
 bioregistry:scdo a bioregistry.schema:0000001 ;
     rdfs:label "Sickle Cell Disease Ontology" ;
@@ -52903,6 +52886,7 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:psdo,
         bioregistry:pso,
         bioregistry:rbo,
+        bioregistry:uberon,
         bioregistry:upa,
         bioregistry:xpo,
         bioregistry:zp ;
@@ -52913,6 +52897,82 @@ bioregistry:ro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/RO_"^^xsd:string ;
     bioregistry.schema:0000027 ro:0002533 ;
     bioregistry.schema:0000029 "ro" .
+
+bioregistry:uberon a bioregistry.schema:0000001 ;
+    rdfs:label "Uber Anatomy Ontology" ;
+    dcterms:description "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/obophenotype/uberon> ;
+    skos:exactMatch aberowl:UBERON,
+        ontobee:UBERON,
+        wikidata:P1554,
+        bioportal:UBERON,
+        biocontext:UBERON,
+        cellosaurus.resource:UBERON,
+        go.resource:UBERON,
+        n2t:uberon,
+        fairsharing:FAIRsharing.4c0b6b,
+        miriam:uberon,
+        togoid:Uberon,
+        ols:uberon,
+        obofoundry:uberon ;
+    dcat:keyword "anatomy",
+        "developmental biology",
+        "life science",
+        "obo",
+        "ontology",
+        "taxonomy" ;
+    foaf:homepage <http://uberon.org> ;
+    bioregistry.schema:0000005 "2005080"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/UBERON_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:uberon.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:bfo,
+        bioregistry:bspo,
+        bioregistry:chebi,
+        bioregistry:cl,
+        bioregistry:envo,
+        bioregistry:go,
+        bioregistry:nbo,
+        bioregistry:ncbitaxon,
+        bioregistry:omo,
+        bioregistry:pato,
+        bioregistry:pr,
+        bioregistry:ro ;
+    bioregistry.schema:0000018 bioregistry:aism,
+        bioregistry:amphx,
+        bioregistry:chiro,
+        bioregistry:cl,
+        bioregistry:clo,
+        bioregistry:clyh,
+        bioregistry:colao,
+        bioregistry:cteno,
+        bioregistry:ecao,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:foodon,
+        bioregistry:fovt,
+        bioregistry:genepio,
+        bioregistry:go,
+        bioregistry:hso,
+        bioregistry:lepao,
+        bioregistry:maxo,
+        bioregistry:mco,
+        bioregistry:mfmo,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:plana,
+        bioregistry:poro,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
+    bioregistry.schema:0000023 "UBERON",
+        "Uber-anatomy ontology",
+        "Uberon" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/UBERON_"^^xsd:string ;
+    bioregistry.schema:0000027 uberon:2005080 ;
+    bioregistry.schema:0000029 "uberon" .
 
 bioregistry.metaresource:lov a bioregistry.schema:0000002 ;
     rdfs:label "Linked Open Vocabularies" ;
@@ -53056,6 +53116,7 @@ bioregistry.metaresource:bartoc a bioregistry.schema:0000002 ;
         bartoc:20464,
         bartoc:20466,
         bartoc:20474,
+        bartoc:20509,
         bartoc:2053,
         bartoc:2054,
         bartoc:216,
@@ -53132,6 +53193,7 @@ bioregistry.metaresource:togoid a bioregistry.schema:0000002 ;
         togoid:PubchemCompound,
         togoid:PubchemSubstance,
         togoid:Pubmed,
+        togoid:ReactomePathway,
         togoid:Rgd,
         togoid:Rhea,
         togoid:Sgd,
@@ -53151,7 +53213,8 @@ bioregistry.metaresource:togoid a bioregistry.schema:0000002 ;
 bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
     rdfs:label "AgroPortal" ;
     dc:description "A vocabulary and ontology repository for agronomy and related domains." ;
-    dcterms:hasPart agroportal:AGRO,
+    dcterms:hasPart agroportal:AAO,
+        agroportal:AGRO,
         agroportal:AGROVOC,
         agroportal:ATOL,
         agroportal:BCO,
@@ -53191,6 +53254,7 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:CO_365,
         agroportal:CO_366,
         agroportal:CO_370,
+        agroportal:ECTO,
         agroportal:EDAM,
         agroportal:EFO,
         agroportal:ENVO,
@@ -53201,11 +53265,13 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:FOBI,
         agroportal:FOODEX2,
         agroportal:FOODON,
+        agroportal:GALLONT,
         agroportal:GEMET,
         agroportal:GO,
         agroportal:LBO,
         agroportal:LPT,
         agroportal:NCBITAXON,
+        agroportal:OBA,
         agroportal:OM,
         agroportal:ONS,
         agroportal:PATO,
@@ -53222,6 +53288,7 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:STY,
         agroportal:TAXRANK,
         agroportal:TO,
+        agroportal:UO,
         agroportal:VARIO,
         agroportal:VT ;
     foaf:homepage "http://agroportal.lirmm.fr" ;
@@ -53918,6 +53985,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:EnsemblMetazoa,
         go.resource:FB,
         go.resource:FBbt,
+        go.resource:FBdv,
         go.resource:FMA,
         go.resource:FYPO,
         go.resource:GEO,
@@ -56541,6 +56609,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:SEPIO,
         aberowl:SIBO,
         aberowl:SIO,
+        aberowl:SLSO,
         aberowl:SNOMEDCT,
         aberowl:SO,
         aberowl:SOPHARM,

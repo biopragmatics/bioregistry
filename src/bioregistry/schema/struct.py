@@ -27,7 +27,7 @@ from typing import (
 )
 
 import pydantic.schema
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PrivateAttr
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -290,11 +290,6 @@ class Publication(BaseModel):
 
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
-
-    class Config:
-        """Configuration for pydantic class."""
-
-        underscore_attrs_are_private = True
 
     prefix: str = Field(
         ...,
@@ -646,7 +641,7 @@ class Resource(BaseModel):
     pathguide: Optional[Mapping[str, Any]] = Field(default=None)
 
     # Cached compiled pattern for identifiers
-    _compiled_pattern: Optional[re.Pattern] = None
+    _compiled_pattern: Optional[re.Pattern] = PrivateAttr(None)
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -1827,11 +1822,17 @@ class Resource(BaseModel):
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
         rv = []
-        if self.providers is not None:
-            rv.extend(self.providers)
+        providers = self.providers or []
+        provider_codes = {provider.code for provider in providers}
+        provider_uris = {provider.uri_format for provider in providers}
+        rv.extend(providers)
         if self.miriam:
-            for p in self.miriam.get("providers", []):
-                rv.append(Provider(**p))
+            for p_data in self.miriam.get("providers", []):
+                provider = Provider(**p_data)
+                if provider.code in provider_codes or provider.uri_format in provider_uris:
+                    # this means we've done an explicit override in the Bioregistry curated data
+                    continue
+                rv.append(provider)
         prefixcommons_prefix = self.get_prefixcommons_prefix()
         if prefixcommons_prefix:
             rv.append(

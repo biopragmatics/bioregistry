@@ -160,6 +160,7 @@ aao:
   - obo
   - ontology
   mappings:
+    agroportal: AAO
     biocontext: AAO
     fairsharing: FAIRsharing.mxx5rp
     obofoundry: aao
@@ -1025,9 +1026,12 @@ aio:
   homepage: https://github.com/berkeleybop/artificial-intelligence-ontology
   keywords:
   - artificial intelligence
+  - computational biology
   - hidden markov model
   - knowledge representation
   - machine learning
+  - natural language processing
+  - network model
   - ontology
   mappings:
     aberowl: AIO
@@ -1035,6 +1039,11 @@ aio:
     fairsharing: FAIRsharing.8d6247
   name: The Artificial Intelligence Ontology
   preferred_prefix: aio
+  publications:
+  - doi: 10.48550/arxiv.2404.03044
+    title: 'The Artificial Intelligence Ontology: LLM-assisted construction of AI
+      concept hierarchies'
+    year: 2024
   repository: https://github.com/berkeleybop
   reviewer:
     email: benjamin_gyori@hms.harvard.edu
@@ -1461,6 +1470,10 @@ apaonto:
   - https://github.com/biopragmatics/bioregistry/issues/528
   uri_format: http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1
 apd:
+  contact:
+    email: gwang@unmc.edu
+    name: Guangshun Wang
+    orcid: 0000-0002-4841-7927
   description: The antimicrobial peptide database (APD) provides information on anticancer,
     antiviral, antifungal and antibacterial peptides.
   example: '01001'
@@ -3179,6 +3192,7 @@ bfo:
   - pco
   - psdo
   - rbo
+  - uberon
   - xpo
   - zp
   contact:
@@ -3875,7 +3889,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/59/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/60/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   keywords:
@@ -4893,6 +4907,10 @@ bpdb:
   preferred_prefix: bpdb
   uri_format: https://sitem.herts.ac.uk/aeru/bpdb/Reports/$1.htm
 brenda:
+  contact:
+    email: D.Schomburg@tu-braunschweig.de
+    name: Dietmar Schomburg
+    orcid: 0000-0002-3354-822X
   description: BRENDA is a collection of enzyme functional data available to the scientific
     community. Data on enzyme function are extracted directly from the primary literature
     The database covers information on classification and nomenclature, reaction and
@@ -5078,6 +5096,7 @@ bspo:
   - colao
   - fovt
   - lepao
+  - uberon
   - zp
   contact:
     email: cjmungall@lbl.gov
@@ -6761,7 +6780,7 @@ chebi:
     dictionary of molecular entities focused on 'small' chemical compounds.
   download_obo: http://purl.obolibrary.org/obo/chebi.obo
   download_owl: http://purl.obolibrary.org/obo/chebi.owl
-  example: '24867'
+  example: '138488'
   homepage: http://www.ebi.ac.uk/chebi
   keywords:
   - biochemistry
@@ -7396,6 +7415,7 @@ chmo:
   license: CC-BY-4.0
   mappings:
     aberowl: CHMO
+    bartoc: '20509'
     biocontext: CHMO
     bioportal: CHMO
     fairsharing: FAIRsharing.9j4wh2
@@ -7918,7 +7938,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2024-02-13'
+  version: '2024-04-05'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -8188,7 +8208,7 @@ clo:
     sources to a standardized logically defined format based on consensus design patterns.
   download_owl: http://purl.obolibrary.org/obo/clo.owl
   example: 0000091
-  homepage: http://www.clo-ontology.org
+  homepage: https://github.com/CLO-Ontology/CLO
   keywords:
   - cell
   - cell biology
@@ -8386,7 +8406,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.206'
+  version: '2.207'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -12000,6 +12020,7 @@ depmap:
     Cells.
   example: ACH-000001
   homepage: https://depmap.org/portal
+  license: CC-BY-4.0
   mappings:
     cellosaurus: DepMap
   name: DepMap Cell Lines
@@ -14536,6 +14557,7 @@ ecto:
   logo: https://raw.githubusercontent.com/jmcmurry/closed-illustrations/master/logos/ecto-logos/ecto-logo_black-banner.png
   mappings:
     aberowl: ECTO
+    agroportal: ECTO
     biolink: ECTO
     bioportal: ECTO
     fairsharing: FAIRsharing.6b77ac
@@ -14897,7 +14919,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.64.0
+  version: 3.65.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -16338,6 +16360,7 @@ envo:
   - pco
   - rbo
   - scdo
+  - uberon
   banana: ENVO
   contact:
     email: pier.buttigieg@awi.de
@@ -17737,6 +17760,7 @@ fbdv:
     biocontext: FBdv
     bioportal: FB-DV
     fairsharing: FAIRsharing.p52pzj
+    go: FBdv
     obofoundry: fbdv
     ols: fbdv
     ontobee: FBdv
@@ -18171,6 +18195,7 @@ flybase:
   - sequence
   - stock
   - video resource
+  license: CC-BY-4.0
   mappings:
     biocontext: FlyBase
     cellosaurus: FlyBase
@@ -19227,7 +19252,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-03-30'
+  version: '2024-04-15'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -19349,6 +19374,7 @@ gallont:
   license: CC0-1.0
   mappings:
     aberowl: GALLONT
+    agroportal: GALLONT
     obofoundry: gallont
     ontobee: GALLONT
   name: Plant Gall Ontology
@@ -21199,6 +21225,11 @@ go:
     github: suzialeksander
     name: Suzi Aleksander
     orcid: 0000-0001-6787-2901
+  contributor_extras:
+  - email: jmcl@ebi.ac.uk
+    github: jamesamcl
+    name: James Alastair McLaughlin
+    orcid: 0000-0002-8361-2795
   depends_on:
   - cl
   - ncbitaxon
@@ -21265,11 +21296,6 @@ go:
     homepage: http://www.informatics.jax.org/searches/GO_form.shtml
     name: GO Browser
     uri_format: http://www.informatics.jax.org/searches/GO.cgi?id=GO:$1
-  - code: CURATOR_REVIEW
-    description: GO through PANTHER
-    homepage: http://www.pantherdb.org/
-    name: GO through PANTHER
-    uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -21299,10 +21325,20 @@ go:
     homepage: https://www.nextprot.org/
     name: neXtProt GO Browser
     uri_format: https://www.nextprot.org/term/GO:$1
+  - code: pantherdb
+    description: GO Browser in PantherDB
+    homepage: http://www.pantherdb.org/panther
+    name: PatherDB
+    uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
   - code: quickgo
+    description: Gene Ontology browser from the EBI
+    homepage: https://www.ebi.ac.uk/QuickGO/
+    name: QuickGO
+    uri_format: https://www.ebi.ac.uk/QuickGO/term/GO:$1
+  - code: quickgo.legacy
     description: QuickGO (Gene Ontology browser)
     homepage: https://www.ebi.ac.uk/QuickGO/
-    name: QuickGO (Gene Ontology browser)
+    name: QuickGO (Legacy URL)
     uri_format: https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1
   publications:
   - doi: 10.1093/nar/gkaa1113
@@ -21363,7 +21399,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://purl.obolibrary.org/obo/GO_$1
-  version: '2024-01-17'
+  version: '2024-03-28'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -26705,6 +26741,7 @@ intact:
   - biology
   - interaction
   - protein
+  license: CC-BY-4.0
   mappings:
     biocontext: INTACT
     fairsharing: FAIRsharing.d05nwx
@@ -32573,7 +32610,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.130'
+  version: '2.131'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -33506,7 +33543,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.141
+  version: 4.1.146
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -34164,6 +34201,7 @@ nbo:
   - maxo
   - pcl
   - scdo
+  - uberon
   contact:
     email: g.gkoutos@bham.ac.uk
     github: gkoutos
@@ -34570,6 +34608,7 @@ ncbitaxon:
   - ons
   - pcl
   - pco
+  - uberon
   - vbo
   contact:
     email: schoch2@ncbi.nlm.nih.gov
@@ -34799,6 +34838,7 @@ ncit:
   - NCI2004_11_17
   - NCIT
   - NCIT_Thesaurus
+  - NCIThesaurus
   - NCITm
   - NCITt
   - NCI_Thesaurus
@@ -36973,6 +37013,7 @@ oba:
   license: CC0-1.0
   mappings:
     aberowl: OBA
+    agroportal: OBA
     biocontext: OBA
     bioportal: OBA
     fairsharing: FAIRsharing.mp0rwf
@@ -38323,6 +38364,7 @@ omit:
 omo:
   appears_in:
   - pcl
+  - uberon
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -40165,6 +40207,7 @@ pato:
   - planp
   - proco
   - rbo
+  - uberon
   - xpo
   - zp
   banana: PATO
@@ -45047,7 +45090,7 @@ rdf:
     orcid: 0000-0003-4423-4370
   description: This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace,
     defined in RDF 1.1 Concepts
-  example: RDF
+  example: type
   homepage: http://www.w3.org/1999/02/22-rdf-syntax-ns
   keywords:
   - computer science
@@ -45151,6 +45194,16 @@ re3data:
   preferred_prefix: re3data
   uri_format: https://www.re3data.org/repository/$1
 reactome:
+  contact:
+    email: deustp01@med.nyu.edu
+    github: deustp01
+    name: Peter D'Eustachio
+    orcid: 0000-0002-5494-626X
+  contributor_extras:
+  - email: smoxon@lbl.gov
+    github: sierra-moxon
+    name: Sierra Moxon
+    orcid: 0000-0002-8719-7760
   description: The Reactome project is a collaboration to develop a curated resource
     of core pathways and reactions in human biology.
   example: R-BTA-418592
@@ -45170,6 +45223,7 @@ reactome:
     pathguide: '103'
     prefixcommons: reactome
     re3data: r3d100010861
+    togoid: ReactomePathway
     wikidata: P3937
   name: Reactome
   pattern: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
@@ -45184,6 +45238,11 @@ reactome:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/reactome:$1
+  - code: browser
+    description: An interactive view over pathways.
+    homepage: https://reactome.org/PathwayBrowser/
+    name: Reactome Pathway Browser
+    uri_format: https://reactome.org/PathwayBrowser/#/$1
   - code: pathwaycommons
     description: Pathway diagram drawn with Cytoscape
     homepage: https://www.pathwaycommons.org
@@ -45195,9 +45254,12 @@ reactome:
     pubmed: '15608231'
     title: 'Reactome: a knowledgebase of biological pathways'
     year: 2005
+  references:
+  - https://github.com/biopragmatics/bioregistry/pull/1086
   synonyms:
   - RE
   - REACT
+  - reactome.pathway
   uri_format: https://reactome.org/content/detail/$1
 reaxys:
   contributor:
@@ -46566,6 +46628,7 @@ ro:
   - psdo
   - pso
   - rbo
+  - uberon
   - upa
   - xpo
   - zp
@@ -48380,6 +48443,7 @@ sgd:
   - nucleotide
   - proteomics
   - transcriptomics
+  license: CC-BY-4.0
   mappings:
     biocontext: SGD
     edam: '2632'
@@ -49130,6 +49194,7 @@ signor:
   homepage: https://signor.uniroma2.it/
   keywords:
   - biology
+  license: CC-BY-NC-4.0
   mappings:
     fairsharing: FAIRsharing.ss78t4
     miriam: signor
@@ -49139,6 +49204,11 @@ signor:
   pattern: ^SIGNOR\-[A-Z]+\d+$
   preferred_prefix: signor
   publications:
+  - doi: 10.1093/nar/gkac883
+    pmc: PMC9825604
+    pubmed: '36243968'
+    title: 'SIGNOR 3.0, the SIGnaling network open resource 3.0: 2022 update'
+    year: 2022
   - doi: 10.1093/nar/gkv1048
     pmc: PMC4702784
     pubmed: '26467481'
@@ -49509,6 +49579,7 @@ slso:
   - ontology
   license: CC-BY-3.0
   mappings:
+    aberowl: SLSO
     bioportal: SLSO
     obofoundry: slso
     ontobee: SLSO
@@ -50089,7 +50160,7 @@ so:
   rdf_uri_format: http://purl.obolibrary.org/obo/SO_$1
   repository: https://github.com/The-Sequence-Ontology/SO-Ontologies
   uri_format: http://purl.obolibrary.org/obo/SO_$1
-  version: '2021-11-22'
+  version: '2024-04-10'
 sopharm:
   contact:
     email: adrien.coulet@loria.fr
@@ -53108,10 +53179,18 @@ uberon:
     name: Chris Mungall
     orcid: 0000-0002-6601-2165
   depends_on:
+  - bfo
+  - bspo
   - chebi
   - cl
+  - envo
   - go
+  - nbo
+  - ncbitaxon
+  - omo
+  - pato
   - pr
+  - ro
   description: Uberon is an integrated cross-species anatomy ontology representing
     a variety of entities classified according to traditional anatomical criteria
     such as structure, function and developmental lineage. The ontology includes comprehensive
@@ -54251,6 +54330,7 @@ uo:
   license: CC-BY-3.0
   mappings:
     aberowl: UO
+    agroportal: UO
     biocontext: UO
     bioportal: UO
     fairsharing: FAIRsharing.mjnypw
@@ -55544,7 +55624,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-03-20'
+  version: '2024-04-09'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -55792,7 +55872,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-04-01'
+  version: '2024-04-15'
 vto:
   contact:
     email: balhoff@renci.org
@@ -55977,7 +56057,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://purl.obolibrary.org/obo/WBls_$1
-  version: '2024-01-16'
+  version: '2024-04-09'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -56032,7 +56112,7 @@ wbphenotype:
   synonyms:
   - WBPhenotype
   uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
-  version: '2024-01-16'
+  version: '2024-04-09'
 webelements:
   contributor:
     email: cthoyt@gmail.com
@@ -56473,6 +56553,7 @@ wormbase:
   - roundworm
   - transposon family
   - wormmart
+  license: CC0-1.0
   mappings:
     biocontext: WormBase
     biolink: WBVocab
@@ -56825,7 +56906,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.161'
+  version: '4.163'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

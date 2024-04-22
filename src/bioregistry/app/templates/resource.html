@@ -21,7 +21,6 @@
 
 {% set mastodon = resource.get_mastodon() %}
 {% set mastodon_url = resource.get_mastodon_url() %}
-{% set twitter = resource.get_twitter() %}
 {% set keywords = resource.get_keywords() %}
 
 {% macro get_banana_text() %}
@@ -215,11 +214,6 @@
                     {% if mastodon %}
                         <a class="badge badge-pill badge-light" href="{{ mastodon_url }}">
                             <i class="fab fa-mastodon"></i> @{{ mastodon }}
-                        </a>
-                    {% endif %}
-                    {% if twitter %}
-                        <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
-                            <i class="fab fa-twitter"></i> @{{ twitter }}
                         </a>
                     {% endif %}
                 </dd>
@@ -549,7 +543,6 @@
 
     {% if resource.get_rdf_uri_format() %}
         <div class="card" style="margin-top: 20px">
-            <a id="mappings"></a>
             <h5 class="card-header">RDF Information</h5>
             <div class="card-body">
                 <p>
@@ -562,51 +555,89 @@
         </div>
     {% endif %}
 
-    {% if providers %}
+    {% if not resource.no_own_terms %}
         <div class="card" style="margin-top: 20px">
-            <a id="mappings"></a>
-            <h5 class="card-header">Providers</h5>
+            <a id="providers"></a>
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h5 style="margin: 0">Providers</h5>
+                    </div>
+                    <div class="col-4 text-right">
+                        <div class="d-flex flex-row-reverse">
+                        <a class="btn btn-sm btn-outline-dark" target="_blank"
+                           href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Provider%2CNew&projects=&template=new-provider.yml&prefix={{ prefix }}&title=Add+provider+for+{{ name }}">
+                            Suggest
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
                 <p>
-                    Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    {{ utils.code_curie(resource.get_preferred_prefix() or resource.prefix, example) }} is used to demonstrate the provides available for
-                    this resource. Generation of OLS and BioPortal URLs requires additional programmatic
-                    logic beyond string formatting.
+                    A provider turns a local unique identifiers from a resource into a URI. Many providers are
+                    also resolvable as URLs (i.e., they can be used in a web browser).
                 </p>
+                <!--<ol>
+                    <li>
+                        <strong>Metaregistry Mappings</strong> When a Bioregistry prefix is mapped to an external
+                        registry that is able to resolve CURIEs, then a provider can be automatically generated.
+                        For example, this is true for Identifiers.org, Name-to-Thing, and the OBO Foundry.
+                    </li>
+                    <li>
+                        <strong>Manual Curation</strong> Additional providers can be curated to cover both
+                        resolvable URIs and semantic web-flavored URIs.
+                    </li>
+                </ol>-->
+                {% if providers %}
+                <p>
+                    The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
+                    available for {{ name }}. A guide for curating additional providers can be found
+                    <a href="https://biopragmatics.github.io/bioregistry/curation/providers">here</a>.
+                </p>
+                {% else %}
+                <p>
+                    This resource does not have any providers. Please consider contributing one after
+                    reading the
+                    <a href="https://biopragmatics.github.io/bioregistry/curation/providers">curation guide</a>.
+                </p>
+                {% endif %}
             </div>
-            {{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}
+            {% if providers %}{{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}{% endif %}
         </div>
-    {% endif %}
-    {% set extra_providers = resource.get_extra_providers() %}
-    {% if extra_providers %}
-        <div class="card" style="margin-top: 20px">
-            <a id="mappings"></a>
-            <h5 class="card-header">Extra Providers</h5>
-            <div class="card-body">
-                <p>
-                    Additional providers curated in the Bioregistry are listed here.
-                </p>
-            </div>
-            <table class="table table-hover table-striped">
-                <thead class="table-">
-                <tr>
-                    <th scope="col">Code</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">URL</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for provider in extra_providers %}
+
+        {% set extra_providers = resource.get_extra_providers() %}
+        {% if extra_providers %}
+            <div class="card" style="margin-top: 20px">
+                <a id="mappings"></a>
+                <h5 class="card-header">Extra Providers</h5>
+                <div class="card-body">
+                    <p>
+                        Additional providers curated in the Bioregistry are listed here.
+                        These are typically inherited from Identifiers.org or Prefix Commons, and need extra curation.
+                    </p>
+                </div>
+                <table class="table table-hover table-striped">
+                    <thead class="table-">
                     <tr>
-                        <td><code>{{ provider.code }}</code></td>
-                        <td>{{ provider.name }}</td>
-                        {% set url = provider.resolve(example) %}
-                        <td><a href="{{ url }}">{{ url }}</a></td>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">URL</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                    {% for provider in extra_providers %}
+                        <tr>
+                            <td><code>{{ provider.code }}</code></td>
+                            <td>{{ provider.name }}</td>
+                            {% set url = provider.resolve(example) %}
+                            <td><a href="{{ url }}">{{ url }}</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
     {% endif %}
 
     {% if synonyms %}

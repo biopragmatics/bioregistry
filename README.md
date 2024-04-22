@@ -46,7 +46,7 @@ https://bioregistry.io.
 The underlying data of the Bioregistry can be downloaded (or edited) directly
 from [here](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/).
 Several exports to YAML, TSV, and RDF, including consensus views over the
-registry, are built on a nightly basis and can be downloaded via the
+registry, are built on a weekly basis and can be downloaded via the
 [`exports/`](https://github.com/biopragmatics/bioregistry/tree/main/exports) directory.
 
 The manually curated portions of these data are available under the
@@ -71,7 +71,7 @@ file either through the GitHub interface or locally by [forking the repository](
 
 If you want to make a contribution but don't know where to start, you can check
 [this list](https://biopragmatics.github.io/bioregistry/curation/) of curation
-To-Do's that's automatically generated daily, including more detailed
+To-Do's that's automatically generated weekly, including more detailed
 information on how to contribute.
 
 ## ⚖️ Governance
