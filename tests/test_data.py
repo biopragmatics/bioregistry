@@ -691,6 +691,11 @@ class TestRegistry(unittest.TestCase):
                         "https://github.com/biopragmatics/bioregistry/issues/933",
                     )
 
+                    if provider.resolvable is False:
+                        self.assertIsNone(
+                            provider.check, msg="Check on known unresolvable URI makes no sense"
+                        )
+
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
 

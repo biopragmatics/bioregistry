@@ -8,6 +8,7 @@ import logging
 import pathlib
 import re
 import textwrap
+from enum import Enum
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -229,6 +230,39 @@ class Author(Attributable):
     )
 
 
+class ProviderStatus(str, Enum):
+    """Values for a provider status."""
+
+    available = "available"
+    search = "search"
+    moved = "moved"
+    gone = "gone"
+    hijacked = "hijacked"
+    degraded = "degraded"
+    uri_only = "uri_only"
+    misconfigured = "misconfigured"
+    curation_error = "curation_error"
+    not_sure = "not_sure"
+
+
+class ProviderCheck(BaseModel):
+    """A check of the provider's status."""
+
+    status: ProviderStatus = Field(..., description="True if the provider was available")
+    date: str = Field(
+        ...,
+        description="The date the provider was checked",
+        **{PATTERN_KEY: r"^\d{4}-\d{2}-\d{2}"},  # type:ignore
+    )
+    orcid: str = Field(
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description="The ORCID ID for the person who made the check",
+        **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
+    )
+    notes: Optional[str] = Field(None, description="Optional free text notes from the checker")
+
+
 class Provider(BaseModel):
     """A provider."""
 
@@ -240,6 +274,16 @@ class Provider(BaseModel):
         ...,
         title="URI Format",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+    )
+
+    resolvable: Optional[bool] = Field(
+        None,
+        description="Set to true if this provider is known to be resolvable (i.e, can be put "
+        "into a web browser and points to a page about a specific entity). Alternatively, set to "
+        "false if it's known not to be resolvable, e.g., if it's a semantic web-only IRI.",
+    )
+    check: Optional[ProviderCheck] = Field(
+        None, description="The most recent check to see if this provider still works"
     )
 
     def resolve(self, identifier: str) -> str:
@@ -302,6 +346,9 @@ class Resource(BaseModel):
         default=None,
         title="URI format string",
         description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+    )
+    uri_format_check: Optional[ProviderCheck] = Field(
+        None, description="A status check on the URI format."
     )
     uri_format_resolvable: Optional[bool] = Field(
         default=None,
