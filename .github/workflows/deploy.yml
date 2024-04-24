@@ -5,13 +5,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Run SSH command
         env:
           SSH_PRIVATE_KEY: ${{ secrets.AWS_PEM }}
           HOST: ${{ secrets.AWS_HOST }}
         run: |
+          echo $SSH_PRIVATE_KEY | ssh -i /dev/stdin "$HOST" "sh /data/services/restart_bioregistry.sh"
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
