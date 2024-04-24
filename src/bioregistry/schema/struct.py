@@ -263,13 +263,9 @@ class ProviderCheck(BaseModel):
     notes: Optional[str] = Field(None, description="Optional free text notes from the checker")
 
 
-class Provider(BaseModel):
+class BaseProvider(BaseModel):
     """A provider."""
 
-    code: str = Field(..., description="A locally unique code within the prefix for the provider")
-    name: str = Field(..., description="Name of the provider")
-    description: str = Field(..., description="Description of the provider")
-    homepage: str = Field(..., description="Homepage of the provider")
     uri_format: str = Field(
         ...,
         title="URI Format",
@@ -278,12 +274,14 @@ class Provider(BaseModel):
     first_party: Optional[bool] = Field(
         None, description="Annotates whether a provider is from the first-party organization"
     )
-
     resolvable: Optional[bool] = Field(
         None,
         description="Set to true if this provider is known to be resolvable (i.e, can be put "
         "into a web browser and points to a page about a specific entity). Alternatively, set to "
         "false if it's known not to be resolvable, e.g., if it's a semantic web-only IRI.",
+    )
+    semantic: Optional[bool] = Field(
+        None, description="Set to true if this is known to be the primary semantic web URI format"
     )
     check: Optional[ProviderCheck] = Field(
         None, description="The most recent check to see if this provider still works"
@@ -296,6 +294,15 @@ class Provider(BaseModel):
         :return: The URI for the identifier
         """
         return self.uri_format.replace("$1", identifier)
+
+
+class Provider(BaseProvider):
+    """A provider."""
+
+    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    name: str = Field(..., description="Name of the provider")
+    description: str = Field(..., description="Description of the provider")
+    homepage: str = Field(..., description="Homepage of the provider")
 
 
 class Publication(BaseModel):
