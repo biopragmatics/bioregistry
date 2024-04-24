@@ -1,4 +1,4 @@
-name: Release
+name: Deploy
 on:
   workflow_dispatch:
 jobs:
@@ -15,4 +15,4 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no "$HOST" "sh /data/services/restart_bioregistry.sh"
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no "$HOST" "sh /data/services/restart_bioregistry.sh"
