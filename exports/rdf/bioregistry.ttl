@@ -12498,12 +12498,18 @@ bioregistry:minid a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:MINID,
         n2t:minid,
+        fairsharing:FAIRsharing.d099fb,
         miriam:minid ;
+    dcat:keyword "citation",
+        "data retrieval",
+        "publication",
+        "subject agnostic" ;
     foaf:homepage <https://fair-research.org> ;
     bioregistry.schema:0000005 "b97957"^^xsd:string ;
     bioregistry.schema:0000006 "https://hdl.handle.net/hdl:20.500.12582/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-2129-5269 ;
     bioregistry.schema:0000024 "https://hdl.handle.net/hdl:20.500.12582/"^^xsd:string ;
     bioregistry.schema:0000027 minid:b97957 ;
     bioregistry.schema:0000029 "minid" .
@@ -14759,7 +14765,7 @@ bioregistry:om a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/HajoRijgersberg/OM> ;
     bioregistry.schema:0000005 "Dimension"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ontology-of-units-of-measure.org/resource/om-2/$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/OM/28/om.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/OM/29/om.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Hajo Rijgersberg" ;
             foaf:mbox "hajo.rijgersberg@wur.nl" ] ;
@@ -14816,7 +14822,7 @@ bioregistry:oma.protein a bioregistry.schema:0000001 ;
 
 bioregistry:omia a bioregistry.schema:0000001 ;
     rdfs:label "Online Mendelian Inheritance in Animals" ;
-    dcterms:description "Online Mendelian Inheritance in Animals (OMIA) is a catalogue/compendium of inherited disorders, other (single-locus) traits, and associated genes and variants in 363 animal species (other than human and mouse and rats and zebrafish, which have their own resources)."^^xsd:string ;
+    dcterms:description "Online Mendelian Inheritance in Animals (OMIA) is a catalogue/compendium of inherited disorders, other (single-locus) traits, and associated genes and variants in more than 500 vertebrate animal species (other than human, mouse, rats, zebrafish and western clawed frog, which have their own resources)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:OMIA,
         n2t:omia,
@@ -14829,13 +14835,13 @@ bioregistry:omia a bioregistry.schema:0000001 ;
         "model organism database",
         "traits" ;
     foaf:homepage <https://omia.org> ;
-    bioregistry.schema:0000005 "1000"^^xsd:string ;
+    bioregistry.schema:0000005 "001000"^^xsd:string ;
     bioregistry.schema:0000006 "https://omia.org/OMIA$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5520-6597 ;
     bioregistry.schema:0000024 "https://omia.org/OMIA"^^xsd:string ;
-    bioregistry.schema:0000027 omia:1000 ;
+    bioregistry.schema:0000027 omia:001000 ;
     bioregistry.schema:0000029 "omia" .
 
 bioregistry:omid a bioregistry.schema:0000001 ;
@@ -19962,7 +19968,10 @@ bioregistry:viaf a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch bartoc:2053,
         n2t:viaf,
+        fairsharing:FAIRsharing.a15ac6,
         miriam:viaf ;
+    dcat:keyword "centrally registered identifier",
+        "knowledge and information systems" ;
     foaf:homepage <http://viaf.org> ;
     bioregistry.schema:0000005 "75121530"^^xsd:string ;
     bioregistry.schema:0000006 "http://viaf.org/viaf/$1"^^xsd:string ;
@@ -21214,9 +21223,6 @@ orcid:0000-0002-2404-1582 rdfs:label "Clement Jonquet" ;
 orcid:0000-0002-2406-1145 rdfs:label "David Clunie" ;
     foaf:mbox "dclunie@dclunie.com" .
 
-orcid:0000-0002-2548-641X rdfs:label "Sirarat Sarntivijai" ;
-    foaf:mbox "siiraa@umich.edu" .
-
 orcid:0000-0002-2627-833X rdfs:label "Peer Bork" ;
     foaf:mbox "bork@embl.de" .
 
@@ -21601,6 +21607,9 @@ orcid:0000-0003-1839-5322 rdfs:label "Conrad L Schoch" ;
 
 orcid:0000-0003-1877-1703 rdfs:label "Célia Michotey" ;
     foaf:mbox "celia.michotey@inrae.fr" .
+
+orcid:0000-0003-2129-5269 rdfs:label "Ian Foster" ;
+    foaf:mbox "foster@uchicago.edu" .
 
 orcid:0000-0003-2338-8872 rdfs:label "Fernanda Farinelli" ;
     foaf:mbox "fernanda.farinelli@gmail.com" .
@@ -24597,6 +24606,8 @@ bioportal:UPHENO dcterms:isPartOf bioregistry.registry:bioportal .
 bioportal:VANDF dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:VARIO dcterms:isPartOf bioregistry.registry:bioportal .
+
+bioportal:VBO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:VHOG dcterms:isPartOf bioregistry.registry:bioportal .
 
@@ -38450,6 +38461,8 @@ fairsharing:FAIRsharing.17zapb dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.1a27h8 dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.1bdf3c dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.1c1738 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.1evfpc dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -38846,6 +38859,8 @@ fairsharing:FAIRsharing.a0k4cd dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.a14123 dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.a15ac6 dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.a4ww64 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.a6r7zs dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -38997,6 +39012,8 @@ fairsharing:FAIRsharing.czzmpg dcterms:isPartOf bioregistry.registry:fairsharing
 fairsharing:FAIRsharing.d05nwx dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.d064y6 dcterms:isPartOf bioregistry.registry:fairsharing .
+
+fairsharing:FAIRsharing.d099fb dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.d2d84f dcterms:isPartOf bioregistry.registry:fairsharing .
 
@@ -40139,6 +40156,8 @@ lov:frbr dcterms:isPartOf bioregistry.registry:lov .
 lov:frbrer dcterms:isPartOf bioregistry.registry:lov .
 
 lov:geo dcterms:isPartOf bioregistry.registry:lov .
+
+lov:hpo dcterms:isPartOf bioregistry.registry:lov .
 
 lov:m4i dcterms:isPartOf bioregistry.registry:lov .
 
@@ -45922,6 +45941,10 @@ bioregistry:emmo a bioregistry.schema:0000001 ;
     dcterms:description "EMMO is a multidisciplinary effort to develop a standard representational framework (the ontology) for applied sciences. It is based on physics, analytical philosophy and information and communication technologies. It has been instigated by materials science to provide a framework for knowledge capture that is consistent with scientific principles and methodologies. (from GitHub)"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/emmo-repo/EMMO> ;
+    skos:exactMatch fairsharing:FAIRsharing.1bdf3c ;
+    dcat:keyword "communication science",
+        "philosophy",
+        "physics" ;
     foaf:homepage <https://emmo-repo.github.io> ;
     bioregistry.schema:0000005 "03212fd7_abfd_4828_9c8e_62c293052d4b"^^xsd:string ;
     bioregistry.schema:0000006 "http://emmo.info/emmo#EMMO_$1"^^xsd:string ;
@@ -49098,6 +49121,7 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/monarch-initiative/vertebrate-breed-ontology> ;
     skos:exactMatch aberowl:VBO,
         ontobee:VBO,
+        bioportal:VBO,
         ols:vbo,
         obofoundry:vbo ;
     dcat:keyword "obo",
@@ -50436,12 +50460,14 @@ bioregistry:hp a bioregistry.schema:0000001 ;
         n2t:hp,
         fairsharing:FAIRsharing.kbtt7f,
         integbio:nbdc02559,
+        lov:hpo,
         miriam:hp,
         ols:hp,
         obofoundry:hp ;
     dcat:keyword "biomedical science",
         "disease",
         "genetics",
+        "industry",
         "obo",
         "ontology",
         "phenomics",
@@ -50675,7 +50701,7 @@ bioregistry:clo a bioregistry.schema:0000001 ;
         bioregistry:ncbitaxon,
         bioregistry:uberon ;
     bioregistry.schema:0000018 bioregistry:mco ;
-    bioregistry.schema:0000019 orcid:0000-0002-2548-641X ;
+    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
     bioregistry.schema:0000023 "CLO" ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CLO_"^^xsd:string ;
     bioregistry.schema:0000027 clo:0000091 ;
@@ -51075,11 +51101,6 @@ orcid:0000-0002-0381-3766 rdfs:label "Bryce Mecum" ;
 orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" ;
     foaf:mbox "matus.kalas@uib.no" .
 
-orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
-    foaf:mbox "jiezhen@med.umich.edu",
-        "jiezheng@pennmedicine.upenn.edu",
-        "zhengj2007@gmail.com" .
-
 orcid:0000-0002-9415-5104 rdfs:label "Frederic Bastian",
         "Frédéric Bastian" ;
     foaf:mbox "bgee@sib.swiss",
@@ -51274,6 +51295,11 @@ bioregistry:proco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PROCO_"^^xsd:string ;
     bioregistry.schema:0000027 proco:0000001 ;
     bioregistry.schema:0000029 "proco" .
+
+orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
+    foaf:mbox "jiezhen@med.umich.edu",
+        "jiezheng@pennmedicine.upenn.edu",
+        "zhengj2007@gmail.com" .
 
 orcid:0000-0002-7702-4495 rdfs:label "Allyson Lister" ;
     foaf:mbox "allyson.lister@oerc.ox.ac.uk" .
@@ -52977,61 +53003,6 @@ bioregistry:uberon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 uberon:2005080 ;
     bioregistry.schema:0000029 "uberon" .
 
-bioregistry.registry:lov a bioregistry.schema:0000002 ;
-    rdfs:label "Linked Open Vocabularies" ;
-    dc:description "A vocabulary in LOV gathers definitions of a set of classes and properties (together simply called terms of the vocabulary), useful to describe specific types of things, or things in a given domain or industry, or things at large but for a specific usage. Terms of vocabularies also provide the links in linked data, in the above case between a Person and a City. The definitions of terms provided by the vocabularies bring clear semantics to descriptions and links, thanks to the formal language they use (some dialect of RDF such as RDFS or OWL). In short, vocabularies provide the semantic glue enabling Data to become meaningful Data. [from https://lov.linkeddata.es/dataset/lov/about]" ;
-    dcterms:hasPart lov:adms,
-        lov:bibo,
-        lov:biro,
-        lov:c4o,
-        lov:cc,
-        lov:cito,
-        lov:dcat,
-        lov:dce,
-        lov:dcterms,
-        lov:deo,
-        lov:doap,
-        lov:doco,
-        lov:fabio,
-        lov:faldo,
-        lov:foaf,
-        lov:frapo,
-        lov:frbr,
-        lov:frbrer,
-        lov:geo,
-        lov:m4i,
-        lov:oa,
-        lov:obo,
-        lov:odrl,
-        lov:oslc,
-        lov:owl,
-        lov:pav,
-        lov:prov,
-        lov:pwo,
-        lov:qb,
-        lov:qudt,
-        lov:rdf,
-        lov:rdfa,
-        lov:rdfs,
-        lov:schema,
-        lov:scoro,
-        lov:seo,
-        lov:sh,
-        lov:sio,
-        lov:skos,
-        lov:skosxl,
-        lov:swrl,
-        lov:time,
-        lov:ucum,
-        lov:uniprot,
-        lov:vann,
-        lov:void,
-        lov:xsd ;
-    foaf:homepage "https://lov.linkeddata.es" ;
-    bioregistry.schema:0000005 "m4i" ;
-    bioregistry.schema:0000006 "https://lov.linkeddata.es/dataset/lov/vocabs/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0003-0591-6109 .
-
 bioregistry.registry:hl7 a bioregistry.schema:0000002 ;
     rdfs:label "HL7 External Code Systems" ;
     dc:description "HL7 External Code Systems are stored within the greater OID system" ;
@@ -53088,6 +53059,62 @@ bioregistry.registry:hl7 a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://oid-info.com/get/$1" ;
     bioregistry.schema:0000019 [ rdfs:label "HL7 Support" ;
             foaf:mbox "hq@HL7.org" ] .
+
+bioregistry.registry:lov a bioregistry.schema:0000002 ;
+    rdfs:label "Linked Open Vocabularies" ;
+    dc:description "A vocabulary in LOV gathers definitions of a set of classes and properties (together simply called terms of the vocabulary), useful to describe specific types of things, or things in a given domain or industry, or things at large but for a specific usage. Terms of vocabularies also provide the links in linked data, in the above case between a Person and a City. The definitions of terms provided by the vocabularies bring clear semantics to descriptions and links, thanks to the formal language they use (some dialect of RDF such as RDFS or OWL). In short, vocabularies provide the semantic glue enabling Data to become meaningful Data. [from https://lov.linkeddata.es/dataset/lov/about]" ;
+    dcterms:hasPart lov:adms,
+        lov:bibo,
+        lov:biro,
+        lov:c4o,
+        lov:cc,
+        lov:cito,
+        lov:dcat,
+        lov:dce,
+        lov:dcterms,
+        lov:deo,
+        lov:doap,
+        lov:doco,
+        lov:fabio,
+        lov:faldo,
+        lov:foaf,
+        lov:frapo,
+        lov:frbr,
+        lov:frbrer,
+        lov:geo,
+        lov:hpo,
+        lov:m4i,
+        lov:oa,
+        lov:obo,
+        lov:odrl,
+        lov:oslc,
+        lov:owl,
+        lov:pav,
+        lov:prov,
+        lov:pwo,
+        lov:qb,
+        lov:qudt,
+        lov:rdf,
+        lov:rdfa,
+        lov:rdfs,
+        lov:schema,
+        lov:scoro,
+        lov:seo,
+        lov:sh,
+        lov:sio,
+        lov:skos,
+        lov:skosxl,
+        lov:swrl,
+        lov:time,
+        lov:ucum,
+        lov:uniprot,
+        lov:vann,
+        lov:void,
+        lov:xsd ;
+    foaf:homepage "https://lov.linkeddata.es" ;
+    bioregistry.schema:0000005 "m4i" ;
+    bioregistry.schema:0000006 "https://lov.linkeddata.es/dataset/lov/vocabs/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0003-0591-6109 .
 
 bioregistry.registry:bartoc a bioregistry.schema:0000002 ;
     rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
@@ -56295,6 +56322,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:UPHENO,
         bioportal:VANDF,
         bioportal:VARIO,
+        bioportal:VBO,
         bioportal:VHOG,
         bioportal:VIDO,
         bioportal:VO,
@@ -57148,6 +57176,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.175hsz,
         fairsharing:FAIRsharing.17zapb,
         fairsharing:FAIRsharing.1a27h8,
+        fairsharing:FAIRsharing.1bdf3c,
         fairsharing:FAIRsharing.1c1738,
         fairsharing:FAIRsharing.1evfpc,
         fairsharing:FAIRsharing.1fbc5y,
@@ -57346,6 +57375,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.Z8OKi5,
         fairsharing:FAIRsharing.a0k4cd,
         fairsharing:FAIRsharing.a14123,
+        fairsharing:FAIRsharing.a15ac6,
         fairsharing:FAIRsharing.a4ww64,
         fairsharing:FAIRsharing.a6r7zs,
         fairsharing:FAIRsharing.a8z6gz,
@@ -57422,6 +57452,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.czzmpg,
         fairsharing:FAIRsharing.d05nwx,
         fairsharing:FAIRsharing.d064y6,
+        fairsharing:FAIRsharing.d099fb,
         fairsharing:FAIRsharing.d2d84f,
         fairsharing:FAIRsharing.d31795,
         fairsharing:FAIRsharing.d3pqw7,

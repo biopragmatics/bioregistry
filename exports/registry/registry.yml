@@ -1835,7 +1835,7 @@ apollosv:
   rdf_uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
   repository: https://github.com/ApolloDev/apollo-sv
   uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
-  version: '2024-02-23'
+  version: '2024-04-19'
 arachnoserver:
   description: ArachnoServer (www.arachnoserver.org) is a manually curated database
     providing information on the sequence, structure and biological activity of protein
@@ -8353,10 +8353,10 @@ clo:
   appears_in:
   - mco
   contact:
-    email: siiraa@umich.edu
-    github: siiraa
-    name: Sirarat Sarntivijai
-    orcid: 0000-0002-2548-641X
+    email: zhengj2007@gmail.com
+    github: zhengj2007
+    name: Jie Zheng
+    orcid: 0000-0002-2999-0103
   depends_on:
   - cl
   - doid
@@ -8565,7 +8565,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.207'
+  version: '2.208'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -13415,7 +13415,7 @@ dpo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/drosophila-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2024-02-23'
+  version: '2024-04-25'
 dpv:
   description: Description of Plant Viruses (DPV) provides information about viruses,
     viroids and satellites of plants, fungi and protozoa. It provides taxonomic information,
@@ -15583,7 +15583,14 @@ emmo:
   download_rdf: https://raw.githubusercontent.com/emmo-repo/EMMO/master/emmo.ttl
   example: 03212fd7_abfd_4828_9c8e_62c293052d4b
   homepage: https://emmo-repo.github.io
+  keywords:
+  - communication science
+  - philosophy
+  - physics
   license: CC-BY-4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmtEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--69489934048fba98feded162d24a8e3b36c9d370/EMMO.jpg?disposition=inline
+  mappings:
+    fairsharing: FAIRsharing.1bdf3c
   name: Elementary Multiperspective Material Ontology
   preferred_prefix: emmo
   repository: https://github.com/emmo-repo/EMMO
@@ -17829,7 +17836,7 @@ fbbt:
   - FBbt
   - FBbt_root
   uri_format: http://purl.obolibrary.org/obo/FBbt_$1
-  version: '2024-02-22'
+  version: '2024-04-25'
 fbcv:
   appears_in:
   - ontoavida
@@ -17888,7 +17895,7 @@ fbcv:
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2024-02-23'
+  version: '2024-04-25'
 fbdv:
   contact:
     email: cp390@cam.ac.uk
@@ -17939,7 +17946,7 @@ fbdv:
   synonyms:
   - FBdv
   uri_format: http://purl.obolibrary.org/obo/FBdv_$1
-  version: '2024-04-18'
+  version: '2024-04-25'
 fbol:
   comment: Website down, checked on 2021-10-07
   deprecated: true
@@ -21555,7 +21562,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://purl.obolibrary.org/obo/GO_$1
-  version: '2024-03-28'
+  version: '2024-04-18'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -22877,7 +22884,7 @@ hancestro:
   rdf_uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
   repository: https://github.com/EBISPOT/ancestro
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
-  version: '2024-02-07'
+  version: '2024-04-25'
 hao:
   contact:
     email: diapriid@gmail.com
@@ -24085,6 +24092,7 @@ hp:
   - biomedical science
   - disease
   - genetics
+  - industry
   - obo
   - ontology
   - phenomics
@@ -24100,6 +24108,7 @@ hp:
     fairsharing: FAIRsharing.kbtt7f
     hl7: 2.16.840.1.113883.6.339
     integbio: nbdc02559
+    lov: hpo
     miriam: hp
     n2t: hp
     obofoundry: hp
@@ -24150,7 +24159,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2024-04-04'
+  version: '2024-04-19'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -31988,17 +31997,36 @@ mimodb:
     year: 2010
   uri_format: http://immunet.cn/bdb/index.php/mimoset/$1
 minid:
+  contact:
+    email: foster@uchicago.edu
+    name: Ian Foster
+    orcid: 0000-0003-2129-5269
   description: Minid are identifiers used to provide robust reference to intermediate
     data generated during the course of a research investigation.
   example: b97957
   homepage: https://fair-research.org
+  keywords:
+  - citation
+  - data retrieval
+  - publication
+  - subject agnostic
   mappings:
     biocontext: MINID
+    fairsharing: FAIRsharing.d099fb
     miriam: minid
     n2t: minid
   name: Minimal Viable Identifier
   pattern: ^[A-Za-z0-9]+$
   preferred_prefix: minid
+  publications:
+  - doi: 10.1371/journal.pone.0213013
+    pubmed: '30973881'
+    title: 'Reproducible big data science: A case study in continuous FAIRness'
+    year: 2019
+  - doi: 10.1371/journal.pone.0294883
+    title: 'Correction: Reproducible big data science: A case study in continuous
+      FAIRness'
+    year: 2023
   uri_format: https://hdl.handle.net/hdl:20.500.12582/$1
 minid.test:
   description: 'Minid are identifiers used to provide robust reference to intermediate
@@ -33702,7 +33730,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.146
+  version: 4.1.152
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -34127,6 +34155,15 @@ mzspec:
     homepage: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum
     name: Universal Spectrum Identifier through Peptide Atlas
     uri_format: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1
+  - code: ebi
+    description: PRIDE is a database of PRoteomics IDEntifications. It contains protein
+      and peptide identifications (including details of post-translational modifications)
+      together with the mass spectrometric evidence supporting these identifications.
+      PRIDE acts as a repository for mass spectrometry data, specifically the fragment
+      ion spectra used to identify peptide sequences.
+    homepage: https://www.ebi.ac.uk/pride
+    name: PRIDE
+    uri_format: https://www.ebi.ac.uk/pride/archive/usi?usi=mzspec:$1
   publications:
   - doi: 10.1038/s41592-021-01184-6
     pmc: PMC8405201
@@ -38159,7 +38196,7 @@ om:
     Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics;
     Information technology; Typography; Shipping; Food engineering; Post-harvest;
     technology; Dynamics of texture and taste; Packaging'
-  download_owl: http://aber-owl.net/media/ontologies/OM/28/om.owl
+  download_owl: http://aber-owl.net/media/ontologies/OM/29/om.owl
   download_rdf: https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf
   example: Dimension
   homepage: https://github.com/HajoRijgersberg/OM
@@ -38237,9 +38274,9 @@ omia:
     orcid: 0000-0002-5520-6597
   description: Online Mendelian Inheritance in Animals (OMIA) is a catalogue/compendium
     of inherited disorders, other (single-locus) traits, and associated genes and
-    variants in 363 animal species (other than human and mouse and rats and zebrafish,
-    which have their own resources).
-  example: '1000'
+    variants in more than 500 vertebrate animal species (other than human, mouse,
+    rats, zebrafish and western clawed frog, which have their own resources).
+  example: '001000'
   homepage: https://omia.org
   keywords:
   - classification
@@ -38254,7 +38291,7 @@ omia:
     n2t: omia
     prefixcommons: omia
   name: Online Mendelian Inheritance in Animals
-  pattern: ^\d+$
+  pattern: ^\d{6}$
   preferred_prefix: omia
   providers:
   - code: bio2rdf
@@ -47192,7 +47229,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.220'
+  version: '6.221'
 rtecs:
   contributor:
     email: cthoyt@gmail.com
@@ -54920,6 +54957,7 @@ vbo:
   license: CC-BY-4.0
   mappings:
     aberowl: VBO
+    bioportal: VBO
     obofoundry: vbo
     ols: vbo
     ontobee: VBO
@@ -55289,8 +55327,12 @@ viaf:
     available on the Web.
   example: '75121530'
   homepage: http://viaf.org
+  keywords:
+  - centrally registered identifier
+  - knowledge and information systems
   mappings:
     bartoc: '2053'
+    fairsharing: FAIRsharing.a15ac6
     miriam: viaf
     n2t: viaf
   name: Virtual International Authority File
@@ -56034,7 +56076,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-04-15'
+  version: '2024-04-23'
 vto:
   contact:
     email: balhoff@renci.org
@@ -57068,7 +57110,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.163'
+  version: '4.164'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -57326,7 +57368,7 @@ xpo:
   rdf_uri_format: http://purl.obolibrary.org/obo/XPO_$1
   repository: https://github.com/obophenotype/xenopus-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/XPO_$1
-  version: '2022-09-15'
+  version: '2024-04-18'
 xsd:
   contributor:
     email: cthoyt@gmail.com
