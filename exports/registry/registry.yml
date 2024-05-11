@@ -563,6 +563,7 @@ adw:
   - taxonomic classification
   mappings:
     aberowl: ADW
+    agroportal: ADW
     biocontext: ADW
     bioportal: ADW
     fairsharing: FAIRsharing.t9fvdn
@@ -749,6 +750,31 @@ afo:
   no_own_terms: true
   preferred_prefix: afo
   version: 2024/03
+afpo:
+  contact:
+    email: mcmelek@msn.com
+    github: Melek-C
+    name: Melek Chaouch
+    orcid: 0000-0001-5868-4204
+  description: AfPO is a tool which enables to annotate the African individuals, and
+    brings together knowledge accumulated about existing populations with their genetic
+    fingerprint in a standardized format.
+  download_json: http://purl.obolibrary.org/obo/afpo.json
+  download_obo: http://purl.obolibrary.org/obo/afpo.obo
+  download_owl: http://purl.obolibrary.org/obo/afpo.owl
+  example: '0000440'
+  homepage: https://github.com/h3abionet/afpo
+  keywords:
+  - obo
+  - ontology
+  license: CC-BY-4.0
+  mappings:
+    obofoundry: afpo
+  name: African Population Ontology
+  preferred_prefix: AfPO
+  rdf_uri_format: http://purl.obolibrary.org/obo/AfPO_$1
+  repository: https://github.com/h3abionet/afpo
+  uri_format: http://purl.obolibrary.org/obo/AfPO_$1
 aftol.category:
   contact:
     email: davem@umn.edu
@@ -1779,7 +1805,7 @@ apo:
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2024-04-01'
+  version: '2024-04-26'
 apollosv:
   appears_in:
   - scdo
@@ -7027,7 +7053,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '232'
+  version: '233'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -8432,12 +8458,12 @@ clo:
 cls:
   description: Cell line collections (Providers)
   example: 300108/p3934_A-172
-  homepage: https://cls.shop/
+  homepage: https://www.cytion.com/
   mappings:
     cellosaurus: CLS
   name: Cell Lines Service
   preferred_prefix: cls
-  uri_format: https://cls.shop/$1
+  uri_format: https://www.cytion.com/$1
 clyh:
   contact:
     email: lucas.leclere@obs-vlfr.fr
@@ -8565,7 +8591,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.208'
+  version: '2.209'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -8780,11 +8806,15 @@ co_325:
   uri_format: https://cropontology.org/rdf/CO_325:$1
   version: '2019-10-09'
 co_326:
+  contact:
+    email: helpdesk@cropontology-curationtool.org
+    name: Stephanie Bocs Sidibe
   description: Draft version
   example: '0000254'
   homepage: https://cropontology.org/ontology/CO_326/Coconut
   license: CC-BY-4.0
   mappings:
+    agroportal: CO_326
     cropoct: CO_326
     ols: co_326
   name: Coconut ontology
@@ -9412,15 +9442,19 @@ co_366:
   repository: https://github.com/bioversity/Crop-Ontology
   uri_format: https://cropontology.org/rdf/CO_366:$1
 co_367:
-  description: 'Curator name: Clara S. Stanschewski; Curator Affiliation: King Abdullah
-    University of Science and Technology; Contributing Scientists or Crop expert group:
-    The Salt Lab and the Quinoa Phenotyping Consortium Creation Date: 23.05.2021'
+  contact:
+    email: helpdesk@cropontology-curationtool.org
+    name: Crop Ontology Helpdesk
+  description: Quinoa Ontology database of the Crop Ontology (CO_367) of the Generation
+    Challenge Program (GCP) describe traits variables of Quinoa Germinate Database
+    http://germinate.quinoadb.org. Quinoa Phenotyping Consortium Creation Date 23.05.2021
   example: '0000004'
   homepage: http://cropontology.org/term/CO_367:ROOT
   license: CC-BY-4.0
   mappings:
+    agroportal: CO_367
     cropoct: CO_367
-  name: Quinoa Ontology ontology
+  name: Quinoa Ontology
   pattern: ^\d{7}$
   preferred_prefix: CO_367
   repository: https://github.com/bioversity/Crop-Ontology
@@ -13228,7 +13262,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-03-28'
+  version: '2024-04-30'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -18800,16 +18834,17 @@ foodb.food:
   uri_format: https://foodb.ca/foods/$1
 foodex2:
   contact:
-    email: datex@efsa.europa.eu
-    name: European Food Safety Authority
-  description: FoodEx2 is a comprehensive food classification and description system
-    aimed at covering the need to describe food in data collections across different
-    food safety domains.
+    email: data@food.gov.uk
+    name: UK Food Standard Agency
+  description: Food Type identifiers, supporting codes and vocabularies based on the
+    EFSA FoodEx2 (https://www.efsa.europa.eu/en/data/data-standardisation) that are
+    being tested in the development of the FSA's code and data standards repository.
+    These codes may be used within FSA data.
   example: A0TMC
-  homepage: http://www.efsa.europa.eu/
+  homepage: https://data.food.gov.uk/codes/_foodtype
   mappings:
     agroportal: FOODEX2
-  name: Food Classification and Description System
+  name: Food Classification and Description System (from FSA Food Type identifiers)
   preferred_prefix: foodex2
   uri_format: http://data.food.gov.uk/codes/foodtype/id/$1
 foodon:
@@ -19415,7 +19450,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-04-15'
+  version: '2024-04-27'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -21562,7 +21597,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://purl.obolibrary.org/obo/GO_$1
-  version: '2024-04-18'
+  version: '2024-04-24'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -24159,7 +24194,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2024-04-19'
+  version: '2024-04-26'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -30772,8 +30807,8 @@ merops.family:
   uri_format: https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1
 mesh:
   contact:
-    email: willisj@mail.nlm.nih.gov
-    name: Jan Willis, NLM
+    email: custserv@nlm.nih.gov
+    name: NLM Customer Service
   contributor_extras:
   - github: rombaum
     name: Roman Baum
@@ -32797,7 +32832,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.131'
+  version: '2.132'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -33427,7 +33462,7 @@ mp:
   download_obo: http://purl.obolibrary.org/obo/mp.obo
   download_owl: http://purl.obolibrary.org/obo/mp.owl
   example: '0005452'
-  homepage: http://www.informatics.jax.org/searches/MP_form.shtml
+  homepage: https://www.informatics.jax.org/vocab/mp_ontology/
   keywords:
   - behavior
   - developmental biology
@@ -33504,7 +33539,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2024-03-27'
+  version: '2024-04-23'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -46900,7 +46935,7 @@ ro:
   - obo_rel
   - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
-  version: '2024-02-13'
+  version: '2024-04-24'
 roleo:
   banana: RoleO
   banana_peel: _
@@ -50980,6 +51015,7 @@ stitch:
     n2t: stitch
     pathguide: '313'
     prefixcommons: stitch
+    re3data: r3d100012165
   name: Search Tool for Interactions of Chemicals
   pattern: ^\w{14}$
   preferred_prefix: stitch
@@ -54967,7 +55003,7 @@ vbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2024-01-04'
+  version: '2024-04-18'
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
@@ -57110,7 +57146,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.164'
+  version: '4.165'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
