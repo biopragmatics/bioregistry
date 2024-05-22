@@ -31,7 +31,6 @@ EMAIL_BLACKLIST = {
     "support@bel.bio",
     "loinc@regenstrief.org",
     "info@who.int",
-    "loinc@regenstrief.org",
     "admin@envipath.org",
     "interhelp@ebi.ac.uk",
     "datex@efsa.europa.eu",

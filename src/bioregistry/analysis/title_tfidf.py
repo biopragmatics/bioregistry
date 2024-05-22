@@ -124,9 +124,9 @@ def main() -> None:
 
 
 def _map_labels(s: str):
-    if s in {"1", "1.0", 1, 1.0}:
+    if s in {"1", "1.0", 1.0}:
         return 1
-    if s in {"0", "0.0", 0, 0.0}:
+    if s in {"0", "0.0", 0.0}:
         return 0
     return None
 
