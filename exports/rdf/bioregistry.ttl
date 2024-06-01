@@ -611,7 +611,8 @@
 @prefix hepro: <http://purl.obolibrary.org/obo/HEPRO_> .
 @prefix hgmd: <http://www.hgmd.cf.ac.uk/ac/gene.php?gene=> .
 @prefix hgnc: <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/> .
-@prefix hgnc.genegroup: <https://www.genenames.org/cgi-bin/genefamilies/set/> .
+@prefix hgnc.genefamily: <https://www.genenames.org/cgi-bin/genefamilies/set/> .
+@prefix hgnc.genegroup: <https://www.genenames.org/data/genegroup/#!/group/> .
 @prefix hgnc.symbol: <https://www.genenames.org/data/gene-symbol-report/#!/symbol/> .
 @prefix hinv.locus: <http://h-invitational.jp/hinv/spsoup/locus_view?hix_id=> .
 @prefix hinv.protein: <http://h-invitational.jp/hinv/protein/protein_view.cgi?hip_id=> .
@@ -2263,7 +2264,7 @@ bioregistry:affy.probeset a bioregistry.schema:0000001 ;
 
 bioregistry:afpo a bioregistry.schema:0000001 ;
     rdfs:label "African Population Ontology" ;
-    dcterms:description "AfPO is a tool which enables to annotate the African individuals, and brings together knowledge accumulated about existing populations with their genetic fingerprint in a standardized format."^^xsd:string ;
+    dcterms:description "AfPO is an ontology that can be used in the study of diverse populations across Africa. It brings together publicly available demographic, anthropological and genetic data relating to African people in a standardised and structured format. The AfPO can be employed to classify African study participants comprehensively in prospective research studies. It can also be used to classify past study participants by mapping them using a language or ethnicity identifier or synonyms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/h3abionet/afpo> ;
     skos:exactMatch aberowl:AFPO,
@@ -3711,7 +3712,7 @@ bioregistry:biolink a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Gene"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/biolink/vocab/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BIOLINK/60/biolink.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BIOLINK/61/biolink.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
     bioregistry.schema:0000024 "https://w3id.org/biolink/vocab/"^^xsd:string ;
@@ -9890,7 +9891,7 @@ bioregistry:hgnc.genefamily a bioregistry.schema:0000001 ;
         "HGNC_GROUP",
         "hgnc.family" ;
     bioregistry.schema:0000024 "https://www.genenames.org/cgi-bin/genefamilies/set/"^^xsd:string ;
-    bioregistry.schema:0000027 hgnc.genegroup:2029 ;
+    bioregistry.schema:0000027 hgnc.genefamily:2029 ;
     bioregistry.schema:0000029 "hgnc.genefamily" .
 
 bioregistry:hinv.locus a bioregistry.schema:0000001 ;
@@ -22431,6 +22432,8 @@ aberowl:CLO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:CLYH dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+aberowl:CMECS dcterms:isPartOf bioregistry.metaresource:aberowl .
+
 aberowl:CMF dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:CMO dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -30797,7 +30800,8 @@ bioregistry:cmecs a bioregistry.schema:0000001 ;
     rdfs:label "Costal and Marine Ecological Classification Standard" ;
     dcterms:description "Use this database to browse the CMECS classification and to get definitions for individual CMECS Units. This database contains the units that were published in the Coastal and Marine Ecological Classification Standard."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:CMECS ;
+    skos:exactMatch aberowl:CMECS,
+        bioportal:CMECS ;
     dcat:keyword "ecology",
         "marine ecology",
         "ontology" ;
@@ -30805,6 +30809,7 @@ bioregistry:cmecs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "595"^^xsd:string ;
     bioregistry.schema:0000006 "https://cmecscatalog.org/cmecs/classification/unit/$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/CMECS/2/cmecs.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Kate Rose" ;
             foaf:mbox "kate.rose@noaa.gov" ] ;
@@ -33405,10 +33410,10 @@ bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     skos:exactMatch miriam:hgnc.genegroup ;
     foaf:homepage <https://www.genenames.org> ;
     bioregistry.schema:0000005 "141"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.genenames.org/cgi-bin/genefamilies/set/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.genenames.org/data/genegroup/#!/group/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://www.genenames.org/cgi-bin/genefamilies/set/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.genenames.org/data/genegroup/#!/group/"^^xsd:string ;
     bioregistry.schema:0000027 hgnc.genegroup:141 ;
     bioregistry.schema:0000029 "hgnc.genegroup" .
 
@@ -38773,7 +38778,7 @@ bioregistry:worldavatar.kin a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "worldavatar.kin" .
 
 bioregistry:wormbase a bioregistry.schema:0000001 ;
-    rdfs:label "Wormbase Gene" ;
+    rdfs:label "WormBase" ;
     dcterms:description "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1805,
@@ -57237,6 +57242,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:CLAO,
         aberowl:CLO,
         aberowl:CLYH,
+        aberowl:CMECS,
         aberowl:CMF,
         aberowl:CMO,
         aberowl:CMPO,

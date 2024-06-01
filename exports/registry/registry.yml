@@ -777,9 +777,12 @@ afpo:
     github: Melek-C
     name: Melek Chaouch
     orcid: 0000-0001-5868-4204
-  description: AfPO is a tool which enables to annotate the African individuals, and
-    brings together knowledge accumulated about existing populations with their genetic
-    fingerprint in a standardized format.
+  description: AfPO is an ontology that can be used in the study of diverse populations
+    across Africa. It brings together publicly available demographic, anthropological
+    and genetic data relating to African people in a standardised and structured format.
+    The AfPO can be employed to classify African study participants comprehensively
+    in prospective research studies. It can also be used to classify past study participants
+    by mapping them using a language or ethnicity identifier or synonyms.
   download_json: http://purl.obolibrary.org/obo/afpo.json
   download_obo: http://purl.obolibrary.org/obo/afpo.obo
   download_owl: http://purl.obolibrary.org/obo/afpo.owl
@@ -4173,7 +4176,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/60/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/61/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   keywords:
@@ -8718,6 +8721,7 @@ cmecs:
   description: Use this database to browse the CMECS classification and to get definitions
     for individual CMECS Units. This database contains the units that were published
     in the Coastal and Marine Ecological Classification Standard.
+  download_owl: http://aber-owl.net/media/ontologies/CMECS/2/cmecs.owl
   example: '595'
   homepage: https://cmecscatalog.org/cmecs
   keywords:
@@ -8725,6 +8729,7 @@ cmecs:
   - marine ecology
   - ontology
   mappings:
+    aberowl: CMECS
     bioportal: CMECS
   name: Costal and Marine Ecological Classification Standard
   pattern: ^\d+$
@@ -8806,7 +8811,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.210'
+  version: '2.211'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -19777,7 +19782,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-05-08'
+  version: '2024-05-21'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -21677,7 +21682,7 @@ gno:
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: '2024-04-17'
+  version: '2024-05-21'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -23806,7 +23811,7 @@ hgnc.genegroup:
   name: HGNC Gene Group
   pattern: ^\d+$
   preferred_prefix: hgnc.genegroup
-  uri_format: https://www.genenames.org/cgi-bin/genefamilies/set/$1
+  uri_format: https://www.genenames.org/data/genegroup/#!/group/$1
 hgnc.symbol:
   description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene
     name and symbol (short-form abbreviation) for each known human gene. All approved
@@ -34395,7 +34400,7 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2023-12-21'
+  version: '2024-05-21'
 ms:
   banana: MS
   contact:
@@ -45740,7 +45745,7 @@ pw:
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/PW_$1
-  version: '7.82'
+  version: '7.83'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -46121,7 +46126,7 @@ rbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
-  version: '2024-05-13'
+  version: '2024-05-16'
 rcb:
   contact:
     email: atsushi.yoshiki@riken.jp
@@ -48141,7 +48146,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.221'
+  version: '6.222'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -52694,7 +52699,7 @@ symp:
   synonyms:
   - SYMP
   uri_format: http://purl.obolibrary.org/obo/SYMP_$1
-  version: '2024-02-09'
+  version: '2024-05-17'
 synapse:
   description: Synapse is a collaborative, open-source research platform that allows
     teams to share data, track analyses, and collaborate.
@@ -57125,7 +57130,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-05-13'
+  version: '2024-05-15'
 vto:
   contact:
     email: balhoff@renci.org
@@ -57786,6 +57791,11 @@ wormbase:
     github: tharris
     name: Todd W Harris
     orcid: 0000-0003-3406-163X
+  contributor_extras:
+  - email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
   description: WormBase is an online bioinformatics database of the biology and genome
     of the model organism Caenorhabditis elegans and other nematodes. It is used by
     the C. elegans research community both as an information resource and as a mode
@@ -57833,7 +57843,7 @@ wormbase:
     rrid: WB-STRAIN:WBStrain
     uniprot: DB-0110
     wikidata: P3860
-  name: Wormbase Gene
+  name: WormBase
   pattern: ^WB[A-Z][a-z]+\d+$
   preferred_prefix: WormBase
   providers:
@@ -58169,7 +58179,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.166'
+  version: '4.167'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

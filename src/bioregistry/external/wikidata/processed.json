@@ -2548,6 +2548,80 @@
     "prefix": "P12670",
     "uri_format": "https://hirc.botanic.hr/fcd/DetaljiFrame.aspx?IdVrste=$1"
   },
+  "P12742": {
+    "database": "Q125976761",
+    "description": "numeric identifier of a Hospital at the Bundes-Klinik-Atlas",
+    "example": [
+      "772807",
+      "772859",
+      "772916"
+    ],
+    "homepage": "https://bundes-klinik-atlas.de/krankenhaussuche",
+    "name": "Bundes-Klinik-Atlas hospital ID",
+    "pattern": "^\\d+$",
+    "prefix": "P12742",
+    "uri_format": "https://bundes-klinik-atlas.de/krankenhaussuche/krankenhaus/$1/"
+  },
+  "P12750": {
+    "database": "Q115665911",
+    "description": "identifier for a taxon on the Dermaptera Species File database",
+    "example": [
+      "887721",
+      "888282",
+      "888460",
+      "888572"
+    ],
+    "homepage": "https://zoraptera.speciesfile.org/otus/887721/overview",
+    "name": "Dermaptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12750",
+    "uri_format": "https://dermaptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12751": {
+    "database": "Q115665913",
+    "description": "identifier for a taxon in the Embioptera Species File database",
+    "example": [
+      "915589",
+      "915942",
+      "915989",
+      "916293"
+    ],
+    "homepage": "https://embioptera.speciesfile.org/otus/915589/overview",
+    "name": "Embioptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12751",
+    "uri_format": "https://embioptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12752": {
+    "database": "Q122839980",
+    "description": "identifier for a taxon in the Isoptera Species File database",
+    "example": [
+      "585557",
+      "83484",
+      "85193",
+      "85835"
+    ],
+    "homepage": "https://isoptera.speciesfile.org/otus/585557/overview",
+    "name": "Isoptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12752",
+    "uri_format": "https://isoptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12753": {
+    "database": "Q115665927",
+    "description": "identifier for a taxon on the Zoraptera Species File Online website",
+    "example": [
+      "924464",
+      "924470",
+      "924500",
+      "924520"
+    ],
+    "homepage": "https://zoraptera.speciesfile.org/otus/924464/overview",
+    "name": "Zoraptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12753",
+    "uri_format": "https://zoraptera.speciesfile.org/otus/$1/overview"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -3957,7 +4031,8 @@
       "554"
     ],
     "name": "ISO 3166-1 numeric code",
-    "prefix": "P299"
+    "prefix": "P299",
+    "uri_format": "https://data.who.int/countries/$1"
   },
   "P3031": {
     "description": "identifier for a taxon in the EPPO Global Database",
@@ -7721,7 +7796,7 @@
     "uri_format": "https://www.hemiptera-databases.org/cgi-bin/Tessaratomidae/tessaratomidae.pl?db=tessaratomidae&lang=en&card=taxon&rank=species&id=$1"
   },
   "P6516": {
-    "description": "identifier for a taxon in ScaleNet",
+    "description": "identifier for a genus or species in ScaleNet",
     "example": [
       "Diaspidiotus juglansregiae",
       "Waxiella",
@@ -8388,9 +8463,9 @@
     ],
     "homepage": "https://www.drugbank.ca",
     "name": "DrugBank ID",
-    "pattern": "^(SALT\\d{1}|CAT\\d{1})?\\d{5}$",
+    "pattern": "^DB(SALT\\d|CAT\\d)?\\d{5}$",
     "prefix": "P715",
-    "uri_format": "https://go.drugbank.com/drugs/DB$1"
+    "uri_format": "https://go.drugbank.com/drugs/$1"
   },
   "P7173": {
     "description": "Terminologia Anatomica second edition (2019) identifier. Unique identifier for human anatomical terminology.",
@@ -9030,7 +9105,7 @@
       "24515059"
     ],
     "homepage": "https://pascal-francis.inist.fr/vibad/index.php?action=advancedSearch",
-    "name": "Pascal et Francis ID",
+    "name": "INIST ID",
     "pattern": "^\\d+$",
     "prefix": "P8109",
     "uri_format": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=$1"
@@ -10270,6 +10345,7 @@
     "uri_format": "https://www.aadfi.it/?accademico=$1"
   },
   "P9635": {
+    "database": "Q37155",
     "description": "identifier of a medicine listed in the electronic Essential Medicines List (eEML) published by the WHO",
     "example": [
       "108",
@@ -10286,7 +10362,8 @@
     "example": [
       "deceased/abderhalden",
       "former/funes",
-      "ordinary/bagnato"
+      "ordinary/bagnato",
+      "perdurante/pasini"
     ],
     "homepage": "http://www.pas.va/content/accademia/en/academicians.html",
     "name": "PAS member ID",
