@@ -25,14 +25,21 @@ def get_commit_before_date(date, owner, name, branch):
     """
     Get the commit before a given date.
 
-    Parameters:
-    date (datetime): The date to get the commit before.
-    owner (str): The repository owner.
-    name (str): The repository name.
-    branch (str): The branch name.
+    Parameters
+    ----------
+    date : datetime
+        The date to get the commit before.
+    owner : str
+        The repository owner.
+    name : str
+        The repository name.
+    branch : str
+        The branch name.
 
-    Returns:
-    str: The SHA of the commit before the given date, or None if no commit is found.
+    Returns
+    -------
+    str
+        The SHA of the commit before the given date, or None if no commit is found.
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
@@ -55,13 +62,13 @@ def get_file_at_commit(owner, name, file_path, commit_sha):
     Get the file content at a specific commit.
 
     Parameters:
-    owner (str): The repository owner.
-    name (str): The repository name.
-    file_path (str): The file path in the repository.
-    commit_sha (str): The commit SHA.
+        owner (str): The repository owner.
+        name (str): The repository name.
+        file_path (str): The file path in the repository.
+        commit_sha (str): The commit SHA.
 
     Returns:
-    dict: The file content as a dictionary.
+        dict: The file content as a dictionary.
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
     params = {"ref": commit_sha}
@@ -79,11 +86,11 @@ def compare_bioregistry(old_data, new_data):
     Compare two versions of the bioregistry data.
 
     Parameters:
-    old_data (dict): The old bioregistry data.
-    new_data (dict): The new bioregistry data.
+        old_data (dict): The old bioregistry data.
+        new_data (dict): The new bioregistry data.
 
     Returns:
-    tuple: Sets of added prefixes, deleted prefixes, and a count of updated prefixes, along with update details.
+        tuple: Sets of added prefixes, deleted prefixes, and a count of updated prefixes, along with update details.
     """
     old_prefixes = set(old_data.keys())
     new_prefixes = set(new_data.keys())
@@ -107,11 +114,11 @@ def compare_entries(old_entry, new_entry):
     Compare individual entries for detailed changes.
 
     Parameters:
-    old_entry (dict): The old entry data.
-    new_entry (dict): The new entry data.
+        old_entry (dict): The old entry data.
+        new_entry (dict): The new entry data.
 
     Returns:
-    dict: A dictionary of changes.
+        dict: A dictionary of changes.
     """
     changes = {}
     for key in old_entry.keys() | new_entry.keys():
@@ -125,10 +132,10 @@ def get_all_mapping_keys(data):
     Get all unique mapping keys from the bioregistry data.
 
     Parameters:
-    data (dict): The bioregistry data.
+        data (dict): The bioregistry data.
 
     Returns:
-    set: A set of all unique mapping keys.
+        set: A set of all unique mapping keys.
     """
     mapping_keys = set()
     for prefix in data:
@@ -142,11 +149,11 @@ def get_data(date1, date2):
     Retrieve and compare bioregistry data between two dates.
 
     Parameters:
-    date1 (str): The starting date in ISO format.
-    date2 (str): The ending date in ISO format.
+        date1 (str): The starting date in ISO format.
+        date2 (str): The ending date in ISO format.
 
     Returns:
-    tuple: Data on added, deleted, and updated prefixes, update details, and old and new bioregistry data.
+        tuple: Data on added, deleted, and updated prefixes, update details, and old and new bioregistry data.
     """
     date1 = isoparse(date1).astimezone(tz.tzutc())
     date2 = isoparse(date2).astimezone(tz.tzutc())
@@ -187,13 +194,13 @@ def summarize_changes(added, deleted, updated, update_details):
     Summarize changes in the bioregistry data.
 
     Parameters:
-    added (set): Set of added prefixes.
-    deleted (set): Set of deleted prefixes.
-    updated (int): Count of updated prefixes.
-    update_details (list): List of update details.
+        added (set): Set of added prefixes.
+        deleted (set): Set of deleted prefixes.
+        updated (int): Count of updated prefixes.
+        update_details (list): List of update details.
 
     Returns:
-    None
+        None
     """
     logger.info(f"Total Added Prefixes: {len(added)}")
     logger.info(f"Total Deleted Prefixes: {len(deleted)}")
@@ -207,16 +214,16 @@ def visualize_changes(
     Visualize changes in the bioregistry data.
 
     Parameters:
-    added (set): Set of added prefixes.
-    deleted (set): Set of deleted prefixes.
-    updated (int): Count of updated prefixes.
-    update_details (list): List of update details.
-    start_date (str): The starting date.
-    end_date (str): The ending date.
-    all_mapping_keys (set): Set of all mapping keys.
+        added (set): Set of added prefixes.
+        deleted (set): Set of deleted prefixes.
+        updated (int): Count of updated prefixes.
+        update_details (list): List of update details.
+        start_date (str): The starting date.
+        end_date (str): The ending date.
+        all_mapping_keys (set): Set of all mapping keys.
 
     Returns:
-    None
+        None
     """
     main_fields = {}
     mapping_fields = {key: 0 for key in all_mapping_keys}
@@ -285,11 +292,11 @@ def final(date1, date2):
     Process and visualize changes in Bioregistry data between two dates.
 
     Parameters:
-    date1 (str): The starting date in the format YYYY-MM-DD.
-    date2 (str): The ending date in the format YYYY-MM-DD.
+        date1 (str): The starting date in the format YYYY-MM-DD.
+        date2 (str): The ending date in the format YYYY-MM-DD.
 
     Returns:
-    None
+        None
     """
     added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
         date1, date2
