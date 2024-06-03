@@ -164,14 +164,13 @@ def get_data(date1, date2):
     )
 
 
-def summarize_changes(added, deleted, updated, update_details):
+def summarize_changes(added, deleted, updated):
     """
     Summarize changes in the bioregistry data.
 
     :param added: Set of added prefixes.
     :param deleted: Set of deleted prefixes.
     :param updated: Count of updated prefixes.
-    :param update_details: List of update details.
     :returns: None
     """
     logger.info(f"Total Added Prefixes: {len(added)}")
@@ -179,18 +178,15 @@ def summarize_changes(added, deleted, updated, update_details):
     logger.info(f"Total Updated Prefixes: {updated}")
 
 
-def visualize_changes(added, deleted, updated, update_details, start_date, end_date, all_mapping_keys):
+def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
     """
-    Visualize changes in the bioregistry data.
-
-    :param added: Set of added prefixes.
-    :param deleted: Set of deleted prefixes.
-    :param updated: Count of updated prefixes.
-    :param update_details: List of update details.
-    :param start_date: The starting date.
-    :param end_date: The ending date.
-    :param all_mapping_keys: Set of all mapping keys.
-    :returns: None
+        Visualize changes in the bioregistry data.
+    .
+        :param update_details: List of update details.
+        :param start_date: The starting date.
+        :param end_date: The ending date.
+        :param all_mapping_keys: Set of all mapping keys.
+        :returns: None
     """
     main_fields = {}
     mapping_fields = {key: 0 for key in all_mapping_keys}
@@ -221,7 +217,7 @@ def visualize_changes(added, deleted, updated, update_details, start_date, end_d
         # Plot for main fields
         if main_fields:
             main_fields_df = pd.DataFrame(list(main_fields.items()), columns=["Field", "Count"])
-            main_fields_df = sorted(main_fields_df.items(), key=lambda x: x[1], reverse=True)
+            main_fields_df = main_fields_df.sort_values(by="Count", ascending=False)
 
             plt.figure(figsize=(15, 8))
             plt.bar(main_fields_df["Field"], main_fields_df["Count"], color="green")
@@ -235,8 +231,10 @@ def visualize_changes(added, deleted, updated, update_details, start_date, end_d
 
         # Plot for mapping fields
         if mapping_fields:
-            mapping_fields_df = pd.DataFrame(list(mapping_fields.items()), columns=["Field", "Count"])
-            mapping_fields_df = sorted(mapping_fields_df.items(), key=lambda x: x[1], reverse=True)
+            mapping_fields_df = pd.DataFrame(
+                list(mapping_fields.items()), columns=["Field", "Count"]
+            )
+            mapping_fields_df = mapping_fields_df.sort_values(by="Count", ascending=False)
 
             plt.figure(figsize=(15, 8))
             plt.bar(mapping_fields_df["Field"], mapping_fields_df["Count"], color="blue")
@@ -260,10 +258,12 @@ def final(date1, date2):
     :param date2: The ending date in the format YYYY-MM-DD.
     :returns: None
     """
-    added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(date1, date2)
+    added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
+        date1, date2
+    )
     if added is not None and updated is not None:
-        summarize_changes(added, deleted, updated, update_details)
-        visualize_changes(added, deleted, updated, update_details, date1, date2, all_mapping_keys)
+        summarize_changes(added, deleted, updated)
+        visualize_changes(update_details, date1, date2, all_mapping_keys)
 
 
 if __name__ == "__main__":
