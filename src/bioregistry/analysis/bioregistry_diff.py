@@ -1,8 +1,12 @@
-import requests
+"""
+Module for comparing different versions of the bioregistry data and visualizing changes.
+"""
+
 import json
+import logging
+import requests
 import click
 import pandas as pd
-import logging
 import matplotlib.pyplot as plt
 from dateutil.parser import isoparse
 from dateutil import tz
@@ -215,13 +219,12 @@ def visualize_changes(
     Returns:
         None
     """
-
     main_fields = {}
     mapping_fields = {key: 0 for key in all_mapping_keys}
 
     if update_details:
         # Process mappings fields to exclude them
-        for changes in update_details:
+        for prefix, changes in update_details:
             for field, change in changes.items():
                 if field == "mappings":
                     mappings = change[1] if isinstance(change[1], dict) else change[0]
@@ -231,8 +234,8 @@ def visualize_changes(
                                 mapping_fields[mapping_key] += 1
 
         # Process other fields, excluding mappings
-        for changes in update_details:
-            for field in changes.items():
+        for prefix, changes in update_details:
+            for field, change in changes.items():
                 if field in mapping_fields or field == "mappings":
                     continue
                 if field == "contributor" or field == "contributor_extras":
@@ -280,7 +283,7 @@ def visualize_changes(
 @click.argument("date2")
 def final(date1, date2):
     """
-    This function processes and visualizes changes in Bioregistry data between two dates.
+    Process and visualize changes in Bioregistry data between two dates.
 
     Args:
         date1 (str): The starting date in the format YYYY-MM-DD.
