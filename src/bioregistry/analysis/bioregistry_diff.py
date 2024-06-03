@@ -171,7 +171,6 @@ def summarize_changes(added, deleted, updated):
     :param added: Set of added prefixes.
     :param deleted: Set of deleted prefixes.
     :param updated: Count of updated prefixes.
-    :returns: None
     """
     logger.info(f"Total Added Prefixes: {len(added)}")
     logger.info(f"Total Deleted Prefixes: {len(deleted)}")
@@ -180,7 +179,7 @@ def summarize_changes(added, deleted, updated):
 
 def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
     """
-        Visualize changes in the bioregistry data.
+        Visualizes changes in the bioregistry data.
     .
         :param update_details: List of update details.
         :param start_date: The starting date.
