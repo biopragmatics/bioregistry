@@ -25,7 +25,7 @@ def get_commit_before_date(date, owner, name, branch):
     """
     Get the commit before a given date.
 
-    Args:
+    Parameters:
         date (datetime): The date to get the commit before.
         owner (str): The repository owner.
         name (str): The repository name.
@@ -54,7 +54,7 @@ def get_file_at_commit(owner, name, file_path, commit_sha):
     """
     Get the file content at a specific commit.
 
-    Args:
+    Parameters:
         owner (str): The repository owner.
         name (str): The repository name.
         file_path (str): The file path in the repository.
@@ -78,7 +78,7 @@ def compare_bioregistry(old_data, new_data):
     """
     Compare two versions of the bioregistry data.
 
-    Args:
+    Parameters:
         old_data (dict): The old bioregistry data.
         new_data (dict): The new bioregistry data.
 
@@ -106,7 +106,7 @@ def compare_entries(old_entry, new_entry):
     """
     Compare individual entries for detailed changes.
 
-    Args:
+    Parameters:
         old_entry (dict): The old entry data.
         new_entry (dict): The new entry data.
 
@@ -124,7 +124,7 @@ def get_all_mapping_keys(data):
     """
     Get all unique mapping keys from the bioregistry data.
 
-    Args:
+    Parameters:
         data (dict): The bioregistry data.
 
     Returns:
@@ -141,7 +141,7 @@ def get_data(date1, date2):
     """
     Retrieve and compare bioregistry data between two dates.
 
-    Args:
+    Parameters:
         date1 (str): The starting date in ISO format.
         date2 (str): The ending date in ISO format.
 
@@ -186,7 +186,7 @@ def summarize_changes(added, deleted, updated, update_details):
     """
     Summarize changes in the bioregistry data.
 
-    Args:
+    Parameters:
         added (set): Set of added prefixes.
         deleted (set): Set of deleted prefixes.
         updated (int): Count of updated prefixes.
@@ -206,7 +206,7 @@ def visualize_changes(
     """
     Visualize changes in the bioregistry data.
 
-    Args:
+    Parameters:
         added (set): Set of added prefixes.
         deleted (set): Set of deleted prefixes.
         updated (int): Count of updated prefixes.
@@ -284,7 +284,7 @@ def final(date1, date2):
     """
     Process and visualize changes in Bioregistry data between two dates.
 
-    Args:
+    Parameters:
         date1 (str): The starting date in the format YYYY-MM-DD.
         date2 (str): The ending date in the format YYYY-MM-DD.
 
