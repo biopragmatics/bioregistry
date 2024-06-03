@@ -25,21 +25,14 @@ def get_commit_before_date(date, owner, name, branch):
     """
     Get the commit before a given date.
 
-    Parameters
-    ----------
-    date : datetime
-        The date to get the commit before.
-    owner : str
-        The repository owner.
-    name : str
-        The repository name.
-    branch : str
-        The branch name.
+    Parameters:
+        date (datetime): The date to get the commit before.
+        owner (str): The repository owner.
+        name (str): The repository name.
+        branch (str): The branch name.
 
-    Returns
-    -------
-    str
-        The SHA of the commit before the given date, or None if no commit is found.
+    Returns:
+        str: The SHA of the commit before the given date, or None if no commit is found.
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
