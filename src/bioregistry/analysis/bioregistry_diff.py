@@ -7,20 +7,17 @@ from dateutil.parser import isoparse
 from dateutil import tz
 
 # Constants for the GitHub repository information and API URL
-GITHUB_API_URL = 'https://api.github.com'
-REPO_OWNER = 'biopragmatics'
-REPO_NAME = 'bioregistry'
-BRANCH = 'main'
-FILE_PATH = 'src/bioregistry/data/bioregistry.json'
+GITHUB_API_URL = "https://api.github.com"
+REPO_OWNER = "biopragmatics"
+REPO_NAME = "bioregistry"
+BRANCH = "main"
+FILE_PATH = "src/bioregistry/data/bioregistry.json"
 
 
 # Function to get the commit before a given date
 def get_commit_before_date(date, owner, name, branch):
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
-    params = {
-        "sha": branch,
-        "until": date.isoformat()
-    }
+    params = {"sha": branch, "until": date.isoformat()}
     response = requests.get(url, params=params)
     response.raise_for_status()
     commits = response.json()
@@ -38,9 +35,7 @@ def get_commit_before_date(date, owner, name, branch):
 # Function to get the file content at a specific commit
 def get_file_at_commit(owner, name, file_path, commit_sha):
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
-    params = {
-        "ref": commit_sha
-    }
+    params = {"ref": commit_sha}
     response = requests.get(url, params=params)
     response.raise_for_status()
     file_info = response.json()
@@ -82,8 +77,8 @@ def compare_entries(old_entry, new_entry):
 def get_all_mapping_keys(data):
     mapping_keys = set()
     for prefix in data:
-        if 'mappings' in data[prefix]:
-            mapping_keys.update(data[prefix]['mappings'].keys())
+        if "mappings" in data[prefix]:
+            mapping_keys.update(data[prefix]["mappings"].keys())
     return mapping_keys
 
 
@@ -111,7 +106,15 @@ def get_data(date1, date2):
     new_mapping_keys = get_all_mapping_keys(new_bioregistry)
     all_mapping_keys = old_mapping_keys.union(new_mapping_keys)
 
-    return added, deleted, updated, update_details, old_bioregistry, new_bioregistry, all_mapping_keys
+    return (
+        added,
+        deleted,
+        updated,
+        update_details,
+        old_bioregistry,
+        new_bioregistry,
+        all_mapping_keys,
+    )
 
 
 def summarize_changes(added, deleted, updated, update_details):
@@ -120,7 +123,9 @@ def summarize_changes(added, deleted, updated, update_details):
     print(f"Total Updated Prefixes: {updated}")
 
 
-def visualize_changes(added, deleted, updated, update_details, start_date, end_date, all_mapping_keys):
+def visualize_changes(
+    added, deleted, updated, update_details, start_date, end_date, all_mapping_keys
+):
     main_fields = {}
     mapping_fields = {key: 0 for key in all_mapping_keys}
 
@@ -160,44 +165,48 @@ def visualize_changes(added, deleted, updated, update_details, start_date, end_d
 
         # Plot for main fields
         if main_fields:
-            main_fields_df = pd.DataFrame(list(main_fields.items()), columns=['Field', 'Count'])
-            main_fields_df = main_fields_df.sort_values(by='Count', ascending=False)
+            main_fields_df = pd.DataFrame(list(main_fields.items()), columns=["Field", "Count"])
+            main_fields_df = main_fields_df.sort_values(by="Count", ascending=False)
 
             plt.figure(figsize=(15, 8))
-            plt.bar(main_fields_df['Field'], main_fields_df['Count'], color='green')
-            plt.title(f'Main Fields Updated from {start_date} to {end_date}')
-            plt.ylabel('Count')
-            plt.xlabel('Field')
-            plt.xticks(rotation=45, ha='right')
-            plt.grid(axis='y', linestyle='--', alpha=0.7)
+            plt.bar(main_fields_df["Field"], main_fields_df["Count"], color="green")
+            plt.title(f"Main Fields Updated from {start_date} to {end_date}")
+            plt.ylabel("Count")
+            plt.xlabel("Field")
+            plt.xticks(rotation=45, ha="right")
+            plt.grid(axis="y", linestyle="--", alpha=0.7)
             plt.tight_layout(pad=3.0)
             plt.show()
 
         # Plot for mapping fields
         if mapping_fields:
-            mapping_fields_df = pd.DataFrame(list(mapping_fields.items()), columns=['Field', 'Count'])
-            mapping_fields_df = mapping_fields_df.sort_values(by='Count', ascending=False)
+            mapping_fields_df = pd.DataFrame(
+                list(mapping_fields.items()), columns=["Field", "Count"]
+            )
+            mapping_fields_df = mapping_fields_df.sort_values(by="Count", ascending=False)
 
             plt.figure(figsize=(15, 8))
-            plt.bar(mapping_fields_df['Field'], mapping_fields_df['Count'], color='blue')
-            plt.title(f'Mapping Fields Updated from {start_date} to {end_date}')
-            plt.ylabel('Count')
-            plt.xlabel('Field')
-            plt.xticks(rotation=45, ha='right')
-            plt.grid(axis='y', linestyle='--', alpha=0.7)
+            plt.bar(mapping_fields_df["Field"], mapping_fields_df["Count"], color="blue")
+            plt.title(f"Mapping Fields Updated from {start_date} to {end_date}")
+            plt.ylabel("Count")
+            plt.xlabel("Field")
+            plt.xticks(rotation=45, ha="right")
+            plt.grid(axis="y", linestyle="--", alpha=0.7)
             plt.tight_layout(pad=3.0)
             plt.show()
 
 
 @click.command()
-@click.argument('date1')
-@click.argument('date2')
+@click.argument("date1")
+@click.argument("date2")
 def final(date1, date2):
-    added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(date1, date2)
+    added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
+        date1, date2
+    )
     if added is not None and updated is not None:
         summarize_changes(added, deleted, updated, update_details)
         visualize_changes(added, deleted, updated, update_details, date1, date2, all_mapping_keys)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     final()
