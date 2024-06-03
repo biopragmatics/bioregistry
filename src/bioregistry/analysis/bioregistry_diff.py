@@ -179,13 +179,12 @@ def summarize_changes(added, deleted, updated):
 
 def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
     """
-        Visualizes changes in the bioregistry data.
+    Visualizes changes in the bioregistry data.
 
-        :param update_details: List of update details.
-        :param start_date: The starting date.
-        :param end_date: The ending date.
-        :param all_mapping_keys: Set of all mapping keys.
-        :returns: None
+    :param update_details: List of update details.
+    :param start_date: The starting date.
+    :param end_date: The ending date.
+    :param all_mapping_keys: Set of all mapping keys.
     """
     main_fields = {}
     mapping_fields = {key: 0 for key in all_mapping_keys}
