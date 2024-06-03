@@ -78,6 +78,14 @@ def compare_entries(old_entry, new_entry):
     return changes
 
 
+def get_all_mapping_keys(data):
+    mapping_keys = set()
+    for prefix in data:
+        if 'mappings' in data[prefix]:
+            mapping_keys.update(data[prefix]['mappings'].keys())
+    return mapping_keys
+
+
 def get_data(date1, date2):
     date1 = isoparse(date1).astimezone(tz.tzutc())
     date2 = isoparse(date2).astimezone(tz.tzutc())
@@ -98,7 +106,11 @@ def get_data(date1, date2):
 
     added, deleted, updated, update_details = compare_bioregistry(old_bioregistry, new_bioregistry)
 
-    return added, deleted, updated, update_details, old_bioregistry, new_bioregistry
+    old_mapping_keys = get_all_mapping_keys(old_bioregistry)
+    new_mapping_keys = get_all_mapping_keys(new_bioregistry)
+    all_mapping_keys = old_mapping_keys.union(new_mapping_keys)
+
+    return added, deleted, updated, update_details, old_bioregistry, new_bioregistry, all_mapping_keys
 
 
 def summarize_changes(added, deleted, updated, update_details):
@@ -107,11 +119,12 @@ def summarize_changes(added, deleted, updated, update_details):
     print(f"Total Updated Prefixes: {updated}")
 
 
-def visualize_changes(added, deleted, updated, update_details, start_date, end_date):
+def visualize_changes(added, deleted, updated, update_details, start_date, end_date, all_mapping_keys):
     main_fields = {}
-    mapping_fields = {}
+    mapping_fields = {key: 0 for key in all_mapping_keys}
 
     if update_details:
+        # Process mappings fields to exclude them
         for prefix, changes in update_details:
             for field, change in changes.items():
                 if field == "mappings":
@@ -120,15 +133,20 @@ def visualize_changes(added, deleted, updated, update_details, start_date, end_d
                         for mapping_key in mappings.keys():
                             if mapping_key in mapping_fields:
                                 mapping_fields[mapping_key] += 1
-                            else:
-                                mapping_fields[mapping_key] = 1
+
+        # Process other fields, excluding mappings
+        for prefix, changes in update_details:
+            for field, change in changes.items():
+                # print(f"Prefix: {prefix}, Field: {field}, Change: {change}")
+                if field in mapping_fields or field == "mappings":
+                    # print(f"Skipping field: {field}")
+                    continue
+                if field == "contributor" or field == "contributor_extras":
+                    continue
+                if field in main_fields:
+                    main_fields[field] += 1
                 else:
-                    if field in mapping_fields:
-                        continue
-                    if field in main_fields:
-                        main_fields[field] += 1
-                    else:
-                        main_fields[field] = 1
+                    main_fields[field] = 1
 
         # # Debug output for main fields and mapping fields
         # print("\nMain Fields:")
@@ -169,14 +187,16 @@ def visualize_changes(added, deleted, updated, update_details, start_date, end_d
             plt.tight_layout(pad=3.0)
             plt.show()
 
+
 @click.command()
 @click.argument('date1')
 @click.argument('date2')
 def final(date1, date2):
-    added, deleted, updated, update_details, old_data, new_data = get_data(date1, date2)
+    added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(date1, date2)
     if added is not None and updated is not None:
         summarize_changes(added, deleted, updated, update_details)
-        visualize_changes(added, deleted, updated, update_details, date1, date2)
+        visualize_changes(added, deleted, updated, update_details, date1, date2, all_mapping_keys)
+
 
 if __name__ == '__main__':
     final()
