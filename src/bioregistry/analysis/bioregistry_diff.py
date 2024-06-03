@@ -8,7 +8,7 @@ from dateutil import tz
 
 # Constants for the GitHub repository information and API URL
 GITHUB_API_URL = 'https://api.github.com'
-REPO_OWNER = 'tanayshah2'
+REPO_OWNER = 'biopragmatics'
 REPO_NAME = 'bioregistry'
 BRANCH = 'main'
 FILE_PATH = 'src/bioregistry/data/bioregistry.json'
@@ -66,6 +66,7 @@ def compare_bioregistry(old_data, new_data):
             changes = compare_entries(old_data[prefix], new_data[prefix])
             update_details.append((prefix, changes))
 
+    return added_prefixes, deleted_prefixes, updated_prefixes, update_details
     return added_prefixes, deleted_prefixes, updated_prefixes, update_details
 
 
