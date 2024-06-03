@@ -180,7 +180,7 @@ def summarize_changes(added, deleted, updated):
 def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
     """
         Visualizes changes in the bioregistry data.
-    .
+
         :param update_details: List of update details.
         :param start_date: The starting date.
         :param end_date: The ending date.
@@ -192,7 +192,7 @@ def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
 
     if update_details:
         # Process mappings fields to exclude them
-        for prefix, changes in update_details:
+        for _prefix, changes in update_details:
             for field, change in changes.items():
                 if field == "mappings":
                     mappings = change[1] if isinstance(change[1], dict) else change[0]
@@ -202,8 +202,8 @@ def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
                                 mapping_fields[mapping_key] += 1
 
         # Process other fields, excluding mappings
-        for prefix, changes in update_details:
-            for field, change in changes.items():
+        for _prefix, changes in update_details:
+            for field, _change in changes.items():
                 if field in mapping_fields or field == "mappings":
                     continue
                 if field == "contributor" or field == "contributor_extras":
@@ -255,7 +255,6 @@ def final(date1, date2):
 
     :param date1: The starting date in the format YYYY-MM-DD.
     :param date2: The ending date in the format YYYY-MM-DD.
-    :returns: None
     """
     added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
         date1, date2
