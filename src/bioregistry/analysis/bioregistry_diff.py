@@ -2,9 +2,13 @@ import requests
 import json
 import click
 import pandas as pd
+import logging
 import matplotlib.pyplot as plt
 from dateutil.parser import isoparse
 from dateutil import tz
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Constants for the GitHub repository information and API URL
 GITHUB_API_URL = "https://api.github.com"
@@ -14,8 +18,19 @@ BRANCH = "main"
 FILE_PATH = "src/bioregistry/data/bioregistry.json"
 
 
-# Function to get the commit before a given date
 def get_commit_before_date(date, owner, name, branch):
+    """
+    Get the commit before a given date.
+
+    Args:
+        date (datetime): The date to get the commit before.
+        owner (str): The repository owner.
+        name (str): The repository name.
+        branch (str): The branch name.
+
+    Returns:
+        str: The SHA of the commit before the given date, or None if no commit is found.
+    """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
     response = requests.get(url, params=params)
@@ -26,14 +41,25 @@ def get_commit_before_date(date, owner, name, branch):
         if "sha" in first_commit:
             return first_commit["sha"]
         else:
-            print("No 'sha' field found in the first commit.")
+            logger.warning("No 'sha' field found in the first commit.")
     else:
-        print(f"No commits found before {date}")
+        logger.warning(f"No commits found before {date}")
     return None
 
 
-# Function to get the file content at a specific commit
 def get_file_at_commit(owner, name, file_path, commit_sha):
+    """
+    Get the file content at a specific commit.
+
+    Args:
+        owner (str): The repository owner.
+        name (str): The repository name.
+        file_path (str): The file path in the repository.
+        commit_sha (str): The commit SHA.
+
+    Returns:
+        dict: The file content as a dictionary.
+    """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
     params = {"ref": commit_sha}
     response = requests.get(url, params=params)
@@ -45,8 +71,17 @@ def get_file_at_commit(owner, name, file_path, commit_sha):
     return json.loads(file_content_response.text)
 
 
-# Function to compare two versions of the bioregistry data
 def compare_bioregistry(old_data, new_data):
+    """
+    Compare two versions of the bioregistry data.
+
+    Args:
+        old_data (dict): The old bioregistry data.
+        new_data (dict): The new bioregistry data.
+
+    Returns:
+        tuple: Sets of added prefixes, deleted prefixes, and a count of updated prefixes, along with update details.
+    """
     old_prefixes = set(old_data.keys())
     new_prefixes = set(new_data.keys())
 
@@ -62,11 +97,19 @@ def compare_bioregistry(old_data, new_data):
             update_details.append((prefix, changes))
 
     return added_prefixes, deleted_prefixes, updated_prefixes, update_details
-    return added_prefixes, deleted_prefixes, updated_prefixes, update_details
 
 
-# Function to compare individual entries for detailed changes
 def compare_entries(old_entry, new_entry):
+    """
+    Compare individual entries for detailed changes.
+
+    Args:
+        old_entry (dict): The old entry data.
+        new_entry (dict): The new entry data.
+
+    Returns:
+        dict: A dictionary of changes.
+    """
     changes = {}
     for key in old_entry.keys() | new_entry.keys():
         if old_entry.get(key) != new_entry.get(key):
@@ -75,6 +118,15 @@ def compare_entries(old_entry, new_entry):
 
 
 def get_all_mapping_keys(data):
+    """
+    Get all unique mapping keys from the bioregistry data.
+
+    Args:
+        data (dict): The bioregistry data.
+
+    Returns:
+        set: A set of all unique mapping keys.
+    """
     mapping_keys = set()
     for prefix in data:
         if "mappings" in data[prefix]:
@@ -83,6 +135,16 @@ def get_all_mapping_keys(data):
 
 
 def get_data(date1, date2):
+    """
+    Retrieve and compare bioregistry data between two dates.
+
+    Args:
+        date1 (str): The starting date in ISO format.
+        date2 (str): The ending date in ISO format.
+
+    Returns:
+        tuple: Data on added, deleted, and updated prefixes, update details, and old and new bioregistry data.
+    """
     date1 = isoparse(date1).astimezone(tz.tzutc())
     date2 = isoparse(date2).astimezone(tz.tzutc())
 
@@ -90,11 +152,11 @@ def get_data(date1, date2):
     new_commit = get_commit_before_date(date2, REPO_OWNER, REPO_NAME, BRANCH)
 
     if not old_commit:
-        print(f"Couldn't find commit before {date1}")
+        logger.error(f"Couldn't find commit before {date1}")
         return None, None, None, None, None
 
     if not new_commit:
-        print(f"Couldn't find commit before {date2}")
+        logger.error(f"Couldn't find commit before {date2}")
         return None, None, None, None, None
 
     old_bioregistry = get_file_at_commit(REPO_OWNER, REPO_NAME, FILE_PATH, old_commit)
@@ -118,14 +180,42 @@ def get_data(date1, date2):
 
 
 def summarize_changes(added, deleted, updated, update_details):
-    print(f"Total Added Prefixes: {len(added)}")
-    print(f"Total Deleted Prefixes: {len(deleted)}")
-    print(f"Total Updated Prefixes: {updated}")
+    """
+    Summarize changes in the bioregistry data.
+
+    Args:
+        added (set): Set of added prefixes.
+        deleted (set): Set of deleted prefixes.
+        updated (int): Count of updated prefixes.
+        update_details (list): List of update details.
+
+    Returns:
+        None
+    """
+    logger.info(f"Total Added Prefixes: {len(added)}")
+    logger.info(f"Total Deleted Prefixes: {len(deleted)}")
+    logger.info(f"Total Updated Prefixes: {updated}")
 
 
 def visualize_changes(
     added, deleted, updated, update_details, start_date, end_date, all_mapping_keys
 ):
+    """
+    Visualize changes in the bioregistry data.
+
+    Args:
+        added (set): Set of added prefixes.
+        deleted (set): Set of deleted prefixes.
+        updated (int): Count of updated prefixes.
+        update_details (list): List of update details.
+        start_date (str): The starting date.
+        end_date (str): The ending date.
+        all_mapping_keys (set): Set of all mapping keys.
+
+    Returns:
+        None
+    """
+
     main_fields = {}
     mapping_fields = {key: 0 for key in all_mapping_keys}
 
@@ -143,9 +233,7 @@ def visualize_changes(
         # Process other fields, excluding mappings
         for changes in update_details:
             for field in changes.items():
-                # print(f"Prefix: {prefix}, Field: {field}, Change: {change}")
                 if field in mapping_fields or field == "mappings":
-                    # print(f"Skipping field: {field}")
                     continue
                 if field == "contributor" or field == "contributor_extras":
                     continue
@@ -153,15 +241,6 @@ def visualize_changes(
                     main_fields[field] += 1
                 else:
                     main_fields[field] = 1
-
-        # # Debug output for main fields and mapping fields
-        # print("\nMain Fields:")
-        # for field, count in main_fields.items():
-        #     print(f"{field}: {count}")
-        #
-        # print("\nMapping Fields:")
-        # for field, count in mapping_fields.items():
-        #     print(f"{field}: {count}")
 
         # Plot for main fields
         if main_fields:
@@ -201,15 +280,15 @@ def visualize_changes(
 @click.argument("date2")
 def final(date1, date2):
     """
-        This function processes and visualizes changes in Bioregistry data between two dates.
+    This function processes and visualizes changes in Bioregistry data between two dates.
 
-        Args:
-            date1 (str): The starting date in the format YYYY-MM-DD.
-            date2 (str): The ending date in the format YYYY-MM-DD.
+    Args:
+        date1 (str): The starting date in the format YYYY-MM-DD.
+        date2 (str): The ending date in the format YYYY-MM-DD.
 
-        Returns:
-            None
-        """
+    Returns:
+        None
+    """
     added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
         date1, date2
     )
