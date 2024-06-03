@@ -131,7 +131,7 @@ def visualize_changes(
 
     if update_details:
         # Process mappings fields to exclude them
-        for prefix, changes in update_details:
+        for changes in update_details:
             for field, change in changes.items():
                 if field == "mappings":
                     mappings = change[1] if isinstance(change[1], dict) else change[0]
@@ -141,8 +141,8 @@ def visualize_changes(
                                 mapping_fields[mapping_key] += 1
 
         # Process other fields, excluding mappings
-        for prefix, changes in update_details:
-            for field, change in changes.items():
+        for changes in update_details:
+            for field in changes.items():
                 # print(f"Prefix: {prefix}, Field: {field}, Change: {change}")
                 if field in mapping_fields or field == "mappings":
                     # print(f"Skipping field: {field}")
@@ -200,6 +200,16 @@ def visualize_changes(
 @click.argument("date1")
 @click.argument("date2")
 def final(date1, date2):
+    """
+        This function processes and visualizes changes in Bioregistry data between two dates.
+
+        Args:
+            date1 (str): The starting date in the format YYYY-MM-DD.
+            date2 (str): The ending date in the format YYYY-MM-DD.
+
+        Returns:
+            None
+        """
     added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
         date1, date2
     )
