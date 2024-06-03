@@ -1,15 +1,14 @@
-"""
-Module for comparing different versions of the bioregistry data and visualizing changes.
-"""
+"""Module for comparing different versions of the bioregistry data and visualizing changes."""
 
 import json
 import logging
-import requests
+
 import click
-import pandas as pd
 import matplotlib.pyplot as plt
-from dateutil.parser import isoparse
+import pandas as pd
+import requests
 from dateutil import tz
+from dateutil.parser import isoparse
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
