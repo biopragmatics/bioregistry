@@ -21,9 +21,8 @@ BRANCH = "main"
 FILE_PATH = "src/bioregistry/data/bioregistry.json"
 
 
-def get_commit_before_date(date, owner, name, branch):
-    """
-    Get the commit before a given date.
+def get_commit_before_date(date, owner=REPO_OWNER, name=REPO_NAME, branch=BRANCH):
+    """Return the last commit before a given date.
 
     :param date: The date to get the commit before.
     :param owner: The repository owner.
@@ -47,14 +46,13 @@ def get_commit_before_date(date, owner, name, branch):
     return None
 
 
-def get_file_at_commit(owner, name, file_path, commit_sha):
-    """
-    Get the file content at a specific commit.
+def get_file_at_commit(file_path, commit_sha, owner=REPO_OWNER, name=REPO_NAME):
+    """Return the content of a given file at a specific commit.
 
-    :param owner: The repository owner.
-    :param name: The repository name.
     :param file_path: The file path in the repository.
     :param commit_sha: The commit SHA.
+    :param owner: The repository owner.
+    :param name: The repository name.
     :returns: The file content as a dictionary.
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
@@ -69,8 +67,7 @@ def get_file_at_commit(owner, name, file_path, commit_sha):
 
 
 def compare_bioregistry(old_data, new_data):
-    """
-    Compare two versions of the bioregistry data.
+    """Return comparison of two versions of the bioregistry data.
 
     :param old_data: The old bioregistry data.
     :param new_data: The new bioregistry data.
@@ -94,8 +91,7 @@ def compare_bioregistry(old_data, new_data):
 
 
 def compare_entries(old_entry, new_entry):
-    """
-    Compare individual entries for detailed changes.
+    """Return detailed changes within individual entries.
 
     :param old_entry: The old entry data.
     :param new_entry: The new entry data.
@@ -109,8 +105,7 @@ def compare_entries(old_entry, new_entry):
 
 
 def get_all_mapping_keys(data):
-    """
-    Get all unique mapping keys from the bioregistry data.
+    """Return all unique mapping keys from the bioregistry data.
 
     :param data: The bioregistry data.
     :returns: A set of all unique mapping keys.
@@ -123,8 +118,7 @@ def get_all_mapping_keys(data):
 
 
 def get_data(date1, date2):
-    """
-    Retrieve and compare bioregistry data between two dates.
+    """Retrieve and compare bioregistry data between two dates.
 
     :param date1: The starting date in ISO format.
     :param date2: The ending date in ISO format.
@@ -144,8 +138,8 @@ def get_data(date1, date2):
         logger.error(f"Couldn't find commit before {date2}")
         return None, None, None, None, None
 
-    old_bioregistry = get_file_at_commit(REPO_OWNER, REPO_NAME, FILE_PATH, old_commit)
-    new_bioregistry = get_file_at_commit(REPO_OWNER, REPO_NAME, FILE_PATH, new_commit)
+    old_bioregistry = get_file_at_commit(FILE_PATH, old_commit, REPO_OWNER, REPO_NAME)
+    new_bioregistry = get_file_at_commit(FILE_PATH, new_commit, REPO_OWNER, REPO_NAME)
 
     added, deleted, updated, update_details = compare_bioregistry(old_bioregistry, new_bioregistry)
 
@@ -165,8 +159,7 @@ def get_data(date1, date2):
 
 
 def summarize_changes(added, deleted, updated):
-    """
-    Summarize changes in the bioregistry data.
+    """Log a summary of changes in the bioregistry data.
 
     :param added: Set of added prefixes.
     :param deleted: Set of deleted prefixes.
@@ -178,8 +171,7 @@ def summarize_changes(added, deleted, updated):
 
 
 def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
-    """
-    Visualizes changes in the bioregistry data.
+    """Display plots of changes in the bioregistry data.
 
     :param update_details: List of update details.
     :param start_date: The starting date.
@@ -248,9 +240,8 @@ def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
 @click.command()
 @click.argument("date1")
 @click.argument("date2")
-def final(date1, date2):
-    """
-    Process and visualize changes in Bioregistry data between two dates.
+def compare_dates(date1, date2):
+    """Process and visualize changes in Bioregistry data between two dates.
 
     :param date1: The starting date in the format YYYY-MM-DD.
     :param date2: The ending date in the format YYYY-MM-DD.
@@ -264,4 +255,4 @@ def final(date1, date2):
 
 
 if __name__ == "__main__":
-    final()
+    compare_dates()
