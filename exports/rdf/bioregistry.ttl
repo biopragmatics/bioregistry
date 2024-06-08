@@ -325,8 +325,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -704,7 +704,7 @@
 @prefix integbio: <https://integbio.jp/dbcatalog/en/record/> .
 @prefix interfil: <http://www.interfil.org/details.php?id=> .
 @prefix interlex: <https://scicrunch.org/scicrunch/interlex/view/ilx_> .
-@prefix interpro: <http://purl.obolibrary.org/obo/IPR_> .
+@prefix interpro: <https://www.ebi.ac.uk/interpro/entry/InterPro/> .
 @prefix iobc: <http://purl.jp/bio/4/id/> .
 @prefix ird.segment: <http://www.fludb.org/brc/fluSegmentDetails.do?ncbiGenomicAccession=> .
 @prefix irefweb: <http://wodaklab.org/iRefWeb/interaction/show/> .
@@ -713,6 +713,7 @@
 @prefix isbn: <http://isbndb.com/search-all.html?kw=> .
 @prefix isfinder: <https://www-is.biotoul.fr/scripts/ficheIS.php?name=> .
 @prefix isni: <http://www.isni.org/isni/> .
+@prefix iso.3166: <https://data.who.int/countries/> .
 @prefix iso15926: <http://standards.iso.org/iso/15926/part14/> .
 @prefix isrctn: <https://www.isrctn.com/> .
 @prefix issn: <https://portal.issn.org/resource/ISSN/> .
@@ -739,7 +740,7 @@
 @prefix knapsack: <http://www.knapsackfamily.com/knapsack_core/information.php?word=> .
 @prefix labo: <http://purl.obolibrary.org/obo/LABO_> .
 @prefix langual: <https://www.langual.org/langual_thesaurus.asp?termid=> .
-@prefix lbo: <http://purl.obolibrary.org/obo/LBO_> .
+@prefix lbo: <https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_> .
 @prefix lcsh: <https://id.loc.gov/authorities/> .
 @prefix lei: <https://www.gleif.org/lei/> .
 @prefix lepao: <http://purl.obolibrary.org/obo/LEPAO_> .
@@ -899,7 +900,7 @@
 @prefix ndc: <http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/> .
 @prefix nddf: <http://purl.bioontology.org/ontology/NDDF/> .
 @prefix ndex: <https://www.ndexbio.org/viewer/networks/> .
-@prefix ndfrt: <https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#> .
+@prefix ndfrt: <https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=> .
 @prefix nembase: <http://www.nematodes.org/nembase4/cluster.php?cluster=> .
 @prefix nemo: <https://assets.nemoarchive.org/> .
 @prefix nemo2: <http://purl.bioontology.org/NEMO/ontology/NEMO.owl#NEMO_> .
@@ -1057,7 +1058,7 @@
 @prefix pdc.study: <https://pdc.cancer.gov/pdc/study/> .
 @prefix pdro: <http://purl.obolibrary.org/obo/PDRO_> .
 @prefix pdumdv: <http://purl.obolibrary.org/obo/PdumDv_> .
-@prefix peco: <http://purl.obolibrary.org/obo/PECO_> .
+@prefix peco: <https://browser.planteome.org/amigo/term/PECO:> .
 @prefix ped.ensemble: <https://proteinensemble.org/> .
 @prefix peff: <https://biopragmatics.github.io/providers/peff/> .
 @prefix pepbank: <http://pepbank.mgh.harvard.edu/interactions/details/> .
@@ -7232,6 +7233,7 @@ bioregistry:ecso a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/DataONEorg/sem-prov-ontologies> ;
     skos:exactMatch aberowl:ECSO,
+        ecoportal:ECSO,
         bioportal:ECSO,
         fairsharing:FAIRsharing.a4ww64 ;
     dcat:keyword "earth science",
@@ -11440,12 +11442,12 @@ bioregistry:lbo a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage bioportal1:LBO ;
     bioregistry.schema:0000005 "0000487"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/LBO_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://github.com/AnimalGenome/livestock-breed-ontology/raw/master/current_release/lbo.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2346-5201 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/LBO_"^^xsd:string ;
+    bioregistry.schema:0000024 "https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_"^^xsd:string ;
     bioregistry.schema:0000027 lbo:0000487 ;
     bioregistry.schema:0000029 "lbo" .
 
@@ -23198,6 +23200,8 @@ ecoportal:AGROVOC dcterms:isPartOf bioregistry.metaresource:ecoportal .
 
 ecoportal:BCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
 
+ecoportal:ECSO dcterms:isPartOf bioregistry.metaresource:ecoportal .
+
 ecoportal:PCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
 
 ecoportal:STY dcterms:isPartOf bioregistry.metaresource:ecoportal .
@@ -29926,6 +29930,7 @@ bioregistry:biofactoid a bioregistry.schema:0000001 ;
     dcterms:description "Biofactoid is a web-based system that empowers authors to capture and share machine-readable summaries of molecular-level interactions described in their publications."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     doap:GitRepository <https://github.com/PathwayCommons/factoid> ;
+    skos:exactMatch miriam:biofactoid ;
     dcat:keyword "biocuration",
         "database",
         "relationships" ;
@@ -34081,7 +34086,7 @@ bioregistry:interpro a bioregistry.schema:0000001 ;
         "protein" ;
     foaf:homepage <http://www.ebi.ac.uk/interpro/index.html> ;
     bioregistry.schema:0000005 "IPR016380"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IPR_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/interpro/entry/InterPro/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^IPR\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "InterPro Help" ;
@@ -34089,7 +34094,7 @@ bioregistry:interpro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "IP",
         "IPR",
         "InterPro" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/IPR_"^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.ebi.ac.uk/interpro/entry/InterPro/"^^xsd:string ;
     bioregistry.schema:0000027 interpro:IPR016380 ;
     bioregistry.schema:0000029 "interpro" .
 
@@ -42187,6 +42192,8 @@ miriam:biocatalogue.service dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:biocyc dcterms:isPartOf bioregistry.metaresource:miriam .
 
+miriam:biofactoid dcterms:isPartOf bioregistry.metaresource:miriam .
+
 miriam:biogrid dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:biokc dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -46365,7 +46372,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -47635,8 +47642,11 @@ bioregistry:iso.3166 a bioregistry.schema:0000001 ;
     skos:exactMatch wikidata:P299 ;
     foaf:homepage <https://www.iso.org/iso-3166-country-codes.html> ;
     bioregistry.schema:0000005 "554"^^xsd:string ;
+    bioregistry.schema:0000006 "https://data.who.int/countries/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://data.who.int/countries/"^^xsd:string ;
+    bioregistry.schema:0000027 iso.3166:554 ;
     bioregistry.schema:0000029 "iso.3166" .
 
 bioregistry:iso15926 a bioregistry.schema:0000001 ;
@@ -48143,14 +48153,14 @@ bioregistry:ndfrt a bioregistry.schema:0000001 ;
         "physiology" ;
     foaf:homepage <https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT> ;
     bioregistry.schema:0000005 "N0000001662"^^xsd:string ;
-    bioregistry.schema:0000006 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^N[0-9]{10}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Michael J. Lincoln MD" ;
             foaf:mbox "michael.lincoln@va.gov" ] ;
     bioregistry.schema:0000023 "NUI",
         "ndf-rt" ;
-    bioregistry.schema:0000024 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#"^^xsd:string ;
+    bioregistry.schema:0000024 "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code="^^xsd:string ;
     bioregistry.schema:0000027 ndfrt:N0000001662 ;
     bioregistry.schema:0000029 "ndfrt" .
 
@@ -48261,7 +48271,7 @@ bioregistry:nlx.cell a bioregistry.schema:0000001 ;
         "cells",
         "neuroscience" ;
     foaf:homepage <https://github.com/SciCrunch/NIF-Ontology> ;
-    bioregistry.schema:0000005 "91005"^^xsd:string ;
+    bioregistry.schema:0000005 "091005"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_cell_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
@@ -48269,7 +48279,7 @@ bioregistry:nlx.cell a bioregistry.schema:0000001 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
     bioregistry.schema:0000023 "NLXCELL" ;
     bioregistry.schema:0000024 "http://uri.neuinfo.org/nif/nifstd/nlx_cell_"^^xsd:string ;
-    bioregistry.schema:0000027 nlx.cell:91005 ;
+    bioregistry.schema:0000027 nlx.cell:091005 ;
     bioregistry.schema:0000029 "nlx.cell" .
 
 bioregistry:nlx.chem a bioregistry.schema:0000001 ;
@@ -48280,7 +48290,7 @@ bioregistry:nlx.chem a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/SciCrunch/NIF-Ontology> ;
     dcat:keyword "chemistry" ;
     foaf:homepage <https://github.com/SciCrunch/NIF-Ontology> ;
-    bioregistry.schema:0000005 "90801"^^xsd:string ;
+    bioregistry.schema:0000005 "090801"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_chem_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
@@ -48288,7 +48298,7 @@ bioregistry:nlx.chem a bioregistry.schema:0000001 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
     bioregistry.schema:0000023 "NLXCHEM" ;
     bioregistry.schema:0000024 "http://uri.neuinfo.org/nif/nifstd/nlx_chem_"^^xsd:string ;
-    bioregistry.schema:0000027 nlx.chem:90801 ;
+    bioregistry.schema:0000027 nlx.chem:090801 ;
     bioregistry.schema:0000029 "nlx.chem" .
 
 bioregistry:nlx.dys a bioregistry.schema:0000001 ;
@@ -48869,14 +48879,14 @@ bioregistry:peco a bioregistry.schema:0000001 ;
         "study design" ;
     foaf:homepage <http://planteome.org/> ;
     bioregistry.schema:0000005 "0007114"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PECO_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://browser.planteome.org/amigo/term/PECO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:peco.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
         bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0002-1005-8383 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PECO_"^^xsd:string ;
+    bioregistry.schema:0000024 "https://browser.planteome.org/amigo/term/PECO:"^^xsd:string ;
     bioregistry.schema:0000027 peco:0007114 ;
     bioregistry.schema:0000029 "peco" .
 
@@ -50200,18 +50210,6 @@ ols:ordo dcterms:isPartOf bioregistry.metaresource:ols .
 
 uniprot.resource:DB-0174 dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
-    rdfs:label "EcoPortal" ;
-    dc:description "The LifeWatch ERIC repository of semantic resources for the ecological domain." ;
-    dcterms:hasPart ecoportal:AGROVOC,
-        ecoportal:BCO,
-        ecoportal:PCO,
-        ecoportal:STY ;
-    foaf:homepage "http://ecoportal.lifewatch.eu" ;
-    bioregistry.schema:0000005 "AGROVOC" ;
-    bioregistry.schema:0000006 "http://ecoportal.lifewatch.eu/ontologies/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0003-4494-839X .
-
 bioregistry:chmo a bioregistry.schema:0000001 ;
     rdfs:label "Chemical Methods Ontology" ;
     dcterms:description "CHMO, the chemical methods ontology, describes methods used to collect data in chemical experiments, such as mass spectrometry and electron microscopy prepare and separate material for further analysis, such as sample ionisation, chromatography, and electrophoresis synthesise materials, such as epitaxy and continuous vapour deposition It also describes the instruments used in these experiments, such as mass spectrometers and chromatography columns. It is intended to be complementary to the Ontology for Biomedical Investigations (OBI)."^^xsd:string ;
@@ -51122,6 +51120,19 @@ orcid:0000-0003-1834-3856 rdfs:label "Mathias Brochhausen" ;
         "mbrochhausen@uams.edu" .
 
 wikidata:P7001 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
+    rdfs:label "EcoPortal" ;
+    dc:description "The LifeWatch ERIC repository of semantic resources for the ecological domain." ;
+    dcterms:hasPart ecoportal:AGROVOC,
+        ecoportal:BCO,
+        ecoportal:ECSO,
+        ecoportal:PCO,
+        ecoportal:STY ;
+    foaf:homepage "http://ecoportal.lifewatch.eu" ;
+    bioregistry.schema:0000005 "AGROVOC" ;
+    bioregistry.schema:0000006 "http://ecoportal.lifewatch.eu/ontologies/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0003-4494-839X .
 
 bioregistry:chembl a bioregistry.schema:0000001 ;
     rdfs:label "ChEMBL" ;
@@ -59382,6 +59393,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:biocarta.pathway,
         miriam:biocatalogue.service,
         miriam:biocyc,
+        miriam:biofactoid,
         miriam:biogrid,
         miriam:biokc,
         miriam:biolink,

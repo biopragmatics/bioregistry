@@ -4025,6 +4025,8 @@ biofactoid:
   - database
   - relationships
   license: CC0-1.0
+  mappings:
+    miriam: biofactoid
   name: Biofactoid
   pattern: ^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$
   preferred_prefix: biofactoid
@@ -6667,7 +6669,7 @@ cdno:
   rdf_uri_format: http://purl.obolibrary.org/obo/CDNO_$1
   repository: https://github.com/CompositionalDietaryNutritionOntology/cdno
   uri_format: http://purl.obolibrary.org/obo/CDNO_$1
-  version: '2024-05-13'
+  version: '2024-05-24'
 cdpd:
   description: The Canadian Drug Product Database (DPD) contains product specific
     information on drugs approved for use in Canada, and includes human pharmaceutical
@@ -10118,6 +10120,8 @@ complexportal:
   pattern: ^CPX-[0-9]+$
   preferred_prefix: complexportal
   publications:
+  - doi: 10.1093/nar/gky1001
+    pubmed: '30357405'
   - doi: 10.1093/nar/gku975
     pmc: PMC4384031
     pubmed: '25313161'
@@ -10433,6 +10437,8 @@ corum:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/corum:$1
   publications:
+  - doi: 10.1093/nar/gkac1015
+    pubmed: '36382402'
   - doi: 10.1093/nar/gky973
     pmc: PMC6323970
     pubmed: '30357367'
@@ -13524,7 +13530,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-04-30'
+  version: '2024-05-29'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -14153,6 +14159,8 @@ drugcentral:
   pattern: ^\d+$
   preferred_prefix: drugcentral
   publications:
+  - doi: 10.1093/nar/gkac1085
+    pubmed: '36484092'
   - doi: 10.1093/nar/gky963
     pmc: PMC6323925
     pubmed: '30371892'
@@ -14992,6 +15000,7 @@ ecso:
   mappings:
     aberowl: ECSO
     bioportal: ECSO
+    ecoportal: ECSO
     fairsharing: FAIRsharing.a4ww64
   name: The Ecosystem Ontology
   pattern: ^\d+$
@@ -15688,6 +15697,8 @@ elm:
   pattern: ^[A-Za-z_0-9]+$
   preferred_prefix: elm
   publications:
+  - doi: 10.1093/nar/gkab975
+    pubmed: '34718738'
   - doi: 10.1093/nar/gkz1030
     pmc: PMC7145657
     pubmed: '31680160'
@@ -27704,7 +27715,7 @@ interpro:
   - IPR
   - InterPro
   twitter: InterProDB
-  uri_format: http://purl.obolibrary.org/obo/IPR_$1
+  uri_format: https://www.ebi.ac.uk/interpro/entry/InterPro/$1
 iobc:
   contact:
     email: kushida@biosciencedbc.jp
@@ -28091,6 +28102,7 @@ iso.3166:
   name: ISO 3166-1 Country Code
   pattern: ^\d+$
   preferred_prefix: iso.3166
+  uri_format: https://data.who.int/countries/$1
 iso15926:
   contributor:
     email: cthoyt@gmail.com
@@ -29427,8 +29439,9 @@ lbo:
   name: Livestock Breed Ontology
   pattern: ^\d{7}$
   preferred_prefix: lbo
+  rdf_uri_format: http://purl.obolibrary.org/obo/LBO_$1
   repository: https://github.com/AnimalGenome/livestock-breed-ontology
-  uri_format: http://purl.obolibrary.org/obo/LBO_$1
+  uri_format: https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_$1
 lcsh:
   contributor:
     email: cthoyt@gmail.com
@@ -30928,7 +30941,7 @@ maxo:
   repository: https://github.com/monarch-initiative/MAxO
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MAXO_$1
-  version: '2024-05-07'
+  version: '2024-05-24'
 mba:
   contact:
     email: chinhda@alleninstitute.org
@@ -33719,6 +33732,8 @@ mobidb:
   preferred_prefix: mobidb
   provides: uniprot
   publications:
+  - doi: 10.1093/nar/gkac1065
+    pubmed: '36416266'
   - doi: 10.1093/nar/gkaa1058
     pmc: PMC7779018
     pubmed: '33237329'
@@ -33730,10 +33745,6 @@ mobidb:
     title: 'MobiDB 3.0: more annotations for intrinsic disorder, conformational diversity
       and interactions in proteins'
     year: 2018
-  - doi: 10.1093/bioinformatics/bts327
-    pmc: PMC5753340
-    pubmed: '29136219'
-    title: 'MobiDB: a comprehensive database of intrinsic protein disorder annotations.'
   - doi: 10.1093/nar/gku982
     pmc: PMC4384034
     pubmed: '25361972'
@@ -34220,7 +34231,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2024-04-23'
+  version: '2024-05-28'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -35977,7 +35988,7 @@ ndfrt:
   synonyms:
   - NUI
   - ndf-rt
-  uri_format: https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1
+  uri_format: https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=$1
 nembase:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -36818,7 +36829,7 @@ nlx.cell:
     name: Tom Gillespie
     orcid: 0000-0002-7509-4801
   description: NLXCELL conatins cell types with a focus on neuron types.
-  example: '91005'
+  example: 091005
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - cell lines
@@ -36852,7 +36863,7 @@ nlx.chem:
     name: Tom Gillespie
     orcid: 0000-0002-7509-4801
   description: NLXCHEM covers chemicals. Most classes are also in ChEBI.
-  example: '90801'
+  example: 090801
   homepage: https://github.com/SciCrunch/NIF-Ontology
   keywords:
   - chemistry
@@ -39185,6 +39196,8 @@ omim:
     name: OMIM PURL (not in use)
     uri_format: https://omim.org/OMIM:$1
   publications:
+  - doi: 10.1093/nar/gky1151
+    pubmed: '30445645'
   - doi: 10.1093/nar/gku1205
     pmc: PMC4383985
     pubmed: '25428349'
@@ -41945,8 +41958,8 @@ peco:
     year: 2018
   rdf_uri_format: http://purl.obolibrary.org/obo/PECO_$1
   repository: https://github.com/Planteome/plant-experimental-conditions-ontology
-  uri_format: http://purl.obolibrary.org/obo/PECO_$1
-  version: '2017-11-06'
+  uri_format: https://browser.planteome.org/amigo/term/PECO:$1
+  version: '2023-11-10'
 ped:
   contact:
     email: zhangzhang@big.ac.cn
@@ -56009,7 +56022,7 @@ vbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2024-04-18'
+  version: '2024-05-22'
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
@@ -56878,7 +56891,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-04-09'
+  version: '2024-05-29'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.

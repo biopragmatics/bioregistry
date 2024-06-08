@@ -4392,6 +4392,9 @@
       "relationships"
     ],
     "license": "CC0-1.0",
+    "mappings": {
+      "miriam": "biofactoid"
+    },
     "name": "Biofactoid",
     "pattern": "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$",
     "preferred_prefix": "biofactoid",
@@ -7242,7 +7245,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
     "repository": "https://github.com/CompositionalDietaryNutritionOntology/cdno",
     "uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
-    "version": "2024-05-13"
+    "version": "2024-05-24"
   },
   "cdpd": {
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
@@ -10972,6 +10975,10 @@
     "preferred_prefix": "complexportal",
     "publications": [
       {
+        "doi": "10.1093/nar/gky1001",
+        "pubmed": "30357405"
+      },
+      {
         "doi": "10.1093/nar/gku975",
         "pmc": "PMC4384031",
         "pubmed": "25313161",
@@ -11298,6 +11305,10 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkac1015",
+        "pubmed": "36382402"
+      },
       {
         "doi": "10.1093/nar/gky973",
         "pmc": "PMC6323970",
@@ -14624,7 +14635,7 @@
     ],
     "twitter": "diseaseontology",
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2024-04-30"
+    "version": "2024-05-29"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -15288,6 +15299,10 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "drugcentral",
     "publications": [
+      {
+        "doi": "10.1093/nar/gkac1085",
+        "pubmed": "36484092"
+      },
       {
         "doi": "10.1093/nar/gky963",
         "pmc": "PMC6323925",
@@ -16227,6 +16242,7 @@
     "mappings": {
       "aberowl": "ECSO",
       "bioportal": "ECSO",
+      "ecoportal": "ECSO",
       "fairsharing": "FAIRsharing.a4ww64"
     },
     "name": "The Ecosystem Ontology",
@@ -16931,6 +16947,10 @@
     "pattern": "^[A-Za-z_0-9]+$",
     "preferred_prefix": "elm",
     "publications": [
+      {
+        "doi": "10.1093/nar/gkab975",
+        "pubmed": "34718738"
+      },
       {
         "doi": "10.1093/nar/gkz1030",
         "pmc": "PMC7145657",
@@ -30128,7 +30148,7 @@
       "InterPro"
     ],
     "twitter": "InterProDB",
-    "uri_format": "http://purl.obolibrary.org/obo/IPR_$1"
+    "uri_format": "https://www.ebi.ac.uk/interpro/entry/InterPro/$1"
   },
   "iobc": {
     "contact": {
@@ -30514,7 +30534,8 @@
     },
     "name": "ISO 3166-1 Country Code",
     "pattern": "^\\d+$",
-    "preferred_prefix": "iso.3166"
+    "preferred_prefix": "iso.3166",
+    "uri_format": "https://data.who.int/countries/$1"
   },
   "iso15926": {
     "contributor": {
@@ -31925,8 +31946,9 @@
     "name": "Livestock Breed Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "lbo",
+    "rdf_uri_format": "http://purl.obolibrary.org/obo/LBO_$1",
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
-    "uri_format": "http://purl.obolibrary.org/obo/LBO_$1"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_$1"
   },
   "lcsh": {
     "contributor": {
@@ -33555,7 +33577,7 @@
     "repository": "https://github.com/monarch-initiative/MAxO",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MAXO_$1",
-    "version": "2024-05-07"
+    "version": "2024-05-24"
   },
   "mba": {
     "contact": {
@@ -36567,6 +36589,10 @@
     "provides": "uniprot",
     "publications": [
       {
+        "doi": "10.1093/nar/gkac1065",
+        "pubmed": "36416266"
+      },
+      {
         "doi": "10.1093/nar/gkaa1058",
         "pmc": "PMC7779018",
         "pubmed": "33237329",
@@ -36579,12 +36605,6 @@
         "pubmed": "29136219",
         "title": "MobiDB 3.0: more annotations for intrinsic disorder, conformational diversity and interactions in proteins",
         "year": 2018
-      },
-      {
-        "doi": "10.1093/bioinformatics/bts327",
-        "pmc": "PMC5753340",
-        "pubmed": "29136219",
-        "title": "MobiDB: a comprehensive database of intrinsic protein disorder annotations."
       },
       {
         "doi": "10.1093/nar/gku982",
@@ -37115,7 +37135,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2024-04-23"
+    "version": "2024-05-28"
   },
   "mpath": {
     "contact": {
@@ -39024,7 +39044,7 @@
       "NUI",
       "ndf-rt"
     ],
-    "uri_format": "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"
+    "uri_format": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=$1"
   },
   "nembase": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -39922,7 +39942,7 @@
       "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXCELL conatins cell types with a focus on neuron types.",
-    "example": "91005",
+    "example": "091005",
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "keywords": [
       "cell lines",
@@ -39962,7 +39982,7 @@
       "orcid": "0000-0002-7509-4801"
     },
     "description": "NLXCHEM covers chemicals. Most classes are also in ChEBI.",
-    "example": "90801",
+    "example": "090801",
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "keywords": [
       "chemistry"
@@ -42436,6 +42456,10 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gky1151",
+        "pubmed": "30445645"
+      },
       {
         "doi": "10.1093/nar/gku1205",
         "pmc": "PMC4383985",
@@ -45384,8 +45408,8 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PECO_$1",
     "repository": "https://github.com/Planteome/plant-experimental-conditions-ontology",
-    "uri_format": "http://purl.obolibrary.org/obo/PECO_$1",
-    "version": "2017-11-06"
+    "uri_format": "https://browser.planteome.org/amigo/term/PECO:$1",
+    "version": "2023-11-10"
   },
   "ped": {
     "contact": {
@@ -60619,7 +60643,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
     "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VBO_$1",
-    "version": "2024-04-18"
+    "version": "2024-05-22"
   },
   "vbrc": {
     "description": "The VBRC provides bioinformatics resources to support scientific research directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae, Flaviviridae, Paramyxoviridae, Poxviridae, and Togaviridae families. The Center consists of a relational database and web application that support the data storage, annotation, analysis, and information exchange goals of this work. Each data release contains the complete genomic sequences for all viral pathogens and related strains that are available for species in the above-named families. In addition to sequence data, the VBRC provides a curation for each virus species, resulting in a searchable, comprehensive mini-review of gene function relating genotype to biological phenotype, with special emphasis on pathogenesis.",
@@ -61543,7 +61567,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "2024-04-09"
+    "version": "2024-05-29"
   },
   "voc4cat": {
     "comment": "The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123 other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123. This is pretty unique and isn't tracked by the Bioregistry currently.",
