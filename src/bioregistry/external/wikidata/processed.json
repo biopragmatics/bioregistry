@@ -660,21 +660,6 @@
     "prefix": "P10835",
     "uri_format": "https://www.ukbeetles.co.uk/$1"
   },
-  "P10863": {
-    "description": "identifier for an article in Springer Nature (SN) SciGraph",
-    "example": [
-      "10.1006/bulm.1997.0030",
-      "10.1007/978-3-319-11964-9_4",
-      "10.1007/bf00170901",
-      "10.1007/s00285-002-0173-7",
-      "10.1186/1756-0500-2-265",
-      "10.7603/s40632-015-0036-1"
-    ],
-    "name": "Springer Nature article ID",
-    "pattern": "^10\\.\\d{4,9}/[0-9a-z._-]+$",
-    "prefix": "P10863",
-    "uri_format": "https://scigraph.springernature.com/pub.$1"
-  },
   "P10876": {
     "description": "code for a vaccine administered by the CDC's National Center for Immunization and Respiratory Diseases",
     "example": [
@@ -1166,6 +1151,7 @@
     "uri_format": "https://civicdb.org/genes/$1/summary"
   },
   "P11311": {
+    "database": "Q115641818",
     "description": "identifier for a taxon on the Lygaeoidea Species File website",
     "example": [
       "1211893",
@@ -1173,7 +1159,7 @@
       "1224199"
     ],
     "homepage": "http://lygaeoidea.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
-    "name": "Lygaeoidea Species File ID",
+    "name": "Lygaeoidea Species File ID (old)",
     "pattern": "^[1-9]\\d{6}$",
     "prefix": "P11311",
     "uri_format": "http://lygaeoidea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -2768,6 +2754,80 @@
     "pattern": "^[^\\s]+$",
     "prefix": "P12797",
     "uri_format": "https://www.imaios.com/en/e-anatomy/anatomical-structure/$1"
+  },
+  "P12798": {
+    "database": "Q126204556",
+    "description": "identifier for publications in the Institutional Repository of the Naturalis Biodiversity Center",
+    "example": [
+      "209963",
+      "317642",
+      "508389"
+    ],
+    "homepage": "https://repository.naturalis.nl/",
+    "name": "Naturalis Repository ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12798",
+    "uri_format": "https://repository.naturalis.nl/pub/$1"
+  },
+  "P12817": {
+    "database": "Q57715163",
+    "description": "identifier for a taxon in the Cockroach Species File database",
+    "example": [
+      "856752",
+      "856754",
+      "863107"
+    ],
+    "homepage": "https://cockroach.speciesfile.org/otus/856752/overview",
+    "name": "Cockroach Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12817",
+    "uri_format": "https://cockroach.speciesfile.org/otus/$1/overview"
+  },
+  "P12818": {
+    "database": "Q115641818",
+    "description": "identifier for a taxon in the Lygaeoidea Species File database",
+    "example": [
+      "916338",
+      "918053",
+      "918453",
+      "919704"
+    ],
+    "homepage": "https://lygaeoidea.speciesfile.org/otus/916338/overview",
+    "name": "Lygaeoidea Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12818",
+    "uri_format": "https://lygaeoidea.speciesfile.org/otus/$1/overview"
+  },
+  "P12819": {
+    "database": "Q49417701",
+    "description": "identifier for a taxon in the Phasmida Species File database",
+    "example": [
+      "851140",
+      "852904",
+      "853138",
+      "933298"
+    ],
+    "homepage": "https://phasmida.speciesfile.org/otus/851140/overview",
+    "name": "Phasmida Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12819",
+    "uri_format": "https://phasmida.speciesfile.org/otus/$1/overview"
+  },
+  "P12820": {
+    "database": "Q89384967",
+    "description": "identifier for a taxon in the Psocodea Species File database",
+    "example": [
+      "870927",
+      "871605",
+      "876123",
+      "876150",
+      "878996"
+    ],
+    "homepage": "https://psocodea.speciesfile.org/otus/870927/overview",
+    "name": "Psocodea Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12820",
+    "uri_format": "https://psocodea.speciesfile.org/otus/$1/overview"
   },
   "P1294": {
     "database": "Q6617741",
@@ -4908,6 +4968,7 @@
     "uri_format": "https://tga-search.clients.funnelback.com/s/search.html?collection=tga-artg&profile=record&meta_i=$1"
   },
   "P356": {
+    "database": "Q25670",
     "description": "serial code used to uniquely identify digital objects like academic papers (use upper case letters only)",
     "example": [
       "10.12987/YALE/9780300197051.003.0010",
@@ -5877,7 +5938,7 @@
       "1201090"
     ],
     "homepage": "http://phasmida.speciesfile.org/HomePage/Phasmida/HomePage.aspx",
-    "name": "Phasmida Species File ID",
+    "name": "Phasmida Species File ID (old version)",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4855",
     "uri_format": "http://phasmida.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -7206,7 +7267,7 @@
       "1178871"
     ],
     "homepage": "http://cockroach.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
-    "name": "Cockroach Species File ID",
+    "name": "Cockroach Species File ID (old version)",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6052",
     "uri_format": "http://cockroach.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -7363,7 +7424,7 @@
     "name": "FloraWeb ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6094",
-    "uri_format": "http://www.floraweb.de/pflanzenarten/artenhome.xsql?suchnr=$1"
+    "uri_format": "https://www.floraweb.de/php/artenhome.php?suchnr=$1"
   },
   "P6096": {
     "description": "identifier for a species on the Fulgoromorpha Lists On the Web website",
@@ -9287,7 +9348,7 @@
       "1193213",
       "1225873"
     ],
-    "name": "Psocodea Species File ID",
+    "name": "Psocodea Species File ID (old)",
     "pattern": "^\\d+$",
     "prefix": "P8145",
     "uri_format": "http://psocodea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
