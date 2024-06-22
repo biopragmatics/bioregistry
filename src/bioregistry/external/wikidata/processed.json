@@ -59,6 +59,17 @@
     "prefix": "P10064",
     "uri_format": "https://www.enr.gov.nt.ca/species-search/$1"
   },
+  "P1007": {
+    "description": "number for the Lattes Platform entry on the person or group. Relationship between entry and subject must be supported by a source",
+    "example": [
+      "0061106995455595",
+      "9975840620597737"
+    ],
+    "name": "Lattes Platform number",
+    "pattern": "^\\d{16}$",
+    "prefix": "P1007",
+    "uri_format": "https://lattes.cnpq.br/$1"
+  },
   "P10074": {
     "description": "identifier for chemicals linked to information on occurrence in plants",
     "example": [
@@ -2829,6 +2840,21 @@
     "prefix": "P12820",
     "uri_format": "https://psocodea.speciesfile.org/otus/$1/overview"
   },
+  "P12834": {
+    "database": "Q229883",
+    "description": "identifier for a journal on PubMed Central (PMC)",
+    "example": [
+      "2849",
+      "3851",
+      "4152",
+      "440"
+    ],
+    "homepage": "https://www.ncbi.nlm.nih.gov/pmc/journals/",
+    "name": "PMC journal ID",
+    "pattern": "^[1-9]\\d+$",
+    "prefix": "P12834",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/pmc/journals/$1/"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -2988,6 +3014,43 @@
     "pattern": "^[a-z0-9_]+$",
     "prefix": "P1583",
     "uri_format": "https://www.malacards.org/card/$1"
+  },
+  "P1607": {
+    "description": "identifier of an author in Dialnet",
+    "example": [
+      "241889",
+      "3073901"
+    ],
+    "homepage": "https://dialnet.unirioja.es",
+    "name": "Dialnet author ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P1607",
+    "uri_format": "https://dialnet.unirioja.es/servlet/autor?codigo=$1"
+  },
+  "P1608": {
+    "description": "identifier of a book in Dialnet",
+    "example": [
+      "187021",
+      "190555",
+      "3555"
+    ],
+    "homepage": "https://dialnet.unirioja.es",
+    "name": "Dialnet book ID",
+    "prefix": "P1608",
+    "uri_format": "https://dialnet.unirioja.es/servlet/libro?codigo=$1"
+  },
+  "P1609": {
+    "description": "identifier of a journal in Dialnet",
+    "example": [
+      "1119",
+      "206",
+      "8911"
+    ],
+    "homepage": "http://dialnet.unirioja.es",
+    "name": "Dialnet journal ID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "prefix": "P1609",
+    "uri_format": "https://dialnet.unirioja.es/servlet/revista?codigo=$1"
   },
   "P1610": {
     "description": "identifier of an article in Dialnet",
@@ -3289,6 +3352,18 @@
     "prefix": "P1940",
     "uri_format": "https://conifers.org/$1.php"
   },
+  "P1960": {
+    "description": "identifier of a person, in the Google Scholar academic search service",
+    "example": [
+      "CUO0vDcAAAAJ",
+      "QPdLuj8AAAAJ"
+    ],
+    "homepage": "https://scholar.google.com/",
+    "name": "Google Scholar author ID",
+    "pattern": "^[-_0-9A-Za-z]{12}$",
+    "prefix": "P1960",
+    "uri_format": "https://scholar.google.com/citations?user=$1"
+  },
   "P1978": {
     "description": "identifier for a food item in the United States Department of Agriculture National Nutrient Database",
     "example": [
@@ -3422,6 +3497,29 @@
     "pattern": "^\\d{1,6}$",
     "prefix": "P2036",
     "uri_format": "https://africanplantdatabase.ch/en/nomen/$1"
+  },
+  "P2037": {
+    "description": "username of this project, person or organization on GitHub",
+    "example": [
+      "google",
+      "michaelni"
+    ],
+    "homepage": "https://github.com/",
+    "name": "GitHub username",
+    "pattern": "^[0-9A-Za-z]([0-9A-Za-z\\-]{0,37}[0-9A-Za-z])?$",
+    "prefix": "P2037",
+    "uri_format": "https://github.com/$1"
+  },
+  "P2038": {
+    "description": "identifier for a person, used by ResearchGate profiles",
+    "example": [
+      "Rita-Heuser",
+      "William-White-32"
+    ],
+    "name": "ResearchGate profile ID",
+    "pattern": "^[0-9A-Za-z_-]+$",
+    "prefix": "P2038",
+    "uri_format": "https://www.researchgate.net/profile/$1"
   },
   "P2040": {
     "description": "identifier for a taxon in the Species+ database (CITES)",
@@ -3613,6 +3711,46 @@
     "uri_format": "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=$1",
     "uri_format_rdf": "http://purl.bioontology.org/ontology/NDFRT/$1"
   },
+  "P213": {
+    "database": "Q423048",
+    "description": "International Standard Name Identifier for an identity. Starting with 0000.",
+    "example": [
+      "000000006629310X",
+      "0000000103545207",
+      "0000000109397559",
+      "0000000121416409",
+      "0000000122974701",
+      "0000000403855362"
+    ],
+    "name": "ISNI",
+    "pattern": "^[0]{7}[0-9]{8}[0-9X]$",
+    "prefix": "P213",
+    "uri_format": "https://isni.org/isni/$1"
+  },
+  "P214": {
+    "database": "Q19832964",
+    "description": "identifier for the Virtual International Authority File database [format: up to 22 digits]",
+    "example": [
+      "120062731",
+      "141940265",
+      "15",
+      "150088538",
+      "198592695",
+      "214796741",
+      "240782041",
+      "44298806",
+      "9972147907520779210008"
+    ],
+    "homepage": "https://viaf.org",
+    "name": "VIAF ID",
+    "pattern": "^[1-9]\\d(\\d{0,7}|\\d{17,20})$",
+    "prefix": "P214",
+    "short_name": [
+      "VIAF"
+    ],
+    "uri_format": "https://viaf.org/viaf/$1/",
+    "uri_format_rdf": "http://viaf.org/viaf/$1"
+  },
   "P2153": {
     "description": "substance (e.g. mixtures, undefined stereochemistry, ...) identifier in the PubChem database",
     "example": [
@@ -3680,6 +3818,29 @@
     ],
     "name": "life expectancy",
     "prefix": "P2250"
+  },
+  "P227": {
+    "database": "Q54506313",
+    "description": "identifier from an international authority file of names, subjects, and organizations (please don't use type n = name, disambiguation) - Deutsche Nationalbibliothek",
+    "example": [
+      "118604740",
+      "118627813",
+      "1231643-X",
+      "4010921-5",
+      "4079154-3",
+      "4131406-2",
+      "4426550-5",
+      "7505698-7"
+    ],
+    "homepage": "https://portal.dnb.de",
+    "name": "GND ID",
+    "pattern": "^1[0123]?\\d{7}[0-9X]|[47]\\d{6}-\\d|[1-9]\\d{0,7}-[0-9X]|3\\d{7}[0-9X]$",
+    "prefix": "P227",
+    "short_name": [
+      "GND"
+    ],
+    "uri_format": "https://d-nb.info/gnd/$1",
+    "uri_format_rdf": "https://d-nb.info/gnd/$1"
   },
   "P2273": {
     "description": "entry in the list of members of the Heidelberg Academy for Sciences and Humanities",
@@ -4089,6 +4250,19 @@
     "pattern": "^B\\d{5}$",
     "prefix": "P2796",
     "uri_format": "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=$1"
+  },
+  "P2798": {
+    "description": "identifier for a person, in the Loop database of researcher impact",
+    "example": [
+      "1859",
+      "2187",
+      "82461"
+    ],
+    "homepage": "https://loop.frontiersin.org/",
+    "name": "Loop ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P2798",
+    "uri_format": "https://loop.frontiersin.org/people/$1/overview"
   },
   "P2809": {
     "description": "identifier for a pollen or spore in the Australasian Pollen and Spore Atlas, managed by the Australian National University",
@@ -5091,6 +5265,18 @@
     "pattern": "^[1-9]\\d{0,3}$",
     "prefix": "P3746",
     "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
+  },
+  "P3747": {
+    "description": "identifier for an author at the Social Science Research Network",
+    "example": [
+      "112517",
+      "1585413",
+      "9"
+    ],
+    "name": "SSRN author ID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "prefix": "P3747",
+    "uri_format": "https://ssrn.com/author=$1"
   },
   "P3753": {
     "database": "Q2393193",
@@ -7952,6 +8138,18 @@
     "pattern": "^[1-9]\\d{3,6}$",
     "prefix": "P6433"
   },
+  "P6479": {
+    "description": "identifier for an author in IEEE Xplore",
+    "example": [
+      "37271072100",
+      "37274652000",
+      "37393195900"
+    ],
+    "name": "IEEE Xplore author ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P6479",
+    "uri_format": "https://ieeexplore.ieee.org/author/$1"
+  },
   "P6480": {
     "description": "identifier for a document in IEEE Xplore",
     "example": [
@@ -8131,6 +8329,18 @@
     "name": "DSM-IV classification",
     "pattern": "^\\d+\\.\\d+$",
     "prefix": "P663"
+  },
+  "P6634": {
+    "description": "identifier for a person, on the LinkedIn website",
+    "example": [
+      "deborahlehr",
+      "h\u00e9l\u00e8ne-gasnault-a2543562",
+      "joan-rivers-ba163a15"
+    ],
+    "name": "LinkedIn personal profile ID",
+    "pattern": "^[\\p{L}0-9\\-&_'\u2019\\.]+$",
+    "prefix": "P6634",
+    "uri_format": "https://www.linkedin.com/in/$1/"
   },
   "P665": {
     "description": "identifier from\u00a0databases dealing with genomes, enzymatic pathways, and biological chemicals",
@@ -8726,6 +8936,18 @@
     "prefix": "P7224",
     "uri_format": "http://insecta.pro/taxonomy/$1"
   },
+  "P7238": {
+    "description": "ID in osf.io",
+    "example": [
+      "2u4tf",
+      "e9tg8",
+      "wx9bf"
+    ],
+    "name": "Open Science Framework ID",
+    "pattern": "^[a-z0-9]{5}$",
+    "prefix": "P7238",
+    "uri_format": "https://osf.io/$1"
+  },
   "P7254": {
     "description": "identifier for a taxon in the database of German Mycological Society (voluntary association - DGfM)",
     "example": [
@@ -9087,6 +9309,21 @@
     "prefix": "P7830",
     "uri_format": "https://www.ncbi.nlm.nih.gov/books/n/livertox/$1"
   },
+  "P7834": {
+    "description": "ID of a researcher in Authenticus website",
+    "example": [
+      "P-008-GD6",
+      "P-00A-A83",
+      "P-00N-E5D",
+      "R-000-008",
+      "R-000-00F",
+      "R-001-0W1"
+    ],
+    "name": "Authenticus ID",
+    "pattern": "^[A-Z]-[0-9A-Z]{3}-[0-9A-Z]{3}$",
+    "prefix": "P7834",
+    "uri_format": "https://www.authenticus.pt/$1"
+  },
   "P7864": {
     "description": "identifier for an article in the HAL (Hyper Articles en Ligne) open access repository",
     "example": [
@@ -9098,6 +9335,19 @@
     "pattern": "^[a-z\\d]+-\\d+$",
     "prefix": "P7864",
     "uri_format": "https://hal.science/$1"
+  },
+  "P7893": {
+    "description": "identifier of scientific author in www.cienciavitae.pt",
+    "example": [
+      "0C1F-DA6C-4B02",
+      "7510-6641-5A42",
+      "A11B-38F7-A1B1"
+    ],
+    "homepage": "https://www.ciencia-id.pt",
+    "name": "CI\u00caNCIAVITAE ID",
+    "pattern": "^([0-9A-F]{4}-){2}[0-9A-F]{4}$",
+    "prefix": "P7893",
+    "uri_format": "https://www.cienciavitae.pt/$1"
   },
   "P7896": {
     "description": "identifier of a publication at Academia.edu",
@@ -9390,6 +9640,19 @@
     "pattern": "^[A-Za-z]+([-_]([A-Za-z0-9]+))*$",
     "prefix": "P8153",
     "uri_format": "https://www.accademiadellescienze.it/accademia/soci/$1"
+  },
+  "P8159": {
+    "description": "numerical identifier for an author in SciProfiles by MDPI",
+    "example": [
+      "118021",
+      "92927",
+      "94648"
+    ],
+    "homepage": "https://sciprofiles.com/",
+    "name": "SciProfiles ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P8159",
+    "uri_format": "https://sciprofiles.com/profile/$1"
   },
   "P8162": {
     "description": "identifier for a facility indexed by Bangladesh's Directorate General of Health Services",
@@ -9802,6 +10065,18 @@
     "name": "Royal Horticultural Society plant ID",
     "prefix": "P8765",
     "uri_format": "https://www.rhs.org.uk/Plants/$1/wd/Details"
+  },
+  "P8778": {
+    "description": "Docker repository hosted on Docker Hub",
+    "example": [
+      "gitea/gitea",
+      "library/nginx",
+      "library/redis"
+    ],
+    "homepage": "https://hub.docker.com/",
+    "name": "Docker Hub repository",
+    "prefix": "P8778",
+    "uri_format": "https://hub.docker.com/r/$1"
   },
   "P8792": {
     "example": [
@@ -10735,6 +11010,19 @@
     "homepage": "https://incubator.wikimedia.org",
     "name": "Wikimedia Incubator URL",
     "prefix": "P9748"
+  },
+  "P9776": {
+    "description": "identifier for researchers in Japan used in goverment-based research funding (from 1980s)",
+    "example": [
+      "00011461",
+      "10295694",
+      "90050426"
+    ],
+    "homepage": "https://nrid.nii.ac.jp/ja/search/?kw=",
+    "name": "e-Rad researcher number",
+    "pattern": "^\\d{8}$",
+    "prefix": "P9776",
+    "uri_format": "https://nrid.nii.ac.jp/ja/nrid/10000$1"
   },
   "P9784": {
     "description": "identifier of a publication in Index Theologicus",

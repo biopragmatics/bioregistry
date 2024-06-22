@@ -4,6 +4,7 @@
 
 import json
 import logging
+import re
 import unittest
 from collections import defaultdict
 from textwrap import dedent
@@ -161,7 +162,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
-                self.assertIsNotNone(bioregistry.get_homepage(prefix))
+                self.assertIsNotNone(bioregistry.get_homepage(prefix), msg=f"Missing homepage for {prefix}")
 
     def test_homepage_http(self):
         """Test that all homepages start with http."""
@@ -290,6 +291,10 @@ class TestRegistry(unittest.TestCase):
                 if curie_pattern is None or curie_example is None:
                     continue
                 with self.subTest(prefix=prefix, use_preferred=use_preferred):
+                    try:
+                        re.compile(curie_pattern)
+                    except re.error:
+                        self.fail(msg=f"Could not compile pattern for {prefix}: {curie_pattern}")
                     self.assertRegex(
                         curie_example,
                         curie_pattern,
