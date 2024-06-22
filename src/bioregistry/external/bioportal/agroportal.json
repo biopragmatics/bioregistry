@@ -190,6 +190,7 @@
     },
     "description": "The AsCoPain-T terminology lists and defines the main quality assessment descriptors used by bread-making professionals and those used in scientific studies. It aims at linking professional and scientific terminologies, as language can vary greatly to denote similar processing operations and observations that are made on the dough and bread.\nThe AsCoPain-T terminology is the result of successive efforts: expert knowledge collected by the INRA AsCoPain project first resulted in the definition of the relations between bread-making control variables and the different states of the dough and bread. These relations were implemented into the expert system used to predict the state of the dough throughout the kneading process. The terminology collected during this work was then published in the form of a glossary in a document referenced by the FAO (see http://prodinra.inra.fr/record/48319).\nThe recent adaptation of its content to the semantic web standards now allows unforeseen uses, in particular by applications. The terminology is available in French. Its translation in English will soon be under way. , La terminologie AsCoPain-T définit les descripteurs qualité utilisés usuellement par les professionnels de la panification et ceux issus des travaux scientifiques. Son objectif est d’établir un lien entre terminologies professionnelles et scientifiques ; le langage employé pour caractériser les mêmes opérations de la transformation et les nécessaires observations de la pâte étant très varié. \nLa terminologie AsCoPain-T est issue d’un travail préalable de recueil de connaissances dans le cadre du projet INRA AsCoPain qui a permis d’intégrer les relations entre des variables de contrôle du procédé de panification et des états de la pâte et du pain dans un système expert de prédiction de l’état de la pâte tout au long de l’opération de pétrissage. Ce travail a aussi produit un glossaire terminologique publié dans un document référencé par la FAO (voir http://prodinra.inra.fr/record/48319). \nL’adaptation de son contenu aux standards du web sémantique permet d’envisager de nouveaux usages de la terminologie, notamment son utilisation par des programmes informatiques. La terminologie est disponible en français et une version en anglais est en projet.",
     "example_uri": "http://opendata.inra.fr/AsCoPainT/contiguite",
+    "license": "CC-BY-4.0",
     "name": "Terminology of French bread descriptors",
     "prefix": "ASCOPAIN-T",
     "publication": "http://prodinra.inra.fr/record/48319",
@@ -249,7 +250,7 @@
   "BAGO": {
     "contact": {
       "email": "catherine.roussey@inrae.fr",
-      "name": "Catherine ROUSSEY"
+      "name": "Catherine Roussey"
     },
     "description": "This ontology and related knowledge graph was build during the D2KAB project. The goal is to model all the living organisms involved in cultivated plant disease appearance. The ontology and its documentation represent the point of view of some french researchers from differents intstitutions.",
     "name": "Bio AGgressor Ontology",
@@ -494,8 +495,7 @@
     "license": "CC-BY-4.0",
     "name": "Multi-Crop Passport Ontology",
     "prefix": "CO_020",
-    "repository": "https://github.com/bioversity/multi-crop-passport-descriptor-ontology",
-    "version": "1.0"
+    "repository": "https://github.com/bioversity/multi-crop-passport-descriptor-ontology"
   },
   "CO_121": {
     "contact": {
@@ -1059,7 +1059,8 @@
     },
     "description": "This ontology was created to support the development of the csopra libraries and the modelToolBox, which enables the modeling of soil organic changes, as a result of soil management, such as agricultural practices. It also aims at enabling interoperability between various data sources and various crop or biogeochemical models.",
     "name": "Soil organic carbon storage and agricultural practices modeling",
-    "prefix": "CSOPRA"
+    "prefix": "CSOPRA",
+    "version": "2.0"
   },
   "CVO": {
     "contact": {
@@ -1193,7 +1194,7 @@
     "name": "Experimental Factor Ontology",
     "prefix": "EFO",
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.66.0"
+    "version": "3.67.0"
   },
   "ENVO": {
     "contact": {
@@ -1251,6 +1252,18 @@
     "prefix": "FALDO",
     "repository": "https://github.com/OBF/FALDO",
     "version": "Created at the Biohackathon 2012 and 2013"
+  },
+  "FCUO": {
+    "contact": {
+      "email": "catherine.roussey@inrae.fr",
+      "name": "Catherine ROUSSEY"
+    },
+    "description": "This ontology specialized the skos model to create a new class Crop subclass of skos:Concept. fcuo:Crop is a defined class. Thus a reasoner like Hermit should be used to classify all the instances of skos:Concept that belongs to the scheme fcuo:thesaurus_FrenchCropUsage as an instance of Crop. FCUO contains also new objet properties and annotation properties dedicated to FCU alignement with taxonomy like TAXREF-LD., ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon.",
+    "license": "CC-BY-4.0",
+    "name": "French Crop Usage Ontology",
+    "prefix": "FCUO",
+    "publication": "https://doi.org/10.3389/frai.2023.1188036",
+    "version": "1.1"
   },
   "FLAIR": {
     "contact": {
@@ -1424,7 +1437,7 @@
     "prefix": "GO",
     "publication": "http://geneontology.org/page/publications",
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2024-04-24"
+    "version": "2024-06-17"
   },
   "GR-TAX": {
     "contact": {
@@ -2374,7 +2387,7 @@
     "name": "Vertebrate Trait Ontology",
     "prefix": "VT",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
-    "version": "2024-05-31"
+    "version": "2024-06-18"
   },
   "WCACROPS": {
     "contact": {
@@ -2397,7 +2410,8 @@
     "example_uri": "http://purl.obolibrary.org/obo/WTO_0000569",
     "name": "Wheat Trait and Phenotype Ontology",
     "prefix": "WHEATPHENOTYPE",
-    "publication": "https://dx.doi.org/10.5808/GI.2020.18.2.e14"
+    "publication": "https://dx.doi.org/10.5808/GI.2020.18.2.e14",
+    "version": "3.2"
   },
   "WHEAT_TAX": {
     "contact": {

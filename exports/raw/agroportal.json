@@ -950,6 +950,76 @@
     "viewingRestriction": "public"
   },
   {
+    "@id": "https://data.agroportal.lirmm.fr/ontologies/FCUO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "FCUO",
+    "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/croussey"
+    ],
+    "contact": {
+      "email": "catherine.roussey@inrae.fr",
+      "name": "Catherine ROUSSEY"
+    },
+    "description": "This ontology specialized the skos model to create a new class Crop subclass of skos:Concept. fcuo:Crop is a defined class. Thus a reasoner like Hermit should be used to classify all the instances of skos:Concept that belongs to the scheme fcuo:thesaurus_FrenchCropUsage as an instance of Crop. FCUO contains also new objet properties and annotation properties dedicated to FCU alignement with taxonomy like TAXREF-LD., ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon.",
+    "group": [
+      "https://data.agroportal.lirmm.fr/groups/D2KAB",
+      "https://data.agroportal.lirmm.fr/groups/INRAE"
+    ],
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/PLANT"
+    ],
+    "license": "CC-BY-4.0",
+    "links": {
+      "@context": {
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "collections": "http://www.w3.org/2004/02/skos/core#Collection",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "schemes": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology",
+        "xl_labels": "http://www.w3.org/2008/05/skos-xl#Label"
+      },
+      "analytics": "https://data.agroportal.lirmm.fr/ontologies/FCUO/analytics",
+      "categories": "https://data.agroportal.lirmm.fr/ontologies/FCUO/categories",
+      "classes": "https://data.agroportal.lirmm.fr/ontologies/FCUO/classes",
+      "collections": "https://data.agroportal.lirmm.fr/ontologies/FCUO/collections",
+      "download": "https://data.agroportal.lirmm.fr/ontologies/FCUO/download",
+      "groups": "https://data.agroportal.lirmm.fr/ontologies/FCUO/groups",
+      "instances": "https://data.agroportal.lirmm.fr/ontologies/FCUO/instances",
+      "latest_submission": "https://data.agroportal.lirmm.fr/ontologies/FCUO/latest_submission",
+      "metrics": "https://data.agroportal.lirmm.fr/ontologies/FCUO/metrics",
+      "notes": "https://data.agroportal.lirmm.fr/ontologies/FCUO/notes",
+      "projects": "https://data.agroportal.lirmm.fr/ontologies/FCUO/projects",
+      "properties": "https://data.agroportal.lirmm.fr/ontologies/FCUO/properties",
+      "reviews": "https://data.agroportal.lirmm.fr/ontologies/FCUO/reviews",
+      "roots": "https://data.agroportal.lirmm.fr/ontologies/FCUO/classes/roots",
+      "schemes": "https://data.agroportal.lirmm.fr/ontologies/FCUO/schemes",
+      "single_class": "https://data.agroportal.lirmm.fr/ontologies/FCUO/classes/{class_id}",
+      "submissions": "https://data.agroportal.lirmm.fr/ontologies/FCUO/submissions",
+      "ui": "http://agroportal.lirmm.fr/ontologies/FCUO",
+      "views": "https://data.agroportal.lirmm.fr/ontologies/FCUO/views",
+      "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/FCUO/skos_xl_labels"
+    },
+    "name": "French Crop Usage Ontology",
+    "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "publication": "https://doi.org/10.3389/frai.2023.1188036",
+    "version": "1.1",
+    "viewingRestriction": "public"
+  },
+  {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/CO_331",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "CO_331",
@@ -1767,7 +1837,7 @@
       "https://data.agroportal.lirmm.fr/projects/Maggot"
     ],
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.66.0",
+    "version": "3.67.0",
     "viewingRestriction": "public"
   },
   {
@@ -2655,7 +2725,7 @@
     ],
     "contact": {
       "email": "catherine.roussey@inrae.fr",
-      "name": "Catherine ROUSSEY"
+      "name": "Catherine Roussey"
     },
     "description": "This ontology and related knowledge graph was build during the D2KAB project. The goal is to model all the living organisms involved in cultivated plant disease appearance. The ontology and its documentation represent the point of view of some french researchers from differents intstitutions.",
     "group": [
@@ -4435,10 +4505,7 @@
     ],
     "repository": "https://gitlab.irstea.fr/copain/frenchcropusage",
     "version": "3.3",
-    "viewingRestriction": "public",
-    "views": [
-      "https://data.agroportal.lirmm.fr/ontologies/FCUO"
-    ]
+    "viewingRestriction": "public"
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/CO_356",
@@ -4666,7 +4733,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "XEO",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/edzale"
+      "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
     "contact": {
       "email": "billiau@mpimp-golm.mpg.de",
@@ -5905,7 +5972,9 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "CO_020",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/jonquet"
+      "https://data.agroportal.lirmm.fr/users/jonquet",
+      "https://data.agroportal.lirmm.fr/users/malaporte",
+      "https://data.agroportal.lirmm.fr/users/Malaporte"
     ],
     "contact": {
       "email": "helpdesk@cropontology-curationtool.org",
@@ -5973,7 +6042,6 @@
       "https://data.agroportal.lirmm.fr/projects/MIAPPE"
     ],
     "repository": "https://github.com/bioversity/multi-crop-passport-descriptor-ontology",
-    "version": "1.0",
     "viewingRestriction": "public"
   },
   {
@@ -7510,6 +7578,7 @@
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/NUTRITION"
     ],
+    "license": "CC-BY-4.0",
     "links": {
       "@context": {
         "analytics": "http://data.bioontology.org/metadata/Analytics",
@@ -8094,6 +8163,7 @@
     },
     "name": "Soil organic carbon storage and agricultural practices modeling",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "version": "2.0",
     "viewingRestriction": "public"
   },
   {
@@ -8410,7 +8480,7 @@
       "https://data.agroportal.lirmm.fr/projects/EADGENE"
     ],
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
-    "version": "2024-05-31",
+    "version": "2024-06-18",
     "viewingRestriction": "public"
   },
   {
@@ -10752,6 +10822,7 @@
       "https://data.agroportal.lirmm.fr/projects/FSOV+SAM+bl%C3%A9"
     ],
     "publication": "https://dx.doi.org/10.5808/GI.2020.18.2.e14",
+    "version": "3.2",
     "viewingRestriction": "public"
   },
   {
@@ -13363,7 +13434,7 @@
     ],
     "publication": "http://geneontology.org/page/publications",
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2024-04-24",
+    "version": "2024-06-17",
     "viewingRestriction": "public"
   },
   {
