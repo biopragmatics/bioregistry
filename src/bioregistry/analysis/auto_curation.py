@@ -1,4 +1,4 @@
-"""Apply a TF-IDF classifier on recent PubMed papers to determine their relevancy to the Bioregistry."""
+"""Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
 import json
 from pathlib import Path
