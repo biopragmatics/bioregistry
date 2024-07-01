@@ -1,5 +1,13 @@
-"""This script predicts and scores the relevancy of recent PubMed papers for the Bioregistry"""
+"""
+This module handles the automated curation of bioregistry entries.
+It includes functions to load bioregistry data, fetch PubMed papers,
+train classifiers, evaluate models, and predict new data for curation.
+"""
+
 import click
+import json
+from pathlib import Path
+
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -9,19 +17,15 @@ from sklearn.model_selection import train_test_split, cross_val_predict
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
-import indra.literature.pubmed_client as pubmed_client
-import json
 
-from pathlib import Path
+import indra.literature.pubmed_client as pubmed_client
 
 # Update the directory path to exports/analyses/auto_curation
 BASE_DIRECTORY = Path("exports/analyses")
 AUTO_CURATION_DIRECTORY = BASE_DIRECTORY.joinpath("auto_curation")
 AUTO_CURATION_DIRECTORY.mkdir(exist_ok=True, parents=True)
 
-URL = (
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
-)
+URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
 def load_bioregistry_json(file_path):
@@ -32,17 +36,15 @@ def load_bioregistry_json(file_path):
     :return: DataFrame containing publication details.
     :rtype: pd.DataFrame
     """
-    with open(file_path, 'r') as f:
+    with open(file_path, "r") as f:
         data = json.load(f)
     publications = []
     for entry in data.values():
         if "publications" in entry:
             for pub in entry["publications"]:
-                publications.append({
-                    "pubmed": pub.get("pubmed"),
-                    "title": pub.get("title"),
-                    "label": 1
-                })
+                publications.append(
+                    {"pubmed": pub.get("pubmed"), "title": pub.get("title"), "label": 1}
+                )
     click.echo(f"Got {len(publications)} publications from the bioregistry")
     return pd.DataFrame(publications)
 
@@ -70,15 +72,20 @@ def fetch_pubmed_papers():
         return pd.DataFrame()
 
     papers = {}
-    for chunk in [all_pmids[i:i + 200] for i in range(0, len(all_pmids), 200)]:
+    for chunk in [all_pmids[i : i + 200] for i in range(0, len(all_pmids), 200)]:
         papers.update(pubmed_client.get_metadata_for_ids(chunk))
 
     records = [
-        {"pubmed": paper.get("pmid"), "title": paper.get("title"),
-         "year": paper.get("publication_date", {}).get("year"),
-         "search_terms": paper_to_terms.get(paper.get("pmid"))}
-        for paper in papers.values() if
-        paper.get("title") and paper.get("pmid") and paper.get("publication_date", {}).get("year")
+        {
+            "pubmed": paper.get("pmid"),
+            "title": paper.get("title"),
+            "year": paper.get("publication_date", {}).get("year"),
+            "search_terms": paper_to_terms.get(paper.get("pmid")),
+        }
+        for paper in papers.values()
+        if paper.get("title")
+        and paper.get("pmid")
+        and paper.get("publication_date", {}).get("year")
     ]
     return pd.DataFrame(records)
 
@@ -127,7 +134,7 @@ def train_classifiers(x_train, y_train):
         ("lr", LogisticRegression()),
         ("dt", DecisionTreeClassifier()),
         ("svc", LinearSVC()),
-        ("svm", SVC(kernel="rbf", probability=True))
+        ("svm", SVC(kernel="rbf", probability=True)),
     ]
     for _, clf in classifiers:
         clf.fit(x_train, y_train)
@@ -149,9 +156,11 @@ def generate_meta_features(classifiers, x_train, y_train):
     meta_features = pd.DataFrame()
     for name, clf in classifiers:
         if hasattr(clf, "predict_proba"):
-            predictions = cross_val_predict(clf, x_train, y_train, cv=5, method='predict_proba')[:, 1]
+            predictions = cross_val_predict(clf, x_train, y_train, cv=5, method="predict_proba")[
+                :, 1
+            ]
         else:
-            predictions = cross_val_predict(clf, x_train, y_train, cv=5, method='decision_function')
+            predictions = cross_val_predict(clf, x_train, y_train, cv=5, method="decision_function")
         meta_features[name] = predictions
     return meta_features
 
@@ -196,22 +205,24 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
         else:
             x_meta[name] = clf.decision_function(x_transformed)
 
-    df['meta_score'] = meta_clf.predict_proba(x_meta)[:, 1]
-    df = df.sort_values(by='meta_score', ascending=False)
+    df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
+    df = df.sort_values(by="meta_score", ascending=False)
     df.to_csv(AUTO_CURATION_DIRECTORY.joinpath(filename), sep="\t", index=False)
     click.echo(f"Writing predicted scores to {AUTO_CURATION_DIRECTORY.joinpath(filename)}")
 
 
 @click.command()
-@click.option('--bioregistry-file', default='src/bioregistry/data/bioregistry.json',
-              help='Path to the bioregistry.json file')
+@click.option(
+    "--bioregistry-file",
+    default="src/bioregistry/data/bioregistry.json",
+    help="Path to the bioregistry.json file",
+)
 def main(bioregistry_file):
     """Main function to load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
     :type bioregistry_file: str
     """
-
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()
 
@@ -226,7 +237,9 @@ def main(bioregistry_file):
     x = vectorizer.transform(annotated_df.title)
     y = annotated_df.label
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=True)
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.33, random_state=42, shuffle=True
+    )
 
     classifiers = train_classifiers(x_train, y_train)
 
@@ -298,7 +311,9 @@ def main(bioregistry_file):
 
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, "predictions_last_month.tsv")
+        predict_and_save(
+            new_pub_df, vectorizer, classifiers, meta_clf, "predictions_last_month.tsv"
+        )
 
 
 if __name__ == "__main__":
