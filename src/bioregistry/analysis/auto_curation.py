@@ -1,3 +1,4 @@
+"""This script predicts and scores the relevancy of recent PubMed papers for the Bioregistry"""
 import click
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
