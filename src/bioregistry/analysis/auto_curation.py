@@ -1,31 +1,27 @@
-"""
-This module handles the automated curation of bioregistry entries.
-It includes functions to load bioregistry data, fetch PubMed papers,
-train classifiers, evaluate models, and predict new data for curation.
-"""
+"""Apply a TF-IDF classifier on recent PubMed papers to determine their relevancy to the Bioregistry."""
 
-import click
 import json
 from pathlib import Path
 
+import click
+import indra.literature.pubmed_client as pubmed_client
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import matthews_corrcoef, roc_auc_score
-from sklearn.model_selection import train_test_split, cross_val_predict
+from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
-
-import indra.literature.pubmed_client as pubmed_client
 
 # Update the directory path to exports/analyses/auto_curation
 BASE_DIRECTORY = Path("exports/analyses")
 AUTO_CURATION_DIRECTORY = BASE_DIRECTORY.joinpath("auto_curation")
 AUTO_CURATION_DIRECTORY.mkdir(exist_ok=True, parents=True)
 
-URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
+       QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
 def load_bioregistry_json(file_path):
@@ -112,9 +108,9 @@ def _map_labels(s: str):
     :return: Mapped binary label value.
     :rtype: int
     """
-    if s in {"1", "1.0", 1, 1.0}:
+    if s in {"1", "1.0", 1}:
         return 1
-    if s in {"0", "0.0", 0, 0.0}:
+    if s in {"0", "0.0", 0}:
         return 0
     return None
 
