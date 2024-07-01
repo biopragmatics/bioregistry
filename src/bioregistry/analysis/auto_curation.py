@@ -162,7 +162,7 @@ def generate_meta_features(classifiers, x_train, y_train):
 
 
 def evaluate_meta_classifier(meta_clf, x_test_meta, y_test):
-    """Evaluate the meta-classifier using MCC and AUC-ROC scores.
+    """Evaluate meta-classifier using MCC and AUC-ROC scores.
 
     :param meta_clf: Trained meta-classifier.
     :type meta_clf: classifier
@@ -214,7 +214,7 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     help="Path to the bioregistry.json file",
 )
 def main(bioregistry_file):
-    """Main function to load data, train classifiers, evaluate models, and predict new data.
+    """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
     :type bioregistry_file: str
