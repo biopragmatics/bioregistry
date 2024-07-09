@@ -267,11 +267,9 @@ def main(bioregistry_file):
         scores.append((name, mcc or float("nan"), roc_auc or float("nan")))
 
     evaluation_df = pd.DataFrame(scores, columns=["classifier", "mcc", "auc_roc"]).round(3)
-    evaluation_df.to_csv(DIRECTORY.joinpath("evaluation.tsv"), sep="\t", index=False)
     click.echo(tabulate(evaluation_df, showindex=False, headers=evaluation_df.columns))
 
     meta_features = generate_meta_features(classifiers, x_train, y_train)
-
     meta_clf = LogisticRegression()
     meta_clf.fit(meta_features, y_train)
 
@@ -284,6 +282,12 @@ def main(bioregistry_file):
 
     mcc, roc_auc = evaluate_meta_classifier(meta_clf, x_test_meta, y_test)
     click.echo(f"Meta-Classifier MCC: {mcc}, AUC-ROC: {roc_auc}")
+    new_row = {'classifier': 'meta_classifier', 'mcc': mcc, 'auc_roc': roc_auc}
+    evaluation_df = pd.concat([evaluation_df, pd.DataFrame([new_row])], ignore_index=True)
+
+    evaluation_path = DIRECTORY.joinpath("evaluation.tsv")
+    click.echo(f"Writing evaluation to {evaluation_path}")
+    evaluation_df.to_csv(evaluation_path, sep="\t", index=False)
 
     random_forest_clf: RandomForestClassifier = classifiers[0][1]
     lr_clf: LogisticRegression = classifiers[1][1]
