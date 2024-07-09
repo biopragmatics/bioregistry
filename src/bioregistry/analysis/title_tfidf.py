@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+from datetime import datetime, timedelta
 
 import click
 import indra.literature.pubmed_client as pubmed_client
@@ -15,13 +16,11 @@ from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
 
-# Update the directory path to exports/analyses/auto_curation
-BASE_DIRECTORY = Path("exports/analyses")
-AUTO_CURATION_DIRECTORY = BASE_DIRECTORY.joinpath("auto_curation")
-AUTO_CURATION_DIRECTORY.mkdir(exist_ok=True, parents=True)
+DIRECTORY = Path("exports/analyses/title_tfidf")
+DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
-       QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
 def load_bioregistry_json(file_path):
@@ -32,8 +31,15 @@ def load_bioregistry_json(file_path):
     :return: DataFrame containing publication details.
     :rtype: pd.DataFrame
     """
-    with open(file_path, "r") as f:
-        data = json.load(f)
+    try:
+        with open(file_path, "r") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        click.echo(f"JSONDecodeError: {e.msg}")
+        click.echo(f"Error at line {e.lineno}, column {e.colno}")
+        click.echo(f"Error at position {e.pos}")
+        return pd.DataFrame()
+
     publications = []
     for entry in data.values():
         if "publications" in entry:
@@ -203,8 +209,8 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 
     df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
     df = df.sort_values(by="meta_score", ascending=False)
-    df.to_csv(AUTO_CURATION_DIRECTORY.joinpath(filename), sep="\t", index=False)
-    click.echo(f"Writing predicted scores to {AUTO_CURATION_DIRECTORY.joinpath(filename)}")
+    df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
+    click.echo(f"Writing predicted scores to {DIRECTORY.joinpath(filename)}")
 
 
 @click.command()
@@ -261,7 +267,7 @@ def main(bioregistry_file):
         scores.append((name, mcc or float("nan"), roc_auc or float("nan")))
 
     evaluation_df = pd.DataFrame(scores, columns=["classifier", "mcc", "auc_roc"]).round(3)
-    evaluation_df.to_csv(AUTO_CURATION_DIRECTORY.joinpath("evaluation.tsv"), sep="\t", index=False)
+    evaluation_df.to_csv(DIRECTORY.joinpath("evaluation.tsv"), sep="\t", index=False)
     click.echo(tabulate(evaluation_df, showindex=False, headers=evaluation_df.columns))
 
     meta_features = generate_meta_features(classifiers, x_train, y_train)
@@ -298,18 +304,17 @@ def main(bioregistry_file):
     )
     click.echo(tabulate(importances_df.head(15), showindex=False, headers=importances_df.columns))
 
-    importance_path = AUTO_CURATION_DIRECTORY.joinpath("importances.tsv")
+    importance_path = DIRECTORY.joinpath("importances.tsv")
     click.echo(f"Writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
-    novel_df = df[~df.label.notna()][["pubmed", "title"]].copy()
-    predict_and_save(novel_df, vectorizer, classifiers, meta_clf, "predictions_last_year.tsv")
-
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        predict_and_save(
-            new_pub_df, vectorizer, classifiers, meta_clf, "predictions_last_month.tsv"
-        )
+        date_end = datetime.now()
+        date_start = date_end - timedelta(days=30)
+        filename = f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
+
+        predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
 if __name__ == "__main__":
