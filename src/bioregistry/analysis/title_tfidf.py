@@ -45,7 +45,12 @@ def load_bioregistry_json(file_path):
         if "publications" in entry:
             for pub in entry["publications"]:
                 publications.append(
-                    {"pubmed": pub.get("pubmed"), "title": pub.get("title"), "label": 1}
+                    {
+                        "pubmed": pub.get("pubmed"),
+                        "title": pub.get("title"),
+                        "abstract": pub.get("abstract", ""),
+                        "label": 1
+                    }
                 )
     click.echo(f"Got {len(publications)} publications from the bioregistry")
     return pd.DataFrame(publications)
@@ -81,13 +86,14 @@ def fetch_pubmed_papers():
         {
             "pubmed": paper.get("pmid"),
             "title": paper.get("title"),
+            "abstract": paper.get("abstract", ""),
             "year": paper.get("publication_date", {}).get("year"),
             "search_terms": paper_to_terms.get(paper.get("pmid")),
         }
         for paper in papers.values()
-        if paper.get("title")
-        and paper.get("pmid")
-        and paper.get("publication_date", {}).get("year")
+        if paper.get("title") and paper.get("abstract")
+           and paper.get("pmid")
+           and paper.get("publication_date", {}).get("year")
     ]
     return pd.DataFrame(records)
 
@@ -101,7 +107,8 @@ def load_curation_data():
     click.echo("Downloading curation")
     df = pd.read_csv(URL)
     df["label"] = df["relevant"].map(_map_labels)
-    df = df[["pubmed", "title", "label"]]
+    df["abstract"] = df["abstract"].fillna("")
+    df = df[["pubmed", "title", "abstract", "label"]]
     click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
     return df
 
@@ -200,7 +207,7 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     :type filename: str
     """
     x_meta = pd.DataFrame()
-    x_transformed = vectorizer.transform(df.title)
+    x_transformed = vectorizer.transform(df.title + " " + df.abstract)
     for name, clf in classifiers:
         if hasattr(clf, "predict_proba"):
             x_meta[name] = clf.predict_proba(x_transformed)[:, 1]
@@ -230,13 +237,14 @@ def main(bioregistry_file):
 
     # Combine both data sources
     df = pd.concat([curation_df, publication_df])
-    df["title"] = df["title"].str.slice(0, 20)
+    df["abstract"] = df["abstract"].fillna("")
+    df["title_abstract"] = df["title"] + " " + df["abstract"]
 
     vectorizer = TfidfVectorizer(stop_words="english")
-    vectorizer.fit(df.title)
+    vectorizer.fit(df.title_abstract)
 
     annotated_df = df[df.label.notna()]
-    x = vectorizer.transform(annotated_df.title)
+    x = vectorizer.transform(annotated_df.title_abstract)
     y = annotated_df.label
 
     x_train, x_test, y_train, y_test = train_test_split(
