@@ -1,8 +1,8 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
 import json
-from pathlib import Path
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import click
 import indra.literature.pubmed_client as pubmed_client
@@ -49,17 +49,10 @@ def load_bioregistry_json(file_path):
                 title = pub.get("title")
                 if pmid:
                     pmids_to_fetch.append(pmid)
-                publications.append(
-                    {
-                        "pubmed": pmid,
-                        "title": title,
-                        "abstract": "",
-                        "label": 1
-                    }
-                )
+                publications.append({"pubmed": pmid, "title": title, "abstract": "", "label": 1})
 
     fetched_metadata = {}
-    for chunk in [pmids_to_fetch[i: i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+    for chunk in [pmids_to_fetch[i : i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
         fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
 
     for pub in publications:
@@ -97,8 +90,8 @@ def fetch_pubmed_papers():
         return pd.DataFrame()
 
     papers = {}
-    for chunk in [all_pmids[i: i + 200] for i in range(0, len(all_pmids), 200)]:
-            papers.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+    for chunk in [all_pmids[i : i + 200] for i in range(0, len(all_pmids), 200)]:
+        papers.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
 
     records = []
     for pmid, paper in papers.items():
@@ -106,13 +99,15 @@ def fetch_pubmed_papers():
         abstract = paper.get("abstract", "")
 
         if title and abstract:
-            records.append({
-                "pubmed": pmid,
-                "title": title,
-                "abstract": abstract,
-                "year": paper.get("publication_date", {}).get("year"),
-                "search_terms": paper_to_terms.get(pmid),
-            })
+            records.append(
+                {
+                    "pubmed": pmid,
+                    "title": title,
+                    "abstract": abstract,
+                    "year": paper.get("publication_date", {}).get("year"),
+                    "search_terms": paper_to_terms.get(pmid),
+                }
+            )
 
     click.echo(f"{len(records)} records fetched from PubMed")
     return pd.DataFrame(records)
@@ -131,7 +126,7 @@ def load_curation_data():
 
     pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
     fetched_metadata = {}
-    for chunk in [pmids_to_fetch[i: i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+    for chunk in [pmids_to_fetch[i : i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
         fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
 
     for index, row in df.iterrows():
@@ -326,7 +321,7 @@ def main(bioregistry_file):
 
     mcc, roc_auc = evaluate_meta_classifier(meta_clf, x_test_meta, y_test)
     click.echo(f"Meta-Classifier MCC: {mcc}, AUC-ROC: {roc_auc}")
-    new_row = {'classifier': 'meta_classifier', 'mcc': mcc, 'auc_roc': roc_auc}
+    new_row = {"classifier": "meta_classifier", "mcc": mcc, "auc_roc": roc_auc}
     evaluation_df = pd.concat([evaluation_df, pd.DataFrame([new_row])], ignore_index=True)
 
     evaluation_path = DIRECTORY.joinpath("evaluation.tsv")
@@ -360,7 +355,9 @@ def main(bioregistry_file):
     if not new_pub_df.empty:
         date_end = datetime.now()
         date_start = date_end - timedelta(days=30)
-        filename = f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
+        filename = (
+            f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
+        )
 
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
