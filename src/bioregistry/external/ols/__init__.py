@@ -119,7 +119,7 @@ def _get_email(ols_id, config) -> Optional[str]:
 
 def _get_license(ols_id, config) -> Optional[str]:
     license_value = (config.get("annotations") or {}).get("license", [None])[0]
-    if license_value in {"Unspecified", "Unspecified"}:
+    if license_value == "Unspecified":
         logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
         return None
     if not license_value:

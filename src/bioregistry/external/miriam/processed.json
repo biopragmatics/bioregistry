@@ -749,6 +749,18 @@
     "sampleId": "ECOLI:CYT-D-UBIOX-CPLX",
     "uri_format": "http://biocyc.org/getid?id=$1"
   },
+  "biofactoid": {
+    "deprecated": false,
+    "description": "Biofactoid is a resource of biological pathways, assembled from author-curated results in papers.\n",
+    "homepage": "https://thedonnellycentre.utoronto.ca/",
+    "id": "00001074",
+    "name": "Biofactoid",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+    "prefix": "biofactoid",
+    "sampleId": "5df17c41-acb7-4c42-a37b-fe323688bc64",
+    "uri_format": "https://biofactoid.org/document/$1"
+  },
   "biogrid": {
     "deprecated": false,
     "description": "BioGRID is a database of physical and genetic interactions in Saccharomyces cerevisiae, Caenorhabditis elegans, Drosophila melanogaster, Homo sapiens, and Schizosaccharomyces pombe.",
@@ -4230,7 +4242,7 @@
     "pattern": "^\\d+$",
     "prefix": "hgnc.genegroup",
     "sampleId": "141",
-    "uri_format": "https://www.genenames.org/cgi-bin/genefamilies/set/$1"
+    "uri_format": "https://www.genenames.org/data/genegroup/#!/group/$1"
   },
   "hgnc.symbol": {
     "deprecated": false,
@@ -6373,6 +6385,18 @@
     "sampleId": "3639",
     "uri_format": "https://senselab.med.yale.edu/ModelDB/ModelList?id=$1"
   },
+  "moid": {
+    "deprecated": false,
+    "description": "M3G stands for \u201cMetadata Management and distribution system for Multiple GNSS Networks\u201d. M3G allows to upload, validate, and distribute GNSS station metadata such as IGS-style site logs, information about local networks, DOIs, nominal data provision, data licenses attached to the daily RINEX data, etc...",
+    "homepage": "https://www.astro.oma.be/en/",
+    "id": "00001068",
+    "name": "Metadata Management and distribution system for Multiple GNSS Networks",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[a-zA-Z0-9]+\\.[a-f0-9]{24}",
+    "prefix": "moid",
+    "sampleId": "station.6051b2f8b9142a5b8c676342",
+    "uri_format": "https://gnss-metadata.eu/MOID/$1"
+  },
   "molbase": {
     "deprecated": false,
     "description": "Molbase provides compound data information for researchers as well as listing suppliers and price information. It can be searched by keyword or CAS indetifier.",
@@ -6599,7 +6623,7 @@
     "id": "00000625",
     "name": "Universal Spectrum Identifier",
     "namespaceEmbeddedInLui": true,
-    "pattern": "^mzspec:.+$",
+    "pattern": "^mzspec:(PDX|USI|PXD)[0-9]{6}:[^:]+:(scan|index|nativeId):[0-9]+(:.*)?$",
     "prefix": "mzspec",
     "providers": [
       {
@@ -6608,6 +6632,13 @@
         "homepage": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum",
         "name": "Universal Spectrum Identifier through Peptide Atlas",
         "uri_format": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1"
+      },
+      {
+        "code": "ebi",
+        "description": "PRIDE is a database of PRoteomics IDEntifications. It contains protein and peptide identifications (including details of post-translational modifications) together with the mass spectrometric evidence supporting these identifications. PRIDE acts as a repository for mass spectrometry data, specifically the fragment ion spectra used to identify peptide sequences.",
+        "homepage": "https://www.ebi.ac.uk/pride",
+        "name": "PRIDE",
+        "uri_format": "https://www.ebi.ac.uk/pride/archive/usi?usi=mzspec:$1"
       }
     ],
     "sampleId": "PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
@@ -7123,6 +7154,18 @@
     "sampleId": "frim1",
     "uri_format": "http://pmb-bordeaux.fr/getdata/json/$1/datapackage?links=1"
   },
+  "odam.explorer": {
+    "deprecated": false,
+    "description": "ODAM (Open Data for Access and Mining) is an Experimental data table management software (EDTMS) to make research data accessible and available for reuse with minimal effort on the part of the data provider. Designed to manage experimental data tables in an easy way for users, ODAM provides a model for structuring both data and metadata that facilitates data handling and analysis. It also encourages data dissemination according to FAIR principles by making the data interoperable and reusable by both humans and machines.\n\nODAM allows datasets to be explored and then extracted in whole or in part as needed.\n\nFor more information/explanation, see ODAM User's Guide : https://inrae.github.io/ODAM/",
+    "homepage": "https://eng-bfp.bordeaux-aquitaine.hub.inrae.fr/",
+    "id": "00001076",
+    "name": "ODAM Data explorer",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[A-Za-z][A-Za-z0-9]+$",
+    "prefix": "odam.explorer",
+    "sampleId": "frim1",
+    "uri_format": "https://pmb-bordeaux.fr/dataexplorer/?ds=$1"
+  },
   "odc.sci": {
     "deprecated": false,
     "description": "The Open Data Commons for Spinal Cord Injury is a cloud-based community-driven repository to store, share, and publish spinal cord injury research data.",
@@ -7210,14 +7253,14 @@
   "omia": {
     "deprecated": false,
     "description": "Online Mendelian Inheritance in Animals is a a database of genes, inherited disorders and traits in animal species (other than human and mouse).",
-    "homepage": "http://omia.angis.org.au/",
+    "homepage": "https://www.omia.org/home/",
     "id": "00000142",
     "name": "OMIA",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "omia",
     "sampleId": "1000",
-    "uri_format": "http://omia.angis.org.au/$1/"
+    "uri_format": "https://www.omia.org/OMIA$1"
   },
   "omid": {
     "deprecated": false,
@@ -9921,7 +9964,7 @@
     "uri_format": "http://linkedlifedata.com/resource/umls/id/$1"
   },
   "unigene": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "A UniGene entry is a set of transcript sequences that appear to come from the same transcription locus (gene or expressed pseudogene), together with information on protein similarities, gene expression, cDNA clone reagents, and genomic location.",
     "homepage": "http://www.ncbi.nlm.nih.gov/unigene",
     "id": "00000346",

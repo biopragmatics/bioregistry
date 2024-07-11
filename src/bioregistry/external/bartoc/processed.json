@@ -4299,7 +4299,7 @@
     "description": "The CIDOC Conceptual Reference Model (CRM) provides definitions and a formal structure for describing the implicit and explicit concepts and relationships used in cultural heritage documentation. The CIDOC CRM is intended to promote a shared understanding of cultural heritage information by providing a common and extensible semantic framework that any cultural heritage information can be mapped to. It is intended to be a common language for domain experts and implementers to formulate requirements for information systems and to serve as a guide for good practice of conceptual modelling. In this way, it can provide the 'semantic glue' needed to mediate between different sources of cultural heritage information, such as that published by museums, libraries and archives.",
     "homepage": "http://www.cidoc-crm.org/cidoc-crm/",
     "name": "CIDOC Conceptual Reference Model",
-    "pattern": "^[A-Z][0-9]+i?_[a-z_]+$",
+    "pattern": "^[A-Z]{1,2}[0-9]+i?(_[A-Za-z_]+)?$",
     "prefix": "1644",
     "wikidata_database": "Q624005"
   },
@@ -12947,8 +12947,9 @@
   },
   "1986": {
     "abbreviation": "MV",
-    "description": "System of the Landesbibliothek Mecklenburg-Vorpommern with a link to the library catalog.",
-    "homepage": "http://lhwis.gbv.de/DB=2.1/SET=1/TTL=1/LBSSYST",
+    "description": "The bibliography of Mecklenburg-Hither Pomerania is indexed by this classification scheme. It is segmented in 13 major groups from 1 to 13",
+    "homepage": "https://opac.lbs-wismar.gbv.de/DB=2.1/LBSSYST",
+    "license": "CC_MARK",
     "name": "Systematics of the Mecklenburg-Vorpommern bibliography",
     "pattern": "^[0-9\\.]+$",
     "prefix": "1986"
@@ -12961,12 +12962,12 @@
   },
   "1988": {
     "description": "Association catalog of the university libraries of North Rhine-Westphalia and a large part of Rhineland-Palatinate",
-    "homepage": "http://193.30.112.134/F/Q5K1BS368IVP2BXG9XALC2LA3Y4IKBP2FJ66FLKT1TLGDVV1IX-14580?func=file&file_name=systematik_js&local_base=NWBIB",
+    "homepage": "https://nwbib.de/",
     "name": "System of the North Rhine-Westphalian Bibliography",
     "prefix": "1988"
   },
   "1989": {
-    "homepage": "http://193.30.112.134/F/Q5K1BS368IVP2BXG9XALC2LA3Y4IKBP2FJ66FLKT1TLGDVV1IX-41951?func=file&file_name=systematik_js&local_base=NWBIB",
+    "homepage": "https://nwbib.de/",
     "name": "Spatial System of the North-West-Westphalian Bibliography",
     "prefix": "1989"
   },
@@ -15650,10 +15651,7 @@
     "prefix": "20397"
   },
   "20398": {
-    "description": "The bibliography of Mecklenburg-Hither Pomerania is indexed by this classification scheme. It is segmented in 13 major groups from 1 to 13.",
-    "homepage": "https://www.kulturwerte-mv.de/Landesbibliothek/Literatursuche/Landesbibliographie/Systematik/",
     "license": "http://rightsstatements.org/vocab/InC/1.0",
-    "name": "Classification scheme of the bibliography of Mecklenburg-Hither Pomerania",
     "prefix": "20398"
   },
   "204": {
@@ -16468,6 +16466,41 @@
     "license": "CC_MARK",
     "name": "Semantic Web for Earth and Environment Technology Ontology",
     "prefix": "20510"
+  },
+  "20511": {
+    "abbreviation": "TEATER",
+    "description": "The Thesaurus of Archaeological Terminology is a web thesaurus aimed at making the terminology of archaeology and the related disciplines more available. TEATER is intended for a wide sphere of users ranging from the lay public to amateur archaeologists, beginning students of archaeology, librarians of not only archaeological institutions and professional archaeologists. The entries are available in an interactive interface that enables both full-text searching and hierarchical browsing. TEATER’s content is available in three language versions – Czech, English and German. Entries can be exported from TEATER in .json format or linked using their PURL. More information on the possibilities of use of the thesaurus by various groups of users, the search application, the structure and selection of the entries is available in the Help section.",
+    "homepage": "https://teater.aiscr.cz/",
+    "license": "CC BY-NC 4.0",
+    "name": "Thesaurus of Archaeological Terminology",
+    "pattern": "^[0-9]+$",
+    "prefix": "20511"
+  },
+  "20512": {
+    "abbreviation": "IAMO-BibSys",
+    "license": "http://rightsstatements.org/vocab/InC/1.0",
+    "pattern": "^([A-Z] ([0-9]{1,2}(.[0-9](.[0-9]{1,2})?)?)?|.[0-9](.[0-9]{1,2})?|Anmerkung)$",
+    "prefix": "20512"
+  },
+  "20513": {
+    "abbreviation": "IAMO-Thes",
+    "license": "http://rightsstatements.org/vocab/InC/1.0",
+    "prefix": "20513"
+  },
+  "20514": {
+    "description": "The SPDX License List is an integral part of the SPDX Specification. The SPDX License List itself is a list of commonly found licenses and exceptions used in free and open or collaborative software, data, hardware, or documentation. The SPDX License List includes a standardized short identifier, the full name, the license text, and a canonical permanent URL for each license and exception.\n\nThe purpose of the SPDX License List is to enable efficient and reliable identification of such licenses and exceptions in an SPDX document, in source files or elsewhere.",
+    "homepage": "https://spdx.org/licenses/",
+    "license": "CC0-1.0",
+    "name": "SPDX License List",
+    "pattern": "^.+$",
+    "prefix": "20514"
+  },
+  "20515": {
+    "description": "mimetype.io is an open-source Gatsby-based project that provides a comprehensive database and resources related to various MIME types.",
+    "homepage": "https://mimetype.io/all-types",
+    "license": "http://www.opendatacommons.org/licenses/by/1.0",
+    "name": "MIME types",
+    "prefix": "20515"
   },
   "2053": {
     "abbreviation": "VIAF",
@@ -19867,6 +19900,7 @@
     "description": "The Dutch Basic Classification (NBC) is originally a Dutch library classification scheme developed for academic libraries. This rating is late 80's developed under the leadership of the Royal Library (Netherlands), in use since 1990 and has since been updated. the purpose of the basic rating is originally threefold: Organize or categorization of scientific publications on research areas, search or subject indexing of books and journals by academic libraries, the Collection Development Coordination in Dutch research libraries in practice the Basic classification is used together with a detailed word system. consisting of keywords, description of place and time, type keyword, genre, keyword and personal name as subject. The current basic classification (3rd revised edition 1998) is divided into five categories, 48 ​​categories and about 2250 part sections. Headings are indicated with two numbers, sub-areas are indicated by two more digits after which the column to which they belong, separated by a dot.",
     "homepage": "http://www.kb.nl/sites/default/files/docs/bc04.pdf",
     "name": "Dutch Basic Classification",
+    "pattern": "^[0-9]{2}\\.[0-9]{2}$",
     "prefix": "745",
     "wikidata_database": "Q810226"
   },

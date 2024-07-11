@@ -12,6 +12,11 @@ wrong_patterns:
   miriam: ^\d+$
   name: American Type Culture Collection
   prefix: atcc
+- correct: ^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$
+  homepage: https://biofactoid.org/
+  miriam: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+  name: Biofactoid
+  prefix: biofactoid
 - correct: ^\d+$
   homepage: https://github.com/SED-ML/KiSAO
   miriam: ^KISAO_\d+$
@@ -293,7 +298,7 @@ wrong_patterns:
   name: Protein modification
   prefix: mod
 - correct: ^\d{7}$
-  homepage: http://www.informatics.jax.org/searches/MP_form.shtml
+  homepage: https://www.informatics.jax.org/vocab/mp_ontology/
   miriam: ^MP:\d{7}$
   name: Mammalian Phenotype Ontology
   prefix: mp
@@ -304,7 +309,7 @@ wrong_patterns:
   prefix: ms
 - correct: ^.+$
   homepage: http://www.psidev.info/usi
-  miriam: ^mzspec:.+$
+  miriam: ^mzspec:(PDX|USI|PXD)[0-9]{6}:[^:]+:(scan|index|nativeId):[0-9]+(:.*)?$
   name: Universal Spectrum Identifier
   prefix: mzspec
 - correct: ^\d+$
@@ -347,6 +352,11 @@ wrong_patterns:
   miriam: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   name: OMA HOGs
   prefix: oma.hog
+- correct: ^\d{6}$
+  homepage: https://omia.org
+  miriam: ^\d+$
+  name: Online Mendelian Inheritance in Animals
+  prefix: omia
 - correct: ^\d+$
   homepage: https://omim.org/
   miriam: ^[*#+%^]?\d{6}$
