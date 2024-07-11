@@ -24,7 +24,7 @@ QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
 def load_bioregistry_json(file_path):
-    """Load bioregistry data from a JSON file, extracting publication details.
+    """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param file_path: Path to the bioregistry JSON file.
     :type file_path: str
@@ -41,18 +41,33 @@ def load_bioregistry_json(file_path):
         return pd.DataFrame()
 
     publications = []
+    pmids_to_fetch = []
     for entry in data.values():
         if "publications" in entry:
             for pub in entry["publications"]:
+                pmid = pub.get("pubmed")
+                title = pub.get("title")
+                if pmid:
+                    pmids_to_fetch.append(pmid)
                 publications.append(
                     {
-                        "pubmed": pub.get("pubmed"),
-                        "title": pub.get("title"),
-                        "abstract": pub.get("abstract", ""),
+                        "pubmed": pmid,
+                        "title": title,
+                        "abstract": "",
                         "label": 1
                     }
                 )
+
+    fetched_metadata = {}
+    for chunk in [pmids_to_fetch[i: i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+
+    for pub in publications:
+        if pub["pubmed"] in fetched_metadata:
+            pub["abstract"] = fetched_metadata[pub["pubmed"]].get("abstract", "")
+
     click.echo(f"Got {len(publications)} publications from the bioregistry")
+
     return pd.DataFrame(publications)
 
 
@@ -62,6 +77,8 @@ def fetch_pubmed_papers():
     :return: DataFrame containing PubMed paper details.
     :rtype: pd.DataFrame
     """
+    click.echo("Starting fetch_pubmed_papers")
+
     search_terms = ["database", "ontology", "resource", "vocabulary", "nomenclature"]
     paper_to_terms = {}
 
@@ -74,27 +91,30 @@ def fetch_pubmed_papers():
                 paper_to_terms[pmid] = [term]
 
     all_pmids = list(paper_to_terms.keys())
+    click.echo(f"{len(all_pmids)} PMIDs found")
     if not all_pmids:
         click.echo(f"No PMIDs found for the last 30 days with the search terms: {search_terms}")
         return pd.DataFrame()
 
     papers = {}
-    for chunk in [all_pmids[i : i + 200] for i in range(0, len(all_pmids), 200)]:
-        papers.update(pubmed_client.get_metadata_for_ids(chunk))
+    for chunk in [all_pmids[i: i + 200] for i in range(0, len(all_pmids), 200)]:
+            papers.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
 
-    records = [
-        {
-            "pubmed": paper.get("pmid"),
-            "title": paper.get("title"),
-            "abstract": paper.get("abstract", ""),
-            "year": paper.get("publication_date", {}).get("year"),
-            "search_terms": paper_to_terms.get(paper.get("pmid")),
-        }
-        for paper in papers.values()
-        if paper.get("title") and paper.get("abstract")
-           and paper.get("pmid")
-           and paper.get("publication_date", {}).get("year")
-    ]
+    records = []
+    for pmid, paper in papers.items():
+        title = paper.get("title")
+        abstract = paper.get("abstract", "")
+
+        if title and abstract:
+            records.append({
+                "pubmed": pmid,
+                "title": title,
+                "abstract": abstract,
+                "year": paper.get("publication_date", {}).get("year"),
+                "search_terms": paper_to_terms.get(pmid),
+            })
+
+    click.echo(f"{len(records)} records fetched from PubMed")
     return pd.DataFrame(records)
 
 
@@ -107,8 +127,17 @@ def load_curation_data():
     click.echo("Downloading curation")
     df = pd.read_csv(URL)
     df["label"] = df["relevant"].map(_map_labels)
-    df["abstract"] = df["abstract"].fillna("")
     df = df[["pubmed", "title", "abstract", "label"]]
+
+    pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
+    fetched_metadata = {}
+    for chunk in [pmids_to_fetch[i: i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+
+    for index, row in df.iterrows():
+        if row["pubmed"] in fetched_metadata:
+            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+
     click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
     return df
 
@@ -192,6 +221,11 @@ def evaluate_meta_classifier(meta_clf, x_test_meta, y_test):
     return mcc, roc_auc
 
 
+def truncate_text(text, max_length):
+    """Truncate text to a specified maximum length."""
+    return text if len(text) <= max_length else text[:max_length] + "..."
+
+
 def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     """Predict and save scores for new data using trained classifiers and meta-classifier.
 
@@ -216,8 +250,10 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 
     df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
     df = df.sort_values(by="meta_score", ascending=False)
+    df["title"] = df["title"].apply(lambda x: truncate_text(x, 50))
+    df["abstract"] = df["abstract"].apply(lambda x: truncate_text(x, 25))
     df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
-    click.echo(f"Writing predicted scores to {DIRECTORY.joinpath(filename)}")
+    click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
 
 
 @click.command()
