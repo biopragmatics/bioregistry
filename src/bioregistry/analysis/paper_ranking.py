@@ -16,7 +16,7 @@ from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
 
-DIRECTORY = Path("exports/analyses/title_tfidf")
+DIRECTORY = Path("exports/analyses/paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
