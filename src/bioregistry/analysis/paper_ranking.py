@@ -1,6 +1,7 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
 import json
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import click
@@ -15,33 +16,51 @@ from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
 
-# Update the directory path to exports/analyses/auto_curation
-BASE_DIRECTORY = Path("exports/analyses")
-AUTO_CURATION_DIRECTORY = BASE_DIRECTORY.joinpath("auto_curation")
-AUTO_CURATION_DIRECTORY.mkdir(exist_ok=True, parents=True)
+DIRECTORY = Path("exports/analyses/paper_ranking")
+DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
-       QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
 def load_bioregistry_json(file_path):
-    """Load bioregistry data from a JSON file, extracting publication details.
+    """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param file_path: Path to the bioregistry JSON file.
     :type file_path: str
     :return: DataFrame containing publication details.
     :rtype: pd.DataFrame
     """
-    with open(file_path, "r") as f:
-        data = json.load(f)
+    try:
+        with open(file_path, "r") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        click.echo(f"JSONDecodeError: {e.msg}")
+        click.echo(f"Error at line {e.lineno}, column {e.colno}")
+        click.echo(f"Error at position {e.pos}")
+        return pd.DataFrame()
+
     publications = []
+    pmids_to_fetch = []
     for entry in data.values():
         if "publications" in entry:
             for pub in entry["publications"]:
-                publications.append(
-                    {"pubmed": pub.get("pubmed"), "title": pub.get("title"), "label": 1}
-                )
+                pmid = pub.get("pubmed")
+                title = pub.get("title")
+                if pmid:
+                    pmids_to_fetch.append(pmid)
+                publications.append({"pubmed": pmid, "title": title, "abstract": "", "label": 1})
+
+    fetched_metadata = {}
+    for chunk in [pmids_to_fetch[i : i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+
+    for pub in publications:
+        if pub["pubmed"] in fetched_metadata:
+            pub["abstract"] = fetched_metadata[pub["pubmed"]].get("abstract", "")
+
     click.echo(f"Got {len(publications)} publications from the bioregistry")
+
     return pd.DataFrame(publications)
 
 
@@ -51,6 +70,8 @@ def fetch_pubmed_papers():
     :return: DataFrame containing PubMed paper details.
     :rtype: pd.DataFrame
     """
+    click.echo("Starting fetch_pubmed_papers")
+
     search_terms = ["database", "ontology", "resource", "vocabulary", "nomenclature"]
     paper_to_terms = {}
 
@@ -63,26 +84,32 @@ def fetch_pubmed_papers():
                 paper_to_terms[pmid] = [term]
 
     all_pmids = list(paper_to_terms.keys())
+    click.echo(f"{len(all_pmids)} PMIDs found")
     if not all_pmids:
         click.echo(f"No PMIDs found for the last 30 days with the search terms: {search_terms}")
         return pd.DataFrame()
 
     papers = {}
     for chunk in [all_pmids[i : i + 200] for i in range(0, len(all_pmids), 200)]:
-        papers.update(pubmed_client.get_metadata_for_ids(chunk))
+        papers.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
 
-    records = [
-        {
-            "pubmed": paper.get("pmid"),
-            "title": paper.get("title"),
-            "year": paper.get("publication_date", {}).get("year"),
-            "search_terms": paper_to_terms.get(paper.get("pmid")),
-        }
-        for paper in papers.values()
-        if paper.get("title")
-        and paper.get("pmid")
-        and paper.get("publication_date", {}).get("year")
-    ]
+    records = []
+    for pmid, paper in papers.items():
+        title = paper.get("title")
+        abstract = paper.get("abstract", "")
+
+        if title and abstract:
+            records.append(
+                {
+                    "pubmed": pmid,
+                    "title": title,
+                    "abstract": abstract,
+                    "year": paper.get("publication_date", {}).get("year"),
+                    "search_terms": paper_to_terms.get(pmid),
+                }
+            )
+
+    click.echo(f"{len(records)} records fetched from PubMed")
     return pd.DataFrame(records)
 
 
@@ -95,7 +122,17 @@ def load_curation_data():
     click.echo("Downloading curation")
     df = pd.read_csv(URL)
     df["label"] = df["relevant"].map(_map_labels)
-    df = df[["pubmed", "title", "label"]]
+    df = df[["pubmed", "title", "abstract", "label"]]
+
+    pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
+    fetched_metadata = {}
+    for chunk in [pmids_to_fetch[i : i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+
+    for index, row in df.iterrows():
+        if row["pubmed"] in fetched_metadata:
+            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+
     click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
     return df
 
@@ -179,6 +216,11 @@ def evaluate_meta_classifier(meta_clf, x_test_meta, y_test):
     return mcc, roc_auc
 
 
+def truncate_text(text, max_length):
+    """Truncate text to a specified maximum length."""
+    return text if len(text) <= max_length else text[:max_length] + "..."
+
+
 def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     """Predict and save scores for new data using trained classifiers and meta-classifier.
 
@@ -194,7 +236,7 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     :type filename: str
     """
     x_meta = pd.DataFrame()
-    x_transformed = vectorizer.transform(df.title)
+    x_transformed = vectorizer.transform(df.title + " " + df.abstract)
     for name, clf in classifiers:
         if hasattr(clf, "predict_proba"):
             x_meta[name] = clf.predict_proba(x_transformed)[:, 1]
@@ -203,8 +245,10 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 
     df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
     df = df.sort_values(by="meta_score", ascending=False)
-    df.to_csv(AUTO_CURATION_DIRECTORY.joinpath(filename), sep="\t", index=False)
-    click.echo(f"Writing predicted scores to {AUTO_CURATION_DIRECTORY.joinpath(filename)}")
+    df["title"] = df["title"].apply(lambda x: truncate_text(x, 50))
+    df["abstract"] = df["abstract"].apply(lambda x: truncate_text(x, 25))
+    df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
+    click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
 
 
 @click.command()
@@ -224,13 +268,14 @@ def main(bioregistry_file):
 
     # Combine both data sources
     df = pd.concat([curation_df, publication_df])
-    df["title"] = df["title"].str.slice(0, 20)
+    df["abstract"] = df["abstract"].fillna("")
+    df["title_abstract"] = df["title"] + " " + df["abstract"]
 
     vectorizer = TfidfVectorizer(stop_words="english")
-    vectorizer.fit(df.title)
+    vectorizer.fit(df.title_abstract)
 
     annotated_df = df[df.label.notna()]
-    x = vectorizer.transform(annotated_df.title)
+    x = vectorizer.transform(annotated_df.title_abstract)
     y = annotated_df.label
 
     x_train, x_test, y_train, y_test = train_test_split(
@@ -261,11 +306,9 @@ def main(bioregistry_file):
         scores.append((name, mcc or float("nan"), roc_auc or float("nan")))
 
     evaluation_df = pd.DataFrame(scores, columns=["classifier", "mcc", "auc_roc"]).round(3)
-    evaluation_df.to_csv(AUTO_CURATION_DIRECTORY.joinpath("evaluation.tsv"), sep="\t", index=False)
     click.echo(tabulate(evaluation_df, showindex=False, headers=evaluation_df.columns))
 
     meta_features = generate_meta_features(classifiers, x_train, y_train)
-
     meta_clf = LogisticRegression()
     meta_clf.fit(meta_features, y_train)
 
@@ -278,6 +321,12 @@ def main(bioregistry_file):
 
     mcc, roc_auc = evaluate_meta_classifier(meta_clf, x_test_meta, y_test)
     click.echo(f"Meta-Classifier MCC: {mcc}, AUC-ROC: {roc_auc}")
+    new_row = {"classifier": "meta_classifier", "mcc": mcc, "auc_roc": roc_auc}
+    evaluation_df = pd.concat([evaluation_df, pd.DataFrame([new_row])], ignore_index=True)
+
+    evaluation_path = DIRECTORY.joinpath("evaluation.tsv")
+    click.echo(f"Writing evaluation to {evaluation_path}")
+    evaluation_df.to_csv(evaluation_path, sep="\t", index=False)
 
     random_forest_clf: RandomForestClassifier = classifiers[0][1]
     lr_clf: LogisticRegression = classifiers[1][1]
@@ -298,18 +347,19 @@ def main(bioregistry_file):
     )
     click.echo(tabulate(importances_df.head(15), showindex=False, headers=importances_df.columns))
 
-    importance_path = AUTO_CURATION_DIRECTORY.joinpath("importances.tsv")
+    importance_path = DIRECTORY.joinpath("importances.tsv")
     click.echo(f"Writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
-    novel_df = df[~df.label.notna()][["pubmed", "title"]].copy()
-    predict_and_save(novel_df, vectorizer, classifiers, meta_clf, "predictions_last_year.tsv")
-
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        predict_and_save(
-            new_pub_df, vectorizer, classifiers, meta_clf, "predictions_last_month.tsv"
+        date_end = datetime.now()
+        date_start = date_end - timedelta(days=30)
+        filename = (
+            f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
         )
+
+        predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
 if __name__ == "__main__":
