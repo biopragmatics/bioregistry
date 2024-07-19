@@ -59,6 +59,12 @@ ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
 def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Optional[Resource]:
+    """Return a Resource constructed from a new prefix issue.
+
+    :param issue_id: The issue identifier
+    :param resource_data: The data from the issue form
+    :returns: A Resource instance or None if there is an issue that warrants skipping the issue
+    """
     prefix = resource_data.pop("prefix").lower()
     contributor = Author(
         name=resource_data.pop("contributor_name"),
@@ -93,7 +99,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
 
     # Remove redundant prefix from identifier if given as a CURIE
     if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
-        resource_data["example"] = resource_data["example"][len(prefix) + 1:]
+        resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
 
     # Ensure the pattern is delimited properly
     pattern = resource_data.get("pattern")
@@ -128,7 +134,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
 
 
 def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]:
-    """Get Bioregistry prefix issues from the GitHub API.
+    """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
 
