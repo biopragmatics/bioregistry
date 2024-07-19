@@ -79,6 +79,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
             github=contact_github,
         )
     else:
+        logger.warning("No contact information added for %s due to missing orcid or name", prefix)
         contact = None
 
     wikidata_property = resource_data.pop("wikidata_prefix", None)
