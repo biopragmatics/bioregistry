@@ -356,7 +356,7 @@ def main(bioregistry_file):
         date_end = datetime.now()
         date_start = date_end - timedelta(days=30)
         filename = (
-            f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
+            f"predictions.tsv"
         )
 
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)

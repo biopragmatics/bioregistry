@@ -1,0 +1,51 @@
+name: Run Paper Ranking Script and Open Issue
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # runs every first day of month at midnight
+
+  workflow_dispatch:
+
+jobs:
+  paper-ranking:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12.2'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r src/bioregistry/analysis/paper_ranking_requirements.txt
+
+    - name: Run Paper Ranking Script
+      id: run-script
+      run: |
+        python src/bioregistry/analysis/paper_ranking.py
+
+    - name: Set Date Variables
+      id: set-date-variables
+      run: |
+        end_date=$(date +'%Y-%m-%d')
+        start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
+        echo "START_DATE=$start_date" >> $GITHUB_ENV
+        echo "END_DATE=$end_date" >> $GITHUB_ENV
+
+    - name: Read Scored Papers
+      id: read-scored-papers
+      run: cat exports/analyses/paper_ranking/predictions.tsv
+      continue-on-error: true
+
+    - name: Create GitHub Issue
+      id: create-issue
+      uses: peter-evans/create-issue-from-file@v3
+      with:
+        title: "Paper Ranking Results from ${{ env.START_DATE }} to ${{ env.END_DATE }}"
+        content-filepath: exports/analyses/paper_ranking/predictions.tsv
+        token: ${{ secrets.GITHUB_TOKEN }}
