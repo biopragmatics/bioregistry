@@ -353,11 +353,8 @@ def main(bioregistry_file):
 
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        date_end = datetime.now()
-        date_start = date_end - timedelta(days=30)
-        filename = (
-            f"predictions.tsv"
-        )
+
+        filename = f"predictions.tsv"
 
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
