@@ -5,10 +5,11 @@
 Run with: ``python -m bioregistry.gh.new_prefix``
 """
 
+import copy
 import logging
 import sys
 import time
-from typing import Dict, Iterable, Mapping, Optional, Sequence
+from typing import Any, Dict, Iterable, Mapping, Optional, Sequence
 from uuid import uuid4
 
 import click
@@ -57,8 +58,83 @@ ORCID_HTTP_PREFIX = "http://orcid.org/"
 ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
+def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Optional[Resource]:
+    """Return a Resource constructed from a new prefix issue.
+
+    :param issue_id: The issue identifier
+    :param resource_data: The data from the issue form
+    :returns: A Resource instance or None if there is an issue that warrants skipping the issue
+    """
+    prefix = resource_data.pop("prefix").lower()
+    contributor = Author(
+        name=resource_data.pop("contributor_name"),
+        orcid=_pop_orcid(resource_data),
+        email=resource_data.pop("contributor_email", None),
+        github=removeprefix(resource_data.pop("contributor_github"), "@"),
+    )
+
+    contact_name = resource_data.pop("contact_name", None)
+    contact_orcid = resource_data.pop("contact_orcid", None)
+    contact_email = resource_data.pop("contact_email", None)
+    contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
+    if contact_orcid and contact_name:
+        contact = Author(
+            name=contact_name,
+            orcid=_trim_orcid(contact_orcid),
+            email=contact_email,
+            github=contact_github,
+        )
+    else:
+        logger.warning("No contact information added for %s due to missing orcid or name", prefix)
+        contact = None
+
+    wikidata_property = resource_data.pop("wikidata_prefix", None)
+    wikidata: Optional[Mapping]
+    mappings: Optional[Mapping]
+    if wikidata_property:
+        wikidata = {"prefix": wikidata_property}
+        mappings = {"wikidata": wikidata_property}
+    else:
+        wikidata = mappings = None
+
+    # Remove redundant prefix from identifier if given as a CURIE
+    if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
+        resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
+
+    # Ensure the pattern is delimited properly
+    pattern = resource_data.get("pattern")
+    if pattern:
+        resource_data["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
+
+    data_license = resource_data.get("license")
+    if data_license:
+        resource_data["license"] = standardize_license(data_license) or data_license
+
+    publications = list(_yield_publications(resource_data))
+
+    if bioregistry.get_resource(prefix) is not None:
+        # TODO close issue
+        logger.warning(
+            "Issue is for duplicate prefix %s in https://github.com/biopragmatics/bioregistry/issues/%s",
+            prefix,
+            issue_id,
+        )
+        return None
+
+    return Resource(
+        prefix=prefix,
+        contributor=contributor,
+        contact=contact,
+        github_request_issue=issue_id,
+        wikidata=wikidata,
+        mappings=mappings,
+        publications=publications,
+        **resource_data,  # type:ignore
+    )
+
+
 def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]:
-    """Get Bioregistry prefix issues from the GitHub API.
+    """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
 
@@ -77,70 +153,15 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     )
     rv: Dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
-        prefix = resource_data.pop("prefix").lower()
-        contributor = Author(
-            name=resource_data.pop("contributor_name"),
-            orcid=_pop_orcid(resource_data),
-            email=resource_data.pop("contributor_email", None),
-            github=removeprefix(resource_data.pop("contributor_github"), "@"),
-        )
-
-        contact_name = resource_data.pop("contact_name", None)
-        contact_orcid = resource_data.pop("contact_orcid", None)
-        contact_email = resource_data.pop("contact_email", None)
-        contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
-        if contact_orcid and contact_name:
-            contact = Author(
-                name=contact_name,
-                orcid=_trim_orcid(contact_orcid),
-                email=contact_email,
-                github=contact_github,
-            )
-        else:
-            contact = None
-
-        wikidata_property = resource_data.pop("wikidata_prefix", None)
-        wikidata: Optional[Mapping]
-        mappings: Optional[Mapping]
-        if wikidata_property:
-            wikidata = {"prefix": wikidata_property}
-            mappings = {"wikidata": wikidata_property}
-        else:
-            wikidata = mappings = None
-
-        # Remove redundant prefix from identifier if given as a CURIE
-        if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
-            resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
-
-        # Ensure the pattern is delimited properly
-        pattern = resource_data.get("pattern")
-        if pattern:
-            resource_data["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
-
-        data_license = resource_data.get("license")
-        if data_license:
-            resource_data["license"] = standardize_license(data_license) or data_license
-
-        publications = list(_yield_publications(resource_data))
-
-        if bioregistry.get_resource(prefix) is not None:
-            # TODO close issue
-            logger.warning(
-                "Issue is for duplicate prefix %s in https://github.com/biopragmatics/bioregistry/issues/%s",
-                prefix,
-                issue_id,
-            )
+        try:
+            # The processing modifies the resource_data, so we copy it here
+            # to avoid any misunderstandings later
+            resource = process_new_prefix_issue(issue_id, copy.deepcopy(resource_data))
+        except Exception as e:
+            logger.warning("Error processing issue %s: %s", (issue_id, e))
             continue
-        rv[issue_id] = Resource(
-            prefix=prefix,
-            contributor=contributor,
-            contact=contact,
-            github_request_issue=issue_id,
-            wikidata=wikidata,
-            mappings=mappings,
-            publications=publications,
-            **resource_data,  # type:ignore
-        )
+        if resource is not None:
+            rv[issue_id] = resource
     return rv
 
 
