@@ -353,9 +353,7 @@ def main(bioregistry_file):
 
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-
         filename = f"predictions.tsv"
-
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
