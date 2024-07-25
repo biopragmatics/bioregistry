@@ -1,7 +1,6 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
 import json
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import click
