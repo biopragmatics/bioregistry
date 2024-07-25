@@ -352,7 +352,7 @@ def main(bioregistry_file):
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
     new_pub_df = fetch_pubmed_papers()
-    if not new_pub_df.empty:
+        if not new_pub_df.empty:
 
         filename = f"predictions.tsv"
 
