@@ -37,15 +37,30 @@ jobs:
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
 
-    - name: Read Scored Papers
-      id: read-scored-papers
-      run: cat exports/analyses/paper_ranking/predictions.tsv
-      continue-on-error: true
+    - name: Trim Scored Papers to Top 200
+      run: |
+        head -n 201 exports/analyses/paper_ranking/predictions.tsv > exports/analyses/paper_ranking/top_200_predictions.tsv
+
+    - name: Upload Full List as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: full-predictions-list
+        path: exports/analyses/paper_ranking/predictions.tsv
 
     - name: Create GitHub Issue
       id: create-issue
-      uses: peter-evans/create-issue-from-file@v3
+      uses: actions/github-script@v6
       with:
-        title: "Paper Ranking Results from ${{ env.START_DATE }} to ${{ env.END_DATE }}"
-        content-filepath: exports/analyses/paper_ranking/predictions.tsv
-        token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { readFileSync } = require('fs');
+          const top200Content = readFileSync('exports/analyses/paper_ranking/top_200_predictions.tsv', 'utf8');
+          const issueTitle = `Paper Ranking Results from ${process.env.START_DATE} to ${process.env.END_DATE}`;
+          const issueBody = `Here is the top 200 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts).\n\n\`\`\`\n${top200Content}\n\`\`\``;
+          const response = await github.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: issueTitle,
+            body: issueBody,
+          });
+          console.log(`Created issue #${response.data.number}`);
