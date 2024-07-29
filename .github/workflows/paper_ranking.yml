@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.12.2'
 
@@ -53,11 +53,11 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const { readFileSync } = require('fs');
-          const top200Content = readFileSync('exports/analyses/paper_ranking/top_200_predictions.tsv', 'utf8');
+          const fs = require('fs');
+          const top200Content = fs.readFileSync('exports/analyses/paper_ranking/top_200_predictions.tsv', 'utf8');
           const issueTitle = `Paper Ranking Results from ${process.env.START_DATE} to ${process.env.END_DATE}`;
           const issueBody = `Here is the top 200 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts).\n\n\`\`\`\n${top200Content}\n\`\`\``;
-          const response = await github.issues.create({
+          const response = await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: issueTitle,
