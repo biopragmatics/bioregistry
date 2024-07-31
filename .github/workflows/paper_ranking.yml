@@ -54,9 +54,17 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
+          const path = require('path');
           const top200Content = fs.readFileSync('exports/analyses/paper_ranking/top_200_predictions.tsv', 'utf8');
+          const lines = top200Content.split('\\n').slice(1, -1); // Remove header and last empty line
+          const rows = lines.map(line => {
+            const [pubmed, title, , , year] = line.split('\\t');
+            const link = `https://bioregistry.io/pubmed:${pubmed}`;
+            return `| [${pubmed}](${link}) | ${title} | ${year} |`;
+          });
+          const tableHeader = '| PubMed ID | Title | Year |\n| --- | --- | --- |\n';
           const issueTitle = `Paper Ranking Results from ${process.env.START_DATE} to ${process.env.END_DATE}`;
-          const issueBody = `Here is the top 200 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts).\n\n\`\`\`\n${top200Content}\n\`\`\``;
+          const issueBody = `Here is the top 200 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts).\n\n${tableHeader}${rows.join('\\n')}`;
           const response = await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
