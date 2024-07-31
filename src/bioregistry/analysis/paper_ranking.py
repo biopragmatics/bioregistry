@@ -244,7 +244,6 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 
     df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
     df = df.sort_values(by="meta_score", ascending=False)
-    df["title"] = df["title"].apply(lambda x: truncate_text(x, 50))
     df["abstract"] = df["abstract"].apply(lambda x: truncate_text(x, 25))
     df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
     click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")

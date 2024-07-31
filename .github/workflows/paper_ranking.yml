@@ -54,13 +54,13 @@ jobs:
           const content = fs.readFileSync('exports/analyses/paper_ranking/predictions.tsv', 'utf8');
           const lines = content.split('\n').slice(1, 21); // Get top 20 papers, excluding header
           const rows = lines.map(line => {
-            const [pubmed, title, , , year] = line.split('\t');
+            const [pubmed, title] = line.split('\t');
             const link = `https://bioregistry.io/pubmed:${pubmed}`;
-            return `| [${pubmed}](${link}) | ${title} | ${year} |`;
+            return `| [${pubmed}](${link}) | ${title} |`;
           });
-          const tableHeader = '| PubMed ID | Title | Year |\n| --- | --- | --- |\n';
+          const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
           const issueTitle = `Paper Ranking Results from ${process.env.START_DATE} to ${process.env.END_DATE}`;
-          const issueBody = `Here are the top 20 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts).\n\n${tableHeader}${rows.join('\n')}`;
+          const issueBody = `Here are the top 20 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv).\n\n${tableHeader}${rows.join('\n')}`;
           const response = await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
