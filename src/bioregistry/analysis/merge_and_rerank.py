@@ -1,1 +1,1 @@
-"""Merges and reranks new/uncurated papers"""
+"""Merges and reranks new/uncurated papers."""
