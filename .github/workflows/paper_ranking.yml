@@ -36,7 +36,12 @@ jobs:
         if [ ! -f "$curated_file" ]; then
           echo "pmid,relevant,relevancy_type,notes" > "$curated_file"
         fi
-        awk -F, 'NR==FNR{a[$1]; next} !($1 in a)' "$curated_file" merged_and_reranked_predictions.tsv > filtered_predictions.tsv
+        # Check if the merged_and_reranked_predictions.tsv file exists before proceeding
+        if [ -f merged_and_reranked_predictions.tsv ]; then
+          awk -F, 'NR==FNR{a[$1]; next} !($1 in a)' "$curated_file" merged_and_reranked_predictions.tsv > filtered_predictions.tsv
+        else
+          echo "File merged_and_reranked_predictions.tsv not found. Skipping filtering."
+        fi
 
     - name: Upload Full List as Artifact
       uses: actions/upload-artifact@v3
