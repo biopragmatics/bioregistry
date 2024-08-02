@@ -2,7 +2,7 @@ name: Run Paper Ranking Script and Open Issue
 
 on:
   schedule:
-    - cron: '0 0 1 * *' # runs every first day of month at midnight
+    - cron: '0 0 * * 1' # runs every Monday at midnight
 
   workflow_dispatch:
 
@@ -24,24 +24,25 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r src/bioregistry/analysis/paper_ranking_requirements.txt
 
-    - name: Run Paper Ranking Script
-      id: run-script
+    - name: Merge New Papers and Re-Rank
+      id: merge-re-rank
       run: |
-        python src/bioregistry/analysis/paper_ranking.py
+        python src/bioregistry/analysis/merge_and_rerank.py
 
-    - name: Set Date Variables
-      id: set-date-variables
+    - name: Create or Update Curated Papers File
+      id: update-curated-papers-file
       run: |
-        end_date=$(date +'%Y-%m-%d')
-        start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
-        echo "START_DATE=$start_date" >> $GITHUB_ENV
-        echo "END_DATE=$end_date" >> $GITHUB_ENV
+        curated_file="src/bioregistry/curation/curated_papers.csv"
+        if [ ! -f "$curated_file" ]; then
+          echo "pmid,relevant,relevancy_type,notes" > "$curated_file"
+        fi
+        awk -F, 'NR==FNR{a[$1]; next} !($1 in a)' "$curated_file" merged_and_reranked_predictions.tsv > filtered_predictions.tsv
 
     - name: Upload Full List as Artifact
       uses: actions/upload-artifact@v3
       with:
         name: full-predictions-list
-        path: exports/analyses/paper_ranking/predictions.tsv
+        path: merged_and_reranked_predictions.tsv
 
     - name: Create GitHub Issue
       id: create-issue
@@ -50,8 +51,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
-          const path = require('path');
-          const content = fs.readFileSync('exports/analyses/paper_ranking/predictions.tsv', 'utf8');
+          const content = fs.readFileSync('filtered_predictions.tsv', 'utf8');
           const lines = content.split('\n').slice(1, 21); // Get top 20 papers, excluding header
           const rows = lines.map(line => {
             const [pubmed, title] = line.split('\t');
@@ -60,7 +60,8 @@ jobs:
           });
           const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
           const issueTitle = `Paper Ranking Results from ${process.env.START_DATE} to ${process.env.END_DATE}`;
-          const issueBody = `Here are the top 20 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv).\n\n${tableHeader}${rows.join('\n')}`;
+          const curatedLink = `https://github.com/${{ github.repository }}/edit/${{ github.ref }}/src/bioregistry/curation/curated_papers.csv`;
+          const issueBody = `Here are the top 20 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv).\n\nYou can edit the curated papers file [here](${curatedLink}).\n\n${tableHeader}${rows.join('\n')}`;
           const response = await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
@@ -68,3 +69,4 @@ jobs:
             body: issueBody,
           });
           console.log(`Created issue #${response.data.number}`);
+
