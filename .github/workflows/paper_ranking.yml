@@ -51,7 +51,6 @@ jobs:
 
     - name: Create GitHub Issue
       id: create-issue
-      if: files.exists('exports/analyses/paper_ranking/filtered_predictions.csv') # Run only if the file exists
       uses: actions/github-script@v6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
