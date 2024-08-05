@@ -38,7 +38,7 @@ jobs:
         fi
         # Check if the merged_and_reranked_predictions.csv file exists before proceeding
         if [ -f merged_and_reranked_predictions.csv ]; then
-          awk -F, 'NR==FNR{a[$1]; next} !($1 in a)' "$curated_file" merged_and_reranked_predictions.csv > filtered_predictions.csv
+          awk -F, 'NR==FNR{a[$1]; next} !($1 in a)' "$curated_file" merged_and_reranked_predictions.csv > exports/analyses/paper_ranking/filtered_predictions.csv
         else
           echo "File merged_and_reranked_predictions.csv not found. Skipping filtering."
         fi
@@ -51,12 +51,13 @@ jobs:
 
     - name: Create GitHub Issue
       id: create-issue
+      if: files.exists('exports/analyses/paper_ranking/filtered_predictions.csv') # Run only if the file exists
       uses: actions/github-script@v6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
-          const content = fs.readFileSync('filtered_predictions.csv', 'utf8');
+          const content = fs.readFileSync('exports/analyses/paper_ranking/filtered_predictions.csv', 'utf8');
           const lines = content.split('\n').slice(1, 21); // Get top 20 papers, excluding header
           const rows = lines.map(line => {
             const [pubmed, title] = line.split('\t');
@@ -74,4 +75,3 @@ jobs:
             body: issueBody,
           });
           console.log(`Created issue #${response.data.number}`);
-
