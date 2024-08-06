@@ -1,8 +1,8 @@
-name: Run Paper Ranking Script and Open Issue
+name: Run Paper Ranking Script and Update Issue
 
 on:
   schedule:
-    - cron: '0 0 * * 1' # runs every Monday at midnight
+    - cron: '0 0 1 * *' # runs on the first day of every month
 
   workflow_dispatch:
 
@@ -24,39 +24,45 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r src/bioregistry/analysis/paper_ranking_requirements.txt
 
-    - name: Merge New Papers and Re-Rank
-      id: merge-re-rank
+    - name: Run Paper Ranking Script
+      id: run-ranking-script
       run: |
-        python src/bioregistry/analysis/merge_and_rerank.py
+        python src/bioregistry/analysis/paper_ranking.py
 
-    - name: Create or Update Curated Papers File
-      id: update-curated-papers-file
+    - name: Set Date Variables
+      id: set-date-variables
       run: |
-        curated_file="src/bioregistry/curation/curated_papers.csv"
-        if [ ! -f "$curated_file" ]; then
-          echo "pmid,relevant,relevancy_type,notes" > "$curated_file"
-        fi
-        # Check if the merged_and_reranked_predictions.csv file exists before proceeding
-        if [ -f merged_and_reranked_predictions.csv ]; then
-          awk -F, 'NR==FNR{a[$1]; next} !($1 in a)' "$curated_file" merged_and_reranked_predictions.csv > exports/analyses/paper_ranking/filtered_predictions.csv
-        else
-          echo "File merged_and_reranked_predictions.csv not found. Skipping filtering."
-        fi
+        end_date=$(date +'%Y-%m-%d')
+        start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
+        echo "START_DATE=$start_date" >> $GITHUB_ENV
+        echo "END_DATE=$end_date" >> $GITHUB_ENV
 
-    - name: Upload Full List as Artifact
-      uses: actions/upload-artifact@v3
+    - name: Find Existing Issue
+      id: find-issue
+      uses: actions/github-script@v6
       with:
-        name: full-predictions-list
-        path: merged_and_reranked_predictions.csv
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { data: issues } = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: 'paper-ranking-results', // Label used to identify the issue
+          });
+          const issue = issues.find(issue => issue.title === 'Paper Ranking Results');
+          return issue ? issue.number : null;
 
-    - name: Create GitHub Issue
-      id: create-issue
+    - name: Create or Update Issue with Comment
+      id: create-or-update-issue
       uses: actions/github-script@v6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
-          const content = fs.readFileSync('exports/analyses/paper_ranking/filtered_predictions.csv', 'utf8');
+          const issueNumber = ${{ steps.find-issue.outputs.result }};
+          const startDate = process.env.START_DATE;
+          const endDate = process.env.END_DATE;
+          const content = fs.readFileSync('exports/analyses/paper_ranking/predictions.tsv', 'utf8');
           const lines = content.split('\n').slice(1, 21); // Get top 20 papers, excluding header
           const rows = lines.map(line => {
             const [pubmed, title] = line.split('\t');
@@ -64,13 +70,25 @@ jobs:
             return `| [${pubmed}](${link}) | ${title} |`;
           });
           const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
-          const issueTitle = `Paper Ranking Results from ${process.env.START_DATE} to ${process.env.END_DATE}`;
-          const curatedLink = `https://github.com/${{ github.repository }}/edit/${{ github.ref }}/src/bioregistry/curation/curated_papers.csv`;
-          const issueBody = `Here are the top 20 papers from the ranked list of PubMed papers from the last 30 days. The entire list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv).\n\nYou can edit the curated papers file [here](${curatedLink}).\n\n${tableHeader}${rows.join('\n')}`;
-          const response = await github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: issueTitle,
-            body: issueBody,
-          });
-          console.log(`Created issue #${response.data.number}`);
+          const commentBody = `**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
+          const issueBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv).`;
+
+          if (issueNumber) {
+            // Add a comment to the existing issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: commentBody,
+            });
+          } else {
+            // Create a new issue if none exists
+            const response = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Paper Ranking Results',
+              body: `${issueBody}\n\n${commentBody}`,
+              labels: ['paper-ranking-results'], // Add a label to identify this issue in future runs
+            });
+            core.setOutput('issue-number', response.data.number);
+          }
