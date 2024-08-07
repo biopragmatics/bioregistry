@@ -1,3 +1,4 @@
+"""Merges and reranks new/uncurated papers."""
 import sys
 
 import pandas as pd
