@@ -37,20 +37,22 @@ jobs:
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
 
-    - name: Find Existing Issue
-      id: find-issue
-      uses: actions/github-script@v6
+    - name: Merge with Curated Papers
+      id: merge-curated-papers
+      run: |
+        curated_file="src/bioregistry/curation/curated_papers.csv"
+        if [ ! -f "$curated_file" ]; then
+          echo "pmid,title,score,relevant,relevancy_type,notes" > "$curated_file"
+        fi
+        merged_file="exports/analyses/paper_ranking/merged_predictions.csv"
+        python src/bioregistry/analysis/merge_and_rerank.py $curated_file exports/analyses/paper_ranking/predictions.tsv $merged_file
+        mv $merged_file $curated_file
+
+    - name: Upload Full List as Artifact
+      uses: actions/upload-artifact@v3
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const { data: issues } = await github.rest.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            state: 'open',
-            labels: 'paper-ranking-results', // Label used to identify the issue
-          });
-          const issue = issues.find(issue => issue.title === 'Paper Ranking Results');
-          return issue ? issue.number : null;
+        name: full-predictions-list
+        path: merged_and_reranked_predictions.csv
 
     - name: Create or Update Issue with Comment
       id: create-or-update-issue
@@ -71,7 +73,7 @@ jobs:
           });
           const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
           const commentBody = `**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
-          const issueBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv).`;
+          const issueBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv). You can view and edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/src/bioregistry/curation/curated_papers.csv).`;
 
           if (issueNumber) {
             // Add a comment to the existing issue
