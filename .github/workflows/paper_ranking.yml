@@ -45,7 +45,7 @@ jobs:
           echo "pmid,title,score,relevant,relevancy_type,notes" > "$curated_file"
         fi
         merged_file="exports/analyses/paper_ranking/merged_predictions.csv"
-        python src/bioregistry/analysis/merge_with_curated.py $curated_file exports/analyses/paper_ranking/predictions.tsv $merged_file
+        python src/bioregistry/analysis/merge_and_rerank.py $curated_file exports/analyses/paper_ranking/predictions.tsv $merged_file
         mv $merged_file $curated_file
 
     - name: Upload Full List as Artifact
