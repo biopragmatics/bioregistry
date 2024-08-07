@@ -1,5 +1,3 @@
-"""Merges and reranks new/uncurated papers."""
-
 import sys
 
 import pandas as pd
@@ -8,7 +6,12 @@ curated_file = sys.argv[1]
 new_file = sys.argv[2]
 output_file = sys.argv[3]
 
-curated_df = pd.read_csv(curated_file)
+try:
+    curated_df = pd.read_csv(curated_file)
+except pd.errors.EmptyDataError:
+    curated_df = pd.DataFrame(
+        columns=["pmid", "title", "score", "relevant", "relevancy_type", "notes"]
+    )
 
 new_df = pd.read_csv(new_file, delimiter="\t", names=["pmid", "title", "score"])
 
