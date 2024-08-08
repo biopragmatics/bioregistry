@@ -37,6 +37,21 @@ jobs:
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
 
+    - name: Find Existing Issue
+      id: find-issue
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { data: issues } = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: 'paper-ranking-results'
+          });
+          const issue = issues.find(issue => issue.title === 'Paper Ranking Results');
+          return issue ? issue.number : null;
+
     - name: Merge with Curated Papers
       id: merge-curated-papers
       run: |
@@ -61,6 +76,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
+          const issueNumber = ${{ steps.find-issue.outputs.result }};
           const startDate = process.env.START_DATE;
           const endDate = process.env.END_DATE;
           const content = fs.readFileSync('exports/analyses/paper_ranking/predictions.tsv', 'utf8');
@@ -74,7 +90,6 @@ jobs:
           const commentBody = `**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
           const issueBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv). You can view and edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/src/bioregistry/curation/curated_papers.csv).`;
 
-          const issueNumber = '${{ steps.find-issue.outputs.result }}';
           if (issueNumber) {
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -90,4 +105,5 @@ jobs:
               body: `${issueBody}\n\n${commentBody}`,
               labels: ['paper-ranking-results'],
             });
+            core.setOutput('issue-number', response.data.number);
           }
