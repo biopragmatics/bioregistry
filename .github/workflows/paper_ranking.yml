@@ -74,7 +74,7 @@ jobs:
           const commentBody = `**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
           const issueBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv). You can view and edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/src/bioregistry/curation/curated_papers.csv).`;
 
-          const issueNumber = ${{ steps.find-issue.outputs.result }};
+          const issueNumber = '${{ steps.find-issue.outputs.result }}';
           if (issueNumber) {
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -90,5 +90,4 @@ jobs:
               body: `${issueBody}\n\n${commentBody}`,
               labels: ['paper-ranking-results'],
             });
-            core.setOutput('issue-number', response.data.number);
           }
