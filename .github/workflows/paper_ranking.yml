@@ -61,11 +61,10 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
-          const issueNumber = ${{ steps.find-issue.outputs.result }};
           const startDate = process.env.START_DATE;
           const endDate = process.env.END_DATE;
           const content = fs.readFileSync('exports/analyses/paper_ranking/predictions.tsv', 'utf8');
-          const lines = content.split('\n').slice(1, 21); // Get top 20 papers, excluding header
+          const lines = content.split('\n').slice(1, 21);
           const rows = lines.map(line => {
             const [pubmed, title] = line.split('\t');
             const link = `https://bioregistry.io/pubmed:${pubmed}`;
@@ -75,8 +74,8 @@ jobs:
           const commentBody = `**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
           const issueBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/exports/analyses/paper_ranking/predictions.tsv). You can view and edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/src/bioregistry/curation/curated_papers.csv).`;
 
+          const issueNumber = ${{ steps.find-issue.outputs.result }};
           if (issueNumber) {
-            // Add a comment to the existing issue
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -84,13 +83,12 @@ jobs:
               body: commentBody,
             });
           } else {
-            // Create a new issue if none exists
             const response = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: 'Paper Ranking Results',
               body: `${issueBody}\n\n${commentBody}`,
-              labels: ['paper-ranking-results'], // Add a label to identify this issue in future runs
+              labels: ['paper-ranking-results'],
             });
             core.setOutput('issue-number', response.data.number);
           }
