@@ -76,7 +76,7 @@ jobs:
             return `| [${pubmed}](${link}) | ${title} |`;
           });
           const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
-          const commentBody = `This issue contains monthly updates to the ranked list of PubMed papers for curation. The full list can be found [here](https://github.com/${{ github.repository }}/blob/main/exports/analyses/paper_ranking/predictions.tsv). You can view and edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/main/src/bioregistry/curation/curated_papers.csv).\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
+          const commentBody = `This issue contains monthly updates to an automatically ranked list of PubMed papers as candidates for curation in the Bioregistry. Papers may be relevant in at least three ways: \n(1) as a new prefix for a resource that can be added to the Bioregistry,\n(2) as a provider for an existing prefix, or\n(3) as a new publication for an existing prefix already in the Bioregistry.\n\nThese curations can happen in separate issues and pull requests. The full list of ranked papers can be found [here](https://github.com/${{ github.repository }}/blob/main/exports/analyses/paper_ranking/predictions.tsv). If you review any of these papers for relevance, you should edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/main/src/bioregistry/curation/curated_papers.csv); these curations are taken into account when retraining the ranking model.\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
 
           if (issueNumber) {
             await github.rest.issues.createComment({
