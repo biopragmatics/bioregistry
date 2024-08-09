@@ -52,17 +52,6 @@ jobs:
           const issue = issues.find(issue => issue.title === 'Paper Ranking Results');
           return issue ? issue.number : null;
 
-    - name: Merge with Curated Papers
-      id: merge-curated-papers
-      run: |
-        curated_file="src/bioregistry/curation/curated_papers.csv"
-        if [ ! -f "$curated_file" ]; then
-          echo "pmid,title,score,relevant,relevancy_type,notes" > "$curated_file"
-        fi
-        merged_file="exports/analyses/paper_ranking/merged_predictions.csv"
-        python src/bioregistry/analysis/merge_and_rerank.py $curated_file exports/analyses/paper_ranking/predictions.tsv $merged_file
-        mv $merged_file $curated_file
-
     - name: Upload Full List as Artifact
       uses: actions/upload-artifact@v3
       with:
