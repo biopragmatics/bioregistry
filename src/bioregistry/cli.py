@@ -75,6 +75,8 @@ def align(
         skip.add("bioportal")
     if skip_agroportal or skip_slow:
         skip.add("agroportal")
+    # Temporary fix to avoid issue with duplicate URI prefix
+    skip.add("wikidata")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue

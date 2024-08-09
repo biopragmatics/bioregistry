@@ -175,6 +175,7 @@ CANONICAL_URI_FORMATS = {
     "P10095": "https://www.surgeons.org/Profile/$1",
     "P5397": "http://www.tierstimmen.org/en/database?field_spec_species_target_id_selective=$1",
     "P7471": "https://www.inaturalist.org/places/$1",
+    "P696": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1",
 }
 CANONICAL_RDF_URI_FORMATS: Dict[str, str] = {}
 

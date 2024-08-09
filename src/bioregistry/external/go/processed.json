@@ -1193,6 +1193,14 @@
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "http://flybase.org/reports/[example_id].html"
+      },
+      {
+        "example_id": "FB:FBrf0193169",
+        "example_url": "https://flybase.org/reports/FBrf0193169.htm",
+        "id_syntax": "FB:FBrf[0-9]{7}",
+        "type_id": "BET:0000000",
+        "type_name": "reference",
+        "url_syntax": "http://flybase.org/reports/[example_id].htm"
       }
     ],
     "generic_urls": [
@@ -2020,7 +2028,7 @@
       "http://www.ebi.ac.uk/interpro/"
     ],
     "name": "InterPro database of protein domains and motifs",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/interpro",
+    "rdf_uri_prefix": "http://identifiers.org/interpro/",
     "synonyms": [
       "INTERPRO",
       "IPR"
@@ -2317,7 +2325,7 @@
       "http://www.informatics.jax.org/"
     ],
     "name": "Mouse Genome Informatics",
-    "rdf_uri_prefix": "https://identifiers.org/MGI"
+    "rdf_uri_prefix": "http://identifiers.org/MGI/"
   },
   "MIPS_funcat": {
     "database": "MIPS_funcat",
@@ -2380,7 +2388,7 @@
       "https://www.maizegdb.org/"
     ],
     "name": "MaizeGDB",
-    "rdf_uri_prefix": "https://identifiers.org/maizegdb.locus"
+    "rdf_uri_prefix": "http://identifiers.org/maizegdb.locus/"
   },
   "MaizeGDB_QTL": {
     "database": "MaizeGDB_QTL",
@@ -2466,7 +2474,7 @@
       "https://metacyc.org/"
     ],
     "name": "Metabolic Encyclopedia of metabolic and other pathways",
-    "rdf_uri_prefix": "https://identifiers.org/metacyc.reaction",
+    "rdf_uri_prefix": "http://identifiers.org/metacyc.reaction/",
     "synonyms": [
       "METACYC"
     ]
@@ -2548,11 +2556,32 @@
       "http://www.ncbi.nlm.nih.gov/"
     ],
     "name": "NCBI Gene",
-    "rdf_uri_prefix": "https://identifiers.org/ncbigene",
+    "rdf_uri_prefix": "http://identifiers.org/ncbigene/",
     "synonyms": [
       "GeneID",
       "LocusID",
       "NCBI_Gene"
+    ]
+  },
+  "NCBITaxon": {
+    "database": "NCBITaxon",
+    "entity_types": [
+      {
+        "example_id": "NCBITaxon:7227",
+        "example_url": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702",
+        "type_id": "BET:0000000",
+        "type_name": "entity",
+        "url_syntax": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/"
+    ],
+    "name": "NCBI Taxonomy",
+    "rdf_uri_prefix": "http://purl.obolibrary.org/obo/NCBITaxon_",
+    "synonyms": [
+      "taxon",
+      "ncbi_taxid"
     ]
   },
   "NCBI_GP": {
@@ -2693,7 +2722,7 @@
       {
         "example_id": "PANTHER:PTHR11455",
         "example_url": "http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
-        "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}_[A-Z0-9]+",
+        "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+",
         "type_id": "NCIT:C20130",
         "type_name": "protein family",
         "url_syntax": "http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
@@ -2703,7 +2732,7 @@
       "http://www.pantherdb.org/"
     ],
     "name": "Protein ANalysis THrough Evolutionary Relationships Classification System",
-    "rdf_uri_prefix": "https://identifiers.org/panther.family"
+    "rdf_uri_prefix": "http://identifiers.org/panther.family/"
   },
   "PATO": {
     "database": "PATO",
@@ -3102,7 +3131,7 @@
       "https://plasmodb.org"
     ],
     "name": "PlasmoDB",
-    "rdf_uri_prefix": "https://identifiers.org/plasmodb"
+    "rdf_uri_prefix": "http://identifiers.org/plasmodb/"
   },
   "PomBase": {
     "database": "PomBase",
@@ -3120,7 +3149,7 @@
       "https://www.pombase.org/"
     ],
     "name": "PomBase",
-    "rdf_uri_prefix": "https://identifiers.org/pombase"
+    "rdf_uri_prefix": "http://identifiers.org/pombase/"
   },
   "Pompep": {
     "database": "Pompep",
@@ -3284,7 +3313,7 @@
       "https://rgd.mcw.edu/"
     ],
     "name": "Rat Genome Database",
-    "rdf_uri_prefix": "https://identifiers.org/rgd",
+    "rdf_uri_prefix": "http://identifiers.org/rgd/",
     "synonyms": [
       "RAD",
       "RGDID"
@@ -3378,7 +3407,7 @@
       "https://www.reactome.org/"
     ],
     "name": "Reactome - a curated knowledgebase of biological pathways",
-    "rdf_uri_prefix": "https://identifiers.org/reactome",
+    "rdf_uri_prefix": "http://identifiers.org/reactome/",
     "synonyms": [
       "REACTOME",
       "REAC"
@@ -3507,7 +3536,7 @@
       "http://www.yeastgenome.org/"
     ],
     "name": "Saccharomyces Genome Database",
-    "rdf_uri_prefix": "https://identifiers.org/sgd",
+    "rdf_uri_prefix": "http://identifiers.org/sgd/",
     "synonyms": [
       "SGDID"
     ]
@@ -3575,7 +3604,7 @@
       "https://www.sgn.cornell.edu/"
     ],
     "name": "Sol Genomics Network",
-    "rdf_uri_prefix": "https://identifiers.org/sgn",
+    "rdf_uri_prefix": "http://identifiers.org/sgn/",
     "synonyms": [
       "SGN_gene"
     ]
@@ -3812,7 +3841,7 @@
       "http://www.arabidopsis.org/"
     ],
     "name": "The Arabidopsis Information Resource",
-    "rdf_uri_prefix": "https://identifiers.org/tair.locus"
+    "rdf_uri_prefix": "http://identifiers.org/tair.locus/"
   },
   "TC": {
     "database": "TC",
@@ -3864,7 +3893,7 @@
       "http://www.ciliate.org/"
     ],
     "name": "Tetrahymena Genome Database",
-    "rdf_uri_prefix": "https://identifiers.org/tgd"
+    "rdf_uri_prefix": "http://identifiers.org/tgd/"
   },
   "TGD_LOCUS": {
     "database": "TGD_LOCUS",
@@ -3947,6 +3976,24 @@
     ],
     "name": "Forest Tree Genome Database"
   },
+  "TreeGrafter": {
+    "database": "TreeGrafter",
+    "entity_types": [
+      {
+        "example_id": "PANTHER:PTHR11455",
+        "example_url": "http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
+        "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+",
+        "type_id": "NCIT:C20130",
+        "type_name": "protein family",
+        "url_syntax": "http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "http://www.pantherdb.org/"
+    ],
+    "name": "TreeGrafter-generated GO annotations",
+    "rdf_uri_prefix": "http://identifiers.org/panther.family/"
+  },
   "TriTrypDB": {
     "database": "TriTrypDB",
     "entity_types": [
@@ -3963,7 +4010,7 @@
       "https://tritrypdb.org/"
     ],
     "name": "TriTrypDB",
-    "rdf_uri_prefix": "https://identifiers.org/tritrypdb"
+    "rdf_uri_prefix": "http://identifiers.org/tritrypdb/"
   },
   "UBERON": {
     "database": "UBERON",
@@ -4133,7 +4180,7 @@
       "http://www.uniprot.org"
     ],
     "name": "Universal Protein Knowledgebase",
-    "rdf_uri_prefix": "https://identifiers.org/uniprot"
+    "rdf_uri_prefix": "http://identifiers.org/uniprot/"
   },
   "UniProtKB-KW": {
     "database": "UniProtKB-KW",
@@ -4254,7 +4301,7 @@
       "http://www.wormbase.org/"
     ],
     "name": "WormBase database of nematode biology",
-    "rdf_uri_prefix": "https://identifiers.org/wb",
+    "rdf_uri_prefix": "http://identifiers.org/wormbase/",
     "synonyms": [
       "WormBase"
     ]
@@ -4408,7 +4455,7 @@
       "http://www.xenbase.org/"
     ],
     "name": "Xenbase",
-    "rdf_uri_prefix": "https://identifiers.org/xenbase"
+    "rdf_uri_prefix": "http://identifiers.org/xenbase/"
   },
   "YeastFunc": {
     "database": "YeastFunc",
@@ -4455,7 +4502,7 @@
       "http://zfin.org/"
     ],
     "name": "Zebrafish Information Network",
-    "rdf_uri_prefix": "https://identifiers.org/zfin"
+    "rdf_uri_prefix": "http://identifiers.org/zfin/"
   },
   "cribi_vitis": {
     "database": "cribi_vitis",
@@ -4633,26 +4680,5 @@
       "http://www.ncbi.nlm.nih.gov/Genbank/"
     ],
     "name": "DDBJ / ENA / GenBank"
-  },
-  "taxon": {
-    "database": "taxon",
-    "entity_types": [
-      {
-        "example_id": "taxon:7227",
-        "example_url": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702",
-        "type_id": "BET:0000000",
-        "type_name": "entity",
-        "url_syntax": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]"
-      }
-    ],
-    "generic_urls": [
-      "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/"
-    ],
-    "name": "NCBI Taxonomy",
-    "rdf_uri_prefix": "http://purl.obolibrary.org/obo/NCBITaxon_",
-    "synonyms": [
-      "NCBITaxon",
-      "ncbi_taxid"
-    ]
   }
 }
