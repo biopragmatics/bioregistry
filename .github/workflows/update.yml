@@ -43,13 +43,13 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit --all -m "📮 Automatically update"
       # Not sure if this should be here or not - what if it pushes something bad that needs to be reverted?
-      - name: Push changes
-        if: steps.update.outputs.BR_UPDATED == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          tags: true
+      # - name: Push changes
+      #   if: steps.update.outputs.BR_UPDATED == 'true'
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ github.ref }}
+      #     tags: true
       - name: Run tests, don't push to PyPI unless passing
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
