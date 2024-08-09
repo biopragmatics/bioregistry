@@ -262,6 +262,10 @@ def main(bioregistry_file, start_date, end_date):
 
     :param bioregistry_file: Path to the bioregistry JSON file.
     :type bioregistry_file: str
+    :param start_date: The start date of the period for which papers are being ranked.
+    :type start_date: str
+    :param end_date: The end date of the period for which papers are being ranked.
+    :type end_date: str
     """
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()
