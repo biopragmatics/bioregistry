@@ -3,7 +3,6 @@ name: Run Paper Ranking Script and Update Issue
 on:
   schedule:
     - cron: '0 0 1 * *' # runs on the first day of every month
-
   workflow_dispatch:
 
 jobs:
@@ -24,11 +23,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r src/bioregistry/analysis/paper_ranking_requirements.txt
 
-    - name: Run Paper Ranking Script
-      id: run-ranking-script
-      run: |
-        python src/bioregistry/analysis/paper_ranking.py
-
     - name: Set Date Variables
       id: set-date-variables
       run: |
@@ -36,6 +30,17 @@ jobs:
         start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
+
+    - name: Run Paper Ranking Script
+      id: run-ranking-script
+      run: |
+        python src/bioregistry/analysis/paper_ranking.py --start-date ${{ env.START_DATE }} --end-date ${{ env.END_DATE }}
+
+    - name: Upload Full List as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: full-predictions-list-${{ env.START_DATE }}-to-${{ env.END_DATE }}
+        path: exports/analyses/paper_ranking/predictions_${{ env.START_DATE }}_to_${{ env.END_DATE }}.tsv
 
     - name: Find Existing Issue
       id: find-issue
@@ -49,14 +54,8 @@ jobs:
             state: 'open',
             labels: 'paper-ranking-results'
           });
-          const issue = issues.find(issue => issue.title === 'Paper Ranking Results');
+          const issue = issues.find(issue => issue.title === 'Potentially relevant papers ranked for curation');
           return issue ? issue.number : null;
-
-    - name: Upload Full List as Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: full-predictions-list
-        path: merged_and_reranked_predictions.csv
 
     - name: Create or Update Issue with Comment
       id: create-or-update-issue
@@ -68,7 +67,7 @@ jobs:
           const issueNumber = ${{ steps.find-issue.outputs.result }};
           const startDate = process.env.START_DATE;
           const endDate = process.env.END_DATE;
-          const content = fs.readFileSync('exports/analyses/paper_ranking/predictions.tsv', 'utf8');
+          const content = fs.readFileSync(`exports/analyses/paper_ranking/predictions_${startDate}_to_${endDate}.tsv`, 'utf8');
           const lines = content.split('\n').slice(1, 21);
           const rows = lines.map(line => {
             const [pubmed, title] = line.split('\t');
@@ -76,7 +75,7 @@ jobs:
             return `| [${pubmed}](${link}) | ${title} |`;
           });
           const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
-          const commentBody = `This issue contains monthly updates to an automatically ranked list of PubMed papers as candidates for curation in the Bioregistry. Papers may be relevant in at least three ways: \n(1) as a new prefix for a resource that can be added to the Bioregistry,\n(2) as a provider for an existing prefix, or\n(3) as a new publication for an existing prefix already in the Bioregistry.\n\nThese curations can happen in separate issues and pull requests. The full list of ranked papers can be found [here](https://github.com/${{ github.repository }}/blob/main/exports/analyses/paper_ranking/predictions.tsv). If you review any of these papers for relevance, you should edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/main/src/bioregistry/curation/curated_papers.csv); these curations are taken into account when retraining the ranking model.\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
+          const commentBody = `This issue contains monthly updates to an automatically ranked list of PubMed papers as candidates for curation in the Bioregistry. Papers may be relevant in at least three ways: \n(1) as a new prefix for a resource that can be added to the Bioregistry,\n(2) as a provider for an existing prefix, or\n(3) as a new publication for an existing prefix already in the Bioregistry.\n\nThese curations can happen in separate issues and pull requests. The full list of ranked papers can be found [here](https://github.com/${{ github.repository }}/blob/main/exports/analyses/paper_ranking/predictions_${startDate}_to_${endDate}.tsv). If you review any of these papers for relevance, you should edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/main/src/bioregistry/curation/curated_papers.csv); these curations are taken into account when retraining the ranking model.\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
 
           if (issueNumber) {
             await github.rest.issues.createComment({
@@ -89,7 +88,7 @@ jobs:
             const response = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'Paper Ranking Results',
+              title: 'Potentially relevant papers ranked for curation',
               body: `${commentBody}`,
               labels: ['paper-ranking-results'],
             });
