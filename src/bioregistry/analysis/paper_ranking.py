@@ -1,7 +1,6 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
 import json
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import click
@@ -245,7 +244,6 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 
     df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
     df = df.sort_values(by="meta_score", ascending=False)
-    df["title"] = df["title"].apply(lambda x: truncate_text(x, 50))
     df["abstract"] = df["abstract"].apply(lambda x: truncate_text(x, 25))
     df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
     click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
@@ -353,12 +351,7 @@ def main(bioregistry_file):
 
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        date_end = datetime.now()
-        date_start = date_end - timedelta(days=30)
-        filename = (
-            f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
-        )
-
+        filename = "predictions.tsv"
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
