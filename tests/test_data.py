@@ -162,7 +162,9 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
-                self.assertIsNotNone(bioregistry.get_homepage(prefix), msg=f"Missing homepage for {prefix}")
+                self.assertIsNotNone(
+                    bioregistry.get_homepage(prefix), msg=f"Missing homepage for {prefix}"
+                )
 
     def test_homepage_http(self):
         """Test that all homepages start with http."""
