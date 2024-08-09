@@ -54,7 +54,7 @@ jobs:
             state: 'open',
             labels: 'paper-ranking-results'
           });
-          const issue = issues.find(issue => issue.title === 'Paper Ranking Results');
+          const issue = issues.find(issue => issue.title === 'Potentially relevant papers ranked for curation');
           return issue ? issue.number : null;
 
     - name: Create or Update Issue with Comment
@@ -88,7 +88,7 @@ jobs:
             const response = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'Paper Ranking Results',
+              title: 'Potentially relevant papers ranked for curation',
               body: `${commentBody}`,
               labels: ['paper-ranking-results'],
             });
