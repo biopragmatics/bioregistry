@@ -804,6 +804,12 @@
       url_syntax: http://flybase.org/reports/[example_id].html
       example_id: FB:FBgn0000024
       example_url: http://flybase.org/reports/FBgn0000024.html
+    - type_name: reference
+      type_id: BET:0000000
+      id_syntax: FB:FBrf[0-9]{7}
+      url_syntax: http://flybase.org/reports/[example_id].htm
+      example_id: FB:FBrf0193169
+      example_url: https://flybase.org/reports/FBrf0193169.htm      
 - database: FBbt
   name: Drosophila gross anatomy
   rdf_uri_prefix: http://purl.obolibrary.org/obo/FBbt_
@@ -1259,7 +1265,7 @@
       example_url: http://www.ebi.ac.uk/complexportal/complex/EBI-10205244
 - database: InterPro
   name: InterPro database of protein domains and motifs
-  rdf_uri_prefix: https://registry.identifiers.org/registry/interpro
+  rdf_uri_prefix: http://identifiers.org/interpro/
   synonyms:
     - INTERPRO
     - IPR
@@ -1477,7 +1483,7 @@
       example_url: https://maizegdb.org/gene_center/gene/12098
 - database: MaizeGDB_Locus
   name: MaizeGDB
-  rdf_uri_prefix: https://identifiers.org/maizegdb.locus
+  rdf_uri_prefix: http://identifiers.org/maizegdb.locus/
   generic_urls:
     - https://www.maizegdb.org/
   entity_types:
@@ -1570,7 +1576,7 @@
   name: Metabolic Encyclopedia of metabolic and other pathways
   synonyms:
     - METACYC
-  rdf_uri_prefix: https://identifiers.org/metacyc.reaction
+  rdf_uri_prefix: http://identifiers.org/metacyc.reaction/
   generic_urls:
     - https://metacyc.org/
   entity_types:
@@ -1600,7 +1606,7 @@
       example_id: MGD:Adcy9
 - database: MGI
   name: Mouse Genome Informatics
-  rdf_uri_prefix: https://identifiers.org/MGI
+  rdf_uri_prefix: http://identifiers.org/MGI/
   generic_urls:
     - http://www.informatics.jax.org/
   entity_types:
@@ -1675,7 +1681,7 @@
     - GeneID
     - LocusID
     - NCBI_Gene
-  rdf_uri_prefix: https://identifiers.org/ncbigene
+  rdf_uri_prefix: http://identifiers.org/ncbigene/
   generic_urls:
     - http://www.ncbi.nlm.nih.gov/
   entity_types:
@@ -1797,13 +1803,13 @@
       type_id: BET:0000000
 - database: PANTHER
   name: Protein ANalysis THrough Evolutionary Relationships Classification System
-  rdf_uri_prefix: https://identifiers.org/panther.family
+  rdf_uri_prefix: http://identifiers.org/panther.family/
   generic_urls:
     - http://www.pantherdb.org/
   entity_types:
     - type_name: protein family
       type_id: NCIT:C20130
-      id_syntax: PTN[0-9]{9}|PTHR[0-9]{5}_[A-Z0-9]+
+      id_syntax: PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+
       url_syntax: http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
       example_id: PANTHER:PTHR11455
       example_url: http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000
@@ -2011,7 +2017,7 @@
       example_url: http://planteome.org/po_ref/00001
 - database: PlasmoDB
   name: PlasmoDB
-  rdf_uri_prefix: https://identifiers.org/plasmodb
+  rdf_uri_prefix: http://identifiers.org/plasmodb/
   generic_urls:
     - https://plasmodb.org
   entity_types:
@@ -2030,7 +2036,7 @@
       type_id: BET:0000000
 - database: PomBase
   name: PomBase
-  rdf_uri_prefix: https://identifiers.org/pombase
+  rdf_uri_prefix: http://identifiers.org/pombase/
   generic_urls:
     - https://www.pombase.org/
   entity_types:
@@ -2201,7 +2207,7 @@
   synonyms:
     - REACTOME
     - REAC
-  rdf_uri_prefix: https://identifiers.org/reactome
+  rdf_uri_prefix: http://identifiers.org/reactome/
   generic_urls:
     - https://www.reactome.org/
   entity_types:
@@ -2273,7 +2279,7 @@
   synonyms:
     - RAD
     - RGDID
-  rdf_uri_prefix: https://identifiers.org/rgd
+  rdf_uri_prefix: http://identifiers.org/rgd/
   generic_urls:
     - https://rgd.mcw.edu/
   entity_types:
@@ -2373,7 +2379,7 @@
   name: Saccharomyces Genome Database
   synonyms:
     - SGDID
-  rdf_uri_prefix: https://identifiers.org/sgd
+  rdf_uri_prefix: http://identifiers.org/sgd/
   generic_urls:
     - http://www.yeastgenome.org/
   entity_types:
@@ -2417,7 +2423,7 @@
   name: Sol Genomics Network
   synonyms:
     - SGN_gene
-  rdf_uri_prefix: https://identifiers.org/sgn
+  rdf_uri_prefix: http://identifiers.org/sgn/
   generic_urls:
     - https://www.sgn.cornell.edu/
   entity_types:
@@ -2545,7 +2551,7 @@
       type_id: BET:0000000
 - database: TAIR
   name: The Arabidopsis Information Resource
-  rdf_uri_prefix: https://identifiers.org/tair.locus
+  rdf_uri_prefix: http://identifiers.org/tair.locus/
   generic_urls:
     - http://www.arabidopsis.org/
   entity_types:
@@ -2567,10 +2573,10 @@
       url_syntax: http://arabidopsis.org/servlets/TairObject?accession=[example_id]
       example_id: TAIR:locus:2146653
       example_url: http://arabidopsis.org/servlets/TairObject?accession=locus:2146653
-- database: taxon
+- database: NCBITaxon
   name: NCBI Taxonomy
   synonyms:
-    - NCBITaxon
+    - taxon
     - ncbi_taxid
   rdf_uri_prefix: http://purl.obolibrary.org/obo/NCBITaxon_
   generic_urls:
@@ -2579,7 +2585,7 @@
     - type_name: entity
       type_id: BET:0000000
       url_syntax: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]
-      example_id: taxon:7227
+      example_id: NCBITaxon:7227
       example_url: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702
 - database: TC
   name: Transport Protein Database
@@ -2594,7 +2600,7 @@
       example_url: http://www.tcdb.org/tcdb/index.php?tc=9.A.4.1.1
 - database: TGD
   name: Tetrahymena Genome Database
-  rdf_uri_prefix: https://identifiers.org/tgd
+  rdf_uri_prefix: http://identifiers.org/tgd/
   generic_urls:
     - http://www.ciliate.org/
   entity_types:
@@ -2649,7 +2655,7 @@
       example_url: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=254
 - database: TriTrypDB
   name: TriTrypDB
-  rdf_uri_prefix: https://identifiers.org/tritrypdb
+  rdf_uri_prefix: http://identifiers.org/tritrypdb/
   generic_urls:
     - https://tritrypdb.org/
   entity_types:
@@ -2759,7 +2765,7 @@
 - database: UniProtKB
   name: Universal Protein Knowledgebase
   description: A central repository of protein sequence and function created by joining the information contained in Swiss-Prot, TrEMBL, and PIR database
-  rdf_uri_prefix: https://identifiers.org/uniprot
+  rdf_uri_prefix: http://identifiers.org/uniprot/
   generic_urls:
     - http://www.uniprot.org
   entity_types:
@@ -2829,7 +2835,7 @@
   name: WormBase database of nematode biology
   synonyms:
     - WormBase
-  rdf_uri_prefix: https://identifiers.org/wb
+  rdf_uri_prefix: http://identifiers.org/wormbase/
   generic_urls:
     - http://www.wormbase.org/
   entity_types:
@@ -2936,7 +2942,7 @@
       example_url: https://en.wikipedia.org/w/index.php?title=Fallopian_tube&oldid=998395727
 - database: Xenbase
   name: Xenbase
-  rdf_uri_prefix: https://identifiers.org/xenbase
+  rdf_uri_prefix: http://identifiers.org/xenbase/
   generic_urls:
     - http://www.xenbase.org/
   entity_types:
@@ -2978,7 +2984,7 @@
     - http://citgenedb.yubiolab.org
 - database: ZFIN
   name: Zebrafish Information Network
-  rdf_uri_prefix: https://identifiers.org/zfin
+  rdf_uri_prefix: http://identifiers.org/zfin/
   generic_urls:
     - http://zfin.org/
   entity_types:
@@ -3061,3 +3067,15 @@
       url_syntax: https://www.japonicusdb.org/gene/[example_id]
       example_id: JaponicusDB:SJAG_01143
       example_url: https://www.japonicusdb.org/gene/SJAG_01143
+- database: TreeGrafter
+  name: TreeGrafter-generated GO annotations
+  rdf_uri_prefix: http://identifiers.org/panther.family/
+  generic_urls:
+    - http://www.pantherdb.org/
+  entity_types:
+    - type_name: protein family
+      type_id: NCIT:C20130
+      id_syntax: PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+
+      url_syntax: http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
+      example_id: PANTHER:PTHR11455
+      example_url: http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000

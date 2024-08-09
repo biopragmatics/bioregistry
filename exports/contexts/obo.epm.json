@@ -1921,6 +1921,7 @@
             "http://bioregistry.io/ensembl.bacteria:",
             "http://bioregistry.io/ensembl.fungi:",
             "http://bioregistry.io/ensembl:",
+            "http://ciliogenics.com/?page=General%20info&query=",
             "http://ensembl.org/id/",
             "http://fungi.ensembl.org/[?species_name]/Gene/Summary?g=",
             "http://fungi.ensembl.org/id/",
@@ -1952,6 +1953,7 @@
             "https://bioregistry.io/ensembl.bacteria:",
             "https://bioregistry.io/ensembl.fungi:",
             "https://bioregistry.io/ensembl:",
+            "https://ciliogenics.com/?page=General%20info&query=",
             "https://ensembl.org/id/",
             "https://fungi.ensembl.org/[?species_name]/Gene/Summary?g=",
             "https://fungi.ensembl.org/id/",
@@ -5328,17 +5330,18 @@
             "http://bio2rdf.org/po:",
             "http://bioregistry.io/PO:",
             "http://bioregistry.io/po:",
+            "http://browser.planteome.org/amigo/term/PO:",
             "http://identifiers.org/PO/",
             "http://identifiers.org/PO:",
             "http://identifiers.org/po/PO:",
             "http://n2t.net/po:",
             "http://purl.bioontology.org/ontology/PO/PO:",
             "http://www.ebi.ac.uk/ols/ontologies/po/terms?iri=http://purl.obolibrary.org/obo/PO_",
-            "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:",
             "http://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query=",
             "https://bio2rdf.org/po:",
             "https://bioregistry.io/PO:",
             "https://bioregistry.io/po:",
+            "https://browser.planteome.org/amigo/term/PO:",
             "https://identifiers.org/PO/",
             "https://identifiers.org/PO:",
             "https://identifiers.org/po/PO:",
@@ -5346,7 +5349,6 @@
             "https://purl.bioontology.org/ontology/PO/PO:",
             "https://purl.obolibrary.org/obo/PO_",
             "https://www.ebi.ac.uk/ols/ontologies/po/terms?iri=http://purl.obolibrary.org/obo/PO_",
-            "https://www.plantontology.org/amigo/go.cgi?view=details&query=PO:",
             "https://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query="
         ]
     },
@@ -8699,12 +8701,14 @@
             "http://identifiers.org/biosystems/",
             "http://identifiers.org/biosystems:",
             "http://n2t.net/biosystems:",
+            "http://pubchem.ncbi.nlm.nih.gov/pathway/BSID:",
             "http://www.ncbi.nlm.nih.gov/biosystems/",
             "https://bio2rdf.org/biosystems:",
             "https://bioregistry.io/biosystems:",
             "https://identifiers.org/biosystems/",
             "https://identifiers.org/biosystems:",
-            "https://n2t.net/biosystems:"
+            "https://n2t.net/biosystems:",
+            "https://pubchem.ncbi.nlm.nih.gov/pathway/BSID:"
         ]
     },
     {
@@ -10078,6 +10082,15 @@
         ]
     },
     {
+        "prefix": "coi",
+        "uri_prefix": "https://coicatalogue.uc.pt/index.php?t=specimen&COINumber=",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/coi:",
+            "http://coicatalogue.uc.pt/index.php?t=specimen&COINumber=",
+            "https://bioregistry.io/coi:"
+        ]
+    },
+    {
         "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
         "prefix": "col",
         "uri_prefix": "https://www.checklistbank.org/dataset/3LR/taxon/",
@@ -10590,7 +10603,7 @@
         ]
     },
     {
-        "pattern": "^CTRI/\\d{4}/\\d{2}/\\d+$",
+        "pattern": "^CTRI/\\d{4}/\\d{2,3}/\\d+$",
         "prefix": "ctri",
         "uri_prefix": "https://trialsearch.who.int/Trial2.aspx?TrialID=",
         "uri_prefix_synonyms": [
@@ -12820,6 +12833,15 @@
         ]
     },
     {
+        "prefix": "ferroliganddb",
+        "uri_prefix": "https://ferr.gulab.org.cn/browse/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/ferroliganddb:",
+            "http://ferr.gulab.org.cn/browse/",
+            "https://bioregistry.io/ferroliganddb:"
+        ]
+    },
+    {
         "prefix": "fhir.implementation",
         "uri_prefix": "https://hl7.org/fhir/us/",
         "uri_prefix_synonyms": [
@@ -13316,6 +13338,15 @@
             "https://bioregistry.io/ncbi.gi:",
             "https://bioregistry.io/ncbigi:",
             "https://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val="
+        ]
+    },
+    {
+        "prefix": "genbase",
+        "uri_prefix": "https://ngdc.cncb.ac.cn/genbase/search/gb/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/genbase:",
+            "http://ngdc.cncb.ac.cn/genbase/search/gb/",
+            "https://bioregistry.io/genbase:"
         ]
     },
     {
@@ -16097,6 +16128,15 @@
             "https://identifiers.org/issn/",
             "https://identifiers.org/issn:",
             "https://n2t.net/issn:"
+        ]
+    },
+    {
+        "prefix": "istransbase",
+        "uri_prefix": "https://istransbase.scbdd.com/database/trans/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/istransbase:",
+            "http://istransbase.scbdd.com/database/trans/",
+            "https://bioregistry.io/istransbase:"
         ]
     },
     {
@@ -19725,6 +19765,20 @@
         ]
     },
     {
+        "pattern": "^[A-Za-z][A-Za-z0-9]+$",
+        "prefix": "odamexplorer",
+        "uri_prefix": "https://pmb-bordeaux.fr/dataexplorer/?ds=",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/odamexplorer:",
+            "http://identifiers.org/odam.explorer/",
+            "http://identifiers.org/odam.explorer:",
+            "http://pmb-bordeaux.fr/dataexplorer/?ds=",
+            "https://bioregistry.io/odamexplorer:",
+            "https://identifiers.org/odam.explorer/",
+            "https://identifiers.org/odam.explorer:"
+        ]
+    },
+    {
         "pattern": "^[0-9]*$",
         "prefix": "odc.sci",
         "uri_prefix": "https://odc-sci.org/data/",
@@ -19853,9 +19907,9 @@
         ]
     },
     {
-        "pattern": "^\\d{6}$",
+        "pattern": "^\\d{6}(-\\d+)?$",
         "prefix": "omia",
-        "uri_prefix": "https://omia.org/OMIA",
+        "uri_prefix": "https://omia.org/phene/omia:",
         "uri_prefix_synonyms": [
             "http://bio2rdf.org/omia:",
             "http://bioregistry.io/omia:",
@@ -19863,7 +19917,7 @@
             "http://identifiers.org/omia:",
             "http://n2t.net/omia:",
             "http://omia.angis.org.au/retrieve.shtml?pid=",
-            "http://omia.org/OMIA",
+            "http://omia.org/phene/omia:",
             "http://www.omia.org/OMIA",
             "https://bio2rdf.org/omia:",
             "https://bioregistry.io/omia:",
@@ -19926,6 +19980,16 @@
             "https://purl.org/mim/MIM:",
             "https://www.ncbi.nlm.nih.gov/omim/",
             "https://www.omim.org/entry/"
+        ]
+    },
+    {
+        "pattern": "^\\d{5}$",
+        "prefix": "omon",
+        "uri_prefix": "https://onderzoekmetmensen.nl/en/trial/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/omon:",
+            "http://onderzoekmetmensen.nl/en/trial/",
+            "https://bioregistry.io/omon:"
         ]
     },
     {
@@ -21087,6 +21151,16 @@
             "https://bioregistry.io/phosphopoint.protein:",
             "https://identifiers.org/phosphopoint.protein/",
             "https://n2t.net/phosphopoint.protein:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "phosphosite.curation",
+        "uri_prefix": "https://www.phosphosite.org/curatedInfoAction.action?record=",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/phosphosite.curation:",
+            "http://www.phosphosite.org/curatedInfoAction.action?record=",
+            "https://bioregistry.io/phosphosite.curation:"
         ]
     },
     {
@@ -22336,7 +22410,7 @@
         ]
     },
     {
-        "pattern": "^\\d+-\\d+$",
+        "pattern": "^\\d+-\\d+(-[A-Z])?$",
         "prefix": "repec",
         "uri_prefix": "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=",
         "uri_prefix_synonyms": [
