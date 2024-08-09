@@ -136,7 +136,6 @@ SKIP = {
     "P8558": "is a data property",
     "P6507": "is a data property",
     "P428": "is a data property",
-    "P696": "testing",
 }
 RENAMES = {"propLabel": "name", "propDescription": "description"}
 CANONICAL_DATABASES = {
