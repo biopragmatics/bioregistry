@@ -75,6 +75,7 @@ def align(
         skip.add("bioportal")
     if skip_agroportal or skip_slow:
         skip.add("agroportal")
+    skip.add("wikidata")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue
