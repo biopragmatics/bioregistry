@@ -255,7 +255,9 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     default="src/bioregistry/data/bioregistry.json",
     help="Path to the bioregistry.json file",
 )
-def main(bioregistry_file):
+@click.option("--start-date", required=True, help="Start date of the period")
+@click.option("--end-date", required=True, help="End date of the period")
+def main(bioregistry_file, start_date, end_date):
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
@@ -351,7 +353,7 @@ def main(bioregistry_file):
 
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        filename = "predictions.tsv"
+        filename = f"predictions_{start_date}_to_{end_date}.tsv"
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
