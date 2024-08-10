@@ -749,7 +749,7 @@ afo:
     email: more.info@allotrope.org
     name: Allotrope Foundation
   description: Allotrope Merged Ontology Suite
-  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2024/03/merged-without-qudt-and-inferred
+  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2024/06/merged-without-qudt-and-inferred
   homepage: https://www.allotrope.org/
   keywords:
   - agricultural engineering
@@ -770,7 +770,7 @@ afo:
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
-  version: 2024/03
+  version: 2024/06
 afpo:
   contact:
     email: mcmelek@msn.com
@@ -1235,7 +1235,7 @@ aism:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   repository: https://github.com/insect-morphology/aism
   uri_format: http://purl.obolibrary.org/obo/AISM_$1
-  version: '2024-05-11'
+  version: '2024-06-20'
 alfred:
   comment: This resource doesn't exist on the web anymore
   contributor_extras:
@@ -1858,7 +1858,7 @@ apo:
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2024-04-26'
+  version: '2024-08-03'
 apollosv:
   appears_in:
   - scdo
@@ -3202,7 +3202,7 @@ bcio:
   pattern: ^\d{6}$
   preferred_prefix: bcio
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2024-05-13'
+  version: '2024-07-03'
 bco:
   appears_in:
   - fovt
@@ -4225,7 +4225,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/61/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/62/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   keywords:
@@ -6721,7 +6721,7 @@ cdno:
   rdf_uri_format: http://purl.obolibrary.org/obo/CDNO_$1
   repository: https://github.com/CompositionalDietaryNutritionOntology/cdno
   uri_format: http://purl.obolibrary.org/obo/CDNO_$1
-  version: '2024-06-09'
+  version: '2024-06-21'
 cdpd:
   description: The Canadian Drug Product Database (DPD) contains product specific
     information on drugs approved for use in Canada, and includes human pharmaceutical
@@ -7311,7 +7311,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '234'
+  version: '236'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -8385,7 +8385,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2024-05-15'
+  version: '2024-07-10'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -8720,7 +8720,7 @@ clo:
   synonyms:
   - CLO
   uri_format: http://purl.obolibrary.org/obo/CLO_$1
-  version: 2.1.178
+  version: 2.1.188
 cls:
   description: Cell line collections (Providers)
   example: 300108/p3934_A-172
@@ -8865,7 +8865,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.214'
+  version: '2.221'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -9572,7 +9572,7 @@ co_350:
 co_356:
   contact:
     email: helpdesk@cropontology-curationtool.org
-    name: Crop Ontology Helpdesk
+    name: Cyril Pommier
   description: Grape Ontology including OIV and bioversity descriptors. INRA July
     2017
   example: '4000027'
@@ -10057,7 +10057,7 @@ colao:
   rdf_uri_format: http://purl.obolibrary.org/obo/COLAO_$1
   repository: https://github.com/insect-morphology/colao
   uri_format: http://purl.obolibrary.org/obo/COLAO_$1
-  version: '2024-02-14'
+  version: '2024-06-21'
 collagenmutdb:
   description: This database aims to record all published accounts of variants resulting
     in osteogenesis imperfecta. Such variants occur in the COL1A1, COL1A2, CRTAP,
@@ -13609,7 +13609,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-05-29'
+  version: '2024-07-31'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -13822,9 +13822,12 @@ dpv:
   keywords:
   - classification
   - gene
+  - people
+  - security
   mappings:
     biocontext: DPV
     integbio: nbdc02410
+    lov: dpv
     miriam: dpv
     n2t: dpv
     prefixcommons: dpvweb
@@ -13958,10 +13961,8 @@ dron:
     github: hoganwr
     name: William Hogan
     orcid: 0000-0002-9881-1017
-  description: We built this ontology primarily to support comparative effectiveness
-    researchers studying claims data. They need to be able to query U.S. National
-    Drug Codes (NDCs) by ingredient, mechanism of action (beta-adrenergic blockade),
-    physiological effect (diuresis), and therapeutic intent (anti-hypertensive).
+  description: An ontology to support comparative effectiveness researchers studying
+    claims data.
   download_json: http://purl.obolibrary.org/obo/dron.json
   download_obo: http://purl.obolibrary.org/obo/dron.obo
   download_owl: http://purl.obolibrary.org/obo/dron.owl
@@ -14007,7 +14008,7 @@ dron:
   rdf_uri_format: http://purl.obolibrary.org/obo/DRON_$1
   repository: https://github.com/ufbmi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2024-03-03'
+  version: '2024-08-05'
 drsanv0:
   description: 'This namespace is used for GA4GH Data Repository Service (DRS) access
     to the USA National Institutes of Health (NIH), National Human Genome Research
@@ -14552,7 +14553,6 @@ ecao:
   rdf_uri_format: http://purl.obolibrary.org/obo/ECAO_$1
   repository: https://github.com/echinoderm-ontology/ecao_ontology
   uri_format: http://purl.obolibrary.org/obo/ECAO_$1
-  version: '2024-02-20'
 eccode:
   contact:
     email: kristian.axelsen@sib.swiss
@@ -14880,7 +14880,7 @@ eco:
   rdf_uri_format: http://purl.obolibrary.org/obo/ECO_$1
   repository: https://github.com/evidenceontology/evidenceontology
   uri_format: http://purl.obolibrary.org/obo/ECO_$1
-  version: '2024-06-09'
+  version: '2024-07-19'
 ecocore:
   contact:
     email: p.buttigieg@gmail.com
@@ -15492,7 +15492,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.67.0
+  version: 3.68.0
 ega.dataset:
   contact:
     email: tk2@ebi.ac.uk
@@ -16013,12 +16013,14 @@ emmo:
   homepage: https://emmo-repo.github.io
   keywords:
   - communication science
+  - industry
   - philosophy
   - physics
   license: CC-BY-4.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmtEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--69489934048fba98feded162d24a8e3b36c9d370/EMMO.jpg?disposition=inline
   mappings:
     fairsharing: FAIRsharing.1bdf3c
+    lov: emmo
   name: Elementary Multiperspective Material Ontology
   preferred_prefix: emmo
   repository: https://github.com/emmo-repo/EMMO
@@ -17062,7 +17064,7 @@ envo:
   repository: https://github.com/EnvironmentOntology/envo
   twitter: envoTweets
   uri_format: http://purl.obolibrary.org/obo/ENVO_$1
-  version: '2024-02-16'
+  version: '2024-07-01'
 enzo:
   contributor:
     email: cthoyt@gmail.com
@@ -19165,7 +19167,7 @@ fma:
   synonyms:
   - FMAID
   - FMA_RETIRED
-  uri_format: http://purl.org/sig/ont/fma/fma$1
+  uri_format: https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:$1
   version: '2020-04-13'
 foaf:
   contact:
@@ -19375,6 +19377,7 @@ foodon:
   rdf_uri_format: http://purl.obolibrary.org/obo/FOODON_$1
   repository: https://github.com/FoodOntology/foodon
   uri_format: http://purl.obolibrary.org/obo/FOODON_$1
+  version: '2024-07-12'
 fossilworks.journal:
   contributor:
     email: meghan.balk@gmail.com
@@ -19904,7 +19907,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-06-17'
+  version: '2024-08-01'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -20488,6 +20491,7 @@ genbase:
   contact:
     email: zhaoxuetong@big.ac.cn
     name: Xuetong Zhao
+    orcid: 0000-0002-9551-6370
   contributor:
     email: shah.tanay2@northeastern.edu
     github: tanayshah2
@@ -20499,19 +20503,12 @@ genbase:
   example: C_AA001108.1
   homepage: https://ngdc.cncb.ac.cn/genbase/?lang=en
   keywords:
-  - animal genetics
-  - circrna
-  - genetics
-  - genome
-  - genotype
-  - human genetics
-  - microbial genetics
-  - molecular genetics
-  - organelle
-  - plant genetics
-  - plasmid
-  - plastid
-  - sequence
+  - biological sample
+  - experimental measurement
+  - genomics
+  - life science
+  - statistics
+  - survey
   mappings:
     fairsharing: FAIRsharing.3da56b
     re3data: r3d100014353
@@ -23481,7 +23478,7 @@ hancestro:
   rdf_uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
   repository: https://github.com/EBISPOT/ancestro
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
-  version: '2024-04-25'
+  version: '2024-06-21'
 hao:
   contact:
     email: diapriid@gmail.com
@@ -24806,7 +24803,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2024-04-26'
+  version: '2024-07-01'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -27193,6 +27190,7 @@ inchi:
   - knowledge and information systems
   - molecular entity
   - molecular structure
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcUVFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--250afbf70b1e3f9c188231ff2fb50477040a71f5/inchi-wheel.png?disposition=inline
   mappings:
     biocontext: INCHI
     fairsharing: FAIRsharing.ddk9t9
@@ -27233,6 +27231,7 @@ inchi:
     pubmed: '26081259'
     title: Many InChIs and quite some feat
     year: 2015
+  repository: https://github.com/IUPAC-InChI/InChI
   twitter: inchi_trust
   uri_format: http://www.chemspider.com/$1
 inchikey:
@@ -31141,7 +31140,7 @@ maxo:
   repository: https://github.com/monarch-initiative/MAxO
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MAXO_$1
-  version: '2024-05-24'
+  version: '2024-07-29'
 mba:
   contact:
     email: chinhda@alleninstitute.org
@@ -31464,8 +31463,8 @@ mediadive.solution:
   uri_format: https://mediadive.dsmz.de/solutions/$1
 medlineplus:
   contact:
-    email: willisj@mail.nlm.nih.gov
-    name: Jan Willis, NLM
+    email: custserv@nlm.nih.gov
+    name: NLM Customer Service
   description: MedlinePlus is the National Institutes of Health's Web site for patients
     and their families and friends. Produced by the National Library of Medicine,
     it provides information about diseases, conditions, and wellness issues using
@@ -31641,8 +31640,8 @@ merops.family:
   uri_format: https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1
 mesh:
   contact:
-    email: willisj@mail.nlm.nih.gov
-    name: Jan Willis, NLM
+    email: custserv@nlm.nih.gov
+    name: NLM Customer Service
   contributor_extras:
   - github: rombaum
     name: Roman Baum
@@ -33705,7 +33704,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.134'
+  version: '2.136'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -34250,7 +34249,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2024-06-04'
+  version: '2024-08-06'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -34431,7 +34430,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2024-06-18'
+  version: '2024-07-02'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -34611,7 +34610,7 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2024-05-21'
+  version: '2024-08-02'
 ms:
   banana: MS
   contact:
@@ -34661,7 +34660,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.155
+  version: 4.1.168
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -35787,7 +35786,7 @@ ncbitaxon:
     cellosaurus: NCBI_TaxID
     edam: '1179'
     fairsharing: FAIRsharing.fj07xj
-    go: taxon
+    go: NCBITaxon
     hl7: 2.16.840.1.113883.6.205
     miriam: taxonomy
     n2t: taxonomy
@@ -35869,7 +35868,7 @@ ncbitaxon:
   - taxonomy
   - uniprot.taxonomy
   uri_format: http://purl.obolibrary.org/obo/NCBITaxon_$1
-  version: '2024-05-08'
+  version: '2024-07-03'
 nci.drug:
   description: identifier of an entry in the NCI Drug Dictionary
   example: beta-carotene
@@ -35934,6 +35933,7 @@ ncit:
     cellosaurus: NCIt
     fairsharing: FAIRsharing.4cvwxa
     hl7: 2.16.840.1.113883.6.206
+    integbio: nbdc02651
     miriam: ncit
     n2t: ncit
     obofoundry: ncit
@@ -38200,7 +38200,7 @@ oba:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBA_$1
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
-  version: '2024-05-13'
+  version: '2024-06-27'
 oban:
   contributor:
     email: cthoyt@gmail.com
@@ -39018,7 +39018,7 @@ ohd:
   rdf_uri_format: http://purl.obolibrary.org/obo/OHD_$1
   repository: https://github.com/oral-health-and-disease-ontologies/ohd-ontology
   uri_format: http://purl.obolibrary.org/obo/OHD_$1
-  version: '2024-03-01'
+  version: '2024-06-21'
 ohmi:
   contact:
     email: yongqunh@med.umich.edu
@@ -39184,7 +39184,7 @@ om:
     Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics;
     Information technology; Typography; Shipping; Food engineering; Post-harvest;
     technology; Dynamics of texture and taste; Packaging'
-  download_owl: http://aber-owl.net/media/ontologies/OM/30/om.owl
+  download_owl: http://aber-owl.net/media/ontologies/OM/31/om.owl
   download_rdf: https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf
   example: Dimension
   homepage: https://github.com/HajoRijgersberg/OM
@@ -39199,7 +39199,7 @@ om:
   preferred_prefix: om
   repository: https://github.com/HajoRijgersberg/OM
   uri_format: http://www.ontology-of-units-of-measure.org/resource/om-2/$1
-  version: 2.0.56
+  version: 2.0.57
 oma.grp:
   description: OMA (Orthologous MAtrix) is a database that identifies orthologs among
     publicly available, complete genome sequences. It identifies orthologous relationships
@@ -39862,7 +39862,7 @@ ons:
   rdf_uri_format: http://purl.obolibrary.org/obo/ONS_$1
   repository: https://github.com/enpadasi/Ontology-for-Nutritional-Studies
   uri_format: http://purl.obolibrary.org/obo/ONS_$1
-  version: Release version 2024-06-07
+  version: '2024-07-03'
 ontie:
   contact:
     email: bpeters@lji.org
@@ -40501,7 +40501,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.4'
+  version: '4.5'
 orth:
   contact:
     email: jfernand@um.es
@@ -41719,7 +41719,7 @@ pcl:
   rdf_uri_format: http://purl.obolibrary.org/obo/PCL_$1
   repository: https://github.com/obophenotype/provisional_cell_ontology
   uri_format: http://purl.obolibrary.org/obo/PCL_$1
-  version: '2024-01-04'
+  version: '2024-07-11'
 pco:
   appears_in:
   - ecocore
@@ -42843,6 +42843,7 @@ pharmgkb.drug:
   - pharmacogenomics
   mappings:
     biocontext: PHARMGKB.DRUG
+    biolink: PHARMGKB.DRUG
     edam: '2652'
     miriam: pharmgkb.drug
     n2t: pharmgkb.drug
@@ -46019,7 +46020,7 @@ pw:
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/PW_$1
-  version: '7.84'
+  version: '7.85'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -48420,7 +48421,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.225'
+  version: '6.229'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -48520,8 +48521,8 @@ rxno:
   version: '2021-12-16'
 rxnorm:
   contact:
-    email: willisj@mail.nlm.nih.gov
-    name: Jan Willis, NLM
+    email: custserv@nlm.nih.gov
+    name: NLM Customer Service
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -51357,8 +51358,8 @@ snctp:
   preferred_prefix: snctp
 snomedct:
   contact:
-    email: willisj@mail.nlm.nih.gov
-    name: Jan Willis, NLM
+    email: custserv@nlm.nih.gov
+    name: NLM Customer Service
   contributor_extras:
   - email: nicolas.matentzoglu@gmail.com
     github: matentzn
@@ -52178,10 +52179,10 @@ stato:
   - scdo
   banana: STATO
   contact:
-    email: alejandra.gonzalez.beltran@gmail.com
-    github: agbeltran
-    name: Alejandra Gonzalez-Beltran
-    orcid: 0000-0003-3499-8262
+    email: proccaserra@gmail.com
+    github: proccaserra
+    name: Philippe Rocca-Serra
+    orcid: 0000-0001-9853-5668
   description: STATO is the statistical methods ontology. It contains concepts and
     properties related to statistical methods, probability distributions and other
     concepts related to statistical analysis, including relationships to study designs
@@ -52216,7 +52217,7 @@ stato:
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
-  version: '1.4'
+  version: '2024-07-07'
 stitch:
   contact:
     email: bork@embl.de
@@ -52957,6 +52958,11 @@ symp:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/symptom:$1
   publications:
+  - doi: 10.1093/nar/gkad1051
+    pubmed: '37953304'
+    title: 'The DO-KB Knowledgebase: a 20-year journey developing the disease open
+      science ecosystem'
+    year: 2023
   - doi: 10.1093/nar/gkab1063
     pmc: PMC8728220
     pubmed: '34755882'
@@ -54755,7 +54761,7 @@ uberon:
   - Uberon
   twitter: uberanat
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2024-05-13'
+  version: '2024-08-07'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -56581,6 +56587,7 @@ vgnc:
   mappings:
     cellosaurus: VGNC
     fairsharing: FAIRsharing.5NhJFK
+    integbio: nbdc02624
     miriam: vgnc
     ncbi: VGNC
     togoid: Vgnc
@@ -57152,7 +57159,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-06-09'
+  version: '2024-07-13'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -57404,7 +57411,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-06-18'
+  version: '2024-07-22'
 vto:
   contact:
     email: balhoff@renci.org
@@ -57532,7 +57539,7 @@ wbbt:
   synonyms:
   - WBbt
   uri_format: http://purl.obolibrary.org/obo/WBbt_$1
-  version: '2024-04-01'
+  version: '2024-07-01'
 wbls:
   contact:
     email: cgrove@caltech.edu
@@ -58453,7 +58460,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.170'
+  version: '4.177'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
