@@ -5024,6 +5024,17 @@
         ]
     },
     {
+        "prefix": "coi",
+        "uri_prefix": "https://coicatalogue.uc.pt/index.php?t=specimen&COINumber=",
+        "uri_prefix_synonyms": [
+            "COI:",
+            "coi:",
+            "http://bioregistry.io/coi:",
+            "http://coicatalogue.uc.pt/index.php?t=specimen&COINumber=",
+            "https://bioregistry.io/coi:"
+        ]
+    },
+    {
         "pattern": "^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$",
         "prefix": "col",
         "uri_prefix": "https://www.checklistbank.org/dataset/3LR/taxon/",
@@ -5687,7 +5698,7 @@
         ]
     },
     {
-        "pattern": "^CTRI/\\d{4}/\\d{2}/\\d+$",
+        "pattern": "^CTRI/\\d{4}/\\d{2,3}/\\d+$",
         "prefix": "ctri",
         "uri_prefix": "https://trialsearch.who.int/Trial2.aspx?TrialID=",
         "uri_prefix_synonyms": [
@@ -8281,6 +8292,7 @@
             "http://bioregistry.io/ensembl.bacteria:",
             "http://bioregistry.io/ensembl.fungi:",
             "http://bioregistry.io/ensembl:",
+            "http://ciliogenics.com/?page=General%20info&query=",
             "http://ensembl.org/id/",
             "http://fungi.ensembl.org/[?species_name]/Gene/Summary?g=",
             "http://fungi.ensembl.org/id/",
@@ -8313,6 +8325,7 @@
             "https://bioregistry.io/ensembl.bacteria:",
             "https://bioregistry.io/ensembl.fungi:",
             "https://bioregistry.io/ensembl:",
+            "https://ciliogenics.com/?page=General%20info&query=",
             "https://ensembl.org/id/",
             "https://fungi.ensembl.org/[?species_name]/Gene/Summary?g=",
             "https://fungi.ensembl.org/id/",
@@ -9130,6 +9143,17 @@
         ]
     },
     {
+        "prefix": "ferroliganddb",
+        "uri_prefix": "https://ferr.gulab.org.cn/browse/",
+        "uri_prefix_synonyms": [
+            "FERROLIGANDDB:",
+            "ferroliganddb:",
+            "http://bioregistry.io/ferroliganddb:",
+            "http://ferr.gulab.org.cn/browse/",
+            "https://bioregistry.io/ferroliganddb:"
+        ]
+    },
+    {
         "prefix": "fhir.implementation",
         "uri_prefix": "https://hl7.org/fhir/us/",
         "uri_prefix_synonyms": [
@@ -9321,7 +9345,7 @@
             "FMAID",
             "FMA_RETIRED"
         ],
-        "uri_prefix": "http://purl.org/sig/ont/fma/fma",
+        "uri_prefix": "https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:",
         "uri_prefix_synonyms": [
             "FMA:",
             "FMAID:",
@@ -9340,7 +9364,9 @@
             "http://n2t.net/fma:",
             "http://purl.bioontology.org/ontology/FMA_subset/FMA:",
             "http://purl.obolibrary.org/obo/FMA_",
+            "http://purl.org/sig/ont/fma/fma",
             "http://www.ebi.ac.uk/ols/ontologies/fma/terms?iri=http://purl.obolibrary.org/obo/FMA_",
+            "http://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:",
             "https://bio2rdf.org/fma:",
             "https://bioregistry.io/FMA:",
             "https://bioregistry.io/FMAID:",
@@ -10051,6 +10077,17 @@
             "ncbi.gi:",
             "ncbi_gi:",
             "ncbigi:"
+        ]
+    },
+    {
+        "prefix": "genbase",
+        "uri_prefix": "https://ngdc.cncb.ac.cn/genbase/search/gb/",
+        "uri_prefix_synonyms": [
+            "GENBASE:",
+            "genbase:",
+            "http://bioregistry.io/genbase:",
+            "http://ngdc.cncb.ac.cn/genbase/search/gb/",
+            "https://bioregistry.io/genbase:"
         ]
     },
     {
@@ -14077,6 +14114,17 @@
             "https://identifiers.org/issn:",
             "https://n2t.net/issn:",
             "issn:"
+        ]
+    },
+    {
+        "prefix": "istransbase",
+        "uri_prefix": "https://istransbase.scbdd.com/database/trans/",
+        "uri_prefix_synonyms": [
+            "ISTRANSBASE:",
+            "http://bioregistry.io/istransbase:",
+            "http://istransbase.scbdd.com/database/trans/",
+            "https://bioregistry.io/istransbase:",
+            "istransbase:"
         ]
     },
     {
@@ -19812,6 +19860,22 @@
         ]
     },
     {
+        "pattern": "^[A-Za-z][A-Za-z0-9]+$",
+        "prefix": "odamexplorer",
+        "uri_prefix": "https://pmb-bordeaux.fr/dataexplorer/?ds=",
+        "uri_prefix_synonyms": [
+            "ODAMEXPLORER:",
+            "http://bioregistry.io/odamexplorer:",
+            "http://identifiers.org/odam.explorer/",
+            "http://identifiers.org/odam.explorer:",
+            "http://pmb-bordeaux.fr/dataexplorer/?ds=",
+            "https://bioregistry.io/odamexplorer:",
+            "https://identifiers.org/odam.explorer/",
+            "https://identifiers.org/odam.explorer:",
+            "odamexplorer:"
+        ]
+    },
+    {
         "pattern": "^[0-9]*$",
         "prefix": "odc.sci",
         "uri_prefix": "https://odc-sci.org/data/",
@@ -20103,9 +20167,9 @@
         ]
     },
     {
-        "pattern": "^\\d{6}$",
+        "pattern": "^\\d{6}(-\\d+)?$",
         "prefix": "omia",
-        "uri_prefix": "https://omia.org/OMIA",
+        "uri_prefix": "https://omia.org/phene/omia:",
         "uri_prefix_synonyms": [
             "OMIA:",
             "http://bio2rdf.org/omia:",
@@ -20114,7 +20178,7 @@
             "http://identifiers.org/omia:",
             "http://n2t.net/omia:",
             "http://omia.angis.org.au/retrieve.shtml?pid=",
-            "http://omia.org/OMIA",
+            "http://omia.org/phene/omia:",
             "http://www.omia.org/OMIA",
             "https://bio2rdf.org/omia:",
             "https://bioregistry.io/omia:",
@@ -20281,6 +20345,18 @@
             "https://purl.obolibrary.org/obo/OMO_",
             "https://www.ebi.ac.uk/ols/ontologies/omo/terms?iri=http://purl.obolibrary.org/obo/OMO_",
             "omo:"
+        ]
+    },
+    {
+        "pattern": "^\\d{5}$",
+        "prefix": "omon",
+        "uri_prefix": "https://onderzoekmetmensen.nl/en/trial/",
+        "uri_prefix_synonyms": [
+            "OMON:",
+            "http://bioregistry.io/omon:",
+            "http://onderzoekmetmensen.nl/en/trial/",
+            "https://bioregistry.io/omon:",
+            "omon:"
         ]
     },
     {
@@ -22043,6 +22119,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "phosphosite.curation",
+        "uri_prefix": "https://www.phosphosite.org/curatedInfoAction.action?record=",
+        "uri_prefix_synonyms": [
+            "PHOSPHOSITE.CURATION:",
+            "http://bioregistry.io/phosphosite.curation:",
+            "http://www.phosphosite.org/curatedInfoAction.action?record=",
+            "https://bioregistry.io/phosphosite.curation:",
+            "phosphosite.curation:"
+        ]
+    },
+    {
         "pattern": "^\\d{5}$",
         "prefix": "phosphosite.protein",
         "uri_prefix": "http://www.phosphosite.org/proteinAction.do?id=",
@@ -22469,17 +22557,18 @@
             "http://bio2rdf.org/po:",
             "http://bioregistry.io/PO:",
             "http://bioregistry.io/po:",
+            "http://browser.planteome.org/amigo/term/PO:",
             "http://identifiers.org/PO/",
             "http://identifiers.org/PO:",
             "http://identifiers.org/po/PO:",
             "http://n2t.net/po:",
             "http://purl.bioontology.org/ontology/PO/PO:",
             "http://www.ebi.ac.uk/ols/ontologies/po/terms?iri=http://purl.obolibrary.org/obo/PO_",
-            "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:",
             "http://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query=",
             "https://bio2rdf.org/po:",
             "https://bioregistry.io/PO:",
             "https://bioregistry.io/po:",
+            "https://browser.planteome.org/amigo/term/PO:",
             "https://identifiers.org/PO/",
             "https://identifiers.org/PO:",
             "https://identifiers.org/po/PO:",
@@ -22487,7 +22576,6 @@
             "https://purl.bioontology.org/ontology/PO/PO:",
             "https://purl.obolibrary.org/obo/PO_",
             "https://www.ebi.ac.uk/ols/ontologies/po/terms?iri=http://purl.obolibrary.org/obo/PO_",
-            "https://www.plantontology.org/amigo/go.cgi?view=details&query=PO:",
             "https://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query=",
             "po:"
         ]
@@ -23858,7 +23946,7 @@
         ]
     },
     {
-        "pattern": "^\\d+-\\d+$",
+        "pattern": "^\\d+-\\d+(-[A-Z])?$",
         "prefix": "repec",
         "uri_prefix": "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=",
         "uri_prefix_synonyms": [
@@ -28474,6 +28562,7 @@
             "http://n2t.net/uo:",
             "http://purl.bioontology.org/ontology/UO/UO:",
             "http://www.ebi.ac.uk/ols/ontologies/uo/terms?iri=http://purl.obolibrary.org/obo/UO_",
+            "http://www.ebi.ac.uk/ols4/ontologies/uo/terms?obo_id=UO:",
             "https://bio2rdf.org/uo:",
             "https://bioregistry.io/UO:",
             "https://bioregistry.io/uo:",
@@ -28484,6 +28573,7 @@
             "https://purl.bioontology.org/ontology/UO/UO:",
             "https://purl.obolibrary.org/obo/UO_",
             "https://www.ebi.ac.uk/ols/ontologies/uo/terms?iri=http://purl.obolibrary.org/obo/UO_",
+            "https://www.ebi.ac.uk/ols4/ontologies/uo/terms?obo_id=UO:",
             "uo:"
         ]
     },
@@ -28621,6 +28711,7 @@
             "http://identifiers.org/vario/VariO:",
             "http://n2t.net/vario:",
             "http://purl.bioontology.org/ontology/VARIO/VariO:",
+            "http://purl.bioontology.org/ontology/VARIO?conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVariO_",
             "http://www.ebi.ac.uk/ols/ontologies/vario/terms?iri=http://purl.obolibrary.org/obo/VariO_",
             "https://bioregistry.io/VariO:",
             "https://bioregistry.io/vario:",
@@ -28629,6 +28720,7 @@
             "https://identifiers.org/vario/VariO:",
             "https://n2t.net/vario:",
             "https://purl.bioontology.org/ontology/VARIO/VariO:",
+            "https://purl.bioontology.org/ontology/VARIO?conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVariO_",
             "https://purl.obolibrary.org/obo/VariO_",
             "https://www.ebi.ac.uk/ols/ontologies/vario/terms?iri=http://purl.obolibrary.org/obo/VariO_",
             "vario:"

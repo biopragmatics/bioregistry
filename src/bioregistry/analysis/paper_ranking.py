@@ -1,7 +1,6 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
 import json
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import click
@@ -245,7 +244,6 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 
     df["meta_score"] = meta_clf.predict_proba(x_meta)[:, 1]
     df = df.sort_values(by="meta_score", ascending=False)
-    df["title"] = df["title"].apply(lambda x: truncate_text(x, 50))
     df["abstract"] = df["abstract"].apply(lambda x: truncate_text(x, 25))
     df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
     click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
@@ -257,11 +255,17 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
     default="src/bioregistry/data/bioregistry.json",
     help="Path to the bioregistry.json file",
 )
-def main(bioregistry_file):
+@click.option("--start-date", required=True, help="Start date of the period")
+@click.option("--end-date", required=True, help="End date of the period")
+def main(bioregistry_file, start_date, end_date):
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
     :type bioregistry_file: str
+    :param start_date: The start date of the period for which papers are being ranked.
+    :type start_date: str
+    :param end_date: The end date of the period for which papers are being ranked.
+    :type end_date: str
     """
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()
@@ -353,12 +357,7 @@ def main(bioregistry_file):
 
     new_pub_df = fetch_pubmed_papers()
     if not new_pub_df.empty:
-        date_end = datetime.now()
-        date_start = date_end - timedelta(days=30)
-        filename = (
-            f"predictions_{date_start.strftime('%Y-%m-%d')}_{date_end.strftime('%Y-%m-%d')}.tsv"
-        )
-
+        filename = f"predictions_{start_date}_to_{end_date}.tsv"
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
