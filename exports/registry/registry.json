@@ -3086,6 +3086,31 @@
     "preferred_prefix": "autdb",
     "uri_format": "http://autism.mindspec.org/GeneDetail/$1"
   },
+  "authenticus": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "ID of a researcher in Authenticus website",
+    "example": "P-008-GD6",
+    "homepage": "https://www.authenticus.pt",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P7834"
+    },
+    "name": "Authenticus ID",
+    "pattern": "^[A-Z]-[0-9A-Z]{3}-[0-9A-Z]{3}$",
+    "preferred_prefix": "authenticus",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://www.authenticus.pt/$1"
+  },
   "authorea.author": {
     "description": "identifier for an author on the Authorea writing service",
     "example": "229233",
@@ -8654,6 +8679,31 @@
     "uri_format": "http://purl.obolibrary.org/obo/CIDO_$1",
     "version": "2024-02-16"
   },
+  "cienciavitae": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier of scientific author in www.cienciavitae.pt",
+    "example": "0C1F-DA6C-4B02",
+    "homepage": "https://www.ciencia-id.pt",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P7893"
+    },
+    "name": "CIÊNCIAVITAE ID",
+    "pattern": "^([0-9A-F]{4}-){2}[0-9A-F]{4}$",
+    "preferred_prefix": "cienciavitae",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://www.cienciavitae.pt/$1"
+  },
   "cio": {
     "contact": {
       "email": "frederic.bastian@unil.ch",
@@ -13852,6 +13902,92 @@
     "preferred_prefix": "DHBA",
     "uri_format": "https://biopragmatics.github.io/providers/dhba/$1"
   },
+  "dialnet.article": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier of an article in Dialnet",
+    "example": "262393",
+    "homepage": "https://dialnet.unirioja.es",
+    "mappings": {
+      "wikidata": "P1610"
+    },
+    "name": "Dialnet article ID",
+    "preferred_prefix": "dialnet.article",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://dialnet.unirioja.es/servlet/articulo?codigo=$1"
+  },
+  "dialnet.author": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier of an author in Dialnet",
+    "example": "241889",
+    "homepage": "https://dialnet.unirioja.es",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P1607"
+    },
+    "name": "Dialnet author ID",
+    "pattern": "^[1-9]\\d*$",
+    "preferred_prefix": "dialnet.author",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://dialnet.unirioja.es/servlet/autor?codigo=$1"
+  },
+  "dialnet.book": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier of a book in Dialnet",
+    "example": "187021",
+    "homepage": "https://dialnet.unirioja.es",
+    "mappings": {
+      "wikidata": "P1608"
+    },
+    "name": "Dialnet book ID",
+    "preferred_prefix": "dialnet.book",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://dialnet.unirioja.es/servlet/libro?codigo=$1"
+  },
+  "dialnet.journal": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier of a journal in Dialnet",
+    "example": "1119",
+    "homepage": "http://dialnet.unirioja.es",
+    "mappings": {
+      "wikidata": "P1609"
+    },
+    "name": "Dialnet journal ID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "preferred_prefix": "dialnet.journal",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://dialnet.unirioja.es/servlet/revista?codigo=$1"
+  },
   "dicom": {
     "contact": {
       "email": "dclunie@dclunie.com",
@@ -14420,6 +14556,40 @@
     ],
     "repository": "https://github.com/ewilderj/doap",
     "uri_format": "http://usefulinc.com/ns/doap#$1"
+  },
+  "dockerhub.repo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Docker repository hosted on Docker Hub",
+    "example": "gitea/gitea",
+    "homepage": "https://hub.docker.com/",
+    "mappings": {
+      "wikidata": "P8778"
+    },
+    "name": "Docker Hub repository",
+    "preferred_prefix": "dockerhub.repo",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://hub.docker.com/r/$1"
+  },
+  "dockerhub.user": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A user in DockerHub",
+    "example": "cthoyt",
+    "homepage": "https://hub.docker.com/",
+    "name": "DockerHub User",
+    "preferred_prefix": "dockerhub.user",
+    "uri_format": "https://hub.docker.com/u/$1"
   },
   "doco": {
     "contact": {
@@ -23237,9 +23407,10 @@
     "mappings": {
       "fairsharing": "FAIRsharing.c55d5e",
       "miriam": "github",
-      "re3data": "r3d100010375"
+      "re3data": "r3d100010375",
+      "wikidata": "P2037"
     },
-    "name": "github",
+    "name": "GitHub username",
     "pattern": "^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$",
     "preferred_prefix": "github",
     "repository": "https://services.github.com/",
@@ -23754,11 +23925,13 @@
     "mappings": {
       "bartoc": "430",
       "fairsharing": "FAIRsharing.8337e2",
-      "miriam": "gnd"
+      "miriam": "gnd",
+      "wikidata": "P227"
     },
-    "name": "Gemeinsame Normdatei",
+    "name": "GND ID",
     "pattern": "^[0-9X\\-]+$",
     "preferred_prefix": "gnd",
+    "rdf_uri_format": "https://d-nb.info/gnd/$1",
     "twitter": "gndnet",
     "uri_format": "https://lobid.org/gnd/$1"
   },
@@ -24543,10 +24716,13 @@
     "example": "PjrpzUIAAAAJ",
     "homepage": "https://scholar.google.com/",
     "mappings": {
-      "biolink": "GSID"
+      "biolink": "GSID",
+      "wikidata": "P1960"
     },
     "name": "Google Scholar Researcher",
-    "preferred_prefix": "google.scholar"
+    "pattern": "^[-_0-9A-Za-z]{12}$",
+    "preferred_prefix": "google.scholar",
+    "uri_format": "https://scholar.google.com/citations?user=$1"
   },
   "gorel": {
     "contributor": {
@@ -28769,6 +28945,52 @@
     ],
     "uri_format": "https://www.iedb.org/reference/$1"
   },
+  "ieee.author": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for an author in IEEE Xplore",
+    "example": "37271072100",
+    "homepage": "https://ieeexplore.ieee.org",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P6479"
+    },
+    "name": "IEEE Xplore author ID",
+    "pattern": "^[1-9]\\d*$",
+    "preferred_prefix": "ieee.author",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://ieeexplore.ieee.org/author/$1"
+  },
+  "ieee.document": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a document in IEEE Xplore",
+    "example": "1580791",
+    "homepage": "https://ieeexplore.ieee.org",
+    "mappings": {
+      "wikidata": "P6480"
+    },
+    "name": "IEEE Xplore document ID",
+    "pattern": "^[1-9]\\d*$",
+    "preferred_prefix": "ieee.document",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://ieeexplore.ieee.org/document/$1"
+  },
   "ietf.language": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -30733,7 +30955,8 @@
       "bartoc": "20464",
       "biolink": "isni",
       "miriam": "isni",
-      "n2t": "isni"
+      "n2t": "isni",
+      "wikidata": "P213"
     },
     "name": "International Standard Name Identifier",
     "pattern": "^[0-9]{15}[0-9X]{1}$",
@@ -31373,6 +31596,31 @@
     "pattern": "^[0-9a-zA-Z\\-]+\\/[0-9a-zA-Z\\-]+$",
     "preferred_prefix": "kaggle",
     "uri_format": "https://www.kaggle.com/$1"
+  },
+  "kaken": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for researchers in Japan used in goverment-based research funding (from 1980s)",
+    "example": "00011461",
+    "homepage": "https://nrid.nii.ac.jp/ja/search/?kw=",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P9776"
+    },
+    "name": "e-Rad researcher number",
+    "pattern": "^\\d{8}$",
+    "preferred_prefix": "kaken",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://nrid.nii.ac.jp/ja/nrid/10000$1"
   },
   "kclb": {
     "contributor": {
@@ -32154,6 +32402,31 @@
     "preferred_prefix": "langual",
     "uri_format": "https://www.langual.org/langual_thesaurus.asp?termid=$1"
   },
+  "lattes": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "number for the Lattes Platform entry on the person or group. Relationship between entry and subject must be supported by a source",
+    "example": "0061106995455595",
+    "homepage": "https://lattes.cnpq.br",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P1007"
+    },
+    "name": "Lattes Platform number",
+    "pattern": "^\\d{16}$",
+    "preferred_prefix": "lattes",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://lattes.cnpq.br/$1"
+  },
   "lbctr": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -32565,6 +32838,31 @@
     "repository": "https://github.com/github/linguist",
     "uri_format": "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml#$1"
   },
+  "linkedin": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a person, on the LinkedIn website",
+    "example": "deborahlehr",
+    "homepage": "https://www.linkedin.com",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P6634"
+    },
+    "name": "LinkedIn personal profile ID",
+    "pattern": "^[\\w0-9\\-&_'’\\.]+$",
+    "preferred_prefix": "linkedin",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://www.linkedin.com/in/$1"
+  },
   "linkml": {
     "comment": "Closes #508",
     "contact": {
@@ -32917,6 +33215,31 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "lonza",
     "uri_format": "https://knowledge.lonza.com/cell?id=$1"
+  },
+  "loop": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a person, in the Loop database of researcher impact",
+    "example": "1859",
+    "homepage": "https://loop.frontiersin.org/",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P2798"
+    },
+    "name": "Loop ID",
+    "pattern": "^[1-9]\\d*$",
+    "preferred_prefix": "loop",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://loop.frontiersin.org/people/$1/overview"
   },
   "loqate": {
     "contact": {
@@ -44078,6 +44401,34 @@
     "preferred_prefix": "oryzabase.strain",
     "uri_format": "http://www.shigen.nig.ac.jp/rice/oryzabaseV4/strain/wildCore/detail/$1"
   },
+  "osf": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "ID in osf.io",
+    "example": "2u4tf",
+    "homepage": "https://osf.io",
+    "keywords": [
+      "author",
+      "paper",
+      "person",
+      "researcher",
+      "work"
+    ],
+    "mappings": {
+      "wikidata": "P7238"
+    },
+    "name": "Open Science Framework ID",
+    "pattern": "^[a-z0-9]{5}$",
+    "preferred_prefix": "osf",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://osf.io/$1"
+  },
   "oslc": {
     "contact": {
       "email": "jamsden@us.ibm.com",
@@ -50887,6 +51238,31 @@
     "uri_format": "https://w3id.org/reproduceme#$1",
     "version": "1.1"
   },
+  "researchgate.profile": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a person, used by ResearchGate profiles",
+    "example": "Rita-Heuser",
+    "homepage": "https://www.researchgate.net",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P2038"
+    },
+    "name": "ResearchGate profile ID",
+    "pattern": "^[0-9A-Za-z_-]+$",
+    "preferred_prefix": "researchgate.profile",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://www.researchgate.net/profile/$1"
+  },
   "resid": {
     "contact": {
       "email": "john.garavelli@ebi.ac.uk",
@@ -53231,6 +53607,31 @@
     "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
     "preferred_prefix": "sciflection",
     "uri_format": "https://sciflection.com/$1"
+  },
+  "sciprofiles": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "numerical identifier for an author in SciProfiles by MDPI",
+    "example": "118021",
+    "homepage": "https://sciprofiles.com/",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P8159"
+    },
+    "name": "SciProfiles ID",
+    "pattern": "^[1-9]\\d*$",
+    "preferred_prefix": "sciprofiles",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://sciprofiles.com/profile/$1"
   },
   "scomp": {
     "contributor": {
@@ -56441,6 +56842,51 @@
     "preferred_prefix": "ssbd.project",
     "uri_format": "https://ssbd.riken.jp/database/project/$1"
   },
+  "ssrn.article": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for an article/paper at the SSRN",
+    "example": "1667659",
+    "homepage": "https://ssrn.com",
+    "mappings": {
+      "wikidata": "P893"
+    },
+    "name": "Social Science Research Network Article",
+    "preferred_prefix": "ssrn.article",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://ssrn.com/abstract=$1"
+  },
+  "ssrn.author": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for an author at the Social Science Research Network",
+    "example": "112517",
+    "homepage": "https://ssrn.com",
+    "keywords": [
+      "person",
+      "researcher"
+    ],
+    "mappings": {
+      "wikidata": "P3747"
+    },
+    "name": "Social Science Research Network Author",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "preferred_prefix": "ssrn.author",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1171"
+    ],
+    "uri_format": "https://ssrn.com/author=$1"
+  },
   "sssom": {
     "contact": {
       "email": "nicolas.matentzoglu@gmail.com",
@@ -58309,7 +58755,11 @@
       "histology",
       "life sciences"
     ],
+    "mappings": {
+      "wikidata": "P1694"
+    },
     "name": "Terminologia Histologica",
+    "pattern": "^H\\d\\.\\d{2}\\.\\d{2}\\.\\d\\.\\d{5}$",
     "preferred_prefix": "th",
     "references": [
       "https://en.wikipedia.org/wiki/Terminologia_Histologica"
@@ -61349,9 +61799,10 @@
       "bartoc": "2053",
       "fairsharing": "FAIRsharing.a15ac6",
       "miriam": "viaf",
-      "n2t": "viaf"
+      "n2t": "viaf",
+      "wikidata": "P214"
     },
-    "name": "Virtual International Authority File",
+    "name": "VIAF ID",
     "pattern": "^\\d+$",
     "preferred_prefix": "viaf",
     "providers": [
@@ -61371,6 +61822,7 @@
         "uri_format": "https://viaf.org/$1"
       }
     ],
+    "rdf_uri_format": "http://viaf.org/viaf/$1",
     "uri_format": "http://viaf.org/viaf/$1"
   },
   "vido": {
