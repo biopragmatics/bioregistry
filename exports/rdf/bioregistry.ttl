@@ -480,6 +480,7 @@
 @prefix fbtc: <https://flybase.org/reports/FBtc> .
 @prefix fcb: <https://w3id.org/faircookbook/> .
 @prefix fcsfree: <https://fcs-free.org/fcs-database?> .
+@prefix fda.application: <https://fda.report/applications/> .
 @prefix ferroliganddb: <https://ferr.gulab.org.cn/browse/> .
 @prefix fhir.implementation: <https://hl7.org/fhir/us/> .
 @prefix fideo: <http://purl.obolibrary.org/obo/FIDEO_> .
@@ -552,7 +553,6 @@
 @prefix glyconavi: <https://glyconavi.org/hub/?id=> .
 @prefix glycopost: <https://glycopost.glycosmos.org/entry/> .
 @prefix glycosciencesdb: <http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=> .
-@prefix glygen: <https://glygen.org/glycan/> .
 @prefix glytoucan: <https://glytoucan.org/Structures/Glycans/> .
 @prefix gmd.analyte: <http://gmd.mpimp-golm.mpg.de/Analytes/> .
 @prefix gmd.gcms: <http://gmd.mpimp-golm.mpg.de/Spectrums/> .
@@ -979,6 +979,7 @@
 @prefix oarcs: <http://purl.obolibrary.org/obo/OARCS_> .
 @prefix oba: <http://purl.obolibrary.org/obo/OBA_> .
 @prefix oban: <http://purl.org/oban/> .
+@prefix obci: <http://purl.obolibrary.org/obo/OBCI_> .
 @prefix obcs: <http://purl.obolibrary.org/obo/OBCS_> .
 @prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix obib: <http://purl.obolibrary.org/obo/OBIB_> .
@@ -1403,6 +1404,7 @@
 @prefix uniprot.journal: <https://www.uniprot.org/journals/> .
 @prefix uniprot.keyword: <https://www.uniprot.org/keywords/> .
 @prefix uniprot.location: <https://www.uniprot.org/locations/> .
+@prefix uniprot.mnemonic: <https://www.uniprot.org/uniprotkb/> .
 @prefix uniprot.proteome: <https://www.uniprot.org/proteomes/> .
 @prefix uniprot.ptm: <https://biopragmatics.github.io/providers/uniprot.ptm/> .
 @prefix uniprot.resource: <https://www.uniprot.org/database/> .
@@ -2487,6 +2489,7 @@ bioregistry:antibodyregistry a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:ANTIBODYREGISTRY,
         n2t:antibodyregistry,
         rrid:AB,
+        integbio:nbdc01696,
         miriam:antibodyregistry ;
     dcat:keyword "antibody",
         "reagent",
@@ -13668,6 +13671,7 @@ bioregistry:mycobank a bioregistry.schema:0000001 ;
         n2t:mycobank,
         ncbi.resource:MycoBank,
         fairsharing:FAIRsharing.v8se8r,
+        integbio:nbdc01815,
         prefixcommons:mycobank,
         miriam:mycobank,
         re3data:r3d100011222 ;
@@ -19901,6 +19905,7 @@ bioregistry:unite a bioregistry.schema:0000001 ;
         n2t:unite,
         ncbi.resource:UNITE,
         fairsharing:FAIRsharing.cnwx8c,
+        integbio:nbdc01905,
         prefixcommons:unite,
         miriam:unite,
         re3data:r3d100011316 ;
@@ -21233,9 +21238,6 @@ orcid:0000-0001-5631-0698 rdfs:label "Job Dekker" ;
 orcid:0000-0001-5782-1000 rdfs:label "Ronald C. Beavis (Ron Beavis)" ;
     foaf:mbox "rbeavis@thegpm.org" .
 
-orcid:0000-0001-5809-9523 rdfs:label "Darren Natale" ;
-    foaf:mbox "dan5@georgetown.edu" .
-
 orcid:0000-0001-5831-7439 rdfs:label "Doug Howe" ;
     foaf:mbox "dhowe@zfin.org" .
 
@@ -21798,9 +21800,6 @@ orcid:0000-0002-5293-5321 rdfs:label "Brett G. Olivier" ;
 
 orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" ;
     foaf:mbox "dr.sebastian.koehler@gmail.com" .
-
-orcid:0000-0002-5317-1458 rdfs:label "Jeet Vora" ;
-    foaf:mbox "jeetvora@gwmail.gwu.edu" .
 
 orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" ;
     foaf:mbox "Maciej.Antczak@cs.put.poznan.pl" .
@@ -30478,6 +30477,7 @@ bioregistry:cath a bioregistry.schema:0000001 ;
         biocontext:CATH,
         n2t:cath,
         fairsharing:FAIRsharing.xgcyyn,
+        integbio:nbdc01888,
         prefixcommons:cath,
         miriam:cath,
         re3data:r3d100012629 ;
@@ -31032,7 +31032,7 @@ bioregistry:coconut a bioregistry.schema:0000001 ;
     foaf:homepage <https://coconut.naturalproducts.net> ;
     bioregistry.schema:0000005 "CNP0171505"^^xsd:string ;
     bioregistry.schema:0000006 "https://coconut.naturalproducts.net/compound/coconut_id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^CNP\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^CNP\\d{7}(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
     bioregistry.schema:0000024 "https://coconut.naturalproducts.net/compound/coconut_id/"^^xsd:string ;
@@ -31765,6 +31765,7 @@ bioregistry:disprot a bioregistry.schema:0000001 ;
         go.resource:DisProt,
         n2t:disprot,
         fairsharing:FAIRsharing.dt9z89,
+        integbio:nbdc01798,
         prefixcommons:disprot,
         miriam:disprot,
         re3data:r3d100010561,
@@ -32801,6 +32802,20 @@ bioregistry:fcsfree a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 fcsfree:240-17-488-3-4-12 ;
     bioregistry.schema:0000029 "fcsfree" .
 
+bioregistry:fda.application a bioregistry.schema:0000001 ;
+    rdfs:label "FDA Application" ;
+    dcterms:description "This prefix is for FDA application identifiers. There are multiple types of FDA applications (https://www.fda.gov/drugs/how-drugs-are-developed-and-approved/types-applications), including New Drug Application (NDA). FDA.report provides access to all FDA databases, including applications, in a single portal, and can resolve FDA application identifiers."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://fda.report/applications> ;
+    bioregistry.schema:0000005 "070886"^^xsd:string ;
+    bioregistry.schema:0000006 "https://fda.report/applications/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-2473-2313 ;
+    bioregistry.schema:0000024 "https://fda.report/applications/"^^xsd:string ;
+    bioregistry.schema:0000027 fda.application:070886 ;
+    bioregistry.schema:0000029 "fda.application" .
+
 bioregistry:ferroliganddb a bioregistry.schema:0000001 ;
     rdfs:label "FerroLigandDB" ;
     dcterms:description "FerroLigandDB is a meticulously curated, high-quality database of ferroptosis regulators, including inducers and inhibitors."^^xsd:string ;
@@ -33304,30 +33319,6 @@ bioregistry:glycosciencesdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 glycosciencesdb:1 ;
     bioregistry.schema:0000029 "glycosciencesdb" .
 
-bioregistry:glygen a bioregistry.schema:0000001 ;
-    rdfs:label "GlyGen Computational and Informatics Resources for Glycoscience" ;
-    dcterms:description "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. GlyGen retrieves information from multiple international data sources and integrates and harmonizes this data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository github:glygener ;
-    skos:exactMatch fairsharing:FAIRsharing.aI1J5W,
-        integbio:nbdc02434,
-        uniprot.resource:DB-0254 ;
-    dcat:keyword "genomics",
-        "glycomics",
-        "glycoproteomics",
-        "life science",
-        "proteomics" ;
-    foaf:homepage <https://glygen.org/> ;
-    bioregistry.schema:0000005 "G17689DH"^^xsd:string ;
-    bioregistry.schema:0000006 "https://glygen.org/glycan/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^G[0-9]{5}[A-Z]{2}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-5317-1458 ;
-    bioregistry.schema:0000024 "https://glygen.org/glycan/"^^xsd:string ;
-    bioregistry.schema:0000026 ror:00y4zzh67 ;
-    bioregistry.schema:0000027 glygen:G17689DH ;
-    bioregistry.schema:0000029 "glygen" .
-
 bioregistry:glytoucan a bioregistry.schema:0000001 ;
     rdfs:label "GlyTouCan" ;
     dcterms:description "GlyTouCan is the single worldwide registry of glycan (carbohydrate sugar chain) data."^^xsd:string ;
@@ -33347,6 +33338,7 @@ bioregistry:glytoucan a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^G[0-9]{5}[A-Z]{2}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-3147-448X ;
+    bioregistry.schema:0000023 "glygen" ;
     bioregistry.schema:0000024 "https://glytoucan.org/Structures/Glycans/"^^xsd:string ;
     bioregistry.schema:0000027 glytoucan:G00054MO ;
     bioregistry.schema:0000029 "glytoucan" .
@@ -35222,6 +35214,7 @@ bioregistry:mediadive.medium a bioregistry.schema:0000001 ;
     rdfs:label "MediaDive Medium" ;
     dcterms:description "The mission of MediaDive is to transform poorly structured media recipes into a standardized database. The contents of the database include mined thousands of PDF and HTML documents. To ensure the quality of the media and continous improvement of the database, we developed an internal editor interface. Experts at the DSMZ are creating new media and curating the existing media using this interface. [adapted from https://mediadive.dsmz.de/about]"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch miriam:mediadive.medium ;
     foaf:homepage <https://mediadive.dsmz.de/media> ;
     bioregistry.schema:0000005 "77"^^xsd:string ;
     bioregistry.schema:0000006 "https://mediadive.dsmz.de/medium/$1"^^xsd:string ;
@@ -36178,6 +36171,23 @@ bioregistry:oban a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.org/oban/"^^xsd:string ;
     bioregistry.schema:0000027 oban:provenance ;
     bioregistry.schema:0000029 "oban" .
+
+bioregistry:obci a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology for Biomarkers of Clinical Interest" ;
+    dcterms:description "The Ontology for Biomarkers of Clinical Interest (OBCI) formally defines biomarkers for diseases, phenotypes, and effects."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <https://github.com/clinical-biomarkers/OBCI> ;
+    bioregistry.schema:0000005 "000000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBCI_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://proteininformationresource.org/staff/nataled/OBCI/obci.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-5809-9523 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OBCI_"^^xsd:string ;
+    bioregistry.schema:0000027 obci:000000001 ;
+    bioregistry.schema:0000029 "obci" .
 
 bioregistry:odrl a bioregistry.schema:0000001 ;
     rdfs:label "Open Digital Rights Language Ontology" ;
@@ -38984,6 +38994,20 @@ bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 uniprot.keyword:KW-1273 ;
     bioregistry.schema:0000029 "uniprot.keyword" .
 
+bioregistry:uniprot.mnemonic a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt" ;
+    dcterms:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information. This entry represents UniProt mnemonics which combine an alphanumeric representation the protein name and a species identification code representing the biological source of the protein."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.uniprot.org/> ;
+    bioregistry.schema:0000005 "BRAF_HUMAN"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/uniprotkb/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-2473-2313 ;
+    bioregistry.schema:0000024 "https://www.uniprot.org/uniprotkb/"^^xsd:string ;
+    bioregistry.schema:0000027 uniprot.mnemonic:BRAF_HUMAN ;
+    bioregistry.schema:0000029 "uniprot.mnemonic" .
+
 bioregistry:uniprot.tissue a bioregistry.schema:0000001 ;
     rdfs:label "Tissue List" ;
     dcterms:description "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified."^^xsd:string ;
@@ -40104,8 +40128,6 @@ fairsharing:FAIRsharing.a6r7zs dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.a8z6gz dcterms:isPartOf bioregistry.registry:fairsharing .
 
-fairsharing:FAIRsharing.aI1J5W dcterms:isPartOf bioregistry.registry:fairsharing .
-
 fairsharing:FAIRsharing.aSszvY dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.aVmpKl dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -41202,6 +41224,8 @@ integbio:nbdc01630 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01636 dcterms:isPartOf bioregistry.registry:integbio .
 
+integbio:nbdc01696 dcterms:isPartOf bioregistry.registry:integbio .
+
 integbio:nbdc01698 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01703 dcterms:isPartOf bioregistry.registry:integbio .
@@ -41226,7 +41250,11 @@ integbio:nbdc01786 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01795 dcterms:isPartOf bioregistry.registry:integbio .
 
+integbio:nbdc01798 dcterms:isPartOf bioregistry.registry:integbio .
+
 integbio:nbdc01812 dcterms:isPartOf bioregistry.registry:integbio .
+
+integbio:nbdc01815 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01817 dcterms:isPartOf bioregistry.registry:integbio .
 
@@ -41252,7 +41280,11 @@ integbio:nbdc01870 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01882 dcterms:isPartOf bioregistry.registry:integbio .
 
+integbio:nbdc01888 dcterms:isPartOf bioregistry.registry:integbio .
+
 integbio:nbdc01897 dcterms:isPartOf bioregistry.registry:integbio .
+
+integbio:nbdc01905 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01909 dcterms:isPartOf bioregistry.registry:integbio .
 
@@ -41325,8 +41357,6 @@ integbio:nbdc02410 dcterms:isPartOf bioregistry.registry:integbio .
 integbio:nbdc02414 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc02433 dcterms:isPartOf bioregistry.registry:integbio .
-
-integbio:nbdc02434 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc02480 dcterms:isPartOf bioregistry.registry:integbio .
 
@@ -41463,6 +41493,11 @@ orcid:0000-0001-5084-9000 rdfs:label "Luana Licata" ;
 
 orcid:0000-0001-5699-0515 rdfs:label "Rafael Richards" ;
     foaf:mbox "rmrich5@gmail.com" .
+
+orcid:0000-0001-5809-9523 rdfs:label "Darren A. Natale",
+        "Darren Natale" ;
+    dcterms:contributor bioregistry:obci ;
+    foaf:mbox "dan5@georgetown.edu" .
 
 orcid:0000-0001-6059-6270 rdfs:label "Chris Sander" ;
     foaf:mbox "chris@sanderlab.org" .
@@ -41650,6 +41685,9 @@ orcid:0000-0003-2391-0384 rdfs:label "Toshiaki Katayama" ;
 
 orcid:0000-0003-2408-2883 rdfs:label "Jingshan Huang" ;
     foaf:mbox "huang@southalabama.edu" .
+
+orcid:0000-0003-2473-2313 rdfs:label "Tiago Lubiana" ;
+    foaf:mbox "tiago.lubiana.alves@usp.br" .
 
 orcid:0000-0003-2826-6444 rdfs:label "Amos Bairoch" ;
     foaf:mbox "Amos.Bairoch@sib.swiss" .
@@ -43454,6 +43492,8 @@ miriam:mdm dcterms:isPartOf bioregistry.registry:miriam .
 miriam:meddra dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:medgen dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:mediadive.medium dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:medlineplus dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -46030,8 +46070,6 @@ uniprot.resource:DB-0241 dcterms:isPartOf bioregistry.registry:uniprot .
 uniprot.resource:DB-0251 dcterms:isPartOf bioregistry.registry:uniprot .
 
 uniprot.resource:DB-0253 dcterms:isPartOf bioregistry.registry:uniprot .
-
-uniprot.resource:DB-0254 dcterms:isPartOf bioregistry.registry:uniprot .
 
 uniprot.resource:DB-0256 dcterms:isPartOf bioregistry.registry:uniprot .
 
@@ -52651,32 +52689,6 @@ bioregistry:proco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 proco:0000001 ;
     bioregistry.schema:0000029 "proco" .
 
-orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
-    dcterms:contributor bioregistry:biofactoid,
-        bioregistry:bko,
-        bioregistry:casspc,
-        bioregistry:ccf,
-        bioregistry:cemo,
-        bioregistry:cordis.project,
-        bioregistry:devtox,
-        bioregistry:emaps,
-        bioregistry:hemonc,
-        bioregistry:nihreporter.project,
-        bioregistry:oecd.template,
-        bioregistry:pdc.study,
-        bioregistry:phosphosite.curation,
-        bioregistry:phosphosite.sitegroup,
-        bioregistry:ribocentre,
-        bioregistry:rnaloops,
-        bioregistry:sharkipedia.species,
-        bioregistry:sharkipedia.trait,
-        bioregistry:sharkipedia.trend,
-        bioregistry:signor.relation,
-        bioregistry:uniprot.proteome,
-        bioregistry:zenodo.record ;
-    foaf:mbox "b.gyori@northeastern.edu",
-        "benjamin_gyori@hms.harvard.edu" .
-
 orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
     foaf:mbox "jiezhen@med.umich.edu",
         "jiezheng@pennmedicine.upenn.edu",
@@ -52878,6 +52890,34 @@ bioregistry:zp a bioregistry.schema:0000001 ;
 
 orcid:0000-0001-6123-540X rdfs:label "Minoru Kanehisa" ;
     foaf:mbox "kanehisa@kuicr.kyoto-u.ac.jp" .
+
+orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
+    dcterms:contributor bioregistry:biofactoid,
+        bioregistry:bko,
+        bioregistry:casspc,
+        bioregistry:ccf,
+        bioregistry:cemo,
+        bioregistry:cordis.project,
+        bioregistry:devtox,
+        bioregistry:emaps,
+        bioregistry:fda.application,
+        bioregistry:hemonc,
+        bioregistry:nihreporter.project,
+        bioregistry:oecd.template,
+        bioregistry:pdc.study,
+        bioregistry:phosphosite.curation,
+        bioregistry:phosphosite.sitegroup,
+        bioregistry:ribocentre,
+        bioregistry:rnaloops,
+        bioregistry:sharkipedia.species,
+        bioregistry:sharkipedia.trait,
+        bioregistry:sharkipedia.trend,
+        bioregistry:signor.relation,
+        bioregistry:uniprot.mnemonic,
+        bioregistry:uniprot.proteome,
+        bioregistry:zenodo.record ;
+    foaf:mbox "b.gyori@northeastern.edu",
+        "benjamin_gyori@hms.harvard.edu" .
 
 bioregistry:aism a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for the Anatomy of the Insect SkeletoMuscular system" ;
@@ -55006,7 +55046,6 @@ bioregistry.registry:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:DB-0241,
         uniprot.resource:DB-0251,
         uniprot.resource:DB-0253,
-        uniprot.resource:DB-0254,
         uniprot.resource:DB-0256,
         uniprot.resource:DB-0258,
         uniprot.resource:DB-0266,
@@ -55705,7 +55744,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ghr,
         bioregistry:github.issue,
         bioregistry:github.pull,
-        bioregistry:glygen,
         bioregistry:gmelin,
         bioregistry:gnomad,
         bioregistry:go.gpi,
@@ -56413,240 +56451,6 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
     bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ;
             foaf:mbox "info@wikidata.org" ] .
 
-bioregistry.registry:integbio a bioregistry.schema:0000002 ;
-    rdfs:label "Integbio" ;
-    dc:description "Integbio Database Catalog provides whereabouts information (URL), database description, biological species and other attributes (metadata) of Japanese and international life science databases to make it easier for users to find databases they need. This catalog has been developed as a part of the integration of life science databases promoted by four ministries in Japan: the Ministry of Education, Culture, Sports, Science, and Technology (MEXT), The Ministry of Health, Labor, and Welfare (MHLW), the Ministry of Agriculture, Forestry, and Fisheries (MAFF), and the Ministry of Economy, Trade, and Industry of Japan (METI). (from https://integbio.jp/dbcatalog/en/about)" ;
-    dcterms:hasPart integbio:nbdc00004,
-        integbio:nbdc00009,
-        integbio:nbdc00023,
-        integbio:nbdc00027,
-        integbio:nbdc00039,
-        integbio:nbdc00048,
-        integbio:nbdc00049,
-        integbio:nbdc00054,
-        integbio:nbdc00064,
-        integbio:nbdc00069,
-        integbio:nbdc00073,
-        integbio:nbdc00074,
-        integbio:nbdc00080,
-        integbio:nbdc00087,
-        integbio:nbdc00097,
-        integbio:nbdc00101,
-        integbio:nbdc00103,
-        integbio:nbdc00104,
-        integbio:nbdc00106,
-        integbio:nbdc00108,
-        integbio:nbdc00115,
-        integbio:nbdc00126,
-        integbio:nbdc00129,
-        integbio:nbdc00132,
-        integbio:nbdc00136,
-        integbio:nbdc00153,
-        integbio:nbdc00154,
-        integbio:nbdc00163,
-        integbio:nbdc00174,
-        integbio:nbdc00178,
-        integbio:nbdc00179,
-        integbio:nbdc00185,
-        integbio:nbdc00187,
-        integbio:nbdc00188,
-        integbio:nbdc00202,
-        integbio:nbdc00206,
-        integbio:nbdc00220,
-        integbio:nbdc00221,
-        integbio:nbdc00241,
-        integbio:nbdc00242,
-        integbio:nbdc00252,
-        integbio:nbdc00261,
-        integbio:nbdc00262,
-        integbio:nbdc00265,
-        integbio:nbdc00270,
-        integbio:nbdc00273,
-        integbio:nbdc00275,
-        integbio:nbdc00276,
-        integbio:nbdc00284,
-        integbio:nbdc00298,
-        integbio:nbdc00305,
-        integbio:nbdc00307,
-        integbio:nbdc00308,
-        integbio:nbdc00323,
-        integbio:nbdc00332,
-        integbio:nbdc00351,
-        integbio:nbdc00355,
-        integbio:nbdc00356,
-        integbio:nbdc00375,
-        integbio:nbdc00379,
-        integbio:nbdc00380,
-        integbio:nbdc00391,
-        integbio:nbdc00401,
-        integbio:nbdc00413,
-        integbio:nbdc00414,
-        integbio:nbdc00420,
-        integbio:nbdc00432,
-        integbio:nbdc00433,
-        integbio:nbdc00434,
-        integbio:nbdc00435,
-        integbio:nbdc00438,
-        integbio:nbdc00468,
-        integbio:nbdc00469,
-        integbio:nbdc00483,
-        integbio:nbdc00484,
-        integbio:nbdc00507,
-        integbio:nbdc00508,
-        integbio:nbdc00510,
-        integbio:nbdc00530,
-        integbio:nbdc00533,
-        integbio:nbdc00545,
-        integbio:nbdc00551,
-        integbio:nbdc00568,
-        integbio:nbdc00573,
-        integbio:nbdc00594,
-        integbio:nbdc00599,
-        integbio:nbdc00600,
-        integbio:nbdc00607,
-        integbio:nbdc00608,
-        integbio:nbdc00611,
-        integbio:nbdc00613,
-        integbio:nbdc00630,
-        integbio:nbdc00636,
-        integbio:nbdc00640,
-        integbio:nbdc00642,
-        integbio:nbdc00648,
-        integbio:nbdc00654,
-        integbio:nbdc00672,
-        integbio:nbdc00674,
-        integbio:nbdc00682,
-        integbio:nbdc00686,
-        integbio:nbdc00690,
-        integbio:nbdc00693,
-        integbio:nbdc00720,
-        integbio:nbdc00730,
-        integbio:nbdc00738,
-        integbio:nbdc00740,
-        integbio:nbdc00746,
-        integbio:nbdc00812,
-        integbio:nbdc00813,
-        integbio:nbdc00814,
-        integbio:nbdc00816,
-        integbio:nbdc00818,
-        integbio:nbdc00834,
-        integbio:nbdc00835,
-        integbio:nbdc00836,
-        integbio:nbdc00860,
-        integbio:nbdc00899,
-        integbio:nbdc00907,
-        integbio:nbdc00908,
-        integbio:nbdc00909,
-        integbio:nbdc00911,
-        integbio:nbdc00916,
-        integbio:nbdc00924,
-        integbio:nbdc00930,
-        integbio:nbdc01041,
-        integbio:nbdc01059,
-        integbio:nbdc01071,
-        integbio:nbdc01164,
-        integbio:nbdc01174,
-        integbio:nbdc01207,
-        integbio:nbdc01215,
-        integbio:nbdc01217,
-        integbio:nbdc01221,
-        integbio:nbdc01222,
-        integbio:nbdc01422,
-        integbio:nbdc01428,
-        integbio:nbdc01446,
-        integbio:nbdc01456,
-        integbio:nbdc01470,
-        integbio:nbdc01512,
-        integbio:nbdc01514,
-        integbio:nbdc01520,
-        integbio:nbdc01535,
-        integbio:nbdc01568,
-        integbio:nbdc01596,
-        integbio:nbdc01630,
-        integbio:nbdc01636,
-        integbio:nbdc01698,
-        integbio:nbdc01703,
-        integbio:nbdc01708,
-        integbio:nbdc01710,
-        integbio:nbdc01752,
-        integbio:nbdc01764,
-        integbio:nbdc01780,
-        integbio:nbdc01782,
-        integbio:nbdc01783,
-        integbio:nbdc01785,
-        integbio:nbdc01786,
-        integbio:nbdc01795,
-        integbio:nbdc01812,
-        integbio:nbdc01817,
-        integbio:nbdc01820,
-        integbio:nbdc01824,
-        integbio:nbdc01831,
-        integbio:nbdc01837,
-        integbio:nbdc01858,
-        integbio:nbdc01862,
-        integbio:nbdc01863,
-        integbio:nbdc01864,
-        integbio:nbdc01869,
-        integbio:nbdc01870,
-        integbio:nbdc01882,
-        integbio:nbdc01897,
-        integbio:nbdc01909,
-        integbio:nbdc01937,
-        integbio:nbdc01956,
-        integbio:nbdc02011,
-        integbio:nbdc02022,
-        integbio:nbdc02026,
-        integbio:nbdc02041,
-        integbio:nbdc02064,
-        integbio:nbdc02079,
-        integbio:nbdc02083,
-        integbio:nbdc02085,
-        integbio:nbdc02094,
-        integbio:nbdc02102,
-        integbio:nbdc02107,
-        integbio:nbdc02108,
-        integbio:nbdc02116,
-        integbio:nbdc02124,
-        integbio:nbdc02144,
-        integbio:nbdc02162,
-        integbio:nbdc02174,
-        integbio:nbdc02180,
-        integbio:nbdc02187,
-        integbio:nbdc02191,
-        integbio:nbdc02192,
-        integbio:nbdc02213,
-        integbio:nbdc02217,
-        integbio:nbdc02224,
-        integbio:nbdc02225,
-        integbio:nbdc02226,
-        integbio:nbdc02244,
-        integbio:nbdc02279,
-        integbio:nbdc02359,
-        integbio:nbdc02395,
-        integbio:nbdc02410,
-        integbio:nbdc02414,
-        integbio:nbdc02433,
-        integbio:nbdc02434,
-        integbio:nbdc02480,
-        integbio:nbdc02490,
-        integbio:nbdc02550,
-        integbio:nbdc02555,
-        integbio:nbdc02556,
-        integbio:nbdc02559,
-        integbio:nbdc02560,
-        integbio:nbdc02561,
-        integbio:nbdc02563,
-        integbio:nbdc02564,
-        integbio:nbdc02566,
-        integbio:nbdc02567,
-        integbio:nbdc02624,
-        integbio:nbdc02626,
-        integbio:nbdc02651 ;
-    foaf:homepage "https://integbio.jp/en/" ;
-    bioregistry.schema:0000005 "nbdc01071" ;
-    bioregistry.schema:0000006 "https://integbio.jp/dbcatalog/en/record/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0001-7883-3756 .
-
 bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
     rdfs:label "OntoBee" ;
     dc:description "Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis." ;
@@ -56882,6 +56686,244 @@ bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://www.ontobee.org/ontology/$1" ;
     bioregistry.schema:0000007 "http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2" ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
+
+bioregistry.registry:integbio a bioregistry.schema:0000002 ;
+    rdfs:label "Integbio" ;
+    dc:description "Integbio Database Catalog provides whereabouts information (URL), database description, biological species and other attributes (metadata) of Japanese and international life science databases to make it easier for users to find databases they need. This catalog has been developed as a part of the integration of life science databases promoted by four ministries in Japan: the Ministry of Education, Culture, Sports, Science, and Technology (MEXT), The Ministry of Health, Labor, and Welfare (MHLW), the Ministry of Agriculture, Forestry, and Fisheries (MAFF), and the Ministry of Economy, Trade, and Industry of Japan (METI). (from https://integbio.jp/dbcatalog/en/about)" ;
+    dcterms:hasPart integbio:nbdc00004,
+        integbio:nbdc00009,
+        integbio:nbdc00023,
+        integbio:nbdc00027,
+        integbio:nbdc00039,
+        integbio:nbdc00048,
+        integbio:nbdc00049,
+        integbio:nbdc00054,
+        integbio:nbdc00064,
+        integbio:nbdc00069,
+        integbio:nbdc00073,
+        integbio:nbdc00074,
+        integbio:nbdc00080,
+        integbio:nbdc00087,
+        integbio:nbdc00097,
+        integbio:nbdc00101,
+        integbio:nbdc00103,
+        integbio:nbdc00104,
+        integbio:nbdc00106,
+        integbio:nbdc00108,
+        integbio:nbdc00115,
+        integbio:nbdc00126,
+        integbio:nbdc00129,
+        integbio:nbdc00132,
+        integbio:nbdc00136,
+        integbio:nbdc00153,
+        integbio:nbdc00154,
+        integbio:nbdc00163,
+        integbio:nbdc00174,
+        integbio:nbdc00178,
+        integbio:nbdc00179,
+        integbio:nbdc00185,
+        integbio:nbdc00187,
+        integbio:nbdc00188,
+        integbio:nbdc00202,
+        integbio:nbdc00206,
+        integbio:nbdc00220,
+        integbio:nbdc00221,
+        integbio:nbdc00241,
+        integbio:nbdc00242,
+        integbio:nbdc00252,
+        integbio:nbdc00261,
+        integbio:nbdc00262,
+        integbio:nbdc00265,
+        integbio:nbdc00270,
+        integbio:nbdc00273,
+        integbio:nbdc00275,
+        integbio:nbdc00276,
+        integbio:nbdc00284,
+        integbio:nbdc00298,
+        integbio:nbdc00305,
+        integbio:nbdc00307,
+        integbio:nbdc00308,
+        integbio:nbdc00323,
+        integbio:nbdc00332,
+        integbio:nbdc00351,
+        integbio:nbdc00355,
+        integbio:nbdc00356,
+        integbio:nbdc00375,
+        integbio:nbdc00379,
+        integbio:nbdc00380,
+        integbio:nbdc00391,
+        integbio:nbdc00401,
+        integbio:nbdc00413,
+        integbio:nbdc00414,
+        integbio:nbdc00420,
+        integbio:nbdc00432,
+        integbio:nbdc00433,
+        integbio:nbdc00434,
+        integbio:nbdc00435,
+        integbio:nbdc00438,
+        integbio:nbdc00468,
+        integbio:nbdc00469,
+        integbio:nbdc00483,
+        integbio:nbdc00484,
+        integbio:nbdc00507,
+        integbio:nbdc00508,
+        integbio:nbdc00510,
+        integbio:nbdc00530,
+        integbio:nbdc00533,
+        integbio:nbdc00545,
+        integbio:nbdc00551,
+        integbio:nbdc00568,
+        integbio:nbdc00573,
+        integbio:nbdc00594,
+        integbio:nbdc00599,
+        integbio:nbdc00600,
+        integbio:nbdc00607,
+        integbio:nbdc00608,
+        integbio:nbdc00611,
+        integbio:nbdc00613,
+        integbio:nbdc00630,
+        integbio:nbdc00636,
+        integbio:nbdc00640,
+        integbio:nbdc00642,
+        integbio:nbdc00648,
+        integbio:nbdc00654,
+        integbio:nbdc00672,
+        integbio:nbdc00674,
+        integbio:nbdc00682,
+        integbio:nbdc00686,
+        integbio:nbdc00690,
+        integbio:nbdc00693,
+        integbio:nbdc00720,
+        integbio:nbdc00730,
+        integbio:nbdc00738,
+        integbio:nbdc00740,
+        integbio:nbdc00746,
+        integbio:nbdc00812,
+        integbio:nbdc00813,
+        integbio:nbdc00814,
+        integbio:nbdc00816,
+        integbio:nbdc00818,
+        integbio:nbdc00834,
+        integbio:nbdc00835,
+        integbio:nbdc00836,
+        integbio:nbdc00860,
+        integbio:nbdc00899,
+        integbio:nbdc00907,
+        integbio:nbdc00908,
+        integbio:nbdc00909,
+        integbio:nbdc00911,
+        integbio:nbdc00916,
+        integbio:nbdc00924,
+        integbio:nbdc00930,
+        integbio:nbdc01041,
+        integbio:nbdc01059,
+        integbio:nbdc01071,
+        integbio:nbdc01164,
+        integbio:nbdc01174,
+        integbio:nbdc01207,
+        integbio:nbdc01215,
+        integbio:nbdc01217,
+        integbio:nbdc01221,
+        integbio:nbdc01222,
+        integbio:nbdc01422,
+        integbio:nbdc01428,
+        integbio:nbdc01446,
+        integbio:nbdc01456,
+        integbio:nbdc01470,
+        integbio:nbdc01512,
+        integbio:nbdc01514,
+        integbio:nbdc01520,
+        integbio:nbdc01535,
+        integbio:nbdc01568,
+        integbio:nbdc01596,
+        integbio:nbdc01630,
+        integbio:nbdc01636,
+        integbio:nbdc01696,
+        integbio:nbdc01698,
+        integbio:nbdc01703,
+        integbio:nbdc01708,
+        integbio:nbdc01710,
+        integbio:nbdc01752,
+        integbio:nbdc01764,
+        integbio:nbdc01780,
+        integbio:nbdc01782,
+        integbio:nbdc01783,
+        integbio:nbdc01785,
+        integbio:nbdc01786,
+        integbio:nbdc01795,
+        integbio:nbdc01798,
+        integbio:nbdc01812,
+        integbio:nbdc01815,
+        integbio:nbdc01817,
+        integbio:nbdc01820,
+        integbio:nbdc01824,
+        integbio:nbdc01831,
+        integbio:nbdc01837,
+        integbio:nbdc01858,
+        integbio:nbdc01862,
+        integbio:nbdc01863,
+        integbio:nbdc01864,
+        integbio:nbdc01869,
+        integbio:nbdc01870,
+        integbio:nbdc01882,
+        integbio:nbdc01888,
+        integbio:nbdc01897,
+        integbio:nbdc01905,
+        integbio:nbdc01909,
+        integbio:nbdc01937,
+        integbio:nbdc01956,
+        integbio:nbdc02011,
+        integbio:nbdc02022,
+        integbio:nbdc02026,
+        integbio:nbdc02041,
+        integbio:nbdc02064,
+        integbio:nbdc02079,
+        integbio:nbdc02083,
+        integbio:nbdc02085,
+        integbio:nbdc02094,
+        integbio:nbdc02102,
+        integbio:nbdc02107,
+        integbio:nbdc02108,
+        integbio:nbdc02116,
+        integbio:nbdc02124,
+        integbio:nbdc02144,
+        integbio:nbdc02162,
+        integbio:nbdc02174,
+        integbio:nbdc02180,
+        integbio:nbdc02187,
+        integbio:nbdc02191,
+        integbio:nbdc02192,
+        integbio:nbdc02213,
+        integbio:nbdc02217,
+        integbio:nbdc02224,
+        integbio:nbdc02225,
+        integbio:nbdc02226,
+        integbio:nbdc02244,
+        integbio:nbdc02279,
+        integbio:nbdc02359,
+        integbio:nbdc02395,
+        integbio:nbdc02410,
+        integbio:nbdc02414,
+        integbio:nbdc02433,
+        integbio:nbdc02480,
+        integbio:nbdc02490,
+        integbio:nbdc02550,
+        integbio:nbdc02555,
+        integbio:nbdc02556,
+        integbio:nbdc02559,
+        integbio:nbdc02560,
+        integbio:nbdc02561,
+        integbio:nbdc02563,
+        integbio:nbdc02564,
+        integbio:nbdc02566,
+        integbio:nbdc02567,
+        integbio:nbdc02624,
+        integbio:nbdc02626,
+        integbio:nbdc02651 ;
+    foaf:homepage "https://integbio.jp/en/" ;
+    bioregistry.schema:0000005 "nbdc01071" ;
+    bioregistry.schema:0000006 "https://integbio.jp/dbcatalog/en/record/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0001-7883-3756 .
 
 bioregistry.registry:obofoundry a bioregistry.schema:0000002 ;
     rdfs:label "OBO Foundry" ;
@@ -58835,7 +58877,6 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.a4ww64,
         fairsharing:FAIRsharing.a6r7zs,
         fairsharing:FAIRsharing.a8z6gz,
-        fairsharing:FAIRsharing.aI1J5W,
         fairsharing:FAIRsharing.aSszvY,
         fairsharing:FAIRsharing.aVmpKl,
         fairsharing:FAIRsharing.aa0eat,
@@ -60371,6 +60412,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:mdm,
         miriam:meddra,
         miriam:medgen,
+        miriam:mediadive.medium,
         miriam:medlineplus,
         miriam:merops.family,
         miriam:merops.inhibitor,
@@ -62178,6 +62220,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fbtc,
         bioregistry:fcb,
         bioregistry:fcsfree,
+        bioregistry:fda.application,
         bioregistry:ferroliganddb,
         bioregistry:fhir.implementation,
         bioregistry:fideo,
@@ -62269,7 +62312,6 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:glyconavi,
         bioregistry:glycopost,
         bioregistry:glycosciencesdb,
-        bioregistry:glygen,
         bioregistry:glytoucan,
         bioregistry:gmd,
         bioregistry:gmd.analyte,
@@ -62795,6 +62837,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oarcs,
         bioregistry:oba,
         bioregistry:oban,
+        bioregistry:obci,
         bioregistry:obcs,
         bioregistry:obi,
         bioregistry:obib,
@@ -63292,6 +63335,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uniprot.journal,
         bioregistry:uniprot.keyword,
         bioregistry:uniprot.location,
+        bioregistry:uniprot.mnemonic,
         bioregistry:uniprot.proteome,
         bioregistry:uniprot.ptm,
         bioregistry:uniprot.resource,

@@ -1707,6 +1707,7 @@
     ],
     "mappings": {
       "biocontext": "ANTIBODYREGISTRY",
+      "integbio": "nbdc01696",
       "miriam": "antibodyregistry",
       "n2t": "antibodyregistry",
       "rrid": "AB"
@@ -2151,7 +2152,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/APOLLO_SV_$1",
     "repository": "https://github.com/ApolloDev/apollo-sv",
     "uri_format": "http://purl.obolibrary.org/obo/APOLLO_SV_$1",
-    "version": "2024-04-19"
+    "version": "2024-08-15"
   },
   "arachnoserver": {
     "contact": {
@@ -6699,6 +6700,7 @@
       "biocontext": "CATH",
       "edam": "2700",
       "fairsharing": "FAIRsharing.xgcyyn",
+      "integbio": "nbdc01888",
       "miriam": "cath",
       "n2t": "cath",
       "prefixcommons": "cath",
@@ -10715,6 +10717,9 @@
     },
     "description": "COCONUT (COlleCtion of Open Natural ProdUcTs) Online is an open source project for Natural Products (NPs) storage, search and analysis. It gathers data from over 50 open NP resources and is available free of charge and without any restriction. Each entry corresponds to a \"flat\" NP structure, and is associated, when available, to their known stereochemical forms, literature, organisms that produce them, natural geographical presence and diverse pre-computed molecular properties.",
     "example": "CNP0171505",
+    "example_extras": [
+      "CNP0018459.2"
+    ],
     "github_request_issue": 221,
     "homepage": "https://coconut.naturalproducts.net",
     "keywords": [
@@ -10723,7 +10728,7 @@
       "organic chemistry"
     ],
     "name": "COlleCtion of Open Natural ProdUcTs",
-    "pattern": "^CNP\\d{7}$",
+    "pattern": "^CNP\\d{7}(\\.\\d+)?$",
     "preferred_prefix": "coconut",
     "reviewer": {
       "email": "cthoyt@gmail.com",
@@ -14407,6 +14412,7 @@
       "edam": "2723",
       "fairsharing": "FAIRsharing.dt9z89",
       "go": "DisProt",
+      "integbio": "nbdc01798",
       "miriam": "disprot",
       "n2t": "disprot",
       "prefixcommons": "disprot",
@@ -20332,6 +20338,29 @@
     "preferred_prefix": "fcsfree",
     "uri_format": "https://fcs-free.org/fcs-database?$1"
   },
+  "fda.application": {
+    "comment": "The official FDA website doesn't appear to be able to resolve application IDs but these IDs do appear in some PDF documents, e.g., https://www.fda.gov/media/159183/download.",
+    "contributor": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "This prefix is for FDA application identifiers. There are multiple types of FDA applications (https://www.fda.gov/drugs/how-drugs-are-developed-and-approved/types-applications), including New Drug Application (NDA). FDA.report provides access to all FDA databases, including applications, in a single portal, and can resolve FDA application identifiers.",
+    "example": "070886",
+    "github_request_issue": 1146,
+    "homepage": "https://fda.report/applications",
+    "name": "FDA Application",
+    "pattern": "^\\d{6}$",
+    "preferred_prefix": "fda.application",
+    "reviewer": {
+      "email": "tiago.lubiana.alves@usp.br",
+      "github": "lubianat",
+      "name": "Tiago Lubiana",
+      "orcid": "0000-0003-2473-2313"
+    },
+    "uri_format": "https://fda.report/applications/$1"
+  },
   "ferroliganddb": {
     "contact": {
       "email": "guqiong@mail.sysu.edu.cn",
@@ -21276,7 +21305,7 @@
       "ontology",
       "sustainability"
     ],
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "FOODON",
       "agroportal": "FOODON",
@@ -23696,61 +23725,6 @@
     ],
     "uri_format": "http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=$1"
   },
-  "glygen": {
-    "contact": {
-      "email": "jeetvora@gwmail.gwu.edu",
-      "github": "jeet-vora",
-      "name": "Jeet Vora",
-      "orcid": "0000-0002-5317-1458"
-    },
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. GlyGen retrieves information from multiple international data sources and integrates and harmonizes this data.",
-    "example": "G17689DH",
-    "homepage": "https://glygen.org/",
-    "keywords": [
-      "genomics",
-      "glycomics",
-      "glycoproteomics",
-      "life science",
-      "proteomics"
-    ],
-    "mappings": {
-      "fairsharing": "FAIRsharing.aI1J5W",
-      "integbio": "nbdc02434",
-      "uniprot": "DB-0254"
-    },
-    "name": "GlyGen Computational and Informatics Resources for Glycoscience",
-    "owners": [
-      {
-        "name": "George Washington University",
-        "partnered": false,
-        "ror": "00y4zzh67"
-      }
-    ],
-    "pattern": "^G[0-9]{5}[A-Z]{2}$",
-    "preferred_prefix": "glygen",
-    "publications": [
-      {
-        "doi": "10.1093/glycob/cwz080",
-        "pmc": "PMC7335483",
-        "pubmed": "31616925",
-        "title": "GlyGen: Computational and Informatics Resources for Glycoscience",
-        "year": 2020
-      },
-      {
-        "doi": "cwz080",
-        "title": "GlyGen: Computational and Informatics Resources for Glycoscience."
-      }
-    ],
-    "repository": "https://github.com/glygener",
-    "twitter": "gly_gen",
-    "uri_format": "https://glygen.org/glycan/$1"
-  },
   "glytoucan": {
     "contact": {
       "email": "rr@uga.edu",
@@ -23777,6 +23751,15 @@
     "name": "GlyTouCan",
     "pattern": "^G[0-9]{5}[A-Z]{2}$",
     "preferred_prefix": "glytoucan",
+    "providers": [
+      {
+        "code": "glygen",
+        "description": "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. ",
+        "homepage": "https://www.glygen.org/",
+        "name": "GlyGen",
+        "uri_format": "https://glygen.org/glycan/$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1093/glycob/cwx066",
@@ -23792,6 +23775,9 @@
         "title": "GlyTouCan 1.0--The international glycan structure repository",
         "year": 2015
       }
+    ],
+    "synonyms": [
+      "glygen"
     ],
     "twitter": "glytoucan",
     "uri_format": "https://glytoucan.org/Structures/Glycans/$1"
@@ -34444,6 +34430,9 @@
     "github_request_issue": 941,
     "homepage": "https://mediadive.dsmz.de/media",
     "license": "CC-BY-4.0",
+    "mappings": {
+      "miriam": "mediadive.medium"
+    },
     "name": "MediaDive Medium",
     "pattern": "^\\d+\\w?$",
     "preferred_prefix": "mediadive.medium",
@@ -38333,6 +38322,7 @@
     "mappings": {
       "biocontext": "MYCOBANK",
       "fairsharing": "FAIRsharing.v8se8r",
+      "integbio": "nbdc01815",
       "miriam": "mycobank",
       "n2t": "mycobank",
       "ncbi": "MycoBank",
@@ -41812,6 +41802,38 @@
     "preferred_prefix": "oban",
     "repository": "https://github.com/EBISPOT/OBAN",
     "uri_format": "http://purl.org/oban/$1"
+  },
+  "obci": {
+    "contact": {
+      "email": "dan5@georgetown.edu",
+      "github": "nataled",
+      "name": "Darren A. Natale",
+      "orcid": "0000-0001-5809-9523"
+    },
+    "contributor": {
+      "email": "dan5@georgetown.edu",
+      "github": "nataled",
+      "name": "Darren A. Natale",
+      "orcid": "0000-0001-5809-9523"
+    },
+    "description": "The Ontology for Biomarkers of Clinical Interest (OBCI) formally defines biomarkers for diseases, phenotypes, and effects.",
+    "download_owl": "https://proteininformationresource.org/staff/nataled/OBCI/obci.owl",
+    "example": "000000001",
+    "github_request_issue": 1174,
+    "homepage": "https://github.com/clinical-biomarkers/OBCI",
+    "keywords": [
+      "ontology"
+    ],
+    "name": "Ontology for Biomarkers of Clinical Interest",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "obci",
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/OBCI_$1"
   },
   "obcs": {
     "banana": "OBCS",
@@ -60669,6 +60691,37 @@
     ],
     "uri_format": "https://www.uniprot.org/locations/$1"
   },
+  "uniprot.mnemonic": {
+    "contributor": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information. This entry represents UniProt mnemonics which combine an alphanumeric representation the protein name and a species identification code representing the biological source of the protein.",
+    "example": "BRAF_HUMAN",
+    "github_request_issue": 1110,
+    "homepage": "https://www.uniprot.org/",
+    "name": "UniProt",
+    "pattern": "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$",
+    "preferred_prefix": "uniprot.mnemonic",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkj161",
+        "pmc": "PMC1347523",
+        "pubmed": "16381842",
+        "title": "The Universal Protein Resource (UniProt): an expanding universe of protein information",
+        "year": 2006
+      }
+    ],
+    "reviewer": {
+      "email": "tiago.lubiana.alves@usp.br",
+      "github": "lubianat",
+      "name": "Tiago Lubiana",
+      "orcid": "0000-0003-2473-2313"
+    },
+    "uri_format": "https://www.uniprot.org/uniprotkb/$1"
+  },
   "uniprot.proteome": {
     "contributor": {
       "email": "benjamin_gyori@hms.harvard.edu",
@@ -60878,6 +60931,7 @@
       "biocontext": "UNITE",
       "edam": "2390",
       "fairsharing": "FAIRsharing.cnwx8c",
+      "integbio": "nbdc01905",
       "miriam": "unite",
       "n2t": "unite",
       "ncbi": "UNITE",

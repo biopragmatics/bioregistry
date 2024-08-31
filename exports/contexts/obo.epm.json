@@ -10051,7 +10051,7 @@
         ]
     },
     {
-        "pattern": "^CNP\\d{7}$",
+        "pattern": "^CNP\\d{7}(\\.\\d+)?$",
         "prefix": "coconut",
         "uri_prefix": "https://coconut.naturalproducts.net/compound/coconut_id/",
         "uri_prefix_synonyms": [
@@ -12913,6 +12913,16 @@
         ]
     },
     {
+        "pattern": "^\\d{6}$",
+        "prefix": "fda.application",
+        "uri_prefix": "https://fda.report/applications/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/fda.application:",
+            "http://fda.report/applications/",
+            "https://bioregistry.io/fda.application:"
+        ]
+    },
+    {
         "prefix": "ferroliganddb",
         "uri_prefix": "https://ferr.gulab.org.cn/browse/",
         "uri_prefix_synonyms": [
@@ -13787,25 +13797,18 @@
     },
     {
         "pattern": "^G[0-9]{5}[A-Z]{2}$",
-        "prefix": "glygen",
-        "uri_prefix": "https://glygen.org/glycan/",
-        "uri_prefix_synonyms": [
-            "http://bioregistry.io/glygen:",
-            "http://glygen.org/glycan/",
-            "https://bioregistry.io/glygen:"
-        ]
-    },
-    {
-        "pattern": "^G[0-9]{5}[A-Z]{2}$",
         "prefix": "glytoucan",
         "prefix_synonyms": [
-            "glycomedb"
+            "glycomedb",
+            "glygen"
         ],
         "uri_prefix": "https://glytoucan.org/Structures/Glycans/",
         "uri_prefix_synonyms": [
             "http://bio2rdf.org/glycomedb:",
             "http://bioregistry.io/glycomedb:",
+            "http://bioregistry.io/glygen:",
             "http://bioregistry.io/glytoucan:",
+            "http://glygen.org/glycan/",
             "http://glytoucan.org/Structures/Glycans/",
             "http://identifiers.org/glycomedb/",
             "http://identifiers.org/glycomedb:",
@@ -13816,7 +13819,9 @@
             "http://www.glycome-db.org/database/showStructure.action?glycomeId=",
             "https://bio2rdf.org/glycomedb:",
             "https://bioregistry.io/glycomedb:",
+            "https://bioregistry.io/glygen:",
             "https://bioregistry.io/glytoucan:",
+            "https://glygen.org/glycan/",
             "https://identifiers.org/glycomedb/",
             "https://identifiers.org/glycomedb:",
             "https://identifiers.org/glytoucan/",
@@ -17497,8 +17502,12 @@
         "uri_prefix": "https://mediadive.dsmz.de/medium/",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/mediadive.medium:",
+            "http://identifiers.org/mediadive.medium/",
+            "http://identifiers.org/mediadive.medium:",
             "http://mediadive.dsmz.de/medium/",
-            "https://bioregistry.io/mediadive.medium:"
+            "https://bioregistry.io/mediadive.medium:",
+            "https://identifiers.org/mediadive.medium/",
+            "https://identifiers.org/mediadive.medium:"
         ]
     },
     {
@@ -19791,6 +19800,16 @@
             "http://bioregistry.io/oban:",
             "https://bioregistry.io/oban:",
             "https://purl.org/oban/"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "obci",
+        "uri_prefix": "http://purl.obolibrary.org/obo/OBCI_",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/obci:",
+            "https://bioregistry.io/obci:",
+            "https://purl.obolibrary.org/obo/OBCI_"
         ]
     },
     {
@@ -25526,6 +25545,16 @@
             "https://bioregistry.io/UPLOC:",
             "https://bioregistry.io/UniProtKB-SubCell:",
             "https://bioregistry.io/uniprot.location:"
+        ]
+    },
+    {
+        "pattern": "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$",
+        "prefix": "uniprot.mnemonic",
+        "uri_prefix": "https://www.uniprot.org/uniprotkb/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/uniprot.mnemonic:",
+            "http://www.uniprot.org/uniprotkb/",
+            "https://bioregistry.io/uniprot.mnemonic:"
         ]
     },
     {
