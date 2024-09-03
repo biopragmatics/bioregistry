@@ -332,8 +332,8 @@ def main(bioregistry_file, start_date, end_date):
     click.echo(f"Writing evaluation to {evaluation_path}")
     evaluation_df.to_csv(evaluation_path, sep="\t", index=False)
 
-    random_forest_clf: RandomForestClassifier = classifiers[0][1]
-    lr_clf: LogisticRegression = classifiers[1][1]
+    random_forest_clf = classifiers[0][1]
+    lr_clf = classifiers[1][1]
     importances_df = (
         pd.DataFrame(
             list(
