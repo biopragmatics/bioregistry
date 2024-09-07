@@ -9166,7 +9166,7 @@
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2024-07-10"
+    "version": "2024-08-16"
   },
   "clao": {
     "contact": {
@@ -9669,7 +9669,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.222"
+    "version": "2.224"
   },
   "cmpo": {
     "contact": {
@@ -11748,7 +11748,7 @@
   },
   "credit": {
     "contact": {
-      "email": "info@casrai.org",
+      "email": "liz.allen@f1000.com",
       "name": "Liz Allen",
       "orcid": "0000-0002-9298-3168"
     },
@@ -11759,8 +11759,8 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
-    "example": "Software",
-    "homepage": "https://casrai.org/credit/",
+    "example": "software",
+    "homepage": "https://credit.niso.org/",
     "keywords": [
       "citation",
       "classification",
@@ -11774,6 +11774,7 @@
       "fairsharing": "FAIRsharing.fe4816"
     },
     "name": "CASRAI Contributor Roles Taxonomy",
+    "pattern": "^(conceptualization|data-curation|formal-analysis|funding-acquisition|investigation|methodology|project-administration|resources|software|supervision|validation|visualization|writing-original-draft|writing-review-editing)$",
     "preferred_prefix": "credit",
     "publications": [
       {
@@ -11804,7 +11805,11 @@
         "year": 2019
       }
     ],
-    "twitter": "contrib_roles"
+    "references": [
+      "https://casrai.org/credit/"
+    ],
+    "twitter": "contrib_roles",
+    "uri_format": "https://credit.niso.org/contributor-roles/$1"
   },
   "crisprdb": {
     "contact": {
@@ -15939,7 +15944,8 @@
     "preferred_prefix": "ECAO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ECAO_$1",
     "repository": "https://github.com/echinoderm-ontology/ecao_ontology",
-    "uri_format": "http://purl.obolibrary.org/obo/ECAO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/ECAO_$1",
+    "version": "2024-08-22"
   },
   "eccode": {
     "contact": {
@@ -23742,11 +23748,12 @@
     "mappings": {
       "biocontext": "GLYTOUCAN",
       "fairsharing": "FAIRsharing.5Pze7l",
-      "integbio": "nbdc01535",
+      "integbio": "nbdc02434",
       "miriam": "glytoucan",
       "n2t": "glytoucan",
       "re3data": "r3d100012388",
-      "togoid": "Glytoucan"
+      "togoid": "Glytoucan",
+      "uniprot": "DB-0254"
     },
     "name": "GlyTouCan",
     "pattern": "^G[0-9]{5}[A-Z]{2}$",
@@ -23761,6 +23768,10 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/glycob/cwz080",
+        "pubmed": "31616925"
+      },
       {
         "doi": "10.1093/glycob/cwx066",
         "pmc": "PMC5881658",
@@ -25731,7 +25742,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/HANCESTRO_$1",
     "repository": "https://github.com/EBISPOT/ancestro",
     "uri_format": "http://purl.obolibrary.org/obo/HANCESTRO_$1",
-    "version": "2024-06-21"
+    "version": "2024-08-19"
   },
   "hao": {
     "contact": {
@@ -33924,6 +33935,24 @@
     "repository": "https://ccms-ucsd.github.io/MassIVEDocumentation",
     "uri_format": "https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=$1"
   },
+  "mastodon": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "address on the Mastodon decentralized social network (the form is 'user@server.domain' without a leading '@')",
+    "example": "jz@mamot.fr",
+    "homepage": "https://mastodon.social",
+    "mappings": {
+      "wikidata": "P4033"
+    },
+    "name": "Mastodon",
+    "pattern": "^[A-Za-z0-9_]+([A-Za-z0-9_\\.]+[A-Za-z0-9_]+)?@[\\d\\w\\.\\-]+[0-9a-z]+$",
+    "preferred_prefix": "mastodon",
+    "uri_format": "https://fedirect.toolforge.org/?id=$1"
+  },
   "mat": {
     "contact": {
       "email": "j.bard@ed.ac.uk",
@@ -36907,7 +36936,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.136"
+    "version": "2.138"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -37949,7 +37978,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.1.168"
+    "version": "4.1.172"
   },
   "msigdb": {
     "contributor": {
@@ -42928,6 +42957,9 @@
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/omia:$1"
       }
+    ],
+    "synonyms": [
+      "OMIA"
     ],
     "uri_format": "https://omia.org/phene/omia:$1"
   },
@@ -48818,7 +48850,7 @@
       "PRO"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/PR_$1",
-    "version": "69.0"
+    "version": "70.0"
   },
   "prefixcommons": {
     "contributor": {
@@ -50060,7 +50092,8 @@
     "example": "1981638",
     "homepage": "https://publons.com/researcher",
     "mappings": {
-      "biolink": "ResearchID"
+      "biolink": "ResearchID",
+      "wikidata": "P3829"
     },
     "name": "Publons Researcher",
     "pattern": "^\\d+$",
@@ -52888,7 +52921,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.229"
+    "version": "6.230"
   },
   "rtecs": {
     "contact": {
@@ -60702,6 +60735,9 @@
     "example": "BRAF_HUMAN",
     "github_request_issue": 1110,
     "homepage": "https://www.uniprot.org/",
+    "mappings": {
+      "togoid": "UniprotMnemonic"
+    },
     "name": "UniProt",
     "pattern": "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$",
     "preferred_prefix": "uniprot.mnemonic",
@@ -63786,7 +63822,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/XAO_$1",
     "repository": "https://github.com/xenopus-anatomy/xao",
     "uri_format": "http://purl.obolibrary.org/obo/XAO_$1",
-    "version": "2022-08-29"
+    "version": "2024-08-23"
   },
   "xco": {
     "appears_in": [
@@ -63861,7 +63897,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.178"
+    "version": "4.179"
   },
   "xenbase": {
     "contact": {

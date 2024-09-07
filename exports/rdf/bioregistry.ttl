@@ -291,6 +291,7 @@
 @prefix cpt: <https://www.aapc.com/codes/cpt-codes/> .
 @prefix cran: <https://cran.r-project.org/web/packages/> .
 @prefix crates: <https://crates.io/crates/> .
+@prefix credit: <https://credit.niso.org/contributor-roles/> .
 @prefix crisprdb: <http://crispr.i2bc.paris-saclay.fr/cgi-bin/crispr/SpecieProperties_db.cgi?Taxon_id[]=> .
 @prefix cro: <http://purl.obolibrary.org/obo/CRO_> .
 @prefix crop2ml: <http://www.crop2ml.org/cropmdb/> .
@@ -328,8 +329,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -15056,6 +15057,7 @@ bioregistry:omia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{6}(-\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5520-6597 ;
+    bioregistry.schema:0000023 "OMIA" ;
     bioregistry.schema:0000024 "https://omia.org/phene/omia:"^^xsd:string ;
     bioregistry.schema:0000027 omia:001000 ;
     bioregistry.schema:0000029 "omia" .
@@ -22046,7 +22048,7 @@ orcid:0000-0002-9137-1442 rdfs:label "Adriano Mari" ;
     foaf:mbox "adriano.mari@allergome.org" .
 
 orcid:0000-0002-9298-3168 rdfs:label "Liz Allen" ;
-    foaf:mbox "info@casrai.org" .
+    foaf:mbox "liz.allen@f1000.com" .
 
 orcid:0000-0002-9316-2919 rdfs:label "Leszek Vincent" ;
     foaf:mbox "Leszek@missouri.edu" .
@@ -24448,6 +24450,8 @@ wikidata:P3747 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P3811 dcterms:isPartOf bioregistry.registry:wikidata .
 
+wikidata:P3829 dcterms:isPartOf bioregistry.registry:wikidata .
+
 wikidata:P3841 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P3852 dcterms:isPartOf bioregistry.registry:wikidata .
@@ -24465,6 +24469,8 @@ wikidata:P3894 dcterms:isPartOf bioregistry.registry:wikidata .
 wikidata:P3937 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P3951 dcterms:isPartOf bioregistry.registry:wikidata .
+
+wikidata:P4033 dcterms:isPartOf bioregistry.registry:wikidata .
 
 wikidata:P4229 dcterms:isPartOf bioregistry.registry:wikidata .
 
@@ -31282,10 +31288,14 @@ bioregistry:credit a bioregistry.schema:0000001 ;
         "publication",
         "resource metadata",
         "subject agnostic" ;
-    foaf:homepage <https://casrai.org/credit/> ;
-    bioregistry.schema:0000005 "Software"^^xsd:string ;
+    foaf:homepage <https://credit.niso.org/> ;
+    bioregistry.schema:0000005 "software"^^xsd:string ;
+    bioregistry.schema:0000006 "https://credit.niso.org/contributor-roles/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(conceptualization|data-curation|formal-analysis|funding-acquisition|investigation|methodology|project-administration|resources|software|supervision|validation|visualization|writing-original-draft|writing-review-editing)$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9298-3168 ;
+    bioregistry.schema:0000024 "https://credit.niso.org/contributor-roles/"^^xsd:string ;
+    bioregistry.schema:0000027 credit:software ;
     bioregistry.schema:0000029 "credit" .
 
 bioregistry:ctcae a bioregistry.schema:0000001 ;
@@ -33326,10 +33336,11 @@ bioregistry:glytoucan a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:GLYTOUCAN,
         n2t:glytoucan,
         fairsharing:FAIRsharing.5Pze7l,
-        integbio:nbdc01535,
+        integbio:nbdc02434,
         miriam:glytoucan,
         togoid:Glytoucan,
-        re3data:r3d100012388 ;
+        re3data:r3d100012388,
+        uniprot.resource:DB-0254 ;
     dcat:keyword "glycomics",
         "structural biology" ;
     foaf:homepage <https://glytoucan.org> ;
@@ -35156,6 +35167,20 @@ bioregistry:massive a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id="^^xsd:string ;
     bioregistry.schema:0000027 massive:MSV000082131 ;
     bioregistry.schema:0000029 "massive" .
+
+bioregistry:mastodon a bioregistry.schema:0000001 ;
+    rdfs:label "Mastodon" ;
+    dcterms:description "address on the Mastodon decentralized social network (the form is 'user@server.domain' without a leading '@')"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch wikidata:P4033 ;
+    foaf:homepage <https://mastodon.social> ;
+    bioregistry.schema:0000005 "jz@mamot.fr"^^xsd:string ;
+    bioregistry.schema:0000006 "https://fedirect.toolforge.org/?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Za-z0-9_]+([A-Za-z0-9_\\.]+[A-Za-z0-9_]+)?@[\\d\\w\\.\\-]+[0-9a-z]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://fedirect.toolforge.org/?id="^^xsd:string ;
+    bioregistry.schema:0000027 <https://fedirect.toolforge.org/?id=jz@mamot.fr> ;
+    bioregistry.schema:0000029 "mastodon" .
 
 bioregistry:matrixdb a bioregistry.schema:0000001 ;
     rdfs:label "MatrixDB" ;
@@ -37322,7 +37347,8 @@ bioregistry:publons.researcher a bioregistry.schema:0000001 ;
     rdfs:label "Publons Researcher" ;
     dcterms:description "Database of researchers to track publications, citation metrics, peer reviews, and journal editing work."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch biolink:ResearchID ;
+    skos:exactMatch wikidata:P3829,
+        biolink:ResearchID ;
     foaf:homepage <https://publons.com/researcher> ;
     bioregistry.schema:0000005 "1981638"^^xsd:string ;
     bioregistry.schema:0000006 "https://publons.com/researcher/$1"^^xsd:string ;
@@ -38998,6 +39024,7 @@ bioregistry:uniprot.mnemonic a bioregistry.schema:0000001 ;
     rdfs:label "UniProt" ;
     dcterms:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information. This entry represents UniProt mnemonics which combine an alphanumeric representation the protein name and a species identification code representing the biological source of the protein."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch togoid:UniprotMnemonic ;
     foaf:homepage <https://www.uniprot.org/> ;
     bioregistry.schema:0000005 "BRAF_HUMAN"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/uniprotkb/$1"^^xsd:string ;
@@ -41214,8 +41241,6 @@ integbio:nbdc01514 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01520 dcterms:isPartOf bioregistry.registry:integbio .
 
-integbio:nbdc01535 dcterms:isPartOf bioregistry.registry:integbio .
-
 integbio:nbdc01568 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc01596 dcterms:isPartOf bioregistry.registry:integbio .
@@ -41357,6 +41382,8 @@ integbio:nbdc02410 dcterms:isPartOf bioregistry.registry:integbio .
 integbio:nbdc02414 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc02433 dcterms:isPartOf bioregistry.registry:integbio .
+
+integbio:nbdc02434 dcterms:isPartOf bioregistry.registry:integbio .
 
 integbio:nbdc02480 dcterms:isPartOf bioregistry.registry:integbio .
 
@@ -44393,6 +44420,8 @@ togoid:Uberon dcterms:isPartOf bioregistry.registry:togoid .
 
 togoid:Uniprot dcterms:isPartOf bioregistry.registry:togoid .
 
+togoid:UniprotMnemonic dcterms:isPartOf bioregistry.registry:togoid .
+
 togoid:Vgnc dcterms:isPartOf bioregistry.registry:togoid .
 
 togoid:Wikipathways dcterms:isPartOf bioregistry.registry:togoid .
@@ -46071,6 +46100,8 @@ uniprot.resource:DB-0251 dcterms:isPartOf bioregistry.registry:uniprot .
 
 uniprot.resource:DB-0253 dcterms:isPartOf bioregistry.registry:uniprot .
 
+uniprot.resource:DB-0254 dcterms:isPartOf bioregistry.registry:uniprot .
+
 uniprot.resource:DB-0256 dcterms:isPartOf bioregistry.registry:uniprot .
 
 uniprot.resource:DB-0258 dcterms:isPartOf bioregistry.registry:uniprot .
@@ -46923,7 +46954,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -54668,6 +54699,7 @@ bioregistry.registry:togoid a bioregistry.schema:0000002 ;
         togoid:Togovar,
         togoid:Uberon,
         togoid:Uniprot,
+        togoid:UniprotMnemonic,
         togoid:Vgnc,
         togoid:Wikipathways ;
     foaf:homepage "https://togoid.dbcls.jp/" ;
@@ -55046,6 +55078,7 @@ bioregistry.registry:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:DB-0241,
         uniprot.resource:DB-0251,
         uniprot.resource:DB-0253,
+        uniprot.resource:DB-0254,
         uniprot.resource:DB-0256,
         uniprot.resource:DB-0258,
         uniprot.resource:DB-0266,
@@ -55835,6 +55868,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:lpt,
         bioregistry:lspci,
         bioregistry:lter,
+        bioregistry:mastodon,
         bioregistry:matrixdb,
         bioregistry:mba,
         bioregistry:mediadive.ingredient,
@@ -56342,6 +56376,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P3640,
         wikidata:P3747,
         wikidata:P3811,
+        wikidata:P3829,
         wikidata:P3841,
         wikidata:P3852,
         wikidata:P3853,
@@ -56351,6 +56386,7 @@ bioregistry.registry:wikidata a bioregistry.schema:0000002 ;
         wikidata:P3894,
         wikidata:P3937,
         wikidata:P3951,
+        wikidata:P4033,
         wikidata:P4229,
         wikidata:P4317,
         wikidata:P4338,
@@ -56833,7 +56869,6 @@ bioregistry.registry:integbio a bioregistry.schema:0000002 ;
         integbio:nbdc01512,
         integbio:nbdc01514,
         integbio:nbdc01520,
-        integbio:nbdc01535,
         integbio:nbdc01568,
         integbio:nbdc01596,
         integbio:nbdc01630,
@@ -56905,6 +56940,7 @@ bioregistry.registry:integbio a bioregistry.schema:0000002 ;
         integbio:nbdc02410,
         integbio:nbdc02414,
         integbio:nbdc02433,
+        integbio:nbdc02434,
         integbio:nbdc02480,
         integbio:nbdc02490,
         integbio:nbdc02550,
@@ -62614,6 +62650,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:mao,
         bioregistry:massbank,
         bioregistry:massive,
+        bioregistry:mastodon,
         bioregistry:mat,
         bioregistry:matrixdb,
         bioregistry:matrixdb.association,
