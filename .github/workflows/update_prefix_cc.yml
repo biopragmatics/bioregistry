@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.12
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install tox tox-uv
