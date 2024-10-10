@@ -831,17 +831,24 @@ class TestRegistry(unittest.TestCase):
     def test_request_issue(self):
         """Check all prefixes with a request issue have a reviewer."""
         for prefix, resource in self.registry.items():
-            if resource.github_request_issue is None:
+            if not resource.contributor:
                 continue
             with self.subTest(prefix=prefix):
-                if resource.contributor.github != "cthoyt":
+                if resource.contributor.github not in {"cthoyt", "tgbugs"}:
                     # needed to bootstrap records before there was more governance in place
                     self.assertIsNotNone(resource.reviewer)
+                    self.assertIsNotNone(resource.github_request_issue, msg="External contributions require either a GitHub issue or GitHub pull request reference")
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+                self.assertNotIn(
+                    f"https://github.com/biopragmatics/bioregistry/pull/{resource.github_request_issue}",
+                    resource.references or [],
+                    msg="Reference to GitHub request issue should be in its dedicated field.",
+                )
+
 
     def test_publications(self):
         """Test references and publications are sorted right."""
