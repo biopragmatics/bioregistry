@@ -749,6 +749,18 @@
     "sampleId": "ECOLI:CYT-D-UBIOX-CPLX",
     "uri_format": "http://biocyc.org/getid?id=$1"
   },
+  "biodeep": {
+    "deprecated": false,
+    "description": "The BioDeep database is a comprehensive database of metabolite information in living organisms: by aggregating metabolite information from multiple public databases and large-scale natural language text mining work, we have built a large scale knowledge network for biological knowledge interpretation. By using the BioDeep database, it is possible to query such large scale metabolic knowledge network.",
+    "homepage": "https://en.panomix.com/",
+    "id": "00001080",
+    "name": "BioDeep Database",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^BioDeep_\\d{11}$",
+    "prefix": "biodeep",
+    "sampleId": "BioDeep_00000000001",
+    "uri_format": "https://query.biodeep.cn/metabolite/$1"
+  },
   "biofactoid": {
     "deprecated": false,
     "description": "Biofactoid is a resource of biological pathways, assembled from author-curated results in papers.\n",
@@ -4514,6 +4526,18 @@
     "sampleId": "000009",
     "uri_format": "https://caninecommons.cancer.gov/#/study/$1"
   },
+  "ice.chem": {
+    "deprecated": false,
+    "description": "The Integrated Chemical Environment (ICE) provides high-quality curated data and appropriate tools to support development and evaluation of new, revised, and alternative methods. ICE provides free online access to curated in vivo and in vitro test data, in silico toxicity predictions and chemical property data, reference chemical lists, and computational tools for chemical characterization and predicting toxicity.\nICE supports the following: (i) Data integration: brings together available data, including data on formulations; (ii) Results exploration: enables dynamic, graphical exploration with publication-quality graphics; (iii) Data analysis: allows characterization of data using online workflows, and (iv) FAIR data access: data are findable, accessible, interoperable, and reusable.",
+    "homepage": "https://ice.ntp.niehs.nih.gov",
+    "id": "00001082",
+    "name": "Integrated Chemical Environment - Chemical data",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "\\d{2,7}-\\d{2}-\\d|DTXSID\\d{7,9}|[A-Z]{14}-[A-Z]{8}[SN][A-Z]-[A-Z]$",
+    "prefix": "ice.chem",
+    "sampleId": "DTXSID7032004",
+    "uri_format": "https://ice.ntp.niehs.nih.gov/api/v1/search?chemid=$1"
+  },
   "iceberg.element": {
     "deprecated": false,
     "description": "ICEberg (Integrative and conjugative elements) is a database of integrative and conjugative elements (ICEs) found in bacteria. ICEs are conjugative self-transmissible elements that can integrate into and excise from a host chromosome, and can carry likely virulence determinants, antibiotic-resistant factors and/or genes coding for other beneficial traits. It contains details of ICEs found in representatives bacterial species, and which are organised as families. This collection references ICE elements.",
@@ -5579,6 +5603,18 @@
     ],
     "sampleId": "LRG_1",
     "uri_format": "http://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"
+  },
+  "lw": {
+    "deprecated": false,
+    "description": "The LifeWatch Metadata Catalogues plays a crucial role in managing metadata for digital objects, including Datasets, Services, Workflows and Virtual Research Environments. This catalogue serves as the central repository, ensuring that resources are accessible and reusable by stakeholders.",
+    "homepage": "https://metadatacatalogue.lifewatch.eu/",
+    "id": "00001084",
+    "name": "LifeWatch Metadata Catalogue",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+    "prefix": "lw",
+    "sampleId": "6e3b1371-59d7-481a-9db4-cd0d0de98436",
+    "uri_format": "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/$1"
   },
   "ma": {
     "deprecated": false,
