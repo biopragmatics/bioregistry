@@ -887,6 +887,7 @@ class Resource(BaseModel):
                 "prefixcommons",
                 "bartoc",
                 "lov",
+                "re3data",
             ),
         )
         if rv is not None:
@@ -1023,6 +1024,7 @@ class Resource(BaseModel):
                 "rrid",
                 "bartoc",
                 "lov",
+                "re3data",
             ),
         )
 
