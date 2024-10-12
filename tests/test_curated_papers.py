@@ -8,7 +8,7 @@ from datetime import datetime
 
 import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
-from bioregistry.curation.literature import CurationRelevance, COLUMNS
+from bioregistry.curation.literature import COLUMNS, CurationRelevance
 
 
 class TestTSV(unittest.TestCase):

@@ -2,6 +2,8 @@
 
 import enum
 
+import click
+
 __all__ = [
     "CurationRelevance",
     "COLUMNS",
@@ -29,3 +31,13 @@ class CurationRelevance(str, enum.Enum):
     existing = enum.auto()
     unclear = enum.auto()
     irrelevant_other = enum.auto()
+
+
+@click.command()
+def main():
+    """Import data from the literature curation into the Bioregistry."""
+    raise NotImplementedError
+
+
+if __name__ == "__main__":
+    main()
