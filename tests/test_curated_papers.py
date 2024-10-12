@@ -67,8 +67,7 @@ class TestTSV(unittest.TestCase):
     def test_tsv_file(self):
         """Tests all rows in TSV file are valid."""
         with CURATED_PAPERS_PATH.open() as tsv_file:
-            tsv_reader = csv.DictReader(tsv_file, delimiter="\t")
-            for row in tsv_reader:
-                print(row)
-                with self.subTest(row=row):
-                    self.validate_row(row)
+            reader = csv.DictReader(tsv_file, delimiter="\t")
+            for row, data in enumerate(reader, start=1):
+                with self.subTest(row=row, data=data):
+                    self.validate_row(data)
