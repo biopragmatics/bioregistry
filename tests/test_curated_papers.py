@@ -7,31 +7,20 @@ import unittest
 from datetime import datetime
 
 import bioregistry
-from bioregistry.constants import (
-    CURATED_PAPERS_PATH,
-    CURATED_PAPERS_RELEVANCY_VOCAB,
-    ORCID_PATTERN,
-)
-
-required_fields = [
-    "pmid",
-    "relevant",
-    "relevancy_type",
-    "orcid",
-    "date_curated",
-    "notes",
-    "pr_added",  # links back to the PR where curations were done
-]
+from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
+from bioregistry.curation.literature import CurationRelevance, COLUMNS
 
 
 class TestTSV(unittest.TestCase):
     """Tests for curated_papers tsv file."""
 
+    def setUp(self):
+        """Set up the test case."""
+        self.relevancy_types = {r.name for r in CurationRelevance}
+
     def validate_row(self, row):
         """Validate a single row from the TSV file."""
-        # Validate required fields
-
-        for field in required_fields:
+        for field in COLUMNS:
             self.assertIn(field, row)
 
         self.assertTrue(row["pmid"].isdigit(), msg="PubMed identifier should be an integer")
@@ -51,7 +40,7 @@ class TestTSV(unittest.TestCase):
             )
 
         # Validate relevancy_type is in relevancy_vocab
-        self.assertIn(row["relevancy_type"], CURATED_PAPERS_RELEVANCY_VOCAB)
+        self.assertIn(row["relevancy_type"], self.relevancy_types)
 
         self.assertRegex(row["orcid"], ORCID_PATTERN)
 
