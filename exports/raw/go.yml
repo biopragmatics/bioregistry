@@ -971,6 +971,7 @@
       type_id: BET:0000000
 - database: GO_REF
   name: Gene Ontology Database references
+  rdf_uri_prefix: http://purl.obolibrary.org/obo/go/references/
   generic_urls:
     - http://geneontology.org/gorefs
   entity_types:
@@ -1968,6 +1969,7 @@
   name: PubMed
   synonyms:
     - PUBMED
+  rdf_uri_prefix: http://identifiers.org/pubmed/
   generic_urls:
     - https://www.ncbi.nlm.nih.gov/pubmed
   entity_types:
@@ -2046,6 +2048,12 @@
       url_syntax: https://www.pombase.org/gene/[example_id]
       example_id: PomBase:SPBC11B10.09
       example_url: https://www.pombase.org/gene/SPBC11B10.09
+    - type_name: transcript
+      type_id: SO:0000673
+      id_syntax: S\w+(\.)?\w+(\.)?\d+
+      url_syntax: https://www.pombase.org/gene/[example_id]
+      example_id: PomBase:SPCC548.03c.2
+      example_url: https://www.pombase.org/gene/SPCC548.03c.2
 - database: Pompep
   name: Schizosaccharomyces pombe protein data
   generic_urls:
