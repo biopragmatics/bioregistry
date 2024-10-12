@@ -23,6 +23,7 @@ COLUMNS = [
 class CurationRelevance(str, enum.Enum):
     """An enumeration for curation relevance."""
 
+    #: A resource for new primary identifiers
     new_prefix = enum.auto()
     new_provider = enum.auto()
     new_publication = enum.auto()
