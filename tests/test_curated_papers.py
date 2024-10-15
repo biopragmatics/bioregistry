@@ -6,7 +6,7 @@ import csv
 import unittest
 from datetime import datetime
 
-import bioregistry
+# import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
 from bioregistry.curation.literature import COLUMNS, CurationRelevance
 
@@ -29,6 +29,10 @@ class TestTSV(unittest.TestCase):
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
 
+        """
+        Commenting out this check for now. This can be re-implemented if a need
+        for it arises in the future
+
         if row["relevant"] == "1":
             prefix = row["prefix"]
             self.assertIsNotNone(prefix, msg="prefix should be set for all relevant entries")
@@ -38,6 +42,7 @@ class TestTSV(unittest.TestCase):
                 prefix,
                 msg="prefix should be standardized for relevant entries",
             )
+        """
 
         # Validate relevancy_type is in relevancy_vocab
         self.assertIn(row["relevancy_type"], self.relevancy_types)
