@@ -6058,7 +6058,8 @@ casspc:
   comment: Jim Balhoff said that Catalog of Fishes does not publish their data in
     a machine readable format, but a long time ago they sent a CSV dump to help in
     the development of TTO and VTO. These ontologies are effectively retired and CASSPC
-    terms are only also used in Phenoscape.
+    terms are only also used in Phenoscape. Note that the github request issue is
+    not correct, since this was made on a commit (but, fishbase is related).
   contributor:
     email: benjamin_gyori@hms.harvard.edu
     github: bgyori
@@ -6071,12 +6072,18 @@ casspc:
     orcid: 0000-0003-4423-4370
   deprecated: true
   example: '5359'
+  github_request_issue: 149
   homepage: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp
   mappings:
     go: CASSPC
   name: Eschmeyer's Catalog of Fishes
   pattern: ^\d+$
   preferred_prefix: casspc
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   uri_format: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=$1
 cath:
   contact:
@@ -10011,6 +10018,7 @@ coi:
   description: COI Catalogue is a herbarium with c. 800.000 specimens, organised in
     separate collections due to the research priorities over the years.
   example: '63812'
+  github_request_issue: 1145
   homepage: https://coicatalogue.uc.pt/index.php
   name: COI Catalogue
   preferred_prefix: coi
@@ -12864,7 +12872,13 @@ dhba:
   name: Developing Human Brain Atlas
   pattern: ^\d+$
   preferred_prefix: DHBA
-  uri_format: https://biopragmatics.github.io/providers/dhba/$1
+  providers:
+  - code: biopragmatics
+    description: A static site generated for the DHBA resource
+    homepage: https://biopragmatics.github.io/providers
+    name: Biopragmatics Browser
+    uri_format: https://biopragmatics.github.io/providers/dhba/$1
+  uri_format: https://purl.brain-bican.org/ontology/dhbao/DHBA_$1
 dialnet.article:
   contributor:
     email: cthoyt@gmail.com
@@ -13755,7 +13769,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-07-31'
+  version: '2024-08-29'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -18709,6 +18723,7 @@ ferroliganddb:
   description: FerroLigandDB is a meticulously curated, high-quality database of ferroptosis
     regulators, including inducers and inhibitors.
   example: '486'
+  github_request_issue: 1145
   homepage: https://ferr.gulab.org.cn/
   name: FerroLigandDB
   preferred_prefix: ferroliganddb
@@ -20078,7 +20093,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-08-01'
+  version: '2024-09-02'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -20659,10 +20674,11 @@ genbank:
     year: 2006
   uri_format: https://www.ncbi.nlm.nih.gov/nucleotide/$1
 genbase:
+  comment: 'CTH: this is a provider of the INSDC resources, not a new prefix.'
   contact:
     email: zhaoxuetong@big.ac.cn
     name: Xuetong Zhao
-    orcid: 0000-0002-9551-6370
+    orcid: 0000-0002-3019-8615
   contributor:
     email: shah.tanay2@northeastern.edu
     github: tanayshah2
@@ -20672,19 +20688,17 @@ genbase:
     (mRNA, genomic DNAs, ncRNA, or small genomes such as organelles, viruses, plasmids,
     phages from any organism) and integrates data from INSDC.
   example: C_AA001108.1
+  github_request_issue: 1140
   homepage: https://ngdc.cncb.ac.cn/genbase/?lang=en
-  keywords:
-  - biological sample
-  - experimental measurement
-  - genomics
-  - life science
-  - statistics
-  - survey
   mappings:
-    fairsharing: FAIRsharing.3da56b
     re3data: r3d100014353
   name: GenBase
   preferred_prefix: genbase
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
   uri_format: https://ngdc.cncb.ac.cn/genbase/search/gb/$1
 gendis:
   comment: This resource doesn't exist on the web anymore
@@ -23698,7 +23712,13 @@ hba:
   name: Human Brain Atlas
   pattern: ^\d+$
   preferred_prefix: HBA
-  uri_format: https://biopragmatics.github.io/providers/hba/$1
+  providers:
+  - code: biopragmatics
+    description: A static site generated for the HBA resource
+    homepage: https://biopragmatics.github.io/providers
+    name: Biopragmatics Browser
+    uri_format: https://biopragmatics.github.io/providers/hba/$1
+  uri_format: https://purl.brain-bican.org/ontology/hbao/HBA_$1
 hbvar:
   description: This is a relational database of information about hemoglobin variants
     and mutations that cause thalassemia.
@@ -28537,6 +28557,7 @@ istransbase:
     on inhibitors and substrates of drug transporters, offering a wealth of vital
     information encompassing experimental methods, transport parameters, and references.
   example: IST028
+  github_request_issue: 1145
   homepage: https://istransbase.scbdd.com/
   name: ISTransbase
   preferred_prefix: istransbase
@@ -33823,6 +33844,7 @@ mixs:
     an aspect of an environmental sample.
   download_owl: http://aber-owl.net/media/ontologies/MIXS/5/mixs.owl
   example: '0001056'
+  github_request_issue: 151
   homepage: https://www.gensc.org/pages/standards/all-terms.html
   keywords:
   - ontology
@@ -34449,7 +34471,7 @@ molmedb:
   name: MolMeDB
   pattern: ^[m,M]{2}[0-9]{5}[0-9]*$
   preferred_prefix: molmedb
-  repository: https://github.com/BerkaLab/MolMeDB
+  repository: https://github.com/MolMeDB/MolMeDB
   uri_format: https://molmedb.upol.cz/mol/$1
 molmovdb:
   description: The Molecular Movements Database lists motions in proteins and other
@@ -34943,7 +34965,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.172
+  version: 4.1.173
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -35892,7 +35914,7 @@ ncbigene:
     togoid: Ncbigene
     uniprot: DB-0118
     wikidata: P351
-  name: Entrez Gene
+  name: NCBI Gene
   owners:
   - name: National Center for Biotechnology Information
     partnered: false
@@ -35945,6 +35967,7 @@ ncbigene:
   synonyms:
   - EGID
   - EntrezGene
+  - GeneID
   - NCBIGene
   - NCBI_GeneID
   - entrez
@@ -35984,6 +36007,37 @@ ncbigi:
   - NCBI_gi
   - ncbi.gi
   uri_format: http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1
+ncbiortholog:
+  comment: We do not currently have the source code for our ortholog resource available
+    publicly, although we are looking at how to split it off and make it available
+    in the next year. We are now in the process of adding this tag to the INSDC list
+    for use in annotations, so I'd like to mirror that tag in bioregistry.
+  contact:
+    email: murphyte@ncbi.nlm.nih.gov
+    github: murphyte
+    name: Terence Murphy
+    orcid: 0000-0001-9311-9745
+  contributor:
+    email: murphyte@ncbi.nlm.nih.gov
+    github: murphyte
+    name: Terence Murphy
+    orcid: 0000-0001-9311-9745
+  description: Database of one-to-one ortholog information provided by the NCBI as
+    a subset of their Gene resource. Used for users to access ortholog information
+    for over 1000 species of vertebrates and arthropods.
+  example: '2'
+  github_request_issue: 1181
+  homepage: https://www.ncbi.nlm.nih.gov/gene/
+  license: US gov't public domain
+  name: NCBI Orthologs
+  pattern: ^\d+$
+  preferred_prefix: ncbiortholog
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.ncbi.nlm.nih.gov/gene/$1/ortholog
 ncbiprotein:
   description: The Protein database is a collection of sequences from several sources,
     including translations from annotated coding regions in GenBank, RefSeq and TPA,
@@ -37454,6 +37508,11 @@ nlx.inv:
   pattern: ^\d+$
   preferred_prefix: nlx.inv
   repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   synonyms:
   - NLXINV
   twitter: SciCrunch
@@ -37680,6 +37739,7 @@ nmdc:
     data exploration and discovery through a collaborative integrative data science
     ecosystem.
   example: y3ax-8bq3-60
+  github_request_issue: 130
   homepage: https://microbiomedata.org/
   keywords:
   - microbiome
@@ -39943,6 +40003,7 @@ omon:
     orcid: 0009-0001-6787-3995
   description: The new national clinical trials registry of the Netherlands
   example: '53367'
+  github_request_issue: 1157
   homepage: https://onderzoekmetmensen.nl/en
   logo: https://onderzoekmetmensen.nl/themes/custom/trialregister/logo.svg
   name: Overview of Medical Research in the Netherlands
@@ -43505,7 +43566,7 @@ phipo:
   rdf_uri_format: http://purl.obolibrary.org/obo/PHIPO_$1
   repository: https://github.com/PHI-base/phipo
   uri_format: http://purl.obolibrary.org/obo/PHIPO_$1
-  version: '2024-04-04'
+  version: '2024-08-29'
 phosphopoint.kinase:
   description: PhosphoPOINT is a database of the human kinase and phospho-protein
     interactome. It describes the interactions among kinases, their potential substrates
@@ -43548,10 +43609,16 @@ phosphosite.curation:
     about in vivo phosphorylation sites. This datatype refers to curation records
     that collect information extracted from specific publications.
   example: '34665743'
+  github_request_issue: 1136
   homepage: https://www.phosphosite.org
   name: PhosphoSite Curation
   pattern: ^\d+$
   preferred_prefix: phosphosite.curation
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   uri_format: https://www.phosphosite.org/curatedInfoAction.action?record=$1
 phosphosite.protein:
   description: PhosphoSite is a mammalian protein database that provides information
@@ -43593,6 +43660,7 @@ phosphosite.sitegroup:
   description: Site groups are orthologous positions in human, mouse, rat, etc. where
     phosphorylations or other PTMs occur.
   example: '447860'
+  github_request_issue: 432
   homepage: https://www.phosphosite.org
   keywords:
   - biochemistry
@@ -45047,7 +45115,7 @@ pride:
     compliant, public data repository that provides protein and peptide identifications
     together with supporting evidence. This collection references experiments and
     assays.
-  download_owl: https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+  download_owl: http://purl.obolibrary.org/obo/pride/2.1.2/pride.owl
   example: '0000006'
   homepage: https://github.com/PRIDE-Utilities/pride-ontology
   keywords:
@@ -45134,6 +45202,7 @@ pride:
   repository: https://github.com/PRIDE-Utilities/pride-ontology
   twitter: pride_ebi
   uri_format: http://purl.obolibrary.org/obo/PRIDE_$1
+  version: 2.1.2
 pride.project:
   description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
     compliant, public data repository that provides protein and peptide identifications
@@ -51072,6 +51141,7 @@ signor.relation:
   description: Identifiers for relationships between proteins and complexes, along
     with their type and provenance
   example: SIGNOR-252737
+  github_request_issue: 604
   homepage: https://signor.uniroma2.it
   keywords:
   - protein-protein interactions
@@ -56065,13 +56135,12 @@ uniprot.proteome:
   description: UniProt provides proteome sets of proteins whose genomes have been
     completely sequenced.
   example: UP000005640
+  github_request_issue: 604
   homepage: https://www.uniprot.org/proteomes
   name: UniProt Proteomes
   part_of: uniprot
   pattern: ^UP\d{9}$
   preferred_prefix: uniprot.proteome
-  references:
-  - https://github.com/biopragmatics/bioregistry/pull/604
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -58615,7 +58684,7 @@ wormbase:
     uniprot: DB-0110
     wikidata: P3860
   name: WormBase
-  pattern: ^WB[A-Z][a-z]+\d+$
+  pattern: ^(CE[0-9]{5}|WB[A-Z][a-z]+\d+)$
   preferred_prefix: WormBase
   providers:
   - code: agr

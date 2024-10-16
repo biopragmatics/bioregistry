@@ -831,27 +831,41 @@ class TestRegistry(unittest.TestCase):
     def test_request_issue(self):
         """Check all prefixes with a request issue have a reviewer."""
         for prefix, resource in self.registry.items():
-            if resource.github_request_issue is None:
+            if not resource.contributor:
                 continue
             with self.subTest(prefix=prefix):
-                if resource.contributor.github != "cthoyt":
+                if resource.contributor.github not in {"cthoyt", "tgbugs"}:
                     # needed to bootstrap records before there was more governance in place
                     self.assertIsNotNone(resource.reviewer)
+                    self.assertIsNotNone(
+                        resource.github_request_issue,
+                        msg="External contributions require either a GitHub issue or GitHub pull request reference",
+                    )
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
+                    resource.references or [],
+                    msg="Reference to GitHub request issue should be in its dedicated field.",
+                )
+                self.assertNotIn(
+                    f"https://github.com/biopragmatics/bioregistry/pull/{resource.github_request_issue}",
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
 
     def test_publications(self):
         """Test references and publications are sorted right."""
+        msg_fmt = (
+            "Rather than writing a {} link in the `references` list, "
+            "you should encode it in the `publications` instead. "
+            "See https://biopragmatics.github.io/bioregistry/curation/publications for help."
+        )
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 if resource.references:
                     for reference in resource.references:
-                        self.assertNotIn("doi", reference)
-                        self.assertNotIn("pubmed", reference)
-                        self.assertNotIn("pmc", reference)
+                        self.assertNotIn("doi", reference, msg=msg_fmt.format("DOI"))
+                        self.assertNotIn("pubmed", reference, msg=msg_fmt.format("PubMed"))
+                        self.assertNotIn("pmc", reference, msg_fmt.format("PMC"))
                         self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
