@@ -4,7 +4,7 @@ This folder contains various task-specific curation guides.
 
 - [Curating new providers](curation/providers)
 - [Curating new publications and references](curation/publications)
-- [Semi-automated curation workflow for new prefixes, providers, and publications](/curation/literature)
+- [Semi-automated curation workflow for new prefixes, providers, and publications](curation/literature)
 
 ## How to add new guides
 
