@@ -293,8 +293,6 @@ class Manager:
         >>> manager.parse_uri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180")  # noqa:E501
         ('ecao', '0107180')
 
-        .. todo:: IRI from bioportal
-
         IRI from native provider
 
         >>> manager.parse_uri("https://www.alzforum.org/mutations/1234")
@@ -338,8 +336,6 @@ class Manager:
 
         >>> manager.parse_uri("https://omim.org/MIM:PS214100")
         ('omim.ps', '214100')
-
-        .. todo:: IRI with weird embedding, like ones that end in .html
         """
         prefix, identifier = self.converter.parse_uri(uri)
         if prefix is None or identifier is None:
@@ -367,8 +363,6 @@ class Manager:
 
         >>> manager.compress("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_1")  # noqa:E501
         'ecao:1'
-
-        .. todo:: URI from bioportal
 
         URI from native provider
 
@@ -667,7 +661,7 @@ class Manager:
         from .record_accumulator import get_converter
 
         # first step - filter to resources that have *anything* for a URI prefix
-        # TODO maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
+        # maybe better to filter on URI format string, since bioregistry can always provide a URI prefix
         resources = [
             resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
         ]
@@ -1101,7 +1095,6 @@ class Manager:
         obo_link = self.get_obofoundry_iri(prefix, identifier)
         if obo_link is not None:
             return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
-        # TODO there must be other rules?
         return None
 
     def get_ols_iri(self, prefix: str, identifier: str) -> Optional[str]:
