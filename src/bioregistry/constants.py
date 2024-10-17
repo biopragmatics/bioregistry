@@ -33,6 +33,7 @@ METAREGISTRY_PATH = DATA_DIRECTORY / "metaregistry.json"
 COLLECTIONS_PATH = DATA_DIRECTORY / "collections.json"
 MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
 CONTEXTS_PATH = DATA_DIRECTORY / "contexts.json"
+CURATED_PAPERS_PATH = DATA_DIRECTORY / "curated_papers.tsv"
 
 BIOREGISTRY_MODULE = pystow.module("bioregistry")
 
