@@ -244,6 +244,10 @@ class Provider(BaseModel):
     first_party: Optional[bool] = Field(
         None, description="Annotates whether a provider is from the first-party organization"
     )
+    publications: Optional[List["Publication"]] = Field(
+        default=None,
+        description="A list of publications about the provider",
+    )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
@@ -1296,6 +1300,10 @@ class Resource(BaseModel):
         if self.uniprot:
             for publication in self.uniprot.get("publications", []):
                 publications.append(Publication.parse_obj(publication))
+        if self.providers:
+            for provider in self.providers:
+                if provider.publications:
+                    publications += provider.publications
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> Optional[str]:
