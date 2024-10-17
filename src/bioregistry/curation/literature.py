@@ -12,10 +12,10 @@ __all__ = [
 COLUMNS = [
     "pmid",
     "relevant",
-    "relevancy_type",
-    "pr_added",  # links back to the PR where curations were done
     "orcid",
     "date_curated",
+    "relevancy_type",
+    "pr_added",  # links back to the PR where curations were done
     "notes",
 ]
 

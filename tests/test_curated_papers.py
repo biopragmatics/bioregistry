@@ -24,7 +24,10 @@ class TestTSV(unittest.TestCase):
             self.assertIn(field, row)
 
         self.assertTrue(row["pmid"].isdigit(), msg="PubMed identifier should be an integer")
-        self.assertTrue(row["pr_added"].isdigit(), msg="Pull Request should be an integer")
+
+        # Allow pr_added to be empty
+        if row["pr_added"]:
+            self.assertTrue(row["pr_added"].isdigit(), msg="Pull Request should be an integer")
 
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
@@ -49,8 +52,10 @@ class TestTSV(unittest.TestCase):
 
         self.assertRegex(row["orcid"], ORCID_PATTERN)
 
-        self.assertFalse(row["notes"].startswith('"'))
-        self.assertFalse(row["notes"].endswith('"'))
+        # Handle None values values for notes
+        if row["notes"] is not None:
+            self.assertFalse(row["notes"].startswith('"'))
+            self.assertFalse(row["notes"].endswith('"'))
 
         # Validate date_curated format
         try:
