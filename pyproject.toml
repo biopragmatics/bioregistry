@@ -3,6 +3,22 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+reverse_relative = true
+
+# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
 [project]
 name = "bioregistry"
 version = "0.11.18-dev"
@@ -156,12 +172,6 @@ plugins = [
 [tool.doc8]
 max-line-length = 120
 
-# Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
-[tool.pytest.ini_options]
-markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-]
-
 # Coverage, see https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.run]
 branch = true
@@ -191,16 +201,6 @@ exclude_lines = [
     "def __str__",
     "def __repr__",
 ]
-
-[tool.black]
-line-length = 100
-target-version = ["py39", "py310", "py311", "py312"]
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-include_trailing_comma = true
-reverse_relative = true
 
 [tool.ruff]
 line-length = 100
