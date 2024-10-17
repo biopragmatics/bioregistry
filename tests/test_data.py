@@ -854,13 +854,18 @@ class TestRegistry(unittest.TestCase):
 
     def test_publications(self):
         """Test references and publications are sorted right."""
+        msg_fmt = (
+            "Rather than writing a {} link in the `references` list, "
+            "you should encode it in the `publications` instead. "
+            "See https://biopragmatics.github.io/bioregistry/curation/publications for help."
+        )
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 if resource.references:
                     for reference in resource.references:
-                        self.assertNotIn("doi", reference)
-                        self.assertNotIn("pubmed", reference)
-                        self.assertNotIn("pmc", reference)
+                        self.assertNotIn("doi", reference, msg=msg_fmt.format("DOI"))
+                        self.assertNotIn("pubmed", reference, msg=msg_fmt.format("PubMed"))
+                        self.assertNotIn("pmc", reference, msg_fmt.format("PMC"))
                         self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
