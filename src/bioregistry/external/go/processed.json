@@ -1448,7 +1448,8 @@
     "generic_urls": [
       "http://geneontology.org/gorefs"
     ],
-    "name": "Gene Ontology Database references"
+    "name": "Gene Ontology Database references",
+    "rdf_uri_prefix": "http://purl.obolibrary.org/obo/go/references/"
   },
   "GR": {
     "database": "GR",
@@ -2870,6 +2871,7 @@
       "https://www.ncbi.nlm.nih.gov/pubmed"
     ],
     "name": "PubMed",
+    "rdf_uri_prefix": "http://identifiers.org/pubmed/",
     "synonyms": [
       "PUBMED"
     ]
@@ -3142,6 +3144,14 @@
         "id_syntax": "S\\w+(\\.)?\\w+(\\.)?",
         "type_id": "SO:0000704",
         "type_name": "gene",
+        "url_syntax": "https://www.pombase.org/gene/[example_id]"
+      },
+      {
+        "example_id": "PomBase:SPCC548.03c.2",
+        "example_url": "https://www.pombase.org/gene/SPCC548.03c.2",
+        "id_syntax": "S\\w+(\\.)?\\w+(\\.)?\\d+",
+        "type_id": "SO:0000673",
+        "type_name": "transcript",
         "url_syntax": "https://www.pombase.org/gene/[example_id]"
       }
     ],
