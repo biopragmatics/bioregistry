@@ -52,7 +52,7 @@ class TestTSV(unittest.TestCase):
 
         self.assertRegex(row["orcid"], ORCID_PATTERN)
 
-        # Handle None values values for notes
+        # Handle None values for notes
         if row["notes"] is not None:
             self.assertFalse(row["notes"].startswith('"'))
             self.assertFalse(row["notes"].endswith('"'))
