@@ -21,7 +21,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm
+from bioregistry.utils import _norm, pydantic_dict
 
 logger = logging.getLogger(__name__)
 
@@ -893,7 +893,7 @@ class TestRegistry(unittest.TestCase):
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
-                        for key, value in publication.dict().items():
+                        for key, value in pydantic_dict(publication).items():
                             if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)

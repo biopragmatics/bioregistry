@@ -27,6 +27,7 @@ from bioregistry.schema_utils import (
 )
 
 from .utils import FORMAT_MAP, _autocomplete, _search
+from ..utils import pydantic_dict
 
 __all__ = [
     "api_router",
@@ -54,7 +55,8 @@ class YAMLResponse(Response):
     def render(self, content: Any) -> bytes:
         """Render content as YAML."""
         if isinstance(content, BaseModel):
-            content = content.dict(
+            content = pydantic_dict(
+                content,
                 exclude_none=True,
                 exclude_unset=True,
             )

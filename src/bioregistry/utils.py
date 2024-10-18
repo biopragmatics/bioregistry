@@ -246,6 +246,7 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
 
 
 def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
+    """Convert a pydantic model to a dict."""
     if PYDANTIC_1:
         return x.dict(**kwargs)
     else:
@@ -256,6 +257,7 @@ M = TypeVar("M", bound=BaseModel)
 
 
 def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
+    """Convert a dict to a pydantic model."""
     if PYDANTIC_1:
         return m.parse_obj(d)
     else:
