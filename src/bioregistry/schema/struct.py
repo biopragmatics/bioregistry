@@ -39,7 +39,14 @@ from bioregistry.constants import (
     URI_FORMAT_KEY,
 )
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
+from bioregistry.utils import (
+    curie_to_str,
+    deduplicate,
+    pydantic_dict,
+    pydantic_parse,
+    removeprefix,
+    removesuffix,
+)
 
 try:
     from typing import Literal  # type:ignore
@@ -645,7 +652,7 @@ class Resource(BaseModel):
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
-        return self.dict().get(metaprefix) or dict()
+        return pydantic_dict(self).get(metaprefix) or dict()
 
     def get_mapped_prefix(self, metaprefix: str) -> Optional[str]:
         """Get the prefix for the given external.
@@ -670,7 +677,7 @@ class Resource(BaseModel):
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
-        rv = self.dict().get(key)
+        rv = pydantic_dict(self).get(key)
         if rv is not None:
             return rv
         if isinstance(metaprefixes, str):
@@ -1295,7 +1302,7 @@ class Resource(BaseModel):
                 )
         if self.uniprot:
             for publication in self.uniprot.get("publications", []):
-                publications.append(Publication.parse_obj(publication))
+                publications.append(pydantic_parse(Publication, publication))
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> Optional[str]:
@@ -2852,7 +2859,7 @@ DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
 
 def deduplicate_publications(publications: Iterable[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    records = [publication.dict(exclude_none=True) for publication in publications]
+    records = [pydantic_dict(publication, exclude_none=True) for publication in publications]
     records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)
     return [Publication(**record) for record in records_deduplicated]
 

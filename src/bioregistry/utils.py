@@ -14,18 +14,21 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
+    TypeVar,
     Union,
     cast,
 )
 
 import click
 import requests
+from pydantic import BaseModel
 from pystow.utils import get_hashes
 
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
     METAREGISTRY_YAML_PATH,
+    PYDANTIC_1,
     REGISTRY_YAML_PATH,
 )
 from .version import get_version
@@ -240,3 +243,20 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
     return sorted(rv, key=_key, reverse=True)
+
+
+def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
+    if PYDANTIC_1:
+        return x.dict(**kwargs)
+    else:
+        return x.model_dump(**kwargs)
+
+
+M = TypeVar("M", bound=BaseModel)
+
+
+def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
+    if PYDANTIC_1:
+        return m.parse_obj(d)
+    else:
+        return m.model_validate(d)

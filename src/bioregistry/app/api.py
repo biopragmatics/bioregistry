@@ -135,7 +135,7 @@ def get_resources(
 def get_resource(
     request: Request,
     prefix: str = Path(
-        title="Prefix", description="The Bioregistry prefix for the entry", example="doid"
+        title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
     ),
     accept: Optional[str] = ACCEPT_HEADER,
     format: Optional[str] = FORMAT_QUERY,
@@ -185,7 +185,7 @@ def get_metaresources(
 METAPREFIX_PATH = Path(
     title="Metaprefix",
     description="The Bioregistry metaprefix for the external registry",
-    example="n2t",
+    examples=["n2t"],
 )
 
 
@@ -353,7 +353,7 @@ def get_collection(
     identifier: str = Path(
         title="Collection Identifier",
         description="The 7-digit collection identifier",
-        example="0000001",
+        examples=["0000001"],
     ),
     accept: Optional[str] = ACCEPT_HEADER,
     format: Optional[str] = FORMAT_QUERY,
@@ -402,7 +402,7 @@ def get_contexts(
 @api_router.get("/context/{identifier}", response_model=Context, tags=["context"])
 def get_context(
     request: Request,
-    identifier: str = Path(title="Context Key", description="The context key", example="obo"),
+    identifier: str = Path(title="Context Key", description="The context key", examples=["obo"]),
 ):
     """Get a context."""
     context = request.app.manager.contexts.get(identifier)
