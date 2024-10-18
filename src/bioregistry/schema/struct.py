@@ -26,7 +26,6 @@ from typing import (
     cast,
 )
 
-import pydantic.schema
 from pydantic import BaseModel, Field, PrivateAttr
 
 from bioregistry import constants as brc
