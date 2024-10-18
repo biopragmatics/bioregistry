@@ -291,6 +291,13 @@ class Publication(BaseModel):
                 return f"https://bioregistry.io/{prefix}:{identifier}"
         raise ValueError("no fields were full")
 
+    def _matches_any_field(self, other: "Publication") -> bool:
+        return (
+            (self.pubmed is not None and self.pubmed == other.pubmed)
+            or (self.doi is not None and self.doi == other.doi)
+            or (self.pmc is not None and self.pmc == other.pmc)
+        )
+
 
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
