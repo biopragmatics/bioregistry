@@ -246,7 +246,7 @@ class Provider(BaseModel):
     )
     publications: Optional[List["Publication"]] = Field(
         default=None,
-        description="A list of publications about the provider",
+        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
     )
 
     def resolve(self, identifier: str) -> str:
