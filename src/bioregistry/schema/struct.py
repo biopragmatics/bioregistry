@@ -244,6 +244,10 @@ class Provider(BaseModel):
     first_party: Optional[bool] = Field(
         None, description="Annotates whether a provider is from the first-party organization"
     )
+    publications: Optional[List["Publication"]] = Field(
+        default=None,
+        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
+    )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
@@ -286,6 +290,13 @@ class Publication(BaseModel):
             if identifier is not None:
                 return f"https://bioregistry.io/{prefix}:{identifier}"
         raise ValueError("no fields were full")
+
+    def _matches_any_field(self, other: "Publication") -> bool:
+        return (
+            (self.pubmed is not None and self.pubmed == other.pubmed)
+            or (self.doi is not None and self.doi == other.doi)
+            or (self.pmc is not None and self.pmc == other.pmc)
+        )
 
 
 class Resource(BaseModel):
@@ -1296,6 +1307,8 @@ class Resource(BaseModel):
         if self.uniprot:
             for publication in self.uniprot.get("publications", []):
                 publications.append(Publication.parse_obj(publication))
+        for provider in self.providers or []:
+            publications.extend(provider.publications or [])
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> Optional[str]:
