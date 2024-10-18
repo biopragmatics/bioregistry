@@ -1307,10 +1307,8 @@ class Resource(BaseModel):
         if self.uniprot:
             for publication in self.uniprot.get("publications", []):
                 publications.append(Publication.parse_obj(publication))
-        if self.providers:
-            for provider in self.providers:
-                if provider.publications:
-                    publications += provider.publications
+        for provider in self.providers or []:
+            publications.extend(provider.publications or [])
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> Optional[str]:
