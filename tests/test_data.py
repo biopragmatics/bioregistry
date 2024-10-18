@@ -34,9 +34,9 @@ class TestRegistry(unittest.TestCase):
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
 
-    @unittest.skipUnless(
+    @unittest.skipIf(
         PYDANTIC_1,
-        reason="Only run this test on Pydantic 1, until feature parity is simple enough.",
+        reason="Only run this test on Pydantic 2, since the schema slightly changed",
     )
     def test_schema(self):
         """Test the schema is up-to-date."""
