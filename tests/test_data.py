@@ -40,8 +40,8 @@ class TestRegistry(unittest.TestCase):
     )
     def test_schema(self):
         """Test the schema is up-to-date."""
-        actual = SCHEMA_PATH.read_text()
-        expected = json.dumps(get_json_schema(), indent=2)
+        actual = json.loads(SCHEMA_PATH.read_text())
+        expected = get_json_schema()
         self.assertEqual(expected, actual)
 
     def test_lint(self):
