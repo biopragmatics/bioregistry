@@ -382,6 +382,22 @@
           "default": null,
           "description": "Annotates whether a provider is from the first-party organization",
           "title": "First Party"
+        },
+        "publications": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Publication"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
+          "title": "Publications"
         }
       },
       "required": [
