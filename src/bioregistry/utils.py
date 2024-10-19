@@ -267,3 +267,10 @@ def pydantic_fields(m: type[M]):
     if PYDANTIC_1:
         return m.__fields__
     return m.model_fields
+
+
+def pydantic_schema(m: type[M]):
+    """Get the schema."""
+    if PYDANTIC_1:
+        return m.schema()
+    return m.model_json_schema()
