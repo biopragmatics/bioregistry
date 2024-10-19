@@ -54,7 +54,7 @@ from ..schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
-from ..utils import curie_to_str
+from ..utils import curie_to_str, pydantic_schema
 
 __all__ = [
     "ui_blueprint",
@@ -271,7 +271,7 @@ def contexts():
         "contexts.html",
         rows=manager.contexts.items(),
         formats=FORMATS,
-        schema=Context.schema(),
+        schema=pydantic_schema(Context),
     )
 
 
@@ -285,7 +285,7 @@ def context(identifier: str):
         "context.html",
         identifier=identifier,
         entry=entry,
-        schema=Context.schema()["properties"],
+        schema=pydantic_schema(Context)["properties"],
         formats=FORMATS,
     )
 
