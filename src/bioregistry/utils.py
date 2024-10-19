@@ -249,8 +249,7 @@ def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
     """Convert a pydantic model to a dict."""
     if PYDANTIC_1:
         return x.dict(**kwargs)
-    else:
-        return x.model_dump(**kwargs)
+    return x.model_dump(**kwargs)
 
 
 M = TypeVar("M", bound=BaseModel)
@@ -260,5 +259,11 @@ def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
     """Convert a dict to a pydantic model."""
     if PYDANTIC_1:
         return m.parse_obj(d)
-    else:
-        return m.model_validate(d)
+    return m.model_validate(d)
+
+
+def pydantic_fields(m: type[M]):
+    """Get the fields."""
+    if PYDANTIC_1:
+        return m.__fields__
+    return m.model_fields

@@ -21,7 +21,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, pydantic_dict
+from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +81,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = set(Resource.__fields__.keys())
+        keys = set(pydantic_fields(Resource).keys())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
