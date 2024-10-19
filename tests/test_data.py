@@ -2,6 +2,7 @@
 
 """Tests for data integrity."""
 
+import itertools as itt
 import json
 import logging
 import re
@@ -21,7 +22,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_licen
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm
+from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +82,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = set(Resource.__fields__.keys())
+        keys = set(pydantic_fields(Resource).keys())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
@@ -676,6 +677,8 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if not resource.providers:
                 continue
+
+            publications = resource.publications or []
             for provider in resource.providers:
                 with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
@@ -697,6 +700,15 @@ class TestRegistry(unittest.TestCase):
                         msg="Multiple parameters not supported. See discussion on "
                         "https://github.com/biopragmatics/bioregistry/issues/933",
                     )
+                    # check that none of the publications are duplicates of ones in the main record
+                    for publication, other in itt.product(
+                        provider.publications or [], publications
+                    ):
+                        self.assertFalse(
+                            publication._matches_any_field(other),
+                            msg=f"provider publication {publication.title} should not appear "
+                            f"in prefix publication list (appears as {other.title})",
+                        )
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
@@ -893,7 +905,7 @@ class TestRegistry(unittest.TestCase):
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
-                        for key, value in publication.dict().items():
+                        for key, value in pydantic_dict(publication).items():
                             if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)
