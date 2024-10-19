@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Test for checking the integrity of the curated_papers TSV file."""
 
 import csv
 import unittest
 from datetime import datetime
 
-# import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
 from bioregistry.curation.literature import COLUMNS, CurationRelevance
 
