@@ -16,7 +16,7 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 
 import bioregistry
 from bioregistry.constants import DOCS_DATA
-from bioregistry.utils import secho
+from bioregistry.utils import pydantic_dict, secho
 
 __all__ = [
     "main",
@@ -159,7 +159,7 @@ def main() -> None:
     database.runs.append(current_run)
     database.runs = sorted(database.runs, key=attrgetter("time"), reverse=True)
 
-    HEALTH_YAML_PATH.write_text(yaml.safe_dump(database.dict(exclude_none=True)))
+    HEALTH_YAML_PATH.write_text(yaml.safe_dump(pydantic_dict(database, exclude_none=True)))
     click.echo(f"Wrote to {HEALTH_YAML_PATH}")
 
 
