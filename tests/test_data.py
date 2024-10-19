@@ -41,8 +41,11 @@ class TestRegistry(unittest.TestCase):
     )
     def test_schema(self):
         """Test the schema is up-to-date."""
+        self.maxDiff = None
         actual = json.loads(SCHEMA_PATH.read_text())
+        self.assertIsInstance(actual, dict)
         expected = get_json_schema()
+        self.assertIsInstance(expected, dict)
         self.assertEqual(expected, actual)
 
     def test_lint(self):

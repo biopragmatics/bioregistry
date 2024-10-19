@@ -2807,7 +2807,7 @@ def _allowed_uri_format(rv: str) -> bool:
 
 
 @lru_cache(maxsize=1)
-def get_json_schema():
+def get_json_schema() -> dict[str, Any]:
     """Get the JSON schema for the bioregistry."""
     if PYDANTIC_1:
         raise NotImplementedError
