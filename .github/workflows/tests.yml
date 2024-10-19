@@ -67,6 +67,8 @@ jobs:
             python-version: 3.9
           - python-version: 3.9
             pydantic: "pydantic1"
+          - os: windows-latest
+            pydantic: "pydantic1"
     steps:
       - uses: actions/checkout@v4
       - name: "Install uv"
