@@ -2,6 +2,7 @@
 
 """Tests for data integrity."""
 
+import itertools as itt
 import json
 import logging
 import re
@@ -676,6 +677,8 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if not resource.providers:
                 continue
+
+            publications = resource.publications or []
             for provider in resource.providers:
                 with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
@@ -697,6 +700,15 @@ class TestRegistry(unittest.TestCase):
                         msg="Multiple parameters not supported. See discussion on "
                         "https://github.com/biopragmatics/bioregistry/issues/933",
                     )
+                    # check that none of the publications are duplicates of ones in the main record
+                    for publication, other in itt.product(
+                        provider.publications or [], publications
+                    ):
+                        self.assertFalse(
+                            publication._matches_any_field(other),
+                            msg=f"provider publication {publication.title} should not appear "
+                            f"in prefix publication list (appears as {other.title})",
+                        )
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
