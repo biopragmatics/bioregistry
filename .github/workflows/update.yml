@@ -76,7 +76,7 @@ jobs:
       - name: bump2version patch
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
-          tox -e bumpversion patch
+          tox -e bumpversion -- patch
       - name: Push changes
         if: steps.update.outputs.BR_UPDATED == 'true'
         uses: ad-m/github-push-action@master
