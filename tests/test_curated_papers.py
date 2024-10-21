@@ -20,11 +20,14 @@ class TestTSV(unittest.TestCase):
         for field in COLUMNS:
             self.assertIn(field, row)
 
-        self.assertTrue(row["pmid"].isdigit(), msg="PubMed identifier should be an integer")
+        self.assertTrue(row["pubmed"].isdigit(), msg="PubMed identifier should be an integer")
 
-        # Allow pr_added to be empty
-        if row["pr_added"]:
-            self.assertTrue(row["pr_added"].isdigit(), msg="Pull Request should be an integer")
+        pr_message = (
+            "Please include the pull request in which the curation row "
+            "was added, written as an integer."
+        )
+        self.assertIsNotNone(row["pr_added"], msg=pr_message)
+        self.assertTrue(row["pr_added"].isdigit(), msg=pr_message)
 
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
