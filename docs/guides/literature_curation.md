@@ -72,7 +72,112 @@ One common mistake is labeling an existing resource as a `new_prefix` or `new_pr
 
 Not every paper mentioning biological resources is relevant to the Bioregistry. Papers that discuss databases not focused on identifier information, for example, should be marked as `not_identifiers_resource`. Similarly, entirely unrelated papers should be tagged as `irrelevant_other`. Being clear on the scope of the Bioregistry’s focus can help avoid curating irrelevant materials.
 
+## Step-by-Step Example to Curating a New Prefix
+
+The following step-by-step example is for the resource [SCancerRNA](http://www.scancerrna.com/) based on the publication [SCancerRNA: Expression at the Single-cell Level and Interaction Resource of Non-coding RNA Biomarkers for Cancers](https://pubmed.ncbi.nlm.nih.gov/39341795/).
+
+1. Assess the Database for Identifier Creation
+
+Begin by exploring the database to determine if it generates new identifiers for life sciences entities. This is an investigative process, and there isn’t a one-size-fits-all approach; however, most databases typically have a Browse or Search section, which serves as a good starting point. Take your time to navigate various categories to confirm that the resource creates relevant identifiers. Once verified, proceed to fill out the TSV file with the preliminary information you gathered.
+
+| pmid      | relevant | orcid               | date_curated | relevancy_type | pr_added | notes                                           |
+|-----------|----------|---------------------|--------------|----------------|----------|-------------------------------------------------|
+| 39341795  | 1        | 0009-0009-5240-7463 | 2024-10-19   | new_prefix     | 1215     | identifiers of non-coding RNA biomarkers for cancers |
+
+2. Collect Essential Information
+
+Gather easily accessible information for the resource, such as:
+
+- Name and Email for a point of contact (github and orcid if possible as well)
+- Example identifier
+- Homepage URL
+- Name of the resource
+- Publication information (such as PubMed ID, DOI, title, year)
+
+This data will be necessary for filling out the Bioregistry record.
+
+3. Write a Brief Description
+
+Create a concise description that explains what kind of entities the resource makes identifiers for and its general purpose. 
+
+4. Write a Regex Pattern
+
+Examine the format of the identifiers used by the resource and write a regex pattern to validate this format. It’s better to create a pattern that is somewhat flexible to accommodate potential future identifier additions.
+
+5. Update `bioregistry.json` 
 
 
-## Example curation
+6. Submit a Pull Request
 
+Submit a pull request with the changes you made to both the TSV file and the `bioregistry.json` file. Make sure the PR includes all necessary updates
+
+
+## Example Prefix Curation with Multiple Semantic Spaces
+
+In this example, two prefixes have been curated from the Asteraceae Genome Database (AGD), based on the publication [Asteraceae Genome Database: A Comprehensive Platform for Asteraceae Genomics](https://pmc.ncbi.nlm.nih.gov/articles/PMC11366637/). 
+
+The dot notation is used to indicate that both `asteraceaegd.genome` and `asteraceaegd.plant` are part of the same overarching resource (AGD), but each prefix represents a distinct semantic space:
+
+- `asteraceaegd.genome` focuses on the genomic information for Asteraceae species.
+- `asteraceaegd.plant` focuses on the broader phenotypic and genetic data about Asteraceae plants.
+
+By curating separate prefixes for each semantic space, the Bioregistry ensures clear and precise representation of the different types of data provided by the AGD. This approach allows users to distinguish between the different kinds of identifiers and the types of biological information they refer to within the same database.
+
+```json
+"asteraceaegd.genome": {
+    "contact": {
+      "email": "greatchen@cdutcm.edu.cn",
+      "name": "Wei Chen"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "The AGD is an integrated database resource dedicated to collecting the genomic-related data of the Asteraceae family. This collection refers to the genomic data of Asteraceae species.",
+    "example": "0002",
+    "github_request_issue": 1214,
+    "homepage": "https://cbcb.cdutcm.edu.cn/AGD/",
+    "name": "Asteraceae Genome Database",
+    "pattern": "^\\d{4}$",
+    "publications": [
+      {
+        "doi": "10.3389/fpls.2024.1445365",
+        "pmc": "PMC11366637",
+        "pubmed": "39224843",
+        "title": "Asteraceae genome database: a comprehensive platform for Asteraceae genomics",
+        "year": 2024
+      }
+    ],
+    "uri_format": "https://cbcb.cdutcm.edu.cn/AGD/genome/details/?id=$1"
+  },
+"asteraceaegd.plant": {
+    "contact": {
+      "email": "greatchen@cdutcm.edu.cn",
+      "name": "Wei Chen"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "The AGD is an integrated database resource dedicated to collecting the genomic-related data of the Asteraceae family. This collections refers to the broader phenotypic and genetic resources of Asteraceae plants.",
+    "example": "0016",
+    "github_request_issue": 1214,
+    "homepage": "https://cbcb.cdutcm.edu.cn/AGD/",
+    "name": "Asteraceae Genome Database",
+    "pattern": "^\\d{4}$",
+    "publications": [
+      {
+        "doi": "10.3389/fpls.2024.1445365",
+        "pmc": "PMC11366637",
+        "pubmed": "39224843",
+        "title": "Asteraceae genome database: a comprehensive platform for Asteraceae genomics",
+        "year": 2024
+      }
+    ],
+    "uri_format": "https://cbcb.cdutcm.edu.cn/AGD/plant/details/?id=$1"
+  },
+```
