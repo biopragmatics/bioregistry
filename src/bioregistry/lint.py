@@ -18,7 +18,7 @@ from bioregistry.schema_utils import (
 
 
 def _publication_sort_key(p: Publication) -> tuple[int, str, str]:
-    return p.year or 0, (p.title or "").casefold(), p.get_url()
+    return -(p.year or 0), (p.title or "").casefold(), p.get_url()
 
 
 @click.command()
