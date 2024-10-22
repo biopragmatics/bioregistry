@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for data integrity."""
 
 import itertools as itt
@@ -8,8 +6,8 @@ import logging
 import re
 import unittest
 from collections import defaultdict
+from collections.abc import Mapping
 from textwrap import dedent
-from typing import Mapping
 
 import curies
 import rdflib
@@ -854,10 +852,20 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 if resource.contributor.github not in {"cthoyt", "tgbugs"}:
                     # needed to bootstrap records before there was more governance in place
-                    self.assertIsNotNone(resource.reviewer)
+                    self.assertIsNotNone(
+                        resource.reviewer,
+                        msg="""
+
+    Your contribution is missing the `reviewer` key.
+
+    Please ping @biopragmatics/bioregistry-reviewers on your
+    pull request to get a reviewer to finalize your PR.
+    """,
+                    )
                     self.assertIsNotNone(
                         resource.github_request_issue,
-                        msg="External contributions require either a GitHub issue or GitHub pull request reference",
+                        msg="External contributions require either a GitHub issue or GitHub pull "
+                        "request reference in the `github_request_issue` key.",
                     )
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",

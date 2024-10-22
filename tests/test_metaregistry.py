@@ -10,7 +10,7 @@ import bioregistry
 from bioregistry import manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
-from bioregistry.utils import pydantic_dict, pydantic_fields, pydantic_parse
+from bioregistry.utils import pydantic_dict, pydantic_fields
 
 
 class TestMetaregistry(unittest.TestCase):
