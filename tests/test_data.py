@@ -871,6 +871,7 @@ class TestRegistry(unittest.TestCase):
                 )
 
     def assert_publication_identifiers(self, publication: Publication) -> None:
+        """Test identifiers follow pre-set rules."""
         if publication.doi:
             # DOIs are case insensitive, so standardize to lowercase in bioregistry
             self.assertEqual(publication.doi.lower(), publication.doi)
