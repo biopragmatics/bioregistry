@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for data integrity."""
 
 import itertools as itt
@@ -8,8 +6,8 @@ import logging
 import re
 import unittest
 from collections import defaultdict
+from collections.abc import Mapping
 from textwrap import dedent
-from typing import Mapping
 
 import curies
 import rdflib
@@ -20,7 +18,12 @@ from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
-from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
+from bioregistry.schema.struct import (
+    SCHEMA_PATH,
+    Attributable,
+    Publication,
+    get_json_schema,
+)
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
@@ -709,6 +712,7 @@ class TestRegistry(unittest.TestCase):
                             msg=f"provider publication {publication.title} should not appear "
                             f"in prefix publication list (appears as {other.title})",
                         )
+                        self.assert_publication_identifiers(publication)
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
@@ -848,10 +852,20 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 if resource.contributor.github not in {"cthoyt", "tgbugs"}:
                     # needed to bootstrap records before there was more governance in place
-                    self.assertIsNotNone(resource.reviewer)
+                    self.assertIsNotNone(
+                        resource.reviewer,
+                        msg="""
+
+    Your contribution is missing the `reviewer` key.
+
+    Please ping @biopragmatics/bioregistry-reviewers on your
+    pull request to get a reviewer to finalize your PR.
+    """,
+                    )
                     self.assertIsNotNone(
                         resource.github_request_issue,
-                        msg="External contributions require either a GitHub issue or GitHub pull request reference",
+                        msg="External contributions require either a GitHub issue or GitHub pull "
+                        "request reference in the `github_request_issue` key.",
                     )
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
@@ -863,6 +877,17 @@ class TestRegistry(unittest.TestCase):
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+
+    def assert_publication_identifiers(self, publication: Publication) -> None:
+        """Test identifiers follow pre-set rules."""
+        if publication.doi:
+            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+            self.assertEqual(publication.doi.lower(), publication.doi)
+            self.assertRegex(publication.doi, r"^10.\d{2,9}/.*$")
+        if publication.pubmed:
+            self.assertRegex(publication.pubmed, r"^\d+$")
+        if publication.pmc:
+            self.assertRegex(publication.pmc, r"^PMC\d+$")
 
     def test_publications(self):
         """Test references and publications are sorted right."""
@@ -898,9 +923,7 @@ class TestRegistry(unittest.TestCase):
                                 )
                             ),
                         )
-                        if publication.doi:
-                            # DOIs are case insensitive, so standardize to lowercase in bioregistry
-                            self.assertEqual(publication.doi.lower(), publication.doi)
+                        self.assert_publication_identifiers(publication)
 
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
