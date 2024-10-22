@@ -58,19 +58,19 @@ modifications to the data files in the Bioregistry repository.
 
 New curators may encounter some common challenges when reviewing papers and curating data. Below are a few mistakes to be aware of, along with tips on how to avoid them:
 
-1. Confusing Databases with Semantic Spaces
+**1. Confusing Databases with Semantic Spaces**
 
 One common mistake is focusing on describing the database rather than the semantic space it organizes. A database provides structured data, such as identifiers, while a semantic space organizes entities and their relationships within a conceptual framework.
 
 When curating a resource, the Bioregistry record should describe the semantic space, that is, the entities and relationships the resource represents rather than the database itself. Explore the resource to identify multiple potential semantic spaces and curate separate prefixes for each entity type if necessary. The goal is to capture how the resource organizes and relates concepts, not just the data it holds.
 
-3. Mislabeling Existing Resources as New
+**2. Mislabeling Existing Resources as New**
 
-One common mistake is labeling an existing resource as a new prefix or provider. Before assigning a new_prefix or new_provider tag, first check if the resource is already listed in the Bioregistry. If the resource exists, consider whether the paper might be introducing a new publication associated with that resource, rather than a completely new entry. This prevents duplicate entries for existing resources.
+One common mistake is labeling an existing resource as a `new_prefix` or `new_provider`. Before curating a `new_prefix` or `new_provider`, first check if the resource is already listed in the Bioregistry. If the resource exists, consider whether the paper might be introducing a `new_publication` associated with that resource, rather than a completely new entry. This prevents duplicate entries for existing resources.
 
-4. Misunderstanding the Scope of Irrelevant Information
+**3. Misunderstanding the Scope of Irrelevant Information**
 
-Not every paper mentioning biological resources is relevant to the Bioregistry. Papers that discuss databases not focused on identifier information, for example, should be marked as not_identifiers_resource. Similarly, entirely unrelated papers should be tagged as irrelevant_other. Being clear on the scope of the Bioregistry’s focus can help avoid curating irrelevant materials.
+Not every paper mentioning biological resources is relevant to the Bioregistry. Papers that discuss databases not focused on identifier information, for example, should be marked as `not_identifiers_resource`. Similarly, entirely unrelated papers should be tagged as `irrelevant_other`. Being clear on the scope of the Bioregistry’s focus can help avoid curating irrelevant materials.
 
 
 
