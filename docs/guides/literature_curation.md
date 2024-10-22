@@ -11,10 +11,10 @@ curation. Each month, the model produces a ranked list of papers based on their 
 papers are relevant for expanding the Bioregistry in at least three ways:
 
 1. As a **new prefix** for a resource providing primary identifiers,
-2. As a **provider** for resolving existing identifiers,
+2. As a **new provider** for resolving existing identifiers,
 3. As a **new publication** related to an existing prefix in the Bioregistry.
 
-This guide provides a working table of relevancy_type tags, which are used to classify the relevance of each paper.
+This guide provides a working table of `relevancy_type` tags, which are used to classify the relevance of each paper.
 Curators can use these tags to categorize papers during the review process. The tags are part of the
 following [TSV file]( https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/curated_papers.tsv).
 These updates help retrain the model, improving its accuracy over time.
@@ -34,7 +34,7 @@ reviewing a paper, curators should update the TSV file with the following inform
 
 ## Relevancy Type Table
 
-This table of `relevancy_type` tags is continuously evolving as new papers are evaluated.
+This table of `relevancy_type` tags is continuously evolving as new papers are evaluated and is subject to change in the future.
 
 | Key                      | Definition                                                                |
 |--------------------------|---------------------------------------------------------------------------|
@@ -46,12 +46,6 @@ This table of `relevancy_type` tags is continuously evolving as new papers are e
 | existing                 | An existing entry in the bioregistry                                      |
 | unclear                  | Not clear how to curate in the bioregistry, follow up discussion required |
 | irrelevant_other         | Completely unrelated information                                          |
-
-## Curation and Data Synchronization
-
-When curators add rows to the curation TSV file, these entries should correspond to specific changes made in the
-Bioregistry data files. Each pull request should encompass both the updates to the TSV file and the relevant
-modifications to the data files in the Bioregistry repository.
 
 
 ## Common Mistakes
@@ -66,17 +60,23 @@ When curating a resource, the Bioregistry record should describe the semantic sp
 
 **2. Mislabeling Existing Resources as New**
 
-One common mistake is labeling an existing resource as a `new_prefix` or `new_provider`. Before curating a `new_prefix` or `new_provider`, first check if the resource is already listed in the Bioregistry. If the resource exists, consider whether the paper might be introducing a `new_publication` associated with that resource, rather than a completely new entry. This prevents duplicate entries for existing resources.
+Another common mistake is labeling an `existing` resource as a `new_prefix` or `new_provider`. Before curating a `new_prefix` or `new_provider`, first check if the resource is already listed in the Bioregistry. If the resource exists, consider whether the paper might be introducing a `new_publication` associated with that resource, rather than a completely new entry. This prevents duplicate entries for existing resources.
 
 **3. Misunderstanding the Scope of Irrelevant Information**
 
 Not every paper mentioning biological resources is relevant to the Bioregistry. Papers that discuss databases not focused on identifier information, for example, should be marked as `not_identifiers_resource`. Similarly, entirely unrelated papers should be tagged as `irrelevant_other`. Being clear on the scope of the Bioregistry’s focus can help avoid curating irrelevant materials.
 
+## Curation and Data Synchronization
+
+When curators add rows to the curation TSV file, these entries should correspond to specific changes made in the
+Bioregistry data files. Each pull request should encompass both the updates to the TSV file and the relevant
+modifications to the data files in the Bioregistry repository.
+
 ## Step-by-Step Example to Curating a New Prefix
 
 The following step-by-step example is for the resource [SCancerRNA](http://www.scancerrna.com/) based on the publication [SCancerRNA: Expression at the Single-cell Level and Interaction Resource of Non-coding RNA Biomarkers for Cancers](https://pubmed.ncbi.nlm.nih.gov/39341795/).
 
-1. Assess the Database for Identifier Creation
+**1. Assess the Database for Identifier Creation**
 
 Begin by exploring the database to determine if it generates new identifiers for life sciences entities. This is an investigative process, and there isn’t a one-size-fits-all approach; however, most databases typically have a Browse or Search section, which serves as a good starting point. Take your time to navigate various categories to confirm that the resource creates relevant identifiers. Once verified, proceed to fill out the TSV file with the preliminary information you gathered.
 
@@ -84,32 +84,63 @@ Begin by exploring the database to determine if it generates new identifiers for
 |-----------|----------|---------------------|--------------|----------------|----------|-------------------------------------------------|
 | 39341795  | 1        | 0009-0009-5240-7463 | 2024-10-19   | new_prefix     | 1215     | identifiers of non-coding RNA biomarkers for cancers |
 
-2. Collect Essential Information
+**2. Collect Essential Information**
 
 Gather easily accessible information for the resource, such as:
 
-- Name and Email for a point of contact (github and orcid if possible as well)
+- Name and Email for a point of contact (github and ORCID if possible as well)
 - Example identifier
 - Homepage URL
 - Name of the resource
 - Publication information (such as PubMed ID, DOI, title, year)
+- URI format to resolve identifiers
 
 This data will be necessary for filling out the Bioregistry record.
 
-3. Write a Brief Description
+**3. Write a Brief Description**
 
 Create a concise description that explains what kind of entities the resource makes identifiers for and its general purpose. 
 
-4. Write a Regex Pattern
+**4. Write a Regex Pattern**
 
 Examine the format of the identifiers used by the resource and write a regex pattern to validate this format. It’s better to create a pattern that is somewhat flexible to accommodate potential future identifier additions.
 
-5. Update `bioregistry.json` 
+**5. Update `bioregistry.json`** 
 
+```json
+"scancerna": {
+    "contact": {
+      "email": "zty2009@hit.edu.cn",
+      "name": "Tianyi Zhao",
+      "orcid": "0000-0001-7352-2959"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "SCancerRNA provides identifiers for non-coding RNA biomarkers, including long ncRNA, microRNA, PIWI-interacting RNA, small nucleolar RNA, and circular RNA, with data on their differential expression at the cellular level in cancer.",
+    "example": "9530",
+    "github_request_issue": 1215,
+    "homepage": "http://www.scancerrna.com/",
+    "name": "SCancerRNA",
+    "pattern": "^\\d+$",
+    "publications": [
+      {
+        "doi": "10.1093/gpbjnl/qzae023",
+        "pubmed": "39341795",
+        "title": "SCancerRNA: Expression at the Single-cell Level and Interaction Resource of Non-coding RNA Biomarkers for Cancers",
+        "year": 2024
+      }
+    ],
+    "uri_format": "http://www.scancerrna.com/toDetail?id=$1"
+  },
+```
 
-6. Submit a Pull Request
+**6. Submit a Pull Request**
 
-Submit a pull request with the changes you made to both the TSV file and the `bioregistry.json` file. Make sure the PR includes all necessary updates
+Submit a pull request with the changes you made to both the TSV file and the `bioregistry.json` file. Make sure the PR includes all necessary updates.
 
 
 ## Example Prefix Curation with Multiple Semantic Spaces
