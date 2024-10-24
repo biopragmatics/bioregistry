@@ -1,8 +1,8 @@
 # Bioregisty Data
 
 This is the folder that holds the manually curated, single source of truth JSON
-files that power the Bioregistry. It also has a directory `external/`
-where the processed content from external registries gets stored.
+files that power the Bioregistry. It also has a directory `external/` where the
+processed content from external registries gets stored.
 
 ## Main Database Files
 
@@ -17,9 +17,9 @@ goals:
 3. Enable overriding of metadata from external registries when they are wrong
 
 All edits to the registry should be made through this file. However, you'll
-notice that for some entries, there are no top-level fields like "name". This
-is because the associated Python package for the Bioregistry has logic baked in
-for accessing metadata through the mapped registries. This reduces the curation
+notice that for some entries, there are no top-level fields like "name". This is
+because the associated Python package for the Bioregistry has logic baked in for
+accessing metadata through the mapped registries. This reduces the curation
 burden and enables the Bioregistry to benefit from upstream changes in external
 registries.
 

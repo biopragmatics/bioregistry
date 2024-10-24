@@ -5,8 +5,8 @@ permalink: /curation/publications
 ---
 
 The example below shows a subset of the record for
-[3D Metabolites (3dmet)](https://bioregistry.io/3dmet) that highlights the `publications` list.
-Note that each entry is a dictionary with several parts:
+[3D Metabolites (3dmet)](https://bioregistry.io/3dmet) that highlights the
+`publications` list. Note that each entry is a dictionary with several parts:
 
 1. `title` (required) - the title of the paper
 2. `year` (highly recommended) - the year of publication of the paper
@@ -33,11 +33,12 @@ Note that each entry is a dictionary with several parts:
   },
 ```
 
-Similarly, there are URL references that are not _publications_ that are worth curating. These can be
-stored in the `references` list. For example, the 
-[Registry of Toxic Effects of Chemical Substances (rtecs)](https://bioregistry.io/rtecs) entry appears in the
-Bioregistry because of its usage, but it is hard to find information on the internet about it. Therefore, the
-references list is perfect for storing references to PDFs and webpages that describe the resource.
+Similarly, there are URL references that are not _publications_ that are worth
+curating. These can be stored in the `references` list. For example, the
+[Registry of Toxic Effects of Chemical Substances (rtecs)](https://bioregistry.io/rtecs)
+entry appears in the Bioregistry because of its usage, but it is hard to find
+information on the internet about it. Therefore, the references list is perfect
+for storing references to PDFs and webpages that describe the resource.
 
 ```json
 "rtecs": {
@@ -60,17 +61,23 @@ What else is good to keep track of in the references list:
 
 1. Bioregistry issue or pull requests about the resource
 2. Links to webpages describing the identifier resource
-3. Links to discussions on Slack or other platforms (keeping in mind links might not last forever)
+3. Links to discussions on Slack or other platforms (keeping in mind links might
+   not last forever)
 4. Any other context that's useful for a Bioregistry reader
 
 ## Why Should I Curate Publications and References?
 
-1. They give additional context for Bioregistry readers who want to know more about the paper
-2. They make it easier to attribute usage of identifiers from a given resource to its authors
-3. They enable global landscape analysis of when and where identifier resources are being made. The following image is
-   automatically regenerated with each Bioregistry update:
+1. They give additional context for Bioregistry readers who want to know more
+   about the paper
+2. They make it easier to attribute usage of identifiers from a given resource
+   to its authors
+3. They enable global landscape analysis of when and where identifier resources
+   are being made. The following image is automatically regenerated with each
+   Bioregistry update:
 
    ![](https://raw.githubusercontent.com/biopragmatics/bioregistry/refs/heads/main/docs/img/bibliography_years.svg)
-4. They support the training of a machine learning for semi-automated curation of additional literature. See
-   this [talk](https://docs.google.com/presentation/d/1h2IajyGkUxUPHubEi8_WE6xW6TOuOihn5zsmi4kYrrc/edit?usp=sharing)
+
+4. They support the training of a machine learning for semi-automated curation
+   of additional literature. See this
+   [talk](https://docs.google.com/presentation/d/1h2IajyGkUxUPHubEi8_WE6xW6TOuOihn5zsmi4kYrrc/edit?usp=sharing)
    from the 2022 Workshop on Prefixes, CURIEs, and IRIs.

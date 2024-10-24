@@ -3,14 +3,15 @@ layout: page
 title: Project Governance
 permalink: /governance/
 ---
+
 # Governance
 
 The goal of the Bioregistry is to enable community-driven curation and
 maintenance of a registry of prefixes and their associated metadata. This is a
-first suggestion for some minimal governance (heavily inspired
-by https://github.com/mapping-commons/SSSOM/issues/82, since that is a similar
-community-driven effort). Discussion for this governance is taking place
-on https://github.com/biopragmatics/bioregistry/issues/156.
+first suggestion for some minimal governance (heavily inspired by
+https://github.com/mapping-commons/SSSOM/issues/82, since that is a similar
+community-driven effort). Discussion for this governance is taking place on
+https://github.com/biopragmatics/bioregistry/issues/156.
 
 ## Manually Updating the Bioregistry
 
@@ -26,15 +27,15 @@ on https://github.com/biopragmatics/bioregistry/issues/156.
   https://github.com/biopragmatics/bioregistry/issues/158 and
   https://github.com/biopragmatics/bioregistry/issues/133 and the
   [contribution guidelines](CONTRIBUTING.md).
-- Attribution information for the requester and reviewer of manual updates
-  must be collected in the form of an [ORCiD identifier](https://orcid.org).
+- Attribution information for the requester and reviewer of manual updates must
+  be collected in the form of an [ORCiD identifier](https://orcid.org).
 
 ## Review Team
 
 The _Bioregistry Review Team_ is responsible for reviewing requests for new
 prefixes, merging prefixes, splitting prefixes, and updating metadata associated
-with prefixes. It is implemented as a GitHub team that has "triage"
-permissions (e.g., able to maintain issues and pull requests).
+with prefixes. It is implemented as a GitHub team that has "triage" permissions
+(e.g., able to maintain issues and pull requests).
 
 Until all of the potential update interactions have been codified with GitHub
 actions workflows, the review team is also responsible for either helping the
@@ -45,8 +46,8 @@ request directly if none has been given by the requester.
 
 - Membership to the Bioregistry Review Team is requested on the issue tracker
 - Membership to the Bioregistry Review Team is granted at the discretion of the
-  existing Bioregistry Review Team
-  using [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
+  existing Bioregistry Review Team using
+  [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
 - Members must join and participate the OBO Foundry Slack, the #prefixes
   channel, and the Review Team private chat.
 - Members must be listed alphabetically by family name [below](#members)
@@ -54,7 +55,8 @@ request directly if none has been given by the requester.
 #### Member Onboarding
 
 - Add to private channel on OBO Foundry Slack
-- Add to the GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+- Add to the GitHub
+  [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
   (note that GitHub hasn't yet enabled teams to be publicly viewed, and this
   link currently results in a 404 error)
 - Add to membership list below in alphabetical order by last name in along with
@@ -64,16 +66,16 @@ request directly if none has been given by the requester.
 
 - Members who unresponsive for 3 or more months can be removed by another member
   of the Bioregistry Review Team
-- Members who do not conduct themselves according to
-  the Bioregistry [Code of Conduct](CODE_OF_CONDUCT.md) can be suggested to be
-  removed by a member of the Bioregistry Review Team.
+- Members who do not conduct themselves according to the Bioregistry
+  [Code of Conduct](CODE_OF_CONDUCT.md) can be suggested to be removed by a
+  member of the Bioregistry Review Team.
 
 #### Member Offboarding
 
 - Remove from the private channel on OBO Foundry Slack
-- Remove from the the
-  GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
-  (note that GitHub hasn't yet enabled teams to be publicly viewed, and this 
+- Remove from the the GitHub
+  [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+  (note that GitHub hasn't yet enabled teams to be publicly viewed, and this
   link currently results in a 404 error)
 - Add the date of exit and move their name and information ot the previous
   members list.
@@ -97,15 +99,14 @@ We're a new team and don't have any yet!
 The _Core Development Team_ is responsible for maintaining the codebase
 associated with the Bioregistry, which includes the Python package, the
 Bioregistry web application, docker configurations/artifacts, and related GitHub
-repositories. It is implemented as a GitHub team that has "maintain"
-permissions (e.g., able to write to the repo as well as maintain issues and pull
-requests).
+repositories. It is implemented as a GitHub team that has "maintain" permissions
+(e.g., able to write to the repo as well as maintain issues and pull requests).
 
-Contributions to the Bioregistry code must be submitted as pull requests
-to https://github.com/biopragmatics/bioregistry. They must conform to
-the [contribution guidelines](CONTRIBUTING.md). Code contributions must be
-approved by a member of the Core Development Team as well as pass continuous
-integration tests before merging.
+Contributions to the Bioregistry code must be submitted as pull requests to
+https://github.com/biopragmatics/bioregistry. They must conform to the
+[contribution guidelines](CONTRIBUTING.md). Code contributions must be approved
+by a member of the Core Development Team as well as pass continuous integration
+tests before merging.
 
 ### Membership
 
@@ -115,8 +116,8 @@ integration tests before merging.
   Team has previously made a contribution as an external contributor (to which
   there are no requirements)
 - Membership to the Bioregistry Core Development Team is granted at the
-  discretion of the existing Bioregistry Core Development Team
-  using [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
+  discretion of the existing Bioregistry Core Development Team using
+  [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
 - Members must be listed alphabetically by family name [below](#members-1)
 
 #### Members
@@ -134,12 +135,12 @@ size, should be considered for authorship on Bioregistry papers. These
 contributions are automatically summarized at
 https://bioregistry.io/contributors.
 
-Larger external institutional contributors should be acknowledged in the 
+Larger external institutional contributors should be acknowledged in the
 following places, where appropriate:
 
-- On the [support](https://github.com/biopragmatics/bioregistry#-support) and 
-  [funding](https://github.com/biopragmatics/bioregistry#-funding) sections
-  of the repository's main README.md
+- On the [support](https://github.com/biopragmatics/bioregistry#-support) and
+  [funding](https://github.com/biopragmatics/bioregistry#-funding) sections of
+  the repository's main README.md
 - On the [acknowledgements](https://bioregistry.io/acknowledgments) page of
   https://bioregistry.io
 
@@ -153,19 +154,19 @@ it is officially in effect.
 
 This governance must updated through the following steps:
 
-1. Create an issue on the
-   Bioregistry's [issue tracker](https://github.com/biopragmatics/bioregistry/issues)
+1. Create an issue on the Bioregistry's
+   [issue tracker](https://github.com/biopragmatics/bioregistry/issues)
    describing the desired change and reasoning.
 2. Engage potential stakeholders in discussion.
 3. Solicit the Bioregistry Review Team for a review.
 4. The Bioregistry Review Team will accept changes at their discretion.
 
 This procedure doesn't apply to cosmetic or ergonomics changes, which are
-allowed to be done in a more *ad-hoc* manner. The Bioregistry Review Team may
+allowed to be done in a more _ad-hoc_ manner. The Bioregistry Review Team may
 later make explicit criteria for accepting changes to this governance.
 
 ## Partners
 
-Please see https://github.com/biopragmatics/bioregistry/issues/755
-for discussions about a governance model for partnerships between
-the Bioregistry and identifier space owners.
+Please see https://github.com/biopragmatics/bioregistry/issues/755 for
+discussions about a governance model for partnerships between the Bioregistry
+and identifier space owners.
