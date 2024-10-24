@@ -61,6 +61,7 @@ def lint():
     write_mismatches(read_mismatches())
 
     df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
+    df["pr_added"] = df["pr_added"].map(lambda x: str(int(x)) if pd.notna(x) else None)
     df = df.sort_values(["pubmed"])
     df.to_csv(CURATED_PAPERS_PATH, index=False, sep="\t")
 

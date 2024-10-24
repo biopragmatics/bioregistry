@@ -1,6 +1,5 @@
 """Test for checking the integrity of the curated_papers TSV file."""
 
-import csv
 import unittest
 from datetime import datetime
 
@@ -66,10 +65,18 @@ class TestTSV(unittest.TestCase):
     def test_tsv_file(self):
         """Tests all rows in TSV file are valid."""
         with CURATED_PAPERS_PATH.open() as tsv_file:
-            reader = csv.DictReader(tsv_file, delimiter="\t")
             pubmeds = []
-            for row, data in enumerate(reader, start=1):
-                with self.subTest(row=row, data=data):
+            header = next(tsv_file).strip("\n").split("\t")
+            self.assertEqual(header, COLUMNS, msg="header is not correct")
+            for row, line in enumerate(tsv_file, start=2):
+                with self.subTest(row=row, line=line):
+                    line = line.strip("\n").split("\t")
+                    self.assertEqual(
+                        len(COLUMNS),
+                        len(line),
+                        msg="wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
+                    )
+                    data = dict(zip(COLUMNS, line))
                     self.validate_row(data)
                     pubmeds.append(data["pubmed"])
             self.assertEqual(
