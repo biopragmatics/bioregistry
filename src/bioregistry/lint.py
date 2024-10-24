@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Linting functions."""
 
 import click
 
+from bioregistry.schema import Publication
 from bioregistry.schema_utils import (
     read_collections,
     read_contexts,
@@ -16,6 +15,10 @@ from bioregistry.schema_utils import (
     write_mismatches,
     write_registry,
 )
+
+
+def _publication_sort_key(p: Publication) -> tuple[int, str, str]:
+    return -(p.year or 0), (p.title or "").casefold(), p.get_url()
 
 
 @click.command()
@@ -38,6 +41,14 @@ def lint():
             resource.synonyms = sorted(set(resource.synonyms))
         if resource.keywords:
             resource.keywords = sorted({k.lower() for k in resource.keywords})
+
+        if resource.publications:
+            resource.publications = sorted(resource.publications, key=_publication_sort_key)
+
+        for provider in resource.providers or []:
+            if provider.publications:
+                provider.publications = sorted(provider.publications, key=_publication_sort_key)
+
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
