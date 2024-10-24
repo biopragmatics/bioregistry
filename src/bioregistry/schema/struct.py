@@ -686,10 +686,12 @@ class Resource(BaseModel):
             return None
         return self.get_mappings().get(metaprefix)
 
-    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
+    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False):
         """Get a key enriched by the given external resources' data."""
         rv = pydantic_dict(self).get(key)
         if rv is not None:
+            if provenance:
+                return rv, "bioregistry"
             return rv
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
@@ -699,7 +701,11 @@ class Resource(BaseModel):
                 raise TypeError
             rv = external.get(key)
             if rv is not None:
+                if provenance:
+                    return rv, metaprefix
                 return rv
+        if provenance:
+            return None, None
         return None
 
     def get_default_uri(self, identifier: str) -> Optional[str]:
@@ -853,8 +859,8 @@ class Resource(BaseModel):
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
-    def get_name(self) -> Optional[str]:
-        """Get the name for the given prefix, it it's available."""
+    def get_name(self, *, provenance: bool = False) -> Optional[str]:
+        """Get the name for the given prefix, if it's available."""
         return self.get_prefix_key(
             "name",
             (
@@ -877,6 +883,7 @@ class Resource(BaseModel):
                 "bartoc",
                 "lov",
             ),
+            provenance=provenance
         )
 
     def get_description(self, use_markdown: bool = False) -> Optional[str]:
