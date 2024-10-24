@@ -67,16 +67,20 @@ What else is good to keep track of in the references list:
 
 ## Publications for Databases
 
-A single database can correspond to several Bioregistry prefixes, such as in the case of KEGG,
-ChEMBL, and even smaller resources like HGNC, which has both a gene vocabulary ([`hgnc`](https://bioregistry.io/hgnc])
-and gene group vocabulary ([`hgnc.genegroup`](https://bioregistry.io/hgnc.genegroup)).
+A single database can correspond to several Bioregistry prefixes, such as in the
+case of KEGG, ChEMBL, and even smaller resources like HGNC, which has both a
+gene vocabulary ([`hgnc`](https://bioregistry.io/hgnc]) and gene group
+vocabulary ([`hgnc.genegroup`](https://bioregistry.io/hgnc.genegroup)).
 
-Publications are often made on the database level, so, therefore, if you want to curate a publication for the database,
-it usually makes sense to duplicate the publication into each prefix.
+Publications are often made on the database level, so, therefore, if you want to
+curate a publication for the database, it usually makes sense to duplicate the
+publication into each prefix.
 
-However, it's also possible that a long-standing database might have more generic publications describing the whole
-database, and specific publications describing a certain aspect. If one of the specific publications only corresponds
-to a single prefix, then use your best judgement to not duplicate it unnecessarily.
+However, it's also possible that a long-standing database might have more
+generic publications describing the whole database, and specific publications
+describing a certain aspect. If one of the specific publications only
+corresponds to a single prefix, then use your best judgement to not duplicate it
+unnecessarily.
 
 ## Why Should I Curate Publications and References?
 
