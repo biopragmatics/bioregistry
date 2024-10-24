@@ -67,6 +67,22 @@ class TestTSV(unittest.TestCase):
         """Tests all rows in TSV file are valid."""
         with CURATED_PAPERS_PATH.open() as tsv_file:
             reader = csv.DictReader(tsv_file, delimiter="\t")
+            pubmeds = []
             for row, data in enumerate(reader, start=1):
                 with self.subTest(row=row, data=data):
                     self.validate_row(data)
+                    pubmeds.append(data["pubmed"])
+            self.assertEqual(
+                sorted(pubmeds),
+                pubmeds,
+                msg=f"""
+
+    The curated papers in src/bioregistry/data/{CURATED_PAPERS_PATH.name}
+    were not sorted properly.
+
+    Please lint these files using the following commands in the console:
+
+    $ pip install tox
+    $ tox -e bioregistry-lint
+            """,
+            )

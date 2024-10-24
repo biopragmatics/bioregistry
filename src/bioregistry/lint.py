@@ -1,7 +1,9 @@
 """Linting functions."""
 
 import click
+import pandas as pd
 
+from bioregistry.constants import CURATED_PAPERS_PATH
 from bioregistry.schema import Publication
 from bioregistry.schema_utils import (
     read_collections,
@@ -57,6 +59,10 @@ def lint():
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
     write_mismatches(read_mismatches())
+
+    df = pd.read_csv(CURATED_PAPERS_PATH, sep="\t")
+    df = df.sort_values(["pubmed"])
+    df.to_csv(CURATED_PAPERS_PATH, index=False, sep="\t")
 
 
 if __name__ == "__main__":
