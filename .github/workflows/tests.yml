@@ -29,6 +29,11 @@ jobs:
         run: |
           uvx -p ${{ matrix.python-version }} --with tox-uv tox -e ${{ matrix.tox-command }}
 
+      # Inspired by https://github.com/astral-sh/uv/blob/98523e2014e9a5c69706623344026d76296e178f/.github/workflows/ci.yml#L67C1-L70C61
+      - name: "Prettier"
+        run: |
+          npx prettier --prose-wrap always --check "**/*.md"
+
   docs:
     name: Documentation
     runs-on: ubuntu-latest
