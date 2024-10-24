@@ -14,6 +14,9 @@ This folder contains various task-specific curation guides.
    for an example)
 3. Add it to the list above. Don't include a forward slash `/` in the beginning
    of the link!
+4. Make sure you run
+   `npx prettier --prose-wrap always --check "**/*.md" --write` to properly
+   format your markdown
 
 ## What makes a good guide
 
