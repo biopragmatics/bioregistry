@@ -2680,20 +2680,13 @@
   "ec-code": {
     "deprecated": false,
     "description": "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions.",
-    "homepage": "https://www.ebi.ac.uk/intenz/",
+    "homepage": "https://www.genome.jp/dbget-bin/www_bfind?enzyme",
     "id": "00000004",
     "name": "Enzyme Nomenclature",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+\\.-\\.-\\.-|\\d+\\.\\d+\\.-\\.-|\\d+\\.\\d+\\.\\d+\\.-|\\d+\\.\\d+\\.\\d+\\.(n)?\\d+$",
     "prefix": "ec-code",
     "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "KEGG Ligand Database for Enzyme Nomenclature",
-        "homepage": "https://www.genome.jp/dbget-bin/www_bfind?enzyme",
-        "name": "KEGG Ligand Database for Enzyme Nomenclature",
-        "uri_format": "https://www.genome.jp/dbget-bin/www_bget?ec:$1"
-      },
       {
         "code": "expenz",
         "description": "ExploreEnz at Trinity College",
@@ -2717,7 +2710,7 @@
       }
     ],
     "sampleId": "1.1.1.1",
-    "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"
+    "uri_format": "https://www.genome.jp/dbget-bin/www_bget?ec:$1"
   },
   "echobase": {
     "deprecated": false,
@@ -2953,7 +2946,7 @@
   "encode": {
     "deprecated": false,
     "description": "The ENCODE Consortium is integrating multiple technologies and approaches in a collective effort to discover and define the functional elements encoded in the human genome, including genes, transcripts, and transcriptional regulatory regions, together with their attendant chromatin states and DNA methylation patterns.",
-    "homepage": "www.encodeproject.org",
+    "homepage": "https://www.encodeproject.org",
     "id": "00000662",
     "name": "ENCODE: Encyclopedia of DNA Elements",
     "namespaceEmbeddedInLui": false,
@@ -2972,13 +2965,6 @@
     "pattern": "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$",
     "prefix": "ensembl",
     "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "Ensembl US West mirror",
-        "homepage": "http://uswest.ensembl.org/",
-        "name": "Ensembl US West mirror",
-        "uri_format": "http://uswest.ensembl.org/id/$1"
-      },
       {
         "code": "CURATOR_REVIEW",
         "description": "Ensembl US East mirror",
@@ -4790,7 +4776,7 @@
     "id": "00000387",
     "name": "InChIKey",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?",
+    "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?$",
     "prefix": "inchikey",
     "providers": [
       {
@@ -4802,7 +4788,7 @@
       }
     ],
     "sampleId": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
-    "uri_format": "http://www.chemspider.com/inchikey=$1"
+    "uri_format": "http://legacy.chemspider.com/inchikey=$1"
   },
   "insdc": {
     "deprecated": false,
@@ -8514,13 +8500,6 @@
     "prefix": "pubmed",
     "providers": [
       {
-        "code": "hubmed",
-        "description": "HubMed",
-        "homepage": "http://www.hubmed.org/",
-        "name": "HubMed",
-        "uri_format": "http://www.hubmed.org/display.cgi?uids=$1"
-      },
-      {
         "code": "epmc",
         "description": "Europe PMC",
         "homepage": "http://europepmc.org/",
@@ -8533,6 +8512,13 @@
         "homepage": "http://linkedlifedata.com/",
         "name": "PubMed through Linkedlife data",
         "uri_format": "http://linkedlifedata.com/resource/pubmed/id/$1"
+      },
+      {
+        "code": "hubmed",
+        "description": "HubMed",
+        "homepage": "http://www.hubmed.org/",
+        "name": "HubMed",
+        "uri_format": "https://www.hubmed.org/?term=$1"
       },
       {
         "code": "scholia",
