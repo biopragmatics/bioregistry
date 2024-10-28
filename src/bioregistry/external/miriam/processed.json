@@ -832,13 +832,6 @@
     "prefix": "biomodels.db",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "Caltech mirror",
-        "homepage": "http://biomodels.caltech.edu/",
-        "name": "Caltech mirror",
-        "uri_format": "http://biomodels.caltech.edu/$1"
-      },
-      {
         "code": "omicsdi",
         "description": "BioModels through OmicsDI",
         "homepage": "https://www.omicsdi.org/",
@@ -4801,18 +4794,18 @@
     "prefix": "insdc",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "INSDC through DDBJ",
-        "homepage": "http://www.ddbj.nig.ac.jp/",
-        "name": "INSDC through DDBJ",
-        "uri_format": "http://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1"
-      },
-      {
         "code": "ebi",
         "description": "INSDC through European Nucleotide Archive (ENA)",
         "homepage": "https://www.ebi.ac.uk/ena/",
         "name": "INSDC through European Nucleotide Archive (ENA)",
         "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
+      },
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "INSDC through DDBJ",
+        "homepage": "http://www.ddbj.nig.ac.jp/",
+        "name": "INSDC through DDBJ",
+        "uri_format": "https://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1"
       },
       {
         "code": "ncbi",
@@ -8132,7 +8125,7 @@
     "uri_format": "https://bioinformatics.cineca.it/PMDB/user//search.php?idsearch=$1"
   },
   "pmp": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The number of known protein sequences exceeds those of experimentally solved protein structures. Homology (or comparative) modeling methods make use of experimental protein structures to build models for evolutionary related proteins. The Protein Model Portal (PMP) provides a single portal to access these models, which are accessed through their UniProt identifiers.",
     "id": "00000227",
     "name": "PMP",
@@ -9102,7 +9095,7 @@
     "uri_format": "https://sed-ml.org/urns.html#language:$1"
   },
   "seed": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "This cooperative effort, which includes Fellowship for Interpretation of Genomes (FIG), Argonne National Laboratory, and the University of Chicago, focuses on the development of the comparative genomics environment called the SEED. It is a framework to support comparative analysis and annotation of genomes, and the development of curated genomic data (annotation). Curation is performed at the level of subsystems by an expert annotator, across many genomes, and not on a gene by gene basis. This collection references subsystems.",
     "id": "00000552",
     "name": "SEED Subsystem",
