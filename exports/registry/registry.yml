@@ -618,7 +618,6 @@ aeo:
   homepage: https://github.com/obophenotype/human-developmental-anatomy-ontology/
   keywords:
   - anatomy
-  - life science
   - obo
   - ontology
   license: CC-BY-4.0
@@ -749,7 +748,7 @@ afo:
     email: more.info@allotrope.org
     name: Allotrope Foundation
   description: Allotrope Merged Ontology Suite
-  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2024/06/merged-without-qudt-and-inferred
+  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2024/09/merged-without-qudt-and-inferred
   homepage: https://www.allotrope.org/
   keywords:
   - agricultural engineering
@@ -770,7 +769,7 @@ afo:
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
-  version: 2024/06
+  version: 2024/09
 afpo:
   contact:
     email: mcmelek@msn.com
@@ -1859,7 +1858,7 @@ apo:
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2024-08-03'
+  version: '2024-09-18'
 apollosv:
   appears_in:
   - scdo
@@ -3223,7 +3222,7 @@ bcio:
   pattern: ^\d{6}$
   preferred_prefix: bcio
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2024-08-06'
+  version: '2024-09-17'
 bco:
   appears_in:
   - fovt
@@ -3300,7 +3299,7 @@ bcrj:
   name: Banco de Celulas do Rio de Janeiro
   pattern: ^\d{4}$
   preferred_prefix: bcrj
-  uri_format: http://bcrj.org.br/celula/$1
+  uri_format: https://bcrj.org.br/pesquisa/?search=$1
 bdgp.est:
   description: The BDGP EST database collects the expressed sequence tags (ESTs) derived
     from a variety of tissues and developmental stages for Drosophila melanogaster.
@@ -4071,6 +4070,23 @@ biocyc:
     title: Expansion of the BioCyc collection of pathway/genome databases to 160 genomes
     year: 2005
   uri_format: http://biocyc.org/getid?id=$1
+biodeep:
+  banana: BioDeep
+  banana_peel: _
+  description: 'The BioDeep database is a comprehensive database of metabolite information
+    in living organisms: by aggregating metabolite information from multiple public
+    databases and large-scale natural language text mining work, we have built a large
+    scale knowledge network for biological knowledge interpretation. By using the
+    BioDeep database, it is possible to query such large scale metabolic knowledge
+    network.'
+  example: '00000000001'
+  homepage: https://en.panomix.com/
+  mappings:
+    miriam: biodeep
+  name: BioDeep Database
+  pattern: ^\d{11}$
+  preferred_prefix: biodeep
+  uri_format: https://query.biodeep.cn/metabolite/$1
 biofactoid:
   contact:
     email: jeffvin.wong@utoronto.ca
@@ -7116,12 +7132,11 @@ cgd:
 cghdb:
   description: Cell line databases/resources
   example: 300165/p13898_2106T
-  homepage: http://www.cghtmd.jp/CGHDatabase/index_e.jsp
+  homepage: https://web.archive.org/web/20190222051223/http://www.cghtmd.jp/CGHDatabase/index_e.jsp
   mappings:
     cellosaurus: CGH-DB
   name: CGH Data Base
   preferred_prefix: cghdb
-  uri_format: http://www.cghtmd.jp/CGHDatabase/mapViewer?hid=$1&aid=%t&lang=en
 cgnc:
   contact:
     email: fionamcc@arizona.edu
@@ -7139,6 +7154,7 @@ cgnc:
   keywords:
   - gene
   mappings:
+    cellosaurus: CGNC
     prefixcommons: cgnc
     re3data: r3d100012429
   name: Chicken Gene Nomenclature Consortium
@@ -8434,7 +8450,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2024-08-16'
+  version: '2024-09-26'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -8914,7 +8930,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.224'
+  version: '2.227'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -9828,7 +9844,7 @@ cob:
   rdf_uri_format: http://purl.obolibrary.org/obo/COB_$1
   repository: https://github.com/OBOFoundry/COB
   uri_format: http://purl.obolibrary.org/obo/COB_$1
-  version: '2023-11-16'
+  version: '2024-09-20'
 coconut:
   comment: '@mSorok is the dev of the resource, hope I got it right!'
   contributor:
@@ -11114,6 +11130,8 @@ csp:
   deprecated: true
   description: CRISP is a terminology used for indexing biomedical information. CRISP
     contains over 8,000 preferred terms that are grouped hierarchically into 11 domains.
+    Note that while still available and included in Unified Medical Language System
+    (UMLS), it has not been updated since 2006.
   example: 2004-2820
   homepage: https://web.archive.org/web/20091223034048/http://crisp.cit.nih.gov/Thesaurus/index.htm
   keywords:
@@ -12983,7 +13001,7 @@ dicom:
       practice'
     year: 2005
   uri_format: http://dicom.nema.org/resources/ontology/DCM/$1
-  version: 2024c_20240617
+  version: 2024d_20240922
 dictybase:
   contact:
     email: pfey@northwestern.edu
@@ -13769,7 +13787,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-08-29'
+  version: '2024-09-27'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -14168,7 +14186,7 @@ dron:
   rdf_uri_format: http://purl.obolibrary.org/obo/DRON_$1
   repository: https://github.com/ufbmi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2024-08-07'
+  version: '2024-09-04'
 drsanv0:
   description: 'This namespace is used for GA4GH Data Repository Service (DRS) access
     to the USA National Institutes of Health (NIH), National Human Genome Research
@@ -15398,7 +15416,7 @@ edam:
     data syntax and file formats, web portals and pages, resource catalogues and documents
     (such as scientific publications).'
   download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
-  download_owl: https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl
+  download_owl: http://edamontology.org/1.25-20240924T0027Z-unstable(1.26)
   example: data_1664
   homepage: http://edamontology.org
   keywords:
@@ -15451,6 +15469,7 @@ edam:
   repository: https://github.com/edamontology/edamontology
   twitter: edamontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
+  version: 1.25-20240924T0027Z-unstable(1.26)
 edam.data:
   contact:
     email: matus.kalas@uib.no
@@ -15653,7 +15672,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.69.0
+  version: 3.70.0
 ega.dataset:
   contact:
     email: tk2@ebi.ac.uk
@@ -15885,7 +15904,6 @@ ehdaa2:
   - animal organ development
   - biomedical science
   - life cycle stage
-  - life science
   - obo
   - ontology
   license: CC-BY-4.0
@@ -20093,7 +20111,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-09-02'
+  version: '2024-10-07'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -21991,7 +22009,7 @@ gno:
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: '2024-05-21'
+  version: '2024-09-26'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -22284,7 +22302,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://purl.obolibrary.org/obo/GO_$1
-  version: '2024-06-17'
+  version: '2024-09-08'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -24105,8 +24123,27 @@ hgnc:
     description: A large scale database of biomedical statements.
     homepage: https://db.indra.bio
     name: INDRA Database
+    publications:
+    - doi: 10.15252/msb.202211325
+      pmc: PMC10167483
+      pubmed: '36938926'
+      title: Automated assembly of molecular mechanisms at scale from text mining
+        and curated databases
+      year: 2023
+    - doi: 10.15252/msb.20177651
+      pmc: PMC5731347
+      pubmed: '29175850'
+      title: From word models to executable models of signaling networks using automated
+        assembly
+      year: 2017
     uri_format: https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@HGNC
   publications:
+  - doi: 10.15252/msb.202211325
+    pmc: PMC10167483
+    pubmed: '36938926'
+    title: Automated assembly of molecular mechanisms at scale from text mining and
+      curated databases
+    year: 2023
   - doi: 10.1093/nar/gkaa980
     pmc: PMC7779007
     pubmed: '33152070'
@@ -24121,6 +24158,12 @@ hgnc:
     pubmed: '295268'
     title: International system for human gene nomenclature (1979) ISGN (1979)
     year: 1979
+  - doi: 10.15252/msb.20177651
+    pmc: PMC5731347
+    pubmed: '29175850'
+    title: From word models to executable models of signaling networks using automated
+      assembly
+    year: 2017
   uri_format: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1
 hgnc.genefamily:
   description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene
@@ -24179,6 +24222,19 @@ hgnc.symbol:
     homepage: https://depmap.org
     name: DepMap Gene Summary
     uri_format: https://depmap.org/portal/gene/$1
+  - code: g2p
+    description: A resource for linking genetic screening outputs to protein sequences
+      and structures
+    homepage: https://g2p.broadinstitute.org/
+    name: Genomics 2 Proteins Portal
+    publications:
+    - doi: 10.1038/s41592-024-02409-0
+      pmc: PMC11466821
+      pubmed: '39294369'
+      title: 'Genomics 2 Proteins portal: a resource and discovery tool for linking
+        genetic screening outputs to protein sequences and structures'
+      year: 2024
+    uri_format: https://g2p.broadinstitute.org/gene/$1
   - code: oncomx
     description: Mutation profiles for a gene
     homepage: https://oncomx.org
@@ -24189,6 +24245,13 @@ hgnc.symbol:
     homepage: https://www.pathwaycommons.org/
     name: Pathway Commons Gene Interations
     uri_format: https://apps.pathwaycommons.org/interactions?source=$1
+  publications:
+  - doi: 10.1038/s41592-024-02409-0
+    pmc: PMC11466821
+    pubmed: '39294369'
+    title: 'Genomics 2 Proteins portal: a resource and discovery tool for linking
+      genetic screening outputs to protein sequences and structures'
+    year: 2024
   uri_format: https://www.genenames.org/data/gene-symbol-report/#!/symbol/$1
 hgvs:
   contact:
@@ -26055,6 +26118,27 @@ iceberg.ime:
       found in Bacteria'
     year: 2011
   uri_format: https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page_IME.php?ime_id=$1_IME
+icechem:
+  description: 'The Integrated Chemical Environment (ICE) provides high-quality curated
+    data and appropriate tools to support development and evaluation of new, revised,
+    and alternative methods. ICE provides free online access to curated in vivo and
+    in vitro test data, in silico toxicity predictions and chemical property data,
+    reference chemical lists, and computational tools for chemical characterization
+    and predicting toxicity.
+
+    ICE supports the following: (i) Data integration: brings together available data,
+    including data on formulations; (ii) Results exploration: enables dynamic, graphical
+    exploration with publication-quality graphics; (iii) Data analysis: allows characterization
+    of data using online workflows, and (iv) FAIR data access: data are findable,
+    accessible, interoperable, and reusable.'
+  example: DTXSID7032004
+  homepage: https://ice.ntp.niehs.nih.gov
+  mappings:
+    miriam: ice.chem
+  name: Integrated Chemical Environment - Chemical data
+  pattern: ^\d{2,7}-\d{2}-\d|DTXSID\d{7,9}|[A-Z]{14}-[A-Z]{8}[SN][A-Z]-[A-Z]$
+  preferred_prefix: icechem
+  uri_format: https://ice.ntp.niehs.nih.gov/api/v1/search?chemid=$1
 iceo:
   contact:
     email: liumeng94@sjtu.edu.cn
@@ -30769,6 +30853,19 @@ lter:
   pattern: ^\d+$
   preferred_prefix: lter
   uri_format: https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1
+lw:
+  description: The LifeWatch Metadata Catalogues plays a crucial role in managing
+    metadata for digital objects, including Datasets, Services, Workflows and Virtual
+    Research Environments. This catalogue serves as the central repository, ensuring
+    that resources are accessible and reusable by stakeholders.
+  example: 6e3b1371-59d7-481a-9db4-cd0d0de98436
+  homepage: https://metadatacatalogue.lifewatch.eu/
+  mappings:
+    miriam: lw
+  name: LifeWatch Metadata Catalogue
+  pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+  preferred_prefix: lw
+  uri_format: https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/$1
 m4i:
   contact:
     email: dorothea.iglezakis@ub.uni-stuttgart.de
@@ -31781,6 +31878,7 @@ medlineplus:
   - health science
   - medicine
   - ontology
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaEFGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--611e307f6ed5ae6a6f06017953d913cdcacc490b/Screenshot%20from%202024-10-04%2017-49-50.png?disposition=inline
   mappings:
     aberowl: MEDLINEPLUS
     biocontext: MEDLINEPLUS
@@ -33766,13 +33864,13 @@ mirtarbase:
       miRNA–target interactions'
     year: 2022
   - doi: 10.1093/nar/gkz896
-    pmc: 'PMC7145596 '
+    pmc: PMC7145596
     pubmed: '31647101'
     title: 'miRTarBase 2020: updates to the experimentally validated microRNA-target
       interaction database'
     year: 2020
   - doi: 10.1093/nar/gkx1067
-    pmc: 'PMC5753222 '
+    pmc: PMC5753222
     pubmed: '29126174'
     title: 'miRTarBase update 2018: a resource for experimentally validated microRNA-target
       interactions'
@@ -34009,7 +34107,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.138'
+  version: '2.141'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -34554,7 +34652,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2024-08-06'
+  version: '2024-10-01'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -34735,7 +34833,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2024-08-08'
+  version: '2024-09-18'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -34965,7 +35063,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.173
+  version: 4.1.179
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -35321,6 +35419,11 @@ mycobank:
     email: vrobert@unistra.fr
     name: Vincent Robert
     orcid: 0000-0002-9370-4677
+  contributor_extras:
+  - email: carlosm@ebi.ac.uk
+    github: CarMoreno
+    name: Carlos Moreno
+    orcid: 0000-0003-0066-1717
   description: MycoBank is an online database, documenting new mycological names and
     combinations, eventually combined with descriptions and illustrations.
   example: '349124'
@@ -35357,7 +35460,7 @@ mycobank:
     pubmed: '24563843'
     title: MycoBank gearing up for new horizons
     year: 2013
-  uri_format: http://www.mycobank.org/Biolomics.aspx?Table=Mycobank&MycoBankNr_=$1
+  uri_format: https://www.mycobank.org/page/Name%20details%20page/$1
 mzspec:
   banana: mzspec
   contact:
@@ -36967,7 +37070,7 @@ ngbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/NGBO_$1
   repository: https://github.com/Dalalghamdi/NGBO
   uri_format: http://purl.obolibrary.org/obo/NGBO_$1
-  version: '2022-10-05'
+  version: '2024-08-27'
 ngl:
   description: NASA's GeneLab gathers spaceflight genomic data, RNA and protein expression,
     and metabolic profiles, interfaces with existing databases for expanded research,
@@ -38544,7 +38647,7 @@ oba:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBA_$1
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
-  version: '2024-06-27'
+  version: '2024-09-12'
 oban:
   contributor:
     email: cthoyt@gmail.com
@@ -39667,6 +39770,12 @@ omia:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/omia:$1
+  publications:
+  - doi: 10.1007/s00335-024-10059-y
+    pubmed: '39143381'
+    title: 'Online Mendelian Inheritance in Animals (OMIA): a genetic resource for
+      vertebrate animals'
+    year: 2024
   synonyms:
   - OMIA
   uri_format: https://omia.org/phene/omia:$1
@@ -39701,6 +39810,12 @@ omia.variant:
   name: OMIA variants
   pattern: ^\d+$
   preferred_prefix: omia.variant
+  publications:
+  - doi: 10.1007/s00335-024-10059-y
+    pubmed: '39143381'
+    title: 'Online Mendelian Inheritance in Animals (OMIA): a genetic resource for
+      vertebrate animals'
+    year: 2024
   reviewer:
     email: b.gyori@northeastern.edu
     github: bgyori
@@ -40429,7 +40544,7 @@ oostt:
   rdf_uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
   repository: https://github.com/OOSTT/OOSTT
   uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
-  version: '2024-01-25'
+  version: '2024-09-30'
 opb:
   banana: OPB
   banana_peel: _
@@ -41943,7 +42058,7 @@ pato:
   rdf_uri_format: http://purl.obolibrary.org/obo/PATO_$1
   repository: https://github.com/pato-ontology/pato
   uri_format: http://purl.obolibrary.org/obo/PATO_$1
-  version: '2024-03-28'
+  version: '2024-09-04'
 pav:
   contact:
     email: stian@soiland-reyes.com
@@ -42284,6 +42399,18 @@ pdb:
     homepage: https://www.ebi.ac.uk/pdbsum/
     name: Protein Databank through PDBsum
     uri_format: https://www.ebi.ac.uk/pdbsum/$1
+  - code: furna
+    description: FURNA (Functions of RNAs) is a database of ligand-RNA interactions
+      and Gene Ontology annotations for RNAs in the Protein Data Bank (PDB).
+    homepage: https://seq2fun.dcmb.med.umich.edu/furna/
+    name: furna
+    publications:
+    - doi: 10.1371/journal.pbio.3002476
+      pmc: PMC11309384
+      pubmed: '39074139'
+      title: 'FURNA: A database for functional annotations of RNA structures'
+      year: 2024
+    uri_format: https://seq2fun.dcmb.med.umich.edu/furna/pdb.cgi?pdbid=$1
   - code: pdbe
     description: Protein Databank in Europe (PDBe)
     homepage: http://www.pdbe.org/
@@ -42300,6 +42427,11 @@ pdb:
     name: RCSB PDB
     uri_format: https://www.rcsb.org/structure/$1
   publications:
+  - doi: 10.1371/journal.pbio.3002476
+    pmc: PMC11309384
+    pubmed: '39074139'
+    title: 'FURNA: A database for functional annotations of RNA structures'
+    year: 2024
   - doi: 10.1002/pro.4211
     pmc: PMC8740847
     pubmed: '34664328'
@@ -42741,6 +42873,43 @@ pepbank:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://pepbank.mgh.harvard.edu/interactions/details/$1
+pephub:
+  contact:
+    email: nsheffield@virginia.edu
+    github: nsheff
+    name: Nathan Sheffield
+    orcid: 0000-0001-5643-4068
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: PEPhub is a database, web interface, and API for sharing, retrieving,
+    and validating sample metadata. PEPhub uses Portable Encapsulated Projects (PEP)
+    biological metadata standard to store, edit, and access PEPs in one place.
+  example: geo
+  example_extras:
+  - geo/gse185244
+  - bedbase/gse198944
+  - databio/encode_batch_1
+  github_request_issue: 1194
+  homepage: https://pephub.databio.org/
+  name: PEPhub
+  pattern: ^[A-Za-z0-9_\-]+(/[A-Za-z0-9_\-]+)?$
+  preferred_prefix: pephub
+  publications:
+  - doi: 10.1093/gigascience/giae033
+    pmc: PMC11238423
+    pubmed: '38991851'
+    title: 'PEPhub: a database, web interface, and API for editing, sharing, and validating
+      biological sample metadata'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://pephub.databio.org/$1
 peptideatlas:
   contact:
     email: edeutsch@systemsbiology.org
@@ -44356,6 +44525,7 @@ pmc:
   mappings:
     biocontext: PMCID
     biolink: PMC
+    cellosaurus: PMCID
     fairsharing: FAIRsharing.2b4316
     go: PMCID
     miriam: pmc
@@ -44585,6 +44755,7 @@ po:
     agroportal: PO
     biocontext: PO
     bioportal: PO
+    cellosaurus: PO
     edam: '1180'
     fairsharing: FAIRsharing.3ngg40
     go: PO
@@ -48851,6 +49022,7 @@ rs:
     aberowl: RS
     biocontext: RS
     bioportal: RS
+    cellosaurus: RS
     fairsharing: FAIRsharing.vajn3f
     obofoundry: rs
     ols: rs
@@ -48885,7 +49057,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.230'
+  version: '6.235'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -49443,6 +49615,37 @@ sbo:
   twitter: biomodels
   uri_format: http://purl.obolibrary.org/obo/SBO_$1
   version: '2021-08-28'
+scancerrna:
+  contact:
+    email: zty2009@hit.edu.cn
+    name: Tianyi Zhao
+    orcid: 0000-0001-7352-2959
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: SCancerRNA provides identifiers for non-coding RNA biomarkers, including
+    long ncRNA, microRNA, PIWI-interacting RNA, small nucleolar RNA, and circular
+    RNA, with data on their differential expression at the cellular level in cancer.
+  example: '9530'
+  github_request_issue: 1215
+  homepage: http://www.scancerrna.com/
+  name: SCancerRNA
+  pattern: ^\d+$
+  preferred_prefix: scancerrna
+  publications:
+  - doi: 10.1093/gpbjnl/qzae023
+    pubmed: '39341795'
+    title: 'SCancerRNA: Expression at the Single-cell Level and Interaction Resource
+      of Non-coding RNA Biomarkers for Cancers'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: http://www.scancerrna.com/toDetail?id=$1
 scdo:
   contact:
     email: giant.plankton@gmail.com
@@ -50419,6 +50622,12 @@ sgd:
   - pubmed: '7660459'
     title: Genetic nomenclature guide. Saccharomyces cerevisiae
     year: 1995
+  - doi: 10.1101/2024.09.16.613348
+    pmc: PMC11430078
+    pubmed: '39345624'
+    title: 'Saccharomyces Genome Database: Advances in Genome Annotation, Expanded
+      Biochemical Pathways, and Other Key Enhancements'
+    year: 2024
   - doi: 10.1093/database/baw020
     pmc: PMC4795930
     pubmed: '26989152'
@@ -50659,6 +50868,12 @@ sgd.pathways:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/sgd.pathways:$1
   publications:
+  - doi: 10.1101/2024.09.16.613348
+    pmc: PMC11430078
+    pubmed: '39345624'
+    title: 'Saccharomyces Genome Database: Advances in Genome Annotation, Expanded
+      Biochemical Pathways, and Other Key Enhancements'
+    year: 2024
   - doi: 10.1093/nar/gkh033
     pmc: PMC308767
     pubmed: '14681421'
@@ -51043,6 +51258,7 @@ sigmaaldrich:
   - life sciences
   - vendor
   mappings:
+    cellosaurus: Sigma-Aldrich
     pathguide: '236'
   name: Sigma Aldrich
   preferred_prefix: sigmaaldrich
@@ -52735,6 +52951,11 @@ stato:
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: STATO
+  publications:
+  - pubmed: '32109232'
+    title: Semantic concept schema of the linear mixed model of experimental observations
+  - pubmed: '31831744'
+    title: Experiment design driven FAIRification of omics data matrices, an exemplar
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
@@ -55285,7 +55506,7 @@ uberon:
   - Uberon
   twitter: uberanat
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2024-08-07'
+  version: '2024-09-03'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -55809,6 +56030,11 @@ uniprot:
     email: apweiler@ebi.ac.uk
     name: Rolf Apweiler
     orcid: 0000-0001-7078-200X
+  contributor_extras:
+  - email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
   description: The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for
     protein sequence and functional information with extensive cross-references to
     more than 120 external databases. Besides amino acid sequence and a description,
@@ -55840,6 +56066,18 @@ uniprot:
     0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$
   preferred_prefix: uniprot
   providers:
+  - code: aipd
+    description: A curated database standardizing information on autoinhibited proteins.
+    homepage: http://ssbio.cau.ac.kr/databases/AiPD/
+    name: Autoinhibited Protein Database
+    publications:
+    - doi: 10.1093/database/baae085
+      pmc: PMC11349611
+      pubmed: '39192607'
+      title: 'Autoinhibited Protein Database: a curated database of autoinhibitory
+        domains and their autoinhibition mechanisms'
+      year: 2024
+    uri_format: http://165.194.60.211:9006/detail/$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -55888,6 +56126,12 @@ uniprot:
     name: Scholia
     uri_format: https://scholia.toolforge.org/uniprot/$1
   publications:
+  - doi: 10.1093/database/baae085
+    pmc: PMC11349611
+    pubmed: '39192607'
+    title: 'Autoinhibited Protein Database: a curated database of autoinhibitory domains
+      and their autoinhibition mechanisms'
+    year: 2024
   - doi: 10.1093/nar/gkj161
     pmc: PMC1347523
     pubmed: '16381842'
@@ -56532,7 +56776,7 @@ upheno:
   rdf_uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
-  version: '2017-10-31'
+  version: '2024-09-04'
 uspto:
   comment: Information about the regular expression was derived from examples at https://patft.uspto.gov/netahtml/PTO/srchnum.htm.
     TODO, make the regular expression work for '100000000'
@@ -56837,6 +57081,7 @@ vbo:
   mappings:
     aberowl: VBO
     bioportal: VBO
+    cellosaurus: VBO
     obofoundry: vbo
     ols: vbo
     ontobee: VBO
@@ -57718,7 +57963,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-08-11'
+  version: '2024-09-22'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -57970,7 +58215,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-08-13'
+  version: '2024-10-02'
 vto:
   contact:
     email: balhoff@renci.org
@@ -58098,7 +58343,7 @@ wbbt:
   synonyms:
   - WBbt
   uri_format: http://purl.obolibrary.org/obo/WBbt_$1
-  version: '2024-07-01'
+  version: '2024-09-24'
 wbls:
   contact:
     email: cgrove@caltech.edu
@@ -58155,7 +58400,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://purl.obolibrary.org/obo/WBls_$1
-  version: '2024-04-09'
+  version: '2024-09-26'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -58210,7 +58455,7 @@ wbphenotype:
   synonyms:
   - WBPhenotype
   uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
-  version: '2024-06-05'
+  version: '2024-09-26'
 webelements:
   contributor:
     email: cthoyt@gmail.com
@@ -58951,7 +59196,7 @@ xao:
   rdf_uri_format: http://purl.obolibrary.org/obo/XAO_$1
   repository: https://github.com/xenopus-anatomy/xao
   uri_format: http://purl.obolibrary.org/obo/XAO_$1
-  version: '2024-08-23'
+  version: '2024-09-03'
 xco:
   appears_in:
   - agro
@@ -59019,7 +59264,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.179'
+  version: '4.184'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

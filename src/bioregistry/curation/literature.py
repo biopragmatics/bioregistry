@@ -8,7 +8,7 @@ __all__ = [
 ]
 
 COLUMNS = [
-    "pmid",
+    "pubmed",
     "relevant",
     "orcid",
     "date_curated",

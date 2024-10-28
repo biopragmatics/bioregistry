@@ -1,6 +1,5 @@
 """Test for checking the integrity of the curated_papers TSV file."""
 
-import csv
 import unittest
 from datetime import datetime
 
@@ -20,11 +19,14 @@ class TestTSV(unittest.TestCase):
         for field in COLUMNS:
             self.assertIn(field, row)
 
-        self.assertTrue(row["pmid"].isdigit(), msg="PubMed identifier should be an integer")
+        self.assertTrue(row["pubmed"].isdigit(), msg="PubMed identifier should be an integer")
 
-        # Allow pr_added to be empty
-        if row["pr_added"]:
-            self.assertTrue(row["pr_added"].isdigit(), msg="Pull Request should be an integer")
+        pr_message = (
+            "Please include the pull request in which the curation row "
+            "was added, written as an integer."
+        )
+        self.assertIsNotNone(row["pr_added"], msg=pr_message)
+        self.assertTrue(row["pr_added"].isdigit(), msg=pr_message)
 
         # Validate relevant is 0 or 1
         self.assertIn(row["relevant"], ["0", "1"])
@@ -63,7 +65,31 @@ class TestTSV(unittest.TestCase):
     def test_tsv_file(self):
         """Tests all rows in TSV file are valid."""
         with CURATED_PAPERS_PATH.open() as tsv_file:
-            reader = csv.DictReader(tsv_file, delimiter="\t")
-            for row, data in enumerate(reader, start=1):
-                with self.subTest(row=row, data=data):
+            pubmeds = []
+            header = next(tsv_file).strip("\n").split("\t")
+            self.assertEqual(header, COLUMNS, msg="header is not correct")
+            for row, line in enumerate(tsv_file, start=2):
+                with self.subTest(row=row, line=line):
+                    line = line.strip("\n").split("\t")
+                    self.assertEqual(
+                        len(COLUMNS),
+                        len(line),
+                        msg="wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
+                    )
+                    data = dict(zip(COLUMNS, line))
                     self.validate_row(data)
+                    pubmeds.append(data["pubmed"])
+            self.assertEqual(
+                sorted(pubmeds),
+                pubmeds,
+                msg=f"""
+
+    The curated papers in src/bioregistry/data/{CURATED_PAPERS_PATH.name}
+    were not sorted properly.
+
+    Please lint these files using the following commands in the console:
+
+    $ pip install tox
+    $ tox -e bioregistry-lint
+            """,
+            )
