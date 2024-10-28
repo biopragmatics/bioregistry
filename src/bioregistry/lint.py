@@ -1,7 +1,6 @@
 """Linting functions."""
 
 import click
-import pandas as pd
 
 from bioregistry.constants import CURATED_PAPERS_PATH
 from bioregistry.schema import Publication
@@ -36,6 +35,9 @@ def lint():
         read_contexts,
     ):
         read_resource_func.cache_clear()
+    # Import here to avoid dependency in the context of
+    # web app / Docker
+    import pandas as pd
 
     registry = read_registry()
     for resource in registry.values():
