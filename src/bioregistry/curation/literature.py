@@ -37,3 +37,5 @@ class CurationRelevance(str, enum.Enum):
     unclear = enum.auto()
     #: Completely unrelated information
     irrelevant_other = enum.auto()
+    #: Relevant for training purposes, but not curated in Bioregistry due to poor/unknown quality
+    not_notable = enum.auto()
