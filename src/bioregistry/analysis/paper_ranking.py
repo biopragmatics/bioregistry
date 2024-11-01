@@ -14,6 +14,7 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
+from bioregistry.constants import CURATED_PAPERS_PATH
 
 DIRECTORY = Path("exports/analyses/paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -62,10 +63,26 @@ def load_bioregistry_json(file_path):
 
     return pd.DataFrame(publications)
 
+def load_curated_pmids(file_path):
+    """Load curated papers data from TSV file, extracting PMIDs in a list
 
-def fetch_pubmed_papers():
-    """Fetch PubMed papers from the last 30 days using specific search terms.
+    :param file_path: Path to the curated_papers.tsv file.
+    :type file_path: str
+    :return: List containing already curated PMIDs 
+    :rtype: list
+    """
+    try:
+        curated_papers_df = pd.read_csv(file_path, sep="\t")
+        return curated_papers_df["pubmed"].tolist()
+    except FileNotFoundError:
+        click.echo(f"Could not find file {file_path}.")
+        return list()
+    
+def fetch_pubmed_papers(curated_pmids):
+    """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
+    :param curated_pmids: List containing already curated PMIDs
+    :type curated_pmids: list
     :return: DataFrame containing PubMed paper details.
     :rtype: pd.DataFrame
     """
@@ -77,10 +94,11 @@ def fetch_pubmed_papers():
     for term in search_terms:
         pmids = pubmed_client.get_ids(term, use_text_word=True, reldate=30)
         for pmid in pmids:
-            if pmid in paper_to_terms:
-                paper_to_terms[pmid].append(term)
-            else:
-                paper_to_terms[pmid] = [term]
+            if pmid not in curated_pmids:
+                if pmid in paper_to_terms:
+                    paper_to_terms[pmid].append(term)
+                else:
+                    paper_to_terms[pmid] = [term]
 
     all_pmids = list(paper_to_terms.keys())
     click.echo(f"{len(all_pmids)} PMIDs found")
@@ -355,7 +373,9 @@ def main(bioregistry_file, start_date, end_date):
     click.echo(f"Writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
-    new_pub_df = fetch_pubmed_papers()
+    curated_pmids = load_curated_pmids(CURATED_PAPERS_PATH)
+
+    new_pub_df = fetch_pubmed_papers(curated_pmids)
     if not new_pub_df.empty:
         filename = f"predictions_{start_date}_to_{end_date}.tsv"
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
