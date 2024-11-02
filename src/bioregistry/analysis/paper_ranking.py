@@ -14,6 +14,7 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tabulate import tabulate
+
 from bioregistry.constants import CURATED_PAPERS_PATH
 
 DIRECTORY = Path("exports/analyses/paper_ranking")
@@ -32,7 +33,7 @@ def load_bioregistry_json(file_path):
     :rtype: pd.DataFrame
     """
     try:
-        with open(file_path, "r") as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
     except json.JSONDecodeError as e:
         click.echo(f"JSONDecodeError: {e.msg}")
@@ -63,12 +64,13 @@ def load_bioregistry_json(file_path):
 
     return pd.DataFrame(publications)
 
+
 def load_curated_pmids(file_path):
-    """Load curated papers data from TSV file, extracting PMIDs in a list
+    """Load curated papers data from TSV file, extracting PMIDs in a list.
 
     :param file_path: Path to the curated_papers.tsv file.
     :type file_path: str
-    :return: List containing already curated PMIDs 
+    :return: List containing already curated PMIDs
     :rtype: list
     """
     try:
@@ -77,7 +79,41 @@ def load_curated_pmids(file_path):
     except FileNotFoundError:
         click.echo(f"Could not find file {file_path}.")
         return list()
-    
+
+
+def load_curated_papers(file_path):
+    """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
+
+    :param file_path: Path to the curated_papers.tsv file.
+    :type file_path: str
+    :return: DataFrame containing curated publication details.
+    :rtype: pd.DataFrame
+    """
+    try:
+        curated_df = pd.read_csv(file_path, sep="\t")
+        curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
+        curated_df["title"] = ""
+        curated_df["abstract"] = ""
+
+        pmids_to_fetch = curated_df["pubmed"].tolist()
+        fetched_metadata = {}
+        for chunk in [pmids_to_fetch[i : i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+            fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+
+        for index, row in curated_df.iterrows():
+            if row["pubmed"] in fetched_metadata:
+                curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
+                curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get(
+                    "abstract", ""
+                )
+
+        click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
+        return curated_df
+    except FileNotFoundError:
+        click.echo(f"Could not find file {file_path}.")
+        return pd.DataFrame()
+
+
 def fetch_pubmed_papers(curated_pmids):
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
@@ -287,9 +323,10 @@ def main(bioregistry_file, start_date, end_date):
     """
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()
+    curated_papers_df = load_curated_papers(CURATED_PAPERS_PATH)
 
-    # Combine both data sources
-    df = pd.concat([curation_df, publication_df])
+    # Combine all data sources
+    df = pd.concat([curation_df, publication_df, curated_papers_df])
     df["abstract"] = df["abstract"].fillna("")
     df["title_abstract"] = df["title"] + " " + df["abstract"]
 
