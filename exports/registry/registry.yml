@@ -1858,7 +1858,7 @@ apo:
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2024-09-18'
+  version: '2024-10-23'
 apollosv:
   appears_in:
   - scdo
@@ -4406,11 +4406,6 @@ biomodels.db:
   pattern: ^((BIOMD|MODEL)\d{10})|(BMID\d{12})$
   preferred_prefix: biomodels.db
   providers:
-  - code: CURATOR_REVIEW
-    description: Caltech mirror
-    homepage: http://biomodels.caltech.edu/
-    name: Caltech mirror
-    uri_format: http://biomodels.caltech.edu/$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -27783,7 +27778,7 @@ insdc:
     description: INSDC through DDBJ
     homepage: http://www.ddbj.nig.ac.jp/
     name: INSDC through DDBJ
-    uri_format: http://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1
+    uri_format: https://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -44665,6 +44660,7 @@ pmp:
     email: torsten.schwede@unibas.ch
     name: Torsten Schwede
     orcid: 0000-0003-2715-335X
+  deprecated: true
   description: The number of known protein sequences exceeds those of experimentally
     solved protein structures. Homology (or comparative) modeling methods make use
     of experimental protein structures to build models for evolutionary related proteins.
@@ -47073,7 +47069,7 @@ rbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
-  version: '2024-05-31'
+  version: '2024-10-23'
 rcb:
   contact:
     email: atsushi.yoshiki@riken.jp
@@ -50341,6 +50337,7 @@ sedml.language:
   preferred_prefix: sedml.language
   uri_format: https://sed-ml.org/urns.html#language:$1
 seed:
+  deprecated: true
   description: This cooperative effort, which includes Fellowship for Interpretation
     of Genomes (FIG), Argonne National Laboratory, and the University of Chicago,
     focuses on the development of the comparative genomics environment called the
