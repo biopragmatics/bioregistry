@@ -3,17 +3,16 @@
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
+from collections.abc import Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import (
     Any,
+    Callable,
     DefaultDict,
     Dict,
-    Iterable,
     List,
-    Mapping,
     Optional,
-    Sequence,
     TypeVar,
     Union,
     cast,
@@ -168,7 +167,11 @@ def get_ols_descendants(
 
 
 def _process_ols(
-    *, ontology, terms, clean=None, get_identifier=None
+    *,
+    ontology: str,
+    terms: list[dict[str, Any]],
+    clean: Callable[[str], str] | None = None,
+    get_identifier: Callable[[dict[str, Any], str], str] | None = None,
 ) -> Mapping[str, Mapping[str, Any]]:
     if clean is None:
         clean = _clean
@@ -186,7 +189,7 @@ def _process_ols(
     return rv
 
 
-def _get_identifier(term, ontology: str) -> str:
+def _get_identifier(term: dict[str, Any], ontology: str) -> str:
     return term["obo_id"][len(ontology) + 1 :]
 
 
@@ -234,7 +237,7 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
     """De-duplicate records that might have overlapping data."""
     dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
 
-    def _key(r: Dict[str, Any]):
+    def _key(r: Dict[str, Any]) -> tuple[str, ...]:
         return tuple(r.get(key) or "" for key in keys)
 
     for record in backfill(records, keys):
@@ -262,14 +265,14 @@ def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
     return m.model_validate(d)
 
 
-def pydantic_fields(m: type[M]):
+def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
     """Get the fields."""
     if PYDANTIC_1:
         return m.__fields__
     return m.model_fields
 
 
-def pydantic_schema(m: type[M]):
+def pydantic_schema(m: type[M]) -> dict[str, Any]:
     """Get the schema."""
     if PYDANTIC_1:
         return m.schema()

@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """Data structures."""
 
-from .struct import (  # noqa:F401
+from .struct import (
     Attributable,
     Author,
     Collection,
@@ -12,4 +10,17 @@ from .struct import (  # noqa:F401
     Resource,
     get_json_schema,
 )
-from .utils import sanitize_mapping, sanitize_model  # noqa:F401
+from .utils import sanitize_mapping, sanitize_model
+
+__all__ = [
+    "Attributable",
+    "Author",
+    "Collection",
+    "Context",
+    "Publication",
+    "Registry",
+    "Resource",
+    "get_json_schema",
+    "sanitize_mapping",
+    "sanitize_model",
+]

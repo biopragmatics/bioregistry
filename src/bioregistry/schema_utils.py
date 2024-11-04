@@ -8,7 +8,7 @@ from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import List, Mapping, Optional, Set, Union
+from typing import List, Mapping, Optional, Set, Union, cast
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -81,7 +81,7 @@ def add_resource(resource: Resource) -> None:
 def read_mismatches() -> Mapping[str, Mapping[str, str]]:
     """Read the mismatches as JSON."""
     with MISMATCH_PATH.open() as file:
-        return json.load(file)
+        return cast(Mapping[str, Mapping[str, str]], json.load(file))
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:

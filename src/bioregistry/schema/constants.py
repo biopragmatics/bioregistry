@@ -27,7 +27,7 @@ from rdflib.term import Node
 if TYPE_CHECKING:
     import networkx
 
-    import bioregistry
+    import bioregistry.resource_manager
 
 __all__ = [
     "bioregistry_schema_terms",
@@ -345,7 +345,7 @@ bioregistry_class_to_id: Mapping[str, URIRef] = {
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
 
 
-def _graph(manager: Optional["bioregistry.Manager"] = None) -> rdflib.Graph:
+def _graph(manager: Optional["bioregistry.resource_manager.Manager"] = None) -> rdflib.Graph:
     graph = rdflib.Graph()
     graph.namespace_manager.bind("bioregistry", bioregistry_resource)
     graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)

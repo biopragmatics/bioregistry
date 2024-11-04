@@ -21,9 +21,12 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
-from bioregistry.constants import BIOREGISTRY_PATH, EXPORT_ANALYSES
+HERE = Path(__file__).parent.resolve()
+ROOT = HERE.parent.parent.parent.resolve()
 
-DIRECTORY = EXPORT_ANALYSES.joinpath("paper_ranking")
+BIOREGISTRY_PATH = ROOT.joinpath("src", "bioregistry", "data", "bioregistry.json")
+
+DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
@@ -247,9 +250,9 @@ def predict_and_save(
     click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
 
 
-def _first_of_month() -> datetime.date:
+def _first_of_month() -> str:
     today = datetime.date.today()
-    return datetime.date(today.year, today.month, 1)
+    return datetime.date(today.year, today.month, 1).isoformat()
 
 
 @click.command()
@@ -260,21 +263,17 @@ def _first_of_month() -> datetime.date:
 )
 @click.option(
     "--start-date",
-    type=click.DateTime,
     required=True,
     help="Start date of the period",
     default=_first_of_month,
 )
 @click.option(
     "--end-date",
-    type=click.DateTime,
     required=True,
     help="End date of the period",
-    default=datetime.date.today,
+    default=lambda x: datetime.date.today().isoformat(),
 )
-def main(
-    bioregistry_file: Path, start_date: datetime.datetime, end_date: datetime.datetime
-) -> None:
+def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
