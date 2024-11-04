@@ -130,6 +130,8 @@ MIRIAM_BLACKLIST = {
     "pid.pathway",
     # this uses namespace-in-namespace
     "neurolex",
+    # Miriam needs to be extended
+    "ccds",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
