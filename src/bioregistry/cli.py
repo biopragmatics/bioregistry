@@ -14,9 +14,10 @@ from .lint import lint
 from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
 
-__all__=[
+__all__ = [
     "main",
 ]
+
 
 @click.group()
 @click.version_option(version=VERSION)

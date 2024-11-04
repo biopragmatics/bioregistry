@@ -1,12 +1,15 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
+import datetime
 import json
+from collections import defaultdict
 from pathlib import Path
 
 import click
 import indra.literature.pubmed_client as pubmed_client
 import numpy as np
 import pandas as pd
+from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -15,24 +18,26 @@ from sklearn.metrics import matthews_corrcoef, roc_auc_score
 from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
-from tabulate import tabulate
 
-DIRECTORY = Path("exports/analyses/paper_ranking")
+from bioregistry.constants import BIOREGISTRY_PATH, EXPORT_ANALYSES
+
+DIRECTORY = EXPORT_ANALYSES.joinpath("paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
 QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
-def load_bioregistry_json(file_path: str | Path) -> pd.DataFrame:
+def load_bioregistry_json(path: Path | None = None) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
-    :param file_path: Path to the bioregistry JSON file.
+    :param path: Path to the bioregistry JSON file.
     :return: DataFrame containing publication details.
     """
+    if path is None:
+        path = BIOREGISTRY_PATH
     try:
-        with open(file_path, "r") as f:
-            data = json.load(f)
+        data = json.loads(path.read_text())
     except json.JSONDecodeError as e:
         click.echo(f"JSONDecodeError: {e.msg}")
         click.echo(f"Error at line {e.lineno}, column {e.colno}")
@@ -58,7 +63,7 @@ def load_bioregistry_json(file_path: str | Path) -> pd.DataFrame:
         if pub["pubmed"] in fetched_metadata:
             pub["abstract"] = fetched_metadata[pub["pubmed"]].get("abstract", "")
 
-    click.echo(f"Got {len(publications)} publications from the bioregistry")
+    click.echo(f"Got {len(publications):;} publications from the bioregistry")
 
     return pd.DataFrame(publications)
 
@@ -71,20 +76,17 @@ def fetch_pubmed_papers() -> pd.DataFrame:
     click.echo("Starting fetch_pubmed_papers")
 
     search_terms = ["database", "ontology", "resource", "vocabulary", "nomenclature"]
-    paper_to_terms = {}
+    paper_to_terms: defaultdict[str, list[str]] = defaultdict(list)
 
     for term in search_terms:
-        pmids = pubmed_client.get_ids(term, use_text_word=True, reldate=30)
-        for pmid in pmids:
-            if pmid in paper_to_terms:
-                paper_to_terms[pmid].append(term)
-            else:
-                paper_to_terms[pmid] = [term]
+        pubmed_ids = pubmed_client.get_ids(term, use_text_word=True, reldate=30)
+        for pubmed_id in pubmed_ids:
+            paper_to_terms[pubmed_id].append(term)
 
     all_pmids = list(paper_to_terms.keys())
-    click.echo(f"{len(all_pmids)} PMIDs found")
+    click.echo(f"{len(all_pmids):;} articles found")
     if not all_pmids:
-        click.echo(f"No PMIDs found for the last 30 days with the search terms: {search_terms}")
+        click.echo(f"No articles found for the last 30 days with the search terms: {search_terms}")
         return pd.DataFrame()
 
     papers = {}
@@ -92,22 +94,22 @@ def fetch_pubmed_papers() -> pd.DataFrame:
         papers.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
 
     records = []
-    for pmid, paper in papers.items():
+    for pubmed_id, paper in papers.items():
         title = paper.get("title")
         abstract = paper.get("abstract", "")
 
         if title and abstract:
             records.append(
                 {
-                    "pubmed": pmid,
+                    "pubmed": pubmed_id,
                     "title": title,
                     "abstract": abstract,
                     "year": paper.get("publication_date", {}).get("year"),
-                    "search_terms": paper_to_terms.get(pmid),
+                    "search_terms": paper_to_terms.get(pubmed_id),
                 }
             )
 
-    click.echo(f"{len(records)} records fetched from PubMed")
+    click.echo(f"{len(records):,} records fetched from PubMed")
     return pd.DataFrame(records)
 
 
@@ -116,7 +118,7 @@ def load_curation_data() -> pd.DataFrame:
 
     :return: DataFrame containing curated publication details.
     """
-    click.echo("Downloading curation")
+    click.echo("Downloading curation sheet")
     df = pd.read_csv(URL)
     df["label"] = df["relevant"].map(_map_labels)
     df = df[["pubmed", "title", "abstract", "label"]]
@@ -150,7 +152,7 @@ def _map_labels(s: str) -> int | None:
 Classifiers = list[tuple[str, ClassifierMixin]]
 
 
-def train_classifiers(x_train: np.ndarray, y_train: np.ndarray) -> Classifiers:
+def train_classifiers(x_train: NDArray[np.float64], y_train: NDArray[np.str_]) -> Classifiers:
     """Train multiple classifiers on the training data.
 
     :param x_train: Training features.
@@ -170,7 +172,7 @@ def train_classifiers(x_train: np.ndarray, y_train: np.ndarray) -> Classifiers:
 
 
 def generate_meta_features(
-    classifiers: Classifiers, x_train: np.ndarray, y_train: np.ndarray
+    classifiers: Classifiers, x_train: NDArray[np.float64], y_train: NDArray[np.str_]
 ) -> pd.DataFrame:
     """Generate meta-features for training a meta-classifier using cross-validation predictions.
 
@@ -192,7 +194,7 @@ def generate_meta_features(
 
 
 def evaluate_meta_classifier(
-    meta_clf: ClassifierMixin, x_test_meta: np.ndarray, y_test: np.ndarray
+    meta_clf: ClassifierMixin, x_test_meta: NDArray[np.float64], y_test: NDArray[np.str_]
 ) -> tuple[float, float]:
     """Evaluate meta-classifier using MCC and AUC-ROC scores.
 
@@ -243,15 +245,34 @@ def predict_and_save(
     click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
 
 
+def _first_of_month() -> datetime.date:
+    today = datetime.date.today()
+    return datetime.date(today.year, today.month, 1)
+
+
 @click.command()
 @click.option(
     "--bioregistry-file",
-    default="src/bioregistry/data/bioregistry.json",
+    type=Path,
     help="Path to the bioregistry.json file",
 )
-@click.option("--start-date", required=True, help="Start date of the period")
-@click.option("--end-date", required=True, help="End date of the period")
-def main(bioregistry_file: str, start_date: str, end_date: str) -> None:
+@click.option(
+    "--start-date",
+    type=click.DateTime,
+    required=True,
+    help="Start date of the period",
+    default=_first_of_month,
+)
+@click.option(
+    "--end-date",
+    type=click.DateTime,
+    required=True,
+    help="End date of the period",
+    default=datetime.date.today,
+)
+def main(
+    bioregistry_file: Path, start_date: datetime.datetime, end_date: datetime.datetime
+) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
@@ -286,7 +307,7 @@ def main(bioregistry_file: str, start_date: str, end_date: str) -> None:
         try:
             mcc = matthews_corrcoef(y_test, y_pred)
         except ValueError as e:
-            click.secho(f"{clf} failed to calculate MCC: {e}", fg="yellow")
+            click.secho(f"{clf} failed to calculate MCC: {e:.2f}", fg="yellow")
             mcc = None
         try:
             if hasattr(clf, "predict_proba"):
@@ -301,7 +322,7 @@ def main(bioregistry_file: str, start_date: str, end_date: str) -> None:
         scores.append((name, mcc or float("nan"), roc_auc or float("nan")))
 
     evaluation_df = pd.DataFrame(scores, columns=["classifier", "mcc", "auc_roc"]).round(3)
-    click.echo(tabulate(evaluation_df, showindex=False, headers=evaluation_df.columns))
+    click.echo(evaluation_df.to_markdown(index=False))
 
     meta_features = generate_meta_features(classifiers, x_train, y_train)
     meta_clf = LogisticRegression()
@@ -314,8 +335,8 @@ def main(bioregistry_file: str, start_date: str, end_date: str) -> None:
         else:
             x_test_meta[name] = clf.decision_function(x_test)
 
-    mcc, roc_auc = evaluate_meta_classifier(meta_clf, x_test_meta, y_test)
-    click.echo(f"Meta-Classifier MCC: {mcc}, AUC-ROC: {roc_auc}")
+    mcc, roc_auc = evaluate_meta_classifier(meta_clf, x_test_meta.to_numpy(), y_test)
+    click.echo(f"Meta-Classifier MCC: {mcc:.2f}, AUC-ROC: {roc_auc:.2f}")
     new_row = {"classifier": "meta_classifier", "mcc": mcc, "auc_roc": roc_auc}
     evaluation_df = pd.concat([evaluation_df, pd.DataFrame([new_row])], ignore_index=True)
 
@@ -340,7 +361,7 @@ def main(bioregistry_file: str, start_date: str, end_date: str) -> None:
         .sort_values("rf_importance", ascending=False, key=abs)
         .round(4)
     )
-    click.echo(tabulate(importances_df.head(15), showindex=False, headers=importances_df.columns))
+    click.echo(importances_df.head(15).to_markdown(index=False))
 
     importance_path = DIRECTORY.joinpath("importances.tsv")
     click.echo(f"Writing feature (word) importances to {importance_path}")
