@@ -139,8 +139,8 @@ def get_resource(
     prefix: str = Path(
         title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
     ),
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
 ):
     """Get a resource."""
     resource = request.app.manager.get_resource(prefix)
@@ -210,8 +210,8 @@ METAPREFIX_PATH = Path(
 def get_metaresource(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
 ):
     """Get all registries."""
     manager = request.app.manager

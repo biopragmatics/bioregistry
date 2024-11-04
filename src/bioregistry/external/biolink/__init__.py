@@ -26,7 +26,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 PROCESSING_BIOLINK_PATH = DIRECTORY / "processing_biolink.json"
 
 
-def get_biolink(force_download: bool = False) -> dict[str, str]:
+def get_biolink(force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get Biolink."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:

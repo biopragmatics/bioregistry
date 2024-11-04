@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """Export components of the bioregistry to TSV."""
 
 import csv
-from typing import Sequence
+from collections.abc import Sequence
 
 import click
 
@@ -103,7 +101,7 @@ def get_collections_rows() -> list[tuple[str, str, str, str, str, str]]:
 
 def get_metaregistry_rows() -> list[tuple[str, ...]]:
     """Get a dataframe of all metaresources."""
-    rows = []
+    rows: list[tuple[str, ...]] = []
     for metaprefix, data in read_metaregistry().items():
         rows.append(
             (
@@ -111,22 +109,22 @@ def get_metaregistry_rows() -> list[tuple[str, ...]]:
                 data.name,
                 data.homepage,
                 data.description,
-                data.download,
+                data.download or "",
                 data.example,
                 data.contact.name,
-                data.contact.email,
-                data.contact.github,
-                data.provider_uri_format,
-                data.resolver_uri_format,
-                data.resolver_type,
+                data.contact.email or "",
+                data.contact.github or "",
+                data.provider_uri_format or "",
+                data.resolver_uri_format or "",
+                data.resolver_type or "",
             )
         )
     return rows
 
 
-def get_registry_rows() -> list[Sequence[str | None, ...]]:
+def get_registry_rows() -> list[Sequence[str | None]]:
     """Get a dataframe of all resources."""
-    rows = []
+    rows: list[Sequence[str | None]] = []
     for prefix, data in read_registry().items():
         mappings = data.get_mappings()
         rows.append(
@@ -142,13 +140,11 @@ def get_registry_rows() -> list[Sequence[str | None, ...]]:
                 data.download_owl,
                 data.download_obo,
                 "|".join(sorted(data.get_synonyms())),
-                data.is_deprecated(),
+                str(data.is_deprecated()),
                 *[mappings.get(metaprefix) for metaprefix in METAPREFIXES],
-                # '|'.join(data.get('appears_in', [])),
                 data.part_of,
                 data.provides,
                 data.has_canonical,
-                # data.get('type'),
                 # TODO could add more, especially mappings
             )
         )

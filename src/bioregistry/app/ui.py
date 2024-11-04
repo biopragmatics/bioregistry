@@ -63,7 +63,7 @@ __all__ = [
 ]
 
 TEMPLATES = Path(__file__).parent.resolve().joinpath("templates")
-ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES)
+ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES.as_posix())
 
 FORMATS = [
     ("JSON", "json"),

@@ -65,7 +65,13 @@ def get_ncbi(force_download: bool = False) -> Dict[str, Dict[str, str]]:
     with RAW_PATH.open() as file:
         soup = BeautifulSoup(file, "html.parser")
     # find the data table based on its caption element
-    data_table = soup.find("caption", string=DATA_TABLE_CAPTION_RE).parent
+    data_table_child = soup.find("caption", string=DATA_TABLE_CAPTION_RE)
+    if data_table_child is None:
+        raise ValueError
+
+    data_table = data_table_child.parent
+    if data_table is None:
+        raise ValueError
 
     rv = {}
     for row in data_table.find_all("tr"):

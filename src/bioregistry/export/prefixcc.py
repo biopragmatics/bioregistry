@@ -4,6 +4,7 @@
 """
 
 import random
+from typing import cast
 
 import click
 import requests
@@ -47,7 +48,8 @@ def main() -> None:
 
     # Pick only the first record, since we can only make one update per day
     record = records[0]
-    uri_prefix = record.get_uri_prefix()
+    # the URI prefix is already existing, by construction
+    uri_prefix = cast(str, record.get_uri_prefix())
     click.echo(f"Attempting to create a record for {record.prefix} {uri_prefix}")
     res = create(record.prefix, uri_prefix)
     click.echo(res.text)

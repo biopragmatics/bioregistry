@@ -10,7 +10,7 @@ with the :func:`get_goa_example` function.
 import functools
 import logging
 import re
-from typing import Callable, Dict, Optional, Pattern, Union
+from typing import Callable, Dict, Optional, Pattern, Union, cast
 
 import pandas as pd
 from tabulate import tabulate
@@ -307,7 +307,7 @@ def validate_identifiers(
 
         results = _multi_column_map(
             df,
-            [prefix_column, column],
+            [cast(str, prefix_column), column],
             _validate_lambda,
             use_tqdm=use_tqdm,
         )

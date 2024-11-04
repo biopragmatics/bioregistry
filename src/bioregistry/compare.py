@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """This script compares what's in each resource."""
 
 import datetime
@@ -10,7 +8,8 @@ import random
 import sys
 import typing
 from collections import Counter, defaultdict
-from typing import TYPE_CHECKING, Callable, Collection, List, Mapping, Set, Tuple
+from collections.abc import Collection, Mapping
+from typing import TYPE_CHECKING, Callable, List, Set, Tuple, TypeVar
 
 import click
 
@@ -49,6 +48,8 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+X = TypeVar("X")
+
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = "silver"
 BAR_SKIP = {"re3data", "bartoc"}
@@ -65,7 +66,7 @@ class RegistryInfo(typing.NamedTuple):
     prefixes: Set[str]
 
 
-def _get_has(func: Callable[[str], bool], yes: str = "Yes", no: str = "No") -> Counter[str]:
+def _get_has(func: Callable[[str], typing.Any], yes: str = "Yes", no: str = "No") -> Counter[str]:
     return Counter(
         no if func(prefix) is None else yes
         for prefix in read_registry()
@@ -80,8 +81,9 @@ HAS_WIKIDATA_DATABASE = Counter(
 )
 
 
-def _get_has_present(func: Callable[[str], bool]) -> Counter:
-    return Counter(x for x in (func(prefix) for prefix in read_registry()) if x)
+def _get_has_present(func: Callable[[str], X | None]) -> Counter[X]:
+    values = (func(prefix) for prefix in read_registry())
+    return Counter(value for value in values if value)
 
 
 SINGLE_FIG = (8.25, 3.5)
@@ -351,7 +353,7 @@ def bibliometric_comparison() -> None:
 
 
 @click.command()
-def compare() -> None:  # noqa:C901
+def compare() -> None:
     """Compare the registries."""
     paper = False
     random.seed(0)
@@ -364,7 +366,7 @@ def compare() -> None:  # noqa:C901
             " Install bioregistry again with `pip install bioregistry[charts]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1)
 
     bibliometric_comparison()
 
@@ -446,7 +448,7 @@ def _count_providers(resource: Resource) -> int:
 def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str]]:
     licenses: list[str] = []
     conflicts: set[str] = set()
-    obo_has_license: set[str] = set(), set()
+    obo_has_license: set[str] = set()
     ols_has_license: set[str] = set()
     for key in read_registry():
         obo_license = standardize_license(get_external(key, "obofoundry").get("license"))
@@ -462,12 +464,12 @@ def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str
         if obo_license and not ols_license:
             licenses.append(obo_license)
         elif not obo_license and ols_license:
-            licenses.append(ols_license)
+            licenses.append(typing.cast(str, ols_license))
         elif obo_license == ols_license:
-            licenses.append(obo_license)
+            licenses.append(typing.cast(str, obo_license))
         else:  # different licenses!
-            licenses.append(ols_license)
-            licenses.append(obo_license)
+            licenses.append(typing.cast(str, ols_license))
+            licenses.append(typing.cast(str, obo_license))
             conflicts.add(key)
             # logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
