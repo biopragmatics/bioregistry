@@ -2,6 +2,8 @@
 
 """A class-based client to a metaregistry."""
 
+from __future__ import annotations
+
 import logging
 import typing
 import warnings
@@ -194,7 +196,7 @@ class Manager:
             self._converter = self.get_converter()
         return self._converter
 
-    def write_registry(self):
+    def write_registry(self) -> None:
         """Write the registry."""
         write_registry(self.registry)
 
@@ -496,14 +498,18 @@ class Manager:
                 rv[prefix] = version
         return rv
 
-    def get_uri_format(self, prefix, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+    def get_uri_format(
+        self, prefix: str, priority: Optional[Sequence[str]] = None
+    ) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
         return entry.get_uri_format(priority=priority)
 
-    def get_uri_prefix(self, prefix, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+    def get_uri_prefix(
+        self, prefix: str, priority: Optional[Sequence[str]] = None
+    ) -> Optional[str]:
         """Get a well-formed URI prefix, if available."""
         entry = self.get_resource(prefix)
         if entry is None:
@@ -677,11 +683,6 @@ class Manager:
         )
         return converter
 
-    def get_curies_records(self, **kwargs) -> List[curies.Record]:
-        """Get a list of records for all resources in this manager."""
-        warnings.warn("use Manager.get_converter().records", DeprecationWarning)
-        return self.get_converter(**kwargs).records
-
     def get_reverse_prefix_map(
         self, include_prefixes: bool = False, strict: bool = False
     ) -> Mapping[str, str]:
@@ -749,7 +750,7 @@ class Manager:
             rewiring=rewiring,
             blacklist=blacklist,
         )
-        return converter.prefix_map if include_synonyms else converter.bimap
+        return dict(converter.prefix_map) if include_synonyms else dict(converter.bimap)
 
     def get_curie_pattern(self, prefix: str, *, use_preferred: bool = False) -> Optional[str]:
         r"""Get the CURIE pattern for this resource.
@@ -780,7 +781,7 @@ class Manager:
         p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 
-    def rasterize(self):
+    def rasterize(self) -> dict[str, Mapping[str, Any]]:
         """Build a dictionary representing the fully constituted registry."""
         return {
             prefix: sanitize_model(resource, exclude={"prefix"}, exclude_none=True)
@@ -849,7 +850,7 @@ class Manager:
             proprietary=resource.proprietary,
         )
 
-    def get_license_conflicts(self):
+    def get_license_conflicts(self) -> List[tuple[str, str | None, str | None, str | None]]:
         """Get license conflicts."""
         conflicts = []
         for prefix, entry in self.registry.items():
@@ -1231,7 +1232,7 @@ class Manager:
         if bioregistry_link:
             rv.append(("bioregistry", bioregistry_link))
 
-        def _key(t):
+        def _key(t: tuple[str, Any]) -> int:
             if t[0] == "default":
                 return 0
             elif t[0] == "rdf":
@@ -1657,7 +1658,11 @@ class Manager:
 
 
 def _read_contributors(
-    registry, metaregistry, collections, contexts, direct_only: bool = False
+    registry: dict[str, Resource],
+    metaregistry: dict[str, Registry],
+    collections: dict[str, Collection],
+    contexts: dict[str, Context],
+    direct_only: bool = False,
 ) -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     rv: Dict[str, Attributable] = {}

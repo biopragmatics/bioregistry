@@ -13,25 +13,29 @@ from .lint import lint
 from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
 
+__all__ = [
+    "main",
+]
+
 
 @click.group()
 @click.version_option(version=VERSION)
-def main():
+def main() -> None:
     """Run the Bioregistry CLI."""
 
 
 @click.command()
-def download():
+def download() -> None:
     """Download/update the external entries in the Bioregistry."""
     try:
         from .external import GETTERS
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     for _, name, getter in GETTERS:
         secho(f"Downloading {name}")
@@ -52,17 +56,17 @@ def align(
     skip_agroportal: bool,
     skip_slow: bool,
     no_force: bool,
-):
+) -> None:
     """Align all external registries."""
     try:
         from .external.align import aligner_resolver
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     pre_digests = get_hexdigests()
 
@@ -99,7 +103,7 @@ main.add_command(web)
 
 @main.command()
 @click.pass_context
-def update(ctx: click.Context):
+def update(ctx: click.Context) -> None:
     """Update the Bioregistry."""
     ctx.invoke(align)
     ctx.invoke(lint)

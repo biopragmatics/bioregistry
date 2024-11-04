@@ -5,6 +5,8 @@
 This lists any sorts of things that should be fixed upstream, but are instead manually curated in the Bioregistry.
 """
 
+from __future__ import annotations
+
 import os
 from typing import Callable
 
@@ -29,7 +31,7 @@ ENTRIES = sorted(
 )
 
 
-def _g(predicate: Callable[[str], bool]):
+def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
     return [
         {
             "prefix": prefix,
@@ -41,7 +43,7 @@ def _g(predicate: Callable[[str], bool]):
     ]
 
 
-def get_unparsable_uris():
+def get_unparsable_uris() -> list[tuple[str, str, str]]:
     """Get a list of IRIs that can be constructed, but not parsed."""
     rows = []
     for prefix in tqdm(bioregistry.read_registry(), desc="Checking URIs"):
@@ -52,13 +54,13 @@ def get_unparsable_uris():
         if uri is None:
             continue
         k, v = bioregistry.parse_iri(uri)
-        if k is None:
-            rows.append((prefix, example, uri, k, v))
+        if k is None or v is None:
+            rows.append((prefix, example, uri))
     return rows
 
 
 @click.command()
-def export_warnings():
+def export_warnings() -> None:
     """Make warnings list."""
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(

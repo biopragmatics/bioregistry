@@ -20,7 +20,7 @@ from typing import (
 import curies
 from curies import Converter
 
-from bioregistry import Resource
+from .schema.struct import Resource
 
 __all__ = [
     "get_converter",
@@ -65,7 +65,7 @@ prefix_resource_blacklist = {
 assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
 
 
-def _debug_or_raise(msg: str, strict: bool = False):
+def _debug_or_raise(msg: str, strict: bool = False) -> None:
     if strict:
         raise ValueError(msg)
     logger.debug(msg)
@@ -83,7 +83,7 @@ def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], 
     return primary_resources, secondary_resources
 
 
-def _iterate_prefix_prefix(resource: Resource, *extras: str):
+def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
     prefixes_ = [
         resource.prefix,
         *resource.get_synonyms(),
