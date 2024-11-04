@@ -29,7 +29,7 @@ def _contains_date(iri: str) -> bool:
     return _match_any_part(iri, DATE_PATTERN)
 
 
-def _match_any_part(iri, pattern):
+def _match_any_part(iri: str, pattern: re.Pattern) -> bool:
     parse_result = urlparse(iri)
     return any(bool(pattern.match(part)) for part in parse_result.path.split("/"))
 

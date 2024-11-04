@@ -88,7 +88,7 @@ class Aligner:
         """Get the mapping prefixes that should be skipped to their reasons (strings)."""
         return {}
 
-    def _align(self):
+    def _align(self) -> None:
         """Align the external registry."""
         for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
@@ -96,7 +96,7 @@ class Aligner:
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
             # There's already a mapping for this external ID to a bioregistry
-            # entry. Just add all of the latest metadata and move on
+            # entry. Just add all the latest metadata and move on
             if bioregistry_id is not None:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
@@ -193,12 +193,12 @@ class Aligner:
         @click.option(
             "--no-force", is_flag=True, help="if set, do not force re-downloading the data"
         )
-        def _main(dry: bool, show: bool, no_force: bool):
+        def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
         _main()
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
@@ -256,7 +256,7 @@ class Aligner:
             writer.writerow((self.subkey, *self.curation_header))
             writer.writerows(rows)
 
-    def get_curation_table(self, **kwargs) -> Optional[str]:
+    def get_curation_table(self, **kwargs: Any) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault("tablefmt", "rst")
         headers = (self.subkey, *self.curation_header)
@@ -269,7 +269,7 @@ class Aligner:
             **kwargs,
         )
 
-    def print_curation_table(self, **kwargs) -> None:
+    def print_curation_table(self, **kwargs: Any) -> None:
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:

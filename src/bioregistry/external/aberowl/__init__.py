@@ -4,6 +4,7 @@
 
 import json
 from pathlib import Path
+from typing import Any
 
 import yaml
 from pystow.utils import download
@@ -22,7 +23,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 ABEROWL_URL = "http://aber-owl.net/api/ontology/?drf_fromat=json&format=json"
 
 
-def get_aberowl(force_download: bool = False):
+def get_aberowl(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the AberOWL registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -37,7 +38,7 @@ def get_aberowl(force_download: bool = False):
     return rv
 
 
-def _process(entry):
+def _process(entry: dict[str, Any]) -> dict[str, str]:
     rv = {
         "prefix": entry["acronym"],
         "name": entry["name"],

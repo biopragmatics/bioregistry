@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Export components of the bioregistry to TSV."""
 
+from __future__ import annotations
+
 import csv
+from collections.abc import Sequence
 
 import click
 
@@ -17,7 +18,7 @@ from ..uri_format import get_uri_format
 
 
 @click.command()
-def export_tsv():
+def export_tsv() -> None:
     """Export TSV."""
     with COLLECTIONS_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
@@ -83,7 +84,7 @@ REGISTRY_HEADER = [
 ]
 
 
-def get_collections_rows():
+def get_collections_rows() -> list[tuple[str, str, str, str, str, str]]:
     """Get a dataframe of all collections."""
     rows = []
     for identifier, collection in read_collections().items():
@@ -100,9 +101,9 @@ def get_collections_rows():
     return rows
 
 
-def get_metaregistry_rows():
+def get_metaregistry_rows() -> list[tuple[str, ...]]:
     """Get a dataframe of all metaresources."""
-    rows = []
+    rows: list[tuple[str, ...]] = []
     for metaprefix, data in read_metaregistry().items():
         rows.append(
             (
@@ -110,22 +111,22 @@ def get_metaregistry_rows():
                 data.name,
                 data.homepage,
                 data.description,
-                data.download,
+                data.download or "",
                 data.example,
                 data.contact.name,
-                data.contact.email,
-                data.contact.github,
-                data.provider_uri_format,
-                data.resolver_uri_format,
-                data.resolver_type,
+                data.contact.email or "",
+                data.contact.github or "",
+                data.provider_uri_format or "",
+                data.resolver_uri_format or "",
+                data.resolver_type or "",
             )
         )
     return rows
 
 
-def get_registry_rows():
+def get_registry_rows() -> list[Sequence[str | None]]:
     """Get a dataframe of all resources."""
-    rows = []
+    rows: list[Sequence[str | None]] = []
     for prefix, data in read_registry().items():
         mappings = data.get_mappings()
         rows.append(
@@ -141,13 +142,11 @@ def get_registry_rows():
                 data.download_owl,
                 data.download_obo,
                 "|".join(sorted(data.get_synonyms())),
-                data.is_deprecated(),
+                str(data.is_deprecated()),
                 *[mappings.get(metaprefix) for metaprefix in METAPREFIXES],
-                # '|'.join(data.get('appears_in', [])),
                 data.part_of,
                 data.provides,
                 data.has_canonical,
-                # data.get('type'),
                 # TODO could add more, especially mappings
             )
         )

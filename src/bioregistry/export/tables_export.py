@@ -51,7 +51,7 @@ def _replace_na(s: str) -> str:
     return s
 
 
-def _short_name_bibtex(registry) -> str:
+def _short_name_bibtex(registry: bioregistry.Registry) -> str:
     name = registry.get_short_name()
     return f"{name}~\\cite{{{registry.bibtex}}}" if registry.bibtex else name
 
@@ -67,7 +67,7 @@ schema_status_map = {
 }
 
 
-def _sort_key(registry):
+def _sort_key(registry: bioregistry.Registry):
     if registry.prefix == "bioregistry":
         return 0, registry.prefix
     return 1, registry.prefix
@@ -161,7 +161,7 @@ def _get_metadata_df() -> pd.DataFrame:
 
 
 @click.command()
-def export_tables():
+def export_tables() -> None:
     """Export tables.
 
     1. TODO: Export data model comparison, see also https://bioregistry.io/related#data-models

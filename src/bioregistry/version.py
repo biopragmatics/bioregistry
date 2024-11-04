@@ -32,7 +32,7 @@ def get_git_hash() -> Optional[str]:
             return ret.strip().decode("utf-8")[:8]
 
 
-def get_version(with_git_hash: bool = False):
+def get_version(with_git_hash: bool = False) -> str:
     """Get the bioregistry version string, including a git hash."""
     return f"{VERSION}-{get_git_hash()}" if with_git_hash else VERSION
 

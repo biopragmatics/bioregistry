@@ -60,14 +60,14 @@ class BioContextAligner(Aligner):
             "fbql": "not a real resource, as far as I can tell",
         }
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> Dict[str, Any]:
         """Prepare BioContext data to be added to the BioContext for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         if any(p in uri_format for p in SKIP_PARTS):
             return {}
         return {URI_FORMAT_KEY: uri_format}
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Prepare curation rows for unaligned BioContext registry entries."""
         formatter = external_entry[URI_FORMAT_KEY]
         return [formatter]

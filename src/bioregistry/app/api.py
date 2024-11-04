@@ -2,6 +2,8 @@
 
 """FastAPI blueprint and routes."""
 
+from __future__ import annotations
+
 from typing import Any, List, Mapping, Optional, Set
 
 import yaml
@@ -39,7 +41,7 @@ api_router = APIRouter(prefix="/api")
 class UnhandledFormat(HTTPException):
     """An exception for an unhandled format."""
 
-    def __init__(self, fmt):
+    def __init__(self, fmt: str) -> None:
         """Instantiate the exception.
 
         :param fmt: The header that was bad
@@ -139,8 +141,8 @@ def get_resource(
     prefix: str = Path(
         title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
     ),
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
 ):
     """Get a resource."""
     resource = request.app.manager.get_resource(prefix)
@@ -210,8 +212,8 @@ METAPREFIX_PATH = Path(
 def get_metaresource(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
 ):
     """Get all registries."""
     manager = request.app.manager
