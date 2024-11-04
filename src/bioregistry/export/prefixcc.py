@@ -19,7 +19,7 @@ def create(curie_prefix: str, uri_prefix: str) -> requests.Response:
     )
 
 
-def main():
+def main() -> None:
     """Add an OBO Foundry prefix to Prefix.cc."""
     prefix_cc_map = requests.get("https://prefix.cc/context").json()["@context"]
     records = []

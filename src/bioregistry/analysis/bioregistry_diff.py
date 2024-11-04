@@ -1,7 +1,8 @@
 """Given two dates, analyzes and visualizes changes in the Bioregistry."""
 
-import json
+import datetime
 import logging
+from typing import Any
 
 import click
 import matplotlib.pyplot as plt
@@ -21,7 +22,12 @@ BRANCH = "main"
 FILE_PATH = "src/bioregistry/data/bioregistry.json"
 
 
-def get_commit_before_date(date, owner=REPO_OWNER, name=REPO_NAME, branch=BRANCH):
+def get_commit_before_date(
+    date: datetime.date,
+    owner: str = REPO_OWNER,
+    name: str = REPO_NAME,
+    branch: str = BRANCH,
+) -> str | None:
     """Return the last commit before a given date.
 
     :param date: The date to get the commit before.
@@ -46,7 +52,9 @@ def get_commit_before_date(date, owner=REPO_OWNER, name=REPO_NAME, branch=BRANCH
     return None
 
 
-def get_file_at_commit(file_path, commit_sha, owner=REPO_OWNER, name=REPO_NAME):
+def get_file_at_commit(
+    file_path: str, commit_sha: str, owner: str = REPO_OWNER, name: str = REPO_NAME
+) -> dict[str, Any]:
     """Return the content of a given file at a specific commit.
 
     :param file_path: The file path in the repository.
@@ -61,9 +69,9 @@ def get_file_at_commit(file_path, commit_sha, owner=REPO_OWNER, name=REPO_NAME):
     response.raise_for_status()
     file_info = response.json()
     download_url = file_info["download_url"]
-    file_content_response = requests.get(download_url)
-    file_content_response.raise_for_status()
-    return json.loads(file_content_response.text)
+    res = requests.get(download_url)
+    res.raise_for_status()
+    return res.json()
 
 
 def compare_bioregistry(old_data, new_data):
@@ -246,7 +254,7 @@ def compare_dates(date1, date2):
     :param date1: The starting date in the format YYYY-MM-DD.
     :param date2: The ending date in the format YYYY-MM-DD.
     """
-    added, deleted, updated, update_details, old_data, new_data, all_mapping_keys = get_data(
+    added, deleted, updated, update_details, _old_data, _new_data, all_mapping_keys = get_data(
         date1, date2
     )
     if added is not None and updated is not None:

@@ -686,7 +686,7 @@ class Resource(BaseModel):
             return None
         return self.get_mappings().get(metaprefix)
 
-    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
+    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]) -> Any:
         """Get a key enriched by the given external resources' data."""
         rv = pydantic_dict(self).get(key)
         if rv is not None:

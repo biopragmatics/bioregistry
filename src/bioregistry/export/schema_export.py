@@ -8,7 +8,7 @@ from bioregistry.schema.constants import get_schema_nx
 
 
 @click.command()
-def schema_export():
+def schema_export() -> None:
     """Export the schema diagram."""
     agraph = to_agraph(get_schema_nx())
     agraph.layout(prog="dot")

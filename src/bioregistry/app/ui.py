@@ -11,6 +11,8 @@ from operator import attrgetter
 from pathlib import Path
 from typing import Optional
 
+import flask
+import werkzeug
 from flask import (
     Blueprint,
     abort,
@@ -70,7 +72,7 @@ FORMATS = [
 
 
 @ui_blueprint.route("/registry/")
-def resources():
+def resources() -> str:
     """Serve the registry page."""
     registry = manager.registry
     if request.args.get("novel") in {"true", "t"}:
@@ -83,7 +85,7 @@ def resources():
 
 
 @ui_blueprint.route("/metaregistry/")
-def metaresources():
+def metaresources() -> str:
     """Serve the metaregistry page."""
     return render_template(
         "metaresources.html",
@@ -93,7 +95,7 @@ def metaresources():
 
 
 @ui_blueprint.route("/collection/")
-def collections():
+def collections() -> str:
     """Serve the collections page."""
     return render_template(
         "collections.html",
@@ -103,7 +105,7 @@ def collections():
 
 
 @ui_blueprint.route("/registry/<prefix>")
-def resource(prefix: str):
+def resource(prefix: str) -> str | flask.Response:
     """Serve a resource page."""
     prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
     if not isinstance(prefix, str):
@@ -180,7 +182,7 @@ def resource(prefix: str):
 
 
 @ui_blueprint.route("/metaregistry/<metaprefix>")
-def metaresource(metaprefix: str):
+def metaresource(metaprefix: str) -> str | flask.Response:
     """Serve a metaresource page."""
     entry = manager.metaregistry.get(metaprefix)
     if entry is None:
@@ -231,7 +233,7 @@ def metaresource(metaprefix: str):
 
 
 @ui_blueprint.route("/health/<prefix>")
-def obo_health(prefix: str):
+def obo_health(prefix: str) -> werkzeug.Response:
     """Serve a redirect to OBO Foundry community health image."""
     url = manager.get_obo_health_url(prefix)
     if url is None:
@@ -240,7 +242,7 @@ def obo_health(prefix: str):
 
 
 @ui_blueprint.route("/collection/<identifier>")
-def collection(identifier: str):
+def collection(identifier: str) -> str | flask.Response:
     """Serve a collection page."""
     entry = manager.collections.get(identifier)
     if entry is None:
@@ -265,7 +267,7 @@ def collection(identifier: str):
 
 
 @ui_blueprint.route("/context/")
-def contexts():
+def contexts() -> str:
     """Serve the contexts page."""
     return render_template(
         "contexts.html",
@@ -276,7 +278,7 @@ def contexts():
 
 
 @ui_blueprint.route("/context/<identifier>")
-def context(identifier: str):
+def context(identifier: str) -> str:
     """Serve a context page."""
     entry = manager.contexts.get(identifier)
     if entry is None:
@@ -345,7 +347,7 @@ def _clean_reference(prefix: str, identifier: Optional[str] = None):
 
 @ui_blueprint.route("/reference/<prefix>:<path:identifier>")
 @ui_blueprint.route("/reference/<prefix>:/<path:identifier>")  # ARK hack, see below
-def reference(prefix: str, identifier: str):
+def reference(prefix: str, identifier: str) -> str:
     """Serve a reference page."""
     try:
         _resource, identifier = _clean_reference(prefix, identifier)
@@ -370,7 +372,9 @@ ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
 @ui_blueprint.route("/<prefix>")
 @ui_blueprint.route("/<prefix>:<path:identifier>")
 @ark_hacked_route
-def resolve(prefix: str, identifier: Optional[str] = None):
+def resolve(
+    prefix: str, identifier: Optional[str] = None
+) -> str | werkzeug.Response | tuple[str, int]:
     """Resolve a CURIE.
 
     The following things can make a CURIE unable to resolve:

@@ -5,7 +5,9 @@ from pathlib import Path
 
 import click
 import indra.literature.pubmed_client as pubmed_client
+import numpy as np
 import pandas as pd
+from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -22,13 +24,11 @@ URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_\
 QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
 
 
-def load_bioregistry_json(file_path):
+def load_bioregistry_json(file_path: str | Path) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param file_path: Path to the bioregistry JSON file.
-    :type file_path: str
     :return: DataFrame containing publication details.
-    :rtype: pd.DataFrame
     """
     try:
         with open(file_path, "r") as f:
@@ -63,11 +63,10 @@ def load_bioregistry_json(file_path):
     return pd.DataFrame(publications)
 
 
-def fetch_pubmed_papers():
+def fetch_pubmed_papers() -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms.
 
     :return: DataFrame containing PubMed paper details.
-    :rtype: pd.DataFrame
     """
     click.echo("Starting fetch_pubmed_papers")
 
@@ -112,11 +111,10 @@ def fetch_pubmed_papers():
     return pd.DataFrame(records)
 
 
-def load_curation_data():
+def load_curation_data() -> pd.DataFrame:
     """Download and load curation data from a Google Sheets URL.
 
     :return: DataFrame containing curated publication details.
-    :rtype: pd.DataFrame
     """
     click.echo("Downloading curation")
     df = pd.read_csv(URL)
@@ -136,13 +134,11 @@ def load_curation_data():
     return df
 
 
-def _map_labels(s: str):
+def _map_labels(s: str) -> int | None:
     """Map labels to binary values.
 
     :param s: Label value.
-    :type s: str
     :return: Mapped binary label value.
-    :rtype: int
     """
     if s in {"1", "1.0", 1}:
         return 1
@@ -151,15 +147,15 @@ def _map_labels(s: str):
     return None
 
 
-def train_classifiers(x_train, y_train):
+Classifiers = list[tuple[str, ClassifierMixin]]
+
+
+def train_classifiers(x_train: np.ndarray, y_train: np.ndarray) -> Classifiers:
     """Train multiple classifiers on the training data.
 
     :param x_train: Training features.
-    :type x_train: array-like
     :param y_train: Training labels.
-    :type y_train: array-like
     :return: List of trained classifiers.
-    :rtype: list
     """
     classifiers = [
         ("rf", RandomForestClassifier()),
@@ -173,17 +169,15 @@ def train_classifiers(x_train, y_train):
     return classifiers
 
 
-def generate_meta_features(classifiers, x_train, y_train):
+def generate_meta_features(
+    classifiers: Classifiers, x_train: np.ndarray, y_train: np.ndarray
+) -> pd.DataFrame:
     """Generate meta-features for training a meta-classifier using cross-validation predictions.
 
     :param classifiers: List of trained classifiers.
-    :type classifiers: list
     :param x_train: Training features.
-    :type x_train: array-like
     :param y_train: Training labels.
-    :type y_train: array-like
     :return: DataFrame containing meta-features.
-    :rtype: pd.DataFrame
     """
     meta_features = pd.DataFrame()
     for name, clf in classifiers:
@@ -197,17 +191,15 @@ def generate_meta_features(classifiers, x_train, y_train):
     return meta_features
 
 
-def evaluate_meta_classifier(meta_clf, x_test_meta, y_test):
+def evaluate_meta_classifier(
+    meta_clf: ClassifierMixin, x_test_meta: np.ndarray, y_test: np.ndarray
+) -> tuple[float, float]:
     """Evaluate meta-classifier using MCC and AUC-ROC scores.
 
     :param meta_clf: Trained meta-classifier.
-    :type meta_clf: classifier
     :param x_test_meta: Test meta-features.
-    :type x_test_meta: array-like
     :param y_test: Test labels.
-    :type y_test: array-like
     :return: MCC and AUC-ROC scores.
-    :rtype: tuple
     """
     y_pred = meta_clf.predict(x_test_meta)
     mcc = matthews_corrcoef(y_test, y_pred)
@@ -215,24 +207,26 @@ def evaluate_meta_classifier(meta_clf, x_test_meta, y_test):
     return mcc, roc_auc
 
 
-def truncate_text(text, max_length):
+def truncate_text(text: str, max_length: int) -> str:
     """Truncate text to a specified maximum length."""
+    # FIXME replace with builtin textwrap function
     return text if len(text) <= max_length else text[:max_length] + "..."
 
 
-def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
+def predict_and_save(
+    df: pd.DataFrame,
+    vectorizer: TfidfVectorizer,
+    classifiers: Classifiers,
+    meta_clf: ClassifierMixin,
+    filename: str | Path,
+) -> None:
     """Predict and save scores for new data using trained classifiers and meta-classifier.
 
     :param df: DataFrame containing new data.
-    :type df: pd.DataFrame
     :param vectorizer: Trained TF-IDF vectorizer.
-    :type vectorizer: TfidfVectorizer
     :param classifiers: List of trained classifiers.
-    :type classifiers: list
     :param meta_clf: Trained meta-classifier.
-    :type meta_clf: classifier
     :param filename: Filename to save the predictions.
-    :type filename: str
     """
     x_meta = pd.DataFrame()
     x_transformed = vectorizer.transform(df.title + " " + df.abstract)
@@ -257,15 +251,12 @@ def predict_and_save(df, vectorizer, classifiers, meta_clf, filename):
 )
 @click.option("--start-date", required=True, help="Start date of the period")
 @click.option("--end-date", required=True, help="End date of the period")
-def main(bioregistry_file, start_date, end_date):
+def main(bioregistry_file: str, start_date: str, end_date: str) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
-    :type bioregistry_file: str
     :param start_date: The start date of the period for which papers are being ranked.
-    :type start_date: str
     :param end_date: The end date of the period for which papers are being ranked.
-    :type end_date: str
     """
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()

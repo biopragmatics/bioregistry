@@ -53,7 +53,7 @@ NAMESPACE_WARNINGS = set()
 
 
 @click.command()
-def export_rdf():
+def export_rdf() -> None:
     """Export RDF."""
     from bioregistry import manager
 
@@ -158,7 +158,9 @@ def _get_resource_function_2() -> List[Tuple[Union[str, URIRef], Callable[[Resou
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):  # noqa:C901
+def _add_resource(
+    resource: Resource, *, manager: Manager, graph: rdflib.Graph
+) -> None:  # noqa:C901
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))

@@ -26,7 +26,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 PROCESSING_BIOLINK_PATH = DIRECTORY / "processing_biolink.json"
 
 
-def get_biolink(force_download: bool = False):
+def get_biolink(force_download: bool = False) -> dict[str, str]:
     """Get Biolink."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -56,7 +56,7 @@ class BiolinkAligner(Aligner):
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry) -> Dict[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return {

@@ -23,7 +23,7 @@ def _publication_sort_key(p: Publication) -> tuple[int, str, str]:
 
 
 @click.command()
-def lint():
+def lint() -> None:
     """Run the lint commands."""
     # clear LRU caches so if this is run after some functions that update
     # these resources, such as the align() pipeline, they don't get overwritten.

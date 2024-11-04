@@ -3,6 +3,7 @@
 """Export components of the bioregistry to TSV."""
 
 import csv
+from typing import Sequence
 
 import click
 
@@ -17,7 +18,7 @@ from ..uri_format import get_uri_format
 
 
 @click.command()
-def export_tsv():
+def export_tsv() -> None:
     """Export TSV."""
     with COLLECTIONS_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
@@ -83,7 +84,7 @@ REGISTRY_HEADER = [
 ]
 
 
-def get_collections_rows():
+def get_collections_rows() -> list[tuple[str, str, str, str, str, str]]:
     """Get a dataframe of all collections."""
     rows = []
     for identifier, collection in read_collections().items():
@@ -100,7 +101,7 @@ def get_collections_rows():
     return rows
 
 
-def get_metaregistry_rows():
+def get_metaregistry_rows() -> list[tuple[str, ...]]:
     """Get a dataframe of all metaresources."""
     rows = []
     for metaprefix, data in read_metaregistry().items():
@@ -123,7 +124,7 @@ def get_metaregistry_rows():
     return rows
 
 
-def get_registry_rows():
+def get_registry_rows() -> list[Sequence[str | None, ...]]:
     """Get a dataframe of all resources."""
     rows = []
     for prefix, data in read_registry().items():

@@ -39,7 +39,7 @@ api_router = APIRouter(prefix="/api")
 class UnhandledFormat(HTTPException):
     """An exception for an unhandled format."""
 
-    def __init__(self, fmt):
+    def __init__(self, fmt: str) -> None:
         """Instantiate the exception.
 
         :param fmt: The header that was bad
