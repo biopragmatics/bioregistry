@@ -2,6 +2,8 @@
 
 """FastAPI blueprint and routes."""
 
+from __future__ import annotations
+
 from typing import Any, List, Mapping, Optional, Set
 
 import yaml

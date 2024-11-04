@@ -2,6 +2,8 @@
 
 """User blueprint for the bioregistry web application."""
 
+from __future__ import annotations
+
 import datetime
 import itertools as itt
 import json

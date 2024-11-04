@@ -2,6 +2,8 @@
 
 """Test for web."""
 
+from __future__ import annotations
+
 import json
 import unittest
 from typing import ClassVar, Dict, List
