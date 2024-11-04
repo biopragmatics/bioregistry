@@ -710,12 +710,22 @@ class Resource(BaseModel):
         return None
 
     def _get_prefix_key_str(self, key: str, metaprefixes: Union[str, Sequence[str]]) -> str | None:
-        return cast(str | None, self.get_prefix_key(key, metaprefixes))
+        rv = self.get_prefix_key(key, metaprefixes)
+        if rv is None:
+            return None
+        if isinstance(rv, str):
+            return rv
+        raise TypeError
 
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]]
     ) -> bool | None:
-        return cast(bool | None, self.get_prefix_key(key, metaprefixes))
+        rv = self.get_prefix_key(key, metaprefixes)
+        if rv is None:
+            return None
+        if isinstance(rv, bool):
+            return rv
+        raise TypeError
 
     def get_default_uri(self, identifier: str) -> Optional[str]:
         """Return the default URI for the identifier.

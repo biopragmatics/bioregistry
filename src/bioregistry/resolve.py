@@ -2,6 +2,8 @@
 
 """Utilities for normalizing prefixes."""
 
+from __future__ import annotations
+
 import logging
 import typing
 from functools import lru_cache

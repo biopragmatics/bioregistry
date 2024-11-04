@@ -1,5 +1,7 @@
 """Utilities."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
