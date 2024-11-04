@@ -827,7 +827,7 @@ class Resource(BaseModel):
         if self.uri_format is not None:
             return self.uri_format
         for metaprefix, key in URI_FORMAT_PATHS:
-            rv = cast(str | None, self.get_external(metaprefix).get(key))
+            rv = cast(Optional[str], self.get_external(metaprefix).get(key))
             if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
