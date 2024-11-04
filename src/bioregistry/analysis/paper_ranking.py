@@ -96,9 +96,7 @@ def load_curated_papers(file_path=CURATED_PAPERS_PATH):
     for index, row in curated_df.iterrows():
         if row["pubmed"] in fetched_metadata:
             curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
-            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get(
-                "abstract", ""
-            )
+            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
 
     click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
     return curated_df
