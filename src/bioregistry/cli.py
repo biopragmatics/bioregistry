@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# type:ignore
 
 """Command line interface for the bioregistry."""
 
@@ -30,13 +29,13 @@ def download() -> None:
     """Download/update the external entries in the Bioregistry."""
     try:
         from .external import GETTERS
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     for _, name, getter in GETTERS:
         secho(f"Downloading {name}")
@@ -61,13 +60,13 @@ def align(
     """Align all external registries."""
     try:
         from .external.align import aligner_resolver
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     pre_digests = get_hexdigests()
 

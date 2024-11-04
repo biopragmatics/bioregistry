@@ -666,7 +666,7 @@ class Resource(BaseModel):
     pathguide: Optional[Mapping[str, Any]] = Field(default=None)
 
     # Cached compiled pattern for identifiers
-    _compiled_pattern: Optional[re.Pattern] = PrivateAttr(None)
+    _compiled_pattern: Optional[re.Pattern[str]] = PrivateAttr(None)
 
     def get_external(self, metaprefix: str) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -687,9 +687,9 @@ class Resource(BaseModel):
         if metaprefix == "obofoundry":
             obofoundry_dict = self.obofoundry or {}
             if "preferredPrefix" in obofoundry_dict:
-                return obofoundry_dict["preferredPrefix"]
+                return cast(str, obofoundry_dict["preferredPrefix"])
             if "prefix" in obofoundry_dict:
-                return obofoundry_dict["prefix"].upper()
+                return cast(str, obofoundry_dict["prefix"]).upper()
             return None
         return self.get_mappings().get(metaprefix)
 
@@ -708,6 +708,14 @@ class Resource(BaseModel):
             if rv is not None:
                 return rv
         return None
+
+    def _get_prefix_key_str(self, key: str, metaprefixes: Union[str, Sequence[str]]) -> str | None:
+        return cast(str | None, self.get_prefix_key(key, metaprefixes))
+
+    def _get_prefix_key_bool(
+        self, key: str, metaprefixes: Union[str, Sequence[str]]
+    ) -> bool | None:
+        return cast(bool | None, self.get_prefix_key(key, metaprefixes))
 
     def get_default_uri(self, identifier: str) -> Optional[str]:
         """Return the default URI for the identifier.
@@ -809,7 +817,7 @@ class Resource(BaseModel):
         if self.uri_format is not None:
             return self.uri_format
         for metaprefix, key in URI_FORMAT_PATHS:
-            rv = self.get_external(metaprefix).get(key)
+            rv = cast(str | None, self.get_external(metaprefix).get(key))
             if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
@@ -861,8 +869,8 @@ class Resource(BaseModel):
         return self.mappings or {}
 
     def get_name(self) -> Optional[str]:
-        """Get the name for the given prefix, it it's available."""
-        return self.get_prefix_key(
+        """Get the name for the given prefix, if it's available."""
+        return self._get_prefix_key_str(
             "name",
             (
                 "obofoundry",
@@ -893,7 +901,7 @@ class Resource(BaseModel):
             from markdown import markdown
 
             return markupsafe.Markup(markdown(self.description))
-        rv = self.get_prefix_key(
+        rv = self._get_prefix_key_str(
             "description",
             (
                 "miriam",
@@ -918,7 +926,7 @@ class Resource(BaseModel):
         if rv is not None:
             return rv
         if self.cellosaurus and "category" in self.cellosaurus:
-            return self.cellosaurus["category"]
+            return cast(str, self.cellosaurus["category"])
         return None
 
     def get_pattern(self) -> Optional[str]:
@@ -932,7 +940,7 @@ class Resource(BaseModel):
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc"))
+        rv = self._get_prefix_key_str("pattern", ("miriam", "wikidata", "bartoc"))
         if rv is None:
             return None
         return _clean_pattern(rv)
@@ -1025,11 +1033,11 @@ class Resource(BaseModel):
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self.get_prefix_key("namespaceEmbeddedInLui", "miriam")
+        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam")
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
-        return self.get_prefix_key(
+        return self._get_prefix_key_str(
             "homepage",
             (
                 "obofoundry",
@@ -1079,7 +1087,7 @@ class Resource(BaseModel):
         """Return the repository, if available."""
         if self.repository:
             return self.repository
-        return self.get_prefix_key("repository", ("obofoundry", "fairsharing"))
+        return self._get_prefix_key_str("repository", ("obofoundry", "fairsharing"))
 
     def get_contact(self) -> Optional[Attributable]:
         """Get the contact, if available.
@@ -1116,8 +1124,8 @@ class Resource(BaseModel):
         if self.contact and self.contact.email:
             return self.contact.email
         # FIXME if contact is not none but email is, this will have a problem after
-        rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
-        if rv:
+        rv = self._get_prefix_key_str("contact", ("obofoundry", "ols"))
+        if isinstance(rv, str):
             if EMAIL_RE.match(rv):
                 return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
@@ -1126,9 +1134,9 @@ class Resource(BaseModel):
             if not ext:
                 continue
             rv = ext.get("contact", {}).get("email")
-            if rv:
+            if isinstance(rv, str):
                 return rv
-        return rv
+        return None
 
     def get_contact_name(self) -> Optional[str]:
         """Return the contact name, if available.
@@ -1146,12 +1154,12 @@ class Resource(BaseModel):
         if self.contact and self.contact.name:
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
-            return self.obofoundry["contact.label"]
+            return cast(str, self.obofoundry["contact.label"])
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
                 continue
             rv = ext.get("contact", {}).get("name")
-            if rv:
+            if isinstance(rv, str):
                 return rv
         return None
 
@@ -1169,7 +1177,7 @@ class Resource(BaseModel):
         if self.contact and self.contact.github:
             return self.contact.github
         if self.obofoundry and "contact.github" in self.obofoundry:
-            return self.obofoundry["contact.github"]
+            return cast(str, self.obofoundry["contact.github"])
 
         # Manually curated upgrade map. TODO externalize this
         orcid = self.get_contact_orcid()
@@ -1193,11 +1201,11 @@ class Resource(BaseModel):
         if self.contact and self.contact.orcid:
             return self.contact.orcid
         if self.obofoundry and "contact.orcid" in self.obofoundry:
-            return self.obofoundry["contact.orcid"]
+            return cast(str, self.obofoundry["contact.orcid"])
         if self.fairsharing:
             rv = self.fairsharing.get("contact", {}).get("orcid")
             if rv:
-                return rv
+                return cast(str, rv)
         return None
 
     def get_example(self) -> Optional[str]:
@@ -1207,14 +1215,14 @@ class Resource(BaseModel):
             return example
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
-            return miriam_example
+            return cast(str, miriam_example)
         for metaprefix in ["ncbi", "n2t", "prefixcommons"]:
             example = self.get_external(metaprefix).get("example")
             if example is not None:
-                return example
+                return cast(str, example)
         wikidata_examples = self.get_external("wikidata").get("example", [])
         if wikidata_examples:
-            return wikidata_examples[0]
+            return cast(str, wikidata_examples[0])
         return None
 
     def get_examples(self) -> List[str]:

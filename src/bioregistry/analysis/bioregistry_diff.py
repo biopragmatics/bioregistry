@@ -1,5 +1,7 @@
 """Given two dates, analyzes and visualizes changes in the Bioregistry."""
 
+from __future__ import annotations
+
 import datetime
 import logging
 from typing import Any

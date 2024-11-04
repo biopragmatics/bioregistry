@@ -3,7 +3,7 @@
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import (
@@ -42,7 +42,7 @@ class OLSBroken(RuntimeError):
     """Raised when the OLS is having a problem."""
 
 
-def secho(s, fg="cyan", bold=True, **kwargs):
+def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     """Wrap :func:`click.secho`."""
     click.echo(
         f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs)
@@ -82,10 +82,11 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     )
     res.raise_for_status()
     res_json = res.json()
-    return res_json["results"]["bindings"]
+    return cast(List[Mapping[str, Any]], res_json["results"]["bindings"])
 
 
-class NormDict(dict):
+# TODO make inherit from dict[str, str] interface
+class NormDict(dict[str, str]):
     """A dictionary that supports lexical normalization of keys on setting and getting."""
 
     def __setitem__(self, key: str, value: str) -> None:
@@ -99,17 +100,24 @@ class NormDict(dict):
             )
         super().__setitem__(norm_key, value)
 
-    def __getitem__(self, item: str) -> str:
+    def __getitem__(self, item: Any) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().__getitem__(_norm(item))
+        if not isinstance(item, str):
+            raise TypeError
+        rv = super().__getitem__(_norm(item))
+        if not isinstance(rv, str):
+            raise TypeError
+        return rv
 
-    def __contains__(self, item) -> bool:
+    def __contains__(self, item: Hashable) -> bool:
         """Check if an item is in the dictionary after lexically normalizing it."""
+        if not isinstance(item, str):
+            return False
         return super().__contains__(_norm(item))
 
-    def get(self, key: str, default=None) -> str:
+    def get(self, key: str, default: str | Any = None) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().get(_norm(key), default)
+        return cast(str, super().get(_norm(key), default))
 
 
 def _norm(s: str) -> str:
@@ -148,11 +156,20 @@ def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
 
 def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
     hashes = get_hashes(path, [alg])
-    return hashes[alg].hexdigest()
+    return cast(str, hashes[alg].hexdigest())
+
+
+IdentifierGetter = Callable[[dict[str, Any], str], str]
+IdentifierCleaner = Callable[[str], str]
 
 
 def get_ols_descendants(
-    ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
+    ontology: str,
+    uri: str,
+    *,
+    force_download: bool = False,
+    get_identifier: IdentifierGetter | None = None,
+    clean: IdentifierCleaner | None = None,
 ) -> Mapping[str, Mapping[str, Any]]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
@@ -170,8 +187,8 @@ def _process_ols(
     *,
     ontology: str,
     terms: list[dict[str, Any]],
-    clean: Callable[[str], str] | None = None,
-    get_identifier: Callable[[dict[str, Any], str], str] | None = None,
+    clean: IdentifierCleaner | None = None,
+    get_identifier: IdentifierGetter | None = None,
 ) -> Mapping[str, Mapping[str, Any]]:
     if clean is None:
         clean = _clean
@@ -190,7 +207,7 @@ def _process_ols(
 
 
 def _get_identifier(term: dict[str, Any], ontology: str) -> str:
-    return term["obo_id"][len(ontology) + 1 :]
+    return term["obo_id"][len(ontology) + 1 :]  # type:ignore
 
 
 def _clean(s: str) -> str:
