@@ -5,6 +5,8 @@
 This lists any sorts of things that should be fixed upstream, but are instead manually curated in the Bioregistry.
 """
 
+from __future__ import annotations
+
 import os
 from typing import Callable
 

@@ -1,5 +1,7 @@
 """This script compares what's in each resource."""
 
+from __future__ import annotations
+
 import datetime
 import itertools as itt
 import logging

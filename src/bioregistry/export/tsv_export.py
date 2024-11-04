@@ -1,5 +1,7 @@
 """Export components of the bioregistry to TSV."""
 
+from __future__ import annotations
+
 import csv
 from collections.abc import Sequence
 

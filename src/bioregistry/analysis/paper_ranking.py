@@ -1,5 +1,7 @@
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
 
+from __future__ import annotations
+
 import datetime
 import json
 from collections import defaultdict
