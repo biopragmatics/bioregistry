@@ -75,13 +75,11 @@ def load_bioregistry_json(path: Path | None = None) -> pd.DataFrame:
     return pd.DataFrame(publications)
 
 
-def load_curated_papers(file_path=CURATED_PAPERS_PATH):
+def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
     """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
 
     :param file_path: Path to the curated_papers.tsv file.
-    :type file_path: str
     :return: DataFrame containing curated publication details.
-    :rtype: pd.DataFrame
     """
     curated_df = pd.read_csv(file_path, sep="\t")
     curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
@@ -102,11 +100,10 @@ def load_curated_papers(file_path=CURATED_PAPERS_PATH):
     return curated_df
 
 
-def fetch_pubmed_papers(curated_pmids):
+def fetch_pubmed_papers(curated_pmids: set[int]) -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
     :param curated_pmids: List containing already curated PMIDs
-    :type curated_pmids: Iterable
     :return: DataFrame containing PubMed paper details.
     """
     click.echo("Starting fetch_pubmed_papers")
