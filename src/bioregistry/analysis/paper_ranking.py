@@ -44,7 +44,7 @@ def load_bioregistry_json(path: Path | None = None) -> pd.DataFrame:
     if path is None:
         path = BIOREGISTRY_PATH
     try:
-        data = json.loads(path.read_text())
+        data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as e:
         click.echo(f"JSONDecodeError: {e.msg}")
         click.echo(f"Error at line {e.lineno}, column {e.colno}")
@@ -70,7 +70,7 @@ def load_bioregistry_json(path: Path | None = None) -> pd.DataFrame:
         if pub["pubmed"] in fetched_metadata:
             pub["abstract"] = fetched_metadata[pub["pubmed"]].get("abstract", "")
 
-    click.echo(f"Got {len(publications):;} publications from the bioregistry")
+    click.echo(f"Got {len(publications):,} publications from the bioregistry")
 
     return pd.DataFrame(publications)
 
@@ -118,7 +118,7 @@ def fetch_pubmed_papers(curated_pmids: set[int]) -> pd.DataFrame:
                 paper_to_terms[pubmed_id].append(term)
 
     all_pmids = list(paper_to_terms.keys())
-    click.echo(f"{len(all_pmids):;} articles found")
+    click.echo(f"{len(all_pmids):,} articles found")
     if not all_pmids:
         click.echo(f"No articles found for the last 30 days with the search terms: {search_terms}")
         return pd.DataFrame()
