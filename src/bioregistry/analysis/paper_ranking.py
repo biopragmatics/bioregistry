@@ -21,11 +21,12 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
-from bioregistry.constants import CURATED_PAPERS_PATH
+#from bioregistry.constants import CURATED_PAPERS_PATH
 
 HERE = Path(__file__).parent.resolve()
 ROOT = HERE.parent.parent.parent.resolve()
 
+CURATED_PAPERS_PATH = ROOT.joinpath("src", "bioregistry", "data", "curated_papers.tsv")
 BIOREGISTRY_PATH = ROOT.joinpath("src", "bioregistry", "data", "bioregistry.json")
 
 DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
