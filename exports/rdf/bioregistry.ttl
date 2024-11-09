@@ -381,6 +381,7 @@
 @prefix doqcs.model: <http://doqcs.ncbs.res.in/template.php?&y=accessiondetails&an=> .
 @prefix doqcs.pathway: <http://doqcs.ncbs.res.in/template.php?&y=pathwaydetails&pn=> .
 @prefix dpv: <http://www.dpvweb.net/dpv/showdpv.php?dpvno=> .
+@prefix dpvocab: <https://w3id.org/dpv#> .
 @prefix drduke: <https://phytochem.nal.usda.gov/phytochem/chemicals/show/> .
 @prefix drks: <https://drks.de/search/en/trial/> .
 @prefix dron: <http://purl.obolibrary.org/obo/DRON_> .
@@ -601,6 +602,7 @@
 @prefix grsdb: <http://bioinformatics.ramapo.edu/GRSDB2/geneview.php?geneID=> .
 @prefix gsfa: <http://www.fao.org/gsfaonline/additives/details.html?id=> .
 @prefix gsso: <http://purl.obolibrary.org/obo/GSSO_> .
+@prefix gtdb: <https://gtdb.ecogenomic.org/tree?r=> .
 @prefix gtex: <https://www.gtexportal.org/home/gene/> .
 @prefix gtr: <https://www.ncbi.nlm.nih.gov/gtr/conditions/> .
 @prefix gudmap: <https://gudmap.org/id/> .
@@ -660,6 +662,7 @@
 @prefix hso: <http://purl.obolibrary.org/obo/HSO_> .
 @prefix htn: <http://purl.obolibrary.org/obo/HTN_> .
 @prefix huge: <https://www.kazusa.or.jp/huge/gfpage/> .
+@prefix humap: <https://humap3.proteincomplexes.org/displayComplexes?complex_key=> .
 @prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix icd10: <https://icd.who.int/browse10/2019/en#/> .
 @prefix icd10cm: <https://icd.codes/icd10cm/> .
@@ -1080,8 +1083,7 @@
 @prefix pcl: <http://purl.obolibrary.org/obo/PCL_> .
 @prefix pco: <http://purl.obolibrary.org/obo/PCO_> .
 @prefix pdb: <https://www.wwpdb.org/pdb?id=> .
-@prefix pdb-ccd: <https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/> .
-@prefix pdb.ligand: <http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=> .
+@prefix pdb.ligand: <https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/> .
 @prefix pdbsum: <https://www.ebi.ac.uk/pdbsum/> .
 @prefix pdc.study: <https://pdc.cancer.gov/pdc/study/> .
 @prefix pdro: <http://purl.obolibrary.org/obo/PDRO_> .
@@ -1335,7 +1337,7 @@
 @prefix storedb.dataset: <https://www.storedb.org/?STOREDB:DATASET> .
 @prefix storedb.file: <https://www.storedb.org/store_v3/download.jsp?fileId=> .
 @prefix storedb.study: <https://www.storedb.org/store_v3/study.jsp?studyId=> .
-@prefix string: <http://string.embl.de/interactions/> .
+@prefix string: <https://string-db.org/cgi/network?identifier=> .
 @prefix sty: <https://uts.nlm.nih.gov/uts/umls/semantic-network/> .
 @prefix subtilist: <http://genolist.pasteur.fr/SubtiList/genome.cgi?external_query+> .
 @prefix subtiwiki: <http://www.subtiwiki.uni-goettingen.de/wiki/index.php/> .
@@ -1984,9 +1986,11 @@ bioregistry.schema:0000029 a rdf:Property ;
 
 orcid:0000-0001-5705-7831 rdfs:label "Harry Caufield" ;
     dcterms:contributor bioregistry:adcad,
+        bioregistry:dpvocab,
         bioregistry:hoip,
         bioregistry:mosaic ;
-    foaf:mbox "j.harry.caufield@gmail.com" .
+    foaf:mbox "j.harry.caufield@gmail.com",
+        "jhc@lbl.gov" .
 
 orcid:0000-0002-0548-891X rdfs:label "Madeline Iseminger" ;
     dcterms:contributor bioregistry:hgvs ;
@@ -2012,6 +2016,10 @@ orcid:0000-0002-8719-7760 rdfs:label "Sierra Moxon" ;
         bioregistry:ddinter.drug,
         bioregistry:ncats.bioplanet .
 
+orcid:0000-0003-1982-9065 rdfs:label "AJ Ireland" ;
+    dcterms:contributor bioregistry:gtdb ;
+    foaf:mbox "aireland@lbl.gov" .
+
 orcid:0000-0003-3389-2191 rdfs:label "Pierre-Marie Allard" ;
     dcterms:contributor bioregistry:inaturalist.observation .
 
@@ -2029,6 +2037,8 @@ orcid:0009-0001-6787-3995 rdfs:label "Tomohiro Oga" ;
 orcid:0009-0009-5240-7463 rdfs:label "Mufaddal Naguthanawala" ;
     dcterms:contributor bioregistry:asteraceaegd.genome,
         bioregistry:asteraceaegd.plant,
+        bioregistry:fema,
+        bioregistry:jecfa,
         bioregistry:pephub,
         bioregistry:scancerrna ;
     foaf:mbox "m.naguthana@hotmail.com" .
@@ -4478,13 +4488,13 @@ bioregistry:ccds a bioregistry.schema:0000001 ;
         "life science",
         "protein" ;
     foaf:homepage <http://www.ncbi.nlm.nih.gov/CCDS/> ;
-    bioregistry.schema:0000005 "CCDS13573.1"^^xsd:string ;
+    bioregistry.schema:0000005 "CCDS12976"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^CCDS\\d+\\.\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^CCDS\\d+(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9311-9745 ;
     bioregistry.schema:0000024 "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA="^^xsd:string ;
-    bioregistry.schema:0000027 ccds:CCDS13573.1 ;
+    bioregistry.schema:0000027 ccds:CCDS12976 ;
     bioregistry.schema:0000029 "ccds" .
 
 bioregistry:cco a bioregistry.schema:0000001 ;
@@ -9232,7 +9242,7 @@ bioregistry:go.model a bioregistry.schema:0000001 ;
     dcterms:description "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch go.resource:gomodel ;
-    foaf:homepage <http://www.geneontology.org/gocam> ;
+    foaf:homepage <https://geneontology.org/go-cam> ;
     bioregistry.schema:0000005 "5fce9b7300001250"^^xsd:string ;
     bioregistry.schema:0000006 "http://noctua.geneontology.org/editor/graph/gomodel:$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
@@ -12227,7 +12237,7 @@ bioregistry:merops.entry a bioregistry.schema:0000001 ;
     foaf:homepage <http://merops.sanger.ac.uk/index.htm> ;
     bioregistry.schema:0000005 "I31.952"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[SCTAGMNUIX]{1,2}\\d{2}\\.([AB]\\d{2}|\\d{3})$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5557-7665 ;
     bioregistry.schema:0000023 "merops.inhibitor" ;
@@ -18067,9 +18077,7 @@ bioregistry:seed a bioregistry.schema:0000001 ;
         go.resource:SEED,
         n2t:seed,
         ncbi.resource:SEED,
-        fairsharing:FAIRsharing.68b03f,
         miriam:seed ;
-    dcat:keyword "earth science" ;
     foaf:homepage <http://seed-viewer.theseed.org/seedviewer.cgi> ;
     bioregistry.schema:0000005 "Biotin_biosynthesis"^^xsd:string ;
     bioregistry.schema:0000006 "http://seed-viewer.theseed.org/seedviewer.cgi?page=Subsystems&subsystem=$1"^^xsd:string ;
@@ -18862,14 +18870,14 @@ The interactions include direct (physical) and indirect (functional) association
         "interaction",
         "life science",
         "protein" ;
-    foaf:homepage <http://string.embl.de/> ;
+    foaf:homepage <http://string-db.org/> ;
     bioregistry.schema:0000005 "P53350"^^xsd:string ;
-    bioregistry.schema:0000006 "http://string.embl.de/interactions/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://string-db.org/cgi/network?identifier=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$"^^xsd:string ;
     bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2627-833X ;
-    bioregistry.schema:0000024 "http://string.embl.de/interactions/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://string-db.org/cgi/network?identifier="^^xsd:string ;
     bioregistry.schema:0000027 string:P53350 ;
     bioregistry.schema:0000029 "string" .
 
@@ -21367,6 +21375,9 @@ orcid:0000-0001-6594-377X rdfs:label "Hiroyuki Ogata" ;
 orcid:0000-0001-6603-5060 rdfs:label "Zhang Zhang" ;
     foaf:mbox "zhangzhang@big.ac.cn" .
 
+orcid:0000-0001-6662-9010 rdfs:label "Donovan Parks" ;
+    foaf:mbox "donovan.parks@gmail.com" .
+
 orcid:0000-0001-6689-0104 rdfs:label "Neil McKenna" ;
     foaf:mbox "nmckenna@bcm.edu" .
 
@@ -21664,6 +21675,9 @@ orcid:0000-0002-1085-7089 rdfs:label "Karen Coyle" ;
 orcid:0000-0002-1142-3063 rdfs:label "Andrew G. McArthur" ;
     foaf:mbox "mcarthua@mcmaster.ca" .
 
+orcid:0000-0002-1260-4413 rdfs:label "Kevin Drew" ;
+    foaf:mbox "ksdrew@uic.edu" .
+
 orcid:0000-0002-1297-9725 rdfs:label "Werner Müller" ;
     foaf:mbox "wmueller@gbf.de" .
 
@@ -21840,6 +21854,9 @@ orcid:0000-0002-4881-0358 rdfs:label "Pierre Cosson" ;
 orcid:0000-0002-4972-3782 rdfs:label "Gerald Guala" ;
     foaf:mbox "itiswebmaster@itis.gov" .
 
+orcid:0000-0002-5068-3714 rdfs:label "Harshvardhan J. Pandit" ;
+    foaf:mbox "me@harshp.com" .
+
 orcid:0000-0002-5103-9058 rdfs:label "Ali Syed" ;
     foaf:mbox "ali.syed@kaust.edu.sa" .
 
@@ -21999,6 +22016,9 @@ orcid:0000-0002-7729-8453 rdfs:label "Edgar Wingender" ;
 
 orcid:0000-0002-7805-0660 rdfs:label "Lorenz Reimer" ;
     foaf:mbox "contact@bacdive.de" .
+
+orcid:0000-0002-7806-4173 rdfs:label "Sean Taylor" ;
+    foaf:mbox "staylor@vertosolutions.net" .
 
 orcid:0000-0002-7981-8504 rdfs:label "Sheeba Samuel" ;
     foaf:mbox "sheeba.samuel@uni-jena.de" .
@@ -24713,6 +24733,8 @@ wikidata:P932 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P938 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P9405 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P9557 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P9776 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -31356,7 +31378,7 @@ bioregistry:cosmic a bioregistry.schema:0000001 ;
     foaf:homepage <http://cancer.sanger.ac.uk/cosmic/> ;
     bioregistry.schema:0000005 "BRAF"^^xsd:string ;
     bioregistry.schema:0000006 "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z0-9][A-Z0-9-]*$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8315-6574 ;
     bioregistry.schema:0000024 "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln="^^xsd:string ;
@@ -32038,6 +32060,21 @@ bioregistry:dpo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/FBcv_"^^xsd:string ;
     bioregistry.schema:0000029 "dpo" .
+
+bioregistry:dpvocab a bioregistry.schema:0000001 ;
+    rdfs:label "Data Privacy Vocabulary" ;
+    dcterms:description "The Data Privacy Vocabulary provides an ontology (classes and properties) and taxonomies of concepts to represent information regarding how personal data is processed in the form of an ontology or a knowledge graph."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/w3c/dpv> ;
+    foaf:homepage <https://w3c.github.io/dpv/2.0/dpv> ;
+    bioregistry.schema:0000005 "Duration"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/dpv#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5068-3714 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://w3id.org/dpv#"^^xsd:string ;
+    bioregistry.schema:0000027 dpvocab:Duration ;
+    bioregistry.schema:0000029 "dpvocab" .
 
 bioregistry:dragondb.allele a bioregistry.schema:0000001 ;
     rdfs:label "DragonDB Allele" ;
@@ -32933,6 +32970,18 @@ bioregistry:fda.application a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 fda.application:070886 ;
     bioregistry.schema:0000029 "fda.application" .
 
+bioregistry:fema a bioregistry.schema:0000001 ;
+    rdfs:label "Flavor and Extract Manufacturers Association" ;
+    dcterms:description "FEMA provides identifiers for flavor ingredients deemed safe for food use. These entities include chemical compounds and natural substances used as flavoring agents, each reviewed by the FEMA Expert Panel for GRAS (Generally Recognized As Safe) status. The identifiers link to safety data and regulatory assessments, including evaluations by the U.S. FDA and, where applicable, the Joint FAO/WHO Expert Committee on Food Additives (JECFA)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://www.femaflavor.org> ;
+    bioregistry.schema:0000005 "4667"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7806-4173 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000029 "fema" .
+
 bioregistry:ferroliganddb a bioregistry.schema:0000001 ;
     rdfs:label "FerroLigandDB" ;
     dcterms:description "FerroLigandDB is a meticulously curated, high-quality database of ferroptosis regulators, including inducers and inhibitors."^^xsd:string ;
@@ -33706,6 +33755,21 @@ bioregistry:gsfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 gsfa:174 ;
     bioregistry.schema:0000029 "gsfa" .
 
+bioregistry:gtdb a bioregistry.schema:0000001 ;
+    rdfs:label "Genome Taxonomy Database" ;
+    dcterms:description "The Genome Taxonomy Database (GTDB) is an initiative to establish a standardized microbial taxonomy based on genome phylogeny."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://gtdb.ecogenomic.org> ;
+    bioregistry.schema:0000005 "g__Prochlorococcus_A"^^xsd:string ;
+    bioregistry.schema:0000006 "https://gtdb.ecogenomic.org/tree?r=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[cdfgops]__\\w+\\S+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-6662-9010 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://gtdb.ecogenomic.org/tree?r="^^xsd:string ;
+    bioregistry.schema:0000027 gtdb:g__Prochlorococcus_A ;
+    bioregistry.schema:0000029 "gtdb" .
+
 bioregistry:gtr a bioregistry.schema:0000001 ;
     rdfs:label "Genetic Testing Registry" ;
     dcterms:description "The Genetic Testing Registry (GTR®) provides a central location for voluntary submission of genetic test information by providers. The scope includes the test's purpose, methodology, validity, evidence of the test's usefulness, and laboratory contacts and credentials. The overarching goal of the GTR is to advance the public health and research into the genetic basis of health and disease"^^xsd:string ;
@@ -34040,6 +34104,20 @@ bioregistry:hsdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/"^^xsd:string ;
     bioregistry.schema:0000027 hsdb:5621 ;
     bioregistry.schema:0000029 "hsdb" .
+
+bioregistry:humap a bioregistry.schema:0000001 ;
+    rdfs:label "Human Protein Complex Map" ;
+    dcterms:description "The hu.MAP integrates several large scale protein interaction datasets to obtain a comprehensive view of protein complexes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://humap3.proteincomplexes.org> ;
+    bioregistry.schema:0000005 "huMAP3_04143.1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://humap3.proteincomplexes.org/displayComplexes?complex_key=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1260-4413 ;
+    bioregistry.schema:0000023 "humap3" ;
+    bioregistry.schema:0000024 "https://humap3.proteincomplexes.org/displayComplexes?complex_key="^^xsd:string ;
+    bioregistry.schema:0000027 humap:huMAP3_04143.1 ;
+    bioregistry.schema:0000029 "humap" .
 
 bioregistry:iceberg.element a bioregistry.schema:0000001 ;
     rdfs:label "ICEberg integrative and conjugative element" ;
@@ -34622,6 +34700,20 @@ bioregistry:jcrb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO="^^xsd:string ;
     bioregistry.schema:0000027 jcrb:JCRB1355 ;
     bioregistry.schema:0000029 "jcrb" .
+
+bioregistry:jecfa a bioregistry.schema:0000001 ;
+    rdfs:label "Joint FAO/WHO Expert Committee on Food Additives" ;
+    dcterms:description "JECFA provides identifiers for flavors, food additives, contaminants, toxicants, and veterinary drugs. Each entry includes chemical details, acceptable or tolerable intake limits, and links to related reports and monographs."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P9557 ;
+    foaf:homepage <https://apps.who.int/food-additives-contaminants-jecfa-database> ;
+    bioregistry.schema:0000005 "2116"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Kim Petersen" ;
+            foaf:mbox "kpetersen@who.int" ] ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000029 "jecfa" .
 
 bioregistry:jgi.proposal a bioregistry.schema:0000001 ;
     rdfs:label "Joint Genome Institute Proposals" ;
@@ -36837,7 +36929,7 @@ bioregistry:pdb-ccd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-3337-0660 ;
     bioregistry.schema:0000023 "pdbechem" ;
     bioregistry.schema:0000024 "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/"^^xsd:string ;
-    bioregistry.schema:0000027 pdb-ccd:AB0 ;
+    bioregistry.schema:0000027 pdb.ligand:AB0 ;
     bioregistry.schema:0000029 "pdb-ccd" .
 
 bioregistry:pdb.ligand a bioregistry.schema:0000001 ;
@@ -36854,13 +36946,13 @@ bioregistry:pdb.ligand a bioregistry.schema:0000001 ;
         "protein",
         "small molecule",
         "structure" ;
-    foaf:homepage <http://www.pdb.org/> ;
+    foaf:homepage <https://www.pdbe.org/> ;
     bioregistry.schema:0000005 "TRQ"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "PDB_CHEM_ID" ;
-    bioregistry.schema:0000024 "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId="^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/"^^xsd:string ;
     bioregistry.schema:0000027 pdb.ligand:TRQ ;
     bioregistry.schema:0000029 "pdb.ligand" .
 
@@ -40118,8 +40210,6 @@ fairsharing:FAIRsharing.65xkbs dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.669cnk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.67sssf dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.68b03f dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6L6MjA dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -51181,7 +51271,7 @@ bioregistry:eccode a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.enzyme-database.org/> ;
     bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.[nB]\\d{1,3})?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-3889-2879 ;
     bioregistry.schema:0000023 "EC",
@@ -53550,34 +53640,6 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 ecto:0000001 ;
     bioregistry.schema:0000029 "ecto" .
 
-orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
-    dcterms:contributor bioregistry:biofactoid,
-        bioregistry:bko,
-        bioregistry:casspc,
-        bioregistry:ccf,
-        bioregistry:cemo,
-        bioregistry:cordis.project,
-        bioregistry:devtox,
-        bioregistry:emaps,
-        bioregistry:fda.application,
-        bioregistry:hemonc,
-        bioregistry:nihreporter.project,
-        bioregistry:oecd.template,
-        bioregistry:pdc.study,
-        bioregistry:phosphosite.curation,
-        bioregistry:phosphosite.sitegroup,
-        bioregistry:ribocentre,
-        bioregistry:rnaloops,
-        bioregistry:sharkipedia.species,
-        bioregistry:sharkipedia.trait,
-        bioregistry:sharkipedia.trend,
-        bioregistry:signor.relation,
-        bioregistry:uniprot.mnemonic,
-        bioregistry:uniprot.proteome,
-        bioregistry:zenodo.record ;
-    foaf:mbox "b.gyori@northeastern.edu",
-        "benjamin_gyori@hms.harvard.edu" .
-
 bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
     dcterms:description "AgrO is an ontlogy for representing agronomic practices, techniques, variables and related entities"^^xsd:string ;
@@ -53711,6 +53773,34 @@ bioregistry:mco a bioregistry.schema:0000001 ;
 
 orcid:0000-0003-0530-4305 rdfs:label "Silvio Peroni" ;
     foaf:mbox "silvio.peroni@unibo.it" .
+
+orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
+    dcterms:contributor bioregistry:biofactoid,
+        bioregistry:bko,
+        bioregistry:casspc,
+        bioregistry:ccf,
+        bioregistry:cemo,
+        bioregistry:cordis.project,
+        bioregistry:devtox,
+        bioregistry:emaps,
+        bioregistry:fda.application,
+        bioregistry:hemonc,
+        bioregistry:nihreporter.project,
+        bioregistry:oecd.template,
+        bioregistry:pdc.study,
+        bioregistry:phosphosite.curation,
+        bioregistry:phosphosite.sitegroup,
+        bioregistry:ribocentre,
+        bioregistry:rnaloops,
+        bioregistry:sharkipedia.species,
+        bioregistry:sharkipedia.trait,
+        bioregistry:sharkipedia.trend,
+        bioregistry:signor.relation,
+        bioregistry:uniprot.mnemonic,
+        bioregistry:uniprot.proteome,
+        bioregistry:zenodo.record ;
+    foaf:mbox "b.gyori@northeastern.edu",
+        "benjamin_gyori@hms.harvard.edu" .
 
 orcid:0000-0002-7509-4801 rdfs:label "Tom Gillespie" ;
     dcterms:contributor bioregistry:nif.ext,
@@ -55979,6 +56069,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:hog,
         bioregistry:hpath,
         bioregistry:hsdb,
+        bioregistry:humap,
         bioregistry:icd10cm,
         bioregistry:icd10pcs,
         bioregistry:icd11,
@@ -56645,6 +56736,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P932,
         wikidata:P938,
         wikidata:P9405,
+        wikidata:P9557,
         wikidata:P9776,
         wikidata:P9889,
         wikidata:Q111516803 ;
@@ -58987,7 +59079,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.65xkbs,
         fairsharing:FAIRsharing.669cnk,
         fairsharing:FAIRsharing.67sssf,
-        fairsharing:FAIRsharing.68b03f,
         fairsharing:FAIRsharing.6L6MjA,
         fairsharing:FAIRsharing.6b77ac,
         fairsharing:FAIRsharing.6bc7h9,
@@ -62301,6 +62392,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:doqcs.pathway,
         bioregistry:dpo,
         bioregistry:dpv,
+        bioregistry:dpvocab,
         bioregistry:dragondb.allele,
         bioregistry:dragondb.dna,
         bioregistry:dragondb.locus,
@@ -62430,6 +62522,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fcb,
         bioregistry:fcsfree,
         bioregistry:fda.application,
+        bioregistry:fema,
         bioregistry:ferroliganddb,
         bioregistry:fhir.implementation,
         bioregistry:fideo,
@@ -62570,6 +62663,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:grsdb,
         bioregistry:gsfa,
         bioregistry:gsso,
+        bioregistry:gtdb,
         bioregistry:gtex,
         bioregistry:gtr,
         bioregistry:gudmap,
@@ -62641,6 +62735,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hssp,
         bioregistry:htn,
         bioregistry:huge,
+        bioregistry:humap,
         bioregistry:iao,
         bioregistry:icd10,
         bioregistry:icd10cm,
@@ -62745,6 +62840,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:jcm,
         bioregistry:jcrb,
         bioregistry:jcsd,
+        bioregistry:jecfa,
         bioregistry:jgi.proposal,
         bioregistry:jrct,
         bioregistry:jstor,

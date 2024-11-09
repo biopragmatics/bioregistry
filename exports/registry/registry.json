@@ -5153,15 +5153,6 @@
     "name": "BioProject",
     "pattern": "^PRJ[DEN][A-Z]\\d+$",
     "preferred_prefix": "bioproject",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "BioProject at DNA Data Bank of Japan",
-        "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
-        "name": "BioProject at DNA Data Bank of Japan",
-        "uri_format": "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1"
-      }
-    ],
     "publications": [
       {
         "doi": "10.1093/nar/gkr1163",
@@ -7098,7 +7089,10 @@
       "orcid": "0000-0001-9311-9745"
     },
     "description": "The Consensus CDS (CCDS) project is a collaborative effort to identify a core set of human and mouse protein coding regions that are consistently annotated and of high quality. The CCDS set is calculated following coordinated whole genome annotation updates carried out by the NCBI, WTSI, and Ensembl. The long term goal is to support convergence towards a standard set of gene annotations.",
-    "example": "CCDS13573.1",
+    "example": "CCDS12976",
+    "example_extras": [
+      "CCDS12976.1"
+    ],
     "homepage": "http://www.ncbi.nlm.nih.gov/CCDS/",
     "keywords": [
       "gene",
@@ -7116,7 +7110,7 @@
       "uniprot": "DB-0187"
     },
     "name": "Consensus CDS",
-    "pattern": "^CCDS\\d+\\.\\d+$",
+    "pattern": "^CCDS\\d+(\\.\\d+)?$",
     "preferred_prefix": "ccds",
     "providers": [
       {
@@ -8265,13 +8259,6 @@
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl.compound",
     "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL compound RDF",
-        "homepage": "https://github.com/egonw/chembl.rdf",
-        "name": "ChEMBL compound RDF",
-        "uri_format": "http://linkedchemistry.info/chembl/chemblid/$1"
-      },
       {
         "code": "CURATOR_REVIEW",
         "description": "ChEMBL compound RDF through EBI RDF Platform",
@@ -11575,6 +11562,7 @@
     "uri_format": "https://mips.helmholtz-muenchen.de/corum/?id=$1"
   },
   "cosmic": {
+    "comment": "Is this just HGNC Gene symbols?",
     "contact": {
       "email": "jt6@sanger.ac.uk",
       "github": "jgtate",
@@ -11597,7 +11585,7 @@
       "n2t": "cosmic"
     },
     "name": "COSMIC Gene",
-    "pattern": "^[A-Z0-9]+$",
+    "pattern": "^[A-Z0-9][A-Z0-9-]*$",
     "preferred_prefix": "cosmic",
     "publications": [
       {
@@ -13167,9 +13155,9 @@
       {
         "code": "sib",
         "description": "SNP2TFBS",
-        "homepage": "https://ccg.epfl.ch/snp2tfbs/",
+        "homepage": "https://epd.expasy.org/",
         "name": "SNP2TFBS",
-        "uri_format": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
+        "uri_format": "https://epd.expasy.org/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
       }
     ],
     "publications": [
@@ -15273,6 +15261,77 @@
     ],
     "uri_format": "http://www.dpvweb.net/dpv/showdpv.php?dpvno=$1"
   },
+  "dpvocab": {
+    "comment": "The resource itself specifies a preferred prefix of `dpv` but this is already claimed in Bioregistry by the Description of Plant Viruses (https://bioregistry.io/registry/dpv). See also license discussion at https://github.com/w3c/dpv/issues/195.",
+    "contact": {
+      "email": "me@harshp.com",
+      "github": "coolharsh55",
+      "name": "Harshvardhan J. Pandit",
+      "orcid": "0000-0002-5068-3714"
+    },
+    "contributor": {
+      "email": "jhc@lbl.gov",
+      "github": "caufieldjh",
+      "name": "Harry Caufield",
+      "orcid": "0000-0001-5705-7831"
+    },
+    "contributor_extras": [
+      {
+        "email": "b.gyori@northeastern.edu",
+        "github": "bgyori",
+        "name": "Benjamin M. Gyori",
+        "orcid": "0000-0001-9439-5346"
+      },
+      {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370"
+      },
+      {
+        "email": "m.naguthana@hotmail.com",
+        "github": "nagutm",
+        "name": "Mufaddal Naguthanawala",
+        "orcid": "0009-0009-5240-7463"
+      },
+      {
+        "email": "arthit@gmail.com",
+        "github": "bact",
+        "name": "Arthit Suriyawongkul",
+        "orcid": "0000-0002-9698-1899"
+      }
+    ],
+    "description": "The Data Privacy Vocabulary provides an ontology (classes and properties) and taxonomies of concepts to represent information regarding how personal data is processed in the form of an ontology or a knowledge graph.",
+    "example": "Duration",
+    "github_request_issue": 1241,
+    "homepage": "https://w3c.github.io/dpv/2.0/dpv",
+    "license": "W3C-20150513",
+    "name": "Data Privacy Vocabulary",
+    "preferred_prefix": "dpvocab",
+    "publications": [
+      {
+        "doi": "10.48550/arxiv.2404.13426",
+        "title": "Data Privacy Vocabulary (DPV) -- Version 2",
+        "year": 2024
+      },
+      {
+        "doi": "10.1007/978-3-030-33246-4_44",
+        "title": "Creating a Vocabulary for Data Privacy",
+        "year": 2019
+      }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/1250"
+    ],
+    "repository": "https://github.com/w3c/dpv",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://w3id.org/dpv#$1"
+  },
   "dragondb.allele": {
     "comment": "Deprecated because the website is dead",
     "deprecated": true,
@@ -16073,7 +16132,8 @@
       "2.3",
       "2.3.1",
       "2.3.1.n12",
-      "3.1.26.n2"
+      "3.1.26.n2",
+      "3.4.24.B15"
     ],
     "homepage": "https://www.enzyme-database.org/",
     "keywords": [
@@ -16102,7 +16162,7 @@
       "wikidata": "P591"
     },
     "name": "Enzyme Commission Code",
-    "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$",
+    "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.[nB]\\d{1,3})?$",
     "preferred_prefix": "eccode",
     "providers": [
       {
@@ -16111,13 +16171,6 @@
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/intenz:$1"
-      },
-      {
-        "code": "enzymeportal",
-        "description": "Enzyme Portal through EMBL-EBI",
-        "homepage": "https://www.ebi.ac.uk/enzymeportal",
-        "name": "Enzyme Portal through EMBL-EBI",
-        "uri_format": "https://www.ebi.ac.uk/enzymeportal/ec/$1"
       },
       {
         "code": "expasy",
@@ -20455,6 +20508,32 @@
     },
     "uri_format": "https://fda.report/applications/$1"
   },
+  "fema": {
+    "contact": {
+      "email": "staylor@vertosolutions.net",
+      "name": "Sean Taylor",
+      "orcid": "0000-0002-7806-4173"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "FEMA provides identifiers for flavor ingredients deemed safe for food use. These entities include chemical compounds and natural substances used as flavoring agents, each reviewed by the FEMA Expert Panel for GRAS (Generally Recognized As Safe) status. The identifiers link to safety data and regulatory assessments, including evaluations by the U.S. FDA and, where applicable, the Joint FAO/WHO Expert Committee on Food Additives (JECFA).",
+    "example": "4667",
+    "github_request_issue": 1247,
+    "homepage": "https://www.femaflavor.org",
+    "name": "Flavor and Extract Manufacturers Association",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "fema",
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    }
+  },
   "ferroliganddb": {
     "contact": {
       "email": "guqiong@mail.sysu.edu.cn",
@@ -21999,7 +22078,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2024-10-14"
+    "version": "2024-10-28"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -24452,7 +24531,7 @@
   "go.model": {
     "description": "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform.",
     "example": "5fce9b7300001250",
-    "homepage": "http://www.geneontology.org/gocam",
+    "homepage": "https://geneontology.org/go-cam",
     "mappings": {
       "go": "gomodel"
     },
@@ -25413,6 +25492,62 @@
     "repository": "https://github.com/Superraptor/GSSO",
     "uri_format": "http://purl.obolibrary.org/obo/GSSO_$1",
     "version": "2.0.5"
+  },
+  "gtdb": {
+    "contact": {
+      "email": "donovan.parks@gmail.com",
+      "github": "donovan-h-parks",
+      "name": "Donovan Parks",
+      "orcid": "0000-0001-6662-9010"
+    },
+    "contributor": {
+      "email": "aireland@lbl.gov",
+      "github": "ialarmedalien",
+      "name": "AJ Ireland",
+      "orcid": "0000-0003-1982-9065"
+    },
+    "description": "The Genome Taxonomy Database (GTDB) is an initiative to establish a standardized microbial taxonomy based on genome phylogeny.",
+    "example": "g__Prochlorococcus_A",
+    "github_request_issue": 1242,
+    "homepage": "https://gtdb.ecogenomic.org",
+    "license": "CC-BY-SA-4.0",
+    "name": "Genome Taxonomy Database",
+    "pattern": "^[cdfgops]__\\w+\\S+$",
+    "preferred_prefix": "gtdb",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkab776",
+        "pmc": "PMC8728215",
+        "pubmed": "34520557",
+        "title": "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy",
+        "year": 2021
+      },
+      {
+        "doi": "10.1038/s41564-021-00918-8",
+        "pubmed": "34155373",
+        "title": "A standardized archaeal taxonomy for the Genome Taxonomy Database",
+        "year": 2021
+      },
+      {
+        "doi": "10.1038/s41587-020-0501-8",
+        "pubmed": "32341564",
+        "title": "A complete domain-to-species taxonomy for Bacteria and Archaea",
+        "year": 2020
+      },
+      {
+        "doi": "10.1038/nbt.4229",
+        "pubmed": "30148503",
+        "title": "A standardized bacterial taxonomy based on genome phylogeny substantially revises the tree of life",
+        "year": 2018
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://gtdb.ecogenomic.org/tree?r=$1"
   },
   "gtex": {
     "description": "The Genotype-Tissue Expression (GTEx) project aims to provide to the scientific community a resource with which to study human gene expression and regulation and its relationship to genetic variation.",
@@ -26420,6 +26555,22 @@
     "preferred_prefix": "hgnc.symbol",
     "providers": [
       {
+        "code": "cbgda",
+        "description": "A database of key host genes involved in the pathogenesis of different diseases identified through genome-wide CRISPR screens",
+        "homepage": "http://cbgda.zhounan.org/main",
+        "name": "CRISPR Based Gene-Disease Associations",
+        "publications": [
+          {
+            "doi": "10.1093/database/baae077",
+            "pmc": "PMC11363955",
+            "pubmed": "39213392",
+            "title": "CBGDA: a manually curated resource for gene-disease associations based on genome-wide CRISPR",
+            "year": 2024
+          }
+        ],
+        "uri_format": "http://cbgda.zhounan.org/geneinfo?gene=$1"
+      },
+      {
         "code": "depmap",
         "description": "DepMap summary of the given gene",
         "homepage": "https://depmap.org",
@@ -26463,6 +26614,13 @@
         "pmc": "PMC11466821",
         "pubmed": "39294369",
         "title": "Genomics 2 Proteins portal: a resource and discovery tool for linking genetic screening outputs to protein sequences and structures",
+        "year": 2024
+      },
+      {
+        "doi": "10.1093/database/baae077",
+        "pmc": "PMC11363955",
+        "pubmed": "39213392",
+        "title": "CBGDA: a manually curated resource for gene-disease associations based on genome-wide CRISPR",
         "year": 2024
       }
     ],
@@ -27845,6 +28003,47 @@
       }
     ],
     "uri_format": "https://www.kazusa.or.jp/huge/gfpage/$1"
+  },
+  "humap": {
+    "contact": {
+      "email": "ksdrew@uic.edu",
+      "github": "ksdrew",
+      "name": "Kevin Drew",
+      "orcid": "0000-0002-1260-4413"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The hu.MAP integrates several large scale protein interaction datasets to obtain a comprehensive view of protein complexes.",
+    "example": "huMAP3_04143.1",
+    "github_request_issue": 1249,
+    "homepage": "https://humap3.proteincomplexes.org",
+    "license": "CC0-1.0",
+    "name": "Human Protein Complex Map",
+    "preferred_prefix": "humap",
+    "publications": [
+      {
+        "doi": "10.15252/msb.202010016",
+        "pmc": "PMC8111494",
+        "pubmed": "33973408",
+        "title": "hu.MAP 2.0: integration of over 15,000 proteomic experiments builds a global compendium of human multiprotein assemblies",
+        "year": 2021
+      },
+      {
+        "doi": "10.15252/msb.20167490",
+        "pmc": "PMC5488662",
+        "pubmed": "28596423",
+        "title": "Integration of over 9,000 mass spectrometry experiments builds a global map of human protein complexes",
+        "year": 2017
+      }
+    ],
+    "synonyms": [
+      "humap3"
+    ],
+    "uri_format": "https://humap3.proteincomplexes.org/displayComplexes?complex_key=$1"
   },
   "iao": {
     "appears_in": [
@@ -29674,13 +29873,6 @@
     "pattern": "^M\\d+$",
     "preferred_prefix": "imgt.ligm",
     "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "IMGT LIGM through DKFZ (SRS)",
-        "homepage": "http://genius.embnet.dkfz-heidelberg.de/",
-        "name": "IMGT LIGM through DKFZ (SRS)",
-        "uri_format": "http://genius.embnet.dkfz-heidelberg.de/menu/cgi-bin/srs7.1.3.1/wgetz?-id+4ktAl1fNMTA+-e+[IMGT:'$1']"
-      },
       {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
@@ -31606,6 +31798,34 @@
     ],
     "uri_format": "http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1"
   },
+  "jecfa": {
+    "contact": {
+      "email": "kpetersen@who.int",
+      "name": "Kim Petersen"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "JECFA provides identifiers for flavors, food additives, contaminants, toxicants, and veterinary drugs. Each entry includes chemical details, acceptable or tolerable intake limits, and links to related reports and monographs.",
+    "example": "2116",
+    "github_request_issue": 1247,
+    "homepage": "https://apps.who.int/food-additives-contaminants-jecfa-database",
+    "mappings": {
+      "wikidata": "P9557"
+    },
+    "name": "Joint FAO/WHO Expert Committee on Food Additives",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "jecfa",
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    }
+  },
   "jgi.proposal": {
     "contact": {
       "email": "sewilson@lbl.gov",
@@ -31716,7 +31936,7 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "JWS Online Model Repository at Manchester",
-        "homepage": "http://jjj.mib.ac.uk/index.html",
+        "homepage": "http://jjj.mib.ac.uk/models",
         "name": "JWS Online Model Repository at Manchester",
         "uri_format": "http://jjj.mib.ac.uk/models/$1"
       },
@@ -33549,13 +33769,6 @@
       },
       {
         "code": "CURATOR_REVIEW",
-        "description": "Locus Reference Genomic through Ensembl mirror (US west)",
-        "homepage": "http://uswest.ensembl.org/",
-        "name": "Locus Reference Genomic through Ensembl mirror (US west)",
-        "uri_format": "http://uswest.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
         "description": "Locus Reference Genomic through Ensembl mirror (US east)",
         "homepage": "http://useast.ensembl.org/",
         "name": "Locus Reference Genomic through Ensembl mirror (US east)",
@@ -34753,7 +34966,8 @@
     "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
     "example": "I31.952",
     "example_extras": [
-      "S01.001"
+      "S01.001",
+      "XM02.001"
     ],
     "homepage": "http://merops.sanger.ac.uk/index.htm",
     "keywords": [
@@ -34773,7 +34987,7 @@
       "prefixcommons": "merops"
     },
     "name": "MEROPS Entry",
-    "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
+    "pattern": "^[SCTAGMNUIX]{1,2}\\d{2}\\.([AB]\\d{2}|\\d{3})$",
     "preferred_prefix": "merops.entry",
     "providers": [
       {
@@ -36291,7 +36505,7 @@
         "description": "The Molecular INTeraction database (MINT)",
         "homepage": "http://mint.bio.uniroma2.it/mint/",
         "name": "The Molecular INTeraction database (MINT)",
-        "uri_format": "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"
+        "uri_format": "https://mint.bio.uniroma2.it/index.php/results-interactions/?id=$1"
       },
       {
         "code": "bio2rdf",
@@ -37115,7 +37329,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.141"
+    "version": "2.142"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -46141,7 +46355,7 @@
   "pdb.ligand": {
     "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules. This collection references ligands.",
     "example": "TRQ",
-    "homepage": "http://www.pdb.org/",
+    "homepage": "https://www.pdbe.org/",
     "keywords": [
       "interaction",
       "protein",
@@ -46161,24 +46375,24 @@
     "preferred_prefix": "pdb.ligand",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "PDB Ligand at Protein Databank in Europe (PDBe)",
-        "homepage": "https://www.pdbe.org/",
-        "name": "PDB Ligand at Protein Databank in Europe (PDBe)",
-        "uri_format": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
-      },
-      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
         "uri_format": "http://bio2rdf.org/pdbligand:$1"
+      },
+      {
+        "code": "rcsb",
+        "description": "PDB Ligand at RCSB",
+        "homepage": "http://www.rcsb.org",
+        "name": "PDB Ligand at RCSB",
+        "uri_format": "http://www.rcsb.org/ligand/$1"
       }
     ],
     "synonyms": [
       "PDB_CHEM_ID"
     ],
-    "uri_format": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1"
+    "uri_format": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
   },
   "pdbsum": {
     "contact": {
@@ -54588,16 +54802,20 @@
     "uri_format": "https://sed-ml.org/urns.html#language:$1"
   },
   "seed": {
+    "contributor_extras": [
+      {
+        "email": "aireland@lbl.gov",
+        "github": "ialarmedalien",
+        "name": "AJ Ireland",
+        "orcid": "0000-0003-1982-9065"
+      }
+    ],
     "deprecated": true,
     "description": "This cooperative effort, which includes Fellowship for Interpretation of Genomes (FIG), Argonne National Laboratory, and the University of Chicago, focuses on the development of the comparative genomics environment called the SEED. It is a framework to support comparative analysis and annotation of genomes, and the development of curated genomic data (annotation). Curation is performed at the level of subsystems by an expert annotator, across many genomes, and not on a gene by gene basis. This collection references subsystems.",
     "example": "Biotin_biosynthesis",
     "homepage": "http://seed-viewer.theseed.org/seedviewer.cgi",
-    "keywords": [
-      "earth science"
-    ],
     "mappings": {
       "biocontext": "SEED",
-      "fairsharing": "FAIRsharing.68b03f",
       "go": "SEED",
       "miriam": "seed",
       "n2t": "seed",
@@ -57709,7 +57927,7 @@
     },
     "description": "STRING (Search Tool for Retrieval of Interacting Genes/Proteins) is a database of known and predicted protein interactions.\r\nThe interactions include direct (physical) and indirect (functional) associations; they are derived from four sources:Genomic Context, High-throughput Experiments,(Conserved) Coexpression, Previous Knowledge. STRING quantitatively integrates interaction data from these sources for a large number of organisms, and transfers information between these organisms where applicable.",
     "example": "P53350",
-    "homepage": "http://string.embl.de/",
+    "homepage": "http://string-db.org/",
     "keywords": [
       "biology",
       "interaction",
@@ -57734,10 +57952,10 @@
     "providers": [
       {
         "code": "CURATOR_REVIEW",
-        "description": "STRING Mirror at Heidelberg",
-        "homepage": "http://string-db.org/",
-        "name": "STRING Mirror at Heidelberg",
-        "uri_format": "http://string-db.org/interactions/$1"
+        "description": "STRING at Heidelberg",
+        "homepage": "http://string.embl.de/",
+        "name": "STRING at Heidelberg",
+        "uri_format": "https://string.embl.de/cgi/network?identifier=$1"
       },
       {
         "code": "bio2rdf",
@@ -57792,7 +58010,7 @@
         "year": 2008
       }
     ],
-    "uri_format": "http://string.embl.de/interactions/$1"
+    "uri_format": "https://string-db.org/cgi/network?identifier=$1"
   },
   "sty": {
     "contact": {
@@ -60653,15 +60871,6 @@
     "name": "Unique Ingredient Identifier",
     "pattern": "^[A-Z0-9]+$",
     "preferred_prefix": "unii",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "UNII at U.S. Food and Drug Administration",
-        "homepage": "http://fdasis.nlm.nih.gov/srs/",
-        "name": "UNII at U.S. Food and Drug Administration",
-        "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
-      }
-    ],
     "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
   },
   "unimod": {

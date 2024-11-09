@@ -2280,14 +2280,12 @@
             "http://identifiers.org/bioproject/",
             "http://identifiers.org/bioproject:",
             "http://n2t.net/bioproject:",
-            "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=",
             "http://www.ncbi.nlm.nih.gov/bioproject/?term=",
             "http://www.ncbi.nlm.nih.gov/bioproject?term=",
             "https://bioregistry.io/bioproject:",
             "https://identifiers.org/bioproject/",
             "https://identifiers.org/bioproject:",
             "https://n2t.net/bioproject:",
-            "https://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=",
             "https://www.ncbi.nlm.nih.gov/bioproject?term="
         ]
     },
@@ -3137,7 +3135,7 @@
         ]
     },
     {
-        "pattern": "^CCDS\\d+\\.\\d+$",
+        "pattern": "^CCDS\\d+(\\.\\d+)?$",
         "prefix": "ccds",
         "uri_prefix": "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=",
         "uri_prefix_synonyms": [
@@ -3634,6 +3632,7 @@
             "http://identifiers.org/chembl.target:",
             "http://identifiers.org/chembl/",
             "http://identifiers.org/chembl:",
+            "http://linkedchemistry.info/chembl/chemblid/",
             "http://n2t.net/chembl.target:",
             "http://rdf.ebi.ac.uk/resource/chembl/target/",
             "http://www.ebi.ac.uk/chembl/entity/",
@@ -3650,6 +3649,7 @@
             "https://identifiers.org/chembl.target:",
             "https://identifiers.org/chembl/",
             "https://identifiers.org/chembl:",
+            "https://linkedchemistry.info/chembl/chemblid/",
             "https://n2t.net/chembl.target:",
             "https://rdf.ebi.ac.uk/resource/chembl/target/",
             "https://www.ebi.ac.uk/chembl/target/inspect/",
@@ -3689,14 +3689,12 @@
             "http://bioregistry.io/chembl.compound:",
             "http://identifiers.org/chembl.compound/",
             "http://identifiers.org/chembl.compound:",
-            "http://linkedchemistry.info/chembl/chemblid/",
             "http://n2t.net/chembl.compound:",
             "http://rdf.ebi.ac.uk/resource/chembl/molecule/",
             "http://www.ebi.ac.uk/chembl/compound/inspect/",
             "https://bioregistry.io/chembl.compound:",
             "https://identifiers.org/chembl.compound/",
             "https://identifiers.org/chembl.compound:",
-            "https://linkedchemistry.info/chembl/chemblid/",
             "https://n2t.net/chembl.compound:",
             "https://rdf.ebi.ac.uk/resource/chembl/molecule/"
         ]
@@ -5379,7 +5377,7 @@
         ]
     },
     {
-        "pattern": "^[A-Z0-9]+$",
+        "pattern": "^[A-Z0-9][A-Z0-9-]*$",
         "prefix": "cosmic",
         "uri_prefix": "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=",
         "uri_prefix_synonyms": [
@@ -6173,6 +6171,7 @@
             "http://bioregistry.io/dbsnp:",
             "http://bioregistry.io/snp2tfbs:",
             "http://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
+            "http://epd.expasy.org/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
             "http://identifiers.org/dbsnp/",
             "http://identifiers.org/dbsnp:",
             "http://identifiers.org/snp2tfbs/",
@@ -6184,6 +6183,7 @@
             "https://bioregistry.io/dbsnp:",
             "https://bioregistry.io/snp2tfbs:",
             "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
+            "https://epd.expasy.org/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
             "https://identifiers.org/dbsnp/",
             "https://identifiers.org/dbsnp:",
             "https://identifiers.org/snp2tfbs/",
@@ -7172,6 +7172,17 @@
         ]
     },
     {
+        "prefix": "dpvocab",
+        "uri_prefix": "https://w3id.org/dpv#",
+        "uri_prefix_synonyms": [
+            "DPVOCAB:",
+            "dpvocab:",
+            "http://bioregistry.io/dpvocab:",
+            "http://w3id.org/dpv#",
+            "https://bioregistry.io/dpvocab:"
+        ]
+    },
+    {
         "pattern": "^\\w+$",
         "prefix": "dragondb.allele",
         "uri_prefix": "https://bioregistry.io/dragondb.allele:",
@@ -7601,7 +7612,7 @@
         ]
     },
     {
-        "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$",
+        "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.[nB]\\d{1,3})?$",
         "prefix": "eccode",
         "prefix_synonyms": [
             "EC",
@@ -7661,7 +7672,6 @@
             "http://sabiork.h-its.org/newSearch?q=ecnumber:",
             "http://www.brenda-enzymes.info/enzyme.php?ecno=",
             "http://www.brenda-enzymes.org/php/result_flat.php4?ecno=",
-            "http://www.ebi.ac.uk/enzymeportal/ec/",
             "http://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=",
             "http://www.ebi.ac.uk/intenz/query?cmd=SearchID&id=",
             "http://www.enzyme-database.org/query.php?ec=",
@@ -7694,7 +7704,6 @@
             "https://sabiork.h-its.org/newSearch?q=ecnumber:",
             "https://www.brenda-enzymes.info/enzyme.php?ecno=",
             "https://www.brenda-enzymes.org/php/result_flat.php4?ecno=",
-            "https://www.ebi.ac.uk/enzymeportal/ec/",
             "https://www.ebi.ac.uk/intenz/query?cmd=SearchID&id=",
             "https://www.enzyme-database.org/query.php?ec=",
             "https://www.genome.jp/dbget-bin/www_bget?ec:",
@@ -11037,10 +11046,10 @@
             "GO.MODEL:",
             "go.model:",
             "http://bioregistry.io/go.model:",
-            "http://www.geneontology.org/gocam/",
+            "http://model.geneontology.org/",
             "https://bioregistry.io/go.model:",
-            "https://noctua.geneontology.org/editor/graph/gomodel:",
-            "https://www.geneontology.org/gocam/"
+            "https://model.geneontology.org/",
+            "https://noctua.geneontology.org/editor/graph/gomodel:"
         ]
     },
     {
@@ -11642,6 +11651,18 @@
         ]
     },
     {
+        "pattern": "^[cdfgops]__\\w+\\S+$",
+        "prefix": "gtdb",
+        "uri_prefix": "https://gtdb.ecogenomic.org/tree?r=",
+        "uri_prefix_synonyms": [
+            "GTDB:",
+            "gtdb:",
+            "http://bioregistry.io/gtdb:",
+            "http://gtdb.ecogenomic.org/tree?r=",
+            "https://bioregistry.io/gtdb:"
+        ]
+    },
+    {
         "pattern": "^\\w.+$",
         "prefix": "gtex",
         "uri_prefix": "https://www.gtexportal.org/home/gene/",
@@ -12177,6 +12198,7 @@
             "http://bioregistry.io/hgnc.symbol:",
             "http://bioregistry.io/pharmvar:",
             "http://bioregistry.io/ygob:",
+            "http://cbgda.zhounan.org/geneinfo?gene=",
             "http://depmap.org/portal/gene/",
             "http://depod.bioss.uni-freiburg.de/showp.php?name=",
             "http://eds.gene.le.ac.uk/home.php?select_db=",
@@ -12203,6 +12225,7 @@
             "https://bioregistry.io/hgnc.symbol:",
             "https://bioregistry.io/pharmvar:",
             "https://bioregistry.io/ygob:",
+            "https://cbgda.zhounan.org/geneinfo?gene=",
             "https://depmap.org/portal/gene/",
             "https://depod.bioss.uni-freiburg.de/showp.php?name=",
             "https://eds.gene.le.ac.uk/home.php?select_db=",
@@ -12852,6 +12875,24 @@
             "https://n2t.net/huge:",
             "https://www.kazusa.or.jp/huge/cgi/view_direct.cgi?id=",
             "huge:"
+        ]
+    },
+    {
+        "prefix": "humap",
+        "prefix_synonyms": [
+            "humap3"
+        ],
+        "uri_prefix": "https://humap3.proteincomplexes.org/displayComplexes?complex_key=",
+        "uri_prefix_synonyms": [
+            "HUMAP3:",
+            "HUMAP:",
+            "http://bioregistry.io/humap3:",
+            "http://bioregistry.io/humap:",
+            "http://humap3.proteincomplexes.org/displayComplexes?complex_key=",
+            "https://bioregistry.io/humap3:",
+            "https://bioregistry.io/humap:",
+            "humap3:",
+            "humap:"
         ]
     },
     {
@@ -16123,7 +16164,7 @@
         ]
     },
     {
-        "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
+        "pattern": "^[SCTAGMNUIX]{1,2}\\d{2}\\.([AB]\\d{2}|\\d{3})$",
         "prefix": "merops.entry",
         "prefix_synonyms": [
             "merops.inhibitor"
@@ -16910,7 +16951,7 @@
             "http://identifiers.org/mint:",
             "http://mint.bio.uniroma2.it/cgi-bin/protein.py?id=",
             "http://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-",
-            "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=",
+            "http://mint.bio.uniroma2.it/index.php/results-interactions/?id=",
             "http://mint.bio.uniroma2.it/mint/search/interactor.do?queryType=protein&interactorAc=",
             "http://n2t.net/mint:",
             "http://www.ebi.ac.uk/intact/query/interaction_id:",
@@ -16920,7 +16961,7 @@
             "https://identifiers.org/mint/MINT-",
             "https://identifiers.org/mint:",
             "https://mint.bio.uniroma2.it/cgi-bin/protein.py?id=",
-            "https://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=",
+            "https://mint.bio.uniroma2.it/index.php/results-interactions/?id=",
             "https://mint.bio.uniroma2.it/mint/search/interactor.do?queryType=protein&interactorAc=",
             "https://n2t.net/mint:",
             "https://www.ebi.ac.uk/intact/query/interaction_id:",
@@ -18893,6 +18934,7 @@
             "http://identifiers.org/neurolex/",
             "http://identifiers.org/neurolex:",
             "http://n2t.net/neurolex:",
+            "http://scicrunch.org/scicrunch/interlex/search?q=",
             "http://www.neurolex.org/wiki/",
             "https://bio2rdf.org/neurolex:",
             "https://bioregistry.io/NLX:",
@@ -18901,6 +18943,7 @@
             "https://identifiers.org/neurolex/",
             "https://identifiers.org/neurolex:",
             "https://n2t.net/neurolex:",
+            "https://scicrunch.org/scicrunch/interlex/search?q=",
             "https://uri.neuinfo.org/nif/nifstd/nlx_",
             "https://www.neurolex.org/wiki/",
             "neurolex:",
@@ -21846,7 +21889,7 @@
             "pdb-ccd",
             "pdbechem"
         ],
-        "uri_prefix": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=",
+        "uri_prefix": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/",
         "uri_prefix_synonyms": [
             "PDB-CCD:",
             "PDB.LIGAND:",
@@ -21866,6 +21909,7 @@
             "http://n2t.net/pdb.ligand:",
             "http://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/",
             "http://www.rcsb.org/ligand/",
+            "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=",
             "https://bio2rdf.org/ccd:",
             "https://bio2rdf.org/pdbligand:",
             "https://bioregistry.io/PDB_CHEM_ID:",
@@ -21878,7 +21922,6 @@
             "https://identifiers.org/pdb.ligand:",
             "https://n2t.net/pdb-ccd:",
             "https://n2t.net/pdb.ligand:",
-            "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/",
             "https://www.rcsb.org/ligand/",
             "https://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=",
             "pdb-ccd:",
@@ -28497,9 +28540,10 @@
             "http://repeatsdb.org/protein/",
             "http://research.bioinformatics.udel.edu/iptmnet/entry/",
             "http://scholia.toolforge.org/uniprot/",
+            "http://string-db.org/cgi/network?identifier=",
             "http://string-db.org/interactions/",
             "http://string-db.org/network/",
-            "http://string.embl.de/interactions/",
+            "http://string.embl.de/cgi/network?identifier=",
             "http://swissmodel.expasy.org/repository/smr.php?sptr_ac=",
             "http://swissmodel.expasy.org/repository/uniprot/",
             "http://www.ebi.ac.uk/QuickGO/GProtein?ac=",
@@ -28589,9 +28633,10 @@
             "https://repeatsdb.org/protein/",
             "https://research.bioinformatics.udel.edu/iptmnet/entry/",
             "https://scholia.toolforge.org/uniprot/",
+            "https://string-db.org/cgi/network?identifier=",
             "https://string-db.org/interactions/",
             "https://string-db.org/network/",
-            "https://string.embl.de/interactions/",
+            "https://string.embl.de/cgi/network?identifier=",
             "https://swissmodel.expasy.org/repository/smr.php?sptr_ac=",
             "https://swissmodel.expasy.org/repository/uniprot/",
             "https://www.ebi.ac.uk/QuickGO/GProtein?ac=",
