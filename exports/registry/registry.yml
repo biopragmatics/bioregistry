@@ -7375,6 +7375,12 @@ chebi:
     homepage: https://www.ebi.ac.uk/chebi/
     name: ChEBI
     uri_format: https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=$1
+  - code: iedb.antigen
+    description: A comprehensive collection of data on immune epitopes, covering experimental
+      data and resources, including antigens
+    homepage: https://www.iedb.org/
+    name: Immune Epitope Database
+    uri_format: https://www.iedb.org/antigen/ChEBI:$1
   publications:
   - doi: 10.1093/nar/gkv1031
     pmc: PMC4702775
@@ -7409,7 +7415,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '236'
+  version: '237'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -13841,7 +13847,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-09-27'
+  version: '2024-11-01'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -17485,6 +17491,34 @@ eolife:
   preferred_prefix: eolife
   twitter: eol
   uri_format: https://eol.org/pages/$1
+epawaste:
+  contact:
+    email: brennan.thomas@epa.gov
+    name: Tom Brennan
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: This resource provides identifiers for listed hazardous wastes which
+    are substances explicitly identified due to their potential harm to human health
+    and the environment. These are categorized into four groups (F, K, P, and U) based
+    on specific criteria, such as their source or inherent properties.
+  example: F001
+  example_extras:
+  - K001
+  - P001
+  - U001
+  github_request_issue: 1246
+  homepage: https://www.ecfr.gov/current/title-40/chapter-I/subchapter-I/part-261
+  name: EPA Hazardous Wastes
+  pattern: ^[FKPU]\d{3}$
+  preferred_prefix: epawaste
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
 epcc:
   contributor:
     email: cthoyt@gmail.com
@@ -23399,6 +23433,8 @@ gtdb:
   github_request_issue: 1242
   homepage: https://gtdb.ecogenomic.org
   license: CC-BY-SA-4.0
+  mappings:
+    pathguide: '190'
   name: Genome Taxonomy Database
   pattern: ^[cdfgops]__\w+\S+$
   preferred_prefix: gtdb
@@ -26844,19 +26880,75 @@ idr:
     year: 2017
   twitter: openmicroscopy
   uri_format: https://idr.openmicroscopy.org/search/?query=Name:idr$1
-iedb:
+iedb.assay:
   contact:
     email: rvita@liai.org
     github: rvita
     name: Randi Vita
     orcid: 0000-0001-8957-7612
-  description: The Immune Epitope Database (IEDB) is a freely available resource funded
-    by NIAID. It catalogs experimental data on antibody and T cell epitopes studied
-    in humans, non-human primates, and other animal species in the context of infectious
-    disease, allergy, autoimmunity and transplantation. The IEDB also hosts tools
-    to assist in the prediction and analysis of epitopes.
-  example: '1038233'
-  homepage: https://www.lji.org/
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for specific experimental assays that serve as evidence
+    for immune-related studies.
+  example: '1691753'
+  github_request_issue: 1204
+  homepage: https://www.iedb.org/
+  keywords:
+  - bioinformatics
+  - immunology
+  - life science
+  mappings:
+    fairsharing: FAIRsharing.c886cd
+    integbio: nbdc00924
+    re3data: r3d100012702
+  name: Immune Epitope Database Assays
+  part_of: iedb
+  pattern: ^\d+$
+  preferred_prefix: iedb.assay
+  publications:
+  - doi: 10.1093/nar/gku938
+    pmc: PMC4384014
+    pubmed: '25300482'
+    title: The immune epitope database (IEDB) 3.0
+    year: 2014
+  - doi: 10.1111/j.1365-2567.2012.03611.x
+    pmc: PMC3461392
+    pubmed: '22681406'
+    title: 'The immune epitope database: a historical retrospective of the first decade'
+    year: 2012
+  - doi: 10.1093/nar/gkp1004
+    pmc: PMC2808938
+    pubmed: '19906713'
+    title: The immune epitope database 2.0
+    year: 2009
+  - pubmed: '16312048'
+    title: 'The immune epitope database and analysis resource: from vision to blueprint'
+    year: 2004
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.iedb.org/assay/$1
+iedb.epitope:
+  contact:
+    email: rvita@liai.org
+    github: rvita
+    name: Randi Vita
+    orcid: 0000-0001-8957-7612
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for epitopes, which are the specific parts of antigens
+    recognized by the immune system.
+  example: '117395'
+  github_request_issue: 1204
+  homepage: https://www.iedb.org/
   keywords:
   - bioinformatics
   - immunology
@@ -26866,12 +26958,12 @@ iedb:
   mappings:
     fairsharing: FAIRsharing.c886cd
     integbio: nbdc00924
-    miriam: iedb
     prefixcommons: tied
     re3data: r3d100012702
-  name: Immune Epitope Database
-  pattern: ^[0-9]+$
-  preferred_prefix: iedb
+  name: Immune Epitope Database Epitopes
+  part_of: iedb
+  pattern: ^\d+$
+  preferred_prefix: iedb.epitope
   providers:
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
@@ -26901,6 +26993,171 @@ iedb:
   - pubmed: '16312048'
     title: 'The immune epitope database and analysis resource: from vision to blueprint'
     year: 2004
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.iedb.org/epitope/$1
+iedb.mhc:
+  contact:
+    email: rvita@liai.org
+    github: rvita
+    name: Randi Vita
+    orcid: 0000-0001-8957-7612
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for Major Histocompatibility Complex (MHC) restrictions
+    of immune cells, detailing genetic factors that influence immune recognition.
+  example: '86'
+  github_request_issue: 1204
+  homepage: https://www.iedb.org/
+  keywords:
+  - bioinformatics
+  - immunology
+  - life science
+  mappings:
+    fairsharing: FAIRsharing.c886cd
+    integbio: nbdc00924
+    re3data: r3d100012702
+  name: Immune Epitope Database MHC Restrictions
+  part_of: iedb
+  pattern: ^\d+$
+  preferred_prefix: iedb.mhc
+  publications:
+  - doi: 10.1093/nar/gku938
+    pmc: PMC4384014
+    pubmed: '25300482'
+    title: The immune epitope database (IEDB) 3.0
+    year: 2014
+  - doi: 10.1111/j.1365-2567.2012.03611.x
+    pmc: PMC3461392
+    pubmed: '22681406'
+    title: 'The immune epitope database: a historical retrospective of the first decade'
+    year: 2012
+  - doi: 10.1093/nar/gkp1004
+    pmc: PMC2808938
+    pubmed: '19906713'
+    title: The immune epitope database 2.0
+    year: 2009
+  - pubmed: '16312048'
+    title: 'The immune epitope database and analysis resource: from vision to blueprint'
+    year: 2004
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.iedb.org/mhc/$1
+iedb.receptor:
+  contact:
+    email: rvita@liai.org
+    github: rvita
+    name: Randi Vita
+    orcid: 0000-0001-8957-7612
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for immune receptors, representing receptor complexes or
+    groups studied for their interactions with antigens or epitopes.
+  example: '47'
+  github_request_issue: 1204
+  homepage: https://www.iedb.org/
+  keywords:
+  - bioinformatics
+  - immunology
+  - life science
+  mappings:
+    fairsharing: FAIRsharing.c886cd
+    integbio: nbdc00924
+    re3data: r3d100012702
+  name: Immune Epitope Database Receptors
+  part_of: iedb
+  pattern: ^\d+$
+  preferred_prefix: iedb.receptor
+  publications:
+  - doi: 10.1093/nar/gku938
+    pmc: PMC4384014
+    pubmed: '25300482'
+    title: The immune epitope database (IEDB) 3.0
+    year: 2014
+  - doi: 10.1111/j.1365-2567.2012.03611.x
+    pmc: PMC3461392
+    pubmed: '22681406'
+    title: 'The immune epitope database: a historical retrospective of the first decade'
+    year: 2012
+  - doi: 10.1093/nar/gkp1004
+    pmc: PMC2808938
+    pubmed: '19906713'
+    title: The immune epitope database 2.0
+    year: 2009
+  - pubmed: '16312048'
+    title: 'The immune epitope database and analysis resource: from vision to blueprint'
+    year: 2004
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.iedb.org/receptor/$1
+iedb.reference:
+  contact:
+    email: rvita@liai.org
+    github: rvita
+    name: Randi Vita
+    orcid: 0000-0001-8957-7612
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for references, typically linking to sources of evidence
+    such as publications that support data within IEDB.
+  example: '1038233'
+  github_request_issue: 1204
+  homepage: https://www.iedb.org/
+  keywords:
+  - bioinformatics
+  - immunology
+  - life science
+  mappings:
+    fairsharing: FAIRsharing.c886cd
+    integbio: nbdc00924
+    miriam: iedb
+    re3data: r3d100012702
+  name: Immune Epitope Database References
+  part_of: iedb
+  pattern: ^\d+$
+  preferred_prefix: iedb.reference
+  publications:
+  - doi: 10.1093/nar/gku938
+    pmc: PMC4384014
+    pubmed: '25300482'
+    title: The immune epitope database (IEDB) 3.0
+    year: 2014
+  - doi: 10.1111/j.1365-2567.2012.03611.x
+    pmc: PMC3461392
+    pubmed: '22681406'
+    title: 'The immune epitope database: a historical retrospective of the first decade'
+    year: 2012
+  - doi: 10.1093/nar/gkp1004
+    pmc: PMC2808938
+    pubmed: '19906713'
+    title: The immune epitope database 2.0
+    year: 2009
+  - pubmed: '16312048'
+    title: 'The immune epitope database and analysis resource: from vision to blueprint'
+    year: 2004
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
   uri_format: https://www.iedb.org/reference/$1
 ieee.author:
   contributor:
@@ -27045,6 +27302,7 @@ igsn:
   - doi: 10.1007/978-3-030-85040-1_162
     title: International Generic Sample Number
     year: 2023
+  repository: https://igsn.github.io/
   uri_format: http://igsn.org/$1
 igsr:
   contact:
@@ -27735,6 +27993,9 @@ inchi:
     pubmed: '26081259'
     title: Many InChIs and quite some feat
     year: 2015
+  - doi: 10.1186/s13321-024-00847-8
+    title: InChI isotopologue and isotopomer specifications
+    year: 2024
   repository: https://github.com/IUPAC-InChI/InChI
   twitter: inchi_trust
   uri_format: http://www.chemspider.com/$1
@@ -32949,7 +33210,7 @@ mfoem:
   rdf_uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
   repository: https://github.com/jannahastings/emotion-ontology
   uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
-  version: '2022-07-19'
+  version: '2024-10-31'
 mfomd:
   contact:
     email: janna.hastings@gmail.com
@@ -33950,7 +34211,7 @@ miriam.resource:
     title: 'MIRIAM Resources: tools to generate and resolve robust cross-references
       in Systems Biology'
     year: 2007
-  uri_format: https://www.ebi.ac.uk/miriam/main/resources/$1
+  uri_format: https://resolver.api.identifiers.org/resolveMirId/$1
 mirnao:
   contact:
     email: topalis@imbb.forth.gr
@@ -34891,7 +35152,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2024-10-01'
+  version: '2024-11-05'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -35302,7 +35563,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.181
+  version: 4.1.184
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -39091,7 +39352,7 @@ obi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBI_$1
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
-  version: '2024-10-03'
+  version: '2024-10-25'
 obib:
   contact:
     email: jmwhorton@uams.edu
@@ -56329,6 +56590,12 @@ uniprot:
     homepage: https://go.drugbank.com
     name: DrugBank Polypeptide
     uri_format: https://go.drugbank.com/polypeptides/$1
+  - code: iedb.antigen
+    description: A comprehensive collection of data on immune epitopes, covering experimental
+      data and resources, including antigens
+    homepage: https://www.iedb.org/
+    name: Immune Epitope Database
+    uri_format: https://www.iedb.org/antigen/UNIPROT:$1
   - code: indra
     description: A large scale database of biomedical statements.
     homepage: https://db.indra.bio
@@ -56983,10 +57250,10 @@ upa:
   version: '2024-03-06'
 upheno:
   contact:
-    email: vasilevs@ohsu.edu
-    github: nicolevasilevsky
-    name: Nicole Vasilevsky
-    orcid: 0000-0001-5208-3432
+    email: jmcl@ebi.ac.uk
+    github: jamesamcl
+    name: James McLaughlin
+    orcid: 0000-0002-8361-2795
   description: The uPheno ontology integrates multiple phenotype ontologies into a
     unified cross-species phenotype ontology.
   download_owl: http://purl.obolibrary.org/obo/upheno.owl
@@ -57010,10 +57277,14 @@ upheno:
   name: Unified Phenotype Ontology
   no_own_terms: true
   preferred_prefix: UPHENO
+  publications:
+  - doi: 10.1101/2024.09.18.613276
+    title: 'The Unified Phenotype Ontology (uPheno): A framework for cross-species
+      integrative phenomics'
   rdf_uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
-  version: '2024-09-04'
+  version: '2024-11-02'
 uspto:
   comment: Information about the regular expression was derived from examples at https://patft.uspto.gov/netahtml/PTO/srchnum.htm.
     TODO, make the regular expression work for '100000000'
@@ -57328,7 +57599,7 @@ vbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2024-08-14'
+  version: '2024-11-06'
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
@@ -58452,7 +58723,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-10-16'
+  version: '2024-11-05'
 vto:
   contact:
     email: balhoff@renci.org

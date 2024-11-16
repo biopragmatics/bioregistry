@@ -5571,14 +5571,14 @@
   "macie": {
     "deprecated": false,
     "description": "MACiE (Mechanism, Annotation and Classification in Enzymes) is a database of enzyme reaction mechanisms. Each entry in MACiE consists of an overall reaction describing the chemical compounds involved, as well as the species name in which the reaction occurs. The individual reaction stages for each overall reaction are listed with mechanisms, alternative mechanisms, and amino acids involved.",
-    "homepage": "https://www.ebi.ac.uk/thornton-srv/databases/MACiE/index.html",
+    "homepage": "https://www.ebi.ac.uk/thornton-srv/m-csa/about/",
     "id": "00000077",
     "name": "MACiE",
     "namespaceEmbeddedInLui": false,
     "pattern": "^M\\d{4}$",
     "prefix": "macie",
     "sampleId": "M0001",
-    "uri_format": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$1"
+    "uri_format": "https://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=$1"
   },
   "maggot": {
     "deprecated": false,
@@ -5661,14 +5661,14 @@
   "matrixdb.association": {
     "deprecated": false,
     "description": "MatrixDB stores experimentally determined interactions involving at least one extracellular biomolecule. It includes mostly protein-protein and protein-glycosaminoglycan interactions, as well as interactions with lipids and cations.",
-    "homepage": "http://matrixdb.univ-lyon1.fr/",
+    "homepage": "https://matrixdb.univ-lyon1.fr/",
     "id": "00000068",
     "name": "MatrixDB",
     "namespaceEmbeddedInLui": false,
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
     "prefix": "matrixdb.association",
     "sampleId": "P00747__P07355",
-    "uri_format": "http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association"
+    "uri_format": "https://matrixdb.univ-lyon1.fr/association/$1"
   },
   "maxo": {
     "deprecated": false,
@@ -9990,23 +9990,14 @@
   "uniparc": {
     "deprecated": false,
     "description": "The UniProt Archive (UniParc) is a  database containing non-redundant protein sequence information from many sources. Each unique sequence is given a stable and unique identifier (UPI) making it possible to identify the same protein from different source databases.",
-    "homepage": "https://www.ebi.ac.uk/uniparc/",
+    "homepage": "http://www.uniprot.org/uniparc/",
     "id": "00000041",
     "name": "UniParc",
     "namespaceEmbeddedInLui": false,
     "pattern": "^UPI[A-F0-9]{10}$",
     "prefix": "uniparc",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "UniParc through UniProt",
-        "homepage": "http://www.uniprot.org/uniparc/",
-        "name": "UniParc through UniProt",
-        "uri_format": "https://www.uniprot.org/uniparc/$1"
-      }
-    ],
     "sampleId": "UPI000000000A",
-    "uri_format": "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=$1"
+    "uri_format": "https://www.uniprot.org/uniparc/$1"
   },
   "unipathway.compound": {
     "deprecated": false,
