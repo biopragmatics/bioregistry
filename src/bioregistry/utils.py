@@ -158,7 +158,7 @@ def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
 
 def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
     hashes = get_hashes(path, [alg])
-    return cast(str, hashes[alg].hexdigest())
+    return hashes[alg].hexdigest()
 
 
 IdentifierGetter = Callable[[dict[str, Any], str], str]
