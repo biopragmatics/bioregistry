@@ -3571,6 +3571,7 @@
             "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:",
             "http://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_",
+            "http://www.iedb.org/antigen/ChEBI:",
             "https://bio2rdf.org/chebi:",
             "https://bioregistry.io/CHEBI:",
             "https://bioregistry.io/CHEBIID:",
@@ -3584,7 +3585,8 @@
             "https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=",
             "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:",
-            "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_"
+            "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_",
+            "https://www.iedb.org/antigen/ChEBI:"
         ]
     },
     {
@@ -13459,23 +13461,71 @@
         ]
     },
     {
-        "pattern": "^[0-9]+$",
-        "prefix": "iedb",
+        "pattern": "^\\d+$",
+        "prefix": "iedb.assay",
+        "uri_prefix": "https://www.iedb.org/assay/",
+        "uri_prefix_synonyms": [
+            "IEDB.ASSAY:",
+            "http://bioregistry.io/iedb.assay:",
+            "http://www.iedb.org/assay/",
+            "https://bioregistry.io/iedb.assay:",
+            "iedb.assay:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.epitope",
+        "uri_prefix": "https://www.iedb.org/epitope/",
+        "uri_prefix_synonyms": [
+            "IEDB.EPITOPE:",
+            "http://bio2rdf.org/tied:",
+            "http://bioregistry.io/iedb.epitope:",
+            "http://www.iedb.org/epId/",
+            "http://www.iedb.org/epitope/",
+            "https://bio2rdf.org/tied:",
+            "https://bioregistry.io/iedb.epitope:",
+            "https://www.iedb.org/epId/",
+            "iedb.epitope:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.mhc",
+        "uri_prefix": "https://www.iedb.org/mhc/",
+        "uri_prefix_synonyms": [
+            "IEDB.MHC:",
+            "http://bioregistry.io/iedb.mhc:",
+            "http://www.iedb.org/mhc/",
+            "https://bioregistry.io/iedb.mhc:",
+            "iedb.mhc:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.receptor",
+        "uri_prefix": "https://www.iedb.org/receptor/",
+        "uri_prefix_synonyms": [
+            "IEDB.RECEPTOR:",
+            "http://bioregistry.io/iedb.receptor:",
+            "http://www.iedb.org/receptor/",
+            "https://bioregistry.io/iedb.receptor:",
+            "iedb.receptor:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.reference",
         "uri_prefix": "https://www.iedb.org/reference/",
         "uri_prefix_synonyms": [
-            "IEDB:",
-            "http://bio2rdf.org/tied:",
-            "http://bioregistry.io/iedb:",
+            "IEDB.REFERENCE:",
+            "http://bioregistry.io/iedb.reference:",
             "http://identifiers.org/iedb/",
             "http://identifiers.org/iedb:",
-            "http://www.iedb.org/epId/",
             "http://www.iedb.org/reference/",
-            "https://bio2rdf.org/tied:",
-            "https://bioregistry.io/iedb:",
+            "https://bioregistry.io/iedb.reference:",
             "https://identifiers.org/iedb/",
             "https://identifiers.org/iedb:",
-            "https://www.iedb.org/epId/",
-            "iedb:"
+            "iedb.reference:"
         ]
     },
     {
@@ -17139,7 +17189,7 @@
     {
         "pattern": "^001\\d{5}$",
         "prefix": "miriam.resource",
-        "uri_prefix": "https://www.ebi.ac.uk/miriam/main/resources/",
+        "uri_prefix": "https://resolver.api.identifiers.org/resolveMirId/",
         "uri_prefix_synonyms": [
             "MIRIAM.RESOURCE:",
             "http://bio2rdf.org/miriam.resource:",
@@ -17148,6 +17198,7 @@
             "http://identifiers.org/miriam.resource/MIR:",
             "http://identifiers.org/miriam.resource:",
             "http://n2t.net/miriam.resource:",
+            "http://resolver.api.identifiers.org/resolveMirId/",
             "http://www.ebi.ac.uk/miriam/main/resources/",
             "https://bio2rdf.org/miriam.resource:",
             "https://bioregistry.io/miriam.resource:",
@@ -17155,6 +17206,7 @@
             "https://identifiers.org/miriam.resource/MIR:",
             "https://identifiers.org/miriam.resource:",
             "https://n2t.net/miriam.resource:",
+            "https://www.ebi.ac.uk/miriam/main/resources/",
             "miriam.resource:"
         ]
     },
@@ -28548,6 +28600,7 @@
             "http://swissmodel.expasy.org/repository/uniprot/",
             "http://www.ebi.ac.uk/QuickGO/GProtein?ac=",
             "http://www.ebi.ac.uk/QuickGO/GTerm?id=",
+            "http://www.iedb.org/antigen/UNIPROT:",
             "http://www.orthodb.org/?gene=",
             "http://www.proteinmodelportal.org/query/uniprot/",
             "http://www.uniprot.org/uniprot/",
@@ -28641,6 +28694,7 @@
             "https://swissmodel.expasy.org/repository/uniprot/",
             "https://www.ebi.ac.uk/QuickGO/GProtein?ac=",
             "https://www.ebi.ac.uk/QuickGO/GTerm?id=",
+            "https://www.iedb.org/antigen/UNIPROT:",
             "https://www.orthodb.org/?gene=",
             "https://www.proteinmodelportal.org/query/uniprot/",
             "https://www.uniprot.org/uniprot/",
