@@ -14,6 +14,7 @@ from uuid import uuid4
 
 import click
 from more_click import force_option, verbose_option
+from pydantic import ValidationError
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
@@ -66,12 +67,16 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
     :returns: A Resource instance or None if there is an issue that warrants skipping the issue
     """
     prefix = resource_data.pop("prefix").lower()
-    contributor = Author(
-        name=resource_data.pop("contributor_name"),
-        orcid=_pop_orcid(resource_data),
-        email=resource_data.pop("contributor_email", None),
-        github=removeprefix(resource_data.pop("contributor_github"), "@"),
-    )
+    try:
+        contributor = Author(
+            name=resource_data.pop("contributor_name"),
+            orcid=_pop_orcid(resource_data),
+            email=resource_data.pop("contributor_email", None),
+            github=removeprefix(resource_data.pop("contributor_github"), "@"),
+        )
+    except ValidationError:
+        logger.warning("Validation error occured")
+        contributor = None
 
     contact_name = resource_data.pop("contact_name", None)
     contact_orcid = resource_data.pop("contact_orcid", None)
