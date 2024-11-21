@@ -4751,7 +4751,7 @@
       "orcid": "0000-0002-6601-2165"
     },
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/65/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/66/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "keywords": [
@@ -7432,7 +7432,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
     "repository": "https://github.com/CompositionalDietaryNutritionOntology/cdno",
     "uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
-    "version": "2024-10-21"
+    "version": "2024-11-12"
   },
   "cdpd": {
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
@@ -9748,7 +9748,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.228"
+    "version": "2.229"
   },
   "cmpo": {
     "contact": {
@@ -22115,7 +22115,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2024-10-28"
+    "version": "2024-11-12"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -24539,7 +24539,7 @@
     ],
     "twitter": "news4go",
     "uri_format": "http://purl.obolibrary.org/obo/GO_$1",
-    "version": "2024-09-08"
+    "version": "2024-11-03"
   },
   "go.gpi": {
     "contributor": {
@@ -31036,6 +31036,12 @@
     ],
     "publications": [
       {
+        "doi": "10.1002/cpz1.70018",
+        "pubmed": "39401100",
+        "title": "IntAct Database for Accessing IMEx's Contextual Metadata of Molecular Interactions",
+        "year": 2024
+      },
+      {
         "doi": "10.1093/nar/gkt1115",
         "pmc": "PMC3965093",
         "pubmed": "24234451",
@@ -31086,6 +31092,14 @@
     "name": "IntAct Molecule",
     "pattern": "^EBI\\-[0-9]+$",
     "preferred_prefix": "intact.molecule",
+    "publications": [
+      {
+        "doi": "10.1002/cpz1.70018",
+        "pubmed": "39401100",
+        "title": "IntAct Database for Accessing IMEx's Contextual Metadata of Molecular Interactions",
+        "year": 2024
+      }
+    ],
     "uri_format": "https://www.ebi.ac.uk/intact/search?query=$1"
   },
   "integbio": {
@@ -34276,7 +34290,7 @@
     },
     "description": "MACiE (Mechanism, Annotation and Classification in Enzymes) is a database of enzyme reaction mechanisms. Each entry in MACiE consists of an overall reaction describing the chemical compounds involved, as well as the species name in which the reaction occurs. The individual reaction stages for each overall reaction are listed with mechanisms, alternative mechanisms, and amino acids involved.",
     "example": "M0001",
-    "homepage": "https://www.ebi.ac.uk/thornton-srv/databases/MACiE/index.html",
+    "homepage": "https://www.ebi.ac.uk/thornton-srv/m-csa/about/",
     "keywords": [
       "enzyme",
       "life science",
@@ -34318,7 +34332,7 @@
         "year": 2005
       }
     ],
-    "uri_format": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$1"
+    "uri_format": "https://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=$1"
   },
   "maggot": {
     "description": "Sharing descriptive Metadata is the first essential step towards Open Scientific Data. With this in mind, Maggot was specifically designed to annotate datasets by creating a metadata file to attach to the storage space. Indeed, it allows users to easily add descriptive metadata to datasets produced within a collective of people (research unit, platform, multi-partner project, etc.). This approach fits perfectly into a data management plan as it addresses the issues of data organization and documentation, data storage and frictionless metadata sharing within this same collective and beyond.",
@@ -34774,7 +34788,7 @@
   "matrixdb.association": {
     "description": "MatrixDB stores experimentally determined interactions involving at least one extracellular biomolecule. It includes mostly protein-protein and protein-glycosaminoglycan interactions, as well as interactions with lipids and cations.",
     "example": "P00747__P07355",
-    "homepage": "http://matrixdb.univ-lyon1.fr/",
+    "homepage": "https://matrixdb.univ-lyon1.fr/",
     "mappings": {
       "biocontext": "MATRIXDB.ASSOCIATION",
       "miriam": "matrixdb.association",
@@ -34783,7 +34797,7 @@
     "name": "MatrixDB Association",
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
     "preferred_prefix": "matrixdb.association",
-    "uri_format": "http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association"
+    "uri_format": "https://matrixdb.univ-lyon1.fr/association/$1"
   },
   "mavedb": {
     "comment": "This is an interesting one as the full IDs as they appear on the page are of the form `urn:mavedb:00000011-a` suggesting this is the preferred URI expansion for identification purposes. However, mavedb hasn't been registered with IANA https://www.iana.org/assignments/urn-namespaces/urn-namespaces.xhtml",
@@ -38451,7 +38465,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MP_$1",
     "repository": "https://github.com/mgijax/mammalian-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MP_$1",
-    "version": "2024-10-17"
+    "version": "2024-11-12"
   },
   "mpath": {
     "contact": {
@@ -38628,7 +38642,6 @@
     "mappings": {
       "aberowl": "MRO",
       "biocontext": "MRO",
-      "bioportal": "MRO",
       "fairsharing": "FAIRsharing.k893xa",
       "obofoundry": "mro",
       "ols": "mro",
@@ -38699,7 +38712,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.1.184"
+    "version": "4.1.185"
   },
   "msigdb": {
     "contributor": {
@@ -42883,6 +42896,47 @@
     "twitter": "OBOFoundry",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
   },
+  "oboe": {
+    "contact": {
+      "email": "brycemecum@gmail.com",
+      "github": "amoeba",
+      "name": "Bryce Mecum",
+      "orcid": "0000-0002-0381-3766"
+    },
+    "contributor": {
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "description": "The Extensible Observation Ontology (OBOE) is a formal ontology for capturing the semantics of scientific observation and measurement. The ontology supports researchers to add detailed semantic annotations to scientific data, thereby clarifying the inherent meaning of scientific observations.",
+    "download_owl": "https://raw.githubusercontent.com/NCEAS/oboe/refs/heads/master/oboe.owl",
+    "example": "Characteristic",
+    "github_request_issue": 1276,
+    "homepage": "https://github.com/NCEAS/oboe",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "The Extensible Observation Ontology",
+    "preferred_prefix": "oboe",
+    "publications": [
+      {
+        "doi": "10.1016/j.ecoinf.2007.05.004",
+        "pmc": "PMC8612252",
+        "pubmed": "34817235",
+        "title": "An ontology for describing and synthesizing ecological observation data",
+        "year": 2007
+      }
+    ],
+    "repository": "https://github.com/NCEAS/oboe",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#$1"
+  },
   "oboinowl": {
     "contact": {
       "email": "cjmungall@lbl.gov",
@@ -44113,7 +44167,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OMO_$1",
     "repository": "https://github.com/information-artifact-ontology/ontology-metadata",
     "uri_format": "http://purl.obolibrary.org/obo/OMO_$1",
-    "version": "2023-11-02"
+    "version": "2024-11-13"
   },
   "omon": {
     "contributor": {
@@ -46156,7 +46210,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PATO_$1",
     "repository": "https://github.com/pato-ontology/pato",
     "uri_format": "http://purl.obolibrary.org/obo/PATO_$1",
-    "version": "2024-09-04"
+    "version": "2024-11-11"
   },
   "pav": {
     "contact": {
@@ -49735,7 +49789,7 @@
     },
     "deprecated": true,
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
-    "download_owl": "http://purl.obolibrary.org/obo/pride/2.1.4/pride.owl",
+    "download_owl": "http://purl.obolibrary.org/obo/pride/2.1.5/pride.owl",
     "example": "0000006",
     "homepage": "https://github.com/PRIDE-Utilities/pride-ontology",
     "keywords": [
@@ -49839,7 +49893,7 @@
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "twitter": "pride_ebi",
     "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-    "version": "2.1.4"
+    "version": "2.1.5"
   },
   "pride.project": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects.",
@@ -53783,7 +53837,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.235"
+    "version": "6.236"
   },
   "rtecs": {
     "contact": {
@@ -56187,8 +56241,7 @@
     "preferred_prefix": "SIBO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SIBO_$1",
     "repository": "https://github.com/obophenotype/sibo",
-    "uri_format": "http://purl.obolibrary.org/obo/SIBO_$1",
-    "version": "2015-06-15"
+    "uri_format": "http://purl.obolibrary.org/obo/SIBO_$1"
   },
   "sider.drug": {
     "description": "SIDER (Side Effect Resource) is a public, computer-readable side effect resource that connects drugs to side effect terms. It aggregates dispersed public information on side effects. This collection references drugs in SIDER.",
@@ -57426,6 +57479,42 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SOPHARM_$1",
     "uri_format": "http://purl.obolibrary.org/obo/SOPHARM_$1"
   },
+  "sosa": {
+    "contact": {
+      "email": "dr.shorthair@pm.me",
+      "github": "dr-shorthair",
+      "name": "Simon Cox",
+      "orcid": "0000-0002-3884-3420"
+    },
+    "contributor": {
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "description": "This ontology is based on the SSN Ontology by the W3C Semantic Sensor Networks Incubator Group (SSN-XG), together with considerations from the W3C/OGC Spatial Data on the Web Working Group.",
+    "download_rdf": "https://www.w3.org/ns/sosa/",
+    "example": "FeatureOfInterest",
+    "github_request_issue": 1274,
+    "homepage": "https://www.w3.org/TR/vocab-ssn/",
+    "license": "http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+    "name": "Sensor, Observation, Sample, and Actuator Ontology",
+    "preferred_prefix": "sosa",
+    "publications": [
+      {
+        "doi": "10.1016/j.websem.2018.06.003",
+        "title": "SOSA: A lightweight ontology for sensors, observations, samples, and actuators",
+        "year": 2019
+      }
+    ],
+    "repository": "https://github.com/w3c/sdw",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.w3.org/ns/sosa/$1"
+  },
   "soybase": {
     "contact": {
       "email": "Jacqueline.Campbell@usda.gov",
@@ -57855,6 +57944,65 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "ssbd.project",
     "uri_format": "https://ssbd.riken.jp/database/project/$1"
+  },
+  "ssn": {
+    "contact": {
+      "email": "dr.shorthair@pm.me",
+      "github": "dr-shorthair",
+      "name": "Simon Cox",
+      "orcid": "0000-0002-3884-3420"
+    },
+    "contributor": {
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "description": "This ontology describes sensors, actuators and observations, and related concepts. It does not describe domain concepts, time, locations, etc. these are intended to be included from other ontologies via OWL imports.",
+    "download_rdf": "https://www.w3.org/ns/ssn/",
+    "example": "hasProperty",
+    "github_request_issue": 1272,
+    "homepage": "https://www.w3.org/TR/vocab-ssn",
+    "license": "http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+    "name": "Semantic Sensor Network Ontology",
+    "preferred_prefix": "ssn",
+    "repository": "https://github.com/w3c/sdw-sosa-ssn",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.w3.org/ns/ssn/$1"
+  },
+  "ssn.system": {
+    "contact": {
+      "email": "dr.shorthair@pm.me",
+      "github": "dr-shorthair",
+      "name": "Simon Cox",
+      "orcid": "0000-0002-3884-3420"
+    },
+    "contributor": {
+      "email": "philip.stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "description": "This ontology describes system capabilities, operating ranges, and survival ranges. Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org",
+    "download_rdf": "http://www.w3.org/ns/ssn/systems",
+    "example": "qualityOfObservation",
+    "github_request_issue": 1270,
+    "homepage": "https://www.w3.org/TR/vocab-ssn/",
+    "license": "http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+    "name": "System capabilities, operating ranges, and survival ranges ontology",
+    "preferred_prefix": "ssn.system",
+    "repository": "bioregistry",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.w3.org/ns/ssn/systems/$1"
   },
   "ssrn.article": {
     "contributor": {
@@ -61244,7 +61392,7 @@
     },
     "description": "The UniProt Archive (UniParc) is a  database containing non-redundant protein sequence information from many sources. Each unique sequence is given a stable and unique identifier (UPI) making it possible to identify the same protein from different source databases.",
     "example": "UPI000000000A",
-    "homepage": "https://www.ebi.ac.uk/uniparc/",
+    "homepage": "http://www.uniprot.org/uniparc/",
     "keywords": [
       "protein",
       "structure"
@@ -61263,13 +61411,6 @@
     "preferred_prefix": "uniparc",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "UniParc through UniProt",
-        "homepage": "http://www.uniprot.org/uniparc/",
-        "name": "UniParc through UniProt",
-        "uri_format": "https://www.uniprot.org/uniparc/$1"
-      },
-      {
         "code": "bio2rdf",
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
@@ -61286,7 +61427,7 @@
         "year": 2004
       }
     ],
-    "uri_format": "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=$1"
+    "uri_format": "https://www.uniprot.org/uniparc/$1"
   },
   "unipathway.compound": {
     "description": "UniPathway is a manually curated resource of enzyme-catalyzed and spontaneous chemical reactions. It provides a hierarchical representation of metabolic pathways and a controlled vocabulary for pathway annotation in UniProtKB. UniPathway data are cross-linked to existing metabolic resources such as ChEBI/Rhea, KEGG and MetaCyc. This collection references compounds.",
@@ -62917,6 +63058,36 @@
     ],
     "rdf_uri_format": "http://viaf.org/viaf/$1",
     "uri_format": "http://viaf.org/viaf/$1"
+  },
+  "vibso": {
+    "contact": {
+      "email": "philip.stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "contributor": {
+      "email": "philip.stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "description": "The Vibration Spectroscopy Ontology defines technical terms with which research data produced in vibrational spectroscopy experiments can be semantically enriched, made machine readable and FAIR.",
+    "example": "0000008",
+    "github_request_issue": 1278,
+    "homepage": "https://nfdi4chem.github.io/VibrationalSpectroscopyOntology/",
+    "license": "CC-BY-4.0",
+    "name": "Vibrational Spectroscopy Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "vibso",
+    "repository": "https://github.com/NFDI4Chem/VibrationalSpectroscopyOntology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/VIBSO_$1"
   },
   "vido": {
     "contact": {
@@ -64859,7 +65030,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.186"
+    "version": "4.187"
   },
   "xenbase": {
     "contact": {
