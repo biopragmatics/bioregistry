@@ -1,46 +1,64 @@
 """Test for checking the paper ranking model."""
 
+import datetime
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
-import pandas as pd
+from click.testing import CliRunner
 
-from bioregistry.analysis.paper_ranking import load_curated_papers
+from bioregistry.analysis.paper_ranking import main
 
 
-class TestLoadCuratedPapers(unittest.TestCase):
-    """Tests for Load Curated Papers."""
+class TestPaperRanking(unittest.TestCase):
+    """Tests the paper ranking model."""
 
-    @patch("bioregistry.analysis.paper_ranking.pubmed_client.get_metadata_for_ids")
-    @patch("bioregistry.analysis.paper_ranking.pd.read_csv")
-    def test_load_curated_papers(self, mock_read_csv, mock_get_metadata):
-        """Tests load curated papers function."""
-        # Test data
-        test_data = pd.DataFrame({"pmid": [11111, 22222, 33333], "relevant": [1, 0, 1]})
-        mock_read_csv.return_value = test_data
+    def setUp(self):
+        """Set up the test case with paths for the files."""
+        root_dir = root_dir = Path(__file__).resolve().parent.parent
+        self.bioregistry_file = root_dir / "src" / "bioregistry" / "data" / "bioregistry.json"
+        self.output_directory = root_dir / "exports" / "analyses" / "paper_ranking"
 
-        # Mock fetching metadata
-        mock_get_metadata.return_value = {
-            11111: {"title": "Paper 1", "abstract": "Abstract 1"},
-            22222: {"title": "Paper 2", "abstract": "Abstract 2"},
-            33333: {"title": "Paper 3", "abstract": "Abstract 3"},
-        }
+        # Check if bioregistry file exists
+        self.assertTrue(self.bioregistry_file.exists(), "Bioregistry file does not exist")
 
-        # Expected DataFrame
-        expected_df = pd.DataFrame(
-            {
-                "pubmed": [11111, 22222, 33333],
-                "label": [1, 0, 1],
-                "title": ["Paper 1", "Paper 2", "Paper 3"],
-                "abstract": ["Abstract 1", "Abstract 2", "Abstract 3"],
-            }
+    def test_pipeline(self):
+        """Smoke test to ensure pipeline runs successfully without error."""
+        start_date = datetime.date.today().isoformat()
+        end_date = datetime.date.today().isoformat()
+
+        runner = CliRunner()
+
+        result = runner.invoke(
+            main,
+            [
+                "--bioregistry-file",
+                str(self.bioregistry_file),
+                "--start-date",
+                start_date,
+                "--end-date",
+                end_date,
+            ],
         )
 
-        actual_df = load_curated_papers(file_path=Path("dummy/path/curated_papers.tsv"))
+        # Check if the pipeline ran successfully
+        self.assertEqual(result.exit_code, 0, f"Pipeline failed with: {result.output}")
 
-        # Check for equality
-        pd.testing.assert_frame_equal(actual_df, expected_df)
+        # Check if the output directory exists
+        self.assertTrue(self.output_directory.exists(), f"{self.output_directory} does not exist")
+
+        # Check if the evaluation file was created
+        evaluation_file = self.output_directory.joinpath("evaluation.tsv")
+        self.assertTrue(evaluation_file.exists(), f"{evaluation_file} was not created")
+
+        # Check if the importances file was created
+        importances_file = self.output_directory.joinpath("importances.tsv")
+        self.assertTrue(importances_file.exists(), f"{importances_file} was not created")
+
+        # Check if the predictions file is created for the date range
+        predictions_file = self.output_directory.joinpath(
+            f"predictions_{start_date}_to_{end_date}.tsv"
+        )
+        self.assertTrue(predictions_file.exists(), f"{predictions_file} was not created")
 
 
 if __name__ == "__main__":
