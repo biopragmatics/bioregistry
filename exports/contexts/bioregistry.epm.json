@@ -15747,7 +15747,7 @@
     {
         "pattern": "^M\\d{4}$",
         "prefix": "macie",
-        "uri_prefix": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=",
+        "uri_prefix": "https://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=",
         "uri_prefix_synonyms": [
             "MACIE:",
             "http://bio2rdf.org/macie:",
@@ -15757,11 +15757,13 @@
             "http://n2t.net/macie:",
             "http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=",
             "http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/getPage.pl?id=",
+            "http://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=",
             "https://bio2rdf.org/macie:",
             "https://bioregistry.io/macie:",
             "https://identifiers.org/macie/",
             "https://identifiers.org/macie:",
             "https://n2t.net/macie:",
+            "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=",
             "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/getPage.pl?id=",
             "macie:"
         ]
@@ -15957,13 +15959,15 @@
     {
         "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
         "prefix": "matrixdb.association",
-        "uri_prefix": "https://bioregistry.io/matrixdb.association:",
+        "uri_prefix": "https://matrixdb.univ-lyon1.fr/association/",
         "uri_prefix_synonyms": [
             "MATRIXDB.ASSOCIATION:",
             "http://bioregistry.io/matrixdb.association:",
             "http://identifiers.org/matrixdb.association/",
             "http://identifiers.org/matrixdb.association:",
+            "http://matrixdb.univ-lyon1.fr/association/",
             "http://n2t.net/matrixdb.association:",
+            "https://bioregistry.io/matrixdb.association:",
             "https://identifiers.org/matrixdb.association/",
             "https://identifiers.org/matrixdb.association:",
             "https://n2t.net/matrixdb.association:",
@@ -20118,6 +20122,17 @@
     {
         "prefix": "obo",
         "uri_prefix": "http://purl.obolibrary.org/obo/"
+    },
+    {
+        "prefix": "oboe",
+        "uri_prefix": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#",
+        "uri_prefix_synonyms": [
+            "OBOE:",
+            "http://bioregistry.io/oboe:",
+            "https://bioregistry.io/oboe:",
+            "https://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#",
+            "oboe:"
+        ]
     },
     {
         "pattern": "^\\w+$",
@@ -26670,6 +26685,17 @@
         ]
     },
     {
+        "prefix": "sosa",
+        "uri_prefix": "http://www.w3.org/ns/sosa/",
+        "uri_prefix_synonyms": [
+            "SOSA:",
+            "http://bioregistry.io/sosa:",
+            "https://bioregistry.io/sosa:",
+            "https://www.w3.org/ns/sosa/",
+            "sosa:"
+        ]
+    },
+    {
         "pattern": "^\\w+(\\-)?\\w+(\\-)?\\w+$",
         "prefix": "soybase",
         "uri_prefix": "http://www.soybase.org/sbt/search/search_results.php?category=SNP&search_term=",
@@ -26849,6 +26875,28 @@
             "http://ssbd.riken.jp/database/project/",
             "https://bioregistry.io/ssbd.project:",
             "ssbd.project:"
+        ]
+    },
+    {
+        "prefix": "ssn",
+        "uri_prefix": "http://www.w3.org/ns/ssn/",
+        "uri_prefix_synonyms": [
+            "SSN:",
+            "http://bioregistry.io/ssn:",
+            "https://bioregistry.io/ssn:",
+            "https://www.w3.org/ns/ssn/",
+            "ssn:"
+        ]
+    },
+    {
+        "prefix": "ssn.system",
+        "uri_prefix": "http://www.w3.org/ns/ssn/systems/",
+        "uri_prefix_synonyms": [
+            "SSN.SYSTEM:",
+            "http://bioregistry.io/ssn.system:",
+            "https://bioregistry.io/ssn.system:",
+            "https://www.w3.org/ns/ssn/systems/",
+            "ssn.system:"
         ]
     },
     {
@@ -28405,7 +28453,7 @@
     {
         "pattern": "^UPI[A-F0-9]{10}$",
         "prefix": "uniparc",
-        "uri_prefix": "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=",
+        "uri_prefix": "https://www.uniprot.org/uniparc/",
         "uri_prefix_synonyms": [
             "UNIPARC:",
             "http://bio2rdf.org/uniparc:",
@@ -28420,7 +28468,7 @@
             "https://identifiers.org/uniparc/",
             "https://identifiers.org/uniparc:",
             "https://n2t.net/uniparc:",
-            "https://www.uniprot.org/uniparc/",
+            "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=",
             "uniparc:"
         ]
     },
@@ -29516,6 +29564,18 @@
             "https://viaf.org/",
             "https://viaf.org/viaf/",
             "viaf:"
+        ]
+    },
+    {
+        "pattern": "^\\d{7}$",
+        "prefix": "vibso",
+        "uri_prefix": "http://purl.obolibrary.org/obo/VIBSO_",
+        "uri_prefix_synonyms": [
+            "VIBSO:",
+            "http://bioregistry.io/vibso:",
+            "https://bioregistry.io/vibso:",
+            "https://purl.obolibrary.org/obo/VIBSO_",
+            "vibso:"
         ]
     },
     {
