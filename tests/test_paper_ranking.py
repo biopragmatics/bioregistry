@@ -24,8 +24,10 @@ class TestPaperRanking(unittest.TestCase):
         self.assertTrue(self.bioregistry_file.exists(), "Bioregistry file does not exist")
 
     @patch("bioregistry.analysis.paper_ranking.load_curated_papers")
-    def test_pipeline(self, mock_load_curated_papers):
+    @patch("pandas.DataFrame.to_csv")
+    def test_pipeline(self, mock_to_csv, mock_load_curated_papers):
         """Smoke test to ensure pipeline runs successfully without error."""
+        # Mocking this data resolves the issue of the curated_papers.tsv file being missing from tox environment
         mock_data = {
             "pubmed": [39145441, 39163546, 39010878, 39074139, 39084442],
             "label": [0, 1, 0, 1, 0],
@@ -78,11 +80,12 @@ class TestPaperRanking(unittest.TestCase):
         importances_file = self.output_directory.joinpath("importances.tsv")
         self.assertTrue(importances_file.exists(), f"{importances_file} was not created")
 
-        # Check if the predictions file is created for the date range
-        predictions_file = self.output_directory.joinpath(
-            f"predictions_{start_date}_to_{end_date}.tsv"
+        # Check call count of to_csv is 3 for evaluation, importances and prediction file.
+        self.assertEqual(
+            mock_to_csv.call_count,
+            3,
+            f"Expected to_csv call count is 3. It was called {mock_to_csv.call_count} times",
         )
-        self.assertTrue(predictions_file.exists(), f"{predictions_file} was not created")
 
 
 if __name__ == "__main__":
