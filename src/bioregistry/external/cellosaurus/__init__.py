@@ -75,6 +75,8 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
 def _process_db_url(value):
     if value in {"https://%s", "None"}:
         return
+    if re.match(r"^https://www\.ebi\.ac\.uk/ols4/ontologies/[a-z]+/classes\?iri=http://purl\.obolibrary\.org/obo/$", value):
+        return
     return value.rstrip("/").replace("%s", "$1")
 
 
