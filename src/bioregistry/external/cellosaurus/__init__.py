@@ -6,7 +6,7 @@ import itertools as itt
 import json
 import logging
 from pathlib import Path
-from typing import Mapping
+from typing import Dict, Mapping
 
 from pystow.utils import download
 
@@ -52,7 +52,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     for cond, slines in itt.groupby(lines, lambda line: line == "//"):
         if cond:
             continue
-        d = {}
+        d: Dict[str, str] = {}
         for line in slines:
             if line[6] != ":":  # strip notes out
                 continue
@@ -75,7 +75,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     return rv
 
 
-def _process_db_url(key: str, value: str) -> str | None:
+def _process_db_url(key, value):
     if value in {"https://%s", "None"}:
         return
     if value.endswith("http://purl.obolibrary.org/obo/%s"):
@@ -84,7 +84,7 @@ def _process_db_url(key: str, value: str) -> str | None:
             "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
             key,
         )
-        return None
+        return
     return value.rstrip("/").replace("%s", "$1")
 
 
