@@ -4,6 +4,7 @@
 
 import itertools as itt
 import json
+import logging
 from pathlib import Path
 from typing import Mapping
 
@@ -16,6 +17,8 @@ __all__ = [
     "get_cellosaurus",
     "CellosaurusAligner",
 ]
+
+logger = logging.getLogger(__name__)
 
 URL = "https://ftp.expasy.org/databases/cellosaurus/cellosaurus_xrefs.txt"
 DIRECTORY = Path(__file__).parent.resolve()
@@ -58,7 +61,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
             if mapped_key is None:
                 continue
             if mapped_key == URI_FORMAT_KEY:
-                value = _process_db_url(value)
+                value = _process_db_url(d["prefix"], value)
                 if value is None:
                     continue
             d[mapped_key] = value
@@ -72,11 +75,16 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     return rv
 
 
-def _process_db_url(value):
+def _process_db_url(key: str, value: str) -> str | None:
     if value in {"https://%s", "None"}:
         return
-    if re.match(r"^https://www\.ebi\.ac\.uk/ols4/ontologies/[a-z]+/classes\?iri=http://purl\.obolibrary\.org/obo/$", value):
-        return
+    if value.endswith("http://purl.obolibrary.org/obo/%s"):
+        logger.warning(
+            "Cellosaurus curated an OBO PURL for `%s` that is is missing namespace. "
+            "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
+            key,
+        )
+        return None
     return value.rstrip("/").replace("%s", "$1")
 
 

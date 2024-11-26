@@ -187,7 +187,7 @@ class Aligner:
     def cli(cls):
         """Construct a CLI for the aligner."""
 
-        @click.command()
+        @click.command(help=f"Align {cls.key}")
         @click.option("--dry", is_flag=True, help="if set, don't write changes to the registry")
         @click.option("--show", is_flag=True, help="if set, print a curation table")
         @click.option(
