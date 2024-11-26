@@ -5,7 +5,6 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import pandas as pd
 from click.testing import CliRunner
 
 from bioregistry.analysis.paper_ranking import main
@@ -23,32 +22,9 @@ class TestPaperRanking(unittest.TestCase):
         # Check if bioregistry file exists
         self.assertTrue(self.bioregistry_file.exists(), "Bioregistry file does not exist")
 
-    @patch("bioregistry.analysis.paper_ranking.load_curated_papers")
     @patch("pandas.DataFrame.to_csv")
-    def test_pipeline(self, mock_to_csv, mock_load_curated_papers):
+    def test_pipeline(self, mock_to_csv):
         """Smoke test to ensure pipeline runs successfully without error."""
-        # Mocking this data resolves the issue of the curated_papers.tsv file being missing from tox environment
-        mock_data = {
-            "pubmed": [39145441, 39163546, 39010878, 39074139, 39084442],
-            "label": [0, 1, 0, 1, 0],
-            "title": [
-                "Clustering protein functional families at large scale with hierarchical approaches.",
-                "GMMID: genetically modified mice information database.",
-                "MotifbreakR v2: extended capability and database integration.",
-                "FURNA: A database for functional annotations of RNA structures.",
-                "HSADab: A comprehensive database for human serum albumin.",
-            ],
-            "abstract": [
-                "Proteins, fundamental to cellular activities, reveal their function and evolution",
-                "Genetically engineered mouse models (GEMMs) are vital for elucidating gene function",
-                "MotifbreakR is a software tool that scans genetic variants against position weight",
-                "Despite the increasing number of 3D RNA structures in the Protein Data Bank, the",
-                "Human Serum Albumin (HSA), the most abundant protein in human body fluids, plays a",
-            ],
-        }
-        mock_df = pd.DataFrame(mock_data)
-        mock_load_curated_papers.return_value = mock_df
-
         start_date = datetime.date.today().isoformat()
         end_date = datetime.date.today().isoformat()
 
