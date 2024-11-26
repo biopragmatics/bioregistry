@@ -79,7 +79,7 @@ def _process_db_url(key: str, value: str) -> str | None:
     if value in {"https://%s", "None"}:
         return
     if value.endswith("http://purl.obolibrary.org/obo/%s"):
-        logger.warning(
+        logger.debug(
             "Cellosaurus curated an OBO PURL for `%s` that is is missing namespace. "
             "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
             key,
