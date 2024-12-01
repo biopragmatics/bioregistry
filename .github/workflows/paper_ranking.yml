@@ -31,13 +31,14 @@ jobs:
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
     
-    - name: Export Python Path
+    - name: Set PYTHONPATH
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+        echo "PYTHONPATH=$PWD/src" >> $GITHUB_ENV
 
     - name: Run Paper Ranking Script
       id: run-ranking-script
       run: |
+        echo "PYTHONPATH=$PYTHONPATH"  # Verify PYTHONPATH
         python src/bioregistry/analysis/paper_ranking.py --start-date ${{ env.START_DATE }} --end-date ${{ env.END_DATE }}
 
     - name: Upload Full List as Artifact
