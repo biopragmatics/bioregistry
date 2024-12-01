@@ -30,6 +30,10 @@ jobs:
         start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
+    
+    - name: Export Python Path
+      run: |
+        export PYTHONPATH=$PYTHONPATH:$(pwd)/src
 
     - name: Run Paper Ranking Script
       id: run-ranking-script
