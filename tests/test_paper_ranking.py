@@ -25,9 +25,8 @@ class TestPaperRanking(unittest.TestCase):
         self.assertTrue(self.mock_data_path.exists(), "Mock data file does not exist")
         self.assertTrue(self.bioregistry_file.exists(), "Bioregistry file does not exist")
 
-    @patch("pandas.DataFrame.to_csv")
     @patch("bioregistry.analysis.paper_ranking.pubmed_client.get_metadata_for_ids")
-    def test_pipeline(self, mock_to_csv, mock_get_metadata_for_ids):
+    def test_pipeline(self, mock_get_metadata_for_ids):
         """Smoke test to ensure pipeline runs successfully without error."""
         start_date = datetime.date.today().isoformat()
         end_date = datetime.date.today().isoformat()
@@ -65,13 +64,6 @@ class TestPaperRanking(unittest.TestCase):
         # Check if the importances file was created
         importances_file = self.output_directory.joinpath("importances.tsv")
         self.assertTrue(importances_file.exists(), f"{importances_file} was not created")
-
-        # Check call count of to_csv is 3 for evaluation, importances and prediction file.
-        self.assertEqual(
-            mock_to_csv.call_count,
-            3,
-            f"Expected to_csv call count is 3. It was called {mock_to_csv.call_count} times",
-        )
 
 
 if __name__ == "__main__":
