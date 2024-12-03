@@ -30,10 +30,15 @@ jobs:
         start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
+    
+    - name: Set PYTHONPATH
+      run: |
+        echo "PYTHONPATH=$PWD/src" >> $GITHUB_ENV
 
     - name: Run Paper Ranking Script
       id: run-ranking-script
       run: |
+        echo "PYTHONPATH=$PYTHONPATH"  # Verify PYTHONPATH
         python src/bioregistry/analysis/paper_ranking.py --start-date ${{ env.START_DATE }} --end-date ${{ env.END_DATE }}
 
     - name: Upload Full List as Artifact
