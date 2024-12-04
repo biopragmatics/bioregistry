@@ -398,7 +398,7 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
 
     # These have already been curated and will therefore be filtered out
     curated_pmids = set(curated_papers_df["pubmed"]).union(
-    publication_df["pubmed"], curation_df["pubmed"]
+        publication_df["pubmed"], curation_df["pubmed"]
     )
 
     new_pub_df = fetch_pubmed_papers(curated_pmids)
