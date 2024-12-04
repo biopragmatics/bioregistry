@@ -19,7 +19,7 @@ class TestPaperRanking(unittest.TestCase):
         root_dir = root_dir = Path(__file__).resolve().parent.parent
         self.bioregistry_file = root_dir / "src" / "bioregistry" / "data" / "bioregistry.json"
         self.output_directory = root_dir / "exports" / "analyses" / "paper_ranking"
-        self.mock_data_path = root_dir / "src" / "bioregistry" / "data" / "mock_pubmed_data.json"
+        self.mock_data_path = root_dir / "tests" / "mock_pubmed_data.json"
 
         # Check if bioregistry and mock data files exists
         self.assertTrue(self.mock_data_path.exists(), "Mock data file does not exist")
