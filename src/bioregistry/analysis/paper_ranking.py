@@ -298,7 +298,7 @@ def _first_of_month() -> str:
     "--end-date",
     required=True,
     help="End date of the period",
-    default=lambda x: datetime.date.today().isoformat(),
+    default=datetime.date.today().isoformat(),
 )
 def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
