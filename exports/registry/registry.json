@@ -3596,7 +3596,7 @@
     "preferred_prefix": "BCGO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/BCGO_$1",
     "repository": "https://github.com/obi-bcgo/bcgo",
-    "uri_format": "http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/$1",
+    "uri_format": "http://purl.obolibrary.org/obo/BCGO_$1",
     "version": "2015-07-08"
   },
   "bcio": {
@@ -7150,7 +7150,7 @@
       "orcid": "0000-0001-9439-5346"
     },
     "description": "The Common Coordinate Framework (CCF) Ontology is an application ontology built to support the development of the Human Reference Atlas (HRA).  It unifies vocabulary for HRA construction and usage—making it possible to ingest external data sources; supporting uniform tissue sample registration that includes the spatial positioning and semantic annotations within 3D reference organs; and supporting user-formulated cross-domain queries over tissue donor properties, anatomical structures, cell types, biomarkers, and 3D space. The CCF Ontology consists of three major ontologies. The Biological Structure Ontology records anatomical structures, cell types, and biomarkers (ASCT+B) and the relationships between them.  The ASCT+B tables are authored by human experts using templated Google Sheets. The biomarkers, cell types, and anatomical structures are mapped to existing ontologies (Uberon/FMA, CL, HGNC) whenever possible.  All relationships between anatomical structures and from cell types to anatomical structures are valid Uberon and CL relationships. The Spatial Ontology defines the shape, size, location, and rotation of experimental tissue and data major anatomical structures in the 3D Reference Object Library. The Specimen Ontology captures the sex, age, and other information on donors that provided tissue data used in the construction of the HRA.",
-    "download_owl": "http://purl.org/ccf/releases/2.3.0/ccf.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/CCF/16/ccf.owl",
     "example": "extraction_set",
     "github_request_issue": 879,
     "homepage": "https://bioportal.bioontology.org/ontologies/CCF",
@@ -7175,8 +7175,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "uri_format": "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1",
-    "version": "2.3.0"
+    "uri_format": "https://bioportal.bioontology.org/ontologies/CCF/?p=classes&conceptid=http%3A%2F%2Fpurl.org%2Fccf%2F$1"
   },
   "ccle": {
     "contributor": {
@@ -8701,6 +8700,40 @@
     "repository": "https://github.com/rsc-ontologies/rsc-cmo",
     "uri_format": "http://purl.obolibrary.org/obo/CHMO_$1",
     "version": "2022-04-19"
+  },
+  "chr": {
+    "contact": {
+      "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
+      "name": "Chris Mungall",
+      "orcid": "0000-0002-6601-2165"
+    },
+    "contributor": {
+      "email": "jhc@lbl.gov",
+      "github": "caufieldjh",
+      "name": "Harry Caufield",
+      "orcid": "0000-0001-5705-7831"
+    },
+    "description": "The Chromosome Ontology is an automatically derived ontology of chromosomes and chromosome parts.",
+    "download_json": "https://raw.githubusercontent.com/monarch-initiative/monochrom/refs/heads/master/chr.json",
+    "download_obo": "https://raw.githubusercontent.com/monarch-initiative/monochrom/refs/heads/master/chr.obo",
+    "download_owl": "https://raw.githubusercontent.com/monarch-initiative/monochrom/refs/heads/master/chr.owl",
+    "example": "10090-chr10qC",
+    "github_request_issue": 1265,
+    "homepage": "https://github.com/monarch-initiative/monochrom",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "BSD-3",
+    "name": "Chromosome Ontology",
+    "preferred_prefix": "chr",
+    "repository": "https://github.com/monarch-initiative/monochrom",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
   },
   "cido": {
     "contact": {
@@ -11827,6 +11860,48 @@
     "preferred_prefix": "crates",
     "uri_format": "https://crates.io/crates/$1"
   },
+  "creativebiolabs.antibody": {
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Creative Biolabs Antigen provides identifiers  for antibody-based entities such as recombinant, functional, engineered, and format-specific antibodies as well as antibody processing tools, which are essential for applications in diagnostics, therapeutics, and immunology.",
+    "example": "TAB-884",
+    "github_request_issue": 1257,
+    "homepage": "https://www.creativebiolabs.net",
+    "name": "Creative Biolabs",
+    "pattern": "^[a-zA-Z]+-[a-zA-Z0-9()]+(-[a-zA-Z0-9]*)?$",
+    "preferred_prefix": "creativebiolabs.antibody",
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    }
+  },
+  "creativebiolabs.protein": {
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Creative Biolabs Protein provides identifiers for protein-related entities, including therapeutic proteins, proteolytic enzymes, antibody-like scaffold proteins, soluble T cell receptors, and tetramers.",
+    "example": "VS-0724-CJ1",
+    "github_request_issue": 1257,
+    "homepage": "https://www.creativebiolabs.net",
+    "name": "Creative Biolabs",
+    "pattern": "^[a-zA-Z]+-[a-zA-Z0-9()]+(-[a-zA-Z0-9]*)?$",
+    "preferred_prefix": "creativebiolabs.protein",
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    }
+  },
   "credit": {
     "contact": {
       "email": "liz.allen@f1000.com",
@@ -14136,7 +14211,7 @@
       }
     ],
     "uri_format": "http://dicom.nema.org/resources/ontology/DCM/$1",
-    "version": "2024d_20240922"
+    "version": "2024e_20241114"
   },
   "dictybase": {
     "contact": {
@@ -15514,7 +15589,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/DRON_$1",
     "repository": "https://github.com/ufbmi/dron",
     "uri_format": "http://purl.obolibrary.org/obo/DRON_$1",
-    "version": "2024-09-04"
+    "version": "2024-11-04"
   },
   "drsanv0": {
     "description": "This namespace is used for GA4GH Data Repository Service (DRS) access to the USA National Institutes of Health (NIH), National Human Genome Research Institute (NHGRI), Genomic Analysis, Visualization and Informatics Lab-space (AnVIL) program data. AnVIL is a cloud-based genomic data sharing and analysis platform which facilitates integration and computing on and across large datasets generated by NHGRI programs, as well as initiatives funded by the National Institutes of Health (NIH) or by other agencies that support human genomics research.   ",
@@ -17109,7 +17184,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo/",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.71.0"
+    "version": "3.72.0"
   },
   "ega.dataset": {
     "contact": {
@@ -24761,6 +24836,12 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkae1000",
+        "pubmed": "39498478",
+        "title": "Genomes OnLine Database (GOLD) v.10: new features and updates",
+        "year": 2024
+      },
       {
         "doi": "10.1093/nar/gkaa983",
         "pmc": "PMC7778979",
@@ -37671,7 +37752,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.142"
+    "version": "2.143"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -37899,7 +37980,7 @@
     },
     "description": "MobiDB is a database of protein disorder and mobility annotations.",
     "example": "P10636",
-    "homepage": "http://mobidb.bio.unipd.it",
+    "homepage": "https://mobidb.org",
     "keywords": [
       "biology",
       "biomedical science"
@@ -37918,6 +37999,12 @@
     "preferred_prefix": "mobidb",
     "provides": "uniprot",
     "publications": [
+      {
+        "doi": "10.1093/nar/gkae969",
+        "pubmed": "39470701",
+        "title": "MOBIDB in 2025: integrating ensemble properties and function annotations for intrinsically disordered proteins",
+        "year": 2024
+      },
       {
         "doi": "10.1093/nar/gkac1065",
         "pubmed": "36416266"
@@ -42914,9 +43001,18 @@
     "github_request_issue": 1276,
     "homepage": "https://github.com/NCEAS/oboe",
     "keywords": [
+      "biodiversity",
+      "ecology",
+      "environmental science",
+      "observations",
       "ontology"
     ],
     "license": "CC-BY-3.0",
+    "mappings": {
+      "aberowl": "OBOE",
+      "agroportal": "OBOE",
+      "fairsharing": "FAIRsharing.5970hq"
+    },
     "name": "The Extensible Observation Ontology",
     "preferred_prefix": "oboe",
     "publications": [
@@ -52128,6 +52224,12 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkae1038",
+        "pubmed": "39526381",
+        "title": "NCBI RefSeq: reference sequence standards through 25 years of curation and annotation",
+        "year": 2024
+      },
+      {
         "doi": "10.1093/nar/gkv1189",
         "pmc": "PMC4702849",
         "pubmed": "26553804",
@@ -57452,7 +57554,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SO_$1",
     "repository": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
     "uri_format": "http://purl.obolibrary.org/obo/SO_$1",
-    "version": "2024-06-05"
+    "version": "2024-11-18"
   },
   "sopharm": {
     "contact": {
@@ -57496,7 +57598,16 @@
     "example": "FeatureOfInterest",
     "github_request_issue": 1274,
     "homepage": "https://www.w3.org/TR/vocab-ssn/",
+    "keywords": [
+      "environment",
+      "iot"
+    ],
     "license": "http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+    "mappings": {
+      "agroportal": "SOSA",
+      "lov": "sosa",
+      "zazuko": "sosa"
+    },
     "name": "Sensor, Observation, Sample, and Actuator Ontology",
     "preferred_prefix": "sosa",
     "publications": [
@@ -57958,13 +58069,50 @@
       "orcid": "0000-0002-1595-3213"
     },
     "description": "This ontology describes sensors, actuators and observations, and related concepts. It does not describe domain concepts, time, locations, etc. these are intended to be included from other ontologies via OWL imports.",
+    "download_owl": "http://aber-owl.net/media/ontologies/SSN/2/ssn.owl",
     "download_rdf": "https://www.w3.org/ns/ssn/",
     "example": "hasProperty",
     "github_request_issue": 1272,
     "homepage": "https://www.w3.org/TR/vocab-ssn",
+    "keywords": [
+      "imaging",
+      "iot",
+      "methods",
+      "monitoring",
+      "ontology",
+      "remote sensing",
+      "resource metadata",
+      "sensor data",
+      "w3c rec",
+      "web of things"
+    ],
     "license": "http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
+    "mappings": {
+      "aberowl": "SSN",
+      "agroportal": "SSN",
+      "fairsharing": "FAIRsharing.c0bvcy",
+      "lov": "ssn",
+      "zazuko": "ssn"
+    },
     "name": "Semantic Sensor Network Ontology",
     "preferred_prefix": "ssn",
+    "publications": [
+      {
+        "doi": "10.3233/sw-180320",
+        "title": "The Modular SSN Ontology: A Joint W3C and OGC Standard Specifying the Semantics of Sensors, Observations, Sampling, and Actuation",
+        "year": 2019
+      },
+      {
+        "doi": "10.1016/j.websem.2018.06.003",
+        "title": "SOSA: A lightweight ontology for sensors, observations, samples, and actuators",
+        "year": 2018
+      },
+      {
+        "doi": "10.1016/j.websem.2012.05.003",
+        "title": "The SSN ontology of the W3C semantic sensor network incubator group",
+        "year": 2012
+      }
+    ],
     "repository": "https://github.com/w3c/sdw-sosa-ssn",
     "reviewer": {
       "email": "cthoyt@gmail.com",
@@ -59086,6 +59234,146 @@
     "pattern": "^[0-9]*\\.*[0-9]*$",
     "preferred_prefix": "synapse",
     "uri_format": "https://repo-prod.prod.sagebase.org/ga4gh/drs/v1/objects/syn$1"
+  },
+  "synbip.bts": {
+    "contact": {
+      "email": "lifengcheng@zju.edu.cn",
+      "name": "Fengcheng Li",
+      "orcid": "0000-0002-1846-639X"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for the binding targets of synthetic binding proteins (SBP), describing the specific molecules or complexes that SBPs interact with for their intended applications",
+    "example": "st00576",
+    "github_request_issue": 1268,
+    "homepage": "http://synbip.idrblab.net",
+    "name": "Synthetic Binding Proteins Binding Target",
+    "pattern": "^st\\d+$",
+    "preferred_prefix": "synbip.bts",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae893",
+        "pubmed": "39413165",
+        "title": "SYNBIP 2.0: epitopes mapping, sequence expansion and scaffolds discovery for synthetic binding protein innovation",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://synbip.idrblab.net/data/bts/details/$1"
+  },
+  "synbip.epitope": {
+    "contact": {
+      "email": "lifengcheng@zju.edu.cn",
+      "name": "Fengcheng Li",
+      "orcid": "0000-0002-1846-639X"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for synthetic binding protein-target complexes, detailing their components, 3D structures and docking statistics",
+    "example": "mt002305",
+    "github_request_issue": 1268,
+    "homepage": "http://synbip.idrblab.net",
+    "name": "Synthetic Binding Protein Epitope",
+    "pattern": "^mt\\d+$",
+    "preferred_prefix": "synbip.epitope",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae893",
+        "pubmed": "39413165",
+        "title": "SYNBIP 2.0: epitopes mapping, sequence expansion and scaffolds discovery for synthetic binding protein innovation",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://synbip.idrblab.net/data/sbp-target-complex/details/$1"
+  },
+  "synbip.pss": {
+    "contact": {
+      "email": "lifengcheng@zju.edu.cn",
+      "name": "Fengcheng Li",
+      "orcid": "0000-0002-1846-639X"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for the protein scaffolds of synthetic binding proteins (SBP), detailing their structural frameworks and roles in facilitating SBP function.",
+    "example": "ps048",
+    "github_request_issue": 1268,
+    "homepage": "http://synbip.idrblab.net",
+    "name": "Synthetic Binding Protein Protein Scaffold",
+    "pattern": "^ps\\d+$",
+    "preferred_prefix": "synbip.pss",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae893",
+        "pubmed": "39413165",
+        "title": "SYNBIP 2.0: epitopes mapping, sequence expansion and scaffolds discovery for synthetic binding protein innovation",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://synbip.idrblab.net/data/scaffold/details/$1"
+  },
+  "synbip.sbp": {
+    "contact": {
+      "email": "lifengcheng@zju.edu.cn",
+      "name": "Fengcheng Li",
+      "orcid": "0000-0002-1846-639X"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for synthetic binding proteins, providing detailed information on their sequences, structures, targets, and functional properties for research, diagnostic, and therapeutic applications.",
+    "example": "sbp000002",
+    "github_request_issue": 1268,
+    "homepage": "http://synbip.idrblab.net",
+    "name": "Synthetic Binding Protein",
+    "pattern": "^sbp\\d+$",
+    "preferred_prefix": "synbip.sbp",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae893",
+        "pubmed": "39413165",
+        "title": "SYNBIP 2.0: epitopes mapping, sequence expansion and scaffolds discovery for synthetic binding protein innovation",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "http://synbip.idrblab.net/data/sbp/details/$1"
   },
   "syoid": {
     "contributor": {
@@ -61559,6 +61847,21 @@
         "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
       },
       {
+        "code": "oglcnac",
+        "description": "A comprehensive catalog of O-GlcNAcylated proteins",
+        "homepage": "https://www.oglcnac.mcw.edu",
+        "name": "The O-GlcNAc Database",
+        "publications": [
+          {
+            "doi": "10.1007/s00216-024-05571-8",
+            "pubmed": "39379619",
+            "title": "The O-GlcNAc database: introducing new features and tools developed from community feedback",
+            "year": 2024
+          }
+        ],
+        "uri_format": "https://www.oglcnac.mcw.edu/search/?query_protein=$1"
+      },
+      {
         "code": "oma",
         "description": "The OMA project is a method and database for the inference of orthologs among complete genomes.",
         "homepage": "https://omabrowser.org/oma/home/",
@@ -61581,6 +61884,12 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1007/s00216-024-05571-8",
+        "pubmed": "39379619",
+        "title": "The O-GlcNAc database: introducing new features and tools developed from community feedback",
+        "year": 2024
+      },
       {
         "doi": "10.1093/database/baae085",
         "pmc": "PMC11349611",

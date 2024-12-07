@@ -21,10 +21,10 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
+from bioregistry.constants import BIOREGISTRY_PATH, CURATED_PAPERS_PATH
+
 HERE = Path(__file__).parent.resolve()
 ROOT = HERE.parent.parent.parent.resolve()
-
-BIOREGISTRY_PATH = ROOT.joinpath("src", "bioregistry", "data", "bioregistry.json")
 
 DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -42,7 +42,7 @@ def load_bioregistry_json(path: Path | None = None) -> pd.DataFrame:
     if path is None:
         path = BIOREGISTRY_PATH
     try:
-        data = json.loads(path.read_text())
+        data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as e:
         click.echo(f"JSONDecodeError: {e.msg}")
         click.echo(f"Error at line {e.lineno}, column {e.colno}")
@@ -68,14 +68,40 @@ def load_bioregistry_json(path: Path | None = None) -> pd.DataFrame:
         if pub["pubmed"] in fetched_metadata:
             pub["abstract"] = fetched_metadata[pub["pubmed"]].get("abstract", "")
 
-    click.echo(f"Got {len(publications):;} publications from the bioregistry")
+    click.echo(f"Got {len(publications):,} publications from the bioregistry")
 
     return pd.DataFrame(publications)
 
 
-def fetch_pubmed_papers() -> pd.DataFrame:
-    """Fetch PubMed papers from the last 30 days using specific search terms.
+def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
+    """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
 
+    :param file_path: Path to the curated_papers.tsv file.
+    :return: DataFrame containing curated publication details.
+    """
+    curated_df = pd.read_csv(file_path, sep="\t")
+    curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
+    curated_df["title"] = ""
+    curated_df["abstract"] = ""
+
+    pmids_to_fetch = curated_df["pubmed"].tolist()
+    fetched_metadata = {}
+    for chunk in [pmids_to_fetch[i : i + 200] for i in range(0, len(pmids_to_fetch), 200)]:
+        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
+
+    for index, row in curated_df.iterrows():
+        if row["pubmed"] in fetched_metadata:
+            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
+            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+
+    click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
+    return curated_df
+
+
+def fetch_pubmed_papers(curated_pmids: set[int]) -> pd.DataFrame:
+    """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
+
+    :param curated_pmids: List containing already curated PMIDs
     :return: DataFrame containing PubMed paper details.
     """
     click.echo("Starting fetch_pubmed_papers")
@@ -86,10 +112,11 @@ def fetch_pubmed_papers() -> pd.DataFrame:
     for term in search_terms:
         pubmed_ids = pubmed_client.get_ids(term, use_text_word=True, reldate=30)
         for pubmed_id in pubmed_ids:
-            paper_to_terms[pubmed_id].append(term)
+            if pubmed_id not in curated_pmids:
+                paper_to_terms[pubmed_id].append(term)
 
     all_pmids = list(paper_to_terms.keys())
-    click.echo(f"{len(all_pmids):;} articles found")
+    click.echo(f"{len(all_pmids):,} articles found")
     if not all_pmids:
         click.echo(f"No articles found for the last 30 days with the search terms: {search_terms}")
         return pd.DataFrame()
@@ -271,7 +298,7 @@ def _first_of_month() -> str:
     "--end-date",
     required=True,
     help="End date of the period",
-    default=lambda x: datetime.date.today().isoformat(),
+    default=datetime.date.today().isoformat(),
 )
 def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
@@ -282,9 +309,10 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     """
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()
+    curated_papers_df = load_curated_papers(CURATED_PAPERS_PATH)
 
-    # Combine both data sources
-    df = pd.concat([curation_df, publication_df])
+    # Combine all data sources
+    df = pd.concat([curation_df, publication_df, curated_papers_df])
     df["abstract"] = df["abstract"].fillna("")
     df["title_abstract"] = df["title"] + " " + df["abstract"]
 
@@ -368,7 +396,10 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     click.echo(f"Writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
-    new_pub_df = fetch_pubmed_papers()
+    # These have already been curated and will therefore be filtered out
+    curated_pmids = set(curated_papers_df["pubmed"])
+
+    new_pub_df = fetch_pubmed_papers(curated_pmids)
     if not new_pub_df.empty:
         filename = f"predictions_{start_date}_to_{end_date}.tsv"
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
