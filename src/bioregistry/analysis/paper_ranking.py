@@ -397,7 +397,9 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
     # These have already been curated and will therefore be filtered out
-    curated_pmids = set(curated_papers_df["pubmed"])
+    curated_pmids = set(curated_papers_df["pubmed"]).union(
+        publication_df["pubmed"], curation_df["pubmed"]
+    )
 
     new_pub_df = fetch_pubmed_papers(curated_pmids)
     if not new_pub_df.empty:
