@@ -1813,17 +1813,20 @@ class Resource(BaseModel):
         return None
 
     def _clip_uri_format(self, uri_format: Optional[str]) -> Optional[str]:
-        if uri_format is None:
+        if uri_format is None or uri_format == "None":
             return None
+        if uri_format != uri_format.rstrip():
+            logging.debug("[%s] formatter has whitespace on right: %s", self.prefix, uri_format)
+            uri_format = uri_format.rstrip()
         count = uri_format.count("$1")
         if 0 == count:
-            logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
+            logging.debug("[%s] formatter missing $1: %s", self.prefix, uri_format)
             return None
         if uri_format.count("$1") != 1:
-            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, self.get_name())
+            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, uri_format)
             return None
         if not uri_format.endswith("$1"):
-            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, self.get_name())
+            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, uri_format)
             return None
         return uri_format[: -len("$1")]
 
