@@ -1,14 +1,17 @@
 """Test for checking the paper ranking model."""
 
-import json
 import datetime
-import unittest
+import json
+import unittest.mock
 from pathlib import Path
-from unittest.mock import patch
 
-from click.testing import CliRunner
+from bioregistry.analysis.paper_ranking import runner
+from bioregistry.constants import BIOREGISTRY_PATH, EXPORT_ANALYSES
 
-from bioregistry.analysis.paper_ranking import main
+HERE = Path(__file__).parent.resolve()
+RESOURCES = HERE.joinpath("resources")
+MOCK_DATA_PATH = RESOURCES.joinpath("mock_pubmed_data.json")
+MOCK_SEARCH_PATH = RESOURCES.joinpath("mock_search.json")
 
 
 class TestPaperRanking(unittest.TestCase):
@@ -16,46 +19,21 @@ class TestPaperRanking(unittest.TestCase):
 
     def setUp(self):
         """Set up the test case with paths for the files."""
-        root_dir = root_dir = Path(__file__).resolve().parent.parent
-        self.bioregistry_file = root_dir / "src" / "bioregistry" / "data" / "bioregistry.json"
-        self.output_directory = root_dir / "exports" / "analyses" / "paper_ranking"
-        self.mock_data_path = root_dir / "tests" / "mock_pubmed_data.json"
+        self.output_directory = EXPORT_ANALYSES / "paper_ranking"
 
-        # Check if bioregistry and mock data files exists
-        self.assertTrue(self.mock_data_path.exists(), "Mock data file does not exist")
-        self.assertTrue(self.bioregistry_file.exists(), "Bioregistry file does not exist")
-
-    @patch("bioregistry.analysis.paper_ranking.pubmed_client.get_metadata_for_ids")
-    def test_pipeline(self, mock_get_metadata_for_ids):
+    @unittest.mock.patch("bioregistry.analysis.paper_ranking._get_metadata_for_ids")
+    @unittest.mock.patch("bioregistry.analysis.paper_ranking._get_ids")
+    def test_pipeline(self, mock_get_metadata_for_ids, mock_get_ids):
         """Smoke test to ensure pipeline runs successfully without error."""
         start_date = datetime.date.today().isoformat()
         end_date = datetime.date.today().isoformat()
 
-        # Mock return value for get_metadata_for_ids
-        with open(self.mock_data_path, "r", encoding="utf-8") as file:
-            mock_data = json.load(file)
+        mock_get_metadata_for_ids.return_value = json.loads(MOCK_DATA_PATH.read_text())
+        mock_get_ids.return_value = {}
 
-        mock_get_metadata_for_ids.return_value = mock_data
+        runner(BIOREGISTRY_PATH, start_date, end_date, include_remote=False)
 
-        runner = CliRunner()
-
-        result = runner.invoke(
-            main,
-            [
-                "--bioregistry-file",
-                str(self.bioregistry_file),
-                "--start-date",
-                start_date,
-                "--end-date",
-                end_date,
-            ],
-        )
-
-        # Check if the pipeline ran successfully
-        self.assertEqual(result.exit_code, 0, f"Pipeline failed with: {result.exit_code}")
-
-        # Check if the output directory exists
-        self.assertTrue(self.output_directory.exists(), f"{self.output_directory} does not exist")
+        # TODO ideally the tests check the actual functionality and not the I/O
 
         # Check if the evaluation file was created
         evaluation_file = self.output_directory.joinpath("evaluation.tsv")
