@@ -597,6 +597,12 @@ def usage():
     return render_template("meta/access.html", resource=resource)
 
 
+@ui_blueprint.route("/.well-known/funding-manifest-urls")
+def funding_manifest_urls():
+    """Render the FLOSS Fund page, described by https://floss.fund/funding-manifest/."""
+    return current_app.send_static_file("funding-manifest-urls.txt")
+
+
 @ui_blueprint.route("/schema/")
 def schema():
     """Render the Bioregistry RDF schema."""
