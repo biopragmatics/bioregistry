@@ -1470,22 +1470,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^CHEMBL\\d+$",
     "prefix": "chembl.target",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL target RDF",
-        "homepage": "https://github.com/egonw/chembl.rdf",
-        "name": "ChEMBL target RDF",
-        "uri_format": "http://linkedchemistry.info/chembl/chemblid/$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL target RDF through EBI RDF Platform",
-        "homepage": "https://rdf.ebi.ac.uk/resource/chembl/",
-        "name": "ChEMBL target RDF through EBI RDF Platform",
-        "uri_format": "https://rdf.ebi.ac.uk/resource/chembl/target/$1"
-      }
-    ],
     "sampleId": "CHEMBL3467",
     "uri_format": "https://www.ebi.ac.uk/chembl/target/inspect/$1"
   },
@@ -5785,7 +5769,7 @@
     "id": "00000560",
     "name": "MeSH",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(C|D)\\d{6,9}$",
+    "pattern": "^(C|D|M)\\d{6,9}$",
     "prefix": "mesh",
     "sampleId": "C000100",
     "uri_format": "http://id.nlm.nih.gov/mesh/$1"
@@ -5793,26 +5777,22 @@
   "mesh.2012": {
     "deprecated": false,
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloging of books, documents, etc. This collection references MeSH terms published in 2012.",
-    "homepage": "http://www.nlm.nih.gov/mesh/",
     "id": "00000270",
     "name": "MeSH 2012",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z0-9]+$",
     "prefix": "mesh.2012",
-    "sampleId": "17186",
-    "uri_format": "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?mode=&index=$1&view=expanded"
+    "sampleId": "17186"
   },
   "mesh.2013": {
     "deprecated": false,
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloging of books, documents, etc. This collection references MeSH terms published in 2013.",
-    "homepage": "http://www.nlm.nih.gov/mesh/",
     "id": "00000473",
     "name": "MeSH 2013",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z0-9]+$",
     "prefix": "mesh.2013",
-    "sampleId": "17165",
-    "uri_format": "http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?mode=&index=$1&view=expanded"
+    "sampleId": "17165"
   },
   "metabolights": {
     "deprecated": false,
@@ -6241,7 +6221,7 @@
     "sampleId": "50885",
     "uri_format": "http://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?uid=$1"
   },
-  "mmmp:biomaps": {
+  "mmmp.biomaps": {
     "deprecated": false,
     "description": "A collection of molecular interaction maps and pathways involved in cancer development and progression with a focus on melanoma.",
     "homepage": "http://www.mmmp.org/MMMP/public/biomap/listBiomap.mmmp",
@@ -6249,7 +6229,7 @@
     "name": "Melanoma Molecular Map Project Biomaps",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
-    "prefix": "mmmp:biomaps",
+    "prefix": "mmmp.biomaps",
     "sampleId": "37",
     "uri_format": "http://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=$1"
   },
