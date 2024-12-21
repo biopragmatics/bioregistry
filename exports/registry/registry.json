@@ -4573,6 +4573,42 @@
     "preferred_prefix": "biodeep",
     "uri_format": "https://query.biodeep.cn/metabolite/$1"
   },
+  "biodolphin": {
+    "contact": {
+      "email": "andrew.mcshan@chemistry.gatech.edu",
+      "name": "Andrew C. McShan",
+      "orcid": "0000-0002-3212-9867"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for lipid-protein interactions, including details about protein functions, protein families, lipid classifications, lipid-protein binding affinities, membrane association type, and atomic structures.",
+    "example": "BD1a05-A-A-IPM1",
+    "github_request_issue": 1327,
+    "homepage": "https://biodolphin.chemistry.gatech.edu",
+    "name": "BioDolphin",
+    "pattern": "^BD\\d[a-zA-Z0-9]+-[A-Za-z]-[A-Za-z]-[A-Za-z0-9]+$",
+    "preferred_prefix": "biodolphin",
+    "publications": [
+      {
+        "doi": "10.1038/s42004-024-01384-z",
+        "pmc": "PMC11618342",
+        "pubmed": "39633021",
+        "title": "BioDolphin as a comprehensive database of lipid-protein binding interactions",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://biodolphin.chemistry.gatech.edu/detail/$1"
+  },
   "biofactoid": {
     "contact": {
       "email": "jeffvin.wong@utoronto.ca",
@@ -4962,7 +4998,7 @@
       "kisao"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/KISAO_$1",
-    "version": "2.30"
+    "version": "2.34"
   },
   "biomodels.teddy": {
     "banana": "TEDDY",
@@ -5611,9 +5647,13 @@
     "github_request_issue": 1312,
     "homepage": "http://purl.org/biotop",
     "keywords": [
+      "biology",
       "ontology"
     ],
     "license": "CC-BY-3.0",
+    "mappings": {
+      "lov": "biotop"
+    },
     "name": "BioTop",
     "preferred_prefix": "biotop",
     "publications": [
@@ -6895,6 +6935,12 @@
         "pubmed": "9309224",
         "title": "CATH--a hierarchic classification of protein domain structures",
         "year": 1997
+      },
+      {
+        "doi": "10.1093/nar/gkae1087",
+        "pubmed": "39565206",
+        "title": "CATH v4.4: major expansion of CATH by experimental and predicted structural data",
+        "year": 2024
       },
       {
         "doi": "10.1093/nar/gkaa1079",
@@ -8825,7 +8871,8 @@
     "license": "BSD-3",
     "mappings": {
       "aberowl": "CHR",
-      "biocontext": "CHR"
+      "biocontext": "CHR",
+      "bioportal": "CHR"
     },
     "name": "Chromosome Ontology",
     "preferred_prefix": "chr",
@@ -9899,7 +9946,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.230"
+    "version": "2.231"
   },
   "cmpo": {
     "contact": {
@@ -10251,6 +10298,10 @@
     "uri_format": "https://cropontology.org/rdf/CO_331:$1"
   },
   "co_333": {
+    "contact": {
+      "email": "helpdesk@cropontology-curationtool.org",
+      "name": "Crop Ontology Helpdesk"
+    },
     "description": "This ontology was built as part of the AKER project. It describes variables used in beet phenotyping (experimental properties and measurement scale) for each institution (INRAE, Geves, ITB) and breeding companies (Florimond Desprez). Curator: Dorothee Charruaud (ADRINORD - URGI) Daphne Verdelet (Florimond Desprez) - First submission in November 2017.",
     "example": "3000045",
     "homepage": "http://www.cropontology.org/ontology/CO_333/Beet%20Ontology",
@@ -10795,6 +10846,10 @@
     "uri_format": "https://cropontology.org/rdf/CO_359:$1"
   },
   "co_360": {
+    "contact": {
+      "email": "helpdesk@cropontology-curationtool.org",
+      "name": "Crop Ontology Helpdesk"
+    },
     "description": "Sugar Kelp trait ontology",
     "example": "0000071",
     "homepage": "http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait",
@@ -10952,6 +11007,21 @@
     "name": "COlleCtion of Open Natural ProdUcTs",
     "pattern": "^CNP\\d{7}(\\.\\d+)?$",
     "preferred_prefix": "coconut",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1063",
+        "pubmed": "39588778",
+        "title": "COCONUT 2.0: a comprehensive overhaul and curation of the collection of open natural products database",
+        "year": 2024
+      },
+      {
+        "doi": "10.1186/s13321-020-00478-9",
+        "pmc": "PMC7798278",
+        "pubmed": "33423696",
+        "title": "COCONUT online: Collection of Open Natural Products database",
+        "year": 2021
+      }
+    ],
     "reviewer": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -11684,7 +11754,7 @@
     },
     "description": "The CORUM database provides a resource of manually annotated protein complexes from mammalian organisms. Annotation includes protein complex function, localization, subunit composition, literature references and more. All information is obtained from individual experiments published in scientific articles, data from high-throughput experiments is excluded.",
     "example": "100",
-    "homepage": "https://mips.helmholtz-muenchen.de/genre/proj/corum/",
+    "homepage": "https://mips.helmholtz-muenchen.de/corum",
     "keywords": [
       "bioinformatics",
       "biology",
@@ -11714,6 +11784,12 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkae1033",
+        "pubmed": "39526397",
+        "title": "CORUM in 2024: protein complexes as drug targets",
+        "year": 2024
+      },
+      {
         "doi": "10.1093/nar/gkac1015",
         "pubmed": "36382402"
       },
@@ -11725,7 +11801,7 @@
         "year": 2019
       }
     ],
-    "uri_format": "https://mips.helmholtz-muenchen.de/corum/?id=$1"
+    "uri_format": "https://mips.helmholtz-muenchen.de/corum/?complex_id=$1"
   },
   "cosmic": {
     "comment": "Is this just HGNC Gene symbols?",
@@ -15407,7 +15483,7 @@
       "name": "Clare Pilgrim",
       "orcid": "0000-0002-1373-1705"
     },
-    "description": "An ontology for the description of Drosophila melanogaster phenotypes.",
+    "description": "An ontology of commonly encountered and/or high level Drosophila phenotypes.",
     "download_json": "http://purl.obolibrary.org/obo/dpo.json",
     "download_obo": "http://purl.obolibrary.org/obo/dpo.obo",
     "download_owl": "http://purl.obolibrary.org/obo/dpo.owl",
@@ -15440,7 +15516,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
     "repository": "https://github.com/FlyBase/drosophila-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2024-10-17"
+    "version": "2024-12-05"
   },
   "dpv": {
     "contact": {
@@ -16226,8 +16302,39 @@
     "example": "Dataset",
     "github_request_issue": 1316,
     "homepage": "https://dwc.tdwg.org/list/",
+    "keywords": [
+      "biodiversity",
+      "biological sample annotation",
+      "geographical location",
+      "life science",
+      "taxonomic classification"
+    ],
+    "mappings": {
+      "fairsharing": "FAIRsharing.xvf5y3"
+    },
     "name": "Darwin Core Terms",
     "preferred_prefix": "dwc",
+    "publications": [
+      {
+        "doi": "10.1371/journal.pone.0102623",
+        "pubmed": "25099149",
+        "title": "The GBIF integrated publishing toolkit: facilitating the efficient publishing of biodiversity data on the internet",
+        "year": 2014
+      },
+      {
+        "doi": "10.3897/bdj.2.e1039",
+        "pubmed": "24723785",
+        "title": "Linking multiple biodiversity informatics platforms with Darwin Core Archives",
+        "year": 2014
+      },
+      {
+        "doi": "10.1371/journal.pone.0029715",
+        "pubmed": "22238640",
+        "title": "Darwin Core: an evolving community-developed biodiversity data standard",
+        "year": 2012
+      }
+    ],
+    "repository": "https://github.com/tdwg/dwc",
     "uri_format": "http://rs.tdwg.org/dwc/terms/$1"
   },
   "eaglei": {
@@ -20305,6 +20412,40 @@
     "repository": "https://github.com/OBF/FALDO",
     "uri_format": "http://biohackathon.org/resource/faldo#$1"
   },
+  "fanta": {
+    "contact": {
+      "email": "takeya.kasukawa@riken.jp",
+      "name": "Takeya Kasukawa"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Functional annotations of genomes for studying gene regulation, with a primary focus on cis-regulatory elements (CREs) such as promoters and enhancers.",
+    "example": "FCHS_301358",
+    "github_request_issue": 1328,
+    "homepage": "https://fanta.bio",
+    "name": "Functional Genome Annotations with Transcriptional Activities",
+    "pattern": "^FC(HS|MM)_\\d+$",
+    "preferred_prefix": "fanta",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1047",
+        "pubmed": "39592010",
+        "title": "Update of the FANTOM web resource: enhancement for studying noncoding genomes",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://fanta.bio/cre/$1"
+  },
   "fao": {
     "contact": {
       "email": "vw253@cam.ac.uk",
@@ -20517,7 +20658,7 @@
       "FBbt_root"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBbt_$1",
-    "version": "2024-10-17"
+    "version": "2024-12-05"
   },
   "fbcv": {
     "appears_in": [
@@ -20529,7 +20670,7 @@
       "name": "Clare Pilgrim",
       "orcid": "0000-0002-1373-1705"
     },
-    "description": "A miscellaneous ontology of terms used for curation in FlyBase, including the DPO.",
+    "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.",
     "download_json": "http://purl.obolibrary.org/obo/fbcv.json",
     "download_obo": "https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo",
     "download_owl": "http://purl.obolibrary.org/obo/fbcv.owl",
@@ -20583,7 +20724,7 @@
       "FBcv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBcv_$1",
-    "version": "2024-10-17"
+    "version": "2024-12-05"
   },
   "fbdv": {
     "contact": {
@@ -20592,7 +20733,7 @@
       "name": "Clare Pilgrim",
       "orcid": "0000-0002-1373-1705"
     },
-    "description": "An ontology of Drosophila melanogaster developmental stages.",
+    "description": "A structured controlled vocabulary of the development of Drosophila melanogaster.",
     "download_json": "http://purl.obolibrary.org/obo/fbdv.json",
     "download_obo": "http://purl.obolibrary.org/obo/fbdv.obo",
     "download_owl": "http://purl.obolibrary.org/obo/fbdv.owl",
@@ -20638,7 +20779,7 @@
       "FBdv"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/FBdv_$1",
-    "version": "2024-10-17"
+    "version": "2024-12-04"
   },
   "fbol": {
     "comment": "Website down, checked on 2021-10-07",
@@ -22362,7 +22503,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2024-11-28"
+    "version": "2024-12-05"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -22926,6 +23067,12 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkae1114",
+        "pubmed": "39558184",
+        "title": "GenBank 2025 update",
+        "year": 2024
+      },
       {
         "doi": "10.1186/s12859-020-3537-3",
         "pmc": "PMC7245624",
@@ -25299,6 +25446,12 @@
         "pubmed": "9399852",
         "title": "GPCRDB: an information system for G protein-coupled receptors",
         "year": 1998
+      },
+      {
+        "doi": "10.1093/nar/gkae1065",
+        "pubmed": "39558158",
+        "title": "GPCRdb in 2025: adding odorant receptors, data mapper, structure similarity search and models of physiological ligand complexes",
+        "year": 2024
       },
       {
         "doi": "10.1093/nar/gkaa1080",
@@ -27875,7 +28028,7 @@
     ],
     "twitter": "hp_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/HP_$1",
-    "version": "2024-08-13"
+    "version": "2024-12-12"
   },
   "hpa": {
     "contact": {
@@ -31206,6 +31359,12 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkae1058",
+        "pubmed": "39535044",
+        "title": "The international nucleotide sequence database collaboration (INSDC): enhancing global participation",
+        "year": 2024
+      },
+      {
         "doi": "10.1093/nar/18.6.1517",
         "pmc": "PMC330520",
         "pubmed": "2326192",
@@ -32552,14 +32711,13 @@
     "example": "J55.713G",
     "homepage": "http://jglobal.jst.go.jp/en/",
     "keywords": [
-      "chemical",
-      "structure"
+      "drug"
     ],
     "mappings": {
       "biocontext": "JCSD",
       "miriam": "jcsd",
       "n2t": "jcsd",
-      "prefixcommons": "jcsd"
+      "prefixcommons": "nikkaji"
     },
     "name": "Japan Chemical Substance Dictionary",
     "pattern": "^J\\d{1,3}(\\.\\d{3})?(\\.\\d{1,3})?[A-Za-z]$",
@@ -32570,7 +32728,7 @@
         "description": "Bio2RDF is an open-source project that uses Semantic Web technologies to build and provide the largest network of Linked Data for the Life Sciences. Bio2RDF defines a set of simple conventions to create RDF(S) compatible Linked Data from a diverse set of heterogeneously formatted sources obtained from multiple data providers.",
         "homepage": "https://bio2rdf.org",
         "name": "Bio2RDF",
-        "uri_format": "http://bio2rdf.org/jcsd:$1"
+        "uri_format": "http://bio2rdf.org/nikkaji:$1"
       },
       {
         "code": "stirdf",
@@ -35025,6 +35183,48 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MAO_$1",
     "uri_format": "http://purl.obolibrary.org/obo/MAO_$1"
   },
+  "markerdb": {
+    "contact": {
+      "email": "dwishart@ualberta.ca",
+      "github": "DavidWishartLab",
+      "name": "David S. Wishart",
+      "orcid": "0000-0002-3207-2434"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "MarkerDB is a freely available electronic database that attempts to consolidate information on all known clinical and pre-clinical biomarkers into a single resource. It provides identifiers for known clinical and pre-clinical biomarkers. Each entry provides detailed annotations, including biomarker descriptions, associated conditions, specificity, sensitivity, molecular structures, chromosomal locations, and clinical approval status.",
+    "example": "MDB00000001",
+    "github_request_issue": 1330,
+    "homepage": "https://markerdb.ca",
+    "name": "MarkerDB",
+    "pattern": "^MDB\\d{8}$",
+    "preferred_prefix": "markerdb",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1056",
+        "pubmed": "39535054",
+        "title": "MarkerDB 2.0: a comprehensive molecular biomarker database for 2025",
+        "year": 2024
+      },
+      {
+        "doi": "10.1093/nar/gkaa1067",
+        "pmc": "PMC7778954",
+        "pubmed": "33245771",
+        "title": "MarkerDB: an online database of molecular biomarkers",
+        "year": 2021
+      }
+    ],
+    "reviewer": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    }
+  },
   "massbank": {
     "contact": {
       "email": "tobias.schulze@ufz.de",
@@ -36001,7 +36201,7 @@
       "wikidata": "P486"
     },
     "name": "Medical Subject Headings",
-    "pattern": "^(C|D)\\d{6,9}$",
+    "pattern": "^(C|D|M)\\d{6,9}$",
     "preferred_prefix": "mesh",
     "providers": [
       {
@@ -38126,7 +38326,7 @@
     "mappings": {
       "biocontext": "MMMP:BIOMAPS",
       "biolink": "mmmp.biomaps",
-      "miriam": "mmmp:biomaps",
+      "miriam": "mmmp.biomaps",
       "n2t": "biomaps",
       "prefixcommons": "mmmp"
     },
@@ -38201,7 +38401,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.144"
+    "version": "2.145"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -38818,7 +39018,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2024-11-05"
+    "version": "2024-12-03"
   },
   "mop": {
     "contact": {
@@ -39927,6 +40127,261 @@
     "pattern": "^oai\\:cwi\\.nl\\:\\d+$",
     "preferred_prefix": "narcis",
     "uri_format": "http://www.narcis.nl/publication/RecordID/$1"
+  },
+  "nasaosdr.biospecimen": {
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for biospecimens used in experiments that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "7943",
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Biospecimen",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "nasaosdr.biospecimen",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/biospecimens/$1"
+  },
+  "nasaosdr.experiment": {
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for space-related data from experiments that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "OS-27",
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Experiment",
+    "pattern": "^OS-\\d+$",
+    "preferred_prefix": "nasaosdr.experiment",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/experiments/$1"
+  },
+  "nasaosdr.hardware": {
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for hardware used in experiments that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "2011",
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Hardware",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "nasaosdr.hardware",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/hardware/$1"
+  },
+  "nasaosdr.mission": {
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for missions associated with experiments that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "ARCBedrest",
+    "example_extras": [
+      "STS-46",
+      "Bion 11"
+    ],
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Mission",
+    "pattern": "^.+$",
+    "preferred_prefix": "nasaosdr.mission",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/missions/$1"
+  },
+  "nasaosdr.payload": {
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for payloads associated with experiments that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "VEG-03D",
+    "example_extras": [
+      "NanoRacks-UF-Squids-1",
+      "PSE.02",
+      "HyperG2-SIMBA2"
+    ],
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Payload",
+    "pattern": "^.+$",
+    "preferred_prefix": "nasaosdr.payload",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/payloads/$1"
+  },
+  "nasaosdr.study": {
+    "comment": "NASA OSDR is NASA's new integrated life sciences data archive which encompasses NASA GeneLAB (ngl), their old database for omics data. The studies from ngl are relabelled with new identifier formats, thus this is curated as a new prefix",
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for space-related data from studies that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "OSD-678",
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Study",
+    "pattern": "^OSD-\\d+$",
+    "preferred_prefix": "nasaosdr.study",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/studies/$1"
+  },
+  "nasaosdr.subject": {
+    "contact": {
+      "email": "sylvain.v.costes@nasa.gov",
+      "name": "Sylvain V Costes",
+      "orcid": "0000-0002-8542-2389"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "Identifiers for subjects of experiments that investigate biological and health responses of terrestrial life to spaceflight",
+    "example": "58",
+    "github_request_issue": 1298,
+    "homepage": "https://www.nasa.gov/osdr",
+    "name": "NASA Open Science Data Repository Subject",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "nasaosdr.subject",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1116",
+        "pubmed": "39558178",
+        "title": "NASA open science data repository: open science for life in space",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://osdr.nasa.gov/bio/repo/data/subjects/$1"
   },
   "nasc": {
     "contact": {
@@ -43556,6 +44011,7 @@
     "mappings": {
       "aberowl": "OBOE",
       "agroportal": "OBOE",
+      "bioportal": "OBOE",
       "fairsharing": "FAIRsharing.5970hq"
     },
     "name": "The Extensible Observation Ontology",
@@ -45861,7 +46317,7 @@
       "ordo"
     ],
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1",
-    "version": "4.5"
+    "version": "4.6"
   },
   "orth": {
     "contact": {
@@ -48105,6 +48561,12 @@
         "year": 1997
       },
       {
+        "doi": "10.1093/nar/gkae997",
+        "pubmed": "39540428",
+        "title": "The Pfam protein families database: embracing AI/ML",
+        "year": 2024
+      },
+      {
         "doi": "10.1093/nar/gkaa913",
         "pmc": "PMC7779014",
         "pubmed": "33125078",
@@ -49502,6 +49964,10 @@
     "uri_format": "http://purl.obolibrary.org/obo/PLO_$1"
   },
   "plos": {
+    "contact": {
+      "email": "subjectareas@plos.org",
+      "name": "PLOS Taxonomy Team"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -49512,8 +49978,15 @@
     "example": "1443",
     "github_request_issue": 1318,
     "homepage": "http://journals.plos.org",
+    "keywords": [
+      "ontology",
+      "publication",
+      "subject agnostic"
+    ],
     "mappings": {
-      "bioportal": "PLOSTHES"
+      "aberowl": "PLOSTHES",
+      "bioportal": "PLOSTHES",
+      "fairsharing": "FAIRsharing.2ndf9r"
     },
     "name": "PLOS Thesaurus",
     "pattern": "^\\d+$",
@@ -53213,6 +53686,12 @@
     "preferred_prefix": "rfam",
     "publications": [
       {
+        "doi": "10.1093/nar/gkae1023",
+        "pubmed": "39526405",
+        "title": "Rfam 15: RNA families database in 2025",
+        "year": 2024
+      },
+      {
         "doi": "10.1093/nar/gkx1038",
         "pmc": "PMC5753348",
         "pubmed": "29112718",
@@ -54599,7 +55078,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.236"
+    "version": "6.238"
   },
   "rtecs": {
     "contact": {
@@ -57696,6 +58175,76 @@
     ],
     "uri_format": "http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$1"
   },
+  "smc.bgc": {
+    "contact": {
+      "email": "dwudwary@lbl.gov",
+      "name": "Daniel W Udwary",
+      "orcid": "0000-0002-3491-0198"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "The secondary metabolism collaboratory is a database for secondary metabolite biosynthetic gene clusters. This prefix represents identifiers for individual biosynthetic gene clusters (BGCs) linked to their corresponding bacterial or archaeal source.",
+    "example": "12039302",
+    "github_request_issue": 1301,
+    "homepage": "https://smc.jgi.doe.gov",
+    "name": "Secondary Metabolism Collaboratory",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "smc.bgc",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1060",
+        "pubmed": "39540430",
+        "title": "The secondary metabolism collaboratory: a database and web discussion portal for secondary metabolite biosynthetic gene clusters",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://smc.jgi.doe.gov/bgc/$1"
+  },
+  "smc.source": {
+    "contact": {
+      "email": "dwudwary@lbl.gov",
+      "name": "Daniel W Udwary",
+      "orcid": "0000-0002-3491-0198"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "The secondary metabolism collaboratory is a database for secondary metabolite biosynthetic gene clusters. This prefix represents identifiers for bacteria and archaea sources linked to their associated set of biosynthetic gene clusters (BGCs).",
+    "example": "1",
+    "github_request_issue": 1301,
+    "homepage": "https://smc.jgi.doe.gov",
+    "name": "Secondary Metabolism Collaboratory",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "smc.source",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1060",
+        "pubmed": "39540430",
+        "title": "The secondary metabolism collaboratory: a database and web discussion portal for secondary metabolite biosynthetic gene clusters",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://smc.jgi.doe.gov/sources/$1"
+  },
   "smid": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -58789,6 +59338,7 @@
     "mappings": {
       "aberowl": "SSN",
       "agroportal": "SSN",
+      "bioportal": "SSN",
       "fairsharing": "FAIRsharing.c0bvcy",
       "lov": "ssn",
       "zazuko": "ssn"
@@ -59346,6 +59896,12 @@
     ],
     "provides": "uniprot",
     "publications": [
+      {
+        "doi": "10.1093/nar/gkae1113",
+        "pubmed": "39558183",
+        "title": "The STRING database in 2025: protein networks with directionality of regulation",
+        "year": 2024
+      },
       {
         "doi": "10.1093/nar/gky1131",
         "pmc": "PMC6323986",
@@ -60641,7 +61197,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/TAXRANK_$1",
     "repository": "https://github.com/phenoscape/taxrank",
     "uri_format": "http://purl.obolibrary.org/obo/TAXRANK_$1",
-    "version": "2016-04-15"
+    "version": "2024-11-28"
   },
   "tcb": {
     "description": "Cell line collections",
@@ -63860,6 +64416,13 @@
     "example": "Agent",
     "github_request_issue": 1317,
     "homepage": "https://www.w3.org/TR/vcard-rdf/",
+    "keywords": [
+      "people"
+    ],
+    "mappings": {
+      "lov": "vcard",
+      "zazuko": "vcard"
+    },
     "name": "Virtual Contact File",
     "preferred_prefix": "vcard",
     "uri_format": "http://www.w3.org/2006/vcard/ns#$1"
@@ -64703,9 +65266,22 @@
     "github_request_issue": 1317,
     "homepage": "https://vivoweb.org",
     "keywords": [
-      "ontology"
+      "academy",
+      "natural science",
+      "ontology",
+      "protocol",
+      "researcher data",
+      "resource metadata",
+      "study design"
     ],
     "license": "unlicense",
+    "mappings": {
+      "aberowl": "VIVO",
+      "biocontext": "VIVO",
+      "bioportal": "VIVO",
+      "fairsharing": "FAIRsharing.6xfgaq",
+      "lov": "vivo"
+    },
     "name": "VIVO Ontology",
     "preferred_prefix": "vivo",
     "repository": "https://github.com/vivo-ontologies/vivo-ontology",
@@ -65098,7 +65674,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2024-11-22"
+    "version": "2024-11-26"
   },
   "vto": {
     "contact": {
@@ -66295,7 +66871,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.188"
+    "version": "4.189"
   },
   "xenbase": {
     "contact": {

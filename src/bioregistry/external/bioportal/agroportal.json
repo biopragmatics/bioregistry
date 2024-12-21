@@ -97,8 +97,8 @@
   },
   "AGRORDF": {
     "contact": {
-      "email": "ktbl@ktbl.de",
-      "name": "KBTL"
+      "email": "d.martini@ktbl.de",
+      "name": "Daniel Martini"
     },
     "description": "agroXML is an XML dialect for representing and describing farm work. It provides elements and XML data types for representing data on work processes on the farm including accompanying operating supplies like fertilizers, pesticides, crops and the like. It can be used within farm management information systems as a file format for documentation purposes but also within web services and interfaces between the farm and external stakeholders as a means to exchange data in a structured, standardized and easy to use way. It covers topics relevant to on farm activity including “crop”, “cropSpecies”, “chemical substance”, “harvestDate”, “enginePower”. There exists an XML version and an RDF version.",
     "example_uri": "http://www.agroxml.de/rdf/vocabulary/workprocess#Fertilization",
@@ -171,6 +171,19 @@
     "name": "Agricultural and Nutrition Technology Ontology",
     "prefix": "ANT",
     "version": "1.0"
+  },
+  "APTO": {
+    "contact": {
+      "email": "filipivgp2011@gmail.com",
+      "name": "Filipi Miranda Soares"
+    },
+    "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima )).",
+    "homepage": "https://github.com/AlmesCore/APTO/blob/main/README.md",
+    "name": "Agriculture Product Types Ontology",
+    "prefix": "APTO",
+    "publication": "https://doi.org/10.5281/zenodo.13499357",
+    "repository": "https://github.com/AlmesCore/APTO/tree/main",
+    "version": "1.1"
   },
   "AQFO": {
     "contact": {
@@ -459,8 +472,7 @@
     "name": "Common Greenhouse Ontology",
     "prefix": "CGO",
     "publication": "https://gitlab.com/ddings/common-greenhouse-ontology",
-    "repository": "https://gitlab.com/ddings/common-greenhouse-ontology/-/blob/main/Ontologies/Older%20versions/CGO-v2.2.ttl?ref_type=heads",
-    "version": "2.3"
+    "repository": "https://gitlab.com/ddings/common-greenhouse-ontology/-/blob/main/Ontologies/Older%20versions/CGO-v2.2.ttl?ref_type=heads"
   },
   "CIQUAL": {
     "contact": {
@@ -1068,14 +1080,14 @@
       "email": "catherine.roussey@inrae.fr",
       "name": "Catherine Roussey"
     },
-    "description": "An RDF vocabulary for describing the basic structure and content of concept schemes such as thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', other types of controlled vocabulary, and also concept schemes embedded in glossaries and terminologies., Les sources utilisées sont le registre parcellaire, le larousse agricole, wikipédia, le catalogue officiel des espèces et variétés de plantes cultivées en France du GEVES, les fiches \"les plantes fourragères pour les pairies\" du GNIS, la base Ephy, la liste des cultures à utiliser pour renseigner le descriptif des parcelles et les statistiques agricoles annuelle de l'Agreste, les tables du catalogue de l'Acta publié en 2021. Concernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes. Cette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins. auteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr, les tables du catalogue de l'Acta publié en 2021. \nConcernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes.\n\nCette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins.\nauteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr",
-    "example_uri": "http://ontology.inrae.fr/frenchcropusage/Ray_grass",
+    "description": "An RDF vocabulary for describing the basic structure and content of concept schemes such as thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', other types of controlled vocabulary, and also concept schemes embedded in glossaries and terminologies., Les sources utilisées sont le registre parcellaire, le larousse agricole, wikipédia, le catalogue officiel des espèces et variétés de plantes cultivées en France du GEVES, les fiches \"les plantes fourragères pour les pairies\" du GNIS, la base Ephy, la liste des cultures à utiliser pour renseigner le descriptif des parcelles et les statistiques agricoles annuelle de l'Agreste, les tables du catalogue de l'Acta publié en 2021. Concernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes. Cette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins. auteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr, les tables du catalogue de l'Acta publié en 2021. \nConcernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes.\n\nCette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins.\nauteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr, ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon.",
+    "example_uri": "https://opendata.inrae.fr/fcu-res/Vignes_cultivees",
     "homepage": "http://ontology.inrae.fr/pmwiki.php/Site/FrenchCropUsage",
     "license": "CC-BY-4.0",
     "name": "French Crop Usage thesaurus (Classification des plantes cultivées en France en fonction des usages)",
     "prefix": "CROPUSAGE",
-    "repository": "https://gitlab.irstea.fr/copain/frenchcropusage",
-    "version": "3.3"
+    "repository": "https://forgemia.inra.fr/bsv/frenchcropusage",
+    "version": "1.1"
   },
   "CSOPRA": {
     "contact": {
@@ -1119,7 +1131,7 @@
       "email": "fuentes.victor_eduardo@courrier.uqam.ca",
       "name": "Victor Fuentes"
     },
-    "description": "DCPO provides a semantic layer to DHI",
+    "description": "DCPO is an ontology for representing dairy farming processes, the cattle performance indicators used to improve them and the associated recording procedures.",
     "license": "CC-BY-4.0",
     "name": "Dairy Cattle Performance Ontology",
     "prefix": "DCPO"
@@ -1195,7 +1207,7 @@
     "license": "CC-BY-4.0",
     "name": "Environmental Biorefinery Ontology",
     "prefix": "EBO",
-    "version": "Version 2 (2023) created by LBE - INRAE"
+    "version": "Version 2.1 (2024) created by LBE - INRAE"
   },
   "ECTO": {
     "contact": {
@@ -1238,7 +1250,7 @@
     "name": "Experimental Factor Ontology",
     "prefix": "EFO",
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.72.0"
+    "version": "3.73.0"
   },
   "ENVO": {
     "contact": {
@@ -1316,7 +1328,7 @@
       "email": "catherine.roussey@inrae.fr",
       "name": "Catherine ROUSSEY"
     },
-    "description": "This ontology specialized the skos model to create a new class Crop subclass of skos:Concept. fcuo:Crop is a defined class. Thus a reasoner like Hermit should be used to classify all the instances of skos:Concept that belongs to the scheme fcuo:thesaurus_FrenchCropUsage as an instance of Crop. FCUO contains also new objet properties and annotation properties dedicated to FCU alignement with taxonomy like TAXREF-LD., ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon., Les sources utilisées sont le registre parcellaire, le larousse agricole, wikipédia, le catalogue officiel des espèces et variétés de plantes cultivées en France du GEVES, les fiches \"les plantes fourragères pour les pairies\" du GNIS, la base Ephy, la liste des cultures à utiliser pour renseigner le descriptif des parcelles et les statistiques agricoles annuelle de l'Agreste, les tables du catalogue de l'Acta publié en 2021. \nConcernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes.\n\nCette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins.\nauteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr",
+    "description": "This ontology specialized the skos model to create a new class Crop subclass of skos:Concept. fcuo:Crop is a defined class. Thus a reasoner like Hermit should be used to classify all the instances of skos:Concept that belongs to the scheme fcuo:thesaurus_FrenchCropUsage as an instance of Crop. FCUO contains also new objet properties and annotation properties dedicated to FCU alignement with taxonomy like TAXREF-LD., ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon., Les sources utilisées sont le registre parcellaire, le larousse agricole, wikipédia, le catalogue officiel des espèces et variétés de plantes cultivées en France du GEVES, les fiches \"les plantes fourragères pour les pairies\" du GNIS, la base Ephy, la liste des cultures à utiliser pour renseigner le descriptif des parcelles et les statistiques agricoles annuelle de l'Agreste, les tables du catalogue de l'Acta publié en 2021. Concernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes. Cette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins. auteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr, les tables du catalogue de l'Acta publié en 2021. \nConcernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes.\n\nCette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins.\nauteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr",
     "homepage": "http://ontology.inrae.fr/pmwiki.php/Site/FrenchCropUsage",
     "license": "CC-BY-4.0",
     "name": "French Crop Usage Ontology",
@@ -2160,14 +2172,14 @@
       "email": "rlwalls2008@gmail.com",
       "name": "Ramona Walls"
     },
-    "description": "Plant phenology — the timing of plant life-cycle events, such as flowering or leafing-out — has cascading effects on multiple levels of biological organization, from individuals to ecosystems, and is crucial for understanding the links between climate and biological communities. Plant phenology data are collected and used by many different types of researchers, from plant breeders to ecosystem ecologists. Today, thanks to data digitization and aggregation initiatives, phenology monitoring networks, and the efforts of citizen scientists, more phenologically relevant data is available than ever before. Unfortunately, combining these data in large-scale analyses remains prohibitively difficult, mostly because the individuals and organizations producing the data are using non-standardized terminologies and metrics during data collection and processing. Lack of standardization remains particularly problematic for historical datasets, which are crucial for time-based analyses. The Plant Phenology Ontology (PPO) is a collaborative effort to help solve these problems by developing the standardized terminology, definitions, and relations that are needed for large-scale data integration. The PPO builds on the widely used Plant Ontology (PO) and Phenotype and Trait Ontology (PATO) to promote broad reuse of phenological data. The initial use case for the PPO is integration of citizen science data from the USA National Phenology Network (USA-NPN) and the Pan-European Phenology Network (PEP), but work is also planned for integrating data from herbaria.",
+    "description": "Plant phenology — the timing of plant life-cycle events, such as flowering or leafing-out — has cascading effects on multiple levels of biological organization, from individuals to ecosystems, and is crucial for understanding the links between climate and biological communities. Plant phenology data are collected and used by many different types of researchers, from plant breeders to ecosystem ecologists. Today, thanks to data digitization and aggregation initiatives, phenology monitoring networks, and the efforts of citizen scientists, more phenologically relevant data is available than ever before. Unfortunately, combining these data in large-scale analyses remains prohibitively difficult, mostly because the individuals and organizations producing the data are using non-standardized terminologies and metrics during data collection and processing. Lack of standardization remains particularly problematic for historical datasets, which are crucial for time-based analyses. The Plant Phenology Ontology (PPO) is a collaborative effort to help solve these problems by developing the standardized terminology, definitions, and relations that are needed for large-scale data integration. The PPO builds on the widely used Plant Ontology (PO) and Phenotype and Trait Ontology (PATO) to promote broad reuse of phenological data. The initial use case for the PPO is integration of citizen science data from the USA National Phenology Network (USA-NPN) and the Pan-European Phenology Network (PEP), but work is also planned for integrating data from herbaria., An ontology that defines plant phenological classes and is used to run the plantphenology.org data portal. Reuses terms from PO and PATO where possible.",
     "example_uri": "http://purl.obolibrary.org/obo/PPO_0007001",
     "homepage": "http://www.obofoundry.org/ontology/ppo.html",
-    "license": "CC-BY-3.0",
+    "license": "http://purl.obolibrary.org/obo/ppo.owl#Unspecified",
     "name": "Plant Phenology Ontology",
     "prefix": "PPO",
     "repository": "https://github.com/PlantPhenoOntology",
-    "version": "2018-10-26"
+    "version": "2024-07-09"
   },
   "PR": {
     "contact": {
@@ -2571,7 +2583,7 @@
     "license": "http://publications.europa.eu/resource/authority/access-right/PUBLIC",
     "name": "PO2/TransformON",
     "prefix": "TRANSFORMON",
-    "version": "2.4"
+    "version": "12.0"
   },
   "TRANSMAT": {
     "contact": {

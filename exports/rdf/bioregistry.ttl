@@ -102,6 +102,7 @@
 @prefix biocompute: <https://biocomputeobject.org/BCO_> .
 @prefix biocontext: <https://bioregistry.io/metaregistry/biocontext/> .
 @prefix biodeep: <https://query.biodeep.cn/metabolite/> .
+@prefix biodolphin: <https://biodolphin.chemistry.gatech.edu/detail/> .
 @prefix biofactoid: <https://biofactoid.org/document/> .
 @prefix biogrid: <http://thebiogrid.org/> .
 @prefix biogrid.interaction: <https://thebiogrid.org/interaction/> .
@@ -289,7 +290,7 @@
 @prefix cordis.project: <https://cordis.europa.eu/project/id/> .
 @prefix coriell: <http://ccr.coriell.org/Sections/Search/Sample_Detail.aspx?Ref=> .
 @prefix corrdb: <https://www.animalgenome.org/CorrDB/q/?id=CorrID:> .
-@prefix corum: <https://mips.helmholtz-muenchen.de/corum/?id=> .
+@prefix corum: <https://mips.helmholtz-muenchen.de/corum/?complex_id=> .
 @prefix cosmic: <http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=> .
 @prefix cosmic.cell: <https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=> .
 @prefix covid19: <https://covid19.sfb.uit.no/api/records/> .
@@ -336,8 +337,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -480,6 +481,7 @@
 @prefix fairsharing.organization: <https://fairsharing.org/organisations/> .
 @prefix fairsharing.user: <https://fairsharing.org/users/> .
 @prefix faldo: <http://biohackathon.org/resource/faldo#> .
+@prefix fanta: <https://fanta.bio/cre/> .
 @prefix fao: <http://purl.obolibrary.org/obo/FAO_> .
 @prefix fao.asfis: <https://www.fao.org/fishery/en/species/> .
 @prefix fbbi: <http://purl.obolibrary.org/obo/FBbi_> .
@@ -921,6 +923,13 @@
 @prefix nando: <https://nanbyodata.jp/disease/NANDO:> .
 @prefix napdi: <https://repo.napdi.org/study/> .
 @prefix napp: <http://rna.igmors.u-psud.fr/NAPP/Niveau2.php?specie=> .
+@prefix nasaosdr.biospecimen: <https://osdr.nasa.gov/bio/repo/data/biospecimens/> .
+@prefix nasaosdr.experiment: <https://osdr.nasa.gov/bio/repo/data/experiments/> .
+@prefix nasaosdr.hardware: <https://osdr.nasa.gov/bio/repo/data/hardware/> .
+@prefix nasaosdr.mission: <https://osdr.nasa.gov/bio/repo/data/missions/> .
+@prefix nasaosdr.payload: <https://osdr.nasa.gov/bio/repo/data/payloads/> .
+@prefix nasaosdr.study: <https://osdr.nasa.gov/bio/repo/data/studies/> .
+@prefix nasaosdr.subject: <https://osdr.nasa.gov/bio/repo/data/subjects/> .
 @prefix nasc: <http://arabidopsis.info/StockInfo?NASC_id=> .
 @prefix nbo: <http://purl.obolibrary.org/obo/NBO_> .
 @prefix nbrc: <http://www.nbrc.nite.go.jp/NBRC2/NBRCCatalogueDetailServlet?ID=NBRC&CAT=> .
@@ -1328,6 +1337,8 @@
 @prefix slkbase: <https://sumlineknowledgebase.com/?page_id=> .
 @prefix slm: <https://www.swisslipids.org/#/entity/SLM:> .
 @prefix smart: <http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=> .
+@prefix smc.bgc: <https://smc.jgi.doe.gov/bgc/> .
+@prefix smc.source: <https://smc.jgi.doe.gov/sources/> .
 @prefix smid: <https://smid-db.org/smid/> .
 @prefix smpdb: <https://smpdb.ca/view/> .
 @prefix snap: <http://www.ifomis.org/bfo/1.1/snap#> .
@@ -2120,9 +2131,11 @@ orcid:0009-0001-6787-3995 rdfs:label "Tomohiro Oga" ;
 orcid:0009-0009-5240-7463 rdfs:label "Mufaddal Naguthanawala" ;
     dcterms:contributor bioregistry:asteraceaegd.genome,
         bioregistry:asteraceaegd.plant,
+        bioregistry:biodolphin,
         bioregistry:creativebiolabs.antibody,
         bioregistry:creativebiolabs.protein,
         bioregistry:epawaste,
+        bioregistry:fanta,
         bioregistry:fema,
         bioregistry:iedb.assay,
         bioregistry:iedb.epitope,
@@ -2130,9 +2143,19 @@ orcid:0009-0009-5240-7463 rdfs:label "Mufaddal Naguthanawala" ;
         bioregistry:iedb.receptor,
         bioregistry:iedb.reference,
         bioregistry:jecfa,
+        bioregistry:markerdb,
+        bioregistry:nasaosdr.biospecimen,
+        bioregistry:nasaosdr.experiment,
+        bioregistry:nasaosdr.hardware,
+        bioregistry:nasaosdr.mission,
+        bioregistry:nasaosdr.payload,
+        bioregistry:nasaosdr.study,
+        bioregistry:nasaosdr.subject,
         bioregistry:npatlas,
         bioregistry:pephub,
         bioregistry:scancerrna,
+        bioregistry:smc.bgc,
+        bioregistry:smc.source,
         bioregistry:streptomedb,
         bioregistry:synbip.bts,
         bioregistry:synbip.epitope,
@@ -5408,6 +5431,8 @@ bioregistry:co_333 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_333:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
+            foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_333:"^^xsd:string ;
     bioregistry.schema:0000027 co_333:3000045 ;
     bioregistry.schema:0000029 "co_333" .
@@ -5865,6 +5890,8 @@ bioregistry:co_360 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://cropontology.org/rdf/CO_360:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Crop Ontology Helpdesk" ;
+            foaf:mbox "helpdesk@cropontology-curationtool.org" ] ;
     bioregistry.schema:0000024 "https://cropontology.org/rdf/CO_360:"^^xsd:string ;
     bioregistry.schema:0000027 co_360:0000071 ;
     bioregistry.schema:0000029 "co_360" .
@@ -6139,13 +6166,13 @@ bioregistry:corum a bioregistry.schema:0000001 ;
     dcat:keyword "bioinformatics",
         "biology",
         "protein" ;
-    foaf:homepage <https://mips.helmholtz-muenchen.de/genre/proj/corum/> ;
+    foaf:homepage <https://mips.helmholtz-muenchen.de/corum> ;
     bioregistry.schema:0000005 "100"^^xsd:string ;
-    bioregistry.schema:0000006 "https://mips.helmholtz-muenchen.de/corum/?id=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mips.helmholtz-muenchen.de/corum/?complex_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1705-3515 ;
-    bioregistry.schema:0000024 "https://mips.helmholtz-muenchen.de/corum/?id="^^xsd:string ;
+    bioregistry.schema:0000024 "https://mips.helmholtz-muenchen.de/corum/?complex_id="^^xsd:string ;
     bioregistry.schema:0000027 corum:100 ;
     bioregistry.schema:0000029 "corum" .
 
@@ -8089,7 +8116,7 @@ bioregistry:fbbt a bioregistry.schema:0000001 ;
 
 bioregistry:fbdv a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila development" ;
-    dcterms:description "An ontology of Drosophila melanogaster developmental stages."^^xsd:string ;
+    dcterms:description "A structured controlled vocabulary of the development of Drosophila melanogaster."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/FlyBase/drosophila-developmental-ontology> ;
     skos:exactMatch aberowl:FBDV,
@@ -11468,10 +11495,9 @@ bioregistry:jcsd a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch biocontext:JCSD,
         n2t:jcsd,
-        prefixcommons:jcsd,
+        prefixcommons:nikkaji,
         miriam:jcsd ;
-    dcat:keyword "chemical",
-        "structure" ;
+    dcat:keyword "drug" ;
     foaf:homepage <http://jglobal.jst.go.jp/en/> ;
     bioregistry.schema:0000005 "J55.713G"^^xsd:string ;
     bioregistry.schema:0000006 "http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1"^^xsd:string ;
@@ -13075,7 +13101,7 @@ bioregistry:mmmp.biomaps a bioregistry.schema:0000001 ;
         biolink:mmmp.biomaps,
         n2t:biomaps,
         prefixcommons:mmmp,
-        <https://registry.identifiers.org/registry/mmmp:biomaps> ;
+        miriam:mmmp.biomaps ;
     dcat:keyword "interaction",
         "molecule",
         "pathway" ;
@@ -21594,6 +21620,9 @@ orcid:0000-0002-3070-8224 rdfs:label "Franziska B. Grieder" ;
 orcid:0000-0002-3081-6700 rdfs:label "Paul David Neil Hebert" ;
     foaf:mbox "phebert@uoguelph.ca" .
 
+orcid:0000-0002-3212-9867 rdfs:label "Andrew C. McShan" ;
+    foaf:mbox "andrew.mcshan@chemistry.gatech.edu" .
+
 orcid:0000-0002-3321-6137 rdfs:label "Katy Börner" ;
     foaf:mbox "katy@indiana.edu" .
 
@@ -22844,6 +22873,8 @@ aberowl:PLANA dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:PLANP dcterms:isPartOf bioregistry.registry:aberowl .
 
+aberowl:PLOSTHES dcterms:isPartOf bioregistry.registry:aberowl .
+
 aberowl:PMR dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:PO dcterms:isPartOf bioregistry.registry:aberowl .
@@ -22985,6 +23016,8 @@ aberowl:VBO dcterms:isPartOf bioregistry.registry:aberowl .
 aberowl:VHOG dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:VIDO dcterms:isPartOf bioregistry.registry:aberowl .
+
+aberowl:VIVO dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:VO dcterms:isPartOf bioregistry.registry:aberowl .
 
@@ -24770,6 +24803,8 @@ bioportal:CHIRO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:CHMO dcterms:isPartOf bioregistry.registry:bioportal .
 
+bioportal:CHR dcterms:isPartOf bioregistry.registry:bioportal .
+
 bioportal:CIDO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:CIO dcterms:isPartOf bioregistry.registry:bioportal .
@@ -25110,6 +25145,8 @@ bioportal:OBI dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:OBIB dcterms:isPartOf bioregistry.registry:bioportal .
 
+bioportal:OBOE dcterms:isPartOf bioregistry.registry:bioportal .
+
 bioportal:OBOREL dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:OCCO dcterms:isPartOf bioregistry.registry:bioportal .
@@ -25280,6 +25317,8 @@ bioportal:SOPHARM dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:SPD dcterms:isPartOf bioregistry.registry:bioportal .
 
+bioportal:SSN dcterms:isPartOf bioregistry.registry:bioportal .
+
 bioportal:STATO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:STY dcterms:isPartOf bioregistry.registry:bioportal .
@@ -25327,6 +25366,8 @@ bioportal:VBO dcterms:isPartOf bioregistry.registry:bioportal .
 bioportal:VHOG dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:VIDO dcterms:isPartOf bioregistry.registry:bioportal .
+
+bioportal:VIVO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:VO dcterms:isPartOf bioregistry.registry:bioportal .
 
@@ -26933,6 +26974,8 @@ biocontext:VIPR dcterms:isPartOf bioregistry.registry:biocontext .
 biocontext:VIRALZONE dcterms:isPartOf bioregistry.registry:biocontext .
 
 biocontext:VIRSIRNA dcterms:isPartOf bioregistry.registry:biocontext .
+
+biocontext:VIVO dcterms:isPartOf bioregistry.registry:biocontext .
 
 biocontext:VMHMETABOLITE dcterms:isPartOf bioregistry.registry:biocontext .
 
@@ -29398,6 +29441,8 @@ zazuko:time dcterms:isPartOf bioregistry.registry:zazuko .
 
 zazuko:vann dcterms:isPartOf bioregistry.registry:zazuko .
 
+zazuko:vcard dcterms:isPartOf bioregistry.registry:zazuko .
+
 zazuko:void dcterms:isPartOf bioregistry.registry:zazuko .
 
 zazuko:vso dcterms:isPartOf bioregistry.registry:zazuko .
@@ -30050,6 +30095,21 @@ bioregistry:biocompute a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 biocompute:000001 ;
     bioregistry.schema:0000029 "biocompute" .
 
+bioregistry:biodolphin a bioregistry.schema:0000001 ;
+    rdfs:label "BioDolphin" ;
+    dcterms:description "Identifiers for lipid-protein interactions, including details about protein functions, protein families, lipid classifications, lipid-protein binding affinities, membrane association type, and atomic structures."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://biodolphin.chemistry.gatech.edu> ;
+    bioregistry.schema:0000005 "BD1a05-A-A-IPM1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biodolphin.chemistry.gatech.edu/detail/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^BD\\d[a-zA-Z0-9]+-[A-Za-z]-[A-Za-z]-[A-Za-z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3212-9867 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://biodolphin.chemistry.gatech.edu/detail/"^^xsd:string ;
+    bioregistry.schema:0000027 biodolphin:BD1a05-A-A-IPM1 ;
+    bioregistry.schema:0000029 "biodolphin" .
+
 bioregistry:biofactoid a bioregistry.schema:0000001 ;
     rdfs:label "Biofactoid" ;
     dcterms:description "Biofactoid is a web-based system that empowers authors to capture and share machine-readable summaries of molecular-level interactions described in their publications."^^xsd:string ;
@@ -30227,7 +30287,9 @@ bioregistry:biotop a bioregistry.schema:0000001 ;
     dcterms:description "Upper-Level ontology for Biology and Medicine. Compatible with BFO, DOLCE, and the UMLS Semantic Network"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/BioTopOntology/biotop/> ;
-    dcat:keyword "ontology" ;
+    skos:exactMatch lov:biotop ;
+    dcat:keyword "biology",
+        "ontology" ;
     foaf:homepage <http://purl.org/biotop> ;
     bioregistry.schema:0000005 "attachedTo"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/biotop/biotop.owl#$1"^^xsd:string ;
@@ -30869,6 +30931,7 @@ bioregistry:chr a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/monarch-initiative/monochrom> ;
     skos:exactMatch aberowl:CHR,
+        bioportal:CHR,
         biocontext:CHR ;
     dcat:keyword "ontology" ;
     foaf:homepage <https://github.com/monarch-initiative/monochrom> ;
@@ -31989,7 +32052,7 @@ bioregistry:doqcs.pathway a bioregistry.schema:0000001 ;
 
 bioregistry:dpo a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila Phenotype Ontology" ;
-    dcterms:description "An ontology for the description of Drosophila melanogaster phenotypes."^^xsd:string ;
+    dcterms:description "An ontology of commonly encountered and/or high level Drosophila phenotypes."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry,
         bioregistry:fbcv ;
     doap:GitRepository <https://github.com/FlyBase/drosophila-phenotype-ontology> ;
@@ -32274,6 +32337,13 @@ bioregistry:dwc a bioregistry.schema:0000001 ;
     rdfs:label "Darwin Core Terms" ;
     dcterms:description "Darwin Core is a vocabulary standard for transmitting information about biodiversity. This document lists all terms in namespaces currently used in the vocabulary."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/tdwg/dwc> ;
+    skos:exactMatch fairsharing:FAIRsharing.xvf5y3 ;
+    dcat:keyword "biodiversity",
+        "biological sample annotation",
+        "geographical location",
+        "life science",
+        "taxonomic classification" ;
     foaf:homepage <https://dwc.tdwg.org/list/> ;
     bioregistry.schema:0000005 "Dataset"^^xsd:string ;
     bioregistry.schema:0000006 "http://rs.tdwg.org/dwc/terms/$1"^^xsd:string ;
@@ -32893,6 +32963,22 @@ bioregistry:evm a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "evm" .
+
+bioregistry:fanta a bioregistry.schema:0000001 ;
+    rdfs:label "Functional Genome Annotations with Transcriptional Activities" ;
+    dcterms:description "Functional annotations of genomes for studying gene regulation, with a primary focus on cis-regulatory elements (CREs) such as promoters and enhancers."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://fanta.bio> ;
+    bioregistry.schema:0000005 "FCHS_301358"^^xsd:string ;
+    bioregistry.schema:0000006 "https://fanta.bio/cre/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^FC(HS|MM)_\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Takeya Kasukawa" ;
+            foaf:mbox "takeya.kasukawa@riken.jp" ] ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://fanta.bio/cre/"^^xsd:string ;
+    bioregistry.schema:0000027 fanta:FCHS_301358 ;
+    bioregistry.schema:0000029 "fanta" .
 
 bioregistry:fao.asfis a bioregistry.schema:0000001 ;
     rdfs:label "Aquatic Sciences and Fisheries Information System" ;
@@ -35385,6 +35471,18 @@ bioregistry:m4i a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 m4i:Method ;
     bioregistry.schema:0000029 "m4i" .
 
+bioregistry:markerdb a bioregistry.schema:0000001 ;
+    rdfs:label "MarkerDB" ;
+    dcterms:description "MarkerDB is a freely available electronic database that attempts to consolidate information on all known clinical and pre-clinical biomarkers into a single resource. It provides identifiers for known clinical and pre-clinical biomarkers. Each entry provides detailed annotations, including biomarker descriptions, associated conditions, specificity, sensitivity, molecular structures, chromosomal locations, and clinical approval status."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://markerdb.ca> ;
+    bioregistry.schema:0000005 "MDB00000001"^^xsd:string ;
+    bioregistry.schema:0000008 "^MDB\\d{8}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3207-2434 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000029 "markerdb" .
+
 bioregistry:massive a bioregistry.schema:0000001 ;
     rdfs:label "MassIVE" ;
     dcterms:description "MassIVE is a community resource developed by the NIH-funded Center for Computational Mass Spectrometry to promote the global, free exchange of mass spectrometry data."^^xsd:string ;
@@ -36028,6 +36126,111 @@ bioregistry:nando a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://nanbyodata.jp/disease/NANDO:"^^xsd:string ;
     bioregistry.schema:0000027 nando:1200031 ;
     bioregistry.schema:0000029 "nando" .
+
+bioregistry:nasaosdr.biospecimen a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Biospecimen" ;
+    dcterms:description "Identifiers for biospecimens used in experiments that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "7943"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/biospecimens/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/biospecimens/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.biospecimen:7943 ;
+    bioregistry.schema:0000029 "nasaosdr.biospecimen" .
+
+bioregistry:nasaosdr.experiment a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Experiment" ;
+    dcterms:description "Identifiers for space-related data from experiments that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "OS-27"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/experiments/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^OS-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/experiments/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.experiment:OS-27 ;
+    bioregistry.schema:0000029 "nasaosdr.experiment" .
+
+bioregistry:nasaosdr.hardware a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Hardware" ;
+    dcterms:description "Identifiers for hardware used in experiments that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "2011"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/hardware/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/hardware/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.hardware:2011 ;
+    bioregistry.schema:0000029 "nasaosdr.hardware" .
+
+bioregistry:nasaosdr.mission a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Mission" ;
+    dcterms:description "Identifiers for missions associated with experiments that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "ARCBedrest"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/missions/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^.+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/missions/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.mission:ARCBedrest ;
+    bioregistry.schema:0000029 "nasaosdr.mission" .
+
+bioregistry:nasaosdr.payload a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Payload" ;
+    dcterms:description "Identifiers for payloads associated with experiments that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "VEG-03D"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/payloads/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^.+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/payloads/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.payload:VEG-03D ;
+    bioregistry.schema:0000029 "nasaosdr.payload" .
+
+bioregistry:nasaosdr.study a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Study" ;
+    dcterms:description "Identifiers for space-related data from studies that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "OSD-678"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/studies/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^OSD-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/studies/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.study:OSD-678 ;
+    bioregistry.schema:0000029 "nasaosdr.study" .
+
+bioregistry:nasaosdr.subject a bioregistry.schema:0000001 ;
+    rdfs:label "NASA Open Science Data Repository Subject" ;
+    dcterms:description "Identifiers for subjects of experiments that investigate biological and health responses of terrestrial life to spaceflight"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.nasa.gov/osdr> ;
+    bioregistry.schema:0000005 "58"^^xsd:string ;
+    bioregistry.schema:0000006 "https://osdr.nasa.gov/bio/repo/data/subjects/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8542-2389 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://osdr.nasa.gov/bio/repo/data/subjects/"^^xsd:string ;
+    bioregistry.schema:0000027 nasaosdr.subject:58 ;
+    bioregistry.schema:0000029 "nasaosdr.subject" .
 
 bioregistry:ncats.bioplanet a bioregistry.schema:0000001 ;
     rdfs:label "National Center for Advancing Translation Sciences BioPlanet" ;
@@ -37570,12 +37773,19 @@ bioregistry:plos a bioregistry.schema:0000001 ;
     rdfs:label "PLOS Thesaurus" ;
     dcterms:description "An ontologization of Public Library of Science (PLOS) journal keywords and topics. It's not clear how the IDs correspond to the actual pages. Appears in ADCAD."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch bioportal:PLOSTHES ;
+    skos:exactMatch aberowl:PLOSTHES,
+        bioportal:PLOSTHES,
+        fairsharing:FAIRsharing.2ndf9r ;
+    dcat:keyword "ontology",
+        "publication",
+        "subject agnostic" ;
     foaf:homepage <http://journals.plos.org> ;
     bioregistry.schema:0000005 "1443"^^xsd:string ;
     bioregistry.schema:0000006 "http://localhost/plosthes.2017-1#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "PLOS Taxonomy Team" ;
+            foaf:mbox "subjectareas@plos.org" ] ;
     bioregistry.schema:0000023 "PLOSTHES" ;
     bioregistry.schema:0000024 "http://localhost/plosthes.2017-1#"^^xsd:string ;
     bioregistry.schema:0000027 plos:1443 ;
@@ -38744,6 +38954,36 @@ bioregistry:skip a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 skip:SKIP001214 ;
     bioregistry.schema:0000029 "skip" .
 
+bioregistry:smc.bgc a bioregistry.schema:0000001 ;
+    rdfs:label "Secondary Metabolism Collaboratory" ;
+    dcterms:description "The secondary metabolism collaboratory is a database for secondary metabolite biosynthetic gene clusters. This prefix represents identifiers for individual biosynthetic gene clusters (BGCs) linked to their corresponding bacterial or archaeal source."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://smc.jgi.doe.gov> ;
+    bioregistry.schema:0000005 "12039302"^^xsd:string ;
+    bioregistry.schema:0000006 "https://smc.jgi.doe.gov/bgc/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3491-0198 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://smc.jgi.doe.gov/bgc/"^^xsd:string ;
+    bioregistry.schema:0000027 smc.bgc:12039302 ;
+    bioregistry.schema:0000029 "smc.bgc" .
+
+bioregistry:smc.source a bioregistry.schema:0000001 ;
+    rdfs:label "Secondary Metabolism Collaboratory" ;
+    dcterms:description "The secondary metabolism collaboratory is a database for secondary metabolite biosynthetic gene clusters. This prefix represents identifiers for bacteria and archaea sources linked to their associated set of biosynthetic gene clusters (BGCs)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://smc.jgi.doe.gov> ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://smc.jgi.doe.gov/sources/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3491-0198 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://smc.jgi.doe.gov/sources/"^^xsd:string ;
+    bioregistry.schema:0000027 smc.source:1 ;
+    bioregistry.schema:0000029 "smc.source" .
+
 bioregistry:smiles a bioregistry.schema:0000001 ;
     rdfs:label "Simplified molecular-input line-entry system" ;
     dcterms:description "Documentation of SMILES (Simplified Molecular Input Line Entry System), a line notation (a typographical method using printable characters) for entering and representing molecules and reactions."^^xsd:string ;
@@ -39749,6 +39989,9 @@ bioregistry:vcard a bioregistry.schema:0000001 ;
     rdfs:label "Virtual Contact File" ;
     dcterms:description "vCard is a specification developed by the Internet Engineering Task Force (IETF) for the description of people and organisations"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    skos:exactMatch zazuko:vcard,
+        lov:vcard ;
+    dcat:keyword "people" ;
     foaf:homepage <https://www.w3.org/TR/vcard-rdf/> ;
     bioregistry.schema:0000005 "Agent"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2006/vcard/ns#$1"^^xsd:string ;
@@ -39827,7 +40070,18 @@ bioregistry:vivo a bioregistry.schema:0000001 ;
     dcterms:description "An ontology about scholarship"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/vivo-ontologies/vivo-ontology> ;
-    dcat:keyword "ontology" ;
+    skos:exactMatch aberowl:VIVO,
+        bioportal:VIVO,
+        biocontext:VIVO,
+        fairsharing:FAIRsharing.6xfgaq,
+        lov:vivo ;
+    dcat:keyword "academy",
+        "natural science",
+        "ontology",
+        "protocol",
+        "researcher data",
+        "resource metadata",
+        "study design" ;
     foaf:homepage <https://vivoweb.org> ;
     bioregistry.schema:0000005 "Laboratory"^^xsd:string ;
     bioregistry.schema:0000006 "http://vivoweb.org/ontology/core#$1"^^xsd:string ;
@@ -40481,6 +40735,8 @@ fairsharing:FAIRsharing.2mayq0 dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.2mk2zb dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.2ndf9r dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.2q8c28 dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.2qx8n8 dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -40672,6 +40928,8 @@ fairsharing:FAIRsharing.6s749p dcterms:isPartOf bioregistry.registry:fairsharing
 fairsharing:FAIRsharing.6tgyxf dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.6wf1zw dcterms:isPartOf bioregistry.registry:fairsharing .
+
+fairsharing:FAIRsharing.6xfgaq dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.6xq0ee dcterms:isPartOf bioregistry.registry:fairsharing .
 
@@ -41577,6 +41835,8 @@ fairsharing:FAIRsharing.xn3pb3 dcterms:isPartOf bioregistry.registry:fairsharing
 
 fairsharing:FAIRsharing.xs6t67 dcterms:isPartOf bioregistry.registry:fairsharing .
 
+fairsharing:FAIRsharing.xvf5y3 dcterms:isPartOf bioregistry.registry:fairsharing .
+
 fairsharing:FAIRsharing.xwqg9h dcterms:isPartOf bioregistry.registry:fairsharing .
 
 fairsharing:FAIRsharing.xz5m1a dcterms:isPartOf bioregistry.registry:fairsharing .
@@ -42101,6 +42361,8 @@ lov:adms dcterms:isPartOf bioregistry.registry:lov .
 
 lov:bibo dcterms:isPartOf bioregistry.registry:lov .
 
+lov:biotop dcterms:isPartOf bioregistry.registry:lov .
+
 lov:biro dcterms:isPartOf bioregistry.registry:lov .
 
 lov:c4o dcterms:isPartOf bioregistry.registry:lov .
@@ -42196,6 +42458,10 @@ lov:ucum dcterms:isPartOf bioregistry.registry:lov .
 lov:uniprot dcterms:isPartOf bioregistry.registry:lov .
 
 lov:vann dcterms:isPartOf bioregistry.registry:lov .
+
+lov:vcard dcterms:isPartOf bioregistry.registry:lov .
+
+lov:vivo dcterms:isPartOf bioregistry.registry:lov .
 
 lov:void dcterms:isPartOf bioregistry.registry:lov .
 
@@ -42314,6 +42580,9 @@ orcid:0000-0002-2908-3327 rdfs:label "Anne Thessen" ;
 
 orcid:0000-0002-3328-9571 rdfs:label "Osamu Ohara" ;
     foaf:mbox "ohara@kazusa.or.jp" .
+
+orcid:0000-0002-3491-0198 rdfs:label "Daniel W Udwary" ;
+    foaf:mbox "dwudwary@lbl.gov" .
 
 orcid:0000-0002-3528-5267 rdfs:label "Sofia Robb" ;
     foaf:mbox "smr@stowers.org" .
@@ -42819,8 +43088,6 @@ prefixcommons:ivdb dcterms:isPartOf bioregistry.registry:prefixcommons .
 
 prefixcommons:jcm dcterms:isPartOf bioregistry.registry:prefixcommons .
 
-prefixcommons:jcsd dcterms:isPartOf bioregistry.registry:prefixcommons .
-
 prefixcommons:jcvi.genprop dcterms:isPartOf bioregistry.registry:prefixcommons .
 
 prefixcommons:jws dcterms:isPartOf bioregistry.registry:prefixcommons .
@@ -42950,6 +43217,8 @@ prefixcommons:neurondb dcterms:isPartOf bioregistry.registry:prefixcommons .
 prefixcommons:nextdb dcterms:isPartOf bioregistry.registry:prefixcommons .
 
 prefixcommons:niaest dcterms:isPartOf bioregistry.registry:prefixcommons .
+
+prefixcommons:nikkaji dcterms:isPartOf bioregistry.registry:prefixcommons .
 
 prefixcommons:nmpdr dcterms:isPartOf bioregistry.registry:prefixcommons .
 
@@ -44297,7 +44566,7 @@ miriam:mlc dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:mmdb dcterms:isPartOf bioregistry.registry:miriam .
 
-<https://registry.identifiers.org/registry/mmmp:biomaps> dcterms:isPartOf bioregistry.registry:miriam .
+miriam:mmmp.biomaps dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:mmp.cat dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -47686,7 +47955,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -49907,6 +50176,7 @@ bioregistry:oboe a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/NCEAS/oboe> ;
     skos:exactMatch aberowl:OBOE,
         agroportal:OBOE,
+        bioportal:OBOE,
         fairsharing:FAIRsharing.5970hq ;
     dcat:keyword "biodiversity",
         "ecology",
@@ -51004,6 +51274,7 @@ bioregistry:ssn a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/w3c/sdw-sosa-ssn> ;
     skos:exactMatch aberowl:SSN,
         agroportal:SSN,
+        bioportal:SSN,
         zazuko:ssn,
         fairsharing:FAIRsharing.c0bvcy,
         lov:ssn ;
@@ -51969,7 +52240,7 @@ bioregistry:fairsharing a bioregistry.schema:0000001 ;
 
 bioregistry:fbcv a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Controlled Vocabulary" ;
-    dcterms:description "A miscellaneous ontology of terms used for curation in FlyBase, including the DPO."^^xsd:string ;
+    dcterms:description "A structured controlled vocabulary used for various aspects of annotation by FlyBase."^^xsd:string ;
     dcterms:hasPart bioregistry:dpo ;
     dcterms:isPartOf bioregistry.registry:bioregistry,
         bioregistry:flybase ;
@@ -53112,10 +53383,6 @@ orcid:0000-0002-1595-3213 rdfs:label " Philip Strömert",
     foaf:mbox "Philip.Stroemert@tib.eu",
         "philip.stroemert@tib.eu" .
 
-orcid:0000-0002-3207-2434 rdfs:label "David S. Wishart",
-        "David Wishart" ;
-    foaf:mbox "david.wishart@ualberta.ca" .
-
 orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" ;
     dcterms:contributor bioregistry:hepro,
         bioregistry:hoso ;
@@ -53424,7 +53691,7 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     foaf:homepage <http://id.nlm.nih.gov/mesh/> ;
     bioregistry.schema:0000005 "C063233"^^xsd:string ;
     bioregistry.schema:0000006 "https://meshb.nlm.nih.gov/record/ui?ui=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(C|D)\\d{6,9}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(C|D|M)\\d{6,9}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "NLM Customer Service" ;
             foaf:mbox "custserv@nlm.nih.gov" ] ;
@@ -53610,6 +53877,11 @@ orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" ;
 
 orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" ;
     foaf:mbox "matus.kalas@uib.no" .
+
+orcid:0000-0002-3207-2434 rdfs:label "David S. Wishart",
+        "David Wishart" ;
+    foaf:mbox "david.wishart@ualberta.ca",
+        "dwishart@ualberta.ca" .
 
 orcid:0000-0002-3884-3420 rdfs:label "Simon Cox" ;
     foaf:mbox "dr.shorthair@pm.me" .
@@ -53854,6 +54126,9 @@ orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" ;
 
 orcid:0000-0002-7702-4495 rdfs:label "Allyson Lister" ;
     foaf:mbox "allyson.lister@oerc.ox.ac.uk" .
+
+orcid:0000-0002-8542-2389 rdfs:label "Sylvain V Costes" ;
+    foaf:mbox "sylvain.v.costes@nasa.gov" .
 
 orcid:0000-0003-4446-6200 rdfs:label "Jessica Kissinger",
         "Omar Harb",
@@ -55340,6 +55615,7 @@ bioregistry.registry:zazuko a bioregistry.schema:0000002 ;
         zazuko:ssn,
         zazuko:time,
         zazuko:vann,
+        zazuko:vcard,
         zazuko:void,
         zazuko:vso,
         zazuko:xsd ;
@@ -55348,34 +55624,6 @@ bioregistry.registry:zazuko a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "https://prefix.zazuko.com/prefix/$1:" ;
     bioregistry.schema:0000007 "https://prefix.zazuko.com/$1:$2" ;
     bioregistry.schema:0000019 orcid:0000-0002-2079-9636 .
-
-orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
-    dcterms:contributor bioregistry:biofactoid,
-        bioregistry:bko,
-        bioregistry:casspc,
-        bioregistry:ccf,
-        bioregistry:cemo,
-        bioregistry:cordis.project,
-        bioregistry:devtox,
-        bioregistry:emaps,
-        bioregistry:fda.application,
-        bioregistry:hemonc,
-        bioregistry:nihreporter.project,
-        bioregistry:oecd.template,
-        bioregistry:pdc.study,
-        bioregistry:phosphosite.curation,
-        bioregistry:phosphosite.sitegroup,
-        bioregistry:ribocentre,
-        bioregistry:rnaloops,
-        bioregistry:sharkipedia.species,
-        bioregistry:sharkipedia.trait,
-        bioregistry:sharkipedia.trend,
-        bioregistry:signor.relation,
-        bioregistry:uniprot.mnemonic,
-        bioregistry:uniprot.proteome,
-        bioregistry:zenodo.record ;
-    foaf:mbox "b.gyori@northeastern.edu",
-        "benjamin_gyori@hms.harvard.edu" .
 
 bioregistry:scdo a bioregistry.schema:0000001 ;
     rdfs:label "Sickle Cell Disease Ontology" ;
@@ -55626,6 +55874,34 @@ bioregistry:uberon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 uberon:2005080 ;
     bioregistry.schema:0000029 "uberon" .
 
+orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
+    dcterms:contributor bioregistry:biofactoid,
+        bioregistry:bko,
+        bioregistry:casspc,
+        bioregistry:ccf,
+        bioregistry:cemo,
+        bioregistry:cordis.project,
+        bioregistry:devtox,
+        bioregistry:emaps,
+        bioregistry:fda.application,
+        bioregistry:hemonc,
+        bioregistry:nihreporter.project,
+        bioregistry:oecd.template,
+        bioregistry:pdc.study,
+        bioregistry:phosphosite.curation,
+        bioregistry:phosphosite.sitegroup,
+        bioregistry:ribocentre,
+        bioregistry:rnaloops,
+        bioregistry:sharkipedia.species,
+        bioregistry:sharkipedia.trait,
+        bioregistry:sharkipedia.trend,
+        bioregistry:signor.relation,
+        bioregistry:uniprot.mnemonic,
+        bioregistry:uniprot.proteome,
+        bioregistry:zenodo.record ;
+    foaf:mbox "b.gyori@northeastern.edu",
+        "benjamin_gyori@hms.harvard.edu" .
+
 bioregistry.registry:hl7 a bioregistry.schema:0000002 ;
     rdfs:label "HL7 External Code Systems" ;
     dc:description "HL7 External Code Systems are stored within the greater OID system" ;
@@ -55747,6 +56023,7 @@ bioregistry.registry:lov a bioregistry.schema:0000002 ;
     dc:description "A vocabulary in LOV gathers definitions of a set of classes and properties (together simply called terms of the vocabulary), useful to describe specific types of things, or things in a given domain or industry, or things at large but for a specific usage. Terms of vocabularies also provide the links in linked data, in the above case between a Person and a City. The definitions of terms provided by the vocabularies bring clear semantics to descriptions and links, thanks to the formal language they use (some dialect of RDF such as RDFS or OWL). In short, vocabularies provide the semantic glue enabling Data to become meaningful Data. [from https://lov.linkeddata.es/dataset/lov/about]" ;
     dcterms:hasPart lov:adms,
         lov:bibo,
+        lov:biotop,
         lov:biro,
         lov:c4o,
         lov:cc,
@@ -55795,6 +56072,8 @@ bioregistry.registry:lov a bioregistry.schema:0000002 ;
         lov:ucum,
         lov:uniprot,
         lov:vann,
+        lov:vcard,
+        lov:vivo,
         lov:void,
         lov:xsd ;
     foaf:homepage "https://lov.linkeddata.es" ;
@@ -58774,6 +59053,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:CHEMROF,
         bioportal:CHIRO,
         bioportal:CHMO,
+        bioportal:CHR,
         bioportal:CIDO,
         bioportal:CIO,
         bioportal:CL,
@@ -58948,6 +59228,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:OBCS,
         bioportal:OBI,
         bioportal:OBIB,
+        bioportal:OBOE,
         bioportal:OBOREL,
         bioportal:OCCO,
         bioportal:OGG,
@@ -59033,6 +59314,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:SO,
         bioportal:SOPHARM,
         bioportal:SPD,
+        bioportal:SSN,
         bioportal:STATO,
         bioportal:STY,
         bioportal:SUGARBIND,
@@ -59058,6 +59340,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:VBO,
         bioportal:VHOG,
         bioportal:VIDO,
+        bioportal:VIVO,
         bioportal:VO,
         bioportal:VSAO,
         bioportal:VSO,
@@ -59339,6 +59622,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:PHIPO,
         aberowl:PLANA,
         aberowl:PLANP,
+        aberowl:PLOSTHES,
         aberowl:PMR,
         aberowl:PO,
         aberowl:PORO,
@@ -59410,6 +59694,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:VBO,
         aberowl:VHOG,
         aberowl:VIDO,
+        aberowl:VIVO,
         aberowl:VO,
         aberowl:VSAO,
         aberowl:VSO,
@@ -59637,7 +59922,6 @@ bioregistry.registry:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:iuphar.family,
         prefixcommons:ivdb,
         prefixcommons:jcm,
-        prefixcommons:jcsd,
         prefixcommons:jcvi.genprop,
         prefixcommons:jws,
         prefixcommons:kegg.brite,
@@ -59703,6 +59987,7 @@ bioregistry.registry:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:neurondb,
         prefixcommons:nextdb,
         prefixcommons:niaest,
+        prefixcommons:nikkaji,
         prefixcommons:nmpdr,
         prefixcommons:nmr,
         prefixcommons:noncode,
@@ -59942,6 +60227,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.2ma4gq,
         fairsharing:FAIRsharing.2mayq0,
         fairsharing:FAIRsharing.2mk2zb,
+        fairsharing:FAIRsharing.2ndf9r,
         fairsharing:FAIRsharing.2q8c28,
         fairsharing:FAIRsharing.2qx8n8,
         fairsharing:FAIRsharing.2s4n8r,
@@ -60038,6 +60324,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.6s749p,
         fairsharing:FAIRsharing.6tgyxf,
         fairsharing:FAIRsharing.6wf1zw,
+        fairsharing:FAIRsharing.6xfgaq,
         fairsharing:FAIRsharing.6xq0ee,
         fairsharing:FAIRsharing.6yNXYK,
         fairsharing:FAIRsharing.78d3ad,
@@ -60491,6 +60778,7 @@ bioregistry.registry:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.xhwrnr,
         fairsharing:FAIRsharing.xn3pb3,
         fairsharing:FAIRsharing.xs6t67,
+        fairsharing:FAIRsharing.xvf5y3,
         fairsharing:FAIRsharing.xwqg9h,
         fairsharing:FAIRsharing.xz5m1a,
         fairsharing:FAIRsharing.y00hz4,
@@ -61698,7 +61986,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:mirtarbase,
         miriam:mlc,
         miriam:mmdb,
-        <https://registry.identifiers.org/registry/mmmp:biomaps>,
+        miriam:mmmp.biomaps,
         miriam:mmp.cat,
         miriam:mmp.db,
         miriam:mmp.fun,
@@ -62832,6 +63120,7 @@ bioregistry.registry:biocontext a bioregistry.schema:0000002 ;
         biocontext:VIPR,
         biocontext:VIRALZONE,
         biocontext:VIRSIRNA,
+        biocontext:VIVO,
         biocontext:VMHMETABOLITE,
         biocontext:VMHREACTION,
         biocontext:VO,
@@ -63019,6 +63308,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:biocompute,
         bioregistry:biocyc,
         bioregistry:biodeep,
+        bioregistry:biodolphin,
         bioregistry:biofactoid,
         bioregistry:biogrid,
         bioregistry:biogrid.interaction,
@@ -63471,6 +63761,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fairsharing.organization,
         bioregistry:fairsharing.user,
         bioregistry:faldo,
+        bioregistry:fanta,
         bioregistry:fao,
         bioregistry:fao.asfis,
         bioregistry:fbbi,
@@ -63892,6 +64183,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:mamo,
         bioregistry:mampol,
         bioregistry:mao,
+        bioregistry:markerdb,
         bioregistry:massbank,
         bioregistry:massive,
         bioregistry:mastodon,
@@ -64023,6 +64315,13 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:napdi,
         bioregistry:napp,
         bioregistry:narcis,
+        bioregistry:nasaosdr.biospecimen,
+        bioregistry:nasaosdr.experiment,
+        bioregistry:nasaosdr.hardware,
+        bioregistry:nasaosdr.mission,
+        bioregistry:nasaosdr.payload,
+        bioregistry:nasaosdr.study,
+        bioregistry:nasaosdr.subject,
         bioregistry:nasc,
         bioregistry:nbn,
         bioregistry:nbo,
@@ -64497,6 +64796,8 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:slm,
         bioregistry:slso,
         bioregistry:smart,
+        bioregistry:smc.bgc,
+        bioregistry:smc.source,
         bioregistry:smid,
         bioregistry:smiles,
         bioregistry:smpdb,

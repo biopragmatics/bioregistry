@@ -3477,7 +3477,7 @@
         ]
     },
     {
-        "pattern": "^(C|D)\\d{6,9}$",
+        "pattern": "^(C|D|M)\\d{6,9}$",
         "prefix": "MESH",
         "prefix_synonyms": [
             "MESHA",
@@ -8386,6 +8386,16 @@
         ]
     },
     {
+        "pattern": "^BD\\d[a-zA-Z0-9]+-[A-Za-z]-[A-Za-z]-[A-Za-z0-9]+$",
+        "prefix": "biodolphin",
+        "uri_prefix": "https://biodolphin.chemistry.gatech.edu/detail/",
+        "uri_prefix_synonyms": [
+            "http://biodolphin.chemistry.gatech.edu/detail/",
+            "http://bioregistry.io/biodolphin:",
+            "https://bioregistry.io/biodolphin:"
+        ]
+    },
+    {
         "pattern": "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$",
         "prefix": "biofactoid",
         "uri_prefix": "https://biofactoid.org/document/",
@@ -10441,13 +10451,14 @@
     {
         "pattern": "^\\d+$",
         "prefix": "corum",
-        "uri_prefix": "https://mips.helmholtz-muenchen.de/corum/?id=",
+        "uri_prefix": "https://mips.helmholtz-muenchen.de/corum/?complex_id=",
         "uri_prefix_synonyms": [
             "http://bio2rdf.org/corum:",
             "http://bioregistry.io/corum:",
             "http://identifiers.org/corum/",
             "http://identifiers.org/corum:",
             "http://mips.helmholtz-muenchen.de/corum/#?uniprotID=",
+            "http://mips.helmholtz-muenchen.de/corum/?complex_id=",
             "http://mips.helmholtz-muenchen.de/corum/?id=",
             "http://mips.helmholtz-muenchen.de/genre/proj/corum/complexdetails.html?id=",
             "http://n2t.net/corum:",
@@ -10456,6 +10467,7 @@
             "https://identifiers.org/corum/",
             "https://identifiers.org/corum:",
             "https://mips.helmholtz-muenchen.de/corum/#?uniprotID=",
+            "https://mips.helmholtz-muenchen.de/corum/?id=",
             "https://mips.helmholtz-muenchen.de/genre/proj/corum/complexdetails.html?id=",
             "https://n2t.net/corum:"
         ]
@@ -12992,6 +13004,16 @@
             "http://bioregistry.io/faldo:",
             "https://biohackathon.org/resource/faldo#",
             "https://bioregistry.io/faldo:"
+        ]
+    },
+    {
+        "pattern": "^FC(HS|MM)_\\d+$",
+        "prefix": "fanta",
+        "uri_prefix": "https://fanta.bio/cre/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/fanta:",
+            "http://fanta.bio/cre/",
+            "https://bioregistry.io/fanta:"
         ]
     },
     {
@@ -16749,16 +16771,15 @@
         ],
         "uri_prefix": "http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=",
         "uri_prefix_synonyms": [
-            "http://bio2rdf.org/jcsd:",
+            "http://bio2rdf.org/nikkaji:",
             "http://bioregistry.io/Nikkaji number:",
             "http://bioregistry.io/jcsd:",
             "http://bioregistry.io/nikkaji:",
             "http://identifiers.org/jcsd/",
             "http://identifiers.org/jcsd:",
             "http://n2t.net/jcsd:",
-            "http://nikkajiweb.jst.go.jp/nikkaji_web/pages/top_e.jsp?CONTENT=syosai&SN=",
             "http://stirdf.jst.go.jp/cde/nikkaji/",
-            "https://bio2rdf.org/jcsd:",
+            "https://bio2rdf.org/nikkaji:",
             "https://bioregistry.io/Nikkaji number:",
             "https://bioregistry.io/jcsd:",
             "https://bioregistry.io/nikkaji:",
@@ -16766,7 +16787,6 @@
             "https://identifiers.org/jcsd:",
             "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=",
             "https://n2t.net/jcsd:",
-            "https://nikkajiweb.jst.go.jp/nikkaji_web/pages/top_e.jsp?CONTENT=syosai&SN=",
             "https://stirdf.jst.go.jp/cde/nikkaji/"
         ]
     },
@@ -18596,14 +18616,14 @@
             "http://bio2rdf.org/mmmp:",
             "http://bioregistry.io/mmmp.biomaps:",
             "http://bioregistry.io/mmmp:biomaps:",
-            "http://identifiers.org/mmmp:biomaps/",
-            "http://identifiers.org/mmmp:biomaps:",
+            "http://identifiers.org/mmmp.biomaps/",
+            "http://identifiers.org/mmmp.biomaps:",
             "http://n2t.net/biomaps:",
             "https://bio2rdf.org/mmmp:",
             "https://bioregistry.io/mmmp.biomaps:",
             "https://bioregistry.io/mmmp:biomaps:",
-            "https://identifiers.org/mmmp:biomaps/",
-            "https://identifiers.org/mmmp:biomaps:",
+            "https://identifiers.org/mmmp.biomaps/",
+            "https://identifiers.org/mmmp.biomaps:",
             "https://n2t.net/biomaps:",
             "https://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id="
         ]
@@ -19150,6 +19170,76 @@
             "https://identifiers.org/narcis:",
             "https://n2t.net/narcis:",
             "https://www.narcis.nl/publication/RecordID/"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "nasaosdr.biospecimen",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/biospecimens/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.biospecimen:",
+            "http://osdr.nasa.gov/bio/repo/data/biospecimens/",
+            "https://bioregistry.io/nasaosdr.biospecimen:"
+        ]
+    },
+    {
+        "pattern": "^OS-\\d+$",
+        "prefix": "nasaosdr.experiment",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/experiments/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.experiment:",
+            "http://osdr.nasa.gov/bio/repo/data/experiments/",
+            "https://bioregistry.io/nasaosdr.experiment:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "nasaosdr.hardware",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/hardware/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.hardware:",
+            "http://osdr.nasa.gov/bio/repo/data/hardware/",
+            "https://bioregistry.io/nasaosdr.hardware:"
+        ]
+    },
+    {
+        "pattern": "^.+$",
+        "prefix": "nasaosdr.mission",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/missions/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.mission:",
+            "http://osdr.nasa.gov/bio/repo/data/missions/",
+            "https://bioregistry.io/nasaosdr.mission:"
+        ]
+    },
+    {
+        "pattern": "^.+$",
+        "prefix": "nasaosdr.payload",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/payloads/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.payload:",
+            "http://osdr.nasa.gov/bio/repo/data/payloads/",
+            "https://bioregistry.io/nasaosdr.payload:"
+        ]
+    },
+    {
+        "pattern": "^OSD-\\d+$",
+        "prefix": "nasaosdr.study",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/studies/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.study:",
+            "http://osdr.nasa.gov/bio/repo/data/studies/",
+            "https://bioregistry.io/nasaosdr.study:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "nasaosdr.subject",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/subjects/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nasaosdr.subject:",
+            "http://osdr.nasa.gov/bio/repo/data/subjects/",
+            "https://bioregistry.io/nasaosdr.subject:"
         ]
     },
     {
@@ -24393,6 +24483,26 @@
             "https://smart.embl-heidelberg.de/smart/do_annotation.pl?BLAST=DUMMY&DOMAIN=",
             "https://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=",
             "https://smart.embl.de/smart/do_annotation.pl?DOMAIN="
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "smc.bgc",
+        "uri_prefix": "https://smc.jgi.doe.gov/bgc/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/smc.bgc:",
+            "http://smc.jgi.doe.gov/bgc/",
+            "https://bioregistry.io/smc.bgc:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "smc.source",
+        "uri_prefix": "https://smc.jgi.doe.gov/sources/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/smc.source:",
+            "http://smc.jgi.doe.gov/sources/",
+            "https://bioregistry.io/smc.source:"
         ]
     },
     {
