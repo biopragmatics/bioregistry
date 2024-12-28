@@ -6346,6 +6346,7 @@
       "name": "Filipi Miranda Soares"
     },
     "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima )).",
+    "exampleIdentifier": "https://w3id.org/APTO#Product_type",
     "hasDomain": [
       "https://data.agroportal.lirmm.fr/categories/AGRI",
       "https://data.agroportal.lirmm.fr/categories/HORTI",
@@ -6354,6 +6355,7 @@
       "https://data.agroportal.lirmm.fr/categories/AGRI-PROD"
     ],
     "homepage": "https://github.com/AlmesCore/APTO/blob/main/README.md",
+    "license": "CC-BY-4.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -6404,6 +6406,9 @@
     },
     "name": "Agriculture Product Types Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
+    "projects": [
+      "https://data.agroportal.lirmm.fr/projects/C4AI-KGAP"
+    ],
     "publication": "https://doi.org/10.5281/zenodo.13499357",
     "repository": "https://github.com/AlmesCore/APTO/tree/main",
     "version": "1.1",
@@ -11319,8 +11324,8 @@
       "https://data.agroportal.lirmm.fr/users/ngrau"
     ],
     "contact": {
-      "email": "helpdesk@cropontology-curationtool.org",
-      "name": "Crop Ontology Helpdesk"
+      "email": "clara.stanschewski@kaust.edu.sa",
+      "name": "Clara S. Stanschewski"
     },
     "description": "Quinoa Ontology database of the Crop Ontology (CO_367) of the Generation Challenge Program (GCP) describe traits variables of Quinoa Germinate Database http://germinate.quinoadb.org. Quinoa Phenotyping Consortium Creation Date 23.05.2021",
     "group": [
@@ -12670,7 +12675,8 @@
       "https://data.agroportal.lirmm.fr/projects/Maggot",
       "https://data.agroportal.lirmm.fr/projects/ANAEE+Semantics",
       "https://data.agroportal.lirmm.fr/projects/AGRIS",
-      "https://data.agroportal.lirmm.fr/projects/FooSIN"
+      "https://data.agroportal.lirmm.fr/projects/FooSIN",
+      "https://data.agroportal.lirmm.fr/projects/C4AI-KGAP"
     ],
     "publication": "https://www.fao.org/agrovoc/publications",
     "version": "2024-04",
@@ -15310,6 +15316,7 @@
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "publication": "https://gitlab.com/ddings/common-greenhouse-ontology",
     "repository": "https://gitlab.com/ddings/common-greenhouse-ontology/-/blob/main/Ontologies/Older%20versions/CGO-v2.2.ttl?ref_type=heads",
+    "version": "2.4",
     "viewingRestriction": "public"
   },
   {

@@ -77,6 +77,7 @@
 @prefix bartoc: <https://bartoc.org/en/node/> .
 @prefix bbtp: <https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:> .
 @prefix bcbc: <https://scicrunch.org/resolver/RRID:BCBC_> .
+@prefix bcgo: <https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F> .
 @prefix bcio: <https://w3id.org/BCI-ontology#> .
 @prefix bco: <http://purl.obolibrary.org/obo/BCO_> .
 @prefix bcrc: <https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=> .
@@ -337,8 +338,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -369,7 +370,7 @@
 @prefix dictybase.gene: <http://dictybase.org/gene/> .
 @prefix dideo: <http://purl.obolibrary.org/obo/DIDEO_> .
 @prefix dip: <https://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=> .
-@prefix discoverx: <https://www.discoverx.com/?post_type=product&s=> .
+@prefix discoverx: <https://www.discoverx.com/catalogmanagement/catalog/?searchText=> .
 @prefix disdriv: <http://purl.obolibrary.org/obo/DISDRIV_> .
 @prefix diseaseclass: <https://biopragmatics.github.io/providers/diseaseclass/> .
 @prefix disprot: <https://disprot.org/> .
@@ -3434,12 +3435,13 @@ bioregistry:bcgo a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <https://github.com/obi-bcgo/bcgo> ;
     bioregistry.schema:0000005 "0000015"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BCGO_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl> ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BCGO_"^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F"^^xsd:string ;
+    bioregistry.schema:0000027 bcgo:0000015 ;
     bioregistry.schema:0000029 "bcgo" .
 
 bioregistry:bcio a bioregistry.schema:0000001 ;
@@ -7151,11 +7153,11 @@ bioregistry:discoverx a bioregistry.schema:0000001 ;
     dcterms:description "Cell line collections (Providers)"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch cellosaurus.resource:DiscoverX ;
-    foaf:homepage <https://www.discoverx.com/product-category/cell-lines-primary-cells/> ;
+    foaf:homepage <https://www.discoverx.com/product_types/cell-lines-primary-cells> ;
     bioregistry.schema:0000005 "95-0166C6"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.discoverx.com/?post_type=product&s=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.discoverx.com/catalogmanagement/catalog/?searchText=$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://www.discoverx.com/?post_type=product&s="^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.discoverx.com/catalogmanagement/catalog/?searchText="^^xsd:string ;
     bioregistry.schema:0000027 discoverx:95-0166C6 ;
     bioregistry.schema:0000029 "discoverx" .
 
@@ -36119,7 +36121,7 @@ bioregistry:nando a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1200031"^^xsd:string ;
     bioregistry.schema:0000006 "https://nanbyodata.jp/disease/NANDO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/NANDO/15/nando.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/NANDO/16/nando.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Terue Takatsuki" ;
             foaf:mbox "takatter@dbcls.rois.ac.jp" ] ;
@@ -47955,7 +47957,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -50291,31 +50293,6 @@ bioregistry:omim.ps a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 omim.ps:214100 ;
     bioregistry.schema:0000029 "omim.ps" .
 
-bioregistry:omo a bioregistry.schema:0000001 ;
-    rdfs:label "OBO Metadata Ontology" ;
-    dcterms:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/information-artifact-ontology/ontology-metadata> ;
-    skos:exactMatch aberowl:OMO,
-        ontobee:OMO,
-        bioportal:OMO,
-        ols:omo,
-        obofoundry:omo ;
-    dcat:keyword "obo",
-        "ontology" ;
-    foaf:homepage <https://github.com/information-artifact-ontology/ontology-metadata> ;
-    bioregistry.schema:0000005 "0003003"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:omo.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:pcl,
-        bioregistry:uberon ;
-    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OMO_"^^xsd:string ;
-    bioregistry.schema:0000027 omo:0003003 ;
-    bioregistry.schema:0000029 "omo" .
-
 bioregistry:opmi a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Precision Medicine and Investigation" ;
     dcterms:description "OPMI is a biomedical ontology in the area of precision medicine and its related investigations. It is community-driven and developed by following the OBO Foundry ontology development principles."^^xsd:string ;
@@ -52495,6 +52472,32 @@ bioregistry:oboinowl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://www.geneontology.org/formats/oboInOwl#"^^xsd:string ;
     bioregistry.schema:0000027 oboinowl:hasDbXref ;
     bioregistry.schema:0000029 "oboinowl" .
+
+bioregistry:omo a bioregistry.schema:0000001 ;
+    rdfs:label "OBO Metadata Ontology" ;
+    dcterms:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/information-artifact-ontology/ontology-metadata> ;
+    skos:exactMatch aberowl:OMO,
+        ontobee:OMO,
+        bioportal:OMO,
+        ols:omo,
+        obofoundry:omo ;
+    dcat:keyword "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/information-artifact-ontology/ontology-metadata> ;
+    bioregistry.schema:0000005 "0003003"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:omo.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:cl,
+        bioregistry:pcl,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/OMO_"^^xsd:string ;
+    bioregistry.schema:0000027 omo:0003003 ;
+    bioregistry.schema:0000029 "omo" .
 
 bioregistry:one a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for Nutritional Epidemiology" ;
@@ -55083,9 +55086,9 @@ bioregistry:cl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 obo:cl.owl ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:chebi,
-        bioregistry:go,
+    bioregistry.schema:0000017 bioregistry:go,
         bioregistry:ncbitaxon,
+        bioregistry:omo,
         bioregistry:pato,
         bioregistry:pr,
         bioregistry:ro,
@@ -55332,6 +55335,72 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 ncbitaxon:2170610 ;
     bioregistry.schema:0000029 "ncbitaxon" .
 
+bioregistry:chebi a bioregistry.schema:0000001 ;
+    rdfs:label "Chemical Entities of Biological Interest" ;
+    dcterms:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
+    dcterms:hasPart bioregistry:fix,
+        bioregistry:rex ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/ebi-chebi/ChEBI> ;
+    skos:exactMatch aberowl:CHEBI,
+        edam.data:1174,
+        ontobee:CHEBI,
+        wikidata:P683,
+        bartoc:558,
+        bioportal:CHEBI,
+        biocontext:CHEBI,
+        cellosaurus.resource:ChEBI,
+        go.resource:CHEBI,
+        n2t:chebi,
+        fairsharing:FAIRsharing.62qk8w,
+        integbio:nbdc00027,
+        prefixcommons:chebi,
+        miriam:chebi,
+        cheminf:000407,
+        togoid:Chebi,
+        ols:chebi,
+        obofoundry:chebi,
+        re3data:r3d100012626 ;
+    dcat:keyword "biochemistry",
+        "chemical",
+        "chemistry",
+        "molecular entity",
+        "molecular structure",
+        "natural product",
+        "obo",
+        "ontology",
+        "small molecule",
+        "taxonomic classification" ;
+    foaf:homepage <http://www.ebi.ac.uk/chebi> ;
+    bioregistry.schema:0000005 "138488"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHEBI_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:chebi.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:cdno,
+        bioregistry:chiro,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:fobi,
+        bioregistry:foodon,
+        bioregistry:genepio,
+        bioregistry:maxo,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:proco,
+        bioregistry:scdo,
+        bioregistry:uberon,
+        bioregistry:xpo ;
+    bioregistry.schema:0000019 orcid:0000-0001-8123-5351 ;
+    bioregistry.schema:0000023 "CHEBI",
+        "CHEBIID",
+        "ChEBI" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CHEBI_"^^xsd:string ;
+    bioregistry.schema:0000027 chebi:138488 ;
+    bioregistry.schema:0000029 "chebi" .
+
 bioregistry:pato a bioregistry.schema:0000001 ;
     rdfs:label "Phenotype And Trait Ontology" ;
     dcterms:description "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation."^^xsd:string ;
@@ -55386,73 +55455,6 @@ bioregistry:pato a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PATO_"^^xsd:string ;
     bioregistry.schema:0000027 pato:0001998 ;
     bioregistry.schema:0000029 "pato" .
-
-bioregistry:chebi a bioregistry.schema:0000001 ;
-    rdfs:label "Chemical Entities of Biological Interest" ;
-    dcterms:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
-    dcterms:hasPart bioregistry:fix,
-        bioregistry:rex ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/ebi-chebi/ChEBI> ;
-    skos:exactMatch aberowl:CHEBI,
-        edam.data:1174,
-        ontobee:CHEBI,
-        wikidata:P683,
-        bartoc:558,
-        bioportal:CHEBI,
-        biocontext:CHEBI,
-        cellosaurus.resource:ChEBI,
-        go.resource:CHEBI,
-        n2t:chebi,
-        fairsharing:FAIRsharing.62qk8w,
-        integbio:nbdc00027,
-        prefixcommons:chebi,
-        miriam:chebi,
-        cheminf:000407,
-        togoid:Chebi,
-        ols:chebi,
-        obofoundry:chebi,
-        re3data:r3d100012626 ;
-    dcat:keyword "biochemistry",
-        "chemical",
-        "chemistry",
-        "molecular entity",
-        "molecular structure",
-        "natural product",
-        "obo",
-        "ontology",
-        "small molecule",
-        "taxonomic classification" ;
-    foaf:homepage <http://www.ebi.ac.uk/chebi> ;
-    bioregistry.schema:0000005 "138488"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHEBI_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:chebi.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:cdno,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:fobi,
-        bioregistry:foodon,
-        bioregistry:genepio,
-        bioregistry:maxo,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:proco,
-        bioregistry:scdo,
-        bioregistry:uberon,
-        bioregistry:xpo ;
-    bioregistry.schema:0000019 orcid:0000-0001-8123-5351 ;
-    bioregistry.schema:0000023 "CHEBI",
-        "CHEBIID",
-        "ChEBI" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/CHEBI_"^^xsd:string ;
-    bioregistry.schema:0000027 chebi:138488 ;
-    bioregistry.schema:0000029 "chebi" .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Protein" ;
