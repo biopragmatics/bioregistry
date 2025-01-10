@@ -45,12 +45,6 @@ jobs:
         echo "PYTHONPATH=$PYTHONPATH"  # Verify PYTHONPATH
         python src/bioregistry/analysis/paper_ranking.py --start-date ${{ env.START_DATE }} --end-date ${{ env.END_DATE }}
 
-    - name: Upload Full List as Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: full-predictions-list-${{ env.START_DATE }}-to-${{ env.END_DATE }}
-        path: exports/analyses/paper_ranking/predictions_${{ env.START_DATE }}_to_${{ env.END_DATE }}.tsv
-
     - name: Find Existing Issue
       id: find-issue
       uses: actions/github-script@v6
