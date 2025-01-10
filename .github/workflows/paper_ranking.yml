@@ -50,6 +50,12 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+    - name: Commit and Push Changes
+      run: |
+        git add exports/analyses/paper_ranking/predictions_${{ env.START_DATE }}_to_${{ env.END_DATE }}.tsv
+        git commit -m "Add predictions file for ${{ env.START_DATE }} to ${{ env.END_DATE }}"
+        git push
+
     - name: Find Existing Issue
       id: find-issue
       uses: actions/github-script@v6
