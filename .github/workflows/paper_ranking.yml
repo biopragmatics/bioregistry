@@ -5,6 +5,10 @@ on:
     - cron: '0 0 1 * *' # runs on the first day of every month
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   paper-ranking:
     runs-on: ubuntu-latest
