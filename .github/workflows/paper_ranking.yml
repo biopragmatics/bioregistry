@@ -45,6 +45,11 @@ jobs:
         echo "PYTHONPATH=$PYTHONPATH"  # Verify PYTHONPATH
         python src/bioregistry/analysis/paper_ranking.py --start-date ${{ env.START_DATE }} --end-date ${{ env.END_DATE }}
 
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
     - name: Find Existing Issue
       id: find-issue
       uses: actions/github-script@v6
