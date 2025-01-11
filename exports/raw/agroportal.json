@@ -1655,7 +1655,6 @@
       "https://data.agroportal.lirmm.fr/categories/AG-ENG",
       "https://data.agroportal.lirmm.fr/categories/AG-RES",
       "https://data.agroportal.lirmm.fr/categories/ENV",
-      "https://data.agroportal.lirmm.fr/categories/GOVT",
       "https://data.agroportal.lirmm.fr/categories/GENE",
       "https://data.agroportal.lirmm.fr/categories/FISH",
       "https://data.agroportal.lirmm.fr/categories/RURAL",
@@ -3717,6 +3716,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "AQFO",
     "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/wf_shazleen",
       "https://data.agroportal.lirmm.fr/users/malaporte"
     ],
     "contact": {
@@ -4434,7 +4434,12 @@
     "administeredBy": [
       "https://data.agroportal.lirmm.fr/users/cooperl"
     ],
-    "flat": null,
+    "contact": {
+      "email": "cooperl@science.oregonstate.edu",
+      "name": "Laurel Cooper"
+    },
+    "description": "An ontology that describes phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant.",
+    "exampleIdentifier": "http://purl.obolibrary.org/obo/TO_0000064",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY",
       "https://data.agroportal.lirmm.fr/groups/WHEAT",
@@ -4447,6 +4452,8 @@
       "https://data.agroportal.lirmm.fr/categories/BIODIV",
       "https://data.agroportal.lirmm.fr/categories/PLANT"
     ],
+    "homepage": "https://planteome.org/",
+    "license": "CC-BY-4.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -4497,10 +4504,10 @@
     },
     "name": "Plant Trait Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "summaryOnly": false,
-    "viewOf": null,
-    "viewingRestriction": "public",
-    "views": []
+    "publication": "https://planteome.org/references",
+    "repository": "https://github.com/Planteome/plant-trait-ontology",
+    "version": "July 2023",
+    "viewingRestriction": "public"
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/RICEDO",
@@ -4592,9 +4599,8 @@
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
     "hasDomain": [
-      "https://data.agroportal.lirmm.fr/categories/ECO",
-      "https://data.agroportal.lirmm.fr/categories/BIODIV",
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
+      "https://data.agroportal.lirmm.fr/categories/FOODTECH",
+      "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
       "https://data.agroportal.lirmm.fr/categories/AG-RES"
     ],
     "homepage": "http://lovinra.inra.fr/2016/08/03/process-and-observation-ontology/",
@@ -4667,7 +4673,7 @@
       "email": "rwalls2008@gmail.com",
       "name": "Ramona Walls"
     },
-    "description": "The goal of the BCO is to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys. The BCO covers distinctions between individuals, organisms, voucher specimens, lots, samples, the relations between these entities, and the processes governing the creation and use of \"samples\". Also within scope are properties including collector, location, time, storage environment, containers, institution, and collection identifiers.",
+    "description": "The goal of the BCO is to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys. The BCO covers distinctions between individuals, organisms, voucher specimens, lots, samples, the relations between these entities, and the processes governing the creation and use of \"samples\". Also within scope are properties including collector, location, time, storage environment, containers, institution, and collection identifiers., The BCO supports the interoperability of biodiversity and biodiversity related data, and ecological surveys. A key aspect of the BCO is distinguishing among material samples (i.e. specimens), observing processes, and data about either of those entities.",
     "exampleIdentifier": "http://purl.obolibrary.org/obo/bco_0000036",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY",
@@ -4731,6 +4737,7 @@
     "name": "Biological Collections Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/BiodiversityOntologies/bco",
+    "version": "2021-11-14",
     "viewingRestriction": "public"
   },
   {
@@ -4759,7 +4766,6 @@
       "https://data.agroportal.lirmm.fr/categories/EARTH",
       "https://data.agroportal.lirmm.fr/categories/ECO",
       "https://data.agroportal.lirmm.fr/categories/BIODIV",
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
       "https://data.agroportal.lirmm.fr/categories/AG-RES",
       "https://data.agroportal.lirmm.fr/categories/ENV"
     ],
@@ -8457,7 +8463,7 @@
     "name": "Cell Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/obophenotype/cell-ontology",
-    "version": "2024-09-26",
+    "version": "2025-01-07",
     "viewingRestriction": "public"
   },
   {
@@ -10403,7 +10409,7 @@
     "name": "Vertebrate Trait Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
-    "version": "2024-12-12",
+    "version": "2025-01-08",
     "viewingRestriction": "public"
   },
   {
@@ -11176,9 +11182,14 @@
     "administeredBy": [
       "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
-    "flat": null,
-    "group": [],
-    "hasDomain": [],
+    "contact": {
+      "email": "olivier@nlm.nih.gov",
+      "name": "Olivier Bodenreider"
+    },
+    "description": "The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types. This section of the documentation provides an overview of the Semantic Network, and describes the files of the Semantic Network. Sample records illustrate structure and content of these files.",
+    "exampleIdentifier": "http://purl.bioontology.org/ontology/STY/T057",
+    "homepage": "https://lhncbc.nlm.nih.gov/semanticnetwork/",
+    "license": "CC0-1.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -11229,10 +11240,8 @@
     },
     "name": "UMLS Semantic Network",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "summaryOnly": false,
-    "viewOf": null,
-    "viewingRestriction": "public",
-    "views": []
+    "version": "12 (2022AA)",
+    "viewingRestriction": "public"
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/AWS",
@@ -13734,7 +13743,7 @@
     "name": "Livestock Breed Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
-    "version": "2024-11-25",
+    "version": "2025-01-06",
     "viewingRestriction": "public"
   },
   {
@@ -13764,8 +13773,6 @@
       "https://data.agroportal.lirmm.fr/categories/OBS",
       "https://data.agroportal.lirmm.fr/categories/BIOTECH",
       "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
-      "https://data.agroportal.lirmm.fr/categories/AG-RES",
       "https://data.agroportal.lirmm.fr/categories/NUT"
     ],
     "license": "http://publications.europa.eu/resource/authority/access-right/PUBLIC",
@@ -13819,7 +13826,7 @@
     },
     "name": "PO2/TransformON",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "version": "12.0",
+    "version": "15.0",
     "viewingRestriction": "public"
   },
   {
@@ -15753,7 +15760,7 @@
     "name": "Population and Community Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/PopulationAndCommunityOntology/pco",
-    "version": "2013-10-03",
+    "version": "2021-05-03",
     "viewingRestriction": "public"
   },
   {

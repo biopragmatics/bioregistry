@@ -338,8 +338,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -687,7 +687,7 @@
 @prefix icechem: <https://ice.ntp.niehs.nih.gov/api/v1/search?chemid=> .
 @prefix iceo: <http://purl.obolibrary.org/obo/ICEO_> .
 @prefix icepo: <https://biopragmatics.github.io/providers/icepo/> .
-@prefix icf: <http://id.who.int/icd/entity/> .
+@prefix icf: <https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/> .
 @prefix iclc: <http://www.iclc.it/details/det_list.php?line_id=> .
 @prefix icldb: <https://entomology.ca.uky.edu/content/> .
 @prefix ico: <http://purl.obolibrary.org/obo/ICO_> .
@@ -1404,6 +1404,7 @@
 @prefix tfclass: <http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=> .
 @prefix tgd: <http://ciliate.org/index.php/feature/details/> .
 @prefix tgn: <http://vocab.getty.edu/page/tgn/> .
+@prefix theiler: <http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_> .
 @prefix thermofisher: <https://www.thermofisher.com/antibody/product/> .
 @prefix tigrfam: <https://www.ncbi.nlm.nih.gov/cdd?term=> .
 @prefix time: <http://www.w3.org/2006/time#> .
@@ -1649,6 +1650,7 @@ bioregistry.collection:0000004 a bioregistry.schema:0000003 ;
         bioregistry:icd10cm,
         bioregistry:icd10pcs,
         bioregistry:icd11,
+        bioregistry:icd11.code,
         bioregistry:icd9,
         bioregistry:icd9cm,
         bioregistry:icdo .
@@ -13257,37 +13259,6 @@ bioregistry:mmsinc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://mms.dsfarm.unipd.it/mmsinc/search/molecule.php?mmscode="^^xsd:string ;
     bioregistry.schema:0000027 mmsinc:MMs00000001 ;
     bioregistry.schema:0000029 "mmsinc" .
-
-bioregistry:mmusdv a bioregistry.schema:0000001 ;
-    rdfs:label "Mouse Developmental Stages" ;
-    dcterms:description "Life cycle stages for Mus Musculus"^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    doap:GitRepository <https://github.com/obophenotype/developmental-stage-ontologies> ;
-    skos:exactMatch aberowl:MMUSDV,
-        ontobee:MmusDv,
-        bioportal:MMUSDV,
-        biocontext:MMUSDV,
-        biolink:MmusDv,
-        fairsharing:FAIRsharing.zchb68,
-        ols:mmusdv,
-        obofoundry:mmusdv ;
-    dcat:keyword "anatomy",
-        "developmental biology",
-        "embryology",
-        "life cycle stage",
-        "obo",
-        "ontology" ;
-    foaf:homepage <https://github.com/obophenotype/developmental-stage-ontologies/wiki/MmusDv> ;
-    bioregistry.schema:0000005 "0000066"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MmusDv_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 obo:mmusdv.owl ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
-    bioregistry.schema:0000023 "MmusDv" ;
-    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MmusDv_"^^xsd:string ;
-    bioregistry.schema:0000027 mmusdv:0000066 ;
-    bioregistry.schema:0000029 "mmusdv" .
 
 bioregistry:mo a bioregistry.schema:0000001 ;
     rdfs:label "Microarray experimental conditions" ;
@@ -31732,6 +31703,7 @@ bioregistry:dermo a bioregistry.schema:0000001 ;
     rdfs:label "Human Dermatological Disease Ontology" ;
     dcterms:description "DermO is an ontology with broad coverage of the domain of dermatologic disease and we demonstrate here its utility for text mining and investigation of phenotypic relationships between dermatologic disorders"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/dermatology-ontology/dermatology> ;
     skos:exactMatch aberowl:DERMO,
         bioportal:DERMO,
         fairsharing:FAIRsharing.k008w7 ;
@@ -35919,6 +35891,37 @@ bioregistry:mmsl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000023 "MMSL_CODE" ;
     bioregistry.schema:0000029 "mmsl" .
 
+bioregistry:mmusdv a bioregistry.schema:0000001 ;
+    rdfs:label "Mouse Developmental Stages" ;
+    dcterms:description "Life cycle stages for Mus Musculus"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/obophenotype/developmental-stage-ontologies> ;
+    skos:exactMatch aberowl:MMUSDV,
+        ontobee:MmusDv,
+        bioportal:MMUSDV,
+        biocontext:MMUSDV,
+        biolink:MmusDv,
+        fairsharing:FAIRsharing.zchb68,
+        ols:mmusdv,
+        obofoundry:mmusdv ;
+    dcat:keyword "anatomy",
+        "developmental biology",
+        "embryology",
+        "life cycle stage",
+        "obo",
+        "ontology" ;
+    foaf:homepage <https://github.com/obophenotype/developmental-stage-ontologies/wiki/MmusDv> ;
+    bioregistry.schema:0000005 "0000066"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/MmusDv_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000010 obo:mmusdv.owl ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-9415-5104 ;
+    bioregistry.schema:0000023 "MmusDv" ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MmusDv_"^^xsd:string ;
+    bioregistry.schema:0000027 mmusdv:0000066 ;
+    bioregistry.schema:0000029 "mmusdv" .
+
 bioregistry:mod a bioregistry.schema:0000001 ;
     rdfs:label "Protein modification" ;
     dcterms:description "The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims to define a concensus nomenclature and ontology reconciling, in a hierarchical representation, the complementary descriptions of residue modifications."^^xsd:string ;
@@ -39473,6 +39476,21 @@ bioregistry:th a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^H\\d\\.\\d{2}\\.\\d{2}\\.\\d\\.\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000029 "th" .
+
+bioregistry:theiler a bioregistry.schema:0000001 ;
+    rdfs:label "Theiler Stage" ;
+    dcterms:description "Stages 1-28 of mouse embryo development"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages> ;
+    bioregistry.schema:0000005 "10"^^xsd:string ;
+    bioregistry.schema:0000006 "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+[a-d]?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:mmusdv ;
+    bioregistry.schema:0000023 "thielerstage" ;
+    bioregistry.schema:0000024 "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_"^^xsd:string ;
+    bioregistry.schema:0000027 theiler:10 ;
+    bioregistry.schema:0000029 "theiler" .
 
 bioregistry:thermofisher a bioregistry.schema:0000001 ;
     rdfs:label "Thermo Fisher Scientific" ;
@@ -47958,7 +47976,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deo a bioregistry.schema:0000001 ;
@@ -48993,6 +49011,16 @@ bioregistry:icd11 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 icd11:402558626 ;
     bioregistry.schema:0000029 "icd11" .
 
+bioregistry:icd11.code a bioregistry.schema:0000001 ;
+    rdfs:label "ICD 11 Codes" ;
+    dcterms:description "ICD11 codes, which typically appear in health records and can be used for post-coordination"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://icd.who.int/en> ;
+    bioregistry.schema:0000005 "NA06.8D"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9A-Z]+(\\.[0-9A-Z]+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000029 "icd11.code" .
+
 bioregistry:icd9cm a bioregistry.schema:0000001 ;
     rdfs:label "International Classification of Diseases, 9th Revision, Clinical Modification" ;
     dcterms:description "ICD-9-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States."^^xsd:string ;
@@ -49096,13 +49124,13 @@ bioregistry:icf a bioregistry.schema:0000001 ;
         "primary health care" ;
     foaf:homepage <https://icd.who.int/dev11/l-icf/en> ;
     bioregistry.schema:0000005 "326705068"^^xsd:string ;
-    bioregistry.schema:0000006 "http://id.who.int/icd/entity/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/ICF/3/icf.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "The World Health Organization" ;
             foaf:mbox "info@who.int" ] ;
-    bioregistry.schema:0000024 "http://id.who.int/icd/entity/"^^xsd:string ;
+    bioregistry.schema:0000024 "https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/"^^xsd:string ;
     bioregistry.schema:0000027 icf:326705068 ;
     bioregistry.schema:0000029 "icf" .
 
@@ -57280,6 +57308,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:icd10cm,
         bioregistry:icd10pcs,
         bioregistry:icd11,
+        bioregistry:icd11.code,
         bioregistry:icd9,
         bioregistry:icd9cm,
         bioregistry:icdo,
@@ -57501,6 +57530,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:tfclass,
         bioregistry:tgn,
         bioregistry:th,
+        bioregistry:theiler,
         bioregistry:thermofisher,
         bioregistry:time,
         bioregistry:tkg,
@@ -64001,6 +64031,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:icd10cm,
         bioregistry:icd10pcs,
         bioregistry:icd11,
+        bioregistry:icd11.code,
         bioregistry:icd9,
         bioregistry:icd9cm,
         bioregistry:icdc,
@@ -64882,6 +64913,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:tgma,
         bioregistry:tgn,
         bioregistry:th,
+        bioregistry:theiler,
         bioregistry:thermofisher,
         bioregistry:tigrfam,
         bioregistry:time,

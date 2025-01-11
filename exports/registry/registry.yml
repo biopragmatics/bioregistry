@@ -7536,7 +7536,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '238'
+  version: '239'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -13028,6 +13028,7 @@ dermo:
     pubmed: '27296450'
     title: DermO; an ontology for the description of dermatologic disease
     year: 2016
+  repository: https://github.com/dermatology-ontology/dermatology
   uri_format: http://purl.obolibrary.org/obo/DERMO_$1
 dev.ga4ghdos:
   description: Assists in resolving data across cloud resources.
@@ -20607,7 +20608,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-12-05'
+  version: '2024-12-31'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -21842,6 +21843,7 @@ geonames:
   - geographical location
   - geography
   - geoinformatics
+  license: CC-BY-4.0
   mappings:
     fairsharing: FAIRsharing.6dba71
     re3data: r3d100010245
@@ -26544,11 +26546,49 @@ icd11:
   name: International Classification of Diseases, 11th Revision
   pattern: ^[1-9]\d*$
   preferred_prefix: icd11
+  providers:
+  - code: api
+    description: This goes to an API endpoint. For more information, see https://icd.who.int/icdapi
+    homepage: https://icd.who.int
+    name: ICD 11 API Endpoint
+    uri_format: http://id.who.int/icd/entity/$1
+  - code: foundation
+    description: This goes to the Foundation interface to ICD11
+    homepage: https://icd.who.int/browse/2024-01/foundation
+    name: ICD 11 Foundation
+    uri_format: https://icd.who.int/browse/2024-01/foundation/en#$1
+  - code: mms
+    description: This goes to the Mortality and Morbidity Statistics interface to
+      ICD11
+    homepage: https://icd.who.int/browse/2024-01/mms
+    name: ICD 11 Mortality and Morbidity Statistics
+    uri_format: https://icd.who.int/browse/2024-01/mms/en#$1
   references:
   - https://icd.who.int/docs/icd-api/license/
   synonyms:
   - ICD-11
   uri_format: https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1
+icd11.code:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ICD11 codes, which typically appear in health records and can be used
+    for post-coordination
+  example: NA06.8D
+  example_extras:
+  - CA71.2
+  - FB82.00
+  - XM34M9
+  github_request_issue: 1349
+  homepage: https://icd.who.int/en
+  license: http://www.who.int/about/licensing/copyright_form/en
+  name: ICD 11 Codes
+  pattern: ^[0-9A-Z]+(\.[0-9A-Z]+)?$
+  preferred_prefix: icd11.code
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/1344
 icd9:
   contributor:
     email: cthoyt@gmail.com
@@ -26939,7 +26979,7 @@ icf:
   name: International Classification of Functioning, Disability and Health
   pattern: ^\d+$
   preferred_prefix: icf
-  uri_format: http://id.who.int/icd/entity/$1
+  uri_format: https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/$1
 iclc:
   description: Cell line collections (Providers)
   example: ATL98012
@@ -56536,6 +56576,33 @@ th:
   preferred_prefix: th
   references:
   - https://en.wikipedia.org/wiki/Terminologia_Histologica
+theiler:
+  appears_in:
+  - mmusdv
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Stages 1-28 of mouse embryo development
+  example: '10'
+  example_decoys:
+  - 10e
+  example_extras:
+  - 10b
+  homepage: https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages
+  name: Theiler Stage
+  pattern: ^\d+[a-d]?$
+  preferred_prefix: theiler
+  providers:
+  - code: legacy
+    description: Legacy URL at UNSW
+    homepage: https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages
+    name: Legacy URL at UNSW
+    uri_format: https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1
+  synonyms:
+  - thielerstage
+  uri_format: http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1
 thermofisher:
   contributor:
     email: cthoyt@gmail.com
@@ -60166,7 +60233,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-11-23'
+  version: '2024-12-29'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
