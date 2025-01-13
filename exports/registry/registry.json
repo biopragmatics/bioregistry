@@ -9428,7 +9428,7 @@
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2024-09-26"
+    "version": "2025-01-07"
   },
   "clao": {
     "contact": {
@@ -9947,7 +9947,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.232"
+    "version": "2.233"
   },
   "cmpo": {
     "contact": {
@@ -12128,6 +12128,7 @@
       "resource metadata",
       "subject agnostic"
     ],
+    "license": "CC-BY-4.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline",
     "mappings": {
       "fairsharing": "FAIRsharing.fe4816"
@@ -22793,28 +22794,6 @@
     "twitter": "GBIF",
     "uri_format": "https://www.gbif.org/species/$1"
   },
-  "gc": {
-    "comment": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
-    "example": "11",
-    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
-    "name": "Genetic Code",
-    "pattern": "^\\d+$",
-    "preferred_prefix": "gc",
-    "references": [
-      "https://github.com/obophenotype/ncbitaxon/issues/47"
-    ],
-    "synonyms": [
-      "gc_id"
-    ],
-    "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1"
-  },
   "gcst": {
     "description": "The GWAS Catalog provides a consistent, searchable, visualisable and freely available database of published SNP-trait associations, which can be easily integrated with other resources, and is accessed by scientists, clinicians and other users worldwide.",
     "example": "GCST000035",
@@ -23545,7 +23524,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GENEPIO_$1",
     "repository": "https://github.com/GenEpiO/genepio",
     "uri_format": "http://purl.obolibrary.org/obo/GENEPIO_$1",
-    "version": "2023-08-19"
+    "version": "2024-12-18"
   },
   "genetree": {
     "contact": {
@@ -23903,6 +23882,7 @@
     "description": "All geographical features in GeoNames are categorized into one out of nine feature classes and further subcategorized into one out of 645 feature codes.",
     "example": "ADM1",
     "homepage": "https://www.geonames.org/export/codes.html",
+    "license": "CC-BY-4.0",
     "name": "GeoNames Feature Code",
     "preferred_prefix": "geonames.feature",
     "uri_format": "https://www.geonames.org/recent-changes/featurecode/$1/"
@@ -28921,14 +28901,22 @@
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1"
   },
   "icd11": {
-    "comment": "The codes, such as RA00.0, need their own namespace.",
+    "comment": "Clinical codes from an ICD-11 linearization (a structured subset of the ICD-11 Foundation tailored for specific use cases, such as morbidity or mortality coding), such as RA00.0, have their own namespace (icd11.code).",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease.",
+    "contributor_extras": [
+      {
+        "email": "nicolas.matentzoglu@gmail.com",
+        "github": "matentzn",
+        "name": "Nicolas Matentzoglu",
+        "orcid": "0000-0002-7356-1779"
+      }
+    ],
+    "description": "The ICD-11 Foundation is the comprehensive base layer of the International Classification of Diseases, encompassing all diagnostic concepts, definitions, and semantic relationships, designed for flexibility and adaptability across various use cases, including research, ontology development, and detailed health data analysis.",
     "example": "402558626",
     "homepage": "https://icd.who.int/",
     "keywords": [
@@ -28943,12 +28931,13 @@
     ],
     "license": "CC-BY-ND-3.0-IGO",
     "mappings": {
+      "biolink": "icd11.foundation",
       "fairsharing": "FAIRsharing.97805c",
       "hl7": "2.16.840.1.113883.6.347",
       "integbio": "nbdc02556",
       "wikidata": "P7807"
     },
-    "name": "International Classification of Diseases, 11th Revision",
+    "name": "International Classification of Diseases, 11th Revision (Foundation Component)",
     "pattern": "^[1-9]\\d*$",
     "preferred_prefix": "icd11",
     "providers": [
@@ -28974,11 +28963,14 @@
         "uri_format": "https://icd.who.int/browse/2024-01/mms/en#$1"
       }
     ],
+    "rdf_uri_format": "http://id.who.int/icd/entity/$1",
     "references": [
       "https://icd.who.int/docs/icd-api/license/"
     ],
     "synonyms": [
-      "ICD-11"
+      "ICD-11",
+      "ICD11",
+      "icd11.foundation"
     ],
     "uri_format": "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1"
   },
@@ -28989,7 +28981,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "ICD11 codes, which typically appear in health records and can be used for post-coordination",
+    "description": "An ICD-11 code is a standardized alphanumeric identifier used to classify and document diseases, conditions, and health-related issues for global healthcare and statistical purposes.",
     "example": "NA06.8D",
     "example_extras": [
       "CA71.2",
@@ -36916,7 +36908,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MFOEM_$1",
     "repository": "https://github.com/jannahastings/emotion-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MFOEM_$1",
-    "version": "2024-10-31"
+    "version": "2025-01-06"
   },
   "mfomd": {
     "contact": {
@@ -39068,7 +39060,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2024-12-03"
+    "version": "2025-01-07"
   },
   "mop": {
     "contact": {
@@ -39519,6 +39511,7 @@
     "description": "The Molecular Signatures Database (MSigDB) is a collection of annotated gene sets for use with GSEA software. From this web site, you can",
     "example": "M1",
     "homepage": "https://www.gsea-msigdb.org",
+    "license": "CC-BY-4.0",
     "mappings": {
       "biolink": "MSigDB",
       "integbio": "nbdc02550"
@@ -40676,6 +40669,29 @@
     "pattern": "^[a-zA-Z0-9_\\.]+$",
     "preferred_prefix": "ncbi.assembly",
     "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
+  },
+  "ncbi.gc": {
+    "comment": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
+    "example": "11",
+    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
+    "name": "Genetic Code",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ncbi.gc",
+    "references": [
+      "https://github.com/obophenotype/ncbitaxon/issues/47"
+    ],
+    "synonyms": [
+      "gc",
+      "gc_id"
+    ],
+    "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1"
   },
   "ncbi.genome": {
     "contributor": {
@@ -42287,6 +42303,7 @@
     "description": "The NLM Catalog provides access to NLM bibliographic data for journals, books, audiovisuals, computer software, electronic resources and other materials. Links to the library's holdings in LocatorPlus, NLM's online public access catalog, are also provided. [from homepage]",
     "example": "101775319",
     "homepage": "https://www.ncbi.nlm.nih.gov/nlmcatalog",
+    "license": "public domain",
     "mappings": {
       "bartoc": "528",
       "biolink": "NLMID"
@@ -42310,6 +42327,7 @@
     "example": "wiley",
     "github_request_issue": 1318,
     "homepage": "https://ftp.ncbi.nlm.nih.gov/pubmed/xmlprovidernames.txt",
+    "license": "public domain",
     "name": "NLM Publisher Codes",
     "preferred_prefix": "nlm.publisher"
   },
@@ -43208,7 +43226,8 @@
     "license": "CC-BY-NC",
     "name": "Natural Product Activity and Species Source Database",
     "pattern": "^NPC\\d+$",
-    "preferred_prefix": "npass"
+    "preferred_prefix": "npass",
+    "uri_format": "https://bidd.group/NPASS/compound.php?compoundID=$1"
   },
   "npatlas": {
     "contact": {
@@ -47642,7 +47661,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PCL_$1",
     "repository": "https://github.com/obophenotype/provisional_cell_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PCL_$1",
-    "version": "2024-07-11"
+    "version": "2025-01-08"
   },
   "pco": {
     "appears_in": [
@@ -54832,6 +54851,7 @@
       "data management",
       "ontology"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "bartoc": "20474",
       "fairsharing": "FAIRsharing.1jKfji",
@@ -59670,7 +59690,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/STATO_$1",
     "repository": "https://github.com/ISA-tools/stato",
     "uri_format": "http://purl.obolibrary.org/obo/STATO_$1",
-    "version": "2024-07-07"
+    "version": "2025-01-07"
   },
   "stitch": {
     "contact": {
@@ -63687,6 +63707,7 @@
       "post-translational modification",
       "structural biology"
     ],
+    "license": "CC-BY-4.0",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
@@ -65761,7 +65782,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2024-12-12"
+    "version": "2025-01-08"
   },
   "vto": {
     "contact": {
@@ -65900,7 +65921,7 @@
       "WBbt"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
-    "version": "2024-09-24"
+    "version": "2025-01-02"
   },
   "wbls": {
     "contact": {
@@ -65964,7 +65985,7 @@
       "WBls"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBls_$1",
-    "version": "2024-09-26"
+    "version": "2025-01-04"
   },
   "wbphenotype": {
     "contact": {
@@ -66025,7 +66046,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBPhenotype_$1",
-    "version": "2024-09-26"
+    "version": "2025-01-02"
   },
   "webelements": {
     "contributor": {
@@ -66958,7 +66979,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.190"
+    "version": "4.191"
   },
   "xenbase": {
     "contact": {
