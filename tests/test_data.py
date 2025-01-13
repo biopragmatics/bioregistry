@@ -155,8 +155,14 @@ class TestRegistry(unittest.TestCase):
     def test_get_name(self) -> None:
         """Test getting the name."""
         self.assertEqual(None, bioregistry.get_name("nope"))
+        self.assertEqual(None, bioregistry.get_name("nope", provenance=True))
+        self.assertEqual(None, bioregistry.get_name("nope", provenance=False))
 
         res = bioregistry.get_name("go")
+        self.assertIsInstance(res, str)
+        self.assertEqual("Gene Ontology", res)
+
+        res = bioregistry.get_name("go", provenance=False)
         self.assertIsInstance(res, str)
         self.assertEqual("Gene Ontology", res)
 

@@ -772,7 +772,7 @@ class Resource(BaseModel):
     def _get_prefix_key_str(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
     ) -> Union[None, str, ValuePackage[str]]:
-        return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
+        return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=provenance)
 
     @overload
     def _get_prefix_key_bool(
