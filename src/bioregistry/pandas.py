@@ -10,7 +10,7 @@ with the :func:`get_goa_example` function.
 import functools
 import logging
 import re
-from typing import Dict, Optional, Pattern, Union
+from typing import Callable, Dict, Optional, Pattern, Union, cast
 
 import pandas as pd
 from tabulate import tabulate
@@ -218,7 +218,7 @@ def validate_curies(
     return results
 
 
-def summarize_curie_validation(df, idx) -> None:
+def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series) -> None:
     """Provide a summary of CURIE validation."""
     count = (~idx).sum()
     unique = sorted(df[~idx][0].unique())
@@ -307,7 +307,7 @@ def validate_identifiers(
 
         results = _multi_column_map(
             df,
-            [prefix_column, column],
+            [cast(str, prefix_column), column],
             _validate_lambda,
             use_tqdm=use_tqdm,
         )
@@ -316,7 +316,7 @@ def validate_identifiers(
     return results
 
 
-def _help_validate_identifiers(df, column, prefix):
+def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd.Series:
     norm_prefix = bioregistry.normalize_prefix(prefix)
     if norm_prefix is None:
         raise ValueError(
@@ -461,7 +461,9 @@ def identifiers_to_iris(
         )
 
 
-def _multi_column_map(df, columns, func, *, use_tqdm: bool = False):
+def _multi_column_map(
+    df: pd.DataFrame, columns: list[str], func: Callable, *, use_tqdm: bool = False
+) -> pd.Series:
     rows = df[columns].values
     if use_tqdm:
         rows = tqdm(rows, unit_scale=True)

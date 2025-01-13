@@ -1,31 +1,35 @@
 """Utilities."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
+from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import (
     Any,
+    Callable,
     DefaultDict,
     Dict,
-    Iterable,
     List,
-    Mapping,
     Optional,
-    Sequence,
+    TypeVar,
     Union,
     cast,
 )
 
 import click
 import requests
+from pydantic import BaseModel
 from pystow.utils import get_hashes
 
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
     METAREGISTRY_YAML_PATH,
+    PYDANTIC_1,
     REGISTRY_YAML_PATH,
 )
 from .version import get_version
@@ -40,7 +44,7 @@ class OLSBroken(RuntimeError):
     """Raised when the OLS is having a problem."""
 
 
-def secho(s, fg="cyan", bold=True, **kwargs):
+def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     """Wrap :func:`click.secho`."""
     click.echo(
         f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs)
@@ -80,10 +84,11 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     )
     res.raise_for_status()
     res_json = res.json()
-    return res_json["results"]["bindings"]
+    return cast(List[Mapping[str, Any]], res_json["results"]["bindings"])
 
 
-class NormDict(dict):
+# TODO make inherit from dict[str, str] interface
+class NormDict(dict[str, str]):
     """A dictionary that supports lexical normalization of keys on setting and getting."""
 
     def __setitem__(self, key: str, value: str) -> None:
@@ -97,17 +102,24 @@ class NormDict(dict):
             )
         super().__setitem__(norm_key, value)
 
-    def __getitem__(self, item: str) -> str:
+    def __getitem__(self, item: Any) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().__getitem__(_norm(item))
+        if not isinstance(item, str):
+            raise TypeError
+        rv = super().__getitem__(_norm(item))
+        if not isinstance(rv, str):
+            raise TypeError
+        return rv
 
-    def __contains__(self, item) -> bool:
+    def __contains__(self, item: Hashable) -> bool:
         """Check if an item is in the dictionary after lexically normalizing it."""
+        if not isinstance(item, str):
+            return False
         return super().__contains__(_norm(item))
 
-    def get(self, key: str, default=None) -> str:
+    def get(self, key: str, default: str | Any = None) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().get(_norm(key), default)
+        return cast(str, super().get(_norm(key), default))
 
 
 def _norm(s: str) -> str:
@@ -149,8 +161,17 @@ def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
     return hashes[alg].hexdigest()
 
 
+IdentifierGetter = Callable[[dict[str, Any], str], str]
+IdentifierCleaner = Callable[[str], str]
+
+
 def get_ols_descendants(
-    ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
+    ontology: str,
+    uri: str,
+    *,
+    force_download: bool = False,
+    get_identifier: IdentifierGetter | None = None,
+    clean: IdentifierCleaner | None = None,
 ) -> Mapping[str, Mapping[str, Any]]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
@@ -165,7 +186,11 @@ def get_ols_descendants(
 
 
 def _process_ols(
-    *, ontology, terms, clean=None, get_identifier=None
+    *,
+    ontology: str,
+    terms: list[dict[str, Any]],
+    clean: IdentifierCleaner | None = None,
+    get_identifier: IdentifierGetter | None = None,
 ) -> Mapping[str, Mapping[str, Any]]:
     if clean is None:
         clean = _clean
@@ -183,8 +208,8 @@ def _process_ols(
     return rv
 
 
-def _get_identifier(term, ontology: str) -> str:
-    return term["obo_id"][len(ontology) + 1 :]
+def _get_identifier(term: dict[str, Any], ontology: str) -> str:
+    return term["obo_id"][len(ontology) + 1 :]  # type:ignore
 
 
 def _clean(s: str) -> str:
@@ -231,7 +256,7 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
     """De-duplicate records that might have overlapping data."""
     dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
 
-    def _key(r: Dict[str, Any]):
+    def _key(r: Dict[str, Any]) -> tuple[str, ...]:
         return tuple(r.get(key) or "" for key in keys)
 
     for record in backfill(records, keys):
@@ -240,3 +265,34 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
     return sorted(rv, key=_key, reverse=True)
+
+
+def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
+    """Convert a pydantic model to a dict."""
+    if PYDANTIC_1:
+        return x.dict(**kwargs)
+    return x.model_dump(**kwargs)
+
+
+M = TypeVar("M", bound=BaseModel)
+
+
+def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
+    """Convert a dict to a pydantic model."""
+    if PYDANTIC_1:
+        return m.parse_obj(d)
+    return m.model_validate(d)
+
+
+def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
+    """Get the fields."""
+    if PYDANTIC_1:
+        return m.__fields__
+    return m.model_fields
+
+
+def pydantic_schema(m: type[M]) -> dict[str, Any]:
+    """Get the schema."""
+    if PYDANTIC_1:
+        return m.schema()
+    return m.model_json_schema()

@@ -117,10 +117,8 @@
             "ABM:",
             "abm:",
             "http://bioregistry.io/abm:",
-            "http://www.abmgood.com/catalogsearch/result/?cat=&q=",
             "http://www.abmgood.com/search?query=",
-            "https://bioregistry.io/abm:",
-            "https://www.abmgood.com/catalogsearch/result/?cat=&q="
+            "https://bioregistry.io/abm:"
         ]
     },
     {
@@ -339,6 +337,20 @@
             "https://identifiers.org/affy.probeset/",
             "https://identifiers.org/affy.probeset:",
             "https://n2t.net/affy.probeset:"
+        ]
+    },
+    {
+        "prefix": "afpo",
+        "uri_prefix": "http://purl.obolibrary.org/obo/AfPO_",
+        "uri_prefix_synonyms": [
+            "AFPO:",
+            "AfPO:",
+            "afpo:",
+            "http://bioregistry.io/AfPO:",
+            "http://bioregistry.io/afpo:",
+            "https://bioregistry.io/AfPO:",
+            "https://bioregistry.io/afpo:",
+            "https://purl.obolibrary.org/obo/AfPO_"
         ]
     },
     {
@@ -1120,6 +1132,30 @@
         ]
     },
     {
+        "pattern": "^\\d{4}$",
+        "prefix": "asteraceaegd.genome",
+        "uri_prefix": "https://cbcb.cdutcm.edu.cn/AGD/genome/details/?id=",
+        "uri_prefix_synonyms": [
+            "ASTERACEAEGD.GENOME:",
+            "asteraceaegd.genome:",
+            "http://bioregistry.io/asteraceaegd.genome:",
+            "http://cbcb.cdutcm.edu.cn/AGD/genome/details/?id=",
+            "https://bioregistry.io/asteraceaegd.genome:"
+        ]
+    },
+    {
+        "pattern": "^\\d{4}$",
+        "prefix": "asteraceaegd.plant",
+        "uri_prefix": "https://cbcb.cdutcm.edu.cn/AGD/plant/details/?id=",
+        "uri_prefix_synonyms": [
+            "ASTERACEAEGD.PLANT:",
+            "asteraceaegd.plant:",
+            "http://bioregistry.io/asteraceaegd.plant:",
+            "http://cbcb.cdutcm.edu.cn/AGD/plant/details/?id=",
+            "https://bioregistry.io/asteraceaegd.plant:"
+        ]
+    },
+    {
         "pattern": "^[A-Z](\\d+([A-Z]{1,2}(\\d+)?)?)?$",
         "prefix": "atc",
         "prefix_synonyms": [
@@ -1273,6 +1309,18 @@
             "https://identifiers.org/autdb/",
             "https://identifiers.org/autdb:",
             "https://n2t.net/autdb:"
+        ]
+    },
+    {
+        "pattern": "^[A-Z]-[0-9A-Z]{3}-[0-9A-Z]{3}$",
+        "prefix": "authenticus",
+        "uri_prefix": "https://www.authenticus.pt/",
+        "uri_prefix_synonyms": [
+            "AUTHENTICUS:",
+            "authenticus:",
+            "http://bioregistry.io/authenticus:",
+            "http://www.authenticus.pt/",
+            "https://bioregistry.io/authenticus:"
         ]
     },
     {
@@ -1450,7 +1498,7 @@
     {
         "pattern": "^\\d{7}$",
         "prefix": "bcgo",
-        "uri_prefix": "http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/",
+        "uri_prefix": "https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
         "uri_prefix_synonyms": [
             "BCGO:",
             "bcgo:",
@@ -1458,11 +1506,11 @@
             "http://bioregistry.io/bcgo:",
             "http://purl.obolibrary.org/obo/BCGO_",
             "http://www.ebi.ac.uk/ols/ontologies/bcgo/terms?iri=http://purl.obolibrary.org/obo/BCGO_",
+            "http://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://bioregistry.io/BCGO:",
             "https://bioregistry.io/bcgo:",
             "https://purl.obolibrary.org/obo/BCGO_",
-            "https://www.ebi.ac.uk/ols/ontologies/bcgo/terms?iri=http://purl.obolibrary.org/obo/BCGO_",
-            "https://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/"
+            "https://www.ebi.ac.uk/ols/ontologies/bcgo/terms?iri=http://purl.obolibrary.org/obo/BCGO_"
         ]
     },
     {
@@ -1508,12 +1556,12 @@
     {
         "pattern": "^\\d{4}$",
         "prefix": "bcrj",
-        "uri_prefix": "http://bcrj.org.br/celula/",
+        "uri_prefix": "https://bcrj.org.br/pesquisa/?search=",
         "uri_prefix_synonyms": [
             "BCRJ:",
             "bcrj:",
+            "http://bcrj.org.br/pesquisa/?search=",
             "http://bioregistry.io/bcrj:",
-            "https://bcrj.org.br/celula/",
             "https://bioregistry.io/bcrj:"
         ]
     },
@@ -1710,7 +1758,7 @@
         ]
     },
     {
-        "pattern": "^[a-z_A-Z]+$",
+        "pattern": "^c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y$",
         "prefix": "bigg.compartment",
         "uri_prefix": "http://bigg.ucsd.edu/compartments/",
         "uri_prefix_synonyms": [
@@ -1728,7 +1776,7 @@
         ]
     },
     {
-        "pattern": "^[a-z_A-Z0-9]+$",
+        "pattern": "^[a-z_A-Z0-9]+(\\[[c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y]\\])?$",
         "prefix": "bigg.metabolite",
         "uri_prefix": "http://bigg.ucsd.edu/models/universal/metabolites/",
         "uri_prefix_synonyms": [
@@ -1913,6 +1961,36 @@
         ]
     },
     {
+        "pattern": "^\\d{11}$",
+        "prefix": "biodeep",
+        "uri_prefix": "https://query.biodeep.cn/metabolite/",
+        "uri_prefix_synonyms": [
+            "BIODEEP:",
+            "biodeep:",
+            "http://bioregistry.io/biodeep:",
+            "http://identifiers.org/biodeep/",
+            "http://identifiers.org/biodeep/BioDeep_",
+            "http://identifiers.org/biodeep:",
+            "http://query.biodeep.cn/metabolite/",
+            "https://bioregistry.io/biodeep:",
+            "https://identifiers.org/biodeep/",
+            "https://identifiers.org/biodeep/BioDeep_",
+            "https://identifiers.org/biodeep:"
+        ]
+    },
+    {
+        "pattern": "^BD\\d[a-zA-Z0-9]+-[A-Za-z]-[A-Za-z]-[A-Za-z0-9]+$",
+        "prefix": "biodolphin",
+        "uri_prefix": "https://biodolphin.chemistry.gatech.edu/detail/",
+        "uri_prefix_synonyms": [
+            "BIODOLPHIN:",
+            "biodolphin:",
+            "http://biodolphin.chemistry.gatech.edu/detail/",
+            "http://bioregistry.io/biodolphin:",
+            "https://bioregistry.io/biodolphin:"
+        ]
+    },
+    {
         "pattern": "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$",
         "prefix": "biofactoid",
         "uri_prefix": "https://biofactoid.org/document/",
@@ -1921,7 +1999,11 @@
             "biofactoid:",
             "http://biofactoid.org/document/",
             "http://bioregistry.io/biofactoid:",
-            "https://bioregistry.io/biofactoid:"
+            "http://identifiers.org/biofactoid/",
+            "http://identifiers.org/biofactoid:",
+            "https://bioregistry.io/biofactoid:",
+            "https://identifiers.org/biofactoid/",
+            "https://identifiers.org/biofactoid:"
         ]
     },
     {
@@ -2044,7 +2126,6 @@
             "biomd:",
             "biomodels.db:",
             "http://bio2rdf.org/biomodels:",
-            "http://biomodels.caltech.edu/",
             "http://bioregistry.io/BIOMD:",
             "http://bioregistry.io/biomodels.db:",
             "http://identifiers.org/biomodels.db/",
@@ -2054,7 +2135,6 @@
             "http://www.ebi.ac.uk/biomodels/",
             "http://www.omicsdi.org/dataset/biomodels/",
             "https://bio2rdf.org/biomodels:",
-            "https://biomodels.caltech.edu/",
             "https://bioregistry.io/BIOMD:",
             "https://bioregistry.io/biomodels.db:",
             "https://identifiers.org/biomodels.db/",
@@ -2212,14 +2292,12 @@
             "http://identifiers.org/bioproject/",
             "http://identifiers.org/bioproject:",
             "http://n2t.net/bioproject:",
-            "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=",
             "http://www.ncbi.nlm.nih.gov/bioproject/?term=",
             "http://www.ncbi.nlm.nih.gov/bioproject?term=",
             "https://bioregistry.io/bioproject:",
             "https://identifiers.org/bioproject/",
             "https://identifiers.org/bioproject:",
             "https://n2t.net/bioproject:",
-            "https://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=",
             "https://www.ncbi.nlm.nih.gov/bioproject?term="
         ]
     },
@@ -2426,6 +2504,17 @@
             "https://identifiers.org/biotools/",
             "https://identifiers.org/biotools:",
             "https://n2t.net/biotools:"
+        ]
+    },
+    {
+        "prefix": "biotop",
+        "uri_prefix": "http://purl.org/biotop/biotop.owl#",
+        "uri_prefix_synonyms": [
+            "BIOTOP:",
+            "biotop:",
+            "http://bioregistry.io/biotop:",
+            "https://bioregistry.io/biotop:",
+            "https://purl.org/biotop/biotop.owl#"
         ]
     },
     {
@@ -2696,7 +2785,6 @@
             "BTO:",
             "bto:",
             "http://bio2rdf.org/bto:",
-            "http://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_",
             "http://bioregistry.io/BTO:",
             "http://bioregistry.io/bto:",
             "http://identifiers.org/BTO/",
@@ -2707,8 +2795,8 @@
             "http://purl.bioontology.org/ontology/BTO/BTO:",
             "http://www.brenda-enzymes.org/ontology.php?ontology_id=3&id_go=",
             "http://www.ebi.ac.uk/ols/ontologies/bto/terms?iri=http://purl.obolibrary.org/obo/BTO_",
+            "http://www.ebi.ac.uk/ols4/ontologies/bto/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://bio2rdf.org/bto:",
-            "https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_",
             "https://bioregistry.io/BTO:",
             "https://bioregistry.io/bto:",
             "https://identifiers.org/BTO/",
@@ -2719,7 +2807,8 @@
             "https://purl.bioontology.org/ontology/BTO/BTO:",
             "https://purl.obolibrary.org/obo/BTO_",
             "https://www.brenda-enzymes.org/ontology.php?ontology_id=3&id_go=",
-            "https://www.ebi.ac.uk/ols/ontologies/bto/terms?iri=http://purl.obolibrary.org/obo/BTO_"
+            "https://www.ebi.ac.uk/ols/ontologies/bto/terms?iri=http://purl.obolibrary.org/obo/BTO_",
+            "https://www.ebi.ac.uk/ols4/ontologies/bto/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F"
         ]
     },
     {
@@ -2769,6 +2858,18 @@
             "https://bioregistry.io/C4O:",
             "https://bioregistry.io/c4o:",
             "https://purl.org/spar/c4o/"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "cabi",
+        "uri_prefix": "https://www.cabi.org/cabebooks/ebook/",
+        "uri_prefix_synonyms": [
+            "CABI:",
+            "cabi:",
+            "http://bioregistry.io/cabi:",
+            "http://www.cabi.org/cabebooks/ebook/",
+            "https://bioregistry.io/cabi:"
         ]
     },
     {
@@ -2863,6 +2964,18 @@
             "https://identifiers.org/caps:",
             "https://n2t.net/caps:",
             "https://www.bioinsilico.org/cgi-bin/CAPSDB/getCAPScluster?nidcl="
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "carnegie.stage",
+        "uri_prefix": "https://embryology.med.unsw.edu.au/embryology/index.php/Carnegie_Stages#Stage_",
+        "uri_prefix_synonyms": [
+            "CARNEGIE.STAGE:",
+            "carnegie.stage:",
+            "http://bioregistry.io/carnegie.stage:",
+            "http://embryology.med.unsw.edu.au/embryology/index.php/Carnegie_Stages#Stage_",
+            "https://bioregistry.io/carnegie.stage:"
         ]
     },
     {
@@ -3069,7 +3182,7 @@
         ]
     },
     {
-        "pattern": "^CCDS\\d+\\.\\d+$",
+        "pattern": "^CCDS\\d+(\\.\\d+)?$",
         "prefix": "ccds",
         "uri_prefix": "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=",
         "uri_prefix_synonyms": [
@@ -3413,15 +3526,6 @@
         ]
     },
     {
-        "prefix": "cghdb",
-        "uri_prefix": "https://bioregistry.io/cghdb:",
-        "uri_prefix_synonyms": [
-            "CGHDB:",
-            "cghdb:",
-            "http://bioregistry.io/cghdb:"
-        ]
-    },
-    {
         "pattern": "^\\d+$",
         "prefix": "cgnc",
         "prefix_synonyms": [
@@ -3514,6 +3618,7 @@
             "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:",
             "http://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_",
+            "http://www.iedb.org/antigen/ChEBI:",
             "https://bio2rdf.org/chebi:",
             "https://bioregistry.io/CHEBI:",
             "https://bioregistry.io/CHEBIID:",
@@ -3527,7 +3632,8 @@
             "https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=",
             "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:",
-            "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_"
+            "https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_",
+            "https://www.iedb.org/antigen/ChEBI:"
         ]
     },
     {
@@ -3548,54 +3654,33 @@
         "prefix": "chembl",
         "prefix_synonyms": [
             "ChEMBL",
-            "ChEMBL-Targets",
-            "ChEMBL_ID",
-            "chembl.target"
+            "ChEMBL_ID"
         ],
         "uri_prefix": "https://www.ebi.ac.uk/chembl/entity/",
         "uri_prefix_synonyms": [
-            "CHEMBL-TARGETS:",
-            "CHEMBL.TARGET:",
             "CHEMBL:",
             "CHEMBL_ID:",
-            "ChEMBL-Targets:",
             "ChEMBL:",
             "ChEMBL_ID:",
-            "chembl-targets:",
-            "chembl.target:",
             "chembl:",
             "chembl_id:",
             "http://bio2rdf.org/chembl:",
-            "http://bioregistry.io/ChEMBL-Targets:",
             "http://bioregistry.io/ChEMBL:",
             "http://bioregistry.io/ChEMBL_ID:",
-            "http://bioregistry.io/chembl.target:",
             "http://bioregistry.io/chembl:",
-            "http://identifiers.org/chembl.target/",
-            "http://identifiers.org/chembl.target:",
             "http://identifiers.org/chembl/",
             "http://identifiers.org/chembl:",
-            "http://n2t.net/chembl.target:",
-            "http://rdf.ebi.ac.uk/resource/chembl/target/",
             "http://www.ebi.ac.uk/chembl/entity/",
-            "http://www.ebi.ac.uk/chembl/target/inspect/",
+            "http://www.ebi.ac.uk/chembl/target_report_card/",
             "http://www.ebi.ac.uk/chembldb/index.php/compound/inspect/",
-            "http://www.ebi.ac.uk/chembldb/target/inspect/",
             "https://bio2rdf.org/chembl:",
-            "https://bioregistry.io/ChEMBL-Targets:",
             "https://bioregistry.io/ChEMBL:",
             "https://bioregistry.io/ChEMBL_ID:",
-            "https://bioregistry.io/chembl.target:",
             "https://bioregistry.io/chembl:",
-            "https://identifiers.org/chembl.target/",
-            "https://identifiers.org/chembl.target:",
             "https://identifiers.org/chembl/",
             "https://identifiers.org/chembl:",
-            "https://n2t.net/chembl.target:",
-            "https://rdf.ebi.ac.uk/resource/chembl/target/",
-            "https://www.ebi.ac.uk/chembl/target/inspect/",
-            "https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/",
-            "https://www.ebi.ac.uk/chembldb/target/inspect/"
+            "https://www.ebi.ac.uk/chembl/target_report_card/",
+            "https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/"
         ]
     },
     {
@@ -3630,16 +3715,42 @@
             "http://bioregistry.io/chembl.compound:",
             "http://identifiers.org/chembl.compound/",
             "http://identifiers.org/chembl.compound:",
-            "http://linkedchemistry.info/chembl/chemblid/",
             "http://n2t.net/chembl.compound:",
             "http://rdf.ebi.ac.uk/resource/chembl/molecule/",
             "http://www.ebi.ac.uk/chembl/compound/inspect/",
             "https://bioregistry.io/chembl.compound:",
             "https://identifiers.org/chembl.compound/",
             "https://identifiers.org/chembl.compound:",
-            "https://linkedchemistry.info/chembl/chemblid/",
             "https://n2t.net/chembl.compound:",
             "https://rdf.ebi.ac.uk/resource/chembl/molecule/"
+        ]
+    },
+    {
+        "pattern": "^CHEMBL\\d+$",
+        "prefix": "chembl.target",
+        "prefix_synonyms": [
+            "ChEMBL-Targets"
+        ],
+        "uri_prefix": "https://www.ebi.ac.uk/chembl/target/inspect/",
+        "uri_prefix_synonyms": [
+            "CHEMBL-TARGETS:",
+            "CHEMBL.TARGET:",
+            "ChEMBL-Targets:",
+            "chembl-targets:",
+            "chembl.target:",
+            "http://bioregistry.io/ChEMBL-Targets:",
+            "http://bioregistry.io/chembl.target:",
+            "http://identifiers.org/chembl.target/",
+            "http://identifiers.org/chembl.target:",
+            "http://n2t.net/chembl.target:",
+            "http://www.ebi.ac.uk/chembl/target/inspect/",
+            "http://www.ebi.ac.uk/chembldb/target/inspect/",
+            "https://bioregistry.io/ChEMBL-Targets:",
+            "https://bioregistry.io/chembl.target:",
+            "https://identifiers.org/chembl.target/",
+            "https://identifiers.org/chembl.target:",
+            "https://n2t.net/chembl.target:",
+            "https://www.ebi.ac.uk/chembldb/target/inspect/"
         ]
     },
     {
@@ -3660,6 +3771,23 @@
             "https://identifiers.org/chemdb/",
             "https://identifiers.org/chemdb:",
             "https://n2t.net/chemdb:"
+        ]
+    },
+    {
+        "prefix": "chemicalbook",
+        "prefix_synonyms": [
+            "ChemicalBookNo"
+        ],
+        "uri_prefix": "https://bioregistry.io/chemicalbook:",
+        "uri_prefix_synonyms": [
+            "CHEMICALBOOK:",
+            "CHEMICALBOOKNO:",
+            "ChemicalBookNo:",
+            "chemicalbook:",
+            "chemicalbookno:",
+            "http://bioregistry.io/ChemicalBookNo:",
+            "http://bioregistry.io/chemicalbook:",
+            "https://bioregistry.io/ChemicalBookNo:"
         ]
     },
     {
@@ -3807,6 +3935,18 @@
             "https://bioregistry.io/cido:",
             "https://purl.obolibrary.org/obo/CIDO_",
             "https://www.ebi.ac.uk/ols/ontologies/cido/terms?iri=http://purl.obolibrary.org/obo/CIDO_"
+        ]
+    },
+    {
+        "pattern": "^([0-9A-F]{4}-){2}[0-9A-F]{4}$",
+        "prefix": "cienciavitae",
+        "uri_prefix": "https://www.cienciavitae.pt/",
+        "uri_prefix_synonyms": [
+            "CIENCIAVITAE:",
+            "cienciavitae:",
+            "http://bioregistry.io/cienciavitae:",
+            "http://www.cienciavitae.pt/",
+            "https://bioregistry.io/cienciavitae:"
         ]
     },
     {
@@ -4088,6 +4228,7 @@
             "http://onto.cellxgene-labs.prod.si.czi.technology/a/ontology/CL/CL:",
             "http://purl.bioontology.org/ontology/CL/CL:",
             "http://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/CL_",
+            "http://www.ebi.ac.uk/ols4/ontologies/cl/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://bio2rdf.org/cl:",
             "https://bioregistry.io/CL:",
             "https://bioregistry.io/cl:",
@@ -4099,7 +4240,8 @@
             "https://onto.cellxgene-labs.prod.si.czi.technology/a/ontology/CL/CL:",
             "https://purl.bioontology.org/ontology/CL/CL:",
             "https://purl.obolibrary.org/obo/CL_",
-            "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/CL_"
+            "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/CL_",
+            "https://www.ebi.ac.uk/ols4/ontologies/cl/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F"
         ]
     },
     {
@@ -4122,21 +4264,26 @@
         "pattern": "^\\d{7}$",
         "prefix": "classyfire",
         "prefix_synonyms": [
-            "CHEMONTID"
+            "CHEMONTID",
+            "chemont"
         ],
         "uri_prefix": "http://classyfire.wishartlab.com/tax_nodes/C",
         "uri_prefix_synonyms": [
+            "CHEMONT:",
             "CHEMONTID:",
             "CLASSYFIRE:",
+            "chemont:",
             "chemontid:",
             "classyfire:",
             "http://bioregistry.io/CHEMONTID:",
+            "http://bioregistry.io/chemont:",
             "http://bioregistry.io/classyfire:",
             "http://classyfire.wishartlab.com/tax_nodes/",
             "http://identifiers.org/classyfire/",
             "http://identifiers.org/classyfire/C",
             "http://identifiers.org/classyfire:",
             "https://bioregistry.io/CHEMONTID:",
+            "https://bioregistry.io/chemont:",
             "https://bioregistry.io/classyfire:",
             "https://classyfire.wishartlab.com/tax_nodes/",
             "https://classyfire.wishartlab.com/tax_nodes/C",
@@ -4182,6 +4329,15 @@
             "https://identifiers.org/cldb:",
             "https://n2t.net/cldb:",
             "hypercldb:"
+        ]
+    },
+    {
+        "prefix": "clingen.affiliation",
+        "uri_prefix": "https://bioregistry.io/clingen.affiliation:",
+        "uri_prefix_synonyms": [
+            "CLINGEN.AFFILIATION:",
+            "clingen.affiliation:",
+            "http://bioregistry.io/clingen.affiliation:"
         ]
     },
     {
@@ -4344,8 +4500,8 @@
             "http://bioregistry.io/clo:",
             "http://identifiers.org/clo/",
             "http://identifiers.org/clo:",
-            "http://www.ebi.ac.uk/ols/ontologies/clo/terms?iri=http://purl.obolibrary.org/obo/",
             "http://www.ebi.ac.uk/ols/ontologies/clo/terms?iri=http://purl.obolibrary.org/obo/CLO_",
+            "http://www.ebi.ac.uk/ols4/ontologies/clo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "http://www.ebi.ac.uk/ols4/ontologies/clo/terms?short_form=CLO_",
             "https://bio2rdf.org/clo:",
             "https://bioportal.bioontology.org/ontologies/CLO/?p=classes&conceptid=http://purl.obolibrary.org/obo/CLO_",
@@ -4354,19 +4510,19 @@
             "https://identifiers.org/clo/",
             "https://identifiers.org/clo:",
             "https://purl.obolibrary.org/obo/CLO_",
-            "https://www.ebi.ac.uk/ols/ontologies/clo/terms?iri=http://purl.obolibrary.org/obo/",
             "https://www.ebi.ac.uk/ols/ontologies/clo/terms?iri=http://purl.obolibrary.org/obo/CLO_",
+            "https://www.ebi.ac.uk/ols4/ontologies/clo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://www.ebi.ac.uk/ols4/ontologies/clo/terms?short_form=CLO_"
         ]
     },
     {
         "prefix": "cls",
-        "uri_prefix": "https://cls.shop/",
+        "uri_prefix": "https://www.cytion.com/",
         "uri_prefix_synonyms": [
             "CLS:",
             "cls:",
             "http://bioregistry.io/cls:",
-            "http://cls.shop/",
+            "http://www.cytion.com/",
             "https://bioregistry.io/cls:"
         ]
     },
@@ -4940,7 +5096,7 @@
         ]
     },
     {
-        "pattern": "^CNP\\d{7}$",
+        "pattern": "^CNP\\d{7}(\\.\\d+)?$",
         "prefix": "coconut",
         "uri_prefix": "https://coconut.naturalproducts.net/compound/coconut_id/",
         "uri_prefix_synonyms": [
@@ -4949,6 +5105,18 @@
             "http://bioregistry.io/coconut:",
             "http://coconut.naturalproducts.net/compound/coconut_id/",
             "https://bioregistry.io/coconut:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "coexistence",
+        "uri_prefix": "https://mamoura.eci.ufmg.br/tematres/vocab/index.php?tema=",
+        "uri_prefix_synonyms": [
+            "COEXISTENCE:",
+            "coexistence:",
+            "http://bioregistry.io/coexistence:",
+            "http://mamoura.eci.ufmg.br/tematres/vocab/index.php?tema=",
+            "https://bioregistry.io/coexistence:"
         ]
     },
     {
@@ -4970,15 +5138,13 @@
             "http://identifiers.org/cog/",
             "http://identifiers.org/cog:",
             "http://www.ncbi.nlm.nih.gov/COG/grace/cogenome.cgi?g=",
-            "http://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog=",
             "http://www.ncbi.nlm.nih.gov/research/cog/cog/",
             "https://bio2rdf.org/cog:",
             "https://bioregistry.io/COG_Cluster:",
             "https://bioregistry.io/cog:",
             "https://identifiers.org/cog/",
             "https://identifiers.org/cog:",
-            "https://www.ncbi.nlm.nih.gov/COG/grace/cogenome.cgi?g=",
-            "https://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog="
+            "https://www.ncbi.nlm.nih.gov/COG/grace/cogenome.cgi?g="
         ]
     },
     {
@@ -5003,6 +5169,17 @@
             "http://www.ncbi.nlm.nih.gov/research/cog/pathway/",
             "https://bioregistry.io/cog.pathway:",
             "https://www.ncbi.nlm.nih.gov/COG/new/release/coglist.cgi?pathw="
+        ]
+    },
+    {
+        "prefix": "coi",
+        "uri_prefix": "https://coicatalogue.uc.pt/index.php?t=specimen&COINumber=",
+        "uri_prefix_synonyms": [
+            "COI:",
+            "coi:",
+            "http://bioregistry.io/coi:",
+            "http://coicatalogue.uc.pt/index.php?t=specimen&COINumber=",
+            "https://bioregistry.io/coi:"
         ]
     },
     {
@@ -5275,7 +5452,7 @@
     {
         "pattern": "^\\d+$",
         "prefix": "corum",
-        "uri_prefix": "https://mips.helmholtz-muenchen.de/corum/?id=",
+        "uri_prefix": "https://mips.helmholtz-muenchen.de/corum/?complex_id=",
         "uri_prefix_synonyms": [
             "CORUM:",
             "corum:",
@@ -5284,6 +5461,7 @@
             "http://identifiers.org/corum/",
             "http://identifiers.org/corum:",
             "http://mips.helmholtz-muenchen.de/corum/#?uniprotID=",
+            "http://mips.helmholtz-muenchen.de/corum/?complex_id=",
             "http://mips.helmholtz-muenchen.de/corum/?id=",
             "http://mips.helmholtz-muenchen.de/genre/proj/corum/complexdetails.html?id=",
             "http://n2t.net/corum:",
@@ -5292,12 +5470,13 @@
             "https://identifiers.org/corum/",
             "https://identifiers.org/corum:",
             "https://mips.helmholtz-muenchen.de/corum/#?uniprotID=",
+            "https://mips.helmholtz-muenchen.de/corum/?id=",
             "https://mips.helmholtz-muenchen.de/genre/proj/corum/complexdetails.html?id=",
             "https://n2t.net/corum:"
         ]
     },
     {
-        "pattern": "^[A-Z0-9]+$",
+        "pattern": "^[A-Z0-9][A-Z0-9-]*$",
         "prefix": "cosmic",
         "uri_prefix": "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=",
         "uri_prefix_synonyms": [
@@ -5417,6 +5596,18 @@
             "http://bioregistry.io/crates:",
             "http://crates.io/crates/",
             "https://bioregistry.io/crates:"
+        ]
+    },
+    {
+        "pattern": "^(conceptualization|data-curation|formal-analysis|funding-acquisition|investigation|methodology|project-administration|resources|software|supervision|validation|visualization|writing-original-draft|writing-review-editing)$",
+        "prefix": "credit",
+        "uri_prefix": "https://credit.niso.org/contributor-roles/",
+        "uri_prefix_synonyms": [
+            "CREDIT:",
+            "credit:",
+            "http://bioregistry.io/credit:",
+            "http://credit.niso.org/contributor-roles/",
+            "https://bioregistry.io/credit:"
         ]
     },
     {
@@ -5669,7 +5860,7 @@
         ]
     },
     {
-        "pattern": "^CTRI/\\d{4}/\\d{2}/\\d+$",
+        "pattern": "^CTRI/\\d{4}/\\d{2,3}/\\d+$",
         "prefix": "ctri",
         "uri_prefix": "https://trialsearch.who.int/Trial2.aspx?TrialID=",
         "uri_prefix_synonyms": [
@@ -5846,13 +6037,20 @@
     },
     {
         "prefix": "datacommons",
+        "prefix_synonyms": [
+            "dcid"
+        ],
         "uri_prefix": "https://datacommons.org/browser/",
         "uri_prefix_synonyms": [
             "DATACOMMONS:",
+            "DCID:",
             "datacommons:",
+            "dcid:",
             "http://bioregistry.io/datacommons:",
+            "http://bioregistry.io/dcid:",
             "http://datacommons.org/browser/",
-            "https://bioregistry.io/datacommons:"
+            "https://bioregistry.io/datacommons:",
+            "https://bioregistry.io/dcid:"
         ]
     },
     {
@@ -6043,6 +6241,17 @@
         ]
     },
     {
+        "prefix": "dbpedia",
+        "uri_prefix": "http://dbpedia.org/resource/",
+        "uri_prefix_synonyms": [
+            "DBPEDIA:",
+            "dbpedia:",
+            "http://bioregistry.io/dbpedia:",
+            "https://bioregistry.io/dbpedia:",
+            "https://dbpedia.org/resource/"
+        ]
+    },
+    {
         "pattern": "^\\d+$",
         "prefix": "dbprobe",
         "uri_prefix": "https://www.ncbi.nlm.nih.gov/probe/?term=",
@@ -6079,6 +6288,7 @@
             "http://bioregistry.io/dbsnp:",
             "http://bioregistry.io/snp2tfbs:",
             "http://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
+            "http://epd.expasy.org/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
             "http://identifiers.org/dbsnp/",
             "http://identifiers.org/dbsnp:",
             "http://identifiers.org/snp2tfbs/",
@@ -6090,6 +6300,7 @@
             "https://bioregistry.io/dbsnp:",
             "https://bioregistry.io/snp2tfbs:",
             "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
+            "https://epd.expasy.org/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=",
             "https://identifiers.org/dbsnp/",
             "https://identifiers.org/dbsnp:",
             "https://identifiers.org/snp2tfbs/",
@@ -6140,7 +6351,9 @@
         "prefix_synonyms": [
             "dc.elements",
             "dc11",
-            "dce"
+            "dce",
+            "dcelem",
+            "elements"
         ],
         "uri_prefix": "http://purl.org/dc/elements/1.1/",
         "uri_prefix_synonyms": [
@@ -6148,18 +6361,26 @@
             "DC11:",
             "DC:",
             "DCE:",
+            "DCELEM:",
+            "ELEMENTS:",
             "dc.elements:",
             "dc11:",
             "dc:",
             "dce:",
+            "dcelem:",
+            "elements:",
             "http://bioregistry.io/dc.elements:",
             "http://bioregistry.io/dc11:",
             "http://bioregistry.io/dc:",
             "http://bioregistry.io/dce:",
+            "http://bioregistry.io/dcelem:",
+            "http://bioregistry.io/elements:",
             "https://bioregistry.io/dc.elements:",
             "https://bioregistry.io/dc11:",
             "https://bioregistry.io/dc:",
             "https://bioregistry.io/dce:",
+            "https://bioregistry.io/dcelem:",
+            "https://bioregistry.io/elements:",
             "https://purl.org/dc/elements/1.1/"
         ]
     },
@@ -6192,23 +6413,28 @@
         "prefix": "dcterms",
         "prefix_synonyms": [
             "dc.terms",
-            "dct"
+            "dct",
+            "terms"
         ],
         "uri_prefix": "http://purl.org/dc/terms/",
         "uri_prefix_synonyms": [
             "DC.TERMS:",
             "DCT:",
             "DCTERMS:",
+            "TERMS:",
             "dc.terms:",
             "dct:",
             "dcterms:",
             "http://bioregistry.io/dc.terms:",
             "http://bioregistry.io/dct:",
             "http://bioregistry.io/dcterms:",
+            "http://bioregistry.io/terms:",
             "https://bioregistry.io/dc.terms:",
             "https://bioregistry.io/dct:",
             "https://bioregistry.io/dcterms:",
-            "https://purl.org/dc/terms/"
+            "https://bioregistry.io/terms:",
+            "https://purl.org/dc/terms/",
+            "terms:"
         ]
     },
     {
@@ -6522,15 +6748,63 @@
     {
         "pattern": "^\\d+$",
         "prefix": "dhba",
-        "uri_prefix": "https://biopragmatics.github.io/providers/dhba/",
+        "uri_prefix": "https://purl.brain-bican.org/ontology/dhbao/DHBA_",
         "uri_prefix_synonyms": [
             "DHBA:",
             "dhba:",
             "http://biopragmatics.github.io/providers/dhba/",
             "http://bioregistry.io/DHBA:",
             "http://bioregistry.io/dhba:",
+            "http://purl.brain-bican.org/ontology/dhbao/DHBA_",
+            "https://biopragmatics.github.io/providers/dhba/",
             "https://bioregistry.io/DHBA:",
             "https://bioregistry.io/dhba:"
+        ]
+    },
+    {
+        "prefix": "dialnet.article",
+        "uri_prefix": "https://dialnet.unirioja.es/servlet/articulo?codigo=",
+        "uri_prefix_synonyms": [
+            "DIALNET.ARTICLE:",
+            "dialnet.article:",
+            "http://bioregistry.io/dialnet.article:",
+            "http://dialnet.unirioja.es/servlet/articulo?codigo=",
+            "https://bioregistry.io/dialnet.article:"
+        ]
+    },
+    {
+        "pattern": "^[1-9]\\d*$",
+        "prefix": "dialnet.author",
+        "uri_prefix": "https://dialnet.unirioja.es/servlet/autor?codigo=",
+        "uri_prefix_synonyms": [
+            "DIALNET.AUTHOR:",
+            "dialnet.author:",
+            "http://bioregistry.io/dialnet.author:",
+            "http://dialnet.unirioja.es/servlet/autor?codigo=",
+            "https://bioregistry.io/dialnet.author:"
+        ]
+    },
+    {
+        "prefix": "dialnet.book",
+        "uri_prefix": "https://dialnet.unirioja.es/servlet/libro?codigo=",
+        "uri_prefix_synonyms": [
+            "DIALNET.BOOK:",
+            "dialnet.book:",
+            "http://bioregistry.io/dialnet.book:",
+            "http://dialnet.unirioja.es/servlet/libro?codigo=",
+            "https://bioregistry.io/dialnet.book:"
+        ]
+    },
+    {
+        "pattern": "^[1-9]\\d{0,6}$",
+        "prefix": "dialnet.journal",
+        "uri_prefix": "https://dialnet.unirioja.es/servlet/revista?codigo=",
+        "uri_prefix_synonyms": [
+            "DIALNET.JOURNAL:",
+            "dialnet.journal:",
+            "http://bioregistry.io/dialnet.journal:",
+            "http://dialnet.unirioja.es/servlet/revista?codigo=",
+            "https://bioregistry.io/dialnet.journal:"
         ]
     },
     {
@@ -6668,12 +6942,12 @@
     },
     {
         "prefix": "discoverx",
-        "uri_prefix": "https://www.discoverx.com/?post_type=product&s=",
+        "uri_prefix": "https://www.discoverx.com/catalogmanagement/catalog/?searchText=",
         "uri_prefix_synonyms": [
             "DISCOVERX:",
             "discoverx:",
             "http://bioregistry.io/discoverx:",
-            "http://www.discoverx.com/?post_type=product&s=",
+            "http://www.discoverx.com/catalogmanagement/catalog/?searchText=",
             "https://bioregistry.io/discoverx:"
         ]
     },
@@ -6805,6 +7079,28 @@
             "http://bioregistry.io/doap:",
             "https://bioregistry.io/doap:",
             "https://usefulinc.com/ns/doap#"
+        ]
+    },
+    {
+        "prefix": "dockerhub.repo",
+        "uri_prefix": "https://hub.docker.com/r/",
+        "uri_prefix_synonyms": [
+            "DOCKERHUB.REPO:",
+            "dockerhub.repo:",
+            "http://bioregistry.io/dockerhub.repo:",
+            "http://hub.docker.com/r/",
+            "https://bioregistry.io/dockerhub.repo:"
+        ]
+    },
+    {
+        "prefix": "dockerhub.user",
+        "uri_prefix": "https://hub.docker.com/u/",
+        "uri_prefix_synonyms": [
+            "DOCKERHUB.USER:",
+            "dockerhub.user:",
+            "http://bioregistry.io/dockerhub.user:",
+            "http://hub.docker.com/u/",
+            "https://bioregistry.io/dockerhub.user:"
         ]
     },
     {
@@ -7008,6 +7304,17 @@
         ]
     },
     {
+        "prefix": "dpvocab",
+        "uri_prefix": "https://w3id.org/dpv#",
+        "uri_prefix_synonyms": [
+            "DPVOCAB:",
+            "dpvocab:",
+            "http://bioregistry.io/dpvocab:",
+            "http://w3id.org/dpv#",
+            "https://bioregistry.io/dpvocab:"
+        ]
+    },
+    {
         "pattern": "^\\w+$",
         "prefix": "dragondb.allele",
         "uri_prefix": "https://bioregistry.io/dragondb.allele:",
@@ -7167,7 +7474,6 @@
             "http://bioregistry.io/DrugBank:",
             "http://bioregistry.io/drugbank:",
             "http://go.drugbank.com/drugs/",
-            "http://go.drugbank.com/drugs/DB",
             "http://identifiers.org/drugbank/",
             "http://identifiers.org/drugbank:",
             "http://n2t.net/drugbank:",
@@ -7176,7 +7482,6 @@
             "https://bioregistry.io/DrugBank:",
             "https://bioregistry.io/drugbank:",
             "https://go.drugbank.com/drugs/",
-            "https://go.drugbank.com/drugs/DB",
             "https://identifiers.org/drugbank/",
             "https://identifiers.org/drugbank:",
             "https://n2t.net/drugbank:",
@@ -7316,11 +7621,11 @@
             "dsmzcelldive:",
             "http://bioregistry.io/DSMZCellDive:",
             "http://bioregistry.io/dsmz:",
-            "http://celldive.dsmz.de/cellline/",
+            "http://celldive.dsmz.de/celllines/",
             "http://www.dsmz.de/collection/catalogue/details/culture/",
             "https://bioregistry.io/DSMZCellDive:",
             "https://bioregistry.io/dsmz:",
-            "https://celldive.dsmz.de/cellline/"
+            "https://celldive.dsmz.de/celllines/"
         ]
     },
     {
@@ -7360,6 +7665,17 @@
             "https://bioregistry.io/duo:",
             "https://purl.obolibrary.org/obo/DUO_",
             "https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http://purl.obolibrary.org/obo/DUO_"
+        ]
+    },
+    {
+        "prefix": "dwc",
+        "uri_prefix": "http://rs.tdwg.org/dwc/terms/",
+        "uri_prefix_synonyms": [
+            "DWC:",
+            "dwc:",
+            "http://bioregistry.io/dwc:",
+            "https://bioregistry.io/dwc:",
+            "https://rs.tdwg.org/dwc/terms/"
         ]
     },
     {
@@ -7416,8 +7732,10 @@
             "ECACC:",
             "ecacc:",
             "http://bioregistry.io/ecacc:",
+            "http://www.culturecollections.org.uk/products/celllines/detail.jsp?refId=",
             "http://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=",
-            "https://bioregistry.io/ecacc:"
+            "https://bioregistry.io/ecacc:",
+            "https://www.culturecollections.org.uk/products/celllines/detail.jsp?refId="
         ]
     },
     {
@@ -7437,7 +7755,7 @@
         ]
     },
     {
-        "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$",
+        "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.[nB]\\d{1,3})?$",
         "prefix": "eccode",
         "prefix_synonyms": [
             "EC",
@@ -7497,7 +7815,6 @@
             "http://sabiork.h-its.org/newSearch?q=ecnumber:",
             "http://www.brenda-enzymes.info/enzyme.php?ecno=",
             "http://www.brenda-enzymes.org/php/result_flat.php4?ecno=",
-            "http://www.ebi.ac.uk/enzymeportal/ec/",
             "http://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=",
             "http://www.ebi.ac.uk/intenz/query?cmd=SearchID&id=",
             "http://www.enzyme-database.org/query.php?ec=",
@@ -7530,7 +7847,6 @@
             "https://sabiork.h-its.org/newSearch?q=ecnumber:",
             "https://www.brenda-enzymes.info/enzyme.php?ecno=",
             "https://www.brenda-enzymes.org/php/result_flat.php4?ecno=",
-            "https://www.ebi.ac.uk/enzymeportal/ec/",
             "https://www.ebi.ac.uk/intenz/query?cmd=SearchID&id=",
             "https://www.enzyme-database.org/query.php?ec=",
             "https://www.genome.jp/dbget-bin/www_bget?ec:",
@@ -7663,10 +7979,8 @@
             "ECOCYC:",
             "ecocyc:",
             "http://bioregistry.io/ecocyc:",
-            "http://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=",
             "http://ecocyc.org/gene?id=",
-            "https://bioregistry.io/ecocyc:",
-            "https://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object="
+            "https://bioregistry.io/ecocyc:"
         ]
     },
     {
@@ -7904,6 +8218,7 @@
             "http://n2t.net/efo:",
             "http://purl.bioontology.org/ontology/EFO/efo:EFO_",
             "http://www.ebi.ac.uk/efo/",
+            "http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_",
             "https://bioregistry.io/EFO:",
             "https://bioregistry.io/efo:",
             "https://identifiers.org/efo/",
@@ -7911,7 +8226,8 @@
             "https://n2t.net/efo:",
             "https://purl.bioontology.org/ontology/EFO/efo:EFO_",
             "https://www.ebi.ac.uk/efo/",
-            "https://www.ebi.ac.uk/efo/EFO_"
+            "https://www.ebi.ac.uk/efo/EFO_",
+            "https://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_"
         ]
     },
     {
@@ -8265,6 +8581,7 @@
             "http://bioregistry.io/ensembl.bacteria:",
             "http://bioregistry.io/ensembl.fungi:",
             "http://bioregistry.io/ensembl:",
+            "http://ciliogenics.com/?page=General%20info&query=",
             "http://ensembl.org/id/",
             "http://fungi.ensembl.org/[?species_name]/Gene/Summary?g=",
             "http://fungi.ensembl.org/id/",
@@ -8281,7 +8598,6 @@
             "http://n2t.net/ensembl:",
             "http://rdf.ebi.ac.uk/resource/ensembl/",
             "http://useast.ensembl.org/id/",
-            "http://uswest.ensembl.org/id/",
             "http://www.ebi.ac.uk/astd/geneview.html?acc=",
             "http://www.ensembl.org/id/",
             "https://asia.ensembl.org/id/",
@@ -8297,6 +8613,7 @@
             "https://bioregistry.io/ensembl.bacteria:",
             "https://bioregistry.io/ensembl.fungi:",
             "https://bioregistry.io/ensembl:",
+            "https://ciliogenics.com/?page=General%20info&query=",
             "https://ensembl.org/id/",
             "https://fungi.ensembl.org/[?species_name]/Gene/Summary?g=",
             "https://fungi.ensembl.org/id/",
@@ -8313,7 +8630,6 @@
             "https://n2t.net/ensembl:",
             "https://rdf.ebi.ac.uk/resource/ensembl/",
             "https://useast.ensembl.org/id/",
-            "https://uswest.ensembl.org/id/",
             "https://www.ebi.ac.uk/astd/geneview.html?acc="
         ]
     },
@@ -8659,10 +8975,8 @@
             "ESTDAB:",
             "estdab:",
             "http://bioregistry.io/estdab:",
-            "http://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?",
             "http://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?ESTDAB-",
-            "https://bioregistry.io/estdab:",
-            "https://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?"
+            "https://bioregistry.io/estdab:"
         ]
     },
     {
@@ -8914,6 +9228,18 @@
         ]
     },
     {
+        "pattern": "^FC(HS|MM)_\\d+$",
+        "prefix": "fanta",
+        "uri_prefix": "https://fanta.bio/cre/",
+        "uri_prefix_synonyms": [
+            "FANTA:",
+            "fanta:",
+            "http://bioregistry.io/fanta:",
+            "http://fanta.bio/cre/",
+            "https://bioregistry.io/fanta:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "fao",
         "uri_prefix": "http://purl.obolibrary.org/obo/FAO_",
@@ -9116,6 +9442,29 @@
         ]
     },
     {
+        "pattern": "^\\d{6}$",
+        "prefix": "fda.application",
+        "uri_prefix": "https://fda.report/applications/",
+        "uri_prefix_synonyms": [
+            "FDA.APPLICATION:",
+            "fda.application:",
+            "http://bioregistry.io/fda.application:",
+            "http://fda.report/applications/",
+            "https://bioregistry.io/fda.application:"
+        ]
+    },
+    {
+        "prefix": "ferroliganddb",
+        "uri_prefix": "https://ferr.gulab.org.cn/browse/",
+        "uri_prefix_synonyms": [
+            "FERROLIGANDDB:",
+            "ferroliganddb:",
+            "http://bioregistry.io/ferroliganddb:",
+            "http://ferr.gulab.org.cn/browse/",
+            "https://bioregistry.io/ferroliganddb:"
+        ]
+    },
+    {
         "prefix": "fhir.implementation",
         "uri_prefix": "https://hl7.org/fhir/us/",
         "uri_prefix_synonyms": [
@@ -9307,7 +9656,7 @@
             "FMAID",
             "FMA_RETIRED"
         ],
-        "uri_prefix": "http://purl.org/sig/ont/fma/fma",
+        "uri_prefix": "https://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:",
         "uri_prefix_synonyms": [
             "FMA:",
             "FMAID:",
@@ -9326,7 +9675,9 @@
             "http://n2t.net/fma:",
             "http://purl.bioontology.org/ontology/FMA_subset/FMA:",
             "http://purl.obolibrary.org/obo/FMA_",
+            "http://purl.org/sig/ont/fma/fma",
             "http://www.ebi.ac.uk/ols/ontologies/fma/terms?iri=http://purl.obolibrary.org/obo/FMA_",
+            "http://www.ebi.ac.uk/ols4/ontologies/fma/terms?obo_id=FMA:",
             "https://bio2rdf.org/fma:",
             "https://bioregistry.io/FMA:",
             "https://bioregistry.io/FMAID:",
@@ -9872,25 +10223,6 @@
         ]
     },
     {
-        "pattern": "^\\d+$",
-        "prefix": "gc",
-        "prefix_synonyms": [
-            "gc_id"
-        ],
-        "uri_prefix": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
-        "uri_prefix_synonyms": [
-            "GC:",
-            "GC_ID:",
-            "gc:",
-            "gc_id:",
-            "http://bioregistry.io/gc:",
-            "http://bioregistry.io/gc_id:",
-            "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
-            "https://bioregistry.io/gc:",
-            "https://bioregistry.io/gc_id:"
-        ]
-    },
-    {
         "pattern": "^GCST\\d{6}\\d*$",
         "prefix": "gcst",
         "uri_prefix": "https://www.ebi.ac.uk/gwas/studies/",
@@ -9982,8 +10314,10 @@
             "GEMET:",
             "gemet:",
             "http://bioregistry.io/gemet:",
+            "http://www.eionet.europa.eu/gemet/concept/",
             "http://www.eionet.europa.eu/gemet/en/concept/",
-            "https://bioregistry.io/gemet:"
+            "https://bioregistry.io/gemet:",
+            "https://www.eionet.europa.eu/gemet/concept/"
         ]
     },
     {
@@ -10037,6 +10371,17 @@
             "ncbi.gi:",
             "ncbi_gi:",
             "ncbigi:"
+        ]
+    },
+    {
+        "prefix": "genbase",
+        "uri_prefix": "https://ngdc.cncb.ac.cn/genbase/search/gb/",
+        "uri_prefix_synonyms": [
+            "GENBASE:",
+            "genbase:",
+            "http://bioregistry.io/genbase:",
+            "http://ngdc.cncb.ac.cn/genbase/search/gb/",
+            "https://bioregistry.io/genbase:"
         ]
     },
     {
@@ -10444,6 +10789,17 @@
         ]
     },
     {
+        "prefix": "glottolog",
+        "uri_prefix": "https://glottolog.org/resource/languoid/id/",
+        "uri_prefix_synonyms": [
+            "GLOTTOLOG:",
+            "glottolog:",
+            "http://bioregistry.io/glottolog:",
+            "http://glottolog.org/resource/languoid/id/",
+            "https://bioregistry.io/glottolog:"
+        ]
+    },
+    {
         "pattern": "^EP\\d{4}$",
         "prefix": "glycoepitope",
         "uri_prefix": "https://www.glycoepitope.jp/epitopes/",
@@ -10527,31 +10883,24 @@
     },
     {
         "pattern": "^G[0-9]{5}[A-Z]{2}$",
-        "prefix": "glygen",
-        "uri_prefix": "https://glygen.org/glycan/",
-        "uri_prefix_synonyms": [
-            "GLYGEN:",
-            "glygen:",
-            "http://bioregistry.io/glygen:",
-            "http://glygen.org/glycan/",
-            "https://bioregistry.io/glygen:"
-        ]
-    },
-    {
-        "pattern": "^G[0-9]{5}[A-Z]{2}$",
         "prefix": "glytoucan",
         "prefix_synonyms": [
-            "glycomedb"
+            "glycomedb",
+            "glygen"
         ],
         "uri_prefix": "https://glytoucan.org/Structures/Glycans/",
         "uri_prefix_synonyms": [
             "GLYCOMEDB:",
+            "GLYGEN:",
             "GLYTOUCAN:",
             "glycomedb:",
+            "glygen:",
             "glytoucan:",
             "http://bio2rdf.org/glycomedb:",
             "http://bioregistry.io/glycomedb:",
+            "http://bioregistry.io/glygen:",
             "http://bioregistry.io/glytoucan:",
+            "http://glygen.org/glycan/",
             "http://glytoucan.org/Structures/Glycans/",
             "http://identifiers.org/glycomedb/",
             "http://identifiers.org/glycomedb:",
@@ -10562,7 +10911,9 @@
             "http://www.glycome-db.org/database/showStructure.action?glycomeId=",
             "https://bio2rdf.org/glycomedb:",
             "https://bioregistry.io/glycomedb:",
+            "https://bioregistry.io/glygen:",
             "https://bioregistry.io/glytoucan:",
+            "https://glygen.org/glycan/",
             "https://identifiers.org/glycomedb/",
             "https://identifiers.org/glycomedb:",
             "https://identifiers.org/glytoucan/",
@@ -10668,10 +11019,12 @@
             "GND:",
             "gnd:",
             "http://bioregistry.io/gnd:",
+            "http://d-nb.info/gnd/",
             "http://identifiers.org/gnd/",
             "http://identifiers.org/gnd:",
             "http://lobid.org/gnd/",
             "https://bioregistry.io/gnd:",
+            "https://d-nb.info/gnd/",
             "https://identifiers.org/gnd/",
             "https://identifiers.org/gnd:"
         ]
@@ -10790,6 +11143,7 @@
             "http://n2t.net/go:",
             "http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:",
             "http://www.ebi.ac.uk/QuickGO/term/",
+            "http://www.ebi.ac.uk/QuickGO/term/GO:",
             "http://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_",
             "http://www.geneontology.org/GO:",
             "http://www.informatics.jax.org/searches/GO.cgi?id=GO:",
@@ -10816,6 +11170,7 @@
             "https://purl.obolibrary.org/obo/GO_",
             "https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:",
             "https://www.ebi.ac.uk/QuickGO/term/",
+            "https://www.ebi.ac.uk/QuickGO/term/GO:",
             "https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_",
             "https://www.geneontology.org/GO:",
             "https://www.informatics.jax.org/searches/GO.cgi?id=GO:",
@@ -10842,10 +11197,10 @@
             "GO.MODEL:",
             "go.model:",
             "http://bioregistry.io/go.model:",
-            "http://www.geneontology.org/gocam/",
+            "http://model.geneontology.org/",
             "https://bioregistry.io/go.model:",
-            "https://noctua.geneontology.org/editor/graph/gomodel:",
-            "https://www.geneontology.org/gocam/"
+            "https://model.geneontology.org/",
+            "https://noctua.geneontology.org/editor/graph/gomodel:"
         ]
     },
     {
@@ -11002,8 +11357,10 @@
             "GOOGLE.BOOK:",
             "google.book:",
             "http://bioregistry.io/google.book:",
+            "http://books.google.com/books/?id=",
             "http://books.google.com/books?id=",
-            "https://bioregistry.io/google.book:"
+            "https://bioregistry.io/google.book:",
+            "https://books.google.com/books/?id="
         ]
     },
     {
@@ -11031,6 +11388,18 @@
             "https://n2t.net/google.patent:",
             "https://patents.google.com/patent/",
             "patent:"
+        ]
+    },
+    {
+        "pattern": "^[-_0-9A-Za-z]{12}$",
+        "prefix": "google.scholar",
+        "uri_prefix": "https://scholar.google.com/citations?user=",
+        "uri_prefix_synonyms": [
+            "GOOGLE.SCHOLAR:",
+            "google.scholar:",
+            "http://bioregistry.io/google.scholar:",
+            "http://scholar.google.com/citations?user=",
+            "https://bioregistry.io/google.scholar:"
         ]
     },
     {
@@ -11435,6 +11804,18 @@
         ]
     },
     {
+        "pattern": "^[cdfgops]__\\w+\\S+$",
+        "prefix": "gtdb",
+        "uri_prefix": "https://gtdb.ecogenomic.org/tree?r=",
+        "uri_prefix_synonyms": [
+            "GTDB:",
+            "gtdb:",
+            "http://bioregistry.io/gtdb:",
+            "http://gtdb.ecogenomic.org/tree?r=",
+            "https://bioregistry.io/gtdb:"
+        ]
+    },
+    {
         "pattern": "^\\w.+$",
         "prefix": "gtex",
         "uri_prefix": "https://www.gtexportal.org/home/gene/",
@@ -11683,6 +12064,18 @@
     },
     {
         "pattern": "^\\d+$",
+        "prefix": "hao.ref",
+        "uri_prefix": "http://api.hymao.org/api/ref/",
+        "uri_prefix_synonyms": [
+            "HAO.REF:",
+            "hao.ref:",
+            "http://bioregistry.io/hao.ref:",
+            "https://api.hymao.org/api/ref/",
+            "https://bioregistry.io/hao.ref:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
         "prefix": "hathitrust",
         "uri_prefix": "https://catalog.hathitrust.org/Record/",
         "uri_prefix_synonyms": [
@@ -11696,13 +12089,15 @@
     {
         "pattern": "^\\d+$",
         "prefix": "hba",
-        "uri_prefix": "https://biopragmatics.github.io/providers/hba/",
+        "uri_prefix": "https://purl.brain-bican.org/ontology/hbao/HBA_",
         "uri_prefix_synonyms": [
             "HBA:",
             "hba:",
             "http://biopragmatics.github.io/providers/hba/",
             "http://bioregistry.io/HBA:",
             "http://bioregistry.io/hba:",
+            "http://purl.brain-bican.org/ontology/hbao/HBA_",
+            "https://biopragmatics.github.io/providers/hba/",
             "https://bioregistry.io/HBA:",
             "https://bioregistry.io/hba:"
         ]
@@ -11903,7 +12298,7 @@
             "hgnc.family",
             "hgnc.genefamily"
         ],
-        "uri_prefix": "https://www.genenames.org/cgi-bin/genefamilies/set/",
+        "uri_prefix": "https://www.genenames.org/data/genegroup/#!/group/",
         "uri_prefix_synonyms": [
             "GFAM:",
             "HGNC.FAMILY:",
@@ -11926,6 +12321,7 @@
             "http://identifiers.org/hgnc.genegroup:",
             "http://n2t.net/hgnc.genefamily:",
             "http://www.genenames.org/cgi-bin/genefamilies/set/",
+            "http://www.genenames.org/data/genegroup/#!/group/",
             "https://bioregistry.io/GFAM:",
             "https://bioregistry.io/HGNC_GROUP:",
             "https://bioregistry.io/hgnc.family:",
@@ -11935,7 +12331,8 @@
             "https://identifiers.org/hgnc.genefamily:",
             "https://identifiers.org/hgnc.genegroup/",
             "https://identifiers.org/hgnc.genegroup:",
-            "https://n2t.net/hgnc.genefamily:"
+            "https://n2t.net/hgnc.genefamily:",
+            "https://www.genenames.org/cgi-bin/genefamilies/set/"
         ]
     },
     {
@@ -11966,9 +12363,11 @@
             "http://bioregistry.io/hgnc.symbol:",
             "http://bioregistry.io/pharmvar:",
             "http://bioregistry.io/ygob:",
+            "http://cbgda.zhounan.org/geneinfo?gene=",
             "http://depmap.org/portal/gene/",
             "http://depod.bioss.uni-freiburg.de/showp.php?name=",
             "http://eds.gene.le.ac.uk/home.php?select_db=",
+            "http://g2p.broadinstitute.org/gene/",
             "http://identifiers.org/depod/",
             "http://identifiers.org/depod:",
             "http://identifiers.org/hgnc.symbol/",
@@ -11991,9 +12390,11 @@
             "https://bioregistry.io/hgnc.symbol:",
             "https://bioregistry.io/pharmvar:",
             "https://bioregistry.io/ygob:",
+            "https://cbgda.zhounan.org/geneinfo?gene=",
             "https://depmap.org/portal/gene/",
             "https://depod.bioss.uni-freiburg.de/showp.php?name=",
             "https://eds.gene.le.ac.uk/home.php?select_db=",
+            "https://g2p.broadinstitute.org/gene/",
             "https://identifiers.org/depod/",
             "https://identifiers.org/depod:",
             "https://identifiers.org/hgnc.symbol/",
@@ -12351,6 +12752,21 @@
         ]
     },
     {
+        "prefix": "homosaurus",
+        "uri_prefix": "http://homosaurus.org/terms/",
+        "uri_prefix_synonyms": [
+            "HOMOSAURUS:",
+            "homosaurus:",
+            "http://bioregistry.io/homosaurus:",
+            "http://homosaurus.org/v2/",
+            "http://homosaurus.org/v3/",
+            "https://bioregistry.io/homosaurus:",
+            "https://homosaurus.org/terms/",
+            "https://homosaurus.org/v2/",
+            "https://homosaurus.org/v3/"
+        ]
+    },
+    {
         "prefix": "horizon_discovery",
         "uri_prefix": "https://horizondiscovery.com/en/search?searchterm=",
         "uri_prefix_synonyms": [
@@ -12642,6 +13058,24 @@
         ]
     },
     {
+        "prefix": "humap",
+        "prefix_synonyms": [
+            "humap3"
+        ],
+        "uri_prefix": "https://humap3.proteincomplexes.org/displayComplexes?complex_key=",
+        "uri_prefix_synonyms": [
+            "HUMAP3:",
+            "HUMAP:",
+            "http://bioregistry.io/humap3:",
+            "http://bioregistry.io/humap:",
+            "http://humap3.proteincomplexes.org/displayComplexes?complex_key=",
+            "https://bioregistry.io/humap3:",
+            "https://bioregistry.io/humap:",
+            "humap3:",
+            "humap:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "iao",
         "uri_prefix": "http://purl.obolibrary.org/obo/IAO_",
@@ -12753,20 +13187,34 @@
         "pattern": "^[1-9]\\d*$",
         "prefix": "icd11",
         "prefix_synonyms": [
-            "ICD-11"
+            "ICD-11",
+            "ICD11",
+            "icd11.foundation"
         ],
         "uri_prefix": "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/",
         "uri_prefix_synonyms": [
             "ICD-11:",
+            "ICD11.FOUNDATION:",
             "ICD11:",
             "http://bioregistry.io/ICD-11:",
+            "http://bioregistry.io/ICD11:",
+            "http://bioregistry.io/icd11.foundation:",
             "http://bioregistry.io/icd11:",
+            "http://icd.who.int/browse/2024-01/foundation/en#",
+            "http://icd.who.int/browse/2024-01/mms/en#",
             "http://icd.who.int/browse11/f/en#/http://id.who.int/icd/entity/",
             "http://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/",
+            "http://id.who.int/icd/entity/",
             "https://bioregistry.io/ICD-11:",
+            "https://bioregistry.io/ICD11:",
+            "https://bioregistry.io/icd11.foundation:",
             "https://bioregistry.io/icd11:",
+            "https://icd.who.int/browse/2024-01/foundation/en#",
+            "https://icd.who.int/browse/2024-01/mms/en#",
             "https://icd.who.int/browse11/f/en#/http://id.who.int/icd/entity/",
+            "https://id.who.int/icd/entity/",
             "icd-11:",
+            "icd11.foundation:",
             "icd11:"
         ]
     },
@@ -12942,6 +13390,22 @@
         ]
     },
     {
+        "pattern": "^\\d{2,7}-\\d{2}-\\d|DTXSID\\d{7,9}|[A-Z]{14}-[A-Z]{8}[SN][A-Z]-[A-Z]$",
+        "prefix": "icechem",
+        "uri_prefix": "https://ice.ntp.niehs.nih.gov/api/v1/search?chemid=",
+        "uri_prefix_synonyms": [
+            "ICECHEM:",
+            "http://bioregistry.io/icechem:",
+            "http://ice.ntp.niehs.nih.gov/api/v1/search?chemid=",
+            "http://identifiers.org/ice.chem/",
+            "http://identifiers.org/ice.chem:",
+            "https://bioregistry.io/icechem:",
+            "https://identifiers.org/ice.chem/",
+            "https://identifiers.org/ice.chem:",
+            "icechem:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}(_\\d)?$",
         "prefix": "iceo",
         "uri_prefix": "http://purl.obolibrary.org/obo/ICEO_",
@@ -12972,12 +13436,12 @@
     {
         "pattern": "^\\d+$",
         "prefix": "icf",
-        "uri_prefix": "http://id.who.int/icd/entity/",
+        "uri_prefix": "https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/",
         "uri_prefix_synonyms": [
             "ICF:",
             "http://bioregistry.io/icf:",
+            "http://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/",
             "https://bioregistry.io/icf:",
-            "https://id.who.int/icd/entity/",
             "icf:"
         ]
     },
@@ -13189,23 +13653,95 @@
         ]
     },
     {
-        "pattern": "^[0-9]+$",
-        "prefix": "iedb",
+        "pattern": "^\\d+$",
+        "prefix": "iedb.assay",
+        "uri_prefix": "https://www.iedb.org/assay/",
+        "uri_prefix_synonyms": [
+            "IEDB.ASSAY:",
+            "http://bioregistry.io/iedb.assay:",
+            "http://www.iedb.org/assay/",
+            "https://bioregistry.io/iedb.assay:",
+            "iedb.assay:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.epitope",
+        "uri_prefix": "https://www.iedb.org/epitope/",
+        "uri_prefix_synonyms": [
+            "IEDB.EPITOPE:",
+            "http://bio2rdf.org/tied:",
+            "http://bioregistry.io/iedb.epitope:",
+            "http://www.iedb.org/epId/",
+            "http://www.iedb.org/epitope/",
+            "https://bio2rdf.org/tied:",
+            "https://bioregistry.io/iedb.epitope:",
+            "https://www.iedb.org/epId/",
+            "iedb.epitope:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.mhc",
+        "uri_prefix": "https://www.iedb.org/mhc/",
+        "uri_prefix_synonyms": [
+            "IEDB.MHC:",
+            "http://bioregistry.io/iedb.mhc:",
+            "http://www.iedb.org/mhc/",
+            "https://bioregistry.io/iedb.mhc:",
+            "iedb.mhc:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.receptor",
+        "uri_prefix": "https://www.iedb.org/receptor/",
+        "uri_prefix_synonyms": [
+            "IEDB.RECEPTOR:",
+            "http://bioregistry.io/iedb.receptor:",
+            "http://www.iedb.org/receptor/",
+            "https://bioregistry.io/iedb.receptor:",
+            "iedb.receptor:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iedb.reference",
         "uri_prefix": "https://www.iedb.org/reference/",
         "uri_prefix_synonyms": [
-            "IEDB:",
-            "http://bio2rdf.org/tied:",
-            "http://bioregistry.io/iedb:",
+            "IEDB.REFERENCE:",
+            "http://bioregistry.io/iedb.reference:",
             "http://identifiers.org/iedb/",
             "http://identifiers.org/iedb:",
-            "http://www.iedb.org/epId/",
             "http://www.iedb.org/reference/",
-            "https://bio2rdf.org/tied:",
-            "https://bioregistry.io/iedb:",
+            "https://bioregistry.io/iedb.reference:",
             "https://identifiers.org/iedb/",
             "https://identifiers.org/iedb:",
-            "https://www.iedb.org/epId/",
-            "iedb:"
+            "iedb.reference:"
+        ]
+    },
+    {
+        "pattern": "^[1-9]\\d*$",
+        "prefix": "ieee.author",
+        "uri_prefix": "https://ieeexplore.ieee.org/author/",
+        "uri_prefix_synonyms": [
+            "IEEE.AUTHOR:",
+            "http://bioregistry.io/ieee.author:",
+            "http://ieeexplore.ieee.org/author/",
+            "https://bioregistry.io/ieee.author:",
+            "ieee.author:"
+        ]
+    },
+    {
+        "pattern": "^[1-9]\\d*$",
+        "prefix": "ieee.document",
+        "uri_prefix": "https://ieeexplore.ieee.org/document/",
+        "uri_prefix_synonyms": [
+            "IEEE.DOCUMENT:",
+            "http://bioregistry.io/ieee.document:",
+            "http://ieeexplore.ieee.org/document/",
+            "https://bioregistry.io/ieee.document:",
+            "ieee.document:"
         ]
     },
     {
@@ -13555,9 +14091,9 @@
         ]
     },
     {
-        "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])$",
+        "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?$",
         "prefix": "inchikey",
-        "uri_prefix": "http://www.chemspider.com/inchikey=",
+        "uri_prefix": "http://legacy.chemspider.com/inchikey=",
         "uri_prefix_synonyms": [
             "INCHIKEY:",
             "http://bioregistry.io/inchikey:",
@@ -13568,10 +14104,22 @@
             "https://bioregistry.io/inchikey:",
             "https://identifiers.org/inchikey/",
             "https://identifiers.org/inchikey:",
+            "https://legacy.chemspider.com/inchikey=",
             "https://n2t.net/inchikey:",
             "https://scholia.toolforge.org/inchikey/",
-            "https://www.chemspider.com/inchikey=",
             "inchikey:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "informall",
+        "uri_prefix": "http://research.bmh.manchester.ac.uk/informall/allergenic-food/?FoodId=",
+        "uri_prefix_synonyms": [
+            "INFORMALL:",
+            "http://bioregistry.io/informall:",
+            "https://bioregistry.io/informall:",
+            "https://research.bmh.manchester.ac.uk/informall/allergenic-food/?FoodId=",
+            "informall:"
         ]
     },
     {
@@ -13805,7 +14353,7 @@
             "IPR",
             "InterPro"
         ],
-        "uri_prefix": "http://purl.obolibrary.org/obo/IPR_",
+        "uri_prefix": "https://www.ebi.ac.uk/interpro/entry/InterPro/",
         "uri_prefix_synonyms": [
             "INTERPRO:",
             "IP:",
@@ -13820,8 +14368,10 @@
             "http://identifiers.org/interpro:",
             "http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:",
             "http://n2t.net/interpro:",
+            "http://purl.obolibrary.org/obo/IPR_",
             "http://www.ebi.ac.uk/interpro/IEntry?ac=",
             "http://www.ebi.ac.uk/interpro/entry/",
+            "http://www.ebi.ac.uk/interpro/entry/InterPro/",
             "https://bio2rdf.org/interpro:",
             "https://bioregistry.io/IP:",
             "https://bioregistry.io/IPR:",
@@ -13942,6 +14492,7 @@
             "http://bioregistry.io/ISBN-10:",
             "http://bioregistry.io/ISBN-13:",
             "http://bioregistry.io/isbn:",
+            "http://books.google.com/books?isbn=",
             "http://identifiers.org/isbn/",
             "http://identifiers.org/isbn:",
             "http://monarchinitiative.org/ISBN13_",
@@ -13952,6 +14503,7 @@
             "https://bioregistry.io/ISBN-10:",
             "https://bioregistry.io/ISBN-13:",
             "https://bioregistry.io/isbn:",
+            "https://books.google.com/books?isbn=",
             "https://identifiers.org/isbn/",
             "https://identifiers.org/isbn:",
             "https://isbndb.com/search-all.html?kw=",
@@ -13995,13 +14547,29 @@
             "http://bioregistry.io/isni:",
             "http://identifiers.org/isni/",
             "http://identifiers.org/isni:",
+            "http://isni.org/isni/",
             "http://n2t.net/isni:",
+            "http://www.isni.org/",
             "https://bioregistry.io/isni:",
             "https://identifiers.org/isni/",
             "https://identifiers.org/isni:",
+            "https://isni.org/isni/",
             "https://n2t.net/isni:",
+            "https://www.isni.org/",
             "https://www.isni.org/isni/",
             "isni:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "iso.3166",
+        "uri_prefix": "https://data.who.int/countries/",
+        "uri_prefix_synonyms": [
+            "ISO.3166:",
+            "http://bioregistry.io/iso.3166:",
+            "http://data.who.int/countries/",
+            "https://bioregistry.io/iso.3166:",
+            "iso.3166:"
         ]
     },
     {
@@ -14045,6 +14613,17 @@
             "https://identifiers.org/issn:",
             "https://n2t.net/issn:",
             "issn:"
+        ]
+    },
+    {
+        "prefix": "istransbase",
+        "uri_prefix": "https://istransbase.scbdd.com/database/trans/",
+        "uri_prefix_synonyms": [
+            "ISTRANSBASE:",
+            "http://bioregistry.io/istransbase:",
+            "http://istransbase.scbdd.com/database/trans/",
+            "https://bioregistry.io/istransbase:",
+            "istransbase:"
         ]
     },
     {
@@ -14202,17 +14781,25 @@
     {
         "pattern": "^\\d+$",
         "prefix": "jaxmice",
+        "prefix_synonyms": [
+            "jaxMiceUID"
+        ],
         "uri_prefix": "https://bioregistry.io/jaxmice:",
         "uri_prefix_synonyms": [
             "JAXMICE:",
+            "JAXMICEUID:",
+            "http://bioregistry.io/jaxMiceUID:",
             "http://bioregistry.io/jaxmice:",
             "http://identifiers.org/jaxmice/",
             "http://identifiers.org/jaxmice:",
             "http://n2t.net/jaxmice:",
+            "https://bioregistry.io/jaxMiceUID:",
             "https://identifiers.org/jaxmice/",
             "https://identifiers.org/jaxmice:",
             "https://n2t.net/jaxmice:",
-            "jaxmice:"
+            "jaxMiceUID:",
+            "jaxmice:",
+            "jaxmiceuid:"
         ]
     },
     {
@@ -14270,23 +14857,36 @@
     {
         "pattern": "^J\\d{1,3}(\\.\\d{3})?(\\.\\d{1,3})?[A-Za-z]$",
         "prefix": "jcsd",
+        "prefix_synonyms": [
+            "Nikkaji number",
+            "nikkaji"
+        ],
         "uri_prefix": "http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=",
         "uri_prefix_synonyms": [
             "JCSD:",
-            "http://bio2rdf.org/jcsd:",
+            "NIKKAJI NUMBER:",
+            "NIKKAJI:",
+            "Nikkaji number:",
+            "http://bio2rdf.org/nikkaji:",
+            "http://bioregistry.io/Nikkaji number:",
             "http://bioregistry.io/jcsd:",
+            "http://bioregistry.io/nikkaji:",
             "http://identifiers.org/jcsd/",
             "http://identifiers.org/jcsd:",
             "http://n2t.net/jcsd:",
-            "http://nikkajiweb.jst.go.jp/nikkaji_web/pages/top_e.jsp?CONTENT=syosai&SN=",
-            "https://bio2rdf.org/jcsd:",
+            "http://stirdf.jst.go.jp/cde/nikkaji/",
+            "https://bio2rdf.org/nikkaji:",
+            "https://bioregistry.io/Nikkaji number:",
             "https://bioregistry.io/jcsd:",
+            "https://bioregistry.io/nikkaji:",
             "https://identifiers.org/jcsd/",
             "https://identifiers.org/jcsd:",
             "https://jglobal.jst.go.jp/en/redirect?Nikkaji_No=",
             "https://n2t.net/jcsd:",
-            "https://nikkajiweb.jst.go.jp/nikkaji_web/pages/top_e.jsp?CONTENT=syosai&SN=",
-            "jcsd:"
+            "https://stirdf.jst.go.jp/cde/nikkaji/",
+            "jcsd:",
+            "nikkaji number:",
+            "nikkaji:"
         ]
     },
     {
@@ -14373,6 +14973,18 @@
             "https://identifiers.org/kaggle:",
             "https://n2t.net/kaggle:",
             "kaggle:"
+        ]
+    },
+    {
+        "pattern": "^\\d{8}$",
+        "prefix": "kaken",
+        "uri_prefix": "https://nrid.nii.ac.jp/ja/nrid/10000",
+        "uri_prefix_synonyms": [
+            "KAKEN:",
+            "http://bioregistry.io/kaken:",
+            "http://nrid.nii.ac.jp/ja/nrid/10000",
+            "https://bioregistry.io/kaken:",
+            "kaken:"
         ]
     },
     {
@@ -14733,15 +15345,41 @@
         ]
     },
     {
+        "pattern": "^\\d{16}$",
+        "prefix": "lattes",
+        "uri_prefix": "https://lattes.cnpq.br/",
+        "uri_prefix_synonyms": [
+            "LATTES:",
+            "http://bioregistry.io/lattes:",
+            "http://lattes.cnpq.br/",
+            "https://bioregistry.io/lattes:",
+            "lattes:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "lbo",
-        "uri_prefix": "http://purl.obolibrary.org/obo/LBO_",
+        "uri_prefix": "https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_",
         "uri_prefix_synonyms": [
             "LBO:",
+            "http://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_",
             "http://bioregistry.io/lbo:",
+            "http://purl.obolibrary.org/obo/LBO_",
             "https://bioregistry.io/lbo:",
             "https://purl.obolibrary.org/obo/LBO_",
             "lbo:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "lccn",
+        "uri_prefix": "https://lccn.loc.gov/",
+        "uri_prefix_synonyms": [
+            "LCCN:",
+            "http://bioregistry.io/lccn:",
+            "http://lccn.loc.gov/",
+            "https://bioregistry.io/lccn:",
+            "lccn:"
         ]
     },
     {
@@ -15048,6 +15686,29 @@
         ]
     },
     {
+        "prefix": "linguist.gold",
+        "uri_prefix": "https://bioregistry.io/linguist.gold:",
+        "uri_prefix_synonyms": [
+            "LINGUIST.GOLD:",
+            "http://bioregistry.io/linguist.gold:",
+            "http://purl.org/linguistics/gold/",
+            "https://purl.org/linguistics/gold/",
+            "linguist.gold:"
+        ]
+    },
+    {
+        "pattern": "^[\\w0-9\\-&_'’\\.]+$",
+        "prefix": "linkedin",
+        "uri_prefix": "https://www.linkedin.com/in/",
+        "uri_prefix_synonyms": [
+            "LINKEDIN:",
+            "http://bioregistry.io/linkedin:",
+            "http://www.linkedin.com/in/",
+            "https://bioregistry.io/linkedin:",
+            "linkedin:"
+        ]
+    },
+    {
         "prefix": "linkml",
         "uri_prefix": "https://w3id.org/linkml/",
         "uri_prefix_synonyms": [
@@ -15183,6 +15844,16 @@
         ]
     },
     {
+        "pattern": "^[1-9]\\d*$",
+        "prefix": "loop",
+        "uri_prefix": "https://bioregistry.io/loop:",
+        "uri_prefix_synonyms": [
+            "LOOP:",
+            "http://bioregistry.io/loop:",
+            "loop:"
+        ]
+    },
+    {
         "prefix": "loqate",
         "uri_prefix": "http://www.weizmann.ac.il/molgen/loqate/gene/view/",
         "uri_prefix_synonyms": [
@@ -15270,6 +15941,22 @@
         ]
     },
     {
+        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+        "prefix": "lw",
+        "uri_prefix": "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/",
+        "uri_prefix_synonyms": [
+            "LW:",
+            "http://bioregistry.io/lw:",
+            "http://identifiers.org/lw/",
+            "http://identifiers.org/lw:",
+            "http://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/",
+            "https://bioregistry.io/lw:",
+            "https://identifiers.org/lw/",
+            "https://identifiers.org/lw:",
+            "lw:"
+        ]
+    },
+    {
         "pattern": "^\\w+$",
         "prefix": "m4i",
         "uri_prefix": "http://w3id.org/nfdi4ing/metadata4ing#",
@@ -15312,7 +15999,7 @@
     {
         "pattern": "^M\\d{4}$",
         "prefix": "macie",
-        "uri_prefix": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=",
+        "uri_prefix": "https://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=",
         "uri_prefix_synonyms": [
             "MACIE:",
             "http://bio2rdf.org/macie:",
@@ -15322,11 +16009,13 @@
             "http://n2t.net/macie:",
             "http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=",
             "http://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/getPage.pl?id=",
+            "http://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=",
             "https://bio2rdf.org/macie:",
             "https://bioregistry.io/macie:",
             "https://identifiers.org/macie/",
             "https://identifiers.org/macie:",
             "https://n2t.net/macie:",
+            "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=",
             "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/getPage.pl?id=",
             "macie:"
         ]
@@ -15481,6 +16170,18 @@
         ]
     },
     {
+        "pattern": "^[A-Za-z0-9_]+([A-Za-z0-9_\\.]+[A-Za-z0-9_]+)?@[\\d\\w\\.\\-]+[0-9a-z]+$",
+        "prefix": "mastodon",
+        "uri_prefix": "https://fedirect.toolforge.org/?id=",
+        "uri_prefix_synonyms": [
+            "MASTODON:",
+            "http://bioregistry.io/mastodon:",
+            "http://fedirect.toolforge.org/?id=",
+            "https://bioregistry.io/mastodon:",
+            "mastodon:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "mat",
         "uri_prefix": "http://purl.obolibrary.org/obo/MAT_",
@@ -15510,13 +16211,15 @@
     {
         "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
         "prefix": "matrixdb.association",
-        "uri_prefix": "https://bioregistry.io/matrixdb.association:",
+        "uri_prefix": "https://matrixdb.univ-lyon1.fr/association/",
         "uri_prefix_synonyms": [
             "MATRIXDB.ASSOCIATION:",
             "http://bioregistry.io/matrixdb.association:",
             "http://identifiers.org/matrixdb.association/",
             "http://identifiers.org/matrixdb.association:",
+            "http://matrixdb.univ-lyon1.fr/association/",
             "http://n2t.net/matrixdb.association:",
+            "https://bioregistry.io/matrixdb.association:",
             "https://identifiers.org/matrixdb.association/",
             "https://identifiers.org/matrixdb.association:",
             "https://n2t.net/matrixdb.association:",
@@ -15718,8 +16421,12 @@
         "uri_prefix_synonyms": [
             "MEDIADIVE.MEDIUM:",
             "http://bioregistry.io/mediadive.medium:",
+            "http://identifiers.org/mediadive.medium/",
+            "http://identifiers.org/mediadive.medium:",
             "http://mediadive.dsmz.de/medium/",
             "https://bioregistry.io/mediadive.medium:",
+            "https://identifiers.org/mediadive.medium/",
+            "https://identifiers.org/mediadive.medium:",
             "mediadive.medium:"
         ]
     },
@@ -15763,7 +16470,7 @@
         ]
     },
     {
-        "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
+        "pattern": "^[SCTAGMNUIX]{1,2}\\d{2}\\.([AB]\\d{2}|\\d{3})$",
         "prefix": "merops.entry",
         "prefix_synonyms": [
             "merops.inhibitor"
@@ -15812,7 +16519,25 @@
         ]
     },
     {
-        "pattern": "^(C|D)\\d{6,9}$",
+        "prefix": "merriamwebster",
+        "prefix_synonyms": [
+            "merriam_webster"
+        ],
+        "uri_prefix": "https://www.merriam-webster.com/dictionary/",
+        "uri_prefix_synonyms": [
+            "MERRIAMWEBSTER:",
+            "MERRIAM_WEBSTER:",
+            "http://bioregistry.io/merriam_webster:",
+            "http://bioregistry.io/merriamwebster:",
+            "http://www.merriam-webster.com/dictionary/",
+            "https://bioregistry.io/merriam_webster:",
+            "https://bioregistry.io/merriamwebster:",
+            "merriam_webster:",
+            "merriamwebster:"
+        ]
+    },
+    {
+        "pattern": "^(C|D|M)\\d{6,9}$",
         "prefix": "mesh",
         "prefix_synonyms": [
             "MESH",
@@ -15828,7 +16553,8 @@
             "ctd.chemical",
             "ctd.disease",
             "mesh.2012",
-            "mesh.2013"
+            "mesh.2013",
+            "meshUID"
         ],
         "uri_prefix": "https://meshb.nlm.nih.gov/record/ui?ui=",
         "uri_prefix_synonyms": [
@@ -15842,6 +16568,7 @@
             "MESHCS:",
             "MESHD:",
             "MESHPP:",
+            "MESHUID:",
             "MESH_DESCRIPTOR_UI:",
             "MESH_SUPPLEMENTAL_RECORD_UI:",
             "MSH2010_2010_02_22:",
@@ -15864,6 +16591,7 @@
             "http://bioregistry.io/mesh.2012:",
             "http://bioregistry.io/mesh.2013:",
             "http://bioregistry.io/mesh:",
+            "http://bioregistry.io/meshUID:",
             "http://ctdbase.org/detail.go?type=chem&acc=",
             "http://ctdbase.org/detail.go?type=disease&db=MESH&acc=",
             "http://id.nlm.nih.gov/mesh/",
@@ -15884,6 +16612,7 @@
             "http://n2t.net/mesh.2013:",
             "http://n2t.net/mesh:",
             "http://purl.bioontology.org/ontology/MESH/",
+            "http://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&term=",
             "http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?field=uid&term=",
             "https://bio2rdf.org/mesh:",
             "https://bioregistry.io/MESH:",
@@ -15901,6 +16630,7 @@
             "https://bioregistry.io/mesh.2012:",
             "https://bioregistry.io/mesh.2013:",
             "https://bioregistry.io/mesh:",
+            "https://bioregistry.io/meshUID:",
             "https://ctdbase.org/detail.go?type=chem&acc=",
             "https://ctdbase.org/detail.go?type=disease&db=MESH&acc=",
             "https://id.nlm.nih.gov/mesh/",
@@ -15920,10 +16650,12 @@
             "https://n2t.net/mesh.2013:",
             "https://n2t.net/mesh:",
             "https://purl.bioontology.org/ontology/MESH/",
+            "https://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&term=",
             "https://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?field=uid&term=",
             "mesh.2012:",
             "mesh.2013:",
             "mesh:",
+            "meshUID:",
             "mesh_descriptor_ui:",
             "mesh_supplemental_record_ui:",
             "mesha:",
@@ -15931,6 +16663,7 @@
             "meshcs:",
             "meshd:",
             "meshpp:",
+            "meshuid:",
             "msh2010_2010_02_22:",
             "msh:"
         ]
@@ -16550,7 +17283,7 @@
             "http://identifiers.org/mint:",
             "http://mint.bio.uniroma2.it/cgi-bin/protein.py?id=",
             "http://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-",
-            "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=",
+            "http://mint.bio.uniroma2.it/index.php/results-interactions/?id=",
             "http://mint.bio.uniroma2.it/mint/search/interactor.do?queryType=protein&interactorAc=",
             "http://n2t.net/mint:",
             "http://www.ebi.ac.uk/intact/query/interaction_id:",
@@ -16560,7 +17293,7 @@
             "https://identifiers.org/mint/MINT-",
             "https://identifiers.org/mint:",
             "https://mint.bio.uniroma2.it/cgi-bin/protein.py?id=",
-            "https://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=",
+            "https://mint.bio.uniroma2.it/index.php/results-interactions/?id=",
             "https://mint.bio.uniroma2.it/mint/search/interactor.do?queryType=protein&interactorAc=",
             "https://n2t.net/mint:",
             "https://www.ebi.ac.uk/intact/query/interaction_id:",
@@ -16738,7 +17471,7 @@
     {
         "pattern": "^001\\d{5}$",
         "prefix": "miriam.resource",
-        "uri_prefix": "https://www.ebi.ac.uk/miriam/main/resources/",
+        "uri_prefix": "https://resolver.api.identifiers.org/resolveMirId/",
         "uri_prefix_synonyms": [
             "MIRIAM.RESOURCE:",
             "http://bio2rdf.org/miriam.resource:",
@@ -16747,6 +17480,7 @@
             "http://identifiers.org/miriam.resource/MIR:",
             "http://identifiers.org/miriam.resource:",
             "http://n2t.net/miriam.resource:",
+            "http://resolver.api.identifiers.org/resolveMirId/",
             "http://www.ebi.ac.uk/miriam/main/resources/",
             "https://bio2rdf.org/miriam.resource:",
             "https://bioregistry.io/miriam.resource:",
@@ -16754,6 +17488,7 @@
             "https://identifiers.org/miriam.resource/MIR:",
             "https://identifiers.org/miriam.resource:",
             "https://n2t.net/miriam.resource:",
+            "https://www.ebi.ac.uk/miriam/main/resources/",
             "miriam.resource:"
         ]
     },
@@ -16891,14 +17626,14 @@
             "http://bio2rdf.org/mmmp:",
             "http://bioregistry.io/mmmp.biomaps:",
             "http://bioregistry.io/mmmp:biomaps:",
-            "http://identifiers.org/mmmp:biomaps/",
-            "http://identifiers.org/mmmp:biomaps:",
+            "http://identifiers.org/mmmp.biomaps/",
+            "http://identifiers.org/mmmp.biomaps:",
             "http://n2t.net/biomaps:",
             "https://bio2rdf.org/mmmp:",
             "https://bioregistry.io/mmmp.biomaps:",
             "https://bioregistry.io/mmmp:biomaps:",
-            "https://identifiers.org/mmmp:biomaps/",
-            "https://identifiers.org/mmmp:biomaps:",
+            "https://identifiers.org/mmmp.biomaps/",
+            "https://identifiers.org/mmmp.biomaps:",
             "https://n2t.net/biomaps:",
             "https://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=",
             "mmmp.biomaps:",
@@ -17144,6 +17879,22 @@
         ]
     },
     {
+        "pattern": "^[a-zA-Z0-9]+\\.[a-f0-9]{24}$",
+        "prefix": "moid",
+        "uri_prefix": "https://gnss-metadata.eu/MOID/",
+        "uri_prefix_synonyms": [
+            "MOID:",
+            "http://bioregistry.io/moid:",
+            "http://gnss-metadata.eu/MOID/",
+            "http://identifiers.org/moid/",
+            "http://identifiers.org/moid:",
+            "https://bioregistry.io/moid:",
+            "https://identifiers.org/moid/",
+            "https://identifiers.org/moid:",
+            "moid:"
+        ]
+    },
+    {
         "pattern": "^(\\d{1,7}\\-\\d{2}\\-\\d)|([A-Za-z0-9\\+\\-\\_]+)$",
         "prefix": "molbase",
         "uri_prefix": "http://www.molbase.com/en/index.php?app=search&search_keyword=",
@@ -17198,10 +17949,12 @@
             "MONDO:",
             "http://bioregistry.io/MONDO:",
             "http://bioregistry.io/mondo:",
+            "http://search.clinicalgenome.org/kb/conditions/MONDO:",
             "http://www.ebi.ac.uk/ols/ontologies/mondo/terms?iri=http://purl.obolibrary.org/obo/MONDO_",
             "https://bioregistry.io/MONDO:",
             "https://bioregistry.io/mondo:",
             "https://purl.obolibrary.org/obo/MONDO_",
+            "https://search.clinicalgenome.org/kb/conditions/MONDO:",
             "https://www.ebi.ac.uk/ols/ontologies/mondo/terms?iri=http://purl.obolibrary.org/obo/MONDO_",
             "mondo:"
         ]
@@ -17400,13 +18153,15 @@
         "prefix_synonyms": [
             "msig"
         ],
-        "uri_prefix": "https://biopragmatics.github.io/providers/msigdb/",
+        "uri_prefix": "https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/",
         "uri_prefix_synonyms": [
             "MSIG:",
             "MSIGDB:",
             "http://biopragmatics.github.io/providers/msigdb/",
             "http://bioregistry.io/msig:",
             "http://bioregistry.io/msigdb:",
+            "http://www.gsea-msigdb.org/gsea/msigdb/human/geneset/",
+            "https://biopragmatics.github.io/providers/msigdb/",
             "https://bioregistry.io/msig:",
             "https://bioregistry.io/msigdb:",
             "msig:",
@@ -17627,7 +18382,7 @@
     {
         "pattern": "^\\d+$",
         "prefix": "mycobank",
-        "uri_prefix": "http://www.mycobank.org/Biolomics.aspx?Table=Mycobank&MycoBankNr_=",
+        "uri_prefix": "https://www.mycobank.org/page/Name%20details%20page/",
         "uri_prefix_synonyms": [
             "MYCOBANK:",
             "http://bio2rdf.org/mycobank:",
@@ -17635,7 +18390,9 @@
             "http://identifiers.org/mycobank/",
             "http://identifiers.org/mycobank:",
             "http://n2t.net/mycobank:",
+            "http://www.mycobank.org/Biolomics.aspx?Table=Mycobank&MycoBankNr_=",
             "http://www.mycobank.org/MycoTaxo.aspx?Link=T&Rec=",
+            "http://www.mycobank.org/page/Name%20details%20page/",
             "https://bio2rdf.org/mycobank:",
             "https://bioregistry.io/mycobank:",
             "https://identifiers.org/mycobank/",
@@ -17658,6 +18415,7 @@
             "http://identifiers.org/MZSPEC:",
             "http://identifiers.org/mzspec/mzspec:",
             "http://n2t.net/mzspec:",
+            "http://www.ebi.ac.uk/pride/archive/usi?usi=mzspec:",
             "https://bioregistry.io/mzspec:",
             "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:",
             "https://identifiers.org/MZSPEC/",
@@ -17665,6 +18423,7 @@
             "https://identifiers.org/mzspec/mzspec:",
             "https://n2t.net/mzspec:",
             "https://proteomecentral.proteomexchange.org/usi/?usi=mzspec:",
+            "https://www.ebi.ac.uk/pride/archive/usi?usi=mzspec:",
             "mzspec:"
         ]
     },
@@ -17751,6 +18510,90 @@
             "https://n2t.net/narcis:",
             "https://www.narcis.nl/publication/RecordID/",
             "narcis:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "nasaosdr.biospecimen",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/biospecimens/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.BIOSPECIMEN:",
+            "http://bioregistry.io/nasaosdr.biospecimen:",
+            "http://osdr.nasa.gov/bio/repo/data/biospecimens/",
+            "https://bioregistry.io/nasaosdr.biospecimen:",
+            "nasaosdr.biospecimen:"
+        ]
+    },
+    {
+        "pattern": "^OS-\\d+$",
+        "prefix": "nasaosdr.experiment",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/experiments/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.EXPERIMENT:",
+            "http://bioregistry.io/nasaosdr.experiment:",
+            "http://osdr.nasa.gov/bio/repo/data/experiments/",
+            "https://bioregistry.io/nasaosdr.experiment:",
+            "nasaosdr.experiment:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "nasaosdr.hardware",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/hardware/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.HARDWARE:",
+            "http://bioregistry.io/nasaosdr.hardware:",
+            "http://osdr.nasa.gov/bio/repo/data/hardware/",
+            "https://bioregistry.io/nasaosdr.hardware:",
+            "nasaosdr.hardware:"
+        ]
+    },
+    {
+        "pattern": "^.+$",
+        "prefix": "nasaosdr.mission",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/missions/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.MISSION:",
+            "http://bioregistry.io/nasaosdr.mission:",
+            "http://osdr.nasa.gov/bio/repo/data/missions/",
+            "https://bioregistry.io/nasaosdr.mission:",
+            "nasaosdr.mission:"
+        ]
+    },
+    {
+        "pattern": "^.+$",
+        "prefix": "nasaosdr.payload",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/payloads/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.PAYLOAD:",
+            "http://bioregistry.io/nasaosdr.payload:",
+            "http://osdr.nasa.gov/bio/repo/data/payloads/",
+            "https://bioregistry.io/nasaosdr.payload:",
+            "nasaosdr.payload:"
+        ]
+    },
+    {
+        "pattern": "^OSD-\\d+$",
+        "prefix": "nasaosdr.study",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/studies/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.STUDY:",
+            "http://bioregistry.io/nasaosdr.study:",
+            "http://osdr.nasa.gov/bio/repo/data/studies/",
+            "https://bioregistry.io/nasaosdr.study:",
+            "nasaosdr.study:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "nasaosdr.subject",
+        "uri_prefix": "https://osdr.nasa.gov/bio/repo/data/subjects/",
+        "uri_prefix_synonyms": [
+            "NASAOSDR.SUBJECT:",
+            "http://bioregistry.io/nasaosdr.subject:",
+            "http://osdr.nasa.gov/bio/repo/data/subjects/",
+            "https://bioregistry.io/nasaosdr.subject:",
+            "nasaosdr.subject:"
         ]
     },
     {
@@ -17903,6 +18746,30 @@
     },
     {
         "pattern": "^\\d+$",
+        "prefix": "ncbi.gc",
+        "prefix_synonyms": [
+            "gc",
+            "gc_id"
+        ],
+        "uri_prefix": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
+        "uri_prefix_synonyms": [
+            "GC:",
+            "GC_ID:",
+            "NCBI.GC:",
+            "gc:",
+            "gc_id:",
+            "http://bioregistry.io/gc:",
+            "http://bioregistry.io/gc_id:",
+            "http://bioregistry.io/ncbi.gc:",
+            "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
+            "https://bioregistry.io/gc:",
+            "https://bioregistry.io/gc_id:",
+            "https://bioregistry.io/ncbi.gc:",
+            "ncbi.gc:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
         "prefix": "ncbi.genome",
         "uri_prefix": "https://www.ncbi.nlm.nih.gov/genome/",
         "uri_prefix_synonyms": [
@@ -17958,6 +18825,7 @@
         "prefix_synonyms": [
             "EGID",
             "EntrezGene",
+            "GeneID",
             "NCBIGene",
             "NCBI_GeneID",
             "ctd.gene",
@@ -17975,7 +18843,9 @@
             "ENTREZ:",
             "ENTREZGENE:",
             "EntrezGene:",
+            "GENEID:",
             "GENEWIKI:",
+            "GeneID:",
             "NCBIGENE:",
             "NCBIGene:",
             "NCBI_GENEID:",
@@ -17987,10 +18857,12 @@
             "entrez gene/locuslink:",
             "entrez:",
             "entrezgene:",
+            "geneid:",
             "genewiki:",
             "http://bio2rdf.org/ncbigene:",
             "http://bioregistry.io/EGID:",
             "http://bioregistry.io/EntrezGene:",
+            "http://bioregistry.io/GeneID:",
             "http://bioregistry.io/NCBIGene:",
             "http://bioregistry.io/NCBI_GeneID:",
             "http://bioregistry.io/ctd.gene:",
@@ -18023,6 +18895,7 @@
             "https://bio2rdf.org/ncbigene:",
             "https://bioregistry.io/EGID:",
             "https://bioregistry.io/EntrezGene:",
+            "https://bioregistry.io/GeneID:",
             "https://bioregistry.io/NCBIGene:",
             "https://bioregistry.io/NCBI_GeneID:",
             "https://bioregistry.io/ctd.gene:",
@@ -18055,6 +18928,16 @@
             "ncbigene:",
             "nihgeneid:",
             "wikigenes:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "ncbiortholog",
+        "uri_prefix": "https://bioregistry.io/ncbiortholog:",
+        "uri_prefix_synonyms": [
+            "NCBIORTHOLOG:",
+            "http://bioregistry.io/ncbiortholog:",
+            "ncbiortholog:"
         ]
     },
     {
@@ -18127,6 +19010,7 @@
             "TAX",
             "TaxonomyID",
             "cutg",
+            "ncbiTaxUID",
             "taxid",
             "taxon",
             "taxonomy",
@@ -18141,6 +19025,7 @@
             "NCBI Taxonomy:",
             "NCBITAXON:",
             "NCBITAXONOMYID:",
+            "NCBITAXUID:",
             "NCBITaxon:",
             "NCBITaxonomyID:",
             "NCBI_TAXID:",
@@ -18170,6 +19055,7 @@
             "http://bioregistry.io/TAX:",
             "http://bioregistry.io/TaxonomyID:",
             "http://bioregistry.io/cutg:",
+            "http://bioregistry.io/ncbiTaxUID:",
             "http://bioregistry.io/ncbitaxon:",
             "http://bioregistry.io/taxid:",
             "http://bioregistry.io/taxon:",
@@ -18201,6 +19087,7 @@
             "https://bioregistry.io/TAX:",
             "https://bioregistry.io/TaxonomyID:",
             "https://bioregistry.io/cutg:",
+            "https://bioregistry.io/ncbiTaxUID:",
             "https://bioregistry.io/ncbitaxon:",
             "https://bioregistry.io/taxid:",
             "https://bioregistry.io/taxon:",
@@ -18221,10 +19108,12 @@
             "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=",
             "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=",
             "ncbi taxonomy:",
+            "ncbiTaxUID:",
             "ncbi_taxid:",
             "ncbi_taxon_id:",
             "ncbitaxon:",
             "ncbitaxonomyid:",
+            "ncbitaxuid:",
             "tax:",
             "taxid:",
             "taxon:",
@@ -18272,6 +19161,7 @@
             "NCI2004_11_17",
             "NCIT",
             "NCIT_Thesaurus",
+            "NCIThesaurus",
             "NCITm",
             "NCITt",
             "NCI_Thesaurus",
@@ -18289,6 +19179,7 @@
             "NCITT:",
             "NCIT_THESAURUS:",
             "NCIT_Thesaurus:",
+            "NCIThesaurus:",
             "NCITm:",
             "NCITt:",
             "NCI_THESAURUS:",
@@ -18300,6 +19191,7 @@
             "http://bioregistry.io/NCI:",
             "http://bioregistry.io/NCIT:",
             "http://bioregistry.io/NCIT_Thesaurus:",
+            "http://bioregistry.io/NCIThesaurus:",
             "http://bioregistry.io/NCITm:",
             "http://bioregistry.io/NCITt:",
             "http://bioregistry.io/NCI_Thesaurus:",
@@ -18319,6 +19211,7 @@
             "https://bioregistry.io/NCI:",
             "https://bioregistry.io/NCIT:",
             "https://bioregistry.io/NCIT_Thesaurus:",
+            "https://bioregistry.io/NCIThesaurus:",
             "https://bioregistry.io/NCITm:",
             "https://bioregistry.io/NCITt:",
             "https://bioregistry.io/NCI_Thesaurus:",
@@ -18412,7 +19305,7 @@
             "NUI",
             "ndf-rt"
         ],
-        "uri_prefix": "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#",
+        "uri_prefix": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=",
         "uri_prefix_synonyms": [
             "NDF-RT:",
             "NDFRT:",
@@ -18422,7 +19315,7 @@
             "http://bioregistry.io/NUI:",
             "http://bioregistry.io/ndf-rt:",
             "http://bioregistry.io/ndfrt:",
-            "http://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#",
+            "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NDFRT&code=",
             "http://purl.bioontology.org/ontology/NDFRT/",
             "https://bio2rdf.org/ndfrt:",
             "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=",
@@ -18493,6 +19386,7 @@
             "http://identifiers.org/neurolex/",
             "http://identifiers.org/neurolex:",
             "http://n2t.net/neurolex:",
+            "http://scicrunch.org/scicrunch/interlex/search?q=",
             "http://www.neurolex.org/wiki/",
             "https://bio2rdf.org/neurolex:",
             "https://bioregistry.io/NLX:",
@@ -18501,6 +19395,7 @@
             "https://identifiers.org/neurolex/",
             "https://identifiers.org/neurolex:",
             "https://n2t.net/neurolex:",
+            "https://scicrunch.org/scicrunch/interlex/search?q=",
             "https://uri.neuinfo.org/nif/nifstd/nlx_",
             "https://www.neurolex.org/wiki/",
             "neurolex:",
@@ -18541,8 +19436,10 @@
             "NEURONAMES:",
             "http://bioregistry.io/neuroname:",
             "http://bioregistry.io/neuronames:",
+            "http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=",
             "https://bioregistry.io/neuroname:",
             "https://bioregistry.io/neuronames:",
+            "https://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=",
             "https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=",
             "neuroname:",
             "neuronames:"
@@ -19362,6 +20259,30 @@
         ]
     },
     {
+        "pattern": "^NPC\\d+$",
+        "prefix": "npass",
+        "uri_prefix": "https://bidd.group/NPASS/compound.php?compoundID=",
+        "uri_prefix_synonyms": [
+            "NPASS:",
+            "http://bidd.group/NPASS/compound.php?compoundID=",
+            "http://bioregistry.io/npass:",
+            "https://bioregistry.io/npass:",
+            "npass:"
+        ]
+    },
+    {
+        "pattern": "^NPA\\d{6}$",
+        "prefix": "npatlas",
+        "uri_prefix": "https://www.npatlas.org/explore/compounds/",
+        "uri_prefix_synonyms": [
+            "NPATLAS:",
+            "http://bioregistry.io/npatlas:",
+            "http://www.npatlas.org/explore/compounds/",
+            "https://bioregistry.io/npatlas:",
+            "npatlas:"
+        ]
+    },
+    {
         "prefix": "npm",
         "uri_prefix": "https://www.npmjs.com/package/",
         "uri_prefix_synonyms": [
@@ -19543,6 +20464,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "obci",
+        "uri_prefix": "http://purl.obolibrary.org/obo/OBCI_",
+        "uri_prefix_synonyms": [
+            "OBCI:",
+            "http://bioregistry.io/obci:",
+            "https://bioregistry.io/obci:",
+            "https://purl.obolibrary.org/obo/OBCI_",
+            "obci:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "obcs",
         "uri_prefix": "http://purl.obolibrary.org/obo/OBCS_",
@@ -19611,6 +20544,17 @@
     {
         "prefix": "obo",
         "uri_prefix": "http://purl.obolibrary.org/obo/"
+    },
+    {
+        "prefix": "oboe",
+        "uri_prefix": "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#",
+        "uri_prefix_synonyms": [
+            "OBOE:",
+            "http://bioregistry.io/oboe:",
+            "https://bioregistry.io/oboe:",
+            "https://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#",
+            "oboe:"
+        ]
     },
     {
         "pattern": "^\\w+$",
@@ -19753,6 +20697,22 @@
             "https://identifiers.org/odam/",
             "https://identifiers.org/odam:",
             "odam:"
+        ]
+    },
+    {
+        "pattern": "^[A-Za-z][A-Za-z0-9]+$",
+        "prefix": "odamexplorer",
+        "uri_prefix": "https://pmb-bordeaux.fr/dataexplorer/?ds=",
+        "uri_prefix_synonyms": [
+            "ODAMEXPLORER:",
+            "http://bioregistry.io/odamexplorer:",
+            "http://identifiers.org/odam.explorer/",
+            "http://identifiers.org/odam.explorer:",
+            "http://pmb-bordeaux.fr/dataexplorer/?ds=",
+            "https://bioregistry.io/odamexplorer:",
+            "https://identifiers.org/odam.explorer/",
+            "https://identifiers.org/odam.explorer:",
+            "odamexplorer:"
         ]
     },
     {
@@ -20047,25 +21007,44 @@
         ]
     },
     {
-        "pattern": "^\\d+$",
+        "pattern": "^\\d{6}(-\\d+)?$",
         "prefix": "omia",
-        "uri_prefix": "https://omia.org/OMIA",
+        "prefix_synonyms": [
+            "OMIA"
+        ],
+        "uri_prefix": "https://omia.org/phene/omia:",
         "uri_prefix_synonyms": [
             "OMIA:",
             "http://bio2rdf.org/omia:",
+            "http://bioregistry.io/OMIA:",
             "http://bioregistry.io/omia:",
             "http://identifiers.org/omia/",
             "http://identifiers.org/omia:",
             "http://n2t.net/omia:",
             "http://omia.angis.org.au/retrieve.shtml?pid=",
-            "http://omia.org/OMIA",
+            "http://omia.org/phene/omia:",
+            "http://www.omia.org/OMIA",
             "https://bio2rdf.org/omia:",
+            "https://bioregistry.io/OMIA:",
             "https://bioregistry.io/omia:",
             "https://identifiers.org/omia/",
             "https://identifiers.org/omia:",
             "https://n2t.net/omia:",
             "https://omia.angis.org.au/retrieve.shtml?pid=",
+            "https://www.omia.org/OMIA",
             "omia:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "omia.variant",
+        "uri_prefix": "https://omia.org/variant/omia.variant:",
+        "uri_prefix_synonyms": [
+            "OMIA.VARIANT:",
+            "http://bioregistry.io/omia.variant:",
+            "http://omia.org/variant/omia.variant:",
+            "https://bioregistry.io/omia.variant:",
+            "omia.variant:"
         ]
     },
     {
@@ -20223,6 +21202,18 @@
             "https://purl.obolibrary.org/obo/OMO_",
             "https://www.ebi.ac.uk/ols/ontologies/omo/terms?iri=http://purl.obolibrary.org/obo/OMO_",
             "omo:"
+        ]
+    },
+    {
+        "pattern": "^\\d{5}$",
+        "prefix": "omon",
+        "uri_prefix": "https://onderzoekmetmensen.nl/en/trial/",
+        "uri_prefix_synonyms": [
+            "OMON:",
+            "http://bioregistry.io/omon:",
+            "http://onderzoekmetmensen.nl/en/trial/",
+            "https://bioregistry.io/omon:",
+            "omon:"
         ]
     },
     {
@@ -20619,9 +21610,9 @@
             "http://identifiers.org/orphanet:",
             "http://n2t.net/orphanet:",
             "http://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:",
-            "http://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=",
             "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=",
             "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
+            "http://www.orpha.net/en/disease/detail/",
             "https://bio2rdf.org/orphanet:",
             "https://bioregistry.io/ORPHA:",
             "https://bioregistry.io/orphanet:",
@@ -20629,10 +21620,10 @@
             "https://identifiers.org/orphanet:",
             "https://n2t.net/orphanet:",
             "https://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:",
-            "https://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
+            "https://www.orpha.net/en/disease/detail/",
             "orpha:",
             "orphanet:"
         ]
@@ -20653,19 +21644,21 @@
             "http://identifiers.org/orphanet.ordo/Orphanet_",
             "http://identifiers.org/orphanet.ordo:",
             "http://n2t.net/orphanet.ordo:",
-            "http://www.ebi.ac.uk/ols/ontologies/ordo/terms?iri=http://www.orpha.net/ORDO/",
             "http://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
+            "http://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "http://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=",
+            "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
             "https://bioregistry.io/ordo:",
             "https://bioregistry.io/orphanet.ordo:",
             "https://identifiers.org/orphanet.ordo/",
             "https://identifiers.org/orphanet.ordo/Orphanet_",
             "https://identifiers.org/orphanet.ordo:",
             "https://n2t.net/orphanet.ordo:",
-            "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?iri=http://www.orpha.net/ORDO/",
             "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
+            "https://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=",
             "https://www.orpha.net/ORDO/Orphanet_",
+            "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
             "ordo:",
             "orphanet.ordo:"
         ]
@@ -20769,6 +21762,18 @@
             "https://n2t.net/oryzabase.strain:",
             "https://www.shigen.nig.ac.jp/rice/oryzabaseV4/strain/wildCore/detail/",
             "oryzabase.strain:"
+        ]
+    },
+    {
+        "pattern": "^[a-z0-9]{5}$",
+        "prefix": "osf",
+        "uri_prefix": "https://osf.io/",
+        "uri_prefix_synonyms": [
+            "OSF:",
+            "http://bioregistry.io/osf:",
+            "http://osf.io/",
+            "https://bioregistry.io/osf:",
+            "osf:"
         ]
     },
     {
@@ -21318,6 +22323,7 @@
             "http://pdbj.org/mine/summary/",
             "http://proteopedia.org/wiki/index.php/",
             "http://rdf.wwpdb.org/pdb/",
+            "http://seq2fun.dcmb.med.umich.edu/furna/pdb.cgi?pdbid=",
             "http://viperdb.org/Info_Page.php?VDB=",
             "http://viperdb.scripps.edu/info_page.php?VDB=",
             "http://webchem.ncbr.muni.cz/Platform/ValidatorDb/",
@@ -21347,6 +22353,7 @@
             "https://pdbj.org/mine/summary/",
             "https://proteopedia.org/wiki/index.php/",
             "https://rdf.wwpdb.org/pdb/",
+            "https://seq2fun.dcmb.med.umich.edu/furna/pdb.cgi?pdbid=",
             "https://viperdb.org/Info_Page.php?VDB=",
             "https://viperdb.scripps.edu/info_page.php?VDB=",
             "https://webchem.ncbr.muni.cz/Platform/ValidatorDb/",
@@ -21373,7 +22380,7 @@
             "pdb-ccd",
             "pdbechem"
         ],
-        "uri_prefix": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=",
+        "uri_prefix": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/",
         "uri_prefix_synonyms": [
             "PDB-CCD:",
             "PDB.LIGAND:",
@@ -21393,6 +22400,7 @@
             "http://n2t.net/pdb.ligand:",
             "http://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/",
             "http://www.rcsb.org/ligand/",
+            "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=",
             "https://bio2rdf.org/ccd:",
             "https://bio2rdf.org/pdbligand:",
             "https://bioregistry.io/PDB_CHEM_ID:",
@@ -21405,7 +22413,6 @@
             "https://identifiers.org/pdb.ligand:",
             "https://n2t.net/pdb-ccd:",
             "https://n2t.net/pdb.ligand:",
-            "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/",
             "https://www.rcsb.org/ligand/",
             "https://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=",
             "pdb-ccd:",
@@ -21467,11 +22474,13 @@
     {
         "pattern": "^\\d{7}$",
         "prefix": "peco",
-        "uri_prefix": "http://purl.obolibrary.org/obo/PECO_",
+        "uri_prefix": "https://browser.planteome.org/amigo/term/PECO:",
         "uri_prefix_synonyms": [
             "PECO:",
             "http://bioregistry.io/PECO:",
             "http://bioregistry.io/peco:",
+            "http://browser.planteome.org/amigo/term/PECO:",
+            "http://purl.obolibrary.org/obo/PECO_",
             "http://www.ebi.ac.uk/ols/ontologies/peco/terms?iri=http://purl.obolibrary.org/obo/PECO_",
             "https://bioregistry.io/PECO:",
             "https://bioregistry.io/peco:",
@@ -21546,6 +22555,18 @@
             "https://bioregistry.io/pepbank:",
             "https://pepbank.mgh.harvard.edu/interactions/details/",
             "pepbank:"
+        ]
+    },
+    {
+        "pattern": "^[A-Za-z0-9_\\-]+(/[A-Za-z0-9_\\-]+)?$",
+        "prefix": "pephub",
+        "uri_prefix": "https://pephub.databio.org/",
+        "uri_prefix_synonyms": [
+            "PEPHUB:",
+            "http://bioregistry.io/pephub:",
+            "http://pephub.databio.org/",
+            "https://bioregistry.io/pephub:",
+            "pephub:"
         ]
     },
     {
@@ -21983,6 +23004,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "phosphosite.curation",
+        "uri_prefix": "https://www.phosphosite.org/curatedInfoAction.action?record=",
+        "uri_prefix_synonyms": [
+            "PHOSPHOSITE.CURATION:",
+            "http://bioregistry.io/phosphosite.curation:",
+            "http://www.phosphosite.org/curatedInfoAction.action?record=",
+            "https://bioregistry.io/phosphosite.curation:",
+            "phosphosite.curation:"
+        ]
+    },
+    {
         "pattern": "^\\d{5}$",
         "prefix": "phosphosite.protein",
         "uri_prefix": "http://www.phosphosite.org/proteinAction.do?id=",
@@ -22272,6 +23305,25 @@
     },
     {
         "pattern": "^\\d+$",
+        "prefix": "plos",
+        "prefix_synonyms": [
+            "PLOSTHES"
+        ],
+        "uri_prefix": "http://localhost/plosthes.2017-1#",
+        "uri_prefix_synonyms": [
+            "PLOS:",
+            "PLOSTHES:",
+            "http://bioregistry.io/PLOSTHES:",
+            "http://bioregistry.io/plos:",
+            "https://bioregistry.io/PLOSTHES:",
+            "https://bioregistry.io/plos:",
+            "https://localhost/plosthes.2017-1#",
+            "plos:",
+            "plosthes:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
         "prefix": "pmap.cutdb",
         "uri_prefix": "http://cutdb.burnham.org/relation/show/",
         "uri_prefix_synonyms": [
@@ -22409,17 +23461,19 @@
             "http://bio2rdf.org/po:",
             "http://bioregistry.io/PO:",
             "http://bioregistry.io/po:",
+            "http://browser.planteome.org/amigo/term/PO:",
             "http://identifiers.org/PO/",
             "http://identifiers.org/PO:",
             "http://identifiers.org/po/PO:",
             "http://n2t.net/po:",
             "http://purl.bioontology.org/ontology/PO/PO:",
             "http://www.ebi.ac.uk/ols/ontologies/po/terms?iri=http://purl.obolibrary.org/obo/PO_",
-            "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:",
+            "http://www.ebi.ac.uk/ols4/ontologies/po/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "http://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query=",
             "https://bio2rdf.org/po:",
             "https://bioregistry.io/PO:",
             "https://bioregistry.io/po:",
+            "https://browser.planteome.org/amigo/term/PO:",
             "https://identifiers.org/PO/",
             "https://identifiers.org/PO:",
             "https://identifiers.org/po/PO:",
@@ -22427,7 +23481,7 @@
             "https://purl.bioontology.org/ontology/PO/PO:",
             "https://purl.obolibrary.org/obo/PO_",
             "https://www.ebi.ac.uk/ols/ontologies/po/terms?iri=http://purl.obolibrary.org/obo/PO_",
-            "https://www.plantontology.org/amigo/go.cgi?view=details&query=PO:",
+            "https://www.ebi.ac.uk/ols4/ontologies/po/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query=",
             "po:"
         ]
@@ -22843,6 +23897,17 @@
         ]
     },
     {
+        "prefix": "protege",
+        "uri_prefix": "http://protege.stanford.edu/plugins/owl/protege#",
+        "uri_prefix_synonyms": [
+            "PROTEGE:",
+            "http://bioregistry.io/protege:",
+            "https://bioregistry.io/protege:",
+            "https://protege.stanford.edu/plugins/owl/protege#",
+            "protege:"
+        ]
+    },
+    {
         "pattern": "^\\d+$",
         "prefix": "proteomicsdb.peptide",
         "uri_prefix": "https://www.proteomicsdb.org/#human/proteinDetails/",
@@ -23230,17 +24295,21 @@
             "MEDLINE",
             "PMID",
             "PubMed",
+            "PubMed ID",
             "pmid"
         ],
         "uri_prefix": "https://www.ncbi.nlm.nih.gov/pubmed/",
         "uri_prefix_synonyms": [
             "MEDLINE:",
             "PMID:",
+            "PUBMED ID:",
             "PUBMED:",
+            "PubMed ID:",
             "PubMed:",
             "http://bio2rdf.org/pubmed:",
             "http://bioregistry.io/MEDLINE:",
             "http://bioregistry.io/PMID:",
+            "http://bioregistry.io/PubMed ID:",
             "http://bioregistry.io/PubMed:",
             "http://bioregistry.io/pmid:",
             "http://bioregistry.io/pubmed:",
@@ -23254,11 +24323,12 @@
             "http://purl.uniprot.org/pubmed/",
             "http://rdf.ncbi.nlm.nih.gov/pubchem/reference/",
             "http://scholia.toolforge.org/pubmed/",
-            "http://www.hubmed.org/display.cgi?uids=",
+            "http://www.hubmed.org/?term=",
             "http://www.ncbi.nlm.nih.gov/pubmed/",
             "https://bio2rdf.org/pubmed:",
             "https://bioregistry.io/MEDLINE:",
             "https://bioregistry.io/PMID:",
+            "https://bioregistry.io/PubMed ID:",
             "https://bioregistry.io/PubMed:",
             "https://bioregistry.io/pmid:",
             "https://bioregistry.io/pubmed:",
@@ -23272,9 +24342,10 @@
             "https://purl.uniprot.org/pubmed/",
             "https://rdf.ncbi.nlm.nih.gov/pubchem/reference/",
             "https://scholia.toolforge.org/pubmed/",
-            "https://www.hubmed.org/display.cgi?uids=",
+            "https://www.hubmed.org/?term=",
             "medline:",
             "pmid:",
+            "pubmed id:",
             "pubmed:"
         ]
     },
@@ -23798,7 +24869,7 @@
         ]
     },
     {
-        "pattern": "^\\d+-\\d+$",
+        "pattern": "^\\d+-\\d+(-[A-Z])?$",
         "prefix": "repec",
         "uri_prefix": "https://www.ins.gob.pe/ensayosclinicos/rpec/recuperarECPBNuevo.asp?val=&NroPag=1&flg=0&ver=EN&numEC=",
         "uri_prefix_synonyms": [
@@ -23818,6 +24889,18 @@
             "http://w3id.org/reproduceme#",
             "https://bioregistry.io/reproduceme:",
             "reproduceme:"
+        ]
+    },
+    {
+        "pattern": "^[0-9A-Za-z_-]+$",
+        "prefix": "researchgate.profile",
+        "uri_prefix": "https://www.researchgate.net/profile/",
+        "uri_prefix_synonyms": [
+            "RESEARCHGATE.PROFILE:",
+            "http://bioregistry.io/researchgate.profile:",
+            "http://www.researchgate.net/profile/",
+            "https://bioregistry.io/researchgate.profile:",
+            "researchgate.profile:"
         ]
     },
     {
@@ -23900,11 +24983,13 @@
     },
     {
         "prefix": "rgap",
-        "uri_prefix": "http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=",
+        "uri_prefix": "https://rice.uga.edu/cgi-bin/ORF_infopage.cgi?orf=",
         "uri_prefix_synonyms": [
             "RGAP:",
             "http://bio2rdf.org/rgap:",
             "http://bioregistry.io/rgap:",
+            "http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=",
+            "http://rice.uga.edu/cgi-bin/ORF_infopage.cgi?orf=",
             "https://bio2rdf.org/rgap:",
             "https://bioregistry.io/rgap:",
             "https://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=",
@@ -24450,11 +25535,13 @@
             "http://bioregistry.io/RS:",
             "http://bioregistry.io/rs:",
             "http://www.ebi.ac.uk/ols/ontologies/rs/terms?iri=http://purl.obolibrary.org/obo/RS_",
+            "http://www.ebi.ac.uk/ols4/ontologies/rs/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://bio2rdf.org/rs:",
             "https://bioregistry.io/RS:",
             "https://bioregistry.io/rs:",
             "https://purl.obolibrary.org/obo/RS_",
             "https://www.ebi.ac.uk/ols/ontologies/rs/terms?iri=http://purl.obolibrary.org/obo/RS_",
+            "https://www.ebi.ac.uk/ols4/ontologies/rs/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "rs:"
         ]
     },
@@ -24719,6 +25806,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "scancerrna",
+        "uri_prefix": "http://www.scancerrna.com/toDetail?id=",
+        "uri_prefix_synonyms": [
+            "SCANCERRNA:",
+            "http://bioregistry.io/scancerrna:",
+            "https://bioregistry.io/scancerrna:",
+            "https://www.scancerrna.com/toDetail?id=",
+            "scancerrna:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "scdo",
         "uri_prefix": "http://purl.obolibrary.org/obo/SCDO_",
@@ -24789,6 +25888,18 @@
             "https://identifiers.org/sciflection/",
             "https://identifiers.org/sciflection:",
             "sciflection:"
+        ]
+    },
+    {
+        "pattern": "^[1-9]\\d*$",
+        "prefix": "sciprofiles",
+        "uri_prefix": "https://sciprofiles.com/profile/",
+        "uri_prefix_synonyms": [
+            "SCIPROFILES:",
+            "http://bioregistry.io/sciprofiles:",
+            "http://sciprofiles.com/profile/",
+            "https://bioregistry.io/sciprofiles:",
+            "sciprofiles:"
         ]
     },
     {
@@ -25078,20 +26189,27 @@
     {
         "pattern": "^\\w+$",
         "prefix": "seed",
+        "prefix_synonyms": [
+            "seed.subsystem"
+        ],
         "uri_prefix": "http://seed-viewer.theseed.org/seedviewer.cgi?page=Subsystems&subsystem=",
         "uri_prefix_synonyms": [
+            "SEED.SUBSYSTEM:",
             "SEED:",
+            "http://bioregistry.io/seed.subsystem:",
             "http://bioregistry.io/seed:",
             "http://identifiers.org/seed/",
             "http://identifiers.org/seed:",
             "http://n2t.net/seed:",
             "http://www.theseed.org/linkin.cgi?id=",
+            "https://bioregistry.io/seed.subsystem:",
             "https://bioregistry.io/seed:",
             "https://identifiers.org/seed/",
             "https://identifiers.org/seed:",
             "https://n2t.net/seed:",
             "https://seed-viewer.theseed.org/seedviewer.cgi?page=Subsystems&subsystem=",
             "https://www.theseed.org/linkin.cgi?id=",
+            "seed.subsystem:",
             "seed:"
         ]
     },
@@ -25145,13 +26263,20 @@
     },
     {
         "prefix": "semapv",
+        "prefix_synonyms": [
+            "sempav_voc"
+        ],
         "uri_prefix": "https://w3id.org/semapv/vocab/",
         "uri_prefix_synonyms": [
             "SEMAPV:",
+            "SEMPAV_VOC:",
             "http://bioregistry.io/semapv:",
+            "http://bioregistry.io/sempav_voc:",
             "http://w3id.org/semapv/vocab/",
             "https://bioregistry.io/semapv:",
-            "semapv:"
+            "https://bioregistry.io/sempav_voc:",
+            "semapv:",
+            "sempav_voc:"
         ]
     },
     {
@@ -25431,7 +26556,9 @@
             "SIGMAALDRICH:",
             "http://bioregistry.io/sigmaaldrich:",
             "http://www.sigmaaldrich.com/US/en/product/sigma/",
+            "http://www.sigmaaldrich.com/catalog/product/sigma/",
             "https://bioregistry.io/sigmaaldrich:",
+            "https://www.sigmaaldrich.com/catalog/product/sigma/",
             "sigmaaldrich:"
         ]
     },
@@ -25667,6 +26794,30 @@
     },
     {
         "pattern": "^\\d+$",
+        "prefix": "smc.bgc",
+        "uri_prefix": "https://smc.jgi.doe.gov/bgc/",
+        "uri_prefix_synonyms": [
+            "SMC.BGC:",
+            "http://bioregistry.io/smc.bgc:",
+            "http://smc.jgi.doe.gov/bgc/",
+            "https://bioregistry.io/smc.bgc:",
+            "smc.bgc:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "smc.source",
+        "uri_prefix": "https://smc.jgi.doe.gov/sources/",
+        "uri_prefix_synonyms": [
+            "SMC.SOURCE:",
+            "http://bioregistry.io/smc.source:",
+            "http://smc.jgi.doe.gov/sources/",
+            "https://bioregistry.io/smc.source:",
+            "smc.source:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
         "prefix": "smid",
         "prefix_synonyms": [
             "SMID-DB"
@@ -25747,13 +26898,20 @@
     },
     {
         "prefix": "snap",
+        "prefix_synonyms": [
+            "bfo11snap"
+        ],
         "uri_prefix": "http://www.ifomis.org/bfo/1.1/snap#",
         "uri_prefix_synonyms": [
+            "BFO11SNAP:",
             "SNAP:",
+            "bfo11snap:",
             "http://bio2rdf.org/snap:",
+            "http://bioregistry.io/bfo11snap:",
             "http://bioregistry.io/snap:",
             "http://snap.humgen.au.dk/views/geneview.cgi?gene=",
             "https://bio2rdf.org/snap:",
+            "https://bioregistry.io/bfo11snap:",
             "https://bioregistry.io/snap:",
             "https://snap.humgen.au.dk/views/geneview.cgi?gene=",
             "https://www.ifomis.org/bfo/1.1/snap#",
@@ -25795,6 +26953,7 @@
             "SNOMEDCT_US_2023_09_01",
             "SNOMEDCT_US_2023_10_01",
             "SNOMEDCT_US_2023_11_01",
+            "SNOMEDCT_US_2024_03_01",
             "SNOMED_CT",
             "SNOMED_CT_US_2018_03_01",
             "SNOWMEDCT",
@@ -25834,6 +26993,7 @@
             "SNOMEDCT_US_2023_09_01:",
             "SNOMEDCT_US_2023_10_01:",
             "SNOMEDCT_US_2023_11_01:",
+            "SNOMEDCT_US_2024_03_01:",
             "SNOMED_CT:",
             "SNOMED_CT_US_2018_03_01:",
             "SNOWMEDCT:",
@@ -25871,6 +27031,7 @@
             "http://bioregistry.io/SNOMEDCT_US_2023_09_01:",
             "http://bioregistry.io/SNOMEDCT_US_2023_10_01:",
             "http://bioregistry.io/SNOMEDCT_US_2023_11_01:",
+            "http://bioregistry.io/SNOMEDCT_US_2024_03_01:",
             "http://bioregistry.io/SNOMED_CT:",
             "http://bioregistry.io/SNOMED_CT_US_2018_03_01:",
             "http://bioregistry.io/SNOWMEDCT:",
@@ -25880,6 +27041,7 @@
             "http://identifiers.org/snomedct/",
             "http://identifiers.org/snomedct:",
             "http://n2t.net/snomedct:",
+            "http://purl.bioontology.org/ontology/SNOMEDCT/",
             "http://www.snomedbrowser.com/Codes/Details/",
             "https://bio2rdf.org/snomedct:",
             "https://bioregistry.io/SCTID:",
@@ -25913,6 +27075,7 @@
             "https://bioregistry.io/SNOMEDCT_US_2023_09_01:",
             "https://bioregistry.io/SNOMEDCT_US_2023_10_01:",
             "https://bioregistry.io/SNOMEDCT_US_2023_11_01:",
+            "https://bioregistry.io/SNOMEDCT_US_2024_03_01:",
             "https://bioregistry.io/SNOMED_CT:",
             "https://bioregistry.io/SNOMED_CT_US_2018_03_01:",
             "https://bioregistry.io/SNOWMEDCT:",
@@ -25922,6 +27085,7 @@
             "https://identifiers.org/snomedct/",
             "https://identifiers.org/snomedct:",
             "https://n2t.net/snomedct:",
+            "https://purl.bioontology.org/ontology/SNOMEDCT/",
             "https://snomed.info/id/",
             "https://www.snomedbrowser.com/Codes/Details/",
             "sctid:",
@@ -25954,6 +27118,7 @@
             "snomedct_us_2023_09_01:",
             "snomedct_us_2023_10_01:",
             "snomedct_us_2023_11_01:",
+            "snomedct_us_2024_03_01:",
             "snomedctct:",
             "snomedctct_2018_03_01:",
             "snomedctct_2019_03_01:",
@@ -26031,6 +27196,17 @@
             "https://bioregistry.io/sopharm:",
             "https://purl.obolibrary.org/obo/SOPHARM_",
             "sopharm:"
+        ]
+    },
+    {
+        "prefix": "sosa",
+        "uri_prefix": "http://www.w3.org/ns/sosa/",
+        "uri_prefix_synonyms": [
+            "SOSA:",
+            "http://bioregistry.io/sosa:",
+            "https://bioregistry.io/sosa:",
+            "https://www.w3.org/ns/sosa/",
+            "sosa:"
         ]
     },
     {
@@ -26216,6 +27392,51 @@
         ]
     },
     {
+        "prefix": "ssn",
+        "uri_prefix": "http://www.w3.org/ns/ssn/",
+        "uri_prefix_synonyms": [
+            "SSN:",
+            "http://bioregistry.io/ssn:",
+            "https://bioregistry.io/ssn:",
+            "https://www.w3.org/ns/ssn/",
+            "ssn:"
+        ]
+    },
+    {
+        "prefix": "ssn.system",
+        "uri_prefix": "http://www.w3.org/ns/ssn/systems/",
+        "uri_prefix_synonyms": [
+            "SSN.SYSTEM:",
+            "http://bioregistry.io/ssn.system:",
+            "https://bioregistry.io/ssn.system:",
+            "https://www.w3.org/ns/ssn/systems/",
+            "ssn.system:"
+        ]
+    },
+    {
+        "prefix": "ssrn.article",
+        "uri_prefix": "https://ssrn.com/abstract=",
+        "uri_prefix_synonyms": [
+            "SSRN.ARTICLE:",
+            "http://bioregistry.io/ssrn.article:",
+            "http://ssrn.com/abstract=",
+            "https://bioregistry.io/ssrn.article:",
+            "ssrn.article:"
+        ]
+    },
+    {
+        "pattern": "^[1-9]\\d{0,6}$",
+        "prefix": "ssrn.author",
+        "uri_prefix": "https://ssrn.com/author=",
+        "uri_prefix_synonyms": [
+            "SSRN.AUTHOR:",
+            "http://bioregistry.io/ssrn.author:",
+            "http://ssrn.com/author=",
+            "https://bioregistry.io/ssrn.author:",
+            "ssrn.author:"
+        ]
+    },
+    {
         "pattern": "^[A-Za-z_]+$",
         "prefix": "sssom",
         "uri_prefix": "https://w3id.org/sssom/",
@@ -26358,6 +27579,18 @@
             "https://bioregistry.io/storedb.study:",
             "https://dx.doi.org/doi:10.20348/STOREDB/",
             "storedb.study:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "streptomedb",
+        "uri_prefix": "http://streptomedb.vm.uni-freiburg.de:8000/streptomedb/get_drugcard/",
+        "uri_prefix_synonyms": [
+            "STREPTOMEDB:",
+            "http://bioregistry.io/streptomedb:",
+            "https://bioregistry.io/streptomedb:",
+            "https://streptomedb.vm.uni-freiburg.de:8000/streptomedb/get_drugcard/",
+            "streptomedb:"
         ]
     },
     {
@@ -26594,6 +27827,54 @@
             "https://identifiers.org/synapse/",
             "https://identifiers.org/synapse:",
             "synapse:"
+        ]
+    },
+    {
+        "pattern": "^st\\d+$",
+        "prefix": "synbip.bts",
+        "uri_prefix": "http://synbip.idrblab.net/data/bts/details/",
+        "uri_prefix_synonyms": [
+            "SYNBIP.BTS:",
+            "http://bioregistry.io/synbip.bts:",
+            "https://bioregistry.io/synbip.bts:",
+            "https://synbip.idrblab.net/data/bts/details/",
+            "synbip.bts:"
+        ]
+    },
+    {
+        "pattern": "^mt\\d+$",
+        "prefix": "synbip.epitope",
+        "uri_prefix": "http://synbip.idrblab.net/data/sbp-target-complex/details/",
+        "uri_prefix_synonyms": [
+            "SYNBIP.EPITOPE:",
+            "http://bioregistry.io/synbip.epitope:",
+            "https://bioregistry.io/synbip.epitope:",
+            "https://synbip.idrblab.net/data/sbp-target-complex/details/",
+            "synbip.epitope:"
+        ]
+    },
+    {
+        "pattern": "^ps\\d+$",
+        "prefix": "synbip.pss",
+        "uri_prefix": "http://synbip.idrblab.net/data/scaffold/details/",
+        "uri_prefix_synonyms": [
+            "SYNBIP.PSS:",
+            "http://bioregistry.io/synbip.pss:",
+            "https://bioregistry.io/synbip.pss:",
+            "https://synbip.idrblab.net/data/scaffold/details/",
+            "synbip.pss:"
+        ]
+    },
+    {
+        "pattern": "^sbp\\d+$",
+        "prefix": "synbip.sbp",
+        "uri_prefix": "http://synbip.idrblab.net/data/sbp/details/",
+        "uri_prefix_synonyms": [
+            "SYNBIP.SBP:",
+            "http://bioregistry.io/synbip.sbp:",
+            "https://bioregistry.io/synbip.sbp:",
+            "https://synbip.idrblab.net/data/sbp/details/",
+            "synbip.sbp:"
         ]
     },
     {
@@ -26868,6 +28149,17 @@
         ]
     },
     {
+        "prefix": "tdwg.taxonrank",
+        "uri_prefix": "http://rs.tdwg.org/ontology/voc/TaxonRank#",
+        "uri_prefix_synonyms": [
+            "TDWG.TAXONRANK:",
+            "http://bioregistry.io/tdwg.taxonrank:",
+            "https://bioregistry.io/tdwg.taxonrank:",
+            "https://rs.tdwg.org/ontology/voc/TaxonRank#",
+            "tdwg.taxonrank:"
+        ]
+    },
+    {
         "prefix": "tfclass",
         "uri_prefix": "http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=",
         "uri_prefix_synonyms": [
@@ -26926,6 +28218,27 @@
             "https://bioregistry.io/tgn:",
             "https://vocab.getty.edu/page/tgn/",
             "tgn:"
+        ]
+    },
+    {
+        "pattern": "^\\d+[a-d]?$",
+        "prefix": "theiler",
+        "prefix_synonyms": [
+            "thielerstage"
+        ],
+        "uri_prefix": "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+        "uri_prefix_synonyms": [
+            "THEILER:",
+            "THIELERSTAGE:",
+            "http://bioregistry.io/theiler:",
+            "http://bioregistry.io/thielerstage:",
+            "http://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+            "https://bioregistry.io/theiler:",
+            "https://bioregistry.io/thielerstage:",
+            "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+            "https://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+            "theiler:",
+            "thielerstage:"
         ]
     },
     {
@@ -27395,6 +28708,7 @@
             "http://onto.cellxgene-labs.prod.si.czi.technology/a/ontology/UBERON/UBERON:",
             "http://purl.bioontology.org/ontology/UBERON/UBERON:",
             "http://www.ebi.ac.uk/ols/ontologies/uberon/terms?iri=http://purl.obolibrary.org/obo/UBERON_",
+            "http://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "http://www.ebi.ac.uk/ols4/ontologies/uberon/terms?obo_id=UBERON:",
             "https://bioregistry.io/UBERON:",
             "https://bioregistry.io/Uber-anatomy ontology:",
@@ -27409,6 +28723,7 @@
             "https://purl.bioontology.org/ontology/UBERON/UBERON:",
             "https://purl.obolibrary.org/obo/UBERON_",
             "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?iri=http://purl.obolibrary.org/obo/UBERON_",
+            "https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://www.ebi.ac.uk/ols4/ontologies/uberon/terms?obo_id=UBERON:",
             "uber-anatomy ontology:",
             "uberon:"
@@ -27744,7 +29059,7 @@
     {
         "pattern": "^UPI[A-F0-9]{10}$",
         "prefix": "uniparc",
-        "uri_prefix": "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=",
+        "uri_prefix": "https://www.uniprot.org/uniparc/",
         "uri_prefix_synonyms": [
             "UNIPARC:",
             "http://bio2rdf.org/uniparc:",
@@ -27759,7 +29074,7 @@
             "https://identifiers.org/uniparc/",
             "https://identifiers.org/uniparc:",
             "https://n2t.net/uniparc:",
-            "https://www.uniprot.org/uniparc/",
+            "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=",
             "uniparc:"
         ]
     },
@@ -27822,7 +29137,7 @@
             "topfind",
             "uniprot/swiss-prot"
         ],
-        "uri_prefix": "https://purl.uniprot.org/uniprot/",
+        "uri_prefix": "http://purl.uniprot.org/uniprot/",
         "uri_prefix_synonyms": [
             "APID.INTERACTIONS:",
             "BYKDB:",
@@ -27850,6 +29165,8 @@
             "bykdb:",
             "compulyeast:",
             "goa:",
+            "http://165.194.60.211:9006/detail/",
+            "http://bfvd.foldseek.com/cluster/",
             "http://bio2rdf.org/bykdb:",
             "http://bio2rdf.org/compluyeast2dpage:",
             "http://bio2rdf.org/goa:",
@@ -27858,6 +29175,7 @@
             "http://bio2rdf.org/string:",
             "http://bio2rdf.org/swissmodel:",
             "http://bio2rdf.org/uniprot:",
+            "http://biomine.cs.vcu.edu/servers/DESCRIBEPROT/result_v2.php?uniprot=",
             "http://bioregistry.io/SwissProt:",
             "http://bioregistry.io/UP:",
             "http://bioregistry.io/UniProt:",
@@ -27911,7 +29229,6 @@
             "http://identifiers.org/uniprot/",
             "http://identifiers.org/uniprot:",
             "http://mobidb.bio.unipd.it/",
-            "http://mobidb.bio.unipd.it/entries/",
             "http://mobidb.org/",
             "http://n2t.net/apid.interactions:",
             "http://n2t.net/bykdb:",
@@ -27927,20 +29244,25 @@
             "http://n2t.net/uniprot:",
             "http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=",
             "http://omnipathdb.org/interactions/?fields=sources,references&partners=",
-            "http://purl.uniprot.org/uniprot/",
+            "http://pharos.nih.gov/idg/targets/",
             "http://repeatsdb.org/protein/",
             "http://research.bioinformatics.udel.edu/iptmnet/entry/",
             "http://scholia.toolforge.org/uniprot/",
+            "http://string-db.org/cgi/network?identifier=",
             "http://string-db.org/interactions/",
             "http://string-db.org/network/",
-            "http://string.embl.de/interactions/",
+            "http://string.embl.de/cgi/network?identifier=",
             "http://swissmodel.expasy.org/repository/smr.php?sptr_ac=",
             "http://swissmodel.expasy.org/repository/uniprot/",
             "http://www.ebi.ac.uk/QuickGO/GProtein?ac=",
             "http://www.ebi.ac.uk/QuickGO/GTerm?id=",
+            "http://www.iedb.org/antigen/UNIPROT:",
+            "http://www.oglcnac.mcw.edu/search/?query_protein=",
             "http://www.orthodb.org/?gene=",
             "http://www.proteinmodelportal.org/query/uniprot/",
             "http://www.uniprot.org/uniprot/",
+            "https://165.194.60.211:9006/detail/",
+            "https://bfvd.foldseek.com/cluster/",
             "https://bio2rdf.org/bykdb:",
             "https://bio2rdf.org/compluyeast2dpage:",
             "https://bio2rdf.org/goa:",
@@ -27949,6 +29271,7 @@
             "https://bio2rdf.org/string:",
             "https://bio2rdf.org/swissmodel:",
             "https://bio2rdf.org/uniprot:",
+            "https://biomine.cs.vcu.edu/servers/DESCRIBEPROT/result_v2.php?uniprot=",
             "https://bioregistry.io/SwissProt:",
             "https://bioregistry.io/UP:",
             "https://bioregistry.io/UniProt:",
@@ -28002,7 +29325,6 @@
             "https://identifiers.org/uniprot/",
             "https://identifiers.org/uniprot:",
             "https://mobidb.bio.unipd.it/",
-            "https://mobidb.bio.unipd.it/entries/",
             "https://mobidb.org/",
             "https://n2t.net/apid.interactions:",
             "https://n2t.net/bykdb:",
@@ -28018,16 +29340,21 @@
             "https://n2t.net/uniprot:",
             "https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=",
             "https://omnipathdb.org/interactions/?fields=sources,references&partners=",
+            "https://pharos.nih.gov/idg/targets/",
+            "https://purl.uniprot.org/uniprot/",
             "https://repeatsdb.org/protein/",
             "https://research.bioinformatics.udel.edu/iptmnet/entry/",
             "https://scholia.toolforge.org/uniprot/",
+            "https://string-db.org/cgi/network?identifier=",
             "https://string-db.org/interactions/",
             "https://string-db.org/network/",
-            "https://string.embl.de/interactions/",
+            "https://string.embl.de/cgi/network?identifier=",
             "https://swissmodel.expasy.org/repository/smr.php?sptr_ac=",
             "https://swissmodel.expasy.org/repository/uniprot/",
             "https://www.ebi.ac.uk/QuickGO/GProtein?ac=",
             "https://www.ebi.ac.uk/QuickGO/GTerm?id=",
+            "https://www.iedb.org/antigen/UNIPROT:",
+            "https://www.oglcnac.mcw.edu/search/?query_protein=",
             "https://www.orthodb.org/?gene=",
             "https://www.proteinmodelportal.org/query/uniprot/",
             "https://www.uniprot.org/uniprot/",
@@ -28087,6 +29414,17 @@
             "https://purl.uniprot.org/annotation/",
             "uniprot.chain:",
             "uppro:"
+        ]
+    },
+    {
+        "prefix": "uniprot.core",
+        "uri_prefix": "http://purl.uniprot.org/core/",
+        "uri_prefix_synonyms": [
+            "UNIPROT.CORE:",
+            "http://bioregistry.io/uniprot.core:",
+            "https://bioregistry.io/uniprot.core:",
+            "https://purl.uniprot.org/core/",
+            "uniprot.core:"
         ]
     },
     {
@@ -28216,6 +29554,18 @@
             "uniprot.location:",
             "uniprotkb-subcell:",
             "uploc:"
+        ]
+    },
+    {
+        "pattern": "^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$",
+        "prefix": "uniprot.mnemonic",
+        "uri_prefix": "https://www.uniprot.org/uniprotkb/",
+        "uri_prefix_synonyms": [
+            "UNIPROT.MNEMONIC:",
+            "http://bioregistry.io/uniprot.mnemonic:",
+            "http://www.uniprot.org/uniprotkb/",
+            "https://bioregistry.io/uniprot.mnemonic:",
+            "uniprot.mnemonic:"
         ]
     },
     {
@@ -28403,6 +29753,7 @@
             "http://n2t.net/uo:",
             "http://purl.bioontology.org/ontology/UO/UO:",
             "http://www.ebi.ac.uk/ols/ontologies/uo/terms?iri=http://purl.obolibrary.org/obo/UO_",
+            "http://www.ebi.ac.uk/ols4/ontologies/uo/terms?obo_id=UO:",
             "https://bio2rdf.org/uo:",
             "https://bioregistry.io/UO:",
             "https://bioregistry.io/uo:",
@@ -28413,6 +29764,7 @@
             "https://purl.bioontology.org/ontology/UO/UO:",
             "https://purl.obolibrary.org/obo/UO_",
             "https://www.ebi.ac.uk/ols/ontologies/uo/terms?iri=http://purl.obolibrary.org/obo/UO_",
+            "https://www.ebi.ac.uk/ols4/ontologies/uo/terms?obo_id=UO:",
             "uo:"
         ]
     },
@@ -28465,6 +29817,18 @@
             "https://purl.obolibrary.org/obo/UPHENO_",
             "https://www.ebi.ac.uk/ols/ontologies/upheno/terms?iri=http://purl.obolibrary.org/obo/UPHENO_",
             "upheno:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "urdbms.syndromefinder",
+        "uri_prefix": "http://syndromefinder.ncchd.go.jp/UR-DBMS/SyndromeDetail.php?winid=1&recid=",
+        "uri_prefix_synonyms": [
+            "URDBMS.SYNDROMEFINDER:",
+            "http://bioregistry.io/urdbms.syndromefinder:",
+            "https://bioregistry.io/urdbms.syndromefinder:",
+            "https://syndromefinder.ncchd.go.jp/UR-DBMS/SyndromeDetail.php?winid=1&recid=",
+            "urdbms.syndromefinder:"
         ]
     },
     {
@@ -28527,11 +29891,11 @@
     },
     {
         "prefix": "vann",
-        "uri_prefix": "https://vocab.org/vann/",
+        "uri_prefix": "https://vocab.org/vann/#",
         "uri_prefix_synonyms": [
             "VANN:",
             "http://bioregistry.io/vann:",
-            "http://vocab.org/vann/",
+            "http://vocab.org/vann/#",
             "https://bioregistry.io/vann:",
             "vann:"
         ]
@@ -28550,6 +29914,7 @@
             "http://identifiers.org/vario/VariO:",
             "http://n2t.net/vario:",
             "http://purl.bioontology.org/ontology/VARIO/VariO:",
+            "http://purl.bioontology.org/ontology/VARIO?conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVariO_",
             "http://www.ebi.ac.uk/ols/ontologies/vario/terms?iri=http://purl.obolibrary.org/obo/VariO_",
             "https://bioregistry.io/VariO:",
             "https://bioregistry.io/vario:",
@@ -28558,6 +29923,7 @@
             "https://identifiers.org/vario/VariO:",
             "https://n2t.net/vario:",
             "https://purl.bioontology.org/ontology/VARIO/VariO:",
+            "https://purl.bioontology.org/ontology/VARIO?conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVariO_",
             "https://purl.obolibrary.org/obo/VariO_",
             "https://www.ebi.ac.uk/ols/ontologies/vario/terms?iri=http://purl.obolibrary.org/obo/VariO_",
             "vario:"
@@ -28592,10 +29958,12 @@
             "http://bioregistry.io/VBO:",
             "http://bioregistry.io/vbo:",
             "http://www.ebi.ac.uk/ols/ontologies/vbo/terms?iri=http://purl.obolibrary.org/obo/VBO_",
+            "http://www.ebi.ac.uk/ols4/ontologies/vbo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "https://bioregistry.io/VBO:",
             "https://bioregistry.io/vbo:",
             "https://purl.obolibrary.org/obo/VBO_",
             "https://www.ebi.ac.uk/ols/ontologies/vbo/terms?iri=http://purl.obolibrary.org/obo/VBO_",
+            "https://www.ebi.ac.uk/ols4/ontologies/vbo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F",
             "vbo:"
         ]
     },
@@ -28617,6 +29985,17 @@
             "https://n2t.net/vbrc:",
             "https://vbrc.org/gene_detail.asp?gene_id=",
             "vbrc:"
+        ]
+    },
+    {
+        "prefix": "vcard",
+        "uri_prefix": "http://www.w3.org/2006/vcard/ns#",
+        "uri_prefix_synonyms": [
+            "VCARD:",
+            "http://bioregistry.io/vcard:",
+            "https://bioregistry.io/vcard:",
+            "https://www.w3.org/2006/vcard/ns#",
+            "vcard:"
         ]
     },
     {
@@ -28769,11 +30148,9 @@
             "http://identifiers.org/vgnc/",
             "http://identifiers.org/vgnc:",
             "http://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/",
-            "http://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/VGNC:",
             "https://bioregistry.io/vgnc:",
             "https://identifiers.org/vgnc/",
             "https://identifiers.org/vgnc:",
-            "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/VGNC:",
             "vgnc:"
         ]
     },
@@ -28820,6 +30197,18 @@
             "https://viaf.org/",
             "https://viaf.org/viaf/",
             "viaf:"
+        ]
+    },
+    {
+        "pattern": "^\\d{7}$",
+        "prefix": "vibso",
+        "uri_prefix": "http://purl.obolibrary.org/obo/VIBSO_",
+        "uri_prefix_synonyms": [
+            "VIBSO:",
+            "http://bioregistry.io/vibso:",
+            "https://bioregistry.io/vibso:",
+            "https://purl.obolibrary.org/obo/VIBSO_",
+            "vibso:"
         ]
     },
     {
@@ -28947,6 +30336,28 @@
             "https://bioregistry.io/vita:",
             "https://vita.mbc.nctu.edu.tw/search.php?acc=",
             "vita:"
+        ]
+    },
+    {
+        "prefix": "vitro",
+        "uri_prefix": "http://vitro.mannlib.cornell.edu/ns/vitro/0.7#",
+        "uri_prefix_synonyms": [
+            "VITRO:",
+            "http://bioregistry.io/vitro:",
+            "https://bioregistry.io/vitro:",
+            "https://vitro.mannlib.cornell.edu/ns/vitro/0.7#",
+            "vitro:"
+        ]
+    },
+    {
+        "prefix": "vivo",
+        "uri_prefix": "http://vivoweb.org/ontology/core#",
+        "uri_prefix_synonyms": [
+            "VIVO:",
+            "http://bioregistry.io/vivo:",
+            "https://bioregistry.io/vivo:",
+            "https://vivoweb.org/ontology/core#",
+            "vivo:"
         ]
     },
     {
@@ -29259,20 +30670,23 @@
         ]
     },
     {
-        "pattern": "^(Q|P)\\d+$",
+        "pattern": "^(Q|P|E)\\d+$",
         "prefix": "wikidata",
         "prefix_synonyms": [
             "WD_Entity",
-            "wd"
+            "wd",
+            "wdeschema"
         ],
         "uri_prefix": "http://www.wikidata.org/entity/",
         "uri_prefix_synonyms": [
             "WD:",
+            "WDESCHEMA:",
             "WD_ENTITY:",
             "WD_Entity:",
             "WIKIDATA:",
             "http://bioregistry.io/WD_Entity:",
             "http://bioregistry.io/wd:",
+            "http://bioregistry.io/wdeschema:",
             "http://bioregistry.io/wikidata:",
             "http://identifiers.org/wikidata/",
             "http://identifiers.org/wikidata:",
@@ -29281,6 +30695,7 @@
             "http://www.wikidata.org/wiki/",
             "https://bioregistry.io/WD_Entity:",
             "https://bioregistry.io/wd:",
+            "https://bioregistry.io/wdeschema:",
             "https://bioregistry.io/wikidata:",
             "https://identifiers.org/wikidata/",
             "https://identifiers.org/wikidata:",
@@ -29290,6 +30705,7 @@
             "https://www.wikidata.org/wiki/",
             "wd:",
             "wd_entity:",
+            "wdeschema:",
             "wikidata:"
         ]
     },
@@ -29374,6 +30790,17 @@
         ]
     },
     {
+        "prefix": "wiktionary",
+        "uri_prefix": "https://en.wiktionary.org/wiki/",
+        "uri_prefix_synonyms": [
+            "WIKTIONARY:",
+            "http://bioregistry.io/wiktionary:",
+            "http://en.wiktionary.org/wiki/",
+            "https://bioregistry.io/wiktionary:",
+            "wiktionary:"
+        ]
+    },
+    {
         "pattern": "^\\w+(\\.\\d+)$",
         "prefix": "worfdb",
         "uri_prefix": "http://worfdb.dfci.harvard.edu/index.php?search_type=name&page=showresultrc&race_query=",
@@ -29422,7 +30849,7 @@
         ]
     },
     {
-        "pattern": "^WB[A-Z][a-z]+\\d+$",
+        "pattern": "^(CE[0-9]{5}|WB[A-Z][a-z]+\\d+)$",
         "prefix": "wormbase",
         "prefix_synonyms": [
             "WB",

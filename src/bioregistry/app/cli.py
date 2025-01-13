@@ -46,7 +46,7 @@ def web(
     contexts: Optional[Path],
     config: Optional[Path],
     base_url: Optional[str],
-):
+) -> None:
     """Run the web application."""
     import uvicorn
 

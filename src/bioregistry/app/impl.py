@@ -5,13 +5,13 @@ from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
 
+from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from markdown import markdown
 from rdflib_endpoint import SparqlRouter
-from starlette.middleware.wsgi import WSGIMiddleware
 
 from bioregistry import curie_to_str, resource_manager, version
 

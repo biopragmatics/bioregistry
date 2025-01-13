@@ -2,6 +2,8 @@
 
 """FastAPI blueprint and routes."""
 
+from __future__ import annotations
+
 from typing import Any, List, Mapping, Optional, Set
 
 import yaml
@@ -27,6 +29,7 @@ from bioregistry.schema_utils import (
 )
 
 from .utils import FORMAT_MAP, _autocomplete, _search
+from ..utils import pydantic_dict
 
 __all__ = [
     "api_router",
@@ -38,7 +41,7 @@ api_router = APIRouter(prefix="/api")
 class UnhandledFormat(HTTPException):
     """An exception for an unhandled format."""
 
-    def __init__(self, fmt):
+    def __init__(self, fmt: str) -> None:
         """Instantiate the exception.
 
         :param fmt: The header that was bad
@@ -54,7 +57,8 @@ class YAMLResponse(Response):
     def render(self, content: Any) -> bytes:
         """Render content as YAML."""
         if isinstance(content, BaseModel):
-            content = content.dict(
+            content = pydantic_dict(
+                content,
                 exclude_none=True,
                 exclude_unset=True,
             )
@@ -135,10 +139,10 @@ def get_resources(
 def get_resource(
     request: Request,
     prefix: str = Path(
-        title="Prefix", description="The Bioregistry prefix for the entry", example="doid"
+        title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
     ),
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
 ):
     """Get a resource."""
     resource = request.app.manager.get_resource(prefix)
@@ -185,7 +189,7 @@ def get_metaresources(
 METAPREFIX_PATH = Path(
     title="Metaprefix",
     description="The Bioregistry metaprefix for the external registry",
-    example="n2t",
+    examples=["n2t"],
 )
 
 
@@ -208,8 +212,8 @@ METAPREFIX_PATH = Path(
 def get_metaresource(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
 ):
     """Get all registries."""
     manager = request.app.manager
@@ -353,7 +357,7 @@ def get_collection(
     identifier: str = Path(
         title="Collection Identifier",
         description="The 7-digit collection identifier",
-        example="0000001",
+        examples=["0000001"],
     ),
     accept: Optional[str] = ACCEPT_HEADER,
     format: Optional[str] = FORMAT_QUERY,
@@ -402,7 +406,7 @@ def get_contexts(
 @api_router.get("/context/{identifier}", response_model=Context, tags=["context"])
 def get_context(
     request: Request,
-    identifier: str = Path(title="Context Key", description="The context key", example="obo"),
+    identifier: str = Path(title="Context Key", description="The context key", examples=["obo"]),
 ):
     """Get a context."""
     context = request.app.manager.contexts.get(identifier)

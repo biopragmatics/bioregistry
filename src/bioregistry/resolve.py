@@ -2,6 +2,8 @@
 
 """Utilities for normalizing prefixes."""
 
+from __future__ import annotations
+
 import logging
 import typing
 from functools import lru_cache
@@ -38,6 +40,7 @@ __all__ = [
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
+    "is_obo_foundry",
     "get_rdf_download",
     "get_version",
     "get_banana",
@@ -419,7 +422,7 @@ def get_default_format(prefix: str) -> Optional[str]:
     return entry.get_default_format()
 
 
-def get_miriam_uri_prefix(prefix: str, **kwargs) -> Optional[str]:
+def get_miriam_uri_prefix(prefix: str, **kwargs: Any) -> Optional[str]:
     """Get the URI prefix for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
@@ -439,7 +442,7 @@ def get_miriam_uri_prefix(prefix: str, **kwargs) -> Optional[str]:
     return resource.get_miriam_uri_prefix(**kwargs)
 
 
-def get_miriam_uri_format(prefix: str, **kwargs) -> Optional[str]:
+def get_miriam_uri_format(prefix: str, **kwargs: Any) -> Optional[str]:
     """Get the URI format for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
@@ -782,6 +785,21 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     return entry.proprietary
 
 
+def is_obo_foundry(prefix: str) -> Optional[bool]:
+    """Get if the prefix has an OBO Foundry link.
+
+    :param prefix: The prefix to look up
+    :returns: If the prefix corresponds to an OBO Foundry resource
+
+    >>> assert is_obo_foundry('chebi')
+    >>> assert not is_proprietary('pdb')
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_obofoundry_prefix() is not None
+
+
 def parse_curie(
     curie: str,
     *,
@@ -976,7 +994,7 @@ def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> Optional[s
     return manager.get_curie_pattern(prefix, use_preferred=use_preferred)
 
 
-def get_license_conflicts():
+def get_license_conflicts() -> List[tuple[str, str | None, str | None, str | None]]:
     """Get license conflicts."""
     return manager.get_license_conflicts()
 
@@ -991,7 +1009,7 @@ def is_novel(prefix: str) -> Optional[bool]:
     return manager.is_novel(prefix)
 
 
-def get_parts_collections():
+def get_parts_collections() -> Mapping[str, List[str]]:
     """Group resources' prefixes based on their ``part_of`` entries.
 
     :returns:
@@ -1024,7 +1042,7 @@ def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
     return manager.read_contributors(direct_only=direct_only)
 
 
-def get_converter(**kwargs) -> curies.Converter:
+def get_converter(**kwargs: Any) -> curies.Converter:
     """Get a converter from this manager."""
     return manager.get_converter(**kwargs)
 

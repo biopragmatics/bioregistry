@@ -3,36 +3,38 @@ layout: page
 title: Contributing
 permalink: /contributing/
 ---
+
 Contributions to the Bioregistry are welcomed and encouraged. Thanks for
 considering to participate.
 
-All contributors, maintainers, and participants of the Bioregistry project
-are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
-This document is organized as follows:
+All contributors, maintainers, and participants of the Bioregistry project are
+expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md). This document is
+organized as follows:
 
 1. [Content Contribution](#content-contribution)
-    1. [Submitting New Prefixes](#submitting-new-prefixes)
-    2. [Editing Records](#editing-records)
-    3. [Removing Records](#removing-records)
+   1. [Submitting New Prefixes](#submitting-new-prefixes)
+   2. [Editing Records](#editing-records)
+   3. [Removing Records](#removing-records)
 2. [Code Contribution](#code-contribution)
 
 ## Content Contribution
 
 There are several ways to request a new prefix in the Bioregistry:
 
-1. Fill out the [new prefix request form](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=%5BResource%5D%3A%20xxxxx)
+1. Fill out the
+   [new prefix request form](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=%5BResource%5D%3A%20xxxxx)
    on our GitHub issue tracker with as much information about the resource as
    possible (e.g., name, homepage, format URL pattern, example identifier,
    pattern). Don't worry if you don't understand everything, our Review Team
    will guide you through the process.
-2. Add an entry yourself
-   by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   in GitHub through the web browser. As the Bioregistry is getting bigger, this
-   is becoming more of an issue, so might not always be possible.
+2. ~Add an entry yourself by
+   [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   in GitHub through the web browser.~ As the Bioregistry has surpassed the size
+   limit of in-browser editing on GitHub, this is no longer possible.
 3. Make a pull request directly to the upstream repository
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
-4. Get in touch with us informally on
-   Twitter [@bioregistry](https://twitter.com/bioregistry)
+   Make sure that you run `tox -e bioregistry-lint` from the shell after editing
+   the source JSON files in order to canonically order the data.
 
 ### Submitting New Prefixes
 
@@ -76,7 +78,8 @@ https://github.com/biopragmatics/bioregistry/issues/158.
 
 #### Miscellaneous Requirements
 
-- Do not include titles (e.g., Dr.) in contact information for the requester, reviewer, nor contact for a resource.
+- Do not include titles (e.g., Dr.) in contact information for the requester,
+  reviewer, nor contact for a resource.
 
 #### Choosing a Good Prefix
 
@@ -84,19 +87,20 @@ https://github.com/biopragmatics/bioregistry/issues/158.
    should correspond to the name of the resource they are minted for. Most
    commonly, people use acronyms.)
 2. Multiple prefixes will not be issued for multiple versions of a resource (
-   e.g., the fact that there is a mesh.2012 and mesh.2013 prefix registered in
-   Identifiers.org was a huge mistake and causes massive confusion)
+   e.g., the fact that there is a `mesh.2012` and `mesh.2013` prefix registered
+   in Identifiers.org was a huge mistake and causes massive confusion)
 3. Prefixes must not be too generic or common entity types like gene or
    chemical. Reviewers will use their best judgment since it's hard to list all
-   possible generic entity types. For example, gene would be bad while hgnc.gene
-   would be better.
+   possible generic entity types. For example, gene would be bad while
+   `hgnc.gene` would be better.
 4. Subspacing should not be used unnecessarily, i.e., when a nomenclature only
-   has one entity type. For example, chebi.chemical would be bad while chebi
+   has one entity type. For example, `chebi.chemical` would be bad while `chebi`
    would be better.
 5. Prefixes should not end in "O" for "Ontology", "T" for "Terminology" or any
    letters denoting related words about vocabularies
-6. New prefixes should not end with "ID" as a way to signify that the prefix is used for
-   identifiers, like in `doid` for the Disease Ontology or `caid` for ClinGen Canonical Allele identifier.
+6. New prefixes should not end with "ID" as a way to signify that the prefix is
+   used for identifiers, like in `doid` for the Disease Ontology or `caid` for
+   ClinGen Canonical Allele identifier.
 
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
@@ -108,9 +112,9 @@ collisions do happen. The Bioregistry has the following policy for handling
 collisions:
 
 - New prefixes must not collide with any canonical prefixes, preferred prefixes,
-  synonyms, or normalized variants thereof.
-  See https://github.com/biopragmatics/bioregistry/issues/359 for an example of
-  a prefix request that duplicated the synonyms of an existing prefix and how it
+  synonyms, or normalized variants thereof. See
+  https://github.com/biopragmatics/bioregistry/issues/359 for an example of a
+  prefix request that duplicated the synonyms of an existing prefix and how it
   was able to be resolved.
 - New prefixes should not collide with any prefixes in external registries, even
   if they are not explicitly imported in the Bioregistry. In these cases, a
@@ -124,28 +128,28 @@ collisions:
 It has not happened often that prefixes have even collided. One example is two
 maintained resources, Gene Expression Omnibus vs. Geographical Entity Ontology,
 collided on using `geo` when Geographical Entity Ontology was added to the OBO
-Foundry. This was resolved
-in https://github.com/biopragmatics/bioregistry/issues/67 after deciding to
-change the prefix used in Geographical Entity Ontology due to the fact that the
-Gene Expression Omnibus was both much older and more well-known. This particular
-case motivated the OBO Foundry to update its ontology registration guidelines to
-require conflicts with existing Bioregistry records
-in https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519. Another
-example is the disease class annotation (legacy classification from the hard
-fork of the Disease Ontology that later became MONDO) and Dublin Core, where one
-is subjectively more important than the other.
+Foundry. This was resolved in
+https://github.com/biopragmatics/bioregistry/issues/67 after deciding to change
+the prefix used in Geographical Entity Ontology due to the fact that the Gene
+Expression Omnibus was both much older and more well-known. This particular case
+motivated the OBO Foundry to update its ontology registration guidelines to
+require conflicts with existing Bioregistry records in
+https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519. Another example
+is the disease class annotation (legacy classification from the hard fork of the
+Disease Ontology that later became MONDO) and Dublin Core, where one is
+subjectively more important than the other.
 
 #### Bulk Contribution
 
 If you would like to submit more than 5 prefixes at once, you can fill out the
-[bulk prefix request template](bulk_prefix_request_template.tsv)
-spreadsheet and submit it in
-an [issue](https://github.com/biopragmatics/bioregistry/issues/new). The
-template contains several examples - please review them then delete them before
-submission. Please number all of the rows in sequential order the first
-column (`request_id`). The first columns of the template are all required, even
-if some of the examples don't have an entry there for historic reasons. All
-optional fields are marked as such.
+[bulk prefix request template](bulk_prefix_request_template.tsv) spreadsheet and
+submit it in an
+[issue](https://github.com/biopragmatics/bioregistry/issues/new). The template
+contains several examples - please review them then delete them before
+submission. Please number all of the rows in sequential order the first column
+(`request_id`). The first columns of the template are all required, even if some
+of the examples don't have an entry there for historic reasons. All optional
+fields are marked as such.
 
 Anyone is welcome to submit a bulk prefix request, but ideally submitters have a
 large working knowledge of the Bioregistry, its requirements, etc. as reviewing
@@ -159,9 +163,9 @@ issues may be asked to re-submit as individual prefix requests.
 A prefix and its corresponding semantic space are **substantiated** when it's
 provable that a semantic space exists by one or more of the following:
 
-1. There's a public place where you can get the entire list of terms.
-   Ontologies (e.g., [Gene Ontology](https://bioregistry.io/go)) and databases
-   (e.g., [HGNC](https://bioregistry.io/hgnc)) usually make this pretty
+1. There's a public place where you can get the entire list of terms. Ontologies
+   (e.g., [Gene Ontology](https://bioregistry.io/go)) and databases (e.g.,
+   [HGNC](https://bioregistry.io/hgnc)) usually make this pretty
    straightforwards by offering download links for the ontology or full
    database.
 2. There's a working, public URI format string that either lets you get HTML,
@@ -231,13 +235,14 @@ There are several ways to update a prefix's record in the Bioregistry:
    requested information. If no template exists for your update, feel free to
    fill out a blank issue. We will help make the update and attribute you
    properly.
-2. Edit an entry yourself by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
-   in GitHub through the web browser. As the Bioregistry is getting bigger, this
-   is becoming more of an issue, so might not always be possible.
+2. ~Edit an entry yourself by
+   [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   in GitHub through the web browser.~ As the Bioregistry has surpassed the size
+   limit of in-browser editing on GitHub, this is no longer possible.
 3. Make a pull request directly to the upstream repository
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
-4. Get in touch with us informally on
-   Twitter [@bioregistry](https://twitter.com/bioregistry)
+   Make sure that you run `tox -e bioregistry-lint` from the shell after editing
+   the source JSON files in order to canonically order the data.
 
 #### Who can edit an existing prefix's record
 
@@ -283,15 +288,18 @@ Team, whose membership and conduct is described in the Bioregistry's
 
 ## Adding a new Registry
 
-New registries can be added by anyone, similarly to prefixes, but there is a lot more required curation.
-See the source [metaregistry.json](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/metaregistry.json)
-file for inspiration. Entries in this file should follow the schema defined by the 
+New registries can be added by anyone, similarly to prefixes, but there is a lot
+more required curation. See the source
+[metaregistry.json](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/metaregistry.json)
+file for inspiration. Entries in this file should follow the schema defined by
+the
 [`Registry` pydantic model class](https://bioregistry.readthedocs.io/en/latest/api/bioregistry.Registry.html#bioregistry.Registry).
-See also the corresponding entry in the Bioregistry's [JSON schema](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/schema/schema.json)
+See also the corresponding entry in the Bioregistry's
+[JSON schema](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/schema/schema.json)
 
-While not strictly required, it's also useful for each registry to add a corresponding getter script and aligner
-class in `bioregistry.external` and `bioregistry.align`, respectively. See examples there, or get in touch on the
-issue tracker for help.
+While not strictly required, it's also useful for each registry to add a
+corresponding getter script and aligner class in `bioregistry.external`. See
+examples there, or get in touch on the issue tracker for help.
 
 ## Code Contribution
 
@@ -299,20 +307,22 @@ This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
 model for code contributions. Follow these steps:
 
 1. [Create a fork](https://help.github.com/articles/fork-a-repo) of the upstream
-   repository
-   at [`biopragmatics/bioregistry`](https://github.com/biopragmatics/bioregistry)
+   repository at
+   [`biopragmatics/bioregistry`](https://github.com/biopragmatics/bioregistry)
    on your GitHub account (or in one of your organizations)
 2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
    with `git clone https://github.com/<your namespace here>/bioregistry.git`
-3. Make and commit changes to your fork with `git commit`
-4. Push changes to your fork with `git push`
-5. Repeat steps 3 and 4 as needed
-6. Submit a pull request back to the upstream repository
+3. Make changes to the code
+4. Test that your code passes quality assurance by running `tox`
+5. Commit changes to your fork with `git commit`
+6. Push changes to your fork with `git push`
+7. Repeat steps 3-6 as needed
+8. Submit a pull request back to the upstream repository
 
 ### Merge Model
 
-The Bioregistry
-uses [squash merges](https://docs.github.com/en/github/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-pull-request-commits)
+The Bioregistry uses
+[squash merges](https://docs.github.com/en/github/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-pull-request-commits)
 to group all related commits in a given pull request into a single commit upon
 acceptance and merge into the main branch. This has several benefits:
 
@@ -323,9 +333,9 @@ acceptance and merge into the main branch. This has several benefits:
 
 ### Code Style
 
-This project encourages the use of optional static typing. It
-uses [`mypy`](http://mypy-lang.org/) as a type checker
-and [`sphinx_autodoc_typehints`](https://github.com/agronholm/sphinx-autodoc-typehints)
+This project encourages the use of optional static typing. It uses
+[`mypy`](http://mypy-lang.org/) as a type checker and
+[`sphinx_autodoc_typehints`](https://github.com/agronholm/sphinx-autodoc-typehints)
 to automatically generate documentation based on type hints. You can check if
 your code passes `mypy` with `tox -e mypy`.
 
@@ -335,9 +345,8 @@ linters with `tox -e lint`.
 
 This project uses [`flake8`](https://flake8.pycqa.org) and several plugins for
 additional checks of documentation style, security issues, good variable
-nomenclature, and more (
-see [`tox.ini`](tox.ini) for a list of flake8 plugins). You can check if your
-code passes `flake8` with `tox -e flake8`.
+nomenclature, and more ( see [`tox.ini`](tox.ini) for a list of flake8 plugins).
+You can check if your code passes `flake8` with `tox -e flake8`.
 
 Each of these checks are run on each commit using GitHub Actions as a continuous
 integration service. Passing all of them is required for accepting a
@@ -348,18 +357,17 @@ comment, and we will help you.
 ### Logging
 
 Python's builtin `print()` should not be used (except when writing to files),
-it's checked by the
-[`flake8-print`](https://github.com/jbkahn/flake8-print) plugin to `flake8`. If
-you're in a command line setting or `main()` function for a module, you can use
-`click.echo()`. Otherwise, you can use the builtin `logging` module by adding
-`logger = logging.getLogger(__name__)` below the imports at the top of your
-file.
+it's checked by the [`flake8-print`](https://github.com/jbkahn/flake8-print)
+plugin to `flake8`. If you're in a command line setting or `main()` function for
+a module, you can use `click.echo()`. Otherwise, you can use the builtin
+`logging` module by adding `logger = logging.getLogger(__name__)` below the
+imports at the top of your file.
 
 ### Documentation
 
 All public functions (i.e., not starting with an underscore `_`) must be
-documented using
-the [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
+documented using the
+[sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
 The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `flake8`
 reports on functions that are not fully documented.
 
@@ -386,13 +394,15 @@ $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
 
 Then, you can merge upstream code into your branch. You can also use the GitHub
-UI to do this by following [this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
+UI to do this by following
+[this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
 ### Python Version Compatibility
 
 This project aims to support all versions of Python that have not passed their
 end-of-life dates. After end-of-life, the version will be removed from the Trove
-qualifiers in the [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
+qualifiers in the
+[`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
 and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and

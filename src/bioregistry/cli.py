@@ -13,25 +13,29 @@ from .lint import lint
 from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
 
+__all__ = [
+    "main",
+]
+
 
 @click.group()
 @click.version_option(version=VERSION)
-def main():
+def main() -> None:
     """Run the Bioregistry CLI."""
 
 
 @click.command()
-def download():
+def download() -> None:
     """Download/update the external entries in the Bioregistry."""
     try:
         from .external import GETTERS
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     for _, name, getter in GETTERS:
         secho(f"Downloading {name}")
@@ -41,19 +45,28 @@ def download():
 @main.command()
 @click.option("--skip-fairsharing", is_flag=True)
 @click.option("--skip-re3data", is_flag=True)
+@click.option("--skip-bioportal", is_flag=True)
+@click.option("--skip-agroportal", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
 @click.option("--no-force", is_flag=True)
-def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force: bool):
+def align(
+    skip_fairsharing: bool,
+    skip_re3data: bool,
+    skip_bioportal: bool,
+    skip_agroportal: bool,
+    skip_slow: bool,
+    no_force: bool,
+) -> None:
     """Align all external registries."""
     try:
-        from .align import aligner_resolver
-    except ImportError:
+        from .external.align import aligner_resolver
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     pre_digests = get_hexdigests()
 
@@ -62,6 +75,12 @@ def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force:
         skip.add("fairsharing")
     if skip_re3data or skip_slow:
         skip.add("re3data")
+    if skip_bioportal or skip_slow:
+        skip.add("bioportal")
+    if skip_agroportal or skip_slow:
+        skip.add("agroportal")
+    # Temporary fix to avoid issue with duplicate URI prefix
+    skip.add("wikidata")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue
@@ -84,7 +103,7 @@ main.add_command(web)
 
 @main.command()
 @click.pass_context
-def update(ctx: click.Context):
+def update(ctx: click.Context) -> None:
     """Update the Bioregistry."""
     ctx.invoke(align)
     ctx.invoke(lint)

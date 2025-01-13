@@ -104,7 +104,7 @@ def get_pattern_map(
     *,
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
-    blacklist: Optional[Collection] = None,
+    blacklist: Optional[Collection[str]] = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their regular expression patterns.
 

@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
-
 """Tests for data integrity."""
 
+import itertools as itt
 import json
 import logging
+import re
 import unittest
 from collections import defaultdict
+from collections.abc import Mapping
 from textwrap import dedent
-from typing import Mapping
 
 import curies
 import rdflib
@@ -19,9 +19,14 @@ from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.resource_manager import ValuePackageExtended
-from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
+from bioregistry.schema.struct import (
+    SCHEMA_PATH,
+    Attributable,
+    Publication,
+    get_json_schema,
+)
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm
+from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +86,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = set(Resource.__fields__.keys())
+        keys = set(pydantic_fields(Resource).keys())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
@@ -174,7 +179,9 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
-                self.assertIsNotNone(bioregistry.get_homepage(prefix))
+                self.assertIsNotNone(
+                    bioregistry.get_homepage(prefix), msg=f"Missing homepage for {prefix}"
+                )
 
     def test_homepage_http(self):
         """Test that all homepages start with http."""
@@ -303,6 +310,10 @@ class TestRegistry(unittest.TestCase):
                 if curie_pattern is None or curie_example is None:
                     continue
                 with self.subTest(prefix=prefix, use_preferred=use_preferred):
+                    try:
+                        re.compile(curie_pattern)
+                    except re.error:
+                        self.fail(msg=f"Could not compile pattern for {prefix}: {curie_pattern}")
                     self.assertRegex(
                         curie_example,
                         curie_pattern,
@@ -682,6 +693,8 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if not resource.providers:
                 continue
+
+            publications = resource.publications or []
             for provider in resource.providers:
                 with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
@@ -703,6 +716,16 @@ class TestRegistry(unittest.TestCase):
                         msg="Multiple parameters not supported. See discussion on "
                         "https://github.com/biopragmatics/bioregistry/issues/933",
                     )
+                    # check that none of the publications are duplicates of ones in the main record
+                    for publication, other in itt.product(
+                        provider.publications or [], publications
+                    ):
+                        self.assertFalse(
+                            publication._matches_any_field(other),
+                            msg=f"provider publication {publication.title} should not appear "
+                            f"in prefix publication list (appears as {other.title})",
+                        )
+                        self.assert_publication_identifiers(publication)
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
@@ -856,27 +879,62 @@ class TestRegistry(unittest.TestCase):
     def test_request_issue(self):
         """Check all prefixes with a request issue have a reviewer."""
         for prefix, resource in self.registry.items():
-            if resource.github_request_issue is None:
+            if not resource.contributor:
                 continue
             with self.subTest(prefix=prefix):
-                if resource.contributor.github != "cthoyt":
+                if resource.contributor.github not in {"cthoyt", "tgbugs"}:
                     # needed to bootstrap records before there was more governance in place
-                    self.assertIsNotNone(resource.reviewer)
+                    self.assertIsNotNone(
+                        resource.reviewer,
+                        msg="""
+
+    Your contribution is missing the `reviewer` key.
+
+    Please ping @biopragmatics/bioregistry-reviewers on your
+    pull request to get a reviewer to finalize your PR.
+    """,
+                    )
+                    self.assertIsNotNone(
+                        resource.github_request_issue,
+                        msg="External contributions require either a GitHub issue or GitHub pull "
+                        "request reference in the `github_request_issue` key.",
+                    )
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+                self.assertNotIn(
+                    f"https://github.com/biopragmatics/bioregistry/pull/{resource.github_request_issue}",
+                    resource.references or [],
+                    msg="Reference to GitHub request issue should be in its dedicated field.",
+                )
+
+    def assert_publication_identifiers(self, publication: Publication) -> None:
+        """Test identifiers follow pre-set rules."""
+        if publication.doi:
+            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+            self.assertEqual(publication.doi.lower(), publication.doi)
+            self.assertRegex(publication.doi, r"^10.\d{2,9}/.*$")
+        if publication.pubmed:
+            self.assertRegex(publication.pubmed, r"^\d+$")
+        if publication.pmc:
+            self.assertRegex(publication.pmc, r"^PMC\d+$")
 
     def test_publications(self):
         """Test references and publications are sorted right."""
+        msg_fmt = (
+            "Rather than writing a {} link in the `references` list, "
+            "you should encode it in the `publications` instead. "
+            "See https://biopragmatics.github.io/bioregistry/curation/publications for help."
+        )
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 if resource.references:
                     for reference in resource.references:
-                        self.assertNotIn("doi", reference)
-                        self.assertNotIn("pubmed", reference)
-                        self.assertNotIn("pmc", reference)
+                        self.assertNotIn("doi", reference, msg=msg_fmt.format("DOI"))
+                        self.assertNotIn("pubmed", reference, msg=msg_fmt.format("PubMed"))
+                        self.assertNotIn("pmc", reference, msg_fmt.format("PMC"))
                         self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
@@ -897,14 +955,12 @@ class TestRegistry(unittest.TestCase):
                                 )
                             ),
                         )
-                        if publication.doi:
-                            # DOIs are case insensitive, so standardize to lowercase in bioregistry
-                            self.assertEqual(publication.doi.lower(), publication.doi)
+                        self.assert_publication_identifiers(publication)
 
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
-                        for key, value in publication.dict().items():
+                        for key, value in pydantic_dict(publication).items():
                             if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)

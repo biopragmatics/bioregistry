@@ -2,6 +2,6 @@
 
 This folder contains the results from various analyses.
 
-| File                         | Analysis                                             |
-|------------------------------|------------------------------------------------------|
-| [`title_tfidf`](title_tfidf) | TF-IDF + binary classifier of documents for curation |
+| File                             | Analysis                                                     |
+| -------------------------------- | ------------------------------------------------------------ |
+| [`paper_ranking`](paper_ranking) | TF-IDF + binary classifier of new PubMed papers for curation |
