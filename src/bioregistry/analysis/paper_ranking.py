@@ -1,4 +1,21 @@
-"""Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry."""
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "bioregistry[paper-ranking]",
+# ]
+#
+# [tool.uv.sources]
+# bioregistry = { path = "../../../" }
+# ///
+
+"""Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry.
+
+Run with:
+
+1. ``python -m bioregistry.analysis.paper_ranking``
+2. ``tox -e paper-ranking``
+3. ``uv run --script paper_ranking.py``
+"""
 
 from __future__ import annotations
 
@@ -47,6 +64,14 @@ YTest: TypeAlias = NDArray[np.str_]
 
 ClassifierHint: TypeAlias = Union[ClassifierMixin, LinearClassifierMixin]
 Classifiers: TypeAlias = list[tuple[str, ClassifierHint]]
+
+DEFAULT_SEARCH_TERMS = [
+    "database",
+    "ontology",
+    "resource",
+    "vocabulary",
+    "nomenclature",
+]
 
 
 def get_publications_from_bioregistry(path: Optional[Path] = None) -> pd.DataFrame:
@@ -110,7 +135,7 @@ def _get_metadata_for_ids(pubmed_ids: Iterable[Union[int, str]]) -> dict[str, di
 
     fetched_metadata = {}
     for chunk in chunked(
-        tqdm(pubmed_ids, unit="article", unit_scale=True, desc="Querying PubMed API"), 200
+        tqdm(pubmed_ids, unit="article", unit_scale=True, desc="Getting metadata"), 200
     ):
         fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
     return fetched_metadata
@@ -127,25 +152,27 @@ def _get_ids(term: str, use_text_word: bool, relative_date: int) -> set[str]:
     }
 
 
-def _search(terms: list[str], pubmed_ids_to_filter: set[str]) -> dict[str, list[str]]:
+def _search(
+    terms: list[str], pubmed_ids_to_filter: set[str], relative_date: int
+) -> dict[str, list[str]]:
     paper_to_terms: defaultdict[str, list[str]] = defaultdict(list)
-    for term in terms:
-        for pubmed_id in _get_ids(term, use_text_word=True, relative_date=30):
+    for term in tqdm(terms, desc="Searching PubMed", unit="search term", leave=False):
+        for pubmed_id in _get_ids(term, use_text_word=True, relative_date=relative_date):
             if pubmed_id not in pubmed_ids_to_filter:
                 paper_to_terms[pubmed_id].append(term)
     return dict(paper_to_terms)
 
 
-def fetch_pubmed_papers(*, pubmed_ids_to_filter: set[str]) -> pd.DataFrame:
+def fetch_pubmed_papers(*, pubmed_ids_to_filter: set[str], relative_date: int) -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
     :param pubmed_ids_to_filter: List containing already curated PMIDs
+    :param relative_date: the number of recent days to search
     :return: DataFrame containing PubMed paper details.
     """
-    click.echo("Starting fetch_pubmed_papers")
-
-    search_terms = ["database", "ontology", "resource", "vocabulary", "nomenclature"]
-    paper_to_terms = _search(search_terms, pubmed_ids_to_filter=pubmed_ids_to_filter)
+    paper_to_terms = _search(
+        DEFAULT_SEARCH_TERMS, pubmed_ids_to_filter=pubmed_ids_to_filter, relative_date=relative_date
+    )
 
     papers = _get_metadata_for_ids(paper_to_terms)
 
@@ -376,20 +403,27 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
     """
-    runner(bioregistry_file, start_date, end_date, output_path=DIRECTORY)
+    runner(
+        bioregistry_file=bioregistry_file,
+        curated_papers_path=CURATED_PAPERS_PATH,
+        start_date=start_date,
+        end_date=end_date,
+        output_path=DIRECTORY,
+    )
 
 
 def runner(
+    *,
     bioregistry_file: Path,
+    curated_papers_path: Path,
     start_date: str,
     end_date: str,
-    *,
     include_remote: bool = True,
     output_path: Path,
 ) -> None:
     """Run functionality directly."""
     publication_df = get_publications_from_bioregistry(bioregistry_file)
-    curated_papers_df = load_curated_papers(CURATED_PAPERS_PATH)
+    curated_papers_df = load_curated_papers(curated_papers_path)
 
     curated_dfs = [curated_papers_df]
     if include_remote:
@@ -443,8 +477,12 @@ def runner(
     # These have already been curated and will therefore be filtered out
     curated_pubmed_ids: set[str] = {str(pubmed) for pubmed in df["pubmed"] if pd.notna(pubmed)}
 
-    predictions_df = fetch_pubmed_papers(pubmed_ids_to_filter=curated_pubmed_ids)
+    # FIXME the fetch_pubmed_papers function should
+    #  take into account the start and end date. as
+    predictions_df = fetch_pubmed_papers(pubmed_ids_to_filter=curated_pubmed_ids, relative_date=30)
     if not predictions_df.empty:
+        # TODO update the way naming this file works, see discussion on
+        #  https://github.com/biopragmatics/bioregistry/pull/1350
         predictions_path = output_path.joinpath(f"predictions_{start_date}_to_{end_date}.tsv")
         predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
 
