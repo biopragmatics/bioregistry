@@ -755,8 +755,10 @@ class Resource(BaseModel):
                 return cast(X, rv)
         return None
 
-    def _get_prefix_key_str(self, key: str, metaprefixes: Union[str, Sequence[str]]) -> str | None:
-        rv = self.get_prefix_key(key, metaprefixes)
+    def _get_prefix_key_str(
+        self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
+    ) -> Union[None, str, ValuePackage[str]]:
+        rv = self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
         if rv is None:
             return None
         if isinstance(rv, str):
@@ -764,9 +766,9 @@ class Resource(BaseModel):
         raise TypeError
 
     def _get_prefix_key_bool(
-        self, key: str, metaprefixes: Union[str, Sequence[str]]
-    ) -> bool | None:
-        rv = self.get_prefix_key(key, metaprefixes)
+        self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
+    ) -> Union[None, bool, ValuePackage[bool]]:
+        rv = self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=provenance)
         if rv is None:
             return None
         if isinstance(rv, bool):
@@ -984,7 +986,7 @@ class Resource(BaseModel):
             "lov",
             "re3data",
         )
-        rv = self.get_prefix_key("description", metaprefixes, rv_type=str, provenance=False)
+        rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
             return rv
         if self.cellosaurus and "category" in self.cellosaurus:
@@ -1099,28 +1101,29 @@ class Resource(BaseModel):
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
+        metaprefixes: Sequence[str] = [
+            "obofoundry",
+            "ols",
+            "miriam",
+            "n2t",
+            "wikidata",
+            "go",
+            "ncbi",
+            "cellosaurus",
+            "prefixcommons",
+            "fairsharing",
+            "cropoct",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "rrid",
+            "bartoc",
+            "lov",
+            "re3data",
+        ]
         return self._get_prefix_key_str(
             "homepage",
-            (
-                "obofoundry",
-                "ols",
-                "miriam",
-                "n2t",
-                "wikidata",
-                "go",
-                "ncbi",
-                "cellosaurus",
-                "prefixcommons",
-                "fairsharing",
-                "cropoct",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "rrid",
-                "bartoc",
-                "lov",
-                "re3data",
-            ),
+            metaprefixes,
         )
 
     def get_keywords(self) -> List[str]:
