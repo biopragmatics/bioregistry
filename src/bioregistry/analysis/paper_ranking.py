@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime
 import json
 import logging
+import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
@@ -202,7 +203,7 @@ def _map_labels(s: str) -> int | None:
 Classifiers = list[tuple[str, ClassifierMixin | LinearClassifierMixin]]
 
 
-def train_classifiers(x_train: XTrain, y_train: NDArray[np.str_]) -> Classifiers:
+def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
     """Train multiple classifiers on the training data.
 
     :param x_train: Training features.
@@ -239,7 +240,9 @@ def generate_meta_features(
     return df
 
 
-def _cross_val_predict(clf: ClassifierMixin, x_train: XTrain, y_train: YTrain, cv: int) -> NDArray:
+def _cross_val_predict(
+    clf: ClassifierMixin | LinearClassifierMixin, x_train: XTrain, y_train: YTrain, cv: int
+) -> NDArray:
     if not hasattr(clf, "predict_proba"):
         return cross_val_predict(clf, x_train, y_train, cv=cv, method="decision_function")
     return cross_val_predict(clf, x_train, y_train, cv=cv, method="predict_proba")[:, 1]
@@ -261,7 +264,7 @@ class MetaClassifierEvaluationResults(NamedTuple):
     roc_auc: float
 
 
-def evaluate_meta_classifier(
+def _evaluate_meta_classifier(
     meta_clf: ClassifierMixin, x_test_meta: NDArray[np.float64], y_test: YTest
 ) -> MetaClassifierEvaluationResults:
     """Evaluate meta-classifier using MCC and AUC-ROC scores.
@@ -275,12 +278,6 @@ def evaluate_meta_classifier(
     mcc = matthews_corrcoef(y_test, y_pred)
     roc_auc = roc_auc_score(y_test, _predict(meta_clf, x_test_meta))
     return MetaClassifierEvaluationResults(mcc, roc_auc)
-
-
-def truncate_text(text: str, max_length: int) -> str:
-    """Truncate text to a specified maximum length."""
-    # FIXME replace with builtin textwrap function
-    return text if len(text) <= max_length else text[:max_length] + "..."
 
 
 def predict_and_save(
@@ -305,7 +302,7 @@ def predict_and_save(
 
     df["meta_score"] = _predict(meta_clf, x_meta)
     df = df.sort_values(by="meta_score", ascending=False)
-    df["abstract"] = df["abstract"].apply(lambda x: truncate_text(x, 25))
+    df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 25))
     df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
     click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
 
@@ -326,7 +323,7 @@ def _get_meta_results(
     for name, clf in classifiers:
         x_test_meta[name] = _predict(clf, x_test)
 
-    return meta_clf, evaluate_meta_classifier(meta_clf, x_test_meta.to_numpy(), y_test)
+    return meta_clf, _evaluate_meta_classifier(meta_clf, x_test_meta.to_numpy(), y_test)
 
 
 def _get_evaluation_df(
