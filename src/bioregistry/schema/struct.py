@@ -734,7 +734,7 @@ class Resource(BaseModel):
         metaprefixes: Union[str, Sequence[str]],
         *,
         rv_type: type[X],
-        provenance: bool,
+        provenance: bool = False,
     ) -> Union[None, X, ValuePackage[X]]:
         """Get a key enriched by the given external resources' data."""
         rv = pydantic_dict(self).get(key)
@@ -755,25 +755,43 @@ class Resource(BaseModel):
                 return cast(X, rv)
         return None
 
+    @overload
+    def _get_prefix_key_str(
+        self,
+        key: str,
+        metaprefixes: Union[str, Sequence[str]],
+        *,
+        provenance: Literal[False] = False,
+    ) -> Union[None, str]: ...
+
+    @overload
+    def _get_prefix_key_str(
+        self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: Literal[True] = True
+    ) -> Union[None, ValuePackage[str]]: ...
+
     def _get_prefix_key_str(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
     ) -> Union[None, str, ValuePackage[str]]:
-        rv = self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
-        if rv is None:
-            return None
-        if isinstance(rv, str):
-            return rv
-        raise TypeError
+        return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
+
+    @overload
+    def _get_prefix_key_bool(
+        self,
+        key: str,
+        metaprefixes: Union[str, Sequence[str]],
+        *,
+        provenance: Literal[False] = False,
+    ) -> Union[None, bool]: ...
+
+    @overload
+    def _get_prefix_key_bool(
+        self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: Literal[True] = True
+    ) -> Union[None, ValuePackage[bool]]: ...
 
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
     ) -> Union[None, bool, ValuePackage[bool]]:
-        rv = self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=provenance)
-        if rv is None:
-            return None
-        if isinstance(rv, bool):
-            return rv
-        raise TypeError
+        return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=provenance)
 
     def get_default_uri(self, identifier: str) -> Optional[str]:
         """Return the default URI for the identifier.
@@ -1097,7 +1115,7 @@ class Resource(BaseModel):
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam")
+        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=provenance)
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
