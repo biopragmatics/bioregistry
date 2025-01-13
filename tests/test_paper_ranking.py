@@ -1,7 +1,7 @@
 """Test for checking the paper ranking model."""
 
-import json
 import datetime
+import json
 import unittest
 from pathlib import Path
 from unittest.mock import patch
