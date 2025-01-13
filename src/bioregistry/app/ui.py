@@ -121,7 +121,7 @@ def resource(prefix: str):
     example_curie_extras = [
         _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
     ]
-    name_pack = _resource.get_name(provenance=True)
+    name_pack = manager._repack(_resource.get_name(provenance=True))
     return render_template(
         "resource.html",
         zip=zip,

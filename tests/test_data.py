@@ -710,6 +710,25 @@ class TestRegistry(unittest.TestCase):
         This is required because the annotation from MIRIAM is simply not granular enough
         to support actual use cases.
         """
+        self.assertIsNone(bioregistry.get_namespace_in_lui("nope"))
+        self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=True))
+        self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=False))
+        res = bioregistry.get_namespace_in_lui("go")
+        self.assertIsInstance(res, bool)
+        self.assertTrue(res)
+
+        res = bioregistry.get_namespace_in_lui("pdb")
+        self.assertIsInstance(res, bool)
+        self.assertFalse(res)
+
+        res = bioregistry.get_namespace_in_lui("go", provenance=True)
+        self.assertIsInstance(res, ValuePackageExtended)
+        self.assertTrue(res.value)
+
+        res = bioregistry.get_namespace_in_lui("pdb", provenance=True)
+        self.assertIsInstance(res, ValuePackageExtended)
+        self.assertFalse(res.value)
+
         for prefix, resource in self.registry.items():
             if not resource.get_namespace_in_lui():
                 continue

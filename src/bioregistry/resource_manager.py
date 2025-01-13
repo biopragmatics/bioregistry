@@ -536,6 +536,30 @@ class Manager:
         return entry.get_uri_prefix(priority=priority)
 
     @overload
+    def _repack(self, obj: None) -> None: ...
+
+    @overload
+    def _repack(self, obj: X) -> X: ...
+
+    @overload
+    def _repack(self, obj: ValuePackage[X]) -> ValuePackageExtended[X]: ...
+
+    def _repack(self, obj: Union[None, X, ValuePackage[X]]):
+        if obj is None:
+            return None
+        if not isinstance(obj, ValuePackage):
+            return obj
+        mp = self.get_registry(obj.metaprefix)
+        if mp is None:
+            raise ValueError
+        return ValuePackageExtended(
+            obj.value,
+            obj.metaprefix,
+            mp.name,
+            mp.license or "Unknown",
+        )
+
+    @overload
     def get_name(self, prefix: str, *, provenance: Literal[False] = False) -> Union[None, str]: ...
 
     @overload
@@ -550,23 +574,26 @@ class Manager:
         entry = self.get_resource(prefix)
         if entry is None:
             return None
-        name_res = entry.get_name(provenance=provenance)
-        if name_res is None:
-            return None
-        if isinstance(name_res, str):
-            return name_res
-        if not isinstance(name_res, ValuePackage):
-            raise TypeError
+        return self._repack(entry.get_name(provenance=provenance))
 
-        mp = self.get_registry(name_res.metaprefix)
-        if mp is None:
-            raise ValueError
-        return ValuePackageExtended(
-            name_res.value,
-            name_res.metaprefix,
-            mp.name,
-            mp.license or "Unknown",
-        )
+    @overload
+    def get_namespace_in_lui(
+        self, prefix: str, *, provenance: Literal[False] = False
+    ) -> Union[None, bool]: ...
+
+    @overload
+    def get_namespace_in_lui(
+        self, prefix: str, *, provenance: Literal[True] = True
+    ) -> Union[None, ValuePackageExtended[bool]]: ...
+
+    def get_namespace_in_lui(
+        self, prefix: str, *, provenance: bool = False
+    ) -> Union[None, bool, ValuePackageExtended[bool]]:
+        """Get the name for the given prefix, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return self._repack(entry.get_namespace_in_lui(provenance=provenance))
 
     def get_description(self, prefix: str, *, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, it it's available."""

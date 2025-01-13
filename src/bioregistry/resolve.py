@@ -170,12 +170,9 @@ def get_pattern(prefix: str) -> Optional[str]:
     return manager.get_pattern(prefix)
 
 
-def get_namespace_in_lui(prefix: str) -> Optional[bool]:
+def get_namespace_in_lui(prefix: str, *, provenance: bool = False) -> Optional[bool]:
     """Check if the namespace should appear in the LUI."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_namespace_in_lui()
+    return manager.get_namespace_in_lui(prefix, provenance=provenance)
 
 
 def get_appears_in(prefix: str) -> Optional[List[str]]:

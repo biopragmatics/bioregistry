@@ -1042,12 +1042,12 @@ class Resource(BaseModel):
             return None
         return re.compile(p)
 
-    def get_namespace_in_lui(self) -> Optional[bool]:
+    def get_namespace_in_lui(self, *, provenance: bool = False) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
         return self.get_prefix_key(
-            "namespaceEmbeddedInLui", "miriam", rv_type=bool, provenance=False
+            "namespaceEmbeddedInLui", "miriam", rv_type=bool, provenance=provenance
         )
 
     def get_homepage(self) -> Optional[str]:
