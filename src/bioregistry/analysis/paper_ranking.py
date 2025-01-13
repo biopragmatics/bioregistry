@@ -58,7 +58,7 @@ def get_publications_from_bioregistry(path: Optional[Path] = None) -> pd.DataFra
     if path is None:
         path = BIOREGISTRY_PATH
 
-    records = json.loads(path.read_text())
+    records = json.loads(path.read_text(encoding="utf-8"))
     publications = []
     pubmeds = set()
     for record in records.values():
