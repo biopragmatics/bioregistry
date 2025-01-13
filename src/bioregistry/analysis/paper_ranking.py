@@ -283,7 +283,7 @@ def predict_and_save(
     vectorizer: TfidfVectorizer,
     classifiers: Classifiers,
     meta_clf: ClassifierMixin,
-    filename: str,
+    path: str | Path,
 ) -> None:
     """Predict and save scores for new data using trained classifiers and meta-classifier.
 
@@ -291,7 +291,7 @@ def predict_and_save(
     :param vectorizer: Trained TF-IDF vectorizer.
     :param classifiers: List of trained classifiers.
     :param meta_clf: Trained meta-classifier.
-    :param filename: Filename to save the predictions.
+    :param path: Path to save the predictions.
     """
     x_meta = pd.DataFrame()
     x_transformed = vectorizer.transform(df.title + " " + df.abstract)
@@ -301,8 +301,9 @@ def predict_and_save(
     df["meta_score"] = _predict(meta_clf, x_meta)
     df = df.sort_values(by="meta_score", ascending=False)
     df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 25))
-    df.to_csv(DIRECTORY.joinpath(filename), sep="\t", index=False)
-    click.echo(f"Wrote predicted scores to {DIRECTORY.joinpath(filename)}")
+    path = Path(path).resolve()
+    df.to_csv(path, sep="\t", index=False)
+    click.echo(f"Wrote predicted scores to {path}")
 
 
 def _first_of_month() -> str:
@@ -375,11 +376,16 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
     """
-    runner(bioregistry_file, start_date, end_date)
+    runner(bioregistry_file, start_date, end_date, output_path=DIRECTORY)
 
 
 def runner(
-    bioregistry_file: Path, start_date: str, end_date: str, include_remote: bool = True
+    bioregistry_file: Path,
+    start_date: str,
+    end_date: str,
+    *,
+    include_remote: bool = True,
+    output_path: Path,
 ) -> None:
     """Run functionality directly."""
     publication_df = get_publications_from_bioregistry(bioregistry_file)
@@ -410,7 +416,7 @@ def runner(
         classifiers, x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test
     )
     click.echo(evaluation_df.to_markdown(index=False))
-    evaluation_path = DIRECTORY.joinpath("evaluation.tsv")
+    evaluation_path = output_path.joinpath("evaluation.tsv")
     click.echo(f"Writing evaluation to {evaluation_path}")
     evaluation_df.to_csv(evaluation_path, sep="\t", index=False)
 
@@ -430,7 +436,7 @@ def runner(
         .round(4)
     )
     click.echo(importances_df.head(15).to_markdown(index=False))
-    importance_path = DIRECTORY.joinpath("importances.tsv")
+    importance_path = output_path.joinpath("importances.tsv")
     click.echo(f"Writing feature (word) importances to {importance_path}")
     importances_df.to_csv(importance_path, sep="\t", index=False)
 
@@ -439,8 +445,8 @@ def runner(
 
     predictions_df = fetch_pubmed_papers(pubmed_ids_to_filter=curated_pubmed_ids)
     if not predictions_df.empty:
-        filename = f"predictions_{start_date}_to_{end_date}.tsv"
-        predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, filename)
+        predictions_path = output_path.joinpath(f"predictions_{start_date}_to_{end_date}.tsv")
+        predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
 
 
 if __name__ == "__main__":
