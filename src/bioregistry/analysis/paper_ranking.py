@@ -8,7 +8,7 @@ import logging
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any
+from typing import Any, NamedTuple
 
 import click
 import numpy as np
@@ -19,11 +19,13 @@ from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model._base import LinearClassifierMixin
 from sklearn.metrics import matthews_corrcoef, roc_auc_score
 from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
+from typing_extensions import TypeAlias
 
 from bioregistry.constants import BIOREGISTRY_PATH, CURATED_PAPERS_PATH
 
@@ -36,6 +38,11 @@ DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+
+XTrain: TypeAlias = NDArray[np.float64]
+YTrain: TypeAlias = NDArray[np.float64]
+XTest: TypeAlias = NDArray[np.str_]
+YTest: TypeAlias = NDArray[np.str_]
 
 
 def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
@@ -192,10 +199,10 @@ def _map_labels(s: str) -> int | None:
     return None
 
 
-Classifiers = list[tuple[str, ClassifierMixin]]
+Classifiers = list[tuple[str, ClassifierMixin | LinearClassifierMixin]]
 
 
-def train_classifiers(x_train: NDArray[np.float64], y_train: NDArray[np.str_]) -> Classifiers:
+def train_classifiers(x_train: XTrain, y_train: NDArray[np.str_]) -> Classifiers:
     """Train multiple classifiers on the training data.
 
     :param x_train: Training features.
@@ -215,7 +222,7 @@ def train_classifiers(x_train: NDArray[np.float64], y_train: NDArray[np.str_]) -
 
 
 def generate_meta_features(
-    classifiers: Classifiers, x_train: NDArray[np.float64], y_train: NDArray[np.str_], cv: int = 5
+    classifiers: Classifiers, x_train: XTrain, y_train: YTrain, cv: int = 5
 ) -> pd.DataFrame:
     """Generate meta-features for training a meta-classifier using cross-validation predictions.
 
@@ -232,23 +239,31 @@ def generate_meta_features(
     return df
 
 
-def _cross_val_predict(
-    clf: ClassifierMixin, x_train: NDArray[np.float64], y_train: NDArray[np.str_], cv: int
-) -> NDArray:
+def _cross_val_predict(clf: ClassifierMixin, x_train: XTrain, y_train: YTrain, cv: int) -> NDArray:
     if not hasattr(clf, "predict_proba"):
         return cross_val_predict(clf, x_train, y_train, cv=cv, method="decision_function")
     return cross_val_predict(clf, x_train, y_train, cv=cv, method="predict_proba")[:, 1]
 
 
-def _predict(clf, x):
+def _predict(
+    clf: ClassifierMixin | LinearClassifierMixin, x: NDArray[np.float64]
+) -> NDArray[np.float64]:
     if hasattr(clf, "predict_proba"):
         return clf.predict_proba(x)[:, 1]
     else:
         return clf.decision_function(x)
 
+
+class MetaClassifierEvaluationResults(NamedTuple):
+    """A tuple for meta classifier results."""
+
+    mcc: float
+    roc_auc: float
+
+
 def evaluate_meta_classifier(
-    meta_clf: ClassifierMixin, x_test_meta: NDArray[np.float64], y_test: NDArray[np.str_]
-) -> tuple[float, float]:
+    meta_clf: ClassifierMixin, x_test_meta: NDArray[np.float64], y_test: YTest
+) -> MetaClassifierEvaluationResults:
     """Evaluate meta-classifier using MCC and AUC-ROC scores.
 
     :param meta_clf: Trained meta-classifier.
@@ -259,7 +274,7 @@ def evaluate_meta_classifier(
     y_pred = meta_clf.predict(x_test_meta)
     mcc = matthews_corrcoef(y_test, y_pred)
     roc_auc = roc_auc_score(y_test, _predict(meta_clf, x_test_meta))
-    return mcc, roc_auc
+    return MetaClassifierEvaluationResults(mcc, roc_auc)
 
 
 def truncate_text(text: str, max_length: int) -> str:
@@ -300,7 +315,9 @@ def _first_of_month() -> str:
     return datetime.date(today.year, today.month, 1).isoformat()
 
 
-def _get_meta_results(classifiers, x_train, x_test, y_train, y_test):
+def _get_meta_results(
+    classifiers: Classifiers, x_train: XTrain, x_test: XTest, y_train: YTrain, y_test: YTest
+) -> tuple[LogisticRegression, MetaClassifierEvaluationResults]:
     meta_features = generate_meta_features(classifiers, x_train, y_train)
     meta_clf = LogisticRegression()
     meta_clf.fit(meta_features, y_train)
@@ -309,10 +326,12 @@ def _get_meta_results(classifiers, x_train, x_test, y_train, y_test):
     for name, clf in classifiers:
         x_test_meta[name] = _predict(clf, x_test)
 
-    return evaluate_meta_classifier(meta_clf, x_test_meta.to_numpy(), y_test)
+    return meta_clf, evaluate_meta_classifier(meta_clf, x_test_meta.to_numpy(), y_test)
 
 
-def _get_evaluation_df(classifiers, x_train, x_test, y_train, y_test) -> pd.DataFrame:
+def _get_evaluation_df(
+    classifiers: Classifiers, x_train: XTrain, x_test: XTest, y_train: YTrain, y_test: YTest
+) -> tuple[LogisticRegression, pd.DataFrame]:
     scores = []
     for name, clf in tqdm(classifiers, desc="evaluating"):
         y_pred = clf.predict(x_test)
@@ -326,13 +345,13 @@ def _get_evaluation_df(classifiers, x_train, x_test, y_train, y_test) -> pd.Data
             continue
         scores.append((name, mcc or float("nan"), roc_auc or float("nan")))
 
-    meta_mcc, meta_roc_auc = _get_meta_results(
+    meta_clf, meta_clf_results = _get_meta_results(
         classifiers, x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test
     )
-    scores.append(("meta_classifier", meta_mcc, meta_roc_auc))
+    scores.append(("meta_classifier", meta_clf_results.mcc, meta_clf_results.roc_auc))
 
     evaluation_df = pd.DataFrame(scores, columns=["classifier", "mcc", "auc_roc"]).round(3)
-    return evaluation_df
+    return meta_clf, evaluation_df
 
 
 @click.command()
@@ -392,7 +411,7 @@ def runner(
 
     classifiers = train_classifiers(x_train, y_train)
 
-    evaluation_df = _get_evaluation_df(
+    meta_clf, evaluation_df = _get_evaluation_df(
         classifiers, x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test
     )
     click.echo(evaluation_df.to_markdown(index=False))
