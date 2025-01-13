@@ -6,21 +6,27 @@ import logging
 import typing
 import warnings
 from collections import Counter, defaultdict
+from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 from typing import (
     Any,
     Callable,
     Dict,
+    Generic,
     Iterable,
     List,
+    Literal,
     Mapping,
+    NamedTuple,
     Optional,
     Sequence,
     Set,
     Tuple,
+    TypeVar,
     Union,
     cast,
+    overload,
 )
 
 import curies
@@ -48,6 +54,7 @@ from .schema import (
     Resource,
     sanitize_model,
 )
+from .schema.struct import ValuePackage
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -64,6 +71,18 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
+
+X = TypeVar("X")
+
+
+@dataclass
+class ValuePackageExtended(Generic[X]):
+    """A pack for a value that has extra information."""
+
+    value: X
+    metaprefix: str
+    name: str
+    license: str
 
 
 def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
@@ -516,12 +535,38 @@ class Manager:
             return None
         return entry.get_uri_prefix(priority=priority)
 
-    def get_name(self, prefix: str) -> Optional[str]:
-        """Get the name for the given prefix, it it's available."""
+    @overload
+    def get_name(self, prefix: str, *, provenance: Literal[False] = False) -> Union[None, str]: ...
+
+    @overload
+    def get_name(
+        self, prefix: str, *, provenance: Literal[True] = True
+    ) -> Union[None, ValuePackageExtended[str]]: ...
+
+    def get_name(
+        self, prefix: str, *, provenance: bool = False
+    ) -> Union[None, str, ValuePackageExtended[str]]:
+        """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
-        return entry.get_name()
+        name_res = entry.get_name(provenance=provenance)
+        if name_res is None:
+            return None
+        if isinstance(name_res, str):
+            return name_res
+        if not isinstance(name_res, ValuePackage):
+            raise TypeError
+
+        mp = self.get_registry(name_res.metaprefix)
+        if mp is None:
+            raise ValueError
+        return ValuePackageExtended(
+            name_res.value,
+            name_res.metaprefix,
+            mp.name,
+            mp.license or "Unknown",
+        )
 
     def get_description(self, prefix: str, *, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, it it's available."""

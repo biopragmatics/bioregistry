@@ -8,6 +8,7 @@ import logging
 import pathlib
 import re
 import textwrap
+from dataclasses import dataclass
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -15,15 +16,19 @@ from typing import (
     Callable,
     ClassVar,
     Dict,
+    Generic,
     Iterable,
     List,
     Mapping,
+    NamedTuple,
     Optional,
     Sequence,
     Set,
     Tuple,
+    TypeVar,
     Union,
     cast,
+    overload,
 )
 
 import pydantic.schema
@@ -78,6 +83,8 @@ URI_IRI_INFO = (
     "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
 )
 
+X = TypeVar("X")
+
 
 def _uri_sort(uri):
     try:
@@ -122,6 +129,14 @@ URI_FORMAT_PATHS = [
     ("prefixcommons", URI_FORMAT_KEY),
     ("rrid", URI_FORMAT_KEY),
 ]
+
+
+@dataclass
+class ValuePackage(Generic[X]):
+    """A value with its metaprefix as provenance."""
+
+    value: X
+    metaprefix: str
 
 
 class Organization(BaseModel):
@@ -665,13 +680,40 @@ class Resource(BaseModel):
             return None
         return self.get_mappings().get(metaprefix)
 
-    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False):
+    @overload
+    def get_prefix_key(
+        self,
+        key: str,
+        metaprefixes: Union[str, Sequence[str]],
+        *,
+        rv_type: type[X],
+        provenance: Literal[True] = True,
+    ) -> Optional[ValuePackage[X]]: ...
+
+    @overload
+    def get_prefix_key(
+        self,
+        key: str,
+        metaprefixes: Union[str, Sequence[str]],
+        *,
+        rv_type: type[X],
+        provenance: Literal[False] = False,
+    ) -> Optional[X]: ...
+
+    def get_prefix_key(
+        self,
+        key: str,
+        metaprefixes: Union[str, Sequence[str]],
+        *,
+        rv_type: type[X],
+        provenance: bool = False,
+    ) -> Union[None, X, ValuePackage[X]]:
         """Get a key enriched by the given external resources' data."""
         rv = self.dict().get(key)
         if rv is not None:
             if provenance:
-                return rv, "bioregistry"
-            return rv
+                return ValuePackage(rv, "bioregistry")
+            return cast(X, rv)
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
@@ -681,10 +723,8 @@ class Resource(BaseModel):
             rv = external.get(key)
             if rv is not None:
                 if provenance:
-                    return rv, metaprefix
-                return rv
-        if provenance:
-            return None, None
+                    return ValuePackage(rv, metaprefix)
+                return cast(X, rv)
         return None
 
     def get_default_uri(self, identifier: str) -> Optional[str]:
@@ -838,32 +878,35 @@ class Resource(BaseModel):
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
-    def get_name(self, *, provenance: bool = False) -> Optional[str]:
+    @overload
+    def get_name(self, *, provenance: Literal[False] = ...) -> Union[None, str]: ...
+
+    @overload
+    def get_name(self, *, provenance: Literal[True] = ...) -> Union[None, ValuePackage[str]]: ...
+
+    def get_name(self, *, provenance: bool = False) -> Union[None, str, ValuePackage[str]]:
         """Get the name for the given prefix, if it's available."""
-        return self.get_prefix_key(
-            "name",
-            (
-                "obofoundry",
-                "ols",
-                "wikidata",
-                "go",
-                "ncbi",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "miriam",
-                "n2t",
-                "cellosaurus",
-                "cropoct",
-                "cheminf",
-                "edam",
-                "prefixcommons",
-                "rrid",
-                "bartoc",
-                "lov",
-            ),
-            provenance=provenance
-        )
+        metaprefixes: Sequence[str] = [
+            "obofoundry",
+            "ols",
+            "wikidata",
+            "go",
+            "ncbi",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "miriam",
+            "n2t",
+            "cellosaurus",
+            "cropoct",
+            "cheminf",
+            "edam",
+            "prefixcommons",
+            "rrid",
+            "bartoc",
+            "lov",
+        ]
+        return self.get_prefix_key("name", metaprefixes, rv_type=str, provenance=provenance)
 
     def get_description(self, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, if available."""
@@ -872,27 +915,26 @@ class Resource(BaseModel):
             from markdown import markdown
 
             return markupsafe.Markup(markdown(self.description))
-        rv = self.get_prefix_key(
-            "description",
-            (
-                "miriam",
-                "n2t",
-                "ols",
-                "obofoundry",
-                "wikidata",
-                "fairsharing",
-                "aberowl",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "cropoct",
-                "cheminf",
-                "edam",
-                "prefixcommons",
-                "bartoc",
-                "lov",
-            ),
+
+        metaprefixes: Sequence[str] = (
+            "miriam",
+            "n2t",
+            "ols",
+            "obofoundry",
+            "wikidata",
+            "fairsharing",
+            "aberowl",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "cropoct",
+            "cheminf",
+            "edam",
+            "prefixcommons",
+            "bartoc",
+            "lov",
         )
+        rv = self.get_prefix_key("description", metaprefixes, rv_type=str, provenance=False)
         if rv is not None:
             return rv
         if self.cellosaurus and "category" in self.cellosaurus:
@@ -910,7 +952,8 @@ class Resource(BaseModel):
         """
         if self.pattern is not None:
             return self.pattern
-        rv = self.get_prefix_key("pattern", ("miriam", "wikidata", "bartoc"))
+        metaprefixes: Sequence[str] = ("miriam", "wikidata", "bartoc")
+        rv = self.get_prefix_key("pattern", metaprefixes, rv_type=str, provenance=False)
         if rv is None:
             return None
         return _clean_pattern(rv)
@@ -1003,31 +1046,36 @@ class Resource(BaseModel):
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self.get_prefix_key("namespaceEmbeddedInLui", "miriam")
+        return self.get_prefix_key(
+            "namespaceEmbeddedInLui", "miriam", rv_type=bool, provenance=False
+        )
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
+        metaprefixes: Sequence[str] = (
+            "obofoundry",
+            "ols",
+            "miriam",
+            "n2t",
+            "wikidata",
+            "go",
+            "ncbi",
+            "cellosaurus",
+            "prefixcommons",
+            "fairsharing",
+            "cropoct",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "rrid",
+            "bartoc",
+            "lov",
+        )
         return self.get_prefix_key(
             "homepage",
-            (
-                "obofoundry",
-                "ols",
-                "miriam",
-                "n2t",
-                "wikidata",
-                "go",
-                "ncbi",
-                "cellosaurus",
-                "prefixcommons",
-                "fairsharing",
-                "cropoct",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "rrid",
-                "bartoc",
-                "lov",
-            ),
+            metaprefixes,
+            rv_type=str,
+            provenance=False,
         )
 
     def get_keywords(self) -> List[str]:
@@ -1056,7 +1104,8 @@ class Resource(BaseModel):
         """Return the repository, if available."""
         if self.repository:
             return self.repository
-        return self.get_prefix_key("repository", ("obofoundry", "fairsharing"))
+        metaprefixes: Sequence[str] = ("obofoundry", "fairsharing")
+        return self.get_prefix_key("repository", metaprefixes, rv_type=str, provenance=False)
 
     def get_contact(self) -> Optional[Attributable]:
         """Get the contact, if available.
@@ -1092,8 +1141,9 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.email:
             return self.contact.email
+        metaprefixes: Sequence[str] = ("obofoundry", "ols")
         # FIXME if contact is not none but email is, this will have a problem after
-        rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
+        rv = self.get_prefix_key("contact", metaprefixes, rv_type=str, provenance=False)
         if rv:
             if EMAIL_RE.match(rv):
                 return rv

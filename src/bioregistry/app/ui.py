@@ -121,19 +121,14 @@ def resource(prefix: str):
     example_curie_extras = [
         _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
     ]
-    name, name_source_metaprefix = _resource.get_name(provenance=True)
-    name_source_name = manager.get_registry(name_source_metaprefix).name
-    name_source_license = manager.get_registry(name_source_metaprefix).license
+    name_pack = _resource.get_name(provenance=True)
     return render_template(
         "resource.html",
         zip=zip,
         prefix=prefix,
         resource=_resource,
         bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
-        name=name,
-        name_source_metaprefix=name_source_metaprefix,
-        name_source_name=name_source_name,
-        name_source_license=name_source_license,
+        name_pack=name_pack,
         example=example,
         example_extras=example_extras,
         example_curie=example_curie,

@@ -5,12 +5,12 @@
 import logging
 import typing
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional, Set
+from typing import Any, Dict, List, Literal, Mapping, Optional, Set, Union, overload
 
 import curies
 
 from .constants import MaybeCURIE
-from .resource_manager import manager
+from .resource_manager import ValuePackageExtended, manager
 from .schema import Attributable, Resource
 
 __all__ = [
@@ -80,9 +80,21 @@ def get_resource(prefix: str) -> Optional[Resource]:
     return manager.get_resource(prefix)
 
 
-def get_name(prefix: str) -> Optional[str]:
-    """Get the name for the given prefix, it it's available."""
-    return manager.get_name(prefix)
+@overload
+def get_name(prefix: str, *, provenance: Literal[False] = False) -> Union[None, str]: ...
+
+
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[True] = True
+) -> Union[None, ValuePackageExtended[str]]: ...
+
+
+def get_name(
+    prefix: str, *, provenance: bool = False
+) -> Union[None, str, ValuePackageExtended[str]]:
+    """Get the name for the given prefix, if it's available."""
+    return manager.get_name(prefix, provenance=provenance)
 
 
 def get_description(prefix: str, *, use_markdown: bool = False) -> Optional[str]:

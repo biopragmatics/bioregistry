@@ -18,6 +18,7 @@ from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
+from bioregistry.resource_manager import ValuePackageExtended
 from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm
@@ -145,6 +146,18 @@ class TestRegistry(unittest.TestCase):
             if "." in prefix and prefix.split(".")[0] == name.lower():
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
+
+    def test_get_name(self) -> None:
+        """Test getting the name."""
+        self.assertEqual(None, bioregistry.get_name("nope"))
+
+        res = bioregistry.get_name("go")
+        self.assertIsInstance(res, str)
+        self.assertEqual("Gene Ontology", res)
+
+        prov = bioregistry.get_name("go", provenance=True)
+        self.assertIsInstance(prov, ValuePackageExtended)
+        self.assertEqual("Gene Ontology", prov.value)
 
     def test_has_description(self):
         """Test that all non-deprecated entries have a description."""
