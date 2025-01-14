@@ -300,12 +300,10 @@ def _first_of_month() -> str:
     help="End date of the period",
     default=datetime.date.today().isoformat(),
 )
-def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
+def main(bioregistry_file: Path) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
-    :param start_date: The start date of the period for which papers are being ranked.
-    :param end_date: The end date of the period for which papers are being ranked.
     """
     publication_df = load_bioregistry_json(bioregistry_file)
     curation_df = load_curation_data()
@@ -403,7 +401,7 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
 
     new_pub_df = fetch_pubmed_papers(curated_pmids)
     if not new_pub_df.empty:
-        filename = f"predictions_{start_date}_to_{end_date}.tsv"
+        filename = f"predictions.tsv"
         predict_and_save(new_pub_df, vectorizer, classifiers, meta_clf, filename)
 
 
