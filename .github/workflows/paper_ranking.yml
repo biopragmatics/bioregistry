@@ -52,9 +52,13 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git add exports/analyses/paper_ranking/predictions_${{ env.START_DATE }}_to_${{ env.END_DATE }}.tsv
+        git add exports/analyses/paper_ranking/predictions.tsv
         git commit -m "Add predictions file for ${{ env.START_DATE }} to ${{ env.END_DATE }}"
         git push
+
+    - name: Find Commit Hash
+      id: get-commit-hash
+      run: echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
     - name: Find Existing Issue
       id: find-issue
@@ -79,9 +83,9 @@ jobs:
         script: |
           const fs = require('fs');
           const issueNumber = ${{ steps.find-issue.outputs.result }};
-          const startDate = process.env.START_DATE;
-          const endDate = process.env.END_DATE;
-          const content = fs.readFileSync(`exports/analyses/paper_ranking/predictions_${startDate}_to_${endDate}.tsv`, 'utf8');
+          const commitHash = process.env.COMMIT_HASH;
+          const rankingFileLink = `https://github.com/${{ github.repository }}/blob/${commitHash}/exports/analyses/paper_ranking/predictions.tsv`;
+          const content = fs.readFileSync(`exports/analyses/paper_ranking/predictions.tsv`, 'utf8');
           const lines = content.split('\n').slice(1, 21);
           const rows = lines.map(line => {
             const [pubmed, title] = line.split('\t');
@@ -89,7 +93,7 @@ jobs:
             return `| [${pubmed}](${link}) | ${title} |`;
           });
           const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
-          const commentBody = `This issue contains monthly updates to an automatically ranked list of PubMed papers as candidates for curation in the Bioregistry. Papers may be relevant in at least three ways: \n(1) as a new prefix for a resource that can be added to the Bioregistry,\n(2) as a provider for an existing prefix, or\n(3) as a new publication for an existing prefix already in the Bioregistry.\n\nThese curations can happen in separate issues and pull requests. The full list of ranked papers can be found [here](https://github.com/${{ github.repository }}/blob/main/exports/analyses/paper_ranking/predictions_${startDate}_to_${endDate}.tsv). If you review any of these papers for relevance, you should edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/main/src/bioregistry/data/curated_papers.tsv); these curations are taken into account when retraining the ranking model.\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
+          const commentBody = `This issue contains monthly updates to an automatically ranked list of PubMed papers as candidates for curation in the Bioregistry. Papers may be relevant in at least three ways: \n(1) as a new prefix for a resource that can be added to the Bioregistry,\n(2) as a provider for an existing prefix, or\n(3) as a new publication for an existing prefix already in the Bioregistry.\n\nThese curations can happen in separate issues and pull requests. The full list of ranked papers can be found [here](https://github.com/${{ github.repository }}/blob/main/exports/analyses/paper_ranking/predictions_${startDate}_to_${endDate}.tsv). If you review any of these papers for relevance, you should edit the curated papers file [here](${rankingFileLink}); these curations are taken into account when retraining the ranking model.\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
 
           if (issueNumber) {
             await github.rest.issues.createComment({
