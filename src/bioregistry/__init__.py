@@ -78,6 +78,7 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_novel,
+    is_obo_foundry,
     is_proprietary,
     normalize_curie,
     normalize_parsed_curie,
