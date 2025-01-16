@@ -396,10 +396,12 @@ def _get_evaluation_df(
     help="End date of the period",
     default=datetime.date.today().isoformat(),
 )
-def main(bioregistry_file: Path) -> None:
+def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
+    :param start_date: The start date of the period for which papers are being ranked.
+    :param end_date: The end date of the period for which papers are being ranked.
     """
     runner(
         bioregistry_file=bioregistry_file,
@@ -481,7 +483,7 @@ def runner(
     if not predictions_df.empty:
         # TODO update the way naming this file works, see discussion on
         #  https://github.com/biopragmatics/bioregistry/pull/1350
-        predictions_path = output_path.joinpath(f"predictions_{start_date}_to_{end_date}.tsv")
+        predictions_path = output_path.joinpath(f"predictions.tsv")
         predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
 
 
