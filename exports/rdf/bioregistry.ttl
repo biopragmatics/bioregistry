@@ -5,6 +5,7 @@
 @prefix abcd: <https://web.expasy.org/abcd/ABCD_> .
 @prefix aberowl: <http://aber-owl.net/ontology/> .
 @prefix abm: <https://www.abmgood.com/search?query=> .
+@prefix absd: <https://absd.pasteur.cloud/antibody/> .
 @prefix ac: <http://www.w3.org/ns/activitystreams#> .
 @prefix aceview.worm: <https://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/av.cgi?db=worm&c=Gene&l=> .
 @prefix adcad: <https://purl.dataone.org/odo/ADCAD_> .
@@ -472,6 +473,7 @@
 @prefix eugenes: <http://eugenes.org:7072/.bin/fbidq.html?> .
 @prefix eupath: <http://purl.obolibrary.org/obo/EUPATH_> .
 @prefix ev: <http://www.evocontology.org/site/Main/BrowseEvoc?x_termid=> .
+@prefix evr: <https://cthoyt.com/evr/> .
 @prefix exac.gene: <http://exac.broadinstitute.org/gene/> .
 @prefix exac.transcript: <http://exac.broadinstitute.org/transcript/> .
 @prefix exac.variant: <http://exac.broadinstitute.org/variant/> .
@@ -2131,6 +2133,10 @@ orcid:0009-0001-1912-5132 rdfs:label "Tanay Shah" ;
 orcid:0009-0001-6787-3995 rdfs:label "Tomohiro Oga" ;
     dcterms:contributor bioregistry:omon ;
     foaf:mbox "oga.t@northeastern.edu" .
+
+orcid:0009-0008-8406-631X rdfs:label "Nalika Palayoor" ;
+    dcterms:contributor bioregistry:absd ;
+    foaf:mbox "palayoor.n@northeastern.edu" .
 
 orcid:0009-0009-5240-7463 rdfs:label "Mufaddal Naguthanawala" ;
     dcterms:contributor bioregistry:asteraceaegd.genome,
@@ -16125,7 +16131,7 @@ bioregistry:pid.pathway a bioregistry.schema:0000001 ;
         "pathway",
         "protein",
         "small molecule" ;
-    foaf:homepage <http://pid.nci.nih.gov/> ;
+    foaf:homepage <https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf> ;
     bioregistry.schema:0000005 "eff796f3-6195-11e5-8ac5-06603eb7f303"^^xsd:string ;
     bioregistry.schema:0000006 "http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b$"^^xsd:string ;
@@ -22109,6 +22115,9 @@ orcid:0000-0003-1516-0712 rdfs:label "Aron Marchler-Bauer" ;
 
 orcid:0000-0003-1546-6746 rdfs:label "Kelly T. Hughes" ;
     foaf:mbox "kelly.hughes@utah.edu" .
+
+orcid:0000-0003-1611-5243 rdfs:label "Nicolas Maillet" ;
+    foaf:mbox "nicolas.maillet@pasteur.fr" .
 
 orcid:0000-0003-1613-5981 rdfs:label "Heather Piwowar" ;
     foaf:mbox "hpiwowar@gmail.com" .
@@ -29469,6 +29478,21 @@ bioregistry:abcd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 abcd:AD834 ;
     bioregistry.schema:0000029 "abcd" .
 
+bioregistry:absd a bioregistry.schema:0000001 ;
+    rdfs:label "AntiBody Sequence Database" ;
+    dcterms:description "The AntiBody Sequence Database is a public dataset for antibody sequence data. It provides unique identifiers for antibody sequences, including both immunoglobulin and single-chain variable fragment sequences. These are are critical for immunological studies, and  allows users to search and retrieve antibody sequences based on sequence similarity and specificity, and other biological properties."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://absd.pasteur.cloud> ;
+    bioregistry.schema:0000005 "81d0ea69a9ab134f6ba68314e982171a367d3ab739c85c5ba49701dd02170ed3"^^xsd:string ;
+    bioregistry.schema:0000006 "https://absd.pasteur.cloud/antibody/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-f0-9]{64}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-1611-5243 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://absd.pasteur.cloud/antibody/"^^xsd:string ;
+    bioregistry.schema:0000027 absd:81d0ea69a9ab134f6ba68314e982171a367d3ab739c85c5ba49701dd02170ed3 ;
+    bioregistry.schema:0000029 "absd" .
+
 bioregistry:adcad a bioregistry.schema:0000001 ;
     rdfs:label "Arctic Data Center Academic Disciplines Ontology" ;
     dcterms:description "An ontology to support disciplinary annotation of Arctic Data Center datasets."^^xsd:string ;
@@ -32941,6 +32965,27 @@ bioregistry:evm a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000029 "evm" .
+
+bioregistry:evr a bioregistry.schema:0000001 ;
+    rdfs:label "Event Venue Registry" ;
+    dcterms:description """An open, community-driven registry of conference and event venues.
+
+EVR assigns persistent identifiers (PIDs) to make referencing venues FAIR. This is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to research organizations.
+
+This benefits researchers assembling information about in-person conferences and events by enabling them to refer in an unambiguous way to the venue where it takes place.
+
+This repository follows the [Open Data, Open Code, Open Infrastructure (O3) principles](https://www.nature.com/articles/s41597-024-03406-w), meaning that the data and code are all in one repository that anyone can contribute to."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/cthoyt/evr> ;
+    foaf:homepage <https://cthoyt.com/evr> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cthoyt.com/evr/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://cthoyt.com/evr/"^^xsd:string ;
+    bioregistry.schema:0000027 evr:0000001 ;
+    bioregistry.schema:0000029 "evr" .
 
 bioregistry:fanta a bioregistry.schema:0000001 ;
     rdfs:label "Functional Genome Annotations with Transcriptional Activities" ;
@@ -37899,7 +37944,7 @@ bioregistry:pride a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000006"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PRIDE_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://purl.obolibrary.org/obo/pride/2.1.5/pride.owl> ;
+    bioregistry.schema:0000010 <http://purl.obolibrary.org/obo/pride/2.1.7/pride.owl> ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-6579-6941 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PRIDE_"^^xsd:string ;
@@ -57244,6 +57289,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:epcc,
         bioregistry:eurofir,
         bioregistry:evm,
+        bioregistry:evr,
         bioregistry:fabio,
         bioregistry:fairsharing.organization,
         bioregistry:fairsharing.user,
@@ -63238,6 +63284,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:abcd,
         bioregistry:abm,
         bioregistry:abs,
+        bioregistry:absd,
         bioregistry:ac,
         bioregistry:aceview.worm,
         bioregistry:adcad,
@@ -63795,6 +63842,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:eurofir,
         bioregistry:ev,
         bioregistry:evm,
+        bioregistry:evr,
         bioregistry:exac.gene,
         bioregistry:exac.transcript,
         bioregistry:exac.variant,
