@@ -55,7 +55,7 @@ jobs:
     - name: Commit and Push Changes
       run: |
         git add exports/analyses/paper_ranking/predictions.tsv
-        git commit -m "Add predictions file for ${{ env.START_DATE }} to ${{ env.END_DATE }}"
+        git commit -m "Update predictions file with papers between ${{ env.START_DATE }} and ${{ env.END_DATE }}"
         git push
 
     - name: Find Commit Hash
