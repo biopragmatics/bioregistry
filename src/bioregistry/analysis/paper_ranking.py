@@ -481,8 +481,8 @@ def runner(
 
     predictions_df = fetch_pubmed_papers(
         pubmed_ids_to_filter=curated_pubmed_ids,
-        mindate=_first_of_month,
-        maxdate=datetime.date.today().isoformat()
+        mindate=start_date,
+        maxdate=end_date
     )
     if not predictions_df.empty:
         predictions_path = output_path.joinpath("predictions.tsv")
