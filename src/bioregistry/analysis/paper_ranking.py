@@ -141,39 +141,42 @@ def _get_metadata_for_ids(pubmed_ids: Iterable[Union[int, str]]) -> dict[str, di
     return fetched_metadata
 
 
-def _get_ids(term: str, use_text_word: bool, mindate: str, maxdate: str) -> set[str]:
+def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> set[str]:
     from indra.literature import pubmed_client
 
     return {
         str(pubmed_id)
         for pubmed_id in pubmed_client.get_ids(
-            term, use_text_word=use_text_word, mindate=mindate, maxdate=maxdate
+            term, use_text_word=use_text_word, mindate=start_date, maxdate=end_date
         )
     }
 
 
 def _search(
-    terms: list[str], pubmed_ids_to_filter: set[str], mindate: str, maxdate: str
+    terms: list[str], pubmed_ids_to_filter: set[str], start_date: str, end_date: str
 ) -> dict[str, list[str]]:
     paper_to_terms: defaultdict[str, list[str]] = defaultdict(list)
     for term in tqdm(terms, desc="Searching PubMed", unit="search term", leave=False):
-        for pubmed_id in _get_ids(term, use_text_word=True, mindate=mindate, maxdate=maxdate):
+        for pubmed_id in _get_ids(term, use_text_word=True, start_date=start_date, end_date=end_date):
             if pubmed_id not in pubmed_ids_to_filter:
                 paper_to_terms[pubmed_id].append(term)
     return dict(paper_to_terms)
 
 
 
-def fetch_pubmed_papers(*, pubmed_ids_to_filter: set[str], mindate: str, maxdate: str) -> pd.DataFrame:
+def fetch_pubmed_papers(*, pubmed_ids_to_filter: set[str], start_date: str, end_date: str) -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
     :param pubmed_ids_to_filter: List containing already curated PMIDs.
-    :param mindate: Start date for the search query.
-    :param maximum: End date for the search query.
+    :param start_date: The start date of the period for which papers are being ranked.
+    :param end_date: The end date of the period for which papers are being ranked.
     :return: DataFrame containing PubMed paper details.
     """
     paper_to_terms = _search(
-        DEFAULT_SEARCH_TERMS, pubmed_ids_to_filter=pubmed_ids_to_filter, mindate=mindate, maxdate=maxdate
+        DEFAULT_SEARCH_TERMS,
+        pubmed_ids_to_filter=pubmed_ids_to_filter,
+        start_date=start_date,
+        end_date=end_date
     )
 
     papers = _get_metadata_for_ids(paper_to_terms)
@@ -481,8 +484,8 @@ def runner(
 
     predictions_df = fetch_pubmed_papers(
         pubmed_ids_to_filter=curated_pubmed_ids,
-        mindate=start_date,
-        maxdate=end_date
+        start_date=start_date,
+        end_date=end_date
     )
     if not predictions_df.empty:
         predictions_path = output_path.joinpath("predictions.tsv")
