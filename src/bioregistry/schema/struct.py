@@ -146,7 +146,7 @@ URI_FORMAT_PATHS = [
 
 
 @dataclass
-class ValuePackage(Generic[X]):
+class MetaprefixAnnotatedValue(Generic[X]):
     """A value with its metaprefix as provenance."""
 
     value: X
@@ -715,7 +715,7 @@ class Resource(BaseModel):
         *,
         rv_type: type[X],
         provenance: Literal[True] = True,
-    ) -> Optional[ValuePackage[X]]: ...
+    ) -> Optional[MetaprefixAnnotatedValue[X]]: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -735,14 +735,16 @@ class Resource(BaseModel):
         *,
         rv_type: type[X],
         provenance: bool = False,
-    ) -> Union[None, X, ValuePackage[X]]:
+    ) -> Union[None, X, MetaprefixAnnotatedValue[X]]:
         """Get a key enriched by the given external resources' data."""
         rv = pydantic_dict(self).get(key)
         if rv is not None:
             if isinstance(rv, str):
                 rv = rv.replace("\r\n", "\n")
             if provenance:
-                return cast(ValuePackage[X], ValuePackage(rv, "bioregistry"))
+                return cast(
+                    MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, "bioregistry")
+                )
             return cast(X, rv)
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
@@ -755,7 +757,9 @@ class Resource(BaseModel):
                 if isinstance(rv, str):
                     rv = rv.replace("\r\n", "\n")
                 if provenance:
-                    return cast(ValuePackage[X], ValuePackage(rv, metaprefix))
+                    return cast(
+                        MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, metaprefix)
+                    )
                 return cast(X, rv)
         return None
 
@@ -773,11 +777,11 @@ class Resource(BaseModel):
     @overload
     def _get_prefix_key_str(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: Literal[True] = True
-    ) -> Union[None, ValuePackage[str]]: ...
+    ) -> Union[None, MetaprefixAnnotatedValue[str]]: ...
 
     def _get_prefix_key_str(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
-    ) -> Union[None, str, ValuePackage[str]]:
+    ) -> Union[None, str, MetaprefixAnnotatedValue[str]]:
         if provenance:
             return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=True)
         else:
@@ -797,11 +801,11 @@ class Resource(BaseModel):
     @overload
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: Literal[True] = True
-    ) -> Union[None, ValuePackage[bool]]: ...
+    ) -> Union[None, MetaprefixAnnotatedValue[bool]]: ...
 
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
-    ) -> Union[None, bool, ValuePackage[bool]]:
+    ) -> Union[None, bool, MetaprefixAnnotatedValue[bool]]:
         if provenance:
             return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=True)
         else:
@@ -964,9 +968,13 @@ class Resource(BaseModel):
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_name(self, *, provenance: Literal[True] = ...) -> Union[None, ValuePackage[str]]: ...
+    def get_name(
+        self, *, provenance: Literal[True] = ...
+    ) -> Union[None, MetaprefixAnnotatedValue[str]]: ...
 
-    def get_name(self, *, provenance: bool = False) -> Union[None, str, ValuePackage[str]]:
+    def get_name(
+        self, *, provenance: bool = False
+    ) -> Union[None, str, MetaprefixAnnotatedValue[str]]:
         """Get the name for the given prefix, if it's available."""
         metaprefixes: Sequence[str] = [
             "obofoundry",
@@ -1129,7 +1137,7 @@ class Resource(BaseModel):
     @overload
     def get_namespace_in_lui(
         self, *, provenance: Literal[True] = True
-    ) -> Union[ValuePackage[bool], None]: ...
+    ) -> Union[MetaprefixAnnotatedValue[bool], None]: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -1137,7 +1145,7 @@ class Resource(BaseModel):
 
     def get_namespace_in_lui(
         self, *, provenance: bool = False
-    ) -> Union[ValuePackage[bool], bool, None]:
+    ) -> Union[MetaprefixAnnotatedValue[bool], bool, None]:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui

@@ -55,7 +55,7 @@ from .schema import (
     Resource,
     sanitize_model,
 )
-from .schema.struct import ValuePackage
+from .schema.struct import MetaprefixAnnotatedValue
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -77,13 +77,26 @@ X = TypeVar("X", bound=Union[int, str])
 
 
 @dataclass
-class ValuePackageExtended(Generic[X]):
+class MetaresourceAnnotatedValue(Generic[X]):
     """A pack for a value that has extra information."""
 
     value: X
-    metaprefix: str
-    name: str
-    license: str
+    registry: Registry
+
+    @property
+    def metaprefix(self) -> str:
+        """Get prefix for the source registry for the annotation."""
+        return self.registry.prefix
+
+    @property
+    def name(self) -> str:
+        """Get the name of the source registry for the annotation."""
+        return self.registry.name
+
+    @property
+    def license(self) -> str:
+        """Get the license for the annotation."""
+        return self.registry.license or "unknown"
 
 
 def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
@@ -544,23 +557,18 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def _repack(self, obj: ValuePackage[X]) -> ValuePackageExtended[X]: ...
+    def _repack(self, obj: MetaprefixAnnotatedValue[X]) -> MetaresourceAnnotatedValue[X]: ...
 
     def _repack(
-        self, obj: Union[None, X, ValuePackage[X]]
-    ) -> Union[ValuePackageExtended[X], X, None]:
+        self, obj: Union[None, X, MetaprefixAnnotatedValue[X]]
+    ) -> Union[MetaresourceAnnotatedValue[X], X, None]:
         if obj is None:
             return None
-        elif isinstance(obj, ValuePackage):
+        elif isinstance(obj, MetaprefixAnnotatedValue):
             mp = self.get_registry(obj.metaprefix)
             if mp is None:
                 raise ValueError
-            return ValuePackageExtended(
-                obj.value,
-                obj.metaprefix,
-                mp.name,
-                mp.license or "Unknown",
-            )
+            return MetaresourceAnnotatedValue(obj.value, mp)
         else:
             return obj
 
@@ -572,11 +580,11 @@ class Manager:
     @overload
     def get_name(
         self, prefix: str, *, provenance: Literal[True] = True
-    ) -> Union[None, ValuePackageExtended[str]]: ...
+    ) -> Union[None, MetaresourceAnnotatedValue[str]]: ...
 
     def get_name(
         self, prefix: str, *, provenance: bool = False
-    ) -> Union[None, str, ValuePackageExtended[str]]:
+    ) -> Union[None, str, MetaresourceAnnotatedValue[str]]:
         """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
@@ -596,11 +604,11 @@ class Manager:
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[True] = True
-    ) -> Union[None, ValuePackageExtended[bool]]: ...
+    ) -> Union[None, MetaresourceAnnotatedValue[bool]]: ...
 
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: bool = False
-    ) -> Union[None, bool, ValuePackageExtended[bool]]:
+    ) -> Union[None, bool, MetaresourceAnnotatedValue[bool]]:
         """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:

@@ -18,7 +18,7 @@ from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
-from bioregistry.resource_manager import ValuePackageExtended
+from bioregistry.resource_manager import MetaresourceAnnotatedValue
 from bioregistry.schema.struct import (
     SCHEMA_PATH,
     Attributable,
@@ -180,7 +180,7 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual("Gene Ontology", res)
 
         prov = bioregistry.get_name("go", provenance=True)
-        self.assertIsInstance(prov, ValuePackageExtended)
+        self.assertIsInstance(prov, MetaresourceAnnotatedValue)
         self.assertEqual("Gene Ontology", prov.value)
 
     def test_has_description(self):
@@ -765,11 +765,11 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(res)
 
         res = bioregistry.get_namespace_in_lui("go", provenance=True)
-        self.assertIsInstance(res, ValuePackageExtended)
+        self.assertIsInstance(res, MetaresourceAnnotatedValue)
         self.assertTrue(res.value)
 
         res = bioregistry.get_namespace_in_lui("pdb", provenance=True)
-        self.assertIsInstance(res, ValuePackageExtended)
+        self.assertIsInstance(res, MetaresourceAnnotatedValue)
         self.assertFalse(res.value)
 
         for prefix, resource in self.registry.items():

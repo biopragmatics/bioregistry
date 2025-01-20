@@ -12,7 +12,7 @@ from typing import Any, Dict, List, Literal, Mapping, Optional, Set, Union, over
 import curies
 
 from .constants import MaybeCURIE
-from .resource_manager import ValuePackageExtended, manager
+from .resource_manager import MetaresourceAnnotatedValue, manager
 from .schema import Attributable, Resource
 
 __all__ = [
@@ -92,12 +92,12 @@ def get_name(prefix: str, *, provenance: Literal[False] = False) -> Union[None, 
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[True] = True
-) -> Union[None, ValuePackageExtended[str]]: ...
+) -> Union[None, MetaresourceAnnotatedValue[str]]: ...
 
 
 def get_name(
     prefix: str, *, provenance: bool = False
-) -> Union[None, str, ValuePackageExtended[str]]:
+) -> Union[None, str, MetaresourceAnnotatedValue[str]]:
     """Get the name for the given prefix, if it's available."""
     if provenance:
         return manager.get_name(prefix, provenance=True)
@@ -179,7 +179,7 @@ def get_pattern(prefix: str) -> Optional[str]:
 
 def get_namespace_in_lui(
     prefix: str, *, provenance: bool = False
-) -> Union[None, bool, ValuePackageExtended[bool]]:
+) -> Union[None, bool, MetaresourceAnnotatedValue[bool]]:
     """Check if the namespace should appear in the LUI."""
     if provenance:
         return manager.get_namespace_in_lui(prefix, provenance=True)
