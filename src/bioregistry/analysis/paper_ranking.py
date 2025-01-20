@@ -481,9 +481,7 @@ def runner(
     #  take into account the start and end date. as
     predictions_df = fetch_pubmed_papers(pubmed_ids_to_filter=curated_pubmed_ids, relative_date=30)
     if not predictions_df.empty:
-        # TODO update the way naming this file works, see discussion on
-        #  https://github.com/biopragmatics/bioregistry/pull/1350
-        predictions_path = output_path.joinpath(f"predictions_{start_date}_to_{end_date}.tsv")
+        predictions_path = output_path.joinpath(f"predictions.tsv")
         predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
 
 
