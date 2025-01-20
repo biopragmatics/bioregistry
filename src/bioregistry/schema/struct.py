@@ -751,6 +751,8 @@ class Resource(BaseModel):
             rv = external.get(key)
             if rv is not None:
                 if provenance:
+                    if isinstance(rv, str):
+                        rv = rv.replace("\r\n", "\n")
                     return ValuePackage(rv, metaprefix)
                 return cast(X, rv)
         return None

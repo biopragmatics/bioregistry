@@ -382,6 +382,42 @@
     ],
     "uri_format": "http://genome.crg.es/datasets/abs2005/entries/$1.html"
   },
+  "absd": {
+    "contact": {
+      "email": "nicolas.maillet@pasteur.fr",
+      "name": "Nicolas Maillet",
+      "orcid": "0000-0003-1611-5243"
+    },
+    "contributor": {
+      "email": "palayoor.n@northeastern.edu",
+      "github": "nalikapalayoor",
+      "name": "Nalika Palayoor",
+      "orcid": "0009-0008-8406-631X"
+    },
+    "description": "The AntiBody Sequence Database is a public dataset for antibody sequence data. It provides unique identifiers for antibody sequences, including both immunoglobulin and single-chain variable fragment sequences. These are are critical for immunological studies, and  allows users to search and retrieve antibody sequences based on sequence similarity and specificity, and other biological properties.",
+    "example": "81d0ea69a9ab134f6ba68314e982171a367d3ab739c85c5ba49701dd02170ed3",
+    "github_request_issue": 1362,
+    "homepage": "https://absd.pasteur.cloud",
+    "name": "AntiBody Sequence Database",
+    "pattern": "^[a-f0-9]{64}$",
+    "preferred_prefix": "absd",
+    "publications": [
+      {
+        "doi": "10.1093/nargab/lqae171",
+        "pmc": "PMC11655285",
+        "pubmed": "39703430",
+        "title": "AntiBody Sequence Database",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://absd.pasteur.cloud/antibody/$1"
+  },
   "ac": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -9577,6 +9613,7 @@
       "drug",
       "human"
     ],
+    "license": "https://clinicaltrials.gov/about-site/terms-conditions#availability",
     "mappings": {
       "biocontext": "CLINICALTRIALS",
       "miriam": "clinicaltrials",
@@ -20078,6 +20115,30 @@
     "references": [
       "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229"
     ]
+  },
+  "evr": {
+    "contact": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An open, community-driven registry of conference and event venues.\n\nEVR assigns persistent identifiers (PIDs) to make referencing venues FAIR. This is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to research organizations.\n\nThis benefits researchers assembling information about in-person conferences and events by enabling them to refer in an unambiguous way to the venue where it takes place.\n\nThis repository follows the [Open Data, Open Code, Open Infrastructure (O3) principles](https://www.nature.com/articles/s41597-024-03406-w), meaning that the data and code are all in one repository that anyone can contribute to.",
+    "example": "0000001",
+    "github_request_issue": 1363,
+    "homepage": "https://cthoyt.com/evr",
+    "license": "CC0-1.0",
+    "name": "Event Venue Registry",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "evr",
+    "repository": "https://github.com/cthoyt/evr",
+    "uri_format": "https://cthoyt.com/evr/$1"
   },
   "exac.gene": {
     "description": "The Exome Aggregation Consortium (ExAC) is a coalition of investigators seeking to aggregate and harmonize exome sequencing data from a variety of large-scale sequencing projects, and to make summary data available for the wider scientific community. The data pertains to unrelated individuals sequenced as part of various disease-specific and population genetic studies and serves as a reference set of allele frequencies for severe disease studies. This collection references gene information.",
@@ -32427,6 +32488,7 @@
       "life science",
       "taxonomy"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "bartoc": "17791",
       "fairsharing": "FAIRsharing.t19hpa",
@@ -40681,6 +40743,7 @@
     "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
     "example": "11",
     "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
+    "license": "public domain",
     "name": "Genetic Code",
     "pattern": "^\\d+$",
     "preferred_prefix": "ncbi.gc",
@@ -49581,7 +49644,7 @@
     },
     "description": "The Pathway Interaction Database is a highly-structured, curated collection of information about known human biomolecular interactions and key cellular processes assembled into signaling pathways. This datatype provides access to pathway information.",
     "example": "eff796f3-6195-11e5-8ac5-06603eb7f303",
-    "homepage": "http://pid.nci.nih.gov/",
+    "homepage": "https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf",
     "keywords": [
       "gene",
       "life science",
@@ -51059,7 +51122,7 @@
     },
     "deprecated": true,
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
-    "download_owl": "http://purl.obolibrary.org/obo/pride/2.1.5/pride.owl",
+    "download_owl": "http://purl.obolibrary.org/obo/pride/2.1.7/pride.owl",
     "example": "0000006",
     "homepage": "https://github.com/PRIDE-Utilities/pride-ontology",
     "keywords": [
@@ -51163,7 +51226,7 @@
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "twitter": "pride_ebi",
     "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-    "version": "2.1.5"
+    "version": "2.1.7"
   },
   "pride.project": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects.",
