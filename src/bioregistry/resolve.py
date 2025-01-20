@@ -97,7 +97,9 @@ def get_name(
     prefix: str, *, provenance: bool = False
 ) -> Union[None, str, ValuePackageExtended[str]]:
     """Get the name for the given prefix, if it's available."""
-    return manager.get_name(prefix, provenance=provenance)
+    if provenance:
+        return manager.get_name(prefix, provenance=True)
+    return manager.get_name(prefix, provenance=False)
 
 
 def get_description(prefix: str, *, use_markdown: bool = False) -> Optional[str]:
@@ -177,7 +179,9 @@ def get_namespace_in_lui(
     prefix: str, *, provenance: bool = False
 ) -> Union[None, bool, ValuePackageExtended[bool]]:
     """Check if the namespace should appear in the LUI."""
-    return manager.get_namespace_in_lui(prefix, provenance=provenance)
+    if provenance:
+        return manager.get_namespace_in_lui(prefix, provenance=True)
+    return manager.get_namespace_in_lui(prefix, provenance=False)
 
 
 def get_appears_in(prefix: str) -> Optional[List[str]]:

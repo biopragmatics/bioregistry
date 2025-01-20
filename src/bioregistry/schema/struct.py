@@ -772,7 +772,10 @@ class Resource(BaseModel):
     def _get_prefix_key_str(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
     ) -> Union[None, str, ValuePackage[str]]:
-        return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=provenance)
+        if provenance:
+            return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=True)
+        else:
+            return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
 
     @overload
     def _get_prefix_key_bool(
@@ -791,7 +794,10 @@ class Resource(BaseModel):
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: bool = False
     ) -> Union[None, bool, ValuePackage[bool]]:
-        return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=provenance)
+        if provenance:
+            return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=True)
+        else:
+            return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=False)
 
     def get_default_uri(self, identifier: str) -> Optional[str]:
         """Return the default URI for the identifier.
@@ -867,7 +873,7 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.get_namespace_in_lui() is False:
+        if self.get_namespace_in_lui(provenance=False) is False:
             return None
         miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
@@ -972,11 +978,9 @@ class Resource(BaseModel):
             "bartoc",
             "lov",
         ]
-        return self._get_prefix_key_str(
-            "name",
-            metaprefixes,
-            provenance=provenance,
-        )
+        if provenance:
+            return self._get_prefix_key_str("name", metaprefixes, provenance=True)
+        return self._get_prefix_key_str("name", metaprefixes, provenance=False)
 
     def get_description(self, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, if available."""
@@ -1111,11 +1115,23 @@ class Resource(BaseModel):
             return None
         return re.compile(p)
 
-    def get_namespace_in_lui(self, *, provenance: bool = False) -> Optional[bool]:
+    @overload
+    def get_namespace_in_lui(
+        self, *, provenance: Literal[True] = True
+    ) -> Union[ValuePackage[bool], None]: ...
+
+    @overload
+    def get_namespace_in_lui(self, *, provenance: Literal[False] = False) -> Union[bool, None]: ...
+
+    def get_namespace_in_lui(
+        self, *, provenance: bool = False
+    ) -> Union[ValuePackage[bool], bool, None]:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=provenance)
+        if provenance:
+            return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=True)
+        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=False)
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
