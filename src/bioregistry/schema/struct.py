@@ -739,8 +739,10 @@ class Resource(BaseModel):
         """Get a key enriched by the given external resources' data."""
         rv = pydantic_dict(self).get(key)
         if rv is not None:
+            if isinstance(rv, str):
+                rv = rv.replace("\r\n", "\n")
             if provenance:
-                return ValuePackage(rv, "bioregistry")
+                return cast(ValuePackage[X], ValuePackage(rv, "bioregistry"))
             return cast(X, rv)
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
@@ -750,9 +752,9 @@ class Resource(BaseModel):
                 raise TypeError
             rv = external.get(key)
             if rv is not None:
+                if isinstance(rv, str):
+                    rv = rv.replace("\r\n", "\n")
                 if provenance:
-                    if isinstance(rv, str):
-                        rv = rv.replace("\r\n", "\n")
                     return cast(ValuePackage[X], ValuePackage(rv, metaprefix))
                 return cast(X, rv)
         return None
