@@ -88,7 +88,7 @@ class TestTSV(unittest.TestCase):
                 kk = "\n".join(f"- {pubmed}" for pubmed in duplicated_pubmeds)
                 self.fail(
                     msg=f"The following PubMed identifiers have multiple curations:\n\n{kk}\n\nI"
-                        f"f you meant to overwrite an existing curation, delete the old row."
+                    f"f you meant to overwrite an existing curation, delete the old row."
                 )
 
             self.assertEqual(

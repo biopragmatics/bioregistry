@@ -157,14 +157,17 @@ def _search(
 ) -> dict[str, list[str]]:
     paper_to_terms: defaultdict[str, list[str]] = defaultdict(list)
     for term in tqdm(terms, desc="Searching PubMed", unit="search term", leave=False):
-        for pubmed_id in _get_ids(term, use_text_word=True, start_date=start_date, end_date=end_date):
+        for pubmed_id in _get_ids(
+            term, use_text_word=True, start_date=start_date, end_date=end_date
+        ):
             if pubmed_id not in pubmed_ids_to_filter:
                 paper_to_terms[pubmed_id].append(term)
     return dict(paper_to_terms)
 
 
-
-def fetch_pubmed_papers(*, pubmed_ids_to_filter: set[str], start_date: str, end_date: str) -> pd.DataFrame:
+def fetch_pubmed_papers(
+    *, pubmed_ids_to_filter: set[str], start_date: str, end_date: str
+) -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
     :param pubmed_ids_to_filter: List containing already curated PMIDs.
@@ -176,7 +179,7 @@ def fetch_pubmed_papers(*, pubmed_ids_to_filter: set[str], start_date: str, end_
         DEFAULT_SEARCH_TERMS,
         pubmed_ids_to_filter=pubmed_ids_to_filter,
         start_date=start_date,
-        end_date=end_date
+        end_date=end_date,
     )
 
     papers = _get_metadata_for_ids(paper_to_terms)
@@ -483,9 +486,7 @@ def runner(
     curated_pubmed_ids: set[str] = {str(pubmed) for pubmed in df["pubmed"] if pd.notna(pubmed)}
 
     predictions_df = fetch_pubmed_papers(
-        pubmed_ids_to_filter=curated_pubmed_ids,
-        start_date=start_date,
-        end_date=end_date
+        pubmed_ids_to_filter=curated_pubmed_ids, start_date=start_date, end_date=end_date
     )
     if not predictions_df.empty:
         predictions_path = output_path.joinpath("predictions.tsv")
