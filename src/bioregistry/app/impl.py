@@ -1,9 +1,10 @@
 """App builder interface."""
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor

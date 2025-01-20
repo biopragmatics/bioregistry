@@ -3,8 +3,9 @@
 import itertools as itt
 import random
 import time
+from collections.abc import Iterable
 from statistics import mean
-from typing import Iterable, Tuple
+from typing import Tuple
 
 import click
 import matplotlib.pyplot as plt

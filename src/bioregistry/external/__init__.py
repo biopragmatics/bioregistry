@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Acquisition, processing, and alignment of external registries."""
 
 from typing import Callable, List, Tuple

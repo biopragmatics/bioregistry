@@ -47,7 +47,7 @@ class OLSBroken(RuntimeError):
 def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     """Wrap :func:`click.secho`."""
     click.echo(
-        f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs)
+        f"[{datetime.now().strftime('%H:%M:%S')}] " + click.style(s, fg=fg, bold=bold, **kwargs)
     )
 
 

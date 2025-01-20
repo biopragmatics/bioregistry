@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Re3data is a registry of research data repositories.
 
 Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
@@ -7,8 +5,9 @@ Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping, Optional, Tuple
+from typing import Any, Optional, Tuple
 from xml.etree import ElementTree
 
 import requests
@@ -18,8 +17,8 @@ from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
 __all__ = [
-    "get_re3data",
     "Re3dataAligner",
+    "get_re3data",
 ]
 
 logger = logging.getLogger(__name__)

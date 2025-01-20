@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Pydantic models for the Bioregistry."""
 
 from __future__ import annotations
@@ -11,6 +9,7 @@ import pathlib
 import re
 import textwrap
 import typing
+from collections.abc import Iterable, Mapping, Sequence
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -19,12 +18,8 @@ from typing import (
     Callable,
     ClassVar,
     Dict,
-    Iterable,
     List,
-    Mapping,
     Optional,
-    Pattern,
-    Sequence,
     Set,
     Tuple,
     Union,
@@ -65,12 +60,12 @@ if TYPE_CHECKING:
 __all__ = [
     "Attributable",
     "Author",
-    "Provider",
-    "Resource",
     "Collection",
-    "Registry",
     "Context",
+    "Provider",
     "Publication",
+    "Registry",
+    "Resource",
     "get_json_schema",
 ]
 
@@ -258,7 +253,7 @@ class Provider(BaseModel):
     first_party: Optional[bool] = Field(
         None, description="Annotates whether a provider is from the first-party organization"
     )
-    publications: Optional[List["Publication"]] = Field(
+    publications: Optional[List[Publication]] = Field(
         default=None,
         description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
     )
@@ -305,7 +300,7 @@ class Publication(BaseModel):
                 return f"https://bioregistry.io/{prefix}:{identifier}"
         raise ValueError("no fields were full")
 
-    def _matches_any_field(self, other: "Publication") -> bool:
+    def _matches_any_field(self, other: Publication) -> bool:
         return (
             (self.pubmed is not None and self.pubmed == other.pubmed)
             or (self.doi is not None and self.doi == other.doi)
@@ -758,7 +753,7 @@ class Resource(BaseModel):
             return None
         return fmt.replace("$1", identifier)
 
-    def __setitem__(self, key: str, value: Any) -> None:  # noqa: D105
+    def __setitem__(self, key: str, value: Any) -> None:
         setattr(self, key, value)
 
     def get_banana(self) -> Optional[str]:
@@ -1030,9 +1025,9 @@ class Resource(BaseModel):
         <re.Match object; span=(0, 10), match='CHEBI:1234'>
 
         Loose match does not require banana
-        >>> resource.get_pattern_re_with_banana(strict=False).match('1234')
+        >>> resource.get_pattern_re_with_banana(strict=False).match("1234")
         <re.Match object; span=(0, 4), match='1234'>
-        >>> resource.get_pattern_re_with_banana(strict=False).match('CHEBI:1234')
+        >>> resource.get_pattern_re_with_banana(strict=False).match("CHEBI:1234")
         <re.Match object; span=(0, 10), match='CHEBI:1234'>
         """
         p = self.get_pattern_with_banana(strict=strict)
@@ -1273,8 +1268,8 @@ class Resource(BaseModel):
 
         >>> from bioregistry import get_resource
         >>> assert get_resource("imr").is_deprecated()  # marked by OBO
-        >>> assert get_resource("iro").is_deprecated() # marked by Bioregistry
-        >>> assert get_resource("miriam.collection").is_deprecated() # marked by MIRIAM
+        >>> assert get_resource("iro").is_deprecated()  # marked by Bioregistry
+        >>> assert get_resource("miriam.collection").is_deprecated()  # marked by MIRIAM
         """
         if self.deprecated is not None:
             return self.deprecated
@@ -1498,11 +1493,11 @@ class Resource(BaseModel):
         :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
 
         >>> from bioregistry import get_resource
-        >>> get_resource('chebi').get_identifiers_org_prefix()
+        >>> get_resource("chebi").get_identifiers_org_prefix()
         'chebi'
-        >>> get_resource('ncbitaxon').get_identifiers_org_prefix()
+        >>> get_resource("ncbitaxon").get_identifiers_org_prefix()
         'taxonomy'
-        >>> assert get_resource('MONDO').get_identifiers_org_prefix() is None
+        >>> assert get_resource("MONDO").get_identifiers_org_prefix() is None
         """
         return self.get_mapped_prefix("miriam")
 
@@ -1524,19 +1519,19 @@ class Resource(BaseModel):
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource('ncbitaxon').get_miriam_uri_prefix()
+        >>> get_resource("ncbitaxon").get_miriam_uri_prefix()
         'https://identifiers.org/taxonomy:'
-        >>> get_resource('go').get_miriam_uri_prefix()
+        >>> get_resource("go").get_miriam_uri_prefix()
         'https://identifiers.org/GO:'
-        >>> get_resource('doid').get_miriam_uri_prefix(legacy_banana=True)
+        >>> get_resource("doid").get_miriam_uri_prefix(legacy_banana=True)
         'https://identifiers.org/doid/DOID:'
-        >>> get_resource('vario').get_miriam_uri_prefix(legacy_banana=True)
+        >>> get_resource("vario").get_miriam_uri_prefix(legacy_banana=True)
         'https://identifiers.org/vario/VariO:'
-        >>> get_resource('cellosaurus').get_miriam_uri_prefix(legacy_banana=True)
+        >>> get_resource("cellosaurus").get_miriam_uri_prefix(legacy_banana=True)
         'https://identifiers.org/cellosaurus/CVCL_'
-        >>> get_resource('doid').get_miriam_uri_prefix(legacy_delimiter=True)
+        >>> get_resource("doid").get_miriam_uri_prefix(legacy_delimiter=True)
         'https://identifiers.org/DOID/'
-        >>> assert get_resource('sty').get_miriam_uri_prefix() is None
+        >>> assert get_resource("sty").get_miriam_uri_prefix() is None
         """
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
@@ -1565,11 +1560,11 @@ class Resource(BaseModel):
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource('ncbitaxon').get_miriam_uri_format()
+        >>> get_resource("ncbitaxon").get_miriam_uri_format()
         'https://identifiers.org/taxonomy:$1'
-        >>> get_resource('go').get_miriam_uri_format()
+        >>> get_resource("go").get_miriam_uri_format()
         'https://identifiers.org/GO:$1'
-        >>> assert get_resource('sty').get_miriam_uri_format() is None
+        >>> assert get_resource("sty").get_miriam_uri_format() is None
         """
         miriam_url_prefix = self.get_miriam_uri_prefix(
             legacy_delimiter=legacy_delimiter,
@@ -1686,7 +1681,7 @@ class Resource(BaseModel):
         rdf_uri_format = self.get_rdf_uri_format()
         return self._clip_uri_format(rdf_uri_format)
 
-    URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
+    URI_FORMATTERS: ClassVar[Mapping[str, Callable[[Resource], Optional[str]]]] = {
         "default": get_default_format,
         "rdf": get_rdf_uri_format,
         "bioregistry": get_bioregistry_uri_format,
@@ -1788,7 +1783,7 @@ class Resource(BaseModel):
         ChEBI example above). Do so like:
 
         >>> from bioregistry import get_resource
-        >>> priority = ['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols']
+        >>> priority = ["obofoundry", "bioregistry", "biocontext", "miriam", "ols"]
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
@@ -1804,7 +1799,7 @@ class Resource(BaseModel):
             it MUST have only one ``$1`` and end with ``$1`` to use the function.
 
         >>> import bioregistry
-        >>> bioregistry.get_uri_prefix('chebi')
+        >>> bioregistry.get_uri_prefix("chebi")
         'http://purl.obolibrary.org/obo/CHEBI_'
         """
         for uri_format in self._iterate_uri_formats(priority):
@@ -1925,23 +1920,23 @@ class Resource(BaseModel):
 
         Examples with explicitly annotated bananas:
         >>> from bioregistry import get_resource
-        >>> get_resource("vario").standardize_identifier('0376')
+        >>> get_resource("vario").standardize_identifier("0376")
         '0376'
-        >>> get_resource("vario").standardize_identifier('VariO:0376')
+        >>> get_resource("vario").standardize_identifier("VariO:0376")
         '0376'
-        >>> get_resource("swisslipid").standardize_identifier('000000001')
+        >>> get_resource("swisslipid").standardize_identifier("000000001")
         '000000001'
-        >>> get_resource("swisslipid").standardize_identifier('SLM:000000001')
+        >>> get_resource("swisslipid").standardize_identifier("SLM:000000001")
         '000000001'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").standardize_identifier('00007294')
+        >>> get_resource("fbbt").standardize_identifier("00007294")
         '00007294'
-        >>> get_resource("chebi").standardize_identifier('1234')
+        >>> get_resource("chebi").standardize_identifier("1234")
         '1234'
-        >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
+        >>> get_resource("chebi").standardize_identifier("CHEBI:1234")
         '1234'
-        >>> get_resource("chebi").standardize_identifier('CHEBI_1234')
+        >>> get_resource("chebi").standardize_identifier("CHEBI_1234")
         '1234'
 
         Examples from OBO Foundry that should not have a redundant
@@ -1952,7 +1947,7 @@ class Resource(BaseModel):
         '9606'
 
         Standard:
-        >>> get_resource("pdb").standardize_identifier('00000020')
+        >>> get_resource("pdb").standardize_identifier("00000020")
         '00000020'
         """
         icf = identifier.casefold()
@@ -2000,21 +1995,21 @@ class Resource(BaseModel):
 
         Examples with explicitly annotated bananas:
         >>> from bioregistry import get_resource
-        >>> get_resource("vario").miriam_standardize_identifier('0376')
+        >>> get_resource("vario").miriam_standardize_identifier("0376")
         'VariO:0376'
-        >>> get_resource("vario").miriam_standardize_identifier('VariO:0376')
+        >>> get_resource("vario").miriam_standardize_identifier("VariO:0376")
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("go").miriam_standardize_identifier('0000001')
+        >>> get_resource("go").miriam_standardize_identifier("0000001")
         'GO:0000001'
-        >>> get_resource("go").miriam_standardize_identifier('GO:0000001')
+        >>> get_resource("go").miriam_standardize_identifier("GO:0000001")
         'GO:0000001'
 
         Examples from OBO Foundry:
-        >>> get_resource("chebi").miriam_standardize_identifier('1234')
+        >>> get_resource("chebi").miriam_standardize_identifier("1234")
         'CHEBI:1234'
-        >>> get_resource("chebi").miriam_standardize_identifier('CHEBI:1234')
+        >>> get_resource("chebi").miriam_standardize_identifier("CHEBI:1234")
         'CHEBI:1234'
 
         Examples from OBO Foundry that should not have a redundant
@@ -2025,7 +2020,7 @@ class Resource(BaseModel):
         '9606'
 
         Standard:
-        >>> get_resource("pdb").miriam_standardize_identifier('00000020')
+        >>> get_resource("pdb").miriam_standardize_identifier("00000020")
         '00000020'
         """
         if self.get_miriam_prefix() is None:
@@ -2120,7 +2115,9 @@ class Resource(BaseModel):
         used in the doctest):
 
         >>> url = get_resource("birnlex").get_download_owl()
-        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/BIRNLEX/")
+        >>> assert url is not None and url.startswith(
+        ...     "http://aber-owl.net/media/ontologies/BIRNLEX/"
+        ... )
 
         """
         if self.download_owl:
@@ -2751,7 +2748,7 @@ class Context(BaseModel):
     prefix maps to serve various communities based on the standard Bioregistry
     prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
     custom prefix maps, and other community-specific logic.
-    """  # noqa:D400,D205
+    """  # noqa: D205
 
     name: str = Field(
         ...,

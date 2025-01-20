@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download BioContext."""
 
 import json
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Dict, Mapping, Sequence
+from typing import Any, Dict
 
 from pystow.utils import download
 
@@ -12,8 +11,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_biocontext",
     "BioContextAligner",
+    "get_biocontext",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()

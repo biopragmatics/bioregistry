@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
-
 """Update the bioregistry from GitHub Issue templates."""
 
 import itertools as itt
 import logging
 import os
-from subprocess import CalledProcessError, check_output  # noqa: S404
-from typing import Any, Dict, Iterable, Mapping, Optional, Set
+from collections.abc import Iterable, Mapping
+from subprocess import CalledProcessError, check_output
+from typing import Any, Dict, Optional, Set
 
 import more_itertools
 import pystow

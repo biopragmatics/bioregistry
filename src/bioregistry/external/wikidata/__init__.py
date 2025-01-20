@@ -1,20 +1,19 @@
-# -*- coding: utf-8 -*-
-
 """Query, download, and format Wikidata as a registry."""
 
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import Dict, Mapping
+from typing import Dict
 
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
-    "get_wikidata",
     "WikidataAligner",
+    "get_wikidata",
 ]
 
 

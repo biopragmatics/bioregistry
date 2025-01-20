@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """User blueprint for the bioregistry web application."""
 
 from __future__ import annotations

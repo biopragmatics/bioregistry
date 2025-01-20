@@ -3,15 +3,12 @@
 import itertools as itt
 import logging
 from collections import defaultdict
+from collections.abc import Collection, Iterable, Mapping, Sequence
 from typing import (
-    Collection,
     DefaultDict,
     Dict,
-    Iterable,
     List,
-    Mapping,
     Optional,
-    Sequence,
     Set,
     Tuple,
     cast,

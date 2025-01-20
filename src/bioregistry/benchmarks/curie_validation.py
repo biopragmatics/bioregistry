@@ -2,7 +2,8 @@
 
 import random
 import time
-from typing import Iterable, Tuple
+from collections.abc import Iterable
+from typing import Tuple
 
 import click
 import matplotlib.pyplot as plt

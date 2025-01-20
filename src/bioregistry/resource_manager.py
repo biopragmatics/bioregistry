@@ -1,24 +1,19 @@
-# -*- coding: utf-8 -*-
-
 """A class-based client to a metaregistry."""
 
 from __future__ import annotations
 
 import logging
 import typing
-import warnings
 from collections import Counter, defaultdict
-from functools import lru_cache
+from collections.abc import Iterable, Mapping, Sequence
+from functools import cache
 from pathlib import Path
 from typing import (
     Any,
     Callable,
     Dict,
-    Iterable,
     List,
-    Mapping,
     Optional,
-    Sequence,
     Set,
     Tuple,
     Union,
@@ -292,7 +287,9 @@ class Manager:
 
         IRI from the OLS:
 
-        >>> manager.parse_uri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180")  # noqa:E501
+        >>> manager.parse_uri(
+        ...     "https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180"
+        ... )  # noqa:E501
         ('ecao', '0107180')
 
         IRI from native provider
@@ -363,7 +360,9 @@ class Manager:
 
         URI from the OLS:
 
-        >>> manager.compress("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_1")  # noqa:E501
+        >>> manager.compress(
+        ...     "https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_1"
+        ... )  # noqa:E501
         'ecao:1'
 
         URI from native provider
@@ -439,12 +438,12 @@ class Manager:
             norm_prefix = resource.get_preferred_prefix() or norm_prefix
         return norm_prefix, norm_identifier
 
-    @lru_cache(maxsize=None)  # noqa:B019
+    @cache  # noqa:B019
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
         return dict(self._iter_registry_map(metaprefix))
 
-    @lru_cache(maxsize=None)  # noqa:B019
+    @cache  # noqa:B019
     def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes.
 
@@ -1035,7 +1034,7 @@ class Manager:
         :return: A IRI string corresponding to the default provider, if available.
 
         >>> from bioregistry import manager
-        >>> manager.get_default_iri('chebi', '24867')
+        >>> manager.get_default_iri("chebi", "24867")
         'http://purl.obolibrary.org/obo/CHEBI_24867'
         """
         entry = self.get_resource(prefix)
@@ -1051,7 +1050,7 @@ class Manager:
         :return: A IRI string corresponding to the canonical RDF provider, if available.
 
         >>> from bioregistry import manager
-        >>> manager.get_rdf_uri('edam', 'data_1153')
+        >>> manager.get_rdf_uri("edam", "data_1153")
         'http://edamontology.org/data_1153'
         """
         entry = self.get_resource(prefix)
@@ -1087,7 +1086,7 @@ class Manager:
         :return: A link to the Bioportal page
 
         >>> from bioregistry import manager
-        >>> manager.get_bioportal_iri('chebi', '24431')
+        >>> manager.get_bioportal_iri("chebi", "24431")
         'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
         """
         bioportal_prefix = self.get_mapped_prefix(prefix, "bioportal")
@@ -1137,12 +1136,12 @@ class Manager:
         :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
 
         >>> from bioregistry import manager
-        >>> manager.get_obofoundry_iri('chebi', '24431')
+        >>> manager.get_obofoundry_iri("chebi", "24431")
         'http://purl.obolibrary.org/obo/CHEBI_24431'
 
         For entries where there's a preferred prefix, it is respected.
 
-        >>> manager.get_obofoundry_iri('fbbt', '00007294')
+        >>> manager.get_obofoundry_iri("fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
         """
         return self.get_formatted_iri("obofoundry", prefix, identifier)

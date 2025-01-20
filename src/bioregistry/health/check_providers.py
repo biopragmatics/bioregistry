@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
 
 import datetime
@@ -206,7 +204,7 @@ def _process(element: QueueTuple) -> ProviderStatus:
 
     try:
         res = requests.head(url, timeout=10, allow_redirects=True)
-    except IOError as e:
+    except OSError as e:
         status_code = None
         failed = True
         exception = e.__class__.__name__
@@ -219,7 +217,7 @@ def _process(element: QueueTuple) -> ProviderStatus:
 
     if failed:
         text = (
-            f'[{datetime.datetime.now().strftime("%H:%M:%S")}] '
+            f"[{datetime.datetime.now().strftime('%H:%M:%S')}] "
             + click.style(prefix, fg="green")
             + " at "
             + click.style(url, fg="red")

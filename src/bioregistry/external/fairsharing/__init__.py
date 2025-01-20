@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Scraper for FAIRsharing.
 
 .. seealso:: https://beta.fairsharing.org/API_doc
@@ -8,8 +6,9 @@
 import json
 import logging
 import re
+from collections.abc import MutableMapping
 from pathlib import Path
-from typing import Any, MutableMapping, Optional, Set
+from typing import Any, Optional, Set
 
 from bioregistry.constants import ORCID_PATTERN
 from bioregistry.external.alignment_utils import Aligner
@@ -17,8 +16,8 @@ from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
 __all__ = [
-    "get_fairsharing",
     "FairsharingAligner",
+    "get_fairsharing",
 ]
 
 logger = logging.getLogger(__name__)

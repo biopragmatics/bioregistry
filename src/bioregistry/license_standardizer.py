@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
-
 """Code for standardizing permissive licenses.
 
 Could be extended later for non-permissive information as well as using
 vocabularies like SPDX for storing synonyms.
 """
 
-from typing import List, Mapping, Optional
+from collections.abc import Mapping
+from typing import List, Optional
 
 __all__ = [
-    "standardize_license",
-    "REVERSE_LICENSES",
     "LICENSES",
+    "REVERSE_LICENSES",
+    "standardize_license",
 ]
 
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download the LOV registry."""
 
 import json
@@ -13,8 +11,8 @@ from pystow.utils import download, read_rdf
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_lov",
     "LOVAligner",
+    "get_lov",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()

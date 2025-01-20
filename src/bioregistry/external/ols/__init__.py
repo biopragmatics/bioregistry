@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from the OLS."""
 
 import datetime
 import enum
 import json
 import logging
+from collections.abc import Mapping
 from email.utils import parseaddr
 from functools import lru_cache
 from operator import itemgetter
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Mapping, Optional
+from typing import Any, Optional
 
 import requests
 from pydantic import BaseModel
@@ -22,8 +21,8 @@ from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBroken
 
 __all__ = [
-    "get_ols",
     "OLSAligner",
+    "get_ols",
 ]
 
 logger = logging.getLogger(__name__)

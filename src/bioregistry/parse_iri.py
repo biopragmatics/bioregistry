@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Functionality for parsing IRIs."""
 
 from typing import Optional

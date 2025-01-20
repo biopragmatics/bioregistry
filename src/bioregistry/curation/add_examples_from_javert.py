@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Script for adding examples automatically."""
 
 import gzip

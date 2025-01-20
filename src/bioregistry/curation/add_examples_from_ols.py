@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """Add examples from OLS."""
 
 import random
-from typing import Mapping
+from collections.abc import Mapping
 
 import requests
 from tqdm import tqdm

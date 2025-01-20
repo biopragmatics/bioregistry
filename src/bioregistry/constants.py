@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Constants and utilities for registries."""
 
 import importlib.metadata
@@ -11,13 +9,13 @@ from typing import Tuple, Union
 import pystow
 
 __all__ = [
-    "HERE",
-    "DATA_DIRECTORY",
-    "BIOREGISTRY_PATH",
-    "METAREGISTRY_PATH",
-    "COLLECTIONS_PATH",
-    "MISMATCH_PATH",
     "BIOREGISTRY_MODULE",
+    "BIOREGISTRY_PATH",
+    "COLLECTIONS_PATH",
+    "DATA_DIRECTORY",
+    "HERE",
+    "METAREGISTRY_PATH",
+    "MISMATCH_PATH",
     "RAW_DIRECTORY",
 ]
 

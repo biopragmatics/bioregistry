@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
+from collections.abc import Mapping, Sequence
 from functools import partial
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import yaml
 from flask import (
@@ -87,22 +86,22 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     Before completion is of prefix:
 
     >>> from bioregistry import manager
-    >>> _autocomplete(manager, 'cheb')
+    >>> _autocomplete(manager, "cheb")
     {'query': 'cheb', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
-    >>> _autocomplete(manager, 'chebi')
+    >>> _autocomplete(manager, "chebi")
     {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
 
     Not matching the pattern:
 
-    >>> _autocomplete(manager, 'chebi:NOPE')
+    >>> _autocomplete(manager, "chebi:NOPE")
     {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
 
     Matching the pattern:
 
-    >>> _autocomplete(manager, 'chebi:1234')
+    >>> _autocomplete(manager, "chebi:1234")
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
     """  # noqa: E501
     if url_prefix is None:

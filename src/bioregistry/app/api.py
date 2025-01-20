@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """FastAPI blueprint and routes."""
 
 from __future__ import annotations
 
-from typing import Any, List, Mapping, Optional, Set
+from collections.abc import Mapping
+from typing import Any, List, Optional, Set
 
 import yaml
 from curies import Reference

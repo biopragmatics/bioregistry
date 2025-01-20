@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from the Life Science Registry (LSR), which powers Prefix Commons.
 
 .. seealso::
@@ -10,8 +8,9 @@
 
 import json
 import logging
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Sequence
+from typing import Any, Dict, List
 
 from pystow.utils import download
 
@@ -20,8 +19,8 @@ from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
-    "get_prefixcommons",
     "PrefixCommonsAligner",
+    "get_prefixcommons",
 ]
 
 logger = logging.getLogger(__name__)

@@ -97,7 +97,7 @@ def main():
 def _works(url: str) -> bool:
     try:
         homepage_res = requests.head(url, timeout=3, allow_redirects=True)
-    except IOError:
+    except OSError:
         return False
     else:
         return homepage_res.status_code == 200

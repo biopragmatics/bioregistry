@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
-
 """Download the Cellosaurus registry."""
 
 import itertools as itt
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Dict, Mapping
+from typing import Dict
 
 from pystow.utils import download
 
@@ -14,8 +13,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_cellosaurus",
     "CellosaurusAligner",
+    "get_cellosaurus",
 ]
 
 logger = logging.getLogger(__name__)

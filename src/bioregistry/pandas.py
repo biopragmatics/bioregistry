@@ -10,7 +10,8 @@ with the :func:`get_goa_example` function.
 import functools
 import logging
 import re
-from typing import Callable, Dict, Optional, Pattern, Union, cast
+from re import Pattern
+from typing import Callable, Dict, Optional, Union, cast
 
 import pandas as pd
 from tabulate import tabulate

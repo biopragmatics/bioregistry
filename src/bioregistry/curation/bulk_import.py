@@ -17,7 +17,8 @@ and use the `--google-sheet` option like in:
 
 import sys
 from collections import defaultdict
-from typing import Any, DefaultDict, Dict, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any, DefaultDict, Dict, Optional
 
 import click
 import pandas as pd

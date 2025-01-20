@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download TogoID."""
 
 import json
@@ -13,8 +11,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_togoid",
     "TogoIDAligner",
+    "get_togoid",
 ]
 
 

@@ -94,7 +94,7 @@ WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
 def _save(
-    fig: "matplotlib.figure.Figure",
+    fig: matplotlib.figure.Figure,
     name: str,
     *,
     svg: bool = True,
@@ -733,8 +733,7 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
     ax.text(
         x1,
         h + 1,
-        f"No identifier resources are\navailable in more than\n"
-        f"{max_mapped} external registries",
+        f"No identifier resources are\navailable in more than\n{max_mapped} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
@@ -766,7 +765,9 @@ def _get_licenses_mapped_counter(threshold: int = 30) -> List[str]:
         (
             "None"
             if license_ is None
-            else license_ if licenses_counter[license_] > threshold else "Other"
+            else license_
+            if licenses_counter[license_] > threshold
+            else "Other"
         )
         for license_ in licenses
     ]

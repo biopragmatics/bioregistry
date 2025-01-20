@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for registry alignment."""
 
 import csv
-from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from typing import Any, Callable, ClassVar, Dict, Optional
 
 import click
 from tabulate import tabulate

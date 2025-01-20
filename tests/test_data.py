@@ -375,7 +375,7 @@ class TestRegistry(unittest.TestCase):
                 msg = f"{prefix} is missing an example local identifier"
                 if entry.ols:
                     msg += (
-                        f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
+                        f"\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols['prefix']}/terms"
                     )
                 example = entry.get_example()
                 self.assertIsNotNone(example, msg=msg)

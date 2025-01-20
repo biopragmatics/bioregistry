@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """A script for creating pull requests for each new prefix issue on the Bioregistry's GitHub page.
 
 Run with: ``python -m bioregistry.gh.new_prefix``
@@ -9,7 +7,8 @@ import copy
 import logging
 import sys
 import time
-from typing import Any, Dict, Iterable, Mapping, Optional, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from typing import Any, Dict, Optional
 from uuid import uuid4
 
 import click
@@ -209,7 +208,7 @@ def make_title(prefixes: Sequence[str]) -> str:
     elif len(prefixes) == 2:
         return f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
     else:
-        return f'Add prefixes: {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
+        return f"Add prefixes: {', '.join(prefixes[:-1])}, and {prefixes[-1]}"
 
 
 @click.command()
@@ -300,7 +299,7 @@ def main(dry: bool, github: bool, force: bool):
         body=body,
     )
     if "url" in rv:
-        click.secho(f'PR at {rv["url"]}')
+        click.secho(f"PR at {rv['url']}")
     else:  # probably an error
         click.secho(rv, fg="red")
 

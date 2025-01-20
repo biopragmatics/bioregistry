@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Align the BioPortal with the Bioregistry."""
 
 from bioregistry.external.alignment_utils import Aligner

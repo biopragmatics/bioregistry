@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download Biolink."""
 
 import json
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Dict, Mapping, Sequence
+from typing import Any, Dict
 
 import yaml
 from pystow.utils import download
@@ -13,8 +12,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_biolink",
     "BiolinkAligner",
+    "get_biolink",
 ]
 
 URL = "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml"

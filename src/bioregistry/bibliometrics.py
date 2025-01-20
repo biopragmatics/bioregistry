@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for publications."""
 
 import typing
 from collections import Counter
-from typing import TYPE_CHECKING, Iterable, List
+from collections.abc import Iterable
+from typing import TYPE_CHECKING, List
 
 from .resource_manager import manager
 from .schema.struct import Publication, deduplicate_publications
