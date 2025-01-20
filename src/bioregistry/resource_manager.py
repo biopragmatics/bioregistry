@@ -20,7 +20,6 @@ from typing import (
     List,
     Literal,
     Mapping,
-    NamedTuple,
     Optional,
     Sequence,
     Set,
@@ -535,12 +534,15 @@ class Manager:
             return None
         return entry.get_uri_prefix(priority=priority)
 
+    # docstr-coverage:excused `overload`
     @overload
     def _repack(self, obj: None) -> None: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def _repack(self, obj: X) -> X: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def _repack(self, obj: ValuePackage[X]) -> ValuePackageExtended[X]: ...
 
@@ -562,9 +564,11 @@ class Manager:
         else:
             return obj
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_name(self, prefix: str, *, provenance: Literal[False] = False) -> Union[None, str]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_name(
         self, prefix: str, *, provenance: Literal[True] = True
@@ -582,11 +586,13 @@ class Manager:
             return self._repack(_tmp)
         return entry.get_name(provenance=False)
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[False] = False
     ) -> Union[bool, None]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
         self, prefix: str, *, provenance: Literal[True] = True

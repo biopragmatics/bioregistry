@@ -83,10 +83,12 @@ def get_resource(prefix: str) -> Optional[Resource]:
     return manager.get_resource(prefix)
 
 
+# docstr-coverage:excused `overload`
 @overload
 def get_name(prefix: str, *, provenance: Literal[False] = False) -> Union[None, str]: ...
 
 
+# docstr-coverage:excused `overload`
 @overload
 def get_name(
     prefix: str, *, provenance: Literal[True] = True

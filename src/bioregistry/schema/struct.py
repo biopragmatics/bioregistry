@@ -24,9 +24,7 @@ from typing import (
     Iterable,
     List,
     Mapping,
-    NamedTuple,
     Optional,
-    Pattern,
     Sequence,
     Set,
     Tuple,
@@ -708,6 +706,7 @@ class Resource(BaseModel):
             return None
         return self.get_mappings().get(metaprefix)
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_prefix_key(
         self,
@@ -718,6 +717,7 @@ class Resource(BaseModel):
         provenance: Literal[True] = True,
     ) -> Optional[ValuePackage[X]]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_prefix_key(
         self,
@@ -755,6 +755,7 @@ class Resource(BaseModel):
                 return cast(X, rv)
         return None
 
+    # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_str(
         self,
@@ -764,6 +765,7 @@ class Resource(BaseModel):
         provenance: Literal[False] = False,
     ) -> Union[None, str]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_str(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: Literal[True] = True
@@ -777,6 +779,7 @@ class Resource(BaseModel):
         else:
             return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
 
+    # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_bool(
         self,
@@ -786,6 +789,7 @@ class Resource(BaseModel):
         provenance: Literal[False] = False,
     ) -> Union[None, bool]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]], *, provenance: Literal[True] = True
@@ -950,9 +954,11 @@ class Resource(BaseModel):
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_name(self, *, provenance: Literal[False] = ...) -> Union[None, str]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_name(self, *, provenance: Literal[True] = ...) -> Union[None, ValuePackage[str]]: ...
 
@@ -1115,11 +1121,13 @@ class Resource(BaseModel):
             return None
         return re.compile(p)
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(
         self, *, provenance: Literal[True] = True
     ) -> Union[ValuePackage[bool], None]: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_namespace_in_lui(self, *, provenance: Literal[False] = False) -> Union[bool, None]: ...
 
