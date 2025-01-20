@@ -713,9 +713,10 @@ class Resource(BaseModel):
         rv = self.get_prefix_key(key, metaprefixes)
         if rv is None:
             return None
-        if isinstance(rv, str):
-            return rv
-        raise TypeError
+        if not isinstance(rv, str):
+            raise TypeError
+        rv = rv.replace("\r\n", "\n")
+        return rv
 
     def _get_prefix_key_bool(
         self, key: str, metaprefixes: Union[str, Sequence[str]]
