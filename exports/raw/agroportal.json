@@ -1041,8 +1041,7 @@
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
     "hasDomain": [
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
-      "https://data.agroportal.lirmm.fr/categories/AG-RES",
+      "https://data.agroportal.lirmm.fr/categories/BIOTECH",
       "https://data.agroportal.lirmm.fr/categories/ENV"
     ],
     "license": "CC-BY-4.0",
@@ -1655,7 +1654,6 @@
       "https://data.agroportal.lirmm.fr/categories/AG-ENG",
       "https://data.agroportal.lirmm.fr/categories/AG-RES",
       "https://data.agroportal.lirmm.fr/categories/ENV",
-      "https://data.agroportal.lirmm.fr/categories/GOVT",
       "https://data.agroportal.lirmm.fr/categories/GENE",
       "https://data.agroportal.lirmm.fr/categories/FISH",
       "https://data.agroportal.lirmm.fr/categories/RURAL",
@@ -1867,11 +1865,11 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "SDGIO",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/antool"
+      "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
     "contact": {
       "email": "pier.buttigieg@awi.de",
-      "name": "Pier Luigi Buttigieg (ORCID: orcid.org/0000-0002-4366-3088)"
+      "name": "Pier Luigi Buttigieg"
     },
     "description": "The SDGIO aims to provide a semantic bridge between 1) the Sustainable Development Goals, their targets, and indicators and 2) the large array of entities they refer to. It will import classes from numerous exisitng ontologies and map to vocabularies such as GEMET to promote interoperability. New classes will be minted and defined where no external class exists.",
     "exampleIdentifier": "http://purl.unep.org/sdg/SDGIO_00010073",
@@ -2303,7 +2301,7 @@
     "name": "Experimental Factor Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.73.0",
+    "version": "3.74.0",
     "viewingRestriction": "public"
   },
   {
@@ -3326,7 +3324,7 @@
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "publication": "https://doi.org/10.1007/s00335-023-09992-1",
     "repository": "https://github.com/obophenotype/bio-attribute-ontology",
-    "version": "2024-11-26",
+    "version": "2025-01-14",
     "viewingRestriction": "public"
   },
   {
@@ -3717,6 +3715,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "AQFO",
     "administeredBy": [
+      "https://data.agroportal.lirmm.fr/users/wf_shazleen",
       "https://data.agroportal.lirmm.fr/users/malaporte"
     ],
     "contact": {
@@ -4282,12 +4281,11 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ATC",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/antool",
       "https://data.agroportal.lirmm.fr/users/inraeadmin",
       "https://data.agroportal.lirmm.fr/users/croussey"
     ],
     "contact": {
-      "email": "catherine.roussey@irstea.fr",
+      "email": "catherine.roussey@inrae.fr",
       "name": "Catherine Roussey"
     },
     "description": "This ontology is a module that is based on skos vocabulary, linnean taxonomy ODP and classification ODP. The module was enriched by specialising taxonomic relationship based on the AOS ontology. Taxon ranks are linked to their agrovoc concepts. Some disjoint axioms between ranks were added.",
@@ -4434,7 +4432,12 @@
     "administeredBy": [
       "https://data.agroportal.lirmm.fr/users/cooperl"
     ],
-    "flat": null,
+    "contact": {
+      "email": "cooperl@science.oregonstate.edu",
+      "name": "Laurel Cooper"
+    },
+    "description": "An ontology that describes phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant.",
+    "exampleIdentifier": "http://purl.obolibrary.org/obo/TO_0000064",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY",
       "https://data.agroportal.lirmm.fr/groups/WHEAT",
@@ -4447,6 +4450,8 @@
       "https://data.agroportal.lirmm.fr/categories/BIODIV",
       "https://data.agroportal.lirmm.fr/categories/PLANT"
     ],
+    "homepage": "https://planteome.org/",
+    "license": "CC-BY-4.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -4497,10 +4502,10 @@
     },
     "name": "Plant Trait Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "summaryOnly": false,
-    "viewOf": null,
-    "viewingRestriction": "public",
-    "views": []
+    "publication": "https://planteome.org/references",
+    "repository": "https://github.com/Planteome/plant-trait-ontology",
+    "version": "July 2023",
+    "viewingRestriction": "public"
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/RICEDO",
@@ -4592,9 +4597,8 @@
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
     "hasDomain": [
-      "https://data.agroportal.lirmm.fr/categories/ECO",
-      "https://data.agroportal.lirmm.fr/categories/BIODIV",
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
+      "https://data.agroportal.lirmm.fr/categories/FOODTECH",
+      "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
       "https://data.agroportal.lirmm.fr/categories/AG-RES"
     ],
     "homepage": "http://lovinra.inra.fr/2016/08/03/process-and-observation-ontology/",
@@ -4667,7 +4671,7 @@
       "email": "rwalls2008@gmail.com",
       "name": "Ramona Walls"
     },
-    "description": "The goal of the BCO is to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys. The BCO covers distinctions between individuals, organisms, voucher specimens, lots, samples, the relations between these entities, and the processes governing the creation and use of \"samples\". Also within scope are properties including collector, location, time, storage environment, containers, institution, and collection identifiers.",
+    "description": "The goal of the BCO is to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys. The BCO covers distinctions between individuals, organisms, voucher specimens, lots, samples, the relations between these entities, and the processes governing the creation and use of \"samples\". Also within scope are properties including collector, location, time, storage environment, containers, institution, and collection identifiers., The BCO supports the interoperability of biodiversity and biodiversity related data, and ecological surveys. A key aspect of the BCO is distinguishing among material samples (i.e. specimens), observing processes, and data about either of those entities.",
     "exampleIdentifier": "http://purl.obolibrary.org/obo/bco_0000036",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/OBO-FOUNDRY",
@@ -4731,6 +4735,7 @@
     "name": "Biological Collections Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/BiodiversityOntologies/bco",
+    "version": "2021-11-14",
     "viewingRestriction": "public"
   },
   {
@@ -4759,7 +4764,6 @@
       "https://data.agroportal.lirmm.fr/categories/EARTH",
       "https://data.agroportal.lirmm.fr/categories/ECO",
       "https://data.agroportal.lirmm.fr/categories/BIODIV",
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
       "https://data.agroportal.lirmm.fr/categories/AG-RES",
       "https://data.agroportal.lirmm.fr/categories/ENV"
     ],
@@ -4881,7 +4885,7 @@
       "views": "https://data.agroportal.lirmm.fr/ontologies/EDAM/views",
       "xl_labels": "https://data.agroportal.lirmm.fr/ontologies/EDAM/skos_xl_labels"
     },
-    "name": "EDAM bioinformatics operations, data types, formats, identifiers and topics",
+    "name": "Ontology of bioscientific data analysis and data management",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/edamontology/edamontology",
     "version": "1.25-20240924T0027Z-unstable(1.26)",
@@ -4984,7 +4988,7 @@
       "https://data.agroportal.lirmm.fr/categories/NUT"
     ],
     "homepage": "https://foodon.org",
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -5036,7 +5040,7 @@
     "name": "FoodOn",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/FoodOntology/foodon",
-    "version": "2024-07-12",
+    "version": "2025-01-16",
     "viewingRestriction": "public"
   },
   {
@@ -8457,7 +8461,7 @@
     "name": "Cell Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/obophenotype/cell-ontology",
-    "version": "2024-09-26",
+    "version": "2025-01-07",
     "viewingRestriction": "public"
   },
   {
@@ -8611,7 +8615,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "GEMET",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/antool"
+      "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
     "contact": {
       "email": "helpdesk@eionet.europa.eu",
@@ -9287,12 +9291,13 @@
       "email": "claire.nedellec@inrae.fr",
       "name": "Claire Nédellec"
     },
-    "description": "TODO, TriPhase est un thésaurus couvrant le domaine de la physiologie animale et de l'élevage conçu par l'INRA. , TriPhase is a large thesaurus in the domain of animal physiology and livestock designed by INRA.",
+    "description": "TriPhase est un thésaurus couvrant le domaine de la physiologie animale et de l'élevage conçu par l'INRA. , TriPhase is a large thesaurus in the domain of animal physiology and livestock designed by INRA.",
     "exampleIdentifier": "https://opendata.inra.fr/Triphase/ID_0000003",
     "group": [
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
     "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/HUSB",
       "https://data.agroportal.lirmm.fr/categories/ANIM"
     ],
     "license": "CC-BY-4.0",
@@ -9346,7 +9351,7 @@
     },
     "name": "Thesaurus for Animal Physiology and Livestock Systems",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "publication": "local:Avril, P., Bernard, E., Corvaisier, M., Girard, A., Golik, W., Nédellec, C., Touze, M.-L., Wacrenier, N. (2016). Analyser la production scientifique d'un département de recherche : construction d'une ressource termino-ontologique par des documentalistes. Cahier des Techniques de l'INRA (89), 1-12.\nhttps://prodinra.inra.fr/record/386562",
+    "publication": "https://prodinra.inra.fr/record/386562",
     "version": "1.2",
     "viewingRestriction": "public"
   },
@@ -9979,6 +9984,11 @@
     "group": [
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
+    "hasDomain": [
+      "https://data.agroportal.lirmm.fr/categories/CULT",
+      "https://data.agroportal.lirmm.fr/categories/SOIL",
+      "https://data.agroportal.lirmm.fr/categories/EARTH"
+    ],
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -10403,7 +10413,7 @@
     "name": "Vertebrate Trait Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
-    "version": "2024-12-12",
+    "version": "2025-01-08",
     "viewingRestriction": "public"
   },
   {
@@ -11176,9 +11186,14 @@
     "administeredBy": [
       "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
-    "flat": null,
-    "group": [],
-    "hasDomain": [],
+    "contact": {
+      "email": "olivier@nlm.nih.gov",
+      "name": "Olivier Bodenreider"
+    },
+    "description": "The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types. This section of the documentation provides an overview of the Semantic Network, and describes the files of the Semantic Network. Sample records illustrate structure and content of these files.",
+    "exampleIdentifier": "http://purl.bioontology.org/ontology/STY/T057",
+    "homepage": "https://lhncbc.nlm.nih.gov/semanticnetwork/",
+    "license": "CC0-1.0",
     "links": {
       "@context": {
         "agents": "http://xmlns.com/foaf/0.1/Agent",
@@ -11229,10 +11244,8 @@
     },
     "name": "UMLS Semantic Network",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "summaryOnly": false,
-    "viewOf": null,
-    "viewingRestriction": "public",
-    "views": []
+    "version": "12 (2022AA)",
+    "viewingRestriction": "public"
   },
   {
     "@id": "https://data.agroportal.lirmm.fr/ontologies/AWS",
@@ -12341,7 +12354,8 @@
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
     "hasDomain": [
-      "https://data.agroportal.lirmm.fr/categories/PLANT-PHY"
+      "https://data.agroportal.lirmm.fr/categories/PLANT-PHY",
+      "https://data.agroportal.lirmm.fr/categories/PLANT"
     ],
     "license": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
     "links": {
@@ -13067,7 +13081,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "AFO",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/antool"
+      "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
     "contact": {
       "email": "Eero.Hyvonen@tkk.fI",
@@ -13379,7 +13393,11 @@
       "https://data.agroportal.lirmm.fr/groups/INRAE"
     ],
     "hasDomain": [
-      "https://data.agroportal.lirmm.fr/categories/PHENO"
+      "https://data.agroportal.lirmm.fr/categories/PHENO",
+      "https://data.agroportal.lirmm.fr/categories/OBS",
+      "https://data.agroportal.lirmm.fr/categories/PLANT-PHY",
+      "https://data.agroportal.lirmm.fr/categories/PLANT",
+      "https://data.agroportal.lirmm.fr/categories/GENE"
     ],
     "homepage": "http://purl.org/ppeo",
     "license": "CC-BY-4.0",
@@ -13734,7 +13752,7 @@
     "name": "Livestock Breed Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
-    "version": "2024-11-25",
+    "version": "2025-01-06",
     "viewingRestriction": "public"
   },
   {
@@ -13764,8 +13782,6 @@
       "https://data.agroportal.lirmm.fr/categories/OBS",
       "https://data.agroportal.lirmm.fr/categories/BIOTECH",
       "https://data.agroportal.lirmm.fr/categories/AGRI-PROD",
-      "https://data.agroportal.lirmm.fr/categories/AG-ENG",
-      "https://data.agroportal.lirmm.fr/categories/AG-RES",
       "https://data.agroportal.lirmm.fr/categories/NUT"
     ],
     "license": "http://publications.europa.eu/resource/authority/access-right/PUBLIC",
@@ -13819,7 +13835,7 @@
     },
     "name": "PO2/TransformON",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
-    "version": "12.0",
+    "version": "2.4",
     "viewingRestriction": "public"
   },
   {
@@ -14269,7 +14285,6 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "GACS",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/antool",
       "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
     "contact": {
@@ -15753,7 +15768,7 @@
     "name": "Population and Community Ontology",
     "ontologyType": "https://data.agroportal.lirmm.fr/ontology_types/ONTOLOGY",
     "repository": "https://github.com/PopulationAndCommunityOntology/pco",
-    "version": "2013-10-03",
+    "version": "2021-05-03",
     "viewingRestriction": "public"
   },
   {
@@ -15837,7 +15852,7 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "CLC",
     "administeredBy": [
-      "https://data.agroportal.lirmm.fr/users/antool"
+      "https://data.agroportal.lirmm.fr/users/jonquet"
     ],
     "contact": {
       "email": "phil.archer@gs1.org",

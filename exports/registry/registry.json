@@ -382,6 +382,42 @@
     ],
     "uri_format": "http://genome.crg.es/datasets/abs2005/entries/$1.html"
   },
+  "absd": {
+    "contact": {
+      "email": "nicolas.maillet@pasteur.fr",
+      "name": "Nicolas Maillet",
+      "orcid": "0000-0003-1611-5243"
+    },
+    "contributor": {
+      "email": "palayoor.n@northeastern.edu",
+      "github": "nalikapalayoor",
+      "name": "Nalika Palayoor",
+      "orcid": "0009-0008-8406-631X"
+    },
+    "description": "The AntiBody Sequence Database is a public dataset for antibody sequence data. It provides unique identifiers for antibody sequences, including both immunoglobulin and single-chain variable fragment sequences. These are are critical for immunological studies, and  allows users to search and retrieve antibody sequences based on sequence similarity and specificity, and other biological properties.",
+    "example": "81d0ea69a9ab134f6ba68314e982171a367d3ab739c85c5ba49701dd02170ed3",
+    "github_request_issue": 1362,
+    "homepage": "https://absd.pasteur.cloud",
+    "name": "AntiBody Sequence Database",
+    "pattern": "^[a-f0-9]{64}$",
+    "preferred_prefix": "absd",
+    "publications": [
+      {
+        "doi": "10.1093/nargab/lqae171",
+        "pmc": "PMC11655285",
+        "pubmed": "39703430",
+        "title": "AntiBody Sequence Database",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://absd.pasteur.cloud/antibody/$1"
+  },
   "ac": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -8227,7 +8263,7 @@
     ],
     "twitter": "chebit",
     "uri_format": "http://purl.obolibrary.org/obo/CHEBI_$1",
-    "version": "238"
+    "version": "239"
   },
   "chembank": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -9428,7 +9464,7 @@
     "repository": "https://github.com/obophenotype/cell-ontology",
     "twitter": "CellOntology",
     "uri_format": "http://purl.obolibrary.org/obo/CL_$1",
-    "version": "2024-09-26"
+    "version": "2025-01-07"
   },
   "clao": {
     "contact": {
@@ -9577,6 +9613,7 @@
       "drug",
       "human"
     ],
+    "license": "https://clinicaltrials.gov/about-site/terms-conditions#availability",
     "mappings": {
       "biocontext": "CLINICALTRIALS",
       "miriam": "clinicaltrials",
@@ -9947,7 +9984,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.232"
+    "version": "2.233"
   },
   "cmpo": {
     "contact": {
@@ -12128,6 +12165,7 @@
       "resource metadata",
       "subject agnostic"
     ],
+    "license": "CC-BY-4.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline",
     "mappings": {
       "fairsharing": "FAIRsharing.fe4816"
@@ -14120,6 +14158,7 @@
         "year": 2016
       }
     ],
+    "repository": "https://github.com/dermatology-ontology/dermatology",
     "uri_format": "http://purl.obolibrary.org/obo/DERMO_$1"
   },
   "dev.ga4ghdos": {
@@ -20077,6 +20116,30 @@
       "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229"
     ]
   },
+  "evr": {
+    "contact": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An open, community-driven registry of conference and event venues.\n\nEVR assigns persistent identifiers (PIDs) to make referencing venues FAIR. This is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to research organizations.\n\nThis benefits researchers assembling information about in-person conferences and events by enabling them to refer in an unambiguous way to the venue where it takes place.\n\nThis repository follows the [Open Data, Open Code, Open Infrastructure (O3) principles](https://www.nature.com/articles/s41597-024-03406-w), meaning that the data and code are all in one repository that anyone can contribute to.",
+    "example": "0000001",
+    "github_request_issue": 1363,
+    "homepage": "https://cthoyt.com/evr",
+    "license": "CC0-1.0",
+    "name": "Event Venue Registry",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "evr",
+    "repository": "https://github.com/cthoyt/evr",
+    "uri_format": "https://cthoyt.com/evr/$1"
+  },
   "exac.gene": {
     "description": "The Exome Aggregation Consortium (ExAC) is a coalition of investigators seeking to aggregate and harmonize exome sequencing data from a variety of large-scale sequencing projects, and to make summary data available for the wider scientific community. The data pertains to unrelated individuals sequenced as part of various disease-specific and population genetic studies and serves as a reference set of allele frequencies for severe disease studies. This collection references gene information.",
     "example": "ENSG00000169174",
@@ -22504,7 +22567,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2024-12-05"
+    "version": "2024-12-31"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -22791,28 +22854,6 @@
     "repository": "https://github.com/gbif/",
     "twitter": "GBIF",
     "uri_format": "https://www.gbif.org/species/$1"
-  },
-  "gc": {
-    "comment": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
-    "example": "11",
-    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
-    "name": "Genetic Code",
-    "pattern": "^\\d+$",
-    "preferred_prefix": "gc",
-    "references": [
-      "https://github.com/obophenotype/ncbitaxon/issues/47"
-    ],
-    "synonyms": [
-      "gc_id"
-    ],
-    "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1"
   },
   "gcst": {
     "description": "The GWAS Catalog provides a consistent, searchable, visualisable and freely available database of published SNP-trait associations, which can be easily integrated with other resources, and is accessed by scientists, clinicians and other users worldwide.",
@@ -23544,7 +23585,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GENEPIO_$1",
     "repository": "https://github.com/GenEpiO/genepio",
     "uri_format": "http://purl.obolibrary.org/obo/GENEPIO_$1",
-    "version": "2023-08-19"
+    "version": "2024-12-18"
   },
   "genetree": {
     "contact": {
@@ -23878,6 +23919,7 @@
       "geography",
       "geoinformatics"
     ],
+    "license": "CC-BY-4.0",
     "mappings": {
       "fairsharing": "FAIRsharing.6dba71",
       "re3data": "r3d100010245"
@@ -23901,6 +23943,7 @@
     "description": "All geographical features in GeoNames are categorized into one out of nine feature classes and further subcategorized into one out of 645 feature codes.",
     "example": "ADM1",
     "homepage": "https://www.geonames.org/export/codes.html",
+    "license": "CC-BY-4.0",
     "name": "GeoNames Feature Code",
     "preferred_prefix": "geonames.feature",
     "uri_format": "https://www.geonames.org/recent-changes/featurecode/$1/"
@@ -28919,14 +28962,22 @@
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1"
   },
   "icd11": {
-    "comment": "The codes, such as RA00.0, need their own namespace.",
+    "comment": "Clinical codes from an ICD-11 linearization (a structured subset of the ICD-11 Foundation tailored for specific use cases, such as morbidity or mortality coding), such as RA00.0, have their own namespace (icd11.code).",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease.",
+    "contributor_extras": [
+      {
+        "email": "nicolas.matentzoglu@gmail.com",
+        "github": "matentzn",
+        "name": "Nicolas Matentzoglu",
+        "orcid": "0000-0002-7356-1779"
+      }
+    ],
+    "description": "The ICD-11 Foundation is the comprehensive base layer of the International Classification of Diseases, encompassing all diagnostic concepts, definitions, and semantic relationships, designed for flexibility and adaptability across various use cases, including research, ontology development, and detailed health data analysis.",
     "example": "402558626",
     "homepage": "https://icd.who.int/",
     "keywords": [
@@ -28941,21 +28992,72 @@
     ],
     "license": "CC-BY-ND-3.0-IGO",
     "mappings": {
+      "biolink": "icd11.foundation",
       "fairsharing": "FAIRsharing.97805c",
       "hl7": "2.16.840.1.113883.6.347",
       "integbio": "nbdc02556",
       "wikidata": "P7807"
     },
-    "name": "International Classification of Diseases, 11th Revision",
+    "name": "International Classification of Diseases, 11th Revision (Foundation Component)",
     "pattern": "^[1-9]\\d*$",
     "preferred_prefix": "icd11",
+    "providers": [
+      {
+        "code": "api",
+        "description": "This goes to an API endpoint. For more information, see https://icd.who.int/icdapi",
+        "homepage": "https://icd.who.int",
+        "name": "ICD 11 API Endpoint",
+        "uri_format": "http://id.who.int/icd/entity/$1"
+      },
+      {
+        "code": "foundation",
+        "description": "This goes to the Foundation interface to ICD11",
+        "homepage": "https://icd.who.int/browse/2024-01/foundation",
+        "name": "ICD 11 Foundation",
+        "uri_format": "https://icd.who.int/browse/2024-01/foundation/en#$1"
+      },
+      {
+        "code": "mms",
+        "description": "This goes to the Mortality and Morbidity Statistics interface to ICD11",
+        "homepage": "https://icd.who.int/browse/2024-01/mms",
+        "name": "ICD 11 Mortality and Morbidity Statistics",
+        "uri_format": "https://icd.who.int/browse/2024-01/mms/en#$1"
+      }
+    ],
+    "rdf_uri_format": "http://id.who.int/icd/entity/$1",
     "references": [
       "https://icd.who.int/docs/icd-api/license/"
     ],
     "synonyms": [
-      "ICD-11"
+      "ICD-11",
+      "ICD11",
+      "icd11.foundation"
     ],
     "uri_format": "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1"
+  },
+  "icd11.code": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ICD-11 code is a standardized alphanumeric identifier used to classify and document diseases, conditions, and health-related issues for global healthcare and statistical purposes.",
+    "example": "NA06.8D",
+    "example_extras": [
+      "CA71.2",
+      "FB82.00",
+      "XM34M9"
+    ],
+    "github_request_issue": 1349,
+    "homepage": "https://icd.who.int/en",
+    "license": "http://www.who.int/about/licensing/copyright_form/en",
+    "name": "ICD 11 Codes",
+    "pattern": "^[0-9A-Z]+(\\.[0-9A-Z]+)?$",
+    "preferred_prefix": "icd11.code",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/1344"
+    ]
   },
   "icd9": {
     "contributor": {
@@ -29361,7 +29463,7 @@
     "name": "International Classification of Functioning, Disability and Health",
     "pattern": "^\\d+$",
     "preferred_prefix": "icf",
-    "uri_format": "http://id.who.int/icd/entity/$1"
+    "uri_format": "https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/$1"
   },
   "iclc": {
     "description": "Cell line collections (Providers)",
@@ -32386,6 +32488,7 @@
       "life science",
       "taxonomy"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "bartoc": "17791",
       "fairsharing": "FAIRsharing.t19hpa",
@@ -36867,7 +36970,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MFOEM_$1",
     "repository": "https://github.com/jannahastings/emotion-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MFOEM_$1",
-    "version": "2024-10-31"
+    "version": "2025-01-06"
   },
   "mfomd": {
     "contact": {
@@ -39019,7 +39122,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2024-12-03"
+    "version": "2025-01-07"
   },
   "mop": {
     "contact": {
@@ -39470,6 +39573,7 @@
     "description": "The Molecular Signatures Database (MSigDB) is a collection of annotated gene sets for use with GSEA software. From this web site, you can",
     "example": "M1",
     "homepage": "https://www.gsea-msigdb.org",
+    "license": "CC-BY-4.0",
     "mappings": {
       "biolink": "MSigDB",
       "integbio": "nbdc02550"
@@ -40627,6 +40731,30 @@
     "pattern": "^[a-zA-Z0-9_\\.]+$",
     "preferred_prefix": "ncbi.assembly",
     "uri_format": "https://www.ncbi.nlm.nih.gov/datasets/genome/$1"
+  },
+  "ncbi.gc": {
+    "comment": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
+    "example": "11",
+    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
+    "license": "public domain",
+    "name": "Genetic Code",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ncbi.gc",
+    "references": [
+      "https://github.com/obophenotype/ncbitaxon/issues/47"
+    ],
+    "synonyms": [
+      "gc",
+      "gc_id"
+    ],
+    "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1"
   },
   "ncbi.genome": {
     "contributor": {
@@ -42238,6 +42366,7 @@
     "description": "The NLM Catalog provides access to NLM bibliographic data for journals, books, audiovisuals, computer software, electronic resources and other materials. Links to the library's holdings in LocatorPlus, NLM's online public access catalog, are also provided. [from homepage]",
     "example": "101775319",
     "homepage": "https://www.ncbi.nlm.nih.gov/nlmcatalog",
+    "license": "public domain",
     "mappings": {
       "bartoc": "528",
       "biolink": "NLMID"
@@ -42261,6 +42390,7 @@
     "example": "wiley",
     "github_request_issue": 1318,
     "homepage": "https://ftp.ncbi.nlm.nih.gov/pubmed/xmlprovidernames.txt",
+    "license": "public domain",
     "name": "NLM Publisher Codes",
     "preferred_prefix": "nlm.publisher"
   },
@@ -43159,7 +43289,8 @@
     "license": "CC-BY-NC",
     "name": "Natural Product Activity and Species Source Database",
     "pattern": "^NPC\\d+$",
-    "preferred_prefix": "npass"
+    "preferred_prefix": "npass",
+    "uri_format": "https://bidd.group/NPASS/compound.php?compoundID=$1"
   },
   "npatlas": {
     "contact": {
@@ -47593,7 +47724,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PCL_$1",
     "repository": "https://github.com/obophenotype/provisional_cell_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/PCL_$1",
-    "version": "2024-07-11"
+    "version": "2025-01-08"
   },
   "pco": {
     "appears_in": [
@@ -49513,7 +49644,7 @@
     },
     "description": "The Pathway Interaction Database is a highly-structured, curated collection of information about known human biomolecular interactions and key cellular processes assembled into signaling pathways. This datatype provides access to pathway information.",
     "example": "eff796f3-6195-11e5-8ac5-06603eb7f303",
-    "homepage": "http://pid.nci.nih.gov/",
+    "homepage": "https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf",
     "keywords": [
       "gene",
       "life science",
@@ -50991,7 +51122,7 @@
     },
     "deprecated": true,
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
-    "download_owl": "http://purl.obolibrary.org/obo/pride/2.1.5/pride.owl",
+    "download_owl": "http://purl.obolibrary.org/obo/pride/2.1.7/pride.owl",
     "example": "0000006",
     "homepage": "https://github.com/PRIDE-Utilities/pride-ontology",
     "keywords": [
@@ -51095,7 +51226,7 @@
     "repository": "https://github.com/PRIDE-Utilities/pride-ontology",
     "twitter": "pride_ebi",
     "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1",
-    "version": "2.1.5"
+    "version": "2.1.7"
   },
   "pride.project": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references projects.",
@@ -54783,6 +54914,7 @@
       "data management",
       "ontology"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "bartoc": "20474",
       "fairsharing": "FAIRsharing.1jKfji",
@@ -59621,7 +59753,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/STATO_$1",
     "repository": "https://github.com/ISA-tools/stato",
     "uri_format": "http://purl.obolibrary.org/obo/STATO_$1",
-    "version": "2024-07-07"
+    "version": "2025-01-07"
   },
   "stitch": {
     "contact": {
@@ -61559,6 +61691,42 @@
     "references": [
       "https://en.wikipedia.org/wiki/Terminologia_Histologica"
     ]
+  },
+  "theiler": {
+    "appears_in": [
+      "mmusdv"
+    ],
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Stages 1-28 of mouse embryo development",
+    "example": "10",
+    "example_decoys": [
+      "10e"
+    ],
+    "example_extras": [
+      "10b"
+    ],
+    "homepage": "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages",
+    "name": "Theiler Stage",
+    "pattern": "^\\d+[a-d]?$",
+    "preferred_prefix": "theiler",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "Legacy URL at UNSW",
+        "homepage": "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages",
+        "name": "Legacy URL at UNSW",
+        "uri_format": "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1"
+      }
+    ],
+    "synonyms": [
+      "thielerstage"
+    ],
+    "uri_format": "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1"
   },
   "thermofisher": {
     "contributor": {
@@ -63602,6 +63770,7 @@
       "post-translational modification",
       "structural biology"
     ],
+    "license": "CC-BY-4.0",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
@@ -65424,7 +65593,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "2024-11-23"
+    "version": "2024-12-29"
   },
   "voc4cat": {
     "comment": "The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123 other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123. This is pretty unique and isn't tracked by the Bioregistry currently.",
@@ -65676,7 +65845,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2024-12-12"
+    "version": "2025-01-08"
   },
   "vto": {
     "contact": {
@@ -65815,7 +65984,7 @@
       "WBbt"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
-    "version": "2024-09-24"
+    "version": "2025-01-02"
   },
   "wbls": {
     "contact": {
@@ -65879,7 +66048,7 @@
       "WBls"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBls_$1",
-    "version": "2024-09-26"
+    "version": "2025-01-04"
   },
   "wbphenotype": {
     "contact": {
@@ -65940,7 +66109,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBPhenotype_$1",
-    "version": "2024-09-26"
+    "version": "2025-01-02"
   },
   "webelements": {
     "contributor": {
@@ -66873,7 +67042,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.190"
+    "version": "4.191"
   },
   "xenbase": {
     "contact": {

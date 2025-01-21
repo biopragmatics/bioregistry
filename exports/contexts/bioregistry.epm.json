@@ -140,6 +140,18 @@
         ]
     },
     {
+        "pattern": "^[a-f0-9]{64}$",
+        "prefix": "absd",
+        "uri_prefix": "https://absd.pasteur.cloud/antibody/",
+        "uri_prefix_synonyms": [
+            "ABSD:",
+            "absd:",
+            "http://absd.pasteur.cloud/antibody/",
+            "http://bioregistry.io/absd:",
+            "https://bioregistry.io/absd:"
+        ]
+    },
+    {
         "prefix": "ac",
         "uri_prefix": "http://www.w3.org/ns/activitystreams#",
         "uri_prefix_synonyms": [
@@ -9070,6 +9082,18 @@
         ]
     },
     {
+        "pattern": "^\\d{7}$",
+        "prefix": "evr",
+        "uri_prefix": "https://cthoyt.com/evr/",
+        "uri_prefix_synonyms": [
+            "EVR:",
+            "evr:",
+            "http://bioregistry.io/evr:",
+            "http://cthoyt.com/evr/",
+            "https://bioregistry.io/evr:"
+        ]
+    },
+    {
         "pattern": "^ENSG\\d{11}$",
         "prefix": "exac.gene",
         "uri_prefix": "http://exac.broadinstitute.org/gene/",
@@ -10220,25 +10244,6 @@
             "http://bioregistry.io/gbif:",
             "http://www.gbif.org/species/",
             "https://bioregistry.io/gbif:"
-        ]
-    },
-    {
-        "pattern": "^\\d+$",
-        "prefix": "gc",
-        "prefix_synonyms": [
-            "gc_id"
-        ],
-        "uri_prefix": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
-        "uri_prefix_synonyms": [
-            "GC:",
-            "GC_ID:",
-            "gc:",
-            "gc_id:",
-            "http://bioregistry.io/gc:",
-            "http://bioregistry.io/gc_id:",
-            "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
-            "https://bioregistry.io/gc:",
-            "https://bioregistry.io/gc_id:"
         ]
     },
     {
@@ -13206,20 +13211,34 @@
         "pattern": "^[1-9]\\d*$",
         "prefix": "icd11",
         "prefix_synonyms": [
-            "ICD-11"
+            "ICD-11",
+            "ICD11",
+            "icd11.foundation"
         ],
         "uri_prefix": "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/",
         "uri_prefix_synonyms": [
             "ICD-11:",
+            "ICD11.FOUNDATION:",
             "ICD11:",
             "http://bioregistry.io/ICD-11:",
+            "http://bioregistry.io/ICD11:",
+            "http://bioregistry.io/icd11.foundation:",
             "http://bioregistry.io/icd11:",
+            "http://icd.who.int/browse/2024-01/foundation/en#",
+            "http://icd.who.int/browse/2024-01/mms/en#",
             "http://icd.who.int/browse11/f/en#/http://id.who.int/icd/entity/",
             "http://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/",
+            "http://id.who.int/icd/entity/",
             "https://bioregistry.io/ICD-11:",
+            "https://bioregistry.io/ICD11:",
+            "https://bioregistry.io/icd11.foundation:",
             "https://bioregistry.io/icd11:",
+            "https://icd.who.int/browse/2024-01/foundation/en#",
+            "https://icd.who.int/browse/2024-01/mms/en#",
             "https://icd.who.int/browse11/f/en#/http://id.who.int/icd/entity/",
+            "https://id.who.int/icd/entity/",
             "icd-11:",
+            "icd11.foundation:",
             "icd11:"
         ]
     },
@@ -13441,12 +13460,12 @@
     {
         "pattern": "^\\d+$",
         "prefix": "icf",
-        "uri_prefix": "http://id.who.int/icd/entity/",
+        "uri_prefix": "https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/",
         "uri_prefix_synonyms": [
             "ICF:",
             "http://bioregistry.io/icf:",
+            "http://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/",
             "https://bioregistry.io/icf:",
-            "https://id.who.int/icd/entity/",
             "icf:"
         ]
     },
@@ -18751,6 +18770,30 @@
     },
     {
         "pattern": "^\\d+$",
+        "prefix": "ncbi.gc",
+        "prefix_synonyms": [
+            "gc",
+            "gc_id"
+        ],
+        "uri_prefix": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
+        "uri_prefix_synonyms": [
+            "GC:",
+            "GC_ID:",
+            "NCBI.GC:",
+            "gc:",
+            "gc_id:",
+            "http://bioregistry.io/gc:",
+            "http://bioregistry.io/gc_id:",
+            "http://bioregistry.io/ncbi.gc:",
+            "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG",
+            "https://bioregistry.io/gc:",
+            "https://bioregistry.io/gc_id:",
+            "https://bioregistry.io/ncbi.gc:",
+            "ncbi.gc:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
         "prefix": "ncbi.genome",
         "uri_prefix": "https://www.ncbi.nlm.nih.gov/genome/",
         "uri_prefix_synonyms": [
@@ -20237,6 +20280,18 @@
             "http://www.novusbio.com/products/",
             "https://bioregistry.io/novus:",
             "novus:"
+        ]
+    },
+    {
+        "pattern": "^NPC\\d+$",
+        "prefix": "npass",
+        "uri_prefix": "https://bidd.group/NPASS/compound.php?compoundID=",
+        "uri_prefix_synonyms": [
+            "NPASS:",
+            "http://bidd.group/NPASS/compound.php?compoundID=",
+            "http://bioregistry.io/npass:",
+            "https://bioregistry.io/npass:",
+            "npass:"
         ]
     },
     {
@@ -28187,6 +28242,27 @@
             "https://bioregistry.io/tgn:",
             "https://vocab.getty.edu/page/tgn/",
             "tgn:"
+        ]
+    },
+    {
+        "pattern": "^\\d+[a-d]?$",
+        "prefix": "theiler",
+        "prefix_synonyms": [
+            "thielerstage"
+        ],
+        "uri_prefix": "http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+        "uri_prefix_synonyms": [
+            "THEILER:",
+            "THIELERSTAGE:",
+            "http://bioregistry.io/theiler:",
+            "http://bioregistry.io/thielerstage:",
+            "http://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+            "https://bioregistry.io/theiler:",
+            "https://bioregistry.io/thielerstage:",
+            "https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+            "https://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_",
+            "theiler:",
+            "thielerstage:"
         ]
     },
     {
