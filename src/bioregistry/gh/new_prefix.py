@@ -138,7 +138,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
     )
 
 
-def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]:
+def get_new_prefix_issues(token: Optional[str] = None) -> Dict[int, Resource]:
     """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
