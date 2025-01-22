@@ -24,7 +24,7 @@ def has_token() -> bool:
 
 def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) -> Set[int]:
     """Get the set of issues that are already closed by a pull request."""
-    pulls = list_pulls(owner="bioregistry", repo="bioregistry", token=token)
+    pulls = list_pulls(owner="nagutm", repo="bioregistry", token=token)
     return {
         issue_id
         for pull, issue_id in itt.product(pulls, issue_ids)
@@ -81,7 +81,7 @@ def open_bioregistry_pull_request(
 ):
     """Open a pull request to the Bioregistry via :func:`open_pull_request`."""
     return open_pull_request(
-        owner="bioregistry",
+        owner="nagutm",
         repo="bioregistry",
         base=MAIN_BRANCH,
         title=title,
@@ -142,7 +142,7 @@ def get_bioregistry_form_data(
     :return: A mapping from github issue issue data
     """
     return get_form_data(
-        owner="bioregistry", repo="bioregistry", labels=labels, token=token, remapping=remapping
+        owner="nagutm", repo="bioregistry", labels=labels, token=token, remapping=remapping
     )
 
 
