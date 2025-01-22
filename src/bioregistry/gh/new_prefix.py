@@ -231,9 +231,13 @@ def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
 
     # If an issue number is given, process that specific issue
     if issue is not None:
-        resource = github_client.get_form_data_for_issue(
+        resource_data = github_client.get_form_data_for_issue(
             "biopragmatics", "bioregistry", issue, remapping=MAPPING
         )
+        resource = process_new_prefix_issue(issue, resource_data)
+        if not resource:
+            click.echo(f"Issue {issue} could not be processed or does not exist.")
+            sys.exit(1)
         issue_to_resource = {
             issue: resource
         }
