@@ -220,6 +220,8 @@ def make_title(prefixes: Sequence[str]) -> str:
 @verbose_option
 def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
     """Run the automatic curator."""
+    click.echo(f"Running workflow with issue: {issue}" if issue else "Running workflow for all relevant issues")
+
     status_porcelain_result = github_client.status_porcelain()
     if status_porcelain_result and not force and not dry:
         click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
@@ -243,6 +245,7 @@ def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
         }
     # Otherwise, process all new prefix issues
     else:
+        click.echo("No specific issue provided. Searching for all relevant issues")
         issue_to_resource = get_new_prefix_issues()
         if issue_to_resource:
             click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
