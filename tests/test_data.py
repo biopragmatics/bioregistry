@@ -29,6 +29,14 @@ from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
 logger = logging.getLogger(__name__)
 
+disallowed_prefixes = {
+    "contact@",
+    "help@",
+    "helpdesk@",
+    "discuss@",
+    "support@",
+}
+
 
 class TestRegistry(unittest.TestCase):
     """Tests for the registry."""
@@ -770,6 +778,11 @@ class TestRegistry(unittest.TestCase):
             self.assertNotIn(" ", author.orcid)
         if author.email:
             self.assertRegex(author.email, EMAIL_RE)
+            self.assertFalse(
+                any(p in author.email for p in disallowed_prefixes),
+                msg=f"Bioregistry policy states that an email must correspond to a single person. "
+                f"The email provided appears to be for a group/mailing list: {author.email}",
+            )
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -1037,4 +1050,20 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.comment,
                     msg="Any resource with a non-resolvable URI format needs a comment as to why",
+                )
+
+    def test_repository(self) -> None:
+        """Test the repository annotation."""
+        for prefix, resource in self.registry.items():
+            if resource.repository is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertNotEqual(
+                    "bioregistry",
+                    resource.repository,
+                    msg="repository accidentally kept flag from GitHub",
+                )
+                self.assertTrue(
+                    resource.repository.startswith("http"),
+                    msg=f"repository is not a valid URL: {resource.repository}",
                 )
