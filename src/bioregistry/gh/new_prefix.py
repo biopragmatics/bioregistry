@@ -173,7 +173,7 @@ def process_specific_issue(issue: int) -> Dict[int, Resource]:
     """Process a specific issue and return a dictionary mapping the issue number to the resource."""
     click.echo(f"Processing specific issue {issue}")
     resource_data = github_client.get_form_data_for_issue(
-        "nagutm", "bioregistry", issue, remapping=MAPPING
+        "biopragmatics", "bioregistry", issue, remapping=MAPPING
     )
     resource = process_new_prefix_issue(issue, resource_data)
     if not resource:
@@ -189,7 +189,7 @@ def process_all_relevant_issues() -> Dict[int, Resource]:
         click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
         for issue_number in sorted(issue_to_resource, reverse=True):
             link = click.style(
-                f"https://github.com/nagutm/bioregistry/issues/{issue_number}", fg="cyan"
+                f"https://github.com/biopragmatics/bioregistry/issues/{issue_number}", fg="cyan"
             )
             click.echo(f" - {link}")
     else:
@@ -200,7 +200,7 @@ def process_all_relevant_issues() -> Dict[int, Resource]:
         click.echo(f"Found PRs covering {len(pulled_issues)} new prefix issues:")
         for pr_number in sorted(pulled_issues, reverse=True):
             link = click.style(
-                f"https://github.com/nagutm/bioregistry/pulls/{pr_number}", fg="cyan"
+                f"https://github.com/biopragmatics/bioregistry/pulls/{pr_number}", fg="cyan"
             )
             click.echo(f" - {link}")
     else:
