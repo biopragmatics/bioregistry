@@ -266,7 +266,7 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.command()
 @click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
 @click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
-@click.option("--issue", is_flag=False, help="Specific issue to process rather than finding all relevant ones")
+@click.option("--issue", type=int, help="Specific issue to process rather than finding all relevant ones")
 @force_option
 @verbose_option
 def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
