@@ -141,7 +141,7 @@ class TestNewPrefix(unittest.TestCase):
 
         self.assertIn("🚀 Adding resource ncbiortholog.test (#1181)", result.output)
         mock_add_resource.assert_called_once()
-    
+
         mock_github_client.get_form_data_for_issue.assert_called_once_with(
             "biopragmatics", "bioregistry", 1181, remapping=MAPPING
         )
@@ -160,7 +160,7 @@ class TestNewPrefix(unittest.TestCase):
 
         self.assertEqual(result.exit_code, 0)
         self.assertIn("Running workflow for all relevant issues", result.output)
-        
+
         self.assertIn("No specific issue provided. Searching for all relevant issues", result.output)
         self.assertIn("Adding 2 issues after filter", result.output)
 
