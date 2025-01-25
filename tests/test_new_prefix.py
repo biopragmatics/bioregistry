@@ -1,9 +1,13 @@
 """Tests for new prefix pipeline."""
 
+import copy
 import unittest
 from unittest.mock import patch
 
-from bioregistry.gh.new_prefix import process_new_prefix_issue
+from click.testing import CliRunner
+from resources.mock_prefix import NCBIORTHOLOG_TEST, VIBSO_TEST
+
+from bioregistry.gh.new_prefix import MAPPING, main, process_new_prefix_issue
 from bioregistry.schema import Author, Resource
 
 
