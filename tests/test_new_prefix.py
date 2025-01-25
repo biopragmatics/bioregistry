@@ -16,7 +16,7 @@ class TestNewPrefix(unittest.TestCase):
         mock_get_resource.return_value = None
 
         issue_id = 1181
-        resource_data = NCBIORTHOLOG_TEST
+        resource_data = copy.deepcopy(NCBIORTHOLOG_TEST)
 
         expected_resource = Resource(
             prefix="ncbiortholog.test",
