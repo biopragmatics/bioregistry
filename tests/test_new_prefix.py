@@ -127,6 +127,25 @@ class TestNewPrefix(unittest.TestCase):
             actual, expected_resource, "Resource object does not match the expected output"
         )
 
+    @patch("bioregistry.gh.new_prefix.github_client")
+    @patch("bioregistry.gh.new_prefix.add_resource")
+    def test_specific_issue(self, mock_add_resource, mock_github_client):
+        """Test the workflow in a dry run for a specific issue."""
+        mock_github_client.get_form_data_for_issue.return_value = copy.deepcopy(NCBIORTHOLOG_TEST)
+
+        runner = CliRunner()
+        result = runner.invoke(main, ["--dry", "--issue", "1181"])
+
+        self.assertEqual(result.exit_code, 0)
+        self.assertIn("Processing specific issue 1181", result.output)
+
+        self.assertIn("🚀 Adding resource ncbiortholog.test (#1181)", result.output)
+        mock_add_resource.assert_called_once()
+    
+        mock_github_client.get_form_data_for_issue.assert_called_once_with(
+            "biopragmatics", "bioregistry", 1181, remapping=MAPPING
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
