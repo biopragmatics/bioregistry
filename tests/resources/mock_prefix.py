@@ -1,3 +1,5 @@
+"""Test prefix data for the new prefix pipeline."""
+
 NCBIORTHOLOG_TEST = {
     "prefix": "ncbiortholog.test",
     "name": "National Center for Biotechnology Information",
