@@ -29,7 +29,7 @@ from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
 logger = logging.getLogger(__name__)
 
-disallowed_prefixes = {
+disallowed_email_parts = {
     "contact@",
     "help@",
     "helpdesk@",
@@ -779,7 +779,10 @@ class TestRegistry(unittest.TestCase):
         if author.email:
             self.assertRegex(author.email, EMAIL_RE)
             self.assertFalse(
-                any(p in author.email for p in disallowed_prefixes),
+                any(
+                    disallowed_email_part in author.email
+                    for disallowed_email_part in disallowed_email_parts
+                ),
                 msg=f"Bioregistry policy states that an email must correspond to a single person. "
                 f"The email provided appears to be for a group/mailing list: {author.email}",
             )
