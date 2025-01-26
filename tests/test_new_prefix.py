@@ -1,14 +1,20 @@
 """Tests for new prefix pipeline."""
 
 import copy
+import json
 import unittest
 from unittest.mock import patch
+from pathlib import Path
 
 from click.testing import CliRunner
-from resources.mock_prefix import NCBIORTHOLOG_TEST, VIBSO_TEST
 
 from bioregistry.gh.new_prefix import MAPPING, main, process_new_prefix_issue
 from bioregistry.schema import Author, Resource
+
+HERE = Path(__file__).parent.resolve()
+RESOURCES = HERE.joinpath("resources")
+NCBIORTHOLOG_TEST = json.load(RESOURCES.joinpath("ncbiortholog_test.json").open())
+VIBSO_TEST = json.load(RESOURCES.joinpath("vibso_test.json").open())
 
 
 class TestNewPrefix(unittest.TestCase):
