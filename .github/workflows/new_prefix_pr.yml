@@ -39,7 +39,10 @@ jobs:
       - name: Update
         id: update
         if: steps.check_labels.outputs.hasRequiredLabels == 'true'
-        run: python -m bioregistry.gh.new_prefix --github
+        run: |
+          issue_url="${{ github.event.issue.html_url }}"
+          issue_number=$(echo "$issue_url" | grep -oE '[0-9]+$')
+          python -m bioregistry.gh.new_prefix --github --issue=$issue_number
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Branch

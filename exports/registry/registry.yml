@@ -323,6 +323,39 @@ abs:
       promoters'
     year: 2006
   uri_format: http://genome.crg.es/datasets/abs2005/entries/$1.html
+absd:
+  contact:
+    email: nicolas.maillet@pasteur.fr
+    name: Nicolas Maillet
+    orcid: 0000-0003-1611-5243
+  contributor:
+    email: palayoor.n@northeastern.edu
+    github: nalikapalayoor
+    name: Nalika Palayoor
+    orcid: 0009-0008-8406-631X
+  description: The AntiBody Sequence Database is a public dataset for antibody sequence
+    data. It provides unique identifiers for antibody sequences, including both immunoglobulin
+    and single-chain variable fragment sequences. These are are critical for immunological
+    studies, and  allows users to search and retrieve antibody sequences based on
+    sequence similarity and specificity, and other biological properties.
+  example: 81d0ea69a9ab134f6ba68314e982171a367d3ab739c85c5ba49701dd02170ed3
+  github_request_issue: 1362
+  homepage: https://absd.pasteur.cloud
+  name: AntiBody Sequence Database
+  pattern: ^[a-f0-9]{64}$
+  preferred_prefix: absd
+  publications:
+  - doi: 10.1093/nargab/lqae171
+    pmc: PMC11655285
+    pubmed: '39703430'
+    title: AntiBody Sequence Database
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://absd.pasteur.cloud/antibody/$1
 ac:
   contributor:
     email: cthoyt@gmail.com
@@ -748,7 +781,7 @@ afo:
     email: more.info@allotrope.org
     name: Allotrope Foundation
   description: Allotrope Merged Ontology Suite
-  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2024/09/merged-without-qudt-and-inferred
+  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2024/12/merged-without-qudt-and-inferred
   homepage: https://www.allotrope.org/
   keywords:
   - agricultural engineering
@@ -769,7 +802,7 @@ afo:
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
-  version: 2024/09
+  version: 2024/12
 afpo:
   contact:
     email: mcmelek@msn.com
@@ -1914,7 +1947,7 @@ apollosv:
   rdf_uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
   repository: https://github.com/ApolloDev/apollo-sv
   uri_format: http://purl.obolibrary.org/obo/APOLLO_SV_$1
-  version: '2024-08-15'
+  version: '2024-12-24'
 arachnoserver:
   contact:
     email: glenn.king@imb.uq.edu.au
@@ -2143,6 +2176,11 @@ aro:
   example: '1000001'
   homepage: https://github.com/arpcard/aro
   keywords:
+  - antibiotic resistance
+  - antimicrobial
+  - gene
+  - genetics
+  - mutation
   - obo
   - ontology
   license: CC-BY-4.0
@@ -2150,6 +2188,7 @@ aro:
     aberowl: ARO
     biocontext: ARO
     bioportal: ARO
+    fairsharing: FAIRsharing.d8fa2d
     obofoundry: aro
     ols: aro
     ontobee: ARO
@@ -3262,7 +3301,7 @@ bcgo:
   preferred_prefix: BCGO
   rdf_uri_format: http://purl.obolibrary.org/obo/BCGO_$1
   repository: https://github.com/obi-bcgo/bcgo
-  uri_format: http://purl.obolibrary.org/obo/BCGO_$1
+  uri_format: https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F$1
   version: '2015-07-08'
 bcio:
   contact:
@@ -3800,12 +3839,14 @@ bigg.compartment:
     more). This collection references model compartments.
   example: c
   homepage: http://bigg.ucsd.edu/compartments/
+  license: http://bigg.ucsd.edu/license#license
   mappings:
     biocontext: BIGG.COMPARTMENT
     miriam: bigg.compartment
     n2t: bigg.compartment
   name: BiGG Compartment
-  pattern: ^[a-z_A-Z]+$
+  part_of: bigg
+  pattern: ^c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y$
   preferred_prefix: bigg.compartment
   uri_format: http://bigg.ucsd.edu/compartments/$1
 bigg.metabolite:
@@ -3816,13 +3857,16 @@ bigg.metabolite:
     and metabolites are linked to many external databases (KEGG, PubChem, and many
     more). This collection references individual metabolites.
   example: 12dgr161
+  example_extras:
+  - 12dgr161[c]
   homepage: http://bigg.ucsd.edu/universal/metabolites
+  license: http://bigg.ucsd.edu/license#license
   mappings:
     biocontext: BIGG.METABOLITE
     miriam: bigg.metabolite
     n2t: bigg.metabolite
   name: BiGG Metabolite
-  pattern: ^[a-z_A-Z0-9]+$
+  pattern: ^[a-z_A-Z0-9]+(\[[c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y]\])?$
   preferred_prefix: bigg.metabolite
   uri_format: http://bigg.ucsd.edu/models/universal/metabolites/$1
 bigg.model:
@@ -3834,6 +3878,7 @@ bigg.model:
     more). This collection references individual models.
   example: iECABU_c1320
   homepage: http://bigg.ucsd.edu/models
+  license: http://bigg.ucsd.edu/license#license
   mappings:
     biocontext: BIGG.MODEL
     miriam: bigg.model
@@ -3851,6 +3896,7 @@ bigg.reaction:
     more). This collection references reactions.
   example: 13GS
   homepage: http://bigg.ucsd.edu/universal/reactions
+  license: http://bigg.ucsd.edu/license#license
   mappings:
     biocontext: BIGG.REACTION
     miriam: bigg.reaction
@@ -3982,6 +4028,11 @@ bindingdb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/bindingdb:$1
   publications:
+  - doi: 10.1093/nar/gkae1075
+    pubmed: '39574417'
+    title: 'BindingDB in 2024: a FAIR knowledgebase of protein-small molecule binding
+      data'
+    year: 2024
   - doi: 10.1093/nar/gkv1072
     pmc: PMC4702793
     pubmed: '26481362'
@@ -4149,6 +4200,37 @@ biodeep:
   pattern: ^\d{11}$
   preferred_prefix: biodeep
   uri_format: https://query.biodeep.cn/metabolite/$1
+biodolphin:
+  contact:
+    email: andrew.mcshan@chemistry.gatech.edu
+    name: Andrew C. McShan
+    orcid: 0000-0002-3212-9867
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for lipid-protein interactions, including details about
+    protein functions, protein families, lipid classifications, lipid-protein binding
+    affinities, membrane association type, and atomic structures.
+  example: BD1a05-A-A-IPM1
+  github_request_issue: 1327
+  homepage: https://biodolphin.chemistry.gatech.edu
+  name: BioDolphin
+  pattern: ^BD\d[a-zA-Z0-9]+-[A-Za-z]-[A-Za-z]-[A-Za-z0-9]+$
+  preferred_prefix: biodolphin
+  publications:
+  - doi: 10.1038/s42004-024-01384-z
+    pmc: PMC11618342
+    pubmed: '39633021'
+    title: BioDolphin as a comprehensive database of lipid-protein binding interactions
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://biodolphin.chemistry.gatech.edu/detail/$1
 biofactoid:
   contact:
     email: jeffvin.wong@utoronto.ca
@@ -4496,7 +4578,7 @@ biomodels.kisao:
   - biomodels.kisao
   - kisao
   uri_format: http://purl.obolibrary.org/obo/KISAO_$1
-  version: '2.30'
+  version: '2.34'
 biomodels.teddy:
   banana: TEDDY
   banana_peel: _
@@ -4543,6 +4625,7 @@ biomodels.teddy:
     pubmed: '22027554'
     title: Controlled vocabularies and semantics in systems biology
     year: 2011
+  repository: https://github.com/combine-org/combine-specifications/blob/main/specifications/teddy.md
   synonyms:
   - teddy
   uri_format: https://www.ebi.ac.uk/ols/ontologies/teddy/terms?iri=http://identifiers.org/teddy/TEDDY_$1
@@ -5068,6 +5151,44 @@ biotools:
     year: 2015
   repository: http://github.com/bio-tools/biotoolsregistry/
   uri_format: https://bio.tools/$1
+biotop:
+  contact:
+    email: stefan.schulz@medunigraz.at
+    github: steschu63
+    name: Stefan Schulz
+    orcid: 0000-0001-7222-3287
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Upper-Level ontology for Biology and Medicine. Compatible with BFO,
+    DOLCE, and the UMLS Semantic Network
+  download_owl: https://raw.githubusercontent.com/BioTopOntology/biotop/master/biotop.owl
+  example: attachedTo
+  github_request_issue: 1312
+  homepage: http://purl.org/biotop
+  keywords:
+  - biology
+  - ontology
+  license: CC-BY-3.0
+  mappings:
+    lov: biotop
+  name: BioTop
+  preferred_prefix: biotop
+  publications:
+  - doi: 10.1093/bioinformatics/btp194
+    pmc: PMC2687948
+    pubmed: '19478019'
+    title: 'Alignment of the UMLS semantic network with BioTop: methodology and assessment'
+    year: 2009
+  - doi: 10.1093/bioinformatics/btn158
+    pmc: PMC2718636
+    pubmed: '18586729'
+    title: The ontology of biological taxa
+    year: 2008
+  repository: https://github.com/BioTopOntology/biotop/
+  uri_format: http://purl.org/biotop/biotop.owl#$1
 biozil:
   contributor:
     email: cthoyt@gmail.com
@@ -5810,6 +5931,21 @@ c4o:
   repository: https://github.com/sparontologies/c4o
   twitter: sparontologies
   uri_format: http://purl.org/spar/c4o/$1
+cabi:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Research and learning in agriculture, the environment and the applied
+    life sciences
+  example: '20000614040'
+  github_request_issue: 1313
+  homepage: https://www.cabidigitallibrary.org
+  name: CABI Digital Library
+  pattern: ^\d+$
+  preferred_prefix: cabi
+  uri_format: https://www.cabi.org/cabebooks/ebook/$1
 cabri:
   contact:
     email: paolo.romano@hsanmartino.it
@@ -6003,6 +6139,20 @@ caps:
   pattern: ^\d+$
   preferred_prefix: caps
   uri_format: http://www.bioinsilico.org/cgi-bin/CAPSDB/getCAPScluster?nidcl=$1
+carnegie.stage:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: One of the 23 stages of embryo development
+  example: '20'
+  github_request_issue: 1325
+  homepage: https://embryology.med.unsw.edu.au/embryology/index.php/Carnegie_Stages
+  name: Carnegie Stage
+  pattern: ^\d+$
+  preferred_prefix: carnegie.stage
+  uri_format: https://embryology.med.unsw.edu.au/embryology/index.php/Carnegie_Stages#Stage_$1
 caro:
   appears_in:
   - aism
@@ -6196,6 +6346,11 @@ cath:
     pubmed: '9309224'
     title: CATH--a hierarchic classification of protein domain structures
     year: 1997
+  - doi: 10.1093/nar/gkae1087
+    pubmed: '39565206'
+    title: 'CATH v4.4: major expansion of CATH by experimental and predicted structural
+      data'
+    year: 2024
   - doi: 10.1093/nar/gkaa1079
     pmc: PMC7778904
     pubmed: '33237325'
@@ -7205,6 +7360,7 @@ cgnc:
   homepage: http://birdgenenames.org/cgnc/
   keywords:
   - gene
+  license: CC-BY-4.0
   mappings:
     cellosaurus: CGNC
     prefixcommons: cgnc
@@ -7294,7 +7450,6 @@ chebi:
   appears_in:
   - cdno
   - chiro
-  - cl
   - ecocore
   - ecto
   - envo
@@ -7414,7 +7569,7 @@ chebi:
   - ChEBI
   twitter: chebit
   uri_format: http://purl.obolibrary.org/obo/CHEBI_$1
-  version: '237'
+  version: '239'
 chembank:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -7601,17 +7756,6 @@ chembl.target:
   part_of: chembl
   pattern: ^CHEMBL\d+$
   preferred_prefix: chembl.target
-  providers:
-  - code: CURATOR_REVIEW
-    description: ChEMBL target RDF
-    homepage: https://github.com/egonw/chembl.rdf
-    name: ChEMBL target RDF
-    uri_format: http://linkedchemistry.info/chembl/chemblid/$1
-  - code: CURATOR_REVIEW
-    description: ChEMBL target RDF through EBI RDF Platform
-    homepage: https://rdf.ebi.ac.uk/resource/chembl/
-    name: ChEMBL target RDF through EBI RDF Platform
-    uri_format: https://rdf.ebi.ac.uk/resource/chembl/target/$1
   synonyms:
   - ChEMBL-Targets
   uri_format: https://www.ebi.ac.uk/chembl/target/inspect/$1
@@ -7662,6 +7806,21 @@ chemdb:
       resources'
     year: 2005
   uri_format: http://cdb.ics.uci.edu/cgibin/ChemicalDetailWeb.py?chemical_id=$1
+chemicalbook:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A hybrid chemical enyclopedia and supplier advertizing system for chemicals.
+  example: CB82546919
+  github_request_issue: 1311
+  homepage: https://www.chemicalbook.com
+  name: Chemical Book
+  preferred_prefix: chemicalbook
+  synonyms:
+  - ChemicalBookNo
+  uri_format: https://www.chemicalbook.com/ChemicalProductProperty_IN_$1.htm
 chemidplus:
   description: ChemIDplus is a web-based search system that provides access to structure
     and nomenclature authority files used for the identification of chemical substances
@@ -7996,6 +8155,10 @@ chr:
   keywords:
   - ontology
   license: BSD-3
+  mappings:
+    aberowl: CHR
+    biocontext: CHR
+    bioportal: CHR
   name: Chromosome Ontology
   preferred_prefix: chr
   repository: https://github.com/monarch-initiative/monochrom
@@ -8452,9 +8615,9 @@ cl:
     name: Anita Caron
     orcid: 0000-0002-6523-4866
   depends_on:
-  - chebi
   - go
   - ncbitaxon
+  - omo
   - pato
   - pr
   - ro
@@ -8463,6 +8626,7 @@ cl:
     for cell types. The ontology was constructed for use by the model organism and
     other bioinformatics databases, incorporating cell types from prokaryotes to mammals,
     and includes plants and fungi.
+  download_json: http://purl.obolibrary.org/obo/cl.json
   download_obo: https://github.com/obophenotype/cell-ontology/raw/master/cl.obo
   download_owl: http://purl.obolibrary.org/obo/cl.owl
   example: '0000062'
@@ -8533,7 +8697,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2024-09-26'
+  version: '2025-01-07'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -8590,6 +8754,7 @@ classyfire:
   preferred_prefix: classyfire
   synonyms:
   - CHEMONTID
+  - chemont
   uri_format: http://classyfire.wishartlab.com/tax_nodes/C$1
 clb:
   description: ChecklistBank is an index and repository for taxonomic and nomenclatural
@@ -8620,6 +8785,19 @@ cldb:
   synonyms:
   - hypercldb
   uri_format: http://bioinformatics.hsanmartino.it/hypercldb/$1.html
+clingen.affiliation:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: identifier for a panel
+  example: '40135'
+  github_request_issue: 1314
+  homepage: https://clinicalgenome.org/affiliation
+  name: Clinical Genome Resource Panel
+  preferred_prefix: clingen.affiliation
+  uri_format: https://clinicalgenome.org/affiliation/$1/
 clingene:
   contributor:
     email: cthoyt@gmail.com
@@ -8658,6 +8836,7 @@ clinicaltrials:
   - disease
   - drug
   - human
+  license: https://clinicaltrials.gov/about-site/terms-conditions#availability
   mappings:
     biocontext: CLINICALTRIALS
     miriam: clinicaltrials
@@ -9013,7 +9192,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.229'
+  version: '2.233'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -9865,8 +10044,8 @@ co_366:
   uri_format: https://cropontology.org/rdf/CO_366:$1
 co_367:
   contact:
-    email: helpdesk@cropontology-curationtool.org
-    name: Crop Ontology Helpdesk
+    email: clara.stanschewski@kaust.edu.sa
+    name: Clara S. Stanschewski
   description: Quinoa Ontology database of the Crop Ontology (CO_367) of the Generation
     Challenge Program (GCP) describe traits variables of Quinoa Germinate Database
     http://germinate.quinoadb.org. Quinoa Phenotyping Consortium Creation Date 23.05.2021
@@ -9954,6 +10133,17 @@ coconut:
   name: COlleCtion of Open Natural ProdUcTs
   pattern: ^CNP\d{7}(\.\d+)?$
   preferred_prefix: coconut
+  publications:
+  - doi: 10.1093/nar/gkae1063
+    pubmed: '39588778'
+    title: 'COCONUT 2.0: a comprehensive overhaul and curation of the collection of
+      open natural products database'
+    year: 2024
+  - doi: 10.1186/s13321-020-00478-9
+    pmc: PMC7798278
+    pubmed: '33423696'
+    title: 'COCONUT online: Collection of Open Natural Products database'
+    year: 2021
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -9986,6 +10176,21 @@ codelink:
   references:
   - https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-8060/A-GEOD-8060.adf.txt
   - https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt
+coexistence:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'COEXISTENCE - Thesaurus of intersectionality and decolonial issues:
+    black studies, gender, sexuality and feminist studies'
+  example: '163'
+  github_request_issue: 1310
+  homepage: https://mamoura.eci.ufmg.br
+  name: COEXISTENCE
+  pattern: ^\d+$
+  preferred_prefix: coexistence
+  uri_format: https://mamoura.eci.ufmg.br/tematres/vocab/index.php?tema=$1
 cog:
   contact:
     email: cogs@ncbi.nlm.nih.gov
@@ -10639,7 +10844,7 @@ corum:
     is obtained from individual experiments published in scientific articles, data
     from high-throughput experiments is excluded.
   example: '100'
-  homepage: https://mips.helmholtz-muenchen.de/genre/proj/corum/
+  homepage: https://mips.helmholtz-muenchen.de/corum
   keywords:
   - bioinformatics
   - biology
@@ -10667,6 +10872,10 @@ corum:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/corum:$1
   publications:
+  - doi: 10.1093/nar/gkae1033
+    pubmed: '39526397'
+    title: 'CORUM in 2024: protein complexes as drug targets'
+    year: 2024
   - doi: 10.1093/nar/gkac1015
     pubmed: '36382402'
   - doi: 10.1093/nar/gky973
@@ -10674,7 +10883,7 @@ corum:
     pubmed: '30357367'
     title: 'CORUM: the comprehensive resource of mammalian protein complexes-2019'
     year: 2019
-  uri_format: https://mips.helmholtz-muenchen.de/corum/?id=$1
+  uri_format: https://mips.helmholtz-muenchen.de/corum/?complex_id=$1
 cosmic:
   comment: Is this just HGNC Gene symbols?
   contact:
@@ -10968,6 +11177,7 @@ credit:
   - publication
   - resource metadata
   - subject agnostic
+  license: CC-BY-4.0
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline
   mappings:
     fairsharing: FAIRsharing.fe4816
@@ -11876,11 +12086,8 @@ datacommons:
   name: Data Commons
   preferred_prefix: datacommons
   repository: https://github.com/datacommonsorg/website
-  reviewer:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
+  synonyms:
+  - dcid
   uri_format: https://datacommons.org/browser/$1
 datanator.gene:
   description: Datanator is an integrated database of genomic and biochemical data
@@ -12171,6 +12378,19 @@ dbo:
   name: DBPedia Ontology
   preferred_prefix: dbo
   uri_format: https://dbpedia.org/ontology/$1
+dbpedia:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A semi-automatically generated knowledgebase
+  example: Grenada
+  github_request_issue: 1315
+  homepage: https://dbpedia.org
+  name: DBPedia
+  preferred_prefix: dbpedia
+  uri_format: http://dbpedia.org/resource/$1
 dbprobe:
   description: The NCBI Probe Database is a public registry of nucleic acid reagents
     designed for use in a wide variety of biomedical research applications, together
@@ -12336,6 +12556,8 @@ dc:
   - dc.elements
   - dc11
   - dce
+  - dcelem
+  - elements
   uri_format: http://purl.org/dc/elements/1.1/$1
 dc_cl:
   contact:
@@ -12424,6 +12646,7 @@ dcterms:
   synonyms:
   - dc.terms
   - dct
+  - terms
   uri_format: http://purl.org/dc/terms/$1
 dctypes:
   contributor:
@@ -12840,6 +13063,7 @@ dermo:
     pubmed: '27296450'
     title: DermO; an ontology for the description of dermatologic disease
     year: 2016
+  repository: https://github.com/dermatology-ontology/dermatology
   uri_format: http://purl.obolibrary.org/obo/DERMO_$1
 dev.ga4ghdos:
   description: Assists in resolving data across cloud resources.
@@ -13146,6 +13370,7 @@ dictybase:
   - comparative genomics
   - genome
   - life science
+  license: CC-BY-SA-4.0
   mappings:
     biocontext: dictyBase
     fairsharing: FAIRsharing.4shj9c
@@ -13194,6 +13419,7 @@ dictybase.est:
     tag (EST) information.
   example: DDB0016567
   homepage: http://dictybase.org/
+  license: CC-BY-SA-4.0
   mappings:
     biocontext: DICTYBASE.EST
     miriam: dictybase.est
@@ -13209,6 +13435,7 @@ dictybase.gene:
     gene models and functional annotations. This collection references gene information.
   example: DDB_G0267522
   homepage: http://dictybase.org/
+  license: CC-BY-SA-4.0
   mappings:
     biocontext: DICTYBASE.GENE
     miriam: dictybase.gene
@@ -13375,12 +13602,12 @@ dip:
 discoverx:
   description: Cell line collections (Providers)
   example: 95-0166C6
-  homepage: https://www.discoverx.com/product-category/cell-lines-primary-cells/
+  homepage: https://www.discoverx.com/product_types/cell-lines-primary-cells
   mappings:
     cellosaurus: DiscoverX
   name: DiscoverX cell line products
   preferred_prefix: discoverx
-  uri_format: https://www.discoverx.com/?post_type=product&s=$1
+  uri_format: https://www.discoverx.com/catalogmanagement/catalog/?searchText=$1
 disdriv:
   contact:
     email: lynn.schriml@gmail.com
@@ -13917,7 +14144,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-11-01'
+  version: '2024-12-18'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -14086,7 +14313,7 @@ dpo:
     github: Clare72
     name: Clare Pilgrim
     orcid: 0000-0002-1373-1705
-  description: An ontology for the description of Drosophila melanogaster phenotypes.
+  description: An ontology of commonly encountered and/or high level Drosophila phenotypes.
   download_json: http://purl.obolibrary.org/obo/dpo.json
   download_obo: http://purl.obolibrary.org/obo/dpo.obo
   download_owl: http://purl.obolibrary.org/obo/dpo.owl
@@ -14114,7 +14341,7 @@ dpo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/drosophila-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2024-10-17'
+  version: '2024-12-05'
 dpv:
   contact:
     email: mike.adams@bbsrc.ac.uk
@@ -14372,7 +14599,7 @@ dron:
   rdf_uri_format: http://purl.obolibrary.org/obo/DRON_$1
   repository: https://github.com/ufbmi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2024-11-04'
+  version: '2024-12-20'
 drsanv0:
   description: 'This namespace is used for GA4GH Data Repository Service (DRS) access
     to the USA National Institutes of Health (NIH), National Human Genome Research
@@ -14451,8 +14678,8 @@ drugbank:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/drugbank:$1
   publications:
-  - doi: 10.1093/nar/gkx1037
-    pubmed: '29126136'
+  - doi: 10.1093/nar/gkad976
+    pubmed: '37953279'
   - doi: 10.1093/nar/gkt1068
     pmc: PMC3965102
     pubmed: '24203711'
@@ -14809,6 +15036,49 @@ duo:
   repository: https://github.com/EBISPOT/DUO
   uri_format: http://purl.obolibrary.org/obo/DUO_$1
   version: '2021-02-23'
+dwc:
+  contact:
+    email: gtuco.btuco@gmail.com
+    github: tucotuco
+    name: John Wieczorek
+    orcid: 0000-0003-1144-0290
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Darwin Core is a vocabulary standard for transmitting information about
+    biodiversity. This document lists all terms in namespaces currently used in the
+    vocabulary.
+  example: Dataset
+  github_request_issue: 1316
+  homepage: https://dwc.tdwg.org/list/
+  keywords:
+  - biodiversity
+  - biological sample annotation
+  - geographical location
+  - life science
+  - taxonomic classification
+  mappings:
+    fairsharing: FAIRsharing.xvf5y3
+  name: Darwin Core Terms
+  preferred_prefix: dwc
+  publications:
+  - doi: 10.1371/journal.pone.0102623
+    pubmed: '25099149'
+    title: 'The GBIF integrated publishing toolkit: facilitating the efficient publishing
+      of biodiversity data on the internet'
+    year: 2014
+  - doi: 10.3897/bdj.2.e1039
+    pubmed: '24723785'
+    title: Linking multiple biodiversity informatics platforms with Darwin Core Archives
+    year: 2014
+  - doi: 10.1371/journal.pone.0029715
+    pubmed: '22238640'
+    title: 'Darwin Core: an evolving community-developed biodiversity data standard'
+    year: 2012
+  repository: https://github.com/tdwg/dwc
+  uri_format: http://rs.tdwg.org/dwc/terms/$1
 eaglei:
   contributor:
     email: cthoyt@gmail.com
@@ -15841,6 +16111,11 @@ efo:
     homepage: https://www.ebi.ac.uk/efo/
     name: EFO through Functional Genomics Group (EBI)
     uri_format: https://www.ebi.ac.uk/efo/EFO_$1
+  - code: ols.curie
+    description: OLS via CURIE
+    homepage: https://www.ebi.ac.uk/ols
+    name: OLS
+    uri_format: http://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=EFO_$1
   publications:
   - doi: 10.1093/bioinformatics/btq099
     pmc: PMC2853691
@@ -15849,7 +16124,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.72.0
+  version: 3.73.0
 ega.dataset:
   contact:
     email: tk2@ebi.ac.uk
@@ -17452,8 +17727,8 @@ eo:
     growth chamber, green house etc is a environment on its own it may also involve
     instances of biotic and abiotic environments as supplemental treatments used in
     these studies.
-  download_obo: http://purl.obolibrary.org/obo/eo.obo
-  download_owl: http://purl.obolibrary.org/obo/eo.owl
+  download_obo: https://github.com/Planteome/plant-experimental-conditions-ontology/raw/refs/heads/master/peco.obo
+  download_owl: https://github.com/Planteome/plant-experimental-conditions-ontology/raw/refs/heads/master/peco.owl
   example: '0007404'
   homepage: http://planteome.org/
   keywords:
@@ -18154,6 +18429,42 @@ evm:
   preferred_prefix: evm
   references:
   - https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229
+evr:
+  contact:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'An open, community-driven registry of conference and event venues.
+
+
+    EVR assigns persistent identifiers (PIDs) to make referencing venues FAIR. This
+    is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to research
+    organizations.
+
+
+    This benefits researchers assembling information about in-person conferences and
+    events by enabling them to refer in an unambiguous way to the venue where it takes
+    place.
+
+
+    This repository follows the [Open Data, Open Code, Open Infrastructure (O3) principles](https://www.nature.com/articles/s41597-024-03406-w),
+    meaning that the data and code are all in one repository that anyone can contribute
+    to.'
+  example: '0000001'
+  github_request_issue: 1363
+  homepage: https://cthoyt.com/evr
+  license: CC0-1.0
+  name: Event Venue Registry
+  pattern: ^\d{7}$
+  preferred_prefix: evr
+  repository: https://github.com/cthoyt/evr
+  uri_format: https://cthoyt.com/evr/$1
 exac.gene:
   description: The Exome Aggregation Consortium (ExAC) is a coalition of investigators
     seeking to aggregate and harmonize exome sequencing data from a variety of large-scale
@@ -18474,6 +18785,35 @@ faldo:
     year: 2016
   repository: https://github.com/OBF/FALDO
   uri_format: http://biohackathon.org/resource/faldo#$1
+fanta:
+  contact:
+    email: takeya.kasukawa@riken.jp
+    name: Takeya Kasukawa
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Functional annotations of genomes for studying gene regulation, with
+    a primary focus on cis-regulatory elements (CREs) such as promoters and enhancers.
+  example: FCHS_301358
+  github_request_issue: 1328
+  homepage: https://fanta.bio
+  name: Functional Genome Annotations with Transcriptional Activities
+  pattern: ^FC(HS|MM)_\d+$
+  preferred_prefix: fanta
+  publications:
+  - doi: 10.1093/nar/gkae1047
+    pubmed: '39592010'
+    title: 'Update of the FANTOM web resource: enhancement for studying noncoding
+      genomes'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://fanta.bio/cre/$1
 fao:
   contact:
     email: vw253@cam.ac.uk
@@ -18675,7 +19015,7 @@ fbbt:
   - FBbt
   - FBbt_root
   uri_format: http://purl.obolibrary.org/obo/FBbt_$1
-  version: '2024-10-17'
+  version: '2024-12-05'
 fbcv:
   appears_in:
   - ontoavida
@@ -18684,8 +19024,8 @@ fbcv:
     github: Clare72
     name: Clare Pilgrim
     orcid: 0000-0002-1373-1705
-  description: A miscellaneous ontology of terms used for curation in FlyBase, including
-    the DPO.
+  description: A structured controlled vocabulary used for various aspects of annotation
+    by FlyBase.
   download_json: http://purl.obolibrary.org/obo/fbcv.json
   download_obo: https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo
   download_owl: http://purl.obolibrary.org/obo/fbcv.owl
@@ -18734,14 +19074,15 @@ fbcv:
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2024-10-17'
+  version: '2024-12-05'
 fbdv:
   contact:
     email: cp390@cam.ac.uk
     github: Clare72
     name: Clare Pilgrim
     orcid: 0000-0002-1373-1705
-  description: An ontology of Drosophila melanogaster developmental stages.
+  description: A structured controlled vocabulary of the development of Drosophila
+    melanogaster.
   download_json: http://purl.obolibrary.org/obo/fbdv.json
   download_obo: http://purl.obolibrary.org/obo/fbdv.obo
   download_owl: http://purl.obolibrary.org/obo/fbdv.owl
@@ -18785,7 +19126,7 @@ fbdv:
   synonyms:
   - FBdv
   uri_format: http://purl.obolibrary.org/obo/FBdv_$1
-  version: '2024-10-17'
+  version: '2024-12-04'
 fbol:
   comment: Website down, checked on 2021-10-07
   deprecated: true
@@ -20338,7 +20679,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2024-11-12'
+  version: '2024-12-31'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -20601,25 +20942,6 @@ gbif:
   repository: https://github.com/gbif/
   twitter: GBIF
   uri_format: https://www.gbif.org/species/$1
-gc:
-  comment: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Genetic code, mitochontrial genetic code, and other linked information
-    to NCBI taxonomy entries.
-  example: '11'
-  homepage: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html
-  name: Genetic Code
-  pattern: ^\d+$
-  preferred_prefix: gc
-  references:
-  - https://github.com/obophenotype/ncbitaxon/issues/47
-  synonyms:
-  - gc_id
-  uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1
 gcst:
   description: The GWAS Catalog provides a consistent, searchable, visualisable and
     freely available database of published SNP-trait associations, which can be easily
@@ -20756,6 +21078,12 @@ gemet:
   name: General Multilingual Environmental Thesaurus
   pattern: ^\d+$
   preferred_prefix: gemet
+  providers:
+  - code: gemet.multilingual
+    description: An alternate URI that doesn't have the language encoded in it
+    homepage: https://www.eionet.europa.eu/gemet
+    name: GEMET Multilingual
+    uri_format: http://www.eionet.europa.eu/gemet/concept/$1
   uri_format: https://www.eionet.europa.eu/gemet/en/concept/$1
 genatlas:
   description: GenAtlas is a database containing information on human genes, markers
@@ -20847,6 +21175,10 @@ genbank:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/genbank:$1
   publications:
+  - doi: 10.1093/nar/gkae1114
+    pubmed: '39558184'
+    title: GenBank 2025 update
+    year: 2024
   - doi: 10.1186/s12859-020-3537-3
     pmc: PMC7245624
     pubmed: '32448124'
@@ -21257,7 +21589,7 @@ genepio:
   rdf_uri_format: http://purl.obolibrary.org/obo/GENEPIO_$1
   repository: https://github.com/GenEpiO/genepio
   uri_format: http://purl.obolibrary.org/obo/GENEPIO_$1
-  version: '2023-08-19'
+  version: '2024-12-18'
 genetree:
   contact:
     email: flicek@ebi.ac.uk
@@ -21563,6 +21895,7 @@ geonames:
   - geographical location
   - geography
   - geoinformatics
+  license: CC-BY-4.0
   mappings:
     fairsharing: FAIRsharing.6dba71
     re3data: r3d100010245
@@ -21584,6 +21917,7 @@ geonames.feature:
     codes.
   example: ADM1
   homepage: https://www.geonames.org/export/codes.html
+  license: CC-BY-4.0
   name: GeoNames Feature Code
   preferred_prefix: geonames.feature
   uri_format: https://www.geonames.org/recent-changes/featurecode/$1/
@@ -21817,6 +22151,23 @@ glida.ligand:
   pattern: ^L\d+$
   preferred_prefix: glida.ligand
   uri_format: http://pharminfo.pharm.kyoto-u.ac.jp/services/glida/ligand_information.php?id=$1
+glottolog:
+  appears_in:
+  - gsso
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ' Comprehensive reference information for the world''s languages, especially
+    the lesser known languages. [from homepage]'
+  example: nort3314
+  github_request_issue: 1310
+  homepage: https://glottolog.org
+  license: CC-BY-4.0
+  name: Glottolog
+  preferred_prefix: glottolog
+  uri_format: https://glottolog.org/resource/languoid/id/$1
 glycoepitope:
   description: GlycoEpitope is a database containing useful information about carbohydrate
     antigens (glyco-epitopes) and the antibodies (polyclonal or monoclonal) that can
@@ -22854,6 +23205,12 @@ goldbook:
   name: IUPAC Gold Book Compendium of Chemical Terminology
   pattern: ^[A-Z]{1,2}\d{5}$
   preferred_prefix: goldbook
+  providers:
+  - code: goldbook.html
+    description: This appears in REX
+    homepage: http://goldbook.iupac.org
+    name: GoldBook direct
+    uri_format: http://goldbook.iupac.org/$1.html
   rdf_uri_format: http://dx.doi.org/10.1351/goldbook.$1
   uri_format: https://goldbook.iupac.org/terms/view/$1
 google.book:
@@ -22870,6 +23227,12 @@ google.book:
     wikidata: P675
   name: Google Books
   preferred_prefix: google.book
+  providers:
+  - code: alt1
+    description: Alternate URL 1
+    homepage: https://books.google.com
+    name: Alternate URL 1
+    uri_format: https://books.google.com/books/?id=$1
   uri_format: https://books.google.com/books?id=$1
 google.patent:
   contributor_extras:
@@ -22984,6 +23347,11 @@ gpcrdb:
     pubmed: '9399852'
     title: 'GPCRDB: an information system for G protein-coupled receptors'
     year: 1998
+  - doi: 10.1093/nar/gkae1065
+    pubmed: '39558158'
+    title: 'GPCRdb in 2025: adding odorant receptors, data mapper, structure similarity
+      search and models of physiological ligand complexes'
+    year: 2024
   - doi: 10.1093/nar/gkaa1080
     pmc: PMC7778909
     pubmed: '33270898'
@@ -23975,6 +24343,25 @@ hao:
   repository: https://github.com/hymao/hao
   uri_format: http://purl.obolibrary.org/obo/HAO_$1
   version: '2023-06-01'
+hao.ref:
+  contact:
+    email: diapriid@gmail.com
+    github: mjy
+    name: Matt Yoder
+    orcid: 0000-0002-5640-5491
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Literature references in the Hymenoptera Anatomy Ontology Portal
+  example: '98127'
+  github_request_issue: 1322
+  homepage: http://hymao.org
+  name: Hymenoptera Anatomy Reference
+  pattern: ^\d+$
+  preferred_prefix: hao.ref
+  uri_format: http://api.hymao.org/api/ref/$1
 hathitrust:
   contributor:
     email: cthoyt@gmail.com
@@ -24453,6 +24840,7 @@ hgnc.genefamily:
   example: '2029'
   has_canonical: hgnc.genegroup
   homepage: http://www.genenames.org
+  license: CC0-1.0
   mappings:
     biocontext: HGNC.GENEFAMILY
     miriam: hgnc.genefamily
@@ -24473,6 +24861,7 @@ hgnc.genegroup:
     a display of curated hierarchical relationships between families.
   example: '141'
   homepage: https://www.genenames.org
+  license: CC0-1.0
   mappings:
     miriam: hgnc.genegroup
   name: HGNC Gene Group
@@ -24486,6 +24875,7 @@ hgnc.symbol:
     refers to records using the HGNC symbol.
   example: DAPK1
   homepage: https://www.genenames.org/
+  license: CC0-1.0
   mappings:
     biocontext: HGNC.SYMBOL
     miriam: hgnc.symbol
@@ -24957,6 +25347,8 @@ hogenom:
     title: Databases of homologous gene families for comparative genomics.
   uri_format: http://pbil.univ-lyon1.fr/cgi-bin/view-tree.pl?db=HOGENOM5&query=$1
 hoip:
+  comment: The ontology file was deleted in https://github.com/yuki-yamagata/hoip/commit/73fcfa114d71a76a984a9ce1166e50d7ebafe158,
+    making it impossible to link to the ontology afterwards.
   contact:
     email: yuki.yamagata@riken.jp
     github: yuki-yamagata
@@ -24969,7 +25361,7 @@ hoip:
     orcid: 0000-0001-5705-7831
   description: An ontology of processes triggered by homeostatic imbalance, with a
     focus on COVID-19 infectious processes.
-  download_owl: https://github.com/yuki-yamagata/hoip/raw/master/hoip_0308.owl
+  download_owl: https://github.com/yuki-yamagata/hoip/blob/c70ae6d4868ca951d075cec409e863fa4abe19b2/hoip_0308.owl
   example: 0040379
   github_request_issue: 668
   homepage: https://knowledge.brc.riken.jp/bioresource/ontology/HOIP
@@ -25161,6 +25553,38 @@ homologene:
     title: Database resources of the National Center for Biotechnology Information
     year: 2010
   uri_format: https://www.ncbi.nlm.nih.gov/homologene/$1
+homosaurus:
+  appears_in:
+  - gsso
+  contact:
+    email: adolphok@vcu.edu
+    name: Keahi Kaʻiwalani Adolpho
+    orcid: 0000-0003-1769-112X
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An international LGBTQ+ linked data vocabulary
+  example: queerNewspapers
+  github_request_issue: 1310
+  homepage: http://homosaurus.org
+  license: CC BY NC-ND 4.0
+  name: Homosaurus
+  preferred_prefix: homosaurus
+  providers:
+  - code: homosaurus.v2
+    description: Homosaurus API v2
+    homepage: https://homosaurus.org
+    name: Homosaurus API v2
+    uri_format: http://homosaurus.org/v2/$1
+  - code: homosaurus.v3
+    description: Homosaurus API v3
+    homepage: https://homosaurus.org
+    name: Homosaurus API v3
+    uri_format: http://homosaurus.org/v3/$1
+  repository: https://github.com/DigitalTransgenderArchive/homosaurus_site
+  uri_format: http://homosaurus.org/terms/$1
 horizon_discovery:
   description: Cell line collections (Providers)
   example: HD+118-001
@@ -25329,7 +25753,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2024-08-13'
+  version: '2024-12-12'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -26144,17 +26568,24 @@ icd10pcs:
   preferred_prefix: icd10pcs
   uri_format: https://www.findacode.com/code.php?set=ICD10PCS&c=$1
 icd11:
-  comment: The codes, such as RA00.0, need their own namespace.
+  comment: Clinical codes from an ICD-11 linearization (a structured subset of the
+    ICD-11 Foundation tailored for specific use cases, such as morbidity or mortality
+    coding), such as RA00.0, have their own namespace (icd11.code).
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Diagnostic tool for epidemiology, health management and clinical purposes,
-    maintained by the World Health Organization (WHO). It provides a system of diagnostic
-    codes for classifying diseases, including nuanced classifications of a wide variety
-    of signs, symptoms, abnormal findings, complaints, social circumstances, and external
-    causes of injury or disease.
+  contributor_extras:
+  - email: nicolas.matentzoglu@gmail.com
+    github: matentzn
+    name: Nicolas Matentzoglu
+    orcid: 0000-0002-7356-1779
+  description: The ICD-11 Foundation is the comprehensive base layer of the International
+    Classification of Diseases, encompassing all diagnostic concepts, definitions,
+    and semantic relationships, designed for flexibility and adaptability across various
+    use cases, including research, ontology development, and detailed health data
+    analysis.
   example: '402558626'
   homepage: https://icd.who.int/
   keywords:
@@ -26168,18 +26599,61 @@ icd11:
   - morbidity
   license: CC-BY-ND-3.0-IGO
   mappings:
+    biolink: icd11.foundation
     fairsharing: FAIRsharing.97805c
     hl7: 2.16.840.1.113883.6.347
     integbio: nbdc02556
     wikidata: P7807
-  name: International Classification of Diseases, 11th Revision
+  name: International Classification of Diseases, 11th Revision (Foundation Component)
   pattern: ^[1-9]\d*$
   preferred_prefix: icd11
+  providers:
+  - code: api
+    description: This goes to an API endpoint. For more information, see https://icd.who.int/icdapi
+    homepage: https://icd.who.int
+    name: ICD 11 API Endpoint
+    uri_format: http://id.who.int/icd/entity/$1
+  - code: foundation
+    description: This goes to the Foundation interface to ICD11
+    homepage: https://icd.who.int/browse/2024-01/foundation
+    name: ICD 11 Foundation
+    uri_format: https://icd.who.int/browse/2024-01/foundation/en#$1
+  - code: mms
+    description: This goes to the Mortality and Morbidity Statistics interface to
+      ICD11
+    homepage: https://icd.who.int/browse/2024-01/mms
+    name: ICD 11 Mortality and Morbidity Statistics
+    uri_format: https://icd.who.int/browse/2024-01/mms/en#$1
+  rdf_uri_format: http://id.who.int/icd/entity/$1
   references:
   - https://icd.who.int/docs/icd-api/license/
   synonyms:
   - ICD-11
+  - ICD11
+  - icd11.foundation
   uri_format: https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1
+icd11.code:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ICD-11 code is a standardized alphanumeric identifier used to classify
+    and document diseases, conditions, and health-related issues for global healthcare
+    and statistical purposes.
+  example: NA06.8D
+  example_extras:
+  - CA71.2
+  - FB82.00
+  - XM34M9
+  github_request_issue: 1349
+  homepage: https://icd.who.int/en
+  license: http://www.who.int/about/licensing/copyright_form/en
+  name: ICD 11 Codes
+  pattern: ^[0-9A-Z]+(\.[0-9A-Z]+)?$
+  preferred_prefix: icd11.code
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/1344
 icd9:
   contributor:
     email: cthoyt@gmail.com
@@ -26473,6 +26947,7 @@ icechem:
   preferred_prefix: icechem
   uri_format: https://ice.ntp.niehs.nih.gov/api/v1/search?chemid=$1
 iceo:
+  comment: ICEO is not consistent about its identfiers like ICEO:0000595:1  and ICEO:0000595_1
   contact:
     email: liumeng94@sjtu.edu.cn
     github: Lemon-Liu
@@ -26569,7 +27044,7 @@ icf:
   name: International Classification of Functioning, Disability and Health
   pattern: ^\d+$
   preferred_prefix: icf
-  uri_format: http://id.who.int/icd/entity/$1
+  uri_format: https://icd.who.int/dev11/l-icf/en#/http://id.who.int/icd/entity/$1
 iclc:
   description: Cell line collections (Providers)
   example: ATL98012
@@ -26914,13 +27389,28 @@ idpo:
   example: '00056'
   homepage: https://www.disprot.org/ontology
   keywords:
+  - protein analysis
   - protein structure
   - proteins
+  - proteomics
   - structural biochemistry
   - structural bioinformatics
+  - structural biology
+  mappings:
+    fairsharing: FAIRsharing.bc973b
   name: Intrinsically Disordered Proteins Ontology
   pattern: ^\d{5}$
   preferred_prefix: idpo
+  publications:
+  - doi: 10.1093/nar/gkad928
+    pubmed: '37904585'
+    title: 'DisProt in 2024: improving function annotation of intrinsically disordered
+      proteins'
+    year: 2024
+  - doi: 10.1093/database/baae009
+    title: Best practices for the manual curation of intrinsically disordered proteins
+      in DisProt
+    year: 2024
   uri_format: https://www.disprot.org/idpo/IDPO:$1
 idr:
   contact:
@@ -27341,13 +27831,17 @@ igsn:
   example: AU124
   homepage: http://www.geosamples.org/
   keywords:
+  - archaeology
   - citation
+  - data management
   - earth science
   - environmental science
   - geochemistry
   - geology
   - hydrogeology
+  - persistent identifier
   - physical samples
+  - resource metadata
   logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline
   mappings:
     fairsharing: FAIRsharing.c7f365
@@ -28100,6 +28594,23 @@ inchikey:
     name: Scholia
     uri_format: https://scholia.toolforge.org/inchikey/$1
   uri_format: http://legacy.chemspider.com/inchikey=$1
+informall:
+  appears_in:
+  - doid
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The InformAll database was developed to provide a credible source of
+    information on allergenic food materials of both plant and animal origin.
+  example: '410'
+  github_request_issue: 1311
+  homepage: http://research.bmh.manchester.ac.uk/informAll/
+  name: InformAll Allergenic Food Database
+  pattern: ^\d+$
+  preferred_prefix: informall
+  uri_format: http://research.bmh.manchester.ac.uk/informall/allergenic-food/?FoodId=$1
 inhand:
   comment: This nomenclature is available via email. Truly a disgrace.
   contact:
@@ -28300,6 +28811,11 @@ insdc:
     name: INSDC through Nucleotide database at NCBI
     uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   publications:
+  - doi: 10.1093/nar/gkae1058
+    pubmed: '39535044'
+    title: 'The international nucleotide sequence database collaboration (INSDC):
+      enhancing global participation'
+    year: 2024
   - doi: 10.1093/nar/18.6.1517
     pmc: PMC330520
     pubmed: '2326192'
@@ -28671,6 +29187,7 @@ interpro:
   - obo
   - ontology
   - protein
+  license: CC0-1.0
   mappings:
     biocontext: IPR
     biolink: interpro
@@ -28706,6 +29223,10 @@ interpro:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/interpro:$1
   publications:
+  - doi: 10.1093/nar/gkae1082
+    pubmed: '39565202'
+    title: 'InterPro: the protein sequence classification resource in 2025'
+    year: 2024
   - doi: 10.1093/nar/gkac993
     pmc: PMC9825450
     pubmed: '36350672'
@@ -29006,6 +29527,11 @@ isbn:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/isbn:$1
+  - code: google.isbn
+    description: Google Books provider for ISBN numbers
+    homepage: https://books.google.com
+    name: Google Books
+    uri_format: https://books.google.com/books?isbn=$1
   - code: worldcat
     description: ISBN database at WorldCat
     homepage: http://www.worldcat.org/
@@ -29107,6 +29633,12 @@ isni:
   name: International Standard Name Identifier
   pattern: ^[0-9]{15}[0-9X]{1}$
   preferred_prefix: isni
+  providers:
+  - code: isni.short
+    description: Unqualified ISNI URI
+    homepage: http://www.isni.org
+    name: ISNI short
+    uri_format: http://www.isni.org/$1
   uri_format: http://www.isni.org/isni/$1
 iso.3166:
   contributor:
@@ -29237,6 +29769,7 @@ itis:
   - biodiversity
   - life science
   - taxonomy
+  license: CC0-1.0
   mappings:
     bartoc: '17791'
     fairsharing: FAIRsharing.t19hpa
@@ -29473,6 +30006,8 @@ jaxmice:
   name: JAX Mice
   pattern: ^\d+$
   preferred_prefix: jaxmice
+  synonyms:
+  - jaxMiceUID
   uri_format: http://jaxmice.jax.org/strain/$1.html
 jcggdb:
   description: JCGGDB (Japan Consortium for Glycobiology and Glycotechnology DataBase)
@@ -29549,13 +30084,12 @@ jcsd:
   example: J55.713G
   homepage: http://jglobal.jst.go.jp/en/
   keywords:
-  - chemical
-  - structure
+  - drug
   mappings:
     biocontext: JCSD
     miriam: jcsd
     n2t: jcsd
-    prefixcommons: jcsd
+    prefixcommons: nikkaji
   name: Japan Chemical Substance Dictionary
   pattern: ^J\d{1,3}(\.\d{3})?(\.\d{1,3})?[A-Za-z]$
   preferred_prefix: jcsd
@@ -29568,7 +30102,15 @@ jcsd:
       data providers.
     homepage: https://bio2rdf.org
     name: Bio2RDF
-    uri_format: http://bio2rdf.org/jcsd:$1
+    uri_format: http://bio2rdf.org/nikkaji:$1
+  - code: stirdf
+    description: Appears in iobc
+    homepage: http://stirdf.jst.go.jp
+    name: Unknown
+    uri_format: http://stirdf.jst.go.jp/cde/nikkaji/$1
+  synonyms:
+  - Nikkaji number
+  - nikkaji
   uri_format: http://jglobal.jst.go.jp/en/redirect?Nikkaji_No=$1
 jecfa:
   contact:
@@ -30082,6 +30624,7 @@ kegg.genome:
     sequenced.
   example: T06648
   homepage: http://www.genome.jp/kegg/catalog/org_list.html
+  license: https://www.kegg.jp/kegg/legal.html
   mappings:
     biocontext: KEGG.GENOME
     integbio: nbdc00816
@@ -30558,6 +31101,25 @@ lbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/LBO_$1
   repository: https://github.com/AnimalGenome/livestock-breed-ontology
   uri_format: https://bioportal.bioontology.org/ontologies/LBO/?p=classes&conceptid=http://purl.obolibrary.org/obo/LBO_$1
+lccn:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: LCCN Permalinks are persistent URLs for bibliographic records in the
+    LC Catalog and authority records in LC Authorities. These links are constructed
+    using the record's LCCN (or Library of Congress Control Number), an identifier
+    assigned by the Library of Congress to bibliographic and authority records. LCCN
+    Permalinks are also available for citation records in the Handbook for Latin American
+    Studies (HLAS). [from homepage]
+  example: '2011488555'
+  github_request_issue: 1310
+  homepage: https://lccn.loc.gov
+  name: Library of Congress Control Number
+  pattern: ^\d+$
+  preferred_prefix: lccn
+  uri_format: https://lccn.loc.gov/$1
 lcsh:
   contributor:
     email: cthoyt@gmail.com
@@ -30921,6 +31483,23 @@ linguist:
   preferred_prefix: linguist
   repository: https://github.com/github/linguist
   uri_format: https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml#$1
+linguist.gold:
+  comment: This resource has been deprecated and was last released in 2010. The homepage
+    links to a zip folder that includes an OWL artifact, but it doesn't follow any
+    typical standards. The ontology browser is not perfect, it only works for classes.
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  example: Term
+  github_request_issue: 1310
+  homepage: https://linguistlist.org/gold/
+  name: Genderal Ontology for Linguistic Description
+  preferred_prefix: linguist.gold
+  rdf_uri_format: http://purl.org/linguistics/gold/$1
+  uri_format: https://lambdamusic.github.io/ontospy-examples/gold-2010owl/class-gold$1.html
 linkedin:
   contributor:
     email: cthoyt@gmail.com
@@ -31808,6 +32387,44 @@ mao:
     uri_format: http://bio2rdf.org/mao:$1
   rdf_uri_format: http://purl.obolibrary.org/obo/MAO_$1
   uri_format: http://purl.obolibrary.org/obo/MAO_$1
+markerdb:
+  contact:
+    email: dwishart@ualberta.ca
+    github: DavidWishartLab
+    name: David S. Wishart
+    orcid: 0000-0002-3207-2434
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: MarkerDB is a freely available electronic database that attempts to
+    consolidate information on all known clinical and pre-clinical biomarkers into
+    a single resource. It provides identifiers for known clinical and pre-clinical
+    biomarkers. Each entry provides detailed annotations, including biomarker descriptions,
+    associated conditions, specificity, sensitivity, molecular structures, chromosomal
+    locations, and clinical approval status.
+  example: MDB00000001
+  github_request_issue: 1330
+  homepage: https://markerdb.ca
+  name: MarkerDB
+  pattern: ^MDB\d{8}$
+  preferred_prefix: markerdb
+  publications:
+  - doi: 10.1093/nar/gkae1056
+    pubmed: '39535054'
+    title: 'MarkerDB 2.0: a comprehensive molecular biomarker database for 2025'
+    year: 2024
+  - doi: 10.1093/nar/gkaa1067
+    pmc: PMC7778954
+    pubmed: '33245771'
+    title: 'MarkerDB: an online database of molecular biomarkers'
+    year: 2021
+  reviewer:
+    email: benjamin_gyori@hms.harvard.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
 massbank:
   contact:
     email: tobias.schulze@ufz.de
@@ -32249,6 +32866,26 @@ mcro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MCRO_$1
   repository: https://github.com/UTHealth-Ontology/MCRO
   uri_format: https://www.ebi.ac.uk/ols4/ontologies/mcro/classes?obo_id=MCRO:$1
+mdl:
+  appears_in:
+  - xlmod
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The MDL number contains a unique identification number for each reaction
+    and variation. The format is RXXXnnnnnnnn. R indicates a reaction, XXX indicates
+    which database contains the reaction record. The numeric portion, nnnnnnnn, is
+    an 8-digit number. [wikipedia]
+  example: MFCD00011659
+  github_request_issue: 1311
+  homepage: https://en.wikipedia.org/wiki/Chemical_file_format#MDL_number
+  name: Molecular Design Limited Hash
+  pattern: ^\w{4}\d{8}$
+  preferred_prefix: mdl
+  references:
+  - https://en.wikipedia.org/wiki/Chemical_file_format#MDL_number
 mdm:
   contact:
     email: bernd.mueller@zbmed.de
@@ -32623,6 +33260,21 @@ merops.family:
   references:
   - https://github.com/biopragmatics/bioregistry/issues/439
   uri_format: https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1
+merriamwebster:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Online Dictionary
+  example: buccal_gland
+  github_request_issue: 1310
+  homepage: https://www.merriam-webster.com
+  name: Merriam Webster Dictionary
+  preferred_prefix: merriamwebster
+  synonyms:
+  - merriam_webster
+  uri_format: https://www.merriam-webster.com/dictionary/$1
 mesh:
   contact:
     email: custserv@nlm.nih.gov
@@ -32671,7 +33323,7 @@ mesh:
     togoid: Mesh
     wikidata: P486
   name: Medical Subject Headings
-  pattern: ^(C|D)\d{6,9}$
+  pattern: ^(C|D|M)\d{6,9}$
   preferred_prefix: mesh
   providers:
   - code: bio2rdf
@@ -32689,6 +33341,11 @@ mesh:
     homepage: https://bioportal.bioontology.org/ontologies/MESH
     name: BioPortal
     uri_format: http://purl.bioontology.org/ontology/MESH/$1
+  - code: mesh.2008
+    description: Appears in birnlex
+    homepage: http://id.nlm.nih.gov/mesh/
+    name: Legacy 2008 MeSH URL
+    uri_format: http://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&term=$1
   - code: mesh.json-ld
     description: The MeSH version in JSON-LD.
     first_party: true
@@ -32724,6 +33381,7 @@ mesh:
   - MESH_SUPPLEMENTAL_RECORD_UI
   - MSH
   - MSH2010_2010_02_22
+  - meshUID
   uri_format: https://meshb.nlm.nih.gov/record/ui?ui=$1
 mesh.2012:
   description: MeSH (Medical Subject Headings) is the National Library of Medicine's
@@ -33293,7 +33951,7 @@ mfoem:
   rdf_uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
   repository: https://github.com/jannahastings/emotion-ontology
   uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
-  version: '2024-10-31'
+  version: '2025-01-06'
 mfomd:
   contact:
     email: janna.hastings@gmail.com
@@ -34051,6 +34709,7 @@ mirbase:
   - biology
   - gene
   - rna
+  license: public domain
   mappings:
     biocontext: MIRBASE
     biolink: mirbase
@@ -34125,6 +34784,7 @@ mirbase.family:
     annotation data are also available for download.
   example: MIPF0000002
   homepage: http://www.mirbase.org/
+  license: public domain
   name: miRBase Families
   preferred_prefix: mirbase.family
   synonyms:
@@ -34139,6 +34799,7 @@ mirbase.mature:
   keywords:
   - nucleotide
   - sequence
+  license: public domain
   mappings:
     biocontext: MIRBASE.MATURE
     miriam: mirbase.mature
@@ -34302,7 +34963,7 @@ mirnao:
     orcid: 0000-0002-1635-4810
   deprecated: true
   description: An application ontology for use with miRNA databases.
-  download_owl: http://purl.obolibrary.org/obo/mirnao.owl
+  download_owl: http://aber-owl.net/media/ontologies/MIRNAO/11/mirnao.owl
   homepage: http://code.google.com/p/mirna-ontology/
   keywords:
   - obo
@@ -34623,7 +35284,7 @@ mmmp.biomaps:
   mappings:
     biocontext: MMMP:BIOMAPS
     biolink: mmmp.biomaps
-    miriam: mmmp:biomaps
+    miriam: mmmp.biomaps
     n2t: biomaps
     prefixcommons: mmmp
   name: Melanoma Molecular Map Project Biomaps
@@ -34690,7 +35351,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.143'
+  version: '2.145'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -35227,6 +35888,12 @@ mondo:
   name: Mondo Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: MONDO
+  providers:
+  - code: clinicalgenome
+    description: Clinical genome condition
+    homepage: https://search.clinicalgenome.org
+    name: Clinical Genome
+    uri_format: https://search.clinicalgenome.org/kb/conditions/MONDO:$1
   publications:
   - doi: 10.1093/nar/gkw1128
     pubmed: '27899636'
@@ -35240,7 +35907,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2024-11-05'
+  version: '2025-01-07'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -35421,7 +36088,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2024-11-12'
+  version: '2024-12-18'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -35661,15 +36328,22 @@ msigdb:
     gene sets for use with GSEA software. From this web site, you can
   example: M1
   homepage: https://www.gsea-msigdb.org
+  license: CC-BY-4.0
   mappings:
     biolink: MSigDB
     integbio: nbdc02550
   name: Molecular Signatures Database
   pattern: ^M\d+$
   preferred_prefix: msigdb
+  providers:
+  - code: biopragmatics
+    description: An OBO to Website of MMSigDB
+    homepage: https://biopragmatics.github.io/providers/msigdb/
+    name: MMSigDB from Biopragmatics
+    uri_format: https://biopragmatics.github.io/providers/msigdb/$1
   synonyms:
   - msig
-  uri_format: https://biopragmatics.github.io/providers/msigdb/$1
+  uri_format: https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/$1
 msio:
   contact:
     email: philippe.rocca-serra@oerc.ox.ac.uk
@@ -36162,7 +36836,7 @@ nando:
   description: Nanbyo Disease Ontology (NANDO) is the ontology creating a comprehensive
     hierarchical controlled vocabulary for intractable and rare disease (i.e., nanbyo)
     representation in Japan.
-  download_owl: http://aber-owl.net/media/ontologies/NANDO/15/nando.owl
+  download_owl: http://aber-owl.net/media/ontologies/NANDO/16/nando.owl
   example: '1200031'
   homepage: https://nanbyodata.jp/
   keywords:
@@ -36272,6 +36946,219 @@ narcis:
   pattern: ^oai\:cwi\.nl\:\d+$
   preferred_prefix: narcis
   uri_format: http://www.narcis.nl/publication/RecordID/$1
+nasaosdr.biospecimen:
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for biospecimens used in experiments that investigate biological
+    and health responses of terrestrial life to spaceflight
+  example: '7943'
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Biospecimen
+  pattern: ^\d+$
+  preferred_prefix: nasaosdr.biospecimen
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/biospecimens/$1
+nasaosdr.experiment:
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for space-related data from experiments that investigate
+    biological and health responses of terrestrial life to spaceflight
+  example: OS-27
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Experiment
+  pattern: ^OS-\d+$
+  preferred_prefix: nasaosdr.experiment
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/experiments/$1
+nasaosdr.hardware:
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for hardware used in experiments that investigate biological
+    and health responses of terrestrial life to spaceflight
+  example: '2011'
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Hardware
+  pattern: ^\d+$
+  preferred_prefix: nasaosdr.hardware
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/hardware/$1
+nasaosdr.mission:
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for missions associated with experiments that investigate
+    biological and health responses of terrestrial life to spaceflight
+  example: ARCBedrest
+  example_extras:
+  - STS-46
+  - Bion 11
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Mission
+  pattern: ^.+$
+  preferred_prefix: nasaosdr.mission
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/missions/$1
+nasaosdr.payload:
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for payloads associated with experiments that investigate
+    biological and health responses of terrestrial life to spaceflight
+  example: VEG-03D
+  example_extras:
+  - NanoRacks-UF-Squids-1
+  - PSE.02
+  - HyperG2-SIMBA2
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Payload
+  pattern: ^.+$
+  preferred_prefix: nasaosdr.payload
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/payloads/$1
+nasaosdr.study:
+  comment: NASA OSDR is NASA's new integrated life sciences data archive which encompasses
+    NASA GeneLAB (ngl), their old database for omics data. The studies from ngl are
+    relabelled with new identifier formats, thus this is curated as a new prefix
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for space-related data from studies that investigate biological
+    and health responses of terrestrial life to spaceflight
+  example: OSD-678
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Study
+  pattern: ^OSD-\d+$
+  preferred_prefix: nasaosdr.study
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/studies/$1
+nasaosdr.subject:
+  contact:
+    email: sylvain.v.costes@nasa.gov
+    name: Sylvain V Costes
+    orcid: 0000-0002-8542-2389
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for subjects of experiments that investigate biological
+    and health responses of terrestrial life to spaceflight
+  example: '58'
+  github_request_issue: 1298
+  homepage: https://www.nasa.gov/osdr
+  name: NASA Open Science Data Repository Subject
+  pattern: ^\d+$
+  preferred_prefix: nasaosdr.subject
+  publications:
+  - doi: 10.1093/nar/gkae1116
+    pubmed: '39558178'
+    title: 'NASA open science data repository: open science for life in space'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://osdr.nasa.gov/bio/repo/data/subjects/$1
 nasc:
   contact:
     email: sean@arabidopsis.org.uk
@@ -36510,6 +37397,27 @@ ncbi.assembly:
   pattern: ^[a-zA-Z0-9_\.]+$
   preferred_prefix: ncbi.assembly
   uri_format: https://www.ncbi.nlm.nih.gov/datasets/genome/$1
+ncbi.gc:
+  comment: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Genetic code, mitochontrial genetic code, and other linked information
+    to NCBI taxonomy entries.
+  example: '11'
+  homepage: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html
+  license: public domain
+  name: Genetic Code
+  pattern: ^\d+$
+  preferred_prefix: ncbi.gc
+  references:
+  - https://github.com/obophenotype/ncbitaxon/issues/47
+  synonyms:
+  - gc
+  - gc_id
+  uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1
 ncbi.genome:
   contributor:
     email: cthoyt@gmail.com
@@ -36891,12 +37799,13 @@ ncbitaxon:
   - NCBI_taxid
   - TAX
   - TaxonomyID
+  - ncbiTaxUID
   - taxid
   - taxon
   - taxonomy
   - uniprot.taxonomy
   uri_format: http://purl.obolibrary.org/obo/NCBITaxon_$1
-  version: '2024-07-03'
+  version: '2024-11-25'
 nci.drug:
   description: identifier of an entry in the NCI Drug Dictionary
   example: beta-carotene
@@ -37406,6 +38315,12 @@ neuronames:
   name: NeuroNames
   pattern: ^\d+$
   preferred_prefix: neuronames
+  providers:
+  - code: neuronames.alt1
+    description: Alternate URI inside neuronames, appearning in birnlex
+    homepage: http://braininfo.rprc.washington.edu
+    name: Neuronames Alternate 1
+    uri_format: http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=$1
   references:
   - https://en.wikipedia.org/wiki/NeuroNames
   synonyms:
@@ -37973,10 +38888,13 @@ nlm:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Bibliographic data for all the journals, books, audiovisuals, computer
-    software, electronic resources and other materials that are in the library's holdings.
+  description: The NLM Catalog provides access to NLM bibliographic data for journals,
+    books, audiovisuals, computer software, electronic resources and other materials.
+    Links to the library's holdings in LocatorPlus, NLM's online public access catalog,
+    are also provided. [from homepage]
   example: '101775319'
   homepage: https://www.ncbi.nlm.nih.gov/nlmcatalog
+  license: public domain
   mappings:
     bartoc: '528'
     biolink: NLMID
@@ -37984,6 +38902,21 @@ nlm:
   pattern: ^\d+$
   preferred_prefix: nlm
   uri_format: https://www.ncbi.nlm.nih.gov/nlmcatalog/$1
+nlm.publisher:
+  appears_in:
+  - nlm
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Publisher short codes appearin in the NLM Catalog.
+  example: wiley
+  github_request_issue: 1318
+  homepage: https://ftp.ncbi.nlm.nih.gov/pubmed/xmlprovidernames.txt
+  license: public domain
+  name: NLM Publisher Codes
+  preferred_prefix: nlm.publisher
 nlx.anat:
   contact:
     email: tgbugs@gmail.com
@@ -38771,6 +39704,9 @@ novus:
   preferred_prefix: novus
   uri_format: https://www.novusbio.com/products/$1
 npass:
+  comment: This resource does not have an explicit license. The [lotus database](https://github.com/lotusnprod/lotus-processor/blob/main/docs/licenses/npass.md)
+    inferred that the CC-BY-NC license from the paper might be good enough for applying
+    to the data itself.
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -38783,9 +39719,53 @@ npass:
     '
   example: NPC139585
   homepage: http://bidd.group/NPASS/
+  license: CC-BY-NC
   name: Natural Product Activity and Species Source Database
   pattern: ^NPC\d+$
   preferred_prefix: npass
+  uri_format: https://bidd.group/NPASS/compound.php?compoundID=$1
+npatlas:
+  contact:
+    email: rliningt@sfu.ca
+    name: Roger Linington
+    orcid: 0000-0003-1818-4971
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifiers for microbially derived natural products that contains
+    compound structures, producing organism taxonomy, biosynthetic and chemical properties.
+  example: NPA000001
+  github_request_issue: 1295
+  homepage: https://www.npatlas.org
+  name: The Natural Products Atlas
+  pattern: ^NPA\d{6}$
+  preferred_prefix: npatlas
+  publications:
+  - doi: 10.1093/nar/gkae1093
+    pubmed: '39588755'
+    title: 'The Natural Products Atlas 3.0: extending the database of microbially
+      derived natural products'
+    year: 2024
+  - doi: 10.1093/nar/gkab941
+    pmc: PMC8728154
+    pubmed: '34718710'
+    title: 'The Natural Products Atlas 2.0: a database of microbially-derived natural
+      products'
+    year: 2021
+  - doi: 10.1021/acscentsci.9b00806
+    pmc: PMC6891855
+    pubmed: '31807684'
+    title: 'The Natural Products Atlas: An Open Access Knowledge Base for Microbial
+      Natural Products Discovery'
+    year: 2019
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.npatlas.org/explore/compounds/$1
 npm:
   contributor:
     email: cthoyt@gmail.com
@@ -39234,7 +40214,7 @@ oba:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBA_$1
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
-  version: '2024-09-12'
+  version: '2024-11-26'
 oban:
   contributor:
     email: cthoyt@gmail.com
@@ -39439,7 +40419,7 @@ obi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBI_$1
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
-  version: '2024-10-25'
+  version: '2024-12-05'
 obib:
   contact:
     email: jmwhorton@uams.edu
@@ -39550,6 +40530,7 @@ oboe:
   mappings:
     aberowl: OBOE
     agroportal: OBOE
+    bioportal: OBOE
     fairsharing: FAIRsharing.5970hq
   name: The Extensible Observation Ontology
   preferred_prefix: oboe
@@ -40711,6 +41692,7 @@ omit:
   version: dev
 omo:
   appears_in:
+  - cl
   - pcl
   - uberon
   contact:
@@ -40892,7 +41874,7 @@ omrse:
   rdf_uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
   repository: https://github.com/mcwdsi/OMRSE
   uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
-  version: '2024-08-14'
+  version: '2024-11-25'
 omx.dataset:
   contributor:
     email: cthoyt@gmail.com
@@ -41144,6 +42126,29 @@ ontoneo:
   repository: https://github.com/ontoneo-project/Ontoneo
   uri_format: http://purl.obolibrary.org/obo/ONTONEO_$1
   version: '2021-04-29'
+ontorxn:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoRXN is an ontology for the description of reaction networks as
+    undirected graphs characterized by energies.
+  download_owl: https://gitlab.com/dgarayr/ontorxn/-/raw/prod/OntoRXN.owl
+  example: hasCalculation
+  github_request_issue: 1311
+  homepage: https://gitlab.com/dgarayr/ontorxn
+  keywords:
+  - ontology
+  license: CC-BY-4.0
+  name: OntoRXN
+  preferred_prefix: ontorxn
+  publications:
+  - doi: 10.1186/s13321-022-00610-x
+    pmc: PMC9153116
+    pubmed: '35637523'
+    title: 'Chemical reaction network knowledge graphs: the OntoRXN ontology'
+    year: 2022
 oostt:
   contact:
     email: mbrochhausen@gmail.com
@@ -41393,6 +42398,22 @@ opmi:
   repository: https://github.com/OPMI/opmi
   uri_format: http://purl.obolibrary.org/obo/OPMI_$1
   version: 1.0.166
+orangebook:
+  comment: The web pages on the digital edition can be constructed with some programmatic
+    logic, but not directly
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The first number is the chapter then the remainder are subsections.
+  example: 10.2.1.1.3
+  github_request_issue: 1311
+  homepage: https://media.iupac.org/publications/analytical_compendium/
+  name: IUPAC Compendium of Analytical Nomenclature (Orange Book)
+  preferred_prefix: orangebook
+  references:
+  - https://iupac.org/what-we-do/books/orangebook/
 orcid:
   contact:
     email: w.simpson@orcid.org
@@ -41539,10 +42560,15 @@ ornaseq:
   keywords:
   - obo
   - ontology
+  - rna sequencing
+  - single cell
+  - single cell rna-seq
+  - transcriptomics
   license: CC-BY-4.0
   mappings:
     aberowl: ORNASEQ
     bioportal: ORNASEQ
+    fairsharing: FAIRsharing.e6f303
     obofoundry: ornaseq
     ols: ornaseq
     ontobee: ORNASEQ
@@ -41651,6 +42677,12 @@ orphanet.ordo:
   name: Orphanet Rare Disease Ontology
   pattern: ^C?\d+$
   preferred_prefix: orphanet.ordo
+  providers:
+  - code: legacy
+    description: This link is no longer live
+    homepage: https://www.orpha.net
+    name: Legacy Orphanet Expert
+    uri_format: https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=$1
   publications:
   - pubmed: '22874158'
     title: 'Rare diseases knowledge management: the contribution of proximity measurements
@@ -41659,7 +42691,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.5'
+  version: '4.6'
 orth:
   contact:
     email: jfernand@um.es
@@ -42470,6 +43502,7 @@ pathbank:
   - proteomics
   - systems biology
   - transcriptomics
+  license: ODbL-1.0
   mappings:
     fairsharing: FAIRsharing.3xwMon
     togoid: Pathbank
@@ -42900,7 +43933,7 @@ pcl:
   rdf_uri_format: http://purl.obolibrary.org/obo/PCL_$1
   repository: https://github.com/obophenotype/provisional_cell_ontology
   uri_format: http://purl.obolibrary.org/obo/PCL_$1
-  version: '2024-07-11'
+  version: '2025-01-08'
 pco:
   appears_in:
   - ecocore
@@ -43702,6 +44735,7 @@ pfam:
   - biology
   - domain
   - protein
+  license: CC0-1.0
   mappings:
     biocontext: PFAM
     edam: '1138'
@@ -43758,6 +44792,10 @@ pfam:
     title: 'Pfam: a comprehensive database of protein domain families based on seed
       alignments'
     year: 1997
+  - doi: 10.1093/nar/gkae997
+    pubmed: '39540428'
+    title: 'The Pfam protein families database: embracing AI/ML'
+    year: 2024
   - doi: 10.1093/nar/gkaa913
     pmc: PMC7779014
     pubmed: '33125078'
@@ -43828,6 +44866,7 @@ pfam.clan:
   description: Higher order grouping of Pfam families
   example: CL0192
   homepage: https://pfam.xfam.org
+  license: CC0-1.0
   mappings:
     edam: '2758'
   name: Pfam Clans
@@ -44630,7 +45669,7 @@ pid.pathway:
     of information about known human biomolecular interactions and key cellular processes
     assembled into signaling pathways. This datatype provides access to pathway information.
   example: eff796f3-6195-11e5-8ac5-06603eb7f303
-  homepage: http://pid.nci.nih.gov/
+  homepage: https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf
   keywords:
   - gene
   - life science
@@ -45049,6 +46088,35 @@ plo:
   preferred_prefix: PLO
   rdf_uri_format: http://purl.obolibrary.org/obo/PLO_$1
   uri_format: http://purl.obolibrary.org/obo/PLO_$1
+plos:
+  contact:
+    email: subjectareas@plos.org
+    name: PLOS Taxonomy Team
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontologization of Public Library of Science (PLOS) journal keywords
+    and topics. It's not clear how the IDs correspond to the actual pages. Appears
+    in ADCAD.
+  example: '1443'
+  github_request_issue: 1318
+  homepage: http://journals.plos.org
+  keywords:
+  - ontology
+  - publication
+  - subject agnostic
+  mappings:
+    aberowl: PLOSTHES
+    bioportal: PLOSTHES
+    fairsharing: FAIRsharing.2ndf9r
+  name: PLOS Thesaurus
+  pattern: ^\d+$
+  preferred_prefix: plos
+  synonyms:
+  - PLOSTHES
+  uri_format: http://localhost/plosthes.2017-1#$1
 pmap.cutdb:
   contact:
     email: adam@burnham.org
@@ -45539,6 +46607,7 @@ pombase:
   homepage: https://www.pombase.org/
   keywords:
   - life science
+  license: CC-BY-4.0
   mappings:
     biocontext: PomBase
     biolink: PomBase
@@ -45739,7 +46808,7 @@ ppo:
   rdf_uri_format: http://purl.obolibrary.org/obo/PPO_$1
   repository: https://github.com/PlantPhenoOntology/PPO
   uri_format: http://purl.obolibrary.org/obo/PPO_$1
-  version: '2018-10-26'
+  version: '2024-07-09'
 ppr:
   contributor:
     email: cthoyt@gmail.com
@@ -45918,7 +46987,7 @@ pride:
     compliant, public data repository that provides protein and peptide identifications
     together with supporting evidence. This collection references experiments and
     assays.
-  download_owl: http://purl.obolibrary.org/obo/pride/2.1.5/pride.owl
+  download_owl: http://purl.obolibrary.org/obo/pride/2.1.7/pride.owl
   example: '0000006'
   homepage: https://github.com/PRIDE-Utilities/pride-ontology
   keywords:
@@ -46005,7 +47074,7 @@ pride:
   repository: https://github.com/PRIDE-Utilities/pride-ontology
   twitter: pride_ebi
   uri_format: http://purl.obolibrary.org/obo/PRIDE_$1
-  version: 2.1.5
+  version: 2.1.7
 pride.project:
   description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
     compliant, public data repository that provides protein and peptide identifications
@@ -46425,6 +47494,20 @@ protcom:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://www.ces.clemson.edu/compbio/protcom/print_file.cgi?pdbid=$1
+protege:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology of metadata from protege
+  download_rdf: https://protege.stanford.edu/plugins/owl/protege
+  example: defaultLanguage
+  github_request_issue: 1317
+  homepage: http://protege.stanford.edu
+  name: Protege Ontology
+  preferred_prefix: protege
+  uri_format: http://protege.stanford.edu/plugins/owl/protege#$1
 proteomicsdb.peptide:
   comment: The fact that this has .peptide as a subspace is a bit of a misnomer. Its
     original registration with MIRIAM uses a subview over the protein to point to
@@ -47146,6 +48229,7 @@ pubmed:
   - MEDLINE
   - PMID
   - PubMed
+  - PubMed ID
   - pmid
   uri_format: https://www.ncbi.nlm.nih.gov/pubmed/$1
 puro:
@@ -47828,6 +48912,7 @@ reactome:
   - human
   - pathway
   - reaction
+  license: CC0-1.0
   mappings:
     biocontext: REACTOME
     cheminf: '000411'
@@ -48420,6 +49505,10 @@ rfam:
   pattern: ^RF\d{5}$
   preferred_prefix: rfam
   publications:
+  - doi: 10.1093/nar/gkae1023
+    pubmed: '39526405'
+    title: 'Rfam 15: RNA families database in 2025'
+    year: 2024
   - doi: 10.1093/nar/gkx1038
     pmc: PMC5753348
     pubmed: '29112718'
@@ -48448,14 +49537,17 @@ rfc:
   preferred_prefix: rfc
   uri_format: https://tools.ietf.org/rfc/rfc$1
 rgap:
-  comment: This resource doesn't exist on the web anymore
-  deprecated: true
+  comment: This resource has been updated as of 19 November, 2024
+  contact:
+    email: Robin.Buell@uga.edu
+    name: C. Robin Buell
+    orcid: 0000-0002-6727-4677
   description: This website provides genome sequence from the Nipponbare subspecies
     of rice and annotation of the 12 rice chromosomes. These data are available through
     search pages and the Genome Browser that provides an integrated display of annotation
     data.
   example: LOC_Os02g13300
-  homepage: http://rice.plantbiology.msu.edu/
+  homepage: https://rice.uga.edu
   keywords:
   - dna
   - genome
@@ -48474,6 +49566,11 @@ rgap:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/rgap:$1
   publications:
+  - doi: 10.1093/nar/gkae1061
+    pubmed: '39558187'
+    title: 'The rice genome annotation project: an updated database for mining the
+      rice genome'
+    year: 2024
   - doi: 10.1093/nar/gkl976
     pmc: PMC1751532
     pubmed: '17145706'
@@ -48484,7 +49581,7 @@ rgap:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  uri_format: http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=$1
+  uri_format: https://rice.uga.edu/cgi-bin/ORF_infopage.cgi?orf=$1
 rgd:
   contact:
     email: jrsmith@mcw.edu
@@ -48749,6 +49846,7 @@ rhea:
   - life science
   - reaction
   - small molecule
+  license: CC-BY-4.0
   mappings:
     biocontext: RHEA
     edam: '2644'
@@ -49421,6 +50519,7 @@ ror:
   keywords:
   - data management
   - ontology
+  license: CC0-1.0
   mappings:
     bartoc: '20474'
     fairsharing: FAIRsharing.1jKfji
@@ -49694,7 +50793,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.236'
+  version: '6.238'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -50926,6 +52025,10 @@ seed:
     github: ialarmedalien
     name: AJ Ireland
     orcid: 0000-0003-1982-9065
+  - email: seaver@anl.gov
+    github: samseaver
+    name: Sam Seaver
+    orcid: 0000-0002-7674-5194
   deprecated: true
   description: This cooperative effort, which includes Fellowship for Interpretation
     of Genomes (FIG), Argonne National Laboratory, and the University of Chicago,
@@ -50942,9 +52045,19 @@ seed:
     miriam: seed
     n2t: seed
     ncbi: SEED
-  name: The SEED;
+  name: SEED Subsystem
   pattern: ^\w+$
   preferred_prefix: seed
+  publications:
+  - doi: 10.1093/nar/gki866
+    pmc: PMC1251668
+    pubmed: '16214803'
+    title: The Subsystems Approach to Genome Annotation and its Use in the Project
+      to Annotate 1000 Genomes
+    year: 2005
+  repository: https://github.com/TheSEED
+  synonyms:
+  - seed.subsystem
   uri_format: http://seed-viewer.theseed.org/seedviewer.cgi?page=Subsystems&subsystem=$1
 seed.compound:
   description: This cooperative effort, which includes Fellowship for Interpretation
@@ -50963,6 +52076,7 @@ seed.compound:
   name: SEED Compound
   pattern: ^cpd\d+$
   preferred_prefix: seed.compound
+  repository: https://github.com/TheSEED
   uri_format: http://modelseed.org/biochem/compounds/$1
 seed.reaction:
   description: ModelSEED is a platform for creating genome-scale metabolic network
@@ -51030,6 +52144,8 @@ semapv:
   preferred_prefix: semapv
   references:
   - https://github.com/biopragmatics/bioregistry/pull/714
+  synonyms:
+  - sempav_voc
   uri_format: https://w3id.org/semapv/vocab/$1
 semion:
   description: identifier of an author or reviewer, in Semion
@@ -52307,6 +53423,7 @@ slm:
   keywords:
   - life science
   - metabolomics
+  license: CC-BY-4.0
   mappings:
     biocontext: SWISSLIPID
     fairsharing: FAIRsharing.pxr7x2
@@ -52453,6 +53570,70 @@ smart:
   - doi: 10.1016/S0959-440X(99)80055-4
     title: Protein families in multicellular organisms.
   uri_format: http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$1
+smc.bgc:
+  contact:
+    email: dwudwary@lbl.gov
+    name: Daniel W Udwary
+    orcid: 0000-0002-3491-0198
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: The secondary metabolism collaboratory is a database for secondary
+    metabolite biosynthetic gene clusters. This prefix represents identifiers for
+    individual biosynthetic gene clusters (BGCs) linked to their corresponding bacterial
+    or archaeal source.
+  example: '12039302'
+  github_request_issue: 1301
+  homepage: https://smc.jgi.doe.gov
+  name: Secondary Metabolism Collaboratory
+  pattern: ^\d+$
+  preferred_prefix: smc.bgc
+  publications:
+  - doi: 10.1093/nar/gkae1060
+    pubmed: '39540430'
+    title: 'The secondary metabolism collaboratory: a database and web discussion
+      portal for secondary metabolite biosynthetic gene clusters'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://smc.jgi.doe.gov/bgc/$1
+smc.source:
+  contact:
+    email: dwudwary@lbl.gov
+    name: Daniel W Udwary
+    orcid: 0000-0002-3491-0198
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: The secondary metabolism collaboratory is a database for secondary
+    metabolite biosynthetic gene clusters. This prefix represents identifiers for
+    bacteria and archaea sources linked to their associated set of biosynthetic gene
+    clusters (BGCs).
+  example: '1'
+  github_request_issue: 1301
+  homepage: https://smc.jgi.doe.gov
+  name: Secondary Metabolism Collaboratory
+  pattern: ^\d+$
+  preferred_prefix: smc.source
+  publications:
+  - doi: 10.1093/nar/gkae1060
+    pubmed: '39540430'
+    title: 'The secondary metabolism collaboratory: a database and web discussion
+      portal for secondary metabolite biosynthetic gene clusters'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://smc.jgi.doe.gov/sources/$1
 smid:
   contributor:
     email: cthoyt@gmail.com
@@ -52676,6 +53857,8 @@ snap:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/snap:$1
+  synonyms:
+  - bfo11snap
   uri_format: http://www.ifomis.org/bfo/1.1/snap#$1
 snctp:
   comment: it appears they cede information into WHO
@@ -52744,6 +53927,11 @@ snomedct:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/snomedct:$1
+  - code: bioportal.purl
+    description: BioPortal PURL
+    homepage: https://bioontology.org
+    name: BioPortal PURL
+    uri_format: http://purl.bioontology.org/ontology/SNOMEDCT/$1
   publications:
   - doi: 10.1097/00024665-200609000-00011
     pubmed: '16980782'
@@ -52783,6 +53971,7 @@ snomedct:
   - SNOMEDCT_US_2023_09_01
   - SNOMEDCT_US_2023_10_01
   - SNOMEDCT_US_2023_11_01
+  - SNOMEDCT_US_2024_03_01
   - SNOMED_CT
   - SNOMED_CT_US_2018_03_01
   - SNOWMEDCT
@@ -53079,6 +54268,8 @@ span:
   - upper-level ontology
   name: Span
   preferred_prefix: span
+  synonyms:
+  - bfo11span
 spbase:
   comment: This resource doesn't exist on the web anymore
   deprecated: true
@@ -53352,7 +54543,8 @@ srao:
   description: The FAIRsharing Subject Ontology (SRAO) is an application ontology
     for the categorization of research disciplines across all research domains, from
     the humanities to the natural sciences. It utilizes multiple external vocabularies.
-  download_owl: https://raw.githubusercontent.com/FAIRsharing/subject-ontology/master/releases/SRAO.owl
+  download_obo: https://github.com/FAIRsharing/subject-ontology/raw/refs/heads/master/SRAO.obo
+  download_owl: https://github.com/FAIRsharing/subject-ontology/raw/refs/heads/master/SRAO.owl
   example: '0000400'
   homepage: https://github.com/FAIRsharing/subject-ontology
   keywords:
@@ -53470,6 +54662,7 @@ ssn:
   mappings:
     aberowl: SSN
     agroportal: SSN
+    bioportal: SSN
     fairsharing: FAIRsharing.c0bvcy
     lov: ssn
     zazuko: ssn
@@ -53720,7 +54913,7 @@ stato:
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
-  version: '2024-07-07'
+  version: '2025-01-07'
 stitch:
   contact:
     email: bork@embl.de
@@ -53873,6 +55066,52 @@ storedb.study:
     name: StoreDB DOI
     uri_format: http://dx.doi.org/doi:10.20348/STOREDB/$1
   uri_format: https://www.storedb.org/store_v3/study.jsp?studyId=$1
+streptomedb:
+  contact:
+    email: stefan.guenther@pharmazie.uni-freiburg.de
+    name: Stefan Günther
+    orcid: 0000-0003-3744-189X
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: Identifers for natural products isolated or mutasynthesized by bacteria
+    of the genus Streptomyces.
+  example: '15753'
+  github_request_issue: 1287
+  homepage: http://streptomedb.vm.uni-freiburg.de:8000/streptomedb
+  name: StreptomeDB
+  pattern: ^\d+$
+  preferred_prefix: streptomedb
+  publications:
+  - doi: 10.1093/nar/gkae1030
+    pubmed: '39498494'
+    title: 'StreptomeDB 4.0: a comprehensive database of streptomycetes natural products
+      enriched with protein interactions and interactive spectral visualization'
+    year: 2024
+  - doi: 10.1093/nar/gkaa868
+    pmc: PMC7779017
+    pubmed: '33051671'
+    title: 'StreptomeDB 3.0: an updated compendium of streptomycetes natural products'
+    year: 2020
+  - doi: 10.1093/nar/gkv1319
+    pmc: PMC4702922
+    pubmed: '26615197'
+    title: StreptomeDB 2.0--an extended resource of natural products produced by streptomycetes
+    year: 2015
+  - doi: 10.1093/nar/gks1253
+    pmc: PMC3531085
+    pubmed: '23193280'
+    title: 'StreptomeDB: a resource for natural compounds isolated from Streptomyces
+      species'
+    year: 2012
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: http://streptomedb.vm.uni-freiburg.de:8000/streptomedb/get_drugcard/$1
 string:
   contact:
     email: bork@embl.de
@@ -53924,6 +55163,10 @@ string:
     uri_format: http://bio2rdf.org/string:$1
   provides: uniprot
   publications:
+  - doi: 10.1093/nar/gkae1113
+    pubmed: '39558183'
+    title: 'The STRING database in 2025: protein networks with directionality of regulation'
+    year: 2024
   - doi: 10.1093/nar/gky1131
     pmc: PMC6323986
     pubmed: '30476243'
@@ -55068,7 +56311,7 @@ taxrank:
   rdf_uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
   repository: https://github.com/phenoscape/taxrank
   uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
-  version: '2016-04-15'
+  version: '2024-11-28'
 tcb:
   description: Cell line collections
   example: '2966'
@@ -55200,6 +56443,25 @@ tctr:
   pattern: ^TCTR\d+$
   preferred_prefix: tctr
   uri_format: https://www.thaiclinicaltrials.org/show/$1
+tdwg.taxonrank:
+  contact:
+    email: rhyam@rbge.org.uk
+    name: Roger Hyam
+    orcid: 0000-0003-4581-1379
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology describing a controlled vocabulary for taxon ranks.
+  download_rdf: https://tdwg.github.io/ontology/ontology/voc/TaxonRank.rdf
+  example: InfragenericTaxon
+  github_request_issue: 1321
+  homepage: https://github.com/tdwg/ontology
+  name: TDWG Taxon Rank LSID Ontology
+  preferred_prefix: tdwg.taxonrank
+  repository: https://github.com/tdwg/ontology
+  uri_format: http://rs.tdwg.org/ontology/voc/TaxonRank#$1
 te:
   contributor:
     email: cthoyt@gmail.com
@@ -55406,6 +56668,33 @@ th:
   preferred_prefix: th
   references:
   - https://en.wikipedia.org/wiki/Terminologia_Histologica
+theiler:
+  appears_in:
+  - mmusdv
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Stages 1-28 of mouse embryo development
+  example: '10'
+  example_decoys:
+  - 10e
+  example_extras:
+  - 10b
+  homepage: https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages
+  name: Theiler Stage
+  pattern: ^\d+[a-d]?$
+  preferred_prefix: theiler
+  providers:
+  - code: legacy
+    description: Legacy URL at UNSW
+    homepage: https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages
+    name: Legacy URL at UNSW
+    uri_format: https://embryology.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1
+  synonyms:
+  - thielerstage
+  uri_format: http://php.med.unsw.edu.au/embryology/index.php?title=Mouse_Stages#Theiler_Stage_$1
 thermofisher:
   contributor:
     email: cthoyt@gmail.com
@@ -56389,7 +57678,7 @@ uberon:
   - Uberon
   twitter: uberanat
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2024-09-03'
+  version: '2024-11-25'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -56917,6 +58206,7 @@ uniprot:
   - biology
   - protein
   - taxonomic classification
+  license: CC-BY-4.0
   mappings:
     aberowl: UP
     biocontext: UniProtKB
@@ -56950,6 +58240,16 @@ uniprot:
         domains and their autoinhibition mechanisms'
       year: 2024
     uri_format: http://165.194.60.211:9006/detail/$1
+  - code: bfvd
+    description: Predicted protein structures for viral sequences
+    homepage: https://bfvd.foldseek.com
+    name: Big Fantastic Virus Database
+    publications:
+    - doi: 10.1093/nar/gkae1119
+      pubmed: '39574394'
+      title: BFVD-a large repository of predicted viral protein structures
+      year: 2024
+    uri_format: https://bfvd.foldseek.com/cluster/$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -56959,6 +58259,18 @@ uniprot:
     homepage: https://bio2rdf.org
     name: Bio2RDF
     uri_format: http://bio2rdf.org/uniprot:$1
+  - code: describeprot
+    description: Structural and functional descriptors for proteins at the amino acid
+      level
+    homepage: http://biomine.cs.vcu.edu/servers/DESCRIBEPROT
+    name: DescribePROT
+    publications:
+    - doi: 10.1007/978-1-0716-4196-5_10
+      pubmed: '39576581'
+      title: DescribePROT Database of Residue-Level Protein Structure and Function
+        Annotations
+      year: 2024
+    uri_format: http://biomine.cs.vcu.edu/servers/DESCRIBEPROT/result_v2.php?uniprot=$1
   - code: drugbank
     description: DrugBank PolyPeptide.
     homepage: https://go.drugbank.com
@@ -57007,6 +58319,11 @@ uniprot:
     homepage: https://omnipathdb.org/
     name: OmniPathDB
     uri_format: https://omnipathdb.org/interactions/?fields=sources,references&partners=$1
+  - code: pharos
+    description: Part of the Illuminating the Druggable Genome project
+    homepage: https://pharos.nih.gov/idg
+    name: Pharos
+    uri_format: https://pharos.nih.gov/idg/targets/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -57015,6 +58332,18 @@ uniprot:
     name: Scholia
     uri_format: https://scholia.toolforge.org/uniprot/$1
   publications:
+  - doi: 10.1007/978-1-0716-4196-5_10
+    pubmed: '39576581'
+    title: DescribePROT Database of Residue-Level Protein Structure and Function Annotations
+    year: 2024
+  - doi: 10.1093/nar/gkae1119
+    pubmed: '39574394'
+    title: BFVD-a large repository of predicted viral protein structures
+    year: 2024
+  - doi: 10.1093/nar/gkae1010
+    pubmed: '39552041'
+    title: 'UniProt: the Universal Protein Knowledgebase in 2025'
+    year: 2024
   - doi: 10.1007/s00216-024-05571-8
     pubmed: '39379619'
     title: 'The O-GlcNAc database: introducing new features and tools developed from
@@ -57104,7 +58433,7 @@ uniprot.disease:
     orcid: 0000-0003-4423-4370
   description: The human diseases in which proteins are involved are described in
     UniProtKB entries with a controlled vocabulary.
-  download_obo: https://rest.uniprot.org/diseases/stream?compressed=true&format=obo&query=%28%2A%29
+  download_obo: https://rest.uniprot.org/diseases/stream?compressed=false&format=obo&query=%28%2A%29
   example: DI-04240
   homepage: https://www.uniprot.org/diseases/
   keywords:
@@ -57177,7 +58506,7 @@ uniprot.journal:
 uniprot.keyword:
   description: UniProtKB entries are tagged with keywords that can be used to retrieve
     particular subsets of entries.
-  download_obo: https://rest.uniprot.org/keywords/stream?compressed=true&fields=id%2Cname%2Ccategory%2Cgene_ontologies&format=tsv&query=%28%2A%29
+  download_obo: https://rest.uniprot.org/keywords/stream?compressed=false&fields=id%2Cname%2Ccategory%2Cgene_ontologies&format=tsv&query=%28%2A%29
   example: KW-1273
   homepage: http://www.uniprot.org/keywords/
   keywords:
@@ -57215,7 +58544,7 @@ uniprot.location:
   description: The subcellular locations in which a protein is found are described
     in UniProtKB entries with a controlled vocabulary, which includes also membrane
     topology and orientation terms.
-  download_obo: https://rest.uniprot.org/locations/stream?compressed=true&format=obo&query=%28%2A%29
+  download_obo: https://rest.uniprot.org/locations/stream?compressed=false&format=obo&query=%28%2A%29
   example: SL-0002
   homepage: https://www.uniprot.org/locations/
   keywords:
@@ -57305,6 +58634,7 @@ uniprot.ptm:
   - biochemistry
   - post-translational modification
   - structural biology
+  license: CC-BY-4.0
   name: UniProt Post-Translational Modification
   part_of: uniprot
   pattern: ^PTM-\d{4}$
@@ -57675,6 +59005,32 @@ upheno:
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   version: '2024-11-02'
+urdbms.syndromefinder:
+  appears_in:
+  - nando
+  contact:
+    email: naritomi@med.u-ryukyu.ac.jp
+    name: Kenji Naritomi
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  example: '3567'
+  github_request_issue: 1320
+  mappings:
+    integbio: nbdc00728
+  name: UR-DBMS Syndrome Finder
+  pattern: ^\d+$
+  preferred_prefix: urdbms.syndromefinder
+  publications:
+  - doi: 10.1038/s10038-024-01277-y
+    pubmed: '39085458'
+    title: An application supporting diagnosis for rare genetic diseases - UR-DBMS
+      and Syndrome Finder
+    year: 2024
+  uri_format: http://syndromefinder.ncchd.go.jp/UR-DBMS/SyndromeDetail.php?winid=1&recid=$1
 uspto:
   comment: Information about the regular expression was derived from examples at https://patft.uspto.gov/netahtml/PTO/srchnum.htm.
     TODO, make the regular expression work for '100000000'
@@ -58022,6 +59378,31 @@ vbrc:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/vbrc:$1
   uri_format: http://vbrc.org/gene_detail.asp?gene_id=$1
+vcard:
+  contact:
+    email: r@iannel.la
+    github: riannella
+    name: Renato Iannella
+    orcid: 0000-0001-5547-3508
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: vCard is a specification developed by the Internet Engineering Task
+    Force (IETF) for the description of people and organisations
+  download_rdf: https://www.w3.org/2006/vcard/ns
+  example: Agent
+  github_request_issue: 1317
+  homepage: https://www.w3.org/TR/vcard-rdf/
+  keywords:
+  - people
+  mappings:
+    lov: vcard
+    zazuko: vcard
+  name: Virtual Contact File
+  preferred_prefix: vcard
+  uri_format: http://www.w3.org/2006/vcard/ns#$1
 vcell:
   description: Models developed with the Virtual Cell (VCell) software prorgam.
   example: '201022999'
@@ -58763,6 +60144,62 @@ vita:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/vita:$1
   uri_format: http://vita.mbc.nctu.edu.tw/search.php?acc=$1
+vitro:
+  appears_in:
+  - fabio
+  - foaf
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Vitro is a full stack framework for building semantic web applications.
+    It is not domain specific.
+  download_owl: https://raw.githubusercontent.com/vivo-archive/Linked-Data-Indexer/refs/heads/master/src/main/resources/vitro-0.7.owl
+  example: descriptionAnnot
+  github_request_issue: 1317
+  homepage: https://github.com/vivo-project/Vitro
+  keywords:
+  - ontology
+  name: Vitro Application Ontology
+  preferred_prefix: vitro
+  repository: https://github.com/vivo-project/Vitro
+  uri_format: http://vitro.mannlib.cornell.edu/ns/vitro/0.7#$1
+vivo:
+  contact:
+    email: christian.hauschke@tib.eu
+    github: hauschke
+    name: Christian Hauschke
+    orcid: 0000-0003-2499-7741
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology about scholarship
+  download_owl: https://raw.githubusercontent.com/vivo-ontologies/vivo-ontology/master/vivo.owl
+  example: Laboratory
+  github_request_issue: 1317
+  homepage: https://vivoweb.org
+  keywords:
+  - academy
+  - natural science
+  - ontology
+  - protocol
+  - researcher data
+  - resource metadata
+  - study design
+  license: unlicense
+  mappings:
+    aberowl: VIVO
+    biocontext: VIVO
+    bioportal: VIVO
+    fairsharing: FAIRsharing.6xfgaq
+    lov: vivo
+  name: VIVO Ontology
+  preferred_prefix: vivo
+  repository: https://github.com/vivo-ontologies/vivo-ontology
+  uri_format: http://vivoweb.org/ontology/core#$1
 vmc:
   deprecated: true
   mappings:
@@ -58889,7 +60326,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-09-22'
+  version: '2024-12-29'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -59141,7 +60578,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2024-11-05'
+  version: '2025-01-08'
 vto:
   contact:
     email: balhoff@renci.org
@@ -59269,7 +60706,7 @@ wbbt:
   synonyms:
   - WBbt
   uri_format: http://purl.obolibrary.org/obo/WBbt_$1
-  version: '2024-09-24'
+  version: '2025-01-02'
 wbls:
   contact:
     email: cgrove@caltech.edu
@@ -59326,7 +60763,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://purl.obolibrary.org/obo/WBls_$1
-  version: '2024-09-26'
+  version: '2025-01-04'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -59381,7 +60818,7 @@ wbphenotype:
   synonyms:
   - WBPhenotype
   uri_format: http://purl.obolibrary.org/obo/WBPhenotype_$1
-  version: '2024-09-26'
+  version: '2025-01-02'
 webelements:
   contributor:
     email: cthoyt@gmail.com
@@ -59454,7 +60891,7 @@ wikidata:
     miriam: wikidata
     n2t: wikidata
   name: Wikidata
-  pattern: ^(Q|P)\d+$
+  pattern: ^(Q|P|E)\d+$
   preferred_prefix: wikidata
   providers:
   - code: scholia
@@ -59470,6 +60907,7 @@ wikidata:
   synonyms:
   - WD_Entity
   - wd
+  - wdeschema
   twitter: wikidata
   uri_format: http://www.wikidata.org/entity/$1
 wikidata.property:
@@ -59691,6 +61129,20 @@ wikipedia.en:
   synonyms:
   - wikipedia
   uri_format: http://en.wikipedia.org/wiki/$1
+wiktionary:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A free dictionary
+  example: pharmacist
+  github_request_issue: 1310
+  homepage: https://wiktionary.org
+  license: CC BY SA 4.0
+  name: Wiktionary
+  preferred_prefix: wiktionary
+  uri_format: https://en.wiktionary.org/wiki/$1
 worfdb:
   description: WOrfDB (Worm ORFeome DataBase) contains data from the cloning of complete
     set of predicted protein-encoding Open Reading Frames (ORFs) of Caenorhabditis
@@ -60190,7 +61642,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.187'
+  version: '4.191'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -60968,6 +62420,7 @@ zfin:
   - research
   - zebrafish
   - zebrafish line
+  license: CC-BY-4.0
   mappings:
     biocontext: ZFIN
     fairsharing: FAIRsharing.ybxnhg

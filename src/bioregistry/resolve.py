@@ -40,6 +40,7 @@ __all__ = [
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
+    "is_obo_foundry",
     "get_rdf_download",
     "get_version",
     "get_banana",
@@ -773,6 +774,21 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     if entry.proprietary is None:
         return False
     return entry.proprietary
+
+
+def is_obo_foundry(prefix: str) -> Optional[bool]:
+    """Get if the prefix has an OBO Foundry link.
+
+    :param prefix: The prefix to look up
+    :returns: If the prefix corresponds to an OBO Foundry resource
+
+    >>> assert is_obo_foundry('chebi')
+    >>> assert not is_proprietary('pdb')
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_obofoundry_prefix() is not None
 
 
 def parse_curie(
