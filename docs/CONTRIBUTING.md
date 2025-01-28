@@ -101,6 +101,8 @@ https://github.com/biopragmatics/bioregistry/issues/158.
 6. New prefixes should not end with "ID" as a way to signify that the prefix is
    used for identifiers, like in `doid` for the Disease Ontology or `caid` for
    ClinGen Canonical Allele identifier.
+7. New prefixes should be singular instead of plural. For example `hgnc.genes`
+   would be bad while `hgnc.gene` would be better.
 
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
