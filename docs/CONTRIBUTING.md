@@ -223,6 +223,37 @@ https://github.com/biopragmatics/bioregistry/issues/359.
 Original discussion about prefix parking can be found at
 https://github.com/biopragmatics/bioregistry/issues/365.
 
+#### Contact and Attribution
+
+The Bioregistry collects the name, email, and optionally, the GitHub username
+and ORCID identifier for individuals in several places:
+
+1. As the primary responsible contact person for the semantic space associated
+   with a prefix.
+2. As the creator, contributor, or reviewer of record in the Bioregistry
+
+We require in each situation that all fields explicitly correspond to the
+individual with the goal to promote transparency and decrease the diffusion of
+responsibility. This is inspired by and mirrors the OBO Foundry's
+[Principle 11 "Locus of Authority"](https://obofoundry.org/principles/fp-011-locus-of-authority.html).
+
+For the email field, this means that the following kinds of email addresses are
+not acceptable:
+
+1. Mailing lists
+2. Help desks
+3. Group emails
+4. Issue trackers
+5. Email addresses associated with a responsible person's assistant or
+   administration
+
+For the GitHub field, this means that GitHub organizations or GitHub users that
+represent a group, such as a lab, are not acceptable.
+
+For the ORCID field, it understood that an ORCID record should correspond to an
+individual in the same spirit as this policy, and that the ORCID service should
+not be abused to represent any non-individual.
+
 #### Review of New Prefix Requests
 
 Review of new prefix requests is handled by the Bioregistry Review Team, whose
