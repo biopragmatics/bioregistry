@@ -830,6 +830,9 @@ class TestRegistry(unittest.TestCase):
     def test_contacts(self):
         """Check contacts have minimal metadata."""
         for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if resource.contact_extras:
+                    self.assertIsNotNone(resource.contact)
             if not resource.contact:
                 continue
             with self.subTest(prefix=prefix):
@@ -840,6 +843,15 @@ class TestRegistry(unittest.TestCase):
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
                 self.assert_contact_metadata(resource.contact)
+
+    def test_secondary_contacts(self):
+        """Check secondary contacts."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_extras:
+                continue
+            self.assertIsNotNone(resource.contact)
+            for contact in resource.contact_extras:
+                self.assert_contact_metadata(contact)
 
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
