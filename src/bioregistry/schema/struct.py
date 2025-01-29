@@ -2863,7 +2863,7 @@ def get_json_schema() -> dict[str, Any]:
     from pydantic.json_schema import models_json_schema
 
     _, schema_dict = models_json_schema(
-        [(model, "validation") for model in models],
+        [(model, "validation") for model in models],  # type:ignore
         title=title,
         description=description,
     )
