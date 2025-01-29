@@ -2,7 +2,6 @@
 
 """Constants and utilities for registries."""
 
-import importlib.metadata
 import os
 import pathlib
 import re
@@ -21,7 +20,6 @@ __all__ = [
     "RAW_DIRECTORY",
 ]
 
-PYDANTIC_1 = importlib.metadata.version("pydantic").startswith("1.")
 PATTERN_KEY = "pattern"
 ORCID_PATTERN = r"^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$"
 
