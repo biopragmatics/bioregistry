@@ -359,6 +359,10 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
     )
+    contact_group: Optional[str] = Field(
+        default=None,
+        description="A group contact email for the project. It's required to have a primary contact to have this field.",
+    )
     owners: Optional[List[Organization]] = Field(
         default=None,
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"

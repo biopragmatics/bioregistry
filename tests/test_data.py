@@ -841,6 +841,22 @@ class TestRegistry(unittest.TestCase):
                 )
                 self.assert_contact_metadata(resource.contact)
 
+    def test_contact_group(self) -> None:
+        """Test curation of group emails."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_group:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="All curated group contacts also require an explicit primary contact. This is to promote transparency and openness.",
+                )
+                self.assertRegex(
+                    resource.contact_group,
+                    EMAIL_RE,
+                    msg=f"Group contact email is not a valid email address in {prefix}: {resource.contact_group}",
+                )
+
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
         registry_raw = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf8"))
