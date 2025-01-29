@@ -4,7 +4,6 @@
 
 from __future__ import annotations
 
-from pydantic.json_schema import models_json_schema
 import itertools as itt
 import json
 import logging
@@ -33,6 +32,7 @@ from typing import (
 )
 
 from pydantic import BaseModel, Field, PrivateAttr
+from pydantic.json_schema import models_json_schema
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
