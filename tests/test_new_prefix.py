@@ -3,8 +3,8 @@
 import copy
 import json
 import unittest
-from unittest.mock import patch
 from pathlib import Path
+from unittest.mock import patch
 
 from click.testing import CliRunner
 
@@ -158,7 +158,7 @@ class TestNewPrefix(unittest.TestCase):
         """Test the workflow in a dry run for a all relevant issues."""
         mock_github_client.get_bioregistry_form_data.return_value = {
             1181: copy.deepcopy(NCBIORTHOLOG_TEST),
-            1278: copy.deepcopy(VIBSO_TEST)
+            1278: copy.deepcopy(VIBSO_TEST),
         }
 
         runner = CliRunner()
@@ -167,7 +167,9 @@ class TestNewPrefix(unittest.TestCase):
         self.assertEqual(result.exit_code, 0)
         self.assertIn("Running workflow for all relevant issues", result.output)
 
-        self.assertIn("No specific issue provided. Searching for all relevant issues", result.output)
+        self.assertIn(
+            "No specific issue provided. Searching for all relevant issues", result.output
+        )
         self.assertIn("Adding 2 issues after filter", result.output)
 
         self.assertIn("🚀 Adding resource ncbiortholog.test (#1181)", result.output)

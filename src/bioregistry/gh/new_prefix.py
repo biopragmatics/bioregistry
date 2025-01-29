@@ -169,6 +169,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Dict[int, Resource]:
             rv[issue_id] = resource
     return rv
 
+
 def process_specific_issue(issue: int) -> Dict[int, Resource]:
     """Process a specific issue and return a dictionary mapping the issue number to the resource."""
     click.echo(f"Processing specific issue {issue}")
@@ -180,6 +181,7 @@ def process_specific_issue(issue: int) -> Dict[int, Resource]:
         click.echo(f"Issue {issue} could not be processed or does not exist.")
         sys.exit(1)
     return {issue: resource}
+
 
 def process_all_relevant_issues() -> Dict[int, Resource]:
     """Process all relevant issues and return a dictionary mapping issue numbers to resources."""
@@ -220,6 +222,7 @@ def process_all_relevant_issues() -> Dict[int, Resource]:
         sys.exit(0)
 
     return issue_to_resource
+
 
 def _yield_publications(data) -> Iterable[Publication]:
     for curie in data.pop("publications", "").split("|"):
@@ -266,12 +269,18 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.command()
 @click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
 @click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
-@click.option("--issue", type=int, help="Specific issue to process rather than finding all relevant ones")
+@click.option(
+    "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
+)
 @force_option
 @verbose_option
 def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
     """Run the automatic curator."""
-    click.echo(f"Running workflow with issue: {issue}" if issue else "Running workflow for all relevant issues")
+    click.echo(
+        f"Running workflow with issue: {issue}"
+        if issue
+        else "Running workflow for all relevant issues"
+    )
 
     status_porcelain_result = github_client.status_porcelain()
     if status_porcelain_result and not force and not dry:
