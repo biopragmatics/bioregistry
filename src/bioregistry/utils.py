@@ -29,7 +29,6 @@ from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
     METAREGISTRY_YAML_PATH,
-    PYDANTIC_1,
     REGISTRY_YAML_PATH,
 )
 from .version import get_version
