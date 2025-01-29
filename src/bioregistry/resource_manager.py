@@ -8,21 +8,26 @@ import logging
 import typing
 import warnings
 from collections import Counter, defaultdict
+from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 from typing import (
     Any,
     Callable,
     Dict,
+    Generic,
     Iterable,
     List,
+    Literal,
     Mapping,
     Optional,
     Sequence,
     Set,
     Tuple,
+    TypeVar,
     Union,
     cast,
+    overload,
 )
 
 import curies
@@ -50,6 +55,7 @@ from .schema import (
     Resource,
     sanitize_model,
 )
+from .schema.struct import MetaprefixAnnotatedValue
 from .schema_utils import (
     _collections_from_path,
     _contexts_from_path,
@@ -66,6 +72,31 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
+
+X = TypeVar("X", bound=Union[int, str])
+
+
+@dataclass
+class MetaresourceAnnotatedValue(Generic[X]):
+    """A pack for a value that has extra information."""
+
+    value: X
+    registry: Registry
+
+    @property
+    def metaprefix(self) -> str:
+        """Get prefix for the source registry for the annotation."""
+        return self.registry.prefix
+
+    @property
+    def name(self) -> str:
+        """Get the name of the source registry for the annotation."""
+        return self.registry.name
+
+    @property
+    def license(self) -> str:
+        """Get the license for the annotation."""
+        return self.registry.license or "unknown"
 
 
 def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
@@ -516,12 +547,75 @@ class Manager:
             return None
         return entry.get_uri_prefix(priority=priority)
 
-    def get_name(self, prefix: str) -> Optional[str]:
-        """Get the name for the given prefix, it it's available."""
+    # docstr-coverage:excused `overload`
+    @overload
+    def _repack(self, obj: None) -> None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def _repack(self, obj: X) -> X: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def _repack(self, obj: MetaprefixAnnotatedValue[X]) -> MetaresourceAnnotatedValue[X]: ...
+
+    def _repack(
+        self, obj: Union[None, X, MetaprefixAnnotatedValue[X]]
+    ) -> Union[MetaresourceAnnotatedValue[X], X, None]:
+        if obj is None:
+            return None
+        elif isinstance(obj, MetaprefixAnnotatedValue):
+            mp = self.get_registry(obj.metaprefix)
+            if mp is None:
+                raise ValueError
+            return MetaresourceAnnotatedValue(obj.value, mp)
+        else:
+            return obj
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(self, prefix: str, *, provenance: Literal[False] = False) -> Union[None, str]: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self, prefix: str, *, provenance: Literal[True] = True
+    ) -> Union[None, MetaresourceAnnotatedValue[str]]: ...
+
+    def get_name(
+        self, prefix: str, *, provenance: bool = False
+    ) -> Union[None, str, MetaresourceAnnotatedValue[str]]:
+        """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
-        return entry.get_name()
+        if provenance:
+            _tmp = entry.get_name(provenance=True)
+            return self._repack(_tmp)
+        return entry.get_name(provenance=False)
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_namespace_in_lui(
+        self, prefix: str, *, provenance: Literal[False] = False
+    ) -> Union[bool, None]: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_namespace_in_lui(
+        self, prefix: str, *, provenance: Literal[True] = True
+    ) -> Union[None, MetaresourceAnnotatedValue[bool]]: ...
+
+    def get_namespace_in_lui(
+        self, prefix: str, *, provenance: bool = False
+    ) -> Union[None, bool, MetaresourceAnnotatedValue[bool]]:
+        """Get the name for the given prefix, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        if provenance:
+            return self._repack(entry.get_namespace_in_lui(provenance=True))
+        return entry.get_namespace_in_lui(provenance=False)
 
     def get_description(self, prefix: str, *, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, it it's available."""
