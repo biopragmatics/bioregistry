@@ -4,8 +4,8 @@ This benchmark checks the `bioregistry.parse_curie` function.
 
 ## Dataset
 
-The benchmarking dataset is available in [`data.tsv`](data.tsv). It contains
-the following columns:
+The benchmarking dataset is available in [`data.tsv`](data.tsv). It contains the
+following columns:
 
 1. `prefix` - a canonical Bioregistry prefix
 2. `identifier` - a local unique identifier in the prefix's semantic space
@@ -16,7 +16,7 @@ the following columns:
 Example data:
 
 | prefix        | identifier   | prefix_synonym | banana | curie                      |
-|---------------|--------------|----------------|--------|----------------------------|
+| ------------- | ------------ | -------------- | ------ | -------------------------- |
 | 3dmet         | B00162       | 3dmet          |        | 3dmet:B00162               |
 | 4dn.biosource | 4DNSR73BT2A2 | 4DN            |        | 4DN:4DNSR73BT2A2           |
 | 4dn.biosource | 4DNSR73BT2A2 | 4dn.biosource  |        | 4dn.biosource:4DNSR73BT2A2 |

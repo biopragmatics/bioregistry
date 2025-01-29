@@ -33,6 +33,7 @@ METAREGISTRY_PATH = DATA_DIRECTORY / "metaregistry.json"
 COLLECTIONS_PATH = DATA_DIRECTORY / "collections.json"
 MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
 CONTEXTS_PATH = DATA_DIRECTORY / "contexts.json"
+CURATED_PAPERS_PATH = DATA_DIRECTORY / "curated_papers.tsv"
 
 BIOREGISTRY_MODULE = pystow.module("bioregistry")
 
@@ -129,6 +130,8 @@ MIRIAM_BLACKLIST = {
     "pid.pathway",
     # this uses namespace-in-namespace
     "neurolex",
+    # Miriam needs to be extended
+    "ccds",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
@@ -152,7 +155,7 @@ HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data
 EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 
 # not a perfect email regex, but close enough
-EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$"
+EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 MaybeCURIE = Union[Tuple[str, str], Tuple[None, None]]

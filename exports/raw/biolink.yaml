@@ -6,7 +6,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 4.2.4
+version: 4.2.5
 
 ## ------------
 ##
@@ -75,8 +75,10 @@ prefixes:
   HANCESTRO: 'http://www.ebi.ac.uk/ancestro/ancestro_'
   HCPCS: 'http://purl.bioontology.org/ontology/HCPCS/'
   HsapDv: 'http://purl.obolibrary.org/obo/HsapDv_'
-  ICD10: 'https://icd.codes/icd9cm/'
+  ICD10: 'https://icd.who.int/browse10/2016/en#/'
   ICD9: 'http://translator.ncats.nih.gov/ICD9_'
+  icd11: 'http://id.who.int/icd/entity/'
+  icd11.foundation: 'http://id.who.int/icd/entity/'
   interpro: 'https://www.ebi.ac.uk/interpro/entry/'
   INO: 'http://purl.obolibrary.org/obo/INO_'
   isbn: 'https://www.isbn-international.org/identifier/'  # note: a resolvable base URI not available from isbn-international
@@ -1316,6 +1318,26 @@ slots:
     in_subset:
       - translator_minimal
 
+  specialization qualifier:
+    is_a: qualifier
+    abstract: true
+    description: >-
+      A qualifier that composes with a core subject/object concept to define a more specific version of the 
+      subject concept, specifically using an ontology term that is not a subclass or descendant of the core concept 
+      and in the vast majority of cases, is of a different ontological namespace than the category or namespace of the
+      subject identifier.
+    examples:
+      - value: CHEBI:5118  # fluoxetine
+        description: >-
+          In a MAXO annotation this would be a specialization in treatment of a disease. For example, 
+          fluoxetine would be a specialization of the MAXO term 'serotonin-norepinephrine reuptake inhibitor agent 
+          therapy' as a treatment for the HP term 'Fatigable muscle weakness' in the context of the MONDO term
+          'congenital myasthenic syndrome '4A.'
+      - value: GO:0005634  # nucleus
+        description: >-
+          In an expression annotation this would be a specialization in location of an anatomical entity. For example,
+          "expression in the nucleus of hepatic cells" would be a specialization of "expression in hepatic cells"
+
   aspect qualifier:
     is_a: qualifier
     abstract: true
@@ -1440,6 +1462,17 @@ slots:
     in_subset:
       - translator_minimal
 
+  subject specialization qualifier:
+    is_a: specialization qualifier
+    description: >-
+      A qualifier that composes with a core subject/object concept to define a more specific version of the 
+      subject concept, specifically using an ontology term that is not a subclass or descendant of the core concept 
+      and in the vast majority of cases, is of a different ontological namespace than the category or namespace of the
+      subject identifier.
+    in_subset:
+      - translator_minimal
+    range: uriorcurie
+
   subject form or variant qualifier:
     description: >-
       A qualifier that composes with a core subject/object concept to define a specific type, variant,
@@ -1505,6 +1538,17 @@ slots:
     is_a: aspect qualifier
     in_subset:
       - translator_minimal
+
+  object specialization qualifier:
+    is_a: specialization qualifier
+    description: >-
+      A qualifier that composes with a core subject/object concept to define a more specific version of the 
+      subject concept, specifically using an ontology term that is not a subclass or descendant of the core concept 
+      and in the vast majority of cases, is of a different ontological namespace than the category or namespace of the
+      subject identifier.
+    in_subset:
+      - translator_minimal
+    range: uriorcurie
 
   object form or variant qualifier:
     description: >-
@@ -1621,6 +1665,17 @@ slots:
       - value: human  # NCBITaxon:9606
     notes:
       - Ontology CURIEs are expected as values here, the examples below are intended to help clarify the content of the CURIEs.
+    in_subset:
+      - translator_minimal
+
+  disease context qualifier:
+    is_a: context qualifier
+    description: >-
+        A context qualifier representing a disease or condition in which a relationship expressed in an association took place.
+    range: disease
+    examples:
+      - value: MONDO:0004979  # Asthma
+      - value: MONDO:0005148  # type 2 diabetes mellitus
     in_subset:
       - translator_minimal
 
@@ -2692,7 +2747,6 @@ slots:
       - translator_minimal
     domain: chemical entity or gene or gene product
     range: chemical entity or gene or gene product
-    inverse: response affected by
     annotations:
       canonical_predicate: true
     exact_mappings:
@@ -2708,6 +2762,7 @@ slots:
       - translator_minimal
     domain: chemical entity or gene or gene product
     range: chemical entity or gene or gene product
+    inverse: affects response to
 
   increases response to:
     description: >-
@@ -2831,7 +2886,6 @@ slots:
     range: gene
     annotations:
       canonical_predicate: true
-    inverse: has gene product
     in_subset:
       - translator_minimal
 
@@ -2872,7 +2926,6 @@ slots:
     range: gene
     annotations:
       canonical_predicate: true
-    inverse: transcribed to
     description: >-
       x is transcribed from y if and only if x is synthesized from template y
     exact_mappings:
@@ -2885,7 +2938,6 @@ slots:
     range: protein
     annotations:
       canonical_predicate: true
-    inverse: translation of
     description: >-
       x (amino acid chain/polypeptide) is the ribosomal translation of y (transcript) if and only if a ribosome
       reads y (transcript) through a series of triplet codon-amino acid adaptor activities (GO:0030533)
@@ -4514,7 +4566,6 @@ slots:
       canonical_predicate: true
     in_subset:
       - translator_minimal
-    inverse: enabled by
     exact_mappings:
       - RO:0002327
 
@@ -4561,7 +4612,6 @@ slots:
     in_subset:
       - translator_minimal
       - samples
-    inverse: derives into
     exact_mappings:
       - RO:0001000
       - FMA:derives_from
@@ -4673,7 +4723,6 @@ slots:
       opposite_of: is excipient of
     in_subset:
       - translator_minimal
-    inverse: is active ingredient of
     mappings:
       - RO:0002248
 
@@ -4827,7 +4876,6 @@ slots:
     range: occurrent
     annotations:
       canonical_predicate: true
-    inverse: preceded by
     in_subset:
       - translator_minimal
     close_mappings:
@@ -5568,7 +5616,6 @@ slots:
 
   has confidence level:
     is_a: association slot
-    range: confidence level
     description: >-
       connects an association to a qualitative term denoting the level of confidence
 
@@ -5590,7 +5637,7 @@ slots:
     is_a: association slot
     description: >-
       The logarithm of the odds ratio, or the ratio of the odds of event Y occurring in an exposed group versus the
-      odds of event Y occurring in a non-exposed group.
+      odds of event Y occurring in a non-exposed group has 
     range: float
 
   log odds ratio 95 ci:
@@ -6054,13 +6101,25 @@ slots:
 
   max research phase:
     is_a: association slot
-    range: MaxResearchPhaseEnum
+    range: ResearchPhaseEnum
+
+  has supporting studies:
+    is_a: association slot
+    range: study
+    description: A study that produced information used as evidence to generate the knowledge expressed in an Association.
+    multivalued: true
 
   supporting study metadata:
     is_a: association slot
     description: >-
       Information about a study used to generate information used as evidence to support the knowledge expressed in an
       Association. In practice, data creators should use one of the more specific subtypes of this property.
+    comments:
+      - This is an abstract slot that groups a set of concrete slots used to directly attach to an association information
+        about a study that produced evidence used to generate the knowledge expressed in the edge. 
+      - Note that these concrete 'supporting study metadata' slots are used only when a more normalized model that leverages
+        the 'supporting studdies' slot and 'Study' class to link to and describe the Study itself are not possible or preferred, 
+        such that this study metadata must be captured directly on the edge.       
     abstract: true
 
   supporting study method type:
@@ -6127,7 +6186,6 @@ slots:
     range: KnowledgeLevelEnum
     multivalued: false
     required: true
-    ifabsent: string(not_provided)
     examples:
       - value: knowledge_assertion
       - value: prediction
@@ -6155,7 +6213,6 @@ slots:
     range: AgentTypeEnum
     multivalued: false
     required: true
-    ifabsent: string(not_provided)
     examples:
       - value: manual_agent
       - value: automated_agent
@@ -7621,6 +7678,7 @@ classes:
       - metacyc.reaction
       - KEGG.MODULE  ## M number
       - KEGG
+      - UMLS
 
   pathway:
     is_a: biological process
@@ -8155,6 +8213,8 @@ classes:
       - NCIT
       - SNOMEDCT
       - medgen
+      - icd11
+      - icd11.foundation
       - ICD10
       - ICD9
       - KEGG.DISEASE  ## H number
@@ -9365,6 +9425,7 @@ classes:
       - retrieval source ids
       - p value
       - adjusted p value
+      - has supporting studies
     slot_usage:
       type:
         description: rdf:type of biolink:Association should be fixed at rdf:Statement
@@ -9807,7 +9868,7 @@ classes:
   chemical or drug or treatment to disease or phenotypic feature association:
     description: >-
       This association defines a relationship between a chemical or treatment (or procedure) and a disease or phenotypic feature
-      where the disesae or phenotypic feature is a secondary undesirable effect.
+      where the disease or phenotypic feature is a secondary undesirable effect.
     is_a: association
     defining_slots:
       - subject
@@ -9816,6 +9877,7 @@ classes:
     mixins:
       - chemical to entity association mixin
       - entity to disease or phenotypic feature association mixin
+      - entity to feature or disease qualifiers mixin
     slots:
       - FDA adverse event level
     slot_usage:
@@ -10299,6 +10361,7 @@ classes:
       - object aspect qualifier
       - object direction qualifier
       - qualified predicate
+      - disease context qualifier
 
   feature or disease qualifiers to entity mixin:
     description: >-
@@ -10323,6 +10386,8 @@ classes:
       - object
       - sex qualifier
     defining_slots:
+      - subject
+      - predicate
       - object
     slot_usage:
       object:
@@ -10467,7 +10532,13 @@ classes:
       - subject
       - predicate
       - object
+      - disease context qualifier
+      - subject specialization qualifier
+      - object specialization qualifier
+      - anatomical context qualifier
     defining_slots:
+      - subject
+      - predicate
       - object
     slot_usage:
       object:
@@ -11172,6 +11243,7 @@ classes:
       - subject
       - predicate
       - object
+      - species context qualifier
     slot_usage:
       subject:
         domain: macromolecular machine mixin
@@ -11658,7 +11730,7 @@ enums:
         is_a: not_approved_for_condition
       not_provided:
 
-  MaxResearchPhaseEnum:
+  ResearchPhaseEnum:
     permissible_values:
       pre_clinical_research_phase:
         description: >-
@@ -11794,6 +11866,10 @@ enums:
         is_a: transport
       splicing:
       molecular_interaction:
+      guanyl_nucleotide_exchange:
+        is_a: molecular_interaction
+      adenyl_nucleotide_exchange:
+        is_a: molecular_interaction
       molecular_modification:
       acetylation:
         is_a: molecular_modification

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for data integrity."""
 
 import itertools as itt
@@ -8,8 +6,8 @@ import logging
 import re
 import unittest
 from collections import defaultdict
+from collections.abc import Mapping
 from textwrap import dedent
-from typing import Mapping
 
 import curies
 import rdflib
@@ -20,11 +18,24 @@ from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
-from bioregistry.schema.struct import SCHEMA_PATH, Attributable, get_json_schema
+from bioregistry.schema.struct import (
+    SCHEMA_PATH,
+    Attributable,
+    Publication,
+    get_json_schema,
+)
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
 
 logger = logging.getLogger(__name__)
+
+disallowed_email_parts = {
+    "contact@",
+    "help@",
+    "helpdesk@",
+    "discuss@",
+    "support@",
+}
 
 
 class TestRegistry(unittest.TestCase):
@@ -72,6 +83,19 @@ class TestRegistry(unittest.TestCase):
     $ tox -e bioregistry-lint
     """,
         )
+
+    def test_line_returns(self) -> None:
+        """Test that there are no Windows-style line returns in curated data."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                resource_dict = resource.model_dump()
+                for key, value in resource_dict.items():
+                    if isinstance(value, str):
+                        self.assertNotIn(
+                            "\\r",
+                            value,
+                            msg=f"Windows-style line return detected in {key} field of {prefix}",
+                        )
 
     def test_prefixes(self):
         """Check prefixes aren't malformed."""
@@ -159,6 +183,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 desc = bioregistry.get_description(prefix)
                 self.assertIsNotNone(desc)
+                self.assertNotIn("\r", desc)
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
@@ -712,6 +737,7 @@ class TestRegistry(unittest.TestCase):
                             msg=f"provider publication {publication.title} should not appear "
                             f"in prefix publication list (appears as {other.title})",
                         )
+                        self.assert_publication_identifiers(publication)
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
@@ -755,6 +781,14 @@ class TestRegistry(unittest.TestCase):
             self.assertNotIn(" ", author.orcid)
         if author.email:
             self.assertRegex(author.email, EMAIL_RE)
+            self.assertFalse(
+                any(
+                    disallowed_email_part in author.email
+                    for disallowed_email_part in disallowed_email_parts
+                ),
+                msg=f"Bioregistry policy states that an email must correspond to a single person. "
+                f"The email provided appears to be for a group/mailing list: {author.email}",
+            )
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -851,10 +885,20 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 if resource.contributor.github not in {"cthoyt", "tgbugs"}:
                     # needed to bootstrap records before there was more governance in place
-                    self.assertIsNotNone(resource.reviewer)
+                    self.assertIsNotNone(
+                        resource.reviewer,
+                        msg="""
+
+    Your contribution is missing the `reviewer` key.
+
+    Please ping @biopragmatics/bioregistry-reviewers on your
+    pull request to get a reviewer to finalize your PR.
+    """,
+                    )
                     self.assertIsNotNone(
                         resource.github_request_issue,
-                        msg="External contributions require either a GitHub issue or GitHub pull request reference",
+                        msg="External contributions require either a GitHub issue or GitHub pull "
+                        "request reference in the `github_request_issue` key.",
                     )
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
@@ -866,6 +910,17 @@ class TestRegistry(unittest.TestCase):
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+
+    def assert_publication_identifiers(self, publication: Publication) -> None:
+        """Test identifiers follow pre-set rules."""
+        if publication.doi:
+            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+            self.assertEqual(publication.doi.lower(), publication.doi)
+            self.assertRegex(publication.doi, r"^10.\d{2,9}/.*$")
+        if publication.pubmed:
+            self.assertRegex(publication.pubmed, r"^\d+$")
+        if publication.pmc:
+            self.assertRegex(publication.pmc, r"^PMC\d+$")
 
     def test_publications(self):
         """Test references and publications are sorted right."""
@@ -901,9 +956,7 @@ class TestRegistry(unittest.TestCase):
                                 )
                             ),
                         )
-                        if publication.doi:
-                            # DOIs are case insensitive, so standardize to lowercase in bioregistry
-                            self.assertEqual(publication.doi.lower(), publication.doi)
+                        self.assert_publication_identifiers(publication)
 
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
@@ -1003,4 +1056,20 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.comment,
                     msg="Any resource with a non-resolvable URI format needs a comment as to why",
+                )
+
+    def test_repository(self) -> None:
+        """Test the repository annotation."""
+        for prefix, resource in self.registry.items():
+            if resource.repository is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertNotEqual(
+                    "bioregistry",
+                    resource.repository,
+                    msg="repository accidentally kept flag from GitHub",
+                )
+                self.assertTrue(
+                    resource.repository.startswith("http"),
+                    msg=f"repository is not a valid URL: {resource.repository}",
                 )

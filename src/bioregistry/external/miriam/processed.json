@@ -832,13 +832,6 @@
     "prefix": "biomodels.db",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "Caltech mirror",
-        "homepage": "http://biomodels.caltech.edu/",
-        "name": "Caltech mirror",
-        "uri_format": "http://biomodels.caltech.edu/$1"
-      },
-      {
         "code": "omicsdi",
         "description": "BioModels through OmicsDI",
         "homepage": "https://www.omicsdi.org/",
@@ -918,15 +911,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^PRJ[DEN][A-Z]\\d+$",
     "prefix": "bioproject",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "BioProject at DNA Data Bank of Japan",
-        "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
-        "name": "BioProject at DNA Data Bank of Japan",
-        "uri_format": "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1"
-      }
-    ],
     "sampleId": "PRJDB3",
     "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
   },
@@ -1468,13 +1452,6 @@
     "providers": [
       {
         "code": "CURATOR_REVIEW",
-        "description": "ChEMBL compound RDF",
-        "homepage": "https://github.com/egonw/chembl.rdf",
-        "name": "ChEMBL compound RDF",
-        "uri_format": "http://linkedchemistry.info/chembl/chemblid/$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
         "description": "ChEMBL compound RDF through EBI RDF Platform",
         "homepage": "https://www.ebi.ac.uk/rdf/services/chembl/",
         "name": "ChEMBL compound RDF through EBI RDF Platform",
@@ -1493,22 +1470,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^CHEMBL\\d+$",
     "prefix": "chembl.target",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL target RDF",
-        "homepage": "https://github.com/egonw/chembl.rdf",
-        "name": "ChEMBL target RDF",
-        "uri_format": "http://linkedchemistry.info/chembl/chemblid/$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL target RDF through EBI RDF Platform",
-        "homepage": "https://rdf.ebi.ac.uk/resource/chembl/",
-        "name": "ChEMBL target RDF through EBI RDF Platform",
-        "uri_format": "https://rdf.ebi.ac.uk/resource/chembl/target/$1"
-      }
-    ],
     "sampleId": "CHEMBL3467",
     "uri_format": "https://www.ebi.ac.uk/chembl/target/inspect/$1"
   },
@@ -2327,9 +2288,9 @@
       {
         "code": "sib",
         "description": "SNP2TFBS",
-        "homepage": "https://ccg.epfl.ch/snp2tfbs/",
+        "homepage": "https://epd.expasy.org/",
         "name": "SNP2TFBS",
-        "uri_format": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
+        "uri_format": "https://epd.expasy.org/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
       }
     ],
     "sampleId": "rs121909098",
@@ -2680,7 +2641,7 @@
   "ec-code": {
     "deprecated": false,
     "description": "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions.",
-    "homepage": "https://www.ebi.ac.uk/intenz/",
+    "homepage": "https://www.genome.jp/dbget-bin/www_bfind?enzyme",
     "id": "00000004",
     "name": "Enzyme Nomenclature",
     "namespaceEmbeddedInLui": false,
@@ -2688,25 +2649,11 @@
     "prefix": "ec-code",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "KEGG Ligand Database for Enzyme Nomenclature",
-        "homepage": "https://www.genome.jp/dbget-bin/www_bfind?enzyme",
-        "name": "KEGG Ligand Database for Enzyme Nomenclature",
-        "uri_format": "https://www.genome.jp/dbget-bin/www_bget?ec:$1"
-      },
-      {
         "code": "expenz",
         "description": "ExploreEnz at Trinity College",
         "homepage": "http://www.enzyme-database.org/",
         "name": "ExploreEnz at Trinity College",
         "uri_format": "http://www.enzyme-database.org/query.php?ec=$1"
-      },
-      {
-        "code": "enzymeportal",
-        "description": "Enzyme Portal through EMBL-EBI",
-        "homepage": "https://www.ebi.ac.uk/enzymeportal",
-        "name": "Enzyme Portal through EMBL-EBI",
-        "uri_format": "https://www.ebi.ac.uk/enzymeportal/ec/$1"
       },
       {
         "code": "expasy",
@@ -2717,7 +2664,7 @@
       }
     ],
     "sampleId": "1.1.1.1",
-    "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"
+    "uri_format": "https://www.genome.jp/dbget-bin/www_bget?ec:$1"
   },
   "echobase": {
     "deprecated": false,
@@ -2953,7 +2900,7 @@
   "encode": {
     "deprecated": false,
     "description": "The ENCODE Consortium is integrating multiple technologies and approaches in a collective effort to discover and define the functional elements encoded in the human genome, including genes, transcripts, and transcriptional regulatory regions, together with their attendant chromatin states and DNA methylation patterns.",
-    "homepage": "www.encodeproject.org",
+    "homepage": "https://www.encodeproject.org",
     "id": "00000662",
     "name": "ENCODE: Encyclopedia of DNA Elements",
     "namespaceEmbeddedInLui": false,
@@ -2972,13 +2919,6 @@
     "pattern": "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$",
     "prefix": "ensembl",
     "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "Ensembl US West mirror",
-        "homepage": "http://uswest.ensembl.org/",
-        "name": "Ensembl US West mirror",
-        "uri_format": "http://uswest.ensembl.org/id/$1"
-      },
       {
         "code": "CURATOR_REVIEW",
         "description": "Ensembl US East mirror",
@@ -4736,15 +4676,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^M\\d+$",
     "prefix": "imgt.ligm",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "IMGT LIGM through DKFZ (SRS)",
-        "homepage": "http://genius.embnet.dkfz-heidelberg.de/",
-        "name": "IMGT LIGM through DKFZ (SRS)",
-        "uri_format": "http://genius.embnet.dkfz-heidelberg.de/menu/cgi-bin/srs7.1.3.1/wgetz?-id+4ktAl1fNMTA+-e+[IMGT:'$1']"
-      }
-    ],
     "sampleId": "M94112",
     "uri_format": "http://www.imgt.org/ligmdb/view?id=$1"
   },
@@ -4790,7 +4721,7 @@
     "id": "00000387",
     "name": "InChIKey",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?",
+    "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?$",
     "prefix": "inchikey",
     "providers": [
       {
@@ -4802,7 +4733,7 @@
       }
     ],
     "sampleId": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
-    "uri_format": "http://www.chemspider.com/inchikey=$1"
+    "uri_format": "http://legacy.chemspider.com/inchikey=$1"
   },
   "insdc": {
     "deprecated": false,
@@ -4815,18 +4746,18 @@
     "prefix": "insdc",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "INSDC through DDBJ",
-        "homepage": "http://www.ddbj.nig.ac.jp/",
-        "name": "INSDC through DDBJ",
-        "uri_format": "http://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1"
-      },
-      {
         "code": "ebi",
         "description": "INSDC through European Nucleotide Archive (ENA)",
         "homepage": "https://www.ebi.ac.uk/ena/",
         "name": "INSDC through European Nucleotide Archive (ENA)",
         "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
+      },
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "INSDC through DDBJ",
+        "homepage": "http://www.ddbj.nig.ac.jp/",
+        "name": "INSDC through DDBJ",
+        "uri_format": "https://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1"
       },
       {
         "code": "ncbi",
@@ -5172,7 +5103,7 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "JWS Online Model Repository at Manchester",
-        "homepage": "http://jjj.mib.ac.uk/index.html",
+        "homepage": "http://jjj.mib.ac.uk/models",
         "name": "JWS Online Model Repository at Manchester",
         "uri_format": "http://jjj.mib.ac.uk/models/$1"
       },
@@ -5184,7 +5115,7 @@
         "uri_format": "http://jjj.bio.vu.nl/models/$1/"
       }
     ],
-    "sampleId": "curien",
+    "sampleId": "curien1",
     "uri_format": "http://jjj.biochem.sun.ac.za/models/$1/"
   },
   "kaggle": {
@@ -5588,13 +5519,6 @@
       },
       {
         "code": "CURATOR_REVIEW",
-        "description": "Locus Reference Genomic through Ensembl mirror (US west)",
-        "homepage": "http://uswest.ensembl.org/",
-        "name": "Locus Reference Genomic through Ensembl mirror (US west)",
-        "uri_format": "http://uswest.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
         "description": "Locus Reference Genomic through Ensembl mirror (US east)",
         "homepage": "http://useast.ensembl.org/",
         "name": "Locus Reference Genomic through Ensembl mirror (US east)",
@@ -5631,14 +5555,14 @@
   "macie": {
     "deprecated": false,
     "description": "MACiE (Mechanism, Annotation and Classification in Enzymes) is a database of enzyme reaction mechanisms. Each entry in MACiE consists of an overall reaction describing the chemical compounds involved, as well as the species name in which the reaction occurs. The individual reaction stages for each overall reaction are listed with mechanisms, alternative mechanisms, and amino acids involved.",
-    "homepage": "https://www.ebi.ac.uk/thornton-srv/databases/MACiE/index.html",
+    "homepage": "https://www.ebi.ac.uk/thornton-srv/m-csa/about/",
     "id": "00000077",
     "name": "MACiE",
     "namespaceEmbeddedInLui": false,
     "pattern": "^M\\d{4}$",
     "prefix": "macie",
     "sampleId": "M0001",
-    "uri_format": "https://www.ebi.ac.uk/thornton-srv/databases/cgi-bin/MACiE/entry/getPage.pl?id=$1"
+    "uri_format": "https://www.ebi.ac.uk/thornton-srv/m-csa/search/?s=$1"
   },
   "maggot": {
     "deprecated": false,
@@ -5721,14 +5645,14 @@
   "matrixdb.association": {
     "deprecated": false,
     "description": "MatrixDB stores experimentally determined interactions involving at least one extracellular biomolecule. It includes mostly protein-protein and protein-glycosaminoglycan interactions, as well as interactions with lipids and cations.",
-    "homepage": "http://matrixdb.univ-lyon1.fr/",
+    "homepage": "https://matrixdb.univ-lyon1.fr/",
     "id": "00000068",
     "name": "MatrixDB",
     "namespaceEmbeddedInLui": false,
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])_.*|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9]_.*)|(GAG_.*)|(MULT_.*)|(PFRAG_.*)|(LIP_.*)|(CAT_.*)$",
     "prefix": "matrixdb.association",
     "sampleId": "P00747__P07355",
-    "uri_format": "http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association"
+    "uri_format": "https://matrixdb.univ-lyon1.fr/association/$1"
   },
   "maxo": {
     "deprecated": false,
@@ -5845,7 +5769,7 @@
     "id": "00000560",
     "name": "MeSH",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(C|D)\\d{6,9}$",
+    "pattern": "^(C|D|M)\\d{6,9}$",
     "prefix": "mesh",
     "sampleId": "C000100",
     "uri_format": "http://id.nlm.nih.gov/mesh/$1"
@@ -5853,26 +5777,22 @@
   "mesh.2012": {
     "deprecated": false,
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloging of books, documents, etc. This collection references MeSH terms published in 2012.",
-    "homepage": "http://www.nlm.nih.gov/mesh/",
     "id": "00000270",
     "name": "MeSH 2012",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z0-9]+$",
     "prefix": "mesh.2012",
-    "sampleId": "17186",
-    "uri_format": "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?mode=&index=$1&view=expanded"
+    "sampleId": "17186"
   },
   "mesh.2013": {
     "deprecated": false,
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloging of books, documents, etc. This collection references MeSH terms published in 2013.",
-    "homepage": "http://www.nlm.nih.gov/mesh/",
     "id": "00000473",
     "name": "MeSH 2013",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z0-9]+$",
     "prefix": "mesh.2013",
-    "sampleId": "17165",
-    "uri_format": "http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?mode=&index=$1&view=expanded"
+    "sampleId": "17165"
   },
   "metabolights": {
     "deprecated": false,
@@ -6165,7 +6085,7 @@
         "description": "The Molecular INTeraction database (MINT)",
         "homepage": "http://mint.bio.uniroma2.it/mint/",
         "name": "The Molecular INTeraction database (MINT)",
-        "uri_format": "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"
+        "uri_format": "https://mint.bio.uniroma2.it/index.php/results-interactions/?id=$1"
       }
     ],
     "sampleId": "MINT-10000",
@@ -6251,7 +6171,7 @@
     "pattern": "^MIR:001\\d{5}$",
     "prefix": "miriam.resource",
     "sampleId": "MIR:00100005",
-    "uri_format": "https://www.ebi.ac.uk/miriam/main/resources/$1"
+    "uri_format": "https://resolver.api.identifiers.org/resolveMirId/$1"
   },
   "mirnest": {
     "deprecated": false,
@@ -6301,7 +6221,7 @@
     "sampleId": "50885",
     "uri_format": "http://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?uid=$1"
   },
-  "mmmp:biomaps": {
+  "mmmp.biomaps": {
     "deprecated": false,
     "description": "A collection of molecular interaction maps and pathways involved in cancer development and progression with a focus on melanoma.",
     "homepage": "http://www.mmmp.org/MMMP/public/biomap/listBiomap.mmmp",
@@ -6309,7 +6229,7 @@
     "name": "Melanoma Molecular Map Project Biomaps",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
-    "prefix": "mmmp:biomaps",
+    "prefix": "mmmp.biomaps",
     "sampleId": "37",
     "uri_format": "http://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=$1"
   },
@@ -6881,14 +6801,14 @@
   "neurolex": {
     "deprecated": false,
     "description": "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex).",
-    "homepage": "http://www.neurolex.org/wiki/Main_Page",
+    "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "id": "00000126",
     "name": "NeuroLex",
     "namespaceEmbeddedInLui": false,
     "pattern": "^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\\d+$",
     "prefix": "neurolex",
     "sampleId": "Birnlex_721",
-    "uri_format": "http://www.neurolex.org/wiki/$1"
+    "uri_format": "https://scicrunch.org/scicrunch/interlex/search?q=$1"
   },
   "neuromorpho": {
     "deprecated": false,
@@ -7755,7 +7675,7 @@
   "pdb.ligand": {
     "deprecated": false,
     "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules. This collection references ligands.",
-    "homepage": "http://www.pdb.org/",
+    "homepage": "https://www.pdbe.org/",
     "id": "00000490",
     "name": "Protein Data Bank Ligand",
     "namespaceEmbeddedInLui": false,
@@ -7763,15 +7683,15 @@
     "prefix": "pdb.ligand",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "PDB Ligand at Protein Databank in Europe (PDBe)",
-        "homepage": "https://www.pdbe.org/",
-        "name": "PDB Ligand at Protein Databank in Europe (PDBe)",
-        "uri_format": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
+        "code": "rcsb",
+        "description": "PDB Ligand at RCSB",
+        "homepage": "http://www.rcsb.org",
+        "name": "PDB Ligand at RCSB",
+        "uri_format": "http://www.rcsb.org/ligand/$1"
       }
     ],
     "sampleId": "TRQ",
-    "uri_format": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1"
+    "uri_format": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
   },
   "ped": {
     "deprecated": false,
@@ -8146,7 +8066,7 @@
     "uri_format": "https://bioinformatics.cineca.it/PMDB/user//search.php?idsearch=$1"
   },
   "pmp": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The number of known protein sequences exceeds those of experimentally solved protein structures. Homology (or comparative) modeling methods make use of experimental protein structures to build models for evolutionary related proteins. The Protein Model Portal (PMP) provides a single portal to access these models, which are accessed through their UniProt identifiers.",
     "id": "00000227",
     "name": "PMP",
@@ -8514,13 +8434,6 @@
     "prefix": "pubmed",
     "providers": [
       {
-        "code": "hubmed",
-        "description": "HubMed",
-        "homepage": "http://www.hubmed.org/",
-        "name": "HubMed",
-        "uri_format": "http://www.hubmed.org/display.cgi?uids=$1"
-      },
-      {
         "code": "epmc",
         "description": "Europe PMC",
         "homepage": "http://europepmc.org/",
@@ -8533,6 +8446,13 @@
         "homepage": "http://linkedlifedata.com/",
         "name": "PubMed through Linkedlife data",
         "uri_format": "http://linkedlifedata.com/resource/pubmed/id/$1"
+      },
+      {
+        "code": "hubmed",
+        "description": "HubMed",
+        "homepage": "http://www.hubmed.org/",
+        "name": "HubMed",
+        "uri_format": "https://www.hubmed.org/?term=$1"
       },
       {
         "code": "scholia",
@@ -9116,7 +9036,7 @@
     "uri_format": "https://sed-ml.org/urns.html#language:$1"
   },
   "seed": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "This cooperative effort, which includes Fellowship for Interpretation of Genomes (FIG), Argonne National Laboratory, and the University of Chicago, focuses on the development of the comparative genomics environment called the SEED. It is a framework to support comparative analysis and annotation of genomes, and the development of curated genomic data (annotation). Curation is performed at the level of subsystems by an expert annotator, across many genomes, and not on a gene by gene basis. This collection references subsystems.",
     "id": "00000552",
     "name": "SEED Subsystem",
@@ -9492,7 +9412,7 @@
   "string": {
     "deprecated": false,
     "description": "STRING (Search Tool for Retrieval of Interacting Genes/Proteins) is a database of known and predicted protein interactions.\r\nThe interactions include direct (physical) and indirect (functional) associations; they are derived from four sources:Genomic Context, High-throughput Experiments,(Conserved) Coexpression, Previous Knowledge. STRING quantitatively integrates interaction data from these sources for a large number of organisms, and transfers information between these organisms where applicable.",
-    "homepage": "http://string.embl.de/",
+    "homepage": "http://string-db.org/",
     "id": "00000265",
     "name": "STRING",
     "namespaceEmbeddedInLui": false,
@@ -9501,14 +9421,14 @@
     "providers": [
       {
         "code": "CURATOR_REVIEW",
-        "description": "STRING Mirror at Heidelberg",
-        "homepage": "http://string-db.org/",
-        "name": "STRING Mirror at Heidelberg",
-        "uri_format": "http://string-db.org/interactions/$1"
+        "description": "STRING at Heidelberg",
+        "homepage": "http://string.embl.de/",
+        "name": "STRING at Heidelberg",
+        "uri_format": "https://string.embl.de/cgi/network?identifier=$1"
       }
     ],
     "sampleId": "P53350",
-    "uri_format": "http://string.embl.de/interactions/$1"
+    "uri_format": "https://string-db.org/cgi/network?identifier=$1"
   },
   "subtilist": {
     "deprecated": false,
@@ -10032,15 +9952,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]+$",
     "prefix": "unii",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "UNII at U.S. Food and Drug Administration",
-        "homepage": "http://fdasis.nlm.nih.gov/srs/",
-        "name": "UNII at U.S. Food and Drug Administration",
-        "uri_format": "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"
-      }
-    ],
     "sampleId": "3G6A5W338E",
     "uri_format": "https://precision.fda.gov/uniisearch/srs/unii/$1"
   },
@@ -10059,23 +9970,14 @@
   "uniparc": {
     "deprecated": false,
     "description": "The UniProt Archive (UniParc) is a  database containing non-redundant protein sequence information from many sources. Each unique sequence is given a stable and unique identifier (UPI) making it possible to identify the same protein from different source databases.",
-    "homepage": "https://www.ebi.ac.uk/uniparc/",
+    "homepage": "http://www.uniprot.org/uniparc/",
     "id": "00000041",
     "name": "UniParc",
     "namespaceEmbeddedInLui": false,
     "pattern": "^UPI[A-F0-9]{10}$",
     "prefix": "uniparc",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "UniParc through UniProt",
-        "homepage": "http://www.uniprot.org/uniparc/",
-        "name": "UniParc through UniProt",
-        "uri_format": "https://www.uniprot.org/uniparc/$1"
-      }
-    ],
     "sampleId": "UPI000000000A",
-    "uri_format": "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=$1"
+    "uri_format": "https://www.uniprot.org/uniparc/$1"
   },
   "unipathway.compound": {
     "deprecated": false,

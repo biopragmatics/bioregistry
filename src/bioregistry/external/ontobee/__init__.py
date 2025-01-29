@@ -40,8 +40,15 @@ def get_ontobee(force_download: bool = False):
     with RAW_PATH.open() as f:
         soup = BeautifulSoup(f, "html.parser")
 
+    ontology_list = soup.find(id="ontologyList")
+    if ontology_list is None:
+        raise ValueError
+    table_body = ontology_list.find("tbody")
+    if table_body is None:
+        raise ValueError
+
     rv = {}
-    for row in soup.find(id="ontologyList").find("tbody").find_all("tr"):
+    for row in table_body.find_all("tr"):  # type:ignore
         cells = row.find_all("td")
         prefix = cells[1].text
         rv[prefix] = {

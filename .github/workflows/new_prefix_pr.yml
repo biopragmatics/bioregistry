@@ -14,21 +14,50 @@ jobs:
         python-version: [ "3.12" ]
     steps:
       - uses: actions/checkout@v2
+      - name: Delay to ensure labels are attached
+        run: sleep 10
+      - name: Check Issue Labels
+        id: check_labels
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const hasRequiredLabels = issue.labels.some(label => label.name === "New") && issue.labels.some(label => label.name === "Prefix");
+            core.setOutput("hasRequiredLabels", hasRequiredLabels ? 'true' : 'false');
+      - name: End Workflow if Labels are Missing
+        if: steps.check_labels.outputs.hasRequiredLabels == 'false'
+        run: |
+          echo "Issue does not have 'New' and 'Prefix' labels. Ending workflow."
+          exit 0
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
+        if: steps.check_labels.outputs.hasRequiredLabels == 'true'
         run: pip install -e .[gha]
       - name: Update
         id: update
-        run: python -m bioregistry.gh.new_prefix --github
+        if: steps.check_labels.outputs.hasRequiredLabels == 'true'
+        run: |
+          issue_url="${{ github.event.issue.html_url }}"
+          issue_number=$(echo "$issue_url" | grep -oE '[0-9]+$')
+          python -m bioregistry.gh.new_prefix --github --issue=$issue_number
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Branch
+        id: create_branch
+        if: steps.check_labels.outputs.hasRequiredLabels == 'true'
+        run: |
+          issue_url="${{ github.event.issue.html_url }}"
+          issue_number=$(echo "$issue_url" | grep -oE '[0-9]+$') 
+          branch_name="create-pull-request/patch-$issue_number"
+          echo "::set-output name=branch_name::$branch_name" 
       - name: Create Pull Request
+        if: steps.check_labels.outputs.hasRequiredLabels == 'true'
         uses: peter-evans/create-pull-request@v3
         with:
-          branch-suffix: short-commit-hash
+          branch: ${{ steps.create_branch.outputs.branch_name }}
           labels: New,Prefix
           body: ${{ steps.update.outputs.BR_BODY }}
           title: ${{ steps.update.outputs.BR_TITLE }}

@@ -12,6 +12,21 @@ wrong_patterns:
   miriam: ^\d+$
   name: American Type Culture Collection
   prefix: atcc
+- correct: ^c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y$
+  homepage: http://bigg.ucsd.edu/compartments/
+  miriam: ^[a-z_A-Z]+$
+  name: BiGG Compartment
+  prefix: bigg.compartment
+- correct: ^[a-z_A-Z0-9]+(\[[c|cm|cx|e|f|g|h|i|im|l|m|mm|n|p|r|s|u|um|v|w|x|y]\])?$
+  homepage: http://bigg.ucsd.edu/universal/metabolites
+  miriam: ^[a-z_A-Z0-9]+$
+  name: BiGG Metabolite
+  prefix: bigg.metabolite
+- correct: ^\d{11}$
+  homepage: https://en.panomix.com/
+  miriam: ^BioDeep_\d{11}$
+  name: BioDeep Database
+  prefix: biodeep
 - correct: ^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$
   homepage: https://biofactoid.org/
   miriam: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
@@ -37,6 +52,11 @@ wrong_patterns:
   miriam: ^BTO:\d{7}$
   name: BRENDA Tissue Ontology
   prefix: bto
+- correct: ^CCDS\d+(\.\d+)?$
+  homepage: http://www.ncbi.nlm.nih.gov/CCDS/
+  miriam: ^CCDS\d+\.\d+$
+  name: Consensus CDS
+  prefix: ccds
 - correct: ^\w+$
   homepage: http://www.semantic-systems-biology.org/apo
   miriam: ^CCO:\w+$
@@ -72,6 +92,11 @@ wrong_patterns:
   miriam: ^COG[0-9]+$
   name: Cluster of orthologous genes
   prefix: cog
+- correct: ^[A-Z0-9][A-Z0-9-]*$
+  homepage: http://cancer.sanger.ac.uk/cosmic/
+  miriam: ^[A-Z0-9]+$
+  name: COSMIC Gene
+  prefix: cosmic
 - correct: ^[a-z0-9]+:[A-Za-z0-9.\-:]+$
   homepage: https://w3c-ccg.github.io/did-spec/
   miriam: ^did:[a-z0-9]+:[A-Za-z0-9.\-:]+$
@@ -92,7 +117,7 @@ wrong_patterns:
   miriam: ^[0-9]+$
   name: Drug Central
   prefix: drugcentral
-- correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
+- correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.[nB]\d{1,3})?$
   homepage: https://www.enzyme-database.org/
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Commission Code
@@ -202,6 +227,11 @@ wrong_patterns:
   miriam: ^[0-9]+$
   name: Infectious Disease Ontology
   prefix: ido
+- correct: ^\d+$
+  homepage: https://www.iedb.org/
+  miriam: ^[0-9]+$
+  name: Immune Epitope Database References
+  prefix: iedb.reference
 - correct: ^\d+(-\d+)?$
   homepage: https://www.imexconsortium.org/
   miriam: ^IM-\d+(-?)(\d+?)$
@@ -247,7 +277,7 @@ wrong_patterns:
   miriam: ^[A-Z]?[0-9]{1,5}[a-z]?$
   name: MediaDive Medium
   prefix: mediadive.medium
-- correct: ^[SCTAGMNUI]\d{2}\.([AB]\d{2}|\d{3})$
+- correct: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
   homepage: http://merops.sanger.ac.uk/index.htm
   miriam: ^I\d{2}\.\d{3}$
   name: MEROPS Entry
@@ -393,7 +423,7 @@ wrong_patterns:
   name: Phenotype And Trait Ontology
   prefix: pato
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
-  homepage: http://pid.nci.nih.gov/
+  homepage: https://www.ndexbio.org/index.html#/networkset/8a2d7ee9-1513-11e9-bb6a-0ac135e8bacf
   miriam: ^\w+$
   name: 'NCI Pathway Interaction Database: Pathway'
   prefix: pid.pathway
@@ -527,6 +557,11 @@ wrong_patterns:
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
   name: Vertebrate Gene Nomenclature Committee
   prefix: vgnc
+- correct: ^(Q|P|E)\d+$
+  homepage: https://www.wikidata.org/
+  miriam: ^(Q|P)\d+$
+  name: Wikidata
+  prefix: wikidata
 - correct: ^\S+$
   homepage: http://en.wikipedia.org/wiki/Main_Page
   miriam: ^[A-Za-z-0-9_]+$

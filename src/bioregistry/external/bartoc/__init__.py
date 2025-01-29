@@ -45,7 +45,7 @@ def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
     return rv
 
 
-def _process_bartoc_record(record):
+def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
     prefix = record["uri"][len("http://bartoc.org/en/node/") :]
     rv = {
         "prefix": prefix,

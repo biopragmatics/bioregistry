@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 50.0
- Last update: 10-September-2024
+ Version: 51.0
+ Last update: 19-December-2024
 
 ----------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ Where : Resource_abbrev is one of: CGNC|FlyBase_Gene|HGNC|MGI|RGD|UniProtKB|VGNC
 
 Topic:  Monoclonal antibody target
 Format: CC   Monoclonal antibody target: Resource_abbrev; %s; Gene/protein_name_or_compound[ (Note=Free_text)].
-Where : Resource_abbrev is one of: ChEBI|PubChem|UniProtKB
+Where : Resource_abbrev is one of: ChEBI|FPbase|PubChem|UniProtKB
 
 Topic:  Selected for resistance to
 Format: CC   Selected for resistance to: Resource_abbrev; %s; Compound/protein_name.
@@ -189,7 +189,8 @@ Cat   : Cell line collections (Providers)
 Abbrev: BCGO
 Name  : Beta Cell Genomics Ontology
 Server: https://github.com/obi-bcgo/bcgo
-Db_URL: http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/%s
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : No
 Cat   : Anatomy/cell type resources
 //
@@ -238,8 +239,8 @@ Cat   : Biological sample resources
 Abbrev: BTO
 Name  : BRENDA Tissue Ontology
 Server: https://bioportal.bioontology.org/ontologies/BTO
-Db_URL: https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_%s
-        Note: %s is the numerical part of the BTO:nnnnnnn identifier
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/bto/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : No
 Cat   : Anatomy/cell type resources
 //
@@ -331,6 +332,7 @@ Abbrev: ChEBI
 Name  : Chemical Entities of Biological Interest
 Server: https://www.ebi.ac.uk/chebi/
 Db_URL: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : Yes
 Cat   : Chemistry resources
 //
@@ -351,14 +353,15 @@ Cat   : Chemistry resources
 Abbrev: CL
 Name  : Cell Ontology
 Server: https://obophenotype.github.io/cell-ontology/
-Db_URL: https://www.ebi.ac.uk/ols4/ontologies/cl/classes?iri=http://purl.obolibrary.org/obo/%s
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/cl/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : Yes
 Cat   : Anatomy/cell type resources
 //
 Abbrev: CLDB
 Name  : Cell Line Data Base
-Server: http://bioinformatics.hsanmartino.it/cldb/
-Db_URL: http://bioinformatics.hsanmartino.it/cldb/%s.html
+Server: https://bioinformatics.hsanmartino.it/hypercldb/
+Db_URL: https://bioinformatics.hsanmartino.it/hypercldb/%s.html
 Term. : No
 Cat   : Cell line databases/resources
 //
@@ -371,8 +374,9 @@ Cat   : Polymorphism and mutation databases
 //
 Abbrev: CLO
 Name  : Cell Line Ontology
-Server: http://www.clo-ontology.org
-Db_URL: https://www.ebi.ac.uk/ols4/ontologies/clo/classes?iri=http://purl.obolibrary.org/obo/%s
+Server: https://bioportal.bioontology.org/ontologies/CLO
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/clo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : No
 Cat   : Cell line databases/resources
 //
@@ -448,8 +452,8 @@ Cat   : Cell line collections (Providers)
 //
 Abbrev: DiscoverX
 Name  : DiscoverX cell line products
-Server: https://www.discoverx.com/product-category/cell-lines-primary-cells/
-Db_URL: https://www.discoverx.com/?post_type=product&s=%s
+Server: https://www.discoverx.com/product_types/cell-lines-primary-cells
+Db_URL: https://www.discoverx.com/catalogmanagement/catalog/?searchText=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -582,7 +586,7 @@ Cat   : Chemistry resources
 Abbrev: GeneCopoeia
 Name  : GeneCopoeia cell line products
 Server: https://www.genecopoeia.com/
-Db_URL: https://www.genecopoeia.com/product/search3/?s=%s
+Db_URL: https://www.genecopoeia.com/product/search2/?s=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -603,7 +607,7 @@ Cat   : Gene expression databases
 Abbrev: HGNC
 Name  : Human Gene Nomenclature Committee Database
 Server: https://www.genenames.org
-Db_URL: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:%s
+Db_URL: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/%s
 Term. : Yes
 Cat   : Organism-specific databases
 //
@@ -721,8 +725,8 @@ Cat   : Cell line collections (Providers)
 //
 Abbrev: JCRB
 Name  : Japanese Collection of Research Bioresources Cell Bank
-Server: http://cellbank.nibiohn.go.jp/english/
-Db_URL: http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=%s
+Server: https://cellbank.nibiohn.go.jp/english/
+Db_URL: https://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -842,6 +846,7 @@ Abbrev: NCBI_TaxID
 Name  : NCBI taxonomy database
 Server: https://www.ncbi.nlm.nih.gov/taxonomy
 Db_URL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=%s&lvl=3
+Db_IRI: http://purl.obolibrary.org/obo/NCBITaxon_%s
 Term. : Yes
 Cat   : Taxonomy
 //
@@ -856,6 +861,7 @@ Abbrev: NCIt
 Name  : NCI thesaurus
 Server: https://ncit.nci.nih.gov/ncitbrowser
 Db_URL: https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=%s
+Db_IRI: http://purl.obolibrary.org/obo/NCIT_%s
 Term. : Yes
 Cat   : Medical resources
 //
@@ -889,8 +895,9 @@ Cat   : Cell line collections (Providers)
 //
 Abbrev: ORDO
 Name  : Orphanet Rare Disease Ontology
-Server: https://www.ebi.ac.uk/ols4/ontologies/ordo
-Db_URL: https://www.ebi.ac.uk/ols4/ontologies/ordo/classes?iri=http://www.orpha.net/ORDO/%s
+Server: https://www.orphadata.com/ontologies/
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F%s
+Db_IRI: http://www.orpha.net/ORDO/%s
 Term. : Yes
 Cat   : Medical resources
 //
@@ -925,7 +932,8 @@ Cat   : Reference resources
 Abbrev: PO
 Name  : Plant Ontology
 Server: https://browser.planteome.org/amigo
-Db_URL: https://www.ebi.ac.uk/ols4/ontologies/po/classes?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F%s
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/po/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : Yes
 Cat   : Anatomy/cell type resources
 //
@@ -967,7 +975,7 @@ Cat   : Reference resources
 Abbrev: RCB
 Name  : RIKEN Bioresource Center Cell Bank
 Server: https://cell.brc.riken.jp/en/rcb
-Db_URL: http://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=%s&lang=En
+Db_URL: https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=%s&lang=En
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -995,7 +1003,8 @@ Cat   : Cell line collections (Providers)
 Abbrev: RS
 Name  : Rat Strain Ontology
 Server: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
-Db_URL: https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=%s
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/rs/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term  : Yes
 Cat   : Organism-specific databases
 //
@@ -1060,7 +1069,8 @@ Cat   : Cell line databases/resources
 Abbrev: UBERON
 Name  : Uber-anatomy ontology
 Server: https://uberon.github.io/
-Db_URL: https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252%s
+Db_URL: https://www.ebi.ac.uk/ols4/ontologies/uberon/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : Yes
 Cat   : Anatomy/cell type resources
 //
@@ -1082,13 +1092,14 @@ Abbrev: VBO
 Name  : Vertebrate Breed Ontology
 Server: https://monarch-initiative.github.io/vertebrate-breed-ontology/
 Db_URL: https://www.ebi.ac.uk/ols4/ontologies/vbo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s
+Db_IRI: http://purl.obolibrary.org/obo/%s
 Term. : Yes
 Cat   : Taxonomy
 //
 Abbrev: VGNC
 Name  : Vertebrate Gene Nomenclature Committee Database
 Server: https://vertebrate.genenames.org/
-Db_URL: https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/VGNC:%s
+Db_URL: https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/%s
 Term. : Yes
 Cat   : Organism-specific databases
 //
