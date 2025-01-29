@@ -269,8 +269,6 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
 
 def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
     """Convert a pydantic model to a dict."""
-    if PYDANTIC_1:
-        return x.dict(**kwargs)
     return x.model_dump(**kwargs)
 
 
@@ -279,20 +277,14 @@ M = TypeVar("M", bound=BaseModel)
 
 def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
     """Convert a dict to a pydantic model."""
-    if PYDANTIC_1:
-        return m.parse_obj(d)
     return m.model_validate(d)
 
 
 def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
     """Get the fields."""
-    if PYDANTIC_1:
-        return m.__fields__
     return m.model_fields
 
 
 def pydantic_schema(m: type[M]) -> dict[str, Any]:
     """Get the schema."""
-    if PYDANTIC_1:
-        return m.schema()
     return m.model_json_schema()

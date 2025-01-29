@@ -14,7 +14,7 @@ import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
@@ -46,10 +46,6 @@ class TestRegistry(unittest.TestCase):
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
 
-    @unittest.skipIf(
-        PYDANTIC_1,
-        reason="Only run this test on Pydantic 2, since the schema slightly changed",
-    )
     def test_schema(self):
         """Test the schema is up-to-date."""
         actual = json.loads(SCHEMA_PATH.read_text())

@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from pydantic.json_schema import models_json_schema
 import itertools as itt
 import json
 import logging
@@ -40,7 +41,6 @@ from bioregistry.constants import (
     EMAIL_RE,
     ORCID_PATTERN,
     PATTERN_KEY,
-    PYDANTIC_1,
     URI_FORMAT_KEY,
 )
 from bioregistry.license_standardizer import standardize_license
@@ -2834,9 +2834,6 @@ def _allowed_uri_format(rv: str) -> bool:
 @lru_cache(maxsize=1)
 def get_json_schema() -> dict[str, Any]:
     """Get the JSON schema for the bioregistry."""
-    if PYDANTIC_1:
-        raise NotImplementedError
-
     rv = {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://bioregistry.io/schema.json",
@@ -2860,8 +2857,6 @@ def get_json_schema() -> dict[str, Any]:
     )
 
     # see https://docs.pydantic.dev/latest/usage/json_schema/#general-notes-on-json-schema-generation
-    from pydantic.json_schema import models_json_schema
-
     _, schema_dict = models_json_schema(
         [(model, "validation") for model in models],  # type:ignore
         title=title,
