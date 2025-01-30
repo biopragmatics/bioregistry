@@ -481,7 +481,7 @@ def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str
 def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
     br_external_to = {}
     for br_id, resource in read_registry().items():
-        _k = (pydantic_dict(resource).get(key) or {}).get("prefix")
+        _k = (resource.model_dump().get(key) or {}).get("prefix")
         if _k:
             br_external_to[_k] = br_id
 

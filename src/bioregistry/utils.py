@@ -269,6 +269,7 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
 
 def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
     """Convert a pydantic model to a dict."""
+    warnings.warn("use BaseModel.model_dump directly", DeprecationWarning, stacklevel=2)
     return x.model_dump(**kwargs)
 
 
