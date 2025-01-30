@@ -4,7 +4,7 @@ import json
 import logging
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 import yaml
 from pystow.utils import download

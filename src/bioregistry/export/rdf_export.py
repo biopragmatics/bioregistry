@@ -156,7 +156,9 @@ def _get_resource_function_2() -> list[tuple[Union[str, URIRef], Callable[[Resou
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) -> None:  # noqa:C901
+def _add_resource(  # noqa:C901
+    resource: Resource, *, manager: Manager, graph: rdflib.Graph
+) -> None:
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))

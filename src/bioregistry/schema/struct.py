@@ -739,7 +739,7 @@ class Resource(BaseModel):
             return None
         return fmt.replace("$1", identifier)
 
-    def __setitem__(self, key: str, value: Any) -> None:
+    def __setitem__(self, key: str, value: Any) -> None:  # noqa:D105
         setattr(self, key, value)
 
     def get_banana(self) -> str | None:
@@ -2734,7 +2734,7 @@ class Context(BaseModel):
     prefix maps to serve various communities based on the standard Bioregistry
     prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
     custom prefix maps, and other community-specific logic.
-    """  # noqa: D205
+    """  # noqa: D205,D400
 
     name: str = Field(
         ...,

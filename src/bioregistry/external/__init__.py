@@ -1,6 +1,6 @@
 """Acquisition, processing, and alignment of external registries."""
 
-from typing import Callable, List, Tuple
+from typing import Callable
 
 from .aberowl import get_aberowl
 from .bartoc import get_bartoc

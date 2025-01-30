@@ -7,7 +7,7 @@ import json
 import logging
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Optional, Tuple
+from typing import Any, Optional
 from xml.etree import ElementTree
 
 import requests

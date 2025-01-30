@@ -4,7 +4,7 @@ import json
 import tempfile
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Union
+from typing import Union
 
 from pystow.utils import download, read_rdf
 

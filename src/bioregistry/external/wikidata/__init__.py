@@ -5,7 +5,6 @@ import logging
 from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import Dict
 
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner

@@ -8,7 +8,7 @@ import logging
 import re
 from collections.abc import MutableMapping
 from pathlib import Path
-from typing import Any, Optional, Set
+from typing import Any, Optional
 
 from bioregistry.constants import ORCID_PATTERN
 from bioregistry.external.alignment_utils import Aligner

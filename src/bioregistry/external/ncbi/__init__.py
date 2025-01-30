@@ -6,7 +6,6 @@ import re
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Dict
 from urllib.parse import urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup

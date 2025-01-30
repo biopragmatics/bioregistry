@@ -55,7 +55,10 @@ ROOT = HERE.parent.parent.parent.resolve()
 DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
-URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+URL = (
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnk"
+    "ixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+)
 
 XTrain: TypeAlias = NDArray[np.float64]
 YTrain: TypeAlias = NDArray[np.float64]
@@ -267,6 +270,7 @@ def generate_meta_features(
     :param classifiers: List of trained classifiers.
     :param x_train: Training features.
     :param y_train: Training labels.
+    :param cv: Number of folds for cross-validation
     :return: DataFrame containing meta-features.
     """
     df = pd.DataFrame()
