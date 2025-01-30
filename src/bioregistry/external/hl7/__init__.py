@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for getting HL7 OIDs.
 
 1. Navigate to https://www.hl7.org/oid/index.cfm?Comp_OID=2.16.840.1.113883.6.9
@@ -8,12 +6,12 @@
 """
 
 import csv
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 __all__ = [
-    "get_hl7",
     "HL7Aligner",
+    "get_hl7",
 ]
 
 from bioregistry.external.alignment_utils import Aligner

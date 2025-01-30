@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for the metaregistry."""
 
 import unittest

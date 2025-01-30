@@ -2,10 +2,10 @@
 
 import datetime
 from collections import defaultdict
+from collections.abc import Mapping
 from dataclasses import dataclass
 from itertools import combinations
 from textwrap import dedent
-from typing import Mapping
 
 import click
 from more_click import force_option
@@ -48,8 +48,8 @@ class BioregistrySummary:
         The Bioregistry ({get_version()}; {self.datetime_str}) integrates content from and aligns
         {self.number_registries_aligned:,} external registries and contains {self.number_prefixes:,}
         individual records. These records extend on each prior registry
-        (e.g., 838 records in {self.external_sizes['prefixcommons']}, {self.external_sizes['miriam']:,}
-        in MIRIAM/Identifiers.org, and {self.external_sizes['n2t']:,}  in Name-to-Thing (Wimalaratne et al., 2018),
+        (e.g., 838 records in {self.external_sizes["prefixcommons"]}, {self.external_sizes["miriam"]:,}
+        in MIRIAM/Identifiers.org, and {self.external_sizes["n2t"]:,}  in Name-to-Thing (Wimalaratne et al., 2018),
         each accessed on {self.datetime_str}), as well as the aligned registries combined:
         {self.number_prefixes_novel:,} of the Bioregistry’s {self.number_prefixes:,} records are novel,
         i.e. they do not appear in any existing registry. The Bioregistry also adds novel curated metadata

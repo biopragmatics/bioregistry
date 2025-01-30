@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Assert regular expression patterns for common identifier styles."""
 
 import re

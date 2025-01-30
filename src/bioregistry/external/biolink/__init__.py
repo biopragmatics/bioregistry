@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download Biolink."""
 
 import json
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Dict, Mapping, Sequence
+from typing import Any
 
 import yaml
 from pystow.utils import download
@@ -13,8 +12,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_biolink",
     "BiolinkAligner",
+    "get_biolink",
 ]
 
 URL = "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml"
@@ -56,7 +55,7 @@ class BiolinkAligner(Aligner):
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
 
-    def prepare_external(self, external_id: str, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry) -> dict[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return {

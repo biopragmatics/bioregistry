@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Generate the warnings file.
 
 This lists any sorts of things that should be fixed upstream, but are instead manually curated in the Bioregistry.
@@ -103,13 +101,13 @@ def export_warnings() -> None:
         )
 
     miriam_pattern_wrong = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            correct=entry["pattern"],
-            miriam=entry["miriam"]["pattern"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "correct": entry["pattern"],
+            "miriam": entry["miriam"]["pattern"],
+        }
         for prefix, entry in ENTRIES
         if "miriam" in entry
         and "pattern" in entry
@@ -117,27 +115,27 @@ def export_warnings() -> None:
     ]
 
     miriam_embedding_rewrites = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            correct=entry["namespace.embedded"],
-            miriam=entry["miriam"]["namespaceEmbeddedInLui"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "pattern": bioregistry.get_pattern(prefix),
+            "correct": entry["namespace.embedded"],
+            "miriam": entry["miriam"]["namespaceEmbeddedInLui"],
+        }
         for prefix, entry in ENTRIES
         if "namespace.embedded" in entry
     ]
 
     # When are namespace rewrites required?
     miriam_prefix_rewrites = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            correct=entry["namespace.rewrite"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "pattern": bioregistry.get_pattern(prefix),
+            "correct": entry["namespace.rewrite"],
+        }
         for prefix, entry in ENTRIES
         if "namespace.rewrite" in entry
     ]
@@ -149,7 +147,7 @@ def export_warnings() -> None:
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
                 "license_conflict": [
-                    dict(prefix=prefix, obo=obo, ols=ols)
+                    {"prefix": prefix, "obo": obo, "ols": ols}
                     for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
                 ],
             },

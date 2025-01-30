@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Add descriptions from a google curation sheet."""
 
 import click

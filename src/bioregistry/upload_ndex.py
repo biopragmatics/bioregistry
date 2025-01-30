@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Generate a small knowledge graph relating entities."""
 
 from typing import TYPE_CHECKING
@@ -23,7 +21,7 @@ def main():
     """Upload the Bioregistry KG to NDEx."""
     try:
         upload()
-    except IOError:
+    except OSError:
         click.secho("Failed to upload to NDEx", fg="red")
     else:
         click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")

@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for Bioregistry data structures."""
 
 from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from pydantic import BaseModel
 
 __all__ = [
     "sanitize_dict",
-    "sanitize_model",
     "sanitize_mapping",
+    "sanitize_model",
 ]
 
 

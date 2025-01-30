@@ -3,8 +3,8 @@
 import itertools as itt
 import random
 import time
+from collections.abc import Iterable
 from statistics import mean
-from typing import Iterable, Tuple
 
 import click
 import matplotlib.pyplot as plt
@@ -27,7 +27,7 @@ def get_curies(rebuild: bool = True):
     return rows
 
 
-def iter_curies() -> Iterable[Tuple[str, str, str, str, str]]:
+def iter_curies() -> Iterable[tuple[str, str, str, str, str]]:
     """Generate prefix-identifier-banana-curie tuples for benchmarking."""
     for prefix, resource in tqdm(
         manager.registry.items(), desc="Generating test CURIEs", unit="prefix"

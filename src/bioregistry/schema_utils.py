@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for interacting with data and the schema."""
 
 import json
 import logging
 from collections import defaultdict
+from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import List, Mapping, Optional, Set, Union, cast
+from typing import Optional, Union, cast
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -37,7 +36,7 @@ def _read_metaregistry(path: Union[str, Path]) -> Mapping[str, Registry]:
     }
 
 
-def registries() -> List[Registry]:
+def registries() -> list[Registry]:
     """Get a list of registries in the Bioregistry."""
     return sorted(read_metaregistry().values(), key=attrgetter("prefix"))
 
@@ -48,7 +47,7 @@ def read_registry() -> Mapping[str, Resource]:
     return _registry_from_path(BIOREGISTRY_PATH)
 
 
-def resources() -> List[Resource]:
+def resources() -> list[Resource]:
     """Get a list of resources in the Bioregistry."""
     return sorted(read_registry().values(), key=attrgetter("prefix"))
 
@@ -174,7 +173,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
+def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -186,7 +185,7 @@ def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, 
     return dict(rv)
 
 
-def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
+def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -195,7 +194,7 @@ def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, Set[st
     return dict(rv)
 
 
-def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
+def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -205,7 +204,7 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, Set[s
     return dict(rv)
 
 
-def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, Set[str]]:
+def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
@@ -214,7 +213,7 @@ def read_collections_contributions(collections: Mapping[str, Collection]) -> Map
     return dict(rv)
 
 
-def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, Set[str]]:
+def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for metaprefix, resource in metaregistry.items():
@@ -223,7 +222,7 @@ def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping
     return dict(rv)
 
 
-def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, Set[str]]:
+def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to contexts."""
     rv = defaultdict(set)
     for context_key, context in contexts.items():
