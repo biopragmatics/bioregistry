@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import warnings
+
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
@@ -281,6 +283,7 @@ def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
 
 def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
     """Get the fields."""
+    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
     return m.model_fields
 
 

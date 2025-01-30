@@ -25,7 +25,7 @@ from bioregistry.schema.struct import (
     get_json_schema,
 )
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
+from bioregistry.utils import _norm, pydantic_dict
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +104,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = set(pydantic_fields(Resource).keys())
+        keys = set(Resource.model_fields)
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
