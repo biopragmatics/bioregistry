@@ -44,13 +44,7 @@ from bioregistry.constants import (
     URI_FORMAT_KEY,
 )
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.utils import (
-    curie_to_str,
-    deduplicate,
-    pydantic_dict,
-    removeprefix,
-    removesuffix,
-)
+from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
     from typing import Literal
@@ -669,7 +663,7 @@ class Resource(BaseModel):
 
     def get_external(self, metaprefix: str) -> Mapping[str, Any]:
         """Get an external registry."""
-        return pydantic_dict(self).get(metaprefix) or dict()
+        return self.model_dump().get(metaprefix) or dict()
 
     def get_mapped_prefix(self, metaprefix: str) -> Optional[str]:
         """Get the prefix for the given external.
@@ -694,7 +688,7 @@ class Resource(BaseModel):
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]) -> Any:
         """Get a key enriched by the given external resources' data."""
-        rv = pydantic_dict(self).get(key)
+        rv = self.model_dump().get(key)
         if rv is not None:
             return rv
         if isinstance(metaprefixes, str):
@@ -2889,7 +2883,7 @@ DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
 
 def deduplicate_publications(publications: Iterable[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    records = [pydantic_dict(publication, exclude_none=True) for publication in publications]
+    records = [publication.model_dump(exclude_none=True) for publication in publications]
     records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)
     return [Publication(**record) for record in records_deduplicated]
 

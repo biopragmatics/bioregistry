@@ -42,7 +42,6 @@ from bioregistry.bibliometrics import (
 from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema import Resource
-from bioregistry.utils import pydantic_dict
 
 if TYPE_CHECKING:
     import matplotlib.axes

@@ -25,7 +25,7 @@ from bioregistry.schema.struct import (
     get_json_schema,
 )
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, pydantic_dict
+from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
 
@@ -956,7 +956,7 @@ class TestRegistry(unittest.TestCase):
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
-                        for key, value in pydantic_dict(publication).items():
+                        for key, value in publication.model_dump().items():
                             if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)
