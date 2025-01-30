@@ -12,7 +12,6 @@ from more_click import force_option
 
 from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
-from bioregistry.utils import pydantic_dict
 from bioregistry.version import get_version
 
 
@@ -124,7 +123,7 @@ class BioregistrySummary:
         prefixes_curated = sum(
             any(
                 x not in metaprefixes
-                for x, v in pydantic_dict(entry).items()
+                for x, v in entry.model_dump().items()
                 if v is not None and x not in {"prefix", "mappings"}
             )
             for prefix, entry in registry.items()

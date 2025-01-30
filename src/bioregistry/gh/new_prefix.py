@@ -137,7 +137,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
     )
 
 
-def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]:
+def get_new_prefix_issues(token: Optional[str] = None) -> Dict[int, Resource]:
     """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
@@ -167,6 +167,60 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         if resource is not None:
             rv[issue_id] = resource
     return rv
+
+
+def process_specific_issue(issue: int) -> Dict[int, Resource]:
+    """Process a specific issue and return a dictionary mapping the issue number to the resource."""
+    click.echo(f"Processing specific issue {issue}")
+    resource_data = github_client.get_form_data_for_issue(
+        "biopragmatics", "bioregistry", issue, remapping=MAPPING
+    )
+    resource = process_new_prefix_issue(issue, resource_data)
+    if not resource:
+        click.echo(f"Issue {issue} could not be processed or does not exist.")
+        sys.exit(1)
+    return {issue: resource}
+
+
+def process_all_relevant_issues() -> Dict[int, Resource]:
+    """Process all relevant issues and return a dictionary mapping issue numbers to resources."""
+    click.echo("No specific issue provided. Searching for all relevant issues")
+    issue_to_resource = get_new_prefix_issues()
+    if issue_to_resource:
+        click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
+        for issue_number in sorted(issue_to_resource, reverse=True):
+            link = click.style(
+                f"https://github.com/biopragmatics/bioregistry/issues/{issue_number}", fg="cyan"
+            )
+            click.echo(f" - {link}")
+    else:
+        click.echo("Found no new prefix issues")
+
+    pulled_issues = github_client.get_issues_with_pr(issue_to_resource)
+    if pulled_issues:
+        click.echo(f"Found PRs covering {len(pulled_issues)} new prefix issues:")
+        for pr_number in sorted(pulled_issues, reverse=True):
+            link = click.style(
+                f"https://github.com/biopragmatics/bioregistry/pulls/{pr_number}", fg="cyan"
+            )
+            click.echo(f" - {link}")
+    else:
+        click.echo("Found no PRs covering new prefix issues")
+
+    # Filter out issues that already have an associated pull request
+    issue_to_resource = {
+        issue_id: value
+        for issue_id, value in issue_to_resource.items()
+        if issue_id not in pulled_issues
+    }
+
+    if issue_to_resource:
+        click.echo(f"Adding {len(issue_to_resource)} issues after filter")
+    else:
+        click.secho("No issues without PRs to worry about. Exiting.")
+        sys.exit(0)
+
+    return issue_to_resource
 
 
 def _yield_publications(data) -> Iterable[Publication]:
@@ -214,10 +268,19 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.command()
 @click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
 @click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
+@click.option(
+    "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
+)
 @force_option
 @verbose_option
-def main(dry: bool, github: bool, force: bool):
+def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
     """Run the automatic curator."""
+    click.echo(
+        f"Running workflow with issue: {issue}"
+        if issue
+        else "Running workflow for all relevant issues"
+    )
+
     status_porcelain_result = github_client.status_porcelain()
     if status_porcelain_result and not force and not dry:
         click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
@@ -227,40 +290,9 @@ def main(dry: bool, github: bool, force: bool):
         click.secho("No GitHub access token is available through GITHUB_TOKEN", fg="red")
         sys.exit(1)
 
-    issue_to_resource = get_new_prefix_issues()
-    if issue_to_resource:
-        click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
-        for issue_number in sorted(issue_to_resource, reverse=True):
-            link = click.style(
-                f"https://github.com/biopragmatics/bioregistry/issues/{issue_number}", fg="cyan"
-            )
-            click.echo(f" - {link}")
-    else:
-        click.echo("Found no new prefix issues")
-
-    pulled_issues = github_client.get_issues_with_pr(issue_to_resource)
-    if pulled_issues:
-        click.echo(f"Found PRs covering {len(pulled_issues)} new prefix issues:")
-        for pr_number in sorted(pulled_issues, reverse=True):
-            link = click.style(
-                f"https://github.com/biopragmatics/bioregistry/pulls/{pr_number}", fg="cyan"
-            )
-            click.echo(f" - {link}")
-    else:
-        click.echo("Found no PRs covering new prefix issues")
-
-    # filter out issues that already have an associated pull request
-    issue_to_resource = {
-        issue_id: value
-        for issue_id, value in issue_to_resource.items()
-        if issue_id not in pulled_issues
-    }
-
-    if issue_to_resource:
-        click.echo(f"Adding {len(issue_to_resource)} issues after filter")
-    else:
-        click.secho("No issues without PRs to worry about. Exiting.")
-        sys.exit(0)
+    issue_to_resource = (
+        process_specific_issue(issue) if issue is not None else process_all_relevant_issues()
+    )
 
     for issue_number, resource in issue_to_resource.items():
         click.echo(f"🚀 Adding resource {resource.prefix} (#{issue_number})")

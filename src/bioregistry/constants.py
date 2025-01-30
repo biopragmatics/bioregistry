@@ -1,6 +1,5 @@
 """Constants and utilities for registries."""
 
-import importlib.metadata
 import os
 import pathlib
 import re
@@ -19,8 +18,7 @@ __all__ = [
     "RAW_DIRECTORY",
 ]
 
-PYDANTIC_1 = importlib.metadata.version("pydantic").startswith("1.")
-PATTERN_KEY = "regex" if PYDANTIC_1 else "pattern"
+PATTERN_KEY = "pattern"
 ORCID_PATTERN = r"^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$"
 
 HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
@@ -153,7 +151,7 @@ HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data
 EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 
 # not a perfect email regex, but close enough
-EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$"
+EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 MaybeCURIE = Union[Tuple[str, str], Tuple[None, None]]

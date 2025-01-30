@@ -182,6 +182,32 @@ def get_form_data(
     return rv
 
 
+def get_form_data_for_issue(
+    owner: str,
+    repo: str,
+    issue: int,
+    token: Optional[str] = None,
+    remapping: Optional[Mapping[str, str]] = None,
+) -> Dict[str, str]:
+    """Get parsed form data from an issue.
+
+    :param owner: The name of the owner/organization for the repository.
+    :param repo: The name of the repository.
+    :param issue: The issue number
+    :param token: The GitHub OAuth token. Not required, but if given, will let
+        you make many more queries before getting rate limited.
+    :param remapping: A dictionary for mapping the headers of the form into new values. This is useful since
+        the headers themselves will be human readable text, and not nice keys for JSON data
+    :return: A mapping from github issue issue data
+    """
+    res_json = requests_get(f"repos/{owner}/{repo}/issues/{issue}", token=token)
+    data = parse_body(res_json["body"])
+    if remapping:
+        return remap(data, remapping)
+    else:
+        return data
+
+
 def remap(data: Dict[str, Any], mapping: Mapping[str, str]) -> Dict[str, Any]:
     """Map the keys in dictionary ``d`` based on dictionary ``m``."""
     try:

@@ -17,7 +17,6 @@ from .constants import (
     MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
-from .utils import pydantic_dict, pydantic_parse
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +57,7 @@ def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
         data = json.load(file)
     for prefix, value in data.items():
         value.setdefault("prefix", prefix)
-    return {prefix: pydantic_parse(Resource, value) for prefix, value in data.items()}
+    return {prefix: Resource.model_validate(value) for prefix, value in data.items()}
 
 
 def add_resource(resource: Resource) -> None:
@@ -124,7 +123,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
-            {"collections": [pydantic_dict(c, exclude_none=True) for c in values]},
+            {"collections": [c.model_dump(exclude_none=True) for c in values]},
             file,
             indent=2,
             sort_keys=True,
@@ -139,7 +138,7 @@ def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = N
     with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
             {
-                key: pydantic_dict(resource, exclude_none=True, exclude={"prefix"})
+                key: resource.model_dump(exclude_none=True, exclude={"prefix"})
                 for key, resource in registry.items()
             },
             file,
@@ -154,7 +153,7 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     values = [v for _, v in sorted(metaregistry.items())]
     with open(METAREGISTRY_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
-            {"metaregistry": [pydantic_dict(m, exclude_none=True) for m in values]},
+            {"metaregistry": [m.model_dump(exclude_none=True) for m in values]},
             fp=file,
             indent=2,
             sort_keys=True,
@@ -166,7 +165,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
     """Write to contexts."""
     with open(CONTEXTS_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
-            {key: pydantic_dict(context, exclude_none=True) for key, context in contexts.items()},
+            {key: context.model_dump(exclude_none=True) for key, context in contexts.items()},
             fp=file,
             indent=2,
             sort_keys=True,
