@@ -1123,6 +1123,19 @@
           "default": null,
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account."
         },
+        "contact_group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A group contact email for the project. It's required to have a primary contact to have this field.",
+          "title": "Contact Group"
+        },
         "owners": {
           "anyOf": [
             {
