@@ -8,15 +8,15 @@ usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true.
 """
 
 import csv
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_rrid",
     "RRIDAligner",
+    "get_rrid",
 ]
 
 

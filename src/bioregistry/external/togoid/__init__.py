@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """Download TogoID."""
 
 import json
 from pathlib import Path
-from typing import Dict
 
 import requests
 import yaml
@@ -13,8 +10,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_togoid",
     "TogoIDAligner",
+    "get_togoid",
 ]
 
 
@@ -28,7 +25,7 @@ ONTOLOGY_URL = (
 DATASET_URL = "https://raw.githubusercontent.com/togoid/togoid-config/main/config/dataset.yaml"
 
 
-def _get_ontology() -> Dict[str, str]:
+def _get_ontology() -> dict[str, str]:
     import rdflib
 
     graph = rdflib.Graph()

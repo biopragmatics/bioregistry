@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download Zazuko."""
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 import requests
 
@@ -12,8 +11,8 @@ from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_zazuko",
     "ZazukoAligner",
+    "get_zazuko",
 ]
 
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download the NCBO BioPortal registry.
 
 Get an API key by logging up, signing in, and navigating to https://bioportal.bioontology.org/account.
@@ -21,8 +19,8 @@ from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
 
 __all__ = [
-    "get_bioportal",
     "get_agroportal",
+    "get_bioportal",
     "get_ecoportal",
 ]
 

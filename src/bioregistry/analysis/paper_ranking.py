@@ -26,7 +26,7 @@ import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Optional, Union
+from typing import Any, NamedTuple, Union
 
 import click
 import numpy as np
@@ -55,7 +55,10 @@ ROOT = HERE.parent.parent.parent.resolve()
 DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
-URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+URL = (
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnk"
+    "ixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=csv"
+)
 
 XTrain: TypeAlias = NDArray[np.float64]
 YTrain: TypeAlias = NDArray[np.float64]
@@ -74,7 +77,7 @@ DEFAULT_SEARCH_TERMS = [
 ]
 
 
-def get_publications_from_bioregistry(path: Optional[Path] = None) -> pd.DataFrame:
+def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param path: Path to the bioregistry JSON file.
@@ -129,7 +132,7 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
     return curated_df
 
 
-def _get_metadata_for_ids(pubmed_ids: Iterable[Union[int, str]]) -> dict[str, dict[str, Any]]:
+def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, dict[str, Any]]:
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
     from indra.literature import pubmed_client
 
@@ -225,7 +228,7 @@ def load_google_curation_df() -> pd.DataFrame:
     return df
 
 
-def _map_labels(s: str) -> Optional[int]:
+def _map_labels(s: str) -> int | None:
     """Map labels to binary values.
 
     :param s: Label value.
@@ -267,6 +270,7 @@ def generate_meta_features(
     :param classifiers: List of trained classifiers.
     :param x_train: Training features.
     :param y_train: Training labels.
+    :param cv: Number of folds for cross-validation
     :return: DataFrame containing meta-features.
     """
     df = pd.DataFrame()

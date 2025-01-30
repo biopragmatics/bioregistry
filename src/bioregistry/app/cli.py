@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Web command for running the app."""
 
 from pathlib import Path

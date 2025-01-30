@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """A script for creating pull requests for each new prefix issue on the Bioregistry's GitHub page.
 
 Run with: ``python -m bioregistry.gh.new_prefix``
@@ -9,7 +7,8 @@ import copy
 import logging
 import sys
 import time
-from typing import Any, Dict, Iterable, Mapping, Optional, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from typing import Any, Optional
 from uuid import uuid4
 
 import click
@@ -59,7 +58,7 @@ ORCID_HTTP_PREFIX = "http://orcid.org/"
 ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
-def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Optional[Resource]:
+def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Optional[Resource]:
     """Return a Resource constructed from a new prefix issue.
 
     :param issue_id: The issue identifier
@@ -138,7 +137,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
     )
 
 
-def get_new_prefix_issues(token: Optional[str] = None) -> Dict[int, Resource]:
+def get_new_prefix_issues(token: Optional[str] = None) -> dict[int, Resource]:
     """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
@@ -156,7 +155,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Dict[int, Resource]:
     data = github_client.get_bioregistry_form_data(
         ["New", "Prefix"], remapping=MAPPING, token=token
     )
-    rv: Dict[int, Resource] = {}
+    rv: dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
         try:
             # The processing modifies the resource_data, so we copy it here
@@ -169,7 +168,8 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Dict[int, Resource]:
             rv[issue_id] = resource
     return rv
 
-def process_specific_issue(issue: int) -> Dict[int, Resource]:
+
+def process_specific_issue(issue: int) -> dict[int, Resource]:
     """Process a specific issue and return a dictionary mapping the issue number to the resource."""
     click.echo(f"Processing specific issue {issue}")
     resource_data = github_client.get_form_data_for_issue(
@@ -181,7 +181,8 @@ def process_specific_issue(issue: int) -> Dict[int, Resource]:
         sys.exit(1)
     return {issue: resource}
 
-def process_all_relevant_issues() -> Dict[int, Resource]:
+
+def process_all_relevant_issues() -> dict[int, Resource]:
     """Process all relevant issues and return a dictionary mapping issue numbers to resources."""
     click.echo("No specific issue provided. Searching for all relevant issues")
     issue_to_resource = get_new_prefix_issues()
@@ -221,6 +222,7 @@ def process_all_relevant_issues() -> Dict[int, Resource]:
 
     return issue_to_resource
 
+
 def _yield_publications(data) -> Iterable[Publication]:
     for curie in data.pop("publications", "").split("|"):
         curie = curie.strip().lower()
@@ -234,7 +236,7 @@ def _yield_publications(data) -> Iterable[Publication]:
         yield Publication(**{prefix: luid})
 
 
-def _pop_orcid(data: Dict[str, str]) -> str:
+def _pop_orcid(data: dict[str, str]) -> str:
     orcid = data.pop("contributor_orcid")
     return _trim_orcid(orcid)
 
@@ -260,18 +262,24 @@ def make_title(prefixes: Sequence[str]) -> str:
     elif len(prefixes) == 2:
         return f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
     else:
-        return f'Add prefixes: {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
+        return f"Add prefixes: {', '.join(prefixes[:-1])}, and {prefixes[-1]}"
 
 
 @click.command()
 @click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
 @click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
-@click.option("--issue", type=int, help="Specific issue to process rather than finding all relevant ones")
+@click.option(
+    "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
+)
 @force_option
 @verbose_option
 def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
     """Run the automatic curator."""
-    click.echo(f"Running workflow with issue: {issue}" if issue else "Running workflow for all relevant issues")
+    click.echo(
+        f"Running workflow with issue: {issue}"
+        if issue
+        else "Running workflow for all relevant issues"
+    )
 
     status_porcelain_result = github_client.status_porcelain()
     if status_porcelain_result and not force and not dry:
@@ -323,7 +331,7 @@ def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
         body=body,
     )
     if "url" in rv:
-        click.secho(f'PR at {rv["url"]}')
+        click.secho(f"PR at {rv['url']}")
     else:  # probably an error
         click.secho(rv, fg="red")
 

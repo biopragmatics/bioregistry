@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Export extended prefix maps (EPMs), JSON-LD contexts, and SHACL RDF documents.
 
 .. seealso:: https://github.com/biopragmatics/bioregistry/pull/972
