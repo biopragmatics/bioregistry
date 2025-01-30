@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test the resolution API."""
 
 import sys

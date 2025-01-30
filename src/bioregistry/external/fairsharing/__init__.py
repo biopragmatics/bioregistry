@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Scraper for FAIRsharing.
 
 .. seealso:: https://beta.fairsharing.org/API_doc
@@ -8,8 +6,9 @@
 import json
 import logging
 import re
+from collections.abc import MutableMapping
 from pathlib import Path
-from typing import Any, MutableMapping, Optional, Set
+from typing import Any, Optional
 
 from bioregistry.constants import ORCID_PATTERN
 from bioregistry.external.alignment_utils import Aligner
@@ -17,8 +16,8 @@ from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
 __all__ = [
-    "get_fairsharing",
     "FairsharingAligner",
+    "get_fairsharing",
 ]
 
 logger = logging.getLogger(__name__)
@@ -142,7 +141,7 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
 
 
 #: Licenses that are one-off and don't need curating
-SKIP_LICENSES: Set[str] = set()
+SKIP_LICENSES: set[str] = set()
 
 
 def _process_publication(publication):

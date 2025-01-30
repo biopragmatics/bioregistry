@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test for web."""
 
 from __future__ import annotations
@@ -17,7 +15,6 @@ from starlette.testclient import TestClient
 from bioregistry import Resource
 from bioregistry.app.api import MappingResponse, URIResponse
 from bioregistry.app.impl import get_app
-from bioregistry.utils import pydantic_parse
 
 
 class TestWeb(unittest.TestCase):
@@ -59,7 +56,7 @@ class TestWeb(unittest.TestCase):
     @staticmethod
     def _parse_registry_json(res) -> Dict[str, Resource]:
         data = res.json().items()
-        return {key: pydantic_parse(Resource, resource) for key, resource in data}
+        return {key: Resource.model_validate(resource) for key, resource in data}
 
     def _parse_registry_rdf(self, res, fmt: str) -> Dict[str, Resource]:
         graph = rdflib.Graph()
@@ -93,7 +90,7 @@ class TestWeb(unittest.TestCase):
     @staticmethod
     def _parse_registry_yaml(res) -> Dict[str, Resource]:
         data = yaml.safe_load(res.text).items()
-        return {key: pydantic_parse(Resource, resource) for key, resource in data}
+        return {key: Resource.model_validate(resource) for key, resource in data}
 
     def test_api_resource(self):
         """Test the resource endpoint."""
@@ -237,7 +234,7 @@ class TestWeb(unittest.TestCase):
         """Test external registry mappings."""
         url = "/api/metaregistry/obofoundry/mapping/bioportal"
         res = self.client.get(url)
-        res_parsed = pydantic_parse(MappingResponse, res.json())
+        res_parsed = MappingResponse.model_validate(res.json())
         self.assertEqual("obofoundry", res_parsed.meta.source)
         self.assertEqual("bioportal", res_parsed.meta.target)
         self.assertIn("gaz", res_parsed.mappings)
@@ -255,7 +252,7 @@ class TestWeb(unittest.TestCase):
         uri = "http://id.nlm.nih.gov/mesh/C063233"
         res = self.client.post("/api/uri/parse/", json={"uri": uri})
         self.assertEqual(200, res.status_code)
-        data = pydantic_parse(URIResponse, res.json())
+        data = URIResponse.model_validate(res.json())
         self.assertEqual(uri, data.uri)
         self.assertIn("https://meshb.nlm.nih.gov/record/ui?ui=C063233", data.providers.values())
 

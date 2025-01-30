@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Add providers for Crop Ontology entries."""
 
 import click

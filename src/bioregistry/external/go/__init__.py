@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """Download the Gene Ontology registry."""
 
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Dict, Mapping
+from typing import Any
 
 import yaml
 from pystow.utils import download
@@ -14,8 +13,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_go",
     "GoAligner",
+    "get_go",
 ]
 
 logger = logging.getLogger(__name__)
@@ -79,7 +78,7 @@ class GoAligner(Aligner):
 
     def prepare_external(
         self, external_id: str, external_entry: Mapping[str, Any]
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Prepare GO data to be added to the bioregistry for each GO registry entry."""
         rv = {
             "name": external_entry["name"],

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Re3data is a registry of research data repositories.
 
 Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
@@ -7,8 +5,9 @@ Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping, Optional, Tuple
+from typing import Any, Optional
 from xml.etree import ElementTree
 
 import requests
@@ -18,8 +17,8 @@ from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
 __all__ = [
-    "get_re3data",
     "Re3dataAligner",
+    "get_re3data",
 ]
 
 logger = logging.getLogger(__name__)
@@ -83,7 +82,7 @@ def get_re3data(force_download: bool = False):
     return records
 
 
-def _get_record(identifier: str) -> Tuple[str, Mapping[str, Any]]:
+def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
     res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}")
     tree = ElementTree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
@@ -112,7 +111,7 @@ def _process_record(identifier: str, tree_inner):
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
 
 
-def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
+def _clean_xref(xref: str) -> Optional[tuple[str, str]]:
     if (
         xref.startswith("FAIRsharing_DOI:10.25504/")
         or xref.startswith("FAIRsharing_doi:10.25504/")

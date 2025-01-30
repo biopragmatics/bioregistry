@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """Tests for identifiers.org."""
 
 import unittest
-from typing import Mapping
+from collections.abc import Mapping
 
 import requests
 
