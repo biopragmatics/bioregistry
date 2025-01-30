@@ -14,7 +14,7 @@ import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
@@ -25,7 +25,7 @@ from bioregistry.schema.struct import (
     get_json_schema,
 )
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
+from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
 
@@ -46,10 +46,6 @@ class TestRegistry(unittest.TestCase):
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
 
-    @unittest.skipIf(
-        PYDANTIC_1,
-        reason="Only run this test on Pydantic 2, since the schema slightly changed",
-    )
     def test_schema(self):
         """Test the schema is up-to-date."""
         actual = json.loads(SCHEMA_PATH.read_text())
@@ -108,7 +104,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = set(pydantic_fields(Resource).keys())
+        keys = set(Resource.model_fields)
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
@@ -960,7 +956,7 @@ class TestRegistry(unittest.TestCase):
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
-                        for key, value in pydantic_dict(publication).items():
+                        for key, value in publication.model_dump().items():
                             if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)

@@ -42,7 +42,6 @@ from bioregistry.bibliometrics import (
 from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema import Resource
-from bioregistry.utils import pydantic_dict
 
 if TYPE_CHECKING:
     import matplotlib.axes
@@ -481,7 +480,7 @@ def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str
 def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
     br_external_to = {}
     for br_id, resource in read_registry().items():
-        _k = (pydantic_dict(resource).get(key) or {}).get("prefix")
+        _k = (resource.model_dump().get(key) or {}).get("prefix")
         if _k:
             br_external_to[_k] = br_id
 

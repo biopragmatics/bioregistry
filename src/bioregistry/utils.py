@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import itertools as itt
 import logging
+import warnings
 from collections import ChainMap, defaultdict
 from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
@@ -29,7 +30,6 @@ from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_YAML_PATH,
     METAREGISTRY_YAML_PATH,
-    PYDANTIC_1,
     REGISTRY_YAML_PATH,
 )
 from .version import get_version
@@ -269,8 +269,7 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
 
 def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
     """Convert a pydantic model to a dict."""
-    if PYDANTIC_1:
-        return x.dict(**kwargs)
+    warnings.warn("use BaseModel.model_dump() directly", DeprecationWarning, stacklevel=2)
     return x.model_dump(**kwargs)
 
 
@@ -279,20 +278,17 @@ M = TypeVar("M", bound=BaseModel)
 
 def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
     """Convert a dict to a pydantic model."""
-    if PYDANTIC_1:
-        return m.parse_obj(d)
+    warnings.warn("use BaseModel.model_validate() directly", DeprecationWarning, stacklevel=2)
     return m.model_validate(d)
 
 
 def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
     """Get the fields."""
-    if PYDANTIC_1:
-        return m.__fields__
+    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
     return m.model_fields
 
 
 def pydantic_schema(m: type[M]) -> dict[str, Any]:
     """Get the schema."""
-    if PYDANTIC_1:
-        return m.schema()
+    warnings.warn("use BaseModel.model_json_schema() directly", DeprecationWarning, stacklevel=2)
     return m.model_json_schema()

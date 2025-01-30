@@ -17,7 +17,6 @@ from tqdm import tqdm
 import bioregistry
 from bioregistry.constants import DOCS_DATA, EXTERNAL
 from bioregistry.resolve import get_external
-from bioregistry.utils import pydantic_dict
 
 __all__ = [
     "export_warnings",
@@ -26,7 +25,7 @@ __all__ = [
 CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
 
 ENTRIES = sorted(
-    (prefix, pydantic_dict(resource, exclude_none=True))
+    (prefix, resource.model_dump(exclude_none=True))
     for prefix, resource in bioregistry.read_registry().items()
 )
 

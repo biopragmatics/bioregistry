@@ -21,7 +21,7 @@ from pydantic import BaseModel
 from bioregistry.resource_manager import Manager
 
 from .proxies import manager
-from ..utils import _norm, pydantic_dict
+from ..utils import _norm
 
 
 def _get_resource_providers(
@@ -178,15 +178,13 @@ def serialize(
 
     if accept == "application/json":
         return current_app.response_class(
-            json.dumps(
-                pydantic_dict(data, exclude_unset=True, exclude_none=True), ensure_ascii=False
-            ),
+            json.dumps(data.model_dump(exclude_unset=True, exclude_none=True), ensure_ascii=False),
             mimetype="application/json",
         )
     elif accept in "application/yaml":
         return current_app.response_class(
             yaml.safe_dump(
-                pydantic_dict(data, exclude_unset=True, exclude_none=True), allow_unicode=True
+                data.model_dump(exclude_unset=True, exclude_none=True), allow_unicode=True
             ),
             mimetype="text/plain",
         )

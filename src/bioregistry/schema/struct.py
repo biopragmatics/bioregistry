@@ -32,6 +32,7 @@ from typing import (
 )
 
 from pydantic import BaseModel, Field, PrivateAttr
+from pydantic.json_schema import models_json_schema
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -40,18 +41,10 @@ from bioregistry.constants import (
     EMAIL_RE,
     ORCID_PATTERN,
     PATTERN_KEY,
-    PYDANTIC_1,
     URI_FORMAT_KEY,
 )
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.utils import (
-    curie_to_str,
-    deduplicate,
-    pydantic_dict,
-    pydantic_parse,
-    removeprefix,
-    removesuffix,
-)
+from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
     from typing import Literal
@@ -670,7 +663,7 @@ class Resource(BaseModel):
 
     def get_external(self, metaprefix: str) -> Mapping[str, Any]:
         """Get an external registry."""
-        return pydantic_dict(self).get(metaprefix) or dict()
+        return self.model_dump().get(metaprefix) or dict()
 
     def get_mapped_prefix(self, metaprefix: str) -> Optional[str]:
         """Get the prefix for the given external.
@@ -695,7 +688,7 @@ class Resource(BaseModel):
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]) -> Any:
         """Get a key enriched by the given external resources' data."""
-        rv = pydantic_dict(self).get(key)
+        rv = self.model_dump().get(key)
         if rv is not None:
             return rv
         if isinstance(metaprefixes, str):
@@ -1339,7 +1332,7 @@ class Resource(BaseModel):
                 )
         if self.uniprot:
             for publication in self.uniprot.get("publications", []):
-                publications.append(pydantic_parse(Publication, publication))
+                publications.append(Publication.model_validate(publication))
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
         return deduplicate_publications(publications)
@@ -2834,9 +2827,6 @@ def _allowed_uri_format(rv: str) -> bool:
 @lru_cache(maxsize=1)
 def get_json_schema() -> dict[str, Any]:
     """Get the JSON schema for the bioregistry."""
-    if PYDANTIC_1:
-        raise NotImplementedError
-
     rv = {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://bioregistry.io/schema.json",
@@ -2860,8 +2850,6 @@ def get_json_schema() -> dict[str, Any]:
     )
 
     # see https://docs.pydantic.dev/latest/usage/json_schema/#general-notes-on-json-schema-generation
-    from pydantic.json_schema import models_json_schema
-
     _, schema_dict = models_json_schema(
         [(model, "validation") for model in models],  # type:ignore
         title=title,
@@ -2895,7 +2883,7 @@ DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
 
 def deduplicate_publications(publications: Iterable[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    records = [pydantic_dict(publication, exclude_none=True) for publication in publications]
+    records = [publication.model_dump(exclude_none=True) for publication in publications]
     records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)
     return [Publication(**record) for record in records_deduplicated]
 
