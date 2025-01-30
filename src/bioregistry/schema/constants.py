@@ -2,7 +2,7 @@
 
 from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, List, Optional, Union
+from typing import TYPE_CHECKING, Optional, Union
 
 import rdflib.namespace
 from rdflib import (
@@ -29,12 +29,12 @@ if TYPE_CHECKING:
     import bioregistry.resource_manager
 
 __all__ = [
-    "bioregistry_schema_terms",
     # Namespaces
     "bioregistry_collection",
-    "bioregistry_resource",
     "bioregistry_metaresource",
+    "bioregistry_resource",
     "bioregistry_schema",
+    "bioregistry_schema_terms",
     "orcid",
 ]
 
@@ -53,7 +53,7 @@ class Term:
 class ClassTerm(Term):
     """A term for a class."""
 
-    xrefs: List[URIRef] = field(default_factory=list)
+    xrefs: list[URIRef] = field(default_factory=list)
 
 
 @dataclass
@@ -62,7 +62,7 @@ class PropertyTerm(Term):
 
     domain: Union[str, Node]
     range: Union[str, Node]
-    xrefs: List[URIRef] = field(default_factory=list)
+    xrefs: list[URIRef] = field(default_factory=list)
     parent: Optional[URIRef] = None
 
 

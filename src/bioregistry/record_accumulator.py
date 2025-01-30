@@ -5,12 +5,7 @@ import logging
 from collections import defaultdict
 from collections.abc import Collection, Iterable, Mapping, Sequence
 from typing import (
-    DefaultDict,
-    Dict,
-    List,
     Optional,
-    Set,
-    Tuple,
     cast,
 )
 
@@ -68,7 +63,7 @@ def _debug_or_raise(msg: str, strict: bool = False) -> None:
     logger.debug(msg)
 
 
-def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], List[Resource]]:
+def _stratify_resources(resources: Iterable[Resource]) -> tuple[list[Resource], list[Resource]]:
     primary_resources, secondary_resources = [], []
     for resource in resources:
         if resource.prefix in prefix_blacklist:
@@ -90,12 +85,11 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
     for prefix_ in prefixes_:
         if not prefix_:
             continue
-        for prefix_prefix in [
+        yield from [
             f"{prefix_}:",
             f"{prefix_.upper()}:",
             f"{prefix_.lower()}:",
-        ]:
-            yield prefix_prefix
+        ]
 
 
 # TODO handle situations where a URI format string is available but
@@ -107,7 +101,7 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
 
 
 def get_converter(
-    resources: List[Resource],
+    resources: list[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
     uri_prefix_priority: Optional[Sequence[str]] = None,
     include_prefixes: bool = False,
@@ -134,13 +128,13 @@ def get_converter(
 
 
 def _get_records(  # noqa: C901
-    resources: List[Resource],
+    resources: list[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
     uri_prefix_priority: Optional[Sequence[str]] = None,
     include_prefixes: bool = False,
     strict: bool = False,
     blacklist: Optional[Collection[str]] = None,
-) -> List[curies.Record]:
+) -> list[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
     resource_dict: Mapping[str, Resource] = {
@@ -148,11 +142,11 @@ def _get_records(  # noqa: C901
         for resource in resources
         if resource.get_uri_prefix() and resource.prefix not in blacklist
     }
-    primary_uri_prefixes: Dict[str, str] = {
+    primary_uri_prefixes: dict[str, str] = {
         resource.prefix: cast(str, resource.get_uri_prefix(priority=uri_prefix_priority))
         for resource in resource_dict.values()
     }
-    primary_prefixes: Dict[str, str] = {
+    primary_prefixes: dict[str, str] = {
         resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
@@ -161,18 +155,18 @@ def _get_records(  # noqa: C901
         for prefix in primary_prefixes
         if (pattern := resource_dict[prefix].get_pattern()) is not None
     }
-    secondary_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
-    secondary_uri_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
+    secondary_prefixes: defaultdict[str, set[str]] = defaultdict(set)
+    secondary_uri_prefixes: defaultdict[str, set[str]] = defaultdict(set)
 
     #: A mapping from URI prefixes (both primary and secondary) appearing
     #: in all records to bioregistry prefixes
-    reverse_uri_prefix_lookup: Dict[str, str] = {
+    reverse_uri_prefix_lookup: dict[str, str] = {
         "http://purl.obolibrary.org/obo/": "obo",
         "https://purl.obolibrary.org/obo/": "obo",
     }
     #: A mapping from prefixes (both primary and secondary) appearing
     #: in all records to bioregistry prefixes
-    reverse_prefix_lookup: Dict[str, str] = {}
+    reverse_prefix_lookup: dict[str, str] = {}
 
     def _add_primary_uri_prefix(prefix: str) -> Optional[str]:
         primary_uri_prefix = primary_uri_prefixes[prefix]
@@ -323,7 +317,7 @@ def _get_records(  # noqa: C901
         else:
             raise RuntimeError
 
-    records: Dict[str, curies.Record] = {}
+    records: dict[str, curies.Record] = {}
     for prefix, primary_prefix in primary_prefixes.items():
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if not primary_prefix or not primary_uri_prefix:

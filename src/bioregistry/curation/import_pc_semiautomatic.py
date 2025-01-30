@@ -83,7 +83,7 @@ def main():
             add_resource(
                 Resource(
                     prefix=norm(prefix),
-                    mappings=dict(prefixcommons=prefix),
+                    mappings={"prefixcommons": prefix},
                     prefixcommons=data,
                 )
             )

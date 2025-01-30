@@ -3,7 +3,7 @@
 import sys
 from collections import defaultdict
 from datetime import datetime
-from typing import Optional, Set, Tuple
+from typing import Optional
 
 import click
 import pandas as pd
@@ -18,7 +18,7 @@ __all__ = [
 ]
 
 
-def _process(element: Tuple[str, Set[str]]) -> Tuple[str, Set[str], bool, Optional[str]]:
+def _process(element: tuple[str, set[str]]) -> tuple[str, set[str], bool, Optional[str]]:
     homepage, prefixes = element
     if "github.com" in homepage:  # skip github links for now
         return homepage, prefixes, False, None

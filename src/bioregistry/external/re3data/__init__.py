@@ -82,7 +82,7 @@ def get_re3data(force_download: bool = False):
     return records
 
 
-def _get_record(identifier: str) -> Tuple[str, Mapping[str, Any]]:
+def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
     res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}")
     tree = ElementTree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
@@ -111,7 +111,7 @@ def _process_record(identifier: str, tree_inner):
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
 
 
-def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
+def _clean_xref(xref: str) -> Optional[tuple[str, str]]:
     if (
         xref.startswith("FAIRsharing_DOI:10.25504/")
         or xref.startswith("FAIRsharing_doi:10.25504/")

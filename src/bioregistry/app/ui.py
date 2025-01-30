@@ -9,7 +9,6 @@ import platform
 from collections import defaultdict
 from operator import attrgetter
 from pathlib import Path
-from typing import Optional
 
 import flask
 import werkzeug
@@ -135,15 +134,15 @@ def resource(prefix: str) -> str | flask.Response:
         example_curie=example_curie,
         example_curie_extras=example_curie_extras,
         mappings=[
-            dict(
-                metaprefix=metaprefix,
-                metaresource=manager.get_registry(metaprefix),
-                xref=xref,
-                homepage=manager.get_registry_homepage(metaprefix),
-                name=manager.get_registry_name(metaprefix),
-                short_name=manager.get_registry_short_name(metaprefix),
-                uri=manager.get_registry_provider_uri_format(metaprefix, xref),
-            )
+            {
+                "metaprefix": metaprefix,
+                "metaresource": manager.get_registry(metaprefix),
+                "xref": xref,
+                "homepage": manager.get_registry_homepage(metaprefix),
+                "name": manager.get_registry_name(metaprefix),
+                "short_name": manager.get_registry_short_name(metaprefix),
+                "uri": manager.get_registry_provider_uri_format(metaprefix, xref),
+            }
             for metaprefix, xref in _resource.get_mappings().items()
         ],
         synonyms=_resource.get_synonyms(),
@@ -192,7 +191,7 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
     external_prefix = entry.example
-    bioregistry_prefix: Optional[str]
+    bioregistry_prefix: str | None
     if metaprefix == "bioregistry":
         bioregistry_prefix = external_prefix
     else:
@@ -307,7 +306,7 @@ class ResponseWrapper(ValueError):
         return self.response
 
 
-def _clean_reference(prefix: str, identifier: Optional[str] = None):
+def _clean_reference(prefix: str, identifier: str | None = None):
     if ":" in prefix:
         # A colon might appear in the prefix if there are multiple colons
         # in the CURIE, since Flask/Werkzeug parses from right to left.
@@ -373,7 +372,7 @@ ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
 @ui_blueprint.route("/<prefix>:<path:identifier>")
 @ark_hacked_route
 def resolve(
-    prefix: str, identifier: Optional[str] = None
+    prefix: str, identifier: str | None = None
 ) -> str | werkzeug.Response | tuple[str, int]:
     """Resolve a CURIE.
 
@@ -382,7 +381,7 @@ def resolve(
     1. The prefix is not registered
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
-    """  # noqa:DAR101,DAR201
+    """
     try:
         _resource, identifier = _clean_reference(prefix, identifier)
     except ResponseWrapper as rw:
@@ -418,14 +417,14 @@ def resolve(
 
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>:<path:identifier>")
-def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] = None):
+def metaresolve(metaprefix: str, metaidentifier: str, identifier: str | None = None):
     """Redirect to a prefix page or meta-resolve the CURIE.
 
     Test this function locally with:
 
     - http://localhost:5000/metaregistry/obofoundry/GO
     - http://localhost:5000/metaregistry/obofoundry/GO:0032571
-    """  # noqa:DAR101,DAR201
+    """
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
     prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)

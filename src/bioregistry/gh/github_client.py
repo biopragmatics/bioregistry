@@ -5,7 +5,7 @@ import logging
 import os
 from collections.abc import Iterable, Mapping
 from subprocess import CalledProcessError, check_output
-from typing import Any, Dict, Optional, Set
+from typing import Any, Optional
 
 import more_itertools
 import pystow
@@ -21,7 +21,7 @@ def has_token() -> bool:
     return pystow.get_config("github", "token") is not None
 
 
-def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) -> Set[int]:
+def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) -> set[int]:
     """Get the set of issues that are already closed by a pull request."""
     pulls = list_pulls(owner="bioregistry", repo="bioregistry", token=token)
     return {
@@ -130,7 +130,7 @@ def get_bioregistry_form_data(
     labels: Iterable[str],
     token: Optional[str] = None,
     remapping: Optional[Mapping[str, str]] = None,
-) -> Mapping[int, Dict[str, str]]:
+) -> Mapping[int, dict[str, str]]:
     """Get parsed form data from issues on the Bioregistry matching the given labels via :func:get_form_data`.
 
     :param labels: Labels to match
@@ -151,7 +151,7 @@ def get_form_data(
     labels: Iterable[str],
     token: Optional[str] = None,
     remapping: Optional[Mapping[str, str]] = None,
-) -> Mapping[int, Dict[str, str]]:
+) -> Mapping[int, dict[str, str]]:
     """Get parsed form data from issues matching the given labels.
 
     :param owner: The name of the owner/organization for the repository.
@@ -188,7 +188,7 @@ def get_form_data_for_issue(
     issue: int,
     token: Optional[str] = None,
     remapping: Optional[Mapping[str, str]] = None,
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """Get parsed form data from an issue.
 
     :param owner: The name of the owner/organization for the repository.
@@ -208,7 +208,7 @@ def get_form_data_for_issue(
         return data
 
 
-def remap(data: Dict[str, Any], mapping: Mapping[str, str]) -> Dict[str, Any]:
+def remap(data: dict[str, Any], mapping: Mapping[str, str]) -> dict[str, Any]:
     """Map the keys in dictionary ``d`` based on dictionary ``m``."""
     try:
         return {mapping[key]: value for key, value in data.items()}
@@ -218,7 +218,7 @@ def remap(data: Dict[str, Any], mapping: Mapping[str, str]) -> Dict[str, Any]:
         raise
 
 
-def parse_body(body: str) -> Dict[str, Any]:
+def parse_body(body: str) -> dict[str, Any]:
     """Parse the body string from a GitHub issue (via the API).
 
     :param body: The body string from a GitHub issue (via the API) that corresponds to a form
@@ -284,7 +284,7 @@ def commit_all(message: str) -> Optional[str]:
 def _git(*args: str) -> Optional[str]:
     with open(os.devnull, "w") as devnull:
         try:
-            ret = check_output(  # noqa: S603,S607
+            ret = check_output(  # noqa: S603
                 ["git", *args],
                 cwd=os.path.dirname(__file__),
                 stderr=devnull,

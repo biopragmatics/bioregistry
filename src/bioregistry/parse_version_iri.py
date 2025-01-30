@@ -1,7 +1,7 @@
 """This module is dedicated to parsing the version from an IRI."""
 
 import re
-from typing import Optional, Tuple, Union
+from typing import Optional, Union
 from urllib.parse import urlparse
 
 from tqdm import tqdm
@@ -36,7 +36,7 @@ def _match_any_part(iri: str, pattern: re.Pattern) -> bool:
 
 def parse_obo_version_iri(
     version_iri: str, obo_prefix: str
-) -> Union[Tuple[str, Optional[str], str], Tuple[None, None, None]]:
+) -> Union[tuple[str, Optional[str], str], tuple[None, None, None]]:
     """Parse an OBO version IRI."""
     obo_prefix = obo_prefix.lower()
     parts = [

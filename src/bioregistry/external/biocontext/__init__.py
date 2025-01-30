@@ -59,7 +59,7 @@ class BioContextAligner(Aligner):
             "fbql": "not a real resource, as far as I can tell",
         }
 
-    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare BioContext data to be added to the BioContext for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         if any(p in uri_format for p in SKIP_PARTS):

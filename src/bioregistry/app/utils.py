@@ -3,7 +3,7 @@
 import json
 from collections.abc import Mapping, Sequence
 from functools import partial
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, Optional
 
 import yaml
 from flask import (
@@ -25,7 +25,7 @@ from ..utils import _norm
 
 def _get_resource_providers(
     prefix: str, identifier: Optional[str]
-) -> Optional[List[Dict[str, Any]]]:
+) -> Optional[list[dict[str, Any]]]:
     if identifier is None:
         return None
     rv = []
@@ -41,12 +41,12 @@ def _get_resource_providers(
             name = manager.get_registry_name(metaprefix)
             homepage = manager.get_registry_homepage(metaprefix)
         rv.append(
-            dict(
-                metaprefix=metaprefix,
-                homepage=homepage,
-                name=name,
-                uri=uri,
-            )
+            {
+                "metaprefix": metaprefix,
+                "homepage": homepage,
+                "name": name,
+                "uri": uri,
+            }
         )
     return rv
 
@@ -63,7 +63,7 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(manager_: Manager, q: str) -> List[Tuple[str, str]]:
+def _search(manager_: Manager, q: str) -> list[tuple[str, str]]:
     q_norm = _norm(q)
     results = [
         (prefix, lookup if _norm(prefix) != lookup else "")
@@ -116,23 +116,23 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
         else:
             reason = "searched prefix"
             url = None
-        return dict(
-            query=q,
-            results=_search(manager_, q),
-            success=True,
-            reason=reason,
-            url=url,
-        )
+        return {
+            "query": q,
+            "results": _search(manager_, q),
+            "success": True,
+            "reason": reason,
+            "url": url,
+        }
     prefix, identifier = q.split(":", 1)
     resource = manager_.get_resource(prefix)
     if resource is None:
-        return dict(
-            query=q,
-            prefix=prefix,
-            identifier=identifier,
-            success=False,
-            reason="bad prefix",
-        )
+        return {
+            "query": q,
+            "prefix": prefix,
+            "identifier": identifier,
+            "success": False,
+            "reason": "bad prefix",
+        }
     pattern = manager_.get_pattern(prefix)
     if pattern is None:
         success = True
@@ -148,20 +148,20 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
         success = False
         reason = "failed validation"
         url = None
-    return dict(
-        query=q,
-        prefix=prefix,
-        pattern=pattern,
-        identifier=identifier,
-        success=success,
-        reason=reason,
-        url=url,
-    )
+    return {
+        "query": q,
+        "prefix": prefix,
+        "pattern": pattern,
+        "identifier": identifier,
+        "success": success,
+        "reason": reason,
+        "url": url,
+    }
 
 
 def serialize(
     data: BaseModel,
-    serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None,
+    serializers: Optional[Sequence[tuple[str, str, Callable]]] = None,
     negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""

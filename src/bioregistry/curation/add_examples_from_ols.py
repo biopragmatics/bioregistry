@@ -52,7 +52,7 @@ def _get_missing_ols() -> Mapping[str, str]:
 def main():
     """Get OLS examples."""
     r = dict(bioregistry.read_registry())
-    x = sorted(list(_get_missing_ols().items()))
+    x = sorted(_get_missing_ols().items())
     random.shuffle(x)
     for prefix, ols_prefix in tqdm(x[:30]):
         try:

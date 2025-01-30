@@ -201,9 +201,7 @@ def _get_version(ols_id, config, processing: OLSConfig) -> Optional[str]:
     return version
 
 
-def _process(  # noqa:C901
-    ols_entry: Mapping[str, Any], processing: OLSConfig
-) -> Optional[Mapping[str, str]]:
+def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Mapping[str, str]]:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]

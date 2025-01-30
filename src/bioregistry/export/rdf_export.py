@@ -1,7 +1,7 @@
 """Export the Bioregistry to RDF."""
 
 import logging
-from typing import Any, Callable, List, Optional, Tuple, Union, cast
+from typing import Any, Callable, Optional, Union, cast
 
 import click
 import rdflib
@@ -137,7 +137,7 @@ def resource_to_rdf_str(
     return graph.serialize(format=fmt or "turtle")
 
 
-def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resource], Any], URIRef]]:
+def _get_resource_functions() -> list[tuple[Union[str, URIRef], Callable[[Resource], Any], URIRef]]:
     return [
         ("0000008", Resource.get_pattern, XSD.string),
         ("0000006", Resource.get_uri_format, XSD.string),
@@ -148,7 +148,7 @@ def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resour
     ]
 
 
-def _get_resource_function_2() -> List[Tuple[Union[str, URIRef], Callable[[Resource], Any]]]:
+def _get_resource_function_2() -> list[tuple[Union[str, URIRef], Callable[[Resource], Any]]]:
     return [
         ("0000027", Resource.get_example_iri),
         (FOAF.homepage, Resource.get_homepage),
@@ -156,9 +156,7 @@ def _get_resource_function_2() -> List[Tuple[Union[str, URIRef], Callable[[Resou
     ]
 
 
-def _add_resource(
-    resource: Resource, *, manager: Manager, graph: rdflib.Graph
-) -> None:  # noqa:C901
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) -> None:  # noqa:C901
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))

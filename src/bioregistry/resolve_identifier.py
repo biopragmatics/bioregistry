@@ -2,7 +2,7 @@
 
 import warnings
 from collections.abc import Mapping, Sequence
-from typing import Optional, Tuple
+from typing import Optional
 
 from .resolve import get_resource
 from .resource_manager import manager
@@ -281,7 +281,7 @@ def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     return manager.get_providers(prefix, identifier)
 
 
-def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
+def get_providers_list(prefix: str, identifier: str) -> Sequence[tuple[str, str]]:
     """Get all providers for the CURIE."""
     return manager.get_providers_list(prefix, identifier)
 
@@ -492,7 +492,11 @@ def get_link(
     use_bioregistry_io: bool = True,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible."""
-    warnings.warn("get_link() is deprecated. use bioregistry.get_iri() instead", DeprecationWarning)
+    warnings.warn(
+        "get_link() is deprecated. use bioregistry.get_iri() instead",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return get_iri(prefix=prefix, identifier=identifier, use_bioregistry_io=use_bioregistry_io)
 
 

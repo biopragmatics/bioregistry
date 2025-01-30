@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, List, Optional, Set
+from typing import Any
 
 import yaml
 from curies import Reference
@@ -83,7 +83,7 @@ CONTENT_TYPE_SYNONYMS = {
 }
 
 
-def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
+def _handle_formats(accept: str | None, fmt: str | None) -> str:
     if fmt:
         if fmt not in FORMAT_MAP:
             raise HTTPException(
@@ -103,8 +103,8 @@ def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
 @api_router.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
 def get_resources(
     request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
 ):
     """Get all resources."""
     accept = _handle_formats(accept, format)
@@ -168,8 +168,8 @@ def get_resource(
 )
 def get_metaresources(
     request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
 ):
     """Get all registries."""
     accept = _handle_formats(accept, format)
@@ -261,8 +261,8 @@ class MappingResponseMeta(BaseModel):
     target: str
     len_source_only: int
     len_target_only: int
-    source_only: List[str]
-    target_only: List[str]
+    source_only: list[str]
+    target_only: list[str]
 
 
 class MappingResponse(BaseModel):
@@ -319,8 +319,8 @@ def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PAT
 @api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
 def get_collections(
     request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
 ):
     """Get all collections."""
     accept = _handle_formats(accept, format)
@@ -356,8 +356,8 @@ def get_collection(
         description="The 7-digit collection identifier",
         examples=["0000001"],
     ),
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
 ):
     """Get a collection."""
     manager = request.app.manager
@@ -387,8 +387,8 @@ def get_collection(
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
 def get_contexts(
     request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
 ):
     """Get all context."""
     accept = _handle_formats(accept, format)
@@ -415,8 +415,8 @@ def get_context(
 @api_router.get("/contributors", response_model=Mapping[str, Attributable], tags=["contributor"])
 def get_contributors(
     request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
 ):
     """Get all context."""
     contributors = request.app.manager.read_contributors()
@@ -433,11 +433,11 @@ class ContributorResponse(BaseModel):
     """A response with information about a contributor."""
 
     contributor: Attributable
-    prefix_contributions: Set[str]
-    prefix_reviews: Set[str]
-    prefix_contacts: Set[str]
-    registries: Set[str]
-    collections: Set[str]
+    prefix_contributions: set[str]
+    prefix_reviews: set[str]
+    prefix_contacts: set[str]
+    registries: set[str]
+    collections: set[str]
 
 
 @api_router.get("/contributor/{orcid}", response_model=ContributorResponse, tags=["contributor"])
@@ -546,7 +546,7 @@ def post_parse_uri(
 @api_router.get("/context.jsonld", tags=["resource"])
 def generate_context_json_ld(
     request: Request,
-    prefix: List[str] = Query(description="The prefix for the entry. Can be given multiple."),
+    prefix: list[str] = Query(description="The prefix for the entry. Can be given multiple."),
 ):
     """Generate an *ad-hoc* context JSON-LD file from the given parameters.
 
@@ -557,7 +557,7 @@ def generate_context_json_ld(
     or you can use multiple entries for "prefix" like:
 
     https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
-    """  # noqa:DAR101,DAR201
+    """
     manager = request.app.manager
     prefix_map = {}
     for value in prefix:

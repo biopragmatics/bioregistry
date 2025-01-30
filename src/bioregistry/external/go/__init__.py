@@ -78,7 +78,7 @@ class GoAligner(Aligner):
 
     def prepare_external(
         self, external_id: str, external_entry: Mapping[str, Any]
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Prepare GO data to be added to the bioregistry for each GO registry entry."""
         rv = {
             "name": external_entry["name"],

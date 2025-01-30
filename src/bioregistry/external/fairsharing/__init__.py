@@ -141,7 +141,7 @@ def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping
 
 
 #: Licenses that are one-off and don't need curating
-SKIP_LICENSES: Set[str] = set()
+SKIP_LICENSES: set[str] = set()
 
 
 def _process_publication(publication):

@@ -55,7 +55,7 @@ class BiolinkAligner(Aligner):
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
 
-    def prepare_external(self, external_id: str, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry) -> dict[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return {

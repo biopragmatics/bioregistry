@@ -5,7 +5,7 @@ vocabularies like SPDX for storing synonyms.
 """
 
 from collections.abc import Mapping
-from typing import List, Optional
+from typing import Optional
 
 __all__ = [
     "LICENSES",
@@ -87,7 +87,7 @@ CC_BY_3_IGO = "CC-BY-3.0-IGO"
 CC_BY_25 = "CC BY 2.5"
 
 #: A mapping from SPDX identifiers to external
-REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
+REVERSE_LICENSES: Mapping[Optional[str], list[str]] = {
     None: ["None", "license", "unspecified"],
     "CC-BY-2.5": [
         "CC BY 2.5",

@@ -12,12 +12,7 @@ from pathlib import Path
 from typing import (
     Any,
     Callable,
-    DefaultDict,
-    Dict,
-    List,
-    Optional,
     TypeVar,
-    Union,
     cast,
 )
 
@@ -51,7 +46,7 @@ def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     )
 
 
-def removeprefix(s: Optional[str], prefix: str) -> Optional[str]:
+def removeprefix(s: str | None, prefix: str) -> str | None:
     """Remove the prefix from the string."""
     if s is None:
         return None
@@ -60,7 +55,7 @@ def removeprefix(s: Optional[str], prefix: str) -> Optional[str]:
     return s
 
 
-def removesuffix(s: Optional[str], suffix: str) -> Optional[str]:
+def removesuffix(s: str | None, suffix: str) -> str | None:
     """Remove the prefix from the string."""
     if s is None:
         return None
@@ -69,7 +64,7 @@ def removesuffix(s: Optional[str], suffix: str) -> Optional[str]:
     return s
 
 
-def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
+def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
     """Query Wikidata's sparql service.
 
     :param sparql: A SPARQL query string
@@ -84,7 +79,7 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     )
     res.raise_for_status()
     res_json = res.json()
-    return cast(List[Mapping[str, Any]], res_json["results"]["bindings"])
+    return cast(list[Mapping[str, Any]], res_json["results"]["bindings"])
 
 
 # TODO make inherit from dict[str, str] interface
@@ -156,7 +151,7 @@ def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
     }
 
 
-def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
+def _get_hexdigest(path: str | Path, alg: str = "sha256") -> str:
     hashes = get_hashes(path, [alg])
     return hashes[alg].hexdigest()
 
@@ -219,10 +214,10 @@ def _clean(s: str) -> str:
     return s
 
 
-def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+def backfill(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Sequence[dict[str, Any]]:
     """Backfill records that may have overlapping data."""
     _key_set = set(keys)
-    index_dd: DefaultDict[str, DefaultDict[str, Dict[str, str]]] = defaultdict(
+    index_dd: defaultdict[str, defaultdict[str, dict[str, str]]] = defaultdict(
         lambda: defaultdict(dict)
     )
 
@@ -252,11 +247,11 @@ def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence
     return records_copy
 
 
-def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+def deduplicate(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Sequence[dict[str, Any]]:
     """De-duplicate records that might have overlapping data."""
-    dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
+    dd: defaultdict[Sequence[str], list[dict[str, Any]]] = defaultdict(list)
 
-    def _key(r: Dict[str, Any]) -> tuple[str, ...]:
+    def _key(r: dict[str, Any]) -> tuple[str, ...]:
         return tuple(r.get(key) or "" for key in keys)
 
     for record in backfill(records, keys):

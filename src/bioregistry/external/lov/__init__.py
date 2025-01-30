@@ -56,7 +56,7 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
 
     records = {}
     for result in graph.query(RECORD_SPARQL):
-        d: Dict[str, Union[str, List[str]]] = {k: str(v) for k, v in zip(columns, result) if v}
+        d: dict[str, Union[str, list[str]]] = {k: str(v) for k, v in zip(columns, result) if v}
         if k := keywords.get(str(result[0])):
             d["keywords"] = sorted(k)
         if "uri_prefix" in d:

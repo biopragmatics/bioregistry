@@ -26,7 +26,7 @@ ONTOLOGY_URL = (
 DATASET_URL = "https://raw.githubusercontent.com/togoid/togoid-config/main/config/dataset.yaml"
 
 
-def _get_ontology() -> Dict[str, str]:
+def _get_ontology() -> dict[str, str]:
     import rdflib
 
     graph = rdflib.Graph()

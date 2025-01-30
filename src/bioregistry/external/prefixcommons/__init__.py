@@ -117,7 +117,7 @@ def _process_row(line: str):
     cells = line.strip().split("\t")
     prefix = cells[0]
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
-    rv: Dict[str, Any] = {
+    rv: dict[str, Any] = {
         key: value.strip()
         for key, value in zip(COLUMNS, cells_processed)
         if key and value and key in KEEP
@@ -177,7 +177,7 @@ def _process_row(line: str):
     return prefix, rv
 
 
-def _get_uri_formats(rv, key) -> List[str]:
+def _get_uri_formats(rv, key) -> list[str]:
     uri_formats = rv.pop(key, None)
     if not uri_formats:
         return []

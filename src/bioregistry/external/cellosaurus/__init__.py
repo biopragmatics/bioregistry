@@ -51,7 +51,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     for cond, slines in itt.groupby(lines, lambda line: line == "//"):
         if cond:
             continue
-        d: Dict[str, str] = {}
+        d: dict[str, str] = {}
         for line in slines:
             if line[6] != ":":  # strip notes out
                 continue

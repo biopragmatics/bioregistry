@@ -54,7 +54,7 @@ OBSOLETE = {
 }
 
 
-def get_ncbi(force_download: bool = False) -> Dict[str, Dict[str, str]]:
+def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get the NCBI data."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -156,7 +156,7 @@ class NcbiAligner(Aligner):
 
     key = "ncbi"
     getter = get_ncbi
-    getter_kwargs = dict(force_download=False)
+    getter_kwargs = {"force_download": False}
     curation_header = ("name", "example", "homepage")
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:

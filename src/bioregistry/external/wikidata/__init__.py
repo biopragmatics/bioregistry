@@ -144,7 +144,7 @@ CANONICAL_DATABASES = {
     "P4168": "Q112783946",  # Immune epitope database
 }
 
-CANONICAL_HOMEPAGES: Dict[str, str] = {
+CANONICAL_HOMEPAGES: dict[str, str] = {
     "P6852": "https://www.ccdc.cam.ac.uk",
     "P7224": "http://insecta.pro/catalog",
     "P1761": "http://delta-intkey.com",
@@ -176,7 +176,7 @@ CANONICAL_URI_FORMATS = {
     "P7471": "https://www.inaturalist.org/places/$1",
     "P696": "https://scicrunch.org/scicrunch/interlex/view/ilx_$1",
 }
-CANONICAL_RDF_URI_FORMATS: Dict[str, str] = {}
+CANONICAL_RDF_URI_FORMATS: dict[str, str] = {}
 
 # Stuff with miriam IDs that shouldn't
 

@@ -6,7 +6,7 @@ import logging
 import typing
 from collections.abc import Mapping
 from functools import lru_cache
-from typing import Any, Dict, List, Optional, Set
+from typing import Any
 
 import curies
 
@@ -15,63 +15,63 @@ from .resource_manager import manager
 from .schema import Attributable, Resource
 
 __all__ = [
-    "get_resource",
-    "get_name",
-    "get_description",
-    "get_preferred_prefix",
-    "get_mappings",
-    "get_synonyms",
-    "get_keywords",
-    "get_pattern",
-    "get_curie_pattern",
-    "get_namespace_in_lui",
-    "get_example",
-    "has_no_terms",
-    "is_deprecated",
-    "is_proprietary",
+    "count_mappings",
+    "get_appears_in",
+    "get_banana",
+    "get_canonical_for",
     "get_contact",
     "get_contact_email",
-    "get_contact_name",
     "get_contact_github",
+    "get_contact_name",
     "get_contact_orcid",
+    "get_curie_pattern",
+    "get_depends_on",
+    "get_description",
+    "get_example",
+    "get_has_canonical",
+    "get_has_parts",
     "get_homepage",
-    "get_repository",
-    "get_obo_download",
     "get_json_download",
-    "get_owl_download",
-    "is_obo_foundry",
-    "get_rdf_download",
-    "get_version",
-    "get_banana",
+    "get_keywords",
+    "get_mappings",
+    "get_name",
+    "get_namespace_in_lui",
+    "get_obo_context_prefix_map",
+    "get_obo_download",
     "get_obo_health_url",
-    "is_novel",
+    "get_owl_download",
+    "get_part_of",
+    "get_parts_collections",
+    "get_pattern",
+    "get_preferred_prefix",
     # Ontology
     "get_provided_by",
     "get_provides_for",
-    "get_part_of",
-    "get_has_parts",
-    "get_has_canonical",
-    "get_canonical_for",
-    "get_appears_in",
-    "get_depends_on",
+    "get_rdf_download",
+    "get_registry_invmap",
+    # Registry-level functions
+    "get_registry_map",
+    "get_repository",
+    "get_resource",
+    "get_synonyms",
+    "get_version",
+    "get_versions",
+    "has_no_terms",
+    "is_deprecated",
+    "is_novel",
+    "is_obo_foundry",
+    "is_proprietary",
+    "normalize_curie",
+    "normalize_parsed_curie",
     # CURIE handling
     "normalize_prefix",
     "parse_curie",
-    "normalize_parsed_curie",
-    "normalize_curie",
-    # Registry-level functions
-    "get_registry_map",
-    "get_registry_invmap",
-    "count_mappings",
-    "get_versions",
-    "get_parts_collections",
-    "get_obo_context_prefix_map",
 ]
 
 logger = logging.getLogger(__name__)
 
 
-def get_resource(prefix: str) -> Optional[Resource]:
+def get_resource(prefix: str) -> Resource | None:
     """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
@@ -82,12 +82,12 @@ def get_resource(prefix: str) -> Optional[Resource]:
     return manager.get_resource(prefix)
 
 
-def get_name(prefix: str) -> Optional[str]:
+def get_name(prefix: str) -> str | None:
     """Get the name for the given prefix, it it's available."""
     return manager.get_name(prefix)
 
 
-def get_description(prefix: str, *, use_markdown: bool = False) -> Optional[str]:
+def get_description(prefix: str, *, use_markdown: bool = False) -> str | None:
     """Get the description for the given prefix, if available.
 
     :param prefix: The prefix to lookup.
@@ -98,7 +98,7 @@ def get_description(prefix: str, *, use_markdown: bool = False) -> Optional[str]
     return manager.get_description(prefix, use_markdown=use_markdown)
 
 
-def get_preferred_prefix(prefix: str) -> Optional[str]:
+def get_preferred_prefix(prefix: str) -> str | None:
     """Get the preferred prefix (e.g., with stylization) if it exists.
 
     :param prefix: The prefix to lookup.
@@ -124,7 +124,7 @@ def get_preferred_prefix(prefix: str) -> Optional[str]:
     return manager.get_preferred_prefix(prefix)
 
 
-def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
+def get_mappings(prefix: str) -> Mapping[str, str] | None:
     """Get the mappings to external registries, if available."""
     entry = get_resource(prefix)
     if entry is None:
@@ -137,17 +137,17 @@ def count_mappings() -> typing.Counter[str]:
     return manager.count_mappings()
 
 
-def get_synonyms(prefix: str) -> Optional[Set[str]]:
+def get_synonyms(prefix: str) -> set[str] | None:
     """Get the synonyms for a given prefix, if available."""
     return manager.get_synonyms(prefix)
 
 
-def get_keywords(prefix: str) -> Optional[List[str]]:
+def get_keywords(prefix: str) -> list[str] | None:
     """Return the keywords, if available."""
     return manager.get_keywords(prefix)
 
 
-def get_pattern(prefix: str) -> Optional[str]:
+def get_pattern(prefix: str) -> str | None:
     """Get the pattern for the given prefix, if it's available.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
@@ -160,7 +160,7 @@ def get_pattern(prefix: str) -> Optional[str]:
     return manager.get_pattern(prefix)
 
 
-def get_namespace_in_lui(prefix: str) -> Optional[bool]:
+def get_namespace_in_lui(prefix: str) -> bool | None:
     """Check if the namespace should appear in the LUI."""
     entry = get_resource(prefix)
     if entry is None:
@@ -168,7 +168,7 @@ def get_namespace_in_lui(prefix: str) -> Optional[bool]:
     return entry.get_namespace_in_lui()
 
 
-def get_appears_in(prefix: str) -> Optional[List[str]]:
+def get_appears_in(prefix: str) -> list[str] | None:
     """Return a list of resources that this resources (has been annotated to) depends on.
 
     This is complementary to :func:`get_depends_on`.
@@ -186,7 +186,7 @@ def get_appears_in(prefix: str) -> Optional[List[str]]:
     return manager.get_appears_in(prefix)
 
 
-def get_depends_on(prefix: str) -> Optional[List[str]]:
+def get_depends_on(prefix: str) -> list[str] | None:
     """Return a list of resources that this resources (has been annotated to) depends on.
 
     This is complementary to :func:`get_appears_in`.
@@ -204,7 +204,7 @@ def get_depends_on(prefix: str) -> Optional[List[str]]:
     return manager.get_depends_on(prefix)
 
 
-def get_has_canonical(prefix: str) -> Optional[str]:
+def get_has_canonical(prefix: str) -> str | None:
     """Get the canonical prefix.
 
     If two (or more) stand-alone resources both provide for the same
@@ -226,7 +226,7 @@ def get_has_canonical(prefix: str) -> Optional[str]:
     return manager.get_has_canonical(prefix)
 
 
-def get_canonical_for(prefix: str) -> Optional[List[str]]:
+def get_canonical_for(prefix: str) -> list[str] | None:
     """Get the prefixes for which this is annotated as canonical.
 
     :param prefix: The prefix to lookup.
@@ -241,7 +241,7 @@ def get_canonical_for(prefix: str) -> Optional[List[str]]:
     return manager.get_canonical_for(prefix)
 
 
-def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
+def get_identifiers_org_prefix(prefix: str) -> str | None:
     """Get the identifiers.org prefix if available.
 
     :param prefix: The prefix to lookup.
@@ -260,7 +260,7 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     return entry.get_identifiers_org_prefix()
 
 
-def get_n2t_prefix(prefix: str) -> Optional[str]:
+def get_n2t_prefix(prefix: str) -> str | None:
     """Get the name-to-thing prefix if available.
 
     :param prefix: The prefix to lookup.
@@ -276,7 +276,7 @@ def get_n2t_prefix(prefix: str) -> Optional[str]:
     return manager.get_mapped_prefix(prefix, "n2t")
 
 
-def get_wikidata_prefix(prefix: str) -> Optional[str]:
+def get_wikidata_prefix(prefix: str) -> str | None:
     """Get the wikidata prefix if available.
 
     :param prefix: The prefix to lookup.
@@ -290,7 +290,7 @@ def get_wikidata_prefix(prefix: str) -> Optional[str]:
     return manager.get_mapped_prefix(prefix, "wikidata")
 
 
-def get_bioportal_prefix(prefix: str) -> Optional[str]:
+def get_bioportal_prefix(prefix: str) -> str | None:
     """Get the BioPortal prefix if available.
 
     :param prefix: The prefix to lookup.
@@ -306,7 +306,7 @@ def get_bioportal_prefix(prefix: str) -> Optional[str]:
     return manager.get_mapped_prefix(prefix, "bioportal")
 
 
-def get_obofoundry_prefix(prefix: str) -> Optional[str]:
+def get_obofoundry_prefix(prefix: str) -> str | None:
     """Get the OBO Foundry prefix if available."""
     entry = get_resource(prefix)
     if entry is None:
@@ -314,17 +314,17 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     return entry.get_obofoundry_prefix()
 
 
-def get_registry_map(metaprefix: str) -> Dict[str, str]:
+def get_registry_map(metaprefix: str) -> dict[str, str]:
     """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
     return manager.get_registry_map(metaprefix)
 
 
-def get_registry_invmap(metaprefix: str) -> Dict[str, str]:
+def get_registry_invmap(metaprefix: str) -> dict[str, str]:
     """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
     return manager.get_registry_invmap(metaprefix)
 
 
-def get_obofoundry_uri_prefix(prefix: str) -> Optional[str]:
+def get_obofoundry_uri_prefix(prefix: str) -> str | None:
     """Get the URI prefix for an OBO Foundry entry.
 
     :param prefix: The prefix to lookup.
@@ -343,7 +343,7 @@ def get_obofoundry_uri_prefix(prefix: str) -> Optional[str]:
     return entry.get_obofoundry_uri_prefix()
 
 
-def get_ols_prefix(prefix: str) -> Optional[str]:
+def get_ols_prefix(prefix: str) -> str | None:
     """Get the OLS prefix if available."""
     entry = get_resource(prefix)
     if entry is None:
@@ -351,7 +351,7 @@ def get_ols_prefix(prefix: str) -> Optional[str]:
     return entry.get_ols_prefix()
 
 
-def get_fairsharing_prefix(prefix: str) -> Optional[str]:
+def get_fairsharing_prefix(prefix: str) -> str | None:
     """Get the FAIRSharing prefix if available.
 
     :param prefix: The prefix to lookup.
@@ -363,7 +363,7 @@ def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     return manager.get_mapped_prefix(prefix, "fairsharing")
 
 
-def get_banana(prefix: str) -> Optional[str]:
+def get_banana(prefix: str) -> str | None:
     """Get the optional redundant prefix to go before an identifier.
 
     A "banana" is an embedded prefix that isn't actually part of the identifier.
@@ -393,7 +393,7 @@ def get_banana(prefix: str) -> Optional[str]:
     return entry.get_banana()
 
 
-def get_default_format(prefix: str) -> Optional[str]:
+def get_default_format(prefix: str) -> str | None:
     """Get the default, first-party URI prefix.
 
     :param prefix: The prefix to lookup.
@@ -412,7 +412,7 @@ def get_default_format(prefix: str) -> Optional[str]:
     return entry.get_default_format()
 
 
-def get_miriam_uri_prefix(prefix: str, **kwargs: Any) -> Optional[str]:
+def get_miriam_uri_prefix(prefix: str, **kwargs: Any) -> str | None:
     """Get the URI prefix for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
@@ -432,7 +432,7 @@ def get_miriam_uri_prefix(prefix: str, **kwargs: Any) -> Optional[str]:
     return resource.get_miriam_uri_prefix(**kwargs)
 
 
-def get_miriam_uri_format(prefix: str, **kwargs: Any) -> Optional[str]:
+def get_miriam_uri_format(prefix: str, **kwargs: Any) -> str | None:
     """Get the URI format for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
@@ -452,7 +452,7 @@ def get_miriam_uri_format(prefix: str, **kwargs: Any) -> Optional[str]:
     return resource.get_miriam_uri_format(**kwargs)
 
 
-def get_obofoundry_uri_format(prefix: str) -> Optional[str]:
+def get_obofoundry_uri_format(prefix: str) -> str | None:
     """Get the OBO Foundry URI format for this entry, if possible.
 
     :param prefix: The prefix to lookup.
@@ -471,7 +471,7 @@ def get_obofoundry_uri_format(prefix: str) -> Optional[str]:
     return resource.get_obofoundry_uri_format()
 
 
-def get_ols_uri_prefix(prefix: str) -> Optional[str]:
+def get_ols_uri_prefix(prefix: str) -> str | None:
     """Get the URI format for an OLS entry.
 
     :param prefix: The prefix to lookup.
@@ -492,7 +492,7 @@ def get_ols_uri_prefix(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_prefix()
 
 
-def get_ols_uri_format(prefix: str) -> Optional[str]:
+def get_ols_uri_format(prefix: str) -> str | None:
     """Get the URI format for an OLS entry.
 
     :param prefix: The prefix to lookup.
@@ -513,7 +513,7 @@ def get_ols_uri_format(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_format()
 
 
-def get_biocontext_uri_format(prefix: str) -> Optional[str]:
+def get_biocontext_uri_format(prefix: str) -> str | None:
     """Get the URI format for a BioContext entry.
 
     :param prefix: The prefix to lookup.
@@ -529,7 +529,7 @@ def get_biocontext_uri_format(prefix: str) -> Optional[str]:
     return resource.get_biocontext_uri_format()
 
 
-def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
+def get_prefixcommons_uri_format(prefix: str) -> str | None:
     """Get the URI format for a Prefix Commons entry.
 
     :param prefix: The prefix to lookup.
@@ -550,7 +550,7 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
     return manager.get_external(prefix, metaprefix)
 
 
-def get_example(prefix: str) -> Optional[str]:
+def get_example(prefix: str) -> str | None:
     """Get an example identifier, if it's available."""
     return manager.get_example(prefix)
 
@@ -577,7 +577,7 @@ def is_deprecated(prefix: str) -> bool:
     return manager.is_deprecated(prefix)
 
 
-def get_contact(prefix: str) -> Optional[Attributable]:
+def get_contact(prefix: str) -> Attributable | None:
     """Return the contact, if available.
 
     :param prefix: The prefix to lookup
@@ -589,7 +589,7 @@ def get_contact(prefix: str) -> Optional[Attributable]:
     return entry.get_contact()
 
 
-def get_contact_email(prefix: str) -> Optional[str]:
+def get_contact_email(prefix: str) -> str | None:
     """Return the contact email, if available.
 
     :param prefix: The prefix to lookup
@@ -608,7 +608,7 @@ def get_contact_email(prefix: str) -> Optional[str]:
     return entry.get_contact_email()
 
 
-def get_contact_github(prefix: str) -> Optional[str]:
+def get_contact_github(prefix: str) -> str | None:
     """Return the contact GitHub, if available.
 
     :param prefix: The prefix to lookup
@@ -620,7 +620,7 @@ def get_contact_github(prefix: str) -> Optional[str]:
     return entry.get_contact_github()
 
 
-def get_contact_orcid(prefix: str) -> Optional[str]:
+def get_contact_orcid(prefix: str) -> str | None:
     """Return the contact ORCiD, if available.
 
     :param prefix: The prefix to lookup
@@ -632,7 +632,7 @@ def get_contact_orcid(prefix: str) -> Optional[str]:
     return entry.get_contact_orcid()
 
 
-def get_contact_name(prefix: str) -> Optional[str]:
+def get_contact_name(prefix: str) -> str | None:
     """Return the contact name, if available.
 
     :param prefix: The prefix to lookup
@@ -651,12 +651,12 @@ def get_contact_name(prefix: str) -> Optional[str]:
     return entry.get_contact_name()
 
 
-def get_homepage(prefix: str) -> Optional[str]:
+def get_homepage(prefix: str) -> str | None:
     """Return the homepage, if available."""
     return manager.get_homepage(prefix)
 
 
-def get_repository(prefix: str) -> Optional[str]:
+def get_repository(prefix: str) -> str | None:
     """Return the repository, if available."""
     entry = get_resource(prefix)
     if entry is None:
@@ -664,7 +664,7 @@ def get_repository(prefix: str) -> Optional[str]:
     return entry.get_repository()
 
 
-def get_obo_download(prefix: str) -> Optional[str]:
+def get_obo_download(prefix: str) -> str | None:
     """Get the download link for the latest OBO file."""
     entry = get_resource(prefix)
     if entry is None:
@@ -672,7 +672,7 @@ def get_obo_download(prefix: str) -> Optional[str]:
     return entry.get_download_obo()
 
 
-def get_json_download(prefix: str) -> Optional[str]:
+def get_json_download(prefix: str) -> str | None:
     """Get the download link for the latest OBOGraph JSON file."""
     entry = get_resource(prefix)
     if entry is None:
@@ -680,7 +680,7 @@ def get_json_download(prefix: str) -> Optional[str]:
     return entry.get_download_obograph()
 
 
-def get_owl_download(prefix: str) -> Optional[str]:
+def get_owl_download(prefix: str) -> str | None:
     """Get the download link for the latest OWL file."""
     entry = get_resource(prefix)
     if entry is None:
@@ -688,7 +688,7 @@ def get_owl_download(prefix: str) -> Optional[str]:
     return entry.get_download_owl()
 
 
-def get_rdf_download(prefix: str) -> Optional[str]:
+def get_rdf_download(prefix: str) -> str | None:
     """Get the download link for the RDF file."""
     entry = get_resource(prefix)
     if entry is None:
@@ -696,7 +696,7 @@ def get_rdf_download(prefix: str) -> Optional[str]:
     return entry.get_download_rdf()
 
 
-def get_provides_for(prefix: str) -> Optional[str]:
+def get_provides_for(prefix: str) -> str | None:
     """Get the resource that the given prefix provides for, or return none if not a provider.
 
     :param prefix: The prefix to look up
@@ -709,7 +709,7 @@ def get_provides_for(prefix: str) -> Optional[str]:
     return manager.get_provides_for(prefix)
 
 
-def get_provided_by(prefix: str) -> Optional[List[str]]:
+def get_provided_by(prefix: str) -> list[str] | None:
     """Get the resources that provide for the given prefix, or return none if the prefix can't be looked up.
 
     :param prefix: The prefix to look up
@@ -722,7 +722,7 @@ def get_provided_by(prefix: str) -> Optional[List[str]]:
     return manager.get_provided_by(prefix)
 
 
-def get_part_of(prefix: str) -> Optional[str]:
+def get_part_of(prefix: str) -> str | None:
     """Get the parent resource.
 
     :param prefix: The prefix to look up
@@ -734,7 +734,7 @@ def get_part_of(prefix: str) -> Optional[str]:
     return manager.get_part_of(prefix)
 
 
-def get_has_parts(prefix: str) -> Optional[List[str]]:
+def get_has_parts(prefix: str) -> list[str] | None:
     """Get children resources.
 
     :param prefix: The prefix to look up
@@ -746,7 +746,7 @@ def get_has_parts(prefix: str) -> Optional[List[str]]:
     return manager.get_has_parts(prefix)
 
 
-def get_license(prefix: str) -> Optional[str]:
+def get_license(prefix: str) -> str | None:
     """Get the license for the resource.
 
     :param prefix: The prefix to look up
@@ -758,7 +758,7 @@ def get_license(prefix: str) -> Optional[str]:
     return entry.get_license()
 
 
-def is_proprietary(prefix: str) -> Optional[bool]:
+def is_proprietary(prefix: str) -> bool | None:
     """Get if the prefix is proprietary.
 
     :param prefix: The prefix to look up
@@ -775,7 +775,7 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     return entry.proprietary
 
 
-def is_obo_foundry(prefix: str) -> Optional[bool]:
+def is_obo_foundry(prefix: str) -> bool | None:
     """Get if the prefix has an OBO Foundry link.
 
     :param prefix: The prefix to look up
@@ -873,7 +873,7 @@ def normalize_parsed_curie(
     return manager.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
 
 
-def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> Optional[str]:
+def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> str | None:
     """Normalize a CURIE.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
@@ -926,7 +926,7 @@ def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) 
     return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
-def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> Optional[str]:
+def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
     """Get the normalized prefix, or return None if not registered.
 
     :param prefix: The prefix to normalize, which could come from Bioregistry,
@@ -959,7 +959,7 @@ def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> Optional[st
     return manager.normalize_prefix(prefix, use_preferred=use_preferred)
 
 
-def get_version(prefix: str) -> Optional[str]:
+def get_version(prefix: str) -> str | None:
     """Get the version."""
     norm_prefix = normalize_prefix(prefix)
     if norm_prefix is None:
@@ -973,7 +973,7 @@ def get_versions() -> Mapping[str, str]:
     return manager.get_versions()
 
 
-def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> Optional[str]:
+def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> str | None:
     """Get the CURIE pattern for this resource.
 
     :param prefix: The prefix to look up
@@ -984,22 +984,22 @@ def get_curie_pattern(prefix: str, *, use_preferred: bool = False) -> Optional[s
     return manager.get_curie_pattern(prefix, use_preferred=use_preferred)
 
 
-def get_license_conflicts() -> List[tuple[str, str | None, str | None, str | None]]:
+def get_license_conflicts() -> list[tuple[str, str | None, str | None, str | None]]:
     """Get license conflicts."""
     return manager.get_license_conflicts()
 
 
-def get_obo_health_url(prefix: str) -> Optional[str]:
+def get_obo_health_url(prefix: str) -> str | None:
     """Get the OBO community health badge."""
     return manager.get_obo_health_url(prefix)
 
 
-def is_novel(prefix: str) -> Optional[bool]:
+def is_novel(prefix: str) -> bool | None:
     """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
     return manager.is_novel(prefix)
 
 
-def get_parts_collections() -> Mapping[str, List[str]]:
+def get_parts_collections() -> Mapping[str, list[str]]:
     """Group resources' prefixes based on their ``part_of`` entries.
 
     :returns:
