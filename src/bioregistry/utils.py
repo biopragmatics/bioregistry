@@ -277,7 +277,7 @@ M = TypeVar("M", bound=BaseModel)
 
 def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
     """Convert a dict to a pydantic model."""
-    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
+    warnings.warn("use BaseModel.model_validate directly", DeprecationWarning, stacklevel=2)
     return m.model_validate(d)
 
 
@@ -289,4 +289,5 @@ def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
 
 def pydantic_schema(m: type[M]) -> dict[str, Any]:
     """Get the schema."""
+    warnings.warn("use BaseModel.model_json_schema directly", DeprecationWarning, stacklevel=2)
     return m.model_json_schema()
