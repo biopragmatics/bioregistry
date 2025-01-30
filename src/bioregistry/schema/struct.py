@@ -342,7 +342,7 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
     )
-    contact_extras: List[Attributable] | None = Field(
+    contact_extras: list[Attributable] | None = Field(
         default=None,
         description="Secondary contacts. It's required to have a primary contact to have this field.",
     )

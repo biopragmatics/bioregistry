@@ -1123,6 +1123,22 @@
           "default": null,
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account."
         },
+        "contact_extras": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Attributable"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Secondary contacts. It's required to have a primary contact to have this field.",
+          "title": "Contact Extras"
+        },
         "owners": {
           "anyOf": [
             {
