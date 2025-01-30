@@ -18,7 +18,7 @@ from .constants import (
     MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
-from .utils import pydantic_dict, pydantic_parse
+from .utils import pydantic_dict
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
         data = json.load(file)
     for prefix, value in data.items():
         value.setdefault("prefix", prefix)
-    return {prefix: pydantic_parse(Resource, value) for prefix, value in data.items()}
+    return {prefix: Resource.model_validate(value) for prefix, value in data.items()}
 
 
 def add_resource(resource: Resource) -> None:

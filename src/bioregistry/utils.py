@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-import warnings
-
 import itertools as itt
 import logging
+import warnings
 from collections import ChainMap, defaultdict
 from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
@@ -278,6 +277,7 @@ M = TypeVar("M", bound=BaseModel)
 
 def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
     """Convert a dict to a pydantic model."""
+    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
     return m.model_validate(d)
 
 

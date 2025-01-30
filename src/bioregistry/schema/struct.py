@@ -48,7 +48,6 @@ from bioregistry.utils import (
     curie_to_str,
     deduplicate,
     pydantic_dict,
-    pydantic_parse,
     removeprefix,
     removesuffix,
 )
@@ -1339,7 +1338,7 @@ class Resource(BaseModel):
                 )
         if self.uniprot:
             for publication in self.uniprot.get("publications", []):
-                publications.append(pydantic_parse(Publication, publication))
+                publications.append(Publication.model_validate(publication))
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
         return deduplicate_publications(publications)
