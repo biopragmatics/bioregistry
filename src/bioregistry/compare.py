@@ -11,7 +11,7 @@ import sys
 import typing
 from collections import Counter, defaultdict
 from collections.abc import Collection, Mapping
-from typing import TYPE_CHECKING, Callable, List, Set, Tuple, TypeVar
+from typing import TYPE_CHECKING, Callable, TypeVar
 
 import click
 
@@ -42,7 +42,6 @@ from bioregistry.bibliometrics import (
 from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema import Resource
-from bioregistry.utils import pydantic_dict
 
 if TYPE_CHECKING:
     import matplotlib.axes
@@ -65,7 +64,7 @@ class RegistryInfo(typing.NamedTuple):
     metaprefix: str
     label: str
     color: str
-    prefixes: Set[str]
+    prefixes: set[str]
 
 
 def _get_has(func: Callable[[str], typing.Any], yes: str = "Yes", no: str = "No") -> Counter[str]:
@@ -94,7 +93,7 @@ WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
 def _save(
-    fig: "matplotlib.figure.Figure",
+    fig: matplotlib.figure.Figure,
     name: str,
     *,
     svg: bool = True,
@@ -153,7 +152,7 @@ def plot_attribute_pies(watermark: bool) -> FigAxPair:
 
 def _plot_attribute_pies(
     *,
-    measurements: Collection[Tuple[str, typing.Counter]],
+    measurements: Collection[tuple[str, typing.Counter]],
     watermark,
     ncols: int = 4,
     keep_ontology: bool = True,
@@ -209,7 +208,7 @@ REMAPPED_KEY = "x"
 REMAPPED_VALUE = "y"
 
 
-def make_overlaps(keys: List[RegistryInfo]) -> Mapping[str, Mapping[str, Set[str]]]:
+def make_overlaps(keys: list[RegistryInfo]) -> Mapping[str, Mapping[str, set[str]]]:
     """Make overlaps dictionary."""
     rv = {}
     for metaprefix, _, _, prefixes in keys:
@@ -315,7 +314,7 @@ def get_getters() -> list[tuple[str, str, Callable]]:
         return GETTERS
 
 
-def get_registry_infos() -> List[RegistryInfo]:
+def get_registry_infos() -> list[RegistryInfo]:
     """Get keys for plots."""
     getters = get_getters()
     try:
@@ -478,10 +477,10 @@ def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str
     return licenses, conflicts, obo_has_license, ols_has_license
 
 
-def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
+def _remap(*, key: str, prefixes: Collection[str]) -> set[str]:
     br_external_to = {}
     for br_id, resource in read_registry().items():
-        _k = (pydantic_dict(resource).get(key) or {}).get("prefix")
+        _k = (resource.model_dump().get(key) or {}).get("prefix")
         if _k:
             br_external_to[_k] = br_id
 
@@ -558,7 +557,7 @@ def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
             f"{int(width):,}",
             horizontalalignment="center",
             verticalalignment="center",
-            fontdict=dict(weight="bold", color="white", fontsize=12),
+            fontdict={"weight": "bold", "color": "white", "fontsize": 12},
         )
 
     for (y, height), values in dd.items():
@@ -569,7 +568,7 @@ def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
             width + x + 20,
             y + height / 2,
             f"{percentage:.1%} coverage",
-            fontdict=dict(weight="normal", color="black", fontsize=12),
+            fontdict={"weight": "normal", "color": "black", "fontsize": 12},
             verticalalignment="center",
         )
 
@@ -646,7 +645,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
             f"{int(width):,}",
             horizontalalignment="center",
             verticalalignment="center",
-            fontdict=dict(weight="bold", color="white", fontsize=12),
+            fontdict={"weight": "bold", "color": "white", "fontsize": 12},
         )
 
     for (y, height), values in dd.items():
@@ -658,7 +657,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
             width + x + 20,
             y + height / 2,
             f"{int(width_total):,} (+{increase:,.0%})",
-            fontdict=dict(weight="normal", color="black", fontsize=12),
+            fontdict={"weight": "normal", "color": "black", "fontsize": 12},
             verticalalignment="center",
         )
 
@@ -695,7 +694,7 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
     xrefs_counter[max_mapped + 1] = 0
     xrefs_counter[max_mapped + 2] = 0
     # make the last value have a ... as its label rather than a number
-    xrefs_rows: List[Tuple[typing.Union[str, int], int]] = sorted(xrefs_counter.items())
+    xrefs_rows: list[tuple[str | int, int]] = sorted(xrefs_counter.items())
     xrefs_rows[-1] = "...", xrefs_rows[-1][1]
     xrefs_df = pd.DataFrame(xrefs_rows, columns=["frequency", "count"])
 
@@ -733,11 +732,10 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
     ax.text(
         x1,
         h + 1,
-        f"No identifier resources are\navailable in more than\n"
-        f"{max_mapped} external registries",
+        f"No identifier resources are\navailable in more than\n{max_mapped} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
-        fontdict=dict(fontsize=12),
+        fontdict={"fontsize": 12},
     )
     ax.arrow(x1, h, x_25 - x1, 3 - h, head_width=0.3, head_length=0.2, fc="k", ec="k")
     if watermark:
@@ -759,7 +757,7 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
     return fig, ax
 
 
-def _get_licenses_mapped_counter(threshold: int = 30) -> List[str]:
+def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
     licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
     licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [

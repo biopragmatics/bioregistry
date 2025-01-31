@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download the BARTOC registry."""
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 import requests
 from tqdm import tqdm
@@ -15,8 +14,8 @@ from bioregistry.license_standardizer import standardize_license
 from ..alignment_utils import Aligner
 
 __all__ = [
-    "get_bartoc",
     "BartocAligner",
+    "get_bartoc",
 ]
 
 HERE = Path(__file__).parent.resolve()

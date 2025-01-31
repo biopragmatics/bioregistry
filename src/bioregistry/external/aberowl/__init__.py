@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download the AberOWL registry."""
 
 import json
@@ -13,8 +11,8 @@ from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_aberowl",
     "AberOWLAligner",
+    "get_aberowl",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()

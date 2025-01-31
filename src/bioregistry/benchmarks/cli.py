@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Run all benchmarks."""
 
 import click

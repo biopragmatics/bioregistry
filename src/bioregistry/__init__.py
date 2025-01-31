@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Extract registry information."""
 
 from .collection_api import get_collection, get_context  # noqa:F401
