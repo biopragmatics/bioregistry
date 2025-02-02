@@ -31,8 +31,8 @@ jobs:
     - name: Set Date Variables
       id: set-date-variables
       run: |
-        end_date=$(date +'%Y-%m-%d')
-        start_date=$(date -d "$end_date - 30 days" +'%Y-%m-%d')
+        start_date=$(date -d "$(date +'%Y-%m-01') -1 month" +'%Y-%m-01')
+        end_date=$(date -d "$start_date +1 month -1 day" +'%Y-%m-%d')
         echo "START_DATE=$start_date" >> $GITHUB_ENV
         echo "END_DATE=$end_date" >> $GITHUB_ENV
     
