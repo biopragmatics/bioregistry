@@ -342,6 +342,10 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
     )
+    contact_extras: list[Attributable] | None = Field(
+        default=None,
+        description="Secondary contacts. It's required to have a primary contact to have this field.",
+    )
     owners: list[Organization] | None = Field(
         default=None,
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
