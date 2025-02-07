@@ -232,6 +232,12 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {%- if resource.contact_page %}
+                <dd>
+                <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">Contact Form</a>
+                </dd>
+                {%- endif %}
+
                 {% if resource.owners %}
                     <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
                     {% for owner in resource.owners %}

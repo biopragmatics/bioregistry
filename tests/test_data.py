@@ -11,6 +11,7 @@ from textwrap import dedent
 
 import curies
 import rdflib
+import requests
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -838,6 +839,26 @@ class TestRegistry(unittest.TestCase):
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
                 self.assert_contact_metadata(resource.contact)
+
+    def test_contact_page(self) -> None:
+        """Test curation of contact pages."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_page:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="Any Bioregistry entry that curates a contact page also requires a primary contact to promote transparency and openness",
+                )
+                self.assertTrue(
+                    any(
+                        resource.contact_page.startswith(protocol)
+                        for protocol in ("https://", "http://")
+                    ),
+                    msg="Contact page should be a valid URL",
+                )
+                res = requests.get(resource.contact_page, timeout=3)
+                self.assertEqual(200, res.status_code)
 
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
