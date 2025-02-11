@@ -155,3 +155,11 @@ EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 MaybeCURIE = Union[tuple[str, str], tuple[None, None]]
+
+DISALLOWED_EMAIL_PARTS = {
+    "contact@",
+    "help@",
+    "helpdesk@",
+    "discuss@",
+    "support@",
+}
