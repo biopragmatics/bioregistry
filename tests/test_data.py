@@ -843,16 +843,35 @@ class TestRegistry(unittest.TestCase):
         """Test curation of group emails."""
         for prefix, resource in self.registry.items():
             if not resource.contact_group:
+                with self.subTest(prefix=prefix):
+                    self.assertIsNotNone(
+                        resource.get_contact(),
+                        msg="All curated group contacts also require an explicit primary contact. "
+                        "This is to promote transparency and openness.",
+                    )
+                    self.assertRegex(
+                        resource.contact_group,
+                        EMAIL_RE,
+                        msg=f"Group contact email is not a valid email address in {prefix}: {resource.contact_group}",
+                    )
+
+    def test_contact_page(self) -> None:
+        """Test curation of contact page."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_page:
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(
                     resource.get_contact(),
-                    msg="All curated group contacts also require an explicit primary contact. This is to promote transparency and openness.",
+                    msg="Any Bioregistry entry that curates a contact page also requires a primary "
+                    "contact to promote transparency and openness",
                 )
-                self.assertRegex(
-                    resource.contact_group,
-                    EMAIL_RE,
-                    msg=f"Group contact email is not a valid email address in {prefix}: {resource.contact_group}",
+                self.assertTrue(
+                    any(
+                        resource.contact_page.startswith(protocol)
+                        for protocol in ("https://", "http://")
+                    ),
+                    msg="Contact page should be a valid URL",
                 )
 
     def test_wikidata_wrong_place(self):
