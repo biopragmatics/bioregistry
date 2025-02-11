@@ -203,7 +203,7 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[s
             rv[contact_orcid].add(prefix)
 
         # Add all secondary contacts' ORCIDs
-        for secondary_contact in resource.contact_extras:
+        for secondary_contact in resource.contact_extras or []:
             if secondary_contact.orcid:
                 rv[secondary_contact.orcid].add(prefix)
 
