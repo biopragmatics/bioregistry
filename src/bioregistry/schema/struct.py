@@ -342,6 +342,13 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
     )
+    contact_page: str | None = Field(
+        default=None,
+        description="A URL for a web page that has contact information, e.g., containing a contact form. "
+        "It's required to have a primary contact to have this field, even if the primary contact isn't the "
+        "preferred mechanism for contact. Only curate this field if a direct email is not available, as this "
+        "is the least transparent option for contact.",
+    )
     owners: list[Organization] | None = Field(
         default=None,
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"

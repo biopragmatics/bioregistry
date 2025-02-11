@@ -839,6 +839,25 @@ class TestRegistry(unittest.TestCase):
                 )
                 self.assert_contact_metadata(resource.contact)
 
+    def test_contact_page(self) -> None:
+        """Test curation of contact page."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_page:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="Any Bioregistry entry that curates a contact page also requires a primary "
+                    "contact to promote transparency and openness",
+                )
+                self.assertTrue(
+                    any(
+                        resource.contact_page.startswith(protocol)
+                        for protocol in ("https://", "http://")
+                    ),
+                    msg="Contact page should be a valid URL",
+                )
+
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
         registry_raw = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf8"))
