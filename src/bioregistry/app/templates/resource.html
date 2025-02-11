@@ -236,7 +236,7 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
-                {%- for secondary_contact in resource.contact_extras %}
+                {%- for secondary_contact in resource.contact_extras or [] %}
                 <dd>
                     {{ utils.render_author(secondary_contact, link=none) }}
                 </dd>
