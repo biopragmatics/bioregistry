@@ -30,7 +30,7 @@ number (e.g., Gene Ontology), and some are expansive (e.g.,
 [NCI Thesaurus (NCIT)](https://bioregistry.io/efo)).
 
 Some resources are complete by definition (e.g.,
-[Enzyme Classification](https://bioregistry.io/eccode)), some resources are
+[Enzyme Classification](https://bioregistry.io/ec)), some resources are
 complete but subject to change (e.g., HGNC), and some are always incomplete
 (e.g., PDB).
 
