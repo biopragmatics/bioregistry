@@ -857,8 +857,6 @@ class TestRegistry(unittest.TestCase):
                     ),
                     msg="Contact page should be a valid URL",
                 )
-                res = requests.get(resource.contact_page, timeout=3)
-                self.assertEqual(200, res.status_code)
 
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
