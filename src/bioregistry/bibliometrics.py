@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for publications."""
 
 import typing
 from collections import Counter
-from typing import TYPE_CHECKING, Iterable, List
+from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
 from .resource_manager import manager
 from .schema.struct import Publication, deduplicate_publications
@@ -13,7 +12,7 @@ if TYPE_CHECKING:
     import pandas
 
 
-def get_oldest_publications() -> List[Publication]:
+def get_oldest_publications() -> list[Publication]:
     """Get the oldest publication (by year) for each resource."""
     publications = []
     for resource in manager.registry.values():
@@ -23,7 +22,7 @@ def get_oldest_publications() -> List[Publication]:
     return deduplicate_publications(publications)
 
 
-def get_all_publications() -> List[Publication]:
+def get_all_publications() -> list[Publication]:
     """Get all publications for each resource."""
     return deduplicate_publications(
         publication

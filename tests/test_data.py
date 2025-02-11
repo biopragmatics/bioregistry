@@ -14,7 +14,7 @@ import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, PYDANTIC_1
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
@@ -25,9 +25,17 @@ from bioregistry.schema.struct import (
     get_json_schema,
 )
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, pydantic_dict, pydantic_fields
+from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
+
+disallowed_email_parts = {
+    "contact@",
+    "help@",
+    "helpdesk@",
+    "discuss@",
+    "support@",
+}
 
 
 class TestRegistry(unittest.TestCase):
@@ -38,14 +46,12 @@ class TestRegistry(unittest.TestCase):
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
 
-    @unittest.skipUnless(
-        PYDANTIC_1,
-        reason="Only run this test on Pydantic 1, until feature parity is simple enough.",
-    )
     def test_schema(self):
         """Test the schema is up-to-date."""
-        actual = SCHEMA_PATH.read_text()
-        expected = json.dumps(get_json_schema(), indent=2)
+        actual = json.loads(SCHEMA_PATH.read_text())
+        self.assertIsInstance(actual, dict)
+        expected = get_json_schema()
+        self.assertIsInstance(expected, dict)
         self.assertEqual(expected, actual)
 
     def test_lint(self):
@@ -73,6 +79,19 @@ class TestRegistry(unittest.TestCase):
     """,
         )
 
+    def test_line_returns(self) -> None:
+        """Test that there are no Windows-style line returns in curated data."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                resource_dict = resource.model_dump()
+                for key, value in resource_dict.items():
+                    if isinstance(value, str):
+                        self.assertNotIn(
+                            "\\r",
+                            value,
+                            msg=f"Windows-style line return detected in {key} field of {prefix}",
+                        )
+
     def test_prefixes(self):
         """Check prefixes aren't malformed."""
         for prefix, resource in self.registry.items():
@@ -85,7 +104,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = set(pydantic_fields(Resource).keys())
+        keys = set(Resource.model_fields)
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
@@ -159,6 +178,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 desc = bioregistry.get_description(prefix)
                 self.assertIsNotNone(desc)
+                self.assertNotIn("\r", desc)
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
@@ -361,7 +381,7 @@ class TestRegistry(unittest.TestCase):
                 msg = f"{prefix} is missing an example local identifier"
                 if entry.ols:
                     msg += (
-                        f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
+                        f"\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols['prefix']}/terms"
                     )
                 example = entry.get_example()
                 self.assertIsNotNone(example, msg=msg)
@@ -756,6 +776,14 @@ class TestRegistry(unittest.TestCase):
             self.assertNotIn(" ", author.orcid)
         if author.email:
             self.assertRegex(author.email, EMAIL_RE)
+            self.assertFalse(
+                any(
+                    disallowed_email_part in author.email
+                    for disallowed_email_part in disallowed_email_parts
+                ),
+                msg=f"Bioregistry policy states that an email must correspond to a single person. "
+                f"The email provided appears to be for a group/mailing list: {author.email}",
+            )
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -810,6 +838,25 @@ class TestRegistry(unittest.TestCase):
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
                 self.assert_contact_metadata(resource.contact)
+
+    def test_contact_page(self) -> None:
+        """Test curation of contact page."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_page:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="Any Bioregistry entry that curates a contact page also requires a primary "
+                    "contact to promote transparency and openness",
+                )
+                self.assertTrue(
+                    any(
+                        resource.contact_page.startswith(protocol)
+                        for protocol in ("https://", "http://")
+                    ),
+                    msg="Contact page should be a valid URL",
+                )
 
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""
@@ -928,7 +975,7 @@ class TestRegistry(unittest.TestCase):
                     # Test no duplicates
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
-                        for key, value in pydantic_dict(publication).items():
+                        for key, value in publication.model_dump().items():
                             if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)
@@ -1023,4 +1070,20 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.comment,
                     msg="Any resource with a non-resolvable URI format needs a comment as to why",
+                )
+
+    def test_repository(self) -> None:
+        """Test the repository annotation."""
+        for prefix, resource in self.registry.items():
+            if resource.repository is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertNotEqual(
+                    "bioregistry",
+                    resource.repository,
+                    msg="repository accidentally kept flag from GitHub",
+                )
+                self.assertTrue(
+                    resource.repository.startswith("http"),
+                    msg=f"repository is not a valid URL: {resource.repository}",
                 )

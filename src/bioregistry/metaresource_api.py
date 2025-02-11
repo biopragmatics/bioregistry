@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """API for registries."""
 
 from typing import Optional
@@ -9,12 +7,12 @@ from .schema import Registry
 
 __all__ = [
     "get_registry",
-    "get_registry_name",
-    "get_registry_short_name",
-    "get_registry_homepage",
     "get_registry_description",
     "get_registry_example",
+    "get_registry_homepage",
+    "get_registry_name",
     "get_registry_provider_uri_format",
+    "get_registry_short_name",
     "get_registry_uri",
 ]
 
@@ -43,12 +41,12 @@ def get_registry_homepage(metaprefix: str) -> Optional[str]:
     :param metaprefix: The metaprefix of the registry
     :return: The URL for the registry, if available, otherwise ``None``.
 
-    >>> get_registry_homepage('biolink')
+    >>> get_registry_homepage("biolink")
     'https://github.com/biolink/biolink-model'
 
     ``None`` is returned on missing values.
 
-    >>> get_registry_homepage('missing')
+    >>> get_registry_homepage("missing")
     None
     """
     return manager.get_registry_homepage(metaprefix)
@@ -60,10 +58,10 @@ def get_registry_description(metaprefix: str) -> Optional[str]:
     :param metaprefix: The metaprefix of the registry
     :return: The description for the registry, if available, otherwise ``None``.
 
-    >>> get_registry_description('biocontext')
+    >>> get_registry_description("biocontext")
     'BioContext contains modular JSON-LD contexts for bioinformatics data.'
 
-    >>> get_registry_description('missing')
+    >>> get_registry_description("missing")
     None
     """
     return manager.get_registry_description(metaprefix)

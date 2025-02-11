@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download BioContext."""
 
 import json
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Dict, Mapping, Sequence
+from typing import Any
 
 from pystow.utils import download
 
@@ -12,8 +11,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_biocontext",
     "BioContextAligner",
+    "get_biocontext",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
@@ -60,7 +59,7 @@ class BioContextAligner(Aligner):
             "fbql": "not a real resource, as far as I can tell",
         }
 
-    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare BioContext data to be added to the BioContext for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         if any(p in uri_format for p in SKIP_PARTS):

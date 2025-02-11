@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-
 """Make a curation sheet for the bioregistry."""
+
 import click
 import pandas as pd
 

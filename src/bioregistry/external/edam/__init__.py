@@ -1,17 +1,15 @@
-# -*- coding: utf-8 -*-
-
 """Import accessions from EDAM."""
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [
-    "get_edam",
     "EDAMAligner",
+    "get_edam",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()

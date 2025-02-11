@@ -10,7 +10,8 @@ with the :func:`get_goa_example` function.
 import functools
 import logging
 import re
-from typing import Callable, Dict, Optional, Pattern, Union, cast
+from re import Pattern
+from typing import Callable, Optional, Union, cast
 
 import pandas as pd
 from tabulate import tabulate
@@ -19,20 +20,17 @@ from tqdm.auto import tqdm
 import bioregistry
 
 __all__ = [
+    "curies_to_identifiers",
+    "curies_to_iris",
     "get_goa_example",
-    # Normalization
-    "normalize_prefixes",
-    "normalize_curies",
-    # Validation
-    "validate_prefixes",
-    "validate_curies",
-    "validate_identifiers",
-    # Conversion
     "identifiers_to_curies",
     "identifiers_to_iris",
-    "curies_to_iris",
-    "curies_to_identifiers",
     "iris_to_curies",
+    "normalize_curies",
+    "normalize_prefixes",
+    "validate_curies",
+    "validate_identifiers",
+    "validate_prefixes",
 ]
 
 logger = logging.getLogger(__name__)
@@ -289,8 +287,8 @@ def validate_identifiers(
         if 0 == len(prefixes):
             raise ValueError(f"No prefixes found in column {prefix_column}")
         if 1 == len(prefixes):
-            return _help_validate_identifiers(df, column, list(prefixes)[0])
-        patterns: Dict[str, Optional[Pattern]] = {}
+            return _help_validate_identifiers(df, column, next(iter(prefixes)))
+        patterns: dict[str, Optional[Pattern]] = {}
         for prefix in df[prefix_column].unique():
             if pd.isna(prefix):
                 continue

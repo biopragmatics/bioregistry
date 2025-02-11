@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """Download the Cellosaurus registry."""
 
 import itertools as itt
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Dict, Mapping
 
 from pystow.utils import download
 
@@ -14,8 +12,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_cellosaurus",
     "CellosaurusAligner",
+    "get_cellosaurus",
 ]
 
 logger = logging.getLogger(__name__)
@@ -52,7 +50,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     for cond, slines in itt.groupby(lines, lambda line: line == "//"):
         if cond:
             continue
-        d: Dict[str, str] = {}
+        d: dict[str, str] = {}
         for line in slines:
             if line[6] != ":":  # strip notes out
                 continue
