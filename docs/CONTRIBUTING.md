@@ -254,6 +254,11 @@ For the ORCID field, it understood that an ORCID record should correspond to an
 individual in the same spirit as this policy, and that the ORCID service should
 not be abused to represent any non-individual.
 
+In addition to the primary responsible contact person, the Bioregistry has
+structured fields for additional contact methods, such as:
+
+- `contact_page` for annotating the URL of a web-based contact form
+
 #### Review of New Prefix Requests
 
 Review of new prefix requests is handled by the Bioregistry Review Team, whose
