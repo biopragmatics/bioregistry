@@ -11,7 +11,6 @@ from textwrap import dedent
 
 import curies
 import rdflib
-import requests
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -841,14 +840,15 @@ class TestRegistry(unittest.TestCase):
                 self.assert_contact_metadata(resource.contact)
 
     def test_contact_page(self) -> None:
-        """Test curation of contact pages."""
+        """Test curation of contact page."""
         for prefix, resource in self.registry.items():
             if not resource.contact_page:
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(
                     resource.get_contact(),
-                    msg="Any Bioregistry entry that curates a contact page also requires a primary contact to promote transparency and openness",
+                    msg="Any Bioregistry entry that curates a contact page also requires a primary "
+                    "contact to promote transparency and openness",
                 )
                 self.assertTrue(
                     any(
