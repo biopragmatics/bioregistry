@@ -186,6 +186,10 @@
                             Repository <i class="fab fa-github"></i>
                         </a>
                     {% endif %}
+                    {%- if resource.contact_page %}
+                        <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
+                            Contact Form <i class="fas fa-address-book"></i></i></a>
+                    {%- endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
                             OBO <i class="fas fa-download"></i>
@@ -232,11 +236,6 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
-                {%- if resource.contact_page %}
-                <dd>
-                <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">Contact Form</a>
-                </dd>
-                {%- endif %}
 
                 {% if resource.owners %}
                     <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
