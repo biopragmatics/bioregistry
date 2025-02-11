@@ -850,6 +850,9 @@ class TestRegistry(unittest.TestCase):
             self.assertIsNotNone(resource.contact)
             for contact in resource.contact_extras:
                 self.assert_contact_metadata(contact)
+                self.assertNotEqual(
+                    resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
+                )
 
     def test_contact_page(self) -> None:
         """Test curation of contact page."""
