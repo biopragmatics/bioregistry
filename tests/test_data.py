@@ -14,7 +14,7 @@ import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, DISALLOWED_EMAIL_PARTS
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
@@ -28,14 +28,6 @@ from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
-
-disallowed_email_parts = {
-    "contact@",
-    "help@",
-    "helpdesk@",
-    "discuss@",
-    "support@",
-}
 
 
 class TestRegistry(unittest.TestCase):
@@ -779,7 +771,7 @@ class TestRegistry(unittest.TestCase):
             self.assertFalse(
                 any(
                     disallowed_email_part in author.email
-                    for disallowed_email_part in disallowed_email_parts
+                    for disallowed_email_part in DISALLOWED_EMAIL_PARTS
                 ),
                 msg=f"Bioregistry policy states that an email must correspond to a single person. "
                 f"The email provided appears to be for a group/mailing list: {author.email}",
