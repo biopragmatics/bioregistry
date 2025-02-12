@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Export components of the bioregistry to YAML."""
 
 import json

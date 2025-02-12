@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for interacting with data and the schema."""
 
 import json
 import logging
 from collections import defaultdict
+from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import List, Mapping, Optional, Set, Union, cast
+from typing import Optional, Union, cast
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -18,7 +17,6 @@ from .constants import (
     MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
-from .utils import pydantic_dict, pydantic_parse
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +36,7 @@ def _read_metaregistry(path: Union[str, Path]) -> Mapping[str, Registry]:
     }
 
 
-def registries() -> List[Registry]:
+def registries() -> list[Registry]:
     """Get a list of registries in the Bioregistry."""
     return sorted(read_metaregistry().values(), key=attrgetter("prefix"))
 
@@ -49,7 +47,7 @@ def read_registry() -> Mapping[str, Resource]:
     return _registry_from_path(BIOREGISTRY_PATH)
 
 
-def resources() -> List[Resource]:
+def resources() -> list[Resource]:
     """Get a list of resources in the Bioregistry."""
     return sorted(read_registry().values(), key=attrgetter("prefix"))
 
@@ -59,7 +57,7 @@ def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
         data = json.load(file)
     for prefix, value in data.items():
         value.setdefault("prefix", prefix)
-    return {prefix: pydantic_parse(Resource, value) for prefix, value in data.items()}
+    return {prefix: Resource.model_validate(value) for prefix, value in data.items()}
 
 
 def add_resource(resource: Resource) -> None:
@@ -125,7 +123,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
         json.dump(
-            {"collections": [pydantic_dict(c, exclude_none=True) for c in values]},
+            {"collections": [c.model_dump(exclude_none=True) for c in values]},
             file,
             indent=2,
             sort_keys=True,
@@ -140,7 +138,7 @@ def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = N
     with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
             {
-                key: pydantic_dict(resource, exclude_none=True, exclude={"prefix"})
+                key: resource.model_dump(exclude_none=True, exclude={"prefix"})
                 for key, resource in registry.items()
             },
             file,
@@ -155,7 +153,7 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     values = [v for _, v in sorted(metaregistry.items())]
     with open(METAREGISTRY_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
-            {"metaregistry": [pydantic_dict(m, exclude_none=True) for m in values]},
+            {"metaregistry": [m.model_dump(exclude_none=True) for m in values]},
             fp=file,
             indent=2,
             sort_keys=True,
@@ -167,7 +165,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
     """Write to contexts."""
     with open(CONTEXTS_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
-            {key: pydantic_dict(context, exclude_none=True) for key, context in contexts.items()},
+            {key: context.model_dump(exclude_none=True) for key, context in contexts.items()},
             fp=file,
             indent=2,
             sort_keys=True,
@@ -175,7 +173,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
+def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -187,7 +185,7 @@ def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, 
     return dict(rv)
 
 
-def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
+def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -196,7 +194,7 @@ def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, Set[st
     return dict(rv)
 
 
-def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
+def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -206,7 +204,7 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, Set[s
     return dict(rv)
 
 
-def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, Set[str]]:
+def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
@@ -215,7 +213,7 @@ def read_collections_contributions(collections: Mapping[str, Collection]) -> Map
     return dict(rv)
 
 
-def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, Set[str]]:
+def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for metaprefix, resource in metaregistry.items():
@@ -224,7 +222,7 @@ def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping
     return dict(rv)
 
 
-def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, Set[str]]:
+def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, set[str]]:
     """Get a mapping from contributor ORCID identifiers to contexts."""
     rv = defaultdict(set)
     for context_key, context in contexts.items():

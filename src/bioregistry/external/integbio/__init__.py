@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download the Integbio registry."""
 
 import json
@@ -11,8 +9,8 @@ import requests
 from bs4 import BeautifulSoup
 
 __all__ = [
-    "get_integbio",
     "IntegbioAligner",
+    "get_integbio",
 ]
 
 from bioregistry.external.alignment_utils import Aligner

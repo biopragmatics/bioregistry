@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
@@ -12,8 +10,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_miriam",
     "MiriamAligner",
+    "get_miriam",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
