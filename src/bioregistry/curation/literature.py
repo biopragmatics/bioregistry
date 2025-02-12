@@ -3,8 +3,8 @@
 import enum
 
 __all__ = [
-    "CurationRelevance",
     "COLUMNS",
+    "CurationRelevance",
 ]
 
 COLUMNS = [

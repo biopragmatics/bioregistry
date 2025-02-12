@@ -101,6 +101,8 @@ https://github.com/biopragmatics/bioregistry/issues/158.
 6. New prefixes should not end with "ID" as a way to signify that the prefix is
    used for identifiers, like in `doid` for the Disease Ontology or `caid` for
    ClinGen Canonical Allele identifier.
+7. New prefixes should be singular instead of plural. For example `hgnc.genes`
+   would be bad while `hgnc.gene` would be better.
 
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
@@ -220,6 +222,45 @@ https://github.com/biopragmatics/bioregistry/issues/359.
 
 Original discussion about prefix parking can be found at
 https://github.com/biopragmatics/bioregistry/issues/365.
+
+#### Contact and Attribution
+
+The Bioregistry collects the name, email, and optionally, the GitHub username
+and ORCID identifier for individuals in several places:
+
+1. As the primary responsible contact person for the semantic space associated
+   with a prefix.
+2. As the creator, contributor, or reviewer of record in the Bioregistry
+
+We require in each situation that all fields explicitly correspond to the
+individual with the goal to promote transparency and decrease the diffusion of
+responsibility. This is inspired by and mirrors the OBO Foundry's
+[Principle 11 "Locus of Authority"](https://obofoundry.org/principles/fp-011-locus-of-authority.html).
+
+For the email field, this means that the following kinds of email addresses are
+not acceptable:
+
+1. Mailing lists
+2. Help desks
+3. Group emails
+4. Issue trackers
+5. Email addresses associated with a responsible person's assistant or
+   administration
+
+For the GitHub field, this means that GitHub organizations or GitHub users that
+represent a group, such as a lab, are not acceptable.
+
+For the ORCID field, it understood that an ORCID record should correspond to an
+individual in the same spirit as this policy, and that the ORCID service should
+not be abused to represent any non-individual.
+
+In addition to the primary responsible contact person, the Bioregistry has
+structured fields for additional contact methods, such as:
+
+- `contact_page` for annotating the URL of a web page that has contact
+  information, e.g., containing a contact form. Only curate this field if a
+  direct email is not available, as this is the least transparent option for
+  contact
 
 #### Review of New Prefix Requests
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Export the Bioregistry."""
 
 from .cli import export

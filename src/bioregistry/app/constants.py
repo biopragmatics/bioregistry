@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*
-
 """Large data chunks for the web app."""
 
 from bioregistry import version
