@@ -2,17 +2,16 @@
 
 import datetime
 from collections import defaultdict
+from collections.abc import Mapping
 from dataclasses import dataclass
 from itertools import combinations
 from textwrap import dedent
-from typing import Mapping
 
 import click
 from more_click import force_option
 
 from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
-from bioregistry.utils import pydantic_dict
 from bioregistry.version import get_version
 
 
@@ -49,8 +48,8 @@ class BioregistrySummary:
         The Bioregistry ({get_version()}; {self.datetime_str}) integrates content from and aligns
         {self.number_registries_aligned:,} external registries and contains {self.number_prefixes:,}
         individual records. These records extend on each prior registry
-        (e.g., 838 records in {self.external_sizes['prefixcommons']}, {self.external_sizes['miriam']:,}
-        in MIRIAM/Identifiers.org, and {self.external_sizes['n2t']:,}  in Name-to-Thing (Wimalaratne et al., 2018),
+        (e.g., 838 records in {self.external_sizes["prefixcommons"]}, {self.external_sizes["miriam"]:,}
+        in MIRIAM/Identifiers.org, and {self.external_sizes["n2t"]:,}  in Name-to-Thing (Wimalaratne et al., 2018),
         each accessed on {self.datetime_str}), as well as the aligned registries combined:
         {self.number_prefixes_novel:,} of the Bioregistry’s {self.number_prefixes:,} records are novel,
         i.e. they do not appear in any existing registry. The Bioregistry also adds novel curated metadata
@@ -124,7 +123,7 @@ class BioregistrySummary:
         prefixes_curated = sum(
             any(
                 x not in metaprefixes
-                for x, v in pydantic_dict(entry).items()
+                for x, v in entry.model_dump().items()
                 if v is not None and x not in {"prefix", "mappings"}
             )
             for prefix, entry in registry.items()

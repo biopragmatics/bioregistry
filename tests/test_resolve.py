@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Tests for the bioregistry client."""
 
 import unittest
-from typing import Iterable, Tuple
+from collections.abc import Iterable
+from typing import Tuple
 
 import bioregistry
 from bioregistry import manager

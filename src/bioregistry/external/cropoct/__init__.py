@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from CROPOCT."""
 
 import io
@@ -14,8 +12,8 @@ from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_cropoct",
     "CropOCTAligner",
+    "get_cropoct",
 ]
 
 logger = logging.getLogger(__name__)
