@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Functionality for parsing IRIs."""
 
 from typing import Optional
@@ -45,14 +43,10 @@ def curie_from_iri(
     """Generate a CURIE from an IRI via :meth:`Manager.compress`.
 
     :param iri: A valid IRI
-    :param prefix_map:
-        This functionality was removed in Bioregistry v0.8.0.
-        Leave this as None. This argument will be removed in Bioregistry v0.9.0.
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
     :return: A CURIE string, if the IRI can be parsed.
-    :raises NotImplementedError: If ``prefix_map`` is not None.
     """
     return manager.compress(iri, use_preferred=use_preferred)
 
@@ -69,6 +63,5 @@ def parse_iri(
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
     :return: A pair of prefix/identifier, if can be parsed
-    :raises NotImplementedError: If ``prefix_map`` is not None.
     """
     return manager.parse_uri(iri, use_preferred=use_preferred)

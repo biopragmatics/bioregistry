@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from the Life Science Registry (LSR), which powers Prefix Commons.
 
 .. seealso::
@@ -10,8 +8,9 @@
 
 import json
 import logging
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Sequence
+from typing import Any
 
 from pystow.utils import download
 
@@ -20,8 +19,8 @@ from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
-    "get_prefixcommons",
     "PrefixCommonsAligner",
+    "get_prefixcommons",
 ]
 
 logger = logging.getLogger(__name__)
@@ -118,7 +117,7 @@ def _process_row(line: str):
     cells = line.strip().split("\t")
     prefix = cells[0]
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
-    rv: Dict[str, Any] = {
+    rv: dict[str, Any] = {
         key: value.strip()
         for key, value in zip(COLUMNS, cells_processed)
         if key and value and key in KEEP
@@ -178,7 +177,7 @@ def _process_row(line: str):
     return prefix, rv
 
 
-def _get_uri_formats(rv, key) -> List[str]:
+def _get_uri_formats(rv, key) -> list[str]:
     uri_formats = rv.pop(key, None)
     if not uri_formats:
         return []

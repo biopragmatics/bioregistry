@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """API for collections."""
 
 from typing import Optional
