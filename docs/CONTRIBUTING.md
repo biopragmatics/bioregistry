@@ -70,8 +70,8 @@ that's required to go with a given prefix.
 Unfortunately, these requirements can not be applied retroactively and can not
 be trivially applied to automatically imported prefixes. In some cases,
 historical prefixes can be modified to follow these requirements. For example,
-Identifiers.org's `ec-code` was renamed to `eccode` while maintaining `ec-code`
-as a synonym.
+Identifiers.org's `ec-code` was renamed to `ec` while maintaining `ec-code` as a
+synonym.
 
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.
