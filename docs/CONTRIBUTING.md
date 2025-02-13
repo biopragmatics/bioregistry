@@ -257,6 +257,7 @@ not be abused to represent any non-individual.
 In addition to the primary responsible contact person, the Bioregistry has
 structured fields for additional contact methods, such as:
 
+- `contact_extras` for annotating secondary contact people
 - `contact_page` for annotating the URL of a web page that has contact
   information, e.g., containing a contact form. Only curate this field if a
   direct email is not available, as this is the least transparent option for
