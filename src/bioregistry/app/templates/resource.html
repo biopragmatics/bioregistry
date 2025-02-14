@@ -381,6 +381,11 @@
                     <dd>
                         {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
+                    {%- for reviewer in resource.reviewer_extras or [] %}
+                    <dd>
+                        {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
+                    </dd>
+                    {%- endfor %}
                 {% endif %}
             </dl>
         </div>
