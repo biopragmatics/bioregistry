@@ -1,8 +1,8 @@
 """A benchmark for Bioregistry's URI parser."""
 
 import time
+from collections.abc import Iterable
 from statistics import mean
-from typing import Iterable, Tuple
 
 import click
 import matplotlib.pyplot as plt
@@ -23,7 +23,7 @@ def get_uris(rebuild: bool = True):
     return uris
 
 
-def iter_uris() -> Iterable[Tuple[str, str, str, str]]:
+def iter_uris() -> Iterable[tuple[str, str, str, str]]:
     """Generate prefix-identifier-metaprefix-url quads for benchmarking."""
     for prefix, resource in tqdm(
         manager.registry.items(), desc="Generating test URIs", unit="prefix"

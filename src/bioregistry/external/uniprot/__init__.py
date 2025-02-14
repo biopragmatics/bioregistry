@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download and parse the UniProt Cross-ref database."""
 
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 import requests
 
@@ -14,8 +12,8 @@ from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
 __all__ = [
-    "get_uniprot",
     "UniProtAligner",
+    "get_uniprot",
 ]
 
 logger = logging.getLogger(__name__)

@@ -189,6 +189,14 @@
                             Repository <i class="fab fa-github"></i>
                         </a>
                     {% endif %}
+                    {%- if resource.contact_group_email %}
+                        <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
+                            Mailing List <i class="fas fa-address-book"></i></i></a>
+                    {%- endif %}
+                    {%- if resource.contact_page %}
+                        <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
+                            Contact Page <i class="fas fa-address-book"></i></i></a>
+                    {%- endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
                             OBO <i class="fas fa-download"></i>
@@ -235,6 +243,11 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {%- for secondary_contact in resource.contact_extras or [] %}
+                <dd>
+                    {{ utils.render_author(secondary_contact, link=none) }}
+                </dd>
+                {%- endfor %}
                 {% if resource.owners %}
                     <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
                     {% for owner in resource.owners %}
@@ -371,6 +384,11 @@
                     <dd>
                         {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
+                    {%- for reviewer in resource.reviewer_extras or [] %}
+                    <dd>
+                        {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
+                    </dd>
+                    {%- endfor %}
                 {% endif %}
             </dl>
         </div>

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Command line interface for the bioregistry."""
 
 import sys
@@ -87,7 +85,7 @@ def align(
         secho(f"Aligning {aligner_cls.key}")
         try:
             aligner_cls.align(force_download=not no_force)
-        except (IOError, OLSBroken) as e:
+        except (OSError, OLSBroken) as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
     if pre_digests != get_hexdigests():

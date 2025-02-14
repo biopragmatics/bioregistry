@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for registry alignment."""
 
 import csv
-from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from typing import Any, Callable, ClassVar, Optional
 
 import click
 from tabulate import tabulate
@@ -80,7 +79,7 @@ class Aligner:
         self._align()
 
     @property
-    def internal_registry(self) -> Dict[str, Resource]:
+    def internal_registry(self) -> dict[str, Resource]:
         """Get the internal registry."""
         return self.manager.registry
 
@@ -136,7 +135,7 @@ class Aligner:
                 continue
 
     def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
+        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
     ) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
@@ -147,7 +146,7 @@ class Aligner:
         self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id: str, external_entry: Dict[str, Any]) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
         The default implementation returns `external_entry` unchanged.
@@ -211,7 +210,7 @@ class Aligner:
         for those in order.
 
         .. note:: You don't need to pass the external ID. this will automatically be the first element.
-        """  # noqa:DAR202
+        """
         rv = []
         for k in self.curation_header:
             value = external_entry.get(k)

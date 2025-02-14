@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from the OBO Foundry."""
 
 import json
 import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping, Optional
+from typing import Optional
 
 import requests
 import yaml
@@ -15,9 +14,9 @@ from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
+    "OBOFoundryAligner",
     "get_obofoundry",
     "get_obofoundry_example",
-    "OBOFoundryAligner",
 ]
 
 

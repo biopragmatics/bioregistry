@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from OntoBee."""
 
 import json
 import textwrap
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
@@ -14,8 +12,8 @@ from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_ontobee",
     "OntobeeAligner",
+    "get_ontobee",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()

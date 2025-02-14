@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
-
 """Code for standardizing permissive licenses.
 
 Could be extended later for non-permissive information as well as using
 vocabularies like SPDX for storing synonyms.
 """
 
-from typing import List, Mapping, Optional
+from collections.abc import Mapping
+from typing import Optional
 
 __all__ = [
-    "standardize_license",
-    "REVERSE_LICENSES",
     "LICENSES",
+    "REVERSE_LICENSES",
+    "standardize_license",
 ]
 
 
@@ -88,7 +87,7 @@ CC_BY_3_IGO = "CC-BY-3.0-IGO"
 CC_BY_25 = "CC BY 2.5"
 
 #: A mapping from SPDX identifiers to external
-REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
+REVERSE_LICENSES: Mapping[Optional[str], list[str]] = {
     None: ["None", "license", "unspecified"],
     "CC-BY-2.5": [
         "CC BY 2.5",

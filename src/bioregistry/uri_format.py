@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tools for getting URI format strings.
 
 .. warning::
@@ -8,15 +6,16 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-from typing import Collection, Mapping, Optional, Sequence
+from collections.abc import Collection, Mapping, Sequence
+from typing import Optional
 
 from .resource_manager import manager
 
 __all__ = [
+    "get_pattern_map",
+    "get_prefix_map",
     "get_uri_format",
     "get_uri_prefix",
-    "get_prefix_map",
-    "get_pattern_map",
 ]
 
 
@@ -39,7 +38,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
         identifier. ``$1`` could potentially appear multiple times.
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_format('chebi')
+    >>> bioregistry.get_uri_format("chebi")
     'http://purl.obolibrary.org/obo/CHEBI_$1'
 
     If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
@@ -48,7 +47,9 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     ChEBI example above). Do so like:
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols'])
+    >>> bioregistry.get_uri_format(
+    ...     "chebi", priority=["obofoundry", "bioregistry", "biocontext", "miriam", "ols"]
+    ... )
     'http://purl.obolibrary.org/obo/CHEBI_$1'
     """
     return manager.get_uri_format(prefix=prefix, priority=priority)
@@ -63,7 +64,7 @@ def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
         it MUST have only one ``$1`` and end with ``$1`` to use thie function.
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_prefix('chebi')
+    >>> bioregistry.get_uri_prefix("chebi")
     'http://purl.obolibrary.org/obo/CHEBI_'
     """
     return manager.get_uri_prefix(prefix=prefix, priority=priority)

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """A central CLI for Bioregistry health checks."""
 
 from .cli import main

@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from N2T."""
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 import yaml
 from pystow.utils import download
@@ -13,8 +11,8 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_n2t",
     "N2TAligner",
+    "get_n2t",
 ]
 
 URL = "https://n2t.net/e/n2t_full_prefixes.yaml"

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download the Chemical Information Ontology registry (children of ``CHEMINF:000464``).
 
 To convert CHEMINF from OWL to OBO Graph JSON, do the following:
@@ -12,15 +10,15 @@ See the OBO Foundry workflow for preparing a docker container that has ROBOT ava
 """
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [
-    "get_cheminf",
     "ChemInfAligner",
+    "get_cheminf",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
