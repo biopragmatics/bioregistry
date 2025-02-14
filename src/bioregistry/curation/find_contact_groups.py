@@ -1,11 +1,13 @@
 """Find group emails."""
 
+import click
 from tabulate import tabulate
 
 import bioregistry
 from bioregistry.constants import DISALLOWED_EMAIL_PARTS
 
 
+@click.command()
 def main() -> None:
     """Find group mails."""
     rows = []
@@ -21,7 +23,7 @@ def main() -> None:
                 url = ""
 
             rows.append((resource.prefix, resource.get_name(), contact.name, contact.email, url))
-    print(tabulate(rows))
+    click.echo(tabulate(rows))
 
 
 if __name__ == "__main__":

@@ -191,6 +191,9 @@ def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[st
     for prefix, resource in registry.items():
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid].add(prefix)
+        for reviewer in resource.reviewer_extras or []:
+            if reviewer.orcid:
+                rv[reviewer.orcid].add(prefix)
     return dict(rv)
 
 

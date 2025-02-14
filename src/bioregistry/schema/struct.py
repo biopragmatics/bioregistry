@@ -348,7 +348,8 @@ class Resource(BaseModel):
     )
     contact_group_email: EmailStr | None = Field(
         default=None,
-        description="A group contact email for the project. It's required to have a primary contact to have this field.",
+        description="A group contact email for the project. It's required to have a primary contact "
+        "to have this field.",
     )
     contact_page: str | None = Field(
         default=None,
@@ -563,6 +564,10 @@ class Resource(BaseModel):
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
         ),
+    )
+    reviewer_extras: list[Author] | None = Field(
+        default=None,
+        description="Additional reviewers of the prefix.",
     )
     proprietary: bool | None = Field(
         default=None,
