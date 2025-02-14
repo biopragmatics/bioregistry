@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Make tables exports."""
 
 from textwrap import dedent

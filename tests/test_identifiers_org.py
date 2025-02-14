@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """Tests for identifiers.org."""
 
 import unittest
-from typing import Mapping
+from collections.abc import Mapping
 
 import requests
 
@@ -38,7 +36,7 @@ class TestIdentifiersOrg(unittest.TestCase):
         """Test getting identifiers.org prefixes."""
         for prefix, miriam_prefix in [
             ("ncbitaxon", "taxonomy"),
-            ("eccode", "ec-code"),
+            ("ec", "ec-code"),
         ]:
             with self.subTest(prefix=prefix):
                 self.assertEqual(miriam_prefix, bioregistry.get_identifiers_org_prefix(prefix))

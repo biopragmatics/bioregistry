@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Show discrepancies between Bioregistry and OBO Foundry deprecation status."""
 
 import click

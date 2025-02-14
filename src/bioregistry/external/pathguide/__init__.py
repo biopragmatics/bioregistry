@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from Pathguide."""
 
 import requests
@@ -8,8 +6,8 @@ from bs4 import BeautifulSoup
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_pathguide",
     "PathguideAligner",
+    "get_pathguide",
 ]
 
 

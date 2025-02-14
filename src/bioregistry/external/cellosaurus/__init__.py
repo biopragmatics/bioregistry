@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """Download the Cellosaurus registry."""
 
 import itertools as itt
 import json
+import logging
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 from pystow.utils import download
 
@@ -13,9 +12,11 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_cellosaurus",
     "CellosaurusAligner",
+    "get_cellosaurus",
 ]
+
+logger = logging.getLogger(__name__)
 
 URL = "https://ftp.expasy.org/databases/cellosaurus/cellosaurus_xrefs.txt"
 DIRECTORY = Path(__file__).parent.resolve()
@@ -49,7 +50,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     for cond, slines in itt.groupby(lines, lambda line: line == "//"):
         if cond:
             continue
-        d = {}
+        d: dict[str, str] = {}
         for line in slines:
             if line[6] != ":":  # strip notes out
                 continue
@@ -58,7 +59,7 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
             if mapped_key is None:
                 continue
             if mapped_key == URI_FORMAT_KEY:
-                value = _process_db_url(value)
+                value = _process_db_url(d["prefix"], value)
                 if value is None:
                     continue
             d[mapped_key] = value
@@ -72,8 +73,15 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
     return rv
 
 
-def _process_db_url(value):
+def _process_db_url(key, value):
     if value in {"https://%s", "None"}:
+        return
+    if value.endswith("http://purl.obolibrary.org/obo/%s"):
+        logger.debug(
+            "Cellosaurus curated an OBO PURL for `%s` that is is missing namespace. "
+            "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
+            key,
+        )
         return
     return value.rstrip("/").replace("%s", "$1")
 

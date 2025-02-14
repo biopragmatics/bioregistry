@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """User blueprint for the bioregistry web application."""
 
 from __future__ import annotations
@@ -11,7 +9,6 @@ import platform
 from collections import defaultdict
 from operator import attrgetter
 from pathlib import Path
-from typing import Optional
 
 import flask
 import werkzeug
@@ -58,7 +55,7 @@ from ..schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
-from ..utils import curie_to_str, pydantic_schema
+from ..utils import curie_to_str
 
 __all__ = [
     "ui_blueprint",
@@ -125,27 +122,28 @@ def resource(prefix: str) -> str | flask.Response:
     example_curie_extras = [
         _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
     ]
+    name_pack = manager._repack(_resource.get_name(provenance=True))
     return render_template(
         "resource.html",
         zip=zip,
         prefix=prefix,
         resource=_resource,
         bioschemas=json.dumps(_resource.get_bioschemas_jsonld(), ensure_ascii=False),
-        name=manager.get_name(prefix),
+        name_pack=name_pack,
         example=example,
         example_extras=example_extras,
         example_curie=example_curie,
         example_curie_extras=example_curie_extras,
         mappings=[
-            dict(
-                metaprefix=metaprefix,
-                metaresource=manager.get_registry(metaprefix),
-                xref=xref,
-                homepage=manager.get_registry_homepage(metaprefix),
-                name=manager.get_registry_name(metaprefix),
-                short_name=manager.get_registry_short_name(metaprefix),
-                uri=manager.get_registry_provider_uri_format(metaprefix, xref),
-            )
+            {
+                "metaprefix": metaprefix,
+                "metaresource": manager.get_registry(metaprefix),
+                "xref": xref,
+                "homepage": manager.get_registry_homepage(metaprefix),
+                "name": manager.get_registry_name(metaprefix),
+                "short_name": manager.get_registry_short_name(metaprefix),
+                "uri": manager.get_registry_provider_uri_format(metaprefix, xref),
+            }
             for metaprefix, xref in _resource.get_mappings().items()
         ],
         synonyms=_resource.get_synonyms(),
@@ -194,7 +192,7 @@ def metaresource(metaprefix: str) -> str | flask.Response:
         return serialize_model(entry, metaresource_to_rdf_str, negotiate=True)
 
     external_prefix = entry.example
-    bioregistry_prefix: Optional[str]
+    bioregistry_prefix: str | None
     if metaprefix == "bioregistry":
         bioregistry_prefix = external_prefix
     else:
@@ -275,7 +273,7 @@ def contexts() -> str:
         "contexts.html",
         rows=manager.contexts.items(),
         formats=FORMATS,
-        schema=pydantic_schema(Context),
+        schema=Context.model_json_schema(),
     )
 
 
@@ -289,7 +287,7 @@ def context(identifier: str) -> str:
         "context.html",
         identifier=identifier,
         entry=entry,
-        schema=pydantic_schema(Context)["properties"],
+        schema=Context.model_json_schema()["properties"],
         formats=FORMATS,
     )
 
@@ -309,7 +307,7 @@ class ResponseWrapper(ValueError):
         return self.response
 
 
-def _clean_reference(prefix: str, identifier: Optional[str] = None):
+def _clean_reference(prefix: str, identifier: str | None = None):
     if ":" in prefix:
         # A colon might appear in the prefix if there are multiple colons
         # in the CURIE, since Flask/Werkzeug parses from right to left.
@@ -375,7 +373,7 @@ ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
 @ui_blueprint.route("/<prefix>:<path:identifier>")
 @ark_hacked_route
 def resolve(
-    prefix: str, identifier: Optional[str] = None
+    prefix: str, identifier: str | None = None
 ) -> str | werkzeug.Response | tuple[str, int]:
     """Resolve a CURIE.
 
@@ -384,7 +382,7 @@ def resolve(
     1. The prefix is not registered
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
-    """  # noqa:DAR101,DAR201
+    """
     try:
         _resource, identifier = _clean_reference(prefix, identifier)
     except ResponseWrapper as rw:
@@ -420,14 +418,14 @@ def resolve(
 
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>:<path:identifier>")
-def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] = None):
+def metaresolve(metaprefix: str, metaidentifier: str, identifier: str | None = None):
     """Redirect to a prefix page or meta-resolve the CURIE.
 
     Test this function locally with:
 
     - http://localhost:5000/metaregistry/obofoundry/GO
     - http://localhost:5000/metaregistry/obofoundry/GO:0032571
-    """  # noqa:DAR101,DAR201
+    """
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
     prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
@@ -595,6 +593,12 @@ def usage():
     """Render the programmatic usage page."""
     resource = manager.get_resource(current_app.config["METAREGISTRY_EXAMPLE_PREFIX"])
     return render_template("meta/access.html", resource=resource)
+
+
+@ui_blueprint.route("/.well-known/funding-manifest-urls")
+def funding_manifest_urls():
+    """Render the FLOSS Fund page, described by https://floss.fund/funding-manifest/."""
+    return current_app.send_static_file("funding-manifest-urls.txt")
 
 
 @ui_blueprint.route("/schema/")

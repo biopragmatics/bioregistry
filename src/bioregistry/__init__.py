@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Extract registry information."""
 
 from .collection_api import get_collection, get_context  # noqa:F401
@@ -78,6 +76,7 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_novel,
+    is_obo_foundry,
     is_proprietary,
     normalize_curie,
     normalize_parsed_curie,
