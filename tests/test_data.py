@@ -847,10 +847,10 @@ class TestRegistry(unittest.TestCase):
                         resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
                     )
 
-    def test_contact_group(self) -> None:
+    def test_contact_group_email(self) -> None:
         """Test curation of group emails."""
         for prefix, resource in self.registry.items():
-            if not resource.contact_group:
+            if not resource.contact_group_email:
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(
