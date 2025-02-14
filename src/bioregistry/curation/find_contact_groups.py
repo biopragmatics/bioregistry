@@ -14,9 +14,15 @@ def main() -> None:
             continue
         if any(
             p in contact.email
-            for p in DISALLOWED_EMAIL_PARTS
+            for p in DISALLOWED_EMAIL_PARTS | {"help", "list"}
         ):
-            rows.append((resource.prefix, resource.get_name(), contact.name, contact.email))
+            publications = resource.get_publications()
+            if publications:
+                url = publications[0].get_url()
+            else:
+                url = ""
+
+            rows.append((resource.prefix, resource.get_name(), contact.name, contact.email, url))
     print(tabulate(rows))
 
 
