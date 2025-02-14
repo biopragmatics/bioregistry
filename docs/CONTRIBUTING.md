@@ -258,8 +258,8 @@ In addition to the primary responsible contact person, the Bioregistry has
 structured fields for additional contact methods, such as:
 
 - `contact_extras` for annotating secondary contact people
-- `contact_group` for annotating a contact email such as a mailing list that
-  might be preferred by the resource over directly contacting the primary
+- `contact_group_email` for annotating a contact email such as a mailing list
+  that might be preferred by the resource over directly contacting the primary
   person. Only curate this field in addition to a primary contact person, to
   promote transparency.
 - `contact_page` for annotating the URL of a web page that has contact
