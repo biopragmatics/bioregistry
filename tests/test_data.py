@@ -14,7 +14,7 @@ import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
+from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
@@ -28,14 +28,6 @@ from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
-
-disallowed_email_parts = {
-    "contact@",
-    "help@",
-    "helpdesk@",
-    "discuss@",
-    "support@",
-}
 
 
 class TestRegistry(unittest.TestCase):
@@ -779,7 +771,7 @@ class TestRegistry(unittest.TestCase):
             self.assertFalse(
                 any(
                     disallowed_email_part in author.email
-                    for disallowed_email_part in disallowed_email_parts
+                    for disallowed_email_part in DISALLOWED_EMAIL_PARTS
                 ),
                 msg=f"Bioregistry policy states that an email must correspond to a single person. "
                 f"The email provided appears to be for a group/mailing list: {author.email}",
@@ -825,9 +817,28 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(resource.reviewer.github)
                 self.assert_contact_metadata(resource.reviewer)
 
+    def test_reviewers_extras(self) -> None:
+        """Test extra reviewers."""
+        for prefix, resource in self.registry.items():
+            if not resource.reviewer_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.reviewer,
+                    msg="If you have secondary reviewers, you must have a primary reviewer",
+                )
+                for reviewer in resource.reviewer_extras:
+                    self.assertIsNotNone(reviewer.name)
+                    self.assertIsNotNone(reviewer.orcid)
+                    self.assertIsNotNone(reviewer.github)
+                    self.assert_contact_metadata(reviewer)
+
     def test_contacts(self):
         """Check contacts have minimal metadata."""
         for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if resource.contact_extras:
+                    self.assertIsNotNone(resource.contact)
             if not resource.contact:
                 continue
             with self.subTest(prefix=prefix):
@@ -838,6 +849,50 @@ class TestRegistry(unittest.TestCase):
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
                 self.assert_contact_metadata(resource.contact)
+
+    def test_secondary_contacts(self) -> None:
+        """Check secondary contacts."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.contact)
+                for contact in resource.contact_extras:
+                    self.assert_contact_metadata(contact)
+                    self.assertNotEqual(
+                        resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
+                    )
+
+    def test_contact_group_email(self) -> None:
+        """Test curation of group emails."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_group_email:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="All curated group contacts also require an explicit primary contact. "
+                    "This is to promote transparency and openness.",
+                )
+
+    def test_contact_page(self) -> None:
+        """Test curation of contact page."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_page:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="Any Bioregistry entry that curates a contact page also requires a primary "
+                    "contact to promote transparency and openness",
+                )
+                self.assertTrue(
+                    any(
+                        resource.contact_page.startswith(protocol)
+                        for protocol in ("https://", "http://")
+                    ),
+                    msg="Contact page should be a valid URL",
+                )
 
     def test_wikidata_wrong_place(self):
         """Test that wikidata annotations aren't accidentally placed in the wrong place."""

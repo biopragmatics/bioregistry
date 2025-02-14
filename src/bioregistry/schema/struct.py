@@ -21,7 +21,7 @@ from typing import (
     cast,
 )
 
-from pydantic import BaseModel, Field, PrivateAttr
+from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
 from bioregistry import constants as brc
@@ -342,6 +342,22 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
     )
+    contact_extras: list[Attributable] | None = Field(
+        default=None,
+        description="Secondary contacts. It's required to have a primary contact to have this field.",
+    )
+    contact_group_email: EmailStr | None = Field(
+        default=None,
+        description="A group contact email for the project. It's required to have a primary contact "
+        "to have this field.",
+    )
+    contact_page: str | None = Field(
+        default=None,
+        description="A URL for a web page that has contact information, e.g., containing a contact form. "
+        "It's required to have a primary contact to have this field, even if the primary contact isn't the "
+        "preferred mechanism for contact. Only curate this field if a direct email is not available, as this "
+        "is the least transparent option for contact.",
+    )
     owners: list[Organization] | None = Field(
         default=None,
         description="The owner of the corresponding identifier space. See also https://github.com/biopragmatics/"
@@ -548,6 +564,10 @@ class Resource(BaseModel):
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
         ),
+    )
+    reviewer_extras: list[Author] | None = Field(
+        default=None,
+        description="Additional reviewers of the prefix.",
     )
     proprietary: bool | None = Field(
         default=None,
