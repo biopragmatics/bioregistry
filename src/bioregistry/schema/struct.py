@@ -21,7 +21,7 @@ from typing import (
     cast,
 )
 
-from pydantic import BaseModel, Field, PrivateAttr
+from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
 from bioregistry import constants as brc
@@ -345,6 +345,10 @@ class Resource(BaseModel):
     contact_extras: list[Attributable] | None = Field(
         default=None,
         description="Secondary contacts. It's required to have a primary contact to have this field.",
+    )
+    contact_group_email: EmailStr | None = Field(
+        default=None,
+        description="A group contact email for the project. It's required to have a primary contact to have this field.",
     )
     contact_page: str | None = Field(
         default=None,

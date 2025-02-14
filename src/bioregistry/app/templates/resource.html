@@ -186,6 +186,10 @@
                             Repository <i class="fab fa-github"></i>
                         </a>
                     {% endif %}
+                    {%- if resource.contact_group_email %}
+                        <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
+                            Mailing List <i class="fas fa-address-book"></i></i></a>
+                    {%- endif %}
                     {%- if resource.contact_page %}
                         <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
                             Contact Page <i class="fas fa-address-book"></i></i></a>

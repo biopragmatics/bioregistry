@@ -1139,6 +1139,20 @@
           "description": "Secondary contacts. It's required to have a primary contact to have this field.",
           "title": "Contact Extras"
         },
+        "contact_group_email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A group contact email for the project. It's required to have a primary contact to have this field.",
+          "title": "Contact Group Email"
+        },
         "contact_page": {
           "anyOf": [
             {
