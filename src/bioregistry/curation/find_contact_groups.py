@@ -1,8 +1,9 @@
 """Find group emails."""
 
-from bioregistry.constants import DISALLOWED_EMAIL_PARTS
-import bioregistry
 from tabulate import tabulate
+
+import bioregistry
+from bioregistry.constants import DISALLOWED_EMAIL_PARTS
 
 
 def main() -> None:
@@ -12,10 +13,7 @@ def main() -> None:
         contact = resource.get_contact()
         if not contact or not contact.email:
             continue
-        if any(
-            p in contact.email
-            for p in DISALLOWED_EMAIL_PARTS | {"help", "list"}
-        ):
+        if any(p in contact.email for p in DISALLOWED_EMAIL_PARTS | {"help", "list"}):
             publications = resource.get_publications()
             if publications:
                 url = publications[0].get_url()
@@ -26,5 +24,5 @@ def main() -> None:
     print(tabulate(rows))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
