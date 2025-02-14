@@ -564,6 +564,10 @@ class Resource(BaseModel):
     """
         ),
     )
+    reviewer_extras: list[Author] | None = Field(
+        default=None,
+        description="Additional reviewers of the prefix.",
+    )
     proprietary: bool | None = Field(
         default=None,
         description=_dedent(

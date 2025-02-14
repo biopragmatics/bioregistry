@@ -227,14 +227,21 @@ def _add_resource(  # noqa:C901
 
     contact = resource.get_contact()
     if contact is not None:
-        contact_node = contact.add_triples(graph)
-        graph.add((node, bioregistry_schema["0000019"], contact_node))
+        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+    for contact in resource.contact_extras or []:
+        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+
     if resource.reviewer is not None and resource.reviewer.orcid:
-        reviewer_node = resource.reviewer.add_triples(graph)
-        graph.add((node, bioregistry_schema["0000021"], reviewer_node))
+        graph.add((node, bioregistry_schema["0000021"], resource.reviewer.add_triples(graph)))
+    for reviewer in resource.reviewer_extras or []:
+        if reviewer.orcid:
+            graph.add((node, bioregistry_schema["0000021"], reviewer.add_triples(graph)))
+
     if resource.contributor is not None and resource.contributor.orcid:
-        contributor_node = resource.contributor.add_triples(graph)
-        graph.add((contributor_node, DCTERMS.contributor, node))
+        graph.add((node, DCTERMS.contributor, resource.contributor.add_triples(graph)))
+    for contributor in resource.contributor_extras:
+        if contributor.orcid:
+            graph.add((node, DCTERMS.contributor, contributor.add_triples(graph)))
 
     mappings = resource.get_mappings()
     for metaprefix, metaidentifier in (mappings or {}).items():

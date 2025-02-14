@@ -1663,6 +1663,9 @@ def _read_contributors(
                 rv[contributor.orcid] = contributor
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid] = resource.reviewer
+        for reviewer in resource.reviewer_extras or []:
+            if reviewer.orcid:
+                rv[reviewer.orcid] = reviewer
         if not direct_only:
             contact = resource.get_contact()
             if contact and contact.orcid:
