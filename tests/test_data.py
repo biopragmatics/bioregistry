@@ -14,7 +14,7 @@ import rdflib
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE, DISALLOWED_EMAIL_PARTS
+from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
@@ -820,6 +820,9 @@ class TestRegistry(unittest.TestCase):
     def test_contacts(self):
         """Check contacts have minimal metadata."""
         for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if resource.contact_extras:
+                    self.assertIsNotNone(resource.contact)
             if not resource.contact:
                 continue
             with self.subTest(prefix=prefix):
@@ -830,6 +833,19 @@ class TestRegistry(unittest.TestCase):
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
                 self.assert_contact_metadata(resource.contact)
+
+    def test_secondary_contacts(self) -> None:
+        """Check secondary contacts."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.contact)
+                for contact in resource.contact_extras:
+                    self.assert_contact_metadata(contact)
+                    self.assertNotEqual(
+                        resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
+                    )
 
     def test_contact_group(self) -> None:
         """Test curation of group emails."""
@@ -842,7 +858,6 @@ class TestRegistry(unittest.TestCase):
                     msg="All curated group contacts also require an explicit primary contact. "
                     "This is to promote transparency and openness.",
                 )
-
 
     def test_contact_page(self) -> None:
         """Test curation of contact page."""

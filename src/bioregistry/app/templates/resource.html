@@ -240,6 +240,11 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {%- for secondary_contact in resource.contact_extras or [] %}
+                <dd>
+                    {{ utils.render_author(secondary_contact, link=none) }}
+                </dd>
+                {%- endfor %}
                 {% if resource.owners %}
                     <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
                     {% for owner in resource.owners %}

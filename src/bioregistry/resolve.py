@@ -948,8 +948,8 @@ def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
 
     This works for prefixes that are often written many ways, like:
 
-    >>> assert "eccode" == normalize_prefix("ec-code")
-    >>> assert "eccode" == normalize_prefix("EC_CODE")
+    >>> assert "ec" == normalize_prefix("ec-code")
+    >>> assert "ec" == normalize_prefix("EC_CODE")
 
     Get a "preferred" prefix:
 
