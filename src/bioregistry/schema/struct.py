@@ -348,7 +348,8 @@ class Resource(BaseModel):
     )
     contact_group_email: EmailStr | None = Field(
         default=None,
-        description="A group contact email for the project. It's required to have a primary contact to have this field.",
+        description="A group contact email for the project. It's required to have a primary contact "
+        "to have this field.",
     )
     contact_page: str | None = Field(
         default=None,

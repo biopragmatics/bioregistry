@@ -822,12 +822,16 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if not resource.reviewer_extras:
                 continue
-            self.assertIsNotNone(resource.reviewer, msg="If you have secondary reviewers, you must have a primary reviewer")
-            for reviewer in resource.reviewer_extras:
-                self.assertIsNotNone(reviewer.name)
-                self.assertIsNotNone(reviewer.orcid)
-                self.assertIsNotNone(reviewer.github)
-                self.assert_contact_metadata(reviewer)
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.reviewer,
+                    msg="If you have secondary reviewers, you must have a primary reviewer",
+                )
+                for reviewer in resource.reviewer_extras:
+                    self.assertIsNotNone(reviewer.name)
+                    self.assertIsNotNone(reviewer.orcid)
+                    self.assertIsNotNone(reviewer.github)
+                    self.assert_contact_metadata(reviewer)
 
     def test_contacts(self):
         """Check contacts have minimal metadata."""

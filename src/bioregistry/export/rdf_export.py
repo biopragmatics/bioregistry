@@ -239,7 +239,7 @@ def _add_resource(  # noqa:C901
 
     if resource.contributor is not None and resource.contributor.orcid:
         graph.add((node, DCTERMS.contributor, resource.contributor.add_triples(graph)))
-    for contributor in resource.contributor_extras:
+    for contributor in resource.contributor_extras or []:
         if contributor.orcid:
             graph.add((node, DCTERMS.contributor, contributor.add_triples(graph)))
 
