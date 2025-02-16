@@ -36,7 +36,7 @@ class TestIdentifiersOrg(unittest.TestCase):
         """Test getting identifiers.org prefixes."""
         for prefix, miriam_prefix in [
             ("ncbitaxon", "taxonomy"),
-            ("eccode", "ec-code"),
+            ("ec", "ec-code"),
         ]:
             with self.subTest(prefix=prefix):
                 self.assertEqual(miriam_prefix, bioregistry.get_identifiers_org_prefix(prefix))
