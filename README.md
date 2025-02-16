@@ -169,8 +169,8 @@ assert 'ncbitaxon' == normalize_prefix('taxonomy')
 assert 'pubchem.compound' == normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
-assert 'eccode' == normalize_prefix('ec-code')
-assert 'eccode' == normalize_prefix('EC_CODE')
+assert 'ec' == normalize_prefix('ec-code')
+assert 'ec' == normalize_prefix('EC_CODE')
 
 # If a prefix is not registered, it gives back `None`
 assert normalize_prefix('not a real key') is None
