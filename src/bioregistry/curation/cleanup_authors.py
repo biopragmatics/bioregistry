@@ -46,6 +46,11 @@ def _main():
             resource.contributor = _new(resource.contributor.orcid)
         if resource.reviewer and resource.reviewer.orcid:
             resource.reviewer = _new(resource.reviewer.orcid)
+        if resource.reviewer_extras:
+            resource.reviewer_extras = [
+                _new(reviewer.orcid) if reviewer.orcid else reviewer
+                for reviewer in resource.reviewer_extras
+            ]
         if resource.contact and resource.contact.orcid:
             resource.contact = _new(resource.contact.orcid)
         if resource.contributor_extras:
