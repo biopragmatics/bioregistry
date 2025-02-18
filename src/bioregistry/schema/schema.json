@@ -1123,6 +1123,36 @@
           "default": null,
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account."
         },
+        "contact_extras": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Attributable"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Secondary contacts. It's required to have a primary contact to have this field.",
+          "title": "Contact Extras"
+        },
+        "contact_group_email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A group contact email for the project. It's required to have a primary contact to have this field.",
+          "title": "Contact Group Email"
+        },
         "contact_page": {
           "anyOf": [
             {
@@ -1530,6 +1560,22 @@
           ],
           "default": null,
           "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub."
+        },
+        "reviewer_extras": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Author"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Additional reviewers of the prefix.",
+          "title": "Reviewer Extras"
         },
         "proprietary": {
           "anyOf": [
