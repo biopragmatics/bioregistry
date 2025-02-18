@@ -70,8 +70,8 @@ that's required to go with a given prefix.
 Unfortunately, these requirements can not be applied retroactively and can not
 be trivially applied to automatically imported prefixes. In some cases,
 historical prefixes can be modified to follow these requirements. For example,
-Identifiers.org's `ec-code` was renamed to `eccode` while maintaining `ec-code`
-as a synonym.
+Identifiers.org's `ec-code` was renamed to `ec` while maintaining `ec-code` as a
+synonym.
 
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.
@@ -257,6 +257,11 @@ not be abused to represent any non-individual.
 In addition to the primary responsible contact person, the Bioregistry has
 structured fields for additional contact methods, such as:
 
+- `contact_extras` for annotating secondary contact people
+- `contact_group_email` for annotating a contact email such as a mailing list
+  that might be preferred by the resource over directly contacting the primary
+  person. Only curate this field in addition to a primary contact person, to
+  promote transparency.
 - `contact_page` for annotating the URL of a web page that has contact
   information, e.g., containing a contact form. Only curate this field if a
   direct email is not available, as this is the least transparent option for
