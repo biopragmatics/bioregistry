@@ -744,6 +744,13 @@ class TestRegistry(unittest.TestCase):
                             f"in prefix publication list (appears as {other.title})",
                         )
                         self.assert_publication_identifiers(publication)
+                    # Check provider-specific example handling
+                    if provider.example:
+                        expected_uri = provider.uri_format.replace("$1", provider.example)
+                        self.assertIn(
+                            provider.example, expected_uri,
+                            msg=f"Provider-specific example {provider.example} was not correctly inserted into URI format."
+                        )
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
