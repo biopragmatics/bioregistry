@@ -652,7 +652,8 @@
                         <tr>
                             <td><code>{{ provider.code }}</code></td>
                             <td>{{ provider.name }}</td>
-                            {% set url = provider.resolve(example) %}
+                            {% set example_id = provider.example if provider.example else example %}
+                            {% set url = provider.resolve(example_id) %}
                             <td><a href="{{ url }}">{{ url }}</a></td>
                         </tr>
                     {% endfor %}
