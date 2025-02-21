@@ -398,6 +398,19 @@
           "default": null,
           "description": "A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
           "title": "Publications"
+        },
+        "example": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "An example local identifier, specific to the provider. Providing this value is only necessary if the example associated with the prefix for which this is a provider is not resolvable by the provider. The example identifier should exclude any redundant usage of the prefix. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
+          "title": "Example"
         }
       },
       "required": [
