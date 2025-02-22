@@ -86,8 +86,7 @@
                     </td>
                     <td class="text-nowrap"><code>{{ provider.metaprefix }}</code></td>
                     <td>
-                        {% set example_id = provider.example if provider.example else identifier %}
-                        <a href="{{ provider.uri.replace('$1', example_id) }}">{{ provider.uri.replace('$1', example_id) }}</a>
+                        <a href="{{ provider.uri }}">{{ provider.uri }}</a>
                     </td>
                 </tr>
                 {% endif %}
