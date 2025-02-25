@@ -76,6 +76,11 @@ DEFAULT_SEARCH_TERMS = [
     "nomenclature",
 ]
 
+EXCLUDE_JOURNALS = {
+    "bioRxiv",
+    "medRxiv",
+}
+
 
 def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
@@ -189,6 +194,11 @@ def fetch_pubmed_papers(
 
     records = []
     for pubmed_id, paper in papers.items():
+        # Filter out papers that are from journals (typically
+        # preprint servers that have PMIDs) to be excluded
+        if paper.get('journal_abbrev') in EXCLUDE_JOURNALS:
+            continue
+
         title = paper.get("title")
         abstract = paper.get("abstract", "")
 
