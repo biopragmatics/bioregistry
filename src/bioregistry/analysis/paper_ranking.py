@@ -31,7 +31,6 @@ from typing import Any, NamedTuple, Union
 import click
 import numpy as np
 import pandas as pd
-from more_itertools import chunked
 from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
