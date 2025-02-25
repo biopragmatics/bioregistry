@@ -191,7 +191,7 @@ def fetch_pubmed_papers(
     for pubmed_id, paper in papers.items():
         # Filter out papers that are from journals (typically
         # preprint servers that have PMIDs) to be excluded
-        if paper.get('journal_abbrev') in EXCLUDE_JOURNALS:
+        if paper.get("journal_abbrev") in EXCLUDE_JOURNALS:
             continue
 
         title = paper.get("title")
