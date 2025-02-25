@@ -141,12 +141,7 @@ def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, dict[str
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
     from indra.literature import pubmed_client
 
-    fetched_metadata = {}
-    for chunk in chunked(
-        tqdm(pubmed_ids, unit="article", unit_scale=True, desc="Getting metadata"), 200
-    ):
-        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
-    return fetched_metadata
+    return pubmed_client.get_metadata_for_all_ids(pubmed_ids, get_abstracts=True)
 
 
 def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> set[str]:
