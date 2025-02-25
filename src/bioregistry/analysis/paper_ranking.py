@@ -26,7 +26,7 @@ import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Union
+from typing import cast, Any, NamedTuple, Union
 
 import click
 import numpy as np
@@ -140,7 +140,10 @@ def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, dict[str
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
     from indra.literature import pubmed_client
 
-    return pubmed_client.get_metadata_for_all_ids(pubmed_ids, get_abstracts=True)
+    return cast(
+        dict[str, dict[str, Any]],
+        pubmed_client.get_metadata_for_all_ids(pubmed_ids, get_abstracts=True),
+    )
 
 
 def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> set[str]:
