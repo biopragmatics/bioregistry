@@ -41,7 +41,8 @@ class TestIdentifiersOrg(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertEqual(miriam_prefix, bioregistry.get_identifiers_org_prefix(prefix))
 
-        for prefix in ["MONDO"]:
+        # Test prefixes that don't exist in MIRIAM
+        for prefix in ["IDOMAL"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
     def test_standardize_identifier(self):
