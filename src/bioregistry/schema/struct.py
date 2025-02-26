@@ -259,6 +259,14 @@ class Provider(BaseModel):
         default=None,
         description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
     )
+    example: str | None = Field(
+        default=None,
+        description="An example local identifier, specific to the provider. Providing this value is "
+        "only necessary if the example associated with the prefix for which this is a provider "
+        "is not resolvable by the provider. The example identifier should exclude any redundant "
+        "usage of the prefix. For example, a GO identifier should only "
+        "look like ``1234567`` and not like ``GO:1234567``",
+    )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
