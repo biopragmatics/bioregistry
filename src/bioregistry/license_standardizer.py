@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
-
 """Code for standardizing permissive licenses.
 
 Could be extended later for non-permissive information as well as using
 vocabularies like SPDX for storing synonyms.
 """
 
-from typing import List, Mapping, Optional
+from collections.abc import Mapping
+from typing import Optional
 
 __all__ = [
-    "standardize_license",
-    "REVERSE_LICENSES",
     "LICENSES",
+    "REVERSE_LICENSES",
+    "standardize_license",
 ]
 
 
@@ -35,6 +34,8 @@ CC_BY_ND_4 = "CC BY-ND 4.0"
 CC_BY_NC_SA_4 = "CC BY-NC-SA 4.0"
 #: http://creativecommons.org/licenses/by-nc/4.0
 CC_BY_NC_4 = "CC BY-NC 4.0"
+#: http://creativecommons.org/licenses/by-nc-sa/2.5
+CC_BY_NC_SA_25 = "CC BY-NC-SA 2.5"
 
 CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC BY-SA"
@@ -86,13 +87,17 @@ CC_BY_3_IGO = "CC-BY-3.0-IGO"
 CC_BY_25 = "CC BY 2.5"
 
 #: A mapping from SPDX identifiers to external
-REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
+REVERSE_LICENSES: Mapping[Optional[str], list[str]] = {
     None: ["None", "license", "unspecified"],
     "CC-BY-2.5": [
         "CC BY 2.5",
         "CC-BY-2.5",
         "https://creativecommons.org/licenses/by/2.5/",
         "https://creativecommons.org/licenses/by/2.5/dk",
+    ],
+    CC_BY_NC_SA_25: [
+        CC_BY_NC_SA_25,
+        "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
     ],
     "CC-BY-3.0-IGO": [
         CC_BY_3_IGO,

@@ -30,8 +30,17 @@ def _get_doi_csl_item(pmid):
 
 @lru_cache(None)
 def _get_pubmed_from_doi(doi: str) -> Optional[str]:
+    tqdm.write(f"getting pubmed from DOI:{doi}")
     doi = cast(str, removeprefix(doi, "https://doi.org/"))
     return get_pmid_for_doi(doi)
+
+
+def _clean_doi(doi: str) -> str:
+    doi = doi.lower()
+    doi = cast(str, removeprefix(doi, "https://doi.org/"))
+    doi = cast(str, removeprefix(doi, "http://doi.org/"))
+    doi = cast(str, removeprefix(doi, "doi:"))
+    return doi
 
 
 def _main() -> None:  # noqa:C901
@@ -43,19 +52,18 @@ def _main() -> None:  # noqa:C901
     for resource in it:
         it.set_postfix(prefix=resource.prefix)
         resource_publications = resource.get_publications()
-        pubmed_ids = set()
-        dois = set()
+        pubmed_ids: set[str] = set()
+        dois: set[str] = set()
         for publication in resource_publications:
             if publication.pubmed:
                 pubmed_ids.add(publication.pubmed)
             elif publication.doi:
-                doi = removeprefix(publication.doi, "https://doi.org/")
-                tqdm.write(f"getting pubmed from DOI:{doi}")
-                pubmed = _get_pubmed_from_doi(doi)
+                _publication_doi = _clean_doi(publication.doi)
+                pubmed = _get_pubmed_from_doi(_publication_doi)
                 if pubmed:
                     pubmed_ids.add(pubmed)
                 else:
-                    dois.add(doi)
+                    dois.add(_publication_doi)
         if pubmed_ids:
             resources.append((resource, pubmed_ids))
         if dois:
@@ -71,7 +79,7 @@ def _main() -> None:  # noqa:C901
             csl_item = _get_doi_csl_item(doi)
             if not csl_item:
                 continue
-            title = csl_item.get("title", "").strip() or None
+            title = csl_item.get("title", "").strip().rstrip(".") or None
             pubmed = csl_item.get("PMID") or None
             pmc = csl_item.get("PMCID") or None
             year = csl_item.get("issued", {}).get("date-parts", [[None]])[0][0]
@@ -82,7 +90,7 @@ def _main() -> None:  # noqa:C901
                 Publication(
                     pubmed=pubmed,
                     title=title,
-                    doi=doi and doi.lower(),
+                    doi=doi,
                     pmc=pmc,
                     year=year,
                 )
@@ -110,10 +118,10 @@ def _main() -> None:  # noqa:C901
             csl_item = _get_pubmed_csl_item(pubmed)
             if not csl_item:
                 continue
-            title = csl_item.get("title", "").strip() or None
-            doi = csl_item.get("DOI") or None
-            if doi:
-                doi = removeprefix(doi.lower(), "https://doi.org/")
+            title = csl_item.get("title", "").strip().rstrip(".") or None
+            doi = csl_item.get("DOI") or None  # type:ignore
+            if doi is not None:
+                doi = _clean_doi(doi)
             pmc = csl_item.get("PMCID") or None
             year = csl_item.get("issued", {}).get("date-parts", [[None]])[0][0]
             if not title:

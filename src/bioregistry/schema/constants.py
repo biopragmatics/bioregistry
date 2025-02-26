@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Schema constants."""
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import List, Mapping, Optional, Union
+from typing import TYPE_CHECKING, Optional, Union
 
 import rdflib.namespace
 from rdflib import (
@@ -24,13 +23,18 @@ from rdflib import (
 )
 from rdflib.term import Node
 
+if TYPE_CHECKING:
+    import networkx
+
+    import bioregistry.resource_manager
+
 __all__ = [
-    "bioregistry_schema_terms",
     # Namespaces
     "bioregistry_collection",
-    "bioregistry_resource",
     "bioregistry_metaresource",
+    "bioregistry_resource",
     "bioregistry_schema",
+    "bioregistry_schema_terms",
     "orcid",
 ]
 
@@ -49,7 +53,7 @@ class Term:
 class ClassTerm(Term):
     """A term for a class."""
 
-    xrefs: List[URIRef] = field(default_factory=list)
+    xrefs: list[URIRef] = field(default_factory=list)
 
 
 @dataclass
@@ -58,7 +62,7 @@ class PropertyTerm(Term):
 
     domain: Union[str, Node]
     range: Union[str, Node]
-    xrefs: List[URIRef] = field(default_factory=list)
+    xrefs: list[URIRef] = field(default_factory=list)
     parent: Optional[URIRef] = None
 
 
@@ -66,6 +70,7 @@ IDOT = rdflib.Namespace("http://identifiers.org/idot/")
 ROR = rdflib.Namespace("https://ror.org/")
 WIKIDATA = rdflib.Namespace("http://www.wikidata.org/entity/")
 OBOINOWL = rdflib.Namespace("http://www.geneontology.org/formats/oboInOwl#")
+BRIDGEDB = rdflib.Namespace("http://vocabularies.bridgedb.org/ops#")
 
 bioregistry_schema_terms = [
     ClassTerm("0000001", "Class", "Resource", "A type for entries in the Bioregistry's registry."),
@@ -89,10 +94,7 @@ bioregistry_schema_terms = [
         "An identifier for a resource or metaresource.",
         domain="0000001",
         range=XSD.string,
-        xrefs=[
-            IDOT["exampleIdentifier"],
-            VANN["example"],
-        ],
+        xrefs=[IDOT["exampleIdentifier"], VANN["example"], BRIDGEDB["idExample"]],
     ),
     PropertyTerm(
         "0000006",
@@ -105,6 +107,7 @@ bioregistry_schema_terms = [
         xrefs=[
             IDOT["accessPattern"],
             WIKIDATA["P1630"],
+            BRIDGEDB["hasPrimaryUriPattern"],
         ],
     ),
     PropertyTerm(
@@ -126,6 +129,7 @@ bioregistry_schema_terms = [
         xrefs=[
             IDOT["identifierPattern"],
             WIKIDATA["P1793"],
+            BRIDGEDB["hasRegexPattern"],
         ],
     ),
     # PropertyTerm(
@@ -192,7 +196,8 @@ bioregistry_schema_terms = [
         "Property",
         "has canonical",
         "A property connecting two prefixes that share an IRI where the subject is "
-        "the non-preferred prefix and the target is the preferred prefix",
+        "the non-preferred prefix and the target is the preferred prefix. "
+        "See examples [here](https://bioregistry.io/highlights/relations#canonical).",
         domain="0000001",
         range="0000001",
     ),
@@ -309,7 +314,12 @@ bioregistry_schema_terms = [
         "has canonical prefix",
         domain="0000001",
         range=XSD.string,
-        xrefs=[SH.prefix, VANN.preferredNamespacePrefix, IDOT["preferredPrefix"]],
+        xrefs=[
+            SH.prefix,
+            VANN.preferredNamespacePrefix,
+            IDOT["preferredPrefix"],
+            BRIDGEDB["systemCode"],
+        ],
     ),
 ]
 bioregistry_schema_extras = [
@@ -334,7 +344,7 @@ bioregistry_class_to_id: Mapping[str, URIRef] = {
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
 
 
-def _graph(manager=None) -> rdflib.Graph:
+def _graph(manager: Optional["bioregistry.resource_manager.Manager"] = None) -> rdflib.Graph:
     graph = rdflib.Graph()
     graph.namespace_manager.bind("bioregistry", bioregistry_resource)
     graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
@@ -367,7 +377,7 @@ def get_schema_rdf() -> rdflib.Graph:
     return graph
 
 
-def _add_schema(graph):
+def _add_schema(graph: rdflib.Graph) -> rdflib.Graph:
     for term in bioregistry_schema_terms:
         node = bioregistry_schema[term.identifier]
         if isinstance(term, ClassTerm):
@@ -398,7 +408,7 @@ def _add_schema(graph):
     return graph
 
 
-def get_schema_nx():
+def get_schema_nx() -> "networkx.MultiDiGraph":
     """Get the schema as a networkx multidigraph."""
     import networkx as nx
 

@@ -20,10 +20,10 @@
         as a thin wrapper around the <a href="https://github.com/biopragmatics/bioregistry"><code>bioregistry</code></a>
         Python package. It exposes several endpoints for accessing the registry, metaregistry, collections, and search
         functionality for which <a href="https://swagger.io/">Swagger</a> API documentation is automatically generated
-        by <a href="https://github.com/flasgger/flasgger">Flasgger</a>.
+        by <a href="https://fastapi.tiangolo.com/">FastAPI</a>.
     </p>
     <p>
-        See the remaining {{ config.METAREGISTRY_TITLE }} <a href="{{ url_for('flasgger.apidocs') }}">
+        See the remaining {{ config.METAREGISTRY_TITLE }} <a href="/docs">
         <i class="fas fa-book"></i> API documentation</a> or follow some of these examples using Python:
     </p>
     <h3>Registry</h3>
@@ -76,8 +76,8 @@ assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
 assert 'pubchem.compound' == bioregistry.normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
-assert 'eccode' == bioregistry.normalize_prefix('ec-code')
-assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
+assert 'ec' == bioregistry.normalize_prefix('ec-code')
+assert 'ec' == bioregistry.normalize_prefix('EC_CODE')
 
 # If a prefix is not registered, it gives back `None`
 assert bioregistry.normalize_prefix('not a real key') is None</code></pre>

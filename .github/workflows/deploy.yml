@@ -1,0 +1,17 @@
+name: Deploy
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run SSH command
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.AWS_PEM }}
+          HOST: ${{ secrets.AWS_HOST }}
+        run: |
+          echo $SSH_PRIVATE_KEY | ssh -i /dev/stdin -o StrictHostKeyChecking=no "$HOST" "sh /data/services/restart_bioregistry.sh"
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no "$HOST" "sh /data/services/restart_bioregistry.sh"

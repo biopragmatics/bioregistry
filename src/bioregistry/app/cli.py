@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Web command for running the app."""
 
 from pathlib import Path
@@ -46,7 +44,7 @@ def web(
     contexts: Optional[Path],
     config: Optional[Path],
     base_url: Optional[str],
-):
+) -> None:
     """Run the web application."""
     import uvicorn
 

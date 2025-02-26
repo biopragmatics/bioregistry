@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Extract registry information."""
 
 from .collection_api import get_collection, get_context  # noqa:F401
@@ -13,12 +11,7 @@ from .metaresource_api import (  # noqa:F401
     get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import (  # noqa:F401
-    curie_from_iri,
-    ensure_prefix_list,
-    parse_iri,
-    parse_obolibrary_purl,
-)
+from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     count_mappings,
     get_appears_in,
@@ -83,6 +76,7 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_novel,
+    is_obo_foundry,
     is_proprietary,
     normalize_curie,
     normalize_parsed_curie,
@@ -132,7 +126,6 @@ from .schema_utils import (  # noqa:F401
     write_registry,
 )
 from .uri_format import (  # noqa:F401
-    get_extended_prefix_map,
     get_pattern_map,
     get_prefix_map,
     get_uri_format,

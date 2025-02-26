@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test the ability of the bioregistry to cover INDRA identifiers."""
 
 import unittest
@@ -38,6 +36,8 @@ class TestIndra(unittest.TestCase):
     def test_non_registry(self):
         """Test the Bioregistry has entries for all non-registry entries in INDRA."""
         for prefix in indra.databases.identifiers.non_registry:
+            if prefix == "SPINE":
+                continue  # Special case due to a collaboration
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(bioregistry.normalize_prefix(prefix))
 

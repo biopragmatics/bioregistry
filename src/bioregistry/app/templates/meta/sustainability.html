@@ -23,21 +23,13 @@
     <p>
         The <code>bioregistry.io</code> domain is registered with Namecheap and costs about $33 per year. It is managed
         and supported by the <a
-            href="https://indralab.github.io/">INDRA Lab</a>, a part of the <a
-            href="https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/">Laboratory of
-        Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
-        (HiTS)</a> at Harvard Medical School.
-    </p>
-    <h3>Hardware</h3>
-    <p>
-        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
-        and highly available. It is managed and supported by the <a href="https://indralab.github.io/">INDRA Lab</a>, a
-        part of the <a href="https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/">Laboratory of
-        Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
-        (HiTS)</a> at Harvard Medical School.
+            href="https://gyorilab.github.io/">Gyori Lab for Computaional Biomedicine</a> at Northeastern University.
     </p>
     <h3>Software</h3>
     <p>
+        The Bioregistry source code is licensed under the MIT License and is hosted openly on GitHub at
+        <a href="https://github.com/biopragmatics/bioregistry">https://github.com/biopragmatics/bioregistry</a>.
+
         These are the software and operating system specifications for the currently running instance of the
         Bioregistry:
     </p>
@@ -45,13 +37,26 @@
         <dt>Bioregistry Version</dt>
         <dd>{{ software_version }}</dd>
         {% if software_git_hash %}
-            <dt>Git Hash</dt>
-            <dd>
-                <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
-                    {{ software_git_hash }}
-                </a>
-            </dd>
+        <dt>Git Hash</dt>
+        <dd>
+            <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
+                {{ software_git_hash }}
+            </a>
+        </dd>
         {% endif %}
+    </dl>
+    <h3>Hardware</h3>
+    <p>
+        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
+        and highly available.
+        It is managed and supported by the <a href="https://gyorilab.github.io/">Gyori Lab for Computational
+        Biomedicine</a> at Northeastern University.
+    </p>
+    <p>
+        These are the hardware and operating system specifications for the currently running instance of the
+        Bioregistry:
+    </p>
+    <dl>
         <dt>Python</dt>
         <dd>{{ python_version }}</dd>
         <dt>Platform</dt>
@@ -63,7 +68,7 @@
     </dl>
     <h3>Containerization</h3>
     <p>
-        A Docker image is automatically built nightly following the
+        A Docker image is automatically built weekly following the
         <a href="https://github.com/biopragmatics/bioregistry/actions/workflows/update.yml">update workflow</a>
         on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/biopragmatics/bioregistry"><i class="fab fa-docker"></i>
         biopragmatics/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
@@ -107,16 +112,17 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
 
     <h2>Project Longevity</h2>
     <p>
-        The deployment of the Bioregistry is currently funded by the DARPA Young Faculty Award W911NF2010255
-        grant. Due to its low cost, the Laboratory of Systems Pharmacology at Harvard Medical School has
-        additionally committed discretionary (i.e., not tied to a project) funding to continue running the
-        Bioregistry instance at https://bioregistry.io.
+        The Bioregistry is funded by the Chan Zuckerberg Initiative (CZI) Open Science Grant 2023-329850
+        which stipulates unlimited no-cost extensions. We have allocated part of this grant to ensure that
+        the domain registration, hosting, and hardware will be funded in the medium- and long term under
+        a conservative cost estimate of around $100-200/year.
     </p>
     <p>
-        The Bioregistry project is also interested in acquiring grants to help ensure its longevity. We give a
-        conservative estimate of around $100-200/year to support domain registration, AWS costs, and
-        personnel time for maintenance. This means that the Bioregistry could cost as little as $1,000
-        to run for 10 years (which is much longer than most scientific databases/websites are able to persist).
+        The Bioregistry implements the <a href="https://doi.org/10.31219/osf.io/vuzt3">Open Code, Open Data,
+        Open Infrastructure (O3) Guidelines</a> as a means to enable and encourage community contribution and
+        maintenance in the medium- and long term. All code is permissively licensed with the MIT License
+        and all data is under the Creative Commons Zero (CCO) license, meaning anyone can reuse the data
+        as they see fit.
     </p>
 
     <h3>Mirroring</h3>
@@ -131,7 +137,7 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
         <a href="https://bioregistry.readthedocs.io/en/latest/deployment.html#deploying-a-custom-bioregistry">these
         instructions</a>.
     </p>
-    
+
     <h2>Project Governance</h2>
     <p>
         Stakeholders in the Bioregistry have been interested in questions including:

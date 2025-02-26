@@ -3,8 +3,6 @@ description: Add metadata about a database, ontology, or other authority that is
   identifiers.
 title: Add prefix [X]
 labels: [ New, Prefix ]
-assignees:
-  - "biopragmatics/bioregistry-reviewers"
 body:
   - type: markdown
     attributes:
@@ -42,7 +40,7 @@ body:
   - type: input
     id: repository
     attributes:
-      label: Repository
+      label: Source Code Repository
       description: |
         What is the version control repository associated with this prefix?
 
@@ -64,6 +62,14 @@ body:
       description: |
         What is the repository's license? Write with a SPDX identifier, if possible.
       placeholder: ex. CC0
+  - type: input
+    id: publications
+    attributes:
+      label: Publications
+      description: |
+        If you have a PubMed identifier, PMC identifier, or DOI with an article associated with this resource, please put it here. Please write publications using CURIE syntax. Please delimit multiple unique publications with a pipe "|" character. You only need one CURIE for each publication.
+      placeholder: ex. doi:10.1101/2022.07.08.499378 | pubmed:33290552 | pmc:PMC4383985
+
   - type: input
     id: example
     attributes:
@@ -125,11 +131,20 @@ body:
     id: contributor_orcid
     attributes:
       label: Contributor ORCiD
-      description: Please provide your ORCiD identifier so we can attribute this contribution to you.
+      description: |
+        Please provide your ORCiD identifier so we can attribute this contribution to you.
+
+        For proper attribution of your contribution, please provide a valid ORCiD. If you don't have an ORCiD, please visit [ORCiD's registration page](https://orcid.org/register) to create one for free.
       placeholder: ex. 0000-0003-4423-4370
     validations:
       required: true
-      
+  - type: input
+    id: contributor_email
+    attributes:
+      label: Contributor Email
+      description: Please provide your email address (optional) so others can contact you regarding your contribution
+      placeholder: ex. cthoyt@gmail.com
+
   - type: input
     id: contact_name
     attributes:

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Tests for the bioregistry client."""
 
 import unittest
-from typing import Iterable, Tuple
+from collections.abc import Iterable
+from typing import Tuple
 
 import bioregistry
 from bioregistry import manager
@@ -21,8 +20,8 @@ class TestResolve(unittest.TestCase):
             ("ncbitaxon", "taxonomy"),
             ("scomp", "SCOMP"),
             ("sfam", "SFAM"),
-            ("eccode", "ec-code"),
-            ("eccode", "EC_CODE"),
+            ("ec", "ec-code"),
+            ("ec", "EC_CODE"),
             ("chembl.compound", "chembl.compound"),
             ("chembl.compound", "chemblcompound"),
             ("chembl", "chembl"),
@@ -42,12 +41,12 @@ class TestResolve(unittest.TestCase):
     def test_validate_true(self):
         """Test that validation returns true."""
         tests = [
-            ("eccode", "1"),
-            ("eccode", "1.1"),
-            ("eccode", "1.1.1"),
-            ("eccode", "1.1.1.1"),
-            ("eccode", "1.1.123.1"),
-            ("eccode", "1.1.1.123"),
+            ("ec", "1"),
+            ("ec", "1.1"),
+            ("ec", "1.1.1"),
+            ("ec", "1.1.1.1"),
+            ("ec", "1.1.123.1"),
+            ("ec", "1.1.1.123"),
             # Namespace in LUI: Standard rule for upper-casing
             ("chebi", "24867"),
             ("chebi", "CHEBI:1234"),

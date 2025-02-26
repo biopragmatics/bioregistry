@@ -10,7 +10,8 @@ with the :func:`get_goa_example` function.
 import functools
 import logging
 import re
-from typing import Dict, Optional, Pattern, Union
+from re import Pattern
+from typing import Callable, Optional, Union, cast
 
 import pandas as pd
 from tabulate import tabulate
@@ -19,20 +20,17 @@ from tqdm.auto import tqdm
 import bioregistry
 
 __all__ = [
+    "curies_to_identifiers",
+    "curies_to_iris",
     "get_goa_example",
-    # Normalization
-    "normalize_prefixes",
-    "normalize_curies",
-    # Validation
-    "validate_prefixes",
-    "validate_curies",
-    "validate_identifiers",
-    # Conversion
     "identifiers_to_curies",
     "identifiers_to_iris",
-    "curies_to_iris",
-    "curies_to_identifiers",
     "iris_to_curies",
+    "normalize_curies",
+    "normalize_prefixes",
+    "validate_curies",
+    "validate_identifiers",
+    "validate_prefixes",
 ]
 
 logger = logging.getLogger(__name__)
@@ -218,7 +216,7 @@ def validate_curies(
     return results
 
 
-def summarize_curie_validation(df, idx) -> None:
+def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series) -> None:
     """Provide a summary of CURIE validation."""
     count = (~idx).sum()
     unique = sorted(df[~idx][0].unique())
@@ -289,8 +287,8 @@ def validate_identifiers(
         if 0 == len(prefixes):
             raise ValueError(f"No prefixes found in column {prefix_column}")
         if 1 == len(prefixes):
-            return _help_validate_identifiers(df, column, list(prefixes)[0])
-        patterns: Dict[str, Optional[Pattern]] = {}
+            return _help_validate_identifiers(df, column, next(iter(prefixes)))
+        patterns: dict[str, Optional[Pattern]] = {}
         for prefix in df[prefix_column].unique():
             if pd.isna(prefix):
                 continue
@@ -307,7 +305,7 @@ def validate_identifiers(
 
         results = _multi_column_map(
             df,
-            [prefix_column, column],
+            [cast(str, prefix_column), column],
             _validate_lambda,
             use_tqdm=use_tqdm,
         )
@@ -316,7 +314,7 @@ def validate_identifiers(
     return results
 
 
-def _help_validate_identifiers(df, column, prefix):
+def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd.Series:
     norm_prefix = bioregistry.normalize_prefix(prefix)
     if norm_prefix is None:
         raise ValueError(
@@ -461,7 +459,9 @@ def identifiers_to_iris(
         )
 
 
-def _multi_column_map(df, columns, func, *, use_tqdm: bool = False):
+def _multi_column_map(
+    df: pd.DataFrame, columns: list[str], func: Callable, *, use_tqdm: bool = False
+) -> pd.Series:
     rows = df[columns].values
     if use_tqdm:
         rows = tqdm(rows, unit_scale=True)

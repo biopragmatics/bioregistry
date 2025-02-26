@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for getting HL7 OIDs.
 
 1. Navigate to https://www.hl7.org/oid/index.cfm?Comp_OID=2.16.840.1.113883.6.9
@@ -8,12 +6,15 @@
 """
 
 import csv
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 __all__ = [
+    "HL7Aligner",
     "get_hl7",
 ]
+
+from bioregistry.external.alignment_utils import Aligner
 
 HERE = Path(__file__).parent.resolve()
 DATA = HERE.joinpath("OID_Report.csv")
@@ -42,5 +43,25 @@ def get_hl7(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
     return rv
 
 
+class HL7Aligner(Aligner):
+    """Aligner for HL7 External Code Systems."""
+
+    # corresponds to the metaprefix in metaregistry.json
+    key = "hl7"
+
+    # This key tells the aligner that the prefix might not be super informative for
+    # lexical matching (in this case, they're OIDs, so definitely not helpful)
+    # and that there's another key inside each record that might be better
+    alt_key_match = "preferred_prefix"
+
+    # This function gets the dictionary of prefix -> record. Note that it's not
+    # called but only passed by reference.
+    getter = get_hl7
+
+    # This lists all of the keys inside each record to be displayed in the curation
+    # sheet. Below, the
+    curation_header = ("status", "preferred_prefix", "name", "homepage", "description")
+
+
 if __name__ == "__main__":
-    print(len(get_hl7(force_download=True)))  # noqa:T201
+    HL7Aligner.cli()

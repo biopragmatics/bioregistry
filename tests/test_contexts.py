@@ -1,14 +1,11 @@
-# -*- coding: utf-8 -*-
-
 """Tests for checking the integrity of the contexts."""
 
 import json
 import unittest
 
 import bioregistry
-from bioregistry import manager
+from bioregistry import Resource, manager
 from bioregistry.constants import CONTEXTS_PATH
-from bioregistry.utils import extended_encoder
 
 
 class TestContexts(unittest.TestCase):
@@ -33,7 +30,6 @@ class TestContexts(unittest.TestCase):
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=extended_encoder,
         )
         self.assertEqual(linted_text, text)
 
@@ -48,6 +44,7 @@ class TestContexts(unittest.TestCase):
         self.assertEqual(f"{p}/FBcv_", prefix_map["FBcv"])
         self.assertIn("GEO", prefix_map)
         self.assertEqual(f"{p}/GEO_", prefix_map["GEO"])
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", prefix_map["PMID"])
 
         self.assertNotIn("biomodels.kisao", prefix_map)
 
@@ -58,6 +55,17 @@ class TestContexts(unittest.TestCase):
             prefix_map,
             msg="When overriding, this means that bioregistry prefix isn't properly added to the synonyms list",
         )
+
+    def test_obo_converter(self):
+        """Test getting a converter from a context."""
+        converter = manager.get_converter_from_context("obo")
+        self.assertEqual("ICD10WHO", converter.standardize_prefix("icd10"))
+        self.assertEqual("Orphanet", converter.standardize_prefix("ordo"))
+        self.assertEqual("GO", converter.standardize_prefix("GO"))
+        self.assertEqual("GO", converter.standardize_prefix("gomf"))
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/pubmed/", converter.bimap["PMID"])
+        self.assertEqual("GO", converter.standardize_prefix("go"))
+        self.assertEqual("oboInOwl", converter.standardize_prefix("oboinowl"))
 
     def test_data(self):
         """Test the data integrity."""
@@ -78,7 +86,7 @@ class TestContexts(unittest.TestCase):
                 self.assertRegex(maintainer.orcid, "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$")
 
             for metaprefix in context.uri_prefix_priority or []:
-                self.assertIn(metaprefix, self.valid_metaprefixes.union({"default"}))
+                self.assertIn(metaprefix, self.valid_metaprefixes.union(Resource.URI_FORMATTERS))
             for metaprefix in context.prefix_priority or []:
                 self.assertIn(
                     metaprefix,

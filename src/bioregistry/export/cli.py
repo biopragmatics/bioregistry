@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Export the Bioregistry."""
 
 import click
@@ -7,7 +5,7 @@ import click
 
 @click.command()
 @click.pass_context
-def export(ctx: click.Context):
+def export(ctx: click.Context) -> None:
     """Export the Bioregistry."""
     from .prefix_maps import generate_contexts
     from .rdf_export import export_rdf

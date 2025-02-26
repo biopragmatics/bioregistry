@@ -17,7 +17,8 @@ and use the `--google-sheet` option like in:
 
 import sys
 from collections import defaultdict
-from typing import Any, DefaultDict, Dict, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any, Optional
 
 import click
 import pandas as pd
@@ -31,7 +32,7 @@ NESTED = {"contact", "contributor"}
 
 def _resource_from_row(row: Mapping[str, Any]) -> Resource:
     kwargs = {}
-    nested: DefaultDict[str, Dict[str, str]] = defaultdict(dict)
+    nested: defaultdict[str, dict[str, str]] = defaultdict(dict)
     for key, value in row.items():
         if pd.isna(value):
             continue

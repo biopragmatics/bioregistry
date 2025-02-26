@@ -21,7 +21,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("metaregistry_api.metaresource", metaprefix=metaprefix, format=key) }}">
+                                   href="{{ fastapi_url_for("get_metaresource", metaprefix=metaprefix) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -32,7 +32,7 @@
         </div>
         <div class="card-body">
             {% if entry.logo_url %}
-                <img style="max-height: 100px;" src="{{ entry.logo_url }}" alt="Logo for {{ name }}"/>
+                <img style="max-height: 100px; float: right;" src="{{ entry.logo_url }}" alt="Logo for {{ name }}"/>
             {% endif %}
             <p>{{ description }}</p>
             <dl>
@@ -73,12 +73,12 @@
 
                     <a class="badge badge-pill badge-light"
                        title="Download a JSON file containing mappings from Bioregistry prefixes to {{ entry.get_short_name() }} prefixes."
-                       href="{{ url_for("metaregistry_api.bioregistry_to_external_mapping", metaprefix=entry.prefix) }}">
+                       href="{{ fastapi_url_for("get_metaresource_mappings", metaprefix=entry.prefix) }}">
                         Download Prefix Mappings
                     </a>
                     <a class="badge badge-pill badge-light"
                        title="Download a slimmed version of the Bioregistry for records mapped to {{ entry.get_short_name() }}."
-                       href="{{ url_for("metaregistry_api.get_external_registry_slim", metaprefix=entry.prefix) }}">
+                       href="{{ fastapi_url_for("get_external_registry_slim", metaprefix=entry.prefix) }}">
                         Download Slim Registry
                     </a>
                     <span class="dropdown">
@@ -90,7 +90,7 @@
                             {% for target, target_registry in manager.metaregistry.items() %}
                             {% if target != entry.prefix and target != "bioregistry" %}
                             <a class="dropdown-item"
-                               href="{{ url_for("metaregistry_api.mapping", source=entry.prefix, target=target) }}">
+                               href="{{ fastapi_url_for("get_metaresource_external_mappings", metaprefix=entry.prefix, target=target) }}">
                                 {{ target_registry.get_short_name() }}
                             </a>
                             {% endif %}
@@ -144,7 +144,7 @@
                     </dd>
                 {% endif %}
                 {% if entry.resolver_uri_format %}
-                    {% set example_resolution = entry.resolve(entry.example, example_identifier) %}
+                    {% set example_resolution = example_identifier and entry.resolve(entry.example, example_identifier) %}
                     <dt>
                         {% if entry.resolver_type == "lookup" %}
                             Example CURIE Page

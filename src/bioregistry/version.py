@@ -1,25 +1,23 @@
-# -*- coding: utf-8 -*-
-
 """Version information for the bioregistry."""
 
 import os
-from subprocess import CalledProcessError, check_output  # noqa: S404
+from subprocess import CalledProcessError, check_output
 from typing import Optional
 
 __all__ = [
     "VERSION",
-    "get_version",
     "get_git_hash",
+    "get_version",
 ]
 
-VERSION = "0.7.4-dev"
+VERSION = "0.12.2-dev"
 
 
 def get_git_hash() -> Optional[str]:
     """Get the bioregistry git hash."""
     with open(os.devnull, "w") as devnull:
         try:
-            ret = check_output(  # noqa: S603,S607
+            ret = check_output(
                 ["git", "rev-parse", "HEAD"],
                 cwd=os.path.dirname(__file__),
                 stderr=devnull,
@@ -32,7 +30,7 @@ def get_git_hash() -> Optional[str]:
             return ret.strip().decode("utf-8")[:8]
 
 
-def get_version(with_git_hash: bool = False):
+def get_version(with_git_hash: bool = False) -> str:
     """Get the bioregistry version string, including a git hash."""
     return f"{VERSION}-{get_git_hash()}" if with_git_hash else VERSION
 
