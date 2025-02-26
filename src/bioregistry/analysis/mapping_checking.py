@@ -98,6 +98,7 @@ def get_scored_mappings_for_prefix(
 def get_scored_mappings(
     model: SentenceTransformer, out_file: Path | str = OUTPUT_PATH
 ) -> pd.DataFrame:
+    """Return scored mappings for all prefixes."""
     # Read the raw registry and compile it
     raw_registry = read_registry()
     compiled_registry = manager.rasterize()
