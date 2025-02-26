@@ -1,6 +1,11 @@
 """Detect potentially incorrect mappings by comparing embeddings of bioregistry entry metadata
 against the metadata corresponding to mapped prefixes. Low similarity scores indicate a potential
 false positive mapping that can be reviewed manually and removed if confirmed to be incorrect.
+
+Run as:
+
+1. ``python -m bioregistry.analysis.mapping_checking``
+2. ``tox -e mapping-checking``
 """
 
 from typing import Any, Dict
