@@ -8,7 +8,9 @@ Run as:
 2. ``tox -e mapping-checking``
 """
 
-from typing import Any, Dict
+from __future__ import annotations
+
+from typing import Any, Mapping
 from pathlib import Path
 
 import pandas as pd
@@ -27,7 +29,7 @@ DEFAULT_MODEL = "all-MiniLM-L6-v2"
 
 
 def get_scored_mappings_for_prefix(
-    prefix: str, raw_entry: Resource, compiled_entry: Dict[str, Any], model: SentenceTransformer
+    prefix: str, raw_entry: Resource, compiled_entry: Mapping[str, Any], model: SentenceTransformer
 ) -> list[dict[str, Any]]:
     """Return scored mappings for a given prefix."""
     # If not mappings at all then we don't need to do anything
