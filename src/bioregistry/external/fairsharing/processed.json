@@ -46,8 +46,12 @@
   },
   "FAIRsharing.07f04a": {
     "description": "DCAT-AP is a DCAT profile for sharing information about Catalogues containing Datasets and Data Services descriptions in Europe, under maintenance by the SEMIC action, Interoperable Europe.\n\nThis Application Profile provides a minimal common basis within Europe to share Datasets and Data Services cross-border and cross-domain. ",
+    "domains": [
+      "Resource metadata"
+    ],
     "homepage": "https://op.europa.eu/en/web/eu-vocabularies/dcat-ap",
     "license": "CC-BY-4.0",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1FHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--df8de32026b8547d1fe0389b54fab1ccb976269a/Screenshot%20From%202025-02-06%2009-44-23.png?disposition=inline",
     "name": "DCAT Application profile for data portals in Europe",
     "subjects": [
       "Data Management",
@@ -1689,7 +1693,9 @@
   "FAIRsharing.322dc0": {
     "description": "Identifier schema for BioSamples. The BioSample Database stores information about biological samples used in molecular experiments, such as sequencing, gene expression or proteomics. It includes reference samples, such as cell lines, which are repeatedly used in experiments. Accession numbers for the reference samples will be exchanged with a similar database at NCBI, and DDBJ (Japan). Record access may be affected due to different release cycles and inter-institutional synchronisation.",
     "domains": [
-      "Centrally registered identifier"
+      "Biological sample annotation",
+      "Centrally registered identifier",
+      "Sequencing"
     ],
     "homepage": "https://registry.identifiers.org/registry/biosample",
     "name": "BioSamples identifier",
@@ -1702,7 +1708,10 @@
       }
     ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Epigenomics",
+      "Knowledge and Information Systems",
+      "Genomics",
+      "Transcriptomics"
     ]
   },
   "FAIRsharing.33aa85": {
@@ -3088,6 +3097,7 @@
     "description": "The Role Ontology (RoleO) is a ontology in the domain of role classification. RoleO aims to standardize role classification and support computer-assisted reasoning. RoleO is a community-based ontology, and its development follows the OBO Foundry principles.",
     "homepage": "https://sourceforge.net/projects/roleo/",
     "name": "Role Ontology",
+    "repository": "https://github.com/roleontology",
     "subjects": [
       "Computer Science"
     ]
@@ -3165,7 +3175,8 @@
   "FAIRsharing.546873": {
     "description": "Identifier schema for BioProject. BioProject provides an organizational framework to access metadata about research projects and the data from the projects that are deposited into different databases. It provides information about a project’s scope, material, objectives, funding source and general relevance categories.",
     "domains": [
-      "Centrally registered identifier"
+      "Centrally registered identifier",
+      "Sequencing"
     ],
     "homepage": "https://registry.identifiers.org/registry/bioproject",
     "name": "BioProject identifier",
@@ -3178,7 +3189,10 @@
       }
     ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Epigenomics",
+      "Knowledge and Information Systems",
+      "Genomics",
+      "Transcriptomics"
     ]
   },
   "FAIRsharing.54pw8x": {
@@ -3691,11 +3705,13 @@
   },
   "FAIRsharing.658tcg": {
     "abbreviation": "OMOP Standardized Vocabularies",
-    "description": "The OMOP Standardized Vocabularies combine a number of different vocabularies that are used for different aspects of recording healthcare information. These different purposes cause the vocabularies to come with different formats, quality, comprehensiveness and coverage, and life cycle. Even though the content of the vocabularies are left intact, the new format and structural elements will result in a different representation of each vocabulary than its native form.",
+    "description": "The Standardized Vocabularies contain all of the code sets, terminologies, vocabularies, nomenclatures, lexicons, thesauri, ontologies, taxonomies, classifications, abstractions, and other such data that are needed for: Generation of the transformed (i.e., standardized) data from the raw source dataset into the OMOP CDM, Searching, querying, and extraction of the transformed data, browsing and navigating the hierarchies of classes and abstractions inherent in the transformed data, and Interpreting the meanings of the data. These Standardized Vocabularies are an integral part of the OMOP CDM.",
     "domains": [
       "Data identity and mapping"
     ],
-    "homepage": "https://www.ohdsi.org/web/wiki/doku.php?id=documentation:vocabulary:sidebar",
+    "homepage": "https://github.com/OHDSI/Vocabulary-v5.0/wiki",
+    "license": "Apache 2.0 License",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ01HIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3dfe845968eebba8f213da360aa8a9d0ca00006d/h243-ohdsi-logo-with-text.png?disposition=inline",
     "name": "Observational Medical Outcomes Partnership Standardized Vocabularies",
     "publications": [
       {
@@ -5931,7 +5947,7 @@
   },
   "FAIRsharing.97805c": {
     "abbreviation": "ICD 11",
-    "description": "The International Classification of Diseases (ICD) was created to allow the recording, reporting and grouping of conditions and factors that influence health. It contains categories for diseases, health related conditions, and external causes of illness or death. The purpose of the ICD is to allow the systematic recording, analysis, interpretation and comparison of mortality and morbidity data collected in different countries or areas and at different times. The ICD is used to translate diagnoses of diseases and other health problems into an alphanumeric code, which allows storage, retrieval, and analysis of the data. The ICD has become the international standard diagnostic classification for all general epidemiological and many health management purposes. ICD-11 was released in 2018 to allow Member States to prepare for implementation, including translating ICD into their national languages. Member States will start reporting using ICD-11 on 1 January 2022.",
+    "description": "The International Classification of Diseases (ICD) was created to allow the recording, reporting and grouping of conditions and factors that influence health. It contains categories for diseases, health related conditions, and external causes of illness or death. The purpose of the ICD is to allow the systematic recording, analysis, interpretation and comparison of mortality and morbidity data collected in different countries or areas and at different times. The ICD is used to translate diagnoses of diseases and other health problems into an alphanumeric code, which allows storage, retrieval, and analysis of the data. The ICD has become the international standard diagnostic classification for all general epidemiological and many health management purposes. ICD-11 was released in 2018 to allow Member States to prepare for implementation, including translating ICD into their national languages. Member States started reporting using ICD-11 on 1 January 2022.",
     "domains": [
       "Electronic health record",
       "Disease",
@@ -6035,9 +6051,11 @@
     ]
   },
   "FAIRsharing.9bfef2": {
+    "abbreviation": "SLM ID",
     "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
     "domains": [
-      "Lipid"
+      "Lipid",
+      "Small molecule"
     ],
     "homepage": "https://bioregistry.io/registry/slm",
     "name": "SwissLipids",
@@ -6050,9 +6068,13 @@
       }
     ],
     "subjects": [
+      "Biochemistry",
       "Chemistry",
       "Life Science",
       "Metabolomics"
+    ],
+    "user_defined_tags": [
+      "lipidomics"
     ]
   },
   "FAIRsharing.9c1p18": {
@@ -8341,8 +8363,9 @@
       "orcid": "0000-0003-1144-0290"
     },
     "description": "The Darwin Core is meant to serve a global community. Access to the documents describing the standard in multiple languages will facilitate open access and global adoption. This resource is meant to be an index to all translations of Darwin Core documents. Anyone interested in providing translations to be hosted with the corpus of the standard should contact the Darwin Core Task Group.",
-    "homepage": "https://tdwg.github.io/rs.tdwg.org/",
+    "homepage": "https://tdwg.github.io/rs.tdwg.org/translations/",
     "license": "CC-BY-4.0",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdDBGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8cc230a34c4ebf9fecd8c2370589c10b6f450039/tdwg-logo.png?disposition=inline",
     "name": "Darwin Core translations",
     "publications": [
       {
@@ -9711,6 +9734,17 @@
       "Alzheimer’s disease"
     ]
   },
+  "FAIRsharing.d67b36": {
+    "description": "Terms in this vocabulary relate (abstract) datasets to files or other electronic artefacts, giving the relation between the two. They are originally intended for use in the semantics column in the output from the DataLink-1.0 {links} capability. As specified in DataLink-1.0, terms from this vocabulary are used in the semantics column of {links} output output using only the identifier prefixed with a hash (i.e., \"#word\").",
+    "homepage": "https://www.ivoa.net/rdf/datalink/core/",
+    "name": "IVOA Vocabulary: Datalink core",
+    "subjects": [
+      "Astrophysics and Astronomy"
+    ],
+    "user_defined_tags": [
+      "Semantic"
+    ]
+  },
   "FAIRsharing.d6d54c": {
     "abbreviation": "UUID/RFC9562",
     "description": "This specification defines a Uniform Resource Name namespace for Universally Unique Identifiers (UUIDs), also known as Globally Unique IDentifiers (GUIDs). A UUID is 128 bits long and requires no central registration process. This specification is derived from the OSF DCE specification with the kind permission of the OSF (now known as \"The Open Group\"). Information from earlier versions of the OSF DCE specification have been incorporated into this document. The term Globally Unique Identifier (GUID) is also used in reference to UUIDs relevant to Microsoft systems.",
@@ -10344,6 +10378,7 @@
     "homepage": "https://cropontology.org/term/CO_324:ROOT",
     "license": "CC-BY-4.0",
     "name": "Sorghum Ontology",
+    "repository": "https://github.com/Planteome/CO_324-sorghum-traits",
     "subjects": [
       "Botany",
       "Agriculture"
@@ -10955,6 +10990,7 @@
     "homepage": "https://cropontology.org/term/CO_341:ROOT",
     "license": "CC-BY-4.0",
     "name": "Pigeon Pea Ontology",
+    "repository": "https://github.com/Planteome/CO_341-pigeonpea-traits",
     "subjects": [
       "Botany",
       "Agriculture",
@@ -11400,12 +11436,17 @@
     "abbreviation": "SRA Identifier",
     "description": "Identifier schema for Sequence Read Archive",
     "domains": [
-      "Centrally registered identifier"
+      "Biological sample annotation",
+      "Centrally registered identifier",
+      "Sequencing"
     ],
     "homepage": "https://bioregistry.io/registry/insdc.sra",
     "name": "Sequence Read Archive Identifier",
     "subjects": [
-      "Knowledge and Information Systems"
+      "Epigenomics",
+      "Knowledge and Information Systems",
+      "Metatranscriptomics",
+      "Transcriptomics"
     ]
   },
   "FAIRsharing.fb99fa": {
@@ -14209,6 +14250,7 @@
         "year": 2014
       }
     ],
+    "repository": "https://github.com/obophenotype/biological-spatial-ontology",
     "subjects": [
       "Anatomy",
       "Life Science"
@@ -16375,6 +16417,7 @@
     "description": "CDISC Controlled Terminology is the set of codelists and valid values used with data items within CDISC-defined datasets. Controlled Terminology provides the values required for submission to FDA and PMDA in CDISC-compliant datasets. Controlled Terminology does not tell you WHAT to collect; it tells you IF you collected a particular data item, how you should submit it in your electronic dataset.",
     "homepage": "https://www.cdisc.org/standards/terminology",
     "name": "CDISC Controlled Terminology",
+    "repository": "https://github.com/NCIEVS/nci-diff-CDISC",
     "subjects": [
       "Biomedical Science",
       "Preclinical Studies"
@@ -16676,6 +16719,14 @@
     "description": "A SKOS-encoded implementation of the \"Open Access, Collaborative Consumer Health Vocabulary Initiative\" by the University of Utah (consumerhealthvocab.org and layhealthinformatics.com)",
     "homepage": "http://bioportal.bioontology.org/ontologies/OCHV",
     "name": "Ontology of Consumer Health Vocabulary",
+    "publications": [
+      {
+        "doi": "10.1109/bibm47256.2019.8983220",
+        "pubmed": "38125584",
+        "title": "Ontology of Consumer Health Vocabulary: providing a formal and interoperable semantic resource for linking lay language and medical terminology",
+        "year": 2019
+      }
+    ],
     "subjects": [
       "Health Science"
     ]
@@ -16859,7 +16910,7 @@
   },
   "FAIRsharing.vgx074": {
     "abbreviation": "MDDB",
-    "description": "Master Drug Data Base provides comprehensive and current drug information from a single source. The resource provides pricing and descriptive drug information on name brand, generic, prescription and OTC medications, and herbal products. It includes industry standard identifiers for all brand and generic drugs on the market including National Drug Code (NDC), Universal Product Code (UPC) and Health Related Item (HRI) numbers.",
+    "description": "Master Drug Data Base provides comprehensive and current drug information from a single source. The resource provides pricing and descriptive drug information on name brand, generic, prescription and OTC medications, and herbal products. It includes industry standard identifiers for all brand and generic drugs on the market including National Drug Code (NDC), Universal Product Code (UPC) and Health Related Item (HRI) numbers. ",
     "domains": [
       "Drug",
       "Chemical entity",
@@ -16979,6 +17030,14 @@
     "homepage": "https://github.com/PopulationAndCommunityOntology/pco",
     "license": "CC0-1.0",
     "name": "Population and Community Ontology",
+    "publications": [
+      {
+        "doi": "10.1371/journal.pone.0089606",
+        "pubmed": "24595056",
+        "title": "Semantics in support of biodiversity knowledge discovery: an introduction to the biological collections ontology and related ontologies",
+        "year": 2014
+      }
+    ],
     "repository": "https://github.com/PopulationAndCommunityOntology/pco/issues",
     "subjects": [
       "Ecology",
@@ -17961,7 +18020,7 @@
         "year": 2017
       }
     ],
-    "repository": "https://github.com/nmrML/nmrML/tree/master/xml-schemata",
+    "repository": "https://github.com/nmrML/nmrCV",
     "subjects": [
       "Chemistry",
       "Metabolomics"
@@ -18875,21 +18934,6 @@
     ],
     "subjects": [
       "Biology"
-    ]
-  },
-  "FAIRsharing.zvytda": {
-    "abbreviation": "ICPC-2 PLUS",
-    "description": "The International Classification of Primary Care Version 2 PLUS (ICPC-2 PLUS, also known as the BEACH coding system) is a clinical terminology which extends the International Classification of Primary Care, Version 2 (ICPC-2). ICPC-2 PLUS can be used in age-sex disease registers, morbidity registers and full electronic health records in primary care. Primarily used in Australia, ICPC-2 PLUS is used within software packages and electronic health record (EHR) systems. It is also used in research projects, including the BEACH (Bettering the Evaluation And Care of Health) program, the national study of general practice activity. The terminology is therefore often referred to as the BEACH coding system.  ICPC-2 PLUS has been specifically designed by the FMRC for use in computerised clinical systems, recall systems, disease registers and secondary coding of clinical data. It is not part of the ICPC-2 standard. Charges apply for end users of ICPC-2 PLUS. All end users must sign an ICPC-2 PLUS end user contract before being given access to ICPC-2 PLUS. The World Organization of Family Doctors (WONCA) and the WONCA International Classification Committee (WICC) have no control over it although they do have control over the ICPC classification which the PLUS extension makes use of.",
-    "domains": [
-      "Electronic health record"
-    ],
-    "homepage": "https://www.sydney.edu.au/medicine-health/our-research/research-centres/who-collaborating-centre-for-strengthening-rehabilitation-capacity-in-health-systems/classifications-and-terminologies/icpc-2-plus.html",
-    "name": "International Classification of Primary Care Version 2 PLUS",
-    "subjects": [
-      "Medicine",
-      "Primary Health Care",
-      "Biomedical Science",
-      "Preclinical Studies"
     ]
   },
   "FAIRsharing.zwtww5": {
