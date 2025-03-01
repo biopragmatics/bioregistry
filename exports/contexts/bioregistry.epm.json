@@ -3857,6 +3857,42 @@
         ]
     },
     {
+        "pattern": "^LDCM\\d+$",
+        "prefix": "chempro.competitor",
+        "uri_prefix": "https://chemprosquare.idrblab.net/data/competitor/details/",
+        "uri_prefix_synonyms": [
+            "CHEMPRO.COMPETITOR:",
+            "chempro.competitor:",
+            "http://bioregistry.io/chempro.competitor:",
+            "http://chemprosquare.idrblab.net/data/competitor/details/",
+            "https://bioregistry.io/chempro.competitor:"
+        ]
+    },
+    {
+        "pattern": "^LDPC\\d+$",
+        "prefix": "chempro.probe",
+        "uri_prefix": "https://chemprosquare.idrblab.net/data/probe/details/",
+        "uri_prefix_synonyms": [
+            "CHEMPRO.PROBE:",
+            "chempro.probe:",
+            "http://bioregistry.io/chempro.probe:",
+            "http://chemprosquare.idrblab.net/data/probe/details/",
+            "https://bioregistry.io/chempro.probe:"
+        ]
+    },
+    {
+        "pattern": "^LDTP\\d+$",
+        "prefix": "chempro.target",
+        "uri_prefix": "https://chemprosquare.idrblab.net/data/target/details/",
+        "uri_prefix_synonyms": [
+            "CHEMPRO.TARGET:",
+            "chempro.target:",
+            "http://bioregistry.io/chempro.target:",
+            "http://chemprosquare.idrblab.net/data/target/details/",
+            "https://bioregistry.io/chempro.target:"
+        ]
+    },
+    {
         "prefix": "chemrof",
         "uri_prefix": "https://chemkg.github.io/chemrof/",
         "uri_prefix_synonyms": [
@@ -7211,13 +7247,15 @@
     {
         "pattern": "^\\d+$",
         "prefix": "dmba",
-        "uri_prefix": "https://biopragmatics.github.io/providers/dmba/",
+        "uri_prefix": "https://purl.brain-bican.org/ontology/dmbao/DMBA_",
         "uri_prefix_synonyms": [
             "DMBA:",
             "dmba:",
             "http://biopragmatics.github.io/providers/dmba/",
             "http://bioregistry.io/DMBA:",
             "http://bioregistry.io/dmba:",
+            "http://purl.brain-bican.org/ontology/dmbao/DMBA_",
+            "https://biopragmatics.github.io/providers/dmba/",
             "https://bioregistry.io/DMBA:",
             "https://bioregistry.io/dmba:"
         ]
@@ -7348,8 +7386,12 @@
             "DOME:",
             "dome:",
             "http://bioregistry.io/dome:",
+            "http://identifiers.org/dome/",
+            "http://identifiers.org/dome:",
             "http://registry.dome-ml.org/review/",
-            "https://bioregistry.io/dome:"
+            "https://bioregistry.io/dome:",
+            "https://identifiers.org/dome/",
+            "https://identifiers.org/dome:"
         ]
     },
     {
@@ -16491,12 +16533,14 @@
     {
         "pattern": "^\\d+$",
         "prefix": "mba",
-        "uri_prefix": "https://biopragmatics.github.io/providers/mba/",
+        "uri_prefix": "https://purl.brain-bican.org/ontology/mbao/MBA_",
         "uri_prefix_synonyms": [
             "MBA:",
             "http://biopragmatics.github.io/providers/mba/",
             "http://bioregistry.io/MBA:",
             "http://bioregistry.io/mba:",
+            "http://purl.brain-bican.org/ontology/mbao/MBA_",
+            "https://biopragmatics.github.io/providers/mba/",
             "https://bioregistry.io/MBA:",
             "https://bioregistry.io/mba:",
             "mba:"
@@ -16840,6 +16884,7 @@
             "http://n2t.net/mesh.2013:",
             "http://n2t.net/mesh:",
             "http://purl.bioontology.org/ontology/MESH/",
+            "http://www.ncbi.nlm.nih.gov/mesh/?term=",
             "http://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&term=",
             "http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?field=uid&term=",
             "https://bio2rdf.org/mesh:",
@@ -16878,6 +16923,7 @@
             "https://n2t.net/mesh.2013:",
             "https://n2t.net/mesh:",
             "https://purl.bioontology.org/ontology/MESH/",
+            "https://www.ncbi.nlm.nih.gov/mesh/?term=",
             "https://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&term=",
             "https://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?field=uid&term=",
             "mesh.2012:",
@@ -18249,10 +18295,14 @@
             "MONDO:",
             "http://bioregistry.io/MONDO:",
             "http://bioregistry.io/mondo:",
+            "http://identifiers.org/mondo/",
+            "http://identifiers.org/mondo:",
             "http://search.clinicalgenome.org/kb/conditions/MONDO:",
             "http://www.ebi.ac.uk/ols/ontologies/mondo/terms?iri=http://purl.obolibrary.org/obo/MONDO_",
             "https://bioregistry.io/MONDO:",
             "https://bioregistry.io/mondo:",
+            "https://identifiers.org/mondo/",
+            "https://identifiers.org/mondo:",
             "https://purl.obolibrary.org/obo/MONDO_",
             "https://search.clinicalgenome.org/kb/conditions/MONDO:",
             "https://www.ebi.ac.uk/ols/ontologies/mondo/terms?iri=http://purl.obolibrary.org/obo/MONDO_",
@@ -19241,7 +19291,7 @@
         ]
     },
     {
-        "pattern": "^(\\w+\\d+(\\.\\d+)?)|(NP_\\d+)$",
+        "pattern": "^\\w+_?\\d+(.\\d+)?$",
         "prefix": "ncbiprotein",
         "prefix_synonyms": [
             "REFSEQ_PROT",
@@ -20376,7 +20426,7 @@
         "prefix_synonyms": [
             "nmrcv"
         ],
-        "uri_prefix": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:",
+        "uri_prefix": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?curie=NMR:",
         "uri_prefix_synonyms": [
             "NMR:",
             "NMRCV:",
@@ -20391,7 +20441,7 @@
             "http://purl.obolibrary.org/obo/NMR_",
             "http://www.ebi.ac.uk/ols/ontologies/nmrcv/terms?iri=http://purl.obolibrary.org/obo/NMR_",
             "http://www.ebi.ac.uk/ols/ontologies/nmrcv/terms?short_form=NMR:",
-            "http://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:",
+            "http://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?curie=NMR:",
             "https://bio2rdf.org/nmr:",
             "https://bioregistry.io/NMR:",
             "https://bioregistry.io/nmr:",
@@ -21303,7 +21353,7 @@
     {
         "pattern": "^[A-Z0-9]{5}\\d+$",
         "prefix": "oma.protein",
-        "uri_prefix": "https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p1=",
+        "uri_prefix": "https://omabrowser.org/oma/vps/",
         "uri_prefix_synonyms": [
             "OMA.PROTEIN:",
             "http://bioregistry.io/oma.protein:",
@@ -21311,10 +21361,12 @@
             "http://identifiers.org/oma.protein:",
             "http://n2t.net/oma.protein:",
             "http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p1=",
+            "http://omabrowser.org/oma/vps/",
             "https://bioregistry.io/oma.protein:",
             "https://identifiers.org/oma.protein/",
             "https://identifiers.org/oma.protein:",
             "https://n2t.net/oma.protein:",
+            "https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p1=",
             "oma.protein:"
         ]
     },
@@ -21958,7 +22010,7 @@
             "http://n2t.net/orphanet.ordo:",
             "http://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
             "http://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
-            "http://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=",
+            "http://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
             "https://bioregistry.io/ordo:",
             "https://bioregistry.io/orphanet.ordo:",
@@ -21968,7 +22020,7 @@
             "https://n2t.net/orphanet.ordo:",
             "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
             "https://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
-            "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=",
+            "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "https://www.orpha.net/ORDO/Orphanet_",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
             "ordo:",
@@ -24095,14 +24147,14 @@
             "http://identifiers.org/probonto:",
             "http://n2t.net/probonto:",
             "http://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=",
-            "http://www.ebi.ac.uk/ols4/ontologies/probonto/terms?short_form=",
+            "http://www.ebi.ac.uk/ols4/ontologies/probonto/terms/http%253A%252F%252Fwww.probonto.org%252Fontology%2523",
             "https://bioregistry.io/probonto:",
             "https://identifiers.org/probonto/",
             "https://identifiers.org/probonto/PROB_",
             "https://identifiers.org/probonto:",
             "https://n2t.net/probonto:",
             "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=",
-            "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms?short_form=",
+            "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms/http%253A%252F%252Fwww.probonto.org%252Fontology%2523",
             "https://www.probonto.org/ontology#PROB_",
             "probonto:"
         ]
@@ -24649,7 +24701,7 @@
             "PubMed ID",
             "pmid"
         ],
-        "uri_prefix": "https://www.ncbi.nlm.nih.gov/pubmed/",
+        "uri_prefix": "https://bioregistry.io/pubmed:",
         "uri_prefix_synonyms": [
             "MEDLINE:",
             "PMID:",
@@ -24682,7 +24734,6 @@
             "https://bioregistry.io/PubMed ID:",
             "https://bioregistry.io/PubMed:",
             "https://bioregistry.io/pmid:",
-            "https://bioregistry.io/pubmed:",
             "https://europepmc.org/abstract/MED/",
             "https://identifiers.org/pubmed/",
             "https://identifiers.org/pubmed:",
@@ -24694,6 +24745,7 @@
             "https://rdf.ncbi.nlm.nih.gov/pubchem/reference/",
             "https://scholia.toolforge.org/pubmed/",
             "https://www.hubmed.org/?term=",
+            "https://www.ncbi.nlm.nih.gov/pubmed/",
             "medline:",
             "pmid:",
             "pubmed id:",

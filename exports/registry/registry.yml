@@ -1891,7 +1891,7 @@ apo:
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   twitter: yeastgenome
   uri_format: http://purl.obolibrary.org/obo/APO_$1
-  version: '2024-10-23'
+  version: '2025-02-01'
 apollosv:
   appears_in:
   - scdo
@@ -3154,7 +3154,7 @@ bao:
   synonyms:
   - BAO
   uri_format: http://www.bioassayontology.org/bao#BAO_$1
-  version: 2.8.11
+  version: 2.8.12
 bartoc:
   contact:
     email: voss@gbv.de
@@ -4406,7 +4406,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/68/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/69/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   keywords:
@@ -7919,6 +7919,96 @@ cheminf:
   repository: https://github.com/semanticchemistry/semanticchemistry
   uri_format: http://purl.obolibrary.org/obo/CHEMINF_$1
   version: 2.1.0
+chempro.competitor:
+  contact:
+    email: zhufeng@zju.edu.cn
+    name: Feng Zhu
+    orcid: 0000-0001-8069-0053
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: ChemPro is a database of chemoproteomic probes. This prefix provides
+    identifiers for compounds that compete with probes for binding to target proteins.
+  example: LDCM0160
+  github_request_issue: 1424
+  homepage: https://chemprosquare.idrblab.net
+  name: ChemPro Competitor
+  pattern: ^LDCM\d+$
+  preferred_prefix: chempro.competitor
+  publications:
+  - doi: 10.1093/nar/gkae943
+    pmc: PMC11701659
+    pubmed: '39436046'
+    title: 'Chem(Pro)2: the atlas of chemoproteomic probes labelling human proteins'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://chemprosquare.idrblab.net/data/competitor/details/$1
+chempro.probe:
+  contact:
+    email: zhufeng@zju.edu.cn
+    name: Feng Zhu
+    orcid: 0000-0001-8069-0053
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: ChemPro is a database of chemoproteomic probes. This prefix provides
+    identifiers for chemoproteomic probes used to label human proteins in living cells.
+  example: LDPC0032
+  github_request_issue: 1424
+  homepage: https://chemprosquare.idrblab.net
+  name: ChemPro Probe
+  pattern: ^LDPC\d+$
+  preferred_prefix: chempro.probe
+  publications:
+  - doi: 10.1093/nar/gkae943
+    pmc: PMC11701659
+    pubmed: '39436046'
+    title: 'Chem(Pro)2: the atlas of chemoproteomic probes labelling human proteins'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://chemprosquare.idrblab.net/data/probe/details/$1
+chempro.target:
+  contact:
+    email: zhufeng@zju.edu.cn
+    name: Feng Zhu
+    orcid: 0000-0001-8069-0053
+  contributor:
+    email: m.naguthana@hotmail.com
+    github: nagutm
+    name: Mufaddal Naguthanawala
+    orcid: 0009-0009-5240-7463
+  description: ChemPro is a database of chemoproteomic probes. This prefix provides
+    identifiers for human proteins that interact with chemoproteomic probes.
+  example: LDTP03903
+  github_request_issue: 1424
+  homepage: https://chemprosquare.idrblab.net
+  name: ChemPro Target
+  pattern: ^LDTP\d+$
+  preferred_prefix: chempro.target
+  publications:
+  - doi: 10.1093/nar/gkae943
+    pmc: PMC11701659
+    pubmed: '39436046'
+    title: 'Chem(Pro)2: the atlas of chemoproteomic probes labelling human proteins'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://chemprosquare.idrblab.net/data/target/details/$1
 chemrof:
   contact:
     email: cjmungall@lbl.gov
@@ -8697,7 +8787,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2025-01-07'
+  version: '2025-02-13'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -9141,6 +9231,7 @@ cmecs:
   mappings:
     aberowl: CMECS
     bioportal: CMECS
+    ecoportal: CMECS
   name: Costal and Marine Ecological Classification Standard
   pattern: ^\d+$
   preferred_prefix: cmecs
@@ -9221,7 +9312,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.234'
+  version: '2.238'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -9364,7 +9455,7 @@ co_322:
 co_323:
   contact:
     email: helpdesk@cropontology-curationtool.org
-    name: Ramesh Verna
+    name: Fawzy Nawar
   description: ICARDA - TDv5 - Sept 2018
   example: '0000252'
   homepage: https://cropontology.org/ontology/CO_323/Barley
@@ -9438,7 +9529,7 @@ co_325:
 co_326:
   contact:
     email: helpdesk@cropontology-curationtool.org
-    name: Stephanie Bocs Sidibe
+    name: Crop Ontology Helpdesk
   description: Draft version
   example: '0000254'
   homepage: https://cropontology.org/ontology/CO_326/Coconut
@@ -9928,7 +10019,7 @@ co_350:
 co_356:
   contact:
     email: helpdesk@cropontology-curationtool.org
-    name: Cyril Pommier
+    name: Eric Duchêne
   description: Grape Ontology including OIV and bioversity descriptors. INRA July
     2017
   example: '4000027'
@@ -10039,7 +10130,7 @@ co_360:
 co_365:
   contact:
     email: helpdesk@cropontology-curationtool.org
-    name: ICARDA Ethiopia
+    name: Crop Ontology Helpdesk
   description: developed by ICARDA - Dec 2018
   example: '0000205'
   homepage: https://cropontology.org/ontology/CO_365/Fababean
@@ -10073,8 +10164,8 @@ co_366:
   uri_format: https://cropontology.org/rdf/CO_366:$1
 co_367:
   contact:
-    email: clara.stanschewski@kaust.edu.sa
-    name: Clara S. Stanschewski
+    email: helpdesk@cropontology-curationtool.org
+    name: Crop Ontology Helpdesk
   description: Quinoa Ontology database of the Crop Ontology (CO_367) of the Generation
     Challenge Program (GCP) describe traits variables of Quinoa Germinate Database
     http://germinate.quinoadb.org. Quinoa Phenotyping Consortium Creation Date 23.05.2021
@@ -10135,7 +10226,7 @@ cob:
   rdf_uri_format: http://purl.obolibrary.org/obo/COB_$1
   repository: https://github.com/OBOFoundry/COB
   uri_format: http://purl.obolibrary.org/obo/COB_$1
-  version: '2024-09-20'
+  version: '2025-02-20'
 coconut:
   comment: '@mSorok is the dev of the resource, hope I got it right!'
   contributor:
@@ -10159,6 +10250,8 @@ coconut:
   - chemistry
   - natural producs
   - organic chemistry
+  mappings:
+    re3data: r3d100014517
   name: COlleCtion of Open Natural ProdUcTs
   pattern: ^CNP\d{7}(\.\d+)?$
   preferred_prefix: coconut
@@ -12438,6 +12531,8 @@ dbpedia:
   example: Grenada
   github_request_issue: 1315
   homepage: https://dbpedia.org
+  mappings:
+    re3data: r3d100011713
   name: DBPedia
   preferred_prefix: dbpedia
   uri_format: http://dbpedia.org/resource/$1
@@ -13728,7 +13823,7 @@ dicom:
       practice'
     year: 2005
   uri_format: http://dicom.nema.org/resources/ontology/DCM/$1
-  version: 2024e_20241114
+  version: 2025a_20250221
 dictybase:
   contact:
     email: pfey@northwestern.edu
@@ -14168,7 +14263,13 @@ dmba:
   name: Developing Mouse Brain Atlas
   pattern: ^\d+$
   preferred_prefix: DMBA
-  uri_format: https://biopragmatics.github.io/providers/dmba/$1
+  providers:
+  - code: biopragmatics
+    description: Biopragmatics provider for DMBA
+    homepage: https://biopragmatics.github.io/providers/dmba
+    name: DMBA from Biopragmatics
+    uri_format: https://biopragmatics.github.io/providers/dmba/$1
+  uri_format: https://purl.brain-bican.org/ontology/dmbao/DMBA_$1
 doap:
   contact:
     email: edd@usefulinc.com
@@ -14517,7 +14618,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2024-12-18'
+  version: '2025-02-03'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -14570,6 +14671,8 @@ dome:
   example: dfyn1yvtz3
   github_request_issue: 1374
   homepage: https://registry.dome-ml.org
+  mappings:
+    miriam: dome
   name: DOME Registry
   pattern: ^[a-z0-9]{10}$
   preferred_prefix: dome
@@ -14746,7 +14849,7 @@ dpo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   repository: https://github.com/FlyBase/drosophila-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2024-12-05'
+  version: '2025-02-13'
 dpv:
   contact:
     email: mike.adams@bbsrc.ac.uk
@@ -16561,7 +16664,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.73.0
+  version: 3.75.0
 ega.dataset:
   contact:
     email: tk2@ebi.ac.uk
@@ -18127,7 +18230,7 @@ envo:
   repository: https://github.com/EnvironmentOntology/envo
   twitter: envoTweets
   uri_format: http://purl.obolibrary.org/obo/ENVO_$1
-  version: '2024-07-01'
+  version: '2025-02-05'
 enzo:
   contributor:
     email: cthoyt@gmail.com
@@ -19499,7 +19602,7 @@ fbbt:
   - FBbt
   - FBbt_root
   uri_format: http://purl.obolibrary.org/obo/FBbt_$1
-  version: '2024-12-05'
+  version: '2025-02-13'
 fbcv:
   appears_in:
   - ontoavida
@@ -19558,7 +19661,7 @@ fbcv:
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2024-12-05'
+  version: '2025-02-13'
 fbdv:
   contact:
     email: cp390@cam.ac.uk
@@ -19610,7 +19713,7 @@ fbdv:
   synonyms:
   - FBdv
   uri_format: http://purl.obolibrary.org/obo/FBdv_$1
-  version: '2024-12-04'
+  version: '2025-02-12'
 fbol:
   comment: Website down, checked on 2021-10-07
   deprecated: true
@@ -20635,7 +20738,7 @@ foodon:
   rdf_uri_format: http://purl.obolibrary.org/obo/FOODON_$1
   repository: https://github.com/FoodOntology/foodon
   uri_format: http://purl.obolibrary.org/obo/FOODON_$1
-  version: '2024-07-12'
+  version: '2025-02-01'
 fossilworks.journal:
   contributor:
     email: meghan.balk@gmail.com
@@ -23074,7 +23177,7 @@ gno:
   synonyms:
   - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
-  version: '2024-09-26'
+  version: '2025-01-28'
 gnomad:
   contact:
     email: hrehm@mgh.harvard.edu
@@ -26330,7 +26433,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2024-12-12'
+  version: '2025-01-16'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -26640,6 +26743,7 @@ hsapdv:
   synonyms:
   - HsapDv
   uri_format: http://purl.obolibrary.org/obo/HsapDv_$1
+  version: '2025-01-23'
 hsdb:
   contributor:
     email: cthoyt@gmail.com
@@ -33347,7 +33451,13 @@ mba:
   name: Mouse Brain Atlas
   pattern: ^\d+$
   preferred_prefix: MBA
-  uri_format: https://biopragmatics.github.io/providers/mba/$1
+  providers:
+  - code: biopragmatics
+    description: Biopragmatics provider for MBA
+    homepage: https://biopragmatics.github.io/providers/mba
+    name: MBA from Biopragmatics
+    uri_format: https://biopragmatics.github.io/providers/mba/$1
+  uri_format: https://purl.brain-bican.org/ontology/mbao/MBA_$1
 mcc:
   contact:
     email: usha@molecularconnections.com
@@ -33951,6 +34061,11 @@ mesh:
     homepage: http://id.nlm.nih.gov/mesh/
     name: Medical Subject Headings (TTL)
     uri_format: https://id.nlm.nih.gov/mesh/$1.ttl
+  - code: ncbi
+    description: MeSH via National Library of Medicine
+    homepage: https://www.nlm.nih.gov/
+    name: MeSH via National Library of Medicine
+    uri_format: https://www.ncbi.nlm.nih.gov/mesh/?term=$1
   publications:
   - pmc: PMC197951
     pubmed: '13982385'
@@ -36235,6 +36350,7 @@ mmusdv:
   synonyms:
   - MmusDv
   uri_format: http://purl.obolibrary.org/obo/MmusDv_$1
+  version: '2025-01-23'
 mo:
   contact:
     email: stoeckrt@pcbi.upenn.edu
@@ -36661,8 +36777,8 @@ mondo:
     github: nicolevasilevsky
     name: Nicole Vasilevsky
     orcid: 0000-0001-5208-3432
-  description: A semi-automatically constructed ontology that merges in multiple disease
-    resources to yield a coherent merged ontology.
+  description: The Mondo Disease Ontology (Mondo) aims to harmonize disease definitions
+    across the world.
   download_json: http://purl.obolibrary.org/obo/mondo.json
   download_obo: http://purl.obolibrary.org/obo/mondo.obo
   download_owl: http://purl.obolibrary.org/obo/mondo.owl
@@ -36682,6 +36798,7 @@ mondo:
     bioportal: MONDO
     fairsharing: FAIRsharing.b2979t
     integbio: nbdc02563
+    miriam: mondo
     obofoundry: mondo
     ols: mondo
     ontobee: MONDO
@@ -36710,7 +36827,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2025-01-07'
+  version: '2025-02-04'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -36891,7 +37008,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2024-12-18'
+  version: '2025-01-30'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -37070,14 +37187,14 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2024-08-02'
+  version: '2025-02-13'
 ms:
   banana: MS
   contact:
-    email: gerhard.mayer@rub.de
-    github: germa
-    name: Gerhard Mayer
-    orcid: 0000-0002-1767-2343
+    email: joshua.adam.klein@gmail.com
+    github: mobiusklein
+    name: Joshua Klein
+    orcid: 0000-0003-1279-6838
   depends_on:
   - pato
   - uo
@@ -37120,7 +37237,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.185
+  version: 4.1.190
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -38460,7 +38577,7 @@ ncbiprotein:
   - name: National Center for Biotechnology Information
     partnered: false
     ror: 02meqm098
-  pattern: ^(\w+\d+(\.\d+)?)|(NP_\d+)$
+  pattern: ^\w+_?\d+(.\d+)?$
   preferred_prefix: NCBIProtein
   providers:
   - code: bio2rdf
@@ -40267,7 +40384,7 @@ nmr:
   rdf_uri_format: http://purl.obolibrary.org/obo/NMR_$1
   synonyms:
   - nmrcv
-  uri_format: https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:$1
+  uri_format: https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?curie=NMR:$1
   version: 1.1.0
 nmrshiftdb2:
   contact:
@@ -41039,7 +41156,7 @@ oba:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBA_$1
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
-  version: '2024-11-26'
+  version: '2025-01-14'
 oban:
   contributor:
     email: cthoyt@gmail.com
@@ -41244,7 +41361,7 @@ obi:
   rdf_uri_format: http://purl.obolibrary.org/obo/OBI_$1
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
-  version: '2024-12-05'
+  version: '2025-01-09'
 obib:
   contact:
     email: jmwhorton@uams.edu
@@ -42083,21 +42200,10 @@ om:
   contact:
     email: hajo.rijgersberg@wur.nl
     name: Hajo Rijgersberg
-  description: 'The OM ontology provides classes, instances, and properties that represent
-    the different concepts used for defining and using measures and units. It includes,
-    for instance, common units such as the SI units meter and kilogram, but also units
-    from other systems of units such as the mile or nautical mile. For many application
-    areas it includes more specific units and quantities, such as the unit of the
-    Hubble constant: km/s/Mpc, or the quantity vaselife.  OM defines the complete
-    set of concepts in the domain as distinguished in the textual standards. As a
-    result the ontology can answer a wider range of competency questions than the
-    existing approaches do. The following application areas are supported by OM:  Geometry;
-    Mechanics; Thermodynamics; Electromagnetism; Fluid mechanics; Chemical physics;
-    Photometry; Radiometry and Radiobiology; Nuclear physics; Astronomy and Astrophysics;
-    Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics;
-    Information technology; Typography; Shipping; Food engineering; Post-harvest;
-    technology; Dynamics of texture and taste; Packaging'
-  download_owl: http://aber-owl.net/media/ontologies/OM/31/om.owl
+  description: The Ontology of units of Measure (OM) 2.0 models concepts and relations
+    important to scientific research. It has a strong focus on units, quantities,
+    measures, and dimensions.
+  download_owl: http://aber-owl.net/media/ontologies/OM/33/om.owl
   download_rdf: https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf
   example: Dimension
   homepage: https://github.com/HajoRijgersberg/OM
@@ -42108,11 +42214,12 @@ om:
     agroportal: OM
     bioportal: OM
     ols: om
+    ontobee: OM
   name: Ontology of units of Measure
   preferred_prefix: om
   repository: https://github.com/HajoRijgersberg/OM
   uri_format: http://www.ontology-of-units-of-measure.org/resource/om-2/$1
-  version: 2.0.57
+  version: 2.0.58
 oma.grp:
   description: OMA (Orthologous MAtrix) is a database that identifies orthologs among
     publicly available, complete genome sequences. It identifies orthologous relationships
@@ -42152,7 +42259,7 @@ oma.protein:
     protein all its orthologs in all other species are displayed. This collection
     references individual protein records.
   example: HUMAN16963
-  homepage: https://omabrowser.org/cgi-bin/gateway.pl
+  homepage: https://omabrowser.org/oma/home/
   mappings:
     biocontext: OMA.PROTEIN
     miriam: oma.protein
@@ -42161,7 +42268,7 @@ oma.protein:
   name: OMA Protein
   pattern: ^[A-Z0-9]{5}\d+$
   preferred_prefix: oma.protein
-  uri_format: https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p1=$1
+  uri_format: https://omabrowser.org/oma/vps/$1
 omia:
   contact:
     email: imke.tammen@sydney.edu.au
@@ -43006,7 +43113,7 @@ oostt:
   rdf_uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
   repository: https://github.com/OOSTT/OOSTT
   uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
-  version: '2024-09-30'
+  version: '2025-01-24'
 opb:
   banana: OPB
   banana_peel: _
@@ -44551,7 +44658,7 @@ pato:
   rdf_uri_format: http://purl.obolibrary.org/obo/PATO_$1
   repository: https://github.com/pato-ontology/pato
   uri_format: http://purl.obolibrary.org/obo/PATO_$1
-  version: '2024-11-11'
+  version: '2025-02-01'
 pav:
   contact:
     email: stian@soiland-reyes.com
@@ -44815,6 +44922,12 @@ pco:
   name: Population and Community Ontology
   pattern: ^\d{7}$
   preferred_prefix: PCO
+  publications:
+  - doi: 10.1371/journal.pone.0089606
+    pubmed: '24595056'
+    title: 'Semantics in support of biodiversity knowledge discovery: an introduction
+      to the biological collections ontology and related ontologies'
+    year: 2014
   rdf_uri_format: http://purl.obolibrary.org/obo/PCO_$1
   repository: https://github.com/PopulationAndCommunityOntology/pco
   uri_format: http://purl.obolibrary.org/obo/PCO_$1
@@ -46114,6 +46227,8 @@ pharmgkb.variant:
   github_request_issue: 1368
   homepage: https://www.pharmgkb.org
   license: CC-BY-SA-4.0
+  mappings:
+    biolink: PHARMGKB.VARIANT
   name: PharmGKB Variant
   pattern: ^PA\d+$
   preferred_prefix: pharmgkb.variant
@@ -47865,7 +47980,7 @@ pride:
     compliant, public data repository that provides protein and peptide identifications
     together with supporting evidence. This collection references experiments and
     assays.
-  download_owl: http://purl.obolibrary.org/obo/pride/2.1.7/pride.owl
+  download_owl: http://purl.obolibrary.org/obo/pride/releases/2025-02-17/pride.owl
   example: '0000006'
   homepage: https://github.com/PRIDE-Utilities/pride-ontology
   keywords:
@@ -47883,7 +47998,7 @@ pride:
     prefixcommons: pride
     re3data: r3d100010137
     uniprot: DB-0130
-  name: PRIDE Controlled Vocabulary
+  name: Proteomics Identification Database Ontology
   pattern: ^\d{7}$
   preferred_prefix: pride
   providers:
@@ -47952,7 +48067,7 @@ pride:
   repository: https://github.com/PRIDE-Utilities/pride-ontology
   twitter: pride_ebi
   uri_format: http://purl.obolibrary.org/obo/PRIDE_$1
-  version: 2.1.7
+  version: '2025-02-17'
 pride.project:
   description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
     compliant, public data repository that provides protein and peptide identifications
@@ -49139,7 +49254,7 @@ pubmed:
   - PubMed
   - PubMed ID
   - pmid
-  uri_format: https://www.ncbi.nlm.nih.gov/pubmed/$1
+  uri_format: https://pubmed.ncbi.nlm.nih.gov/$1/
 puro:
   contact:
     email: silvio.peroni@unibo.it
@@ -49640,7 +49755,7 @@ rbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
-  version: '2024-10-23'
+  version: '2025-02-18'
 rcb:
   contact:
     email: atsushi.yoshiki@riken.jp
@@ -51709,7 +51824,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.239'
+  version: '6.242'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -54342,6 +54457,7 @@ skos:
   - w3c rec
   mappings:
     aberowl: skos
+    bartoc: '18274'
     biocontext: skos
     fairsharing: FAIRsharing.48e326
     lov: skos
@@ -55572,7 +55688,7 @@ srao:
   repository: https://github.com/FAIRsharing/subject-ontology
   twitter: FAIRsharing_org
   uri_format: http://www.fairsharing.org/ontology/subject/SRAO_$1
-  version: '2023-10-10'
+  version: '2025-02-23'
 ssbd.dataset:
   contact:
     email: sonami@riken.jp
@@ -55911,7 +56027,7 @@ stato:
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
-  version: '2025-01-07'
+  version: '2025-02-22'
 stitch:
   contact:
     email: bork@embl.de
@@ -56971,7 +57087,7 @@ t4fs:
   rdf_uri_format: http://purl.obolibrary.org/obo/T4FS_$1
   repository: https://github.com/terms4fairskills/FAIRterminology
   uri_format: http://purl.obolibrary.org/obo/T4FS_$1
-  version: '2023-03-02'
+  version: '2025-02-09'
 tads:
   contact:
     email: dsonensh@odu.edu
@@ -58689,7 +58805,7 @@ uberon:
   - Uberon
   twitter: uberanat
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2024-11-25'
+  version: '2025-01-15'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -60360,7 +60476,7 @@ vbo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VBO_$1
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
-  version: '2024-11-06'
+  version: '2025-02-12'
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
@@ -61593,7 +61709,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2025-01-08'
+  version: '2025-02-11'
 vto:
   contact:
     email: balhoff@renci.org
@@ -62657,7 +62773,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.192'
+  version: '4.195'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -63408,7 +63524,7 @@ zfa:
   synonyms:
   - ZFA_RETIRED
   uri_format: http://purl.obolibrary.org/obo/ZFA_$1
-  version: '2022-12-09'
+  version: '2025-01-28'
 zfin:
   contact:
     email: dhowe@zfin.org
