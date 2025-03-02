@@ -259,6 +259,14 @@ class Provider(BaseModel):
         default=None,
         description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
     )
+    example: str | None = Field(
+        default=None,
+        description="An example local identifier, specific to the provider. Providing this value is "
+        "only necessary if the example associated with the prefix for which this is a provider "
+        "is not resolvable by the provider. The example identifier should exclude any redundant "
+        "usage of the prefix. For example, a GO identifier should only "
+        "look like ``1234567`` and not like ``GO:1234567``",
+    )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
@@ -1353,8 +1361,21 @@ class Resource(BaseModel):
         example = self.get_example()
         if example:
             rv.append(example)
-        rv.extend(self.example_extras or [])
+        rv.extend(self.get_aggregated_example_extras() or [])
         return rv
+    
+    def get_aggregated_example_extras(self) -> list[str]:
+        """
+        Combine manually curated examples with provider-specific examples.
+        """
+        aggregated_examples = set(self.example_extras or [])
+
+        if self.providers:
+            for provider in self.providers:
+                if provider.example:
+                    aggregated_examples.add(provider.example)
+
+        return list(aggregated_examples)
 
     def get_example_curie(self, use_preferred: bool = False) -> str | None:
         """Get an example CURIE, if an example identifier is available.

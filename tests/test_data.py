@@ -415,7 +415,7 @@ class TestRegistry(unittest.TestCase):
     def test_extra_examples(self):
         """Test extra examples."""
         for prefix, entry in self.registry.items():
-            if not entry.example_extras:
+            if not entry.get_aggregated_example_extras():
                 continue
             primary_example = entry.get_example()
             with self.subTest(prefix=prefix):
@@ -423,7 +423,7 @@ class TestRegistry(unittest.TestCase):
                     primary_example, msg="entry has extra examples but not primary example"
                 )
 
-            for example in entry.example_extras:
+            for example in entry.get_aggregated_example_extras():
                 with self.subTest(prefix=prefix, identifier=example):
                     self.assertEqual(entry.standardize_identifier(example), example)
                     self.assertNotEqual(
@@ -432,8 +432,8 @@ class TestRegistry(unittest.TestCase):
                     self.assert_is_valid_identifier(prefix, example)
 
             self.assertEqual(
-                len(entry.example_extras),
-                len(set(entry.example_extras)),
+                len(entry.get_aggregated_example_extras()),
+                len(set(entry.get_aggregated_example_extras())),
                 msg="duplicate extra examples",
             )
 
@@ -744,6 +744,13 @@ class TestRegistry(unittest.TestCase):
                             f"in prefix publication list (appears as {other.title})",
                         )
                         self.assert_publication_identifiers(publication)
+                    # Check provider-specific example handling
+                    if provider.example:
+                        expected_uri = provider.uri_format.replace("$1", provider.example)
+                        self.assertIn(
+                            provider.example, expected_uri,
+                            msg=f"Provider-specific example {provider.example} was not correctly inserted into URI format."
+                        )
 
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.

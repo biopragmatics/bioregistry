@@ -118,7 +118,7 @@ def resource(prefix: str) -> str | flask.Response:
 
     example = _resource.get_example()
     example_curie = _resource.get_example_curie(use_preferred=True)
-    example_extras = _resource.example_extras or []
+    example_extras = _resource.get_aggregated_example_extras() or []
     example_curie_extras = [
         _resource.get_curie(example_extra, use_preferred=True) for example_extra in example_extras
     ]
