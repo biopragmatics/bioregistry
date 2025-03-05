@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import click
 import itertools as itt
 import json
 import logging
@@ -845,7 +846,8 @@ class Resource(BaseModel):
             return None
         return fmt.replace("$1", identifier)
 
-    def __setitem__(self, key: str, value: Any) -> None:  # noqa:D105
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Set an attribute on the resource."""
         setattr(self, key, value)
 
     def get_banana(self) -> str | None:
@@ -2860,11 +2862,13 @@ class Collection(BaseModel):
 
 
 class Context(BaseModel):
-    """A prescriptive context contains configuration for generating fit-for-purpose
+    """A prescriptive context.
+
+    A prescriptive context contains configuration for generating fit-for-purpose
     prefix maps to serve various communities based on the standard Bioregistry
     prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
     custom prefix maps, and other community-specific logic.
-    """  # noqa: D205,D400
+    """
 
     name: str = Field(
         ...,
@@ -3008,11 +3012,12 @@ def deduplicate_publications(publications: Iterable[Publication]) -> list[Public
     return [Publication(**record) for record in records_deduplicated]
 
 
-def main() -> None:
+@click.command()
+def generate_schema() -> None:
     """Dump the JSON schemata."""
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
 
 if __name__ == "__main__":
-    main()
+    generate_schema()

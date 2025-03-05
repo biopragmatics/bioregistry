@@ -2,7 +2,6 @@
 
 import unittest
 from collections.abc import Iterable
-from typing import Tuple
 
 import bioregistry
 from bioregistry import manager
@@ -89,7 +88,7 @@ class TestResolve(unittest.TestCase):
                     tests.append((prefix, f"{banana}{peel}{example}"))
         self.assert_known_identifiers(tests)
 
-    def assert_known_identifiers(self, examples: Iterable[Tuple[str, str]]) -> None:
+    def assert_known_identifiers(self, examples: Iterable[tuple[str, str]]) -> None:
         """Validate the examples."""
         for prefix, identifier in examples:
             with self.subTest(prefix=prefix, identifier=identifier):

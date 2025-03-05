@@ -1,6 +1,5 @@
 """Resolvers for CURIE (e.g., pairs of prefix and identifier)."""
 
-import warnings
 from collections.abc import Mapping, Sequence
 from typing import Optional
 
@@ -14,7 +13,6 @@ __all__ = [
     "get_identifiers_org_curie",
     "get_identifiers_org_iri",
     "get_iri",
-    "get_link",
     "get_n2t_iri",
     "get_obofoundry_iri",
     "get_ols_iri",
@@ -483,21 +481,6 @@ def get_iri(
         use_bioregistry_io=use_bioregistry_io,
         provider=provider,
     )
-
-
-def get_link(
-    prefix: str,
-    identifier: str,
-    priority: Optional[Sequence[str]] = None,
-    use_bioregistry_io: bool = True,
-) -> Optional[str]:
-    """Get the best link for the CURIE, if possible."""
-    warnings.warn(
-        "get_link() is deprecated. use bioregistry.get_iri() instead",
-        DeprecationWarning,
-        stacklevel=2,
-    )
-    return get_iri(prefix=prefix, identifier=identifier, use_bioregistry_io=use_bioregistry_io)
 
 
 def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
