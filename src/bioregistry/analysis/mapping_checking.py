@@ -1,3 +1,13 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "bioregistry[mapping-checking]",
+# ]
+#
+# [tool.uv.sources]
+# bioregistry = { path = "../../..", editable = true  }
+# ///
+
 """Run the mapping checking workflow.
 
 Detect potentially incorrect mappings by comparing embeddings of bioregistry entry metadata
@@ -6,8 +16,9 @@ false positive mapping that can be reviewed manually and removed if confirmed to
 
 Run with either of the following commands:
 
-1. ``python -m bioregistry.analysis.mapping_checking``
-2. ``tox -e mapping-checking``
+1. ``uv run --script mapping_checking.py``
+2. ``python -m bioregistry.analysis.mapping_checking``
+3. ``tox -e mapping-checking``
 """
 
 from __future__ import annotations
@@ -24,6 +35,8 @@ from bioregistry import Resource, manager, read_registry
 from bioregistry.constants import EXPORT_ANALYSES
 
 OUTPUT_PATH = EXPORT_ANALYSES.joinpath("mapping_checking", "mapping_embedding_similarities.tsv")
+
+#: see https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
 DEFAULT_MODEL = "all-MiniLM-L6-v2"
 
 
@@ -64,7 +77,7 @@ def get_scored_mappings_for_prefix(
                 "prefix": prefix,
                 "mapped_registry": mapped_registry,
                 "mapped_prefix": mapped_prefix,
-                "text": mapping_text,
+                "text": mapping_text.replace("\n", " ").replace("  ", " "),
                 "parts_used": ",".join(parts_used),
             }
         )
@@ -125,7 +138,7 @@ def _main():
     model = SentenceTransformer(DEFAULT_MODEL)
     # Run mappings
     df = get_scored_mappings(model)
-    df.to_csv(OUTPUT_PATH, index=False, sep="\t")
+    df.round(9).to_csv(OUTPUT_PATH, index=False, sep="\t")
 
 
 if __name__ == "__main__":
