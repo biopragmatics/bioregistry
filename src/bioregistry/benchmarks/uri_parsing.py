@@ -34,7 +34,7 @@ def iter_uris() -> Iterable[tuple[str, str, str, str]]:
         for metaprefix, url in manager.get_providers_list(prefix, example):
             if url.endswith(example):  # skip funny formats
                 yield prefix, example, metaprefix, url
-        for extra_example in resource.get_aggregated_example_extras() or []:
+        for extra_example in resource.get_example_extras() or []:
             for metaprefix, url in manager.get_providers_list(prefix, extra_example):
                 if url.endswith(extra_example):
                     yield prefix, extra_example, metaprefix, url
