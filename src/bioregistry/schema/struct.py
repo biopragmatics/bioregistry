@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import click
 import itertools as itt
 import json
 import logging
@@ -3011,11 +3012,12 @@ def deduplicate_publications(publications: Iterable[Publication]) -> list[Public
     return [Publication(**record) for record in records_deduplicated]
 
 
-def main() -> None:
+@click.command()
+def generate_schema() -> None:
     """Dump the JSON schemata."""
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
 
 if __name__ == "__main__":
-    main()
+    generate_schema()
