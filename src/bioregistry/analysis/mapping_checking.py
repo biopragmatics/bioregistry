@@ -1,8 +1,10 @@
-"""Detect potentially incorrect mappings by comparing embeddings of bioregistry entry metadata
+"""Run the mapping checking workflow.
+
+Detect potentially incorrect mappings by comparing embeddings of bioregistry entry metadata
 against the metadata corresponding to mapped prefixes. Low similarity scores indicate a potential
 false positive mapping that can be reviewed manually and removed if confirmed to be incorrect.
 
-Run as:
+Run with either of the following commands:
 
 1. ``python -m bioregistry.analysis.mapping_checking``
 2. ``tox -e mapping-checking``
@@ -10,21 +12,18 @@ Run as:
 
 from __future__ import annotations
 
-from typing import Any, Mapping
-from pathlib import Path
+from collections.abc import Mapping
+from typing import Any
 
 import pandas as pd
+import tqdm
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import cos_sim
-import tqdm
 
-from bioregistry import read_registry, manager, Resource
+from bioregistry import Resource, manager, read_registry
+from bioregistry.constants import EXPORT_ANALYSES
 
-HERE = Path(__file__).parent.resolve()
-ROOT = HERE.parent.parent.parent.resolve()
-OUTPUT_PATH = ROOT.joinpath(
-    "exports", "analyses", "mapping_checking", "mapping_embedding_similarities.tsv"
-)
+OUTPUT_PATH = EXPORT_ANALYSES.joinpath("mapping_checking", "mapping_embedding_similarities.tsv")
 DEFAULT_MODEL = "all-MiniLM-L6-v2"
 
 
@@ -97,9 +96,7 @@ def get_scored_mappings_for_prefix(
     return mapping_entries
 
 
-def get_scored_mappings(
-    model: SentenceTransformer, out_file: Path | str = OUTPUT_PATH
-) -> pd.DataFrame:
+def get_scored_mappings(model: SentenceTransformer) -> pd.DataFrame:
     """Return scored mappings for all prefixes."""
     # Read the raw registry and compile it
     raw_registry = read_registry()
@@ -120,14 +117,16 @@ def get_scored_mappings(
     # and sort so that first entry is most likely incorrect
     df = pd.DataFrame(all_mapping_entries)
     df_sorted = df.sort_values(by="similarity")
-
-    path = Path(out_file).resolve()
-    df_sorted.to_csv(path, index=False, sep="\t")
     return df_sorted
 
 
-if __name__ == "__main__":
+def _main():
     # Choose an embedding model
     model = SentenceTransformer(DEFAULT_MODEL)
     # Run mappings
-    df = get_scored_mappings(model, OUTPUT_PATH)
+    df = get_scored_mappings(model)
+    df.to_csv(OUTPUT_PATH, index=False, sep="\t")
+
+
+if __name__ == "__main__":
+    _main()

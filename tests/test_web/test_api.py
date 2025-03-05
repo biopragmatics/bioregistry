@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import unittest
-from typing import ClassVar, Dict, List
+from typing import ClassVar
 
 import rdflib
 import rdflib.plugins.parsers.notation3
@@ -54,11 +54,11 @@ class TestWeb(unittest.TestCase):
         self.assertEqual("CHEBI", registry["chebi"].get_preferred_prefix())
 
     @staticmethod
-    def _parse_registry_json(res) -> Dict[str, Resource]:
+    def _parse_registry_json(res) -> dict[str, Resource]:
         data = res.json().items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
-    def _parse_registry_rdf(self, res, fmt: str) -> Dict[str, Resource]:
+    def _parse_registry_rdf(self, res, fmt: str) -> dict[str, Resource]:
         graph = rdflib.Graph()
         try:
             graph.parse(data=res.text, format=fmt)
@@ -88,7 +88,7 @@ class TestWeb(unittest.TestCase):
         return rv
 
     @staticmethod
-    def _parse_registry_yaml(res) -> Dict[str, Resource]:
+    def _parse_registry_yaml(res) -> dict[str, Resource]:
         data = yaml.safe_load(res.text).items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
@@ -206,7 +206,7 @@ class TestWeb(unittest.TestCase):
             ["json", "yaml"],
         )
 
-    def assert_endpoint(self, endpoint: str, formats: List[str]) -> None:
+    def assert_endpoint(self, endpoint: str, formats: list[str]) -> None:
         """Test downloading the full registry as JSON."""
         self.assertTrue(endpoint.startswith("/"))
         with self.subTest(fmt=None):

@@ -26,7 +26,7 @@ import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import cast, Any, NamedTuple, Union
+from typing import Any, NamedTuple, Union, cast
 
 import click
 import numpy as np
