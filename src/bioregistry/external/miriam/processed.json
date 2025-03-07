@@ -2470,6 +2470,18 @@
     "sampleId": "11337",
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/doid/terms?obo_id=DOID:$1"
   },
+  "dome": {
+    "deprecated": false,
+    "description": "A database of annotations for published papers describing machine learning methods in biology",
+    "homepage": "https://registry.dome-ml.org/",
+    "id": "00001086",
+    "name": "DOME Registry",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-z0-9]{10}$",
+    "prefix": "dome",
+    "sampleId": "88n4lxv68p",
+    "uri_format": "https://registry.dome-ml.org/review/$1"
+  },
   "dommino": {
     "deprecated": false,
     "description": "DOMMINO is a database of macromolecular interactions that includes the interactions between protein domains, interdomain linkers, N- and C-terminal regions and protein peptides.",
@@ -4589,9 +4601,9 @@
   "igsn": {
     "deprecated": false,
     "description": "IGSN is a globally unique and persistent identifier for material samples and specimens.  IGSNs are obtained from IGSN e.V. Agents.",
-    "homepage": "http://www.geosamples.org/",
+    "homepage": "https://ev.igsn.org/home",
     "id": "00000806",
-    "name": "International Geo Sample Number",
+    "name": "International Generic Sample Number",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$",
     "prefix": "igsn",
@@ -5771,6 +5783,15 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^(C|D|M)\\d{6,9}$",
     "prefix": "mesh",
+    "providers": [
+      {
+        "code": "ncbi",
+        "description": "MeSH via National Library of Medicine",
+        "homepage": "https://www.nlm.nih.gov/",
+        "name": "MeSH via National Library of Medicine",
+        "uri_format": "https://www.ncbi.nlm.nih.gov/mesh/?term=$1"
+      }
+    ],
     "sampleId": "C000100",
     "uri_format": "http://id.nlm.nih.gov/mesh/$1"
   },
@@ -6389,6 +6410,18 @@
     "sampleId": "MM00040",
     "uri_format": "https://molmedb.upol.cz/mol/$1"
   },
+  "mondo": {
+    "deprecated": false,
+    "description": "The Mondo Disease Ontology (Mondo) aims to harmonize disease definitions across the world.",
+    "homepage": "https://monarchinitiative.org",
+    "id": "00001089",
+    "name": "Mondo Disease Ontology",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\d{7}$",
+    "prefix": "mondo",
+    "sampleId": "0004994",
+    "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1"
+  },
   "morpheus": {
     "deprecated": false,
     "description": "The Morpheus model repository is an open-access data resource to store, search and retrieve unpublished and published computational models of spatio-temporal and multicellular biological systems, encoded in the MorpheusML language and readily executable with the Morpheus software.\n",
@@ -6736,7 +6769,7 @@
     "id": "00000344",
     "name": "NCBI Protein",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(\\w+\\d+(\\.\\d+)?)|(NP_\\d+)$",
+    "pattern": "^\\w+_?\\d+(.\\d+)?$",
     "prefix": "ncbiprotein",
     "sampleId": "CAA71118.1",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
@@ -6940,7 +6973,7 @@
     "pattern": "^NMR:\\d+$",
     "prefix": "nmr",
     "sampleId": "1000003",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?curie=NMR:$1"
   },
   "nmrshiftdb2": {
     "deprecated": false,
@@ -7209,14 +7242,14 @@
   "oma.protein": {
     "deprecated": false,
     "description": "OMA (Orthologous MAtrix) is a database that identifies orthologs among publicly available, complete genome sequences. It identifies orthologous relationships which can be accessed either group-wise, where all group members are orthologous to all other group members, or on a sequence-centric basis, where for a given protein all its orthologs in all other species are displayed. This collection references individual protein records.",
-    "homepage": "https://omabrowser.org/cgi-bin/gateway.pl",
+    "homepage": "https://omabrowser.org/oma/home/",
     "id": "00000342",
     "name": "OMA Protein",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]{5}\\d+$",
     "prefix": "oma.protein",
     "sampleId": "HUMAN16963",
-    "uri_format": "https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p1=$1"
+    "uri_format": "https://omabrowser.org/oma/vps/$1"
   },
   "omia": {
     "deprecated": false,
@@ -7368,8 +7401,8 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^Orphanet(_|:)C?\\d+$",
     "prefix": "orphanet.ordo",
-    "sampleId": "Orphanet_C023",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form=$1"
+    "sampleId": "Orphanet_C022",
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F$1"
   },
   "orthodb": {
     "deprecated": false,
@@ -8232,7 +8265,7 @@
     "pattern": "^PROB_c\\d+$",
     "prefix": "probonto",
     "sampleId": "PROB_c0000005",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms?short_form=$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms/http%253A%252F%252Fwww.probonto.org%252Fontology%2523$1"
   },
   "prodom": {
     "deprecated": false,
@@ -8463,7 +8496,7 @@
       }
     ],
     "sampleId": "16333295",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/pubmed/$1"
+    "uri_format": "https://pubmed.ncbi.nlm.nih.gov/$1/"
   },
   "pw": {
     "deprecated": false,

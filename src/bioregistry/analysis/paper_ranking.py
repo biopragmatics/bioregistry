@@ -26,12 +26,11 @@ import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Union
+from typing import Any, NamedTuple, Union, cast
 
 import click
 import numpy as np
 import pandas as pd
-from more_itertools import chunked
 from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
@@ -75,6 +74,11 @@ DEFAULT_SEARCH_TERMS = [
     "vocabulary",
     "nomenclature",
 ]
+
+EXCLUDE_JOURNALS = {
+    "bioRxiv",
+    "medRxiv",
+}
 
 
 def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
@@ -136,12 +140,10 @@ def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, dict[str
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
     from indra.literature import pubmed_client
 
-    fetched_metadata = {}
-    for chunk in chunked(
-        tqdm(pubmed_ids, unit="article", unit_scale=True, desc="Getting metadata"), 200
-    ):
-        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
-    return fetched_metadata
+    return cast(
+        dict[str, dict[str, Any]],
+        pubmed_client.get_metadata_for_all_ids(pubmed_ids, get_abstracts=True),
+    )
 
 
 def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> set[str]:
@@ -189,6 +191,11 @@ def fetch_pubmed_papers(
 
     records = []
     for pubmed_id, paper in papers.items():
+        # Filter out papers that are from journals (typically
+        # preprint servers that have PMIDs) to be excluded
+        if paper.get("journal_abbrev") in EXCLUDE_JOURNALS:
+            continue
+
         title = paper.get("title")
         abstract = paper.get("abstract", "")
 

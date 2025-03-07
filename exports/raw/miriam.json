@@ -13339,6 +13339,62 @@
         "successor": null
       },
       {
+        "created": "2025-01-22T11:15:48.205+00:00",
+        "deprecated": false,
+        "deprecationDate": null,
+        "deprecationOfflineDate": null,
+        "deprecationStatement": null,
+        "description": "A database of annotations for published papers describing machine learning methods in biology",
+        "id": 4153,
+        "infoOnPostmortemAccess": null,
+        "mirId": "MIR:00001086",
+        "modified": "2025-01-22T11:15:48.205+00:00",
+        "name": "DOME Registry",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "^[a-z0-9]{10}$",
+        "prefix": "dome",
+        "renderDeprecatedLanding": false,
+        "resources": [
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "A registry providing a curated set of annotations for ML papers following the DOME recommendations",
+            "id": 4104,
+            "institution": {
+              "description": "he University of Padua is one of Europe’s oldest and most prestigious seats of learning. As a multi-disciplinary institute of higher education, the University aims to provide its students with professional training and a solid cultural background. The qualification received from the University of Padua act as a symbol of the ambitious objectives respected and coveted by both students and employers alike.",
+              "homeUrl": "https://www.unipd.it/en/",
+              "id": 1769,
+              "location": {
+                "countryCode": "IT",
+                "countryName": "Italy"
+              },
+              "name": "University of Padua",
+              "rorId": "https://ror.org/00240q980"
+            },
+            "location": {
+              "countryCode": "IT",
+              "countryName": "Italy"
+            },
+            "mirId": "MIR:00001085",
+            "name": "DOME Registry",
+            "official": true,
+            "protectedUrls": false,
+            "providerCode": "dome",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://registry.dome-ml.org/",
+            "sampleId": "88n4lxv68p",
+            "urlPattern": "https://registry.dome-ml.org/review/{$id}"
+          }
+        ],
+        "sampleId": "88n4lxv68p",
+        "successor": null
+      },
+      {
         "created": "2019-06-11T14:17:04.514+00:00",
         "deprecated": false,
         "deprecationDate": null,
@@ -14886,7 +14942,7 @@
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/edam",
             "sampleId": "data_1664",
-            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/edam/terms?short_form={$id}"
+            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/edam/classes/http%253A%252F%252Fedamontology.org%252F{$id}"
           }
         ],
         "sampleId": "data_1664",
@@ -23820,8 +23876,8 @@
         "id": 2594,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000806",
-        "modified": "2021-03-15T19:52:42.073+00:00",
-        "name": "International Geo Sample Number",
+        "modified": "2025-02-26T09:58:26.770+00:00",
+        "name": "International Generic Sample Number",
         "namespaceEmbeddedInLui": false,
         "pattern": "^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$",
         "prefix": "igsn",
@@ -23834,7 +23890,7 @@
             "deprecationDate": null,
             "deprecationOfflineDate": null,
             "deprecationStatement": null,
-            "description": "SESAR is a community platform that operates a sample registry for researchers, institutions, and sample facilities to openly share information about their samples. SESAR provides tools to upload sample metadata and register samples with IGSN as a globally unique identifier to make them Findable, Accessible, Interoperable, and Reusable (FAIR). SESAR’s services include providing access to the sample metadata catalog via the SESAR Catalog Search tool, maintaining sample metadata profiles, and distributing IGSN.\n \nSESAR is a project funded by the US National Science Foundation.",
+            "description": "IGSN via generic endpoint",
             "id": 2595,
             "institution": {
               "description": "The IGSN e.V. is the implementation organization of the IGSN.  It is an international, non-profit organization which operates a central registration system for IGSN.  IGSN are globally unique and persistent identifiers for material samples. IGSN resolve to persistent landing pages, which are managed by the federated IGSN Agents.",
@@ -23852,13 +23908,13 @@
               "countryName": "United States"
             },
             "mirId": "MIR:00000805",
-            "name": "SESAR, the System for Earth Sample Registration",
+            "name": "IGSN via generic endpoint",
             "official": true,
             "protectedUrls": false,
             "providerCode": "Not Applicable",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
-            "resourceHomeUrl": "http://www.geosamples.org/",
+            "resourceHomeUrl": "https://ev.igsn.org/home",
             "sampleId": "AU124",
             "urlPattern": "http://igsn.org/{$id}"
           }
@@ -29517,6 +29573,41 @@
             "resourceHomeUrl": "http://id.nlm.nih.gov/mesh/",
             "sampleId": "C000100",
             "urlPattern": "http://id.nlm.nih.gov/mesh/{$id}"
+          },
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "MeSH via National Library of Medicine",
+            "id": 4154,
+            "institution": {
+              "description": "The National Library of Medicine (NLM), on the campus of the National Institutes of Health in Bethesda, Maryland, has been a center of information innovation since its founding in 1836. The world’s largest biomedical library, NLM maintains and makes available a vast print collection and produces electronic information resources on a wide range of topics that are searched billions of times each year by millions of people around the globe. It also supports and conducts research, development, and training in biomedical informatics and health information technology. In addition, the Library coordinates an 8,000+ member Network of the National Library of Medicine that promotes and provides access to health information in communities across the United States.",
+              "homeUrl": "https://www.nlm.nih.gov/",
+              "id": 316,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "National Library of Medicine, Maryland",
+              "rorId": "https://ror.org/0060t0j89"
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00001087",
+            "name": "MeSH via National Library of Medicine",
+            "official": false,
+            "protectedUrls": false,
+            "providerCode": "ncbi",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://www.nlm.nih.gov/",
+            "sampleId": "C000100",
+            "urlPattern": "https://www.ncbi.nlm.nih.gov/mesh/?term={$id}"
           }
         ],
         "sampleId": "C000100",
@@ -32491,6 +32582,62 @@
         "successor": null
       },
       {
+        "created": "2025-02-03T14:36:56.650+00:00",
+        "deprecated": false,
+        "deprecationDate": null,
+        "deprecationOfflineDate": null,
+        "deprecationStatement": null,
+        "description": "The Mondo Disease Ontology (Mondo) aims to harmonize disease definitions across the world.",
+        "id": 4203,
+        "infoOnPostmortemAccess": null,
+        "mirId": "MIR:00001089",
+        "modified": "2025-02-03T14:36:56.650+00:00",
+        "name": "Mondo Disease Ontology",
+        "namespaceEmbeddedInLui": false,
+        "pattern": "^\\d{7}$",
+        "prefix": "mondo",
+        "renderDeprecatedLanding": false,
+        "resources": [
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "The Monarch Initiative is an international consortium that leads key global standards and semantic data integration technologies. Monarch is made possible thanks to a diverse and dedicated team of biologists, scientists, and programmers from various schools and institutes:\nUniversity of North Carolina, University of Colorado, Lawrence Berkeley National Laboratory, Charite, The Jackson Laboratory, European Bioinformatics Institute, Queen Mary University of London, Johns Hopkins University, Consultants, C-Path, Renaissance Computing Institute, Scientific Advisory Board, Alumni Members, Alumni Groups",
+            "id": 4204,
+            "institution": {
+              "description": "The Monarch Initiative is an integrative data and analytic platform connecting phenotypes to genotypes across species, bridging basic and applied research with semantics-based analysis. We have created or currently contribute to many essential bio-ontologies that together enable sophisticated and semantically integrated computational analysis across gene, genotype, variant, disease, and phenotype data. ",
+              "homeUrl": "https://monarchinitiative.org/",
+              "id": 3722,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "Monarch Initiative",
+              "rorId": null
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00001088",
+            "name": "Monarch Initiative",
+            "official": true,
+            "protectedUrls": false,
+            "providerCode": "mondo",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://monarchinitiative.org",
+            "sampleId": "0004994",
+            "urlPattern": "http://purl.obolibrary.org/obo/MONDO_{$id}"
+          }
+        ],
+        "sampleId": "0004994",
+        "successor": null
+      },
+      {
         "created": "2020-10-07T10:43:05.918+00:00",
         "deprecated": false,
         "deprecationDate": null,
@@ -34124,10 +34271,10 @@
         "id": 987,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000344",
-        "modified": "2019-06-11T14:16:57.477+00:00",
+        "modified": "2025-01-22T10:58:13.126+00:00",
         "name": "NCBI Protein",
         "namespaceEmbeddedInLui": false,
-        "pattern": "^(\\w+\\d+(\\.\\d+)?)|(NP_\\d+)$",
+        "pattern": "^\\w+_?\\d+(.\\d+)?$",
         "prefix": "ncbiprotein",
         "renderDeprecatedLanding": false,
         "resources": [
@@ -35165,7 +35312,7 @@
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv",
             "sampleId": "1000003",
-            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?short_form=NMR:{$id}"
+            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/nmrcv/terms?curie=NMR:{$id}"
           }
         ],
         "sampleId": "1000003",
@@ -36556,9 +36703,9 @@
             "providerCode": "CURATOR_REVIEW",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
-            "resourceHomeUrl": "https://omabrowser.org/cgi-bin/gateway.pl",
+            "resourceHomeUrl": "https://omabrowser.org/oma/home/",
             "sampleId": "HUMAN16963",
-            "urlPattern": "https://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p1={$id}"
+            "urlPattern": "https://omabrowser.org/oma/vps/{$id}"
           }
         ],
         "sampleId": "HUMAN16963",
@@ -37225,7 +37372,7 @@
         "id": 1495,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000532",
-        "modified": "2019-06-11T14:17:42.194+00:00",
+        "modified": "2025-01-21T16:17:20.300+00:00",
         "name": "Orphanet Rare Disease Ontology",
         "namespaceEmbeddedInLui": false,
         "pattern": "^Orphanet(_|:)C?\\d+$",
@@ -37264,11 +37411,11 @@
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/ordo",
-            "sampleId": "Orphanet_C023",
-            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms?short_form={$id}"
+            "sampleId": "Orphanet_C022",
+            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F{$id}"
           }
         ],
-        "sampleId": "Orphanet_C023",
+        "sampleId": "Orphanet_C022",
         "successor": null
       },
       {
@@ -41416,7 +41563,7 @@
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/probonto",
             "sampleId": "PROB_c0000005",
-            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms?short_form={$id}"
+            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms/http%253A%252F%252Fwww.probonto.org%252Fontology%2523{$id}"
           }
         ],
         "sampleId": "PROB_c0000005",
@@ -42321,41 +42468,6 @@
             "deprecationDate": null,
             "deprecationOfflineDate": null,
             "deprecationStatement": null,
-            "description": "NCBI PubMed",
-            "id": 58,
-            "institution": {
-              "description": "The National Center for Biotechnology Information advances science and health by providing access to biomedical and genomic information.",
-              "homeUrl": "https://www.ncbi.nlm.nih.gov/",
-              "id": 26,
-              "location": {
-                "countryCode": "US",
-                "countryName": "United States"
-              },
-              "name": "National Center for Biotechnology Information",
-              "rorId": "https://ror.org/02meqm098"
-            },
-            "location": {
-              "countryCode": "US",
-              "countryName": "United States"
-            },
-            "mirId": "MIR:00100023",
-            "name": "NCBI PubMed",
-            "official": true,
-            "protectedUrls": false,
-            "providerCode": "ncbi",
-            "renderDeprecatedLanding": false,
-            "renderProtectedLanding": false,
-            "resourceHomeUrl": "https://www.ncbi.nlm.nih.gov/PubMed/",
-            "sampleId": "16333295",
-            "urlPattern": "https://www.ncbi.nlm.nih.gov/pubmed/{$id}"
-          },
-          {
-            "authHelpDescription": null,
-            "authHelpUrl": null,
-            "deprecated": false,
-            "deprecationDate": null,
-            "deprecationOfflineDate": null,
-            "deprecationStatement": null,
             "description": "Europe PMC",
             "id": 62,
             "institution": {
@@ -42453,6 +42565,41 @@
             "resourceHomeUrl": "http://www.hubmed.org/",
             "sampleId": "16333295",
             "urlPattern": "https://www.hubmed.org/?term={$id}"
+          },
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "NCBI PubMed",
+            "id": 58,
+            "institution": {
+              "description": "The National Center for Biotechnology Information advances science and health by providing access to biomedical and genomic information.",
+              "homeUrl": "https://www.ncbi.nlm.nih.gov/",
+              "id": 26,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "National Center for Biotechnology Information",
+              "rorId": "https://ror.org/02meqm098"
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00100023",
+            "name": "NCBI PubMed",
+            "official": true,
+            "protectedUrls": false,
+            "providerCode": "ncbi",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://www.ncbi.nlm.nih.gov/PubMed/",
+            "sampleId": "16333295",
+            "urlPattern": "https://pubmed.ncbi.nlm.nih.gov/{$id}/"
           },
           {
             "authHelpDescription": null,

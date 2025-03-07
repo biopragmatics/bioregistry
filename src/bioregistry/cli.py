@@ -10,6 +10,7 @@ from .export.cli import export
 from .lint import lint
 from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
+from .schema.struct import generate_schema
 
 __all__ = [
     "main",
@@ -97,6 +98,7 @@ main.add_command(lint)
 main.add_command(compare)
 main.add_command(export)
 main.add_command(web)
+main.add_command(generate_schema)
 
 
 @main.command()
