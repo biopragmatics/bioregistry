@@ -40,8 +40,14 @@ def _get_ontology() -> dict[str, str]:
 
 def _get_descriptions() -> dict[str, str]:
     res = requests.get(DATASET_DESCRIPTIONS_URL)
+
+    # Replace \r\n and \r or \n individually with a single space
+    def _sanitize_description(description: str) -> str:
+        return description.replace("\r\n", " ").replace("\r", " ").replace("\n", " ")
+
+
     return {
-        key: entry["description_en"]
+        key: _sanitize_description(entry["description_en"])
         for key, entry in res.json().items()
         if "description_en" in entry
     }
