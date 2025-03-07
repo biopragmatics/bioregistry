@@ -5,6 +5,7 @@ from collections.abc import Iterable, Mapping, Sequence
 from typing import Any, Callable, ClassVar, Optional
 
 import click
+from curies.w3c import NCNAME_RE
 from tabulate import tabulate
 
 from ..constants import METADATA_CURATION_DIRECTORY
@@ -128,6 +129,16 @@ class Aligner:
             # add the identifier from an external resource if it's been marked as high quality
             elif self.include_new:
                 bioregistry_id = norm(external_id)
+                if not NCNAME_RE.match(bioregistry_id):
+                    if NCNAME_RE.match("_" + bioregistry_id):
+                        # The prefix is non-conformant to W3C, but if we prepend
+                        # an underscore, it is. This happens for prefixes that start
+                        # with numbers.
+                        bioregistry_id = "_" + bioregistry_id
+                    else:
+                        # The prefix is non-conformant to W3C, therefore we can't
+                        # add it safely without manual intervention
+                        continue
                 if is_mismatch(bioregistry_id, self.key, external_id):
                     continue
                 self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
