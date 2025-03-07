@@ -11,13 +11,15 @@ from textwrap import dedent
 
 import curies
 import rdflib
+from curies.w3c import NCNAME_RE
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
+from bioregistry.constants import BIOREGISTRY_PATH, DISALLOWED_EMAIL_PARTS, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
+from bioregistry.resource_manager import MetaresourceAnnotatedValue
 from bioregistry.schema.struct import (
     SCHEMA_PATH,
     Attributable,
@@ -28,14 +30,6 @@ from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
-
-disallowed_email_parts = {
-    "contact@",
-    "help@",
-    "helpdesk@",
-    "discuss@",
-    "support@",
-}
 
 
 class TestRegistry(unittest.TestCase):
@@ -92,15 +86,20 @@ class TestRegistry(unittest.TestCase):
                             msg=f"Windows-style line return detected in {key} field of {prefix}",
                         )
 
-    def test_prefixes(self):
+    def test_prefixes(self) -> None:
         """Check prefixes aren't malformed."""
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertEqual(prefix, resource.prefix)
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
-                self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
                 self.assertNotIn(":", prefix)
+                self.assertRegex(prefix, NCNAME_RE)
+                if prefix.startswith("_"):
+                    self.assertTrue(
+                        prefix[1].isnumeric(),
+                        msg="Only start a prefix with an underscore if the first _actual_ character is a number",
+                    )
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -169,6 +168,24 @@ class TestRegistry(unittest.TestCase):
             if "." in prefix and prefix.split(".")[0] == name.lower():
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
+
+    def test_get_name(self) -> None:
+        """Test getting the name."""
+        self.assertEqual(None, bioregistry.get_name("nope"))
+        self.assertEqual(None, bioregistry.get_name("nope", provenance=True))
+        self.assertEqual(None, bioregistry.get_name("nope", provenance=False))
+
+        res = bioregistry.get_name("go")
+        self.assertIsInstance(res, str)
+        self.assertEqual("Gene Ontology", res)
+
+        res = bioregistry.get_name("go", provenance=False)
+        self.assertIsInstance(res, str)
+        self.assertEqual("Gene Ontology", res)
+
+        prov = bioregistry.get_name("go", provenance=True)
+        self.assertIsInstance(prov, MetaresourceAnnotatedValue)
+        self.assertEqual("Gene Ontology", prov.value)
 
     def test_has_description(self):
         """Test that all non-deprecated entries have a description."""
@@ -740,6 +757,25 @@ class TestRegistry(unittest.TestCase):
         This is required because the annotation from MIRIAM is simply not granular enough
         to support actual use cases.
         """
+        self.assertIsNone(bioregistry.get_namespace_in_lui("nope"))
+        self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=True))
+        self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=False))
+        res = bioregistry.get_namespace_in_lui("go")
+        self.assertIsInstance(res, bool)
+        self.assertTrue(res)
+
+        res = bioregistry.get_namespace_in_lui("pdb")
+        self.assertIsInstance(res, bool)
+        self.assertFalse(res)
+
+        res = bioregistry.get_namespace_in_lui("go", provenance=True)
+        self.assertIsInstance(res, MetaresourceAnnotatedValue)
+        self.assertTrue(res.value)
+
+        res = bioregistry.get_namespace_in_lui("pdb", provenance=True)
+        self.assertIsInstance(res, MetaresourceAnnotatedValue)
+        self.assertFalse(res.value)
+
         for prefix, resource in self.registry.items():
             if not resource.get_namespace_in_lui():
                 continue
@@ -779,7 +815,7 @@ class TestRegistry(unittest.TestCase):
             self.assertFalse(
                 any(
                     disallowed_email_part in author.email
-                    for disallowed_email_part in disallowed_email_parts
+                    for disallowed_email_part in DISALLOWED_EMAIL_PARTS
                 ),
                 msg=f"Bioregistry policy states that an email must correspond to a single person. "
                 f"The email provided appears to be for a group/mailing list: {author.email}",
@@ -825,9 +861,28 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(resource.reviewer.github)
                 self.assert_contact_metadata(resource.reviewer)
 
+    def test_reviewers_extras(self) -> None:
+        """Test extra reviewers."""
+        for prefix, resource in self.registry.items():
+            if not resource.reviewer_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.reviewer,
+                    msg="If you have secondary reviewers, you must have a primary reviewer",
+                )
+                for reviewer in resource.reviewer_extras:
+                    self.assertIsNotNone(reviewer.name)
+                    self.assertIsNotNone(reviewer.orcid)
+                    self.assertIsNotNone(reviewer.github)
+                    self.assert_contact_metadata(reviewer)
+
     def test_contacts(self):
         """Check contacts have minimal metadata."""
         for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if resource.contact_extras:
+                    self.assertIsNotNone(resource.contact)
             if not resource.contact:
                 continue
             with self.subTest(prefix=prefix):
@@ -838,6 +893,31 @@ class TestRegistry(unittest.TestCase):
                     resource.contact.email, msg=f"Contact for {prefix} is missing an email"
                 )
                 self.assert_contact_metadata(resource.contact)
+
+    def test_secondary_contacts(self) -> None:
+        """Check secondary contacts."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.contact)
+                for contact in resource.contact_extras:
+                    self.assert_contact_metadata(contact)
+                    self.assertNotEqual(
+                        resource.contact.orcid, contact.orcid, msg="duplicate secondary contact"
+                    )
+
+    def test_contact_group_email(self) -> None:
+        """Test curation of group emails."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact_group_email:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_contact(),
+                    msg="All curated group contacts also require an explicit primary contact. "
+                    "This is to promote transparency and openness.",
+                )
 
     def test_contact_page(self) -> None:
         """Test curation of contact page."""

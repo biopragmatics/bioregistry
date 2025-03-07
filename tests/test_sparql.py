@@ -1,7 +1,6 @@
 """Tests for the local SPARQL endpoint."""
 
 import unittest
-from typing import Set, Tuple
 from xml import etree
 
 import requests
@@ -11,7 +10,7 @@ LOCAL_BIOREGISTRY = "http://localhost:5000/sparql"
 LOCAL_BLAZEGRAPH = "http://192.168.2.30:9999/blazegraph/sparql"
 
 
-def _handle_res_xml(res: requests.Response) -> Set[Tuple[str, str]]:
+def _handle_res_xml(res: requests.Response) -> set[tuple[str, str]]:
     root = etree.ElementTree.fromstring(res.text)  # noqa:S314
     results = root.find("{http://www.w3.org/2005/sparql-results#}results")
     rv = set()
@@ -24,14 +23,14 @@ def _handle_res_xml(res: requests.Response) -> Set[Tuple[str, str]]:
     return rv
 
 
-def _handle_res_json(res: requests.Response) -> Set[Tuple[str, str]]:
+def _handle_res_json(res: requests.Response) -> set[tuple[str, str]]:
     res_json = res.json()
     return {
         (record["s"]["value"], record["o"]["value"]) for record in res_json["results"]["bindings"]
     }
 
 
-def _handle_res_csv(res: requests.Response) -> Set[Tuple[str, str]]:
+def _handle_res_csv(res: requests.Response) -> set[tuple[str, str]]:
     header, *lines = (line.strip().split(",") for line in res.text.splitlines())
     records = (dict(zip(header, line)) for line in lines)
     return {(record["s"], record["o"]) for record in records}
@@ -44,7 +43,7 @@ HANDLERS = {
 }
 
 
-def get(endpoint: str, sparql: str, accept) -> Set[Tuple[str, str]]:
+def get(endpoint: str, sparql: str, accept) -> set[tuple[str, str]]:
     """Get a response from a given SPARQL query."""
     res = requests.get(
         endpoint,

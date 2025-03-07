@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import click
 import itertools as itt
 import json
 import logging
@@ -10,6 +11,7 @@ import re
 import textwrap
 import typing
 from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -17,11 +19,14 @@ from typing import (
     Any,
     Callable,
     ClassVar,
+    Generic,
     Optional,
+    TypeVar,
     cast,
+    overload,
 )
 
-from pydantic import BaseModel, Field, PrivateAttr
+from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
 from bioregistry import constants as brc
@@ -77,6 +82,8 @@ URI_IRI_INFO = (
     "and IRI specification (https://www.ietf.org/rfc/rfc3987.txt) for more information."
 )
 
+X = TypeVar("X")
+
 
 def _uri_sort(uri: str) -> tuple[str, str]:
     try:
@@ -121,6 +128,14 @@ URI_FORMAT_PATHS = [
     ("prefixcommons", URI_FORMAT_KEY),
     ("rrid", URI_FORMAT_KEY),
 ]
+
+
+@dataclass
+class MetaprefixAnnotatedValue(Generic[X]):
+    """A value with its metaprefix as provenance."""
+
+    value: X
+    metaprefix: str
 
 
 class Organization(BaseModel):
@@ -342,6 +357,15 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         ),
     )
+    contact_extras: list[Attributable] | None = Field(
+        default=None,
+        description="Secondary contacts. It's required to have a primary contact to have this field.",
+    )
+    contact_group_email: EmailStr | None = Field(
+        default=None,
+        description="A group contact email for the project. It's required to have a primary contact "
+        "to have this field.",
+    )
     contact_page: str | None = Field(
         default=None,
         description="A URL for a web page that has contact information, e.g., containing a contact form. "
@@ -556,6 +580,10 @@ class Resource(BaseModel):
     """
         ),
     )
+    reviewer_extras: list[Author] | None = Field(
+        default=None,
+        description="Additional reviewers of the prefix.",
+    )
     proprietary: bool | None = Field(
         default=None,
         description=_dedent(
@@ -683,11 +711,46 @@ class Resource(BaseModel):
             return None
         return self.get_mappings().get(metaprefix)
 
-    def get_prefix_key(self, key: str, metaprefixes: str | Sequence[str]) -> Any:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_prefix_key(
+        self,
+        key: str,
+        metaprefixes: str | Sequence[str],
+        *,
+        rv_type: type[X],
+        provenance: Literal[True] = True,
+    ) -> MetaprefixAnnotatedValue[X] | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_prefix_key(
+        self,
+        key: str,
+        metaprefixes: str | Sequence[str],
+        *,
+        rv_type: type[X],
+        provenance: Literal[False] = False,
+    ) -> X | None: ...
+
+    def get_prefix_key(
+        self,
+        key: str,
+        metaprefixes: str | Sequence[str],
+        *,
+        rv_type: type[X],
+        provenance: bool = False,
+    ) -> None | X | MetaprefixAnnotatedValue[X]:
         """Get a key enriched by the given external resources' data."""
         rv = self.model_dump().get(key)
         if rv is not None:
-            return rv
+            if isinstance(rv, str):
+                rv = rv.replace("\r\n", "\n")
+            if provenance:
+                return cast(
+                    MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, "bioregistry")
+                )
+            return cast(X, rv)
         if isinstance(metaprefixes, str):
             metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
@@ -696,25 +759,62 @@ class Resource(BaseModel):
                 raise TypeError
             rv = external.get(key)
             if rv is not None:
-                return rv
+                if isinstance(rv, str):
+                    rv = rv.replace("\r\n", "\n")
+                if provenance:
+                    return cast(
+                        MetaprefixAnnotatedValue[X], MetaprefixAnnotatedValue(rv, metaprefix)
+                    )
+                return cast(X, rv)
         return None
 
-    def _get_prefix_key_str(self, key: str, metaprefixes: str | Sequence[str]) -> str | None:
-        rv = self.get_prefix_key(key, metaprefixes)
-        if rv is None:
-            return None
-        if not isinstance(rv, str):
-            raise TypeError
-        rv = rv.replace("\r\n", "\n")
-        return rv
+    # docstr-coverage:excused `overload`
+    @overload
+    def _get_prefix_key_str(
+        self,
+        key: str,
+        metaprefixes: str | Sequence[str],
+        *,
+        provenance: Literal[False] = False,
+    ) -> None | str: ...
 
-    def _get_prefix_key_bool(self, key: str, metaprefixes: str | Sequence[str]) -> bool | None:
-        rv = self.get_prefix_key(key, metaprefixes)
-        if rv is None:
-            return None
-        if isinstance(rv, bool):
-            return rv
-        raise TypeError
+    # docstr-coverage:excused `overload`
+    @overload
+    def _get_prefix_key_str(
+        self, key: str, metaprefixes: str | Sequence[str], *, provenance: Literal[True] = True
+    ) -> None | MetaprefixAnnotatedValue[str]: ...
+
+    def _get_prefix_key_str(
+        self, key: str, metaprefixes: str | Sequence[str], *, provenance: bool = False
+    ) -> None | str | MetaprefixAnnotatedValue[str]:
+        if provenance:
+            return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=True)
+        else:
+            return self.get_prefix_key(key, metaprefixes, rv_type=str, provenance=False)
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def _get_prefix_key_bool(
+        self,
+        key: str,
+        metaprefixes: str | Sequence[str],
+        *,
+        provenance: Literal[False] = False,
+    ) -> None | bool: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def _get_prefix_key_bool(
+        self, key: str, metaprefixes: str | Sequence[str], *, provenance: Literal[True] = True
+    ) -> None | MetaprefixAnnotatedValue[bool]: ...
+
+    def _get_prefix_key_bool(
+        self, key: str, metaprefixes: str | Sequence[str], *, provenance: bool = False
+    ) -> None | bool | MetaprefixAnnotatedValue[bool]:
+        if provenance:
+            return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=True)
+        else:
+            return self.get_prefix_key(key, metaprefixes, rv_type=bool, provenance=False)
 
     def get_default_uri(self, identifier: str) -> str | None:
         """Return the default URI for the identifier.
@@ -746,7 +846,8 @@ class Resource(BaseModel):
             return None
         return fmt.replace("$1", identifier)
 
-    def __setitem__(self, key: str, value: Any) -> None:  # noqa:D105
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Set an attribute on the resource."""
         setattr(self, key, value)
 
     def get_banana(self) -> str | None:
@@ -790,7 +891,7 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.get_namespace_in_lui() is False:
+        if self.get_namespace_in_lui(provenance=False) is False:
             return None
         miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
@@ -867,31 +968,41 @@ class Resource(BaseModel):
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
-    def get_name(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(self, *, provenance: Literal[False] = ...) -> None | str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self, *, provenance: Literal[True] = ...
+    ) -> None | MetaprefixAnnotatedValue[str]: ...
+
+    def get_name(self, *, provenance: bool = False) -> None | str | MetaprefixAnnotatedValue[str]:
         """Get the name for the given prefix, if it's available."""
-        return self._get_prefix_key_str(
-            "name",
-            (
-                "obofoundry",
-                "ols",
-                "wikidata",
-                "go",
-                "ncbi",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "miriam",
-                "n2t",
-                "cellosaurus",
-                "cropoct",
-                "cheminf",
-                "edam",
-                "prefixcommons",
-                "rrid",
-                "bartoc",
-                "lov",
-            ),
-        )
+        metaprefixes: Sequence[str] = [
+            "obofoundry",
+            "ols",
+            "wikidata",
+            "go",
+            "ncbi",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "miriam",
+            "n2t",
+            "cellosaurus",
+            "cropoct",
+            "cheminf",
+            "edam",
+            "prefixcommons",
+            "rrid",
+            "bartoc",
+            "lov",
+        ]
+        if provenance:
+            return self._get_prefix_key_str("name", metaprefixes, provenance=True)
+        return self._get_prefix_key_str("name", metaprefixes, provenance=False)
 
     def get_description(self, use_markdown: bool = False) -> str | None:
         """Get the description for the given prefix, if available."""
@@ -900,28 +1011,26 @@ class Resource(BaseModel):
             from markdown import markdown
 
             return markupsafe.Markup(markdown(self.description))
-        rv = self._get_prefix_key_str(
-            "description",
-            (
-                "miriam",
-                "n2t",
-                "ols",
-                "obofoundry",
-                "wikidata",
-                "fairsharing",
-                "aberowl",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "cropoct",
-                "cheminf",
-                "edam",
-                "prefixcommons",
-                "bartoc",
-                "lov",
-                "re3data",
-            ),
+        metaprefixes: Sequence[str] = (
+            "miriam",
+            "n2t",
+            "ols",
+            "obofoundry",
+            "wikidata",
+            "fairsharing",
+            "aberowl",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "cropoct",
+            "cheminf",
+            "edam",
+            "prefixcommons",
+            "bartoc",
+            "lov",
+            "re3data",
         )
+        rv = self._get_prefix_key_str("description", metaprefixes, provenance=False)
         if rv is not None:
             return rv
         if self.cellosaurus and "category" in self.cellosaurus:
@@ -1028,36 +1137,51 @@ class Resource(BaseModel):
             return None
         return re.compile(p)
 
-    def get_namespace_in_lui(self) -> bool | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_namespace_in_lui(
+        self, *, provenance: Literal[True] = True
+    ) -> MetaprefixAnnotatedValue[bool] | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_namespace_in_lui(self, *, provenance: Literal[False] = False) -> bool | None: ...
+
+    def get_namespace_in_lui(
+        self, *, provenance: bool = False
+    ) -> MetaprefixAnnotatedValue[bool] | bool | None:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam")
+        if provenance:
+            return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=True)
+        return self._get_prefix_key_bool("namespaceEmbeddedInLui", "miriam", provenance=False)
 
     def get_homepage(self) -> str | None:
         """Return the homepage, if available."""
+        metaprefixes: Sequence[str] = [
+            "obofoundry",
+            "ols",
+            "miriam",
+            "n2t",
+            "wikidata",
+            "go",
+            "ncbi",
+            "cellosaurus",
+            "prefixcommons",
+            "fairsharing",
+            "cropoct",
+            "bioportal",
+            "agroportal",
+            "ecoportal",
+            "rrid",
+            "bartoc",
+            "lov",
+            "re3data",
+        ]
         return self._get_prefix_key_str(
             "homepage",
-            (
-                "obofoundry",
-                "ols",
-                "miriam",
-                "n2t",
-                "wikidata",
-                "go",
-                "ncbi",
-                "cellosaurus",
-                "prefixcommons",
-                "fairsharing",
-                "cropoct",
-                "bioportal",
-                "agroportal",
-                "ecoportal",
-                "rrid",
-                "bartoc",
-                "lov",
-                "re3data",
-            ),
+            metaprefixes,
         )
 
     def get_keywords(self) -> list[str]:
@@ -1086,7 +1210,8 @@ class Resource(BaseModel):
         """Return the repository, if available."""
         if self.repository:
             return self.repository
-        return self._get_prefix_key_str("repository", ("obofoundry", "fairsharing"))
+        metaprefixes: Sequence[str] = ("obofoundry", "fairsharing")
+        return self._get_prefix_key_str("repository", metaprefixes)
 
     def get_contact(self) -> Attributable | None:
         """Get the contact, if available.
@@ -2737,11 +2862,13 @@ class Collection(BaseModel):
 
 
 class Context(BaseModel):
-    """A prescriptive context contains configuration for generating fit-for-purpose
+    """A prescriptive context.
+
+    A prescriptive context contains configuration for generating fit-for-purpose
     prefix maps to serve various communities based on the standard Bioregistry
     prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
     custom prefix maps, and other community-specific logic.
-    """  # noqa: D205,D400
+    """
 
     name: str = Field(
         ...,
@@ -2885,11 +3012,12 @@ def deduplicate_publications(publications: Iterable[Publication]) -> list[Public
     return [Publication(**record) for record in records_deduplicated]
 
 
-def main() -> None:
+@click.command()
+def generate_schema() -> None:
     """Dump the JSON schemata."""
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
 
 if __name__ == "__main__":
-    main()
+    generate_schema()
