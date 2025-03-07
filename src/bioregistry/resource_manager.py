@@ -899,7 +899,7 @@ class Manager:
             download_rdf=resource.get_download_rdf(),
             # Registry properties
             example=resource.get_example(),
-            example_extras=resource.example_extras,
+            example_extras=resource.get_example_extras(),
             example_decoys=resource.example_decoys,
             uri_format=resource.get_uri_format(),
             rdf_uri_format=resource.get_rdf_uri_format(),

@@ -421,7 +421,8 @@ class TestRegistry(unittest.TestCase):
     def test_extra_examples(self):
         """Test extra examples."""
         for prefix, entry in self.registry.items():
-            if not entry.example_extras:
+            example_extras = entry.get_example_extras()
+            if not example_extras:
                 continue
             primary_example = entry.get_example()
             with self.subTest(prefix=prefix):
@@ -429,7 +430,7 @@ class TestRegistry(unittest.TestCase):
                     primary_example, msg="entry has extra examples but not primary example"
                 )
 
-            for example in entry.example_extras:
+            for example in example_extras:
                 with self.subTest(prefix=prefix, identifier=example):
                     self.assertEqual(entry.standardize_identifier(example), example)
                     self.assertNotEqual(
@@ -438,8 +439,8 @@ class TestRegistry(unittest.TestCase):
                     self.assert_is_valid_identifier(prefix, example)
 
             self.assertEqual(
-                len(entry.example_extras),
-                len(set(entry.example_extras)),
+                len(example_extras),
+                len(set(example_extras)),
                 msg="duplicate extra examples",
             )
 
