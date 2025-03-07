@@ -11,6 +11,7 @@ from textwrap import dedent
 
 import curies
 import rdflib
+from curies.w3c import NCNAME_RE
 
 import bioregistry
 from bioregistry import Resource, manager
@@ -27,7 +28,6 @@ from bioregistry.schema.struct import (
 )
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm
-from curies.w3c import NCNAME_RE
 
 logger = logging.getLogger(__name__)
 
@@ -86,16 +86,20 @@ class TestRegistry(unittest.TestCase):
                             msg=f"Windows-style line return detected in {key} field of {prefix}",
                         )
 
-    def test_prefixes(self):
+    def test_prefixes(self) -> None:
         """Check prefixes aren't malformed."""
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertEqual(prefix, resource.prefix)
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
-                self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
                 self.assertNotIn(":", prefix)
                 self.assertRegex(prefix, NCNAME_RE)
+                if prefix.startswith("_"):
+                    self.assertTrue(
+                        prefix[1].isnumeric(),
+                        msg="Only start a prefix with an underscore if the first _actual_ character is a number",
+                    )
 
     def test_keys(self):
         """Check the required metadata is there."""
