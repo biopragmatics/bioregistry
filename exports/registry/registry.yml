@@ -1,4 +1,5 @@
-3dmet:
+_3dmet:
+  comment: Website has been down since 2023/2024
   deprecated: true
   description: 3DMET is a database collecting three-dimensional structures of natural
     metabolites.
@@ -21,7 +22,7 @@
     wikidata: P2796
   name: 3D Metabolites
   pattern: ^B\d{5}$
-  preferred_prefix: 3dmet
+  preferred_prefix: _3dmet
   providers:
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
@@ -44,8 +45,10 @@
     title: 'Three-dimensional structure database of natural metabolites (3DMET): a
       novel database of curated 3D structures'
     year: 2013
+  synonyms:
+  - 3dmet
   uri_format: http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=$1
-4dn.biosource:
+_4dn.biosource:
   contact:
     email: Job.Dekker@umassmed.edu
     name: Job Dekker
@@ -68,7 +71,7 @@
     prefixcommons: 4dn
   name: 4D Nucleome Data Portal Biosource
   pattern: ^4DN[A-Z]{2}[A-Z0-9]{7}$
-  preferred_prefix: 4dn.biosource
+  preferred_prefix: _4dn.biosource
   providers:
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
@@ -87,9 +90,10 @@
     year: 2017
   synonyms:
   - 4DN
+  - 4dn.biosource
   twitter: 4dn_dcic
   uri_format: https://data.4dnucleome.org/biosources/$1
-4dn.replicate:
+_4dn.replicate:
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -113,7 +117,9 @@
   example: 4DNESWX1J3QU
   homepage: https://data.4dnucleome.org/experiment-set-replicates/
   name: 4D Nucleome Data Portal Experiment Replicate
-  preferred_prefix: 4dn.replicate
+  preferred_prefix: _4dn.replicate
+  synonyms:
+  - 4dn.replicate
   uri_format: https://data.4dnucleome.org/experiment-set-replicates/$1
 aaindex:
   contact:
@@ -4814,6 +4820,7 @@ bioregistry:
     fairsharing: FAIRsharing.250a8c
   mastodon: bioregistry@fosstodon.org
   name: Bioregistry
+  pattern: ^[A-Za-z_][A-Za-z0-9\.\-_]*$
   preferred_prefix: bioregistry
   publications:
   - doi: 10.1101/2022.07.08.499378
@@ -14256,10 +14263,13 @@ dmba:
   description: A controlled vocabulary to support the study of transcription in the
     developing mouse brain
   download_obo: https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dmba.obo
+  download_owl: https://purl.brain-bican.org/ontology/dmbao/releases/2025-02-10/dmbao.owl
   example: '15567'
   homepage: https://developingmouse.brain-map.org/
   keywords:
   - ontology
+  mappings:
+    ols: dmba
   name: Developing Mouse Brain Atlas
   pattern: ^\d+$
   preferred_prefix: DMBA
@@ -14270,6 +14280,7 @@ dmba:
     name: DMBA from Biopragmatics
     uri_format: https://biopragmatics.github.io/providers/dmba/$1
   uri_format: https://purl.brain-bican.org/ontology/dmbao/DMBA_$1
+  version: '2025-02-10'
 doap:
   contact:
     email: edd@usefulinc.com
@@ -26366,7 +26377,6 @@ hp:
   - biomedical science
   - disease
   - genetics
-  - industry
   - obo
   - ontology
   - phenomics
@@ -26375,14 +26385,11 @@ hp:
   license: hpo
   logo: https://raw.githubusercontent.com/obophenotype/human-phenotype-ontology/master/logo/HPO-logo-black_small.png
   mappings:
-    aberowl: HP_O
     bartoc: '1937'
     biocontext: HPO
-    bioportal: HP_O
     fairsharing: FAIRsharing.kbtt7f
     hl7: 2.16.840.1.113883.6.339
     integbio: nbdc02559
-    lov: hpo
     miriam: hp
     n2t: hp
     obofoundry: hp
@@ -28510,7 +28517,7 @@ igsn:
   description: IGSN is a globally unique and persistent identifier for material samples
     and specimens.  IGSNs are obtained from IGSN e.V. Agents.
   example: AU124
-  homepage: http://www.geosamples.org/
+  homepage: https://ev.igsn.org/home
   keywords:
   - archaeology
   - citation
@@ -28528,7 +28535,7 @@ igsn:
     fairsharing: FAIRsharing.c7f365
     miriam: igsn
     n2t: igsn
-  name: International Geo Sample Number
+  name: International Generic Sample Number
   pattern: ^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$
   preferred_prefix: igsn
   publications:
@@ -33432,7 +33439,7 @@ maxo:
   version: '2024-07-29'
 mba:
   contact:
-    email: chinhda@alleninstitute.org
+    email: cellsemantics@gmail.com
     name: Allen Institute for Brain Science
   contributor:
     email: cthoyt@gmail.com
@@ -33442,12 +33449,14 @@ mba:
   description: A controlled vocabulary to support the study of transcription in the
     mouse brain
   download_obo: https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-mba.obo
+  download_owl: https://purl.brain-bican.org/ontology/mbao/releases/2025-02-10/mbao.owl
   example: '688'
   homepage: https://mouse.brain-map.org
   keywords:
   - ontology
   mappings:
     bioportal: ABA-AMB
+    ols: mba
   name: Mouse Brain Atlas
   pattern: ^\d+$
   preferred_prefix: MBA
@@ -33458,6 +33467,7 @@ mba:
     name: MBA from Biopragmatics
     uri_format: https://biopragmatics.github.io/providers/mba/$1
   uri_format: https://purl.brain-bican.org/ontology/mbao/MBA_$1
+  version: '2025-02-10'
 mcc:
   contact:
     email: usha@molecularconnections.com
@@ -39423,6 +39433,32 @@ nextprot.family:
   - NXPFA
   twitter: neXtProt_news
   uri_format: https://www.nextprot.org/term/FA-$1
+nfdi.core:
+  contact:
+    email: joerg.waitelonis@fiz-karlsruhe.de
+    github: joergwa
+    name: Jörg Waitelonis
+    orcid: 0000-0001-7192-7143
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A mid-level ontology for representing metadata related to NFDI resources,
+    including individuals, organizations, projects, data portals, and more
+  download_owl: https://github.com/ISE-FIZKarlsruhe/nfdicore/raw/refs/heads/main/nfdicore.owl
+  download_rdf: https://github.com/ISE-FIZKarlsruhe/nfdicore/raw/refs/heads/main/nfdicore.ttl
+  example: '0000106'
+  github_request_issue: 1448
+  homepage: https://ise-fizkarlsruhe.github.io/nfdicore/
+  keywords:
+  - ontology
+  license: CC0-1.0
+  name: NFDI Core Ontology
+  pattern: ^\d+$
+  preferred_prefix: nfdi.core
+  repository: https://github.com/ISE-FIZKarlsruhe/nfdicore
+  uri_format: https://nfdi.fiz-karlsruhe.de/ontology/NFDI_$1
 nfdi4chem.ontocape:
   comment: This ontology ecosystem is near unusable
   contributor:
@@ -46713,6 +46749,26 @@ pigqtldb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/pigqtldb:$1
   uri_format: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1
+pii:
+  appears_in:
+  - pubmed
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A combination of an ISBN and local unique identifier for articles and
+    other published works. Please see the [Wikipedia page](https://en.wikipedia.org/wiki/Publisher_Item_Identifier)
+    for a detailed explanation. Some PIIs are used as the local identifiers in DOIs,
+    such as https://doi.org/10.1136/S0003-4967(24)38620-0.
+  example: S0960-9822(11)01319-4
+  example_extras:
+  - B0-123-12345-1/12345-1
+  github_request_issue: 1447
+  homepage: https://en.wikipedia.org/wiki/Publisher_Item_Identifier
+  name: Publisher Item Identifier
+  pattern: ^((S\d{4}-\d{4}\(\d{2}\)\d{5})|(B\d-\d{3}-\d{5}-\d/\d{5}))-[\d|X]$
+  preferred_prefix: pii
 pina:
   contact:
     email: wujm@bjmu.edu.cn
@@ -56503,6 +56559,30 @@ sugarbind:
     year: 2016
   twitter: ISBSIB
   uri_format: http://sugarbind.expasy.org/$1
+sulo:
+  contact:
+    email: michel.dumontier@gmail.com
+    github: micheldumontier
+    name: Michel Dumontier
+    orcid: 0000-0003-4727-9435
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Simplified Upper Level Ontology (SULO) is ontology with a minimal
+    set of classes and relations to guide the development of a personal health knowledge
+    graph. [from homepage]
+  download_rdf: https://w3id.org/sulo/sulo.ttl
+  example: Capability
+  github_request_issue: 1446
+  homepage: https://aidava-dev.github.io/sulo/
+  license: CC0-1.0
+  name: Simplified Upper Level Ontology
+  preferred_prefix: sulo
+  rdf_uri_format: https://w3id.org/sulo/$1
+  repository: https://github.com/aidava-dev/sulo/
+  uri_format: https://w3id.org/sulo/$1
 supfam:
   contact:
     email: pandura@mrc-lmb.cam.ac.uk

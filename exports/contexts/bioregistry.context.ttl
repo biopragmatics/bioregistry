@@ -3,9 +3,9 @@
 
 [
   sh:declare
-    [ sh:prefix "3dmet" ; sh:namespace "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc="^^xsd:anyURI ; sh:pattern "^B\\d{5}$" ],
-    [ sh:prefix "4dn.biosource" ; sh:namespace "https://data.4dnucleome.org/biosources/"^^xsd:anyURI ; sh:pattern "^4DN[A-Z]{2}[A-Z0-9]{7}$" ],
-    [ sh:prefix "4dn.replicate" ; sh:namespace "https://data.4dnucleome.org/experiment-set-replicates/"^^xsd:anyURI  ],
+    [ sh:prefix "_3dmet" ; sh:namespace "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc="^^xsd:anyURI ; sh:pattern "^B\\d{5}$" ],
+    [ sh:prefix "_4dn.biosource" ; sh:namespace "https://data.4dnucleome.org/biosources/"^^xsd:anyURI ; sh:pattern "^4DN[A-Z]{2}[A-Z0-9]{7}$" ],
+    [ sh:prefix "_4dn.replicate" ; sh:namespace "https://data.4dnucleome.org/experiment-set-replicates/"^^xsd:anyURI  ],
     [ sh:prefix "aaindex" ; sh:namespace "http://www.genome.jp/dbget-bin/www_bget?aaindex:"^^xsd:anyURI  ],
     [ sh:prefix "aao" ; sh:namespace "http://purl.obolibrary.org/obo/AAO_"^^xsd:anyURI ; sh:pattern "^\\d{7}$" ],
     [ sh:prefix "abcam" ; sh:namespace "https://bioregistry.io/abcam:"^^xsd:anyURI  ],
@@ -136,7 +136,7 @@
     [ sh:prefix "biopixie" ; sh:namespace "http://avis.princeton.edu/pixie/viewgraph.php?graphID="^^xsd:anyURI  ],
     [ sh:prefix "bioportal" ; sh:namespace "http://bioportal.bioontology.org/ontologies/"^^xsd:anyURI ; sh:pattern "^(\\d+)|(\\w+)$" ],
     [ sh:prefix "bioproject" ; sh:namespace "https://www.ncbi.nlm.nih.gov/bioproject/?term="^^xsd:anyURI ; sh:pattern "^PRJ[DEN][A-Z]\\d+$" ],
-    [ sh:prefix "bioregistry" ; sh:namespace "https://bioregistry.io/registry/"^^xsd:anyURI  ],
+    [ sh:prefix "bioregistry" ; sh:namespace "https://bioregistry.io/registry/"^^xsd:anyURI ; sh:pattern "^[A-Za-z_][A-Za-z0-9\\.\\-_]*$" ],
     [ sh:prefix "bioregistry.collection" ; sh:namespace "https://bioregistry.io/collection/"^^xsd:anyURI ; sh:pattern "^\\d{7}$" ],
     [ sh:prefix "bioregistry.registry" ; sh:namespace "https://bioregistry.io/metaregistry/"^^xsd:anyURI  ],
     [ sh:prefix "bioregistry.schema" ; sh:namespace "https://bioregistry.io/schema/#"^^xsd:anyURI ; sh:pattern "^\\d{7}$" ],
@@ -1086,6 +1086,7 @@
     [ sh:prefix "nextdb" ; sh:namespace "http://nematode.lab.nig.ac.jp/db2/ShowCloneInfo.php?clone="^^xsd:anyURI ; sh:pattern "^[A-Za-z0-9]+$" ],
     [ sh:prefix "nextprot" ; sh:namespace "https://www.nextprot.org/db/entry/"^^xsd:anyURI ; sh:pattern "^NX_\\w+$" ],
     [ sh:prefix "nextprot.family" ; sh:namespace "https://www.nextprot.org/term/FA-"^^xsd:anyURI ; sh:pattern "^\\d+$" ],
+    [ sh:prefix "nfdi.core" ; sh:namespace "https://nfdi.fiz-karlsruhe.de/ontology/NFDI_"^^xsd:anyURI ; sh:pattern "^\\d+$" ],
     [ sh:prefix "ngbo" ; sh:namespace "http://purl.obolibrary.org/obo/NGBO_"^^xsd:anyURI ; sh:pattern "^\\d{7}$" ],
     [ sh:prefix "ngl" ; sh:namespace "https://genelab-data.ndc.nasa.gov/genelab/accession/"^^xsd:anyURI ; sh:pattern "^GLDS-\\d+$" ],
     [ sh:prefix "nhcdr" ; sh:namespace "https://stemcells.nindsgenetics.org?line="^^xsd:anyURI  ],
@@ -1534,6 +1535,7 @@
     [ sh:prefix "subtilist" ; sh:namespace "http://genolist.pasteur.fr/SubtiList/genome.cgi?external_query+"^^xsd:anyURI ; sh:pattern "^BG\\d+$" ],
     [ sh:prefix "subtiwiki" ; sh:namespace "http://www.subtiwiki.uni-goettingen.de/wiki/index.php/"^^xsd:anyURI ; sh:pattern "^BSU\\d{5}$" ],
     [ sh:prefix "sugarbind" ; sh:namespace "http://sugarbind.expasy.org/"^^xsd:anyURI ; sh:pattern "^[A-Za-z]+\\/[0-9]+$" ],
+    [ sh:prefix "sulo" ; sh:namespace "https://w3id.org/sulo/"^^xsd:anyURI  ],
     [ sh:prefix "supfam" ; sh:namespace "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid="^^xsd:anyURI ; sh:pattern "^\\w+$" ],
     [ sh:prefix "sweetrealm" ; sh:namespace "http://sweetontology.net/matrMineral/"^^xsd:anyURI  ],
     [ sh:prefix "swh" ; sh:namespace "https://archive.softwareheritage.org/browse/swh:"^^xsd:anyURI ; sh:pattern "^[1-9]:(cnt|dir|rel|rev|snp):[0-9a-f]+(;(origin|visit|anchor|path|lines)=\\S+)*$" ],

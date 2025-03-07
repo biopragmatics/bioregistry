@@ -1,18 +1,25 @@
 [
     {
         "pattern": "^B\\d{5}$",
-        "prefix": "3dmet",
+        "prefix": "_3dmet",
+        "prefix_synonyms": [
+            "3dmet"
+        ],
         "uri_prefix": "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=",
         "uri_prefix_synonyms": [
             "3DMET:",
             "3dmet:",
+            "_3DMET:",
+            "_3dmet:",
             "http://bio2rdf.org/3dmet:",
             "http://bioregistry.io/3dmet:",
+            "http://bioregistry.io/_3dmet:",
             "http://identifiers.org/3dmet/",
             "http://identifiers.org/3dmet:",
             "http://n2t.net/3dmet:",
             "https://bio2rdf.org/3dmet:",
             "https://bioregistry.io/3dmet:",
+            "https://bioregistry.io/_3dmet:",
             "https://identifiers.org/3dmet/",
             "https://identifiers.org/3dmet:",
             "https://n2t.net/3dmet:",
@@ -21,9 +28,10 @@
     },
     {
         "pattern": "^4DN[A-Z]{2}[A-Z0-9]{7}$",
-        "prefix": "4dn.biosource",
+        "prefix": "_4dn.biosource",
         "prefix_synonyms": [
-            "4DN"
+            "4DN",
+            "4dn.biosource"
         ],
         "uri_prefix": "https://data.4dnucleome.org/biosources/",
         "uri_prefix_synonyms": [
@@ -31,9 +39,12 @@
             "4DN:",
             "4dn.biosource:",
             "4dn:",
+            "_4DN.BIOSOURCE:",
+            "_4dn.biosource:",
             "http://bio2rdf.org/4dn:",
             "http://bioregistry.io/4DN:",
             "http://bioregistry.io/4dn.biosource:",
+            "http://bioregistry.io/_4dn.biosource:",
             "http://data.4dnucleome.org/",
             "http://data.4dnucleome.org/biosources/",
             "http://identifiers.org/4dn/",
@@ -41,20 +52,28 @@
             "https://bio2rdf.org/4dn:",
             "https://bioregistry.io/4DN:",
             "https://bioregistry.io/4dn.biosource:",
+            "https://bioregistry.io/_4dn.biosource:",
             "https://data.4dnucleome.org/",
             "https://identifiers.org/4dn/",
             "https://identifiers.org/4dn:"
         ]
     },
     {
-        "prefix": "4dn.replicate",
+        "prefix": "_4dn.replicate",
+        "prefix_synonyms": [
+            "4dn.replicate"
+        ],
         "uri_prefix": "https://data.4dnucleome.org/experiment-set-replicates/",
         "uri_prefix_synonyms": [
             "4DN.REPLICATE:",
             "4dn.replicate:",
+            "_4DN.REPLICATE:",
+            "_4dn.replicate:",
             "http://bioregistry.io/4dn.replicate:",
+            "http://bioregistry.io/_4dn.replicate:",
             "http://data.4dnucleome.org/experiment-set-replicates/",
-            "https://bioregistry.io/4dn.replicate:"
+            "https://bioregistry.io/4dn.replicate:",
+            "https://bioregistry.io/_4dn.replicate:"
         ]
     },
     {
@@ -2314,6 +2333,7 @@
         ]
     },
     {
+        "pattern": "^[A-Za-z_][A-Za-z0-9\\.\\-_]*$",
         "prefix": "bioregistry",
         "uri_prefix": "https://bioregistry.io/registry/",
         "uri_prefix_synonyms": [
@@ -19920,6 +19940,18 @@
         ]
     },
     {
+        "pattern": "^\\d+$",
+        "prefix": "nfdi.core",
+        "uri_prefix": "https://nfdi.fiz-karlsruhe.de/ontology/NFDI_",
+        "uri_prefix_synonyms": [
+            "NFDI.CORE:",
+            "http://bioregistry.io/nfdi.core:",
+            "http://nfdi.fiz-karlsruhe.de/ontology/NFDI_",
+            "https://bioregistry.io/nfdi.core:",
+            "nfdi.core:"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "ngbo",
         "uri_prefix": "http://purl.obolibrary.org/obo/NGBO_",
@@ -28096,6 +28128,17 @@
             "https://n2t.net/sugarbind:",
             "https://sugarbind.expasy.org/",
             "sugarbind:"
+        ]
+    },
+    {
+        "prefix": "sulo",
+        "uri_prefix": "https://w3id.org/sulo/",
+        "uri_prefix_synonyms": [
+            "SULO:",
+            "http://bioregistry.io/sulo:",
+            "http://w3id.org/sulo/",
+            "https://bioregistry.io/sulo:",
+            "sulo:"
         ]
     },
     {
