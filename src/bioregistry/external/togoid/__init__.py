@@ -23,6 +23,7 @@ ONTOLOGY_URL = (
     "https://raw.githubusercontent.com/togoid/togoid-config/main/ontology/togoid-ontology.ttl"
 )
 DATASET_URL = "https://raw.githubusercontent.com/togoid/togoid-config/main/config/dataset.yaml"
+DATASET_DESCRIPTIONS_URL = "https://api.togoid.dbcls.jp/config/descriptions"
 
 
 def _get_ontology() -> dict[str, str]:
@@ -34,6 +35,15 @@ def _get_ontology() -> dict[str, str]:
     return {
         str(prefix): namespace.removeprefix("http://togoid.dbcls.jp/ontology#")
         for namespace, prefix in rows
+    }
+
+
+def _get_descriptions() -> dict[str, str]:
+    res = requests.get(DATASET_DESCRIPTIONS_URL)
+    return {
+        key: entry["description_en"]
+        for key, entry in res.json().items()
+        if "description_en" in entry
     }
 
 
@@ -69,9 +79,12 @@ def get_togoid(*, force_download: bool = False, force_refresh: bool = False):
             return json.load(file)
 
     key_to_prefix = _get_ontology()
+    prefix_to_description = _get_descriptions()
     records = _get_dataset()
     rv = {
-        key_to_prefix[key]: record | {"prefix": key_to_prefix[key]}
+        key_to_prefix[key]: record
+        | {"prefix": key_to_prefix[key]}
+        | ({"description": prefix_to_description.get(key)} if key in prefix_to_description else {})
         for key, record in records.items()
     }
 
