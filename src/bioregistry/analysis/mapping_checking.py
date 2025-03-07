@@ -70,6 +70,13 @@ def get_scored_mappings_for_prefix(
             for mapped_registry, mapped_entry in mismatch_entries.items()
         )
 
+    # Define a reference metadata text by assuming that in the consensus registry
+    # in exports, the name and description of the ontology are not completely
+    # wrong and can serve as a reference point for comparison
+    reference_text = " ".join(
+        [compiled_entry.get(part, "") for part in ["name", "description", "homepage"]]
+    )
+
     mapping_entries = []
     for mapped_registry, mapped_prefix, details, known_mismatch in mappings_to_process:
         # In a handful of cases, an entry in the mappings dict doesn't correspond
@@ -94,7 +101,8 @@ def get_scored_mappings_for_prefix(
                 "prefix": prefix,
                 "mapped_registry": mapped_registry,
                 "mapped_prefix": mapped_prefix,
-                "text": mapping_text.replace("\n", " ").replace("  ", " "),
+                "reference_text": reference_text,
+                "external_text": mapping_text.replace("\n", " ").replace("  ", " "),
                 "parts_used": ",".join(parts_used),
                 "known_mismatch": known_mismatch,
             }
@@ -105,22 +113,16 @@ def get_scored_mappings_for_prefix(
 
     # Compute embeddings for each mapping entry (in a single list but the
     # calculation is done individually)
-    texts = [entry["text"] for entry in mapping_entries]
+    texts = [entry["external_text"] for entry in mapping_entries]
     embeddings = model.encode(texts, convert_to_tensor=True)
-
-    # Define a reference embedding by assuming that in the consensus registry
-    # in exports, the name and description of the ontology are not completely
-    # wrong and can serve as a reference point for comparison
-    reference_text = " ".join(
-        [compiled_entry.get(part, "") for part in ["name", "description", "homepage"]]
-    )
+    # Calculate embedding for the reference text
     ref_embedding = model.encode(reference_text, convert_to_tensor=True)
 
     # Compute cosine similarities between the reference embedding and each
     # mapping's embedding.
     cosine_scores = cos_sim(ref_embedding, embeddings)[0].tolist()
 
-    # Add similarity score to each entry in the mapping entries
+    # Add similarity score and reference text to each entry in the mapping entries
     for entry, score in zip(mapping_entries, cosine_scores):
         entry["similarity"] = score
 
