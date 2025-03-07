@@ -111,8 +111,9 @@ def get_scored_mappings_for_prefix(
     # Define a reference embedding by assuming that in the consensus registry
     # in exports, the name and description of the ontology are not completely
     # wrong and can serve as a reference point for comparison
-    reference_text = " ".join([compiled_entry.get(part, "")
-                               for part in ["name", "description", "homepage"]])
+    reference_text = " ".join(
+        [compiled_entry.get(part, "") for part in ["name", "description", "homepage"]]
+    )
     ref_embedding = model.encode(reference_text, convert_to_tensor=True)
 
     # Compute cosine similarities between the reference embedding and each
@@ -126,7 +127,7 @@ def get_scored_mappings_for_prefix(
     return mapping_entries
 
 
-def _get_mismatch_entries():
+def _get_mismatch_entries() -> dict[str, Any]:
     """Return a dictionary of entries corresponding to known mismatches."""
     external_registries = {}
     # Get functions to read processed external registry content
