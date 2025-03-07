@@ -62,8 +62,11 @@ that's required to go with a given prefix.
    or more characters for legibility.
 6. New prefixes must be lowercase. However, lexical variants can be stored as
    synonyms for reference (e.g., FBbt).
-7. New prefixes must validate against the following regular expression:
-   `^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$`
+7. New prefixes must validate against the regular expression for the W3C
+   definition of an
+   [`NCNAME`](https://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-NCName):
+   `^[A-Za-z_][A-Za-z0-9\\.\\-_]*$`. As an additional requirement, new prefixes
+   must not start with an underscore.
 8. New prefixes must pass all metadata checks, which are canonically defined by
    the quality assurance workflow.
 
@@ -72,6 +75,11 @@ be trivially applied to automatically imported prefixes. In some cases,
 historical prefixes can be modified to follow these requirements. For example,
 Identifiers.org's `ec-code` was renamed to `ec` while maintaining `ec-code` as a
 synonym.
+
+Some external registries' prefixes are not W3C conformant because they start
+with a number, such as `3dmet` in MIRIAM. If it's not clear what a better prefix
+might be, add an underscore to the start of the prefix and maintain the other
+prefix as a synonym.
 
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.

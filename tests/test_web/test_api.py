@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import itertools as itt
 import json
 import unittest
 from typing import ClassVar
@@ -109,13 +110,14 @@ class TestWeb(unittest.TestCase):
 
     def test_ui_resource_rdf(self):
         """Test the UI resource with content negotiation."""
-        prefix = "3dmet"
-        for accept, fmt in [
+        prefixes = ["3dmet", "_3dmet"]
+        fmts = [
             ("text/turtle", "turtle"),
             ("text/n3", "n3"),
             ("application/ld+json", "jsonld"),
-        ]:
-            with self.subTest(format=fmt):
+        ]
+        for prefix, (accept, fmt) in itt.product(prefixes, fmts):
+            with self.subTest(prefix=prefix, format=fmt):
                 res = self.client.get(f"/registry/{prefix}", headers={"Accept": accept})
                 self.assertEqual(
                     200, res.status_code, msg=f"Failed on {prefix} to accept {accept} ({fmt})"
@@ -133,7 +135,7 @@ class TestWeb(unittest.TestCase):
                     g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
                 )
                 self.assertEqual(1, len(results))
-                self.assertEqual(f"https://bioregistry.io/registry/{prefix}", str(results[0][0]))
+                self.assertEqual(f"https://bioregistry.io/registry/_3dmet", str(results[0][0]))
 
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
