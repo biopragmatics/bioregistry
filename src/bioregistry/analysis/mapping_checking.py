@@ -80,16 +80,12 @@ def get_scored_mappings_for_prefix(
         text_parts = []
         parts_used = []
         # Combine fields that are likely useful for an embedding
-        for field in ["name", "description", "homepage", "uri_format"]:
+        for field in ["name", "description", "homepage"]:
             if field in details:
                 text_parts.append(str(details[field]))
                 parts_used.append(field)
         # Skip if no details available at all
         if not text_parts:
-            continue
-        # Skip if only the URI format is available since this alone
-        # is not generally useful
-        if len(parts_used) == 1 and parts_used[0] == "uri_format":
             continue
         mapping_text = " ".join(text_parts)
 
@@ -115,7 +111,8 @@ def get_scored_mappings_for_prefix(
     # Define a reference embedding by assuming that in the consensus registry
     # in exports, the name and description of the ontology are not completely
     # wrong and can serve as a reference point for comparison
-    reference_text = " ".join([compiled_entry["name"], compiled_entry.get("description", "")])
+    reference_text = " ".join([compiled_entry.get(part, "")
+                               for part in ["name", "description", "homepage"]])
     ref_embedding = model.encode(reference_text, convert_to_tensor=True)
 
     # Compute cosine similarities between the reference embedding and each
