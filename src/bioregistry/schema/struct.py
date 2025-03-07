@@ -1361,21 +1361,17 @@ class Resource(BaseModel):
         example = self.get_example()
         if example:
             rv.append(example)
-        rv.extend(self.get_example_extras() or [])
+        rv.extend(self.get_example_extras())
         return rv
-    
-    def get_example_extras(self) -> list[str]:
-        """
-        Combine manually curated examples with provider-specific examples.
-        """
-        aggregated_examples = set(self.example_extras or [])
 
+    def get_example_extras(self) -> list[str]:
+        """Aggregate manually curated examples with provider-specific examples."""
+        rv = set(self.example_extras or [])
         if self.providers:
             for provider in self.providers:
                 if provider.example:
-                    aggregated_examples.add(provider.example)
-
-        return sorted(aggregated_examples)
+                    rv.add(provider.example)
+        return sorted(rv)
 
     def get_example_curie(self, use_preferred: bool = False) -> str | None:
         """Get an example CURIE, if an example identifier is available.
