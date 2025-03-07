@@ -27,6 +27,7 @@ from bioregistry.schema.struct import (
 )
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm
+from curies.w3c import NCNAME_RE
 
 logger = logging.getLogger(__name__)
 
@@ -94,6 +95,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
                 self.assertNotIn(":", prefix)
+                self.assertRegex(prefix, NCNAME_RE)
 
     def test_keys(self):
         """Check the required metadata is there."""
