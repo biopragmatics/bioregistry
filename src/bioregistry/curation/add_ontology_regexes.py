@@ -13,7 +13,7 @@ def _examples(resource):
     example = resource.get_example()
     if example:
         rv.append(example)
-    rv.extend(resource.get_example_extras() or [])
+    rv.extend(resource.get_example_extras())
     return rv
 
 
