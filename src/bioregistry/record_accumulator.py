@@ -10,7 +10,8 @@ from typing import (
 )
 
 import curies
-from curies import Converter
+from curies import Converter, Record
+from curies.w3c import NCNAME_RE
 
 from .schema.struct import Resource
 
@@ -109,6 +110,7 @@ def get_converter(
     blacklist: Optional[Collection[str]] = None,
     remapping: Optional[Mapping[str, str]] = None,
     rewiring: Optional[Mapping[str, str]] = None,
+    enforce_w3c: bool = False,
 ) -> Converter:
     """Generate a converter from resources."""
     records = _get_records(
@@ -124,7 +126,19 @@ def get_converter(
         converter = curies.remap_curie_prefixes(converter, remapping)
     if rewiring:
         converter = curies.rewire(converter, rewiring)
+    if enforce_w3c:
+        converter = _w3c_clean_converter(converter)
     return converter
+
+
+def _w3c_clean_record(record: Record) -> Record:
+    record.prefix_synonyms = [s for s in record.prefix_synonyms if NCNAME_RE.match(s)]
+    return record
+
+
+def _w3c_clean_converter(converter: Converter) -> Converter:
+    """Remove all non-W3C-compliant records in the converter."""
+    return Converter(_w3c_clean_record(record) for record in converter.records)
 
 
 def _get_records(  # noqa: C901
