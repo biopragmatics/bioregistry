@@ -2926,6 +2926,8 @@ class Context(BaseModel):
         ...,
         description="This is a list of canonical Bioregistry prefixes that should not be included in the context.",
     )
+    enforce_w3c: bool = Field(False, description="Should w3c prefix synonyms be enforced?")
+
 
 
 def _clean_pattern(rv: str) -> str:

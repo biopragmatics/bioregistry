@@ -726,6 +726,7 @@ class Manager:
         remapping: Mapping[str, str] | None = None,
         rewiring: Mapping[str, str] | None = None,
         blacklist: typing.Collection[str] | None = None,
+        enforce_w3c: bool = False,
     ) -> curies.Converter:
         """Get a converter from this manager.
 
@@ -745,6 +746,7 @@ class Manager:
         :param rewiring: A mapping from bioregistry prefixes to new URI prefixes.
         :param blacklist:
             A collection of prefixes to skip
+        :param enforce_w3c: Should non-W3C-compliant prefix synoynms be removed?
 
         :returns: A list of records for :class:`curies.Converter`
         """
@@ -764,6 +766,7 @@ class Manager:
             blacklist=blacklist,
             remapping=remapping,
             rewiring=rewiring,
+            enforce_w3c=enforce_w3c,
         )
         return converter
 
@@ -1667,6 +1670,7 @@ class Manager:
             rewiring=context.custom_prefix_map,
             blacklist=context.blacklist,
             include_prefixes=include_prefixes,
+            enforce_w3c=context.enforce_w3c,
         )
 
     def get_context_artifacts(
