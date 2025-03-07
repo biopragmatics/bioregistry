@@ -613,7 +613,8 @@
                 {% if providers %}
                 <p>
                     The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
-                    available for {{ name_pack.value }}. A guide for curating additional providers can be found
+                    available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below. 
+                    A guide for curating additional providers can be found
                     <a href="https://biopragmatics.github.io/bioregistry/curation/providers">here</a>.
                 </p>
                 {% else %}
@@ -651,7 +652,8 @@
                         <tr>
                             <td><code>{{ provider.code }}</code></td>
                             <td>{{ provider.name }}</td>
-                            {% set url = provider.resolve(example) %}
+                            {% set example_id = provider.example if provider.example else example %}
+                            {% set url = provider.resolve(example_id) %}
                             <td><a href="{{ url }}">{{ url }}</a></td>
                         </tr>
                     {% endfor %}
