@@ -49,7 +49,7 @@ def get_scored_mappings_for_prefix(
     raw_entry: Resource,
     compiled_entry: Mapping[str, Any],
     model: SentenceTransformer,
-    mismatch_entries: Mapping[str, Any] = None,
+    mismatch_entries: Mapping[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """Return scored mappings for a given prefix."""
     # If no mappings at all then we don't need to do anything
@@ -141,7 +141,7 @@ def _get_mismatch_entries() -> dict[str, Any]:
     # For all the curated mismatches, read the external registry involved
     # and extract the part relevant for the curated mismatch, then add it to
     # the raw registry for scoring
-    mismatch_entries = defaultdict(dict)
+    mismatch_entries: defaultdict[str, Any] = defaultdict(dict)
     # We compile content from external registries directly to be able
     # to access known mismatches that are otherwise not propagated to the
     # bioregistry
