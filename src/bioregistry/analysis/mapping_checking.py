@@ -40,6 +40,8 @@ OUTPUT_PATH = EXPORT_ANALYSES.joinpath("mapping_checking", "mapping_embedding_si
 
 #: see https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
 DEFAULT_MODEL = "all-MiniLM-L6-v2"
+#: Metadata fields to use for embedding
+METADATA_FIELDS = ["name", "description", "homepage"]
 
 
 def get_scored_mappings_for_prefix(
@@ -74,7 +76,7 @@ def get_scored_mappings_for_prefix(
     # in exports, the name and description of the ontology are not completely
     # wrong and can serve as a reference point for comparison
     reference_text = " ".join(
-        [compiled_entry.get(part, "") for part in ["name", "description", "homepage"]]
+        [compiled_entry.get(part, "") for part in METADATA_FIELDS]
     )
 
     mapping_entries = []
@@ -87,7 +89,7 @@ def get_scored_mappings_for_prefix(
         text_parts = []
         parts_used = []
         # Combine fields that are likely useful for an embedding
-        for field in ["name", "description", "homepage"]:
+        for field in METADATA_FIELDS:
             if field in details:
                 text_parts.append(str(details[field]))
                 parts_used.append(field)
