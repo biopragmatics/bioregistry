@@ -75,9 +75,7 @@ def get_scored_mappings_for_prefix(
     # Define a reference metadata text by assuming that in the consensus registry
     # in exports, the name and description of the ontology are not completely
     # wrong and can serve as a reference point for comparison
-    reference_text = " ".join(
-        [compiled_entry.get(part, "") for part in METADATA_FIELDS]
-    )
+    reference_text = " ".join([compiled_entry.get(part, "") for part in METADATA_FIELDS])
 
     mapping_entries = []
     for mapped_registry, mapped_prefix, details, known_mismatch in mappings_to_process:
