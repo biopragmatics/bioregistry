@@ -18,12 +18,13 @@ The following
 contains mappings reviewed by curators. When reviewing a mapping, curators
 should update the TSV file with the following information:
 
-- `prefix`: The Bioregistry prefix from which this is a mapping.
-- `mapped_registry`: The external registry to which this is a mapping.
-- `mapped_prefix`: The external registry's prefix to which this is a mapping.
-- `correct`: 1 if this is a correct mappings and 0 otherwise.
-- `orcid`: The ORCID of the curator reviewing the mapping.
-- `notes`: Any additional notes or comments regarding the mapping that was
+- `subject_id`: The CURIE corresponding to Bioregistry prefix from which this is a mapping. Even when a mapping is symmetric, as a convention, this should always be the Bioregistry prefix not the external one.
+- `predicate_modifier`: A modifier on the predicate, typically `Not` if the mapping is negative.
+- `predicate_id`: The CURIE representing the predicate of the mapping, for instance `skos:exactMatch`.
+- `object_id`: The CURIE corresponding to the external prefix to which this is a mapping.
+- `curator_id`: The ORCID of the curator reviewing the mapping represented as a CURIE.
+- `mapping_justification`: A CURIE representing how the mapping was created, typically `semapv:ManualMappingCuration` for manual curation/
+- `comments`: Any additional notes or comments regarding the mapping that was
   reviewed.
 
 The Bioregistry uses a machine learning-based approach to automatically identify
