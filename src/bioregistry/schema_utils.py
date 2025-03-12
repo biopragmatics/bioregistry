@@ -127,7 +127,7 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
-def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, Mapping[str]]]]) -> None:
+def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, Mapping[str, str]]]]) -> None:
     """Write mappings into the curated mappings file with appropriate sorting."""
     entries = []
     for bioregistry_prefix, external_mappings in mappings.items():
