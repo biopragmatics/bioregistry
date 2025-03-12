@@ -1,5 +1,6 @@
 """Utilities for interacting with data and the schema."""
 
+import csv
 import json
 import logging
 from collections import defaultdict
@@ -8,8 +9,6 @@ from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
 from typing import Optional, Union, cast
-
-import pandas as pd
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -80,23 +79,24 @@ def add_resource(resource: Resource) -> None:
 @lru_cache(maxsize=1)
 def read_mappings() -> Mapping[str, Mapping[str, Mapping[str, str]]]:
     """Read curated mappigs as a nested dict data structure."""
-    df = pd.read_csv(CURATED_MAPPINGS_PATH, sep="\t")
-    mappings = {}
-    for _, row in df.iterrows():
-        bioregistry_prefix = row["subject_id"].split(":", maxsplit=1)[1]
-        external_registry, external_prefix = row["object_id"].split(":", maxsplit=1)
-        if row["prediate_modifier"] == "Not" and row["predicate_id"] == "skos:exactMatch":
-            if bioregistry_prefix not in mappings:
-                mappings[bioregistry_prefix] = {}
-            if external_registry not in mappings[bioregistry_prefix]:
-                mappings[bioregistry_prefix][external_registry] = {}
-            mappings[bioregistry_prefix][external_registry][external_prefix] = {
-                "predicate_id": row["predicate_id"],
-                "predicate_modifier": row["predicate_modifier"],
-                "creator_id": row["creator_id"],
-                "mapping_jusitification": row["mapping_jusitification"],
-                "comment": row["comment"],
-            }
+    with open(CURATED_MAPPINGS_PATH, "r") as file:
+        reader = csv.DictReader(file, delimiter="\t")
+        mappings = {}
+        for entry in reader:
+            bioregistry_prefix = entry["subject_id"].split(":", maxsplit=1)[1]
+            external_registry, external_prefix = entry["object_id"].split(":", maxsplit=1)
+            if entry["predicate_modifier"] == "Not" and entry["predicate_id"] == "skos:exactMatch":
+                if bioregistry_prefix not in mappings:
+                    mappings[bioregistry_prefix] = {}
+                if external_registry not in mappings[bioregistry_prefix]:
+                    mappings[bioregistry_prefix][external_registry] = {}
+                mappings[bioregistry_prefix][external_registry][external_prefix] = {
+                    "predicate_id": entry["predicate_id"],
+                    "predicate_modifier": entry["predicate_modifier"],
+                    "creator_id": entry["creator_id"],
+                    "mapping_jusitification": entry["mapping_jusitification"],
+                    "comment": entry["comment"],
+                }
     return mappings
 
 
@@ -146,22 +146,14 @@ def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, str]]]) -> N
                         "comment": mapping_data["comment"],
                     }
                 )
-    df = pd.DataFrame(
+    entries = sorted(
         entries,
-        columns=[
-            "subject_id",
-            "predicate_modifier",
-            "predicate_id",
-            "object_id",
-            "creator_id",
-            "mapping_jusitification",
-            "comment",
-        ],
+        key=lambda x: (x["subject_id"], x["object_id"], x["predicate_id"], x["predicate_modifier"]),
     )
-    df.sort_values(
-        by=["subject_id", "object_id", "predicate_id", "predicate_modifier"], inplace=True
-    )
-    df.to_csv(CURATED_MAPPINGS_PATH, sep="\t", index=False)
+    with open(CURATED_MAPPINGS_PATH, "w") as file:
+        writer = csv.DictWriter(file, delimiter="\t", fieldnames=entries[0].keys())
+        writer.writeheader()
+        writer.writerows(entries)
 
 
 @lru_cache(maxsize=1)
