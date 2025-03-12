@@ -15,8 +15,6 @@ from curies import Reference
 from pydantic import BaseModel, Field
 from typing_extensions import Literal
 
-import pandas as pd
-
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
