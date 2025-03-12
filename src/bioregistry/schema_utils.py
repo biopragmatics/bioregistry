@@ -94,7 +94,7 @@ def read_mappings() -> Mapping[str, Mapping[str, Mapping[str, str]]]:
                     "predicate_id": entry["predicate_id"],
                     "predicate_modifier": entry["predicate_modifier"],
                     "creator_id": entry["creator_id"],
-                    "mapping_jusitification": entry["mapping_jusitification"],
+                    "mapping_justification": entry["mapping_justification"],
                     "comment": entry["comment"],
                 }
     return mappings
@@ -115,10 +115,8 @@ def read_mismatches() -> Mapping[str, Mapping[str, str]]:
                     if bioregistry_prefix not in mismatches:
                         mismatches[bioregistry_prefix] = {}
                     if external_registry not in mismatches[bioregistry_prefix]:
-                        mismatches[bioregistry_prefix][external_registry] = {}
-                    mismatches[bioregistry_prefix][external_registry][external_prefix] = (
-                        mapping_data["comment"]
-                    )
+                        mismatches[bioregistry_prefix][external_registry] = set()
+                    mismatches[bioregistry_prefix][external_registry].add(external_prefix)
     return mismatches
 
 
