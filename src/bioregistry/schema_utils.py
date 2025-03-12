@@ -9,12 +9,14 @@ from operator import attrgetter
 from pathlib import Path
 from typing import Optional, Union, cast
 
+import pandas as pd
+
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
     CONTEXTS_PATH,
+    CURATED_MAPPINGS_PATH,
     METAREGISTRY_PATH,
-    MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
 
@@ -76,10 +78,48 @@ def add_resource(resource: Resource) -> None:
 
 
 @lru_cache(maxsize=1)
+def read_mappings() -> Mapping[str, Mapping[str, Mapping[str, str]]]:
+    """Read curated mappigs as a nested dict data structure."""
+    df = pd.read_csv(CURATED_MAPPINGS_PATH, sep="\t")
+    mappings = {}
+    for _, row in df.iterrows():
+        bioregistry_prefix = row["subject_id"].split(":", maxsplit=1)[1]
+        external_registry, external_prefix = row["object_id"].split(":", maxsplit=1)
+        if row["prediate_modifier"] == "Not" and row["predicate_id"] == "skos:exactMatch":
+            if bioregistry_prefix not in mappings:
+                mappings[bioregistry_prefix] = {}
+            if external_registry not in mappings[bioregistry_prefix]:
+                mappings[bioregistry_prefix][external_registry] = {}
+            mappings[bioregistry_prefix][external_registry][external_prefix] = {
+                "predicate_id": row["predicate_id"],
+                "predicate_modifier": row["predicate_modifier"],
+                "creator_id": row["creator_id"],
+                "mapping_jusitification": row["mapping_jusitification"],
+                "comment": row["comment"],
+            }
+    return mappings
+
+
+@lru_cache(maxsize=1)
 def read_mismatches() -> Mapping[str, Mapping[str, str]]:
-    """Read the mismatches as JSON."""
-    with MISMATCH_PATH.open() as file:
-        return cast(Mapping[str, Mapping[str, str]], json.load(file))
+    """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
+    mappings = read_mappings()
+    mismatches = {}
+    for bioregistry_prefix, external_mappings in mappings.items():
+        for external_registry, external_prefixes in external_mappings.items():
+            for external_prefix, mapping_data in external_prefixes.items():
+                if (
+                    mapping_data["predicate_id"] == "skos:exactMatch"
+                    and mapping_data["predicate_modifier"] == "Not"
+                ):
+                    if bioregistry_prefix not in mismatches:
+                        mismatches[bioregistry_prefix] = {}
+                    if external_registry not in mismatches[bioregistry_prefix]:
+                        mismatches[bioregistry_prefix][external_registry] = {}
+                    mismatches[bioregistry_prefix][external_registry][external_prefix] = (
+                        mapping_data["comment"]
+                    )
+    return mismatches
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
@@ -89,16 +129,39 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
-def write_mismatches(mismatches: Mapping[str, Mapping[str, str]]) -> None:
-    """Read the mismatches as JSON."""
-    MISMATCH_PATH.write_text(
-        json.dumps(
-            mismatches,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, str]]]) -> None:
+    """Write mappings into the curated mappings file with appropriate sorting."""
+    entries = []
+    for bioregistry_prefix, external_mappings in mappings.items():
+        for external_registry, external_prefixes in external_mappings.items():
+            for external_prefix, mapping_data in external_prefixes.items():
+                entries.append(
+                    {
+                        "subject_id": f"bioregistry:{bioregistry_prefix}",
+                        "predicate_modifier": mapping_data["predicate_modifier"],
+                        "predicate_id": mapping_data["predicate_id"],
+                        "object_id": f"{external_registry}:{external_prefix}",
+                        "creator_id": mapping_data["creator_id"],
+                        "mapping_jusitification": mapping_data["mapping_jusitification"],
+                        "comment": mapping_data["comment"],
+                    }
+                )
+    df = pd.DataFrame(
+        entries,
+        columns=[
+            "subject_id",
+            "predicate_modifier",
+            "predicate_id",
+            "object_id",
+            "creator_id",
+            "mapping_jusitification",
+            "comment",
+        ],
     )
+    df.sort_values(
+        by=["subject_id", "object_id", "predicate_id", "predicate_modifier"], inplace=True
+    )
+    df.to_csv(CURATED_MAPPINGS_PATH, sep="\t", index=False)
 
 
 @lru_cache(maxsize=1)
