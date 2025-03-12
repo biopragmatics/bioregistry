@@ -140,7 +140,7 @@ def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, str]]]) -> N
                         "predicate_id": mapping_data["predicate_id"],
                         "object_id": f"{external_registry}:{external_prefix}",
                         "creator_id": mapping_data["creator_id"],
-                        "mapping_jusitification": mapping_data["mapping_jusitification"],
+                        "mapping_justification": mapping_data["mapping_justification"],
                         "comment": mapping_data["comment"],
                     }
                 )
@@ -149,7 +149,9 @@ def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, str]]]) -> N
         key=lambda x: (x["subject_id"], x["object_id"], x["predicate_id"], x["predicate_modifier"]),
     )
     with open(CURATED_MAPPINGS_PATH, "w") as file:
-        writer = csv.DictWriter(file, delimiter="\t", fieldnames=entries[0].keys())
+        writer = csv.DictWriter(
+            file, delimiter="\t", fieldnames=entries[0].keys(), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(entries)
 
