@@ -135,7 +135,7 @@ class Manager:
     metaregistry: dict[str, Registry]
     collections: dict[str, Collection]
     contexts: dict[str, Context]
-    mismatches: Mapping[str, Mapping[str, str]]
+    mismatches: Mapping[str, Mapping[str, set[str]]]
 
     def __init__(
         self,
@@ -143,7 +143,7 @@ class Manager:
         metaregistry: None | str | Path | Mapping[str, Registry] = None,
         collections: None | str | Path | Mapping[str, Collection] = None,
         contexts: None | str | Path | Mapping[str, Context] = None,
-        mismatches: Mapping[str, Mapping[str, str]] | None = None,
+        mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         base_url: str | None = None,
     ):
         """Instantiate a registry manager.
