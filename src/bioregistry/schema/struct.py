@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import click
 import itertools as itt
 import json
 import logging
@@ -26,6 +25,7 @@ from typing import (
     overload,
 )
 
+import click
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
@@ -2944,7 +2944,6 @@ class Context(BaseModel):
         description="This is a list of canonical Bioregistry prefixes that should not be included in the context.",
     )
     enforce_w3c: bool = Field(False, description="Should w3c prefix synonyms be enforced?")
-
 
 
 def _clean_pattern(rv: str) -> str:

@@ -8,9 +8,9 @@ from .app.cli import web
 from .compare import compare
 from .export.cli import export
 from .lint import lint
+from .schema.struct import generate_schema
 from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
-from .schema.struct import generate_schema
 
 __all__ = [
     "main",

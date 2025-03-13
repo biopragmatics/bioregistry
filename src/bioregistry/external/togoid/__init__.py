@@ -45,7 +45,6 @@ def _get_descriptions() -> dict[str, str]:
     def _sanitize_description(description: str) -> str:
         return description.replace("\r\n", " ").replace("\r", " ").replace("\n", " ")
 
-
     return {
         key: _sanitize_description(entry["description_en"])
         for key, entry in res.json().items()
