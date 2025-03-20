@@ -1,5 +1,7 @@
 """Functionality for parsing IRIs."""
 
+from __future__ import annotations
+
 from typing import Literal, Optional, overload
 
 from curies import ReferenceTuple

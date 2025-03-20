@@ -1,5 +1,7 @@
 """Constants and utilities for registries."""
 
+from __future__ import annotations
+
 import enum
 import os
 import pathlib
