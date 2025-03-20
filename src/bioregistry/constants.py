@@ -1,11 +1,13 @@
 """Constants and utilities for registries."""
 
+import enum
 import os
 import pathlib
 import re
 from typing import Union
 
 import pystow
+from curies import ReferenceTuple
 
 __all__ = [
     "BIOREGISTRY_MODULE",
@@ -16,6 +18,8 @@ __all__ = [
     "METAREGISTRY_PATH",
     "MISMATCH_PATH",
     "RAW_DIRECTORY",
+    "FailureReturnType",
+    "get_failure_return_type",
 ]
 
 PATTERN_KEY = "pattern"
@@ -154,7 +158,7 @@ EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
-MaybeCURIE = Union[tuple[str, str], tuple[None, None]]
+MaybeCURIE = Union[ReferenceTuple, tuple[None, None], None]
 
 DISALLOWED_EMAIL_PARTS = {
     "contact@",
@@ -163,3 +167,21 @@ DISALLOWED_EMAIL_PARTS = {
     "discuss@",
     "support@",
 }
+
+
+class FailureReturnType(enum.Enum):
+    """A flag for what to return when handling reference tuples."""
+
+    #: return a single None
+    single = enum.auto()
+    #: return a pair of None's
+    pair = enum.auto()
+
+
+def get_failure_return_type(frt: FailureReturnType) -> None | tuple[None, None]:
+    """Get the right failure return type."""
+    if frt == FailureReturnType.single:
+        return None
+    elif frt == FailureReturnType.pair:
+        return None, None
+    raise TypeError

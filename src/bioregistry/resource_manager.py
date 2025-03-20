@@ -21,6 +21,7 @@ from typing import (
 )
 
 import curies
+from curies import ReferenceTuple
 from pydantic import BaseModel
 
 from .constants import (
@@ -34,7 +35,9 @@ from .constants import (
     LINK_PRIORITY,
     METAREGISTRY_PATH,
     SHIELDS_BASE,
+    FailureReturnType,
     MaybeCURIE,
+    get_failure_return_type,
 )
 from .license_standardizer import standardize_license
 from .schema import (
@@ -54,7 +57,7 @@ from .schema_utils import (
     read_mismatches,
     write_registry,
 )
-from .utils import NormDict, _norm, curie_to_str
+from .utils import NormDict, _norm
 
 __all__ = [
     "Manager",
@@ -111,13 +114,6 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
     return norm_synonym_to_key
 
 
-def _safe_curie_to_str(prefix: str | None, identifier: str | None) -> str | None:
-    """Combine a prefix and identifier into a CURIE string, if available."""
-    if prefix is None or identifier is None:
-        return None
-    return curie_to_str(prefix, identifier)
-
-
 class MappingsDiff(BaseModel):
     """A difference between two mappings sets."""
 
@@ -136,6 +132,8 @@ class Manager:
     collections: dict[str, Collection]
     contexts: dict[str, Context]
     mismatches: Mapping[str, Mapping[str, str]]
+
+    _converter: curies.Converter | None
 
     def __init__(
         self,
@@ -296,58 +294,86 @@ class Manager:
             return None
         return self.registry.get(norm_prefix)
 
-    def parse_uri(self, uri: str, *, use_preferred: bool = False) -> MaybeCURIE:
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_uri(
+        self,
+        uri: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.single],
+    ) -> ReferenceTuple | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_uri(
+        self,
+        uri: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+    ) -> ReferenceTuple | tuple[None, None]: ...
+
+    def parse_uri(
+        self,
+        uri: str,
+        *,
+        use_preferred: bool = False,
+        on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+    ) -> ReferenceTuple | None | tuple[None, None]:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
         :param use_preferred:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
+        :param on_failure_return_type: whether to return a single None or a pair of None's
+
         :return: A pair of prefix/identifier, if can be parsed
 
         IRI from an OBO PURL:
 
         >>> from bioregistry import manager
         >>> manager.parse_uri("http://purl.obolibrary.org/obo/DRON_00023232")
-        ('dron', '00023232')
+        ReferenceTuple('dron', '00023232')
 
         IRI from the OLS:
 
         >>> manager.parse_uri(
         ...     "https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180"
         ... )  # noqa:E501
-        ('ecao', '0107180')
+        ReferenceTuple('ecao', '0107180')
 
         IRI from native provider
 
         >>> manager.parse_uri("https://www.alzforum.org/mutations/1234")
-        ('alzforum.mutation', '1234')
+        ReferenceTuple('alzforum.mutation', '1234')
 
         Dog food:
 
         >>> manager.parse_uri("https://bioregistry.io/DRON:00023232")
-        ('dron', '00023232')
+        ReferenceTuple('dron', '00023232')
 
         IRIs from Identifiers.org (https and http, colon and slash):
 
         >>> manager.parse_uri("https://identifiers.org/aop.relationships:5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
         >>> manager.parse_uri("http://identifiers.org/aop.relationships:5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
         >>> manager.parse_uri("https://identifiers.org/aop.relationships/5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
         >>> manager.parse_uri("http://identifiers.org/aop.relationships/5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
 
         IRI from N2T
         >>> manager.parse_uri("https://n2t.net/aop.relationships:5")
-        ('aop.relationships', '5')
+        ReferenceTuple('aop.relationships', '5')
 
         Handle either HTTP or HTTPS:
         >>> manager.parse_uri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-        ('neuronames', '268')
+        ReferenceTuple('neuronames', '268')
         >>> manager.parse_uri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
-        ('neuronames', '268')
+        ReferenceTuple('neuronames', '268')
 
         If you provide your own prefix map, you should pre-process the prefix map with:
 
@@ -360,14 +386,18 @@ class Manager:
         Corner cases:
 
         >>> manager.parse_uri("https://omim.org/MIM:PS214100")
-        ('omim.ps', '214100')
+        ReferenceTuple('omim.ps', '214100')
         """
-        prefix, identifier = self.converter.parse_uri(uri)
-        if prefix is None or identifier is None:
-            return None, None
-        if use_preferred:
-            prefix = self.get_preferred_prefix(prefix) or prefix
-        return prefix, identifier
+        reference = self.converter.parse_uri(uri, return_none=True)
+        if reference is not None:
+            return self._make_preferred(reference, use_preferred=use_preferred)
+        return get_failure_return_type(on_failure_return_type)
+
+    def _make_preferred(self, t: ReferenceTuple, use_preferred: bool = False) -> ReferenceTuple:
+        if not use_preferred:
+            return t
+        prefix = self.get_preferred_prefix(t.prefix) or t.prefix
+        return ReferenceTuple(prefix, t.identifier)
 
     def compress(self, uri: str, *, use_preferred: bool = False) -> str | None:
         """Parse a compact uniform resource identifier (CURIE) from a URI.
@@ -420,23 +450,102 @@ class Manager:
         >>> manager.compress("http://purl.obolibrary.org/obo/DRON_00023232", use_preferred=True)
         'DRON:00023232'
         """
-        prefix, identifier = self.parse_uri(uri, use_preferred=use_preferred)
-        return _safe_curie_to_str(prefix, identifier)
+        reference = self.parse_uri(
+            uri, use_preferred=use_preferred, on_failure_return_type=FailureReturnType.single
+        )
+        if reference is None:
+            return None
+        return reference.curie
 
-    def parse_curie(self, curie: str, *, sep: str = ":", use_preferred: bool = False) -> MaybeCURIE:
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ":",
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.single] = FailureReturnType.single,
+    ) -> ReferenceTuple | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ":",
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+    ) -> ReferenceTuple | tuple[None, None]: ...
+
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ":",
+        use_preferred: bool = False,
+        on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+    ) -> MaybeCURIE:
         """Parse a CURIE and normalize its prefix and identifier."""
         try:
             prefix, identifier = curie.split(sep, 1)
         except ValueError:
-            return None, None
-        return self.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
+            return get_failure_return_type(on_failure_return_type)
+
+        if on_failure_return_type == FailureReturnType.single:
+            return self.normalize_parsed_curie(
+                prefix,
+                identifier,
+                use_preferred=use_preferred,
+                on_failure_return_type=FailureReturnType.single,
+            )
+        elif on_failure_return_type == FailureReturnType.pair:
+            return self.normalize_parsed_curie(
+                prefix,
+                identifier,
+                use_preferred=use_preferred,
+                on_failure_return_type=FailureReturnType.pair,
+            )
+        else:
+            raise TypeError
 
     def normalize_curie(
         self, curie: str, *, sep: str = ":", use_preferred: bool = False
     ) -> str | None:
         """Normalize the prefix and identifier in the CURIE."""
-        prefix, identifier = self.parse_curie(curie, sep=sep, use_preferred=use_preferred)
-        return _safe_curie_to_str(prefix, identifier)
+        reference = self.parse_curie(
+            curie,
+            sep=sep,
+            use_preferred=use_preferred,
+            on_failure_return_type=FailureReturnType.single,
+        )
+        if reference is None:
+            return None
+        else:
+            return reference.curie
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_parsed_curie(
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair],
+    ) -> ReferenceTuple | tuple[None, None]: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_parsed_curie(
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.single],
+    ) -> ReferenceTuple | None: ...
 
     def normalize_parsed_curie(
         self,
@@ -444,6 +553,7 @@ class Manager:
         identifier: str,
         *,
         use_preferred: bool = False,
+        on_failure_return_type: FailureReturnType = FailureReturnType.pair,
     ) -> MaybeCURIE:
         """Normalize a prefix/identifier pair.
 
@@ -452,17 +562,18 @@ class Manager:
         :param use_preferred:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
+        :param on_failure_return_type: whether to return a single None or a pair of None's
         :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
             prefixes or bananas, all lowercase.
         """
         norm_prefix = self.normalize_prefix(prefix)
         if not norm_prefix:
-            return None, None
+            return get_failure_return_type(on_failure_return_type)
         resource = self.registry[norm_prefix]
         norm_identifier = resource.standardize_identifier(identifier)
         if use_preferred:
             norm_prefix = resource.get_preferred_prefix() or norm_prefix
-        return norm_prefix, norm_identifier
+        return ReferenceTuple(norm_prefix, norm_identifier)
 
     @cache  # noqa:B019
     def get_registry_map(self, metaprefix: str) -> dict[str, str]:
@@ -1109,10 +1220,12 @@ class Manager:
         :param identifier: The identifier in the CURIE
         :return: A link to the Bioregistry resolver
         """
-        curie = _safe_curie_to_str(*self.normalize_parsed_curie(prefix, identifier))
-        if curie is None:
+        reference = self.normalize_parsed_curie(
+            prefix, identifier, on_failure_return_type=FailureReturnType.single
+        )
+        if reference is None:
             return None
-        return f"{self.base_url}/{curie}"
+        return f"{self.base_url}/{reference.curie}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> str | None:
         """Get the default URL for the given CURIE.
@@ -1433,19 +1546,19 @@ class Manager:
         'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
         """
         if identifier is None:
-            _prefix, _identifier = self.parse_curie(prefix)
-            if _prefix is None or _identifier is None:
+            reference = self.parse_curie(prefix, on_failure_return_type=FailureReturnType.single)
+            if reference is None:
                 return None
         else:
-            _prefix, _identifier = prefix, identifier
+            reference = ReferenceTuple(prefix, identifier)
 
-        providers = self.get_providers(_prefix, _identifier)
+        providers = self.get_providers(reference.prefix, reference.identifier)
         if provider is not None:
             if provider not in providers:
                 return None
             return providers[provider]
-        if prefix_map and _prefix in prefix_map:
-            providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
+        if prefix_map and reference.prefix in prefix_map:
+            providers["custom"] = f"{prefix_map[reference.prefix]}{reference.identifier}"
         for key in priority or LINK_PRIORITY:
             if not use_bioregistry_io and key == "bioregistry":
                 continue
