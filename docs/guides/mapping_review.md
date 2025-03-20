@@ -31,7 +31,7 @@ should update the TSV file with the following information:
   CURIE.
 - `mapping_justification`: A CURIE representing how the mapping was created,
   typically `semapv:ManualMappingCuration` for manual curation/
-- `comments`: Any additional notes or comments regarding the mapping that was
+- `comment`: Any additional notes or comments regarding the mapping that was
   reviewed.
 
 The Bioregistry uses a machine learning-based approach to automatically identify
