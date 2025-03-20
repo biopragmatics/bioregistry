@@ -146,16 +146,17 @@ def _get_mismatch_entries() -> dict[str, Any]:
     # to access known mismatches that are otherwise not propagated to the
     # bioregistry
     for bioregistry_prefix, mismatch_data in mismatches.items():
-        for external_registry, external_prefix in mismatch_data.items():
-            if external_registry not in external_registries:
-                external_registries[external_registry] = external_getters[external_registry](
-                    force_download=False
-                )
-            external_entry = external_registries[external_registry].get(external_prefix)
-            if not external_entry:
-                continue
-            external_entry["prefix"] = external_prefix
-            mismatch_entries[bioregistry_prefix][external_registry] = external_entry
+        for external_registry, external_prefixes in mismatch_data.items():
+            for external_prefix in external_prefixes:
+                if external_registry not in external_registries:
+                    external_registries[external_registry] = external_getters[external_registry](
+                        force_download=False
+                    )
+                external_entry = external_registries[external_registry].get(external_prefix)
+                if not external_entry:
+                    continue
+                external_entry["prefix"] = external_prefix
+                mismatch_entries[bioregistry_prefix][external_registry] = external_entry
     return dict(mismatch_entries)
 
 

@@ -1,5 +1,6 @@
 """Utilities for interacting with data and the schema."""
 
+import csv
 import json
 import logging
 from collections import defaultdict
@@ -7,14 +8,14 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Optional, Union, cast
+from typing import Dict, Optional, Union
 
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
     CONTEXTS_PATH,
+    CURATED_MAPPINGS_PATH,
     METAREGISTRY_PATH,
-    MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
 
@@ -76,10 +77,47 @@ def add_resource(resource: Resource) -> None:
 
 
 @lru_cache(maxsize=1)
-def read_mismatches() -> Mapping[str, Mapping[str, str]]:
-    """Read the mismatches as JSON."""
-    with MISMATCH_PATH.open() as file:
-        return cast(Mapping[str, Mapping[str, str]], json.load(file))
+def read_mappings() -> Dict[str, Dict[str, Dict[str, Dict[str, str]]]]:
+    """Read curated mappigs as a nested dict data structure."""
+    with open(CURATED_MAPPINGS_PATH, "r") as file:
+        reader = csv.DictReader(file, delimiter="\t")
+        mappings: Dict[str, Dict[str, Dict[str, Dict[str, str]]]] = {}
+        for entry in reader:
+            bioregistry_prefix = entry["subject_id"].split(":", maxsplit=1)[1]
+            external_registry, external_prefix = entry["object_id"].split(":", maxsplit=1)
+            if entry["predicate_modifier"] == "Not" and entry["predicate_id"] == "skos:exactMatch":
+                if bioregistry_prefix not in mappings:
+                    mappings[bioregistry_prefix] = {}
+                if external_registry not in mappings[bioregistry_prefix]:
+                    mappings[bioregistry_prefix][external_registry] = {}
+                mappings[bioregistry_prefix][external_registry][external_prefix] = {
+                    "predicate_id": entry["predicate_id"],
+                    "predicate_modifier": entry["predicate_modifier"],
+                    "creator_id": entry["creator_id"],
+                    "mapping_justification": entry["mapping_justification"],
+                    "comment": entry["comment"],
+                }
+    return mappings
+
+
+@lru_cache(maxsize=1)
+def read_mismatches() -> Dict[str, Dict[str, set[str]]]:
+    """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
+    mappings = read_mappings()
+    mismatches: Dict[str, Dict[str, set[str]]] = {}
+    for bioregistry_prefix, external_mappings in mappings.items():
+        for external_registry, external_prefixes in external_mappings.items():
+            for external_prefix, mapping_data in external_prefixes.items():
+                if (
+                    mapping_data["predicate_id"] == "skos:exactMatch"
+                    and mapping_data["predicate_modifier"] == "Not"
+                ):
+                    if bioregistry_prefix not in mismatches:
+                        mismatches[bioregistry_prefix] = {}
+                    if external_registry not in mismatches[bioregistry_prefix]:
+                        mismatches[bioregistry_prefix][external_registry] = set()
+                    mismatches[bioregistry_prefix][external_registry].add(external_prefix)
+    return mismatches
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
@@ -89,16 +127,33 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
-def write_mismatches(mismatches: Mapping[str, Mapping[str, str]]) -> None:
-    """Read the mismatches as JSON."""
-    MISMATCH_PATH.write_text(
-        json.dumps(
-            mismatches,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, Mapping[str, str]]]]) -> None:
+    """Write mappings into the curated mappings file with appropriate sorting."""
+    entries = []
+    for bioregistry_prefix, external_mappings in mappings.items():
+        for external_registry, external_prefixes in external_mappings.items():
+            for external_prefix, mapping_data in external_prefixes.items():
+                entries.append(
+                    {
+                        "subject_id": f"bioregistry:{bioregistry_prefix}",
+                        "predicate_modifier": mapping_data["predicate_modifier"],
+                        "predicate_id": mapping_data["predicate_id"],
+                        "object_id": f"{external_registry}:{external_prefix}",
+                        "creator_id": mapping_data["creator_id"],
+                        "mapping_justification": mapping_data["mapping_justification"],
+                        "comment": mapping_data["comment"],
+                    }
+                )
+    entries = sorted(
+        entries,
+        key=lambda x: (x["subject_id"], x["object_id"], x["predicate_id"], x["predicate_modifier"]),
     )
+    with open(CURATED_MAPPINGS_PATH, "w") as file:
+        writer = csv.DictWriter(
+            file, delimiter="\t", fieldnames=entries[0].keys(), lineterminator="\n"
+        )
+        writer.writeheader()
+        writer.writerows(entries)
 
 
 @lru_cache(maxsize=1)
