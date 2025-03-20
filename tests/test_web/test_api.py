@@ -135,7 +135,7 @@ class TestWeb(unittest.TestCase):
                     g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
                 )
                 self.assertEqual(1, len(results))
-                self.assertEqual(f"https://bioregistry.io/registry/_3dmet", str(results[0][0]))
+                self.assertEqual("https://bioregistry.io/registry/_3dmet", str(results[0][0]))
 
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
