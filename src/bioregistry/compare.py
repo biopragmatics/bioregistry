@@ -668,7 +668,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
     return fig, ax
 
 
-def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
+def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair:
     """Plot a histogram of how many xrefs each entry has."""
     import matplotlib.pyplot as plt
     import pandas as pd

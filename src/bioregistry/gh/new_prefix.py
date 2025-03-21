@@ -275,7 +275,7 @@ def make_title(prefixes: Sequence[str]) -> str:
 )
 @force_option
 @verbose_option
-def main(dry: bool, github: bool, force: bool, issue: int | None = None):
+def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
     """Run the automatic curator."""
     click.echo(
         f"Running workflow with issue: {issue}"
