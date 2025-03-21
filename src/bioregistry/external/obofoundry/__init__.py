@@ -72,12 +72,14 @@ def _get_contact(record) -> Person | None:
     contact = record.get("contact")
     if not contact:
         return None
-
+    github = contact.get("github")
+    if github == "ghost":
+        return None
     return Person.model_validate(
         {
             "email": record.get("contact", {}).get("email"),
             "name": record.get("contact", {}).get("label"),
-            "github": record.get("contact", {}).get("github"),
+            "github": github,
             "orcid": record.get("contact", {}).get("orcid"),
         }
     )
@@ -130,14 +132,19 @@ def _process(record: dict[str, Any]) -> Record:
         record.pop(key, None)
 
     prefix = record["id"].lower()
+    contact = _get_contact(record)
+    status = record["activity_status"]
+    if status == "active" and contact is None:
+        status = "orphaned"
+
     rv = {
         "prefix": prefix,
         "name": record["title"],
         "description": record.get("description"),
-        "status": record["activity_status"],
+        "status": status,
         "homepage": record.get("homepage"),
         "preferred_prefix": record.get("preferredPrefix"),
-        "contact": _get_contact(record),
+        "contact": contact,
         "license": _get_license(record),
         "repository": record.get("repository"),
         "domain": record.get("domain"),
