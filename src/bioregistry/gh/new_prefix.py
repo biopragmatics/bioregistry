@@ -312,12 +312,12 @@ def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None
           ::set-output name=BR_TITLE::{title}
         """
         )
-        return sys.exit(0)
+        raise sys.exit(0)
     elif dry:
         click.secho(
             f"skipping making branch {branch_name}, committing, pushing, and PRing", fg="yellow"
         )
-        return sys.exit(0)
+        raise sys.exit(0)
 
     click.secho("creating and switching to branch", fg="green")
     click.echo(github_client.branch(branch_name))
