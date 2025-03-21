@@ -14,6 +14,8 @@ def _main() -> None:
     registry = bioregistry.read_registry()
     for prefix, resource in registry.items():
         name = bioregistry.get_name(prefix)
+        if not name:
+            continue
         for suffix in suffixes:
             if name.lower().endswith(f" {suffix}"):
                 resource.name = name[: -len(suffix) - 1]

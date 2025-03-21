@@ -82,7 +82,7 @@ def main(google_sheet: str | None, google_sheet_gid: int, path: str | None) -> N
         df = pd.read_csv(path, sep="," if path.endswith("csv") else "\t")
     else:
         click.secho("no sheet provided", fg="red")
-        return sys.exit(1)
+        raise sys.exit(1)
 
     _bulk_import_df(df)
 

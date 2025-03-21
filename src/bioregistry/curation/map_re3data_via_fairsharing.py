@@ -15,7 +15,10 @@ def _main() -> None:
     for fairsharing_id, prefix in fairsharing_invmap.items():
         re3data_id = fairsharing_to_re3data.get(fairsharing_id)
         if re3data_id and re3data_id not in re3data_map:
-            manager.registry[prefix].mappings["re3data"] = re3data_id
+            if manager.registry[prefix].mappings is None:
+                manager.registry[prefix].mappings = {"re3data": re3data_id}
+            else:
+                manager.registry[prefix].mappings["re3data"] = re3data_id  # type:ignore
     manager.write_registry()
 
 

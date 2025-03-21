@@ -18,11 +18,11 @@ def main() -> None:
     for prefix, entry in registry.items():
         # if 'pattern' not in entry:  # TODO remove this later
         #     continue
-        if "example" in entry:
+        if entry.example:
             continue
         example = _get_example(prefix)
         if example is not None:
-            entry["example"] = example
+            entry.example = example
     write_registry(registry)
 
 

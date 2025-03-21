@@ -19,7 +19,10 @@ def _main() -> None:
     for wikidata_id, prefix in wikidata_database_to_bioregistry.items():
         bartoc_id = wikidata_database_to_bartoc.get(wikidata_id)
         if bartoc_id:
-            manager.registry[prefix].mappings["bartoc"] = bartoc_id
+            if manager.registry[prefix].mappings is None:
+                manager.registry[prefix].mappings = {"bartoc": bartoc_id}
+            else:
+                manager.registry[prefix].mappings["bartoc"] = bartoc_id  # type:ignore
     manager.write_registry()
 
 

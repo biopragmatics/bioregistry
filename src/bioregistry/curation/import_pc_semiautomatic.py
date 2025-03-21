@@ -46,7 +46,12 @@ def main() -> None:
         dead_prefixes = set()
     click.echo(f"see {dead_stuff_path}")
 
-    uniprot_pattern = bioregistry.get_resource("uniprot").get_pattern_re()
+    uniprot_resource = bioregistry.get_resource("uniprot")
+    if uniprot_resource is None:
+        raise RuntimeError
+    uniprot_pattern = uniprot_resource.get_pattern_re()
+    if uniprot_pattern is None:
+        raise RuntimeError
     pc = get_prefixcommons(force_download=False)
     prefixes = manager.get_registry_invmap("prefixcommons")
     c = 0
