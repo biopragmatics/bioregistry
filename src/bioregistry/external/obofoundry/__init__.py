@@ -13,7 +13,7 @@ from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
-from bioregistry.external.rrr import (
+from bioregistry.external.models import (
     Artifact,
     ArtifactType,
     License,
