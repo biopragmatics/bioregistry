@@ -15,10 +15,12 @@ and use the `--google-sheet` option like in:
     $ python -m bioregistry.curation.bulk_google_import --google-sheet 10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4
 """
 
+from __future__ import annotations
+
 import sys
 from collections import defaultdict
 from collections.abc import Mapping
-from typing import Any, Optional
+from typing import Any
 
 import click
 import pandas as pd
@@ -56,7 +58,7 @@ def _resource_from_row(row: Mapping[str, Any]) -> Resource:
     return Resource(**kwargs)
 
 
-def _bulk_import_df(df: pd.DataFrame):
+def _bulk_import_df(df: pd.DataFrame) -> None:
     for _, row in df.iterrows():
         resource = _resource_from_row(row.to_dict())
         try:
@@ -70,7 +72,7 @@ def _bulk_import_df(df: pd.DataFrame):
 @click.option("--google-sheet")
 @click.option("--google-sheet-gid", type=int, default=0)
 @click.option("--path")
-def main(google_sheet: Optional[str], google_sheet_gid: int, path: Optional[str]):
+def main(google_sheet: str | None, google_sheet_gid: int, path: str | None) -> None:
     """Import prefixes from a google sheet in bulk."""
     # google_sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
     if google_sheet:

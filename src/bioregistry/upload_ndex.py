@@ -1,5 +1,7 @@
 """Generate a small knowledge graph relating entities."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import click
@@ -119,7 +121,7 @@ def upload():
     )
 
 
-def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
+def make_registry_node(cx: ndex2.NiceCXBuilder, metaprefix: str) -> int:
     """Generate a CX node for a registry."""
     node = cx.add_node(
         name=bioregistry.get_registry_name(metaprefix),
@@ -134,7 +136,7 @@ def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
     return node
 
 
-def make_resource_node(cx: "ndex2.NiceCXBuilder", prefix: str) -> int:
+def make_resource_node(cx: ndex2.NiceCXBuilder, prefix: str) -> int:
     """Generate a CX node for a resource."""
     node = cx.add_node(
         name=bioregistry.get_name(prefix),

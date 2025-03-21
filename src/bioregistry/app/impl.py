@@ -1,10 +1,12 @@
 """App builder interface."""
 
+from __future__ import annotations
+
 import json
 from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
@@ -105,8 +107,8 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 
 
 def get_app(
-    manager: Optional["bioregistry.Manager"] = None,
-    config: Union[None, str, Path, Mapping[str, Any]] = None,
+    manager: bioregistry.Manager | None = None,
+    config: None | str | Path | Mapping[str, Any] = None,
     first_party: bool = True,
     return_flask: bool = False,
 ):

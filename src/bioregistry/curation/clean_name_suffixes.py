@@ -9,7 +9,7 @@ suffixes = ["id", "accession"]
 
 
 @click.command()
-def _main():
+def _main() -> None:
     rows = []
     registry = bioregistry.read_registry()
     for prefix, resource in registry.items():

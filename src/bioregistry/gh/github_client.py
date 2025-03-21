@@ -1,11 +1,13 @@
 """Update the bioregistry from GitHub Issue templates."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
 import os
 from collections.abc import Iterable, Mapping
 from subprocess import CalledProcessError, check_output
-from typing import Any, Optional
+from typing import Any
 
 import more_itertools
 import pystow
@@ -21,7 +23,7 @@ def has_token() -> bool:
     return pystow.get_config("github", "token") is not None
 
 
-def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) -> set[int]:
+def get_issues_with_pr(issue_ids: Iterable[int], token: str | None = None) -> set[int]:
     """Get the set of issues that are already closed by a pull request."""
     pulls = list_pulls(owner="bioregistry", repo="bioregistry", token=token)
     return {
@@ -31,7 +33,7 @@ def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) ->
     }
 
 
-def get_headers(token: Optional[str] = None):
+def get_headers(token: str | None = None):
     """Get github headers."""
     headers = {
         "Accept": "application/vnd.github.v3+json",
@@ -42,9 +44,7 @@ def get_headers(token: Optional[str] = None):
     return headers
 
 
-def requests_get(
-    path: str, token: Optional[str] = None, params: Optional[Mapping[str, Any]] = None
-):
+def requests_get(path: str, token: str | None = None, params: Mapping[str, Any] | None = None):
     """Send a get request to the GitHub API."""
     path = path.lstrip("/")
     return requests.get(
@@ -58,7 +58,7 @@ def list_pulls(
     *,
     owner: str,
     repo: str,
-    token: Optional[str] = None,
+    token: str | None = None,
 ):
     """List pull requests.
 
@@ -75,8 +75,8 @@ def open_bioregistry_pull_request(
     *,
     title: str,
     head: str,
-    body: Optional[str] = None,
-    token: Optional[str] = None,
+    body: str | None = None,
+    token: str | None = None,
 ):
     """Open a pull request to the Bioregistry via :func:`open_pull_request`."""
     return open_pull_request(
@@ -97,8 +97,8 @@ def open_pull_request(
     title: str,
     head: str,
     base: str,
-    body: Optional[str] = None,
-    token: Optional[str] = None,
+    body: str | None = None,
+    token: str | None = None,
 ):
     """Open a pull request.
 
@@ -128,8 +128,8 @@ def open_pull_request(
 
 def get_bioregistry_form_data(
     labels: Iterable[str],
-    token: Optional[str] = None,
-    remapping: Optional[Mapping[str, str]] = None,
+    token: str | None = None,
+    remapping: Mapping[str, str] | None = None,
 ) -> Mapping[int, dict[str, str]]:
     """Get parsed form data from issues on the Bioregistry matching the given labels via :func:get_form_data`.
 
@@ -149,8 +149,8 @@ def get_form_data(
     owner: str,
     repo: str,
     labels: Iterable[str],
-    token: Optional[str] = None,
-    remapping: Optional[Mapping[str, str]] = None,
+    token: str | None = None,
+    remapping: Mapping[str, str] | None = None,
 ) -> Mapping[int, dict[str, str]]:
     """Get parsed form data from issues matching the given labels.
 
@@ -186,8 +186,8 @@ def get_form_data_for_issue(
     owner: str,
     repo: str,
     issue: int,
-    token: Optional[str] = None,
-    remapping: Optional[Mapping[str, str]] = None,
+    token: str | None = None,
+    remapping: Mapping[str, str] | None = None,
 ) -> dict[str, str]:
     """Get parsed form data from an issue.
 
@@ -236,17 +236,17 @@ def parse_body(body: str) -> dict[str, Any]:
     return rv
 
 
-def status_porcelain() -> Optional[str]:
+def status_porcelain() -> str | None:
     """Return if the current directory has any uncommitted stuff."""
     return _git("status", "--porcelain")
 
 
-def push(*args) -> Optional[str]:
+def push(*args) -> str | None:
     """Push the git repo."""
     return _git("push", *args)
 
 
-def branch(name: str) -> Optional[str]:
+def branch(name: str) -> str | None:
     """Create a new branch and switch to it.
 
     :param name: The name of the new branch
@@ -257,7 +257,7 @@ def branch(name: str) -> Optional[str]:
     return _git("checkout", "-b", name)
 
 
-def home() -> Optional[str]:
+def home() -> str | None:
     """Return to the main branch.
 
     :returns: The message from the command
@@ -265,12 +265,12 @@ def home() -> Optional[str]:
     return _git("checkout", MAIN_BRANCH)
 
 
-def commit(message: str, *args: str) -> Optional[str]:
+def commit(message: str, *args: str) -> str | None:
     """Make a commit with the following message."""
     return _git("commit", *args, "-m", message)
 
 
-def commit_all(message: str) -> Optional[str]:
+def commit_all(message: str) -> str | None:
     """Make a commit with the following message.
 
     :param message: The message to go with the commit.
@@ -281,7 +281,7 @@ def commit_all(message: str) -> Optional[str]:
     return _git("commit", "-m", message, "-a")
 
 
-def _git(*args: str) -> Optional[str]:
+def _git(*args: str) -> str | None:
     with open(os.devnull, "w") as devnull:
         try:
             ret = check_output(  # noqa: S603

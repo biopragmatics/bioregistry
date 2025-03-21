@@ -7,7 +7,7 @@ import bioregistry
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the script."""
     r = dict(bioregistry.read_registry())
     for prefix, resource in r.items():

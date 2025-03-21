@@ -4,7 +4,7 @@ from bioregistry import manager
 from bioregistry.external.re3data import get_re3data
 
 
-def _main():
+def _main() -> None:
     fairsharing_invmap = manager.get_registry_invmap("fairsharing")
     re3data_map = manager.get_registry_map("re3data")
     fairsharing_to_re3data = {

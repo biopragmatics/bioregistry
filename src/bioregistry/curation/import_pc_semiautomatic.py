@@ -37,7 +37,7 @@ def norm(s: str) -> str:
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run semi-automated import of Prefix Commons."""
     dead_stuff_path = BIOREGISTRY_MODULE.join(name="pc_dead_prefixes.json")
     if dead_stuff_path.is_file():

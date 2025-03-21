@@ -1,7 +1,8 @@
 """Web command for running the app."""
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Optional
 
 import click
 from more_click import host_option, port_option, verbose_option, with_gunicorn_option
@@ -37,13 +38,13 @@ def web(
     host: str,
     port: str,
     with_gunicorn: bool,
-    workers: Optional[int],
-    registry: Optional[Path],
-    metaregistry: Optional[Path],
-    collections: Optional[Path],
-    contexts: Optional[Path],
-    config: Optional[Path],
-    base_url: Optional[str],
+    workers: int | None,
+    registry: Path | None,
+    metaregistry: Path | None,
+    collections: Path | None,
+    contexts: Path | None,
+    config: Path | None,
+    base_url: str | None,
 ) -> None:
     """Run the web application."""
     import uvicorn

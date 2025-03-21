@@ -1,5 +1,7 @@
 """Utilities for publications."""
 
+from __future__ import annotations
+
 import typing
 from collections import Counter
 from collections.abc import Iterable
@@ -31,7 +33,7 @@ def get_all_publications() -> list[Publication]:
     )
 
 
-def get_publications_df() -> "pandas.DataFrame":
+def get_publications_df() -> pandas.DataFrame:
     """Get a dataframe with all publications."""
     import pandas
 

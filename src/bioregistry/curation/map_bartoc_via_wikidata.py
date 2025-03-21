@@ -5,7 +5,7 @@ from bioregistry import manager
 from bioregistry.external.bartoc import get_bartoc
 
 
-def _main():
+def _main() -> None:
     wikidata_database_to_bioregistry = {
         resource.wikidata["database"]: resource.prefix
         for resource in bioregistry.resources()

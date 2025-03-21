@@ -18,7 +18,7 @@ from ..utils import get_hexdigests
 
 
 @click.command()
-def export_yaml():
+def export_yaml() -> None:
     """Export the registry as YAML."""
     pre_digests = get_hexdigests()
 
