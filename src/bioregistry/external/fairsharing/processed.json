@@ -2514,17 +2514,20 @@
     ]
   },
   "FAIRsharing.457f35": {
-    "abbreviation": "PDB Identifier",
+    "abbreviation": "PDB ID",
     "contact": {
       "email": "harukin@protein.osaka-u.ac.jp",
       "name": "Haruki Nakamura",
       "orcid": "0000-0001-6690-5863"
     },
-    "description": "Identifier schema for Protein Data Bank",
+    "description": "PDB IDs are identifiers used at all levels of the structural hierarchy for entries in the Protein Data Bank using the prefix “pdb” followed by a 4-character alphanumeric identifier. These identifiers are used to specifically select, visualize, locate a specific instance of a ligand, and/or an amino acid in a protein chain in a particular PDB entry.",
     "domains": [
+      "Molecular structure",
+      "Protein structure",
+      "Omics data analysis",
       "Centrally registered identifier"
     ],
-    "homepage": "https://registry.identifiers.org/registry/pdb",
+    "homepage": "https://www.rcsb.org/docs/general-help/identifiers-in-pdb",
     "name": "Protein Data Bank Identifier",
     "publications": [
       {
@@ -2535,7 +2538,9 @@
       }
     ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Structural Biology",
+      "Omics"
     ]
   },
   "FAIRsharing.46rwe6": {
@@ -2693,12 +2698,13 @@
       "name": "Philippe Rocca-Serra",
       "orcid": "0000-0001-9853-5668"
     },
-    "description": "The Metabolomics Standards Initiative Ontology (MSIO) aims to support metabolomic experimental annotations for mass spectrometry (MS) and nuclear magnetic resonance (NMR) spectroscopy techniques to identify, measure and quantify small molecules known as metabolites. MSIO covers metabolite profiling, targeted or untargeted, and tracer based applications. MSIO leverages other existing resource terms from other ontology collections such as CHEBI, DUO, NMRCV, OBI, and STATO.",
+    "description": "The Metabolomics Standards Initiative Ontology (MSIO) aims to support metabolomic experimental annotations for mass spectrometry (MS) and nuclear magnetic resonance (NMR) spectroscopy techniques to identify, measure and quantify small molecules known as metabolites. MSIO covers metabolite profiling, targeted or untargeted, and tracer based applications.",
     "domains": [
       "Mass spectrum",
       "Experimental measurement",
       "Annotation",
       "Nuclear Magnetic Resonance (NMR) spectroscopy",
+      "Functional magnetic resonance imaging",
       "Omics data analysis"
     ],
     "homepage": "https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO",
@@ -3045,7 +3051,7 @@
       "Phenotype"
     ],
     "homepage": "http://sourceforge.net/apps/trac/pombase/wiki/FissionYeastPhenotypeOntology",
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "name": "Fission Yeast Phenotype Ontology",
     "publications": [
       {
@@ -3055,6 +3061,7 @@
         "year": 2013
       }
     ],
+    "repository": "https://github.com/pombase/fypo",
     "subjects": [
       "Genetics",
       "Phylogenetics",
@@ -4162,6 +4169,8 @@
     "domains": [
       "Mass spectrum",
       "Experimental measurement",
+      "Reagent",
+      "Gas chromatography",
       "Mass spectrometry assay"
     ],
     "homepage": "https://github.com/HUPO-PSI/xlmod-CV",
@@ -7377,8 +7386,7 @@
     "repository": "https://github.com/edamontology/edamontology",
     "subjects": [
       "Bioinformatics",
-      "Life Science",
-      "Subject Agnostic"
+      "Life Science"
     ],
     "twitter": "edamontology"
   },
@@ -8389,6 +8397,7 @@
         "year": 2012
       }
     ],
+    "repository": "https://github.com/tdwg/rs.tdwg.org/blob/master/README-2021-02-01.md",
     "subjects": [
       "Biodiversity"
     ],
@@ -8598,7 +8607,8 @@
     "description": "PCL is an ontology created to record claims of potential new cell types derived from single cell data analysis, where there is no additional evidence that supports the addition of corresponding classically defined cell type to the Cell Ontology (CL). PCL hence provides a place for terms that might not be ready for CL.",
     "domains": [
       "Annotation",
-      "Cell"
+      "Cell",
+      "Sequencing"
     ],
     "homepage": "https://github.com/obophenotype/provisional_cell_ontology",
     "license": "CC-BY-4.0",
@@ -8608,13 +8618,24 @@
         "doi": "10.1101/2021.10.10.463703",
         "title": "Brain Data Standards Ontology: A data-driven ontology of transcriptomically defined cell types in the primary motor cortex",
         "year": 2021
+      },
+      {
+        "doi": "10.1038/s41597-022-01886-2",
+        "title": "Brain Data Standards - A method for building data-driven cell-type ontologies",
+        "year": 2023
       }
     ],
     "repository": "https://github.com/obophenotype/provisional_cell_ontology/issues",
     "subjects": [
       "Anatomy",
       "Life Science",
-      "Cell Biology"
+      "Transcriptomics",
+      "Cell Biology",
+      "Phenomics",
+      "Omics"
+    ],
+    "user_defined_tags": [
+      "single-cell multimodal omics"
     ]
   },
   "FAIRsharing.bg7bb6": {
@@ -8964,8 +8985,8 @@
     "abbreviation": "IGSN (Generic)",
     "description": "An IGSN ID is a globally unique and persistent identifier for physical samples in all scientific fields. An IGSN ID can be applied to an individual sample, an aggregation of samples, or to a feature-of-interest (the real-world feature that the sample is taken from). From 2021, IGSN IDs are functionally DOIs and are registered with metadata encoded in the DataCite Metadata Schema. The IGSN ID, previously known as an \"International GeoSample Number\", naming schema has changed, to reflects the expanding scope and utilization as a partnership agreement between DataCite and the IGSN e.V.",
     "domains": [
-      "Citation",
-      "Resource metadata"
+      "Centrally registered identifier",
+      "Biological sample"
     ],
     "homepage": "https://www.igsn.org",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline",
@@ -9009,8 +9030,7 @@
       "Omics"
     ],
     "user_defined_tags": [
-      "physical samples",
-      "persistent identifier"
+      "physical samples"
     ]
   },
   "FAIRsharing.c7f4d7": {
@@ -9624,7 +9644,7 @@
       "Experimental measurement",
       "Unit"
     ],
-    "homepage": "http://qudt.org/",
+    "homepage": "https://qudt.org/",
     "license": "CC-BY-4.0",
     "name": "Quantities, Units, Dimensions and Types",
     "repository": "https://github.com/qudt/qudt-public-repo/blob/master/docs/2020-04-28%20Intro%20to%20QUDT.pdf",
@@ -11255,7 +11275,8 @@
     "description": "The Research Organization Registry (ROR) ID schema is the specification of the identifier for institutions in ROR. ROR is a global, community-led registry of open persistent identifiers for research organizations. ROR makes it easy for anyone or any system to disambiguate institution names and connect research organizations to researchers and research outputs.",
     "domains": [
       "Citation",
-      "Data retrieval"
+      "Data retrieval",
+      "Centrally registered identifier"
     ],
     "homepage": "https://ror.readme.io/docs/ror-identifier-pattern",
     "license": "CC0-1.0",
@@ -11373,6 +11394,7 @@
     "homepage": "https://arks.org/",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline",
     "name": "Archival Resource Key Identifier",
+    "repository": "https://github.com/arks-org",
     "subjects": [
       "Data Management",
       "Subject Agnostic"
@@ -12213,15 +12235,28 @@
   },
   "FAIRsharing.hFLKCn": {
     "abbreviation": "DOI",
+    "contact": {
+      "email": "jonathanmtclark@gmail.com",
+      "name": "Jonathan Clark",
+      "orcid": "0000-0001-9551-9662"
+    },
     "description": "The digital object identifier (DOI) system originated in a joint initiative of three trade associations in the publishing industry (International Publishers Association; International Association of Scientific, Technical and Medical Publishers; Association of American Publishers). The system was announced at the Frankfurt Book Fair 1997. The International DOI® Foundation (IDF) was created to develop and manage the DOI system, also in 1997. The DOI system was adopted as International Standard ISO 26324 in 2012. The DOI system implements the Handle System and adds a number of new features. The DOI system provides an infrastructure for persistent unique identification of objects of any type. The DOI system is designed to work over the Internet. A DOI name is permanently assigned to an object to provide a resolvable persistent network link to current information about that object, including where the object, or information about it, can be found on the Internet. While information about an object can change over time, its DOI name will not change. A DOI name can be resolved within the DOI system to values of one or more types of data relating to the object identified by that DOI name, such as a URL, an e-mail address, other identifiers and descriptive metadata. The DOI system enables the construction of automated services and transactions. Applications of the DOI system include but are not limited to managing information and documentation location and access; managing metadata; facilitating electronic transactions; persistent unique identification of any form of any data; and commercial and non-commercial transactions. The content of an object associated with a DOI name is described unambiguously by DOI metadata, based on a structured extensible data model that enables the object to be associated with metadata of any desired degree of precision and granularity to support description and services. The data model supports interoperability between DOI applications. The scope of the DOI system is not defined by reference to the type of content (format, etc.) of the referent, but by reference to the functionalities it provides and the context of use. The DOI system provides, within networks of DOI applications, for unique identification, persistence, resolution, metadata and semantic interoperability.",
     "domains": [
+      "Publication",
       "Centrally registered identifier"
     ],
     "homepage": "https://www.doi.org",
     "name": "Digital Object Identifier",
+    "publications": [
+      {
+        "doi": "10.1000/292",
+        "title": "DOI URI Scheme",
+        "year": 2024
+      }
+    ],
     "subjects": [
       "Knowledge and Information Systems",
-      "Omics"
+      "Subject Agnostic"
     ]
   },
   "FAIRsharing.hakg7c": {
@@ -13155,8 +13190,8 @@
     "abbreviation": "HP",
     "description": "The Human Phenotype Ontology has been developed to provide a structured and controlled vocabulary for the phenotypic features encountered in human hereditary and other disease. The goal is to provide resource for the computational analysis of the human phenome, with a focus on monogenic diseases listed in the Online Mendelian Inheritance in Man (OMIM) and Orphanet databases, for which annotations are also provided.",
     "domains": [
-      "Phenotype",
-      "Disease"
+      "Disease phenotype",
+      "Disorder"
     ],
     "homepage": "https://hpo.jax.org/",
     "license": "hpo",
@@ -13197,7 +13232,9 @@
       "Genetics",
       "Phenomics",
       "Biomedical Science",
-      "Preclinical Studies"
+      "Omics",
+      "Preclinical Studies",
+      "Pathology"
     ],
     "twitter": "hp_ontology"
   },
@@ -13251,7 +13288,7 @@
       "Pseudogene",
       "Gene"
     ],
-    "homepage": "http://bioportal.bioontology.org/ontologies/1135",
+    "homepage": "https://bioportal.bioontology.org/ontologies/pseudo",
     "name": "Pseudogene",
     "publications": [
       {
@@ -15238,7 +15275,7 @@
       "name": "Adrien Coulet",
       "orcid": "0000-0002-1466-062X"
     },
-    "description": "The PHArmacogenomic RElationships Ontology (or PHARE) proposes concepts and roles to represent relationships of pharmacogenomics interest. Please note that this ontology has not been updated in BioPortal since 2012, and we cannot find a homepage for the resource. Please get in touch if you have any information.",
+    "description": "The PHArmacogenomic RElationships Ontology (or PHARE) proposes concepts and roles to represent relationships of pharmacogenomics interest. Please note that this ontology has not been updated in BioPortal since 2012.",
     "domains": [
       "Chemical entity",
       "Molecular interaction",
@@ -15441,7 +15478,7 @@
       "Disease course",
       "Infectious disease"
     ],
-    "homepage": "http://brd.bsvgateway.org/disease",
+    "homepage": "https://bioportal.bioontology.org/ontologies/ABD",
     "name": "Biosurveillance Resource Directory Disease Ontology",
     "publications": [
       {
@@ -17449,7 +17486,8 @@
     "abbreviation": "BFO",
     "description": "The Basic Formal Ontology (BFO, also known via its ISO label as 'ISO/IEC 21838-2:2021 Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)') is an ontology that is conformant to the requirements specified for top-level ontologies in ISO/IEC 21838‑1. BFO is a small, upper level ontology that is designed for use in supporting information retrieval, analysis and integration in scientific and other domains. BFO is a genuine upper ontology. Thus it does not contain physical, chemical, biological or other terms which would properly fall within the coverage domains of the special sciences. BFO is used by more than 250 ontology-driven endeavors throughout the world. ",
     "domains": [
-      "Data retrieval"
+      "Data retrieval",
+      "Data identity and mapping"
     ],
     "homepage": "https://www.iso.org/standard/74572.html",
     "license": "CC-BY-4.0",
@@ -17457,6 +17495,9 @@
     "repository": "https://github.com/bfo-ontology/BFO",
     "subjects": [
       "Subject Agnostic"
+    ],
+    "user_defined_tags": [
+      "Interoperability"
     ]
   },
   "FAIRsharing.wd68xv": {

@@ -24539,7 +24539,7 @@
             "renderProtectedLanding": false,
             "resourceHomeUrl": "http://www.chemspider.com/",
             "sampleId": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
-            "urlPattern": "http://legacy.chemspider.com/inchikey={$id}"
+            "urlPattern": "https://www.chemspider.com/search?params={$id}"
           },
           {
             "authHelpDescription": null,
@@ -32234,41 +32234,6 @@
             "deprecationDate": null,
             "deprecationOfflineDate": null,
             "deprecationStatement": null,
-            "description": "Protein modifications ontology through BioPortal",
-            "id": 202,
-            "institution": {
-              "description": "The goal of the National Center for Biomedical Ontology is to support biomedical researchers in their knowledge-intensive work, by providing online tools and a Web portal enabling them to access, review, and integrate disparate ontological resources in all aspects of biomedical investigation and clinical practice. A major focus of our work involves the use of biomedical ontologies to aid in the management and analysis of data derived from complex experiments.",
-              "homeUrl": "https://ncbo.bioontology.org/",
-              "id": 5,
-              "location": {
-                "countryCode": "US",
-                "countryName": "United States"
-              },
-              "name": "National Center for Biomedical Ontology, Stanford",
-              "rorId": null
-            },
-            "location": {
-              "countryCode": "US",
-              "countryName": "United States"
-            },
-            "mirId": "MIR:00100239",
-            "name": "Protein modifications ontology through BioPortal",
-            "official": false,
-            "protectedUrls": false,
-            "providerCode": "bptl",
-            "renderDeprecatedLanding": false,
-            "renderProtectedLanding": false,
-            "resourceHomeUrl": "http://bioportal.bioontology.org/ontologies/PSIMOD",
-            "sampleId": "00001",
-            "urlPattern": "http://bioportal.bioontology.org/ontologies/1041?p=terms&conceptid=MOD:{$id}"
-          },
-          {
-            "authHelpDescription": null,
-            "authHelpUrl": null,
-            "deprecated": false,
-            "deprecationDate": null,
-            "deprecationOfflineDate": null,
-            "deprecationStatement": null,
             "description": "Protein modifications ontology via the Ontology Lookup Service (OLS)",
             "id": 201,
             "institution": {
@@ -32296,6 +32261,41 @@
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/mod",
             "sampleId": "00001",
             "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/mod/terms?obo_id=MOD:{$id}"
+          },
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "Protein modifications ontology through BioPortal",
+            "id": 202,
+            "institution": {
+              "description": "The goal of the National Center for Biomedical Ontology is to support biomedical researchers in their knowledge-intensive work, by providing online tools and a Web portal enabling them to access, review, and integrate disparate ontological resources in all aspects of biomedical investigation and clinical practice. A major focus of our work involves the use of biomedical ontologies to aid in the management and analysis of data derived from complex experiments.",
+              "homeUrl": "https://ncbo.bioontology.org/",
+              "id": 5,
+              "location": {
+                "countryCode": "US",
+                "countryName": "United States"
+              },
+              "name": "National Center for Biomedical Ontology, Stanford",
+              "rorId": null
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            },
+            "mirId": "MIR:00100239",
+            "name": "Protein modifications ontology through BioPortal",
+            "official": false,
+            "protectedUrls": false,
+            "providerCode": "bptl",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "http://bioportal.bioontology.org/ontologies/PSIMOD",
+            "sampleId": "00001",
+            "urlPattern": "http://bioportal.bioontology.org/ontologies/PSIMOD/MOD:{$id}"
           }
         ],
         "sampleId": "00001",
@@ -33771,7 +33771,7 @@
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://nanbyodata.jp/",
-            "sampleId": "NANDO:1200031",
+            "sampleId": "1200031",
             "urlPattern": "https://nanbyodata.jp/disease/NANDO:{$id}"
           }
         ],
@@ -35776,10 +35776,10 @@
         "id": 402,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000127",
-        "modified": "2019-06-11T14:16:06.780+00:00",
+        "modified": "2025-03-11T13:36:44.101+00:00",
         "name": "Ontology for Biomedical Investigations",
         "namespaceEmbeddedInLui": false,
-        "pattern": "(^OBI:\\d{7}$)|(^OBI_\\d{7}$)",
+        "pattern": "^OBI_\\d{7}$",
         "prefix": "obi",
         "renderDeprecatedLanding": false,
         "resources": [
@@ -35850,8 +35850,8 @@
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "http://bioportal.bioontology.org/ontologies/OBI",
-            "sampleId": "OBI:0000070",
-            "urlPattern": "http://purl.bioontology.org/ontology/OBI/{$id}"
+            "sampleId": "OBI_0000070",
+            "urlPattern": "https://bioportal.bioontology.org/ontologies/OBI?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F{$id}"
           },
           {
             "authHelpDescription": null,
@@ -35885,8 +35885,8 @@
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/ols4/ontologies/obi",
-            "sampleId": "OBI:0000070",
-            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/obi/terms?obo_id={$id}"
+            "sampleId": "OBI_0000070",
+            "urlPattern": "https://www.ebi.ac.uk/ols4/ontologies/obi/terms?short_form={$id}"
           }
         ],
         "sampleId": "OBI_0000070",
@@ -44260,7 +44260,7 @@
             "deprecationDate": null,
             "deprecationOfflineDate": null,
             "deprecationStatement": null,
-            "description": "Organization information obtained from ROR API using ROR ID 'https://ror.org/01kk1vy78' with no Wikidata information, and no ISNI information",
+            "description": "RISM Digital Center",
             "id": 3048,
             "institution": {
               "description": "The RISM Digital Center is part of the Répertoire International des Sources Musicales (RISM), the international organisation founded in 1952 whose aim is to inventory music sources worldwide and make them accessible. The RISM network also comprises the RISM Editorial Center in Germany and working groups in over 30 countries. The RISM project is one of the most significant collaborative efforts in the humanities, but it also provides arguably one of the very few datasets worldwide that deserve the label of Big Data in musicology.",
