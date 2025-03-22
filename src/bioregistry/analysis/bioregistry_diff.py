@@ -189,7 +189,7 @@ def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
     :param all_mapping_keys: Set of all mapping keys.
     """
     main_fields = {}
-    mapping_fields = {key: 0 for key in all_mapping_keys}
+    mapping_fields = dict.fromkeys(all_mapping_keys, 0)
 
     if update_details:
         # Process mappings fields to exclude them

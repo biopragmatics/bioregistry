@@ -166,7 +166,7 @@ def _plot_attribute_pies(
             if label not in {"OWL", "JSON", "OBO"}
         ]
 
-    nrows = int(math.ceil(len(measurements) / ncols))
+    nrows = math.ceil(len(measurements) / ncols)
     figsize = (2.75 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for label_counter, ax in itt.zip_longest(measurements, axes.ravel()):
@@ -230,7 +230,7 @@ def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
-    nrows = int(math.ceil(len(keys) / ncols))
+    nrows = math.ceil(len(keys) / ncols)
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
 
@@ -266,7 +266,7 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4) -> FigAxPair:
     from matplotlib_venn import venn2
 
     pairs = list(itt.combinations(keys, r=2))
-    nrows = int(math.ceil(len(pairs) / ncols))
+    nrows = math.ceil(len(pairs) / ncols)
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for pair, ax in itt.zip_longest(pairs, axes.ravel()):
@@ -668,7 +668,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
     return fig, ax
 
 
-def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
+def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair:
     """Plot a histogram of how many xrefs each entry has."""
     import matplotlib.pyplot as plt
     import pandas as pd

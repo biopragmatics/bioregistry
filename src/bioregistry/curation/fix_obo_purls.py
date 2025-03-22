@@ -10,7 +10,7 @@ __all__ = [
 
 
 @click.command(name="standardize-obo-uris")
-def main():
+def main() -> None:
     """Fix OBO PURLs as default URI prefixes."""
     for resource in manager.registry.values():
         if (

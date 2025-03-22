@@ -12,7 +12,7 @@ URL = (
 
 
 @click.command()
-def main():
+def main() -> None:
     """Add descriptions from a google curation sheet."""
     df = pd.read_csv(URL, sep="\t")
     del df[df.columns[0]]

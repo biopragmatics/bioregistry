@@ -3,12 +3,14 @@
 Run with: ``python -m bioregistry.gh.new_prefix``
 """
 
+from __future__ import annotations
+
 import copy
 import logging
 import sys
 import time
 from collections.abc import Iterable, Mapping, Sequence
-from typing import Any, Optional
+from typing import Any
 from uuid import uuid4
 
 import click
@@ -58,7 +60,7 @@ ORCID_HTTP_PREFIX = "http://orcid.org/"
 ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
-def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Optional[Resource]:
+def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Resource | None:
     """Return a Resource constructed from a new prefix issue.
 
     :param issue_id: The issue identifier
@@ -93,8 +95,8 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Op
         contact = None
 
     wikidata_property = resource_data.pop("wikidata_prefix", None)
-    wikidata: Optional[Mapping]
-    mappings: Optional[Mapping]
+    wikidata: Mapping | None
+    mappings: Mapping | None
     if wikidata_property:
         wikidata = {"prefix": wikidata_property}
         mappings = {"wikidata": wikidata_property}
@@ -137,7 +139,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Op
     )
 
 
-def get_new_prefix_issues(token: Optional[str] = None) -> dict[int, Resource]:
+def get_new_prefix_issues(token: str | None = None) -> dict[int, Resource]:
     """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
@@ -273,7 +275,7 @@ def make_title(prefixes: Sequence[str]) -> str:
 )
 @force_option
 @verbose_option
-def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
+def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
     """Run the automatic curator."""
     click.echo(
         f"Running workflow with issue: {issue}"
@@ -310,12 +312,12 @@ def main(dry: bool, github: bool, force: bool, issue: Optional[int] = None):
           ::set-output name=BR_TITLE::{title}
         """
         )
-        return sys.exit(0)
+        raise sys.exit(0)
     elif dry:
         click.secho(
             f"skipping making branch {branch_name}, committing, pushing, and PRing", fg="yellow"
         )
-        return sys.exit(0)
+        raise sys.exit(0)
 
     click.secho("creating and switching to branch", fg="green")
     click.echo(github_client.branch(branch_name))

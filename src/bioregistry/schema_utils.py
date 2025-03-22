@@ -1,5 +1,7 @@
 """Utilities for interacting with data and the schema."""
 
+from __future__ import annotations
+
 import json
 import logging
 from collections import defaultdict
@@ -7,7 +9,7 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Optional, Union, cast
+from typing import cast
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -27,7 +29,7 @@ def read_metaregistry() -> Mapping[str, Registry]:
     return _read_metaregistry(METAREGISTRY_PATH)
 
 
-def _read_metaregistry(path: Union[str, Path]) -> Mapping[str, Registry]:
+def _read_metaregistry(path: str | Path) -> Mapping[str, Registry]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
@@ -52,7 +54,7 @@ def resources() -> list[Resource]:
     return sorted(read_registry().values(), key=attrgetter("prefix"))
 
 
-def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
+def _registry_from_path(path: str | Path) -> Mapping[str, Resource]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     for prefix, value in data.items():
@@ -107,7 +109,7 @@ def read_collections() -> Mapping[str, Collection]:
     return _collections_from_path(COLLECTIONS_PATH)
 
 
-def _collections_from_path(path: Union[str, Path]) -> Mapping[str, Collection]:
+def _collections_from_path(path: str | Path) -> Mapping[str, Collection]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
@@ -131,7 +133,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = None) -> None:
+def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None) -> None:
     """Write to the Bioregistry."""
     if path is None:
         path = BIOREGISTRY_PATH
@@ -246,7 +248,7 @@ def read_contexts() -> Mapping[str, Context]:
     return _contexts_from_path(CONTEXTS_PATH)
 
 
-def _contexts_from_path(path: Union[str, Path]) -> Mapping[str, Context]:
+def _contexts_from_path(path: str | Path) -> Mapping[str, Context]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {key: Context(**data) for key, data in data.items()}

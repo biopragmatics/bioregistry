@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional, overload
+from typing import Literal, overload
 
 from curies import ReferenceTuple
 
@@ -43,7 +43,7 @@ def curie_from_iri(
     iri: str,
     *,
     use_preferred: bool = False,
-) -> Optional[str]:
+) -> str | None:
     """Generate a CURIE from an IRI via :meth:`Manager.compress`.
 
     :param iri: A valid IRI
