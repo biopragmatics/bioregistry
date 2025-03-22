@@ -81,7 +81,7 @@ def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
         prefix = REWRITES.get(prefix, prefix)
 
         if prefix in REDUNDANT:
-            logger.warning(f"skipping {prefix}")
+            logger.debug(f"skipping {prefix}")
             continue
 
         name = cells[2].text.strip()

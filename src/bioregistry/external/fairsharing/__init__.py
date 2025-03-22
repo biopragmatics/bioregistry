@@ -38,7 +38,7 @@ ORCID_RE = re.compile(ORCID_PATTERN)
 
 
 def get_fairsharing(
-    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = False
+    *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = True
 ):
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_reload:
