@@ -3,8 +3,10 @@
 Run this script with python -m bioregistry.curation.clean_publications.
 """
 
+from __future__ import annotations
+
 from functools import lru_cache
-from typing import Optional, cast
+from typing import Any, cast
 
 from manubot.cite.doi import get_doi_csl_item
 from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
@@ -16,20 +18,20 @@ from bioregistry.utils import removeprefix
 
 
 @lru_cache(None)
-def _get_pubmed_csl_item(pmid):
+def _get_pubmed_csl_item(pubmed_id: str) -> dict[str, Any] | None:
     try:
-        return get_pubmed_csl_item(pmid)
+        return get_pubmed_csl_item(pubmed_id)
     except Exception:
         return None
 
 
 @lru_cache(None)
-def _get_doi_csl_item(pmid):
-    return get_doi_csl_item(pmid)
+def _get_doi_csl_item(pubmed_id) -> dict[str, Any] | None:
+    return get_doi_csl_item(pubmed_id)
 
 
 @lru_cache(None)
-def _get_pubmed_from_doi(doi: str) -> Optional[str]:
+def _get_pubmed_from_doi(doi: str) -> str | None:
     tqdm.write(f"getting pubmed from DOI:{doi}")
     doi = cast(str, removeprefix(doi, "https://doi.org/"))
     return get_pmid_for_doi(doi)
