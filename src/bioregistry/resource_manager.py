@@ -262,20 +262,39 @@ class Manager:
         """Get a collection's name."""
         return self.collections[identifier].name
 
-    def normalize_prefix(self, prefix: str, *, use_preferred: bool = False) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_prefix(
+        self, prefix: str, *, use_preferred: bool = False, strict: Literal[True] = True
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_prefix(
+        self, prefix: str, *, use_preferred: bool = False, strict: Literal[False] = False
+    ) -> str | None: ...
+
+    def normalize_prefix(
+        self, prefix: str, *, use_preferred: bool = False, strict: bool = False
+    ) -> str | None:
         """Get the normalized prefix, or return None if not registered.
 
         :param prefix: The prefix to normalize, which could come from Bioregistry,
             OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+        :param strict: If true and the prefix could not be looked up, raises an error
         :param use_preferred:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
         :returns: The canonical Bioregistry prefix, it could be looked up. This
             will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
             in a few cases, such as NCBITaxon.
+
+        :raises ValueError: If strict is set to true and the prefix could not be standardized
         """
         norm_prefix = self.synonyms.get(prefix)
         if norm_prefix is None:
+            if strict:
+                raise ValueError(f"could not standardize {prefix}")
             return None
         if use_preferred:
             norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
