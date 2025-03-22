@@ -67,6 +67,8 @@ def align(
         )
         raise sys.exit(1) from exc
 
+    import traceback
+
     pre_digests = get_hexdigests()
 
     skip = set()
@@ -88,6 +90,7 @@ def align(
             aligner_cls.align(force_download=not no_force)
         except Exception as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
+            traceback.print_exception(e)
 
     if pre_digests != get_hexdigests():
         secho("Alignment created updates", fg="green")
