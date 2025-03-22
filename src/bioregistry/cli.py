@@ -9,7 +9,7 @@ from .compare import compare
 from .export.cli import export
 from .lint import lint
 from .schema.struct import generate_schema
-from .utils import OLSBroken, get_hexdigests, secho
+from .utils import get_hexdigests, secho
 from .version import VERSION
 
 __all__ = [
