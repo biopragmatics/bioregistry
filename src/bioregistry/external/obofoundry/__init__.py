@@ -62,6 +62,12 @@ def _process(record):
             del record[key]
 
     oid = record["id"].lower()
+
+    # added to throw away placeholder contact
+    contact_github = record.get("contact", {}).get("github")
+    if contact_github == "ghost":
+        del record["contact"]
+
     rv = {
         "name": record["title"],
         "description": record.get("description"),
