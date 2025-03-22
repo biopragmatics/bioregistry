@@ -1,6 +1,5 @@
 """Test references."""
 
-import itertools as itt
 import unittest
 
 import curies

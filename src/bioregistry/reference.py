@@ -9,16 +9,16 @@ from pydantic import model_validator
 import bioregistry
 
 __all__ = [
-    "NormalizedReference",
     "NormalizedNamableReference",
     "NormalizedNamedReference",
-    "StandardReference",
-    "StandardNamedReference",
+    "NormalizedReference",
     "StandardNamableReference",
+    "StandardNamedReference",
+    "StandardReference",
 ]
 
 
-def _normalize_values(values: dict[str, str]) -> dict[str, str]:  # noqa
+def _normalize_values(values: dict[str, str]) -> dict[str, str]:
     """Validate the identifier."""
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if not prefix or not identifier:
@@ -37,7 +37,7 @@ def _normalize_values(values: dict[str, str]) -> dict[str, str]:  # noqa
     return values
 
 
-def _standardize_values(values: dict[str, str]) -> dict[str, str]:  # noqa
+def _standardize_values(values: dict[str, str]) -> dict[str, str]:
     """Validate the identifier."""
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if not prefix or not identifier:
