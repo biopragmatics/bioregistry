@@ -68,19 +68,9 @@ class NormalizedReference(curies.Reference):
 class NormalizedNamableReference(NormalizedReference, curies.NamableReference):
     """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
 
-    @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
-        """Validate the identifier."""
-        return _normalize_values(values)
-
 
 class NormalizedNamedReference(NormalizedNamableReference, curies.NamedReference):
     """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
-
-    @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
-        """Validate the identifier."""
-        return _normalize_values(values)
 
 
 class StandardReference(curies.Reference):
@@ -95,16 +85,6 @@ class StandardReference(curies.Reference):
 class StandardNamableReference(StandardReference, curies.NamableReference):
     """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
 
-    @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
-        """Validate the identifier."""
-        return _standardize_values(values)
-
 
 class StandardNamedReference(StandardNamableReference, curies.NamedReference):
     """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
-
-    @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
-        """Validate the identifier."""
-        return _standardize_values(values)
