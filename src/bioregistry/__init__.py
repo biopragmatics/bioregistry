@@ -12,6 +12,14 @@ from .metaresource_api import (
     get_registry_uri,
 )
 from .parse_iri import curie_from_iri, parse_iri
+from .reference import (
+    NormalizedNamableReference,
+    NormalizedNamedReference,
+    NormalizedReference,
+    StandardNamableReference,
+    StandardNamedReference,
+    StandardReference,
+)
 from .resolve import (
     count_mappings,
     get_appears_in,
@@ -137,9 +145,15 @@ __all__ = [
     "Collection",
     "Context",
     "Manager",
+    "NormalizedNamableReference",
+    "NormalizedNamedReference",
+    "NormalizedReference",
     "Provider",
     "Registry",
     "Resource",
+    "StandardNamableReference",
+    "StandardNamedReference",
+    "StandardReference",
     "count_mappings",
     "curie_from_iri",
     "curie_to_str",
