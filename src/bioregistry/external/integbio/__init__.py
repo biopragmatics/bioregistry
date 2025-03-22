@@ -55,13 +55,14 @@ def get_url() -> str:
         database
     """
     base = "https://integbio.jp/dbcatalog/en/download"
+    download_prefix = "https://catalog.integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
+    download_suffix = "_utf8.csv.zip"
+
     res = requests.get(base)
     soup = BeautifulSoup(res.text, "html.parser")
     for anchor in soup.find_all("a"):
         href = anchor.attrs["href"]
-        if href.startswith(
-            "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
-        ) and href.endswith("_utf8.csv.zip"):
+        if href.startswith(download_prefix) and href.endswith(download_suffix):
             return href
     raise ValueError(f"unable to find Integbio download link on {base}")
 
