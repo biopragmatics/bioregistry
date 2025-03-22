@@ -103,6 +103,7 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
+# docstr-coverage:excused `overload`
 @overload
 def get_app(
     manager: Manager | None = ...,
@@ -113,6 +114,7 @@ def get_app(
 ) -> tuple[FastAPI, Flask]: ...
 
 
+# docstr-coverage:excused `overload`
 @overload
 def get_app(
     manager: Manager | None = ...,
