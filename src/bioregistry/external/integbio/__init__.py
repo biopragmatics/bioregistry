@@ -55,7 +55,9 @@ def get_url() -> str:
         database
     """
     base = "https://integbio.jp/dbcatalog/en/download"
-    download_prefix = "https://catalog.integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
+    download_prefix = (
+        "https://catalog.integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
+    )
     download_suffix = "_utf8.csv.zip"
 
     res = requests.get(base)
