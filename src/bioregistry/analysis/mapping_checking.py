@@ -190,7 +190,7 @@ def get_scored_mappings(model: SentenceTransformer) -> pd.DataFrame:
     return df_sorted
 
 
-def _main():
+def _main() -> None:
     # Choose an embedding model
     model = SentenceTransformer(DEFAULT_MODEL)
     # Run mappings

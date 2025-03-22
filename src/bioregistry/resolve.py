@@ -122,19 +122,23 @@ def get_preferred_prefix(prefix: str) -> str | None:
     :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
 
     No preferred prefix annotation, defaults to normalized prefix
+
     >>> get_preferred_prefix("rhea")
     None
 
     Preferred prefix defined in the Bioregistry
+
     >>> get_preferred_prefix("wb")
     'WormBase'
 
     Preferred prefix defined in the OBO Foundry
+
     >>> get_preferred_prefix("fbbt")
     'FBbt'
 
     Preferred prefix from the OBO Foundry overridden by the Bioregistry
     (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+
     >>> get_preferred_prefix("dpo")
     'DPO'
     """

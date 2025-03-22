@@ -4,8 +4,9 @@ Could be extended later for non-permissive information as well as using
 vocabularies like SPDX for storing synonyms.
 """
 
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Optional
 
 __all__ = [
     "LICENSES",
@@ -14,7 +15,7 @@ __all__ = [
 ]
 
 
-def standardize_license(license_str: Optional[str]) -> Optional[str]:
+def standardize_license(license_str: str | None) -> str | None:
     """Standardize a license string."""
     if license_str is None or not license_str.strip():
         return None
@@ -87,7 +88,7 @@ CC_BY_3_IGO = "CC-BY-3.0-IGO"
 CC_BY_25 = "CC BY 2.5"
 
 #: A mapping from SPDX identifiers to external
-REVERSE_LICENSES: Mapping[Optional[str], list[str]] = {
+REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     None: ["None", "license", "unspecified"],
     "CC-BY-2.5": [
         "CC BY 2.5",
@@ -265,6 +266,4 @@ REVERSE_LICENSES: Mapping[Optional[str], list[str]] = {
     ],
 }
 
-LICENSES: Mapping[str, Optional[str]] = {
-    _v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs
-}
+LICENSES: Mapping[str, str | None] = {_v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs}

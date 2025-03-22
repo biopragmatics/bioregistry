@@ -1472,6 +1472,7 @@ class Resource(BaseModel):
                 publications.append(Publication.model_validate(publication))
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
+        # can look through agroportal, ecoportal, and bioportal for publications too
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> str | None:

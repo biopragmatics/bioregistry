@@ -46,7 +46,7 @@ def _get_df() -> pd.DataFrame:
 
 @click.command()
 @click.option("--path", type=click.Path(), default=OUTPUT_PATH, show_default=True)
-def main(path: Path):
+def main(path: Path) -> None:
     """Write the curation sheet."""
     df = _get_df()
     df.to_csv(path, sep="\t", index=False)

@@ -194,7 +194,7 @@ class Aligner:
         instance.write_curation_table()
 
     @classmethod
-    def cli(cls):
+    def cli(cls, *args: Any, **kwargs: Any) -> None:
         """Construct a CLI for the aligner."""
 
         @click.command(help=f"Align {cls.key}")
@@ -206,7 +206,7 @@ class Aligner:
         def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
-        _main()
+        _main(*args, **kwargs)
 
     def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.

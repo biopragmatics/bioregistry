@@ -7,7 +7,7 @@ import bioregistry
 
 
 @click.command()
-def main():
+def main() -> None:
     """Show discrepancies between Bioregistry and OBO Foundry deprecation status."""
     rows = []
     for prefix, resource in bioregistry.read_registry().items():

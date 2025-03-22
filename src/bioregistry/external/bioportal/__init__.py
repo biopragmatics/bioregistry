@@ -99,9 +99,15 @@ class OntoPortalClient:
             )
             return record
         res_json = res.json()
+
+        publications = res_json.get("publication")
+        if isinstance(publications, str):
+            record["publications"] = [publications]
+        elif isinstance(publications, list):
+            record["publications"] = publications
+
         for key in [
             "homepage",
-            "publication",
             "version",
             "description",
             "exampleIdentifier",
@@ -132,7 +138,7 @@ class OntoPortalClient:
             record["license"] = standardize_license(license_stub)
 
         contacts = [
-            {k: v.strip() for k, v in contact.items() if not k.startswith("@")}
+            {k: v.strip() for k, v in contact.items() if not k.startswith("@") and v}
             for contact in res_json.get("contact", [])
         ]
         contacts = [contact for contact in contacts if EMAIL_RE.match(contact.get("email", ""))]
@@ -157,7 +163,7 @@ class OntoPortalClient:
             "contact": entry.get("contact"),
             "homepage": entry.get("homepage"),
             "version": entry.get("version"),
-            "publication": entry.get("publication"),
+            "publications": entry.get("publications"),
             "repository": entry.get("repository"),
             "example_uri": entry.get("exampleIdentifier"),
             "license": entry.get("license"),
