@@ -57,7 +57,26 @@ def _standardize_values(values: dict[str, str]) -> dict[str, str]:
 
 
 class NormalizedReference(curies.Reference):
-    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
+    """Extends :class:`curies.Reference` to normalize the prefix against the Bioregistry.
+
+    >>> NormalizedReference(prefix="go", identifier="0032571")
+    NormalizedReference(prefix='go', identifier='0032571')
+
+    With a name:
+
+    >>> NormalizedReference(prefix="go", identifier="0032571")
+    NormalizedReference(prefix='go', identifier='0032571')
+
+    Standardizes capitalization to lowercase:
+
+    >>> NormalizedReference(prefix="GO", identifier="0032571")
+    NormalizedReference(prefix='go', identifier='0032571')
+
+    Standardizes prefix synonyms to lowercase:
+
+    >>> NormalizedReference(prefix="GOBP", identifier="0032571")
+    NormalizedReference(prefix='go', identifier='0032571')
+    """
 
     @model_validator(mode="before")
     def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
@@ -66,15 +85,62 @@ class NormalizedReference(curies.Reference):
 
 
 class NormalizedNamableReference(NormalizedReference, curies.NamableReference):
-    """An extension to :class:`curies.NamableReference` that automatically validates prefix and identifier."""
+    """Extends :class:`curies.NamableReference` to normalize the prefix against the Bioregistry.
+
+    >>> NormalizedNamedReference(prefix="go", identifier="0032571")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name=None)
+
+    With a name:
+
+    >>> NormalizedNamedReference(prefix="go", identifier="0032571", name="response to vitamin K")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
+
+    Standardizes capitalization to lowercase:
+
+    >>> NormalizedNamedReference(prefix="GO", identifier="0032571", name="response to vitamin K")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
+
+    Standardizes prefix synonyms to lowercase:
+
+    >>> NormalizedNamedReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
+    """
 
 
 class NormalizedNamedReference(NormalizedNamableReference, curies.NamedReference):
-    """An extension to :class:`curies.NamedReference` that automatically validates prefix and identifier."""
+    """Extends :class:`curies.NamedReference` to normalize the prefix against the Bioregistry.
+
+    >>> NormalizedNamedReference(prefix="go", identifier="0032571", name="response to vitamin K")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
+
+    Standardizes capitalization to lowercase:
+
+    >>> NormalizedNamedReference(prefix="GO", identifier="0032571", name="response to vitamin K")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
+
+    Standardizes prefix synonyms to lowercase:
+
+    >>> NormalizedNamedReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
+    NormalizedNamedReference(prefix='go', identifier='0032571', name='response to vitamin K')
+    """
 
 
 class StandardReference(curies.Reference):
-    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier.
+
+    >>> StandardReference(prefix="GO", identifier="0032571")
+    StandardReference(prefix='GO', identifier='0032571')
+
+    Standardizes capitalization to preferred prefix:
+
+    >>> StandardReference(prefix="go", identifier="0032571")
+    StandardReference(prefix='GO', identifier='0032571')
+
+    Standardizes prefix synonyms to lowercase:
+
+    >>> StandardReference(prefix="GOBP", identifier="0032571")
+    StandardReference(prefix='GO', identifier='0032571')
+    """
 
     @model_validator(mode="before")
     def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
@@ -83,8 +149,41 @@ class StandardReference(curies.Reference):
 
 
 class StandardNamableReference(StandardReference, curies.NamableReference):
-    """An extension to :class:`curies.NamableReference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.NamableReference` that automatically validates prefix and identifier.
+
+    >>> StandardNamableReference(prefix="GO", identifier="0032571")
+    StandardNamableReference(prefix='GO', identifier='0032571', name=None)
+
+    With a name:
+
+    >>> StandardNamableReference(prefix="GO", identifier="0032571", name="response to vitamin K")
+    StandardNamableReference(prefix='GO', identifier='0032571', name='response to vitamin K')
+
+    Standardizes capitalization to preferred prefix:
+
+    >>> StandardNamableReference(prefix="go", identifier="0032571", name="response to vitamin K")
+    StandardNamableReference(prefix='GO', identifier='0032571', name='response to vitamin K')
+
+    Standardizes prefix synonyms to lowercase:
+
+    >>> StandardNamableReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
+    StandardNamableReference(prefix='GO', identifier='0032571', name='response to vitamin K')
+    """
 
 
 class StandardNamedReference(StandardNamableReference, curies.NamedReference):
-    """An extension to :class:`curies.NamedReference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.NamedReference` that automatically validates prefix and identifier.
+
+    >>> StandardNamedReference(prefix="GO", identifier="0032571", name="response to vitamin K")
+    StandardNamedReference(prefix='GO', identifier='0032571', name='response to vitamin K')
+
+    Standardizes capitalization to preferred prefix:
+
+    >>> StandardNamedReference(prefix="go", identifier="0032571", name="response to vitamin K")
+    StandardNamedReference(prefix='GO', identifier='0032571', name='response to vitamin K')
+
+    Standardizes prefix synonyms to lowercase:
+
+    >>> StandardNamedReference(prefix="GOBP", identifier="0032571", name="response to vitamin K")
+    StandardNamedReference(prefix='GO', identifier='0032571', name='response to vitamin K')
+    """
