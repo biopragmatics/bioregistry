@@ -994,11 +994,28 @@ def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) 
     return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
 
 
-def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def normalize_prefix(
+    prefix: str, *, use_preferred: bool = False, strict: Literal[True] = True
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def normalize_prefix(
+    prefix: str, *, use_preferred: bool = False, strict: Literal[False] = False
+) -> str | None: ...
+
+
+def normalize_prefix(
+    prefix: str, *, use_preferred: bool = False, strict: bool = False
+) -> str | None:
     """Get the normalized prefix, or return None if not registered.
 
     :param prefix: The prefix to normalize, which could come from Bioregistry,
         OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+    :param strict: If true and the prefix could not be looked up, raises an error
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
@@ -1024,7 +1041,9 @@ def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
     >>> normalize_prefix("go", use_preferred=True)
     'GO'
     """
-    return manager.normalize_prefix(prefix, use_preferred=use_preferred)
+    if strict:
+        return manager.normalize_prefix(prefix, use_preferred=use_preferred, strict=True)
+    return manager.normalize_prefix(prefix, use_preferred=use_preferred, strict=False)
 
 
 def get_version(prefix: str) -> str | None:
