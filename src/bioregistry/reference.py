@@ -66,11 +66,11 @@ class NormalizedReference(curies.Reference):
 
 
 class NormalizedNamableReference(NormalizedReference, curies.NamableReference):
-    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.NamableReference` that automatically validates prefix and identifier."""
 
 
 class NormalizedNamedReference(NormalizedNamableReference, curies.NamedReference):
-    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.NamedReference` that automatically validates prefix and identifier."""
 
 
 class StandardReference(curies.Reference):
@@ -83,8 +83,8 @@ class StandardReference(curies.Reference):
 
 
 class StandardNamableReference(StandardReference, curies.NamableReference):
-    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.NamableReference` that automatically validates prefix and identifier."""
 
 
 class StandardNamedReference(StandardNamableReference, curies.NamedReference):
-    """An extension to :class:`curies.Reference` that automatically validates prefix and identifier."""
+    """An extension to :class:`curies.NamedReference` that automatically validates prefix and identifier."""

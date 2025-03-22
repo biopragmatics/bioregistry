@@ -58,6 +58,7 @@ To install in development mode, use the following:
    pandas
    deployment
    curation
+   references
 
 Indices and Tables
 ------------------
