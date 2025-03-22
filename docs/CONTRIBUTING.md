@@ -115,6 +115,29 @@ https://github.com/biopragmatics/bioregistry/issues/158.
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
 
+#### Writing a Good Description
+
+A good description says all the following:
+
+1. What kind of entities are in the semantic space?
+2. Why the resource exists?
+3. Who might want to use it?
+
+Please describe this resource in a sentence or two of english prose. A good description says what kind of entities the
+resource makes identifiers for, why the resource exists, and who might want to use it.
+
+Warning! Records in the Bioregistry are not about databases, but rather about semantic spaces. While it's often
+the case that these have a one-to-one correspondence, the job of a Bioregistry record is to say what a semantic space is about.
+
+For example, if you were submitting a new prefix request `chembl.compound` for the chemicals inside ChEMBL, you might
+be tempted to describe ChEMBL, its history, and all of the things inside it. However, this is an anti-pattern. Do not
+do this (at least at first). Describe what the 
+
+For example, if you are submitting a prefix about cell lines in a database that keeps track of the effects of various
+mutations on the longitudinal trajectories of certain biological processes in corresponding cancers, make sure
+that your Bioregistry record's description focuses on the thing that's actually in the semantic space - the cell
+lines.
+
 #### Handling Collisions
 
 While they have proven to be rather infrequent between high quality resources,
