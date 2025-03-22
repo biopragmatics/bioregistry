@@ -10,7 +10,7 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import cast
+from typing import Dict
 
 from .constants import (
     BIOREGISTRY_PATH,
