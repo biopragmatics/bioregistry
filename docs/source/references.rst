@@ -11,12 +11,18 @@ identifiers against the Bioregistry database.
 There are two different implementations:
 
 1. Normalized references, which use Bioregistry's :func:`bioregistry.normalize_prefix` to create
-   fully lower-case prefixes - :class:`bioregistry.NormalizedReference` -
-   :class:`bioregistry.NormalizedNamableReference` - :class:`bioregistry.NormalizedNamedReference`
+   fully lower-case prefixes
+
+   - :class:`bioregistry.NormalizedReference`
+   - :class:`bioregistry.NormalizedNamableReference`
+   - :class:`bioregistry.NormalizedNamedReference`
+
 2. Preferred references, which use :func:`bioregistry.get_preferred_prefix` to adds case stylization
-   in prefixes that often appears in semantic web applications. -
-   :class:`bioregistry.StandardReference` - :class:`bioregistry.StandardNamableReference` -
-   :class:`bioregistry.StandardNamedReference`
+   in prefixes that often appears in semantic web applications.
+
+   - :class:`bioregistry.StandardReference`
+   - :class:`bioregistry.StandardNamableReference`
+   - :class:`bioregistry.StandardNamedReference`
 
 In the following example, the prefix is normalized to lowercase.
 
