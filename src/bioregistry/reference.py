@@ -21,8 +21,8 @@ __all__ = [
 def _normalize_values(values: dict[str, str]) -> dict[str, str]:
     """Validate the identifier."""
     prefix, identifier = values.get("prefix"), values.get("identifier")
-    if not prefix or not identifier:
-        raise RuntimeError
+    if prefix is None or identifier is None:
+        raise RuntimeError(f"missing prefix/identifier from values: {values}")
     resource = bioregistry.get_resource(prefix)
     if resource is None:
         raise ExpansionError(f"Unknown prefix: {prefix}")
@@ -40,8 +40,8 @@ def _normalize_values(values: dict[str, str]) -> dict[str, str]:
 def _standardize_values(values: dict[str, str]) -> dict[str, str]:
     """Validate the identifier."""
     prefix, identifier = values.get("prefix"), values.get("identifier")
-    if not prefix or not identifier:
-        raise RuntimeError
+    if prefix is None or identifier is None:
+        raise RuntimeError(f"missing prefix/identifier from values: {values}")
     resource = bioregistry.get_resource(prefix)
     if resource is None:
         raise ExpansionError(f"Unknown prefix: {prefix}")
@@ -51,7 +51,8 @@ def _standardize_values(values: dict[str, str]) -> dict[str, str]:
     values["identifier"] = resource.standardize_identifier(identifier)
     if not resource.is_valid_identifier(values["identifier"]):
         raise IdentifierStandardizationError(
-            f"non-standard identifier: {resource.prefix}:{values['identifier']}"
+            f"non-standard identifier: {resource.prefix}:{values['identifier']}. "
+            f"Does not match pattern {resource.get_pattern()}"
         )
     return values
 
