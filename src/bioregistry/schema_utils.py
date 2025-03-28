@@ -91,6 +91,7 @@ def read_mappings() -> dict[str, dict[str, dict[str, dict[str, str]]]]:
                     mappings[bioregistry_prefix] = {}
                 if external_registry not in mappings[bioregistry_prefix]:
                     mappings[bioregistry_prefix][external_registry] = {}
+                # TODO future PR use Pydantic model
                 mappings[bioregistry_prefix][external_registry][external_prefix] = {
                     "predicate_id": entry["predicate_id"],
                     "predicate_modifier": entry["predicate_modifier"],
