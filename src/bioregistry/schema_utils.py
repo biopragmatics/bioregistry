@@ -10,7 +10,6 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Dict
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -79,11 +78,11 @@ def add_resource(resource: Resource) -> None:
 
 
 @lru_cache(maxsize=1)
-def read_mappings() -> Dict[str, Dict[str, Dict[str, Dict[str, str]]]]:
+def read_mappings() -> dict[str, dict[str, dict[str, dict[str, str]]]]:
     """Read curated mappigs as a nested dict data structure."""
-    with open(CURATED_MAPPINGS_PATH, "r") as file:
+    with open(CURATED_MAPPINGS_PATH) as file:
         reader = csv.DictReader(file, delimiter="\t")
-        mappings: Dict[str, Dict[str, Dict[str, Dict[str, str]]]] = {}
+        mappings: dict[str, dict[str, dict[str, dict[str, str]]]] = {}
         for entry in reader:
             bioregistry_prefix = entry["subject_id"].split(":", maxsplit=1)[1]
             external_registry, external_prefix = entry["object_id"].split(":", maxsplit=1)
@@ -103,10 +102,10 @@ def read_mappings() -> Dict[str, Dict[str, Dict[str, Dict[str, str]]]]:
 
 
 @lru_cache(maxsize=1)
-def read_mismatches() -> Dict[str, Dict[str, set[str]]]:
+def read_mismatches() -> dict[str, dict[str, set[str]]]:
     """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
     mappings = read_mappings()
-    mismatches: Dict[str, Dict[str, set[str]]] = {}
+    mismatches: dict[str, dict[str, set[str]]] = {}
     for bioregistry_prefix, external_mappings in mappings.items():
         for external_registry, external_prefixes in external_mappings.items():
             for external_prefix, mapping_data in external_prefixes.items():
