@@ -10,6 +10,10 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
+from typing import Literal
+
+from curies import Reference
+from pydantic import BaseModel, Field
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -77,49 +81,40 @@ def add_resource(resource: Resource) -> None:
     write_registry(registry)
 
 
-@lru_cache(maxsize=1)
-def read_mappings() -> dict[str, dict[str, dict[str, dict[str, str]]]]:
-    """Read curated mappigs as a nested dict data structure."""
-    with open(CURATED_MAPPINGS_PATH) as file:
-        reader = csv.DictReader(file, delimiter="\t")
-        mappings: dict[str, dict[str, dict[str, dict[str, str]]]] = {}
-        for entry in reader:
-            bioregistry_prefix = entry["subject_id"].split(":", maxsplit=1)[1]
-            external_registry, external_prefix = entry["object_id"].split(":", maxsplit=1)
-            if entry["predicate_modifier"] == "Not" and entry["predicate_id"] == "skos:exactMatch":
-                if bioregistry_prefix not in mappings:
-                    mappings[bioregistry_prefix] = {}
-                if external_registry not in mappings[bioregistry_prefix]:
-                    mappings[bioregistry_prefix][external_registry] = {}
-                # TODO future PR use Pydantic model
-                mappings[bioregistry_prefix][external_registry][external_prefix] = {
-                    "predicate_id": entry["predicate_id"],
-                    "predicate_modifier": entry["predicate_modifier"],
-                    "creator_id": entry["creator_id"],
-                    "mapping_justification": entry["mapping_justification"],
-                    "comment": entry["comment"],
-                }
-    return mappings
+class SemanticMapping(BaseModel):
+    """A model representing a SSSOM semantic mapping."""
+
+    subject: Reference = Field(..., alias="subject_id")
+    predicate_modifier: Literal["Not"] | None = Field(None)
+    predicate: Reference = Field(..., alias="predicate_id")
+    object: Reference = Field(..., alias="object_id")
+    creator: Reference = Field(..., alias="creator_id")
+    mapping_justification: Reference = Field(...)
+    comment: str | None = Field(None)
 
 
-@lru_cache(maxsize=1)
 def read_mismatches() -> dict[str, dict[str, set[str]]]:
     """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
-    mappings = read_mappings()
-    mismatches: dict[str, dict[str, set[str]]] = {}
-    for bioregistry_prefix, external_mappings in mappings.items():
-        for external_registry, external_prefixes in external_mappings.items():
-            for external_prefix, mapping_data in external_prefixes.items():
-                if (
-                    mapping_data["predicate_id"] == "skos:exactMatch"
-                    and mapping_data["predicate_modifier"] == "Not"
-                ):
-                    if bioregistry_prefix not in mismatches:
-                        mismatches[bioregistry_prefix] = {}
-                    if external_registry not in mismatches[bioregistry_prefix]:
-                        mismatches[bioregistry_prefix][external_registry] = set()
-                    mismatches[bioregistry_prefix][external_registry].add(external_prefix)
+    mismatches: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for m in read_mappings():
+        if m.predicate.curie == "skos:exactMatch" and m.predicate_modifier == "Not":
+            mismatches[m.subject.prefix][m.object.prefix].add(m.object.identifier)
     return mismatches
+
+
+@lru_cache(maxsize=1)
+def read_mappings() -> list[SemanticMapping]:
+    """Read curated mappings as a nested dict data structure."""
+    return _read_semantic_mappings(CURATED_MAPPINGS_PATH)
+
+
+def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
+    """Read curated mappings as a nested dict data structure."""
+    with Path(path).expanduser().resolve().open() as file:
+        return [
+            SemanticMapping.model_validate(record)
+            for record in csv.DictReader(file, delimiter="\t")
+        ]
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
@@ -129,33 +124,36 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
-def write_mappings(mappings: Mapping[str, Mapping[str, Mapping[str, Mapping[str, str]]]]) -> None:
+def write_mappings(mappings: list[SemanticMapping]) -> None:
     """Write mappings into the curated mappings file with appropriate sorting."""
-    entries = []
-    for bioregistry_prefix, external_mappings in mappings.items():
-        for external_registry, external_prefixes in external_mappings.items():
-            for external_prefix, mapping_data in external_prefixes.items():
-                entries.append(
-                    {
-                        "subject_id": f"bioregistry:{bioregistry_prefix}",
-                        "predicate_modifier": mapping_data["predicate_modifier"],
-                        "predicate_id": mapping_data["predicate_id"],
-                        "object_id": f"{external_registry}:{external_prefix}",
-                        "creator_id": mapping_data["creator_id"],
-                        "mapping_justification": mapping_data["mapping_justification"],
-                        "comment": mapping_data["comment"],
-                    }
-                )
-    entries = sorted(
-        entries,
-        key=lambda x: (x["subject_id"], x["object_id"], x["predicate_id"], x["predicate_modifier"]),
+    mappings = sorted(
+        mappings,
+        key=lambda x: (x.subject, x.object, x.predicate, x.predicate_modifier),
     )
-    with open(CURATED_MAPPINGS_PATH, "w") as file:
-        writer = csv.DictWriter(
-            file, delimiter="\t", fieldnames=entries[0].keys(), lineterminator="\n"
+    header = [
+        "subject_id",
+        "predicate_modifier",
+        "predicate_id",
+        "object_id",
+        "creator_id",
+        "mapping_justification",
+        "comment",
+    ]
+    with CURATED_MAPPINGS_PATH.open("w") as file:
+        writer = csv.writer(file, delimiter="\t", lineterminator="\n")
+        writer.writerow(header)
+        writer.writerows(
+            (
+                mapping.subject.curie,
+                mapping.predicate_modifier,
+                mapping.predicate.curie,
+                mapping.object.curie,
+                mapping.creator.curie,
+                mapping.mapping_justification.curie,
+                mapping.comment,
+            )
+            for mapping in mappings
         )
-        writer.writeheader()
-        writer.writerows(entries)
 
 
 @lru_cache(maxsize=1)
