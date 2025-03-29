@@ -14,9 +14,11 @@ specifically, the same semantic space) and should therefore not be mapped to
 each other.
 
 The following
-[TSV file](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/curated_mappings.tsv)
-contains mappings reviewed by curators. When reviewing a mapping, curators
-should update the TSV file with the following information:
+[TSV file](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/curated_mappings.sssom.tsv)
+contains mappings reviewed by curators. This file follows the
+[SSSOM standard](https://mapping-commons.github.io/sssom/), a community standard
+for sharing semantic mappings. When reviewing a mapping, curators should update
+the TSV file with the following information:
 
 - `subject_id`: The CURIE corresponding to Bioregistry prefix from which this is
   a mapping. Even when a mapping is symmetric, as a convention, this should
@@ -27,7 +29,7 @@ should update the TSV file with the following information:
   instance `skos:exactMatch`.
 - `object_id`: The CURIE corresponding to the external prefix to which this is a
   mapping.
-- `curator_id`: The ORCID of the curator reviewing the mapping represented as a
+- `creator_id`: The ORCID of the curator reviewing the mapping represented as a
   CURIE.
 - `mapping_justification`: A CURIE representing how the mapping was created,
   typically `semapv:ManualMappingCuration` for manual curation/
