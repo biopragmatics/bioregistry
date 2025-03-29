@@ -29,6 +29,7 @@ import click
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
+from bioregistry import alignment_model
 from bioregistry import constants as brc
 from bioregistry.constants import (
     BIOREGISTRY_REMOTE_URL,
@@ -641,7 +642,7 @@ class Resource(BaseModel):
     #: External data from the Gene Ontology's custom registry
     go: Mapping[str, Any] | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
-    obofoundry: Mapping[str, Any] | None = None
+    obofoundry: alignment_model.Record | None = None
     #: External data from the BioPortal ontology repository
     bioportal: Mapping[str, Any] | None = None
     #: External data from the EcoPortal ontology repository
@@ -710,13 +711,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
         """
-        if metaprefix == "obofoundry":
-            obofoundry_dict = self.obofoundry or {}
-            if "preferredPrefix" in obofoundry_dict:
-                return cast(str, obofoundry_dict["preferredPrefix"])
-            if "prefix" in obofoundry_dict:
-                return cast(str, obofoundry_dict["prefix"]).upper()
-            return None
+        if metaprefix == "obofoundry" and self.obofoundry.preferred_prefix:
+            return self.obofoundry.preferred_prefix
         return self.get_mappings().get(metaprefix)
 
     # docstr-coverage:excused `overload`
@@ -1285,8 +1281,8 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.name:
             return self.contact.name
-        if self.obofoundry and "contact.label" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.label"])
+        if self.obofoundry and self.obofoundry.contact and self.obofoundry.contact.name:
+            return self.obofoundry.contact.name
         for ext in [self.fairsharing, self.bioportal, self.ecoportal, self.agroportal]:
             if not ext:
                 continue
@@ -1308,8 +1304,8 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.github:
             return self.contact.github
-        if self.obofoundry and "contact.github" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.github"])
+        if self.obofoundry and self.obofoundry.contact and self.obofoundry.contact.github:
+            return self.obofoundry.contact.github
 
         # Manually curated upgrade map. TODO externalize this
         orcid = self.get_contact_orcid()
@@ -1332,8 +1328,8 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
-        if self.obofoundry and "contact.orcid" in self.obofoundry:
-            return cast(str, self.obofoundry["contact.orcid"])
+        if self.obofoundry and self.obofoundry.contact and self.obofoundry.contact.orcid:
+            return self.obofoundry.contact.orcid
         if self.fairsharing:
             rv = self.fairsharing.get("contact", {}).get("orcid")
             if rv:
@@ -1517,8 +1513,8 @@ class Resource(BaseModel):
         """Get the logo for the resource."""
         if self.logo:
             return self.logo
-        if self.obofoundry and "logo" in self.obofoundry:
-            return cast(str, self.obofoundry["logo"])
+        if self.obofoundry and self.obofoundry.logo:
+            return self.obofoundry.logo
         if self.fairsharing and "logo" in self.fairsharing:
             return cast(str, self.fairsharing["logo"])
         return None

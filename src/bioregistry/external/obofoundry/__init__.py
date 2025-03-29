@@ -4,14 +4,24 @@ import json
 import logging
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import requests
 import yaml
+from curies import NamedReference
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.models import (
+    Artifact,
+    ArtifactType,
+    License,
+    Person,
+    Publication,
+    Record,
+    Registry,
+)
 
 __all__ = [
     "OBOFoundryAligner",
@@ -42,7 +52,9 @@ def get_obofoundry(force_download: bool = False, force_process: bool = False):
         data = yaml.full_load(file)
 
     rv = {
-        record["id"]: _process(record) for record in data["ontologies"] if record["id"] not in SKIP
+        record["id"]: _process(record).model_dump(exclude_defaults=True, exclude_none=True)
+        for record in data["ontologies"]
+        if record["id"] not in SKIP
     }
     for key, record in rv.items():
         for depends_on in record.get("depends_on", []):
@@ -56,12 +68,74 @@ def get_obofoundry(force_download: bool = False, force_process: bool = False):
     return rv
 
 
-def _process(record):
-    for key in ("browsers", "usages", "build", "layout", "taxon"):
-        if key in record:
-            del record[key]
+def _get_contact(record) -> Person | None:
+    contact = record.get("contact")
+    if not contact:
+        return None
+    github = contact.get("github")
+    if github == "ghost":
+        return None
+    return Person.model_validate(
+        {
+            "email": record.get("contact", {}).get("email"),
+            "name": record.get("contact", {}).get("label"),
+            "github": github,
+            "orcid": record.get("contact", {}).get("orcid"),
+        }
+    )
 
-    oid = record["id"].lower()
+
+def _get_license(record) -> License | None:
+    ll = record.get("license")
+    if not ll:
+        return None
+
+    license_name = ll.get("label")
+    license_url = ll.get("url")
+    if not license_name and not license_url:
+        return None
+    # TODO standardize SPDX
+    return License(name=license_name, url=license_url)
+
+
+def _process_publication(p) -> Publication:
+    d = {"name": p["title"]}
+    url = p["id"]
+    if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+        d["pubmed"] = url.removeprefix("https://www.ncbi.nlm.nih.gov/pubmed/")
+    elif url.startswith("https://doi.org/"):
+        d["doi"] = url.removeprefix("https://doi.org/")
+    elif url.startswith("https://www.medrxiv.org/content/"):
+        d["doi"] = url.removeprefix("https://www.medrxiv.org/content/")
+        d["medrxiv"] = url.removeprefix("https://www.medrxiv.org/content/10.1101/")
+    elif url.startswith("https://zenodo.org/record/"):
+        d["zenodo"] = url.removeprefix("https://zenodo.org/record/")
+    elif url.startswith("http://ceur-ws.org/"):
+        d["url"] = url
+    else:
+        raise ValueError(f"Unhandled: {url}")
+    return Publication.model_validate(d)
+
+
+def _process_product(prefix: str, product: dict[str, Any]) -> Artifact | None:
+    if product["id"] == f"{prefix}.obo":
+        return Artifact(url=product["ontology_purl"], type=ArtifactType.obo)
+    elif product["id"] == f"{prefix}.json":
+        return Artifact(url=product["ontology_purl"], type=ArtifactType.obograph_json)
+    elif product["id"] == f"{prefix}.owl":
+        return Artifact(url=product["ontology_purl"], type=ArtifactType.owl)
+    return None
+
+
+def _process(record: dict[str, Any]) -> Record:
+    for key in ("browsers", "usages", "build", "layout"):
+        record.pop(key, None)
+
+    prefix = record["id"].lower()
+    contact = _get_contact(record)
+    status = record["activity_status"]
+    if status == "active" and contact is None:
+        status = "orphaned"
 
     # added to throw away placeholder contact
     contact_github = record.get("contact", {}).get("github")
@@ -69,41 +143,38 @@ def _process(record):
         del record["contact"]
 
     rv = {
+        "prefix": prefix,
         "name": record["title"],
         "description": record.get("description"),
-        "deprecated": record["activity_status"] != "active",
-        "homepage": record.get("homepage") or record.get("repository"),
-        "preferredPrefix": record.get("preferredPrefix"),
-        "license": record.get("license", {}).get("label"),
-        "license.url": record.get("license", {}).get("url"),
-        "contact": record.get("contact", {}).get("email"),
-        "contact.label": record.get("contact", {}).get("label"),
-        "contact.github": record.get("contact", {}).get("github"),
-        "contact.orcid": record.get("contact", {}).get("orcid"),
+        "status": status,
+        "homepage": record.get("homepage"),
+        "preferred_prefix": record.get("preferredPrefix"),
+        "contact": contact,
+        "license": _get_license(record),
         "repository": record.get("repository"),
         "domain": record.get("domain"),
+        "publications": [
+            _process_publication(publication) for publication in record.get("publications", [])
+        ],
+        "artifacts": [
+            artifact
+            for product_dict in record.get("products", [])
+            if (artifact := _process_product(prefix, product_dict))
+        ],
     }
 
-    for key in ("publications", "twitter"):
-        value = record.get(key)
-        if value:
-            rv[key] = value
+    if taxon := record.get("taxon"):
+        if taxon["id"] in {"all", "NCBITaxon:1"}:
+            rv["taxon"] = NamedReference.from_curie("NCBITaxon:1", name="root")
+        else:
+            rv["taxon"] = NamedReference.from_curie(taxon["id"], name=taxon["label"])
 
-    dependencies = record.get("dependencies")
-    if dependencies:
+    if dependencies := record.get("dependencies", []):
         rv["depends_on"] = sorted(
             dependency["id"]
-            for dependency in record.get("dependencies", [])
+            for dependency in dependencies
             if dependency.get("type") not in {"BridgeOntology"}
         )
-
-    for product in record.get("products", []):
-        if product["id"] == f"{oid}.obo":
-            rv["download.obo"] = product["ontology_purl"]
-        elif product["id"] == f"{oid}.json":
-            rv["download.json"] = product["ontology_purl"]
-        elif product["id"] == f"{oid}.owl":
-            rv["download.owl"] = product["ontology_purl"]
 
     logo = record.get("depicted_by")
     if logo:
@@ -111,7 +182,7 @@ def _process(record):
             logo = f"https://obofoundry.org{logo}"
         rv["logo"] = logo
 
-    return {k: v for k, v in rv.items() if v is not None}
+    return Record.model_validate(rv)
 
 
 def get_obofoundry_example(prefix: str) -> Optional[str]:
