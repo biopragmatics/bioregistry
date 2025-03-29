@@ -99,7 +99,7 @@ def read_mismatches() -> dict[str, dict[str, set[str]]]:
     for m in read_mappings():
         if m.predicate.curie == "skos:exactMatch" and m.predicate_modifier == "Not":
             mismatches[m.subject.prefix][m.object.prefix].add(m.object.identifier)
-    return mismatches
+    return {k: dict(v) for k, v in mismatches.items()}
 
 
 @lru_cache(maxsize=1)
