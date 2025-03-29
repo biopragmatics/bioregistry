@@ -32,7 +32,7 @@ the TSV file with the following information:
 - `creator_id`: The ORCID of the curator reviewing the mapping represented as a
   CURIE.
 - `mapping_justification`: A CURIE representing how the mapping was created,
-  typically `semapv:ManualMappingCuration` for manual curation/
+  typically `semapv:ManualMappingCuration` for manual curation.
 - `comment`: Any additional notes or comments regarding the mapping that was
   reviewed.
 
