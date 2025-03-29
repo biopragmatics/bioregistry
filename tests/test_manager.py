@@ -259,3 +259,7 @@ class TestResourceManager(unittest.TestCase):
         self.assertIn("loggerhead", res.source_only)
         # This is a non-ontology so it won't get in OBO Foundry
         self.assertIn("DCTERMS", res.target_only)
+
+    def test_add_resource(self) -> None:
+        """Test adding a resource to a manager."""
+        raise NotImplementedError
