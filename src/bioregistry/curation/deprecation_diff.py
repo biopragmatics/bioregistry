@@ -4,6 +4,7 @@ import click
 import pandas as pd
 
 import bioregistry
+from bioregistry.alignment_model import Status
 
 
 @click.command()
@@ -18,7 +19,7 @@ def main() -> None:
             continue
 
         obo_deprecation = (
-            None if resource.obofoundry is None else resource.obofoundry.get("deprecated", False)
+            None if resource.obofoundry is None else resource.obofoundry.status != Status.active
         )
         miriam_deprecation = (resource.miriam or {}).get("deprecated")
 

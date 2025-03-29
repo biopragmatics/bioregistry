@@ -711,7 +711,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'CHEBI'
         """
-        if metaprefix == "obofoundry" and self.obofoundry.preferred_prefix:
+        if metaprefix == "obofoundry" and self.obofoundry and self.obofoundry.preferred_prefix:
             return self.obofoundry.preferred_prefix
         return self.get_mappings().get(metaprefix)
 
@@ -966,7 +966,10 @@ class Resource(BaseModel):
             return None
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-        return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+        return (
+            self.obofoundry.preferred_prefix
+            or cast(dict[str, str], self.mappings)["prefix"].upper()
+        )
 
     def get_mappings(self) -> dict[str, str]:
         """Get the mappings to external registries, if available."""
@@ -1410,33 +1413,26 @@ class Resource(BaseModel):
                 return True
         return False
 
+    @staticmethod
+    def _convert_publication(publication) -> Publication | None:
+        if all(not x for x in (publication.doi, publication.pmc, publication.pubmed)):
+            return None
+        return Publication(
+            title=publication.name,
+            year=publication.year,
+            # ids
+            doi=publication.doi.lower(),
+            pmc=publication.pmc,
+            pubmed=publication.pubmed,
+        )
+
     def get_publications(self) -> list[Publication]:
         """Get a list of publications."""
         publications = self.publications or []
         if self.obofoundry:
-            for publication in self.obofoundry.get("publications", []):
-                url, title = publication["id"], publication["title"].rstrip(".")
-                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(
-                        Publication(pubmed=pubmed, title=title, doi=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://doi.org/"):
-                    doi = url[len("https://doi.org/") :]
-                    publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://www.medrxiv.org/content/"):
-                    doi = url[len("https://www.medrxiv.org/content/") :]
-                    publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
-                    )
-                elif url.startswith("https://zenodo.org/record/"):
-                    continue
-                elif "ceur-ws.org" in url:
-                    continue
-                else:
-                    logger.warning("unhandled obo foundry publication ID: %s", url)
+            for obo_publication in self.obofoundry.publications:
+                if xx := self._convert_publication(obo_publication):
+                    publications.append(xx)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
                 pubmed = publication.get("pubmed")
@@ -1503,8 +1499,6 @@ class Resource(BaseModel):
         """Get the Twitter handle for the resource."""
         if self.twitter:
             return self.twitter
-        if self.obofoundry and "twitter" in self.obofoundry:
-            return cast(str, self.obofoundry["twitter"])
         if self.fairsharing and "twitter" in self.fairsharing:
             return cast(str, self.fairsharing["twitter"])
         return None

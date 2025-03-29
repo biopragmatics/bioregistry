@@ -8,6 +8,7 @@ from typing import Any
 import yaml
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -25,20 +26,18 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 PROCESSING_BIOLINK_PATH = DIRECTORY / "processing_biolink.json"
 
 
-def get_biolink(force_download: bool = False) -> dict[str, dict[str, str]]:
+def get_biolink(force_download: bool = False) -> dict[str, Record]:
     """Get Biolink."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_records(PROCESSED_PATH)
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = yaml.safe_load(file)
     rv = {
-        prefix: {URI_FORMAT_KEY: f"{uri_prefix}$1"}
+        prefix: Record(uri_format=f"{uri_prefix}$1")
         for prefix, uri_prefix in data["prefixes"].items()
     }
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
@@ -54,15 +53,6 @@ class BiolinkAligner(Aligner):
         with PROCESSING_BIOLINK_PATH.open() as file:
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
-
-    def prepare_external(self, external_id: str, external_entry) -> dict[str, Any]:
-        """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
-        uri_format = external_entry[URI_FORMAT_KEY]
-        return {
-            URI_FORMAT_KEY: uri_format,
-            "is_identifiers": uri_format.startswith("http://identifiers.org"),
-            "is_obo": uri_format.startswith("http://purl.obolibrary.org"),
-        }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Biolink registry entries."""

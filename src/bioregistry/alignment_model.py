@@ -1,6 +1,10 @@
 """Data models for standard external registry import."""
 
+from __future__ import annotations
+
 import enum
+import json
+from pathlib import Path
 
 from curies import NamableReference
 from pydantic import BaseModel, Field
@@ -29,15 +33,17 @@ class Status(enum.StrEnum):
 
 
 class Publication(BaseModel):
+    name: str | None = None
+    year: int | None = None
+    url: str | None = None
+
+    # IDs
     doi: str | None = None
     pubmed: str | None = None
     pmc: str | None = None
     arxiv: str | None = None
     medrxiv: str | None = None
     biorxiv: str | None = None
-    name: str | None = None
-    year: int | None = None
-    url: str | None = None
     zenodo: str | None = None
 
 
@@ -71,8 +77,26 @@ class Record(BaseModel):
     publications: list[Publication] = Field(default_factory=list)
     artifacts: list[Artifact] = Field(default_factory=list)
     taxon: NamableReference | None = None
+    uri_format: str | None = None
 
 
 class Registry(BaseModel):
     records: dict[str, Record]
     metadata: dict[str, str] = Field(default_factory=dict)
+
+
+def dump_records(records: dict[str, Record], path: Path) -> None:
+    """Dump records."""
+    rv = {
+        k: r.model_dump(exclude_unset=True, exclude_none=True, exclude_defaults=True)
+        for k, r in records.items()
+    }
+    with path.open("w") as file:
+        json.dump(rv, file, indent=2, sort_keys=True)
+
+
+def load_records(path: Path) -> dict[str, Record]:
+    """Load records."""
+    with path.open() as file:
+        rv = json.load(file)
+    return {k: Record.model_validate(v) for k, v in rv.items()}

@@ -13,6 +13,7 @@ import json
 from collections.abc import Mapping
 from pathlib import Path
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
 
@@ -32,14 +33,12 @@ SKIP = {
 }
 
 
-def get_cheminf(force_download: bool = False):
+def get_cheminf(force_download: bool = False) -> dict[str, Record]:
     """Get the Chemical Information Ontology registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_records(PROCESSED_PATH)
     rv = get_ols_descendants(ontology="cheminf", uri=BASE_URL, force_download=force_download)
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 

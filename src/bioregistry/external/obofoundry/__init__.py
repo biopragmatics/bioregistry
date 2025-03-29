@@ -11,9 +11,7 @@ import yaml
 from curies import NamedReference
 from pystow.utils import download
 
-from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
-from bioregistry.external.models import (
+from bioregistry.alignment_model import (
     Artifact,
     ArtifactType,
     License,
@@ -21,7 +19,11 @@ from bioregistry.external.models import (
     Publication,
     Record,
     Registry,
+    dump_records,
+    load_records,
 )
+from bioregistry.constants import RAW_DIRECTORY
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "OBOFoundryAligner",
@@ -41,30 +43,26 @@ SKIP = {
 }
 
 
-def get_obofoundry(force_download: bool = False, force_process: bool = False):
+def get_obofoundry(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_records(PROCESSED_PATH)
 
     download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = yaml.full_load(file)
 
-    rv = {
-        record["id"]: _process(record).model_dump(exclude_defaults=True, exclude_none=True)
-        for record in data["ontologies"]
-        if record["id"] not in SKIP
+    rv: dict[str, Record] = {
+        record["id"]: _process(record) for record in data["ontologies"] if record["id"] not in SKIP
     }
     for key, record in rv.items():
-        for depends_on in record.get("depends_on", []):
+        for depends_on in record.depends_on:
             if depends_on not in rv:
                 logger.warning("issue in %s: invalid dependency: %s", key, depends_on)
             else:
-                rv[depends_on].setdefault("appears_in", []).append(key)
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
+                rv[depends_on].appears_in.append(key)
 
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
@@ -136,11 +134,6 @@ def _process(record: dict[str, Any]) -> Record:
     status = record["activity_status"]
     if status == "active" and contact is None:
         status = "orphaned"
-
-    # added to throw away placeholder contact
-    contact_github = record.get("contact", {}).get("github")
-    if contact_github == "ghost":
-        del record["contact"]
 
     rv = {
         "prefix": prefix,
