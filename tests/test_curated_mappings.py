@@ -5,7 +5,7 @@ from collections import Counter
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
-from bioregistry.schema_utils import read_metaregistry
+from bioregistry.schema_utils import read_mappings, read_metaregistry, SemanticMapping
 
 
 class TestTSV(unittest.TestCase):
@@ -86,3 +86,18 @@ class TestTSV(unittest.TestCase):
     $ tox -e bioregistry-lint
             """,
             )
+
+
+class TestSemanticMappings(unittest.TestCase):
+    """Tests to make sure semantic mappings are read correctly from TSV."""
+
+    def setUp(self):
+        """Set up the test case."""
+        self.mappings = read_mappings()
+
+    def test_semantic_mappings(self):
+        """Test semantic mapping validity."""
+        for mapping in self.mappings:
+            self.assertIsInstance(mapping, SemanticMapping)
+            self.assertNotEqual(mapping.comment, "")
+            self.assertIn(mapping.predicate_modifier, {None, "Not"})
