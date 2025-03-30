@@ -112,7 +112,14 @@ def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
     """Read curated mappings as a nested dict data structure."""
     with Path(path).expanduser().resolve().open() as file:
         return [
-            SemanticMapping.model_validate(record)
+            SemanticMapping.model_validate(
+                {
+                    **record,
+                    # We need to convert the predicate_modifier and comment to None if they are empty strings
+                    "predicate_modifier": record["predicate_modifier"] or None,
+                    "comment": record["comment"] or None,
+                }
+            )
             for record in csv.DictReader(file, delimiter="\t")
         ]
 
