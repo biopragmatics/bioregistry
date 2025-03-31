@@ -7,7 +7,7 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Any
 
 import pystow
 import requests
@@ -17,6 +17,8 @@ from tqdm.contrib.concurrent import thread_map
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
+from bioregistry.alignment_model import Record, dump_records, load_records
+
 
 __all__ = [
     "get_agroportal",
@@ -60,11 +62,10 @@ class OntoPortalClient:
         params.setdefault("apikey", self.api_key)
         return requests.get(url, params=params)
 
-    def download(self, force_download: bool = False):
+    def download(self, force_download: bool = False) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download:
-            with self.processed_path.open() as file:
-                return json.load(file)
+            return load_records(self.processed_path)
 
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
@@ -84,11 +85,10 @@ class OntoPortalClient:
         )
         rv = {result["prefix"]: result for result in records}
 
-        with self.processed_path.open("w") as file:
-            json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
+        dump_records(rv, self.processed_path)
         return rv
 
-    def _preprocess(self, record):
+    def _preprocess(self, record: dict[str, Any]) -> dict[str, Any]:
         record.pop("@context", None)
         prefix = record["acronym"]
         url = f"{self.base_url}/ontologies/{prefix}/latest_submission"
@@ -153,7 +153,7 @@ class OntoPortalClient:
 
         return {k: v for k, v in record.items() if v}
 
-    def process(self, entry):
+    def process(self, entry: dict[str, Any]) -> Record:
         """Process a record from the OntoPortal site's API."""
         prefix = entry["acronym"]
         rv = {

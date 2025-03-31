@@ -9,6 +9,7 @@ from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
+from bioregistry.alignment_model import Record, dump_records, load_records
 
 __all__ = [
     "BioContextAligner",
@@ -22,7 +23,7 @@ URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registr
 SKIP_PARTS = {"identifiers.org", "purl.obolibrary.org"}
 
 
-def get_biocontext(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
+def get_biocontext(force_download: bool = False) -> Mapping[str, Record]:
     """Get the BioContext context map.
 
     :param force_download: If true, forces download. If false and the file
@@ -32,17 +33,15 @@ def get_biocontext(force_download: bool = False) -> Mapping[str, Mapping[str, An
     .. seealso:: https://github.com/prefixcommons/biocontext
     """
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_records(PROCESSED_PATH)
     download(url=URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = json.load(file)
     rv = {
-        prefix: {URI_FORMAT_KEY: f"{uri_prefix.strip()}$1"}
+        prefix: Record(uri_format="{uri_prefix.strip()}$1")
         for prefix, uri_prefix in data["@context"].items()
     }
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
