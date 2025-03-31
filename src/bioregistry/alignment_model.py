@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import datetime
 import enum
 import json
 from pathlib import Path
@@ -78,6 +79,7 @@ class Record(BaseModel):
     # prefix: str
     preferred_prefix: str | None = None
     name: str | None = None
+    version: str | None = None
     description: str | None = None
     status: Status | None = None
     homepage: str | None = None
@@ -101,6 +103,8 @@ class Record(BaseModel):
     pattern: str | None = None
     # TODO rename to examples
     example: list[str] = Field(default_factory=list)
+    keywords: list[str] = Field(default_factory=list)
+    modified: datetime.datetime | None = Field(None, description="Date last modified")
 
 
 class Registry(BaseModel):

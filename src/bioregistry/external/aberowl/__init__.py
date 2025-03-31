@@ -1,12 +1,19 @@
 """Download the AberOWL registry."""
 
-import json
 from pathlib import Path
 from typing import Any
 
 import yaml
 from pystow.utils import download
+from tqdm import tqdm
 
+from bioregistry.alignment_model import (
+    Artifact,
+    ArtifactType,
+    Record,
+    dump_records,
+    load_records,
+)
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -20,25 +27,26 @@ RAW_PATH = RAW_DIRECTORY / "aberowl.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 ABEROWL_URL = "http://aber-owl.net/api/ontology/?drf_fromat=json&format=json"
 
+SKIP = {"vfdsad": "test", "dlgkj": "test", "hi": "test", "zinnane": "test", "alperk": "test"}
 
-def get_aberowl(force_download: bool = False) -> dict[str, dict[str, Any]]:
+
+def get_aberowl(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the AberOWL registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+    if PROCESSED_PATH.exists() and not force_process:
+        return load_records(PROCESSED_PATH)
 
-    download(url=ABEROWL_URL, path=RAW_PATH, force=True)
+    download(url=ABEROWL_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         entries = yaml.full_load(file)
-    rv = {entry["acronym"]: _process(entry) for entry in entries}
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
+
+    rv = {entry["acronym"]: record for entry in entries if (record := _process(entry)) is not None}
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
-def _process(entry: dict[str, Any]) -> dict[str, str]:
+def _process(entry: dict[str, Any]) -> Record | None:
+    prefix = entry["acronym"]
     rv = {
-        "prefix": entry["acronym"],
         "name": entry["name"],
     }
     submission = entry.get("submission", {})
@@ -58,12 +66,31 @@ def _process(entry: dict[str, Any]) -> dict[str, str]:
         if not download_url_suffix:
             pass
         elif download_url_suffix.endswith(".owl"):
-            rv["download_owl"] = f"http://aber-owl.net/{download_url_suffix}"
+            rv.setdefault("artifacts", []).append(
+                Artifact(
+                    url=f"http://aber-owl.net/{download_url_suffix}",
+                    type=ArtifactType.owl,
+                )
+            )
         elif download_url_suffix.endswith(".obo"):
-            rv["download_obo"] = f"http://aber-owl.net/{download_url_suffix}"
+            rv.setdefault("artifacts", []).append(
+                Artifact(
+                    url=f"http://aber-owl.net/{download_url_suffix}",
+                    type=ArtifactType.obo,
+                )
+            )
+        elif download_url_suffix.endswith(".skos") or download_url_suffix.endswith(".umls"):
+            pass
+            # tqdm.write(f"[aberowl:{prefix}] download URL not implemented: {download_url_suffix}")
         else:
-            pass  # what's going on here?
-    return {k: v for k, v in rv.items() if k and v}
+            tqdm.write(f"[aberowl:{prefix}] unknown download URL: {download_url_suffix}")
+
+    else:
+        return None
+    # throw away empty values
+    rv = {k: v for k, v in rv.items() if k and v}
+
+    return Record.model_validate(rv)
 
 
 class AberOWLAligner(Aligner):
