@@ -8,15 +8,14 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from bioregistry.external.alignment_utils import Aligner
+
 __all__ = [
     "IntegbioAligner",
     "get_integbio",
 ]
 
-from bioregistry.external.alignment_utils import Aligner
-
 logger = logging.getLogger(__name__)
-
 
 DIRECTORY = Path(__file__).parent.resolve()
 PROCESSED_PATH = DIRECTORY / "processed.json"
@@ -54,15 +53,16 @@ def get_url() -> str:
         Integbio deletes its old files, so it's impossible to download an old version of the
         database
     """
-    base = "https://integbio.jp/dbcatalog/en/download"
+    base = "https://catalog.integbio.jp/dbcatalog/en/download"
+    download_prefix = "/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
+    download_suffix = "_utf8.csv.zip"
+
     res = requests.get(base)
     soup = BeautifulSoup(res.text, "html.parser")
     for anchor in soup.find_all("a"):
         href = anchor.attrs["href"]
-        if href.startswith(
-            "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
-        ) and href.endswith("_utf8.csv.zip"):
-            return href
+        if href.startswith(download_prefix) and href.endswith(download_suffix):
+            return "https://catalog.integbio.jp" + href
     raise ValueError(f"unable to find Integbio download link on {base}")
 
 

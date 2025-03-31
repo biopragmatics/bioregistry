@@ -1,10 +1,12 @@
 """App builder interface."""
 
+from __future__ import annotations
+
 import json
 from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Any, Literal, overload
 
 from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
@@ -14,14 +16,11 @@ from flask_bootstrap import Bootstrap4
 from markdown import markdown
 from rdflib_endpoint import SparqlRouter
 
-from bioregistry import curie_to_str, resource_manager, version
+from bioregistry import Manager, curie_to_str, resource_manager, version
 
 from .api import api_router
 from .constants import BIOSCHEMAS
 from .ui import ui_blueprint
-
-if TYPE_CHECKING:
-    import bioregistry
 
 __all__ = [
     "get_app",
@@ -104,12 +103,35 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
+# docstr-coverage:excused `overload`
+@overload
 def get_app(
-    manager: Optional["bioregistry.Manager"] = None,
-    config: Union[None, str, Path, Mapping[str, Any]] = None,
+    manager: Manager | None = ...,
+    config: None | str | Path | Mapping[str, Any] = ...,
+    *,
+    first_party: bool = ...,
+    return_flask: Literal[True] = True,
+) -> tuple[FastAPI, Flask]: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_app(
+    manager: Manager | None = ...,
+    config: None | str | Path | Mapping[str, Any] = ...,
+    *,
+    first_party: bool = ...,
+    return_flask: Literal[False] = False,
+) -> FastAPI: ...
+
+
+def get_app(
+    manager: Manager | None = None,
+    config: None | str | Path | Mapping[str, Any] = None,
+    *,
     first_party: bool = True,
     return_flask: bool = False,
-):
+) -> FastAPI | tuple[FastAPI, Flask]:
     """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
@@ -211,7 +233,7 @@ SELECT ?s ?o WHERE {
 """.rstrip()
 
 
-def _get_sparql_router(app) -> APIRouter:
+def _get_sparql_router(app: Flask) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=app.manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
     sparql_router = SparqlRouter(
@@ -227,7 +249,7 @@ def _get_sparql_router(app) -> APIRouter:
     return sparql_router
 
 
-def _get_tags_metadata(conf, manager):
+def _get_tags_metadata(conf: dict[str, str], manager: Manager) -> list[dict[str, Any]]:
     tags_metadata = [
         {
             "name": "resource",

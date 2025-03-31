@@ -10,7 +10,7 @@ import bioregistry
 from bioregistry.schema.struct import deduplicate_publications
 
 
-def _main():
+def _main() -> None:
     for resource in tqdm(bioregistry.manager.registry.values()):
         if resource.publications:
             new = []

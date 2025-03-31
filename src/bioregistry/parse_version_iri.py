@@ -1,7 +1,8 @@
 """This module is dedicated to parsing the version from an IRI."""
 
+from __future__ import annotations
+
 import re
-from typing import Optional, Union
 from urllib.parse import urlparse
 
 from tqdm import tqdm
@@ -36,7 +37,7 @@ def _match_any_part(iri: str, pattern: re.Pattern) -> bool:
 
 def parse_obo_version_iri(
     version_iri: str, obo_prefix: str
-) -> Union[tuple[str, Optional[str], str], tuple[None, None, None]]:
+) -> tuple[str, str | None, str] | tuple[None, None, None]:
     """Parse an OBO version IRI."""
     obo_prefix = obo_prefix.lower()
     parts = [
@@ -55,7 +56,7 @@ def parse_obo_version_iri(
             filename.startswith(f"{obo_prefix}.{ext}") for ext in ("json", "owl", "obo", "ofn")
         ):
             return None, None, None
-        version_type: Optional[str]
+        version_type: str | None
         if SEMVER_PATTERN.fullmatch(version):
             version_type = "semver"
         elif DATE_PATTERN.fullmatch(version):
