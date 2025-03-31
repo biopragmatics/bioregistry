@@ -55,7 +55,7 @@ class Aligner:
     #: Records form the external registry
     external_registry: dict[str, Record]
 
-    def __init__(self, force_download: Optional[bool] = None):
+    def __init__(self, *, force_download: Optional[bool] = None, force_process: bool | None = None):
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError
@@ -69,8 +69,12 @@ class Aligner:
 
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
+        kwargs.setdefault("force_process", True)
         if force_download is not None:
             kwargs["force_download"] = force_download
+        if force_process is not None:
+            kwargs["force_process"] = force_process
+
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
@@ -109,9 +113,14 @@ class Aligner:
             if not self.alt_key_match:
                 bioregistry_id = self.manager.normalize_prefix(external_id)
             else:
-                alt_match = external_entry.get(self.alt_key_match)
-                if alt_match:
+                alt_match = getattr(external_entry, self.alt_key_match)
+                if isinstance(alt_match, str):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
+                elif isinstance(alt_match, list):
+                    for am in alt_match:
+                        bioregistry_id = self.manager.normalize_prefix(am)
+                        if bioregistry_id:
+                            break
 
             if bioregistry_id is None and self.alt_keys_match:
                 for alt_match in external_entry.get(self.alt_keys_match, []):
@@ -178,9 +187,11 @@ class Aligner:
     @classmethod
     def align(
         cls,
+        *,
         dry: bool = False,
         show: bool = False,
         force_download: Optional[bool] = None,
+        force_process: Optional[bool] = None,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -188,7 +199,7 @@ class Aligner:
         :param show: If true, print a curation table
         :param force_download: Force re-download of the data
         """
-        instance = cls(force_download=force_download)
+        instance = cls(force_download=force_download, force_process=force_process)
         if not dry:
             instance.write_registry()
         if show:
@@ -205,8 +216,11 @@ class Aligner:
         @click.option(
             "--no-force", is_flag=True, help="if set, do not force re-downloading the data"
         )
-        def _main(dry: bool, show: bool, no_force: bool) -> None:
-            cls.align(dry=dry, show=show, force_download=not no_force)
+        @click.option(
+            "--force-process", is_flag=True, help="if set, do not force re-downloading the data"
+        )
+        def _main(dry: bool, show: bool, no_force: bool, force_process: bool) -> None:
+            cls.align(dry=dry, show=show, force_download=not no_force, force_process=force_process)
 
         _main(*args, **kwargs)
 

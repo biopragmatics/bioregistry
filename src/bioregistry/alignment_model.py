@@ -121,7 +121,7 @@ def dump_records(records: dict[str, Record], path: Path) -> None:
         for k, r in records.items()
     }
     with path.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 
 def load_records(path: Path) -> dict[str, Record]:
