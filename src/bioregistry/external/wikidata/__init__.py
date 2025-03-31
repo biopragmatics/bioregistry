@@ -6,6 +6,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import query_wikidata, removeprefix
@@ -52,7 +53,7 @@ QUERY_FMT = dedent(
       (GROUP_CONCAT(DISTINCT ?format_rdf_; separator='\\t') AS ?uri_format_rdf)
       (GROUP_CONCAT(DISTINCT ?database_; separator='\\t') AS ?database)
       (GROUP_CONCAT(DISTINCT ?example_; separator='\\t') AS ?example)
-      (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_name)
+      (GROUP_CONCAT(DISTINCT ?short_name_; separator='\\t') AS ?short_names)
     WHERE {
       {
         VALUES ?category {
@@ -207,7 +208,7 @@ def _get_query(properties) -> str:
     return QUERY_FMT % values
 
 
-def _get_wikidata():
+def _get_wikidata() -> dict[str, Record]:
     """Iterate over Wikidata properties connected to biological databases."""
     mapped = _get_mapped()
     # throw out anything that can be queried directly
@@ -300,20 +301,17 @@ def _get_wikidata():
                 pattern = pattern + "$"
             bindings["pattern"] = pattern
 
-        rv[prefix] = {k: v for k, v in bindings.items() if k and v}
+        rv[prefix] = Record.model_validate({k: v for k, v in bindings.items() if k and v})
 
     return rv
 
 
-def get_wikidata(force_download: bool = False):
+def get_wikidata(force_download: bool = False) -> dict[str, Record]:
     """Get the wikidata registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
-
+        return load_records(PROCESSED_PATH)
     data = _get_wikidata()
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(data, file, indent=2, sort_keys=True)
+    dump_records(data, PROCESSED_PATH)
     return data
 
 

@@ -1,12 +1,10 @@
 """Download Zazuko."""
 
-import json
-from collections.abc import Mapping
 from pathlib import Path
-from typing import Any
 
 import requests
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -22,18 +20,16 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://prefix.zazuko.com/api/v1/prefixes"
 
 
-def get_zazuko(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
+def get_zazuko(force_download: bool = False) -> dict[str, Record]:
     """Get the Zazuko context map."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_records(PROCESSED_PATH)
 
-    data = requests.get(URL).json()
+    data = requests.get(URL, timeout=15).json()
     rv = {
-        prefix: {URI_FORMAT_KEY: f"{uri_prefix.strip()}$1"} for prefix, uri_prefix in data.items()
+        prefix: Record(uri_format=f"{uri_prefix.strip()}$1") for prefix, uri_prefix in data.items()
     }
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 

@@ -8,6 +8,7 @@ import click
 from curies.w3c import NCNAME_RE
 from tabulate import tabulate
 
+from ..alignment_model import Record
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
@@ -30,7 +31,7 @@ class Aligner:
 
     #: The function that gets the external registry as a dictionary from the string identifier to
     #: the entries (could be anything, but a dictionary is probably best)
-    getter: ClassVar[Callable[..., Mapping[str, Any]]]
+    getter: ClassVar[Callable[..., dict[str, Record]]]
 
     #: Keyword arguments to pass to the getter function on call
     getter_kwargs: ClassVar[Optional[Mapping[str, Any]]] = None
@@ -51,6 +52,9 @@ class Aligner:
 
     normalize_invmap: ClassVar[bool] = False
 
+    #: Records form the external registry
+    external_registry: dict[str, Record]
+
     def __init__(self, force_download: Optional[bool] = None):
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
@@ -70,7 +74,7 @@ class Aligner:
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
-        # Get all of the pre-curated mappings from the Bioregistry
+        # Get all the pre-curated mappings from the Bioregistry
         self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
             self.key,
             normalize=self.normalize_invmap,
@@ -145,19 +149,17 @@ class Aligner:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
 
-    def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
-    ) -> None:
+    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Record) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        _entry = self.prepare_external(external_id, external_entry)
-        _entry[self.subkey] = external_id
-        self.internal_registry[bioregistry_id][self.key] = _entry
+        processed_record = self.prepare_external(external_id, external_entry)
+        # setattr(_entry, self.subkey, external_id)
+        self.internal_registry[bioregistry_id][self.key] = processed_record
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: Record) -> Record:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
         The default implementation returns `external_entry` unchanged.
@@ -208,7 +210,7 @@ class Aligner:
 
         _main(*args, **kwargs)
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
@@ -224,7 +226,7 @@ class Aligner:
         """
         rv = []
         for k in self.curation_header:
-            value = external_entry.get(k)
+            value = getattr(external_entry, k)
             if value is None:
                 rv.append("")
             elif isinstance(value, str):
