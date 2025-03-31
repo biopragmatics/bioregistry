@@ -76,7 +76,9 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
 def _process_db_url(key, value):
     if value in {"https://%s", "None"}:
         return
-    if value.endswith("http://purl.obolibrary.org/obo/%s"):
+    if value.endswith("http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s") or value.endswith(
+        "http://purl.obolibrary.org/obo/%s"
+    ):
         logger.debug(
             "Cellosaurus curated an OBO PURL for `%s` that is is missing namespace. "
             "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
