@@ -1,7 +1,8 @@
 """Resolvers for CURIE (e.g., pairs of prefix and identifier)."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping, Sequence
-from typing import Optional
 
 from .resolve import get_resource
 from .resource_manager import manager
@@ -182,7 +183,7 @@ def standardize_identifier(prefix: str, identifier: str) -> str:
     return resource.standardize_identifier(identifier)
 
 
-def miriam_standardize_identifier(prefix: str, identifier: str) -> Optional[str]:
+def miriam_standardize_identifier(prefix: str, identifier: str) -> str | None:
     """Normalize the identifier with the appropriate banana.
 
     :param prefix: The prefix in the CURIE
@@ -261,7 +262,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> Optional[str]
     return resource.miriam_standardize_identifier(identifier)
 
 
-def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_default_iri(prefix: str, identifier: str) -> str | None:
     """Get the default URL for the given CURIE.
 
     :param prefix: The prefix in the CURIE
@@ -284,7 +285,7 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[tuple[str, str]
     return manager.get_providers_list(prefix, identifier)
 
 
-def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_identifiers_org_iri(prefix: str, identifier: str) -> str | None:
     """Get the identifiers.org URL for the given CURIE.
 
     :param prefix: The prefix in the CURIE
@@ -304,7 +305,7 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     return manager.get_miriam_iri(prefix, identifier)
 
 
-def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_n2t_iri(prefix: str, identifier: str) -> str | None:
     """Get the name-to-thing URL for the given CURIE.
 
     :param prefix: The prefix in the CURIE
@@ -318,7 +319,7 @@ def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
     return manager.get_n2t_iri(prefix, identifier)
 
 
-def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_bioportal_iri(prefix: str, identifier: str) -> str | None:
     """Get the Bioportal URL for the given CURIE.
 
     :param prefix: The prefix in the CURIE
@@ -331,12 +332,12 @@ def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
     return manager.get_bioportal_iri(prefix, identifier)
 
 
-def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
+def get_identifiers_org_curie(prefix: str, identifier: str) -> str | None:
     """Get the identifiers.org CURIE for the given CURIE."""
     return manager.get_miriam_curie(prefix, identifier)
 
 
-def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_obofoundry_iri(prefix: str, identifier: str) -> str | None:
     """Get the OBO Foundry URL if possible.
 
     :param prefix: The prefix
@@ -354,12 +355,12 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
     return manager.get_obofoundry_iri(prefix, identifier)
 
 
-def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_ols_iri(prefix: str, identifier: str) -> str | None:
     """Get the OLS URL if possible."""
     return manager.get_ols_iri(prefix, identifier)
 
 
-def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_scholia_iri(prefix: str, identifier: str) -> str | None:
     """Get a Scholia IRI, if possible.
 
     :param prefix: The prefix in the CURIE
@@ -375,7 +376,7 @@ def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
     return manager.get_scholia_iri(prefix, identifier)
 
 
-def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
+def get_bioregistry_iri(prefix: str, identifier: str) -> str | None:
     """Get the bioregistry link.
 
     :param prefix: The prefix in the CURIE
@@ -414,13 +415,13 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
 
 def get_iri(
     prefix: str,
-    identifier: Optional[str] = None,
+    identifier: str | None = None,
     *,
-    priority: Optional[Sequence[str]] = None,
-    prefix_map: Optional[Mapping[str, str]] = None,
+    priority: Sequence[str] | None = None,
+    prefix_map: Mapping[str, str] | None = None,
     use_bioregistry_io: bool = True,
-    provider: Optional[str] = None,
-) -> Optional[str]:
+    provider: str | None = None,
+) -> str | None:
     """Get the best link for the CURIE, if possible.
 
     :param prefix: The prefix in the CURIE
@@ -483,7 +484,7 @@ def get_iri(
     )
 
 
-def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
+def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> str | None:
     """Get an IRI using the format in the metaregistry.
 
     :param metaprefix: The metaprefix of the registry in the metaregistry

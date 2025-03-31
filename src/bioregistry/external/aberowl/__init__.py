@@ -32,7 +32,7 @@ def get_aberowl(force_download: bool = False) -> dict[str, dict[str, Any]]:
         entries = yaml.full_load(file)
     rv = {entry["acronym"]: _process(entry) for entry in entries}
     with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
     return rv
 
 

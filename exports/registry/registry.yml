@@ -4412,7 +4412,7 @@ biolink:
     orcid: 0000-0002-6601-2165
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/69/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/70/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   keywords:
@@ -5745,10 +5745,12 @@ bto:
   homepage: http://www.brenda-enzymes.org
   keywords:
   - cell
+  - cell biology
   - enzyme
   - enzymology
   - life science
   - obo
+  - omics
   - ontology
   - organ
   - reaction data
@@ -9319,7 +9321,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.238'
+  version: '2.239'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -11303,6 +11305,7 @@ credit:
   - citation
   - classification
   - data quality
+  - omics
   - publication
   - resource metadata
   - subject agnostic
@@ -14410,6 +14413,7 @@ doi:
   - bibliography
   - centrally registered identifier
   - knowledge and information systems
+  - omics
   mappings:
     biocontext: DOI
     biolink: doi
@@ -15025,6 +15029,24 @@ dragondb.protein:
   pattern: ^\w+$
   preferred_prefix: dragondb.protein
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide
+drc.filenumber:
+  contributor:
+    email: egon.willighagen@maastrichtuniversity.nl
+    github: egonw
+    name: Egon Willighagen
+    orcid: 0000-0001-7542-0286
+  description: Dutch Research Council file numbers are used for approved grants.
+  example: osf232097
+  github_request_issue: 1460
+  homepage: https://www.nwo.nl/en/
+  name: Dutch Research Council File Number
+  preferred_prefix: drc.filenumber
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.nwo.nl/en/projects/$1
 drduke:
   description: identifier for chemicals linked to information on occurrence in plants
   example: '19'
@@ -20476,6 +20498,7 @@ fma:
     aberowl: FMA
     bartoc: '571'
     biocontext: FMA
+    biolink: FMA
     bioportal: FMA
     edam: '1182'
     fairsharing: FAIRsharing.x56jsy
@@ -21280,7 +21303,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2025-01-14'
+  version: '2025-02-28'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -24923,7 +24946,7 @@ hancestro:
   rdf_uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
   repository: https://github.com/EBISPOT/ancestro
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
-  version: '2024-08-19'
+  version: '2025-02-24'
 hao:
   contact:
     email: diapriid@gmail.com
@@ -25203,6 +25226,7 @@ hdl:
   homepage: https://www.handle.net/
   keywords:
   - centrally registered identifier
+  - omics
   - subject agnostic
   mappings:
     fairsharing: FAIRsharing.0b7e54
@@ -26385,6 +26409,7 @@ hp:
   license: hpo
   logo: https://raw.githubusercontent.com/obophenotype/human-phenotype-ontology/master/logo/HPO-logo-black_small.png
   mappings:
+    aberowl: HPO
     bartoc: '1937'
     biocontext: HPO
     fairsharing: FAIRsharing.kbtt7f
@@ -28527,6 +28552,7 @@ igsn:
   - geochemistry
   - geology
   - hydrogeology
+  - omics
   - persistent identifier
   - physical samples
   - resource metadata
@@ -32754,6 +32780,7 @@ m4i:
   - metadata
   - ontology
   license: CC-BY-4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaWNHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6435da59153a976c6b09d30ac0ee96286c50a32c/Logo.png?disposition=inline
   mappings:
     bartoc: '20402'
     fairsharing: FAIRsharing.f8b3ec
@@ -37247,7 +37274,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.190
+  version: 4.1.191
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -41309,7 +41336,7 @@ obi:
   - rbo
   - scdo
   banana: OBI
-  banana_peel: ':'
+  banana_peel: _
   contact:
     email: bpeters@lji.org
     github: bpeters42
@@ -42255,7 +42282,7 @@ om:
   preferred_prefix: om
   repository: https://github.com/HajoRijgersberg/OM
   uri_format: http://www.ontology-of-units-of-measure.org/resource/om-2/$1
-  version: 2.0.58
+  version: 2.0.59
 oma.grp:
   description: OMA (Orthologous MAtrix) is a database that identifies orthologs among
     publicly available, complete genome sequences. It identifies orthologous relationships
@@ -47267,6 +47294,7 @@ pmc:
     miriam: pmc
     n2t: pmc
     prefixcommons: pmc
+    togoid: Pmc
     wikidata: P932
   name: PubMed Central
   pattern: ^PMC\d+(\.\d+)?$
@@ -51713,6 +51741,7 @@ rrid:
   - data retrieval
   - knowledge and information systems
   - life science
+  - omics
   - resource metadata
   mappings:
     biocontext: RRID
@@ -51883,7 +51912,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.242'
+  version: '6.243'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -56086,7 +56115,7 @@ stato:
   rdf_uri_format: http://purl.obolibrary.org/obo/STATO_$1
   repository: https://github.com/ISA-tools/stato
   uri_format: http://purl.obolibrary.org/obo/STATO_$1
-  version: '2025-02-22'
+  version: '2025-02-23'
 stitch:
   contact:
     email: bork@embl.de
@@ -59818,6 +59847,8 @@ uniprot.proteome:
   example: UP000005640
   github_request_issue: 604
   homepage: https://www.uniprot.org/proteomes
+  mappings:
+    togoid: UniprotProteome
   name: UniProt Proteomes
   part_of: uniprot
   pattern: ^UP\d{9}$
@@ -61540,7 +61571,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2024-12-29'
+  version: '2025-02-26'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -62856,7 +62887,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.195'
+  version: '4.196'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca

@@ -65,7 +65,7 @@ schema_status_map = {
 }
 
 
-def _sort_key(registry: bioregistry.Registry):
+def _sort_key(registry: bioregistry.Registry) -> tuple[int, str]:
     if registry.prefix == "bioregistry":
         return 0, registry.prefix
     return 1, registry.prefix

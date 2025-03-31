@@ -141,7 +141,7 @@ class BioregistrySummary:
             number_mappings=total_mapping_count,
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
-            number_mismatches_curated=sum(len(v) for v in manager.mismatches.values()),
+            number_mismatches_curated=sum(len(v.values()) for v in manager.mismatches.values()),
             external_sizes={
                 metaprefix: len(getter(force_download=force_download))
                 for metaprefix, _, getter in GETTERS
