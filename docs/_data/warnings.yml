@@ -157,6 +157,11 @@ wrong_patterns:
   miriam: ^FOODON:[0-9]{8}$
   name: The Food Ontology
   prefix: foodon
+- correct: ^\d+$
+  homepage: https://www.crossref.org/
+  miriam: ^\d{9,9}$
+  name: FunderRegistry
+  prefix: funderregistry
 - correct: ^\d{9}$
   homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
   miriam: ^GEO_[0-9]{9}$
@@ -352,6 +357,11 @@ wrong_patterns:
   miriam: ^NANDO:[0-9]+$
   name: Nanbyo Disease Ontology
   prefix: nando
+- correct: ^[CRPA]\d+$
+  homepage: https://github.com/NCI-Thesaurus/thesaurus-obo-edition
+  miriam: ^C\d+$
+  name: NCI Thesaurus
+  prefix: ncit
 - correct: ^\d+$
   homepage: https://github.com/SciCrunch/NIF-Ontology
   miriam: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
@@ -557,7 +567,7 @@ wrong_patterns:
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
   name: Vertebrate Gene Nomenclature Committee
   prefix: vgnc
-- correct: ^(Q|P|E)\d+$
+- correct: ^(Q|P|E|L)\d+$
   homepage: https://www.wikidata.org/
   miriam: ^(Q|P)\d+$
   name: Wikidata

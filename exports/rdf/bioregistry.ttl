@@ -75,7 +75,6 @@
 @prefix bartoc: <https://bartoc.org/en/node/> .
 @prefix bbtp: <https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:> .
 @prefix bcbc: <https://scicrunch.org/resolver/RRID:BCBC_> .
-@prefix bcgo: <https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F> .
 @prefix bcio: <https://w3id.org/BCI-ontology#> .
 @prefix bco: <http://purl.obolibrary.org/obo/BCO_> .
 @prefix bcrc: <https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=> .
@@ -342,8 +341,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -398,6 +397,7 @@
 @prefix door: <http://csbl.bmb.uga.edu/DOOR/operon.php?id=> .
 @prefix doqcs.model: <http://doqcs.ncbs.res.in/template.php?&y=accessiondetails&an=> .
 @prefix doqcs.pathway: <http://doqcs.ncbs.res.in/template.php?&y=pathwaydetails&pn=> .
+@prefix dpbo: <https://purl.org/nfdi4plants/ontology/dpbo/DPBO_> .
 @prefix dpv: <http://www.dpvweb.net/dpv/showdpv.php?dpvno=> .
 @prefix dpvocab: <https://w3id.org/dpv#> .
 @prefix drc.filenumber: <https://www.nwo.nl/en/projects/> .
@@ -744,7 +744,7 @@
 @prefix inaturalist.taxon: <https://www.inaturalist.org/taxa/> .
 @prefix inaturalist.user: <https://www.inaturalist.org/users/> .
 @prefix inchi: <http://www.chemspider.com/> .
-@prefix inchikey: <http://legacy.chemspider.com/inchikey=> .
+@prefix inchikey: <https://www.chemspider.com/search?params=> .
 @prefix informall: <http://research.bmh.manchester.ac.uk/informall/allergenic-food/?FoodId=> .
 @prefix inn: <https://mednet-communities.net/inn/db/ViewINN.aspx?i=> .
 @prefix innatedb: <http://www.innatedb.ca/getGeneCard.do?id=> .
@@ -1161,6 +1161,7 @@
 @prefix pfr: <http://repository.topdownproteomics.org/proteoforms/> .
 @prefix pgs: <https://www.pgscatalog.org/pgs/> .
 @prefix pgx: <https://progenetix.org/services/ids/> .
+@prefix phagedive: <https://phagedive.dsmz.de/strain/> .
 @prefix pharmacodb.cell: <https://pharmacodb.ca/cell_lines/> .
 @prefix pharmacodb.dataset: <https://pharmacodb.ca/datasets/> .
 @prefix pharmacodb.tissue: <https://pharmacodb.ca/tissues/> .
@@ -1249,6 +1250,7 @@
 @prefix rbk: <https://www.rebuildingakidney.org/id/> .
 @prefix rbo: <http://purl.obolibrary.org/obo/RBO_> .
 @prefix rcb: <https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=> .
+@prefix rdbsb: <https://www.biosino.org/rdbsb/bioparts_detail/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfa: <http://www.w3.org/ns/rdfa#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -3133,6 +3135,7 @@ bioregistry:ark a bioregistry.schema:0000001 ;
         orcid:0000-0003-4423-4370 ;
     dcterms:description "Archival Resource Keys (ARKs) serve as persistent identifiers, or stable, trusted references for information objects. Among other things, they aim to be web addresses (URLs) that don’t return 404 Page Not Found errors. The ARK Alliance is an open global community supporting the ARK infrastructure on behalf of research and scholarship. End users, especially researchers, rely on ARKs for long term access to the global scientific and cultural record. Since 2001 some 8.2 billion ARKs have been created by over 1000 organizations — libraries, data centers, archives, museums, publishers, government agencies, and vendors. They identify anything digital, physical, or abstract. ARKs are open, mainstream, non-paywalled, decentralized persistent identifiers that can be created by an organization as soon as it is registered with a NAAN (Name Assigning Authority Number). Once registered, an ARK organization can create unlimited numbers of ARKs and publicize them via the n2t.net global resolver or via their own local resolver."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository github:arks-org ;
     skos:exactMatch biocontext:ARK,
         n2t:ark,
         fairsharing:FAIRsharing.f928f1,
@@ -3776,13 +3779,12 @@ bioregistry:bcgo a bioregistry.schema:0000001 ;
         "ontology" ;
     foaf:homepage <https://github.com/obi-bcgo/bcgo> ;
     bioregistry.schema:0000005 "0000015"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BCGO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000010 <https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl> ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 ;
-    bioregistry.schema:0000024 "https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F"^^xsd:string ;
-    bioregistry.schema:0000027 bcgo:0000015 ;
+    bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BCGO_"^^xsd:string ;
     bioregistry.schema:0000029 "bcgo" .
 
 bioregistry:bcio a bioregistry.schema:0000001 ;
@@ -6317,6 +6319,22 @@ bioregistry:cmpo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 cmpo:0000435 ;
     bioregistry.schema:0000029 "cmpo" .
 
+bioregistry:cncb.gwh a bioregistry.schema:0000001 ;
+    rdfs:label "CNCB Genome Warehouse" ;
+    dcterms:contributor orcid:0009-0008-8406-631X ;
+    dcterms:description "The China National Center for Bioinformation's (CNCB) Genome Warehouse (GWH) is a public repository holding genetic information for a wide range of species including humans, plants, animals, and microorganisms. Identifiers in this resource correspond to genomes of various species. The goal of the resource is to make genomic data accessible to researchers in areas like precision medicine and biotechnology."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://ngdc.cncb.ac.cn/gwh/browse/genome> ;
+    bioregistry.schema:0000005 "167047"^^xsd:string ;
+    bioregistry.schema:0000006 "https://ngdc.cncb.ac.cn/gwh/Genome/$1/show"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-9922-9723 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://bioregistry.io/cncb.gwh:"^^xsd:string ;
+    bioregistry.schema:0000027 <https://ngdc.cncb.ac.cn/gwh/Genome/167047/show> ;
+    bioregistry.schema:0000029 "cncb.gwh" .
+
 bioregistry:cnrs a bioregistry.schema:0000001 ;
     rdfs:label "French National Center for Scientific Research - Research Group Identifier" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
@@ -6326,7 +6344,7 @@ bioregistry:cnrs a bioregistry.schema:0000001 ;
     foaf:homepage <https://annuaire.cnrs.fr> ;
     bioregistry.schema:0000005 "UMR7315"^^xsd:string ;
     bioregistry.schema:0000006 "https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=$1&p_origine_appel=u"^^xsd:string ;
-    bioregistry.schema:0000008 "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY)\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY|UPS)\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "https://bioregistry.io/cnrs:"^^xsd:string ;
     bioregistry.schema:0000027 <https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=UMR7315&p_origine_appel=u> ;
@@ -9027,6 +9045,26 @@ bioregistry:door a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 door:1398574 ;
     bioregistry.schema:0000029 "door" .
 
+bioregistry:dpbo a bioregistry.schema:0000001 ;
+    rdfs:label "DataPLANT Biology Ontology" ;
+    dcterms:contributor orcid:0000-0002-0476-9699 ;
+    dcterms:description "With the DataPLANT biology ontology (DPBO), DataPLANT provides an intermediate ontology that acts as a broker and bridge between the individual researcher/domain experts and main ontology providers. DPBO enables easy and agile collection of missing vocabulary as well as relationships between terms for (meta)data annotation using DataPLANT’s Swate tool."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    doap:GitRepository <https://github.com/nfdi4plants/nfdi4plants_ontology> ;
+    dcat:keyword "ontology" ;
+    foaf:homepage <https://www.nfdi4plants.org/> ;
+    bioregistry.schema:0000005 "0010015"^^xsd:string ;
+    bioregistry.schema:0000006 "https://purl.org/nfdi4plants/ontology/dpbo/DPBO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000010 <https://raw.githubusercontent.com/nfdi4plants/nfdi4plants_ontology/refs/heads/main/dpbo.obo> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8000-0400,
+        orcid:0000-0002-9905-4011 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
+    bioregistry.schema:0000024 "https://purl.org/nfdi4plants/ontology/dpbo/DPBO_"^^xsd:string ;
+    bioregistry.schema:0000027 dpbo:0010015 ;
+    bioregistry.schema:0000029 "dpbo" .
+
 bioregistry:dpv a bioregistry.schema:0000001 ;
     rdfs:label "Description of Plant Viruses" ;
     dcterms:description "Description of Plant Viruses (DPV) provides information about viruses, viroids and satellites of plants, fungi and protozoa. It provides taxonomic information, including brief descriptions of each family and genus, and classified lists of virus sequences. The database also holds detailed information for all sequences of viruses, viroids and satellites of plants, fungi and protozoa that are complete or that contain at least one complete gene."^^xsd:string ;
@@ -11005,7 +11043,7 @@ bioregistry:funderregistry a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.crossref.org/> ;
     bioregistry.schema:0000005 "100000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://data.crossref.org/fundingdata/funder/10.13039/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{9,9}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "FundRef",
         "crossref.funder" ;
@@ -14091,7 +14129,8 @@ bioregistry:igsn a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.c7f365,
         miriam:igsn ;
     dcat:keyword "archaeology",
-        "citation",
+        "biological sample",
+        "centrally registered identifier",
         "data management",
         "earth science",
         "environmental science",
@@ -14099,9 +14138,7 @@ bioregistry:igsn a bioregistry.schema:0000001 ;
         "geology",
         "hydrogeology",
         "omics",
-        "persistent identifier",
-        "physical samples",
-        "resource metadata" ;
+        "physical samples" ;
     foaf:homepage <https://ev.igsn.org/home> ;
     bioregistry.schema:0000005 "AU124"^^xsd:string ;
     bioregistry.schema:0000006 "http://igsn.org/$1"^^xsd:string ;
@@ -14487,10 +14524,10 @@ bioregistry:inchikey a bioregistry.schema:0000001 ;
         togoid:InchiKey ;
     foaf:homepage inchi: ;
     bioregistry.schema:0000005 "RYYVLZVUVIJVGH-UHFFFAOYSA-N"^^xsd:string ;
-    bioregistry.schema:0000006 "http://legacy.chemspider.com/inchikey=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.chemspider.com/search?params=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "http://legacy.chemspider.com/inchikey="^^xsd:string ;
+    bioregistry.schema:0000024 "https://www.chemspider.com/search?params="^^xsd:string ;
     bioregistry.schema:0000027 inchikey:RYYVLZVUVIJVGH-UHFFFAOYSA-N ;
     bioregistry.schema:0000029 "inchikey" .
 
@@ -17979,6 +18016,7 @@ bioregistry:msio a bioregistry.schema:0000001 ;
         ols:msio ;
     dcat:keyword "annotation",
         "experimental measurement",
+        "functional magnetic resonance imaging",
         "mass spectrum",
         "metabolomics",
         "nmr",
@@ -21415,6 +21453,22 @@ bioregistry:pgx a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 pgx:pgxbs-kftva5zv ;
     bioregistry.schema:0000029 "pgx" .
 
+bioregistry:phagedive a bioregistry.schema:0000001 ;
+    rdfs:label "PhageDive" ;
+    dcterms:contributor orcid:0009-0009-5240-7463 ;
+    dcterms:description "PhageDive is a database for bacteriophages and archaeal viruses. It provides information regarding taxonomy, host strain, phage morphology, life cycle, origin and genomic data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://phagedive.dsmz.de> ;
+    bioregistry.schema:0000005 "3"^^xsd:string ;
+    bioregistry.schema:0000006 "https://phagedive.dsmz.de/strain/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7275-9927 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://phagedive.dsmz.de/strain/"^^xsd:string ;
+    bioregistry.schema:0000027 phagedive:3 ;
+    bioregistry.schema:0000029 "phagedive" .
+
 bioregistry:pharmacodb.cell a bioregistry.schema:0000001 ;
     rdfs:label "PharmacoDB Cells" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
@@ -22777,6 +22831,22 @@ bioregistry:rcb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo="^^xsd:string ;
     bioregistry.schema:0000027 rcb:RCB0002 ;
     bioregistry.schema:0000029 "rcb" .
+
+bioregistry:rdbsb a bioregistry.schema:0000001 ;
+    rdfs:label "Registry and database of bioparts for synthetic biology" ;
+    dcterms:contributor orcid:0009-0009-5240-7463 ;
+    dcterms:description "This database provides identifiers for catalytic bioparts which are fundamental to the design, construction, and optimization of biological systems for specific metabolic pathways. It provides basic information, function information (including catalytic functions, qualitative and quantitative parameters, and biopart expression), and sequence information (nucleotide sequence and amino acid sequence)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage <https://www.biosino.org/rdbsb> ;
+    bioregistry.schema:0000005 "OENC205"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.biosino.org/rdbsb/bioparts_detail/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^OENC\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-8827-7546 ;
+    bioregistry.schema:0000021 orcid:0000-0001-9439-5346 ;
+    bioregistry.schema:0000024 "https://www.biosino.org/rdbsb/bioparts_detail/"^^xsd:string ;
+    bioregistry.schema:0000027 rdbsb:OENC205 ;
+    bioregistry.schema:0000029 "rdbsb" .
 
 bioregistry:rdfa a bioregistry.schema:0000001 ;
     rdfs:label "RDFa Vocabulary for Term and Prefix Assignment, and for Processor Graph Reporting" ;
@@ -24285,7 +24355,8 @@ bioregistry:semapv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000010 <https://raw.githubusercontent.com/mapping-commons/semantic-mapping-vocabulary/main/semapv.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7356-1779 ;
-    bioregistry.schema:0000023 "sempav_voc" ;
+    bioregistry.schema:0000023 "semapv_voc",
+        "sempav_voc" ;
     bioregistry.schema:0000024 "https://w3id.org/semapv/vocab/"^^xsd:string ;
     bioregistry.schema:0000026 wikidata:Q115518213 ;
     bioregistry.schema:0000027 semapv:LexicalMatching ;
@@ -28726,6 +28797,9 @@ orcid:0000-0001-8752-4664 rdfs:label "Pierre Baldi" ;
 orcid:0000-0001-8823-9945 rdfs:label "Raja Mazumder" ;
     foaf:mbox "mazumder@gwu.edu" .
 
+orcid:0000-0001-8827-7546 rdfs:label "Guoqing Zhang" ;
+    foaf:mbox "gqzhang@sinh.ac.cn" .
+
 orcid:0000-0001-8886-8311 rdfs:label "Ruili Huang" ;
     foaf:mbox "ruili.huang@nih.gov" .
 
@@ -28746,6 +28820,9 @@ orcid:0000-0001-9105-5960 rdfs:label "Michael Hucka" ;
 
 orcid:0000-0001-9107-0714 rdfs:label "Hilmar Lapp" ;
     foaf:mbox "hilmar.lapp@duke.edu" .
+
+orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" ;
+    foaf:mbox "haendel@ohsu.edu" .
 
 orcid:0000-0001-9117-7909 rdfs:label "Christian-Alexander Dudek" ;
     foaf:mbox "c.dudek@tu-braunschweig.de" .
@@ -28788,6 +28865,9 @@ orcid:0000-0001-9472-2589 rdfs:label "Karel Berka" ;
 
 orcid:0000-0001-9504-189X rdfs:label "Issaku Yamada" ;
     foaf:mbox "issaku@noguchi.or.jp" .
+
+orcid:0000-0001-9551-9662 rdfs:label "Jonathan Clark" ;
+    foaf:mbox "jonathanmtclark@gmail.com" .
 
 orcid:0000-0001-9568-4211 rdfs:label "Danielle Thierry-Mieg" ;
     foaf:mbox "mieg@ncbi.nlm.nih.gov" .
@@ -28848,6 +28928,9 @@ orcid:0000-0002-0358-0130 rdfs:label "Martin Ramirez" ;
 
 orcid:0000-0002-0412-9018 rdfs:label "Harry E. Pence" ;
     foaf:mbox "pencehe@oneonta.edu" .
+
+orcid:0000-0002-0476-9699 rdfs:label "Hannah Dörpholz" ;
+    foaf:mbox "h.doerpholz@fz-juelich.de" .
 
 orcid:0000-0002-0548-891X rdfs:label "Madeline Iseminger" ;
     foaf:mbox "miseming@sfu.ca" .
@@ -29238,6 +29321,9 @@ orcid:0000-0002-7140-9933 rdfs:label "Thomas Lütteke" ;
 orcid:0000-0002-7141-8936 rdfs:label "Christine Orengo" ;
     foaf:mbox "c.orengo@ucl.ac.uk" .
 
+orcid:0000-0002-7275-9927 rdfs:label "Johannes Wittmann" ;
+    foaf:mbox "johannes.wittmann@dsmz.de" .
+
 orcid:0000-0002-7276-9009 rdfs:label "Jeremy Zucker" .
 
 orcid:0000-0002-7440-0467 rdfs:label "Lucas Leclere" ;
@@ -29266,6 +29352,9 @@ orcid:0000-0002-7981-8504 rdfs:label "Sheeba Samuel" ;
 
 orcid:0000-0002-7984-0445 rdfs:label "Susan J. Brown" ;
     foaf:mbox "sjbrown@ksu.edu" .
+
+orcid:0000-0002-8000-0400 rdfs:label "Angela Kranz" ;
+    foaf:mbox "a.kranz@fz-juelich.de" .
 
 orcid:0000-0002-8086-5404 rdfs:label "Wojciech M. Karlowski" ;
     foaf:mbox "wmk@amu.edu.pl" .
@@ -29426,8 +29515,8 @@ orcid:0000-0002-9765-2990 rdfs:label "Ryan Brinkman" ;
 orcid:0000-0002-9859-4104 rdfs:label "Andrew I Su" ;
     foaf:mbox "asu@scripps.edu" .
 
-orcid:0000-0002-9922-9723 rdfs:label "Yiming Bao" ;
-    foaf:mbox "baoym@big.ac.cn" .
+orcid:0000-0002-9905-4011 rdfs:label "Kathryn Dumschott" ;
+    foaf:mbox "k.dumschott@fz-juelich.de" .
 
 orcid:0000-0002-9943-2342 rdfs:label "EOL Secretariat" ;
     foaf:mbox "secretariat@eol.org" .
@@ -38297,7 +38386,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dcmitype:Collection ;
+    bioregistry.schema:0000027 dctypes:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:deims.activity a bioregistry.schema:0000001 ;
@@ -44982,7 +45071,7 @@ bioregistry:wikidata a bioregistry.schema:0000001 ;
     foaf:homepage <https://www.wikidata.org/> ;
     bioregistry.schema:0000005 "Q47475003"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.wikidata.org/entity/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(Q|P|E)\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(Q|P|E|L)\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9593-2294 ;
     bioregistry.schema:0000023 "WD_Entity",
@@ -45129,12 +45218,14 @@ bioregistry:xlmod a bioregistry.schema:0000001 ;
         obofoundry:xlmod ;
     dcat:keyword "chemical biology",
         "experimental measurement",
+        "gas chromatography",
         "mass spectrometry assay",
         "mass spectrum",
         "metabolomics",
         "obo",
         "omics",
-        "ontology" ;
+        "ontology",
+        "reagent" ;
     foaf:homepage <http://www.psidev.info/groups/controlled-vocabularies> ;
     bioregistry.schema:0000005 "00050"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XLMOD_$1"^^xsd:string ;
@@ -47217,9 +47308,6 @@ orcid:0000-0001-9052-2854 rdfs:label "Kim Durante" ;
 orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" ;
     foaf:mbox "cgrove@caltech.edu" .
 
-orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" ;
-    foaf:mbox "haendel@ohsu.edu" .
-
 orcid:0000-0001-9163-5180 rdfs:label "J. Michael Cherry",
         "Mike Cherry" ;
     foaf:mbox "cherry@genome.stanford.edu" .
@@ -47373,6 +47461,9 @@ orcid:0000-0002-9900-7880 rdfs:label "Yvonne Bradford" ;
 
 orcid:0000-0002-9903-4248 rdfs:label "Michael Baudis" ;
     foaf:mbox "mbaudis@me.com" .
+
+orcid:0000-0002-9922-9723 rdfs:label "Yiming Bao" ;
+    foaf:mbox "baoym@big.ac.cn" .
 
 orcid:0000-0003-0185-8861 rdfs:label "Gary Bader" ;
     foaf:mbox "gary.bader@utoronto.ca" .
@@ -52212,12 +52303,14 @@ bioregistry:doi a bioregistry.schema:0000001 ;
     dcat:keyword "bibliography",
         "centrally registered identifier",
         "knowledge and information systems",
-        "omics" ;
+        "publication",
+        "subject agnostic" ;
     foaf:homepage <https://www.doi.org/> ;
     bioregistry.schema:0000005 "10.1038/s41597-022-01807-3"^^xsd:string ;
     bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^10.\\d{2,9}/.*$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9551-9662 ;
     bioregistry.schema:0000024 "https://doi.org/"^^xsd:string ;
     bioregistry.schema:0000027 <https://doi.org/10.1038/s41597-022-01807-3> ;
     bioregistry.schema:0000029 "doi" .
@@ -52465,7 +52558,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "16793"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/HGNC/2/hgnc.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8380-5247 ;
     bioregistry.schema:0000024 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/"^^xsd:string ;
@@ -52835,7 +52928,7 @@ bioregistry:oboinowl a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/geneontology/go-ontology/tree/master/contrib> ;
     bioregistry.schema:0000005 "hasDbXref"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.geneontology.org/formats/oboInOwl#$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[\\w-]+$"^^xsd:string ;
     bioregistry.schema:0000010 <http://www.geneontology.org/formats/oboInOwl.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
@@ -54622,12 +54715,14 @@ bioregistry:hp a bioregistry.schema:0000001 ;
         ols:hp,
         obofoundry:hp ;
     dcat:keyword "biomedical science",
-        "disease",
+        "disease phenotype",
+        "disorder",
         "genetics",
         "obo",
+        "omics",
         "ontology",
+        "pathology",
         "phenomics",
-        "phenotype",
         "preclinical studies" ;
     foaf:homepage <http://www.human-phenotype-ontology.org/> ;
     bioregistry.schema:0000005 "0011140"^^xsd:string ;
@@ -54883,8 +54978,7 @@ bioregistry:edam a bioregistry.schema:0000001 ;
         "data transformation",
         "life science",
         "obo",
-        "ontology",
-        "subject agnostic" ;
+        "ontology" ;
     foaf:homepage <http://edamontology.org> ;
     bioregistry.schema:0000005 "data_1664"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"^^xsd:string ;
@@ -55423,14 +55517,15 @@ bioregistry:ncit a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/NCI-Thesaurus/thesaurus-obo-edition> ;
     bioregistry.schema:0000005 "C138986"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NCIT_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^C\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[CRPA]\\d+$"^^xsd:string ;
     bioregistry.schema:0000010 obo:ncit.owl ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ecto,
         bioregistry:mco,
         bioregistry:ontoavida,
         bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 ;
+    bioregistry.schema:0000019 [ rdfs:label "NCI Thesaurus Mailbox" ;
+            foaf:mbox "ncithesaurus@mail.nih.gov" ] ;
     bioregistry.schema:0000023 "NCI",
         "NCI2004_11_17",
         "NCIT",
@@ -55564,9 +55659,6 @@ orcid:0000-0003-4446-6200 rdfs:label "Jessica Kissinger",
     foaf:mbox "jkissing@uga.edu",
         "oharb@pcbi.upenn.edu",
         "oharb@upenn.edu" .
-
-orcid:0009-0008-8406-631X rdfs:label "Nalika Palayoor" ;
-    foaf:mbox "palayoor.n@northeastern.edu" .
 
 bioregistry:caro a bioregistry.schema:0000001 ;
     rdfs:label "Common Anatomy Reference Ontology" ;
@@ -55759,6 +55851,9 @@ orcid:0000-0001-6123-540X rdfs:label "Minoru Kanehisa" ;
 
 orcid:0000-0003-2699-3066 rdfs:label "Meghan Balk" ;
     foaf:mbox "meghan.balk@gmail.com" .
+
+orcid:0009-0008-8406-631X rdfs:label "Nalika Palayoor" ;
+    foaf:mbox "palayoor.n@northeastern.edu" .
 
 bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
     rdfs:label "EcoPortal" ;
@@ -56120,7 +56215,12 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
         "cell biology",
         "life science",
         "obo",
-        "ontology" ;
+        "omics",
+        "ontology",
+        "phenomics",
+        "sequencing",
+        "single-cell multimodal omics",
+        "transcriptomics" ;
     foaf:homepage <https://github.com/obophenotype/provisional_cell_ontology> ;
     bioregistry.schema:0000005 "0011124"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PCL_$1"^^xsd:string ;
@@ -56913,7 +57013,9 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.wcpd6f,
         ols:bfo,
         obofoundry:bfo ;
-    dcat:keyword "data retrieval",
+    dcat:keyword "data identity and mapping",
+        "data retrieval",
+        "interoperability",
         "obo",
         "ontology",
         "subject agnostic" ;
@@ -64417,6 +64519,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cmf,
         bioregistry:cmo,
         bioregistry:cmpo,
+        bioregistry:cncb.gwh,
         bioregistry:cnrs,
         bioregistry:co_320,
         bioregistry:co_321,
@@ -64611,6 +64714,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:door,
         bioregistry:doqcs.model,
         bioregistry:doqcs.pathway,
+        bioregistry:dpbo,
         bioregistry:dpo,
         bioregistry:dpv,
         bioregistry:dpvocab,
@@ -65542,6 +65646,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pgdso,
         bioregistry:pgs,
         bioregistry:pgx,
+        bioregistry:phagedive,
         bioregistry:pharmacodb.cell,
         bioregistry:pharmacodb.dataset,
         bioregistry:pharmacodb.tissue,
@@ -65647,6 +65752,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:rbk,
         bioregistry:rbo,
         bioregistry:rcb,
+        bioregistry:rdbsb,
         bioregistry:rdf,
         bioregistry:rdfa,
         bioregistry:rdfs,
