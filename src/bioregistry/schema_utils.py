@@ -91,6 +91,14 @@ class SemanticMapping(BaseModel):
     creator: Reference = Field(..., alias="creator_id")
     mapping_justification: Reference = Field(...)
     comment: str | None = Field(None)
+    issue_tracker_item: int | None = Field(
+        None, description="The PR or issue associated with the change"
+    )
+    date: str = Field(
+        None,
+        pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        description="The ISO-8601 date of curation in YYYY-MM-DD",
+    )
 
 
 def read_mismatches() -> dict[str, dict[str, set[str]]]:
@@ -112,14 +120,7 @@ def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
     """Read curated mappings as a nested dict data structure."""
     with Path(path).expanduser().resolve().open() as file:
         return [
-            SemanticMapping.model_validate(
-                {
-                    **record,
-                    # We need to convert the predicate_modifier and comment to None if they are empty strings
-                    "predicate_modifier": record["predicate_modifier"] or None,
-                    "comment": record["comment"] or None,
-                }
-            )
+            SemanticMapping.model_validate({k: v for k, v in record.items() if v})
             for record in csv.DictReader(file, delimiter="\t")
         ]
 
@@ -145,6 +146,8 @@ def write_mappings(mappings: list[SemanticMapping]) -> None:
         "creator_id",
         "mapping_justification",
         "comment",
+        "issue_tracker_item",
+        "date",
     ]
     with CURATED_MAPPINGS_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t", lineterminator="\n")

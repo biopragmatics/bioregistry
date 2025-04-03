@@ -5,7 +5,7 @@ from collections import Counter
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
-from bioregistry.schema_utils import read_mappings, read_metaregistry, SemanticMapping
+from bioregistry.schema_utils import SemanticMapping, read_mappings, read_metaregistry
 
 
 class TestTSV(unittest.TestCase):
@@ -33,6 +33,17 @@ class TestTSV(unittest.TestCase):
         if row["comment"] is not None:
             self.assertFalse(row["comment"].startswith('"'))
             self.assertFalse(row["comment"].endswith('"'))
+
+        self.assertIn("date", row)
+        if row["date"] > "2025-03-30":
+            # all curations after a certain date require an issue tracker item.
+            # curations from before this date are exempt since they were all done
+            # by charlie in an ad-hoc way before switching over to using SSSOM to
+            # track detailed metadata
+            self.assertIn("issue_tracker_item", row)
+            self.assertIsNotNone(row["issue_tracker_item"])
+            self.assertNotEqual("", row["issue_tracker_item"])
+            self.assertTrue(row["issue_tracker_item"].isnumeric())
 
     def test_tsv_file(self):
         """Tests all rows in TSV file are valid."""
