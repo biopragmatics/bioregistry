@@ -764,7 +764,7 @@
 @prefix irefweb: <http://wodaklab.org/iRefWeb/interaction/show/> .
 @prefix iresite: <http://www.iresite.org/IRESite_web.php?page=view&entry_id=> .
 @prefix iro: <https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:> .
-@prefix isbn: <http://isbndb.com/search-all.html?kw=> .
+@prefix isbn: <https://isbnsearch.org/isbn/> .
 @prefix isfinder: <https://www-is.biotoul.fr/scripts/ficheIS.php?name=> .
 @prefix isni: <http://www.isni.org/isni/> .
 @prefix iso.3166: <https://data.who.int/countries/> .
@@ -14899,14 +14899,14 @@ bioregistry:isbn a bioregistry.schema:0000001 ;
         miriam:isbn ;
     dcat:keyword "bibliography" ;
     foaf:homepage <http://isbndb.com/> ;
-    bioregistry.schema:0000005 "9781584885658"^^xsd:string ;
-    bioregistry.schema:0000006 "http://isbndb.com/search-all.html?kw=$1"^^xsd:string ;
+    bioregistry.schema:0000005 "9789211613865"^^xsd:string ;
+    bioregistry.schema:0000006 "https://isbnsearch.org/isbn/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(ISBN)?(-13|-10)?[:]?[ ]?(\\d{2,3}[ -]?)?\\d{1,5}[ -]?\\d{1,7}[ -]?\\d{1,6}[ -]?(\\d|X)$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000023 "ISBN-10",
         "ISBN-13" ;
-    bioregistry.schema:0000024 "http://isbndb.com/search-all.html?kw="^^xsd:string ;
-    bioregistry.schema:0000027 isbn:9781584885658 ;
+    bioregistry.schema:0000024 "https://isbnsearch.org/isbn/"^^xsd:string ;
+    bioregistry.schema:0000027 isbn:9789211613865 ;
     bioregistry.schema:0000029 "isbn" .
 
 bioregistry:ised a bioregistry.schema:0000001 ;
