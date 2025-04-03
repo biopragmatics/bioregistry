@@ -161,6 +161,8 @@ def write_mappings(mappings: list[SemanticMapping]) -> None:
                 mapping.creator.curie,
                 mapping.mapping_justification.curie,
                 mapping.comment,
+                mapping.issue_tracker_item,
+                mapping.date,
             )
             for mapping in mappings
         )
