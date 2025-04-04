@@ -6,6 +6,7 @@ import re
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 from urllib.parse import urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
@@ -155,8 +156,8 @@ class NcbiAligner(Aligner):
 
     key = "ncbi"
     getter = get_ncbi
-    getter_kwargs = {"force_download": False}
-    curation_header = ("name", "example", "homepage")
+    getter_kwargs: ClassVar[dict[str, Any]] = {"force_download": False}
+    curation_header: ClassVar[Sequence[str]] = ("name", "example", "homepage")
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""

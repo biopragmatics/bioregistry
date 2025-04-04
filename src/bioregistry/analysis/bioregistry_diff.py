@@ -40,7 +40,7 @@ def get_commit_before_date(
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, timeout=15)
     response.raise_for_status()
     commits = response.json()
     if commits:
@@ -67,11 +67,11 @@ def get_file_at_commit(
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
     params = {"ref": commit_sha}
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, timeout=15)
     response.raise_for_status()
     file_info = response.json()
     download_url = file_info["download_url"]
-    res = requests.get(download_url)
+    res = requests.get(download_url, timeout=15)
     res.raise_for_status()
     return res.json()
 

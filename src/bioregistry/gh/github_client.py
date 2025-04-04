@@ -51,6 +51,7 @@ def requests_get(path: str, token: str | None = None, params: Mapping[str, Any] 
         f"https://api.github.com/{path}",
         headers=get_headers(token=token),
         params=params,
+        timeout=15,
     ).json()
 
 
@@ -123,6 +124,7 @@ def open_pull_request(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=get_headers(token=token),
         json=data,
+        timeout=15,
     ).json()
 
 
@@ -285,7 +287,7 @@ def _git(*args: str) -> str | None:
     with open(os.devnull, "w") as devnull:
         try:
             ret = check_output(  # noqa: S603
-                ["git", *args],
+                ["git", *args],  # noqa:S607
                 cwd=os.path.dirname(__file__),
                 stderr=devnull,
             )

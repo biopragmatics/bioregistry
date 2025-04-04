@@ -292,7 +292,7 @@ def context(identifier: str) -> str:
     )
 
 
-class ResponseWrapper(ValueError):
+class ResponseWrapperError(ValueError):
     """An exception that helps with code reuse that returns multiple value types."""
 
     def __init__(self, response, code=None):
@@ -320,19 +320,21 @@ def _clean_reference(prefix: str, identifier: str | None = None):
 
     _resource = manager.get_resource(prefix)
     if _resource is None:
-        raise ResponseWrapper(
+        raise ResponseWrapperError(
             render_template(
                 "resolve_errors/missing_prefix.html", prefix=prefix, identifier=identifier
             ),
             404,
         )
     if identifier is None:
-        raise ResponseWrapper(redirect(url_for("." + resource.__name__, prefix=_resource.prefix)))
+        raise ResponseWrapperError(
+            redirect(url_for("." + resource.__name__, prefix=_resource.prefix))
+        )
 
     identifier = _resource.standardize_identifier(identifier)
     pattern = _resource.get_pattern()
     if pattern and not _resource.is_valid_identifier(identifier):
-        raise ResponseWrapper(
+        raise ResponseWrapperError(
             render_template(
                 "resolve_errors/invalid_identifier.html",
                 prefix=prefix,
@@ -351,7 +353,7 @@ def reference(prefix: str, identifier: str) -> str:
     """Serve a reference page."""
     try:
         _resource, identifier = _clean_reference(prefix, identifier)
-    except ResponseWrapper as rw:
+    except ResponseWrapperError as rw:
         return rw.get_value()
     return render_template(
         "reference.html",
@@ -385,7 +387,7 @@ def resolve(
     """
     try:
         _resource, identifier = _clean_reference(prefix, identifier)
-    except ResponseWrapper as rw:
+    except ResponseWrapperError as rw:
         return rw.get_value()
     url = manager.get_iri(
         _resource.prefix,

@@ -1,8 +1,10 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from collections.abc import Sequence
 from operator import itemgetter
 from pathlib import Path
+from typing import ClassVar
 
 from pystow.utils import download
 
@@ -134,7 +136,7 @@ class MiriamAligner(Aligner):
 
     key = "miriam"
     getter = get_miriam
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
 
 

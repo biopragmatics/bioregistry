@@ -1,9 +1,9 @@
 """Download the BARTOC registry."""
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import requests
 from tqdm import tqdm
@@ -35,7 +35,7 @@ def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
     if PROCESSED_PATH.is_file() and not force_download:
         return json.loads(PROCESSED_PATH.read_text())
     rv = {}
-    for line in requests.get(URL).iter_lines():
+    for line in requests.get(URL, timeout=15).iter_lines():
         record = json.loads(line)
         record = _process_bartoc_record(record)
         rv[record["prefix"]] = record
@@ -89,7 +89,7 @@ class BartocAligner(Aligner):
     key = "bartoc"
     getter = get_bartoc
     alt_key_match = "abbreviation"
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

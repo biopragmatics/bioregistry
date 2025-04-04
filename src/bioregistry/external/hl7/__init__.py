@@ -14,6 +14,9 @@ __all__ = [
     "get_hl7",
 ]
 
+from collections.abc import Sequence
+from typing import ClassVar
+
 from bioregistry.external.alignment_utils import Aligner
 
 HERE = Path(__file__).parent.resolve()
@@ -60,7 +63,13 @@ class HL7Aligner(Aligner):
 
     # This lists all of the keys inside each record to be displayed in the curation
     # sheet. Below, the
-    curation_header = ("status", "preferred_prefix", "name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = (
+        "status",
+        "preferred_prefix",
+        "name",
+        "homepage",
+        "description",
+    )
 
 
 if __name__ == "__main__":
