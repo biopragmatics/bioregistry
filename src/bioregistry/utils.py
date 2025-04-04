@@ -167,7 +167,7 @@ def get_ols_descendants(
     force_download: bool = False,
     get_identifier: IdentifierGetter | None = None,
     clean: IdentifierCleaner | None = None,
-) -> Mapping[str, Mapping[str, Any]]:
+) -> dict[str, dict[str, Any]]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
     res = requests.get(url, timeout=15)
@@ -186,7 +186,7 @@ def _process_ols(
     terms: list[dict[str, Any]],
     clean: IdentifierCleaner | None = None,
     get_identifier: IdentifierGetter | None = None,
-) -> Mapping[str, Mapping[str, Any]]:
+) -> dict[str, dict[str, Any]]:
     if clean is None:
         clean = _clean
     if get_identifier is None:

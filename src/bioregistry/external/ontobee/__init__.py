@@ -4,7 +4,7 @@ import json
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
@@ -29,7 +29,7 @@ LEGEND = {
 }
 
 
-def get_ontobee(force_download: bool = False):
+def get_ontobee(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the OntoBee registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:

@@ -43,7 +43,7 @@ GO_URL = "https://raw.githubusercontent.com/geneontology/go-site/master/metadata
 PROCESSING_GO_PATH = DIRECTORY / "processing_go.json"
 
 
-def get_go(force_download: bool = False):
+def get_go(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the GO registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:

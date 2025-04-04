@@ -7,6 +7,7 @@ from collections.abc import Mapping, Sequence
 from functools import partial
 from typing import Any, Callable
 
+import werkzeug
 import yaml
 from flask import (
     Response,
@@ -51,7 +52,9 @@ def _get_resource_providers(prefix: str, identifier: str | None) -> list[dict[st
     return rv
 
 
-def _normalize_prefix_or_404(prefix: str, endpoint: str | None = None):
+def _normalize_prefix_or_404(
+    prefix: str, endpoint: str | None = None
+) -> str | werkzeug.Response | tuple[str, int]:
     try:
         norm_prefix = manager.normalize_prefix(prefix)
     except ValueError:
@@ -161,7 +164,7 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
 
 def serialize(
     data: BaseModel,
-    serializers: Sequence[tuple[str, str, Callable]] | None = None,
+    serializers: Sequence[tuple[str, str, Callable[[BaseModel], str]]] | None = None,
     negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""

@@ -3,7 +3,7 @@
 import json
 from collections.abc import Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import requests
 import yaml
@@ -54,7 +54,7 @@ def _get_descriptions() -> dict[str, str]:
     }
 
 
-def _get_dataset():
+def _get_dataset() -> dict[str, dict[str, Any]]:
     data = yaml.safe_load(requests.get(DATASET_URL, timeout=15).text)
     rv = {}
     for prefix, record in data.items():
@@ -79,7 +79,9 @@ def _get_dataset():
     return rv
 
 
-def get_togoid(*, force_download: bool = False, force_refresh: bool = False):
+def get_togoid(
+    *, force_download: bool = False, force_refresh: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the TogoID data."""
     if PROCESSED_PATH.exists() and not force_refresh:
         with PROCESSED_PATH.open() as file:

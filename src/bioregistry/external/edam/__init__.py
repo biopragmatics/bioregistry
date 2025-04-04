@@ -3,7 +3,7 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
@@ -19,7 +19,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 EDAM_PARENT_IRI = "http%253A%252F%252Fedamontology.org%252Fdata_2091"
 
 
-def get_edam(force_download: bool = False):
+def get_edam(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the EDAM registry."""
     if PROCESSED_PATH.exists() and not force_download:
         return json.loads(PROCESSED_PATH.read_text())

@@ -3,9 +3,9 @@
 import json
 import tempfile
 from collections import defaultdict
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import ClassVar, Union
+from typing import Any, ClassVar, Union, cast
 
 from pystow.utils import download, read_rdf
 
@@ -41,7 +41,9 @@ KEYWORD_SPARQL = """\
 columns = ["vocab", "name", "prefix", "uri_prefix", "description", "modified", "homepage"]
 
 
-def get_lov(*, force_download: bool = False, force_refresh: bool = False):
+def get_lov(
+    *, force_download: bool = False, force_refresh: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the LOV data cloud registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_refresh:
         return json.loads(PROCESSED_PATH.read_text())
@@ -52,11 +54,11 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
         graph = read_rdf(path)
 
     keywords = defaultdict(set)
-    for vocab, keyword in graph.query(KEYWORD_SPARQL):
+    for vocab, keyword in cast(Iterable[tuple[str, str]], graph.query(KEYWORD_SPARQL)):
         keywords[str(vocab)].add(str(keyword))
 
     records = {}
-    for result in graph.query(RECORD_SPARQL):
+    for result in cast(Iterable[tuple[str, ...]], graph.query(RECORD_SPARQL)):
         d: dict[str, Union[str, list[str]]] = {k: str(v) for k, v in zip(columns, result) if v}
         if k := keywords.get(str(result[0])):
             d["keywords"] = sorted(k)
@@ -66,7 +68,7 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False):
             del d["vocab"]
         else:
             d["homepage"] = d.pop("vocab")
-        records[d["prefix"]] = d
+        records[cast(str, d["prefix"])] = d
 
     PROCESSED_PATH.write_text(json.dumps(records, indent=2))
     return records

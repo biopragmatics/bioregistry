@@ -95,8 +95,8 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
         contact = None
 
     wikidata_property = resource_data.pop("wikidata_prefix", None)
-    wikidata: Mapping | None
-    mappings: Mapping | None
+    wikidata: Mapping[str, Any] | None
+    mappings: Mapping[str, str | None] | None
     if wikidata_property:
         wikidata = {"prefix": wikidata_property}
         mappings = {"wikidata": wikidata_property}
@@ -135,7 +135,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
         wikidata=wikidata,
         mappings=mappings,
         publications=publications,
-        **resource_data,  # type:ignore
+        **resource_data,
     )
 
 
@@ -335,7 +335,7 @@ def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None
     if "url" in rv:
         click.secho(f"PR at {rv['url']}")
     else:  # probably an error
-        click.secho(rv, fg="red")
+        click.secho(str(rv), fg="red")
 
     click.secho(f"switching back to {github_client.MAIN_BRANCH} branch", fg="green")
     click.echo(github_client.home())
