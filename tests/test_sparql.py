@@ -11,7 +11,7 @@ LOCAL_BLAZEGRAPH = "http://192.168.2.30:9999/blazegraph/sparql"
 
 
 def _handle_res_xml(res: requests.Response) -> set[tuple[str, str]]:
-    root = etree.ElementTree.fromstring(res.text)  # noqa:S314
+    root = etree.ElementTree.fromstring(res.text)
     results = root.find("{http://www.w3.org/2005/sparql-results#}results")
     rv = set()
     for result in results:

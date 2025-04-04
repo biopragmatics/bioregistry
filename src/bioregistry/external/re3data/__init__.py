@@ -8,9 +8,9 @@ import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar, Optional
+from xml.etree import ElementTree
 
 import requests
-from lxml import etree
 from tqdm.contrib.concurrent import thread_map
 
 from bioregistry.external.alignment_utils import Aligner
@@ -43,7 +43,7 @@ def get_re3data(force_download: bool = False):
             return json.load(file)
 
     res = requests.get(f"{BASE_URL}/api/v1/repositories", timeout=15)
-    tree = etree.fromstring(res.text)
+    tree = ElementTree.fromstring(res.text)
 
     identifier_to_doi = {}
     for repository in tree.findall("repository"):
@@ -84,7 +84,7 @@ def get_re3data(force_download: bool = False):
 
 def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
     res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}", timeout=15)
-    tree = etree.fromstring(res.text)[0]
+    tree = ElementTree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
 
 
