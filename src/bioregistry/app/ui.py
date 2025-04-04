@@ -10,6 +10,7 @@ from collections import defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
+from typing import Generic, TypeVar
 
 import flask
 import werkzeug
@@ -62,6 +63,8 @@ from ..utils import curie_to_str
 __all__ = [
     "ui_blueprint",
 ]
+
+X = TypeVar("X")
 
 TEMPLATES = Path(__file__).parent.resolve().joinpath("templates")
 ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES.as_posix())
@@ -294,22 +297,22 @@ def context(identifier: str) -> str:
     )
 
 
-class ResponseWrapperError(ValueError):
+class ResponseWrapperError(ValueError, Generic[X]):
     """An exception that helps with code reuse that returns multiple value types."""
 
-    def __init__(self, response, code=None):
+    def __init__(self, response: X, code: int | None = None):
         """Instantiate this "exception", which is a tricky way of writing a macro."""
         self.response = response
         self.code = code
 
-    def get_value(self):
+    def get_value(self) -> tuple[X, int] | X:
         """Get either the response, or a pair of response + code if a code is available."""
         if self.code is not None:
             return self.response, self.code
         return self.response
 
 
-def _clean_reference(prefix: str, identifier: str | None = None):
+def _clean_reference(prefix: str, identifier: str | None = None) -> tuple[Resource, str]:
     if ":" in prefix:
         # A colon might appear in the prefix if there are multiple colons
         # in the CURIE, since Flask/Werkzeug parses from right to left.
@@ -452,7 +455,7 @@ def github_resolve_issue(owner, repository, issue) -> werkzeug.Response:
 
 
 @ui_blueprint.route("/resolve/github/pull/<owner>/<repository>/<int:pull>")
-def github_resolve_pull(owner, repository, pull: int) -> werkzeug.Response:
+def github_resolve_pull(owner: str, repository: str, pull: int) -> werkzeug.Response:
     """Redirect to a pull request on GitHub."""
     return redirect(f"https://github.com/{owner}/{repository}/pull/{pull}")
 
@@ -517,10 +520,12 @@ def _s(prefixes: Iterable[str]) -> list[tuple[str, Resource | None]]:
 
 
 @ui_blueprint.route("/")
-def home():
+def home() -> str:
     """Render the homepage."""
     example_prefix = current_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
     example_identifier = manager.get_example(example_prefix)
+    if example_identifier is None:
+        raise RuntimeError("app should be configured with valid example")
     example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
     bioschemas = current_app.config.get("METAREGISTRY_BIOSCHEMAS")
     return render_template(

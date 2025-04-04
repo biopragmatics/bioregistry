@@ -3,7 +3,7 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
@@ -36,7 +36,7 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_n2t(force_download: bool = False):
+def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the N2T registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:

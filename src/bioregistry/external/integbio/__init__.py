@@ -4,7 +4,7 @@ import json
 import logging
 from collections.abc import Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import pandas as pd
 import requests
@@ -68,7 +68,7 @@ def get_url() -> str:
     raise ValueError(f"unable to find Integbio download link on {base}")
 
 
-def _parse_references(s):
+def _parse_references(s: str) -> list[str]:
     rv = []
     for part in s.strip().split("||"):
         ref = _parse_reference(part.strip())
@@ -77,7 +77,7 @@ def _parse_references(s):
     return rv
 
 
-def _parse_reference(part: str):
+def _parse_reference(part: str) -> str | None:
     if "\\" in part:  # it's pubmed followed by equvalent DOI
         pubmed, _doi = part.split("\\")
         return pubmed
@@ -86,15 +86,16 @@ def _parse_reference(part: str):
     if part == "etc.":
         return None
     logger.debug(f"IntegBio unhandled reference part: {part}")
+    return None
 
 
-def _strip_split(s):
+def _strip_split(s: str | None) -> list[str] | None:
     if pd.isna(s):
         return None
     return [k.strip() for k in s.strip().split("||")]
 
 
-def _parse_fairsharing(s):
+def _parse_fairsharing_url(s: str) -> str | None:
     if s.startswith("https://fairsharing.org/10.25504/"):
         return s.removeprefix("https://fairsharing.org/10.25504/")
     elif s.startswith("https://fairsharing.org/"):
@@ -103,7 +104,7 @@ def _parse_fairsharing(s):
     return None
 
 
-def get_integbio(*, force_download: bool = False):
+def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the integbio resource."""
     url = get_url()
     df = pd.read_csv(url)
@@ -127,7 +128,7 @@ def get_integbio(*, force_download: bool = False):
     for key in SKIP:
         del df[key]
 
-    df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing, na_action="ignore")
+    df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing_url, na_action="ignore")
     df = df[df["languages"] != "ja"]  # skip only japanese language database for now
     del df["languages"]
     # df["languages"] = df["languages"].map(_strip_split, na_action="ignore")

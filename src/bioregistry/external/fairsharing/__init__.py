@@ -8,7 +8,7 @@ import logging
 import re
 from collections.abc import MutableMapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 from bioregistry.constants import ORCID_PATTERN
 from bioregistry.external.alignment_utils import Aligner
@@ -39,7 +39,7 @@ ORCID_RE = re.compile(ORCID_PATTERN)
 
 def get_fairsharing(
     *, force_download: bool = False, force_reload: bool = False, use_tqdm: bool = True
-):
+) -> dict[str, dict[str, Any]]:
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_reload:
         with PROCESSED_PATH.open() as file:
@@ -67,7 +67,7 @@ KEEP = {
 }
 
 
-def _process_record(record: MutableMapping[str, Any]) -> Optional[MutableMapping[str, Any]]:
+def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
     if record.get("record_type") not in ALLOWED_TYPES:
         return None
     rv = {key: record[key] for key in KEEP if record[key]}

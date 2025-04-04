@@ -5,7 +5,7 @@ import json
 import logging
 from collections.abc import Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
@@ -26,7 +26,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 CROPOCT_URL = "https://cropontology.org/metadata"
 
 
-def get_cropoct(force_download: bool = False):
+def get_cropoct(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the CropOCT registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:

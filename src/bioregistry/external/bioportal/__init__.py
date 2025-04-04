@@ -7,7 +7,7 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import pystow
 import requests
@@ -41,7 +41,7 @@ class OntoPortalClient:
     processed_path: Path = field(init=False)
     max_workers: int = 2
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
@@ -60,7 +60,7 @@ class OntoPortalClient:
         params.setdefault("apikey", self.api_key)
         return requests.get(url, params=params, timeout=30)
 
-    def download(self, force_download: bool = False):
+    def download(self, force_download: bool = False) -> dict[str, dict[str, Any]]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download:
             with self.processed_path.open() as file:
@@ -88,7 +88,7 @@ class OntoPortalClient:
             json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
         return rv
 
-    def _preprocess(self, record):
+    def _preprocess(self, record: dict[str, Any]) -> dict[str, Any]:
         record.pop("@context", None)
         prefix = record["acronym"]
         url = f"{self.base_url}/ontologies/{prefix}/latest_submission"
@@ -153,7 +153,7 @@ class OntoPortalClient:
 
         return {k: v for k, v in record.items() if v}
 
-    def process(self, entry):
+    def process(self, entry: dict[str, Any]) -> dict[str, Any]:
         """Process a record from the OntoPortal site's API."""
         prefix = entry["acronym"]
         rv = {
@@ -177,7 +177,7 @@ bioportal_client = OntoPortalClient(
 )
 
 
-def get_bioportal(force_download: bool = False):
+def get_bioportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the BioPortal registry."""
     return bioportal_client.download(force_download=force_download)
 
@@ -188,7 +188,7 @@ ecoportal_client = OntoPortalClient(
 )
 
 
-def get_ecoportal(force_download: bool = False):
+def get_ecoportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the EcoPortal registry."""
     return ecoportal_client.download(force_download=force_download)
 
@@ -199,7 +199,7 @@ agroportal_client = OntoPortalClient(
 )
 
 
-def get_agroportal(force_download: bool = False):
+def get_agroportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the AgroPortal registry."""
     return agroportal_client.download(force_download=force_download)
 

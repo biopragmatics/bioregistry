@@ -1,7 +1,7 @@
 """Download registry information from Pathguide."""
 
 from collections.abc import Sequence
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,7 +14,7 @@ __all__ = [
 ]
 
 
-def get_pathguide(*, force_download: bool = False):
+def get_pathguide(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the Pathguide metdata."""
     res = requests.get("http://pathguide.org/", timeout=15)
     soup = BeautifulSoup(res.text, "html.parser")

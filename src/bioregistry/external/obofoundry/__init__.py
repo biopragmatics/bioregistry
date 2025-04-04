@@ -4,7 +4,7 @@ import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import ClassVar, Optional
+from typing import Any, ClassVar, Optional
 
 import requests
 import yaml
@@ -31,7 +31,9 @@ SKIP = {
 }
 
 
-def get_obofoundry(force_download: bool = False, force_process: bool = False):
+def get_obofoundry(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:

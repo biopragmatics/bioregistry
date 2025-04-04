@@ -44,7 +44,7 @@ OLS_SKIP = {
 }
 
 
-def get_ols(force_download: bool = False):
+def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the OLS registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -105,7 +105,7 @@ class OLSConfig(BaseModel):
     version_iri_suffix: Optional[str] = None
 
 
-def _get_email(ols_id, config) -> Optional[str]:
+def _get_email(ols_id: str, config: dict[str, Any]) -> Optional[str]:
     mailing_list = config.get("mailingList")
     if not mailing_list:
         return None

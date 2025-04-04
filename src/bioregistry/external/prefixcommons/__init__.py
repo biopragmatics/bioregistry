@@ -93,7 +93,9 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_prefixcommons(force_download: bool = False, force_process: bool = False):
+def get_prefixcommons(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the Life Science Registry."""
     if PROCESSED_PATH.exists() and not (force_download or force_process):
         with PROCESSED_PATH.open() as file:

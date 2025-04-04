@@ -5,7 +5,7 @@ import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
@@ -32,7 +32,9 @@ KEYMAP = {
 }
 
 
-def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True):
+def get_cellosaurus(
+    force_download: bool = False, keep_missing_uri: bool = True
+) -> dict[str, dict[str, Any]]:
     """Get the Cellosaurus registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
