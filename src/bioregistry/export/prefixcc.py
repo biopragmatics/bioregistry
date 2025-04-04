@@ -17,12 +17,13 @@ def create(curie_prefix: str, uri_prefix: str) -> requests.Response:
     return requests.post(
         f"https://prefix.cc/{curie_prefix}",
         data={"create": uri_prefix},
+        timeout=15,
     )
 
 
 def main() -> None:
     """Add an OBO Foundry prefix to Prefix.cc."""
-    prefix_cc_map = requests.get("https://prefix.cc/context").json()["@context"]
+    prefix_cc_map = requests.get("https://prefix.cc/context", timeout=15).json()["@context"]
     records = []
     for record in bioregistry.resources():
         if not record.get_obofoundry_prefix():

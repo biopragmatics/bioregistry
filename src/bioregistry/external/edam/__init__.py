@@ -1,8 +1,9 @@
 """Import accessions from EDAM."""
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import ClassVar
 
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
@@ -45,7 +46,7 @@ class EDAMAligner(Aligner):
     key = "edam"
     getter = get_edam
     alt_key_match = "name"
-    curation_header = ("name", "description")
+    curation_header: ClassVar[Sequence[str]] = ["name", "description"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries that should be skipped and their reasons."""

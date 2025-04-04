@@ -4,6 +4,7 @@ import json
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
+from typing import ClassVar
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
@@ -66,7 +67,7 @@ class OntobeeAligner(Aligner):
 
     key = "ontobee"
     getter = get_ontobee
-    curation_header = ("name", "url")
+    curation_header: ClassVar[Sequence[str]] = ("name", "url")
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""

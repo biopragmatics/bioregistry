@@ -3,7 +3,7 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
@@ -51,7 +51,7 @@ class BioContextAligner(Aligner):
 
     key = "biocontext"
     getter = get_biocontext
-    curation_header = [URI_FORMAT_KEY]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries for BioContext that should be skipped."""

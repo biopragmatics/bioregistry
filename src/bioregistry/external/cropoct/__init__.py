@@ -3,7 +3,9 @@
 import io
 import json
 import logging
+from collections.abc import Sequence
 from pathlib import Path
+from typing import ClassVar
 
 import yaml
 from pystow.utils import download
@@ -75,7 +77,7 @@ class CropOCTAligner(Aligner):
 
     key = "cropoct"
     getter = get_cropoct
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

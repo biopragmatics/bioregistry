@@ -3,8 +3,9 @@
 import json
 import tempfile
 from collections import defaultdict
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Union
+from typing import ClassVar, Union
 
 from pystow.utils import download, read_rdf
 
@@ -76,7 +77,7 @@ class LOVAligner(Aligner):
 
     key = "lov"
     getter = get_lov
-    curation_header = ("name", "homepage", "uri_prefix")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage", "uri_prefix")
 
 
 if __name__ == "__main__":

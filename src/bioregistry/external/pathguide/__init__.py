@@ -1,5 +1,8 @@
 """Download registry information from Pathguide."""
 
+from collections.abc import Sequence
+from typing import ClassVar
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -13,7 +16,7 @@ __all__ = [
 
 def get_pathguide(*, force_download: bool = False):
     """Get the Pathguide metdata."""
-    res = requests.get("http://pathguide.org/")
+    res = requests.get("http://pathguide.org/", timeout=15)
     soup = BeautifulSoup(res.text, "html.parser")
     rv = {}
     for tr in soup.find_all("tr"):
@@ -45,7 +48,7 @@ class PathguideAligner(Aligner):
     key = "pathguide"
     alt_key_match = "abbreviation"
     getter = get_pathguide
-    curation_header = ("abbreviation", "name", "homepage")
+    curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", "homepage")
 
 
 if __name__ == "__main__":
