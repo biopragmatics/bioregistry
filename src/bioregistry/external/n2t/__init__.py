@@ -1,8 +1,9 @@
 """Download registry information from N2T."""
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import ClassVar
 
 import yaml
 from pystow.utils import download
@@ -85,7 +86,7 @@ class N2TAligner(Aligner):
 
     key = "n2t"
     getter = get_n2t
-    curation_header = ("name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage", "description")
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in N2T that should be skipped."""

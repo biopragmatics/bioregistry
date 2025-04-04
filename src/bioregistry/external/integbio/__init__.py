@@ -2,7 +2,9 @@
 
 import json
 import logging
+from collections.abc import Sequence
 from pathlib import Path
+from typing import ClassVar
 
 import pandas as pd
 import requests
@@ -57,7 +59,7 @@ def get_url() -> str:
     download_prefix = "/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
     download_suffix = "_utf8.csv.zip"
 
-    res = requests.get(base)
+    res = requests.get(base, timeout=15)
     soup = BeautifulSoup(res.text, "html.parser")
     for anchor in soup.find_all("a"):
         href = anchor.attrs["href"]
@@ -149,7 +151,7 @@ class IntegbioAligner(Aligner):
     key = "integbio"
     alt_key_match = "name"
     getter = get_integbio
-    curation_header = ("name", "alt_name", "homepage")
+    curation_header: ClassVar[Sequence[str]] = ("name", "alt_name", "homepage")
 
 
 if __name__ == "__main__":

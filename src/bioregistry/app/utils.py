@@ -103,7 +103,7 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> M
 
     >>> _autocomplete(manager, "chebi:1234")
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
-    """  # noqa: E501
+    """
     if url_prefix is None:
         url_prefix = ""
     url_prefix = url_prefix.rstrip().rstrip("/")

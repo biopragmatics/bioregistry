@@ -20,7 +20,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
         tqdm.write(f"[{prefix} too deep")
         raise KeyError
     tqdm.write(f"[{prefix}] getting {url}")
-    res = requests.get(url).json()
+    res = requests.get(url, timeout=15).json()
     embedded = res.get("_embedded")
     if not embedded:
         tqdm.write(f"[{prefix} failure")

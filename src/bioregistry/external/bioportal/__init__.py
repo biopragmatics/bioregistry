@@ -58,7 +58,7 @@ class OntoPortalClient:
         if self.api_key is None:
             self.api_key = pystow.get_config(self.metaprefix, "api_key", raise_on_missing=True)
         params.setdefault("apikey", self.api_key)
-        return requests.get(url, params=params)
+        return requests.get(url, params=params, timeout=30)
 
     def download(self, force_download: bool = False):
         """Get the full dump of the OntoPortal site's registry."""

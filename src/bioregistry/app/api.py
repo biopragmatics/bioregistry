@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any
+from typing import Annotated, Any
 
 import yaml
 from curies import Reference
@@ -528,8 +528,10 @@ class URIQuery(BaseModel):
 )
 def post_parse_uri(
     request: Request,
-    query: URIQuery = Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")]),
-):
+    query: Annotated[
+        URIQuery, Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")])
+    ],
+) -> URIResponse:
     """Parse a URI, return a CURIE, and all equivalent URIs."""
     manager = request.app.manager
     prefix, identifier = manager.parse_uri(query.uri)
@@ -546,8 +548,10 @@ def post_parse_uri(
 @api_router.get("/context.jsonld", tags=["resource"])
 def generate_context_json_ld(
     request: Request,
-    prefix: list[str] = Query(description="The prefix for the entry. Can be given multiple."),
-):
+    prefix: Annotated[
+        list[str], Query(..., description="The prefix for the entry. Can be given multiple.")
+    ],
+) -> JSONResponse:
     """Generate an *ad-hoc* context JSON-LD file from the given parameters.
 
     You can either give prefixes as a comma-separated list like:
@@ -580,8 +584,8 @@ def generate_context_json_ld(
 @api_router.get("/autocomplete", tags=["search"])
 def autocomplete(
     request: Request,
-    q: str = Query(description="A query for the prefix"),
-):
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
     """Complete a resolution query."""
     return JSONResponse(_autocomplete(request.app.manager, q))
 
@@ -589,7 +593,7 @@ def autocomplete(
 @api_router.get("/search", tags=["search"])
 def search(
     request: Request,
-    q: str = Query(description="A query for the prefix"),
-):
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
     """Search for a prefix."""
     return JSONResponse(_search(request.app.manager, q))

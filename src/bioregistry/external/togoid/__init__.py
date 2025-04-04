@@ -1,7 +1,9 @@
 """Download TogoID."""
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
+from typing import ClassVar
 
 import requests
 import yaml
@@ -39,7 +41,7 @@ def _get_ontology() -> dict[str, str]:
 
 
 def _get_descriptions() -> dict[str, str]:
-    res = requests.get(DATASET_DESCRIPTIONS_URL)
+    res = requests.get(DATASET_DESCRIPTIONS_URL, timeout=15)
 
     # Replace \r\n and \r or \n individually with a single space
     def _sanitize_description(description: str) -> str:
@@ -53,7 +55,7 @@ def _get_descriptions() -> dict[str, str]:
 
 
 def _get_dataset():
-    data = yaml.safe_load(requests.get(DATASET_URL).text)
+    data = yaml.safe_load(requests.get(DATASET_URL, timeout=15).text)
     rv = {}
     for prefix, record in data.items():
         name = record.get("label")
@@ -103,7 +105,7 @@ class TogoIDAligner(Aligner):
 
     key = "togoid"
     getter = get_togoid
-    curation_header = ("name", "uri_format")
+    curation_header: ClassVar[Sequence[str]] = ("name", "uri_format")
 
 
 if __name__ == "__main__":

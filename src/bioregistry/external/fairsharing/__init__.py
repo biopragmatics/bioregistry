@@ -6,9 +6,9 @@
 import json
 import logging
 import re
-from collections.abc import MutableMapping
+from collections.abc import MutableMapping, Sequence
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 from bioregistry.constants import ORCID_PATTERN
 from bioregistry.external.alignment_utils import Aligner
@@ -177,7 +177,7 @@ class FairsharingAligner(Aligner):
     alt_key_match = "abbreviation"
     skip_deprecated = True
     getter = get_fairsharing
-    curation_header = ("abbreviation", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", "description")
 
 
 if __name__ == "__main__":

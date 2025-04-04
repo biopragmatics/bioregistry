@@ -1,8 +1,9 @@
 """Download the AberOWL registry."""
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
@@ -71,7 +72,7 @@ class AberOWLAligner(Aligner):
 
     key = "aberowl"
     getter = get_aberowl
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

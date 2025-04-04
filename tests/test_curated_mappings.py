@@ -18,16 +18,16 @@ class TestTSV(unittest.TestCase):
     def validate_row(self, row):
         """Validate a single row from the TSV file."""
         # Constraints on what prefix has to be used for some columns
-        assert row["creator_id"].split(":")[0] == "orcid"
-        assert row["subject_id"].split(":")[0] == "bioregistry"
+        self.assertEqual("orcid", row["creator_id"].split(":")[0])
+        self.assertEqual("bioregistry", row["subject_id"].split(":")[0])
 
         # Check that all CURIE fields are overall valid
         for column in ["subject_id", "predicate_id", "creator_id"]:
-            assert is_valid_curie(row[column])
+            self.assertTrue(is_valid_curie(row[column]))
 
         # Special handling for metaregistry CURIEs
         object_prefix, object_id = row["object_id"].split(":", maxsplit=1)
-        assert object_prefix in self.metaregistry
+        self.assertIn(object_prefix, self.metaregistry)
 
         # Make sure we don't have quotes around comments
         if row["comment"] is not None:
