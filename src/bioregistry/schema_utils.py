@@ -95,7 +95,7 @@ class SemanticMapping(BaseModel):
         None, description="The PR or issue associated with the change"
     )
     date: str = Field(
-        None,
+        ...,
         pattern="^\\d{4}-\\d{2}-\\d{2}$",
         description="The ISO-8601 date of curation in YYYY-MM-DD",
     )
