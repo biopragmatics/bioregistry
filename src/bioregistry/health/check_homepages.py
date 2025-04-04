@@ -51,7 +51,7 @@ def _process(element: tuple[str, set[str]]) -> tuple[str, set[str], bool, str | 
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the homepage health check script."""
     homepage_to_prefixes = defaultdict(set)
     for prefix in bioregistry.read_registry():
