@@ -117,26 +117,28 @@ choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
 
 #### Writing a Good Description
 
-A good description says all the following:
+A good description minimally contains the following:
 
-1. What kind of entities are in the semantic space?
-2. Why the resource exists?
-3. Who might want to use it?
+1. **What kind of entities are in the semantic space?** For example, does the
+   semantic space cover proteins, diseases, publications, etc.?
+2. **Why does the resource exist / what are the entities used for?** This can
+   include a justification of why the resource was made, for example to support
+   curation of relationships, annotation of data, etc.
 
-Please describe this resource in a sentence or two of english prose. A good description says what kind of entities the
-resource makes identifiers for, why the resource exists, and who might want to use it.
+**Warning - don't confuse semantic spaces and databases** Records in the
+Bioregistry are not about databases, but rather about semantic spaces. While
+it's often the case that these have a one-to-one correspondence, the job of a
+Bioregistry record is to say what a semantic space is about.
 
-Warning! Records in the Bioregistry are not about databases, but rather about semantic spaces. While it's often
-the case that these have a one-to-one correspondence, the job of a Bioregistry record is to say what a semantic space is about.
-
-For example, if you were submitting a new prefix request `chembl.compound` for the chemicals inside ChEMBL, you might
-be tempted to describe ChEMBL, its history, and all of the things inside it. However, this is an anti-pattern. Do not
-do this (at least at first). Describe what the 
-
-For example, if you are submitting a prefix about cell lines in a database that keeps track of the effects of various
-mutations on the longitudinal trajectories of certain biological processes in corresponding cancers, make sure
-that your Bioregistry record's description focuses on the thing that's actually in the semantic space - the cell
-lines.
+For example, if you were submitting a new prefix request `chembl.compound` for
+the chemicals inside ChEMBL, you might be tempted to describe ChEMBL, its
+history, and all the things inside it. However, this is a Bioregistry
+anti-pattern. Do not do this (at least, initially). Describe what the entities
+are in the specific semantic space (e.g., this is a semantic space of small
+molecules for which there is published biochemical activity data). After you've
+addressed the two important points above, then it might be useful to give more
+context about the database that they came from, the project that motivated it,
+etc.
 
 #### Handling Collisions
 
