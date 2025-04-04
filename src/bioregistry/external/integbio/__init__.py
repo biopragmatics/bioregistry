@@ -1,5 +1,7 @@
 """Download the Integbio registry."""
 
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import Sequence

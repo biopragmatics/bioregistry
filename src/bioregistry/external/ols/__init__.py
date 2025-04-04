@@ -1,5 +1,7 @@
 """Download registry information from the OLS."""
 
+from __future__ import annotations
+
 import datetime
 import enum
 import json
@@ -10,7 +12,7 @@ from functools import lru_cache
 from operator import itemgetter
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 import requests
 from pydantic import BaseModel
@@ -100,15 +102,15 @@ class OLSConfig(BaseModel):
 
     prefix: str
     version_type: VersionType
-    version_date_format: Optional[str] = None
-    version_prefix: Optional[str] = None
-    version_suffix: Optional[str] = None
-    version_suffix_split: Optional[str] = None
-    version_iri_prefix: Optional[str] = None
-    version_iri_suffix: Optional[str] = None
+    version_date_format: str | None = None
+    version_prefix: str | None = None
+    version_suffix: str | None = None
+    version_suffix_split: str | None = None
+    version_iri_prefix: str | None = None
+    version_iri_suffix: str | None = None
 
 
-def _get_email(ols_id: str, config: dict[str, Any]) -> Optional[str]:
+def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
     mailing_list = config.get("mailingList")
     if not mailing_list:
         return None
@@ -119,7 +121,7 @@ def _get_email(ols_id: str, config: dict[str, Any]) -> Optional[str]:
     return email
 
 
-def _get_license(ols_id, config) -> Optional[str]:
+def _get_license(ols_id, config) -> str | None:
     license_value = (config.get("annotations") or {}).get("license", [None])[0]
     if license_value == "Unspecified":
         logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
@@ -129,7 +131,7 @@ def _get_license(ols_id, config) -> Optional[str]:
     return license_value
 
 
-def _get_version(ols_id, config, processing: OLSConfig) -> Optional[str]:
+def _get_version(ols_id, config, processing: OLSConfig) -> str | None:
     version_iri = config.get("versionIri")
     if version_iri:
         _, _, version = parse_obo_version_iri(version_iri, ols_id)
@@ -237,7 +239,7 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, s
     return rv
 
 
-def _clean_url(url: Optional[str]) -> Optional[str]:
+def _clean_url(url: str | None) -> str | None:
     if url is None:
         return url
     if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
