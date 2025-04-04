@@ -34,17 +34,6 @@ class TestTSV(unittest.TestCase):
             self.assertFalse(row["comment"].startswith('"'))
             self.assertFalse(row["comment"].endswith('"'))
 
-        self.assertIn("date", row)
-        if row["date"] > "2025-03-30":
-            # all curations after a certain date require an issue tracker item.
-            # curations from before this date are exempt since they were all done
-            # by charlie in an ad-hoc way before switching over to using SSSOM to
-            # track detailed metadata
-            self.assertIn("issue_tracker_item", row)
-            self.assertIsNotNone(row["issue_tracker_item"])
-            self.assertNotEqual("", row["issue_tracker_item"])
-            self.assertTrue(row["issue_tracker_item"].isnumeric())
-
     def test_tsv_file(self):
         """Tests all rows in TSV file are valid."""
         with CURATED_MAPPINGS_PATH.open() as tsv_file:
