@@ -647,6 +647,7 @@ class Manager:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
         :param on_failure_return_type: whether to return a single None or a pair of None's
+        :param strict: If true, raises an error if the prefix can't be standardized
         :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
             prefixes or bananas, all lowercase.
 
