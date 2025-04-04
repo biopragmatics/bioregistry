@@ -227,7 +227,7 @@ def _get_wikidata() -> dict[str, dict[str, Any]]:
         prefix = bindings["prefix"] = removeprefix(
             bindings["prefix"], "http://www.wikidata.org/entity/"
         )
-        if prefix in SKIP:
+        if prefix in SKIP or not prefix:
             continue
 
         examples = bindings.get("example", "").split("\t")

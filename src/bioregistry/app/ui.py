@@ -10,7 +10,6 @@ from collections import defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
-from typing import Generic, TypeVar
 
 import flask
 import werkzeug
@@ -63,8 +62,6 @@ from ..utils import curie_to_str
 __all__ = [
     "ui_blueprint",
 ]
-
-X = TypeVar("X")
 
 TEMPLATES = Path(__file__).parent.resolve().joinpath("templates")
 ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES.as_posix())
@@ -297,15 +294,15 @@ def context(identifier: str) -> str:
     )
 
 
-class ResponseWrapperError(ValueError, Generic[X]):
+class ResponseWrapperError(ValueError):
     """An exception that helps with code reuse that returns multiple value types."""
 
-    def __init__(self, response: X, code: int | None = None):
+    def __init__(self, response: str | werkzeug.Response, code: int | None = None):
         """Instantiate this "exception", which is a tricky way of writing a macro."""
         self.response = response
         self.code = code
 
-    def get_value(self) -> tuple[X, int] | X:
+    def get_value(self) -> tuple[str | werkzeug.Response, int] | str | werkzeug.Response:
         """Get either the response, or a pair of response + code if a code is available."""
         if self.code is not None:
             return self.response, self.code
@@ -354,7 +351,9 @@ def _clean_reference(prefix: str, identifier: str | None = None) -> tuple[Resour
 
 @ui_blueprint.route("/reference/<prefix>:<path:identifier>")
 @ui_blueprint.route("/reference/<prefix>:/<path:identifier>")  # ARK hack, see below
-def reference(prefix: str, identifier: str) -> str:
+def reference(
+    prefix: str, identifier: str
+) -> str | werkzeug.Response | tuple[str | werkzeug.Response, int]:
     """Serve a reference page."""
     try:
         _resource, identifier = _clean_reference(prefix, identifier)
@@ -381,7 +380,7 @@ ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
 @ark_hacked_route
 def resolve(
     prefix: str, identifier: str | None = None
-) -> str | werkzeug.Response | tuple[str, int]:
+) -> str | werkzeug.Response | tuple[str | werkzeug.Response, int]:
     """Resolve a CURIE.
 
     The following things can make a CURIE unable to resolve:

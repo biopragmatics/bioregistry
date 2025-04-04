@@ -2,6 +2,7 @@
 
 import sys
 from functools import partial
+from typing import Any
 
 import click
 import requests
@@ -15,7 +16,7 @@ SLASH_URL_ENCODED = "%2F"
 @click.command()
 @click.option("-u", "--url", default="https://bioregistry.io", show_default=True)
 @click.option("-l", "--local", is_flag=True)
-def main(url: str, local: bool):
+def main(url: str, local: bool) -> None:
     """Test the API."""
     url = url.rstrip("/")
     if local:
@@ -52,10 +53,10 @@ def main(url: str, local: bool):
 
         failure = True
 
-    return sys.exit(1 if failure else 0)
+    sys.exit(1 if failure else 0)
 
 
-def _log(s: str, req_url: str, **kwargs) -> None:
+def _log(s: str, req_url: str, **kwargs: Any) -> None:
     with tqdm.external_write_mode(file=sys.stdout):
         click.secho(f"[{req_url}] {s}", **kwargs)
 

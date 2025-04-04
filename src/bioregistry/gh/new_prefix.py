@@ -335,7 +335,7 @@ def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None
     if "url" in rv:
         click.secho(f"PR at {rv['url']}")
     else:  # probably an error
-        click.secho(rv, fg="red")
+        click.secho(str(rv), fg="red")
 
     click.secho(f"switching back to {github_client.MAIN_BRANCH} branch", fg="green")
     click.echo(github_client.home())

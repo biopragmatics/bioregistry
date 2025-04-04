@@ -90,7 +90,7 @@ def _parse_reference(part: str) -> str | None:
 
 
 def _strip_split(s: str | None) -> list[str] | None:
-    if pd.isna(s):
+    if pd.isna(s) or not s:
         return None
     return [k.strip() for k in s.strip().split("||")]
 

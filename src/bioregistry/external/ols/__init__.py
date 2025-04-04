@@ -74,7 +74,10 @@ def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
             if ols_id not in OLS_SKIP:
                 logger.warning("[%s] need to curate processing file", ols_id)
             continue
-        processed[ols_id] = _process(ontology, config)
+        record = _process(ontology, config)
+        if not record:
+            continue
+        processed[ols_id] = record
 
     with PROCESSED_PATH.open("w") as file:
         json.dump(processed, file, indent=2, sort_keys=True)
@@ -201,7 +204,7 @@ def _get_version(ols_id, config, processing: OLSConfig) -> Optional[str]:
     return version
 
 
-def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Mapping[str, str]]:
+def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, str] | None:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]

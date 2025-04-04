@@ -68,7 +68,7 @@ def get_lov(
             del d["vocab"]
         else:
             d["homepage"] = d.pop("vocab")
-        records[d["prefix"]] = d
+        records[cast(str, d["prefix"])] = d
 
     PROCESSED_PATH.write_text(json.dumps(records, indent=2))
     return records
