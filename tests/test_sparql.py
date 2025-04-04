@@ -47,6 +47,7 @@ def get(endpoint: str, sparql: str, accept) -> set[tuple[str, str]]:
     """Get a response from a given SPARQL query."""
     res = requests.get(
         endpoint,
+        timeout=15,
         params={"query": sparql},
         headers={"accept": accept},
     )

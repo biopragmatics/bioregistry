@@ -2,9 +2,10 @@
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from textwrap import dedent
+from typing import ClassVar
 
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
@@ -326,7 +327,13 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header = ("name", "homepage", "description", "uri_format", "example")
+    curation_header: ClassVar[Sequence[str]] = (
+        "name",
+        "homepage",
+        "description",
+        "uri_format",
+        "example",
+    )
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries to skip."""

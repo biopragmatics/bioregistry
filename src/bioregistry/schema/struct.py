@@ -1212,7 +1212,13 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.lov:
             keywords.extend(self.lov.get("keywords", []))
-        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
+        return sorted(
+            {
+                keyword.lower().replace("’", "'")  # noqa:RUF001
+                for keyword in keywords
+                if keyword
+            }
+        )
 
     def get_repository(self) -> str | None:
         """Return the repository, if available."""

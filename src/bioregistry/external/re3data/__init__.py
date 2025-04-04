@@ -5,12 +5,12 @@ Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Optional
-from xml.etree import ElementTree
+from typing import Any, ClassVar, Optional
 
 import requests
+from lxml import etree
 from tqdm.contrib.concurrent import thread_map
 
 from bioregistry.external.alignment_utils import Aligner
@@ -42,8 +42,8 @@ def get_re3data(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    res = requests.get(f"{BASE_URL}/api/v1/repositories")
-    tree = ElementTree.fromstring(res.text)
+    res = requests.get(f"{BASE_URL}/api/v1/repositories", timeout=15)
+    tree = etree.fromstring(res.text)
 
     identifier_to_doi = {}
     for repository in tree.findall("repository"):
@@ -83,8 +83,8 @@ def get_re3data(force_download: bool = False):
 
 
 def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
-    res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}")
-    tree = ElementTree.fromstring(res.text)[0]
+    res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}", timeout=15)
+    tree = etree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
 
 
@@ -190,7 +190,7 @@ class Re3dataAligner(Aligner):
     key = "re3data"
     alt_key_match = "name"
     getter = get_re3data
-    curation_header = ("name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage", "description")
 
 
 if __name__ == "__main__":

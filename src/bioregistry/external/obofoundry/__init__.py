@@ -2,9 +2,9 @@
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Optional
+from typing import ClassVar, Optional
 
 import requests
 import yaml
@@ -117,7 +117,7 @@ def _process(record):
 def get_obofoundry_example(prefix: str) -> Optional[str]:
     """Get an example identifier from the OBO Library PURL configuration."""
     url = f"https://raw.githubusercontent.com/OBOFoundry/purl.obolibrary.org/master/config/{prefix}.yml"
-    data = yaml.safe_load(requests.get(url).content)
+    data = yaml.safe_load(requests.get(url, timeout=15).content)
     examples = data.get("example_terms")
     if not examples:
         return None
@@ -129,7 +129,7 @@ class OBOFoundryAligner(Aligner):
 
     key = "obofoundry"
     getter = get_obofoundry
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
     normalize_invmap = True
 

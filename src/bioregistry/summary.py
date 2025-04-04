@@ -51,7 +51,7 @@ class BioregistrySummary:
         (e.g., 838 records in {self.external_sizes["prefixcommons"]}, {self.external_sizes["miriam"]:,}
         in MIRIAM/Identifiers.org, and {self.external_sizes["n2t"]:,}  in Name-to-Thing (Wimalaratne et al., 2018),
         each accessed on {self.datetime_str}), as well as the aligned registries combined:
-        {self.number_prefixes_novel:,} of the Bioregistry’s {self.number_prefixes:,} records are novel,
+        {self.number_prefixes_novel:,} of the Bioregistry's {self.number_prefixes:,} records are novel,
         i.e. they do not appear in any existing registry. The Bioregistry also adds novel curated metadata
         for {self.number_prefixes_curated:,} of the remaining {remaining:,} records
         ({self.number_prefixes_curated / remaining:.0%} of all records).

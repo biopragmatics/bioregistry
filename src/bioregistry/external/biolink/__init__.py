@@ -3,7 +3,7 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
@@ -47,7 +47,7 @@ class BiolinkAligner(Aligner):
 
     key = "biolink"
     getter = get_biolink
-    curation_header = [URI_FORMAT_KEY, "identifiers", "purl"]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY, "identifiers", "purl"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Biolink identifiers."""

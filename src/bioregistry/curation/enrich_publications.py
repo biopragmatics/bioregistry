@@ -45,7 +45,7 @@ def _clean_doi(doi: str) -> str:
     return doi
 
 
-def _main() -> None:  # noqa:C901
+def _main() -> None:
     c = 0
 
     resource_dois = []

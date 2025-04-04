@@ -3,8 +3,9 @@
 import itertools as itt
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import ClassVar
 
 from pystow.utils import download
 
@@ -93,7 +94,7 @@ class CellosaurusAligner(Aligner):
 
     key = "cellosaurus"
     getter = get_cellosaurus
-    curation_header = ("name", "homepage", "category", URI_FORMAT_KEY)
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "category", URI_FORMAT_KEY]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Cellosaurus identifiers."""

@@ -10,7 +10,7 @@ import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
@@ -277,7 +277,7 @@ class PrefixCommonsAligner(Aligner):
 
     key = "prefixcommons"
     getter = get_prefixcommons
-    curation_header = (
+    curation_header: ClassVar[Sequence[str]] = (
         "name",
         "synonyms",
         "description",

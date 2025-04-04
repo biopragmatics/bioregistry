@@ -367,7 +367,7 @@ def compare() -> None:
             " Install bioregistry again with `pip install bioregistry[charts]`.",
             fg="red",
         )
-        raise sys.exit(1)
+        sys.exit(1)
 
     bibliometric_comparison()
 
@@ -764,7 +764,9 @@ def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
         (
             "None"
             if license_ is None
-            else license_ if licenses_counter[license_] > threshold else "Other"
+            else license_
+            if licenses_counter[license_] > threshold
+            else "Other"
         )
         for license_ in licenses
     ]

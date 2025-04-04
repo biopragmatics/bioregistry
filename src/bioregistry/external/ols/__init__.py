@@ -4,13 +4,13 @@ import datetime
 import enum
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from email.utils import parseaddr
 from functools import lru_cache
 from operator import itemgetter
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import requests
 from pydantic import BaseModel
@@ -18,7 +18,7 @@ from pydantic import BaseModel
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
-from bioregistry.utils import OLSBroken
+from bioregistry.utils import OLSBrokenError
 
 __all__ = [
     "OLSAligner",
@@ -50,9 +50,9 @@ def get_ols(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    data = requests.get(URL).json()
+    data = requests.get(URL, timeout=15).json()
     if "_embedded" not in data:
-        raise OLSBroken
+        raise OLSBrokenError
     data["_embedded"]["ontologies"] = sorted(
         data["_embedded"]["ontologies"],
         key=itemgetter("ontologyId"),
@@ -255,7 +255,7 @@ class OLSAligner(Aligner):
 
     key = "ols"
     getter = get_ols
-    curation_header = ("name",)
+    curation_header: ClassVar[Sequence[str]] = ("name",)
     include_new = True
 
     def get_skip(self) -> Mapping[str, str]:

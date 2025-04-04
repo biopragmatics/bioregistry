@@ -1,9 +1,9 @@
 """Download Zazuko."""
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import requests
 
@@ -28,7 +28,7 @@ def get_zazuko(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    data = requests.get(URL).json()
+    data = requests.get(URL, timeout=15).json()
     rv = {
         prefix: {URI_FORMAT_KEY: f"{uri_prefix.strip()}$1"} for prefix, uri_prefix in data.items()
     }
@@ -42,7 +42,7 @@ class ZazukoAligner(Aligner):
 
     key = "zazuko"
     getter = get_zazuko
-    curation_header = [URI_FORMAT_KEY]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY]
 
 
 if __name__ == "__main__":

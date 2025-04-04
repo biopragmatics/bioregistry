@@ -30,7 +30,7 @@ def main(url: str, local: bool):
             continue
         it.set_postfix({"prefix": prefix})
         req_url = f"{url}/{curie_to_str(prefix, identifier)}"
-        res = requests.get(req_url, allow_redirects=False)
+        res = requests.get(req_url, allow_redirects=False, timeout=5)
         log = partial(_log, req_url=req_url)
         if res.status_code == 302:  # redirect
             continue
