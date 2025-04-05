@@ -74,26 +74,17 @@
   "affy.probeset": {
     "deprecated": false,
     "description": "An Affymetrix ProbeSet is a collection of up to 11 short (~22 nucleotide) microarray probes designed to measure a single gene or a family of genes as a unit. Multiple probe sets may be available for each gene under consideration.",
-    "homepage": "http://www.affymetrix.com/",
+    "homepage": "http://bio2rdf.org",
     "id": "00000394",
     "name": "Affymetrix Probeset",
     "namespaceEmbeddedInLui": false,
     "pattern": "\\d{4,}((_[asx])?_at)?",
     "prefix": "affy.probeset",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "Bio2RDF",
-        "homepage": "http://cu.affymetrix.bio2rdf.org/fct/",
-        "name": "Bio2RDF",
-        "uri_format": "http://cu.affymetrix.bio2rdf.org/describe/?url=http://bio2rdf.org/affymetrix:$1"
-      }
-    ],
     "sampleId": "243002_at",
-    "uri_format": "https://www.affymetrix.com/LinkServlet?probeset=$1"
+    "uri_format": "http://bio2rdf.org/affymetrix:$1"
   },
   "aftol.taxonomy": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Assembling the Fungal Tree of Life (AFTOL) project is dedicated to significantly enhancing our understanding of the evolution of the Kingdom Fungi, which represents one of the major clades of life. There are roughly 80,000 described species of Fungi, but the actual diversity in the group has been estimated to be about 1.5 million species.",
     "homepage": "http://aftol.org/data.php",
     "id": "00000411",
@@ -213,7 +204,7 @@
     "uri_format": "https://aopwiki.org/stressors/$1"
   },
   "apd": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The antimicrobial peptide database (APD) provides information on anticancer, antiviral, antifungal and antibacterial peptides.",
     "homepage": "http://aps.unmc.edu/AP/",
     "id": "00000278",
@@ -261,7 +252,7 @@
     "uri_format": "http://www.arachnoserver.org/toxincard.html?id=$1"
   },
   "ardb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Antibiotic Resistance Genes Database (ARDB) is a manually curated database which characterises genes involved in antibiotic resistance. Each gene and resistance type is annotated with information, including resistance profile, mechanism of action, ontology, COG and CDD annotations, as well as external links to sequence and protein databases. This collection references resistance genes.",
     "homepage": "http://ardb.cbcb.umd.edu/",
     "id": "00000522",
@@ -378,7 +369,7 @@
     "uri_format": "https://amzn.com/$1"
   },
   "aspgd.locus": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Aspergillus Genome Database (AspGD) is a repository for information relating to fungi of the genus Aspergillus, which includes organisms of clinical, agricultural and industrial importance. AspGD facilitates comparative genomics by providing a full-featured genomics viewer, as well as matched and standardized sets of genomic information for the sequenced aspergilli. This collection references gene information.",
     "homepage": "http://www.aspgd.org/",
     "id": "00000412",
@@ -390,7 +381,7 @@
     "uri_format": "http://www.aspergillusgenome.org/cgi-bin/locus.pl?dbid=$1"
   },
   "aspgd.protein": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Aspergillus Genome Database (AspGD) is a repository for information relating to fungi of the genus Aspergillus, which includes organisms of clinical, agricultural and industrial importance. AspGD facilitates comparative genomics by providing a full-featured genomics viewer, as well as matched and standardized sets of genomic information for the sequenced aspergilli. This collection references protein information.",
     "homepage": "http://www.aspgd.org/",
     "id": "00000413",
@@ -452,14 +443,14 @@
   "atfdb.family": {
     "deprecated": false,
     "description": "The Animal Transcription Factor DataBase (AnimalTFDB) classifies TFs in sequenced animal genomes, as well as collecting the transcription co-factors and chromatin remodeling factors of those genomes. This collections refers to transcription factor families, and the species in which they are found.",
-    "homepage": "http://www.bioguo.org/AnimalTFDB/family_index.php",
+    "homepage": "https://guolab.wchscu.cn/AnimalTFDB4",
     "id": "00000316",
     "name": "Animal TFDB Family",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\w+$",
     "prefix": "atfdb.family",
     "sampleId": "CUT",
-    "uri_format": "http://www.bioguo.org/AnimalTFDB/family.php?fam=$1"
+    "uri_format": "https://guolab.wchscu.cn/AnimalTFDB4//?#/family_summary/TF/$1"
   },
   "autdb": {
     "deprecated": false,
@@ -582,7 +573,7 @@
     "uri_format": "https://bdsc.indiana.edu/stocks/$1"
   },
   "beetlebase": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BeetleBase is a comprehensive sequence database and community resource for Tribolium genetics, genomics and developmental biology. It incorporates information about genes, mutants, genetic markers, expressed sequence tags and publications.",
     "homepage": "http://beetlebase.org/",
     "id": "00000157",
@@ -897,9 +888,9 @@
     "id": "00000187",
     "name": "BioPortal",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^\\d+$",
+    "pattern": "^\\w+$",
     "prefix": "bioportal",
-    "sampleId": "1046",
+    "sampleId": "SNOMEDCT",
     "uri_format": "http://bioportal.bioontology.org/ontologies/$1"
   },
   "bioproject": {
@@ -934,9 +925,9 @@
       {
         "code": "ddbj",
         "description": "BioSample at DNA Data Bank of Japan",
-        "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
+        "homepage": "https://www.ddbj.nig.ac.jp/biosample",
         "name": "BioSample at DNA Data Bank of Japan",
-        "uri_format": "http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1"
+        "uri_format": "https://ddbj.nig.ac.jp/search/entry/biosample/$1"
       }
     ],
     "sampleId": "SAMEA2397676",
@@ -979,7 +970,7 @@
     "uri_format": "https://www.ebi.ac.uk/biostudies/studies/$1"
   },
   "biosystems": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The NCBI BioSystems database centralizes and cross-links existing biological systems databases, increasing their utility and target audience by integrating their pathways and systems into NCBI resources.",
     "homepage": "https://www.ncbi.nlm.nih.gov/biosystems/",
     "id": "00000097",
@@ -1041,14 +1032,14 @@
   "bmrb": {
     "deprecated": false,
     "description": "BMRB collects, annotates, archives, and disseminates (worldwide in the public domain) the important spectral and quantitative data derived from NMR spectroscopic investigations of biological macromolecules and metabolites. The goal is to empower scientists in their analysis of the structure, dynamics, and chemistry of biological systems and to support further development of the field of biomolecular NMR spectroscopy.",
-    "homepage": "http://www.bmrb.wisc.edu/",
+    "homepage": "https://bmrb.io/",
     "id": "00000716",
     "name": "Biological Magnetic Resonance Data Bank",
     "namespaceEmbeddedInLui": false,
     "pattern": "^(bmr|bmse|bmst)?[0-9]{1,6}$",
     "prefix": "bmrb",
     "sampleId": "15000",
-    "uri_format": "http://rest.bmrb.wisc.edu/bmrb/$1/html"
+    "uri_format": "https://bmrb.io/data_library/summary/index.php?bmrbId=$1"
   },
   "bold.taxonomy": {
     "deprecated": false,
@@ -1099,7 +1090,7 @@
     "uri_format": "http://purl.bioontology.org/ontology/BTO/BTO:$1"
   },
   "bugbase.expt": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BugBase is a MIAME-compliant microbial gene expression and comparative genomic database. It stores experimental annotation and multiple raw and analysed data formats, as well as protocols for bacterial microarray designs. This collection references microarray experiments.",
     "homepage": "http://bugs.sgul.ac.uk/E-BUGS",
     "id": "00000404",
@@ -1111,7 +1102,7 @@
     "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view"
   },
   "bugbase.protocol": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BugBase is a MIAME-compliant microbial gene expression and comparative genomic database. It stores experimental annotation and multiple raw and analysed data formats, as well as protocols for bacterial microarray designs. This collection references design protocols.",
     "homepage": "http://bugs.sgul.ac.uk/E-BUGS",
     "id": "00000403",
@@ -1125,14 +1116,14 @@
   "bykdb": {
     "deprecated": false,
     "description": "The bacterial tyrosine kinase database (BYKdb) that collects sequences of putative and authentic bacterial tyrosine kinases,  providing structural and functional information.",
-    "homepage": "https://bykdb.ibcp.fr/BYKdb/",
+    "homepage": "https://bykdb.lyon.inserm.fr/BYKdb/BYKdbIndex",
     "id": "00000253",
     "name": "BYKdb",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Z0-9]+$",
     "prefix": "bykdb",
-    "sampleId": "A0A009E7X8",
-    "uri_format": "https://bykdb.ibcp.fr/data/html/annotated/$1.html"
+    "sampleId": "A0A009HB13",
+    "uri_format": "https://bykdb.lyon.inserm.fr/data/html/annotated/$1.html"
   },
   "cabri": {
     "deprecated": false,
@@ -1335,14 +1326,14 @@
   "cdpd": {
     "deprecated": false,
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
-    "homepage": "http://webprod3.hc-sc.gc.ca/dpd-bdpp/index-eng.jsp",
+    "homepage": "https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/drug-product-database.html",
     "id": "00000272",
     "name": "Canadian Drug Product Database",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "cdpd",
     "sampleId": "63250",
-    "uri_format": "http://webprod3.hc-sc.gc.ca/dpd-bdpp/info.do?lang=eng&code=$1"
+    "uri_format": "https://health-products.canada.ca/dpd-bdpp/info?lang=eng&code=$1"
   },
   "cellimage": {
     "deprecated": false,
@@ -1393,7 +1384,7 @@
     "uri_format": "http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1"
   },
   "cgsc": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The CGSC Database of E. coli genetic information includes genotypes and reference information for the strains in the CGSC collection, the names, synonyms, properties, and map position for genes, gene product information, and information on specific mutations and references to primary literature.",
     "homepage": "http://cgsc.biology.yale.edu/index.php",
     "id": "00000295",
@@ -1405,7 +1396,7 @@
     "uri_format": "http://cgsc.biology.yale.edu/Site.php?ID=$1"
   },
   "charprot": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "CharProt is a database of biochemically characterized proteins designed to support automated annotation pipelines. Entries are annotated with gene name, symbol and various controlled vocabulary terms, including Gene Ontology terms, Enzyme Commission number and TransportDB accession.",
     "homepage": "http://www.jcvi.org/charprotdb",
     "id": "00000341",
@@ -1438,7 +1429,7 @@
     "pattern": "^CHEMBL\\d+$",
     "prefix": "chembl",
     "sampleId": "CHEMBL4303805",
-    "uri_format": "https://www.ebi.ac.uk/chembl/entity/$1"
+    "uri_format": "https://www.ebi.ac.uk/chembl/id_lookup/$1"
   },
   "chembl.compound": {
     "deprecated": false,
@@ -1449,15 +1440,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^CHEMBL\\d+$",
     "prefix": "chembl.compound",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL compound RDF through EBI RDF Platform",
-        "homepage": "https://www.ebi.ac.uk/rdf/services/chembl/",
-        "name": "ChEMBL compound RDF through EBI RDF Platform",
-        "uri_format": "https://rdf.ebi.ac.uk/resource/chembl/molecule/$1"
-      }
-    ],
     "sampleId": "CHEMBL308052",
     "uri_format": "https://www.ebi.ac.uk/chembl/compound/inspect/$1"
   },
@@ -1840,7 +1822,7 @@
     "uri_format": "https://comptox.epa.gov/dashboard/$1"
   },
   "compulyeast": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Compluyeast-2D-DB is a two-dimensional polyacrylamide gel electrophoresis federated database. This collection references a subset of Uniprot, and contains general information about the protein record.",
     "homepage": "http://compluyeast2dpage.dacya.ucm.es/",
     "id": "00000198",
@@ -1954,9 +1936,9 @@
     "id": "00001015",
     "name": "CropMRepository",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[0-9]{9}$",
+    "pattern": "^[0-9]+$",
     "prefix": "crop2ml",
-    "sampleId": "000000001",
+    "sampleId": "2",
     "uri_format": "http://www.crop2ml.org/cropmdb/$1"
   },
   "cryptodb": {
@@ -1972,7 +1954,7 @@
     "uri_format": "https://cryptodb.org/cryptodb/app/record/gene/$1"
   },
   "csa": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Catalytic Site Atlas (CSA) is a database documenting enzyme active sites and catalytic residues in enzymes of 3D structure. It uses a defined classification for catalytic residues which includes only those residues thought to be directly involved in some aspect of the reaction catalysed by an enzyme.",
     "homepage": "https://www.ebi.ac.uk/thornton-srv/databases/CSA/",
     "id": "00000144",
@@ -2068,7 +2050,7 @@
     "uri_format": "http://ctdbase.org/detail.go?type=gene&acc=$1"
   },
   "cubedb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Cube-DB is a database of pre-evaluated results for detection of functional divergence in human/vertebrate protein families. It analyzes comparable taxonomical samples for all paralogues under consideration, storing functional specialisation at the level of residues. The data are presented as a table of per-residue scores, and mapped onto related structures where available.",
     "homepage": "http://epsf.bmad.bii.a-star.edu.sg/cube/db/html/home.html",
     "id": "00000397",
@@ -2116,7 +2098,7 @@
     "uri_format": "https://dandiarchive.org/dandiset/$1"
   },
   "darc": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DARC (Database of Aligned Ribosomal Complexes) stores available cryo-EM (electron microscopy) data and atomic coordinates of ribosomal particles from the PDB, which are aligned within a common coordinate system. The aligned coordinate system simplifies direct visualization of conformational changes in the ribosome, such as subunit rotation and head-swiveling, as well as direct comparison of bound ligands, such as antibiotics or translation factors.",
     "homepage": "http://darcsite.genzentrum.lmu.de/darc/index.php",
     "id": "00000366",
@@ -2188,7 +2170,7 @@
     "uri_format": "https://datanator.info/reaction/$1"
   },
   "datf": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DATF contains known and predicted Arabidopsis transcription factors (1827 genes in 56 families) with the unique information of 1177 cloned sequences and many other features including 3D structure templates, EST expression information, transcription factor binding sites and nuclear location signals.",
     "homepage": "http://datf.cbi.pku.edu.cn/",
     "id": "00000456",
@@ -2264,7 +2246,7 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=$1"
   },
   "dbprobe": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The NCBI Probe Database is a public registry of nucleic acid reagents designed for use in a wide variety of biomedical research applications, together with information on reagent distributors, probe effectiveness, and computed sequence similarities.",
     "homepage": "https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe",
     "id": "00000160",
@@ -2483,7 +2465,7 @@
     "uri_format": "https://registry.dome-ml.org/review/$1"
   },
   "dommino": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DOMMINO is a database of macromolecular interactions that includes the interactions between protein domains, interdomain linkers, N- and C-terminal regions and protein peptides.",
     "homepage": "http://dommino.org/",
     "id": "00000373",
@@ -2495,7 +2477,7 @@
     "uri_format": "http://orion.rnet.missouri.edu/~nz953/DOMMINO/index.php/result/show_network/$1"
   },
   "door": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DOOR (Database for prOkaryotic OpeRons) contains computationally predicted operons of all the sequenced prokaryotic genomes. It includes operons for RNA genes.",
     "homepage": "http://csbl.bmb.uga.edu/DOOR/operon.php",
     "id": "00000453",
@@ -2540,10 +2522,10 @@
     "pattern": "^\\d+$",
     "prefix": "dpv",
     "sampleId": "100",
-    "uri_format": "http://www.dpvweb.net/dpv/showdpv.php?dpvno=$1"
+    "uri_format": "http://www.dpvweb.net/dpv/showdpv/?dpvno=$1"
   },
   "dragondb.allele": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DragonDB is a genetic and genomic database for Antirrhinum majus (Snapdragon). This collection refers to allele information.",
     "homepage": "http://www.antirrhinum.net/",
     "id": "00000300",
@@ -2555,7 +2537,7 @@
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1&amp;class=Allele"
   },
   "dragondb.dna": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DragonDB is a genetic and genomic database for Antirrhinum majus (Snapdragon). This collection refers to DNA sequence information.",
     "homepage": "http://www.antirrhinum.net/",
     "id": "00000297",
@@ -2567,7 +2549,7 @@
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=DNA"
   },
   "dragondb.locus": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DragonDB is a genetic and genomic database for Antirrhinum majus (Snapdragon). This collection refers to Locus information.",
     "homepage": "http://www.antirrhinum.net/",
     "id": "00000299",
@@ -2579,7 +2561,7 @@
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1&amp;class=Locus"
   },
   "dragondb.protein": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "DragonDB is a genetic and genomic database for Antirrhinum majus (Snapdragon). This collection refers to protein sequence information.",
     "homepage": "http://www.antirrhinum.net/",
     "id": "00000298",
@@ -2617,14 +2599,14 @@
   "drugbank": {
     "deprecated": false,
     "description": "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information.",
-    "homepage": "http://www.drugbank.ca/",
+    "homepage": "http://go.drugbank.com",
     "id": "00000102",
     "name": "DrugBank",
     "namespaceEmbeddedInLui": false,
     "pattern": "^DB\\d{5}$",
     "prefix": "drugbank",
     "sampleId": "DB00001",
-    "uri_format": "http://www.drugbank.ca/drugs/$1"
+    "uri_format": "http://go.drugbank.com/drugs/$1"
   },
   "drugbankv4.target": {
     "deprecated": false,
@@ -2703,7 +2685,7 @@
     "uri_format": "http://purl.bioontology.org/ontology/ECO/ECO:$1"
   },
   "ecogene": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The EcoGene database contains updated information about the E. coli K-12 genome and proteome sequences, including extensive gene bibliographies. A major EcoGene focus has been the re-evaluation of translation start sites.",
     "homepage": "http://ecogene.org/",
     "id": "00000163",
@@ -2715,7 +2697,7 @@
     "uri_format": "http://www.ecogene.org/gene/$1"
   },
   "ecoliwiki": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "EcoliWiki is a wiki-based resource to store information related to non-pathogenic E. coli, its phages, plasmids, and mobile genetic elements. This collection references genes.",
     "homepage": "http://ecoliwiki.net/colipedia/",
     "id": "00000442",
@@ -3280,7 +3262,7 @@
     "uri_format": "https://sorgerlab.github.io/famplex/$1"
   },
   "fsnp": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Functional Single Nucleotide Polymorphism (F-SNP) database integrates information obtained from databases about the functional effects of SNPs. These effects are predicted and indicated at the splicing, transcriptional, translational and post-translational level. In particular, users can retrieve SNPs that disrupt genomic regions known to be functional, including splice sites and transcriptional regulatory regions. Users can also identify non-synonymous SNPs that may have deleterious effects on protein structure or function, interfere with protein translation or impede post-translational modification.",
     "homepage": "http://compbio.cs.queensu.ca/F-SNP/",
     "id": "00000496",
@@ -3292,7 +3274,7 @@
     "uri_format": "http://compbio.cs.queensu.ca/cgi-bin/compbio/search/main.cgi?search_mode=id&amp;id_type=snp_id&amp;id_val=$1"
   },
   "funcbase.fly": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Computational gene function prediction can serve to focus experimental resources on high-priority experimental tasks. FuncBase is a web resource for viewing quantitative machine learning-based gene function annotations. Quantitative annotations of genes, including fungal and mammalian genes, with Gene Ontology terms are accompanied by a community feedback system. Evidence underlying function annotations is shown. FuncBase provides links to external resources, and may be accessed directly or via links from species-specific databases. This collection references Drosophila data.",
     "homepage": "http://func.mshri.on.ca/fly",
     "id": "00000461",
@@ -3304,7 +3286,7 @@
     "uri_format": "http://func.mshri.on.ca/fly/genes/list_functional_scores/$1"
   },
   "funcbase.human": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Computational gene function prediction can serve to focus experimental resources on high-priority experimental tasks. FuncBase is a web resource for viewing quantitative machine learning-based gene function annotations. Quantitative annotations of genes, including fungal and mammalian genes, with Gene Ontology terms are accompanied by a community feedback system. Evidence underlying function annotations is shown. FuncBase provides links to external resources, and may be accessed directly or via links from species-specific databases. This collection references human data.",
     "homepage": "http://func.mshri.on.ca/human/",
     "id": "00000462",
@@ -3316,7 +3298,7 @@
     "uri_format": "http://func.mshri.on.ca/human/genes/list_functional_scores/$1"
   },
   "funcbase.mouse": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Computational gene function prediction can serve to focus experimental resources on high-priority experimental tasks. FuncBase is a web resource for viewing quantitative machine learning-based gene function annotations. Quantitative annotations of genes, including fungal and mammalian genes, with Gene Ontology terms are accompanied by a community feedback system. Evidence underlying function annotations is shown. FuncBase provides links to external resources, and may be accessed directly or via links from species-specific databases. This collection references mouse.",
     "homepage": "http://func.mshri.on.ca/mouse/",
     "id": "00000463",
@@ -3328,7 +3310,7 @@
     "uri_format": "http://func.mshri.on.ca/mouse/genes/list_functional_scores/$1"
   },
   "funcbase.yeast": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Computational gene function prediction can serve to focus experimental resources on high-priority experimental tasks. FuncBase is a web resource for viewing quantitative machine learning-based gene function annotations. Quantitative annotations of genes, including fungal and mammalian genes, with Gene Ontology terms are accompanied by a community feedback system. Evidence underlying function annotations is shown. FuncBase provides links to external resources, and may be accessed directly or via links from species-specific databases. This collection references yeast.",
     "homepage": "http://func.mshri.on.ca/yeast",
     "id": "00000464",
@@ -3592,7 +3574,7 @@
     "uri_format": "https://gitlab.com/$1"
   },
   "glida.gpcr": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The GPCR-LIgand DAtabase (GLIDA) is a GPCR-related chemical genomic database that is primarily focused on the correlation of information between GPCRs and their ligands. It provides correlation data between GPCRs and their ligands, along with chemical information on the ligands. This collection references G-protein coupled receptors.",
     "homepage": "http://pharminfo.pharm.kyoto-u.ac.jp/services/glida/",
     "id": "00000493",
@@ -3604,7 +3586,7 @@
     "uri_format": "http://pharminfo.pharm.kyoto-u.ac.jp/services/glida/gpcr_information.php?id=$1"
   },
   "glida.ligand": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The GPCR-LIgand DAtabase (GLIDA) is a GPCR-related chemical genomic database that is primarily focused on the correlation of information between GPCRs and their ligands. It provides correlation data between GPCRs and their ligands, along with chemical information on the ligands. This collection references ligands.",
     "homepage": "http://pharminfo.pharm.kyoto-u.ac.jp/services/glida/",
     "id": "00000494",
@@ -3797,14 +3779,14 @@
   "go_ref": {
     "deprecated": false,
     "description": "The GO reference collection is a set of abstracts that can be cited in the GO ontologies (e.g. as dbxrefs for term definitions) and annotation files (in the Reference column). It provides two types of reference; It can be used to provide details of why specific Evidence codes (see http://identifiers.org/eco/) are assigned, or to present abstract-style descriptions of \"GO content\" meetings at which substantial changes in the ontologies are discussed and made.",
-    "homepage": "http://www.geneontology.org/cgi-bin/references.cgi",
+    "homepage": "https://geneontology.org/gorefs",
     "id": "00000450",
     "name": "Gene Ontology Reference",
     "namespaceEmbeddedInLui": true,
     "pattern": "^GO_REF:\\d{7}$",
     "prefix": "go_ref",
     "sampleId": "0000041",
-    "uri_format": "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/goref-$1.md"
+    "uri_format": "https://geneontology.org/GO_REF/$1"
   },
   "goa": {
     "deprecated": false,
@@ -3948,7 +3930,7 @@
     "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
   },
   "greengenes": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "A 16S rRNA gene database which provides chimera screening, standard alignment, and taxonomic classification using multiple published taxonomies.",
     "homepage": "http://greengenes.lbl.gov/",
     "id": "00000165",
@@ -3974,14 +3956,14 @@
   "grin.taxonomy": {
     "deprecated": false,
     "description": "GRIN (Germplasm Resources Information Network) Taxonomy for Plants provides information on scientific and common names, classification, distribution, references, and economic impact.",
-    "homepage": "http://www.ars-grin.gov/cgi-bin/npgs/html/index.pl?language=en",
+    "homepage": "http://www.ars-grin.gov/",
     "id": "00000166",
     "name": "GRIN Plant Taxonomy",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "grin.taxonomy",
     "sampleId": "19333",
-    "uri_format": "http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1"
+    "uri_format": "https://npgsweb.ars-grin.gov/gringlobal/taxon/taxonomydetail.aspx?id=$1"
   },
   "gro": {
     "deprecated": false,
@@ -4068,7 +4050,7 @@
     "uri_format": "https://www.gwascentral.org/phenotype/$1"
   },
   "gwascentral.study": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "GWAS Central (previously the Human Genome Variation database of Genotype-to-Phenotype information) is a database of summary level findings from genetic association studies, both large and small. It gathers datasets from public domain projects, and accepts direct data submission. It is based upon Marker information encompassing SNP and variant information from public databases, to which allele and genotype frequency data, and genetic association findings are additionally added. A Study (most generic level) contains one or more Experiments, one or more Sample Panels of test subjects, and one or more Phenotypes. This collection references a GWAS Central Study.",
     "homepage": "https://www.gwascentral.org/studies",
     "id": "00000540",
@@ -4139,17 +4121,17 @@
   "hcvdb": {
     "deprecated": false,
     "description": "the European Hepatitis C Virus Database (euHCVdb, http://euhcvdb.ibcp.fr), a collection of computer-annotated sequences based on reference genomes.mainly dedicated to HCV protein sequences, 3D structures and functional analyses.",
-    "homepage": "http://euhcvdb.ibcp.fr/euHCVdb/",
+    "homepage": "https://euhcvdb.lyon.inserm.fr",
     "id": "00000207",
     "name": "HCVDB",
     "namespaceEmbeddedInLui": false,
     "pattern": "^M\\d{5}$",
     "prefix": "hcvdb",
     "sampleId": "M58335",
-    "uri_format": "https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1"
+    "uri_format": "https://euhcvdb.lyon.inserm.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1"
   },
   "hdr": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Homeodomain Resource is a curated collection of sequence, structure, interaction, genomic and functional information on the homeodomain family. It contains sets of curated homeodomain sequences from fully sequenced genomes, including experimentally derived homeodomain structures, homeodomain protein-protein interactions, homeodomain DNA-binding sites and homeodomain proteins implicated in human genetic disorders.",
     "homepage": "http://research.nhgri.nih.gov/apps/homeodomain/web/",
     "id": "00000497",
@@ -4221,7 +4203,7 @@
     "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/symbol/$1"
   },
   "hinv.locus": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "H-Invitational Database (H-InvDB) is an integrated database of human genes and transcripts. It provides curated annotations of human genes and transcripts including gene structures, alternative splicing isoforms, non-coding functional RNAs, protein functions, functional domains, sub-cellular localizations, metabolic pathways, protein 3D structure, genetic polymorphisms (SNPs, indels and microsatellite repeats), relation with diseases, gene expression profiling, molecular evolutionary features, protein-protein interactions (PPIs) and gene families/groups. This datatype provides access to the 'Locus' view.",
     "homepage": "http://h-invitational.jp/hinv/ahg-db/index.jsp",
     "id": "00000167",
@@ -4233,7 +4215,7 @@
     "uri_format": "http://h-invitational.jp/hinv/spsoup/locus_view?hix_id=$1"
   },
   "hinv.protein": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "H-Invitational Database (H-InvDB) is an integrated database of human genes and transcripts. It provides curated annotations of human genes and transcripts including gene structures, alternative splicing isoforms, non-coding functional RNAs, protein functions, functional domains, sub-cellular localizations, metabolic pathways, protein 3D structure, genetic polymorphisms (SNPs, indels and microsatellite repeats), relation with diseases, gene expression profiling, molecular evolutionary features, protein-protein interactions (PPIs) and gene families/groups. This datatype provides access to the 'Protein' view.",
     "homepage": "http://h-invitational.jp/hinv/ahg-db/index.jsp",
     "id": "00000169",
@@ -4245,7 +4227,7 @@
     "uri_format": "http://h-invitational.jp/hinv/protein/protein_view.cgi?hip_id=$1"
   },
   "hinv.transcript": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "H-Invitational Database (H-InvDB) is an integrated database of human genes and transcripts. It provides curated annotations of human genes and transcripts including gene structures, alternative splicing isoforms, non-coding functional RNAs, protein functions, functional domains, sub-cellular localizations, metabolic pathways, protein 3D structure, genetic polymorphisms (SNPs, indels and microsatellite repeats), relation with diseases, gene expression profiling, molecular evolutionary features, protein-protein interactions (PPIs) and gene families/groups. This datatype provides access to the 'Transcript' view.",
     "homepage": "http://h-invitational.jp/hinv/ahg-db/index.jsp",
     "id": "00000168",
@@ -4271,38 +4253,38 @@
   "hogenom": {
     "deprecated": false,
     "description": "HOGENOM is a database of homologous genes from fully sequenced organisms (bacteria, archeae and eukarya). This collection references phylogenetic trees which can be retrieved using either UniProt accession numbers, or HOGENOM tree family identifier.",
-    "homepage": "http://pbil.univ-lyon1.fr/databases/hogenom/",
+    "homepage": "http://hogenom.univ-lyon1.fr/",
     "id": "00000213",
     "name": "HOGENOM",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^\\w+$",
+    "pattern": "^[\\w\\.]+$",
     "prefix": "hogenom",
-    "sampleId": "HBG284870",
-    "uri_format": "http://pbil.univ-lyon1.fr/cgi-bin/view-tree.pl?db=HOGENOM5&query=$1"
+    "sampleId": "HOMO_3.PE998",
+    "uri_format": "http://hogenom.univ-lyon1.fr/query_sequence?Go=Submit+Query&seq=$1"
   },
   "homd.seq": {
     "deprecated": false,
     "description": "The Human Oral Microbiome Database (HOMD) provides a site-specific comprehensive database for the more than 600 prokaryote species that are present in the human oral cavity. It contains genomic information based on a curated 16S rRNA gene-based provisional naming scheme, and taxonomic information. This datatype contains genomic sequence information.",
-    "homepage": "http://www.homd.org/index.php",
+    "homepage": "http://www.homd.org/",
     "id": "00000170",
     "name": "HOMD Sequence Metainformation",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^SEQF\\d+$",
+    "pattern": "^SEQF\\d+(.\\d+)?$",
     "prefix": "homd.seq",
-    "sampleId": "SEQF1003",
-    "uri_format": "http://www.homd.org/modules.php?op=modload&name=GenomeList&file=index&link=detailinfo&seqid=$1"
+    "sampleId": "SEQF10030.1",
+    "uri_format": "https://www.homd.org/genome/genome_description?gid=$1"
   },
   "homd.taxon": {
     "deprecated": false,
     "description": "The Human Oral Microbiome Database (HOMD) provides a site-specific comprehensive database for the more than 600 prokaryote species that are present in the human oral cavity. It contains genomic information based on a curated 16S rRNA gene-based provisional naming scheme, and taxonomic information. This datatype contains taxonomic information.",
-    "homepage": "http://www.homd.org/index.php",
+    "homepage": "http://www.homd.org/",
     "id": "00000171",
     "name": "HOMD Taxonomy",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "homd.taxon",
     "sampleId": "811",
-    "uri_format": "http://www.homd.org/modules.php?op=modload&name=HOMD&file=index&oraltaxonid=$1&view=dynamic"
+    "uri_format": "https://www.homd.org/taxa/tax_description?otid=$1"
   },
   "homologene": {
     "deprecated": false,
@@ -4317,16 +4299,16 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://homologene.bio2rdf.org/fct",
+        "homepage": "http://bio2rdf.org",
         "name": "Bio2RDF",
-        "uri_format": "http://homologene.bio2rdf.org/describe/?url=http://bio2rdf.org/homologene:$1"
+        "uri_format": "https://bio2rdf.org/homologene:$1"
       }
     ],
     "sampleId": "1000",
     "uri_format": "https://www.ncbi.nlm.nih.gov/homologene/$1"
   },
   "hovergen": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "HOVERGEN is a database of homologous vertebrate genes that allows one to select sets of homologous genes among vertebrate species, and to visualize multiple alignments and phylogenetic trees.",
     "homepage": "http://pbil.univ-lyon1.fr/databases/hovergen.php",
     "id": "00000074",
@@ -4340,7 +4322,7 @@
   "hp": {
     "deprecated": false,
     "description": "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM.",
-    "homepage": "http://human-phenotype-ontology.github.io/",
+    "homepage": "https://hpo.jax.org/",
     "id": "00000571",
     "name": "Human Phenotype Ontology",
     "namespaceEmbeddedInLui": true,
@@ -4386,7 +4368,7 @@
     "uri_format": "http://www.humanproteomemap.org/protein.php?hpm_id=$1"
   },
   "hprd": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Human Protein Reference Database (HPRD) represents a centralized platform to visually depict and integrate information pertaining to domain architecture, post-translational modifications, interaction networks and disease association for each protein in the human proteome.",
     "homepage": "http://www.hprd.org/",
     "id": "00000377",
@@ -4493,26 +4475,26 @@
   "iceberg.element": {
     "deprecated": false,
     "description": "ICEberg (Integrative and conjugative elements) is a database of integrative and conjugative elements (ICEs) found in bacteria. ICEs are conjugative self-transmissible elements that can integrate into and excise from a host chromosome, and can carry likely virulence determinants, antibiotic-resistant factors and/or genes coding for other beneficial traits. It contains details of ICEs found in representatives bacterial species, and which are organised as families. This collection references ICE elements.",
-    "homepage": "http://db-mml.sjtu.edu.cn/ICEberg/",
+    "homepage": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/index.php",
     "id": "00000469",
     "name": "ICEberg element",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "iceberg.element",
     "sampleId": "100",
-    "uri_format": "http://db-mml.sjtu.edu.cn/ICEberg/feature_page.php?ice_id=$1"
+    "uri_format": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/feature_page.php?ice_id=$1"
   },
   "iceberg.family": {
     "deprecated": false,
     "description": "ICEberg (Integrative and conjugative elements) is a database of integrative and conjugative elements (ICEs) found in bacteria. ICEs are conjugative self-transmissible elements that can integrate into and excise from a host chromosome, and can carry likely virulence determinants, antibiotic-resistant factors and/or genes coding for other beneficial traits. It contains details of ICEs found in representatives bacterial species, and which are organised as families. This collection references ICE families.",
-    "homepage": "http://db-mml.sjtu.edu.cn/ICEberg/",
+    "homepage": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/",
     "id": "00000470",
     "name": "ICEberg family",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "iceberg.family",
     "sampleId": "1",
-    "uri_format": "http://db-mml.sjtu.edu.cn/ICEberg/browse_result.php?type=fam&fam_id=$1"
+    "uri_format": "https://bioinfo-mml.sjtu.edu.cn/ICEberg2/browse_result.php?type=fam&fam_id=$1"
   },
   "ideal": {
     "deprecated": false,
@@ -4571,8 +4553,8 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z]+$",
     "prefix": "idot",
-    "sampleId": "identifierPattern",
-    "uri_format": "https://biomodels.net/vocab/idot.rdf#$1"
+    "sampleId": "luiPattern",
+    "uri_format": "https://github.com/identifiers-org/ontop/tree/main/idorg-ontology#$1"
   },
   "idr": {
     "deprecated": false,
@@ -4677,7 +4659,7 @@
     "pattern": "^[A-Z0-9*:]+$",
     "prefix": "imgt.hla",
     "sampleId": "A*01:01:01:01",
-    "uri_format": "https://www.ebi.ac.uk/cgi-bin/imgt/hla/get_allele.cgi?$1"
+    "uri_format": "https://www.ebi.ac.uk/ipd/imgt/hla/alleles/?query=eq(name,%22$1%22)"
   },
   "imgt.ligm": {
     "deprecated": false,
@@ -4896,9 +4878,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://interpro.bio2rdf.org/fct/",
+        "homepage": "http://bio2rdf.org/",
         "name": "Bio2RDF",
-        "uri_format": "http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:$1"
+        "uri_format": "http://bio2rdf.org/interpro:$1"
       }
     ],
     "sampleId": "IPR000100",
@@ -4917,7 +4899,7 @@
     "uri_format": "http://www.fludb.org/brc/fluSegmentDetails.do?ncbiGenomicAccession=$1"
   },
   "irefweb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "iRefWeb is an interface to a relational database containing the latest build of the interaction Reference Index (iRefIndex) which integrates protein interaction data from ten different interaction databases: BioGRID, BIND, CORUM, DIP, HPRD, INTACT, MINT, MPPI, MPACT and OPHID. In addition, iRefWeb associates interactions with the PubMed record from which they are derived.",
     "homepage": "http://wodaklab.org/iRefWeb/",
     "id": "00000123",
@@ -4950,7 +4932,7 @@
     "uri_format": "http://isbndb.com/search-all.html?kw=$1"
   },
   "isfinder": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "ISfinder is a database of bacterial insertion sequences (IS). It assigns IS nomenclature and acts as a repository for ISs. Each IS is annotated with information such as the open reading frame DNA sequence, the sequence of the ends of the element and target sites, its origin and distribution together with a bibliography, where available.",
     "homepage": "http://www-is.biotoul.fr/i",
     "id": "00000173",
@@ -5598,7 +5580,7 @@
     "pattern": "^\\d+$",
     "prefix": "maizegdb.locus",
     "sampleId": "25011",
-    "uri_format": "http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1"
+    "uri_format": "https://www.maizegdb.org/gene_center/gene/$1"
   },
   "mamo": {
     "deprecated": false,
@@ -5753,26 +5735,26 @@
   "merops.family": {
     "deprecated": false,
     "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. These are hierarchically classified and assigned to a Family on the basis of statistically significant similarities in amino acid sequence. Families thought to be homologous are grouped together in a Clan. This collection references peptidase families.",
-    "homepage": "http://merops.sanger.ac.uk/index.htm",
+    "homepage": "https://www.ebi.ac.uk/merops/",
     "id": "00000302",
     "name": "MEROPS Family",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[SCTAGMNU]\\d+$",
     "prefix": "merops.family",
     "sampleId": "S1",
-    "uri_format": "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1"
   },
   "merops.inhibitor": {
     "deprecated": false,
     "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-    "homepage": "http://merops.sanger.ac.uk/index.htm",
+    "homepage": "https://www.ebi.ac.uk/merops/",
     "id": "00000491",
     "name": "MEROPS Inhibitor",
     "namespaceEmbeddedInLui": false,
     "pattern": "^I\\d{2}\\.\\d{3}$",
     "prefix": "merops.inhibitor",
     "sampleId": "I31.952",
-    "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "mesh": {
     "deprecated": false,
@@ -5909,7 +5891,7 @@
     "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
   },
   "metlin": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The METLIN (Metabolite and Tandem Mass Spectrometry) Database is a repository of metabolite information as well as tandem mass spectrometry data, providing public access to its comprehensive MS and MS/MS metabolite data. An annotated list of known metabolites and their mass, chemical formula, and structure are available, with each metabolite linked to external resources for further reference and inquiry.",
     "homepage": "http://masspec.scripps.edu/",
     "id": "00000322",
@@ -6207,7 +6189,7 @@
     "uri_format": "http://rhesus.amu.edu.pl/mirnest/copy/details.php?id=$1"
   },
   "mirtarbase": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "miRTarBase is a database of miRNA-target interactions (MTIs), collected manually from relevant literature, following Natural Language Processing of the text to identify research articles related to functional studies of miRNAs. Generally, the collected MTIs are validated experimentally by reporter assay, western blot, microarray and next-generation sequencing experiments.",
     "homepage": "http://mirtarbase.mbc.nctu.edu.tw/",
     "id": "00000562",
@@ -6458,23 +6440,14 @@
   "mpid": {
     "deprecated": false,
     "description": "The microbial protein interaction database (MPIDB) provides physical microbial interaction data. The interactions are manually curated from the literature or imported from other databases, and are linked to supporting experimental evidence, as well as evidences based on interaction conservation, protein complex membership, and 3D domain contacts.",
-    "homepage": "http://www.jcvi.org/mpidb/about.php",
+    "homepage": "https://www.ebi.ac.uk/intact/",
     "id": "00000124",
     "name": "Microbial Protein Interaction Database",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "mpid",
-    "providers": [
-      {
-        "code": "ebi",
-        "description": "Microbial Protein Interaction Database subset through IntAct",
-        "homepage": "https://www.ebi.ac.uk/intact/",
-        "name": "Microbial Protein Interaction Database subset through IntAct",
-        "uri_format": "https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1"
-      }
-    ],
     "sampleId": "172",
-    "uri_format": "http://www.jcvi.org/mpidb/experiment.php?interaction_id=$1"
+    "uri_format": "https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1"
   },
   "ms": {
     "deprecated": false,
@@ -6560,50 +6533,50 @@
   "myco.lepra": {
     "deprecated": false,
     "description": "Mycobrowser is a resource that provides both in silico generated and manually reviewed information within databases dedicated to the complete genomes of Mycobacterium tuberculosis, Mycobacterium leprae, Mycobacterium marinum and Mycobacterium smegmatis. This collection references Mycobacteria leprae information.",
-    "homepage": "http://mycobrowser.epfl.ch/leprosy.html",
+    "homepage": "https://mycobrowser.epfl.ch",
     "id": "00000217",
     "name": "MycoBrowser leprae",
     "namespaceEmbeddedInLui": false,
     "pattern": "^ML\\w+$",
     "prefix": "myco.lepra",
     "sampleId": "ML0224",
-    "uri_format": "http://mycobrowser.epfl.ch/leprosysearch.php?gene+name=$1"
+    "uri_format": "https://mycobrowser.epfl.ch/genes/$1"
   },
   "myco.marinum": {
     "deprecated": false,
     "description": "Mycobrowser is a resource that provides both in silico generated and manually reviewed information within databases dedicated to the complete genomes of Mycobacterium tuberculosis, Mycobacterium leprae, Mycobacterium marinum and Mycobacterium smegmatis. This collection references Mycobacteria marinum information.",
-    "homepage": "http://mycobrowser.epfl.ch/marinolist.html",
+    "homepage": "https://mycobrowser.epfl.ch",
     "id": "00000218",
     "name": "MycoBrowser marinum",
     "namespaceEmbeddedInLui": false,
     "pattern": "^MMAR\\_\\d+$",
     "prefix": "myco.marinum",
     "sampleId": "MMAR_2462",
-    "uri_format": "http://mycobrowser.epfl.ch/marinosearch.php?gene+name=$1"
+    "uri_format": "https://mycobrowser.epfl.ch/genes/$1"
   },
   "myco.smeg": {
     "deprecated": false,
     "description": "Mycobrowser is a resource that provides both in silico generated and manually reviewed information within databases dedicated to the complete genomes of Mycobacterium tuberculosis, Mycobacterium leprae, Mycobacterium marinum and Mycobacterium smegmatis. This collection references Mycobacteria smegmatis information.",
-    "homepage": "http://mycobrowser.epfl.ch/smegmalist.html",
+    "homepage": "https://mycobrowser.epfl.ch/",
     "id": "00000219",
     "name": "MycoBrowser smegmatis",
     "namespaceEmbeddedInLui": false,
     "pattern": "^MSMEG\\w+$",
     "prefix": "myco.smeg",
     "sampleId": "MSMEG_3769",
-    "uri_format": "http://mycobrowser.epfl.ch/smegmasearch.php?gene+name=$1"
+    "uri_format": "https://mycobrowser.epfl.ch/genes/$1"
   },
   "myco.tuber": {
     "deprecated": false,
     "description": "Mycobrowser is a resource that provides both in silico generated and manually reviewed information within databases dedicated to the complete genomes of Mycobacterium tuberculosis, Mycobacterium leprae, Mycobacterium marinum and Mycobacterium smegmatis. This collection references Mycobacteria tuberculosis information.",
-    "homepage": "http://tuberculist.epfl.ch/",
+    "homepage": "https://mycobrowser.epfl.ch/",
     "id": "00000216",
     "name": "MycoBrowser tuberculosis",
     "namespaceEmbeddedInLui": false,
     "pattern": "^Rv\\d{4}(A|B|c)?$",
     "prefix": "myco.tuber",
     "sampleId": "Rv1908c",
-    "uri_format": "http://tuberculist.epfl.ch/quicksearch.php?gene+name=$1"
+    "uri_format": "https://mycobrowser.epfl.ch/genes/$1"
   },
   "mycobank": {
     "deprecated": false,
@@ -6672,14 +6645,14 @@
   "napp": {
     "deprecated": false,
     "description": "NAPP (Nucleic Acids Phylogenetic Profiling is a clustering method based on conserved noncoding RNA (ncRNA) elements in a bacterial genomes. Short intergenic regions from a reference genome are compared with other genomes to identify RNA rich clusters.",
-    "homepage": "http://napp.u-psud.fr/",
+    "homepage": "http://rssf.i2bc.paris-saclay.fr/NAPP/index.php",
     "id": "00000247",
     "name": "NAPP",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "prefix": "napp",
     "sampleId": "351",
-    "uri_format": "http://rna.igmors.u-psud.fr/NAPP/Niveau2.php?specie=$1"
+    "uri_format": "http://rssf.i2bc.paris-saclay.fr/NAPP/Niveau2.php?specie=$1"
   },
   "narcis": {
     "deprecated": false,
@@ -6708,14 +6681,14 @@
   "nbn": {
     "deprecated": false,
     "description": "The National Bibliography Number (NBN), is a URN-based publication identifier system employed by a variety of national libraries such as those of Germany, the Netherlands and Switzerland.  They are used to identify documents archived in national libraries, in their native format or language, and are typically used for documents which do not have a publisher-assigned identifier.",
-    "homepage": "http://nbn-resolving.org/resolve_urn.htm",
+    "homepage": "https://nbn-resolving.org/gui/urn",
     "id": "00000381",
     "name": "National Bibliography Number",
     "namespaceEmbeddedInLui": false,
     "pattern": "^(urn|URN):(nbn|NBN)(:[A-Za-z_0-9]+)*.+$",
     "prefix": "nbn",
     "sampleId": "urn:nbn:fi:tkk-004781",
-    "uri_format": "http://nbn-resolving.org/resolver?identifier=$1&verb=redirect"
+    "uri_format": "https://nbn-resolving.org/$1"
   },
   "nbrc": {
     "deprecated": false,
@@ -6754,9 +6727,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://ncbigene.bio2rdf.org/fct",
+        "homepage": "http://bio2rdf.org",
         "name": "Bio2RDF",
-        "uri_format": "http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1"
+        "uri_format": "http://bio2rdf.org/ncbigene:$1"
       }
     ],
     "sampleId": "100010",
@@ -6811,9 +6784,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://ndc.bio2rdf.org/fct",
+        "homepage": "http://bio2rdf.org",
         "name": "Bio2RDF",
-        "uri_format": "http://ndc.bio2rdf.org/describe/?url=http://bio2rdf.org/ndc:$1"
+        "uri_format": "http://bio2rdf.org/ndc:$1"
       }
     ],
     "sampleId": "0002-1975-61",
@@ -6856,7 +6829,7 @@
     "uri_format": "http://neuromorpho.org/neuron_info.jsp?neuron_name=$1"
   },
   "neurondb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NeuronDB provides a dynamically searchable database of three types of neuronal properties: voltage gated conductances, neurotransmitter receptors, and neurotransmitter substances. It contains tools that provide for integration of these properties in a given type of neuron and compartment, and for comparison of properties across different types of neurons and compartments.",
     "homepage": "http://senselab.med.yale.edu/NeuronDB/",
     "id": "00000094",
@@ -6928,7 +6901,7 @@
     "uri_format": "https://genelab-data.ndc.nasa.gov/genelab/accession/$1"
   },
   "niaest": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "A catalog of mouse genes expressed in early embryos, embryonic and adult stem cells, including 250000 ESTs, was assembled by the NIA (National Institute on Aging) assembled.This collection represents the name and sequence from individual cDNA clones.",
     "homepage": "http://lgsun.grc.nia.nih.gov/cDNA/",
     "id": "00000305",
@@ -6988,7 +6961,7 @@
     "uri_format": "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"
   },
   "noncodev3": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 3. This was replaced in 2013 by version 4.",
     "homepage": "http://www.noncode.org/",
     "id": "00000248",
@@ -7000,7 +6973,7 @@
     "uri_format": "http://www.noncode.org/NONCODERv3/ncrna.php?ncid=$1"
   },
   "noncodev4.gene": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 4 and relates to gene regions.",
     "homepage": "http://www.bioinfo.org/NONCODEv4/",
     "id": "00000480",
@@ -7012,7 +6985,7 @@
     "uri_format": "http://www.bioinfo.org/NONCODEv4/show_gene.php?id=$1"
   },
   "noncodev4.rna": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 4 and relates to individual transcripts.",
     "homepage": "http://www.bioinfo.org/NONCODEv4/",
     "id": "00000481",
@@ -7384,9 +7357,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://orphanet.bio2rdf.org/fct",
+        "homepage": "http://bio2rdf.org/",
         "name": "Bio2RDF",
-        "uri_format": "http://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:$1"
+        "uri_format": "http://bio2rdf.org/orphanet:$1"
       }
     ],
     "sampleId": "85163",
@@ -7573,7 +7546,7 @@
     "uri_format": "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"
   },
   "pass2": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The PASS2 database provides alignments of proteins related at the superfamily level and are characterized by low sequence identity.",
     "homepage": "http://caps.ncbs.res.in/pass2/",
     "id": "00000468",
@@ -7633,7 +7606,7 @@
     "uri_format": "http://pax-db.org/#!protein/$1"
   },
   "pazar": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The PAZAR database unites independently created and maintained data collections of transcription factor and regulatory sequence annotation. It provides information on the sequence and target of individual transcription factors.",
     "homepage": "http://www.pazar.info/",
     "id": "00000306",
@@ -7784,7 +7757,7 @@
     "pattern": "^\\d+$",
     "prefix": "peroxibase",
     "sampleId": "5282",
-    "uri_format": "http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id=$1"
+    "uri_format": "https://redoxibase.toulouse.inrae.fr/display_perox/view_perox/$1"
   },
   "pfam": {
     "deprecated": false,
@@ -7895,7 +7868,7 @@
     "uri_format": "http://kinase.bioinformatics.tw/showall.jsp?type=Kinase&info=Gene&name=$1&drawing=0&sorting=0&kinome=1"
   },
   "phosphopoint.protein": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "PhosphoPOINT is a database of the human kinase and phospho-protein interactome. It describes the interactions among kinases, their potential substrates and their interacting (phospho)-proteins. It also incorporates gene expression and uses gene ontology (GO) terms to annotate interactions. This collection references phosphoprotein information.",
     "homepage": "http://kinase.bioinformatics.tw/",
     "id": "00000386",
@@ -7955,7 +7928,7 @@
     "uri_format": "http://www.phytozome.net/genePage.php?crown&method=0&search=1&detail=1&searchText=locusname:$1"
   },
   "pid.pathway": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Pathway Interaction Database is a highly-structured, curated collection of information about known human biomolecular interactions and key cellular processes assembled into signaling pathways. This datatype provides access to pathway information.",
     "homepage": "http://pid.nci.nih.gov/",
     "id": "00000133",
@@ -8051,7 +8024,7 @@
     "uri_format": "http://plasmodb.org/plasmo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1"
   },
   "pmap.cutdb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Proteolysis MAP is a resource for proteolytic networks and pathways. PMAP is comprised of five databases, linked together in one environment. CutDB is a database of individual proteolytic events (cleavage sites).",
     "homepage": "http://cutdb.burnham.org",
     "id": "00000225",
@@ -8204,7 +8177,7 @@
         "description": "Protein Ontology at Georgetown",
         "homepage": "https://proconsortium.org/",
         "name": "Protein Ontology at Georgetown",
-        "uri_format": "https://proconsortium.org/app/entry/PR:$1"
+        "uri_format": "https://proconsortium.org/cgi-bin/entry_pro?id=PR:$1"
       }
     ],
     "sampleId": "000000024",
@@ -8244,7 +8217,7 @@
     "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
   },
   "prints": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "PRINTS is a compendium of protein fingerprints. A fingerprint is a group of conserved motifs used to characterise a protein family; its diagnostic power is refined by iterative scanning of a SWISS-PROT/TrEMBL composite. Usually the motifs do not overlap, but are separated along a sequence, though they may be contiguous in 3D-space. Fingerprints can encode protein folds and functionalities more flexibly and powerfully than can single motifs, full diagnostic potency deriving from the mutual context provided by motif neighbours.",
     "homepage": "http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/",
     "id": "00000061",
@@ -8268,7 +8241,7 @@
     "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/probonto/terms/http%253A%252F%252Fwww.probonto.org%252Fontology%2523$1"
   },
   "prodom": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "ProDom is a database of protein domain families generated from the global comparison of all available protein sequences.",
     "homepage": "http://prodom.prabi.fr/prodom/current/html/home.php",
     "id": "00000117",
@@ -8474,13 +8447,6 @@
         "uri_format": "http://europepmc.org/abstract/MED/$1"
       },
       {
-        "code": "CURATOR_REVIEW",
-        "description": "PubMed through Linkedlife data",
-        "homepage": "http://linkedlifedata.com/",
-        "name": "PubMed through Linkedlife data",
-        "uri_format": "http://linkedlifedata.com/resource/pubmed/id/$1"
-      },
-      {
         "code": "hubmed",
         "description": "HubMed",
         "homepage": "http://www.hubmed.org/",
@@ -8556,7 +8522,7 @@
     "pattern": "^Os\\S+g\\d{7}$",
     "prefix": "rapdb.locus",
     "sampleId": "Os01g0883800",
-    "uri_format": "https://rapdb.dna.affrc.go.jp/viewer/gbrowse_details/irgsp1?name=$1"
+    "uri_format": "https://rapdb.dna.affrc.go.jp/locus/?name=$1"
   },
   "rapdb.transcript": {
     "deprecated": false,
@@ -9001,7 +8967,7 @@
   },
   "scop": {
     "deprecated": false,
-    "description": "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes.",
+    "description": "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes. This namespace is limited to SCOP v1 as the identifiers used by v2 are different.",
     "homepage": "http://scop.mrc-lmb.cam.ac.uk/scop/",
     "id": "00000371",
     "name": "SCOP",
@@ -9035,14 +9001,14 @@
   "sdbs": {
     "deprecated": false,
     "description": "The Spectral Database for Organic Compounds (SDBS) is an integrated spectral database system for organic compounds. It provides access to 6 different types of spectra for each compound, including Mass spectrum (EI-MS), a Fourier transform infrared spectrum (FT-IR), and NMR spectra.",
-    "homepage": "http://riodb01.ibase.aist.go.jp/sdbs/cgi-bin/direct_frame_top.cgi",
+    "homepage": "https://sdbs.db.aist.go.jp",
     "id": "00000319",
     "name": "Spectral Database for Organic Compounds",
     "namespaceEmbeddedInLui": false,
     "pattern": "\\d+$",
     "prefix": "sdbs",
     "sampleId": "4544",
-    "uri_format": "http://riodb01.ibase.aist.go.jp/sdbs/cgi-bin/cre_frame_disp.cgi?sdbsno=$1"
+    "uri_format": "https://sdbs.db.aist.go.jp/CompoundView.aspx?sdbsno=$1"
   },
   "sedml.format": {
     "deprecated": false,
@@ -9113,18 +9079,18 @@
     "prefix": "sgd",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "Bio2RDF",
-        "homepage": "http://sgd.bio2rdf.org/fct",
-        "name": "Bio2RDF",
-        "uri_format": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
-      },
-      {
         "code": "agr",
         "description": "SGD through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
         "name": "SGD through the Alliance of Genome Resources",
         "uri_format": "https://www.alliancegenome.org/gene/SGD:$1"
+      },
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Bio2RDF",
+        "homepage": "http://bio2rdf.org",
+        "name": "Bio2RDF",
+        "uri_format": "http://bio2rdf.org/sgd:$1"
       }
     ],
     "sampleId": "S000003909",
@@ -9301,14 +9267,14 @@
   "snomedct": {
     "deprecated": false,
     "description": "SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms), is a systematically organized computer processable collection of medical terminology covering most areas of clinical information such as diseases, findings, procedures, microorganisms, pharmaceuticals, etc.",
-    "homepage": "http://www.snomedbrowser.com/",
+    "homepage": "https://browser.ihtsdotools.org/",
     "id": "00000269",
     "name": "SNOMED CT",
     "namespaceEmbeddedInLui": false,
     "pattern": "^(\\w+)?\\d+$",
     "prefix": "snomedct",
     "sampleId": "284196006",
-    "uri_format": "http://www.snomedbrowser.com/Codes/Details/$1"
+    "uri_format": "https://browser.ihtsdotools.org/?perspective=full&conceptId1=$1"
   },
   "snp2tfbs": {
     "deprecated": false,
@@ -9395,7 +9361,7 @@
     "uri_format": "https://www.signalingpathways.org/datasets/dataset.jsf?doi=$1"
   },
   "stap": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "STAP (Statistical Torsional Angles Potentials) was developed since, according to several studies, some nuclear magnetic resonance (NMR) structures are of lower quality, are less reliable and less suitable for structural analysis than high-resolution X-ray crystallographic structures. The refined NMR solution structures (statistical torsion angle potentials; STAP) in the database are refined from the Protein Data Bank (PDB).",
     "homepage": "http://psb.kobic.re.kr/STAP/refinement/",
     "id": "00000399",
@@ -9451,15 +9417,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$",
     "prefix": "string",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "STRING at Heidelberg",
-        "homepage": "http://string.embl.de/",
-        "name": "STRING at Heidelberg",
-        "uri_format": "https://string.embl.de/cgi/network?identifier=$1"
-      }
-    ],
     "sampleId": "P53350",
     "uri_format": "https://string-db.org/cgi/network?identifier=$1"
   },
@@ -10106,7 +10063,7 @@
     "uri_format": "https://www.uniprot.org/uniref/$1"
   },
   "unists": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "UniSTS is a comprehensive database of sequence tagged sites (STSs) derived from STS-based maps and other experiments. STSs are defined by PCR primer pairs and are associated with additional information such as genomic position, genes, and sequences.",
     "homepage": "https://www.ncbi.nlm.nih.gov/sites/entrez?db=unists",
     "id": "00000162",
@@ -10574,7 +10531,7 @@
     "uri_format": "http://yetfasco.ccbr.utoronto.ca/showPFM.php?mot=$1"
   },
   "yid": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The YEast Intron Database (version 3) contains information on the spliceosomal introns of the yeast Saccharomyces cerevisiae. It includes expression data that relates to the efficiency of splicing relative to other processes in strains of yeast lacking nonessential splicing factors.  The data are displayed on each intron page. An updated version of the database is available through [MIR:00000521].",
     "homepage": "http://compbio.soe.ucsc.edu/yeast_introns.html",
     "id": "00000460",

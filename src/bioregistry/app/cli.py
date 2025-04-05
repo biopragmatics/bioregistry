@@ -70,5 +70,6 @@ def web(
         and metaregistry is None
         and collections is None
         and contexts is None,
+        return_flask=False,
     )
     uvicorn.run(app, host=host, port=int(port), workers=workers)
