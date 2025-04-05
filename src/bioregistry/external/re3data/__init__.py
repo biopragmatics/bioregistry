@@ -13,7 +13,7 @@ from xml.etree import ElementTree
 import requests
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -39,8 +39,7 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
     :returns: The re3data pre-processed data
     """
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     res = requests.get(f"{BASE_URL}/api/v1/repositories", timeout=15)
     tree = ElementTree.fromstring(res.text)

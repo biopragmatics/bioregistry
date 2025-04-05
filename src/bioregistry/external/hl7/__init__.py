@@ -6,7 +6,6 @@
 """
 
 import csv
-from collections.abc import Mapping
 from pathlib import Path
 
 __all__ = [
@@ -33,7 +32,7 @@ COLUMNS = {
 }
 
 
-def get_hl7(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
+def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get HL7 OIDs."""
     rv = {}
     with DATA.open() as file:

@@ -11,7 +11,7 @@ import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "CropOCTAligner",
@@ -29,8 +29,7 @@ CROPOCT_URL = "https://cropontology.org/metadata"
 def get_cropoct(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the CropOCT registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=CROPOCT_URL, path=RAW_PATH, force=True)
 

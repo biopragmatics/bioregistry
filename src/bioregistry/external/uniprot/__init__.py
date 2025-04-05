@@ -2,14 +2,14 @@
 
 import json
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
 from typing import ClassVar
 
 import requests
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -35,11 +35,10 @@ skip_prefixes = {
 }
 
 
-def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
+def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
     """Get the UniProt registry."""
     if PROCESSED_PATH.is_file() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     RAW_PATH.write_text(
         json.dumps(

@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "NcbiAligner",
@@ -57,8 +57,7 @@ OBSOLETE = {
 def get_ncbi(force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get the NCBI data."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:

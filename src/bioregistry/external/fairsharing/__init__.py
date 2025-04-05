@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, ClassVar
 
 from bioregistry.constants import ORCID_PATTERN
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -44,8 +44,7 @@ def get_fairsharing(
 ) -> dict[str, dict[str, Any]]:
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_reload:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     from fairsharing_client import load_fairsharing
 

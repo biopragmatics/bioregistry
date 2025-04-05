@@ -11,7 +11,7 @@ import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "OBOFoundryAligner",
@@ -36,8 +36,7 @@ def get_obofoundry(
 ) -> dict[str, dict[str, Any]]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:

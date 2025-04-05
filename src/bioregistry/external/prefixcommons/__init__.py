@@ -15,7 +15,7 @@ from typing import Any, ClassVar
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
@@ -98,8 +98,7 @@ def get_prefixcommons(
 ) -> dict[str, dict[str, Any]]:
     """Get the Life Science Registry."""
     if PROCESSED_PATH.exists() and not (force_download or force_process):
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=force_download)
     rows = {}

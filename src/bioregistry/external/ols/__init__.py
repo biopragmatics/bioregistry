@@ -18,7 +18,7 @@ import requests
 from pydantic import BaseModel
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBrokenError
 
@@ -49,8 +49,7 @@ OLS_SKIP = {
 def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the OLS registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     data = requests.get(URL, timeout=15).json()
     if "_embedded" not in data:

@@ -9,7 +9,7 @@ import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "N2TAligner",
@@ -39,8 +39,7 @@ SKIP_URI_FORMATS = {
 def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the N2T registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     # they give malformed YAML so time to write a new parser

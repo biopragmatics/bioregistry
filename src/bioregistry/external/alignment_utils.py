@@ -1,7 +1,9 @@
 """Utilities for registry alignment."""
 
 import csv
+import json
 from collections.abc import Iterable, Mapping, Sequence
+from pathlib import Path
 from typing import Any, Callable, ClassVar, Optional
 
 import click
@@ -16,6 +18,7 @@ from ..utils import norm
 
 __all__ = [
     "Aligner",
+    "load_processed",
 ]
 
 
@@ -284,3 +287,9 @@ class Aligner:
         s = self.get_curation_table(**kwargs)
         if s:
             print(s)  # noqa:T201
+
+
+def load_processed(path: Path) -> dict[str, dict[str, Any]]:
+    """Load a processed."""
+    with path.open() as file:
+        return json.load(file)

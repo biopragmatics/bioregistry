@@ -1,7 +1,7 @@
 """Download the BARTOC registry."""
 
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
@@ -11,7 +11,7 @@ from tqdm import tqdm
 from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
-from ..alignment_utils import Aligner
+from ..alignment_utils import Aligner, load_processed
 
 __all__ = [
     "BartocAligner",
@@ -23,7 +23,7 @@ PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
-def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
+def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     """Get the BARTOC registry.
 
     :param force_download: If true, forces download. If false and the file
@@ -33,7 +33,7 @@ def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
     .. seealso:: https://bartoc.org/
     """
     if PROCESSED_PATH.is_file() and not force_download:
-        return json.loads(PROCESSED_PATH.read_text())
+        return load_processed(PROCESSED_PATH)
     rv = {}
     for line in requests.get(URL, timeout=15).iter_lines():
         record = json.loads(line)
