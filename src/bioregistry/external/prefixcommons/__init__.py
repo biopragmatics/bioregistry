@@ -6,6 +6,8 @@
       https://docs.google.com/spreadsheets/d/1cDGJcRteb9F5-jbw7Q7np0kk4hfWhdBHNYRIg3LXDrs/edit#gid=0
 """
 
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import Mapping, Sequence

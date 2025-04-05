@@ -1,5 +1,7 @@
 """Download the Cellosaurus registry."""
 
+from __future__ import annotations
+
 import itertools as itt
 import json
 import logging

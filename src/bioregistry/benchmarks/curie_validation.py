@@ -3,13 +3,14 @@
 import random
 import time
 from collections.abc import Iterable
-from typing import TypeAlias, cast
+from typing import cast
 
 import click
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from tqdm import tqdm, trange
+from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry import manager

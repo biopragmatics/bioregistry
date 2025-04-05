@@ -1,10 +1,12 @@
 """Download registry information from the OBO Foundry."""
 
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 import requests
 import yaml
@@ -114,7 +116,7 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
     return {k: v for k, v in rv.items() if v is not None}
 
 
-def get_obofoundry_example(prefix: str) -> Optional[str]:
+def get_obofoundry_example(prefix: str) -> str | None:
     """Get an example identifier from the OBO Library PURL configuration."""
     url = f"https://raw.githubusercontent.com/OBOFoundry/purl.obolibrary.org/master/config/{prefix}.yml"
     data = yaml.safe_load(requests.get(url, timeout=15).content)

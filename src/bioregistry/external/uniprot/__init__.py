@@ -1,5 +1,7 @@
 """Download and parse the UniProt Cross-ref database."""
 
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import Sequence
