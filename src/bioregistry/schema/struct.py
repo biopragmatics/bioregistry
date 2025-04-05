@@ -2321,7 +2321,7 @@ class Resource(BaseModel):
         import markupsafe
         from markdown import markdown
 
-        rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
+        rv = removesuffix(removeprefix(markdown(rv), "<p>"), "</p>")
         return markupsafe.Markup(rv)
 
     def get_bioschemas_jsonld(self) -> dict[str, Any]:
