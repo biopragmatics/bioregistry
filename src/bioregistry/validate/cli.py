@@ -1,10 +1,6 @@
-"""Validation command line interface.
+"""Validation command line interface."""
 
-JSON-LD Validation
-
-1. Passes ``bioregistry validate jsonld "https://bioregistry.io/api/collection/0000002?format=context"``
-1. Fails ``bioregistry validate jsonld "https://raw.githubusercontent.com/prefixcommons/prefixcommons-py/master/prefixcommons/registry/go_context.jsonld"``
-"""
+from __future__ import annotations
 
 import sys
 
