@@ -54,7 +54,7 @@ class BiolinkAligner(Aligner):
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
 
-    def prepare_external(self, external_id: str, external_entry) -> dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return {
@@ -63,7 +63,7 @@ class BiolinkAligner(Aligner):
             "is_obo": uri_format.startswith("http://purl.obolibrary.org"),
         }
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Prepare curation rows for unaligned Biolink registry entries."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return [

@@ -87,7 +87,7 @@ def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
     return identifier, _process_record(identifier, tree)
 
 
-def _process_record(identifier: str, tree_inner):
+def _process_record(identifier: str, tree_inner: ElementTree) -> dict[str, Any]:
     xrefs = (
         _clean_xref(element.text.strip())
         for element in tree_inner.findall(f"{SCHEMA}repositoryIdentifier")
