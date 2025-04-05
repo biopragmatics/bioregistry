@@ -53,13 +53,13 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
         doi_element = repository.find("doi")
         doi = (
             removeprefix(doi_element.text, "https://doi.org/")
-            if doi_element and doi_element.text
+            if doi_element is not None and doi_element.text
             else None
         )
         identifier_to_doi[identifier_element.text.strip()] = doi
 
     records = dict(
-        thread_map(
+        thread_map(  # type:ignore
             _get_record,
             identifier_to_doi,
             unit_scale=True,
@@ -87,24 +87,27 @@ def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
     return identifier, _process_record(identifier, tree)
 
 
-def _process_record(identifier: str, tree_inner: ElementTree) -> dict[str, Any]:
+def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[str, Any]:
     xrefs = (
         _clean_xref(element.text.strip())
         for element in tree_inner.findall(f"{SCHEMA}repositoryIdentifier")
+        if element.text is not None
     )
     data = {
         "prefix": identifier,
-        "name": tree_inner.find(f"{SCHEMA}repositoryName").text,
-        "description": tree_inner.find(f"{SCHEMA}description").text,
-        "homepage": tree_inner.find(f"{SCHEMA}repositoryURL").text,
+        "name": tree_inner.findtext(f"{SCHEMA}repositoryName"),
+        "description": tree_inner.findtext(f"{SCHEMA}description"),
+        "homepage": tree_inner.findtext(f"{SCHEMA}repositoryURL"),
         "synonyms": [
-            element.text.strip() for element in tree_inner.findall(f"{SCHEMA}additionalName")
+            element.text.strip()
+            for element in tree_inner.findall(f"{SCHEMA}additionalName")
+            if element.text is not None
         ],
         "xrefs": dict(tup for tup in xrefs if tup),
     }
 
     license_element = tree_inner.find(f"{SCHEMA}databaseLicense/{SCHEMA}databaseLicenseName")
-    if license_element:
+    if license_element is not None:
         data["license"] = license_element.text
 
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}

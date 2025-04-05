@@ -114,7 +114,7 @@ def get_prefixcommons(
     return rows
 
 
-def _process_row(line: str):
+def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
     cells = line.strip().split("\t")
     prefix = cells[0]
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
@@ -178,11 +178,11 @@ def _process_row(line: str):
     return prefix, rv
 
 
-def _get_uri_formats(rv, key) -> list[str]:
-    uri_formats = rv.pop(key, None)
+def _get_uri_formats(iv: dict[str, Any], key: str) -> list[str]:
+    uri_formats: str | None = iv.pop(key, None)
     if not uri_formats:
         return []
-    rv = []
+    rv: list[str] = []
     for uri_format in uri_formats.split(","):
         uri_format = uri_format.strip()
         if not uri_format:
@@ -293,7 +293,7 @@ class PrefixCommonsAligner(Aligner):
         """Get skip prefixes."""
         return {**SKIP, **PROVIDERS}
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
         return [
             external_entry["name"],

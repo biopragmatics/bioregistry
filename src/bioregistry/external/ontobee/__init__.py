@@ -68,11 +68,11 @@ class OntobeeAligner(Aligner):
     getter = get_ontobee
     curation_header: ClassVar[Sequence[str]] = ("name", "url")
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
             textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("url"),
+            external_entry.get("url", ""),
         ]
 
 

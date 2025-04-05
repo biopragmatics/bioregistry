@@ -4,7 +4,7 @@ import json
 import logging
 from collections.abc import Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import requests
 
@@ -60,7 +60,7 @@ def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
     return rv
 
 
-def _process_record(record):
+def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
     rv = {
         "prefix": record.pop("id"),
         "name": record.pop("name"),
@@ -68,15 +68,15 @@ def _process_record(record):
         "homepage": record.pop("servers")[0],
         "category": record.pop("category"),
     }
-    doi = record.pop("doiId", None)
-    pubmed = record.pop("pubMedId", None)
     publication = {}
-    if doi:
+    doi: str | None = record.pop("doiId", None)
+    if doi is not None:
         doi = doi.lower().rstrip(".")
         doi = removeprefix(doi, "doi:")
         doi = removeprefix(doi, "https://doi.org/")
         if "/" in doi:
             publication["doi"] = doi
+    pubmed = record.pop("pubMedId", None)
     if pubmed:
         publication["pubmed"] = str(pubmed)
     if publication:

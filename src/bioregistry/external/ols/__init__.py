@@ -121,7 +121,7 @@ def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
 
 
 def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
-    license_value = (config.get("annotations") or {}).get("license", [None])[0]
+    license_value: str | None = (config.get("annotations") or {}).get("license", [None])[0]
     if license_value == "Unspecified":
         logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
         return None
@@ -131,20 +131,21 @@ def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
 
 
 def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> str | None:
-    version_iri = config.get("versionIri")
+    version_iri: str | None = config.get("versionIri")
     if version_iri:
-        _, _, version = parse_obo_version_iri(version_iri, ols_id)
-        if version:
-            return version
+        _, _, version_from_iri = parse_obo_version_iri(version_iri, ols_id)
+        if version_from_iri:
+            return version_from_iri
 
     version: str | None = config.get("version")
-    if version is None and processing.version_iri_prefix:
+    if version is None and version_iri and processing.version_iri_prefix:
         if not version_iri.startswith(processing.version_iri_prefix):
             logger.info("[%s] version IRI does not start with appropriate prefix", ols_id)
         else:
-            version = version_iri[len(processing.version_iri_prefix) :]
+            version_cut = version_iri[len(processing.version_iri_prefix) :]
             if processing.version_iri_suffix:
-                version = version[: -len(processing.version_iri_suffix)]
+                version_cut = version_cut[: -len(processing.version_iri_suffix)]
+            return version_cut
 
     if version is None:
         logger.info(
@@ -153,54 +154,55 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
             config["mailingList"],
             version_iri,
         )
-    else:
-        if version != version.strip():
+        return None
+
+    if version != version.strip():
+        logger.info(
+            "[%s] extra whitespace in version: %s. Contact: %s",
+            ols_id,
+            version,
+            config["mailingList"],
+        )
+        version = version.strip()
+
+    version_prefix = processing.version_prefix
+    if version_prefix:
+        if not version.startswith(version_prefix):
+            raise ValueError(
+                dedent(
+                    f"""\
+                [{ols_id}] version "{version}" does not start with prefix "{version_prefix}".
+                Update the ["{ols_id}"]["prefix"] entry in the OLS processing configuration.
+                """
+                )
+            )
+        version = version[len(version_prefix) :]
+    if processing.version_suffix_split:
+        version = version.split()[0]
+    version_suffix = processing.version_suffix
+    if version_suffix:
+        if not version.endswith(version_suffix):
+            raise ValueError(
+                f"[{ols_id}] version {version} does not end with prefix {version_suffix}"
+            )
+        version = version[: -len(version_suffix)]
+
+    version_type = processing.version_type
+    version_date_fmt = processing.version_date_format
+    if version_date_fmt:
+        if version_date_fmt in {"%Y-%d-%m"}:
             logger.info(
-                "[%s] extra whitespace in version: %s. Contact: %s",
+                "[%s] confusing date format: %s. Contact: %s",
                 ols_id,
-                version,
+                version_date_fmt,
                 config["mailingList"],
             )
-            version = version.strip()
-
-        version_prefix = processing.version_prefix
-        if version_prefix:
-            if not version.startswith(version_prefix):
-                raise ValueError(
-                    dedent(
-                        f"""\
-                    [{ols_id}] version "{version}" does not start with prefix "{version_prefix}".
-                    Update the ["{ols_id}"]["prefix"] entry in the OLS processing configuration.
-                    """
-                    )
-                )
-            version = version[len(version_prefix) :]
-        if processing.version_suffix_split:
-            version = version.split()[0]
-        version_suffix = processing.version_suffix
-        if version_suffix:
-            if not version.endswith(version_suffix):
-                raise ValueError(
-                    f"[{ols_id}] version {version} does not end with prefix {version_suffix}"
-                )
-            version = version[: -len(version_suffix)]
-
-        version_type = processing.version_type
-        version_date_fmt = processing.version_date_format
-        if version_date_fmt:
-            if version_date_fmt in {"%Y-%d-%m"}:
-                logger.info(
-                    "[%s] confusing date format: %s. Contact: %s",
-                    ols_id,
-                    version_date_fmt,
-                    config["mailingList"],
-                )
-            try:
-                version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
-            except ValueError:
-                logger.info("[%s] wrong format for version %s", ols_id, version)
-        elif not version_type:
-            logger.info("[%s] no type for version %s", ols_id, version)
+        try:
+            version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            logger.info("[%s] wrong format for version %s", ols_id, version)
+    elif not version_type:
+        logger.info("[%s] no type for version %s", ols_id, version)
 
     return version
 

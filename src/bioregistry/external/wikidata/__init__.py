@@ -8,7 +8,7 @@ from textwrap import dedent
 from typing import Any, ClassVar
 
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
@@ -309,8 +309,7 @@ def _get_wikidata() -> dict[str, dict[str, Any]]:
 def get_wikidata(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the wikidata registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     data = _get_wikidata()
     with PROCESSED_PATH.open("w") as file:

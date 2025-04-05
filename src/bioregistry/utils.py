@@ -14,6 +14,7 @@ from typing import (
     Callable,
     TypeVar,
     cast,
+    overload,
 )
 
 import click
@@ -44,6 +45,14 @@ def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     click.echo(
         f"[{datetime.now().strftime('%H:%M:%S')}] " + click.style(s, fg=fg, bold=bold, **kwargs)
     )
+
+
+@overload
+def removeprefix(s: str, prefix: str) -> str: ...
+
+
+@overload
+def removeprefix(s: None, prefix: str) -> None: ...
 
 
 def removeprefix(s: str | None, prefix: str) -> str | None:
