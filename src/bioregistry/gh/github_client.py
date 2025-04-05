@@ -7,7 +7,7 @@ import logging
 import os
 from collections.abc import Iterable, Mapping
 from subprocess import CalledProcessError, check_output
-from typing import Any
+from typing import Any, cast
 
 import more_itertools
 import pystow
@@ -71,7 +71,7 @@ def list_pulls(
         you make many more queries before getting rate limited.
     :returns: JSON response from GitHub
     """
-    return requests_get(f"repos/{owner}/{repo}/pulls", token=token)
+    return cast(list[dict[str, Any]], requests_get(f"repos/{owner}/{repo}/pulls", token=token))
 
 
 def open_bioregistry_pull_request(
@@ -122,12 +122,13 @@ def open_pull_request(
     }
     if body:
         data["body"] = body
-    return requests.post(
+    res = requests.post(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=get_headers(token=token),
         json=data,
         timeout=15,
-    ).json()
+    )
+    return res.json()  # type:ignore
 
 
 def get_bioregistry_form_data(
@@ -245,7 +246,7 @@ def status_porcelain() -> str | None:
     return _git("status", "--porcelain")
 
 
-def push(*args) -> str | None:
+def push(*args: str) -> str | None:
     """Push the git repo."""
     return _git("push", *args)
 

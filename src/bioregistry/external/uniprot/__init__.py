@@ -1,15 +1,17 @@
 """Download and parse the UniProt Cross-ref database."""
 
+from __future__ import annotations
+
 import json
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import requests
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -35,11 +37,10 @@ skip_prefixes = {
 }
 
 
-def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
+def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
     """Get the UniProt registry."""
     if PROCESSED_PATH.is_file() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     RAW_PATH.write_text(
         json.dumps(
@@ -61,7 +62,7 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     return rv
 
 
-def _process_record(record):
+def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
     rv = {
         "prefix": record.pop("id"),
         "name": record.pop("name"),
@@ -69,15 +70,15 @@ def _process_record(record):
         "homepage": record.pop("servers")[0],
         "category": record.pop("category"),
     }
-    doi = record.pop("doiId", None)
-    pubmed = record.pop("pubMedId", None)
     publication = {}
-    if doi:
+    doi: str | None = record.pop("doiId", None)
+    if doi is not None:
         doi = doi.lower().rstrip(".")
         doi = removeprefix(doi, "doi:")
         doi = removeprefix(doi, "https://doi.org/")
         if "/" in doi:
             publication["doi"] = doi
+    pubmed = record.pop("pubMedId", None)
     if pubmed:
         publication["pubmed"] = str(pubmed)
     if publication:

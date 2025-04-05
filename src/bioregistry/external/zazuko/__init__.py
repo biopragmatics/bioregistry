@@ -1,14 +1,14 @@
 """Download Zazuko."""
 
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
 import requests
 
 from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "ZazukoAligner",
@@ -22,11 +22,10 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://prefix.zazuko.com/api/v1/prefixes"
 
 
-def get_zazuko(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
+def get_zazuko(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the Zazuko context map."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     data = requests.get(URL, timeout=15).json()
     rv = {

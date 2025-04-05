@@ -9,7 +9,7 @@ import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "BiolinkAligner",
@@ -28,8 +28,7 @@ PROCESSING_BIOLINK_PATH = DIRECTORY / "processing_biolink.json"
 def get_biolink(force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get Biolink."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = yaml.safe_load(file)
@@ -55,7 +54,7 @@ class BiolinkAligner(Aligner):
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
 
-    def prepare_external(self, external_id: str, external_entry) -> dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return {
@@ -64,7 +63,7 @@ class BiolinkAligner(Aligner):
             "is_obo": uri_format.startswith("http://purl.obolibrary.org"),
         }
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Prepare curation rows for unaligned Biolink registry entries."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return [

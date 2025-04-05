@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections.abc import Mapping, Sequence
 from functools import partial
-from typing import Any, Callable
+from typing import Any, Callable, cast
 
 import werkzeug
 import yaml
@@ -179,24 +179,32 @@ def serialize(
         accept = FORMAT_MAP[arg]
 
     if accept == "application/json":
-        return current_app.response_class(
-            json.dumps(data.model_dump(exclude_unset=True, exclude_none=True), ensure_ascii=False),
-            mimetype="application/json",
+        return cast(
+            Response,
+            current_app.response_class(
+                json.dumps(
+                    data.model_dump(exclude_unset=True, exclude_none=True), ensure_ascii=False
+                ),
+                mimetype="application/json",
+            ),
         )
     elif accept in "application/yaml":
-        return current_app.response_class(
-            yaml.safe_dump(
-                data.model_dump(exclude_unset=True, exclude_none=True), allow_unicode=True
+        return cast(
+            Response,
+            current_app.response_class(
+                yaml.safe_dump(
+                    data.model_dump(exclude_unset=True, exclude_none=True), allow_unicode=True
+                ),
+                mimetype="text/plain",
             ),
-            mimetype="text/plain",
         )
     for _name, mimetype, func in serializers or []:
         if accept == mimetype:
-            return current_app.response_class(func(data), mimetype=mimetype)
+            return cast(Response, current_app.response_class(func(data), mimetype=mimetype))
     return abort(404, f"unhandled media type: {accept}")
 
 
-def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:
+def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:  # type:ignore
     """Serialize a model."""
     return serialize(
         entry,

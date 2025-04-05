@@ -15,6 +15,7 @@ from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
+from bioregistry.external.alignment_utils import load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
 
@@ -45,7 +46,7 @@ class OntoPortalClient:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
-    def query(self, url: str, **params) -> requests.Response:
+    def query(self, url: str, **params: Any) -> requests.Response:
         """Query the given endpoint on the OntoPortal site.
 
         :param url: URL to query
@@ -63,13 +64,12 @@ class OntoPortalClient:
     def download(self, force_download: bool = False) -> dict[str, dict[str, Any]]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download:
-            with self.processed_path.open() as file:
-                return json.load(file)
+            return load_processed(self.processed_path)
 
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        records = thread_map(
+        records = thread_map(  # type:ignore
             self._preprocess,
             records,
             unit="ontology",
@@ -79,7 +79,7 @@ class OntoPortalClient:
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
-        records = thread_map(
+        records = thread_map(  # type:ignore
             self.process, records, disable=True, description=f"Processing {self.metaprefix}"
         )
         rv = {result["prefix"]: result for result in records}

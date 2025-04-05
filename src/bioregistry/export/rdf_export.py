@@ -114,7 +114,7 @@ def collection_to_rdf_str(
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     collection.add_triples(graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def metaresource_to_rdf_str(
@@ -125,7 +125,7 @@ def metaresource_to_rdf_str(
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     registry.add_triples(graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def resource_to_rdf_str(
@@ -136,7 +136,7 @@ def resource_to_rdf_str(
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     _add_resource(resource, manager=manager, graph=graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], Any], URIRef]]:

@@ -9,7 +9,7 @@ import requests
 import yaml
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "TogoIDAligner",
@@ -84,8 +84,7 @@ def get_togoid(
 ) -> dict[str, dict[str, Any]]:
     """Get the TogoID data."""
     if PROCESSED_PATH.exists() and not force_refresh:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     key_to_prefix = _get_ontology()
     key_to_description = _get_descriptions()

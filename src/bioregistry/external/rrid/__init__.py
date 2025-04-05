@@ -46,7 +46,7 @@ UNCURATABLE = {
 }
 
 
-def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
+def get_rrid(*, force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get RRIDs."""
     rv = {}
     with PATH.open() as file:
@@ -89,7 +89,7 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
     return rv
 
 
-def _split(s: str):
+def _split(s: str) -> list[str]:
     return [c.strip() for c in s.split(",")]
 
 

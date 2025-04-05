@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, ClassVar
 
 from bioregistry.constants import ORCID_PATTERN
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix, removesuffix
 
@@ -44,8 +44,7 @@ def get_fairsharing(
 ) -> dict[str, dict[str, Any]]:
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_reload:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     from fairsharing_client import load_fairsharing
 
@@ -146,7 +145,7 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
 SKIP_LICENSES: set[str] = set()
 
 
-def _process_publication(publication):
+def _process_publication(publication: dict[str, Any]) -> dict[str, Any] | None:
     rv = {}
     doi = publication.get("doi")
     if doi:
@@ -161,7 +160,7 @@ def _process_publication(publication):
     if pubmed:
         rv["pubmed"] = str(pubmed)
     if not doi and not pubmed:
-        return
+        return None
     title = publication.get("title")
     if title:
         title = title.replace("  ", " ").rstrip(".")

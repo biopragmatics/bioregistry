@@ -448,7 +448,7 @@ def metaresolve(
 
 
 @ui_blueprint.route("/resolve/github/issue/<owner>/<repository>/<int:issue>")
-def github_resolve_issue(owner, repository, issue) -> werkzeug.Response:
+def github_resolve_issue(owner: str, repository: str, issue: str) -> werkzeug.Response:
     """Redirect to an issue on GitHub."""
     return redirect(f"https://github.com/{owner}/{repository}/issues/{issue}")
 
@@ -620,7 +620,7 @@ def schema() -> str:
 @ui_blueprint.route("/schema.json")
 def json_schema() -> werkzeug.Response:
     """Return the JSON schema."""
-    return jsonify(get_json_schema())
+    return jsonify(get_json_schema())  # type:ignore
 
 
 @ui_blueprint.route("/highlights/twitter")

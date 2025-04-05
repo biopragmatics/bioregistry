@@ -14,6 +14,7 @@ from typing import (
     Callable,
     TypeVar,
     cast,
+    overload,
 )
 
 import click
@@ -46,6 +47,16 @@ def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     )
 
 
+# docstr-coverage:excused `overload`
+@overload
+def removeprefix(s: str, prefix: str) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removeprefix(s: None, prefix: str) -> None: ...
+
+
 def removeprefix(s: str | None, prefix: str) -> str | None:
     """Remove the prefix from the string."""
     if s is None:
@@ -53,6 +64,16 @@ def removeprefix(s: str | None, prefix: str) -> str | None:
     if s.startswith(prefix):
         return s[len(prefix) :]
     return s
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removesuffix(s: str, suffix: str) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removesuffix(s: None, suffix: str) -> None: ...
 
 
 def removesuffix(s: str | None, suffix: str) -> str | None:
@@ -208,9 +229,9 @@ def _get_identifier(term: dict[str, Any], ontology: str) -> str:
 
 
 def _clean(s: str) -> str:
-    s = cast(str, removesuffix(s, "identifier")).strip()
-    s = cast(str, removesuffix(s, "ID")).strip()
-    s = cast(str, removesuffix(s, "accession")).strip()
+    s = removesuffix(s, "identifier").strip()
+    s = removesuffix(s, "ID").strip()
+    s = removesuffix(s, "accession").strip()
     return s
 
 

@@ -412,11 +412,10 @@ acceptance and merge into the main branch. This has several benefits:
 
 ### Code Style
 
-This project encourages the use of optional static typing. It uses
-[`mypy`](http://mypy-lang.org/) as a type checker and
-[`sphinx_autodoc_typehints`](https://github.com/agronholm/sphinx-autodoc-typehints)
-to automatically generate documentation based on type hints. You can check if
-your code passes `mypy` with `tox -e mypy`.
+This project requires the use of static typing, which has the dual benefits of
+being implicit documentation as well as enable comprehensive static analysis of
+the code. It uses [`mypy`](http://mypy-lang.org/) as a type checker. You can
+check if your code passes `mypy` with `tox -e mypy`.
 
 This project uses [`black`](https://github.com/psf/black) to automatically
 enforce a consistent code style. You can apply `black` and other pre-configured

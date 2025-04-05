@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import click
 import pystow
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @click.command()
-@verbose_option
+@verbose_option  # type:ignore
 def main() -> None:
     """Upload the Bioregistry KG to NDEx."""
     try:
@@ -120,9 +120,12 @@ def upload() -> None:
 
 def make_registry_node(cx: ndex2.NiceCXBuilder, metaprefix: str) -> int:
     """Generate a CX node for a registry."""
-    node = cx.add_node(
-        name=bioregistry.get_registry_name(metaprefix),
-        represents=f"bioregistry.registry:{metaprefix}",
+    node = cast(
+        int,
+        cx.add_node(
+            name=bioregistry.get_registry_name(metaprefix),
+            represents=f"bioregistry.registry:{metaprefix}",
+        ),
     )
     homepage = bioregistry.get_registry_homepage(metaprefix)
     if homepage:
@@ -135,9 +138,12 @@ def make_registry_node(cx: ndex2.NiceCXBuilder, metaprefix: str) -> int:
 
 def make_resource_node(cx: ndex2.NiceCXBuilder, prefix: str) -> int:
     """Generate a CX node for a resource."""
-    node = cx.add_node(
-        name=bioregistry.get_name(prefix),
-        represents=f"bioregistry:{prefix}",
+    node = cast(
+        int,
+        cx.add_node(
+            name=bioregistry.get_name(prefix),
+            represents=f"bioregistry:{prefix}",
+        ),
     )
     homepage = bioregistry.get_homepage(prefix)
     if homepage:

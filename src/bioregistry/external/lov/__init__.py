@@ -9,7 +9,7 @@ from typing import Any, ClassVar, Union, cast
 
 from pystow.utils import download, read_rdf
 
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "LOVAligner",
@@ -46,7 +46,7 @@ def get_lov(
 ) -> dict[str, dict[str, Any]]:
     """Get the LOV data cloud registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_refresh:
-        return json.loads(PROCESSED_PATH.read_text())
+        return load_processed(PROCESSED_PATH)
 
     with tempfile.TemporaryDirectory() as dir:
         path = Path(dir).joinpath("lov.n3.gz")
