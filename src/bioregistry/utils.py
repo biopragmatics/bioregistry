@@ -1,25 +1,25 @@
 """Utilities."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
+import warnings
 from collections import ChainMap, defaultdict
+from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import (
     Any,
-    DefaultDict,
-    Dict,
-    Iterable,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Union,
+    Callable,
+    TypeVar,
     cast,
+    overload,
 )
 
 import click
 import requests
+from pydantic import BaseModel
 from pystow.utils import get_hashes
 
 from .constants import (
@@ -36,18 +36,28 @@ logger = logging.getLogger(__name__)
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
-class OLSBroken(RuntimeError):
+class OLSBrokenError(RuntimeError):
     """Raised when the OLS is having a problem."""
 
 
-def secho(s, fg="cyan", bold=True, **kwargs):
+def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     """Wrap :func:`click.secho`."""
     click.echo(
-        f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs)
+        f"[{datetime.now().strftime('%H:%M:%S')}] " + click.style(s, fg=fg, bold=bold, **kwargs)
     )
 
 
-def removeprefix(s: Optional[str], prefix: str) -> Optional[str]:
+# docstr-coverage:excused `overload`
+@overload
+def removeprefix(s: str, prefix: str) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removeprefix(s: None, prefix: str) -> None: ...
+
+
+def removeprefix(s: str | None, prefix: str) -> str | None:
     """Remove the prefix from the string."""
     if s is None:
         return None
@@ -56,7 +66,17 @@ def removeprefix(s: Optional[str], prefix: str) -> Optional[str]:
     return s
 
 
-def removesuffix(s: Optional[str], suffix: str) -> Optional[str]:
+# docstr-coverage:excused `overload`
+@overload
+def removesuffix(s: str, suffix: str) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removesuffix(s: None, suffix: str) -> None: ...
+
+
+def removesuffix(s: str | None, suffix: str) -> str | None:
     """Remove the prefix from the string."""
     if s is None:
         return None
@@ -65,7 +85,7 @@ def removesuffix(s: Optional[str], suffix: str) -> Optional[str]:
     return s
 
 
-def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
+def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
     """Query Wikidata's sparql service.
 
     :param sparql: A SPARQL query string
@@ -76,14 +96,15 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
         "User-Agent": f"bioregistry v{get_version()}",
     }
     res = requests.get(
-        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers
+        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers, timeout=300
     )
     res.raise_for_status()
     res_json = res.json()
-    return res_json["results"]["bindings"]
+    return cast(list[Mapping[str, Any]], res_json["results"]["bindings"])
 
 
-class NormDict(dict):
+# TODO make inherit from dict[str, str] interface
+class NormDict(dict[str, str]):
     """A dictionary that supports lexical normalization of keys on setting and getting."""
 
     def __setitem__(self, key: str, value: str) -> None:
@@ -97,17 +118,24 @@ class NormDict(dict):
             )
         super().__setitem__(norm_key, value)
 
-    def __getitem__(self, item: str) -> str:
+    def __getitem__(self, item: Any) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().__getitem__(_norm(item))
+        if not isinstance(item, str):
+            raise TypeError
+        rv = super().__getitem__(_norm(item))
+        if not isinstance(rv, str):
+            raise TypeError
+        return rv
 
-    def __contains__(self, item) -> bool:
+    def __contains__(self, item: Hashable) -> bool:
         """Check if an item is in the dictionary after lexically normalizing it."""
+        if not isinstance(item, str):
+            return False
         return super().__contains__(_norm(item))
 
-    def get(self, key: str, default=None) -> str:
+    def get(self, key: str, default: str | Any = None) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().get(_norm(key), default)
+        return cast(str, super().get(_norm(key), default))
 
 
 def _norm(s: str) -> str:
@@ -144,29 +172,42 @@ def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
     }
 
 
-def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
+def _get_hexdigest(path: str | Path, alg: str = "sha256") -> str:
     hashes = get_hashes(path, [alg])
     return hashes[alg].hexdigest()
 
 
+IdentifierGetter = Callable[[dict[str, Any], str], str]
+IdentifierCleaner = Callable[[str], str]
+
+
 def get_ols_descendants(
-    ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
-) -> Mapping[str, Mapping[str, Any]]:
+    ontology: str,
+    uri: str,
+    *,
+    force_download: bool = False,
+    get_identifier: IdentifierGetter | None = None,
+    clean: IdentifierCleaner | None = None,
+) -> dict[str, dict[str, Any]]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
-    res = requests.get(url)
+    res = requests.get(url, timeout=15)
     res.raise_for_status()
     res_json = res.json()
     try:
         terms = res_json["_embedded"]["terms"]
     except KeyError:
-        raise OLSBroken from None
+        raise OLSBrokenError from None
     return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 
 def _process_ols(
-    *, ontology, terms, clean=None, get_identifier=None
-) -> Mapping[str, Mapping[str, Any]]:
+    *,
+    ontology: str,
+    terms: list[dict[str, Any]],
+    clean: IdentifierCleaner | None = None,
+    get_identifier: IdentifierGetter | None = None,
+) -> dict[str, dict[str, Any]]:
     if clean is None:
         clean = _clean
     if get_identifier is None:
@@ -183,21 +224,21 @@ def _process_ols(
     return rv
 
 
-def _get_identifier(term, ontology: str) -> str:
-    return term["obo_id"][len(ontology) + 1 :]
+def _get_identifier(term: dict[str, Any], ontology: str) -> str:
+    return term["obo_id"][len(ontology) + 1 :]  # type:ignore
 
 
 def _clean(s: str) -> str:
-    s = cast(str, removesuffix(s, "identifier")).strip()
-    s = cast(str, removesuffix(s, "ID")).strip()
-    s = cast(str, removesuffix(s, "accession")).strip()
+    s = removesuffix(s, "identifier").strip()
+    s = removesuffix(s, "ID").strip()
+    s = removesuffix(s, "accession").strip()
     return s
 
 
-def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+def backfill(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Sequence[dict[str, Any]]:
     """Backfill records that may have overlapping data."""
     _key_set = set(keys)
-    index_dd: DefaultDict[str, DefaultDict[str, Dict[str, str]]] = defaultdict(
+    index_dd: defaultdict[str, defaultdict[str, dict[str, str]]] = defaultdict(
         lambda: defaultdict(dict)
     )
 
@@ -227,11 +268,11 @@ def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence
     return records_copy
 
 
-def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+def deduplicate(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Sequence[dict[str, Any]]:
     """De-duplicate records that might have overlapping data."""
-    dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
+    dd: defaultdict[Sequence[str], list[dict[str, Any]]] = defaultdict(list)
 
-    def _key(r: Dict[str, Any]):
+    def _key(r: dict[str, Any]) -> tuple[str, ...]:
         return tuple(r.get(key) or "" for key in keys)
 
     for record in backfill(records, keys):
@@ -240,3 +281,30 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
     return sorted(rv, key=_key, reverse=True)
+
+
+def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
+    """Convert a pydantic model to a dict."""
+    warnings.warn("use BaseModel.model_dump() directly", DeprecationWarning, stacklevel=2)
+    return x.model_dump(**kwargs)
+
+
+M = TypeVar("M", bound=BaseModel)
+
+
+def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
+    """Convert a dict to a pydantic model."""
+    warnings.warn("use BaseModel.model_validate() directly", DeprecationWarning, stacklevel=2)
+    return m.model_validate(d)
+
+
+def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
+    """Get the fields."""
+    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
+    return m.model_fields
+
+
+def pydantic_schema(m: type[M]) -> dict[str, Any]:
+    """Get the schema."""
+    warnings.warn("use BaseModel.model_json_schema() directly", DeprecationWarning, stacklevel=2)
+    return m.model_json_schema()

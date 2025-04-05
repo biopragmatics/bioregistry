@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for the metaregistry."""
 
 import unittest
@@ -81,7 +79,7 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.resolver_type)
                     self.assertIn(registry.resolver_type, {"lookup", "resolver"})
 
-                invalid_keys = set(registry.dict()).difference(Registry.__fields__)
+                invalid_keys = set(registry.model_dump()).difference(Registry.model_fields)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
                 self.assertIsNotNone(registry.qualities)
                 self.assertIsInstance(registry.qualities.bulk_data, bool)

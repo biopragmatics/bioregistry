@@ -1,12 +1,18 @@
-# See: https://docs.readthedocs.io/en/latest/config-file/v2.html
+# .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 version: 2
 
+# Set the version of Python and other tools you might need
 build:
-  image: latest
+  os: ubuntu-22.04
+  apt_packages:
+    - graphviz
+  tools:
+    python: "3.12"
 
 python:
-  version: "3.8"
   install:
     - method: pip
       path: .

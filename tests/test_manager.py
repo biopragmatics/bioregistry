@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for managers."""
 
 import unittest
@@ -221,7 +219,7 @@ class TestResourceManager(unittest.TestCase):
         full = get_full_rdf(self.manager)
         prefixes = {
             prefix[len("https://bioregistry.io/registry/") :]
-            for prefix, in full.query(
+            for (prefix,) in full.query(
                 "SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }"
             )
         }

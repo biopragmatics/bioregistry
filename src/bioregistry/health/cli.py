@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """A central CLI for Bioregistry health checks."""
 
 import click
@@ -24,13 +22,13 @@ COMMANDS = {
     default="all",
     default_if_no_args=True,
 )
-def main():
+def main() -> None:
     """Run the bioregistry health tests."""
 
 
 @main.command(name="all")
 @click.pass_context
-def run_all_commands(ctx: click.Context):
+def run_all_commands(ctx: click.Context) -> None:
     """Run all."""
     for name, command in COMMANDS.items():
         click.secho(f"Running python -m bioregistry.health {name}", fg="green")

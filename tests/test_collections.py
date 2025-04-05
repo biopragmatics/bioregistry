@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for collections."""
 
 import logging
@@ -28,7 +26,7 @@ class TestCollections(unittest.TestCase):
 
         for key, collection_pydantic in sorted(self.manager.collections.items()):
             self.assertIsInstance(collection_pydantic, Collection)
-            collection = collection_pydantic.dict()
+            collection = collection_pydantic.model_dump()
             with self.subTest(key=key):
                 self.assertRegex(key, "^\\d{7}$")
                 self.assertIn("name", collection)

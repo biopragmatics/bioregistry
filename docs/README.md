@@ -3,8 +3,8 @@
 This folder contains two parts:
 
 1. [`source/`](source/) which contains the Sphinx configuration and RST files to
-   create the documentation that gets deployed to ReadTheDocs
-   at https://bioregistry.readthedocs.io.
+   create the documentation that gets deployed to ReadTheDocs at
+   https://bioregistry.readthedocs.io.
 2. Other documentation, which gets deployed as a static site using Jekyll and
    GitHub Pages to https://biopragmatics.github.io/bioregistry
 

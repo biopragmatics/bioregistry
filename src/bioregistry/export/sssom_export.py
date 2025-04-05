@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Export the Bioregistry to SSSOM."""
 
 import csv
@@ -35,7 +33,7 @@ METADATA = {
 
 
 @click.command()
-def export_sssom():
+def export_sssom() -> None:
     """Export the meta-registry as SSSOM."""
     rows = []
     for prefix, resource in bioregistry.read_registry().items():

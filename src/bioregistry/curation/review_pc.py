@@ -10,7 +10,7 @@ from bioregistry.constants import BIOREGISTRY_MODULE
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the prefix commons import reviewer workflow."""
     reviewed_count = 0
     rows = []

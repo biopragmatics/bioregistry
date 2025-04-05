@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Web command for running the app."""
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Optional
 
 import click
 from more_click import host_option, port_option, verbose_option, with_gunicorn_option
@@ -14,15 +13,15 @@ __all__ = [
 
 
 @click.command()
-@host_option
-@port_option
-@with_gunicorn_option
+@host_option  # type:ignore
+@port_option  # type:ignore
+@with_gunicorn_option  # type:ignore
 @click.option(
     "--workers",
     type=int,
     help="Number of workers",
 )
-@verbose_option
+@verbose_option  # type:ignore
 @click.option("--registry", type=Path, help="Path to a local registry file")
 @click.option("--metaregistry", type=Path, help="Path to a local metaregistry file")
 @click.option("--collections", type=Path, help="Path to a local collections file")
@@ -39,14 +38,14 @@ def web(
     host: str,
     port: str,
     with_gunicorn: bool,
-    workers: Optional[int],
-    registry: Optional[Path],
-    metaregistry: Optional[Path],
-    collections: Optional[Path],
-    contexts: Optional[Path],
-    config: Optional[Path],
-    base_url: Optional[str],
-):
+    workers: int | None,
+    registry: Path | None,
+    metaregistry: Path | None,
+    collections: Path | None,
+    contexts: Path | None,
+    config: Path | None,
+    base_url: str | None,
+) -> None:
     """Run the web application."""
     import uvicorn
 
@@ -71,5 +70,6 @@ def web(
         and metaregistry is None
         and collections is None
         and contexts is None,
+        return_flask=False,
     )
     uvicorn.run(app, host=host, port=int(port), workers=workers)

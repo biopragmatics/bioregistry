@@ -1,7 +1,9 @@
 Deploying the Bioregistry
 =========================
 The Bioregistry web application is a part of the ``bioregistry`` Python package which is updated,
-packaged, and pushed nightly to the `Python Package Index (PyPI) <https://pypi.org/project/bioregistry/>`_.
+packaged, and pushed weekly to the `Python Package Index (PyPI) <https://pypi.org/project/bioregistry/>`_.
+A new deploy can also be triggered by admins using the
+`update workflow <https://github.com/biopragmatics/bioregistry/actions/workflows/update.yml>`_ on GitHub.
 It can be installed and run interactively in the command line with the following commands:
 
 .. code-block:: shell
@@ -20,7 +22,7 @@ It can be installed and run interactively in the command line with the following
     should correspond to the location through which the service is accessed. In this
     example, https://example.com is used as the base.
 
-The Bioregistry is also containerized and pushed nightly to
+The Bioregistry is also containerized and pushed during the weekly build to
 `Docker Hub <https://hub.docker.com/r/biopragmatics/bioregistry>`_.
 You can pull then run the latest in the command line with the following commands:
 

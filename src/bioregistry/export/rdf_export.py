@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Export the Bioregistry to RDF."""
 
+from __future__ import annotations
+
 import logging
-from typing import Any, Callable, List, Optional, Tuple, Union, cast
+from typing import Any, Callable, cast
 
 import click
 import rdflib
@@ -53,7 +53,7 @@ NAMESPACE_WARNINGS = set()
 
 
 @click.command()
-def export_rdf():
+def export_rdf() -> None:
     """Export RDF."""
     from bioregistry import manager
 
@@ -109,37 +109,37 @@ def get_full_rdf(manager: Manager) -> rdflib.Graph:
 def collection_to_rdf_str(
     collection: Collection,
     manager: Manager,
-    fmt: Optional[str] = None,
+    fmt: str | None = None,
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     collection.add_triples(graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def metaresource_to_rdf_str(
     registry: Registry,
     manager: Manager,
-    fmt: Optional[str] = None,
+    fmt: str | None = None,
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     registry.add_triples(graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def resource_to_rdf_str(
     resource: Resource,
     manager: Manager,
-    fmt: Optional[str] = None,
+    fmt: str | None = None,
 ) -> str:
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     _add_resource(resource, manager=manager, graph=graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
-def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resource], Any], URIRef]]:
+def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], Any], URIRef]]:
     return [
         ("0000008", Resource.get_pattern, XSD.string),
         ("0000006", Resource.get_uri_format, XSD.string),
@@ -150,7 +150,7 @@ def _get_resource_functions() -> List[Tuple[Union[str, URIRef], Callable[[Resour
     ]
 
 
-def _get_resource_function_2() -> List[Tuple[Union[str, URIRef], Callable[[Resource], Any]]]:
+def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], Any]]]:
     return [
         ("0000027", Resource.get_example_iri),
         (FOAF.homepage, Resource.get_homepage),
@@ -158,7 +158,7 @@ def _get_resource_function_2() -> List[Tuple[Union[str, URIRef], Callable[[Resou
     ]
 
 
-def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):  # noqa:C901
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) -> None:
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
@@ -227,14 +227,21 @@ def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph):
 
     contact = resource.get_contact()
     if contact is not None:
-        contact_node = contact.add_triples(graph)
-        graph.add((node, bioregistry_schema["0000019"], contact_node))
+        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+    for contact in resource.contact_extras or []:
+        graph.add((node, bioregistry_schema["0000019"], contact.add_triples(graph)))
+
     if resource.reviewer is not None and resource.reviewer.orcid:
-        reviewer_node = resource.reviewer.add_triples(graph)
-        graph.add((node, bioregistry_schema["0000021"], reviewer_node))
+        graph.add((node, bioregistry_schema["0000021"], resource.reviewer.add_triples(graph)))
+    for reviewer in resource.reviewer_extras or []:
+        if reviewer.orcid:
+            graph.add((node, bioregistry_schema["0000021"], reviewer.add_triples(graph)))
+
     if resource.contributor is not None and resource.contributor.orcid:
-        contributor_node = resource.contributor.add_triples(graph)
-        graph.add((contributor_node, DCTERMS.contributor, node))
+        graph.add((node, DCTERMS.contributor, resource.contributor.add_triples(graph)))
+    for contributor in resource.contributor_extras or []:
+        if contributor.orcid:
+            graph.add((node, DCTERMS.contributor, contributor.add_triples(graph)))
 
     mappings = resource.get_mappings()
     for metaprefix, metaidentifier in (mappings or {}).items():
