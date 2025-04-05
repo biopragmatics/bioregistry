@@ -1,5 +1,7 @@
 """Generate a small knowledge graph relating entities."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import click
@@ -17,7 +19,7 @@ if TYPE_CHECKING:
 
 @click.command()
 @verbose_option
-def main():
+def main() -> None:
     """Upload the Bioregistry KG to NDEx."""
     try:
         upload()
@@ -27,7 +29,7 @@ def main():
         click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")
 
 
-def upload():
+def upload() -> None:
     """Generate a CX graph and upload to NDEx."""
     from ndex2 import NiceCXBuilder
 
@@ -58,13 +60,10 @@ def upload():
 
     for prefix, entry in registry.items():
         # Who does it provide for?
-        provides = bioregistry.get_provides_for(prefix)
-        if isinstance(provides, str):
-            provides = [provides]
-        for target in provides or []:
+        if provides := bioregistry.get_provides_for(prefix):
             cx.add_edge(
                 source=resource_nodes[prefix],
-                target=resource_nodes[target],
+                target=resource_nodes[provides],
                 interaction="provides",
             )
         if entry.part_of and entry.part_of in resource_nodes:
@@ -119,7 +118,7 @@ def upload():
     )
 
 
-def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
+def make_registry_node(cx: ndex2.NiceCXBuilder, metaprefix: str) -> int:
     """Generate a CX node for a registry."""
     node = cx.add_node(
         name=bioregistry.get_registry_name(metaprefix),
@@ -134,7 +133,7 @@ def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
     return node
 
 
-def make_resource_node(cx: "ndex2.NiceCXBuilder", prefix: str) -> int:
+def make_resource_node(cx: ndex2.NiceCXBuilder, prefix: str) -> int:
     """Generate a CX node for a resource."""
     node = cx.add_node(
         name=bioregistry.get_name(prefix),

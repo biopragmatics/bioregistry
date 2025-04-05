@@ -10,7 +10,7 @@ import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
@@ -93,7 +93,9 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_prefixcommons(force_download: bool = False, force_process: bool = False):
+def get_prefixcommons(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the Life Science Registry."""
     if PROCESSED_PATH.exists() and not (force_download or force_process):
         with PROCESSED_PATH.open() as file:
@@ -277,7 +279,7 @@ class PrefixCommonsAligner(Aligner):
 
     key = "prefixcommons"
     getter = get_prefixcommons
-    curation_header = (
+    curation_header: ClassVar[Sequence[str]] = (
         "name",
         "synonyms",
         "description",

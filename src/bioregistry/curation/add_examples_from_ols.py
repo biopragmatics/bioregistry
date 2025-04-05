@@ -1,7 +1,8 @@
 """Add examples from OLS."""
 
+from __future__ import annotations
+
 import random
-from collections.abc import Mapping
 
 import requests
 from tqdm import tqdm
@@ -9,7 +10,7 @@ from tqdm import tqdm
 import bioregistry
 
 
-def _get_example(prefix: str, size: int = 1000):
+def _get_example(prefix: str, size: int = 1000) -> str:
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{prefix}/terms?page=1&size={size}"
     return _get_example_helper(prefix, url)
 
@@ -19,7 +20,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
         tqdm.write(f"[{prefix} too deep")
         raise KeyError
     tqdm.write(f"[{prefix}] getting {url}")
-    res = requests.get(url).json()
+    res = requests.get(url, timeout=15).json()
     embedded = res.get("_embedded")
     if not embedded:
         tqdm.write(f"[{prefix} failure")
@@ -35,7 +36,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
 SKIP = {"afo", "dicom", "ensemblglossary", "co_321:root", "co_336", "co_359", "gexo", "hcao"}
 
 
-def _get_missing_ols() -> Mapping[str, str]:
+def _get_missing_ols() -> dict[str, str]:
     """Get a map of prefixes to OLS prefixes that need checking."""
     return {
         prefix: bioregistry.get_ols_prefix(prefix)  # type: ignore
@@ -49,7 +50,7 @@ def _get_missing_ols() -> Mapping[str, str]:
     }
 
 
-def main():
+def main() -> None:
     """Get OLS examples."""
     r = dict(bioregistry.read_registry())
     x = sorted(_get_missing_ols().items())

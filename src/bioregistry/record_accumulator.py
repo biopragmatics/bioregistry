@@ -1,16 +1,16 @@
 """Generating records for :mod:`curies`."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
 from collections import defaultdict
 from collections.abc import Collection, Iterable, Mapping, Sequence
-from typing import (
-    Optional,
-    cast,
-)
+from typing import cast
 
 import curies
-from curies import Converter
+from curies import Converter, Record
+from curies.w3c import NCNAME_RE
 
 from .schema.struct import Resource
 
@@ -54,7 +54,8 @@ prefix_resource_blacklist = {
     ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
     ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
 }
-assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
+if not all(not x.endswith("$1") for _, x in prefix_resource_blacklist):
+    raise RuntimeError
 
 
 def _debug_or_raise(msg: str, strict: bool = False) -> None:
@@ -102,13 +103,14 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
 
 def get_converter(
     resources: list[Resource],
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
-    blacklist: Optional[Collection[str]] = None,
-    remapping: Optional[Mapping[str, str]] = None,
-    rewiring: Optional[Mapping[str, str]] = None,
+    blacklist: Collection[str] | None = None,
+    remapping: Mapping[str, str] | None = None,
+    rewiring: Mapping[str, str] | None = None,
+    enforce_w3c: bool = False,
 ) -> Converter:
     """Generate a converter from resources."""
     records = _get_records(
@@ -124,16 +126,28 @@ def get_converter(
         converter = curies.remap_curie_prefixes(converter, remapping)
     if rewiring:
         converter = curies.rewire(converter, rewiring)
+    if enforce_w3c:
+        converter = _w3c_clean_converter(converter)
     return converter
 
 
-def _get_records(  # noqa: C901
+def _w3c_clean_record(record: Record) -> Record:
+    record.prefix_synonyms = [s for s in record.prefix_synonyms if NCNAME_RE.match(s)]
+    return record
+
+
+def _w3c_clean_converter(converter: Converter) -> Converter:
+    """Remove all non-W3C-compliant records in the converter."""
+    return Converter(_w3c_clean_record(record) for record in converter.records)
+
+
+def _get_records(
     resources: list[Resource],
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
-    blacklist: Optional[Collection[str]] = None,
+    blacklist: Collection[str] | None = None,
 ) -> list[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
@@ -168,7 +182,7 @@ def _get_records(  # noqa: C901
     #: in all records to bioregistry prefixes
     reverse_prefix_lookup: dict[str, str] = {}
 
-    def _add_primary_uri_prefix(prefix: str) -> Optional[str]:
+    def _add_primary_uri_prefix(prefix: str) -> str | None:
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if primary_uri_prefix in reverse_uri_prefix_lookup:
             logger.debug(
@@ -182,7 +196,7 @@ def _get_records(  # noqa: C901
         reverse_uri_prefix_lookup[primary_uri_prefix] = prefix
         return primary_uri_prefix
 
-    def _add_primary_prefix(prefix: str) -> Optional[str]:
+    def _add_primary_prefix(prefix: str) -> str | None:
         primary_prefix = primary_prefixes[prefix]
         if primary_prefix in reverse_prefix_lookup:
             logger.debug(
@@ -221,7 +235,7 @@ def _get_records(  # noqa: C901
             secondary_uri_prefixes[prefix].add(uri_prefix)
 
     def _add_prefix_prefixes(
-        primary_prefix: str, resource: Resource, target_prefix: Optional[str] = None
+        primary_prefix: str, resource: Resource, target_prefix: str | None = None
     ) -> None:
         if target_prefix is None:
             target_prefix = resource.prefix

@@ -123,7 +123,8 @@
     "homepage": "http://handle.net",
     "name": "Handle",
     "subjects": [
-      "Subject Agnostic"
+      "Subject Agnostic",
+      "Omics"
     ]
   },
   "FAIRsharing.0d9792": {
@@ -316,7 +317,8 @@
       "Reaction data",
       "Cell",
       "Enzyme",
-      "Organ"
+      "Organ",
+      "Tissue"
     ],
     "homepage": "http://www.brenda-enzymes.info",
     "name": "BRENDA tissue / enzyme source",
@@ -354,7 +356,9 @@
     ],
     "subjects": [
       "Enzymology",
-      "Life Science"
+      "Life Science",
+      "Cell Biology",
+      "Omics"
     ]
   },
   "FAIRsharing.162003": {
@@ -716,7 +720,9 @@
     ],
     "repository": "https://github.com/EBISPOT/efo",
     "subjects": [
-      "Functional Genomics"
+      "Genomics",
+      "Proteomics",
+      "Omics"
     ],
     "user_defined_tags": [
       "Experimental condition"
@@ -1155,7 +1161,8 @@
     ],
     "subjects": [
       "Knowledge and Information Systems",
-      "Life Science"
+      "Life Science",
+      "Omics"
     ]
   },
   "FAIRsharing.2b4316": {
@@ -1463,6 +1470,7 @@
       }
     ],
     "subjects": [
+      "Proteomics",
       "Life Science"
     ]
   },
@@ -2509,17 +2517,20 @@
     ]
   },
   "FAIRsharing.457f35": {
-    "abbreviation": "PDB Identifier",
+    "abbreviation": "PDB ID",
     "contact": {
       "email": "harukin@protein.osaka-u.ac.jp",
       "name": "Haruki Nakamura",
       "orcid": "0000-0001-6690-5863"
     },
-    "description": "Identifier schema for Protein Data Bank",
+    "description": "PDB IDs are identifiers used at all levels of the structural hierarchy for entries in the Protein Data Bank using the prefix “pdb” followed by a 4-character alphanumeric identifier. These identifiers are used to specifically select, visualize, locate a specific instance of a ligand, and/or an amino acid in a protein chain in a particular PDB entry.",
     "domains": [
+      "Molecular structure",
+      "Protein structure",
+      "Omics data analysis",
       "Centrally registered identifier"
     ],
-    "homepage": "https://registry.identifiers.org/registry/pdb",
+    "homepage": "https://www.rcsb.org/docs/general-help/identifiers-in-pdb",
     "name": "Protein Data Bank Identifier",
     "publications": [
       {
@@ -2530,7 +2541,9 @@
       }
     ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Structural Biology",
+      "Omics"
     ]
   },
   "FAIRsharing.46rwe6": {
@@ -2688,12 +2701,13 @@
       "name": "Philippe Rocca-Serra",
       "orcid": "0000-0001-9853-5668"
     },
-    "description": "The Metabolomics Standards Initiative Ontology (MSIO) aims to support metabolomic experimental annotations for mass spectrometry (MS) and nuclear magnetic resonance (NMR) spectroscopy techniques to identify, measure and quantify small molecules known as metabolites. MSIO covers metabolite profiling, targeted or untargeted, and tracer based applications. MSIO leverages other existing resource terms from other ontology collections such as CHEBI, DUO, NMRCV, OBI, and STATO.",
+    "description": "The Metabolomics Standards Initiative Ontology (MSIO) aims to support metabolomic experimental annotations for mass spectrometry (MS) and nuclear magnetic resonance (NMR) spectroscopy techniques to identify, measure and quantify small molecules known as metabolites. MSIO covers metabolite profiling, targeted or untargeted, and tracer based applications.",
     "domains": [
       "Mass spectrum",
       "Experimental measurement",
       "Annotation",
       "Nuclear Magnetic Resonance (NMR) spectroscopy",
+      "Functional magnetic resonance imaging",
       "Omics data analysis"
     ],
     "homepage": "https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO",
@@ -2963,13 +2977,20 @@
     "domains": [
       "Annotation",
       "PTM site prediction",
+      "Omics data analysis",
+      "Enhancer",
       "Protein acetylation",
       "Phosphorylation",
       "Methylation",
       "Protein-containing complex",
       "Glycosylation",
+      "Craniofacial phenotype",
       "Data model",
+      "Phenotype",
+      "Disease phenotype",
+      "Microbe-host interaction phenotype",
       "Protein",
+      "Quantitative trait loci",
       "Biocuration"
     ],
     "homepage": "https://proconsortium.org/",
@@ -3010,7 +3031,17 @@
     ],
     "repository": "https://github.com/PROconsortium/PRoteinOntology",
     "subjects": [
+      "Functional Genomics",
+      "Metaproteomics",
+      "Proteomics",
+      "Phenomics",
+      "Omics",
       "Biology"
+    ],
+    "user_defined_tags": [
+      "Phenology",
+      "Phenotype strain survey data",
+      "Plant Phenotypes and Traits"
     ]
   },
   "FAIRsharing.4qyf0f": {
@@ -3040,7 +3071,7 @@
       "Phenotype"
     ],
     "homepage": "http://sourceforge.net/apps/trac/pombase/wiki/FissionYeastPhenotypeOntology",
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "name": "Fission Yeast Phenotype Ontology",
     "publications": [
       {
@@ -3050,6 +3081,7 @@
         "year": 2013
       }
     ],
+    "repository": "https://github.com/pombase/fypo",
     "subjects": [
       "Genetics",
       "Phylogenetics",
@@ -3685,11 +3717,16 @@
   },
   "FAIRsharing.64f3va": {
     "abbreviation": "PFO",
+    "contact": {
+      "email": "tudor.groza@uq.edu.au",
+      "name": "Tudor Groza",
+      "orcid": "0000-0003-2267-8333"
+    },
     "description": "The Phenotype Fragment Ontology, together with a processing pipeline, enable the automatic decomposition and conceptualization of phenotype descriptions for the human skeletal phenome.",
     "domains": [
       "Phenotype"
     ],
-    "homepage": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3572876/",
+    "homepage": "https://doi.org/10.4137/bii.s10729",
     "name": "Phenotype Fragment Ontology",
     "publications": [
       {
@@ -4157,6 +4194,8 @@
     "domains": [
       "Mass spectrum",
       "Experimental measurement",
+      "Reagent",
+      "Gas chromatography",
       "Mass spectrometry assay"
     ],
     "homepage": "https://github.com/HUPO-PSI/xlmod-CV",
@@ -5440,9 +5479,33 @@
     ],
     "twitter": "diseaseontology"
   },
+  "FAIRsharing.8b8737": {
+    "abbreviation": "SPASE resource Id",
+    "description": "A SPASE resource Identifier is a name for a resource within the SPASE registry. This name can be used to identify a resource from the SPASE registry (for reference in metadata), to cross-reference entities in the SPASE registry, and to retrieve the metadata of an entity present in the SPASE Registry like a dataset, an observatory or a repository. ",
+    "homepage": "https://spase-group.org/docs/conventions/Resource-ID-Formation-Rule-v5.pdf",
+    "name": "Space Physics Archive Search and Extract Resource ID",
+    "publications": [
+      {
+        "doi": "10.1016/j.asr.2023.09.066",
+        "title": "SPASE metadata as a building block of a heliophysics science-enabling framework",
+        "year": 2023
+      }
+    ],
+    "subjects": [
+      "Astrophysics and Astronomy"
+    ],
+    "user_defined_tags": [
+      "planetary science",
+      "Solar physics",
+      "space science",
+      "space weather",
+      "heliophysics"
+    ]
+  },
   "FAIRsharing.8bf70c": {
     "description": "Identifier schema for Ensembl",
     "domains": [
+      "Data identity and mapping",
       "Centrally registered identifier"
     ],
     "homepage": "https://www.ensembl.org/info/genome/stable_ids/index.html",
@@ -5455,7 +5518,9 @@
       }
     ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Genomics",
+      "Proteomics"
     ]
   },
   "FAIRsharing.8d6247": {
@@ -6084,11 +6149,13 @@
       "name": "Petra Fey",
       "orcid": "0000-0002-4532-2703"
     },
-    "description": "A structured controlled vocabulary of phenotypes of the social amoeba Dictyostelium discoideum. The Dicty Phenotype Ontology is a hierarchical controlled vocabulary used for annotating strains with phenotypes. Terms from the Dicty Phenotype Ontology are required when annotating phenotypes within dictyBase. The phenotype ontology consists of two composite terms: (1) the anatomical part or the biological process changed in the mutant, and (2) a quality describing that modification. For example, a ‘delayed aggregation’ phenotype qualifies the ‘aggregation’ (biological process) as being ‘delayed’, or the ‘decreased spore size’ qualifies the ‘spore’ to be of ‘decreased size’.",
+    "description": "The Dictyostelium Phenotype Ontology (DDPHENO) is a structured controlled vocabulary of phenotypes of the slime-mould Dictyostelium discoideum. DDPHENO is a hierarchical controlled vocabulary used for annotating strains with phenotypes, and are required when annotating phenotypes within the dictyBase. The phenotype ontology consists of two composite terms: (1) the anatomical part or the biological process changed in the mutant, and (2) a quality describing that modification. For example, a ‘delayed aggregation’ phenotype qualifies the ‘aggregation’ (biological process) as being ‘delayed’, or the ‘decreased spore size’ qualifies the ‘spore’ to be of ‘decreased size’.",
     "domains": [
-      "Phenotype"
+      "Phenotype",
+      "Microbe-host interaction phenotype"
     ],
-    "homepage": "https://github.com/dictyBase/migration-data/blob/master/ontologies/dicty_phenotypes.obo",
+    "homepage": "https://github.com/obophenotype/dicty-phenotype-ontology",
+    "license": "https://creativecommons.org/licenses/by/1.0",
     "name": "Dictyostelium Phenotype Ontology",
     "publications": [
       {
@@ -6098,8 +6165,14 @@
         "year": 2013
       }
     ],
+    "repository": "https://github.com/obophenotype/dicty-phenotype-ontology/issues",
     "subjects": [
-      "Life Science"
+      "Soil Science",
+      "Anatomy",
+      "Microbial Ecology",
+      "Developmental Biology",
+      "Life Science",
+      "Phenomics"
     ]
   },
   "FAIRsharing.9c2azc": {
@@ -6492,7 +6565,8 @@
     "subjects": [
       "Knowledge and Information Systems",
       "Chemistry",
-      "Life Science"
+      "Life Science",
+      "Omics"
     ]
   },
   "FAIRsharing.DbFnKV": {
@@ -6720,7 +6794,9 @@
     ],
     "repository": "https://github.com/ORCID",
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Data Management",
+      "Subject Agnostic"
     ]
   },
   "FAIRsharing.OsiqlF": {
@@ -6731,6 +6807,9 @@
       "orcid": "0000-0002-0703-7776"
     },
     "description": "The IUPAC Gold Book is a database of ~7000 chemical concepts derived from IUPAC's Recommendations published in Pure and Applied Chemistry.",
+    "domains": [
+      "Small molecule"
+    ],
     "homepage": "https://goldbook.iupac.org/",
     "license": "https://creativecommons.org/licenses/by-nc-nd/4.0",
     "name": "IUPAC Compendium of Chemical Terminology",
@@ -6746,10 +6825,14 @@
       "Solid-State Chemistry",
       "Physical Chemistry",
       "Clinical Chemistry",
+      "Metabolomics",
       "Analytical Chemistry",
       "Food Chemistry",
       "Computational Chemistry",
       "Medicinal Chemistry"
+    ],
+    "user_defined_tags": [
+      "lipidomics"
     ]
   },
   "FAIRsharing.PB6595": {
@@ -7028,7 +7111,7 @@
     ]
   },
   "FAIRsharing.a08d34": {
-    "abbreviation": "PANET",
+    "abbreviation": "PaNET",
     "description": "The PaNET ontology provides a taxonomy and thesaurus of photon and neutron (PaN) experimental techniques, based mainly on accelerator-based light sources and neutron facilities. The primary use of the ontology is to enhance the FAIRness of PaN data catalogues services. The ontology defines specific techniques in terms of more general technique classes and provides synonyms and references.",
     "homepage": "https://github.com/ExPaNDS-eu/ExPaNDS-experimental-techniques-ontology",
     "license": "CC-BY-4.0",
@@ -7337,6 +7420,7 @@
     "domains": [
       "Analysis",
       "Data acquisition",
+      "Omics data analysis",
       "Data transformation"
     ],
     "homepage": "http://edamontology.org",
@@ -7364,7 +7448,7 @@
     "subjects": [
       "Bioinformatics",
       "Life Science",
-      "Subject Agnostic"
+      "Omics"
     ],
     "twitter": "edamontology"
   },
@@ -7467,7 +7551,7 @@
       "Disease",
       "Classification"
     ],
-    "homepage": "https://github.com/infectious-disease-ontology/infectious-disease-ontology",
+    "homepage": "https://github.com/infectious-disease-ontology",
     "license": "https://creativecommons.org/licenses/by/3.0/us",
     "name": "Infectious Disease Ontology Core",
     "publications": [
@@ -7655,17 +7739,19 @@
     ]
   },
   "FAIRsharing.agvc7y": {
-    "abbreviation": "WB-PHENOTYPE",
+    "abbreviation": "WBPHENOTYPE",
     "contact": {
       "email": "garys@caltech.edu",
       "name": "Gary Schindelman",
       "orcid": "0000-0001-7883-4388"
     },
-    "description": "A structured controlled vocabulary of Caenorhabditis elegans phenotypes .",
+    "description": "An ontology for phenotypes pertaining to the nematode Caenorhabditis elegans (C. elegans) and related nematodes used by the nematode genome database WormBase.",
     "domains": [
+      "Omics data analysis",
       "Phenotype"
     ],
-    "homepage": "https://wormbase.org/tools/ontology_browser#o_browser",
+    "homepage": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
+    "license": "CC-BY-4.0",
     "name": "C. elegans phenotype",
     "publications": [
       {
@@ -7675,10 +7761,12 @@
         "year": 2011
       }
     ],
-    "repository": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
+    "repository": "https://github.com/obophenotype/c-elegans-phenotype-ontology/issues",
     "subjects": [
       "Anatomy",
-      "Life Science"
+      "Life Science",
+      "Phenomics",
+      "Omics"
     ]
   },
   "FAIRsharing.akmeb9": {
@@ -8375,6 +8463,7 @@
         "year": 2012
       }
     ],
+    "repository": "https://github.com/tdwg/rs.tdwg.org/blob/master/README-2021-02-01.md",
     "subjects": [
       "Biodiversity"
     ],
@@ -8584,7 +8673,8 @@
     "description": "PCL is an ontology created to record claims of potential new cell types derived from single cell data analysis, where there is no additional evidence that supports the addition of corresponding classically defined cell type to the Cell Ontology (CL). PCL hence provides a place for terms that might not be ready for CL.",
     "domains": [
       "Annotation",
-      "Cell"
+      "Cell",
+      "Sequencing"
     ],
     "homepage": "https://github.com/obophenotype/provisional_cell_ontology",
     "license": "CC-BY-4.0",
@@ -8594,13 +8684,24 @@
         "doi": "10.1101/2021.10.10.463703",
         "title": "Brain Data Standards Ontology: A data-driven ontology of transcriptomically defined cell types in the primary motor cortex",
         "year": 2021
+      },
+      {
+        "doi": "10.1038/s41597-022-01886-2",
+        "title": "Brain Data Standards - A method for building data-driven cell-type ontologies",
+        "year": 2023
       }
     ],
     "repository": "https://github.com/obophenotype/provisional_cell_ontology/issues",
     "subjects": [
       "Anatomy",
       "Life Science",
-      "Cell Biology"
+      "Transcriptomics",
+      "Cell Biology",
+      "Phenomics",
+      "Omics"
+    ],
+    "user_defined_tags": [
+      "single-cell multimodal omics"
     ]
   },
   "FAIRsharing.bg7bb6": {
@@ -8950,8 +9051,8 @@
     "abbreviation": "IGSN (Generic)",
     "description": "An IGSN ID is a globally unique and persistent identifier for physical samples in all scientific fields. An IGSN ID can be applied to an individual sample, an aggregation of samples, or to a feature-of-interest (the real-world feature that the sample is taken from). From 2021, IGSN IDs are functionally DOIs and are registered with metadata encoded in the DataCite Metadata Schema. The IGSN ID, previously known as an \"International GeoSample Number\", naming schema has changed, to reflects the expanding scope and utilization as a partnership agreement between DataCite and the IGSN e.V.",
     "domains": [
-      "Citation",
-      "Resource metadata"
+      "Centrally registered identifier",
+      "Biological sample"
     ],
     "homepage": "https://www.igsn.org",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline",
@@ -8991,11 +9092,11 @@
       "Archaeology",
       "Geology",
       "Data Management",
-      "Earth Science"
+      "Earth Science",
+      "Omics"
     ],
     "user_defined_tags": [
-      "physical samples",
-      "persistent identifier"
+      "physical samples"
     ]
   },
   "FAIRsharing.c7f4d7": {
@@ -9120,9 +9221,16 @@
   },
   "FAIRsharing.cc3f2x": {
     "abbreviation": "OMP",
+    "contact": {
+      "email": "jimhu@tamu.edu",
+      "name": "James C. Hu",
+      "orcid": "0000-0001-9016-2684"
+    },
     "description": "The Ontology of Microbial Phenotypes (OMP) is a community ontology for annotating microbial phenotypes, including bacteria, archaea, protists, fungi, and viruses. It has been created to help with standardized capture of essential phenotypic information. OMP is designed to be compatible with other microbial phenotype ontologies, such as the Fission Yeast Phenotype Ontology (FYPO) and the Ascomycete Phenotype Ontology (APO), and aims to standardize the capture of phenotypic information to allow improved cross-species data mining and analysis.",
     "domains": [
-      "Phenotype"
+      "Omics data analysis",
+      "Phenotype",
+      "Microbe-host interaction phenotype"
     ],
     "homepage": "https://github.com/microbialphenotypes/OMP-ontology",
     "license": "CC-BY-3.0",
@@ -9133,13 +9241,20 @@
         "pubmed": "25433798",
         "title": "An ontology for microbial phenotypes",
         "year": 2014
+      },
+      {
+        "doi": "10.1186/s13326-019-0205-5",
+        "title": "Phenotype annotation with the ontology of microbial phenotypes (OMP)",
+        "year": 2019
       }
     ],
     "repository": "https://github.com/microbialphenotypes/OMP-ontology/issues",
     "subjects": [
-      "Data Mining",
+      "Microbial Ecology",
+      "Chemical Biology",
+      "Phenomics",
       "Microbiology",
-      "Biology"
+      "Omics"
     ]
   },
   "FAIRsharing.cd7603": {
@@ -9568,6 +9683,9 @@
     "subjects": [
       "Knowledge and Information Systems",
       "Subject Agnostic"
+    ],
+    "user_defined_tags": [
+      "Interoperability"
     ]
   },
   "FAIRsharing.d2d84f": {
@@ -9606,9 +9724,9 @@
       "Experimental measurement",
       "Unit"
     ],
-    "homepage": "http://qudt.org/",
+    "homepage": "https://qudt.org/",
     "license": "CC-BY-4.0",
-    "name": "Quantities, Units, Dimensions and Types",
+    "name": "Quantities, Units, Dimensions and Types ",
     "repository": "https://github.com/qudt/qudt-public-repo/blob/master/docs/2020-04-28%20Intro%20to%20QUDT.pdf",
     "subjects": [
       "Astrophysics and Astronomy"
@@ -10014,16 +10132,19 @@
   },
   "FAIRsharing.dc702a": {
     "abbreviation": "RAiD",
-    "description": "Research Activity Identifier (RAiD, https://www.raid.org.au/) is an identifier mechanism designed for research projects and activities. It is persistent and connects existing PIDs for researchers, institutions, outputs and tools together to create a timeline of research activity which makes connecting digital infrastructure, reporting on impact and establishing data provenance clear and easy. RAiD is one of the Identifier Services owned and offered by the Australia Research Data Commons (ARDC, and can be accessed for machine-to-machine service by API integration, using a RAiD service point designated platform, or by manually minting via the RAiD user Dashboard. ",
+    "description": "Research Activity Identifier (RAiD) is an identifier mechanism designed for research projects and activities. It is persistent and connects existing PIDs for researchers, institutions, outputs and tools together to create a timeline of research activity which makes connecting digital infrastructure, reporting on impact and establishing data provenance clear and easy. RAiD is one of the Identifier Services owned and offered by the Australia Research Data Commons (ARDC, and can be accessed for machine-to-machine service by API integration, using a RAiD service point designated platform, or by manually minting via the RAiD user Dashboard. ",
     "domains": [
+      "Resource metadata",
       "Centrally registered identifier",
-      "Knowledge representation"
+      "Knowledge representation",
+      "FAIR"
     ],
-    "homepage": "https://ardc.edu.au/services/identifier/raid/",
+    "homepage": "https://raid.org/",
     "name": "Research Activity Identifier",
     "repository": "https://github.com/ResearchDataServices",
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Omics"
     ]
   },
   "FAIRsharing.dce535": {
@@ -10413,11 +10534,23 @@
       "Morphology",
       "Life cycle stage"
     ],
-    "homepage": "http://bioportal.bioontology.org/ontologies/APO?p=summary",
+    "homepage": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
+    "license": "CC-BY-4.0",
     "name": "Ascomycete Phenotype Ontology",
+    "publications": [
+      {
+        "doi": "10.1093/database/bap001",
+        "pubmed": "20157474",
+        "title": "New mutant phenotype data curation system in the Saccharomyces Genome Database",
+        "year": 2010
+      }
+    ],
+    "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology/issues",
     "subjects": [
+      "Genomics",
       "Life Science",
-      "Cell Biology"
+      "Cell Biology",
+      "Phenomics"
     ],
     "twitter": "yeastgenome"
   },
@@ -10553,6 +10686,37 @@
     "description": "Record does not exist anymore: Protein-Protein Interaction Ontology. The record with identifier content https://doi.org/10.25504/FAIRsharing.e21b3k was invalid.Records previously linked: [3533]. ",
     "homepage": "http://psidev.sf.net",
     "name": "Protein-Protein Interaction Ontology"
+  },
+  "FAIRsharing.e2ed4e": {
+    "abbreviation": "GOLD ID",
+    "contact": {
+      "email": "tbreddy@lbl.gov",
+      "name": "TBK Reddy",
+      "orcid": "0000-0002-0871-5567"
+    },
+    "description": "Identifier schema for the Department of Energy Joint Genome Institute (DOE-JGI) Genomes OnLine Database (GOLD). The GOLD database is a web-based resource that hosts a large catalogue of genome and metagenome sequencing projects, and associated metadata, from around the world. GOLD IDs are unique accessions assigned by the JGI-GOLD database and are organized into five levels: Studies (Gs), Biosamples (Gb), Organisms (Go), Sequencing Projects (Gp), and Analysis Projects (Ga).",
+    "domains": [
+      "Taxonomic classification",
+      "Biological sample annotation",
+      "Analysis",
+      "Centrally registered identifier",
+      "Study design",
+      "Sequencing"
+    ],
+    "homepage": "https://registry.identifiers.org/registry/gold",
+    "name": "JGI-GOLD Identifiers",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkac974",
+        "title": "Twenty-five years of Genomes OnLine Database (GOLD): data updates and new features in v.9",
+        "year": 2022
+      }
+    ],
+    "subjects": [
+      "Metagenomics",
+      "Genomics",
+      "Phylogenetics"
+    ]
   },
   "FAIRsharing.e2zy7j": {
     "abbreviation": "apollo-ls",
@@ -11234,7 +11398,8 @@
     "description": "The Research Organization Registry (ROR) ID schema is the specification of the identifier for institutions in ROR. ROR is a global, community-led registry of open persistent identifiers for research organizations. ROR makes it easy for anyone or any system to disambiguate institution names and connect research organizations to researchers and research outputs.",
     "domains": [
       "Citation",
-      "Data retrieval"
+      "Data retrieval",
+      "Centrally registered identifier"
     ],
     "homepage": "https://ror.readme.io/docs/ror-identifier-pattern",
     "license": "CC0-1.0",
@@ -11314,8 +11479,9 @@
   "FAIRsharing.f8b3ec": {
     "abbreviation": "m4i",
     "description": "The ontology Metadata4Ing is developed within the NFDI Consortium NFDI4Ing with the aim of providing a framework for the semantic description of research data, with a particular focus on engineering sciences and neighbouring disciplines. This ontology allows a thorough description of the whole data generation process (experiment, observation, simulation), embracing the object of investigation, all sample and data manipulation procedures, a summary of the data files and the information contained, and all personal and institutional roles. The subordinate classes and relations can be built according to the two principles of inheritance and modularity. \"Inheritance\" means that a subclass inherits all properties of its superordinate class, possibly adding some new ones. Modularity means that all expansions are independent of each other; this makes possible for instance to generate expanded ontologies for any possible combinations of method × object of research.",
-    "homepage": "http://metadata4ing.org",
+    "homepage": "https://metadata4ing.org",
     "license": "CC-BY-4.0",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaWNHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6435da59153a976c6b09d30ac0ee96286c50a32c/Logo.png?disposition=inline",
     "name": "Metadata4Ing",
     "repository": "https://git.rwth-aachen.de/nfdi4ing/metadata4ing/metadata4ing",
     "subjects": [
@@ -11351,6 +11517,7 @@
     "homepage": "https://arks.org/",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline",
     "name": "Archival Resource Key Identifier",
+    "repository": "https://github.com/arks-org",
     "subjects": [
       "Data Management",
       "Subject Agnostic"
@@ -11494,13 +11661,17 @@
     "description": "UniProt protein identifiers are stable identifiers and should be used to cite UniProtKB entries. Upon integration into UniProtKB, each entry is assigned a unique accession number, which is called 'Primary (citable) accession number'. UniProtKB accession numbers consist of 6 or 10 alphanumeric characters in the format.",
     "domains": [
       "Data retrieval",
+      "Omics data analysis",
       "Publication",
       "Centrally registered identifier"
     ],
     "homepage": "https://www.uniprot.org/help/accession_numbers",
     "name": "UniProt Protein Identifier",
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Metaproteomics",
+      "Genomics",
+      "Proteomics"
     ]
   },
   "FAIRsharing.fe4816": {
@@ -11550,7 +11721,8 @@
     ],
     "subjects": [
       "Data Quality",
-      "Subject Agnostic"
+      "Subject Agnostic",
+      "Omics"
     ],
     "twitter": "contrib_roles"
   },
@@ -11630,7 +11802,7 @@
   },
   "FAIRsharing.fj07xj": {
     "abbreviation": "NCBITAXON",
-    "description": "The NCBI Taxonomy is a database of taxonomic information. It does not follow a single taxonomic treatise but rather attempts to incorporate phylogenetic and taxonomic knowledge from a variety of sources, including the published literature, web-based databases, and the advice of sequence submitters and outside taxonomy experts.",
+    "description": "The NCBI Taxonomy is a database of taxonomic information. It does not follow a single taxonomic treatise but rather attempts to incorporate phylogenetic and taxonomic knowledge from a variety of sources, including the published literature, web-based databases, and the advice of sequence submitters and outside taxonomy experts. Note: The NCBI Taxonomy database will be adding binomial species names to ~3,000 viruses in spring 2025. These changes reflect updates to the International Code of Virus Classification and Nomenclature (ICVCN) made by the International Committee on Taxonomy of Viruses (ICTV).",
     "domains": [
       "Taxonomic classification"
     ],
@@ -11661,7 +11833,9 @@
     "subjects": [
       "Taxonomy",
       "Phylogenetics",
-      "Life Science"
+      "Evolutionary Biology",
+      "Life Science",
+      "Omics"
     ]
   },
   "FAIRsharing.fmz635": {
@@ -12190,14 +12364,28 @@
   },
   "FAIRsharing.hFLKCn": {
     "abbreviation": "DOI",
+    "contact": {
+      "email": "jonathanmtclark@gmail.com",
+      "name": "Jonathan Clark",
+      "orcid": "0000-0001-9551-9662"
+    },
     "description": "The digital object identifier (DOI) system originated in a joint initiative of three trade associations in the publishing industry (International Publishers Association; International Association of Scientific, Technical and Medical Publishers; Association of American Publishers). The system was announced at the Frankfurt Book Fair 1997. The International DOI® Foundation (IDF) was created to develop and manage the DOI system, also in 1997. The DOI system was adopted as International Standard ISO 26324 in 2012. The DOI system implements the Handle System and adds a number of new features. The DOI system provides an infrastructure for persistent unique identification of objects of any type. The DOI system is designed to work over the Internet. A DOI name is permanently assigned to an object to provide a resolvable persistent network link to current information about that object, including where the object, or information about it, can be found on the Internet. While information about an object can change over time, its DOI name will not change. A DOI name can be resolved within the DOI system to values of one or more types of data relating to the object identified by that DOI name, such as a URL, an e-mail address, other identifiers and descriptive metadata. The DOI system enables the construction of automated services and transactions. Applications of the DOI system include but are not limited to managing information and documentation location and access; managing metadata; facilitating electronic transactions; persistent unique identification of any form of any data; and commercial and non-commercial transactions. The content of an object associated with a DOI name is described unambiguously by DOI metadata, based on a structured extensible data model that enables the object to be associated with metadata of any desired degree of precision and granularity to support description and services. The data model supports interoperability between DOI applications. The scope of the DOI system is not defined by reference to the type of content (format, etc.) of the referent, but by reference to the functionalities it provides and the context of use. The DOI system provides, within networks of DOI applications, for unique identification, persistence, resolution, metadata and semantic interoperability.",
     "domains": [
+      "Publication",
       "Centrally registered identifier"
     ],
     "homepage": "https://www.doi.org",
     "name": "Digital Object Identifier",
+    "publications": [
+      {
+        "doi": "10.1000/292",
+        "title": "DOI URI Scheme",
+        "year": 2024
+      }
+    ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Subject Agnostic"
     ]
   },
   "FAIRsharing.hakg7c": {
@@ -12826,12 +13014,24 @@
   },
   "FAIRsharing.jpxsv1": {
     "abbreviation": "MPO",
-    "description": "An ontology for describing microbial phenotypes",
+    "contact": {
+      "email": "shuichi.kawashima@gmail.com",
+      "name": "Shuichi Kawashima",
+      "orcid": "0000-0001-7883-3756"
+    },
+    "description": "An ontology for describing microbial phenotypes.",
     "domains": [
       "Phenotype"
     ],
     "homepage": "http://bioportal.bioontology.org/ontologies/MPO",
     "name": "Microbial Phenotype Ontology",
+    "publications": [
+      {
+        "doi": "10.1093/database/bay132",
+        "title": "TogoGenome/TogoStanza: modularized Semantic Web genome database",
+        "year": 2019
+      }
+    ],
     "subjects": [
       "Anatomy",
       "Microbiology"
@@ -13131,8 +13331,8 @@
     "abbreviation": "HP",
     "description": "The Human Phenotype Ontology has been developed to provide a structured and controlled vocabulary for the phenotypic features encountered in human hereditary and other disease. The goal is to provide resource for the computational analysis of the human phenome, with a focus on monogenic diseases listed in the Online Mendelian Inheritance in Man (OMIM) and Orphanet databases, for which annotations are also provided.",
     "domains": [
-      "Phenotype",
-      "Disease"
+      "Disease phenotype",
+      "Disorder"
     ],
     "homepage": "https://hpo.jax.org/",
     "license": "hpo",
@@ -13167,13 +13367,21 @@
         "pubmed": "18950739",
         "title": "The Human Phenotype Ontology: a tool for annotating and analyzing human hereditary disease",
         "year": 2008
+      },
+      {
+        "doi": "10.1093/nar/gkad1005",
+        "pubmed": "37953324",
+        "title": "The Human Phenotype Ontology in 2024: phenotypes around the world",
+        "year": 2024
       }
     ],
     "subjects": [
       "Genetics",
       "Phenomics",
       "Biomedical Science",
-      "Preclinical Studies"
+      "Omics",
+      "Preclinical Studies",
+      "Pathology"
     ],
     "twitter": "hp_ontology"
   },
@@ -13227,7 +13435,7 @@
       "Pseudogene",
       "Gene"
     ],
-    "homepage": "http://bioportal.bioontology.org/ontologies/1135",
+    "homepage": "https://bioportal.bioontology.org/ontologies/pseudo",
     "name": "Pseudogene",
     "publications": [
       {
@@ -13387,16 +13595,23 @@
   },
   "FAIRsharing.knp11s": {
     "abbreviation": "CMPO",
-    "description": "Cellular Microscopy Phenotype Ontology (CMPO) is a species neutral ontology for describing general phenotypic observations relating to the whole cell, cellular components, cellular processes and cell populations",
+    "contact": {
+      "email": "jupp@abi.ac.uk",
+      "name": "Simon Jupp",
+      "orcid": "0000-0002-0643-3144"
+    },
+    "description": "The Cellular Microscopy Phenotype Ontology (CMPO) provides a species-neutral controlled vocabulary for describing phenotypic qualities relating to the whole cell, cellular components, cellular processes and cell populations. Terms from CMPO are being used to annotate phenotype descriptions from high-content screening databases and cellular image repositories.",
     "domains": [
+      "Bioimaging",
       "Cell",
       "Microscopy",
+      "Imaging",
       "Cellular component",
       "Phenotype"
     ],
     "homepage": "http://www.ebi.ac.uk/cmpo/",
     "license": "Apache 2.0 License",
-    "name": "Cellular Microscopy Phenotype Ontology",
+    "name": "The Cellular Microscopy Phenotype Ontology",
     "publications": [
       {
         "doi": "10.1186/s13326-016-0074-0",
@@ -13407,7 +13622,8 @@
     ],
     "repository": "https://github.com/EBISPOT/CMPO",
     "subjects": [
-      "Cell Biology"
+      "Cell Biology",
+      "Phenomics"
     ]
   },
   "FAIRsharing.kpbna7": {
@@ -14141,6 +14357,7 @@
     "description": "STATO is a general-purpose STATistics Ontology. Its aim is to provide coverage for processes such as statistical tests, their conditions of applications, and information needed or resulting from statistical methods, such as probability distributions, variable, spread and variation metrics. STATO also covers aspects of experimental design and description of plots and graphical representations commonly used to provide visual cues of data distribution or layout and to assist review of the results.",
     "domains": [
       "Experimental measurement",
+      "Omics data analysis",
       "Graph",
       "Protocol",
       "Study design"
@@ -14151,6 +14368,7 @@
     "repository": "https://github.com/ISA-tools/stato",
     "subjects": [
       "Statistics",
+      "Omics",
       "Data Visualization"
     ]
   },
@@ -14238,8 +14456,12 @@
       "name": "Chris Mungall",
       "orcid": "0000-0002-6601-2165"
     },
-    "description": "This ontology represents spatial concepts, anatomical axes, gradients, regions, planes, sides, and surfaces. These concepts can be used at multiple biological scales and in a diversity of taxa, including plants, animals and fungi. The BSPO is used to provide a source of anatomical location descriptors for logically defining anatomical entity classes in anatomy ontologies.",
-    "homepage": "http://bioportal.bioontology.org/ontologies/BSPO",
+    "description": "The Biological SPatial Ontology (BSPO) ontology is representative of spatial concepts, anatomical axes, gradients, regions, planes, sides and surfaces. These concepts can be used at multiple biological scales and in a diversity of taxa, including plants, animals and fungi. The BSPO is used to provide a source of anatomical location descriptors for logically defining anatomical entity classes in anatomy ontologies.",
+    "domains": [
+      "Functional domain",
+      "Phenotype"
+    ],
+    "homepage": "https://github.com/obophenotype/biological-spatial-ontology",
     "license": "CC-BY-3.0",
     "name": "Biological SPatial Ontology",
     "publications": [
@@ -14250,10 +14472,13 @@
         "year": 2014
       }
     ],
-    "repository": "https://github.com/obophenotype/biological-spatial-ontology",
+    "repository": "https://github.com/obophenotype/biological-spatial-ontology/issues",
     "subjects": [
       "Anatomy",
-      "Life Science"
+      "Life Science",
+      "Physiology",
+      "Phenomics",
+      "Systems Biology"
     ]
   },
   "FAIRsharing.nft558": {
@@ -14483,7 +14708,7 @@
     "description": "The Flora Phenotype Ontology is a domain ontology for the description of plant characters. FLOPO contains more than 25000 phenotype and traits classes, the creation of FLOPO is data-driven: For each trait/phenotype class exists a taxon annotation in the underlying Floras.",
     "domains": [
       "Phenotype",
-      "Life cycle stage"
+      "Plant development stage"
     ],
     "homepage": "https://github.com/flora-phenotype-ontology/flopoontology",
     "license": "CC0-1.0",
@@ -14502,11 +14727,14 @@
         "year": 2016
       }
     ],
-    "repository": "https://github.com/flora-phenotype-ontology/flopoontology",
+    "repository": "https://github.com/flora-phenotype-ontology/flopoontology/issues",
     "subjects": [
       "Botany",
+      "Horticulture",
       "Biodiversity",
-      "Plant Anatomy"
+      "Plant Anatomy",
+      "Phenomics",
+      "Plant Cell Biology"
     ]
   },
   "FAIRsharing.nygmp7": {
@@ -15214,7 +15442,7 @@
       "name": "Adrien Coulet",
       "orcid": "0000-0002-1466-062X"
     },
-    "description": "The PHArmacogenomic RElationships Ontology (or PHARE) proposes concepts and roles to represent relationships of pharmacogenomics interest. Please note that this ontology has not been updated in BioPortal since 2012, and we cannot find a homepage for the resource. Please get in touch if you have any information.",
+    "description": "The PHArmacogenomic RElationships Ontology (or PHARE) proposes concepts and roles to represent relationships of pharmacogenomics interest. Please note that this ontology has not been updated in BioPortal since 2012.",
     "domains": [
       "Chemical entity",
       "Molecular interaction",
@@ -15417,7 +15645,7 @@
       "Disease course",
       "Infectious disease"
     ],
-    "homepage": "http://brd.bsvgateway.org/disease",
+    "homepage": "https://bioportal.bioontology.org/ontologies/ABD",
     "name": "Biosurveillance Resource Directory Disease Ontology",
     "publications": [
       {
@@ -15443,18 +15671,30 @@
     ]
   },
   "FAIRsharing.r41qhx": {
-    "abbreviation": "UPHENO",
-    "description": "The uPheno ontology integrates multiple phenotype ontologies into a unified cross-species phenotype ontology. Version 2 is the active release of the ontology, while version 1 should be considered deprecated. ",
+    "abbreviation": "uPheno",
+    "description": "The Unified Phenotype Ontology (uPheno) framework is a community effort providing unified integration layers over domain-specific phenotype ontologies. uPheno is comprised of (1) computational definitions of phenotype terms using ontology design patterns, (2) hierarchical species-neutral phenotype vocabulary terms grouped with species-specific counterparts, and (3) a mapping between species-specific ontologies.",
     "domains": [
+      "Expression data",
+      "Omics data analysis",
       "Phenotype"
     ],
     "homepage": "https://github.com/obophenotype/upheno",
     "license": "CC0-1.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa01CIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3f5258d2bcf30a7e127b5a9fe209b27e25e88883/up.png?disposition=inline",
-    "name": "Unified phenotype ontology",
+    "name": "The Unified Phenotype Ontology",
+    "publications": [
+      {
+        "doi": "10.1093/genetics/iyaf027",
+        "pubmed": "40048704",
+        "title": "The Unified Phenotype Ontology : a framework for cross-species integrative phenomics",
+        "year": 2025
+      }
+    ],
+    "repository": "https://github.com/obophenotype/upheno/issues",
     "subjects": [
       "Evolutionary Biology",
-      "Phenomics"
+      "Phenomics",
+      "Omics"
     ]
   },
   "FAIRsharing.r7Kwy7": {
@@ -15520,7 +15760,7 @@
     "domains": [
       "Electronic health record"
     ],
-    "homepage": "https://pgxo.loria.fr",
+    "homepage": "https://pgxo.loria.fr/html/pgxo.html",
     "license": "CC BY-NC 4.0",
     "name": "PGxO",
     "publications": [
@@ -16382,8 +16622,8 @@
     "abbreviation": "PSI-MS CV",
     "description": "The PSI-MS Controlled Vocabulary is developed in common with the PSI-Proteomics Informatics group. It consists of a large collection of structured terms covering description and use of Mass Spectrometry instrumentation as well as Protein Identification and Quantitation software. The source of the terms are multiple: they include vocabulary and definitions in chapter 12 of the IUPAC nomenclature book, instrument and software vendors and developers and other user-submitted terms. Although its structure and use is linked to mzML, mzIdentML and mzQuantML, it is dynamically maintained in a OBO format. The PSI-Mass Spectrometry (MS) CV contains all the terms used in the PSI MS–related data standards. The CV contains a logical hierarchical structure to ensure ease of maintenance and the development of software that makes use of complex semantics. The CV contains terms required for a complete description of an MS analysis pipeline used in proteomics, including sample labeling, digestion enzymes, instrumentation parts and parameters, software used for identification and quantification of peptides/proteins and the parameters and scores used to determine their significance. Owing to the range of topics covered by the CV, collaborative development across several PSI working groups, including proteomics research groups, instrument manufacturers and software vendors, was necessary.",
     "domains": [
-      "Mass spectrometry assay",
-      "Protein"
+      "Data acquisition",
+      "Mass spectrometry assay"
     ],
     "homepage": "http://www.psidev.info/groups/mass-spectrometry#controlled",
     "license": "CC-BY-4.0",
@@ -16399,7 +16639,12 @@
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "subjects": [
       "Proteomics",
-      "Life Science"
+      "Scientific Instrument Design",
+      "Life Science",
+      "Metabolomics"
+    ],
+    "user_defined_tags": [
+      "lipidomics"
     ]
   },
   "FAIRsharing.szexty": {
@@ -16487,7 +16732,8 @@
     ],
     "subjects": [
       "Anatomy",
-      "Life Science"
+      "Life Science",
+      "Phenomics"
     ]
   },
   "FAIRsharing.tbep2b": {
@@ -16855,7 +17101,7 @@
   "FAIRsharing.vc9xtj": {
     "abbreviation": "GFO-BIO",
     "description": "GFO-Bio is a biological core ontology based on the top-level ontology General Formal Ontology (GFO).",
-    "homepage": "http://www.onto-med.de/ontologies/gfo-bio/index.jsp",
+    "homepage": "https://www.onto-med.de/ontologies/gfo-bio/",
     "name": "General Formal Ontology: Biology",
     "subjects": [
       "Life Science"
@@ -16892,6 +17138,10 @@
       "orcid": "0000-0002-7509-4801"
     },
     "description": "NIF Standard ontology (NIFSTD) is a core component of Neuroscience Information Framework (NIF) project (http://neuinfo.org), a semantically enhanced portal for accessing and integrating neuroscience data, tools and information. NIFSTD includes a set of modular ontologies that provide a comprehensive collection of terminologies to describe neuroscience data and resources.",
+    "domains": [
+      "Disease",
+      "Brain"
+    ],
     "homepage": "http://ontology.neuinfo.org",
     "license": "CC-BY-4.0",
     "name": "Neuroscience Information Framework Standard Ontology",
@@ -17425,7 +17675,8 @@
     "abbreviation": "BFO",
     "description": "The Basic Formal Ontology (BFO, also known via its ISO label as 'ISO/IEC 21838-2:2021 Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)') is an ontology that is conformant to the requirements specified for top-level ontologies in ISO/IEC 21838‑1. BFO is a small, upper level ontology that is designed for use in supporting information retrieval, analysis and integration in scientific and other domains. BFO is a genuine upper ontology. Thus it does not contain physical, chemical, biological or other terms which would properly fall within the coverage domains of the special sciences. BFO is used by more than 250 ontology-driven endeavors throughout the world. ",
     "domains": [
-      "Data retrieval"
+      "Data retrieval",
+      "Data identity and mapping"
     ],
     "homepage": "https://www.iso.org/standard/74572.html",
     "license": "CC-BY-4.0",
@@ -17433,6 +17684,9 @@
     "repository": "https://github.com/bfo-ontology/BFO",
     "subjects": [
       "Subject Agnostic"
+    ],
+    "user_defined_tags": [
+      "Interoperability"
     ]
   },
   "FAIRsharing.wd68xv": {

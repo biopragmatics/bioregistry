@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
-class OLSBroken(RuntimeError):
+class OLSBrokenError(RuntimeError):
     """Raised when the OLS is having a problem."""
 
 
@@ -75,7 +75,7 @@ def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
         "User-Agent": f"bioregistry v{get_version()}",
     }
     res = requests.get(
-        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers
+        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers, timeout=300
     )
     res.raise_for_status()
     res_json = res.json()
@@ -167,16 +167,16 @@ def get_ols_descendants(
     force_download: bool = False,
     get_identifier: IdentifierGetter | None = None,
     clean: IdentifierCleaner | None = None,
-) -> Mapping[str, Mapping[str, Any]]:
+) -> dict[str, dict[str, Any]]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
-    res = requests.get(url)
+    res = requests.get(url, timeout=15)
     res.raise_for_status()
     res_json = res.json()
     try:
         terms = res_json["_embedded"]["terms"]
     except KeyError:
-        raise OLSBroken from None
+        raise OLSBrokenError from None
     return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 
@@ -186,7 +186,7 @@ def _process_ols(
     terms: list[dict[str, Any]],
     clean: IdentifierCleaner | None = None,
     get_identifier: IdentifierGetter | None = None,
-) -> Mapping[str, Mapping[str, Any]]:
+) -> dict[str, dict[str, Any]]:
     if clean is None:
         clean = _clean
     if get_identifier is None:

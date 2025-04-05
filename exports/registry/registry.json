@@ -1,5 +1,6 @@
 {
-  "3dmet": {
+  "_3dmet": {
+    "comment": "Website has been down since 2023/2024",
     "deprecated": true,
     "description": "3DMET is a database collecting three-dimensional structures of natural metabolites.",
     "example": "B00162",
@@ -23,7 +24,7 @@
     },
     "name": "3D Metabolites",
     "pattern": "^B\\d{5}$",
-    "preferred_prefix": "3dmet",
+    "preferred_prefix": "_3dmet",
     "providers": [
       {
         "code": "bio2rdf",
@@ -48,9 +49,12 @@
         "year": 2013
       }
     ],
+    "synonyms": [
+      "3dmet"
+    ],
     "uri_format": "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=$1"
   },
-  "4dn.biosource": {
+  "_4dn.biosource": {
     "contact": {
       "email": "Job.Dekker@umassmed.edu",
       "name": "Job Dekker",
@@ -72,7 +76,7 @@
     },
     "name": "4D Nucleome Data Portal Biosource",
     "pattern": "^4DN[A-Z]{2}[A-Z0-9]{7}$",
-    "preferred_prefix": "4dn.biosource",
+    "preferred_prefix": "_4dn.biosource",
     "providers": [
       {
         "code": "bio2rdf",
@@ -92,12 +96,13 @@
       }
     ],
     "synonyms": [
-      "4DN"
+      "4DN",
+      "4dn.biosource"
     ],
     "twitter": "4dn_dcic",
     "uri_format": "https://data.4dnucleome.org/biosources/$1"
   },
-  "4dn.replicate": {
+  "_4dn.replicate": {
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -128,7 +133,10 @@
     "example": "4DNESWX1J3QU",
     "homepage": "https://data.4dnucleome.org/experiment-set-replicates/",
     "name": "4D Nucleome Data Portal Experiment Replicate",
-    "preferred_prefix": "4dn.replicate",
+    "preferred_prefix": "_4dn.replicate",
+    "synonyms": [
+      "4dn.replicate"
+    ],
     "uri_format": "https://data.4dnucleome.org/experiment-set-replicates/$1"
   },
   "aaindex": {
@@ -1420,7 +1428,7 @@
     ],
     "repository": "https://github.com/insect-morphology/aism",
     "uri_format": "http://purl.obolibrary.org/obo/AISM_$1",
-    "version": "2024-06-20"
+    "version": "2025-03-18"
   },
   "alfred": {
     "comment": "This resource doesn't exist on the web anymore",
@@ -2409,6 +2417,7 @@
       "https://n2t.net/e/about.html",
       "https://github.com/biopragmatics/bioregistry/pull/1141"
     ],
+    "repository": "https://github.com/arks-org",
     "twitter": "ARKsInTheOpen",
     "uri_format": "http://n2t.net/ark:$1"
   },
@@ -3068,8 +3077,8 @@
     "description": "The American Type Culture Collection (ATCC) is a private, nonprofit biological resource center whose mission focuses on the acquisition, authentication, production, preservation, development and distribution of standard reference microorganisms, cell lines and other materials for research in the life sciences.",
     "example": "11303",
     "example_extras": [
-      "ccl-1.4",
-      "ccl-1"
+      "ccl-1",
+      "ccl-1.4"
     ],
     "homepage": "https://www.lgcstandards-atcc.org",
     "keywords": [
@@ -3638,7 +3647,7 @@
     "preferred_prefix": "BCGO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/BCGO_$1",
     "repository": "https://github.com/obi-bcgo/bcgo",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/bcgo/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F$1",
+    "uri_format": "http://purl.obolibrary.org/obo/BCGO_$1",
     "version": "2015-07-08"
   },
   "bcio": {
@@ -4025,7 +4034,9 @@
     "example": "0000001",
     "homepage": "http://ifomis.org/bfo/",
     "keywords": [
+      "data identity and mapping",
       "data retrieval",
+      "interoperability",
       "obo",
       "ontology",
       "subject agnostic"
@@ -4843,7 +4854,7 @@
       "orcid": "0000-0002-6601-2165"
     },
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/69/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/70/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "keywords": [
@@ -5172,9 +5183,9 @@
     "description": "BioPortal is an open repository of biomedical ontologies that provides access via Web services and Web browsers to ontologies developed in OWL, RDF, OBO format and Protégé frames. BioPortal functionality includes the ability to browse, search and visualize ontologies.",
     "example": "1046",
     "example_extras": [
+      "FBBi",
       "SEPIO",
-      "pseudo",
-      "FBBi"
+      "pseudo"
     ],
     "homepage": "http://bioportal.bioontology.org/",
     "keywords": [
@@ -5287,6 +5298,7 @@
     },
     "mastodon": "bioregistry@fosstodon.org",
     "name": "Bioregistry",
+    "pattern": "^[A-Za-z_][A-Za-z0-9\\.\\-_]*$",
     "preferred_prefix": "bioregistry",
     "publications": [
       {
@@ -6305,10 +6317,12 @@
     "homepage": "http://www.brenda-enzymes.org",
     "keywords": [
       "cell",
+      "cell biology",
       "enzyme",
       "enzymology",
       "life science",
       "obo",
+      "omics",
       "ontology",
       "organ",
       "reaction data",
@@ -7799,6 +7813,13 @@
         "homepage": "https://www.nextprot.org/",
         "name": "neXtProt Cellosaurus Browser",
         "uri_format": "https://www.nextprot.org/term/CVCL_$1"
+      },
+      {
+        "code": "obo.incorrect",
+        "description": "OBO PURL generated by incorrectly configured OBO file - this is not registered in OBO Foundry.",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "OBO (Incorrect)",
+        "uri_format": "http://purl.obolibrary.org/obo/Cellosaurus#CVCL_$1"
       }
     ],
     "publications": [
@@ -10118,7 +10139,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.238"
+    "version": "2.241"
   },
   "cmpo": {
     "contact": {
@@ -10161,6 +10182,41 @@
     "uri_format": "http://www.ebi.ac.uk/cmpo/CMPO_$1",
     "version": "2017-12-19"
   },
+  "cncb.gwh": {
+    "contact": {
+      "email": "baoym@big.ac.cn",
+      "name": "Yiming Bao",
+      "orcid": "0000-0002-9922-9723"
+    },
+    "contributor": {
+      "email": "palayoor.n@northeastern.edu",
+      "github": "nalikapalayoor",
+      "name": "Nalika Palayoor",
+      "orcid": "0009-0008-8406-631X"
+    },
+    "description": "The China National Center for Bioinformation's (CNCB) Genome Warehouse (GWH) is a public repository holding genetic information for a wide range of species including humans, plants, animals, and microorganisms. Identifiers in this resource correspond to genomes of various species. The goal of the resource is to make genomic data accessible to researchers in areas like precision medicine and biotechnology.",
+    "example": "167047",
+    "github_request_issue": 1452,
+    "homepage": "https://ngdc.cncb.ac.cn/gwh/browse/genome",
+    "name": "CNCB Genome Warehouse",
+    "pattern": "^\\d{6}$",
+    "preferred_prefix": "cncb.gwh",
+    "publications": [
+      {
+        "doi": "10.1093/gpbjnl/qzaf010",
+        "pubmed": "39977364",
+        "title": "The Updated Genome Warehouse: Enhancing Data Value, Security, and Usability to Address Data Expansion",
+        "year": 2025
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://ngdc.cncb.ac.cn/gwh/Genome/$1/show"
+  },
   "cnrs": {
     "comment": "Motivated to add because of appearance in ROR",
     "contributor": {
@@ -10171,12 +10227,15 @@
     },
     "description": "identifier for an academic research group issued by the CNRS",
     "example": "UMR7315",
+    "example_extras": [
+      "UPS76"
+    ],
     "homepage": "https://annuaire.cnrs.fr",
     "mappings": {
       "wikidata": "P4550"
     },
     "name": "French National Center for Scientific Research - Research Group Identifier",
-    "pattern": "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY)\\d+$",
+    "pattern": "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY|UPS)\\d+$",
     "preferred_prefix": "cnrs",
     "uri_format": "https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=$1&p_origine_appel=u"
   },
@@ -12298,6 +12357,7 @@
       "citation",
       "classification",
       "data quality",
+      "omics",
       "publication",
       "resource metadata",
       "subject agnostic"
@@ -13968,10 +14028,10 @@
     "description": "The Dewey Decimal Classification (DDC) system, devised by library pioneer Melvil Dewey in the 1870s and owned by OCLC since 1988, provides a dynamic structure for the organization of library collections. Now in its 23rd edition, and available in print and Web versions, the DDC is the world's most widely used library classification system.",
     "example": "325.4",
     "example_extras": [
-      "325.4-325.9",
-      "325",
+      "3",
       "32",
-      "3"
+      "325",
+      "325.4-325.9"
     ],
     "homepage": "http://www.oclc.org/dewey/",
     "mappings": {
@@ -15494,11 +15554,15 @@
     },
     "description": "A controlled vocabulary to support the study of transcription in the developing mouse brain",
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dmba.obo",
+    "download_owl": "https://purl.brain-bican.org/ontology/dmbao/releases/2025-02-10/dmbao.owl",
     "example": "15567",
     "homepage": "https://developingmouse.brain-map.org/",
     "keywords": [
       "ontology"
     ],
+    "mappings": {
+      "ols": "dmba"
+    },
     "name": "Developing Mouse Brain Atlas",
     "pattern": "^\\d+$",
     "preferred_prefix": "DMBA",
@@ -15511,7 +15575,8 @@
         "uri_format": "https://biopragmatics.github.io/providers/dmba/$1"
       }
     ],
-    "uri_format": "https://purl.brain-bican.org/ontology/dmbao/DMBA_$1"
+    "uri_format": "https://purl.brain-bican.org/ontology/dmbao/DMBA_$1",
+    "version": "2025-02-10"
   },
   "doap": {
     "contact": {
@@ -15625,6 +15690,11 @@
   "doi": {
     "banana": "doi",
     "comment": "The [DOI resolution factsheet](https://www.doi.org/factsheets/DOIProxy.html) specifies that `https://doi.org/DOI` is the preferred format:\n\n> Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (preferred)). The resolution of the DOI name in this case depends on the use of URL syntax: the example DOI name doi:10.10.123/456 would be resolved from the address: \"https://doi.org/10.123/456\". Any standard browser encountering a DOI name in this form will be able to resolve it. The proxy service (both doi.org and the **earlier but no longer preferred** dx.doi.org) is accessible over IPv6, and supports DNSSEC. The proxy servers respond to HTTPS (**preferred**) as well as HTTP requests.",
+    "contact": {
+      "email": "jonathanmtclark@gmail.com",
+      "name": "Jonathan Clark",
+      "orcid": "0000-0001-9551-9662"
+    },
     "contributor_extras": [
       {
         "email": "cjmungall@lbl.gov",
@@ -15641,17 +15711,19 @@
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
     "example": "10.1038/s41597-022-01807-3",
     "example_extras": [
-      "10.21/FQSQT4T3",
-      "10.1333/s00897980202a",
-      "10.1139/z02-135",
       "10.1016/j.foodchem.2008.11.065",
-      "10.1093/acprof:oso/9780195159561.001.1"
+      "10.1093/acprof:oso/9780195159561.001.1",
+      "10.1139/z02-135",
+      "10.1333/s00897980202a",
+      "10.21/FQSQT4T3"
     ],
     "homepage": "https://www.doi.org/",
     "keywords": [
       "bibliography",
       "centrally registered identifier",
-      "knowledge and information systems"
+      "knowledge and information systems",
+      "publication",
+      "subject agnostic"
     ],
     "mappings": {
       "biocontext": "DOI",
@@ -15710,6 +15782,13 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/doi/$1"
+      }
+    ],
+    "publications": [
+      {
+        "doi": "10.1000/292",
+        "title": "DOI URI Scheme",
+        "year": 2024
       }
     ],
     "rdf_uri_format": "http://dx.doi.org/$1",
@@ -15909,7 +15988,7 @@
     ],
     "twitter": "diseaseontology",
     "uri_format": "http://purl.obolibrary.org/obo/DOID_$1",
-    "version": "2025-02-03"
+    "version": "2025-03-03"
   },
   "dolce": {
     "comment": "This resource doesn't exist anymore",
@@ -16101,6 +16180,47 @@
       }
     ],
     "uri_format": "http://doqcs.ncbs.res.in/template.php?&y=pathwaydetails&pn=$1"
+  },
+  "dpbo": {
+    "contact": {
+      "email": "k.dumschott@fz-juelich.de",
+      "github": "kdumschott",
+      "name": "Kathryn Dumschott",
+      "orcid": "0000-0002-9905-4011"
+    },
+    "contributor": {
+      "email": "h.doerpholz@fz-juelich.de",
+      "github": "Hannah-Doerpholz",
+      "name": "Hannah Dörpholz",
+      "orcid": "0000-0002-0476-9699"
+    },
+    "description": "With the DataPLANT biology ontology (DPBO), DataPLANT provides an intermediate ontology that acts as a broker and bridge between the individual researcher/domain experts and main ontology providers. DPBO enables easy and agile collection of missing vocabulary as well as relationships between terms for (meta)data annotation using DataPLANT’s Swate tool.",
+    "download_obo": "https://raw.githubusercontent.com/nfdi4plants/nfdi4plants_ontology/refs/heads/main/dpbo.obo",
+    "example": "0010015",
+    "github_request_issue": 1466,
+    "homepage": "https://www.nfdi4plants.org/",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-4.0",
+    "name": "DataPLANT Biology Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "dpbo",
+    "publications": [
+      {
+        "doi": "10.11588/heibooks.1288.c18067",
+        "title": "DataPLANT - Harnessing the Power of Ontologies for FAIR Research Data Management",
+        "year": 2023
+      }
+    ],
+    "repository": "https://github.com/nfdi4plants/nfdi4plants_ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://purl.org/nfdi4plants/ontology/dpbo/DPBO_$1"
   },
   "dpo": {
     "comment": "DPO is a subset of terms from FBcv",
@@ -16328,6 +16448,27 @@
     "pattern": "^\\w+$",
     "preferred_prefix": "dragondb.protein",
     "uri_format": "http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide"
+  },
+  "drc.filenumber": {
+    "contributor": {
+      "email": "egon.willighagen@maastrichtuniversity.nl",
+      "github": "egonw",
+      "name": "Egon Willighagen",
+      "orcid": "0000-0001-7542-0286"
+    },
+    "description": "Dutch Research Council file numbers are used for approved grants.",
+    "example": "osf232097",
+    "github_request_issue": 1460,
+    "homepage": "https://www.nwo.nl/en/",
+    "name": "Dutch Research Council File Number",
+    "preferred_prefix": "drc.filenumber",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.nwo.nl/en/projects/$1"
   },
   "drduke": {
     "description": "identifier for chemicals linked to information on occurrence in plants",
@@ -16769,11 +16910,11 @@
     "description": "The Leibniz Institute DSMZ is the most diverse biological resource center in the world and one of the largest collections of microorganisms and cell cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages, plant viruses, genomic bacterial DNA as well as human and animal cell lines). The following designations are used as part of local unique identifiers:\n\n- `PC`: positive control\n- `NC`: negative control\n- `AS`: antiserum\n- `PV`: plant viruses\n- `RT`: recommended test\n- `ACC`: human or animal cell line\n- `DSM`: microorganism cell line",
     "example": "ACC-1",
     "example_extras": [
-      "DSM-2",
-      "RT-0753",
-      "PC-0754",
       "AS-0753",
-      "PV-0998"
+      "DSM-2",
+      "PC-0754",
+      "PV-0998",
+      "RT-0753"
     ],
     "homepage": "https://www.dsmz.de",
     "mappings": {
@@ -17059,10 +17200,10 @@
     ],
     "example_extras": [
       "2",
-      "2.3",
-      "2.3.1",
       "2.-.-.-",
+      "2.3",
       "2.3.-.-",
+      "2.3.1",
       "2.3.1.-",
       "2.3.1.n12",
       "3.1.26.n2",
@@ -17832,8 +17973,7 @@
       "data transformation",
       "life science",
       "obo",
-      "ontology",
-      "subject agnostic"
+      "ontology"
     ],
     "mappings": {
       "aberowl": "EDAM",
@@ -18105,7 +18245,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo/",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.75.0"
+    "version": "3.76.0"
   },
   "ega.dataset": {
     "contact": {
@@ -22357,6 +22497,7 @@
       "aberowl": "FMA",
       "bartoc": "571",
       "biocontext": "FMA",
+      "biolink": "FMA",
       "bioportal": "FMA",
       "edam": "1182",
       "fairsharing": "FAIRsharing.x56jsy",
@@ -23024,12 +23165,15 @@
   "funderregistry": {
     "description": "The Funder Registry is an open registry of persistent identifiers for grant-giving organizations around the world.",
     "example": "100000001",
+    "example_extras": [
+      "501100001230"
+    ],
     "homepage": "https://www.crossref.org/",
     "mappings": {
       "miriam": "funderregistry"
     },
     "name": "FunderRegistry",
-    "pattern": "^\\d{9,9}$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "funderregistry",
     "providers": [
       {
@@ -23223,7 +23367,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2025-01-14"
+    "version": "2025-02-28"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -25336,8 +25480,8 @@
     "description": "The Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects, and making summary data available for the wider scientific community (from https://gnomad.broadinstitute.org).",
     "example": "1-55516888-G-GA",
     "example_extras": [
-      "M-8602-T-C",
-      "DUP_2_5708"
+      "DUP_2_5708",
+      "M-8602-T-C"
     ],
     "github_request_issue": 695,
     "homepage": "https://gnomad.broadinstitute.org",
@@ -27182,7 +27326,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/HANCESTRO_$1",
     "repository": "https://github.com/EBISPOT/ancestro",
     "uri_format": "http://purl.obolibrary.org/obo/HANCESTRO_$1",
-    "version": "2024-08-19"
+    "version": "2025-02-24"
   },
   "hao": {
     "contact": {
@@ -27481,6 +27625,7 @@
     "homepage": "https://www.handle.net/",
     "keywords": [
       "centrally registered identifier",
+      "omics",
       "subject agnostic"
     ],
     "mappings": {
@@ -27635,7 +27780,7 @@
       "orcid": "0000-0002-8380-5247"
     },
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
-    "download_owl": "http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/HGNC/2/hgnc.owl",
     "example": "16793",
     "homepage": "http://www.genenames.org",
     "keywords": [
@@ -27884,11 +28029,11 @@
     "description": "The HGVS Nomenclature is an internationally-recognized standard for the description of DNA, RNA and protein sequence variants. It is used to convey variants in clinical reports and to share variants in publications and databases. The HGVS Nomenclature is administered by the [HGVS Variant Nomenclature Committee (HVNC)](https://hgvs-nomenclature.org/stable/hvnc/) under the auspices of the [Human Genome Organization (HUGO)](https://hugo-int.org/).",
     "example": "NP_003997.1:p.Trp24Cys",
     "example_extras": [
-      "NG_012337.3(NM_003002.4):c.274G>T",
-      "NG_012337.3(NM_003002.4):r.(274g>u)",
-      "NC_000011.10:g.112088970del",
+      "GRCh38(chr11):g.112088970del",
       "NC_000011.10(NM_001276503.2):c.169+998del",
-      "GRCh38(chr11):g.112088970del"
+      "NC_000011.10:g.112088970del",
+      "NG_012337.3(NM_003002.4):c.274G>T",
+      "NG_012337.3(NM_003002.4):r.(274g>u)"
     ],
     "github_request_issue": 1032,
     "homepage": "https://hgvs-nomenclature.org/stable/background/simple/",
@@ -28743,26 +28888,25 @@
     "homepage": "http://www.human-phenotype-ontology.org/",
     "keywords": [
       "biomedical science",
-      "disease",
+      "disease phenotype",
+      "disorder",
       "genetics",
-      "industry",
       "obo",
+      "omics",
       "ontology",
+      "pathology",
       "phenomics",
-      "phenotype",
       "preclinical studies"
     ],
     "license": "hpo",
     "logo": "https://raw.githubusercontent.com/obophenotype/human-phenotype-ontology/master/logo/HPO-logo-black_small.png",
     "mappings": {
-      "aberowl": "HP_O",
+      "aberowl": "HPO",
       "bartoc": "1937",
       "biocontext": "HPO",
-      "bioportal": "HP_O",
       "fairsharing": "FAIRsharing.kbtt7f",
       "hl7": "2.16.840.1.113883.6.339",
       "integbio": "nbdc02559",
-      "lov": "hpo",
       "miriam": "hp",
       "n2t": "hp",
       "obofoundry": "hp",
@@ -29516,13 +29660,13 @@
       "C91.Z0"
     ],
     "example_extras": [
-      "V20",
-      "G00",
       "A01.1",
-      "XVIII",
-      "R25-R29",
+      "G00",
       "R25",
-      "R25.3"
+      "R25-R29",
+      "R25.3",
+      "V20",
+      "XVIII"
     ],
     "homepage": "https://icd.who.int/browse10",
     "keywords": [
@@ -29635,13 +29779,13 @@
     ],
     "example_extras": [
       "C00-D49",
-      "U49",
       "C34",
       "C34.90",
       "C4A.8",
       "C91.Z",
       "C91.Z0",
-      "T37.0X1A"
+      "T37.0X1A",
+      "U49"
     ],
     "homepage": "https://www.icd10data.com/ICD10CM",
     "keywords": [
@@ -30275,7 +30419,7 @@
       "obo",
       "ontology"
     ],
-    "license": "CC-BY-3.0",
+    "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "ICO",
       "biocontext": "ICO",
@@ -30291,7 +30435,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ICO_$1",
     "repository": "https://github.com/ICO-ontology/ICO",
     "uri_format": "http://purl.obolibrary.org/obo/ICO_$1",
-    "version": "1.0.187"
+    "version": "2025-03-15"
   },
   "ideal": {
     "contact": {
@@ -31079,9 +31223,9 @@
     "description": "Shorthand representations of languages and their subtypes",
     "example": "en-GB",
     "example_extras": [
-      "en",
+      "aaf",
       "ar-SA",
-      "aaf"
+      "en"
     ],
     "homepage": "http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
     "mappings": {
@@ -31146,19 +31290,19 @@
     },
     "description": "IGSN is a globally unique and persistent identifier for material samples and specimens.  IGSNs are obtained from IGSN e.V. Agents.",
     "example": "AU124",
-    "homepage": "http://www.geosamples.org/",
+    "homepage": "https://ev.igsn.org/home",
     "keywords": [
       "archaeology",
-      "citation",
+      "biological sample",
+      "centrally registered identifier",
       "data management",
       "earth science",
       "environmental science",
       "geochemistry",
       "geology",
       "hydrogeology",
-      "persistent identifier",
-      "physical samples",
-      "resource metadata"
+      "omics",
+      "physical samples"
     ],
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline",
     "mappings": {
@@ -31166,7 +31310,7 @@
       "miriam": "igsn",
       "n2t": "igsn"
     },
-    "name": "International Geo Sample Number",
+    "name": "International Generic Sample Number",
     "pattern": "^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$",
     "preferred_prefix": "igsn",
     "publications": [
@@ -31977,7 +32121,7 @@
         "uri_format": "https://scholia.toolforge.org/inchikey/$1"
       }
     ],
-    "uri_format": "http://legacy.chemspider.com/inchikey=$1"
+    "uri_format": "https://www.chemspider.com/search?params=$1"
   },
   "informall": {
     "appears_in": [
@@ -32732,8 +32876,8 @@
     "download_owl": "http://aber-owl.net/media/ontologies/IOBC/25/iobc.owl",
     "example": "200906038218908385",
     "example_extras": [
-      "AC21_cat",
       "AC21",
+      "AC21_cat",
       "OWLClass_00000000000000000321"
     ],
     "homepage": "https://github.com/kushidat/IOBC",
@@ -32968,7 +33112,10 @@
   },
   "isbn": {
     "description": "The International Standard Book Number (ISBN) is for identifying printed books.",
-    "example": "9781584885658",
+    "example": "9789211613865",
+    "example_extras": [
+      "978-92-1-161386-5"
+    ],
     "homepage": "http://isbndb.com/",
     "keywords": [
       "bibliography"
@@ -33012,7 +33159,7 @@
       "ISBN-10",
       "ISBN-13"
     ],
-    "uri_format": "http://isbndb.com/search-all.html?kw=$1"
+    "uri_format": "https://isbnsearch.org/isbn/$1"
   },
   "ised": {
     "description": "ISED catalogues the influenza sequence and epitope information obtained in countries worldwide and currently hosts a total of 49368 influenza A and 4761 influenza B virus sequence data including pandemic A/H1N1 2009 virus sequences collected in 42 countries, and a total of 545 amantadine-resistant influenza virus sequences collected in Korea.",
@@ -35689,6 +35836,7 @@
       "ontology"
     ],
     "license": "CC-BY-4.0",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaWNHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6435da59153a976c6b09d30ac0ee96286c50a32c/Logo.png?disposition=inline",
     "mappings": {
       "bartoc": "20402",
       "fairsharing": "FAIRsharing.f8b3ec",
@@ -36451,7 +36599,7 @@
   },
   "mba": {
     "contact": {
-      "email": "chinhda@alleninstitute.org",
+      "email": "cellsemantics@gmail.com",
       "name": "Allen Institute for Brain Science"
     },
     "contributor": {
@@ -36462,13 +36610,15 @@
     },
     "description": "A controlled vocabulary to support the study of transcription in the mouse brain",
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-mba.obo",
+    "download_owl": "https://purl.brain-bican.org/ontology/mbao/releases/2025-02-10/mbao.owl",
     "example": "688",
     "homepage": "https://mouse.brain-map.org",
     "keywords": [
       "ontology"
     ],
     "mappings": {
-      "bioportal": "ABA-AMB"
+      "bioportal": "ABA-AMB",
+      "ols": "mba"
     },
     "name": "Mouse Brain Atlas",
     "pattern": "^\\d+$",
@@ -36482,7 +36632,8 @@
         "uri_format": "https://biopragmatics.github.io/providers/mba/$1"
       }
     ],
-    "uri_format": "https://purl.brain-bican.org/ontology/mbao/MBA_$1"
+    "uri_format": "https://purl.brain-bican.org/ontology/mbao/MBA_$1",
+    "version": "2025-02-10"
   },
   "mcc": {
     "contact": {
@@ -40141,7 +40292,7 @@
     "repository": "https://github.com/monarch-initiative/mondo",
     "twitter": "MonarchInit",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2025-02-04"
+    "version": "2025-03-04"
   },
   "mop": {
     "contact": {
@@ -40580,7 +40731,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MS_$1",
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "uri_format": "http://purl.obolibrary.org/obo/MS_$1",
-    "version": "4.1.190"
+    "version": "4.1.191"
   },
   "msigdb": {
     "contributor": {
@@ -40627,6 +40778,7 @@
     "keywords": [
       "annotation",
       "experimental measurement",
+      "functional magnetic resonance imaging",
       "mass spectrum",
       "metabolomics",
       "nmr",
@@ -41372,8 +41524,8 @@
     "description": "Identifiers for missions associated with experiments that investigate biological and health responses of terrestrial life to spaceflight",
     "example": "ARCBedrest",
     "example_extras": [
-      "STS-46",
-      "Bion 11"
+      "Bion 11",
+      "STS-46"
     ],
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
@@ -41411,9 +41563,9 @@
     "description": "Identifiers for payloads associated with experiments that investigate biological and health responses of terrestrial life to spaceflight",
     "example": "VEG-03D",
     "example_extras": [
+      "HyperG2-SIMBA2",
       "NanoRacks-UF-Squids-1",
-      "PSE.02",
-      "HyperG2-SIMBA2"
+      "PSE.02"
     ],
     "github_request_issue": 1298,
     "homepage": "https://www.nasa.gov/osdr",
@@ -42211,7 +42363,7 @@
       "uniprot.taxonomy"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/NCBITaxon_$1",
-    "version": "2024-11-25"
+    "version": "2025-03-13"
   },
   "nci.drug": {
     "description": "identifier of an entry in the NCI Drug Dictionary",
@@ -42253,15 +42405,18 @@
       "scdo"
     ],
     "contact": {
-      "email": "haendel@ohsu.edu",
-      "github": "mellybelly",
-      "name": "Melissa Haendel",
-      "orcid": "0000-0001-9114-8737"
+      "email": "ncithesaurus@mail.nih.gov",
+      "name": "NCI Thesaurus Mailbox"
     },
     "description": "NCI Thesaurus (NCIt) provides reference terminology covering vocabulary for clinical care, translational and basic research, and public information and administrative activities, providing a stable and unique identification code.",
     "download_obo": "http://purl.obolibrary.org/obo/ncit.obo",
     "download_owl": "http://purl.obolibrary.org/obo/ncit.owl",
     "example": "C138986",
+    "example_extras": [
+      "A14",
+      "P320",
+      "R123"
+    ],
     "homepage": "https://github.com/NCI-Thesaurus/thesaurus-obo-edition",
     "keywords": [
       "biomedical science",
@@ -42298,7 +42453,7 @@
         "ror": "040gcmg81"
       }
     ],
-    "pattern": "^C\\d+$",
+    "pattern": "^[CRPA]\\d+$",
     "preferred_prefix": "NCIT",
     "providers": [
       {
@@ -42984,6 +43139,35 @@
     ],
     "twitter": "neXtProt_news",
     "uri_format": "https://www.nextprot.org/term/FA-$1"
+  },
+  "nfdi.core": {
+    "contact": {
+      "email": "joerg.waitelonis@fiz-karlsruhe.de",
+      "github": "joergwa",
+      "name": "Jörg Waitelonis",
+      "orcid": "0000-0001-7192-7143"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A mid-level ontology for representing metadata related to NFDI resources, including individuals, organizations, projects, data portals, and more",
+    "download_owl": "https://github.com/ISE-FIZKarlsruhe/nfdicore/raw/refs/heads/main/nfdicore.owl",
+    "download_rdf": "https://github.com/ISE-FIZKarlsruhe/nfdicore/raw/refs/heads/main/nfdicore.ttl",
+    "example": "0000106",
+    "github_request_issue": 1448,
+    "homepage": "https://ise-fizkarlsruhe.github.io/nfdicore/",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC0-1.0",
+    "name": "NFDI Core Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "nfdi.core",
+    "repository": "https://github.com/ISE-FIZKarlsruhe/nfdicore",
+    "uri_format": "https://nfdi.fiz-karlsruhe.de/ontology/NFDI_$1"
   },
   "nfdi4chem.ontocape": {
     "comment": "This ontology ecosystem is near unusable",
@@ -44542,8 +44726,8 @@
     "description": "The Provider Characteristics code set is for use with health care provider information for enrollment and credentialing transactions and their corresponding responses. It is intended to provide codified responses to questions presented to a health care provider applying to or registering with an entity and to report the outcome of such application or registration. It may also be used for responses to inquiries regarding provider participation or registration in a program or plan.",
     "example": "2A",
     "example_extras": [
-      "11",
-      "10"
+      "10",
+      "11"
     ],
     "homepage": "https://nucc.org/index.php/code-sets-mainmenu-41/provider-characteristics-mainmenu-39",
     "name": "National Uniform Claim Committee Characteristic",
@@ -44976,7 +45160,7 @@
       "scdo"
     ],
     "banana": "OBI",
-    "banana_peel": ":",
+    "banana_peel": "_",
     "contact": {
       "email": "bpeters@lji.org",
       "github": "bpeters42",
@@ -45231,8 +45415,9 @@
     "download_owl": "http://www.geneontology.org/formats/oboInOwl.owl",
     "example": "hasDbXref",
     "example_extras": [
-      "hasExactSynonym",
+      "auto_generated_by",
       "hasBroadSynonym",
+      "hasExactSynonym",
       "hasNarrowSynonym"
     ],
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
@@ -45247,7 +45432,7 @@
       "ols": "oboinowl"
     },
     "name": "OBO in OWL",
-    "pattern": "^\\w+$",
+    "pattern": "^[\\w-]+$",
     "preferred_prefix": "oboInOwl",
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/973",
@@ -45964,7 +46149,7 @@
     "preferred_prefix": "om",
     "repository": "https://github.com/HajoRijgersberg/OM",
     "uri_format": "http://www.ontology-of-units-of-measure.org/resource/om-2/$1",
-    "version": "2.0.58"
+    "version": "2.0.59"
   },
   "oma.grp": {
     "description": "OMA (Orthologous MAtrix) is a database that identifies orthologs among publicly available, complete genome sequences. It identifies orthologous relationships which can be accessed either group-wise, where all group members are orthologous to all other group members, or on a sequence-centric basis, where for a given protein all its orthologs in all other species are displayed. This collection references groupings of orthologs.",
@@ -46881,7 +47066,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/ONTONEO_$1",
     "repository": "https://github.com/ontoneo-project/Ontoneo",
     "uri_format": "http://purl.obolibrary.org/obo/ONTONEO_$1",
-    "version": "2021-04-29"
+    "version": "2025-03-14"
   },
   "ontorxn": {
     "contributor": {
@@ -48748,7 +48933,12 @@
       "cell biology",
       "life science",
       "obo",
-      "ontology"
+      "omics",
+      "ontology",
+      "phenomics",
+      "sequencing",
+      "single-cell multimodal omics",
+      "transcriptomics"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -48767,6 +48957,11 @@
         "doi": "10.1101/2021.10.10.463703",
         "title": "Brain Data Standards - A method for building data-driven cell-type ontologies",
         "year": 2021
+      },
+      {
+        "doi": "10.1038/s41597-022-01886-2",
+        "title": "Brain Data Standards - A method for building data-driven cell-type ontologies",
+        "year": 2023
       }
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PCL_$1",
@@ -48868,6 +49063,10 @@
     },
     "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules.",
     "example": "2gc4",
+    "example_extras": [
+      "157d",
+      "9ii2"
+    ],
     "homepage": "https://www.wwpdb.org/",
     "keywords": [
       "bioinformatics",
@@ -48937,6 +49136,7 @@
       {
         "code": "furna",
         "description": "FURNA (Functions of RNAs) is a database of ligand-RNA interactions and Gene Ontology annotations for RNAs in the Protein Data Bank (PDB).",
+        "example": "157d",
         "homepage": "https://seq2fun.dcmb.med.umich.edu/furna/",
         "name": "furna",
         "publications": [
@@ -48970,6 +49170,23 @@
         "homepage": "https://www.rcsb.org/",
         "name": "RCSB PDB",
         "uri_format": "https://www.rcsb.org/structure/$1"
+      },
+      {
+        "code": "sabdab",
+        "description": "SAbDab is a database containing all the antibody structures available in the PDB. Each structure is annotated with a number of properties including experimental details, antibody nomenclature (e.g. heavy-light pairings), curated affinity data and sequence annotations.",
+        "example": "9ii2",
+        "homepage": "https://opig.stats.ox.ac.uk/webapps/sabdab-sabpred/sabdab",
+        "name": "The Structural Antibody Database",
+        "publications": [
+          {
+            "doi": "10.1093/nar/gkt1043",
+            "pmc": "PMC3965125",
+            "pubmed": "24214988",
+            "title": "SAbDab: the structural antibody database",
+            "year": 2013
+          }
+        ],
+        "uri_format": "https://opig.stats.ox.ac.uk/webapps/sabdab-sabpred/sabdab/structureviewer/?pdb=$1"
       }
     ],
     "publications": [
@@ -49006,6 +49223,13 @@
         "pubmed": "27789697",
         "title": "Protein Data Bank Japan (PDBj): updated user interfaces, resource description framework, analysis tools for large structures",
         "year": 2016
+      },
+      {
+        "doi": "10.1093/nar/gkt1043",
+        "pmc": "PMC3965125",
+        "pubmed": "24214988",
+        "title": "SAbDab: the structural antibody database",
+        "year": 2013
       },
       {
         "doi": "10.1093/nar/gkr811",
@@ -49503,9 +49727,9 @@
     "description": "PEPhub is a database, web interface, and API for sharing, retrieving, and validating sample metadata. PEPhub uses Portable Encapsulated Projects (PEP) biological metadata standard to store, edit, and access PEPs in one place.",
     "example": "geo",
     "example_extras": [
-      "geo/gse185244",
       "bedbase/gse198944",
-      "databio/encode_batch_1"
+      "databio/encode_batch_1",
+      "geo/gse185244"
     ],
     "github_request_issue": 1194,
     "homepage": "https://pephub.databio.org/",
@@ -50031,6 +50255,42 @@
     ],
     "twitter": "progenetix",
     "uri_format": "https://progenetix.org/services/ids/$1"
+  },
+  "phagedive": {
+    "contact": {
+      "email": "johannes.wittmann@dsmz.de",
+      "name": "Johannes Wittmann",
+      "orcid": "0000-0002-7275-9927"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "PhageDive is a database for bacteriophages and archaeal viruses. It provides information regarding taxonomy, host strain, phage morphology, life cycle, origin and genomic data.",
+    "example": "3",
+    "github_request_issue": 1454,
+    "homepage": "https://phagedive.dsmz.de",
+    "name": "PhageDive",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "phagedive",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae1220",
+        "pmc": "PMC11701545",
+        "pubmed": "39373542",
+        "title": "PhageDive: the comprehensive strain database of prokaryotic viral diversity",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://phagedive.dsmz.de/strain/$1"
   },
   "pharmacodb.cell": {
     "contributor": {
@@ -50817,6 +51077,27 @@
     ],
     "uri_format": "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"
   },
+  "pii": {
+    "appears_in": [
+      "pubmed"
+    ],
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A combination of an ISBN and local unique identifier for articles and other published works. Please see the [Wikipedia page](https://en.wikipedia.org/wiki/Publisher_Item_Identifier) for a detailed explanation. Some PIIs are used as the local identifiers in DOIs, such as https://doi.org/10.1136/S0003-4967(24)38620-0.",
+    "example": "S0960-9822(11)01319-4",
+    "example_extras": [
+      "B0-123-12345-1/12345-1"
+    ],
+    "github_request_issue": 1447,
+    "homepage": "https://en.wikipedia.org/wiki/Publisher_Item_Identifier",
+    "name": "Publisher Item Identifier",
+    "pattern": "^((S\\d{4}-\\d{4}\\(\\d{2}\\)\\d{5})|(B\\d-\\d{3}-\\d{5}-\\d/\\d{5}))-[\\d|X]$",
+    "preferred_prefix": "pii"
+  },
   "pina": {
     "contact": {
       "email": "wujm@bjmu.edu.cn",
@@ -51346,6 +51627,7 @@
       "miriam": "pmc",
       "n2t": "pmc",
       "prefixcommons": "pmc",
+      "togoid": "Pmc",
       "wikidata": "P932"
     },
     "name": "PubMed Central",
@@ -52032,7 +52314,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PPO_$1",
     "repository": "https://github.com/PlantPhenoOntology/PPO",
     "uri_format": "http://purl.obolibrary.org/obo/PPO_$1",
-    "version": "2024-07-09"
+    "version": "2025-03-13"
   },
   "ppr": {
     "contributor": {
@@ -52099,11 +52381,11 @@
     "download_owl": "http://purl.obolibrary.org/obo/pr.owl",
     "example": "000000024",
     "example_extras": [
+      "A0A0G2QC33",
+      "A0A0G2QC33-2",
       "P0DP23",
       "Q15796",
-      "Q15796-1",
-      "A0A0G2QC33",
-      "A0A0G2QC33-2"
+      "Q15796-1"
     ],
     "homepage": "http://proconsortium.org",
     "keywords": [
@@ -53757,7 +54039,7 @@
     "repository": "https://github.com/rat-genome-database/PW-Pathway-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/PW_$1",
-    "version": "7.86"
+    "version": "7.88"
   },
   "pwo": {
     "contact": {
@@ -54148,7 +54430,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
     "repository": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
     "uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
-    "version": "2025-02-18"
+    "version": "2025-02-28"
   },
   "rcb": {
     "contact": {
@@ -54203,6 +54485,42 @@
       }
     ],
     "uri_format": "https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=$1"
+  },
+  "rdbsb": {
+    "contact": {
+      "email": "gqzhang@sinh.ac.cn",
+      "name": "Guoqing Zhang",
+      "orcid": "0000-0001-8827-7546"
+    },
+    "contributor": {
+      "email": "m.naguthana@hotmail.com",
+      "github": "nagutm",
+      "name": "Mufaddal Naguthanawala",
+      "orcid": "0009-0009-5240-7463"
+    },
+    "description": "This database provides identifiers for catalytic bioparts which are fundamental to the design, construction, and optimization of biological systems for specific metabolic pathways. It provides basic information, function information (including catalytic functions, qualitative and quantitative parameters, and biopart expression), and sequence information (nucleotide sequence and amino acid sequence)",
+    "example": "OENC205",
+    "github_request_issue": 1473,
+    "homepage": "https://www.biosino.org/rdbsb",
+    "name": "Registry and database of bioparts for synthetic biology",
+    "pattern": "^OENC\\d+$",
+    "preferred_prefix": "rdbsb",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkae844",
+        "pmc": "PMC11701600",
+        "pubmed": "39360609",
+        "title": "RDBSB: a database for catalytic bioparts with experimental evidence",
+        "year": 2024
+      }
+    ],
+    "reviewer": {
+      "email": "b.gyori@northeastern.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "uri_format": "https://www.biosino.org/rdbsb/bioparts_detail/$1"
   },
   "rdf": {
     "contact": {
@@ -56013,7 +56331,7 @@
       "oborel"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/RO_$1",
-    "version": "2024-04-24"
+    "version": "2025-03-05"
   },
   "roleo": {
     "banana": "RoleO",
@@ -56177,6 +56495,7 @@
       "data retrieval",
       "knowledge and information systems",
       "life science",
+      "omics",
       "resource metadata"
     ],
     "mappings": {
@@ -56372,7 +56691,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.242"
+    "version": "6.244"
   },
   "rtecs": {
     "contact": {
@@ -57343,9 +57662,9 @@
     "description": "This is a dot notation used to concisely describe a SCOP(e) class, fold, superfamily, and family. For example, a.39.1.1 references the 'Calbindin D9K' family, where 'a' represents the class, '39' represents the fold, '1' represents the superfamily, and the last '1' represents the family.",
     "example": "a.39.1.1",
     "example_extras": [
-      "a.39.1",
+      "a",
       "a.39",
-      "a"
+      "a.39.1"
     ],
     "homepage": "https://scop.berkeley.edu",
     "mappings": {
@@ -57374,8 +57693,8 @@
     "description": " A 7-character sid consists of \"d\" followed by the 4-character PDB ID of the file of origin, the PDB chain ID ('_' if none, '.' if multiple as is the case in genetic domains), and a single character (usually an integer) if needed to specify the domain uniquely ('_' if not). Sids are currently all lower case, even when the chain letter is upper case. Example sids include d4akea1, d9hvpa_, and d1cph.1.",
     "example": "d4akea1",
     "example_extras": [
-      "d9hvpa_",
-      "d1cph.1"
+      "d1cph.1",
+      "d9hvpa_"
     ],
     "homepage": "https://scop.berkeley.edu",
     "mappings": {
@@ -57887,6 +58206,7 @@
       "https://github.com/biopragmatics/bioregistry/pull/714"
     ],
     "synonyms": [
+      "semapv_voc",
       "sempav_voc"
     ],
     "uri_format": "https://w3id.org/semapv/vocab/$1"
@@ -60992,7 +61312,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/STATO_$1",
     "repository": "https://github.com/ISA-tools/stato",
     "uri_format": "http://purl.obolibrary.org/obo/STATO_$1",
-    "version": "2025-02-22"
+    "version": "2025-02-23"
   },
   "stitch": {
     "contact": {
@@ -61522,6 +61842,31 @@
     "twitter": "ISBSIB",
     "uri_format": "http://sugarbind.expasy.org/$1"
   },
+  "sulo": {
+    "contact": {
+      "email": "michel.dumontier@gmail.com",
+      "github": "micheldumontier",
+      "name": "Michel Dumontier",
+      "orcid": "0000-0003-4727-9435"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Simplified Upper Level Ontology (SULO) is ontology with a minimal set of classes and relations to guide the development of a personal health knowledge graph. [from homepage]",
+    "download_rdf": "https://w3id.org/sulo/sulo.ttl",
+    "example": "Capability",
+    "github_request_issue": 1446,
+    "homepage": "https://aidava-dev.github.io/sulo/",
+    "license": "CC0-1.0",
+    "name": "Simplified Upper Level Ontology",
+    "preferred_prefix": "sulo",
+    "rdf_uri_format": "https://w3id.org/sulo/$1",
+    "repository": "https://github.com/aidava-dev/sulo/",
+    "uri_format": "https://w3id.org/sulo/$1"
+  },
   "supfam": {
     "contact": {
       "email": "pandura@mrc-lmb.cam.ac.uk",
@@ -61589,6 +61934,15 @@
     },
     "name": "Semantic Web for Earth and Environment Technology Ontology",
     "preferred_prefix": "sweetrealm",
+    "providers": [
+      {
+        "code": "obo",
+        "description": "An incorrectly formed OBO purl",
+        "homepage": "",
+        "name": "OBO PURL (incorrect)",
+        "uri_format": "http://purl.obolibrary.org/obo/http://sweet.jpl.nasa.gov/2.3/realm.owl#"
+      }
+    ],
     "uri_format": "http://sweetontology.net/matrMineral/$1"
   },
   "swh": {
@@ -64078,20 +64432,21 @@
     "description": "Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business.",
     "example": "aBq",
     "example_extras": [
+      "%",
       "/A/s3/cg3/T3",
       "/g",
       "/m3",
-      "%",
       "Cel.d-1",
+      "Em.s-2",
+      "K2",
+      "Wb",
       "dL/g",
       "dlm",
       "dlx",
-      "Em.s-2",
       "g.cm-3",
-      "K2",
       "kW/h",
-      "m/s",
       "m.s-2",
+      "m/s",
       "m/s/d",
       "mmol.mL-1",
       "mol.L-1",
@@ -64100,8 +64455,7 @@
       "pA",
       "ug.mL-1",
       "umol.L-1",
-      "us",
-      "Wb"
+      "us"
     ],
     "homepage": "https://ucum.org",
     "keywords": [
@@ -64994,6 +65348,9 @@
     "example": "UP000005640",
     "github_request_issue": 604,
     "homepage": "https://www.uniprot.org/proteomes",
+    "mappings": {
+      "togoid": "UniprotProteome"
+    },
     "name": "UniProt Proteomes",
     "part_of": "uniprot",
     "pattern": "^UP\\d{9}$",
@@ -65473,17 +65830,17 @@
     "description": "The United States Patent and Trademark Office (USPTO) is the federal agency for granting U.S. patents and registering trademarks. As a mechanism that protects new ideas and investments in innovation and creativity, the USPTO is at the cutting edge of the nation's technological progress and achievement.",
     "example": "4145692",
     "example_extras": [
+      "0000001",
       "10,000,000",
       "6923014",
-      "0000001",
+      "AI00007",
       "D000152",
+      "H001234",
       "PP07514",
       "RE12345",
+      "RX00001",
       "T855019",
-      "H001234",
-      "AI00007",
-      "X000001",
-      "RX00001"
+      "X000001"
     ],
     "homepage": "http://patft.uspto.gov/netahtml/PTO/index.html",
     "mappings": {
@@ -66852,7 +67209,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VO_$1",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "2024-12-29"
+    "version": "2025-02-26"
   },
   "voc4cat": {
     "comment": "The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123 other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123. This is pretty unique and isn't tracked by the Bioregistry currently.",
@@ -67104,7 +67461,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2025-02-11"
+    "version": "2025-03-04"
   },
   "vto": {
     "contact": {
@@ -67429,6 +67786,10 @@
     },
     "description": "Wikidata is a collaboratively edited knowledge base operated by the Wikimedia Foundation. It is intended to provide a common source of certain types of data which can be used by Wikimedia projects such as Wikipedia. Wikidata functions as a document-oriented database, centred on individual items. Items represent topics, for which basic information is stored that identifies each topic.",
     "example": "Q47475003",
+    "example_extras": [
+      "L704278",
+      "P675"
+    ],
     "homepage": "https://www.wikidata.org/",
     "keywords": [
       "chemistry",
@@ -67449,7 +67810,7 @@
       "n2t": "wikidata"
     },
     "name": "Wikidata",
-    "pattern": "^(Q|P|E)\\d+$",
+    "pattern": "^(Q|P|E|L)\\d+$",
     "preferred_prefix": "wikidata",
     "providers": [
       {
@@ -68301,7 +68662,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.195"
+    "version": "4.197"
   },
   "xenbase": {
     "contact": {
@@ -68481,12 +68842,14 @@
     "keywords": [
       "chemical biology",
       "experimental measurement",
+      "gas chromatography",
       "mass spectrometry assay",
       "mass spectrum",
       "metabolomics",
       "obo",
       "omics",
-      "ontology"
+      "ontology",
+      "reagent"
     ],
     "license": "CC-BY-3.0",
     "mappings": {

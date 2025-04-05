@@ -1,8 +1,10 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from collections.abc import Sequence
 from operator import itemgetter
 from pathlib import Path
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
@@ -31,7 +33,9 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_miriam(force_download: bool = False, force_process: bool = False):
+def get_miriam(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the MIRIAM registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:
@@ -134,7 +138,7 @@ class MiriamAligner(Aligner):
 
     key = "miriam"
     getter = get_miriam
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
 
 

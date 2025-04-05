@@ -1,22 +1,25 @@
 """Download the Integbio registry."""
 
+from __future__ import annotations
+
 import json
 import logging
+from collections.abc import Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "IntegbioAligner",
     "get_integbio",
 ]
 
-from bioregistry.external.alignment_utils import Aligner
-
 logger = logging.getLogger(__name__)
-
 
 DIRECTORY = Path(__file__).parent.resolve()
 PROCESSED_PATH = DIRECTORY / "processed.json"
@@ -54,19 +57,20 @@ def get_url() -> str:
         Integbio deletes its old files, so it's impossible to download an old version of the
         database
     """
-    base = "https://integbio.jp/dbcatalog/en/download"
-    res = requests.get(base)
+    base = "https://catalog.integbio.jp/dbcatalog/en/download"
+    download_prefix = "/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
+    download_suffix = "_utf8.csv.zip"
+
+    res = requests.get(base, timeout=15)
     soup = BeautifulSoup(res.text, "html.parser")
     for anchor in soup.find_all("a"):
         href = anchor.attrs["href"]
-        if href.startswith(
-            "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"
-        ) and href.endswith("_utf8.csv.zip"):
-            return href
+        if href.startswith(download_prefix) and href.endswith(download_suffix):
+            return "https://catalog.integbio.jp" + href
     raise ValueError(f"unable to find Integbio download link on {base}")
 
 
-def _parse_references(s):
+def _parse_references(s: str) -> list[str]:
     rv = []
     for part in s.strip().split("||"):
         ref = _parse_reference(part.strip())
@@ -75,7 +79,7 @@ def _parse_references(s):
     return rv
 
 
-def _parse_reference(part: str):
+def _parse_reference(part: str) -> str | None:
     if "\\" in part:  # it's pubmed followed by equvalent DOI
         pubmed, _doi = part.split("\\")
         return pubmed
@@ -84,15 +88,16 @@ def _parse_reference(part: str):
     if part == "etc.":
         return None
     logger.debug(f"IntegBio unhandled reference part: {part}")
+    return None
 
 
-def _strip_split(s):
-    if pd.isna(s):
+def _strip_split(s: str | None) -> list[str] | None:
+    if pd.isna(s) or not s:
         return None
     return [k.strip() for k in s.strip().split("||")]
 
 
-def _parse_fairsharing(s):
+def _parse_fairsharing_url(s: str) -> str | None:
     if s.startswith("https://fairsharing.org/10.25504/"):
         return s.removeprefix("https://fairsharing.org/10.25504/")
     elif s.startswith("https://fairsharing.org/"):
@@ -101,7 +106,7 @@ def _parse_fairsharing(s):
     return None
 
 
-def get_integbio(*, force_download: bool = False):
+def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the integbio resource."""
     url = get_url()
     df = pd.read_csv(url)
@@ -125,7 +130,7 @@ def get_integbio(*, force_download: bool = False):
     for key in SKIP:
         del df[key]
 
-    df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing, na_action="ignore")
+    df["fairsharing"] = df["fairsharing"].map(_parse_fairsharing_url, na_action="ignore")
     df = df[df["languages"] != "ja"]  # skip only japanese language database for now
     del df["languages"]
     # df["languages"] = df["languages"].map(_strip_split, na_action="ignore")
@@ -149,7 +154,7 @@ class IntegbioAligner(Aligner):
     key = "integbio"
     alt_key_match = "name"
     getter = get_integbio
-    curation_header = ("name", "alt_name", "homepage")
+    curation_header: ClassVar[Sequence[str]] = ("name", "alt_name", "homepage")
 
 
 if __name__ == "__main__":

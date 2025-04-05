@@ -8,17 +8,17 @@ import tabulate
 import bioregistry
 
 
-def _examples(resource):
+def _examples(resource: bioregistry.Resource) -> list[str]:
     rv = []
     example = resource.get_example()
     if example:
         rv.append(example)
-    rv.extend(resource.example_extras or [])
+    rv.extend(resource.get_example_extras())
     return rv
 
 
 @click.command()
-def _main():
+def _main() -> None:
     registry = bioregistry.read_registry()
     rows = []
     for prefix, resource in registry.items():

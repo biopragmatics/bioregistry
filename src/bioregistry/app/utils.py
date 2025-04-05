@@ -1,10 +1,13 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
+from __future__ import annotations
+
 import json
 from collections.abc import Mapping, Sequence
 from functools import partial
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 
+import werkzeug
 import yaml
 from flask import (
     Response,
@@ -23,9 +26,7 @@ from .proxies import manager
 from ..utils import _norm
 
 
-def _get_resource_providers(
-    prefix: str, identifier: Optional[str]
-) -> Optional[list[dict[str, Any]]]:
+def _get_resource_providers(prefix: str, identifier: str | None) -> list[dict[str, Any]] | None:
     if identifier is None:
         return None
     rv = []
@@ -51,7 +52,9 @@ def _get_resource_providers(
     return rv
 
 
-def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
+def _normalize_prefix_or_404(
+    prefix: str, endpoint: str | None = None
+) -> str | werkzeug.Response | tuple[str, int]:
     try:
         norm_prefix = manager.normalize_prefix(prefix)
     except ValueError:
@@ -73,7 +76,7 @@ def _search(manager_: Manager, q: str) -> list[tuple[str, str]]:
     return sorted(results)
 
 
-def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -> Mapping[str, Any]:
+def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> Mapping[str, Any]:
     r"""Run the autocomplete algorithm.
 
     :param manager_: A manager
@@ -103,13 +106,13 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
 
     >>> _autocomplete(manager, "chebi:1234")
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
-    """  # noqa: E501
+    """
     if url_prefix is None:
         url_prefix = ""
     url_prefix = url_prefix.rstrip().rstrip("/")
 
     if ":" not in q:
-        url: Optional[str]
+        url: str | None
         if q in manager_.registry:
             reason = "matched prefix"
             url = f"{url_prefix}/{q}"
@@ -161,7 +164,7 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
 
 def serialize(
     data: BaseModel,
-    serializers: Optional[Sequence[tuple[str, str, Callable]]] = None,
+    serializers: Sequence[tuple[str, str, Callable[[BaseModel], str]]] | None = None,
     negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""

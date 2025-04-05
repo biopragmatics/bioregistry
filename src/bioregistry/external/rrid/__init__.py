@@ -8,8 +8,9 @@ usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true.
 """
 
 import csv
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import ClassVar
 
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
@@ -98,7 +99,7 @@ class RRIDAligner(Aligner):
     key = "rrid"
     getter = get_rrid
     alt_key_match = "abbreviation"
-    curation_header = ("name", "homepage")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage")
 
     def get_skip(self) -> Mapping[str, str]:
         """Get prefixes to skip."""

@@ -2,9 +2,9 @@
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Optional
+from typing import Any, ClassVar, Optional
 
 import requests
 import yaml
@@ -31,7 +31,9 @@ SKIP = {
 }
 
 
-def get_obofoundry(force_download: bool = False, force_process: bool = False):
+def get_obofoundry(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         with PROCESSED_PATH.open() as file:
@@ -62,6 +64,12 @@ def _process(record):
             del record[key]
 
     oid = record["id"].lower()
+
+    # added to throw away placeholder contact
+    contact_github = record.get("contact", {}).get("github")
+    if contact_github == "ghost":
+        del record["contact"]
+
     rv = {
         "name": record["title"],
         "description": record.get("description"),
@@ -111,7 +119,7 @@ def _process(record):
 def get_obofoundry_example(prefix: str) -> Optional[str]:
     """Get an example identifier from the OBO Library PURL configuration."""
     url = f"https://raw.githubusercontent.com/OBOFoundry/purl.obolibrary.org/master/config/{prefix}.yml"
-    data = yaml.safe_load(requests.get(url).content)
+    data = yaml.safe_load(requests.get(url, timeout=15).content)
     examples = data.get("example_terms")
     if not examples:
         return None
@@ -123,7 +131,7 @@ class OBOFoundryAligner(Aligner):
 
     key = "obofoundry"
     getter = get_obofoundry
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
     normalize_invmap = True
 

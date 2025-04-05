@@ -2,9 +2,9 @@
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
@@ -43,7 +43,7 @@ GO_URL = "https://raw.githubusercontent.com/geneontology/go-site/master/metadata
 PROCESSING_GO_PATH = DIRECTORY / "processing_go.json"
 
 
-def get_go(force_download: bool = False):
+def get_go(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the GO registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -68,7 +68,7 @@ class GoAligner(Aligner):
 
     key = "go"
     getter = get_go
-    curation_header = "name", "description"
+    curation_header: ClassVar[Sequence[str]] = "name", "description"
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped GO identifiers."""

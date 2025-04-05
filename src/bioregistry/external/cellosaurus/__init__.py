@@ -3,8 +3,9 @@
 import itertools as itt
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
@@ -31,7 +32,9 @@ KEYMAP = {
 }
 
 
-def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True):
+def get_cellosaurus(
+    force_download: bool = False, keep_missing_uri: bool = True
+) -> dict[str, dict[str, Any]]:
     """Get the Cellosaurus registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -76,7 +79,9 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
 def _process_db_url(key, value):
     if value in {"https://%s", "None"}:
         return
-    if value.endswith("http://purl.obolibrary.org/obo/%s"):
+    if value.endswith("http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s") or value.endswith(
+        "http://purl.obolibrary.org/obo/%s"
+    ):
         logger.debug(
             "Cellosaurus curated an OBO PURL for `%s` that is is missing namespace. "
             "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
@@ -91,7 +96,7 @@ class CellosaurusAligner(Aligner):
 
     key = "cellosaurus"
     getter = get_cellosaurus
-    curation_header = ("name", "homepage", "category", URI_FORMAT_KEY)
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "category", URI_FORMAT_KEY]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Cellosaurus identifiers."""

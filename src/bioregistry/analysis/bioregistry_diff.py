@@ -40,7 +40,7 @@ def get_commit_before_date(
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, timeout=15)
     response.raise_for_status()
     commits = response.json()
     if commits:
@@ -67,11 +67,11 @@ def get_file_at_commit(
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
     params = {"ref": commit_sha}
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, timeout=15)
     response.raise_for_status()
     file_info = response.json()
     download_url = file_info["download_url"]
-    res = requests.get(download_url)
+    res = requests.get(download_url, timeout=15)
     res.raise_for_status()
     return res.json()
 
@@ -189,7 +189,7 @@ def visualize_changes(update_details, start_date, end_date, all_mapping_keys):
     :param all_mapping_keys: Set of all mapping keys.
     """
     main_fields = {}
-    mapping_fields = {key: 0 for key in all_mapping_keys}
+    mapping_fields = dict.fromkeys(all_mapping_keys, 0)
 
     if update_details:
         # Process mappings fields to exclude them

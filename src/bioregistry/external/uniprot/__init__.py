@@ -2,8 +2,9 @@
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import ClassVar
 
 import requests
 
@@ -41,7 +42,9 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
             return json.load(file)
 
     RAW_PATH.write_text(
-        json.dumps(requests.get(URL).json(), indent=2, sort_keys=True, ensure_ascii=False)
+        json.dumps(
+            requests.get(URL, timeout=30).json(), indent=2, sort_keys=True, ensure_ascii=False
+        )
     )
     rv = {}
     for record in json.loads(RAW_PATH.read_text())["results"]:
@@ -105,7 +108,7 @@ class UniProtAligner(Aligner):
     key = "uniprot"
     alt_key_match = "abbreviation"
     getter = get_uniprot
-    curation_header = ("abbreviation", "name", URI_FORMAT_KEY, "category")
+    curation_header: ClassVar[Sequence[str]] = ("abbreviation", "name", URI_FORMAT_KEY, "category")
 
 
 if __name__ == "__main__":

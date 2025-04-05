@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any
+from typing import Annotated, Any
 
 import yaml
 from curies import Reference
@@ -12,7 +12,7 @@ from fastapi import APIRouter, Body, Header, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
-from bioregistry import Collection, Context, Registry, Resource
+from bioregistry import Collection, Context, Manager, Registry, Resource
 from bioregistry.export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -36,7 +36,7 @@ __all__ = [
 api_router = APIRouter(prefix="/api")
 
 
-class UnhandledFormat(HTTPException):
+class UnhandledFormat(HTTPException):  # type:ignore
     """An exception for an unhandled format."""
 
     def __init__(self, fmt: str) -> None:
@@ -47,7 +47,7 @@ class UnhandledFormat(HTTPException):
         super().__init__(400, f"Bad Accept header: {fmt}")
 
 
-class YAMLResponse(Response):
+class YAMLResponse(Response):  # type:ignore
     """A custom response encoded in YAML."""
 
     media_type = "application/yaml"
@@ -105,7 +105,7 @@ def get_resources(
     request: Request,
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
-):
+) -> Response | dict[str, Resource]:
     """Get all resources."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
@@ -140,7 +140,7 @@ def get_resource(
     ),
     accept: str = ACCEPT_HEADER,
     format: str = FORMAT_QUERY,
-):
+) -> Response | Resource:
     """Get a resource."""
     resource = request.app.manager.get_resource(prefix)
     if resource is None:
@@ -170,7 +170,7 @@ def get_metaresources(
     request: Request,
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
-):
+) -> Response | Mapping[str, Registry]:
     """Get all registries."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
@@ -211,7 +211,7 @@ def get_metaresource(
     metaprefix: str = METAPREFIX_PATH,
     accept: str = ACCEPT_HEADER,
     format: str = FORMAT_QUERY,
-):
+) -> Response | Registry:
     """Get all registries."""
     manager = request.app.manager
     metaresource = manager.get_registry(metaprefix)
@@ -243,7 +243,7 @@ def get_metaresource(
 def get_external_registry_slim(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
-):
+) -> dict[str, Resource]:
     """Get a slim version of the registry with only resources mapped to the given external registry."""
     manager = request.app.manager
     return {
@@ -282,7 +282,7 @@ def get_metaresource_external_mappings(
     request: Request,
     metaprefix: str = METAPREFIX_PATH,
     target: str = Path(title="target metaprefix"),
-):
+) -> MappingResponse | tuple[dict[str, str], int]:
     """Get mappings between two external prefixes."""
     manager = request.app.manager
     try:
@@ -308,9 +308,11 @@ def get_metaresource_external_mappings(
     response_model=Mapping[str, str],
     tags=["metaresource"],
 )
-def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PATH):
+def get_metaresource_mappings(
+    request: Request, metaprefix: str = METAPREFIX_PATH
+) -> dict[str, str]:
     """Get mappings from the Bioregistry to an external registry."""
-    manager = request.app.manager
+    manager: Manager = request.app.manager
     if metaprefix not in manager.metaregistry:
         raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
     return manager.get_registry_map(metaprefix)
@@ -321,7 +323,7 @@ def get_collections(
     request: Request,
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
-):
+) -> Response | dict[str, Collection]:
     """Get all collections."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
@@ -358,7 +360,7 @@ def get_collection(
     ),
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
-):
+) -> Response | Collection:
     """Get a collection."""
     manager = request.app.manager
     collection = manager.collections.get(identifier)
@@ -389,7 +391,7 @@ def get_contexts(
     request: Request,
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
-):
+) -> Response | dict[str, Context]:
     """Get all context."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
@@ -404,9 +406,9 @@ def get_contexts(
 def get_context(
     request: Request,
     identifier: str = Path(title="Context Key", description="The context key", examples=["obo"]),
-):
+) -> Context:
     """Get a context."""
-    context = request.app.manager.contexts.get(identifier)
+    context: Context | None = request.app.manager.contexts.get(identifier)
     if context is None:
         raise HTTPException(status_code=404, detail=f"Context not found: {identifier}")
     return context
@@ -417,7 +419,7 @@ def get_contributors(
     request: Request,
     accept: str | None = ACCEPT_HEADER,
     format: str | None = FORMAT_QUERY,
-):
+) -> Response | dict[str, Attributable]:
     """Get all context."""
     contributors = request.app.manager.read_contributors()
     accept = _handle_formats(accept, format)
@@ -443,7 +445,7 @@ class ContributorResponse(BaseModel):
 @api_router.get("/contributor/{orcid}", response_model=ContributorResponse, tags=["contributor"])
 def get_contributor(
     request: Request, orcid: str = Path(title="Open Researcher and Contributor Identifier")
-):
+) -> ContributorResponse:
     """Get all context."""
     manager = request.app.manager
     author = manager.read_contributors().get(orcid)
@@ -469,7 +471,7 @@ class IdentifierResponse(BaseModel):
 @api_router.get(
     "/reference/{prefix}:{identifier:path}", response_model=IdentifierResponse, tags=["reference"]
 )
-def get_reference(request: Request, prefix: str, identifier: str):
+def get_reference(request: Request, prefix: str, identifier: str) -> IdentifierResponse:
     """Look up information on the reference."""
     # see https://fastapi.tiangolo.com/tutorial/path-params/#path-parameters-containing-paths
     # for more understanding on how the identifier:path handling works
@@ -528,8 +530,10 @@ class URIQuery(BaseModel):
 )
 def post_parse_uri(
     request: Request,
-    query: URIQuery = Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")]),
-):
+    query: Annotated[
+        URIQuery, Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")])
+    ],
+) -> URIResponse:
     """Parse a URI, return a CURIE, and all equivalent URIs."""
     manager = request.app.manager
     prefix, identifier = manager.parse_uri(query.uri)
@@ -546,8 +550,10 @@ def post_parse_uri(
 @api_router.get("/context.jsonld", tags=["resource"])
 def generate_context_json_ld(
     request: Request,
-    prefix: list[str] = Query(description="The prefix for the entry. Can be given multiple."),
-):
+    prefix: Annotated[
+        list[str], Query(..., description="The prefix for the entry. Can be given multiple.")
+    ],
+) -> JSONResponse:
     """Generate an *ad-hoc* context JSON-LD file from the given parameters.
 
     You can either give prefixes as a comma-separated list like:
@@ -580,8 +586,8 @@ def generate_context_json_ld(
 @api_router.get("/autocomplete", tags=["search"])
 def autocomplete(
     request: Request,
-    q: str = Query(description="A query for the prefix"),
-):
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
     """Complete a resolution query."""
     return JSONResponse(_autocomplete(request.app.manager, q))
 
@@ -589,7 +595,7 @@ def autocomplete(
 @api_router.get("/search", tags=["search"])
 def search(
     request: Request,
-    q: str = Query(description="A query for the prefix"),
-):
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
     """Search for a prefix."""
     return JSONResponse(_search(request.app.manager, q))
