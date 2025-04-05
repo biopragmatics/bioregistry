@@ -417,14 +417,15 @@ being implicit documentation as well as enable comprehensive static analysis of
 the code. It uses [`mypy`](http://mypy-lang.org/) as a type checker. You can
 check if your code passes `mypy` with `tox -e mypy`.
 
-This project uses [`black`](https://github.com/psf/black) to automatically
-enforce a consistent code style. You can apply `black` and other pre-configured
-linters with `tox -e lint`.
+This project uses [`ruff`](https://github.com/astral-sh/ruff) to automatically
+enforce a consistent code style. You can apply `ruff` and other pre-configured
+formatters with `tox -e format`.
 
-This project uses [`flake8`](https://flake8.pycqa.org) and several plugins for
-additional checks of documentation style, security issues, good variable
-nomenclature, and more ( see [`tox.ini`](tox.ini) for a list of flake8 plugins).
-You can check if your code passes `flake8` with `tox -e flake8`.
+This project uses [`ruff`](https://github.com/astral-sh/ruff) and several
+plugins for additional checks of documentation style, security issues, good
+variable nomenclature, and more ( see [`pyproject.toml`](pyproject.toml) for a
+list of ruff plugins). You can check if your code passes `ruff` with
+`tox -e lint`.
 
 Each of these checks are run on each commit using GitHub Actions as a continuous
 integration service. Passing all of them is required for accepting a
@@ -435,9 +436,8 @@ comment, and we will help you.
 ### Logging
 
 Python's builtin `print()` should not be used (except when writing to files),
-it's checked by the [`flake8-print`](https://github.com/jbkahn/flake8-print)
-plugin to `flake8`. If you're in a command line setting or `main()` function for
-a module, you can use `click.echo()`. Otherwise, you can use the builtin
+it's checked by `ruff`. If you're in a command line setting or `main()` function
+for a module, you can use `click.echo()`. Otherwise, you can use the builtin
 `logging` module by adding `logger = logging.getLogger(__name__)` below the
 imports at the top of your file.
 
@@ -446,7 +446,7 @@ imports at the top of your file.
 All public functions (i.e., not starting with an underscore `_`) must be
 documented using the
 [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
-The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `flake8`
+The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `ruff`
 reports on functions that are not fully documented.
 
 This project uses [`sphinx`](https://www.sphinx-doc.org) to automatically build
