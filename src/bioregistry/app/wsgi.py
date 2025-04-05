@@ -2,7 +2,7 @@
 
 from bioregistry.app.impl import get_app
 
-app = get_app()
+app = get_app(return_flask=False)
 
 if __name__ == "__main__":
     import uvicorn

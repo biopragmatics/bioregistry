@@ -205,7 +205,7 @@ def get_app(
             "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
-    fast_api.manager = manager
+    fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
