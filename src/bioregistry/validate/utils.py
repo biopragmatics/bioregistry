@@ -1,9 +1,11 @@
 """Validation utilities."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Literal
 
 from pydantic import BaseModel
+from typing_extensions import Literal
 
 import bioregistry
 
