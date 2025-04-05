@@ -13,8 +13,6 @@ from pathlib import Path
 import click
 import requests
 
-from .utils import validate_jsonld
-
 __all__ = [
     "validate",
 ]
@@ -39,6 +37,8 @@ def jsonld(location: str, relax: bool) -> None:
         if not path.is_file():
             raise ValueError
         obj = json.loads(path.read_text())
+
+    from .utils import validate_jsonld
 
     messages = validate_jsonld(obj, strict=not relax)
     for message in messages:

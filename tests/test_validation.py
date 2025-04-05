@@ -2,7 +2,7 @@
 
 import unittest
 
-from bioregistry.validate.utils import validate_jsonld
+from bioregistry.validate.utils import Message, validate_jsonld
 
 
 class TestValidation(unittest.TestCase):
@@ -23,10 +23,30 @@ class TestValidation(unittest.TestCase):
                 "nope": ...,
             }
         }
-        warnings, errors = validate_jsonld(test_context, strict=True)
-        self.assertEqual([("GO", "nonstandard"), ("nope", "invalid")], errors)
-        self.assertEqual([], warnings)
+        messages = validate_jsonld(test_context, strict=True)
+        self.assertEqual(
+            [
+                Message(
+                    prefix="GO",
+                    solution="Switch to standard prefix: go",
+                    error="nonstandard",
+                    level="error",
+                ),
+                Message(prefix="nope", error="invalid", level="error"),
+            ],
+            messages,
+        )
 
-        warnings, errors = validate_jsonld(test_context, strict=False)
-        self.assertEqual([("nope", "invalid")], errors)
-        self.assertEqual([("GO", "nonstandard")], warnings)
+        messages = validate_jsonld(test_context, strict=False)
+        self.assertEqual(
+            [
+                Message(
+                    prefix="GO",
+                    solution="Switch to standard prefix: go",
+                    error="nonstandard",
+                    level="warning",
+                ),
+                Message(prefix="nope", error="invalid", level="error"),
+            ],
+            messages,
+        )
