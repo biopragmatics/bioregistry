@@ -26,7 +26,13 @@ def validate() -> None:
 @validate.command()
 @click.argument("location")
 @click.option("--relax", is_flag=True)
-def jsonld(location: str, relax: bool) -> None:
+@click.option("--context")
+@click.option(
+    "--use-preferred",
+    is_flag=True,
+    help="If true, use preferred prefixes instead of normalized ones",
+)
+def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None) -> None:
     """Validate a JSON-LD file."""
     if location.startswith("http://") or location.startswith("https://"):
         res = requests.get(location, timeout=15)
@@ -40,7 +46,7 @@ def jsonld(location: str, relax: bool) -> None:
 
     from .utils import validate_jsonld
 
-    messages = validate_jsonld(obj, strict=not relax)
+    messages = validate_jsonld(obj, strict=not relax, use_preferred=use_preferred, context=context)
     for message in messages:
         click.secho(
             f"{message.prefix} - {message.error}", fg=LEVEL_TO_COLOR[message.level], nl=False

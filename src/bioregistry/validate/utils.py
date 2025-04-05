@@ -24,18 +24,40 @@ class Message(BaseModel):
     level: Literal["warning", "error"]
 
 
-def validate_jsonld(obj: Mapping[str, Mapping[str, str]], *, strict: bool = True) -> list[Message]:
+def validate_jsonld(
+    obj: Mapping[str, Mapping[str, str]],
+    *,
+    strict: bool = True,
+    use_preferred: bool = False,
+    context: str | None | bioregistry.Context = None,
+) -> list[Message]:
     """Validate a JSON-LD object."""
     if not isinstance(obj, dict):
         raise TypeError("data is not a dictionary")
-    context = obj.get("@context")
-    if context is None:
+    context_inner = obj.get("@context")
+    if context_inner is None:
         raise TypeError("data is missing a @context field")
-    if not isinstance(context, dict):
-        raise TypeError(f"@context is not a dictionary: {context}")
+    if not isinstance(context_inner, dict):
+        raise TypeError(f"@context is not a dictionary: {context_inner}")
+    if use_preferred:
+        prefix_text = "preferred"
+    else:
+        prefix_text = "standard"
     messages = []
-    for prefix, _uri_prefix in context.items():
-        norm_prefix = bioregistry.normalize_prefix(prefix)
+
+    if context is not None:
+        converter = bioregistry.manager.get_converter_from_context(context)
+
+        def _check(pp: str) -> str | None:
+            return converter.standardize_prefix(pp, strict=False)
+
+    else:
+
+        def _check(pp: str) -> str | None:
+            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
+
+    for prefix, _uri_prefix in context_inner.items():
+        norm_prefix = _check(prefix)
         if norm_prefix is None:
             messages.append(
                 Message.model_validate(
@@ -53,7 +75,7 @@ def validate_jsonld(obj: Mapping[str, Mapping[str, str]], *, strict: bool = True
                     {
                         "prefix": prefix,
                         "error": "nonstandard",
-                        "solution": f"Switch to standard prefix: {norm_prefix}",
+                        "solution": f"Switch to {prefix_text} prefix: {norm_prefix}",
                         "level": "error" if strict else "warning",
                     }
                 )
