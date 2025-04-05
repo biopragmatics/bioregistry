@@ -1,41 +1,59 @@
 """Validation utilities."""
 
-from typing import Mapping
+from collections.abc import Mapping
+from typing import Literal
+
+from pydantic import BaseModel
 
 import bioregistry
 
 __all__ = [
+    "Message",
     "validate_jsonld",
 ]
 
 
-def validate_jsonld(obj: Mapping[str, Mapping[str, str]], strict: bool = True):
+class Message(BaseModel):
+    """A message."""
+
+    prefix: str
+    error: str
+    solution: str | None = None
+    level: Literal["warning", "error"]
+
+
+def validate_jsonld(obj: Mapping[str, Mapping[str, str]], *, strict: bool = True) -> list[Message]:
+    """Validate a JSON-LD object."""
     if not isinstance(obj, dict):
-        raise TypeError(f"data is not a dictionary")
+        raise TypeError("data is not a dictionary")
     context = obj.get("@context")
     if context is None:
-        raise TypeError(f"data is missing a @context field")
+        raise TypeError("data is missing a @context field")
     if not isinstance(context, dict):
         raise TypeError(f"@context is not a dictionary: {context}")
     messages = []
-    for prefix, uri_prefix in context.items():
+    for prefix, _uri_prefix in context.items():
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
             messages.append(
-                {
-                    "prefix": prefix,
-                    "error": "invalid",
-                    "solution": None,
-                    "level": "error",
-                }
+                Message.model_validate(
+                    {
+                        "prefix": prefix,
+                        "error": "invalid",
+                        "solution": None,
+                        "level": "error",
+                    }
+                )
             )
         elif norm_prefix != prefix:
             messages.append(
-                {
-                    "prefix": prefix,
-                    "error": "nonstandard",
-                    "solution": f"Switch to standard prefix: {norm_prefix}",
-                    "level": "error" if strict else "warning",
-                }
+                Message.model_validate(
+                    {
+                        "prefix": prefix,
+                        "error": "nonstandard",
+                        "solution": f"Switch to standard prefix: {norm_prefix}",
+                        "level": "error" if strict else "warning",
+                    }
+                )
             )
     return messages
