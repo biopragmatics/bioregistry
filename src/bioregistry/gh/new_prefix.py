@@ -225,7 +225,7 @@ def process_all_relevant_issues() -> dict[int, Resource]:
     return issue_to_resource
 
 
-def _yield_publications(data) -> Iterable[Publication]:
+def _yield_publications(data: dict[str, Any]) -> Iterable[Publication]:
     for curie in data.pop("publications", "").split("|"):
         curie = curie.strip().lower()
         try:
@@ -251,7 +251,7 @@ def _trim_orcid(orcid: str) -> str:
     return orcid
 
 
-def _join(x: Iterable[int], sep=", ") -> str:
+def _join(x: Iterable[int], sep: str = ", ") -> str:
     return sep.join(map(str, sorted(x)))
 
 
@@ -273,8 +273,8 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.option(
     "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
 )
-@force_option
-@verbose_option
+@force_option  # type:ignore
+@verbose_option  # type:ignore
 def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
     """Run the automatic curator."""
     click.echo(

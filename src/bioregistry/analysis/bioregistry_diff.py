@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import datetime
 import logging
-from typing import Any, NamedTuple, TypeAlias
+from typing import Any, NamedTuple, TypeAlias, cast
 
 import click
 import matplotlib.pyplot as plt
@@ -49,7 +49,7 @@ def get_commit_before_date(
     if "sha" not in first_commit:
         logger.warning("No 'sha' field found in the first commit.")
         return None
-    return first_commit["sha"]
+    return cast(str, first_commit["sha"])
 
 
 BioregistryDataHint: TypeAlias = dict[str, Any]
@@ -74,7 +74,7 @@ def get_file_at_commit(
     download_url = file_info["download_url"]
     res = requests.get(download_url, timeout=15)
     res.raise_for_status()
-    return res.json()
+    return cast(BioregistryDataHint, res.json())
 
 
 ComparsionHint: TypeAlias = dict[str, tuple[Any, Any]]
@@ -131,7 +131,7 @@ def compare_entries(old_entry: dict[str, Any], new_entry: dict[str, Any]) -> Com
     return changes
 
 
-def get_all_mapping_keys(data) -> set[str]:
+def get_all_mapping_keys(data: dict[str, dict[str, Any]]) -> set[str]:
     """Return all unique mapping keys from the bioregistry data.
 
     :param data: The bioregistry data.
@@ -186,19 +186,19 @@ def get_data(old_date_str: str, new_date_str: str) -> DataResult | None:
     return DataResult(compare_bioregistry_rv, old_bioregistry, new_bioregistry, all_mapping_keys)
 
 
-def summarize_changes(added, deleted, updated):
-    """Log a summary of changes in the bioregistry data.
-
-    :param added: Set of added prefixes.
-    :param deleted: Set of deleted prefixes.
-    :param updated: Count of updated prefixes.
-    """
-    logger.info(f"Total Added Prefixes: {len(added)}")
-    logger.info(f"Total Deleted Prefixes: {len(deleted)}")
-    logger.info(f"Total Updated Prefixes: {updated}")
+def summarize_changes(comparison: CompareBioregistryResult) -> None:
+    """Log a summary of changes in the bioregistry data."""
+    logger.info(f"Total Added Prefixes: {len(comparison.added_prefixes)}")
+    logger.info(f"Total Deleted Prefixes: {len(comparison.deleted_prefixes)}")
+    logger.info(f"Total Updated Prefixes: {comparison.updated_prefixes}")
 
 
-def visualize_changes(update_details, start_date, end_date, all_mapping_keys) -> None:
+def visualize_changes(
+    update_details: list[tuple[str, ComparsionHint]],
+    start_date: str,
+    end_date: str,
+    all_mapping_keys: set[str],
+) -> None:
     """Display plots of changes in the bioregistry data.
 
     :param update_details: List of update details.
@@ -276,11 +276,7 @@ def compare_dates(date1: str, date2: str) -> None:
     """
     data = get_data(date1, date2)
     if data is not None:
-        summarize_changes(
-            data.comparison.added_prefixes,
-            data.comparison.deleted_prefixes,
-            data.comparison.updated_prefixes,
-        )
+        summarize_changes(data.comparison)
         visualize_changes(data.comparison.update_details, date1, date2, data.all_mapping_keys)
 
 

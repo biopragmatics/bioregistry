@@ -292,4 +292,4 @@ class Aligner:
 def load_processed(path: Path) -> dict[str, dict[str, Any]]:
     """Load a processed."""
     with path.open() as file:
-        return json.load(file)
+        return json.load(file)  # type:ignore
