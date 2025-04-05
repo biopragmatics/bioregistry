@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 from collections.abc import Mapping
+from pathlib import Path
 
 from pydantic import BaseModel
 from typing_extensions import Literal
@@ -25,13 +27,26 @@ class Message(BaseModel):
 
 
 def validate_jsonld(
-    obj: Mapping[str, Mapping[str, str]],
+    obj: str | Mapping[str, Mapping[str, str]],
     *,
     strict: bool = True,
     use_preferred: bool = False,
     context: str | None | bioregistry.Context = None,
 ) -> list[Message]:
     """Validate a JSON-LD object."""
+    if isinstance(obj, str):
+        if obj.startswith("http://") or obj.startswith("https://"):
+            import requests
+
+            res = requests.get(obj, timeout=15)
+            res.raise_for_status()
+            obj = res.json()
+        else:
+            path = Path(obj).resolve()
+            if not path.is_file():
+                raise ValueError
+            obj = json.loads(path.read_text())
+
     if not isinstance(obj, dict):
         raise TypeError("data is not a dictionary")
     context_inner = obj.get("@context")

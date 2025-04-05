@@ -6,12 +6,9 @@ JSON-LD Validation
 1. Fails ``bioregistry validate jsonld "https://raw.githubusercontent.com/prefixcommons/prefixcommons-py/master/prefixcommons/registry/go_context.jsonld"``
 """
 
-import json
 import sys
-from pathlib import Path
 
 import click
-import requests
 
 __all__ = [
     "validate",
@@ -26,27 +23,22 @@ def validate() -> None:
 @validate.command()
 @click.argument("location")
 @click.option("--relax", is_flag=True)
-@click.option("--context")
+@click.option(
+    "--context",
+    help="The Bioregistry context, e.g., obo. If none given, uses the default Bioregistry context.",
+)
 @click.option(
     "--use-preferred",
     is_flag=True,
-    help="If true, use preferred prefixes instead of normalized ones",
+    help="If true, use preferred prefixes instead of normalized ones. If a context is given, this is disregarded.",
 )
 def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None) -> None:
     """Validate a JSON-LD file."""
-    if location.startswith("http://") or location.startswith("https://"):
-        res = requests.get(location, timeout=15)
-        res.raise_for_status()
-        obj = res.json()
-    else:
-        path = Path(location).resolve()
-        if not path.is_file():
-            raise ValueError
-        obj = json.loads(path.read_text())
-
     from .utils import validate_jsonld
 
-    messages = validate_jsonld(obj, strict=not relax, use_preferred=use_preferred, context=context)
+    messages = validate_jsonld(
+        location, strict=not relax, use_preferred=use_preferred, context=context
+    )
     for message in messages:
         click.secho(
             f"{message.prefix} - {message.error}", fg=LEVEL_TO_COLOR[message.level], nl=False
