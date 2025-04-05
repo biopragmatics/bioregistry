@@ -57,7 +57,7 @@ def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
     return rv
 
 
-def _process(record):
+def _process(record: dict[str, Any]) -> dict[str, Any]:
     rv = {
         "name": record.get("name"),
         URI_FORMAT_KEY: _get_uri_format(record),
@@ -70,8 +70,8 @@ def _process(record):
     return {k: v for k, v in rv.items() if v is not None}
 
 
-def _get_uri_format(record):
-    raw_redirect = record.get("redirect")
+def _get_uri_format(record: dict[str, Any]) -> str | None:
+    raw_redirect: str | None = record.get("redirect")
     if raw_redirect is None:
         return None
     uri_format = raw_redirect.replace("$id", "$1")

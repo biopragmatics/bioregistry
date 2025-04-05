@@ -3,7 +3,7 @@
 import io
 import json
 import logging
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
 
@@ -60,7 +60,7 @@ def get_cropoct(force_download: bool = False) -> dict[str, dict[str, Any]]:
     return rv
 
 
-def _process(record):
+def _process(record: Mapping[str, Any]) -> dict[str, Any]:
     rv = {
         "prefix": record["id"],
         "name": record["title"],

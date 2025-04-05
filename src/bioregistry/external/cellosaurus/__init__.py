@@ -61,9 +61,11 @@ def get_cellosaurus(
             if mapped_key is None:
                 continue
             if mapped_key == URI_FORMAT_KEY:
-                value = _process_db_url(d["prefix"], value)
-                if value is None:
+                value_tmp = _process_db_url(d["prefix"], value)
+                if value_tmp is None:
                     continue
+                else:
+                    value = value_tmp
             d[mapped_key] = value
         if not keep_missing_uri and URI_FORMAT_KEY not in d:
             continue
@@ -75,9 +77,9 @@ def get_cellosaurus(
     return rv
 
 
-def _process_db_url(key, value):
+def _process_db_url(key: str, value: str) -> str | None:
     if value in {"https://%s", "None"}:
-        return
+        return None
     if value.endswith("http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F%s") or value.endswith(
         "http://purl.obolibrary.org/obo/%s"
     ):
@@ -86,7 +88,7 @@ def _process_db_url(key, value):
             "See discussion at https://github.com/biopragmatics/bioregistry/issues/1259.",
             key,
         )
-        return
+        return None
     return value.rstrip("/").replace("%s", "$1")
 
 

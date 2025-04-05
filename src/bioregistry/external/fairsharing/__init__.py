@@ -145,7 +145,7 @@ def _process_record(record: MutableMapping[str, Any]) -> dict[str, Any] | None:
 SKIP_LICENSES: set[str] = set()
 
 
-def _process_publication(publication):
+def _process_publication(publication: dict[str, Any]) -> dict[str, Any] | None:
     rv = {}
     doi = publication.get("doi")
     if doi:
@@ -160,7 +160,7 @@ def _process_publication(publication):
     if pubmed:
         rv["pubmed"] = str(pubmed)
     if not doi and not pubmed:
-        return
+        return None
     title = publication.get("title")
     if title:
         title = title.replace("  ", " ").rstrip(".")

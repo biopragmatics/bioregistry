@@ -120,7 +120,7 @@ def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
     return email
 
 
-def _get_license(ols_id, config) -> str | None:
+def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
     license_value = (config.get("annotations") or {}).get("license", [None])[0]
     if license_value == "Unspecified":
         logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
@@ -130,14 +130,14 @@ def _get_license(ols_id, config) -> str | None:
     return license_value
 
 
-def _get_version(ols_id, config, processing: OLSConfig) -> str | None:
+def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> str | None:
     version_iri = config.get("versionIri")
     if version_iri:
         _, _, version = parse_obo_version_iri(version_iri, ols_id)
         if version:
             return version
 
-    version = config.get("version")
+    version: str | None = config.get("version")
     if version is None and processing.version_iri_prefix:
         if not version_iri.startswith(processing.version_iri_prefix):
             logger.info("[%s] version IRI does not start with appropriate prefix", ols_id)

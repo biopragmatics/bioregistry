@@ -46,7 +46,7 @@ class OntoPortalClient:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
-    def query(self, url: str, **params) -> requests.Response:
+    def query(self, url: str, **params: Any) -> requests.Response:
         """Query the given endpoint on the OntoPortal site.
 
         :param url: URL to query
@@ -69,7 +69,7 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        records = thread_map(
+        records = thread_map(  # type:ignore
             self._preprocess,
             records,
             unit="ontology",
@@ -79,7 +79,7 @@ class OntoPortalClient:
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
-        records = thread_map(
+        records = thread_map(  # type:ignore
             self.process, records, disable=True, description=f"Processing {self.metaprefix}"
         )
         rv = {result["prefix"]: result for result in records}

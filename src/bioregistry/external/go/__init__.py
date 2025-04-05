@@ -73,7 +73,7 @@ class GoAligner(Aligner):
         """Get the skipped GO identifiers."""
         with PROCESSING_GO_PATH.open() as file:
             j = json.load(file)
-        return j["skip"]
+        return j["skip"]  # type:ignore
 
     def prepare_external(
         self, external_id: str, external_entry: Mapping[str, Any]

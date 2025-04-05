@@ -69,7 +69,7 @@ PROVIDER_BLACKLIST = {
 }
 
 
-def _process(record):
+def _process(record: dict[str, Any]) -> dict[str, Any]:
     prefix = record["prefix"]
     rv = {
         "prefix": prefix,
@@ -118,7 +118,7 @@ SKIP_PROVIDERS = {
 }
 
 
-def _preprocess_resource(resource):
+def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
     rv = {
         "official": resource["official"],
         "homepage": resource["resourceHomeUrl"],

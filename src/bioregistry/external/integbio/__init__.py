@@ -64,7 +64,9 @@ def get_url() -> str:
     res = requests.get(base, timeout=15)
     soup = BeautifulSoup(res.text, "html.parser")
     for anchor in soup.find_all("a"):
-        href = anchor.attrs["href"]
+        href: str | None = anchor.attrs["href"]
+        if href is None:
+            continue
         if href.startswith(download_prefix) and href.endswith(download_suffix):
             return "https://catalog.integbio.jp" + href
     raise ValueError(f"unable to find Integbio download link on {base}")

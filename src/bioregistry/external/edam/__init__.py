@@ -35,7 +35,7 @@ def get_edam(force_download: bool = False) -> dict[str, dict[str, Any]]:
     return rv
 
 
-def _get_identifier(term, ontology: str) -> str:
+def _get_identifier(term: dict[str, str], ontology: str) -> str:
     # note that this prefix doesn't match the ontology name
     return term["obo_id"][len("data:") :]
 
