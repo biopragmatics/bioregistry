@@ -59,6 +59,7 @@ To install in development mode, use the following:
    deployment
    curation
    references
+   validation-cli
 
 Indices and Tables
 ------------------

@@ -127,7 +127,7 @@ def main() -> None:
         queue.append(QueueTuple(resource.prefix, example, url))
 
     with logging_redirect_tqdm():
-        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")
+        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")  # type:ignore[no-untyped-call]
 
     total = len(results)
     total_failed = sum(result.failed for result in results)
