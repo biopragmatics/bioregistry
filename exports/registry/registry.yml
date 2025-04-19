@@ -900,6 +900,9 @@ agilent.probe:
   references:
   - http://www.cs.tau.ac.il/cgi-bin/cgiwrap/click/get.cgi/conversionFiles/conversion_human_14850_agilent2entrez.txt
 agricola:
+  appears_in:
+  - chebi
+  - pmc
   contact:
     email: judith.blake@jax.org
     github: judyblake
@@ -923,17 +926,22 @@ agricola:
     public source for world-wide access to agricultural information. The database
     covers materials in all formats and periods, including printed works from as far
     back as the 15th century.
-  example: '50018'
+  example: IND608186955
   homepage: http://agricola.nal.usda.gov/
   mappings:
     biocontext: AGRICOLA
     go: AGRICOLA_ID
     miriam: agricola
     n2t: agricola
-    uniprot: DB-0266
   name: Agricultural Online Access
-  pattern: ^\d+$
+  pattern: ^IND\d+$
   preferred_prefix: agricola
+  providers:
+  - code: usda
+    description: This endpoint no longer works but is maintained for legacy purposes
+    homepage: https://agricola.nal.usda.gov
+    name: USDA Legacy Endpoint
+    uri_format: https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=$1
   publications:
   - doi: 10.1093/nar/gkz813
     pmc: PMC6943066
@@ -945,7 +953,7 @@ agricola:
   synonyms:
   - AGR
   - AGRICOLA_ID
-  uri_format: https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=$1
+  uri_format: https://europepmc.org/article/AGR/$1
 agrkb:
   contact:
     email: cjmungall@lbl.gov
@@ -988,9 +996,13 @@ agrkb:
   - model organism database
   mappings:
     biolink: AGRKB
+    uniprot: DB-0266
   name: Alliance of Genome Resources Knowledge Base
   pattern: ^[1-9][0-9]{14}$
   preferred_prefix: agrkb
+  publications:
+  - doi: 10.1093/nar/gkz813
+    pubmed: '31552413'
   reviewer:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -1557,6 +1569,38 @@ antibodyregistry:
   references:
   - https://github.com/biopragmatics/bioregistry/pull/1098
   uri_format: http://antibodyregistry.org/AB_$1
+antifam:
+  contact:
+    email: agb@ebi.ac.uk
+    name: Alex Bateman
+    orcid: 0000-0002-6982-4660
+  contributor:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: AntiFam is a database of spurious protein families that have been removed
+    from Pfam due to incorrect hidden Markov model prediction.
+  example: ANF00001
+  github_request_issue: 1523
+  homepage: https://www.ebi.ac.uk/interpro/entry/antifam
+  mappings:
+    uniprot: DB-0275
+  name: AntiFam
+  pattern: ^ANF\d{5}$
+  preferred_prefix: antifam
+  publications:
+  - doi: 10.1093/database/bas003
+    pmc: PMC3308159
+    pubmed: '22434837'
+    title: 'AntiFam: a tool to help identify spurious ORFs in protein annotation'
+    year: 2012
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.ebi.ac.uk/interpro/entry/antifam/$1
 antweb:
   description: AntWeb is a website documenting the known species of ants, with records
     for each species linked to their geographical distribution, life history, and
@@ -5366,6 +5410,27 @@ bko:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://www.sbgnbricks.org/BKO/full/entry/all/BKO:$1
+blastrule:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: BlastRules (identifiers starting with the “NBR” prefix) are a type
+    of evidence for functional classification of proteins based on BLAST (Basic Local
+    Alignment Search Tool). A BlastRule consists of one or more 'model' proteins with
+    known biological function, and BLAST identity and coverage cutoffs. Any protein
+    aligning to a model protein above the cutoffs is considered a BlastRule hit. [from
+    homepage]
+  example: NBR016799
+  github_request_issue: 1522
+  homepage: https://www.ncbi.nlm.nih.gov/genome/annotation_prok/evidence/
+  name: BlastRule
+  pattern: ^NBR\d+$
+  preferred_prefix: blastrule
+  references:
+  - https://ftp.ncbi.nlm.nih.gov/pub/blastrules/
+  uri_format: https://www.ncbi.nlm.nih.gov/genome/annotation_prok/evidence/$1
 bmrb:
   contact:
     email: markley@nmrfam.wisc.edu
@@ -7151,6 +7216,7 @@ cellosaurus:
   - ontology
   - thesaurus
   license: CC-BY-4.0
+  logo: https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png
   mappings:
     biocontext: CELLOSAURUS
     cellosaurus: Cellosaurus
@@ -9144,6 +9210,7 @@ clo:
   - obo
   - ontology
   license: CC-BY-3.0
+  logo: https://avatars.githubusercontent.com/u/12410534
   mappings:
     aberowl: CLO
     biocontext: CLO
@@ -16796,6 +16863,7 @@ efo:
   - proteomics
   - study design
   license: Apache-2.0
+  logo: https://upload.wikimedia.org/wikipedia/en/d/d8/Logo_of_the_Experimental_Factor_Ontlogy.gif
   mappings:
     aberowl: EFO
     agroportal: EFO
@@ -17332,6 +17400,33 @@ emea:
   homepage: https://www.ema.europa.eu/en/medicines
   name: European Medicines Evaluation Agency
   preferred_prefix: emea
+emi:
+  contact:
+    email: Tarcisio.Mendes@sib.swiss
+    github: tarcisiotmf
+    name: Tarcisio Mendes de Farias
+    orcid: 0000-0002-3175-5372
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The EMI ontology is used to structure spectrum annotation provenance
+    by reusing the PROV-O ontology (a W3C recommendation) and sample and observation
+    data by applying the SOSA ontology. EMI reuses the SOSA ontology as a data schema
+    for struturing the Sample and Observation data. SOSA (Sensor, Observation, Sample,
+    and Actuator) is a subset of SSN (Semantic Sensor Network Ontology) that is a
+    W3C recommendation. [from homepage]
+  download_rdf: https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology/blob/main/emi.ttl
+  example: ChemicalStructure
+  github_request_issue: 1516
+  homepage: https://www.dbgi.org/earth_metabolome_ontology/
+  license: CC0-1.0
+  name: Earth Metabolome Ontology
+  preferred_prefix: emi
+  rdf_uri_format: ' https://purl.org/emi#$1'
+  repository: https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology
+  uri_format: https://www.dbgi.org/earth_metabolome_ontology/#$1
 emmo:
   banana: EMMO
   banana_peel: _
@@ -23280,12 +23375,14 @@ gmelin:
     der anorganischen Chemie which was originally published by Leopold Gmelin in 1817;
     the last print edition, the 8th, appeared in the 1990s.
   example: '1466'
+  example_extras:
+  - '606'
   homepage: https://link.springer.com/bookseries/562
   mappings:
     edam: '1004'
     wikidata: P1578
   name: Gmelins Handbuch der anorganischen Chemie
-  pattern: ^[1-9][0-9]{3,6}$
+  pattern: ^[1-9][0-9]{2,6}$
   preferred_prefix: gmelin
   proprietary: true
   references:
@@ -25542,6 +25639,7 @@ hgnc:
   - protein
   - pseudogene
   license: CC0-1.0
+  logo: https://www.genenames.org/img/hgnc/logo/hgnc-logo-dark-bckgrnd-large.svg
   mappings:
     aberowl: HGNC
     bartoc: '20688'
@@ -29857,9 +29955,15 @@ insdc.sra:
   uri_format: https://www.ncbi.nlm.nih.gov/sra/$1
 intact:
   contact:
-    email: orchard@ebi.ac.uk
-    name: Sandra Orchard
-    orcid: 0000-0002-8878-3972
+    email: kalpanap@ebi.ac.uk
+    github: Kalpanapanneerselvam
+    name: Kalpana Panneerselvam
+    orcid: 0000-0003-2534-198X
+  contributor_extras:
+  - email: sbalu@ebi.ac.uk
+    github: CP-SB
+    name: Sucharitha Balu
+    orcid: 0000-0001-7456-0594
   description: IntAct provides a freely available, open source database system and
     analysis tools for protein interaction data.
   example: EBI-2307691
@@ -33468,6 +33572,11 @@ matrixdb:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: sbalu@ebi.ac.uk
+    github: CP-SB
+    name: Sucharitha Balu
+    orcid: 0000-0001-7456-0594
   description: MatrixDB is a freely available database focused on interactions established
     by extracellular matrix proteins, proteoglycans and polysaccharides
   example: MULT_4_VAR1_bovine
@@ -39020,6 +39129,7 @@ ncit:
   - thesaurus
   - translational medicine
   license: CC-BY-4.0
+  logo: https://evsexplore.semantics.cancer.gov/evsexplore/assets/images/NCItTile.png
   mappings:
     aberowl: NCIT
     biocontext: NCIT
