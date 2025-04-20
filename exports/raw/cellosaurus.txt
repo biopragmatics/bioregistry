@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 51.0
- Last update: 19-December-2024
+ Version: 52.0
+ Last update: 10-April-2025
 
 ----------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|Abeomics|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BioGRID_ORCS_Cell_line|BTO|BioSample|BioSamples|cancercelllines|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSHB|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GeneCopoeia|Genomeditech|GEO|HipSci|Horizon_Discovery|hPSCreg|Hysigen|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|RIKEN_BRC_EPD|Rockland|RSCB|Sigma-Aldrich|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|Ubigene|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|Abeomics|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BioGRID_ORCS_Cell_line|BTO|BioSample|BioSamples|cancercelllines|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSHB|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|Evercyte|FANTOM5_SSTAR|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GeneCopoeia|Genomeditech|GenScript|GEO|HipSci|Horizon_Discovery|hPSCreg|Hysigen|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|InvivoGen|IPD-IMGT/HLA|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|RIKEN_BRC_EPD|Rockland|RSCB|Sigma-Aldrich|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|Ubigene|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -534,6 +534,20 @@ Db_URL: None
 Term. : No
 Cat   : Cell line databases/resources
 //
+Abbrev: Evercyte
+Name  : Evercyte cell line products
+Server: https://evercyte.com/
+Db_URL: https://evercyte.com/?s=%s
+Term. : No
+Cat   : Cell line collections (Providers)
+//
+Abbrev: FANTOM5_SSTAR
+Name  : Functional Annotation of the Mammalian Genome - Samples, Transcription initiation And Regulators
+Server: https://fantom.gsc.riken.jp/5/sstar/Main_Page
+Db_URL: https://fantom.gsc.riken.jp/5/sstar/FF:%s
+Term. : No
+Cat   : Gene expression databases
+//
 Abbrev: FCDI
 Name  : FujiFilm Cellular Dynamics, Inc
 Server: https://www.fujifilmcdi.com/cirm-ipsc-products/
@@ -594,6 +608,13 @@ Abbrev: Genomeditech
 Name  : Genomeditech cell line products
 Server: https://en.genomeditech.com/product?id=9
 Db_URL: https://en.genomeditech.com/search?kwd=%s
+Term. : No
+Cat   : Cell line collections (Providers)
+//
+Abbrev: GenScript
+Name  : GenScript cell line products
+Server: https://www.genscript.com/cell_lines.html
+Db_URL: https://www.genscript.com/search?q=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -706,6 +727,13 @@ Abbrev: Innoprot
 Name  : Innoprot cell line products
 Server: https://innoprot.com/
 Db_URL: https://innoprot.com/?s=%s&lang=en
+Term. : No
+Cat   : Cell line collections (Providers)
+//
+Abbrev: InvivoGen
+Name  : InvivoGen cell line products
+Server: https://www.invivogen.com/cell-lines
+Db_URL: https://www.invivogen.com/search?sq=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -859,8 +887,8 @@ Cat   : Cell line collections (Providers)
 //
 Abbrev: NCIt
 Name  : NCI thesaurus
-Server: https://ncit.nci.nih.gov/ncitbrowser
-Db_URL: https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=%s
+Server: https://evsexplore.semantics.cancer.gov/evsexplore/welcome
+Db_URL: https://evsexplore.semantics.cancer.gov/evsexplore/concept/ncit/%s
 Db_IRI: http://purl.obolibrary.org/obo/NCIT_%s
 Term. : Yes
 Cat   : Medical resources
@@ -947,7 +975,7 @@ Cat   : Proteomic databases
 Abbrev: Progenetix
 Name  : Cancer genome data @ progenetix.org
 Server: https://progenetix.org/
-Db_URL: https://progenetix.org/biosamples/by-curie/cellosaurus:%s
+Db_URL: https://progenetix.org/cellline/?id=cellosaurus:%s
 Term. : No
 Cat   : Polymorphism and mutation databases
 //

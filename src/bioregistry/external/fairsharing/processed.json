@@ -4068,8 +4068,10 @@
     ],
     "repository": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
     "subjects": [
+      "Genomics",
       "Bioinformatics",
       "Life Science",
+      "Transcriptomics",
       "Biology"
     ]
   },
@@ -11255,14 +11257,20 @@
   },
   "FAIRsharing.ez2nhb": {
     "abbreviation": "OPL",
-    "description": "OPL models the life cycle stage details of T.cruzi and two related kinetoplastids, Trypanosoma brucei and Leishmania major. In addition, the ontology also models necessary contextual details such as host information, vector information, strain and anatomical location. OPL is based on the Basic Formal Ontology (BFO) and follows the rules set by the OBO Foundry consortium.",
+    "contact": {
+      "email": "zhengj2007@gmail.com",
+      "name": "Jie Zheng",
+      "orcid": "0000-0002-2999-0103"
+    },
+    "description": "The Ontology for Parasite Lifecycle (OPL) models the life cycle stage details of various parasites, including Trypanosoma sp., Leishmania major, and Plasmodium sp., etc. In addition to life cycle stages, the ontology also models necessary contextual details, such as host information, vector information, and anatomical location. OPL is based on the Basic Formal Ontology (BFO) and follows the rules set by the OBO Foundry consortium.",
     "domains": [
       "Parasite",
       "Host",
       "Life cycle",
       "Life cycle stage"
     ],
-    "homepage": "https://bioportal.bioontology.org/ontologies/OPL",
+    "homepage": "https://github.com/OPL-ontology/OPL",
+    "license": "CC-BY-4.0",
     "name": "Ontology for Parasite LifeCycle",
     "publications": [
       {
@@ -11801,40 +11809,35 @@
     ]
   },
   "FAIRsharing.fj07xj": {
-    "abbreviation": "NCBITAXON",
-    "description": "The NCBI Taxonomy is a database of taxonomic information. It does not follow a single taxonomic treatise but rather attempts to incorporate phylogenetic and taxonomic knowledge from a variety of sources, including the published literature, web-based databases, and the advice of sequence submitters and outside taxonomy experts. Note: The NCBI Taxonomy database will be adding binomial species names to ~3,000 viruses in spring 2025. These changes reflect updates to the International Code of Virus Classification and Nomenclature (ICVCN) made by the International Committee on Taxonomy of Viruses (ICTV).",
+    "abbreviation": "NCBITaxon",
+    "contact": {
+      "email": "frederic.bastian@unil.ch",
+      "name": "Frederic Bastian",
+      "orcid": "0000-0002-9415-5104"
+    },
+    "description": "The National Center for Biotechnology Information Organismal Classification ontology (NCBITaxon) is an automatic semantic translation of the NCBI taxonomy database into obo/owl. ",
     "domains": [
       "Taxonomic classification"
     ],
-    "homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
-    "license": "CC0-1.0",
-    "name": "NCBI Taxonomy",
+    "homepage": "https://github.com/obophenotype/ncbitaxon",
+    "name": "NCBI Organismal Classification",
     "publications": [
       {
-        "doi": "10.1093/nar/gkx1094",
-        "pubmed": "29140468",
-        "title": "GenBank",
-        "year": 2017
-      },
-      {
-        "doi": "10.1093/nar/gkr1178",
-        "pubmed": "22139910",
-        "title": "The NCBI Taxonomy database",
-        "year": 2011
-      },
-      {
-        "doi": "10.1093/database/baaa062",
-        "pubmed": "32761142",
-        "title": "NCBI Taxonomy: a comprehensive update on curation, resources and tools",
-        "year": 2020
+        "doi": "10.5281/zenodo.8065005",
+        "title": "obophenotype/ncbitaxon: 2023-06-20 Release (v2023-06-20)",
+        "year": 2023
       }
     ],
-    "repository": "https://github.com/obophenotype/ncbitaxon",
+    "repository": "https://github.com/obophenotype/ncbitaxon/issues",
     "subjects": [
+      "Knowledge and Information Systems",
+      "Genomics",
       "Taxonomy",
+      "Proteomics",
       "Phylogenetics",
       "Evolutionary Biology",
       "Life Science",
+      "Ontology and Terminology",
       "Omics"
     ]
   },
@@ -19200,6 +19203,7 @@
     "domains": [
       "Biological process",
       "Pathogen",
+      "Infection",
       "Vaccine",
       "Vaccination"
     ],
@@ -19221,16 +19225,32 @@
         "year": 2012
       },
       {
-        "doi": "10.2174/1381612826666201125112131",
-        "pubmed": "33238868",
-        "title": "Ontology-based Precision Vaccinology for Deep Mechanism Understanding and Precision Vaccine Development",
-        "year": 2020
+        "doi": "10.1186/2041-1480-2-s2-s8",
+        "pubmed": "21624163",
+        "title": "Mining of vaccine-associated IFN-gamma gene interaction networks using the Vaccine Ontology",
+        "year": 2011
+      },
+      {
+        "doi": "10.1038/npre.2009.3553",
+        "pubmed": "21871085",
+        "title": "VO: Vaccine Ontology",
+        "year": 2010
+      },
+      {
+        "doi": "10.1186/2041-1480-4-33",
+        "pubmed": "24209834",
+        "title": "Network-based analysis of vaccine-related associations reveals consistent knowledge with the vaccine ontology",
+        "year": 2013
       }
     ],
     "repository": "https://github.com/vaccineontology",
     "subjects": [
       "Pathobiochemistry",
-      "Biomedical Science"
+      "Clinical Studies",
+      "Immunology",
+      "Infectious Disease Medicine",
+      "Biomedical Science",
+      "Preclinical Studies"
     ]
   }
 }

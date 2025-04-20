@@ -7109,7 +7109,7 @@
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/chembl",
             "sampleId": "CHEMBL4303805",
-            "urlPattern": "https://www.ebi.ac.uk/chembl/id_lookup/{$id}"
+            "urlPattern": "https://www.ebi.ac.uk/chembl/entity/{$id}"
           }
         ],
         "sampleId": "CHEMBL4303805",
@@ -9610,10 +9610,10 @@
         "id": 3067,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00001015",
-        "modified": "2025-04-01T12:10:41.977+00:00",
+        "modified": "2025-04-01T07:25:25.159+00:00",
         "name": "CropMRepository",
         "namespaceEmbeddedInLui": false,
-        "pattern": "^[0-9]+$",
+        "pattern": "^[0-9]{9}$",
         "prefix": "crop2ml",
         "renderDeprecatedLanding": false,
         "resources": [
@@ -9649,11 +9649,11 @@
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "http://www.crop2ml.org",
-            "sampleId": "2",
+            "sampleId": "000000001",
             "urlPattern": "http://www.crop2ml.org/cropmdb/{$id}"
           }
         ],
-        "sampleId": "2",
+        "sampleId": "000000001",
         "successor": null
       },
       {
@@ -10960,20 +10960,20 @@
       },
       {
         "created": "2019-06-11T14:16:51.708+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-11T13:12:46.653+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "The Database for Bacterial Group II Introns  provides a catalogue of full-length, non-redundant group II introns present in bacterial DNA sequences in GenBank.",
         "id": 917,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000318",
-        "modified": "2019-06-11T14:16:51.708+00:00",
+        "modified": "2025-04-11T13:13:00.886+00:00",
         "name": "DBG2 Introns",
         "namespaceEmbeddedInLui": false,
         "pattern": "^\\w{1,2}\\.(\\w{1,2}\\.)?[A-Za-z0-9]+$",
         "prefix": "dbg2introns",
-        "renderDeprecatedLanding": false,
+        "renderDeprecatedLanding": true,
         "resources": [
           {
             "authHelpDescription": null,
@@ -14058,9 +14058,9 @@
             "providerCode": "CURATOR_REVIEW",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
-            "resourceHomeUrl": "http://go.drugbank.com",
+            "resourceHomeUrl": "https://www.drugbank.com",
             "sampleId": "DB00001",
-            "urlPattern": "http://go.drugbank.com/drugs/{$id}"
+            "urlPattern": "https://go.drugbank.com/drugs/{$id}"
           }
         ],
         "sampleId": "DB00001",
@@ -14329,7 +14329,7 @@
             "official": false,
             "protectedUrls": false,
             "providerCode": "enzymeportal",
-            "renderDeprecatedLanding": false,
+            "renderDeprecatedLanding": true,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/enzymeportal",
             "sampleId": "1.1.1.1",
@@ -23708,7 +23708,7 @@
         "id": 1466,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000519",
-        "modified": "2019-06-11T14:17:39.487+00:00",
+        "modified": "2025-04-11T15:02:23.103+00:00",
         "name": "Identifiers.org Terms",
         "namespaceEmbeddedInLui": false,
         "pattern": "^[A-Za-z]+$",
@@ -23718,8 +23718,8 @@
           {
             "authHelpDescription": null,
             "authHelpUrl": null,
-            "deprecated": false,
-            "deprecationDate": null,
+            "deprecated": true,
+            "deprecationDate": "2025-04-11T14:56:49.071+00:00",
             "deprecationOfflineDate": null,
             "deprecationStatement": null,
             "description": "IdoT via biomodels.net",
@@ -23749,9 +23749,44 @@
             "resourceHomeUrl": "https://identifiers.org/",
             "sampleId": "identifierPattern",
             "urlPattern": "https://biomodels.net/vocab/idot.rdf#{$id}"
+          },
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": false,
+            "deprecationDate": null,
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "identifiers.org ontology terms via github repository",
+            "id": 4254,
+            "institution": {
+              "description": "At EMBL-EBI, we make the world’s public biological data freely available to the scientific community via a range of services and tools, perform basic research and provide professional training in bioinformatics. \nWe are part of the European Molecular Biology Laboratory (EMBL), an international, innovative and interdisciplinary research organisation funded by 26 member states and two associate member states.",
+              "homeUrl": "https://www.ebi.ac.uk",
+              "id": 2,
+              "location": {
+                "countryCode": "GB",
+                "countryName": "United Kingdom"
+              },
+              "name": "European Bioinformatics Institute",
+              "rorId": "https://ror.org/02catss52"
+            },
+            "location": {
+              "countryCode": "GB",
+              "countryName": "United Kingdom"
+            },
+            "mirId": "MIR:00001090",
+            "name": "idot via github",
+            "official": false,
+            "protectedUrls": false,
+            "providerCode": "gh",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "https://github.com/identifiers-org/ontop",
+            "sampleId": "Namespace",
+            "urlPattern": "https://github.com/identifiers-org/ontop/tree/main/idorg-ontology#idot{$id}"
           }
         ],
-        "sampleId": "identifierPattern",
+        "sampleId": "Namespace",
         "successor": null
       },
       {
@@ -31561,20 +31596,20 @@
       },
       {
         "created": "2019-06-11T14:17:49.171+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-14T09:37:58.872+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "miRTarBase is a database of miRNA-target interactions (MTIs), collected manually from relevant literature, following Natural Language Processing of the text to identify research articles related to functional studies of miRNAs. Generally, the collected MTIs are validated experimentally by reporter assay, western blot, microarray and next-generation sequencing experiments.",
         "id": 1567,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000562",
-        "modified": "2019-06-11T14:17:49.171+00:00",
+        "modified": "2025-04-14T09:38:37.217+00:00",
         "name": "miRTarBase",
         "namespaceEmbeddedInLui": false,
         "pattern": "^MIRT\\d{6}$",
         "prefix": "mirtarbase",
-        "renderDeprecatedLanding": false,
+        "renderDeprecatedLanding": true,
         "resources": [
           {
             "authHelpDescription": null,
@@ -35376,20 +35411,20 @@
       },
       {
         "created": "2019-06-11T14:16:36.900+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-14T08:48:51.634+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 3. This was replaced in 2013 by version 4.",
         "id": 736,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000248",
-        "modified": "2019-06-11T14:16:36.900+00:00",
+        "modified": "2025-04-14T08:49:25.504+00:00",
         "name": "NONCODE v3",
         "namespaceEmbeddedInLui": false,
         "pattern": "^\\d+$",
         "prefix": "noncodev3",
-        "renderDeprecatedLanding": false,
+        "renderDeprecatedLanding": true,
         "resources": [
           {
             "authHelpDescription": null,
@@ -35432,20 +35467,20 @@
       },
       {
         "created": "2019-06-11T14:17:29.649+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-14T08:50:01.112+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 4 and relates to gene regions.",
         "id": 1366,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000480",
-        "modified": "2019-06-11T14:17:29.649+00:00",
+        "modified": "2025-04-14T08:50:12.469+00:00",
         "name": "NONCODE v4 Gene",
         "namespaceEmbeddedInLui": false,
         "pattern": "^NONHSAG\\d{5}$",
         "prefix": "noncodev4.gene",
-        "renderDeprecatedLanding": false,
+        "renderDeprecatedLanding": true,
         "resources": [
           {
             "authHelpDescription": null,
@@ -35488,20 +35523,20 @@
       },
       {
         "created": "2019-06-11T14:17:29.833+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-14T08:49:41.833+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 4 and relates to individual transcripts.",
         "id": 1368,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000481",
-        "modified": "2019-06-11T14:17:29.833+00:00",
+        "modified": "2025-04-14T08:49:50.398+00:00",
         "name": "NONCODE v4 Transcript",
         "namespaceEmbeddedInLui": false,
         "pattern": "^NONHSAT\\d{6}$",
         "prefix": "noncodev4.rna",
-        "renderDeprecatedLanding": false,
+        "renderDeprecatedLanding": true,
         "resources": [
           {
             "authHelpDescription": null,
@@ -35590,9 +35625,9 @@
             "providerCode": "CURATOR_REVIEW",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
-            "resourceHomeUrl": "http://bioinfo.lifl.fr/norine/",
+            "resourceHomeUrl": "https://bioinfo.cristal.univ-lille.fr/norine/",
             "sampleId": "NOR00681",
-            "urlPattern": "http://bioinfo.lifl.fr/norine/result.jsp?ID={$id}"
+            "urlPattern": "https://bioinfo.cristal.univ-lille.fr/norine/result.jsp?ID={$id}"
           }
         ],
         "sampleId": "NOR00681",
@@ -38519,15 +38554,15 @@
       },
       {
         "created": "2019-06-11T14:16:49.605+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-14T11:01:07.682+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "The PAZAR database unites independently created and maintained data collections of transcription factor and regulatory sequence annotation. It provides information on the sequence and target of individual transcription factors.",
         "id": 892,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000306",
-        "modified": "2019-06-11T14:16:49.605+00:00",
+        "modified": "2025-04-14T11:01:07.688+00:00",
         "name": "Pazar Transcription Factor",
         "namespaceEmbeddedInLui": false,
         "pattern": "^TF\\w+$",
@@ -41459,15 +41494,15 @@
       },
       {
         "created": "2019-06-11T14:15:49.123+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-14T10:26:37.184+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "PRINTS is a compendium of protein fingerprints. A fingerprint is a group of conserved motifs used to characterise a protein family; its diagnostic power is refined by iterative scanning of a SWISS-PROT/TrEMBL composite. Usually the motifs do not overlap, but are separated along a sequence, though they may be contiguous in 3D-space. Fingerprints can encode protein folds and functionalities more flexibly and powerfully than can single motifs, full diagnostic potency deriving from the mutual context provided by motif neighbours.",
         "id": 214,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000061",
-        "modified": "2019-06-11T14:15:49.123+00:00",
+        "modified": "2025-04-14T10:26:37.185+00:00",
         "name": "PRINTS",
         "namespaceEmbeddedInLui": false,
         "pattern": "^PR\\d{5}$",
@@ -47129,20 +47164,20 @@
       },
       {
         "created": "2019-06-11T14:17:11.871+00:00",
-        "deprecated": false,
-        "deprecationDate": null,
+        "deprecated": true,
+        "deprecationDate": "2025-04-15T12:28:16.634+00:00",
         "deprecationOfflineDate": null,
         "deprecationStatement": null,
         "description": "STAP (Statistical Torsional Angles Potentials) was developed since, according to several studies, some nuclear magnetic resonance (NMR) structures are of lower quality, are less reliable and less suitable for structural analysis than high-resolution X-ray crystallographic structures. The refined NMR solution structures (statistical torsion angle potentials; STAP) in the database are refined from the Protein Data Bank (PDB).",
         "id": 1158,
         "infoOnPostmortemAccess": null,
         "mirId": "MIR:00000399",
-        "modified": "2019-06-11T14:17:11.871+00:00",
+        "modified": "2025-04-15T12:28:23.228+00:00",
         "name": "STAP",
         "namespaceEmbeddedInLui": false,
         "pattern": "^[0-9][A-Za-z0-9]{3}$",
         "prefix": "stap",
-        "renderDeprecatedLanding": false,
+        "renderDeprecatedLanding": true,
         "resources": [
           {
             "authHelpDescription": null,

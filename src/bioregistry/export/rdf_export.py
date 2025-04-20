@@ -114,7 +114,7 @@ def collection_to_rdf_str(
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     collection.add_triples(graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def metaresource_to_rdf_str(
@@ -125,7 +125,7 @@ def metaresource_to_rdf_str(
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     registry.add_triples(graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def resource_to_rdf_str(
@@ -136,7 +136,7 @@ def resource_to_rdf_str(
     """Get a collection as an RDF string."""
     graph = _graph(manager=manager)
     _add_resource(resource, manager=manager, graph=graph)
-    return graph.serialize(format=fmt or "turtle")
+    return cast(str, graph.serialize(format=fmt or "turtle"))
 
 
 def _get_resource_functions() -> list[tuple[str | URIRef, Callable[[Resource], Any], URIRef]]:
@@ -158,9 +158,7 @@ def _get_resource_function_2() -> list[tuple[str | URIRef, Callable[[Resource], 
     ]
 
 
-def _add_resource(  # noqa:C901
-    resource: Resource, *, manager: Manager, graph: rdflib.Graph
-) -> None:
+def _add_resource(resource: Resource, *, manager: Manager, graph: rdflib.Graph) -> None:
     node = cast(URIRef, bioregistry_resource[resource.prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(resource.get_name())))
