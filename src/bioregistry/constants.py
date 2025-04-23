@@ -15,10 +15,10 @@ __all__ = [
     "BIOREGISTRY_MODULE",
     "BIOREGISTRY_PATH",
     "COLLECTIONS_PATH",
+    "CURATED_MAPPINGS_PATH",
     "DATA_DIRECTORY",
     "HERE",
     "METAREGISTRY_PATH",
-    "MISMATCH_PATH",
     "RAW_DIRECTORY",
     "FailureReturnType",
     "get_failure_return_type",
@@ -33,7 +33,7 @@ EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
 METAREGISTRY_PATH = DATA_DIRECTORY / "metaregistry.json"
 COLLECTIONS_PATH = DATA_DIRECTORY / "collections.json"
-MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
+CURATED_MAPPINGS_PATH = DATA_DIRECTORY / "curated_mappings.sssom.tsv"
 CONTEXTS_PATH = DATA_DIRECTORY / "contexts.json"
 CURATED_PAPERS_PATH = DATA_DIRECTORY / "curated_papers.tsv"
 
@@ -134,6 +134,8 @@ MIRIAM_BLACKLIST = {
     "neurolex",
     # Miriam needs to be extended
     "ccds",
+    # Miriam completely misses the actual usage
+    "agricola",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 

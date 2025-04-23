@@ -9,7 +9,8 @@ from .compare import compare
 from .export.cli import export
 from .lint import lint
 from .schema.struct import generate_schema
-from .utils import OLSBroken, get_hexdigests, secho
+from .utils import get_hexdigests, secho
+from .validate.cli import validate
 from .version import VERSION
 
 __all__ = [
@@ -86,7 +87,7 @@ def align(
         secho(f"Aligning {aligner_cls.key}")
         try:
             aligner_cls.align(force_download=not no_force)
-        except (OSError, OLSBroken) as e:
+        except Exception as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
     if pre_digests != get_hexdigests():
@@ -97,6 +98,7 @@ def align(
 main.add_command(lint)
 main.add_command(compare)
 main.add_command(export)
+main.add_command(validate)
 main.add_command(web)
 main.add_command(generate_schema)
 

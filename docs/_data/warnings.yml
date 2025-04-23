@@ -2,6 +2,11 @@ embedding_rewrites: []
 license_conflict: []
 prefix_rewrites: []
 wrong_patterns:
+- correct: ^IND\d+$
+  homepage: http://agricola.nal.usda.gov/
+  miriam: ^\d+$
+  name: Agricultural Online Access
+  prefix: agricola
 - correct: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
   homepage: https://arks.org
   miriam: ^(ark\:)/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
@@ -157,6 +162,11 @@ wrong_patterns:
   miriam: ^FOODON:[0-9]{8}$
   name: The Food Ontology
   prefix: foodon
+- correct: ^\d+$
+  homepage: https://www.crossref.org/
+  miriam: ^\d{9,9}$
+  name: FunderRegistry
+  prefix: funderregistry
 - correct: ^\d{9}$
   homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
   miriam: ^GEO_[0-9]{9}$
@@ -183,7 +193,7 @@ wrong_patterns:
   name: Gene Ontology
   prefix: go
 - correct: ^\d{7}$
-  homepage: http://www.geneontology.org/cgi-bin/references.cgi
+  homepage: https://geneontology.org/gorefs
   miriam: ^GO_REF:\d{7}$
   name: Gene Ontology Database references
   prefix: go.ref
@@ -278,7 +288,7 @@ wrong_patterns:
   name: MediaDive Medium
   prefix: mediadive.medium
 - correct: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
-  homepage: http://merops.sanger.ac.uk/index.htm
+  homepage: https://www.ebi.ac.uk/merops/
   miriam: ^I\d{2}\.\d{3}$
   name: MEROPS Entry
   prefix: merops.entry
@@ -352,6 +362,11 @@ wrong_patterns:
   miriam: ^NANDO:[0-9]+$
   name: Nanbyo Disease Ontology
   prefix: nando
+- correct: ^[CRPA]\d+$
+  homepage: https://github.com/NCI-Thesaurus/thesaurus-obo-edition
+  miriam: ^C\d+$
+  name: NCI Thesaurus
+  prefix: ncit
 - correct: ^\d+$
   homepage: https://github.com/SciCrunch/NIF-Ontology
   miriam: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
@@ -374,7 +389,7 @@ wrong_patterns:
   prefix: obcs
 - correct: ^\d{7}$
   homepage: http://obi-ontology.org
-  miriam: (^OBI:\d{7}$)|(^OBI_\d{7}$)
+  miriam: ^OBI_\d{7}$
   name: Ontology for Biomedical Investigations
   prefix: obi
 - correct: ^[0-9]{12}$
@@ -557,7 +572,7 @@ wrong_patterns:
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
   name: Vertebrate Gene Nomenclature Committee
   prefix: vgnc
-- correct: ^(Q|P|E)\d+$
+- correct: ^(Q|P|E|L)\d+$
   homepage: https://www.wikidata.org/
   miriam: ^(Q|P)\d+$
   name: Wikidata

@@ -74,26 +74,17 @@
   "affy.probeset": {
     "deprecated": false,
     "description": "An Affymetrix ProbeSet is a collection of up to 11 short (~22 nucleotide) microarray probes designed to measure a single gene or a family of genes as a unit. Multiple probe sets may be available for each gene under consideration.",
-    "homepage": "http://www.affymetrix.com/",
+    "homepage": "http://bio2rdf.org",
     "id": "00000394",
     "name": "Affymetrix Probeset",
     "namespaceEmbeddedInLui": false,
     "pattern": "\\d{4,}((_[asx])?_at)?",
     "prefix": "affy.probeset",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "Bio2RDF",
-        "homepage": "http://cu.affymetrix.bio2rdf.org/fct/",
-        "name": "Bio2RDF",
-        "uri_format": "http://cu.affymetrix.bio2rdf.org/describe/?url=http://bio2rdf.org/affymetrix:$1"
-      }
-    ],
     "sampleId": "243002_at",
-    "uri_format": "https://www.affymetrix.com/LinkServlet?probeset=$1"
+    "uri_format": "http://bio2rdf.org/affymetrix:$1"
   },
   "aftol.taxonomy": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Assembling the Fungal Tree of Life (AFTOL) project is dedicated to significantly enhancing our understanding of the evolution of the Kingdom Fungi, which represents one of the major clades of life. There are roughly 80,000 described species of Fungi, but the actual diversity in the group has been estimated to be about 1.5 million species.",
     "homepage": "http://aftol.org/data.php",
     "id": "00000411",
@@ -934,9 +925,9 @@
       {
         "code": "ddbj",
         "description": "BioSample at DNA Data Bank of Japan",
-        "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
+        "homepage": "https://www.ddbj.nig.ac.jp/biosample",
         "name": "BioSample at DNA Data Bank of Japan",
-        "uri_format": "http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1"
+        "uri_format": "https://ddbj.nig.ac.jp/search/entry/biosample/$1"
       }
     ],
     "sampleId": "SAMEA2397676",
@@ -1405,7 +1396,7 @@
     "uri_format": "http://cgsc.biology.yale.edu/Site.php?ID=$1"
   },
   "charprot": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "CharProt is a database of biochemically characterized proteins designed to support automated annotation pipelines. Entries are annotated with gene name, symbol and various controlled vocabulary terms, including Gene Ontology terms, Enzyme Commission number and TransportDB accession.",
     "homepage": "http://www.jcvi.org/charprotdb",
     "id": "00000341",
@@ -1449,15 +1440,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^CHEMBL\\d+$",
     "prefix": "chembl.compound",
-    "providers": [
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "ChEMBL compound RDF through EBI RDF Platform",
-        "homepage": "https://www.ebi.ac.uk/rdf/services/chembl/",
-        "name": "ChEMBL compound RDF through EBI RDF Platform",
-        "uri_format": "https://rdf.ebi.ac.uk/resource/chembl/molecule/$1"
-      }
-    ],
     "sampleId": "CHEMBL308052",
     "uri_format": "https://www.ebi.ac.uk/chembl/compound/inspect/$1"
   },
@@ -1840,7 +1822,7 @@
     "uri_format": "https://comptox.epa.gov/dashboard/$1"
   },
   "compulyeast": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "Compluyeast-2D-DB is a two-dimensional polyacrylamide gel electrophoresis federated database. This collection references a subset of Uniprot, and contains general information about the protein record.",
     "homepage": "http://compluyeast2dpage.dacya.ucm.es/",
     "id": "00000198",
@@ -2240,7 +2222,7 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucest/$1"
   },
   "dbg2introns": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Database for Bacterial Group II Introns  provides a catalogue of full-length, non-redundant group II introns present in bacterial DNA sequences in GenBank.",
     "homepage": "http://webapps2.ucalgary.ca/~groupii/",
     "id": "00000318",
@@ -2617,14 +2599,14 @@
   "drugbank": {
     "deprecated": false,
     "description": "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information.",
-    "homepage": "http://www.drugbank.ca/",
+    "homepage": "https://www.drugbank.com",
     "id": "00000102",
     "name": "DrugBank",
     "namespaceEmbeddedInLui": false,
     "pattern": "^DB\\d{5}$",
     "prefix": "drugbank",
     "sampleId": "DB00001",
-    "uri_format": "http://www.drugbank.ca/drugs/$1"
+    "uri_format": "https://go.drugbank.com/drugs/$1"
   },
   "drugbankv4.target": {
     "deprecated": false,
@@ -2703,7 +2685,7 @@
     "uri_format": "http://purl.bioontology.org/ontology/ECO/ECO:$1"
   },
   "ecogene": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The EcoGene database contains updated information about the E. coli K-12 genome and proteome sequences, including extensive gene bibliographies. A major EcoGene focus has been the re-evaluation of translation start sites.",
     "homepage": "http://ecogene.org/",
     "id": "00000163",
@@ -4340,7 +4322,7 @@
   "hp": {
     "deprecated": false,
     "description": "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM.",
-    "homepage": "http://human-phenotype-ontology.github.io/",
+    "homepage": "https://hpo.jax.org/",
     "id": "00000571",
     "name": "Human Phenotype Ontology",
     "namespaceEmbeddedInLui": true,
@@ -4386,7 +4368,7 @@
     "uri_format": "http://www.humanproteomemap.org/protein.php?hpm_id=$1"
   },
   "hprd": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Human Protein Reference Database (HPRD) represents a centralized platform to visually depict and integrate information pertaining to domain architecture, post-translational modifications, interaction networks and disease association for each protein in the human proteome.",
     "homepage": "http://www.hprd.org/",
     "id": "00000377",
@@ -4565,14 +4547,14 @@
   "idot": {
     "deprecated": false,
     "description": "Identifiers.org Terms (idot) is an RDF vocabulary providing useful terms for describing datasets.",
-    "homepage": "https://identifiers.org/",
+    "homepage": "https://github.com/identifiers-org/ontop",
     "id": "00000519",
     "name": "Identifiers.org Terms",
     "namespaceEmbeddedInLui": false,
     "pattern": "^[A-Za-z]+$",
     "prefix": "idot",
-    "sampleId": "identifierPattern",
-    "uri_format": "https://biomodels.net/vocab/idot.rdf#$1"
+    "sampleId": "Namespace",
+    "uri_format": "https://github.com/identifiers-org/ontop/tree/main/idorg-ontology#idot$1"
   },
   "idr": {
     "deprecated": false,
@@ -4745,7 +4727,7 @@
       }
     ],
     "sampleId": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
-    "uri_format": "http://legacy.chemspider.com/inchikey=$1"
+    "uri_format": "https://www.chemspider.com/search?params=$1"
   },
   "insdc": {
     "deprecated": false,
@@ -4896,9 +4878,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://interpro.bio2rdf.org/fct/",
+        "homepage": "http://bio2rdf.org/",
         "name": "Bio2RDF",
-        "uri_format": "http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:$1"
+        "uri_format": "http://bio2rdf.org/interpro:$1"
       }
     ],
     "sampleId": "IPR000100",
@@ -6207,7 +6189,7 @@
     "uri_format": "http://rhesus.amu.edu.pl/mirnest/copy/details.php?id=$1"
   },
   "mirtarbase": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "miRTarBase is a database of miRNA-target interactions (MTIs), collected manually from relevant literature, following Natural Language Processing of the text to identify research articles related to functional studies of miRNAs. Generally, the collected MTIs are validated experimentally by reporter assay, western blot, microarray and next-generation sequencing experiments.",
     "homepage": "http://mirtarbase.mbc.nctu.edu.tw/",
     "id": "00000562",
@@ -6341,14 +6323,14 @@
   "mod": {
     "deprecated": false,
     "description": "The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims to define a concensus nomenclature and ontology reconciling, in a hierarchical representation, the complementary descriptions of residue modifications.",
-    "homepage": "http://bioportal.bioontology.org/ontologies/PSIMOD",
+    "homepage": "https://www.ebi.ac.uk/ols4/ontologies/mod",
     "id": "00000056",
     "name": "Protein Modification Ontology",
     "namespaceEmbeddedInLui": true,
     "pattern": "^MOD:\\d{5}",
     "prefix": "mod",
     "sampleId": "00001",
-    "uri_format": "http://bioportal.bioontology.org/ontologies/1041?p=terms&conceptid=MOD:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mod/terms?obo_id=MOD:$1"
   },
   "modeldb": {
     "deprecated": false,
@@ -6754,9 +6736,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://ncbigene.bio2rdf.org/fct",
+        "homepage": "http://bio2rdf.org",
         "name": "Bio2RDF",
-        "uri_format": "http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1"
+        "uri_format": "http://bio2rdf.org/ncbigene:$1"
       }
     ],
     "sampleId": "100010",
@@ -6988,7 +6970,7 @@
     "uri_format": "https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1"
   },
   "noncodev3": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 3. This was replaced in 2013 by version 4.",
     "homepage": "http://www.noncode.org/",
     "id": "00000248",
@@ -7000,7 +6982,7 @@
     "uri_format": "http://www.noncode.org/NONCODERv3/ncrna.php?ncid=$1"
   },
   "noncodev4.gene": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 4 and relates to gene regions.",
     "homepage": "http://www.bioinfo.org/NONCODEv4/",
     "id": "00000480",
@@ -7012,7 +6994,7 @@
     "uri_format": "http://www.bioinfo.org/NONCODEv4/show_gene.php?id=$1"
   },
   "noncodev4.rna": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 4 and relates to individual transcripts.",
     "homepage": "http://www.bioinfo.org/NONCODEv4/",
     "id": "00000481",
@@ -7026,14 +7008,14 @@
   "norine": {
     "deprecated": false,
     "description": "Norine is a database dedicated to nonribosomal peptides (NRPs). In bacteria and fungi, in addition to the traditional ribosomal proteic biosynthesis, an alternative ribosome-independent pathway called NRP synthesis allows peptide production. The molecules synthesized by NRPS contain a high proportion of nonproteogenic amino acids whose primary structure is not always linear, often being more complex and containing cycles and branchings.",
-    "homepage": "http://bioinfo.lifl.fr/norine/",
+    "homepage": "https://bioinfo.cristal.univ-lille.fr/norine/",
     "id": "00000498",
     "name": "NORINE",
     "namespaceEmbeddedInLui": false,
     "pattern": "^NOR\\d+$",
     "prefix": "norine",
     "sampleId": "NOR00681",
-    "uri_format": "http://bioinfo.lifl.fr/norine/result.jsp?ID=$1"
+    "uri_format": "https://bioinfo.cristal.univ-lille.fr/norine/result.jsp?ID=$1"
   },
   "nuclearbd": {
     "deprecated": false,
@@ -7078,7 +7060,7 @@
     "id": "00000127",
     "name": "Ontology for Biomedical Investigations",
     "namespaceEmbeddedInLui": false,
-    "pattern": "(^OBI:\\d{7}$)|(^OBI_\\d{7}$)",
+    "pattern": "^OBI_\\d{7}$",
     "prefix": "obi",
     "sampleId": "OBI_0000070",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
@@ -7384,9 +7366,9 @@
       {
         "code": "CURATOR_REVIEW",
         "description": "Bio2RDF",
-        "homepage": "http://orphanet.bio2rdf.org/fct",
+        "homepage": "http://bio2rdf.org/",
         "name": "Bio2RDF",
-        "uri_format": "http://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:$1"
+        "uri_format": "http://bio2rdf.org/orphanet:$1"
       }
     ],
     "sampleId": "85163",
@@ -7633,7 +7615,7 @@
     "uri_format": "http://pax-db.org/#!protein/$1"
   },
   "pazar": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The PAZAR database unites independently created and maintained data collections of transcription factor and regulatory sequence annotation. It provides information on the sequence and target of individual transcription factors.",
     "homepage": "http://www.pazar.info/",
     "id": "00000306",
@@ -8204,7 +8186,7 @@
         "description": "Protein Ontology at Georgetown",
         "homepage": "https://proconsortium.org/",
         "name": "Protein Ontology at Georgetown",
-        "uri_format": "https://proconsortium.org/app/entry/PR:$1"
+        "uri_format": "https://proconsortium.org/cgi-bin/entry_pro?id=PR:$1"
       }
     ],
     "sampleId": "000000024",
@@ -8244,7 +8226,7 @@
     "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
   },
   "prints": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "PRINTS is a compendium of protein fingerprints. A fingerprint is a group of conserved motifs used to characterise a protein family; its diagnostic power is refined by iterative scanning of a SWISS-PROT/TrEMBL composite. Usually the motifs do not overlap, but are separated along a sequence, though they may be contiguous in 3D-space. Fingerprints can encode protein folds and functionalities more flexibly and powerfully than can single motifs, full diagnostic potency deriving from the mutual context provided by motif neighbours.",
     "homepage": "http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/",
     "id": "00000061",
@@ -8556,7 +8538,7 @@
     "pattern": "^Os\\S+g\\d{7}$",
     "prefix": "rapdb.locus",
     "sampleId": "Os01g0883800",
-    "uri_format": "https://rapdb.dna.affrc.go.jp/viewer/gbrowse_details/irgsp1?name=$1"
+    "uri_format": "https://rapdb.dna.affrc.go.jp/locus/?name=$1"
   },
   "rapdb.transcript": {
     "deprecated": false,
@@ -9001,7 +8983,7 @@
   },
   "scop": {
     "deprecated": false,
-    "description": "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes.",
+    "description": "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes. This namespace is limited to SCOP v1 as the identifiers used by v2 are different.",
     "homepage": "http://scop.mrc-lmb.cam.ac.uk/scop/",
     "id": "00000371",
     "name": "SCOP",
@@ -9113,18 +9095,18 @@
     "prefix": "sgd",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "Bio2RDF",
-        "homepage": "http://sgd.bio2rdf.org/fct",
-        "name": "Bio2RDF",
-        "uri_format": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
-      },
-      {
         "code": "agr",
         "description": "SGD through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
         "name": "SGD through the Alliance of Genome Resources",
         "uri_format": "https://www.alliancegenome.org/gene/SGD:$1"
+      },
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Bio2RDF",
+        "homepage": "http://bio2rdf.org",
+        "name": "Bio2RDF",
+        "uri_format": "http://bio2rdf.org/sgd:$1"
       }
     ],
     "sampleId": "S000003909",
@@ -9301,14 +9283,14 @@
   "snomedct": {
     "deprecated": false,
     "description": "SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms), is a systematically organized computer processable collection of medical terminology covering most areas of clinical information such as diseases, findings, procedures, microorganisms, pharmaceuticals, etc.",
-    "homepage": "http://www.snomedbrowser.com/",
+    "homepage": "https://browser.ihtsdotools.org/",
     "id": "00000269",
     "name": "SNOMED CT",
     "namespaceEmbeddedInLui": false,
     "pattern": "^(\\w+)?\\d+$",
     "prefix": "snomedct",
     "sampleId": "284196006",
-    "uri_format": "http://www.snomedbrowser.com/Codes/Details/$1"
+    "uri_format": "https://browser.ihtsdotools.org/?perspective=full&conceptId1=$1"
   },
   "snp2tfbs": {
     "deprecated": false,
@@ -9395,7 +9377,7 @@
     "uri_format": "https://www.signalingpathways.org/datasets/dataset.jsf?doi=$1"
   },
   "stap": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "STAP (Statistical Torsional Angles Potentials) was developed since, according to several studies, some nuclear magnetic resonance (NMR) structures are of lower quality, are less reliable and less suitable for structural analysis than high-resolution X-ray crystallographic structures. The refined NMR solution structures (statistical torsion angle potentials; STAP) in the database are refined from the Protein Data Bank (PDB).",
     "homepage": "http://psb.kobic.re.kr/STAP/refinement/",
     "id": "00000399",

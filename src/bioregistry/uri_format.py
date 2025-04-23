@@ -6,8 +6,9 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
+from __future__ import annotations
+
 from collections.abc import Collection, Mapping, Sequence
-from typing import Optional
 
 from .resource_manager import manager
 
@@ -19,7 +20,7 @@ __all__ = [
 ]
 
 
-def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+def get_uri_format(prefix: str, priority: Sequence[str] | None = None) -> str | None:
     """Get the URI format string for the given prefix, if it's available.
 
     :param prefix: The name of the prefix (possibly unnormalized)
@@ -55,7 +56,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     return manager.get_uri_format(prefix=prefix, priority=priority)
 
 
-def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+def get_uri_prefix(prefix: str, priority: Sequence[str] | None = None) -> str | None:
     """Get a well-formed URI prefix for usage in a prefix map.
 
     :param prefix: The prefix to lookup.
@@ -72,11 +73,11 @@ def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
 def get_prefix_map(
     *,
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_synonyms: bool = False,
-    remapping: Optional[Mapping[str, str]] = None,
-    blacklist: Optional[Collection[str]] = None,
+    remapping: Mapping[str, str] | None = None,
+    blacklist: Collection[str] | None = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their URI prefixes.
 
@@ -104,8 +105,8 @@ def get_prefix_map(
 def get_pattern_map(
     *,
     include_synonyms: bool = False,
-    remapping: Optional[Mapping[str, str]] = None,
-    blacklist: Optional[Collection[str]] = None,
+    remapping: Mapping[str, str] | None = None,
+    blacklist: Collection[str] | None = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their regular expression patterns.
 

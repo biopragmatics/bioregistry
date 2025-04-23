@@ -241,43 +241,6 @@ class Author(Attributable):
     )
 
 
-class Provider(BaseModel):
-    """A provider."""
-
-    code: str = Field(..., description="A locally unique code within the prefix for the provider")
-    name: str = Field(..., description="Name of the provider")
-    description: str = Field(..., description="Description of the provider")
-    homepage: str = Field(..., description="Homepage of the provider")
-    uri_format: str = Field(
-        ...,
-        title="URI Format",
-        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
-    )
-    first_party: bool | None = Field(
-        None, description="Annotates whether a provider is from the first-party organization"
-    )
-    publications: list[Publication] | None = Field(
-        default=None,
-        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
-    )
-    example: str | None = Field(
-        default=None,
-        description="An example local identifier, specific to the provider. Providing this value is "
-        "only necessary if the example associated with the prefix for which this is a provider "
-        "is not resolvable by the provider. The example identifier should exclude any redundant "
-        "usage of the prefix. For example, a GO identifier should only "
-        "look like ``1234567`` and not like ``GO:1234567``",
-    )
-
-    def resolve(self, identifier: str) -> str:
-        """Resolve the identifier into a URI.
-
-        :param identifier: The identifier in the semantic space
-        :return: The URI for the identifier
-        """
-        return self.uri_format.replace("$1", identifier)
-
-
 class Publication(BaseModel):
     """Metadata about a publication."""
 
@@ -317,6 +280,43 @@ class Publication(BaseModel):
             or (self.doi is not None and self.doi == other.doi)
             or (self.pmc is not None and self.pmc == other.pmc)
         )
+
+
+class Provider(BaseModel):
+    """A provider."""
+
+    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    name: str = Field(..., description="Name of the provider")
+    description: str = Field(..., description="Description of the provider")
+    homepage: str = Field(..., description="Homepage of the provider")
+    uri_format: str = Field(
+        ...,
+        title="URI Format",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+    )
+    first_party: bool | None = Field(
+        None, description="Annotates whether a provider is from the first-party organization"
+    )
+    publications: list[Publication] | None = Field(
+        default=None,
+        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
+    )
+    example: str | None = Field(
+        default=None,
+        description="An example local identifier, specific to the provider. Providing this value is "
+        "only necessary if the example associated with the prefix for which this is a provider "
+        "is not resolvable by the provider. The example identifier should exclude any redundant "
+        "usage of the prefix. For example, a GO identifier should only "
+        "look like ``1234567`` and not like ``GO:1234567``",
+    )
+
+    def resolve(self, identifier: str) -> str:
+        """Resolve the identifier into a URI.
+
+        :param identifier: The identifier in the semantic space
+        :return: The URI for the identifier
+        """
+        return self.uri_format.replace("$1", identifier)
 
 
 class Resource(BaseModel):
@@ -1212,7 +1212,13 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.lov:
             keywords.extend(self.lov.get("keywords", []))
-        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
+        return sorted(
+            {
+                keyword.lower().replace("’", "'")  # noqa:RUF001
+                for keyword in keywords
+                if keyword
+            }
+        )
 
     def get_repository(self) -> str | None:
         """Return the repository, if available."""
@@ -1472,6 +1478,7 @@ class Resource(BaseModel):
                 publications.append(Publication.model_validate(publication))
         for provider in self.providers or []:
             publications.extend(provider.publications or [])
+        # can look through agroportal, ecoportal, and bioportal for publications too
         return deduplicate_publications(publications)
 
     def get_mastodon(self) -> str | None:
@@ -2314,7 +2321,7 @@ class Resource(BaseModel):
         import markupsafe
         from markdown import markdown
 
-        rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
+        rv = removesuffix(removeprefix(markdown(rv), "<p>"), "</p>")
         return markupsafe.Markup(rv)
 
     def get_bioschemas_jsonld(self) -> dict[str, Any]:

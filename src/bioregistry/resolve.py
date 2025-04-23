@@ -122,19 +122,23 @@ def get_preferred_prefix(prefix: str) -> str | None:
     :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
 
     No preferred prefix annotation, defaults to normalized prefix
+
     >>> get_preferred_prefix("rhea")
     None
 
     Preferred prefix defined in the Bioregistry
+
     >>> get_preferred_prefix("wb")
     'WormBase'
 
     Preferred prefix defined in the OBO Foundry
+
     >>> get_preferred_prefix("fbbt")
     'FBbt'
 
     Preferred prefix from the OBO Foundry overridden by the Bioregistry
     (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+
     >>> get_preferred_prefix("dpo")
     'DPO'
     """
@@ -815,7 +819,20 @@ def parse_curie(
     *,
     sep: str = ...,
     use_preferred: bool = ...,
+    on_failure_return_type: FailureReturnType = ...,
+    strict: Literal[True] = True,
+) -> ReferenceTuple: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def parse_curie(
+    curie: str,
+    *,
+    sep: str = ...,
+    use_preferred: bool = ...,
     on_failure_return_type: Literal[FailureReturnType.single],
+    strict: Literal[False] = False,
 ) -> ReferenceTuple | None: ...
 
 
@@ -827,6 +844,7 @@ def parse_curie(
     sep: str = ...,
     use_preferred: bool = ...,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+    strict: Literal[False] = False,
 ) -> ReferenceTuple | tuple[None, None]: ...
 
 
@@ -836,6 +854,7 @@ def parse_curie(
     sep: str = ":",
     use_preferred: bool = False,
     on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+    strict: bool = False,
 ) -> MaybeCURIE:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
@@ -895,12 +914,20 @@ def parse_curie(
     >>> parse_curie("pdb:1234", use_preferred=True)
     ReferenceTuple('pdb', '1234')
     """
-    if on_failure_return_type == FailureReturnType.single:
+    if strict:
+        return manager.parse_curie(
+            curie,
+            sep=sep,
+            use_preferred=use_preferred,
+            strict=strict,
+        )
+    elif on_failure_return_type == FailureReturnType.single:
         return manager.parse_curie(
             curie,
             sep=sep,
             use_preferred=use_preferred,
             on_failure_return_type=on_failure_return_type,
+            strict=strict,
         )
     elif on_failure_return_type == FailureReturnType.pair:
         return manager.parse_curie(
@@ -908,6 +935,7 @@ def parse_curie(
             sep=sep,
             use_preferred=use_preferred,
             on_failure_return_type=on_failure_return_type,
+            strict=strict,
         )
     else:
         raise TypeError
@@ -918,6 +946,7 @@ def normalize_parsed_curie(
     identifier: str,
     *,
     use_preferred: bool = False,
+    strict: bool = False,
 ) -> MaybeCURIE:
     """Normalize a prefix/identifier pair.
 
@@ -926,18 +955,33 @@ def normalize_parsed_curie(
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
+    :param strict: If true, raises an error if the prefix can't be standardized
     :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
         prefixes or bananas, all lowercase.
     """
+    if strict:
+        return manager.normalize_parsed_curie(
+            prefix,
+            identifier,
+            use_preferred=use_preferred,
+            strict=strict,
+        )
     return manager.normalize_parsed_curie(
         prefix,
         identifier,
         use_preferred=use_preferred,
         on_failure_return_type=FailureReturnType.pair,
+        strict=strict,
     )
 
 
-def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> str | None:
+def normalize_curie(
+    curie: str,
+    *,
+    sep: str = ":",
+    use_preferred: bool = False,
+    strict: bool = False,
+) -> str | None:
     """Normalize a CURIE.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
@@ -946,6 +990,7 @@ def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) 
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
+    :param strict: If true, raises an error if the prefix can't be standardized
     :return: A normalized CURIE, if possible using the colon as a separator
 
     >>> normalize_curie("pdb:1234")
@@ -987,14 +1032,31 @@ def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) 
     >>> normalize_curie("GO_1234", sep="_", use_preferred=True)
     'GO:1234'
     """
-    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
+    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred, strict=strict)
 
 
-def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
+# docstr-coverage:excused `overload`
+@overload
+def normalize_prefix(
+    prefix: str, *, use_preferred: bool = False, strict: Literal[True] = True
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def normalize_prefix(
+    prefix: str, *, use_preferred: bool = False, strict: Literal[False] = False
+) -> str | None: ...
+
+
+def normalize_prefix(
+    prefix: str, *, use_preferred: bool = False, strict: bool = False
+) -> str | None:
     """Get the normalized prefix, or return None if not registered.
 
     :param prefix: The prefix to normalize, which could come from Bioregistry,
         OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
+    :param strict: If true and the prefix could not be looked up, raises an error
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
@@ -1020,7 +1082,9 @@ def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
     >>> normalize_prefix("go", use_preferred=True)
     'GO'
     """
-    return manager.normalize_prefix(prefix, use_preferred=use_preferred)
+    if strict:
+        return manager.normalize_prefix(prefix, use_preferred=use_preferred, strict=True)
+    return manager.normalize_prefix(prefix, use_preferred=use_preferred, strict=False)
 
 
 def get_version(prefix: str) -> str | None:

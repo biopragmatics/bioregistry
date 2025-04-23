@@ -28,6 +28,9 @@ class TestResolve(unittest.TestCase):
             with self.subTest(query=query):
                 self.assertEqual(expected, bioregistry.normalize_prefix(query))
 
+        with self.assertRaises(ValueError):
+            bioregistry.normalize_prefix("nope", strict=True)
+
     def test_get(self):
         """Test getting content from the bioregistry."""
         ncbitaxon_entry = bioregistry.get_resource("ncbitaxon")

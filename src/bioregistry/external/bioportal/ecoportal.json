@@ -7,7 +7,9 @@
     "description": "Audubon Core borrows the Dublin Core terms dc:format and dcterms:format to provide information about the physical or electronic format of a media item. This controlled vocabulary provides values for those two terms., Controlled values list for Dublin Core format",
     "name": "Audubon Core Controlled Vocabulary for Dublin Core format",
     "prefix": "ACFORMAT",
-    "publication": "https://ac.tdwg.org/format/",
+    "publications": [
+      "https://ac.tdwg.org/format/"
+    ],
     "version": "2020-10-13"
   },
   "ACSUBTYPE": {
@@ -19,7 +21,9 @@
     "homepage": "http://rs.tdwg.org/ac/doc/subtype/",
     "name": "Audubon Core subtype Controlled Vocabulary",
     "prefix": "ACSUBTYPE",
-    "publication": "http://rs.tdwg.org/ac/doc/subtype/",
+    "publications": [
+      "http://rs.tdwg.org/ac/doc/subtype/"
+    ],
     "version": "2020-10-13"
   },
   "ACTRIS_CL": {
@@ -32,7 +36,7 @@
     "license": "CC0-1.0",
     "name": "ACTRIS Controlled Lists",
     "prefix": "ACTRIS_CL",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "ACTRIS_VOCAB": {
     "contact": {
@@ -44,7 +48,9 @@
     "license": "CC0-1.0",
     "name": "ACTRIS Vocabulary",
     "prefix": "ACTRIS_VOCAB",
-    "publication": "https://vocabulary.actris.nilu.no/skosmos/actris_vocab/en/",
+    "publications": [
+      "https://vocabulary.actris.nilu.no/skosmos/actris_vocab/en/"
+    ],
     "version": "1.1.7"
   },
   "ACVARIANT": {
@@ -55,7 +61,9 @@
     "description": "Audubon Core uses the terms ac:variant and ac:variantLiteral to provide information about the size, extent, and availability of the Service Access Point of a media item. This controlled vocabulary provides values for those terms.",
     "name": "Audubon Core variant Controlled Vocabulary",
     "prefix": "ACVARIANT",
-    "publication": "http://rs.tdwg.org/ac/doc/variant/",
+    "publications": [
+      "http://rs.tdwg.org/ac/doc/variant/"
+    ],
     "version": "2020-10-13"
   },
   "AGROVOC": {
@@ -69,7 +77,9 @@
     "license": "CC-BY-4.0",
     "name": "AGROVOC",
     "prefix": "AGROVOC",
-    "publication": "https://www.fao.org/agrovoc/publications",
+    "publications": [
+      "https://www.fao.org/agrovoc/publications"
+    ],
     "version": "2024-04"
   },
   "ALIENSPECIES": {
@@ -81,8 +91,21 @@
     "license": "CC-BY-4.0",
     "name": "Alien Species Thesaurus",
     "prefix": "ALIENSPECIES",
-    "publication": "https://www.lifewatchitaly.eu/publications/#1590425563910-01d9d51a-b764",
+    "publications": [
+      "https://www.lifewatchitaly.eu/publications/#1590425563910-01d9d51a-b764"
+    ],
     "version": "2.5"
+  },
+  "APTO": {
+    "contact": {
+      "email": "filipivgp2011@gmail.com",
+      "name": "Filipi Soares"
+    },
+    "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the GBIF Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
+    "license": "CC-BY-4.0",
+    "name": "Agriculture Product Types Ontology",
+    "prefix": "APTO",
+    "version": "1.31"
   },
   "ARCHIVE": {
     "contact": {
@@ -108,7 +131,9 @@
     "license": "CC0-1.0",
     "name": "BioCollections Ontology",
     "prefix": "BCO",
-    "publication": "https://doi.org/10.1371/journal.pone.0089606",
+    "publications": [
+      "https://doi.org/10.1371/journal.pone.0089606"
+    ],
     "repository": "https://github.com/BiodiversityOntologies/bco",
     "version": "2021-11-14"
   },
@@ -123,7 +148,9 @@
     "license": "CC-BY-4.0",
     "name": "Biodiversity Thesaurus",
     "prefix": "BIODIVTHES",
-    "publication": "https://hal.archives-ouvertes.fr/hal-02907484",
+    "publications": [
+      "https://hal.archives-ouvertes.fr/hal-02907484"
+    ],
     "version": "2.1"
   },
   "BIOREGIONS": {
@@ -148,7 +175,9 @@
     "license": "CC-BY-4.0",
     "name": "Chemical Functional Ontology",
     "prefix": "CHEMFONT",
-    "publication": "https://doi.org/10.1093/nar/gkac919",
+    "publications": [
+      "https://doi.org/10.1093/nar/gkac919"
+    ],
     "version": "1.0"
   },
   "CMECS": {
@@ -162,7 +191,9 @@
     "license": "CC0-1.0",
     "name": "Coastal and Marine Ecological Classification Standard Catalog",
     "prefix": "CMECS",
-    "publication": "https://repository.library.noaa.gov/view/noaa/27552",
+    "publications": [
+      "https://repository.library.noaa.gov/view/noaa/27552"
+    ],
     "repository": "https://github.com/NOAA-OCM/cmecs",
     "version": "1.1.0"
   },
@@ -176,7 +207,9 @@
     "license": "CC-BY-4.0",
     "name": "CODATA Research Data Management Terminology",
     "prefix": "CODATA-RDMT",
-    "publication": "https://doi.org/10.5281/zenodo.10626170",
+    "publications": [
+      "https://doi.org/10.5281/zenodo.10626170"
+    ],
     "version": "v001"
   },
   "CPMETA": {
@@ -196,7 +229,7 @@
       "email": "fajar.ekaputra@wu.ac.at",
       "name": "Fajar J. Ekaputra"
     },
-    "description": "This ontology aims to represent the DMP Common Standard model, through the usage of semantic web technology. It represents the DMP Common Standard model using the Web Ontology Language (OWL).",
+    "description": "This ontology aims to represent the DMP Common Standard model, through the usage of semantic web technology. It represents the DMP Common Standard model using the Web Ontology Language (OWL)., This ontology aims to represent the DMP Common Standard model",
     "homepage": "https://semantics.id/ns/dcso/index-en.html",
     "license": "CC-BY-4.0",
     "name": "The DMP Common Standard Ontology",
@@ -214,7 +247,9 @@
     "license": "CC0-1.0",
     "name": "Darwin-SW",
     "prefix": "DSW",
-    "publication": "http://www.semantic-web-journal.net/content/darwin-sw-darwin-core-based-terms-expressing-biodiversity-data-rdf-1",
+    "publications": [
+      "http://www.semantic-web-journal.net/content/darwin-sw-darwin-core-based-terms-expressing-biodiversity-data-rdf-1"
+    ],
     "repository": "https://github.com/darwin-sw/dsw",
     "version": "1.0.1"
   },
@@ -228,7 +263,9 @@
     "homepage": "https://dwc.tdwg.org/doe/",
     "name": "Darwin Core Degree Of Establishment Controlled Vocabulary",
     "prefix": "DWCDOE",
-    "publication": "https://doi.org/10.3897/biss.3.38084",
+    "publications": [
+      "https://doi.org/10.3897/biss.3.38084"
+    ],
     "version": "1.0"
   },
   "DWCEM": {
@@ -241,7 +278,9 @@
     "license": "CC-BY-4.0",
     "name": "Darwin Core Establishment Means Controlled Vocabulary",
     "prefix": "DWCEM",
-    "publication": "https://doi.org/10.3897/biss.3.38084",
+    "publications": [
+      "https://doi.org/10.3897/biss.3.38084"
+    ],
     "version": "2021-09-01"
   },
   "DWCPW": {
@@ -254,7 +293,9 @@
     "license": "CC-BY-4.0",
     "name": "Darwin Core Pathway Controlled Vocabulary",
     "prefix": "DWCPW",
-    "publication": "https://doi.org/10.3897/biss.3.38084",
+    "publications": [
+      "https://doi.org/10.3897/biss.3.38084"
+    ],
     "version": "2021-09-01"
   },
   "ECSO": {
@@ -285,7 +326,9 @@
     "description": "Thesaurus on endemisms",
     "name": "Endemisms Thesaurus",
     "prefix": "ENDEMISMS",
-    "publication": "http://www.lifewatchitaly.eu/web/lifewatch-italia/reports",
+    "publications": [
+      "http://www.lifewatchitaly.eu/web/lifewatch-italia/reports"
+    ],
     "version": "2.0"
   },
   "ENVTHES": {
@@ -293,7 +336,9 @@
     "license": "CC-BY-4.0",
     "name": "Environmental Thesaurus",
     "prefix": "ENVTHES",
-    "publication": "https://www.w3.org/2013/share-psi/wiki/images/0/00/Schentz_et_al_SemanticDataIntegrationforLTER.pdf",
+    "publications": [
+      "https://www.w3.org/2013/share-psi/wiki/images/0/00/Schentz_et_al_SemanticDataIntegrationforLTER.pdf"
+    ],
     "version": "5.0.13"
   },
   "ETS": {
@@ -305,7 +350,9 @@
     "license": "CC-BY-4.0",
     "name": "Ecological Trait-data Standard",
     "prefix": "ETS",
-    "publication": "https://doi.org/10.1111/2041-210X.13288",
+    "publications": [
+      "https://doi.org/10.1111/2041-210X.13288"
+    ],
     "repository": "https://github.com/EcologicalTraitData/ETS",
     "version": "0.10"
   },
@@ -330,7 +377,9 @@
     "homepage": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurio",
     "name": "eurio",
     "prefix": "EURIO",
-    "publication": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurio",
+    "publications": [
+      "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurio"
+    ],
     "version": "v1.1 - 15 October 2021"
   },
   "EUROSCIVOC": {
@@ -342,7 +391,9 @@
     "homepage": "https://op.europa.eu/s/y4UK",
     "name": "EuroSciVoc",
     "prefix": "EUROSCIVOC",
-    "publication": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/euroscivoc",
+    "publications": [
+      "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/euroscivoc"
+    ],
     "version": "1.3"
   },
   "EUROVOC": {
@@ -354,7 +405,9 @@
     "homepage": "https://op.europa.eu/s/y4TH",
     "name": "EuroVoc Core Concepts",
     "prefix": "EUROVOC",
-    "publication": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurovoc",
+    "publications": [
+      "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurovoc"
+    ],
     "version": "20211217-0"
   },
   "FABIO": {
@@ -366,7 +419,9 @@
     "homepage": "http://www.sparontologies.net/ontologies/fabio",
     "name": "FRBR-aligned Bibliographic Ontology",
     "prefix": "FABIO",
-    "publication": "http://speroni.web.cs.unibo.it/publications/peroni-2012-fabio-cito-ontologies.pdf",
+    "publications": [
+      "http://speroni.web.cs.unibo.it/publications/peroni-2012-fabio-cito-ontologies.pdf"
+    ],
     "version": "2.2"
   },
   "FAIR_VOCABULARY": {
@@ -402,7 +457,9 @@
     "license": "CC-BY-4.0",
     "name": "Fish Traits Thesaurus",
     "prefix": "FISHTRAITS",
-    "publication": "http://www.lifewatchitaly.eu/web/lifewatch-italia/reports",
+    "publications": [
+      "http://www.lifewatchitaly.eu/web/lifewatch-italia/reports"
+    ],
     "version": "1.5"
   },
   "FOS": {
@@ -440,7 +497,9 @@
     "license": "https://creativecommons.org/licenses/by-sa/3.0/at",
     "name": "Geologic Units",
     "prefix": "GEOLOGIC_UNITS",
-    "publication": "https://thesaurus.geolba.ac.at/bibl_res.html?proj=GeologicUnit"
+    "publications": [
+      "https://thesaurus.geolba.ac.at/bibl_res.html?proj=GeologicUnit"
+    ]
   },
   "GEO_STRUCTURES": {
     "contact": {
@@ -453,14 +512,18 @@
     "license": "https://creativecommons.org/licenses/by-sa/3.0/at",
     "name": "Geologic Structures",
     "prefix": "GEO_STRUCTURES",
-    "publication": "https://thesaurus.geolba.ac.at/bibl_res.html?proj=structure"
+    "publications": [
+      "https://thesaurus.geolba.ac.at/bibl_res.html?proj=structure"
+    ]
   },
   "I-ADOPT": {
     "description": "The I-ADOPT Framework is an ontology designed to facilitate interoperability between existing variable description models (including ontologies, taxonomy, and structured controlled vocabularies). One of the challenges in representing semantic descriptions of variables is getting people to agree about what they mean when describing the components that define the variables. The I-ADOPT ontology addresses this by providing core components and their relations that can be applied to define machine-interpretable variable descriptions that re-use FAIR vocabulary terms. It was developed by a core group of terminology experts and users from the Research Data Alliance (RDA) InteroperAble Descriptions of Observable Property Terminology (I-ADOPT) Working Group. The first published versions of the ontology up to v0.9.1 satisfied the basic cross-domain interoperability requirements. It defines four classes or \"concepts\" (Variable, Property, Entity, Constraint), and six object properties (hasProperty, hasObjectOfInterest, hasContextObject, hasMatrix, hasConstraint, constrains). The Variable is the top concept. It represents the description of something observed or mathematically derived. It minimally consists of one entity (the ObjectOfInterest) and its Property; a Property being a type of characteristic (i.e. a quantity or a quality). More complex variables can involve additional entities, for example an entity may have the role of Matrix and/or of ContextObject(s). The framework does not capture units, instruments, methods, and geographical location information; however its usage recommendation will make explicit reference to these by connecting the I-ADOPT framework to existing and complementary ontologies. This new version of the ontology (v1.0) adds one optional new class (VariableSet) and four optional new object properties (hasApplicableProperty, hasApplicableObjectOfInterest, hasApplicableMatrix, hasApplicableContextObject). This was necessary in order to enable flexibility in assigning optional and user-defined machine-interpretable categorizations of I-ADOPT variables under one or multiple coarser grouping concepts to facilitate dataset discovery and dataset aggregation. With the introduction of these concepts and properties, the framework enables different user communities or product developers to develop their own grouping criteria. While the Variable class must be connected to at least two classes via the mandatory properties hasProperty and hasObjectOIfInterest, the VariableSet class can have either of the new properties. Additionally, the VariableSet class can also be optionally connected to the Variable class using the property [ro:hasMember](http://purl.obolibrary.org/obo/RO_0002351) from the [OBO Relations Ontology](https://obofoundry.org/ontology/ro.html).",
     "license": "CC-BY-4.0",
     "name": "I-ADOPT Framework ontology",
     "prefix": "I-ADOPT",
-    "publication": "https://doi.org/10.15497/RDA00071/2",
+    "publications": [
+      "https://doi.org/10.15497/RDA00071/2"
+    ],
     "version": "1.0.3"
   },
   "INBIO": {
@@ -562,7 +625,9 @@
     "license": "https://creativecommons.org/licenses/by-sa/3.0/at",
     "name": "Lithology",
     "prefix": "LITHOLOGY",
-    "publication": "https://thesaurus.geolba.ac.at/bibl_res.html?proj=lithology"
+    "publications": [
+      "https://thesaurus.geolba.ac.at/bibl_res.html?proj=lithology"
+    ]
   },
   "LUPO": {
     "contact": {
@@ -572,7 +637,9 @@
     "description": "The LifeWatch ERIC Upper Ontology (LUPO) is the model defining the core set of LifeWatch ERIC elements (Actors, Services and Infrastructure) and describing their high-level arrangement. LUPO is extendable and will foster, connect and describe lower level models of its core elements, with the vision to provide functionalities that facilitate the uptake, re-use and enrichment of LifeWatch ERIC resources by an ever broader community.",
     "name": "LifeWatch ERIC Upper Ontology",
     "prefix": "LUPO",
-    "publication": "http://ecoportal.lifewatch.eu/ontologies/LUPO",
+    "publications": [
+      "http://ecoportal.lifewatch.eu/ontologies/LUPO"
+    ],
     "version": "v1.0 2021/04/07"
   },
   "MACROALGAETRAITS": {
@@ -596,6 +663,11 @@
     "license": "CC-BY-3.0",
     "name": "MarineTLO Ontology",
     "prefix": "MARINETLO",
+    "publications": [
+      "https://doi.org/10.1007/978-3-319-03437-9_29",
+      "http://ercim-news.ercim.eu/en96/special/ontology-based-integration-of-heterogeneous-and-distributed-information-of-the-marine-domain",
+      "http://dx.doi.org/10.1108/PROG-10-2014-0072"
+    ],
     "version": "5.0"
   },
   "MR": {
@@ -608,7 +680,9 @@
     "license": "CC-BY-4.0",
     "name": "Marine Regions ontology",
     "prefix": "MR",
-    "publication": "http://www.vliz.be/en/imis?refid=346947",
+    "publications": [
+      "http://www.vliz.be/en/imis?refid=346947"
+    ],
     "version": "1"
   },
   "MRPTCODELIST": {
@@ -620,7 +694,9 @@
     "homepage": "https://www.marineregions.org/",
     "name": "Marine Regions PlaceTypes code list",
     "prefix": "MRPTCODELIST",
-    "publication": "http://www.vliz.be/en/imis?refid=346947",
+    "publications": [
+      "http://www.vliz.be/en/imis?refid=346947"
+    ],
     "version": "1"
   },
   "N2000_HABITATS": {
@@ -646,7 +722,9 @@
     "license": "CC-BY-3.0",
     "name": "The Extensible Observation Ontology",
     "prefix": "OBOE",
-    "publication": "https://doi.org/10.1016/j.ecoinf.2007.05.004",
+    "publications": [
+      "https://doi.org/10.1016/j.ecoinf.2007.05.004"
+    ],
     "repository": "https://github.com/NCEAS/oboe",
     "version": "Version 1.2"
   },
@@ -687,7 +765,9 @@
     "license": "CC0-1.0",
     "name": "Population and Community Ontology",
     "prefix": "PCO",
-    "publication": "https://github.com/PopulationAndCommunityOntology/pco",
+    "publications": [
+      "https://github.com/PopulationAndCommunityOntology/pco"
+    ],
     "repository": "https://github.com/PopulationAndCommunityOntology/pco",
     "version": "2021-05-03"
   },
@@ -699,8 +779,30 @@
     "description": "The Phytoplankton Traits Thesaurus is the first initiative to deal with the semantics of phytoplankton functional traits focusing on morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). PhytoTraits reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 120 traits.",
     "name": "Phytoplankton Traits Thesaurus",
     "prefix": "PHYTOTRAITS",
-    "publication": "https://doi.org/10.1016/j.ecoinf.2017.10.014",
+    "publications": [
+      "https://doi.org/10.1016/j.ecoinf.2017.10.014"
+    ],
     "version": "1.5"
+  },
+  "PPI": {
+    "contact": {
+      "email": "jasalim@unicamp.br",
+      "name": "José Augusto Salim"
+    },
+    "description": "The Plant-Pollinator Interactions (PPI) is a vocabulary of terms for transmitting information about plant-pollinator interactions using the Darwin Core standard. This document lists all terms in namespaces currently used in the vocabulary., Term list for plant-pollinator interactions vocabulary",
+    "name": "Plant-Pollinator Interactions",
+    "prefix": "PPI"
+  },
+  "SBTHES": {
+    "contact": {
+      "email": "senem.onentarantini@unisalento.it",
+      "name": "Senem Onen Tarantini"
+    },
+    "description": "Standardized terminology for describing both qualitative and quantitative variables crucial for characterizing sandy beach ecosystems.",
+    "license": "CC-BY-4.0",
+    "name": "Sandy Beach Thesaurus",
+    "prefix": "SBTHES",
+    "version": "1.0.0"
   },
   "SFWO": {
     "contact": {
@@ -713,7 +815,9 @@
     "license": "CC-BY-4.0",
     "name": "Soil Food Web Ontology",
     "prefix": "SFWO",
-    "publication": "https://doi.org/10.1016/j.ecoinf.2023.102360",
+    "publications": [
+      "https://doi.org/10.1016/j.ecoinf.2023.102360"
+    ],
     "repository": "https://github.com/soilfoodwebontology/sfwo",
     "version": "2023-09-22"
   },
@@ -728,7 +832,9 @@
     "license": "CC BY-NC-SA 4.0",
     "name": "SnowTerm Thesaurus",
     "prefix": "SNOWTERM",
-    "publication": "https://www.nomos-elibrary.de/10.5771/9783956508752-115.pdf"
+    "publications": [
+      "https://www.nomos-elibrary.de/10.5771/9783956508752-115.pdf"
+    ]
   },
   "STY": {
     "contact": {
@@ -741,7 +847,9 @@
     "license": "CC0-1.0",
     "name": "UMLS Semantic Network",
     "prefix": "STY",
-    "publication": "https://doi.org/10.1002/cfg.255"
+    "publications": [
+      "https://doi.org/10.1002/cfg.255"
+    ]
   },
   "TRAITS_THES": {
     "contact": {
@@ -774,7 +882,9 @@
     "description": "The Zooplankton Traits Thesaurus contains several concepts mainly on zooplankton morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 90 traits.",
     "name": "Zooplankton Traits Thesaurus",
     "prefix": "ZOOPLANKTRAITS",
-    "publication": "https://doi.org/10.1016/j.ecoinf.2017.10.014",
+    "publications": [
+      "https://doi.org/10.1016/j.ecoinf.2017.10.014"
+    ],
     "version": "1.5"
   }
 }

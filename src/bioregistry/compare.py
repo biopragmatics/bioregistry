@@ -14,6 +14,7 @@ from collections.abc import Collection, Mapping
 from typing import TYPE_CHECKING, Callable, TypeVar
 
 import click
+from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry import (
@@ -152,8 +153,8 @@ def plot_attribute_pies(watermark: bool) -> FigAxPair:
 
 def _plot_attribute_pies(
     *,
-    measurements: Collection[tuple[str, typing.Counter]],
-    watermark,
+    measurements: Collection[tuple[str, typing.Counter[str]]],
+    watermark: bool,
     ncols: int = 4,
     keep_ontology: bool = True,
 ) -> FigAxPair:
@@ -166,7 +167,7 @@ def _plot_attribute_pies(
             if label not in {"OWL", "JSON", "OBO"}
         ]
 
-    nrows = int(math.ceil(len(measurements) / ncols))
+    nrows = math.ceil(len(measurements) / ncols)
     figsize = (2.75 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for label_counter, ax in itt.zip_longest(measurements, axes.ravel()):
@@ -207,8 +208,10 @@ def _plot_attribute_pies(
 REMAPPED_KEY = "x"
 REMAPPED_VALUE = "y"
 
+OverlapsHint: TypeAlias = Mapping[str, Mapping[str, set[str]]]
 
-def make_overlaps(keys: list[RegistryInfo]) -> Mapping[str, Mapping[str, set[str]]]:
+
+def make_overlaps(keys: list[RegistryInfo]) -> OverlapsHint:
     """Make overlaps dictionary."""
     rv = {}
     for metaprefix, _, _, prefixes in keys:
@@ -225,12 +228,14 @@ def make_overlaps(keys: list[RegistryInfo]) -> Mapping[str, Mapping[str, set[str
     return rv
 
 
-def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
+def plot_overlap_venn_diagrams(
+    *, keys: list[RegistryInfo], overlaps: OverlapsHint, watermark: bool, ncols: int = 3
+) -> FigAxPair:
     """Plot overlap with venn diagrams."""
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
-    nrows = int(math.ceil(len(keys) / ncols))
+    nrows = math.ceil(len(keys) / ncols)
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
 
@@ -260,13 +265,15 @@ def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
     return fig, axes
 
 
-def _plot_external_overlap(*, keys, watermark, ncols: int = 4) -> FigAxPair:
+def _plot_external_overlap(
+    *, keys: list[RegistryInfo], watermark: bool, ncols: int = 4
+) -> FigAxPair:
     """Plot the overlap between each pair of resources."""
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
     pairs = list(itt.combinations(keys, r=2))
-    nrows = int(math.ceil(len(pairs) / ncols))
+    nrows = math.ceil(len(pairs) / ncols)
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for pair, ax in itt.zip_longest(pairs, axes.ravel()):
@@ -298,7 +305,7 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4) -> FigAxPair:
     return fig, axes
 
 
-def get_getters() -> list[tuple[str, str, Callable]]:
+def get_getters() -> list[tuple[str, str, Callable]]:  # type:ignore
     """Get getter functions, which requires alignment dependencies."""
     # FIXME replace with class_resolver
     try:
@@ -367,7 +374,7 @@ def compare() -> None:
             " Install bioregistry again with `pip install bioregistry[charts]`.",
             fg="red",
         )
-        raise sys.exit(1)
+        sys.exit(1)
 
     bibliometric_comparison()
 
@@ -465,7 +472,7 @@ def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str
         if obo_license and not ols_license:
             licenses.append(obo_license)
         elif not obo_license and ols_license:
-            licenses.append(typing.cast(str, ols_license))
+            licenses.append(ols_license)
         elif obo_license == ols_license:
             licenses.append(typing.cast(str, obo_license))
         else:  # different licenses!
@@ -499,7 +506,7 @@ def get_regex_complexities() -> Collection[float]:
     return sorted(rows)
 
 
-def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
+def plot_coverage_overlaps(*, overlaps: OverlapsHint) -> FigAxPair:
     """Plot and save the abridged coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -576,7 +583,7 @@ def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
     return fig, ax
 
 
-def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxPair:
+def plot_coverage_gains(*, overlaps: OverlapsHint, minimum_width_for_text: int = 70) -> FigAxPair:
     """Plot and save the coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -668,7 +675,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
     return fig, ax
 
 
-def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
+def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair:
     """Plot a histogram of how many xrefs each entry has."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -764,7 +771,9 @@ def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
         (
             "None"
             if license_ is None
-            else license_ if licenses_counter[license_] > threshold else "Other"
+            else license_
+            if licenses_counter[license_] > threshold
+            else "Other"
         )
         for license_ in licenses
     ]
