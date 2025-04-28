@@ -7290,6 +7290,73 @@ cellrepo:
   pattern: ^[0-9]+$
   preferred_prefix: cellrepo
   uri_format: https://www.cellrepo.com/repositories/$1
+cellxgene.collection:
+  contact:
+    email: acarr@chanzuckerberg.com
+    github: ambrosejcarr
+    name: Ambrose Carr
+    orcid: 0000-0002-8457-2836
+  contributor:
+    email: robert.j.allaway@gmail.com
+    github: allaway
+    name: Robert Allaway
+    orcid: 0000-0003-3573-3565
+  description: 'Assigns identifiers to collections of datasets indexed by CELLxGENE.
+
+
+    CELLxGENE is an interactive data visualization and exploration tool developed
+    by the Chan Zuckerberg Initiative that enables researchers to analyze and share
+    single-cell genomics datasets. It provides a user-friendly interface for biologists
+    and computational scientists to interrogate gene expression patterns across different
+    cell types.'
+  example: 436154da-bcf1-4130-9c8b-120ff9a888f2
+  github_request_issue: 1541
+  homepage: https://cellxgene.cziscience.com/collections
+  license: CC-BY-4.0
+  name: Chan Zuckerberg CELLxGENE Collection
+  part_of: cellxgene
+  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+  preferred_prefix: cellxgene.collection
+  publications:
+  - doi: 10.1093/nar/gkae1142
+    pmc: PMC11701654
+    pubmed: '39607691'
+    title: 'CZ CELLxGENE Discover: a single-cell data platform for scalable exploration,
+      analysis and modeling of aggregated data'
+    year: 2024
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://cellxgene.cziscience.com/collections/$1
+cellxgene.dataset:
+  contact:
+    email: acarr@chanzuckerberg.com
+    github: ambrosejcarr
+    name: Ambrose Carr
+    orcid: 0000-0002-8457-2836
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Assigns identifiers to datasets indexed by CELLxGENE, such those resulting
+    from scRNA-seq experiments
+  example: f72958f5-7f42-4ebb-98da-445b0c6de516
+  github_request_issue: 1541
+  homepage: https://cellxgene.cziscience.com
+  name: Chan Zuckerberg CELLxGENE Dataset
+  part_of: cellxgene
+  preferred_prefix: cellxgene.dataset
+  publications:
+  - doi: 10.1093/nar/gkae1142
+    pmc: PMC11701654
+    pubmed: '39607691'
+    title: 'CZ CELLxGENE Discover: a single-cell data platform for scalable exploration,
+      analysis and modeling of aggregated data'
+    year: 2024
+  uri_format: https://cellxgene.cziscience.com/e/$1
 cemo:
   contact:
     email: n.queralt_rosinach@lumc.nl
@@ -9400,7 +9467,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.242'
+  version: '2.243'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -15319,7 +15386,7 @@ dron:
   rdf_uri_format: http://purl.obolibrary.org/obo/DRON_$1
   repository: https://github.com/ufbmi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2024-12-20'
+  version: '2025-04-18'
 drsanv0:
   description: 'This namespace is used for GA4GH Data Repository Service (DRS) access
     to the USA National Institutes of Health (NIH), National Human Genome Research
@@ -15805,6 +15872,7 @@ eaglei:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  deprecated: true
   description: Discovery tool for biomedical research resources available at institutions
     throughout the U.S.
   example: 0000012b-5661-2f63-2f73-b43980000000
@@ -21528,7 +21596,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2025-04-07'
+  version: '2025-04-17'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -30926,16 +30994,16 @@ ivdb:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/ivdb:$1
   uri_format: http://influenza.psych.ac.cn/search/detail.jsp?segment.gb_id=$1
-jax:
+jaxmice:
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: Information about the C57BL/6J. Includes genetic background and disease
-    data.
+  description: A catalogue of mouse strains supplied by The Jackson Laboratory. Each
+    identifier corresponds to a mouse strain.
   example: '004435'
-  homepage: https://www.jax.org/strain
+  homepage: https://mice.jax.org
   keywords:
   - gene
   - genetic engineering
@@ -30952,25 +31020,16 @@ jax:
   mappings:
     biocontext: JAX
     fairsharing: FAIRsharing.5701h1
-    rrid: IMSR_JAX
-  name: Jackson Laboratories Strain
-  pattern: ^\d{6}$
-  preferred_prefix: jax
-  uri_format: https://www.jax.org/strain/$1
-jaxmice:
-  description: JAX Mice is a catalogue of mouse strains supplied by the Jackson Laboratory.
-  example: '005012'
-  homepage: http://jaxmice.jax.org/
-  mappings:
-    biocontext: JAXMICE
     miriam: jaxmice
     n2t: jaxmice
-  name: JAX Mice
-  pattern: ^\d+$
+    rrid: IMSR_JAX
+  name: Jackson Laboratories Mouse Strain
+  pattern: ^\d{6}$
   preferred_prefix: jaxmice
   synonyms:
+  - jax
   - jaxMiceUID
-  uri_format: http://jaxmice.jax.org/strain/$1.html
+  uri_format: https://www.jax.org/strain/$1
 jcggdb:
   description: JCGGDB (Japan Consortium for Glycobiology and Glycotechnology DataBase)
     is a database that aims to integrate all glycan-related data held in various repositories
@@ -33727,7 +33786,7 @@ mba:
   description: A controlled vocabulary to support the study of transcription in the
     mouse brain
   download_obo: https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-mba.obo
-  download_owl: https://purl.brain-bican.org/ontology/mbao/releases/2025-02-10/mbao.owl
+  download_owl: https://purl.brain-bican.org/ontology/mbao/releases/2025-04-17/mbao.owl
   example: '688'
   homepage: https://mouse.brain-map.org
   keywords:
@@ -33745,7 +33804,7 @@ mba:
     name: MBA from Biopragmatics
     uri_format: https://biopragmatics.github.io/providers/mba/$1
   uri_format: https://purl.brain-bican.org/ontology/mbao/MBA_$1
-  version: '2025-02-10'
+  version: '2025-04-17'
 mcc:
   contact:
     email: usha@molecularconnections.com
@@ -36465,7 +36524,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.147'
+  version: '2.148'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -37478,7 +37537,7 @@ mro:
   rdf_uri_format: http://purl.obolibrary.org/obo/MRO_$1
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2025-02-13'
+  version: '2025-04-22'
 ms:
   banana: MS
   contact:
@@ -43890,7 +43949,7 @@ orphanet:
     patients with rare diseases.
   download_owl: http://www.orphadata.org/data/ORDO/ordo_orphanet.owl
   example: '85163'
-  homepage: http://www.orpha.net/consor/
+  homepage: https://www.orpha.net
   keywords:
   - disease
   - drug
@@ -43910,7 +43969,7 @@ orphanet:
     uniprot: DB-0068
     wikidata: P1550
   name: Orphanet
-  pattern: ^\d+$
+  pattern: ^C?\d+$
   preferred_prefix: orphanet
   providers:
   - code: CURATOR_REVIEW
@@ -43935,7 +43994,7 @@ orphanet:
   synonyms:
   - ORPHA
   twitter: orphanet
-  uri_format: http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=$1
+  uri_format: http://www.orpha.net/ORDO/Orphanet_$1
 orphanet.ordo:
   banana: Orphanet
   banana_peel: _
@@ -43956,7 +44015,8 @@ orphanet.ordo:
   example: C023
   example_extras:
   - '478'
-  homepage: https://www.ebi.ac.uk/ols4/ontologies/ordo
+  has_canonical: orphanet
+  homepage: https://www.orpha.net
   keywords:
   - biomedical science
   - diagnosis
@@ -44653,6 +44713,8 @@ panther.family:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/panther:$1
   publications:
+  - doi: 10.1093/nar/gkaa1106
+    pubmed: '33290554'
   - doi: 10.1093/nar/gky1038
     pmc: PMC6323939
     pubmed: '30407594'
@@ -49848,7 +49910,7 @@ pw:
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/PW_$1
-  version: '7.90'
+  version: '7.91'
 pwo:
   contact:
     email: silvio.peroni@unibo.it
@@ -52334,7 +52396,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.246'
+  version: '6.247'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -55300,6 +55362,12 @@ smiles:
   keywords:
   - chemistry
   - life science
+  - lipidomics
+  - metabolomics
+  - molecular entity
+  - molecular structure
+  - omics data analysis
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazRFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--047d6c77b3abf77702d511a7e6a66acd8eb554b8/19335777.jpg?disposition=inline
   mappings:
     fairsharing: FAIRsharing.qv4b3c
     wikidata: P233
@@ -55390,7 +55458,7 @@ smiles:
     year: 1988
   references:
   - https://github.com/biopragmatics/bioregistry/issues/931
-  repository: https://github.com/timvdm/OpenSMILES/blob/master/discussion_summary.txt
+  repository: https://github.com/opensmiles
   uri_format: https://www.simolecule.com/cdkdepict/depict/bow/svg?smi=$1&zoom=2.0&annotate=cip
 smpdb:
   contact:
@@ -62315,7 +62383,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2025-04-15'
+  version: '2025-04-22'
 vto:
   contact:
     email: balhoff@renci.org
@@ -63386,7 +63454,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.199'
+  version: '4.200'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -63435,6 +63503,8 @@ xenbase:
     name: Bio2RDF
     uri_format: http://bio2rdf.org/xenbase:$1
   publications:
+  - doi: 10.1093/genetics/iyad018
+    pubmed: '36755307'
   - doi: 10.1186/s12859-022-04636-8
     pmc: PMC8939077
     pubmed: '35317743'

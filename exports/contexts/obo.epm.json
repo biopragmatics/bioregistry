@@ -7333,11 +7333,11 @@
         "prefix": "agrkb",
         "uri_prefix": "https://www.alliancegenome.org/accession/",
         "uri_prefix_synonyms": [
-            "http://alliancegenome.org/gene/",
             "http://bioregistry.io/agrkb:",
             "http://www.alliancegenome.org/accession/",
-            "https://alliancegenome.org/gene/",
-            "https://bioregistry.io/agrkb:"
+            "http://www.alliancegenome.org/gene/",
+            "https://bioregistry.io/agrkb:",
+            "https://www.alliancegenome.org/gene/"
         ]
     },
     {
@@ -9646,6 +9646,25 @@
             "https://bioregistry.io/cellrepo:",
             "https://identifiers.org/cellrepo/",
             "https://identifiers.org/cellrepo:"
+        ]
+    },
+    {
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "prefix": "cellxgene.collection",
+        "uri_prefix": "https://cellxgene.cziscience.com/collections/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/cellxgene.collection:",
+            "http://cellxgene.cziscience.com/collections/",
+            "https://bioregistry.io/cellxgene.collection:"
+        ]
+    },
+    {
+        "prefix": "cellxgene.dataset",
+        "uri_prefix": "https://cellxgene.cziscience.com/e/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/cellxgene.dataset:",
+            "http://cellxgene.cziscience.com/e/",
+            "https://bioregistry.io/cellxgene.dataset:"
         ]
     },
     {
@@ -16977,35 +16996,30 @@
     },
     {
         "pattern": "^\\d{6}$",
-        "prefix": "jax",
+        "prefix": "jaxmice",
+        "prefix_synonyms": [
+            "jax",
+            "jaxMiceUID"
+        ],
         "uri_prefix": "https://www.jax.org/strain/",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/jax:",
-            "http://jaxmice.jax.org/strain/",
-            "http://scicrunch.org/resolver/RRID:IMSR_JAX_",
-            "http://www.jax.org/strain/",
-            "https://bioregistry.io/jax:",
-            "https://jaxmice.jax.org/strain/",
-            "https://scicrunch.org/resolver/RRID:IMSR_JAX_"
-        ]
-    },
-    {
-        "pattern": "^\\d+$",
-        "prefix": "jaxmice",
-        "prefix_synonyms": [
-            "jaxMiceUID"
-        ],
-        "uri_prefix": "https://identifiers.org/jaxmice:",
-        "uri_prefix_synonyms": [
             "http://bioregistry.io/jaxMiceUID:",
             "http://bioregistry.io/jaxmice:",
             "http://identifiers.org/jaxmice/",
             "http://identifiers.org/jaxmice:",
+            "http://jaxmice.jax.org/strain/",
             "http://n2t.net/jaxmice:",
+            "http://scicrunch.org/resolver/RRID:IMSR_JAX_",
+            "http://www.jax.org/strain/",
+            "https://bioregistry.io/jax:",
             "https://bioregistry.io/jaxMiceUID:",
             "https://bioregistry.io/jaxmice:",
             "https://identifiers.org/jaxmice/",
-            "https://n2t.net/jaxmice:"
+            "https://identifiers.org/jaxmice:",
+            "https://jaxmice.jax.org/strain/",
+            "https://n2t.net/jaxmice:",
+            "https://scicrunch.org/resolver/RRID:IMSR_JAX_"
         ]
     },
     {

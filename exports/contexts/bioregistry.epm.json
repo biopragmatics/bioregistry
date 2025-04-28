@@ -454,11 +454,11 @@
         "uri_prefix_synonyms": [
             "AGRKB:",
             "agrkb:",
-            "http://alliancegenome.org/gene/",
             "http://bioregistry.io/agrkb:",
             "http://www.alliancegenome.org/accession/",
-            "https://alliancegenome.org/gene/",
-            "https://bioregistry.io/agrkb:"
+            "http://www.alliancegenome.org/gene/",
+            "https://bioregistry.io/agrkb:",
+            "https://www.alliancegenome.org/gene/"
         ]
     },
     {
@@ -3529,6 +3529,29 @@
             "https://bioregistry.io/cellrepo:",
             "https://identifiers.org/cellrepo/",
             "https://identifiers.org/cellrepo:"
+        ]
+    },
+    {
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "prefix": "cellxgene.collection",
+        "uri_prefix": "https://cellxgene.cziscience.com/collections/",
+        "uri_prefix_synonyms": [
+            "CELLXGENE.COLLECTION:",
+            "cellxgene.collection:",
+            "http://bioregistry.io/cellxgene.collection:",
+            "http://cellxgene.cziscience.com/collections/",
+            "https://bioregistry.io/cellxgene.collection:"
+        ]
+    },
+    {
+        "prefix": "cellxgene.dataset",
+        "uri_prefix": "https://cellxgene.cziscience.com/e/",
+        "uri_prefix_synonyms": [
+            "CELLXGENE.DATASET:",
+            "cellxgene.dataset:",
+            "http://bioregistry.io/cellxgene.dataset:",
+            "http://cellxgene.cziscience.com/e/",
+            "https://bioregistry.io/cellxgene.dataset:"
         ]
     },
     {
@@ -15133,39 +15156,34 @@
     },
     {
         "pattern": "^\\d{6}$",
-        "prefix": "jax",
+        "prefix": "jaxmice",
+        "prefix_synonyms": [
+            "jax",
+            "jaxMiceUID"
+        ],
         "uri_prefix": "https://www.jax.org/strain/",
         "uri_prefix_synonyms": [
             "JAX:",
-            "http://bioregistry.io/jax:",
-            "http://jaxmice.jax.org/strain/",
-            "http://scicrunch.org/resolver/RRID:IMSR_JAX_",
-            "http://www.jax.org/strain/",
-            "https://bioregistry.io/jax:",
-            "https://jaxmice.jax.org/strain/",
-            "https://scicrunch.org/resolver/RRID:IMSR_JAX_",
-            "jax:"
-        ]
-    },
-    {
-        "pattern": "^\\d+$",
-        "prefix": "jaxmice",
-        "prefix_synonyms": [
-            "jaxMiceUID"
-        ],
-        "uri_prefix": "https://bioregistry.io/jaxmice:",
-        "uri_prefix_synonyms": [
             "JAXMICE:",
             "JAXMICEUID:",
+            "http://bioregistry.io/jax:",
             "http://bioregistry.io/jaxMiceUID:",
             "http://bioregistry.io/jaxmice:",
             "http://identifiers.org/jaxmice/",
             "http://identifiers.org/jaxmice:",
+            "http://jaxmice.jax.org/strain/",
             "http://n2t.net/jaxmice:",
+            "http://scicrunch.org/resolver/RRID:IMSR_JAX_",
+            "http://www.jax.org/strain/",
+            "https://bioregistry.io/jax:",
             "https://bioregistry.io/jaxMiceUID:",
+            "https://bioregistry.io/jaxmice:",
             "https://identifiers.org/jaxmice/",
             "https://identifiers.org/jaxmice:",
+            "https://jaxmice.jax.org/strain/",
             "https://n2t.net/jaxmice:",
+            "https://scicrunch.org/resolver/RRID:IMSR_JAX_",
+            "jax:",
             "jaxMiceUID:",
             "jaxmice:",
             "jaxmiceuid:"
@@ -22085,71 +22103,61 @@
         ]
     },
     {
-        "pattern": "^\\d+$",
+        "pattern": "^C?\\d+$",
         "prefix": "orphanet",
         "prefix_synonyms": [
-            "ORPHA"
-        ],
-        "uri_prefix": "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=",
-        "uri_prefix_synonyms": [
-            "ORPHA:",
-            "ORPHANET:",
-            "http://bio2rdf.org/orphanet:",
-            "http://bioregistry.io/ORPHA:",
-            "http://bioregistry.io/orphanet:",
-            "http://identifiers.org/orphanet/",
-            "http://identifiers.org/orphanet:",
-            "http://n2t.net/orphanet:",
-            "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=",
-            "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
-            "http://www.orpha.net/en/disease/detail/",
-            "https://bio2rdf.org/orphanet:",
-            "https://bioregistry.io/ORPHA:",
-            "https://bioregistry.io/orphanet:",
-            "https://identifiers.org/orphanet/",
-            "https://identifiers.org/orphanet:",
-            "https://n2t.net/orphanet:",
-            "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=",
-            "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=",
-            "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
-            "https://www.orpha.net/en/disease/detail/",
-            "orpha:",
-            "orphanet:"
-        ]
-    },
-    {
-        "pattern": "^C?\\d+$",
-        "prefix": "orphanet.ordo",
-        "prefix_synonyms": [
-            "ordo"
+            "ORPHA",
+            "ordo",
+            "orphanet.ordo"
         ],
         "uri_prefix": "http://www.orpha.net/ORDO/Orphanet_",
         "uri_prefix_synonyms": [
             "ORDO:",
+            "ORPHA:",
             "ORPHANET.ORDO:",
+            "ORPHANET:",
+            "http://bio2rdf.org/orphanet:",
+            "http://bioregistry.io/ORPHA:",
             "http://bioregistry.io/ordo:",
             "http://bioregistry.io/orphanet.ordo:",
+            "http://bioregistry.io/orphanet:",
             "http://identifiers.org/orphanet.ordo/",
             "http://identifiers.org/orphanet.ordo/Orphanet_",
             "http://identifiers.org/orphanet.ordo:",
+            "http://identifiers.org/orphanet/",
+            "http://identifiers.org/orphanet:",
             "http://n2t.net/orphanet.ordo:",
+            "http://n2t.net/orphanet:",
             "http://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
             "http://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "http://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
+            "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=",
             "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
+            "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
+            "http://www.orpha.net/en/disease/detail/",
+            "https://bio2rdf.org/orphanet:",
+            "https://bioregistry.io/ORPHA:",
             "https://bioregistry.io/ordo:",
             "https://bioregistry.io/orphanet.ordo:",
+            "https://bioregistry.io/orphanet:",
             "https://identifiers.org/orphanet.ordo/",
             "https://identifiers.org/orphanet.ordo/Orphanet_",
             "https://identifiers.org/orphanet.ordo:",
+            "https://identifiers.org/orphanet/",
+            "https://identifiers.org/orphanet:",
             "https://n2t.net/orphanet.ordo:",
+            "https://n2t.net/orphanet:",
             "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?short_form=",
             "https://www.ebi.ac.uk/ols4/ontologies/ordo/classes/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
             "https://www.ebi.ac.uk/ols4/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252F",
-            "https://www.orpha.net/ORDO/Orphanet_",
+            "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=",
             "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=en&Expert=",
+            "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=",
+            "https://www.orpha.net/en/disease/detail/",
             "ordo:",
-            "orphanet.ordo:"
+            "orpha:",
+            "orphanet.ordo:",
+            "orphanet:"
         ]
     },
     {
