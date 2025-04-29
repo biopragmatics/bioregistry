@@ -24091,14 +24091,14 @@
             },
             "mirId": "MIR:00100663",
             "name": "IMEx Consortium though Intact",
-            "official": false,
+            "official": true,
             "protectedUrls": false,
             "providerCode": "CURATOR_REVIEW",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
             "resourceHomeUrl": "https://www.ebi.ac.uk/intact/",
             "sampleId": "IM-19210-3",
-            "urlPattern": "https://imexcentral.org/icentral/imex/rec/{$id}"
+            "urlPattern": "https://www.ebi.ac.uk/intact/search?query={$id}#interaction"
           }
         ],
         "sampleId": "IM-19210-3",
@@ -34087,7 +34087,7 @@
             "renderProtectedLanding": false,
             "resourceHomeUrl": "http://nbn-resolving.org/resolve_urn.htm",
             "sampleId": "urn:nbn:fi:tkk-004781",
-            "urlPattern": "http://nbn-resolving.org/resolver?identifier={$id}&verb=redirect"
+            "urlPattern": "http://nbn-resolving.org/{$id}"
           }
         ],
         "sampleId": "urn:nbn:fi:tkk-004781",
@@ -42538,41 +42538,6 @@
             "deprecationDate": null,
             "deprecationOfflineDate": null,
             "deprecationStatement": null,
-            "description": "PubMed through Linkedlife data",
-            "id": 64,
-            "institution": {
-              "description": "Linked Life Data (LLD) is a data-as-a-service platform that provides access to 25 public biomedical databases through a single access point. The service allows writing of complex data analytical queries, answering complex bioinformatics questions such as 'give me all human genes located in Y-chromosome with the known molecular interactions'; simply navigate through the information, or export subsets like 'all approved drugs and their brand names'. ",
-              "homeUrl": "http://linkedlifedata.com/",
-              "id": 63,
-              "location": {
-                "countryCode": "BG",
-                "countryName": "Bulgaria"
-              },
-              "name": "Linkedlifedata, Ontotext, Sofia",
-              "rorId": null
-            },
-            "location": {
-              "countryCode": "BG",
-              "countryName": "Bulgaria"
-            },
-            "mirId": "MIR:00100745",
-            "name": "PubMed through Linkedlife data",
-            "official": false,
-            "protectedUrls": false,
-            "providerCode": "CURATOR_REVIEW",
-            "renderDeprecatedLanding": false,
-            "renderProtectedLanding": false,
-            "resourceHomeUrl": "http://linkedlifedata.com/",
-            "sampleId": "23735196",
-            "urlPattern": "http://linkedlifedata.com/resource/pubmed/id/{$id}"
-          },
-          {
-            "authHelpDescription": null,
-            "authHelpUrl": null,
-            "deprecated": false,
-            "deprecationDate": null,
-            "deprecationOfflineDate": null,
-            "deprecationStatement": null,
             "description": "HubMed",
             "id": 60,
             "institution": {
@@ -42670,6 +42635,41 @@
             "resourceHomeUrl": "https://scholia.toolforge.org/",
             "sampleId": "29029422",
             "urlPattern": "https://scholia.toolforge.org/pubmed/{$id}"
+          },
+          {
+            "authHelpDescription": null,
+            "authHelpUrl": null,
+            "deprecated": true,
+            "deprecationDate": "2025-04-28T09:17:05.836+00:00",
+            "deprecationOfflineDate": null,
+            "deprecationStatement": null,
+            "description": "PubMed through Linkedlife data",
+            "id": 64,
+            "institution": {
+              "description": "Linked Life Data (LLD) is a data-as-a-service platform that provides access to 25 public biomedical databases through a single access point. The service allows writing of complex data analytical queries, answering complex bioinformatics questions such as 'give me all human genes located in Y-chromosome with the known molecular interactions'; simply navigate through the information, or export subsets like 'all approved drugs and their brand names'. ",
+              "homeUrl": "http://linkedlifedata.com/",
+              "id": 63,
+              "location": {
+                "countryCode": "BG",
+                "countryName": "Bulgaria"
+              },
+              "name": "Linkedlifedata, Ontotext, Sofia",
+              "rorId": null
+            },
+            "location": {
+              "countryCode": "BG",
+              "countryName": "Bulgaria"
+            },
+            "mirId": "MIR:00100745",
+            "name": "PubMed through Linkedlife data",
+            "official": false,
+            "protectedUrls": false,
+            "providerCode": "CURATOR_REVIEW",
+            "renderDeprecatedLanding": false,
+            "renderProtectedLanding": false,
+            "resourceHomeUrl": "http://linkedlifedata.com/",
+            "sampleId": "23735196",
+            "urlPattern": "http://linkedlifedata.com/resource/pubmed/id/{$id}"
           }
         ],
         "sampleId": "16333295",
@@ -48064,15 +48064,15 @@
             "description": "The Arabidopsis Information Resource (TAIR) Locus",
             "id": 185,
             "institution": {
-              "description": "CURATOR_REVIEW",
-              "homeUrl": "CURATOR_REVIEW",
-              "id": 180,
+              "description": "Grant-funded research data repositories and tools risk termination when grants end, resulting in lost data, resources and expertise. We work with the creators of these resources to develop innovative and sustainable funding support, ensuring that valuable scientific data and software resources survive and prosper.\n",
+              "homeUrl": "https://www.phoenixbioinformatics.org/",
+              "id": 3367,
               "location": {
                 "countryCode": "US",
                 "countryName": "United States"
               },
-              "name": "Carnegie Institution of Washington Department of Plant Biology and National Center for Genome Resources (NCGR)",
-              "rorId": null
+              "name": "Phoenix Bioinformatics",
+              "rorId": "https://ror.org/0018yg518"
             },
             "location": {
               "countryCode": "US",
@@ -48085,9 +48085,9 @@
             "providerCode": "CURATOR_REVIEW",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
-            "resourceHomeUrl": "http://arabidopsis.org/index.jsp",
+            "resourceHomeUrl": "http://arabidopsis.org/",
             "sampleId": "2200950",
-            "urlPattern": "http://www.arabidopsis.org/servlets/TairObject?accession=Locus:{$id}"
+            "urlPattern": "https://www.arabidopsis.org/locus?accession={$id}"
           }
         ],
         "sampleId": "2200950",
@@ -48141,9 +48141,9 @@
             "providerCode": "tair",
             "renderDeprecatedLanding": false,
             "renderProtectedLanding": false,
-            "resourceHomeUrl": "https://www.arabidopsis.org/index.jsp",
+            "resourceHomeUrl": "https://www.arabidopsis.org/",
             "sampleId": "AT5G05330",
-            "urlPattern": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name={$id}"
+            "urlPattern": "https://www.arabidopsis.org/locus?name={$id}"
           }
         ],
         "sampleId": "AT5G05330",

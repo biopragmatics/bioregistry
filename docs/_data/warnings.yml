@@ -193,7 +193,7 @@ wrong_patterns:
   name: Gene Ontology
   prefix: go
 - correct: ^\d{7}$
-  homepage: https://geneontology.org/gorefs
+  homepage: http://www.geneontology.org/cgi-bin/references.cgi
   miriam: ^GO_REF:\d{7}$
   name: Gene Ontology Database references
   prefix: go.ref
@@ -252,6 +252,11 @@ wrong_patterns:
   miriam: ^.+$
   name: Intelligence Task Ontology
   prefix: ito
+- correct: ^\d{6}$
+  homepage: https://mice.jax.org
+  miriam: ^\d+$
+  name: Jackson Laboratories Mouse Strain
+  prefix: jaxmice
 - correct: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   homepage: http://lincsportal.ccs.miami.edu/cells/
   miriam: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
@@ -288,7 +293,7 @@ wrong_patterns:
   name: MediaDive Medium
   prefix: mediadive.medium
 - correct: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
-  homepage: https://www.ebi.ac.uk/merops/
+  homepage: http://merops.sanger.ac.uk/index.htm
   miriam: ^I\d{2}\.\d{3}$
   name: MEROPS Entry
   prefix: merops.entry
@@ -423,7 +428,12 @@ wrong_patterns:
   name: Ontology for Parasite LifeCycle
   prefix: opl
 - correct: ^C?\d+$
-  homepage: https://www.ebi.ac.uk/ols4/ontologies/ordo
+  homepage: https://www.orpha.net
+  miriam: ^\d+$
+  name: Orphanet
+  prefix: orphanet
+- correct: ^C?\d+$
+  homepage: https://www.orpha.net
   miriam: ^Orphanet(_|:)C?\d+$
   name: Orphanet Rare Disease Ontology
   prefix: orphanet.ordo
