@@ -37,11 +37,11 @@ def _get_example(prefix: str) -> str | None:
         return None
     if not x:
         return None
-    x = list(x)
+    y: list[str] = list(x)
     try:
-        rv = x[random.randint(0, len(x))]  # noqa:S311
+        rv: str = y[random.randint(0, len(x))]  # noqa:S311
     except IndexError:
-        click.echo(f"failed {prefix} {x}")
+        click.echo(f"failed {prefix} {y}")
         return None
     else:
         click.echo(f"adding {prefix} {rv}")

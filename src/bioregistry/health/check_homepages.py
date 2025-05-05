@@ -51,7 +51,7 @@ def _process(element: tuple[str, set[str]]) -> tuple[str, set[str], bool, str | 
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the homepage health check script."""
     homepage_to_prefixes = defaultdict(set)
     for prefix in bioregistry.read_registry():
@@ -62,7 +62,7 @@ def main():
             continue
         homepage_to_prefixes[homepage].add(prefix)
 
-    rv = thread_map(_process, list(homepage_to_prefixes.items()), desc="Checking homepages")
+    rv = thread_map(_process, list(homepage_to_prefixes.items()), desc="Checking homepages")  # type:ignore[no-untyped-call]
 
     failed = sum(failed for _, _, failed, _ in rv)
     click.secho(
