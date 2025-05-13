@@ -205,7 +205,7 @@ def get_app(
             "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
-    fast_api.manager = manager
+    fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
@@ -236,7 +236,7 @@ SELECT ?s ?o WHERE {
 def _get_sparql_router(app: Flask) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=app.manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
-    sparql_router = SparqlRouter(
+    sparql_router: APIRouter = SparqlRouter(
         path="/sparql",
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",

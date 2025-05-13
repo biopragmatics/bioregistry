@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import random
+from typing import cast
 
 import requests
 from tqdm import tqdm
@@ -20,7 +21,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
         tqdm.write(f"[{prefix} too deep")
         raise KeyError
     tqdm.write(f"[{prefix}] getting {url}")
-    res = requests.get(url).json()
+    res = requests.get(url, timeout=15).json()
     embedded = res.get("_embedded")
     if not embedded:
         tqdm.write(f"[{prefix} failure")
@@ -28,7 +29,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
         raise KeyError
     for term in embedded["terms"]:
         if term["short_form"].startswith(prefix.upper()):
-            return term["short_form"]
+            return cast(str, term["short_form"])
     next_url = res["_links"]["next"]["href"]
     return _get_example_helper(prefix, next_url)
 
