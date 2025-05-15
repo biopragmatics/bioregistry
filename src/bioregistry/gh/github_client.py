@@ -7,7 +7,7 @@ import logging
 import os
 from collections.abc import Iterable, Mapping
 from subprocess import CalledProcessError, check_output
-from typing import Any
+from typing import Any, cast
 
 import more_itertools
 import pystow
@@ -19,7 +19,7 @@ MAIN_BRANCH = "main"
 
 
 def has_token() -> bool:
-    """Check if there is a github token available."""
+    """Check if there is a GitHub token available."""
     return pystow.get_config("github", "token") is not None
 
 
@@ -33,8 +33,8 @@ def get_issues_with_pr(issue_ids: Iterable[int], token: str | None = None) -> se
     }
 
 
-def get_headers(token: str | None = None):
-    """Get github headers."""
+def get_headers(token: str | None = None) -> dict[str, str]:
+    """Get GitHub headers."""
     headers = {
         "Accept": "application/vnd.github.v3+json",
     }
@@ -44,13 +44,16 @@ def get_headers(token: str | None = None):
     return headers
 
 
-def requests_get(path: str, token: str | None = None, params: Mapping[str, Any] | None = None):
+def requests_get(
+    path: str, token: str | None = None, params: Mapping[str, Any] | None = None
+) -> Any:
     """Send a get request to the GitHub API."""
     path = path.lstrip("/")
     return requests.get(
         f"https://api.github.com/{path}",
         headers=get_headers(token=token),
         params=params,
+        timeout=15,
     ).json()
 
 
@@ -59,7 +62,7 @@ def list_pulls(
     owner: str,
     repo: str,
     token: str | None = None,
-):
+) -> list[dict[str, Any]]:
     """List pull requests.
 
     :param owner: The name of the owner/organization for the repository.
@@ -68,7 +71,7 @@ def list_pulls(
         you make many more queries before getting rate limited.
     :returns: JSON response from GitHub
     """
-    return requests_get(f"repos/{owner}/{repo}/pulls", token=token)
+    return cast(list[dict[str, Any]], requests_get(f"repos/{owner}/{repo}/pulls", token=token))
 
 
 def open_bioregistry_pull_request(
@@ -77,7 +80,7 @@ def open_bioregistry_pull_request(
     head: str,
     body: str | None = None,
     token: str | None = None,
-):
+) -> dict[str, Any]:
     """Open a pull request to the Bioregistry via :func:`open_pull_request`."""
     return open_pull_request(
         owner="bioregistry",
@@ -99,7 +102,7 @@ def open_pull_request(
     base: str,
     body: str | None = None,
     token: str | None = None,
-):
+) -> dict[str, Any]:
     """Open a pull request.
 
     :param owner: The name of the owner/organization for the repository.
@@ -119,11 +122,13 @@ def open_pull_request(
     }
     if body:
         data["body"] = body
-    return requests.post(
+    res = requests.post(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=get_headers(token=token),
         json=data,
-    ).json()
+        timeout=15,
+    )
+    return res.json()  # type:ignore
 
 
 def get_bioregistry_form_data(
@@ -229,10 +234,10 @@ def parse_body(body: str) -> dict[str, Any]:
     for group in more_itertools.split_before(lines, lambda line: line.startswith("### ")):
         header, *rest = group
         header = header.lstrip("#").lstrip()
-        rest = " ".join(x.strip() for x in rest)
-        if rest == "_No response_" or not rest:
+        rest_str = " ".join(x.strip() for x in rest)
+        if rest_str == "_No response_" or not rest_str:
             continue
-        rv[header] = rest
+        rv[header] = rest_str
     return rv
 
 
@@ -241,7 +246,7 @@ def status_porcelain() -> str | None:
     return _git("status", "--porcelain")
 
 
-def push(*args) -> str | None:
+def push(*args: str) -> str | None:
     """Push the git repo."""
     return _git("push", *args)
 
@@ -285,7 +290,7 @@ def _git(*args: str) -> str | None:
     with open(os.devnull, "w") as devnull:
         try:
             ret = check_output(  # noqa: S603
-                ["git", *args],
+                ["git", *args],  # noqa:S607
                 cwd=os.path.dirname(__file__),
                 stderr=devnull,
             )

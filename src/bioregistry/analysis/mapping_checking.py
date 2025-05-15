@@ -141,7 +141,7 @@ def _get_mismatch_entries() -> dict[str, Any]:
     # For all the curated mismatches, read the external registry involved
     # and extract the part relevant for the curated mismatch, then add it to
     # the raw registry for scoring
-    mismatch_entries: defaultdict[str, Any] = defaultdict(dict)
+    mismatch_entries: defaultdict[str, dict[str, Any]] = defaultdict(dict)
     # We compile content from external registries directly to be able
     # to access known mismatches that are otherwise not propagated to the
     # bioregistry

@@ -54,7 +54,8 @@ prefix_resource_blacklist = {
     ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
     ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
 }
-assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
+if not all(not x.endswith("$1") for _, x in prefix_resource_blacklist):
+    raise RuntimeError
 
 
 def _debug_or_raise(msg: str, strict: bool = False) -> None:
@@ -140,7 +141,7 @@ def _w3c_clean_converter(converter: Converter) -> Converter:
     return Converter(_w3c_clean_record(record) for record in converter.records)
 
 
-def _get_records(  # noqa: C901
+def _get_records(
     resources: list[Resource],
     prefix_priority: Sequence[str] | None = None,
     uri_prefix_priority: Sequence[str] | None = None,
