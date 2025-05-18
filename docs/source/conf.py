@@ -26,7 +26,7 @@ copyright = f"{date.today().year}, Charles Tapley Hoyt"
 author = "Charles Tapley Hoyt"
 
 # The full version, including alpha/beta/rc tags.
-release = "0.12.8-dev"
+release = "0.12.14-dev"
 
 # The short X.Y version.
 parsed_version = re.match(
@@ -48,7 +48,7 @@ html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 if os.environ.get("READTHEDOCS", "") == "True":
     if "html_context" not in globals():
         html_context = {}
-    html_context["READTHEDOCS"] = True  # noqa: F821
+    html_context["READTHEDOCS"] = True
 
 
 # -- General configuration ---------------------------------------------------

@@ -720,7 +720,9 @@
     ],
     "repository": "https://github.com/EBISPOT/efo",
     "subjects": [
-      "Functional Genomics"
+      "Genomics",
+      "Proteomics",
+      "Omics"
     ],
     "user_defined_tags": [
       "Experimental condition"
@@ -1468,6 +1470,7 @@
       }
     ],
     "subjects": [
+      "Proteomics",
       "Life Science"
     ]
   },
@@ -2539,7 +2542,9 @@
     ],
     "subjects": [
       "Knowledge and Information Systems",
+      "Bioinformatics",
       "Structural Biology",
+      "Proteomics",
       "Omics"
     ]
   },
@@ -2974,13 +2979,20 @@
     "domains": [
       "Annotation",
       "PTM site prediction",
+      "Omics data analysis",
+      "Enhancer",
       "Protein acetylation",
       "Phosphorylation",
       "Methylation",
       "Protein-containing complex",
       "Glycosylation",
+      "Craniofacial phenotype",
       "Data model",
+      "Phenotype",
+      "Disease phenotype",
+      "Microbe-host interaction phenotype",
       "Protein",
+      "Quantitative trait loci",
       "Biocuration"
     ],
     "homepage": "https://proconsortium.org/",
@@ -3021,7 +3033,17 @@
     ],
     "repository": "https://github.com/PROconsortium/PRoteinOntology",
     "subjects": [
+      "Functional Genomics",
+      "Metaproteomics",
+      "Proteomics",
+      "Phenomics",
+      "Omics",
       "Biology"
+    ],
+    "user_defined_tags": [
+      "Phenology",
+      "Phenotype strain survey data",
+      "Plant Phenotypes and Traits"
     ]
   },
   "FAIRsharing.4qyf0f": {
@@ -3248,6 +3270,7 @@
     "abbreviation": "sepCV",
     "description": "The sepCV is a controlled vocabulary for teminology associated with sample preparation and sample processing for proteomics. The sepCV was originally designed to provide terminology for the MIAPE GE reporting guidelines and the gelML data transfer format. It has now been expanded to include terminology for gel image informatics to support the MIAPE GI reporting guidelines and the GelInfoML data transfer format. In addition it includes relevant terminology for general sample processing to support the data transfer format of spML. The sepCV is beign jointly developed by the Proteomics Standards Intiative (PSI) and the Metabolomics Standards Intitative (MSI).",
     "domains": [
+      "2D PAGE image",
       "Sample preparation for assay",
       "Material processing",
       "Protein"
@@ -3697,11 +3720,16 @@
   },
   "FAIRsharing.64f3va": {
     "abbreviation": "PFO",
+    "contact": {
+      "email": "tudor.groza@uq.edu.au",
+      "name": "Tudor Groza",
+      "orcid": "0000-0003-2267-8333"
+    },
     "description": "The Phenotype Fragment Ontology, together with a processing pipeline, enable the automatic decomposition and conceptualization of phenotype descriptions for the human skeletal phenome.",
     "domains": [
       "Phenotype"
     ],
-    "homepage": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3572876/",
+    "homepage": "https://doi.org/10.4137/bii.s10729",
     "name": "Phenotype Fragment Ontology",
     "publications": [
       {
@@ -4043,8 +4071,10 @@
     ],
     "repository": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
     "subjects": [
+      "Genomics",
       "Bioinformatics",
       "Life Science",
+      "Transcriptomics",
       "Biology"
     ]
   },
@@ -5454,9 +5484,33 @@
     ],
     "twitter": "diseaseontology"
   },
+  "FAIRsharing.8b8737": {
+    "abbreviation": "SPASE resource Id",
+    "description": "A SPASE resource Identifier is a name for a resource within the SPASE registry. This name can be used to identify a resource from the SPASE registry (for reference in metadata), to cross-reference entities in the SPASE registry, and to retrieve the metadata of an entity present in the SPASE Registry like a dataset, an observatory or a repository. ",
+    "homepage": "https://spase-group.org/docs/conventions/Resource-ID-Formation-Rule-v5.pdf",
+    "name": "Space Physics Archive Search and Extract Resource ID",
+    "publications": [
+      {
+        "doi": "10.1016/j.asr.2023.09.066",
+        "title": "SPASE metadata as a building block of a heliophysics science-enabling framework",
+        "year": 2023
+      }
+    ],
+    "subjects": [
+      "Astrophysics and Astronomy"
+    ],
+    "user_defined_tags": [
+      "planetary science",
+      "Solar physics",
+      "space science",
+      "space weather",
+      "heliophysics"
+    ]
+  },
   "FAIRsharing.8bf70c": {
     "description": "Identifier schema for Ensembl",
     "domains": [
+      "Data identity and mapping",
       "Centrally registered identifier"
     ],
     "homepage": "https://www.ensembl.org/info/genome/stable_ids/index.html",
@@ -5469,7 +5523,9 @@
       }
     ],
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Genomics",
+      "Proteomics"
     ]
   },
   "FAIRsharing.8d6247": {
@@ -6069,6 +6125,7 @@
     "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
     "domains": [
       "Lipid",
+      "Omics data analysis",
       "Small molecule"
     ],
     "homepage": "https://bioregistry.io/registry/slm",
@@ -6098,11 +6155,13 @@
       "name": "Petra Fey",
       "orcid": "0000-0002-4532-2703"
     },
-    "description": "A structured controlled vocabulary of phenotypes of the social amoeba Dictyostelium discoideum. The Dicty Phenotype Ontology is a hierarchical controlled vocabulary used for annotating strains with phenotypes. Terms from the Dicty Phenotype Ontology are required when annotating phenotypes within dictyBase. The phenotype ontology consists of two composite terms: (1) the anatomical part or the biological process changed in the mutant, and (2) a quality describing that modification. For example, a ‘delayed aggregation’ phenotype qualifies the ‘aggregation’ (biological process) as being ‘delayed’, or the ‘decreased spore size’ qualifies the ‘spore’ to be of ‘decreased size’.",
+    "description": "The Dictyostelium Phenotype Ontology (DDPHENO) is a structured controlled vocabulary of phenotypes of the slime-mould Dictyostelium discoideum. DDPHENO is a hierarchical controlled vocabulary used for annotating strains with phenotypes, and are required when annotating phenotypes within the dictyBase. The phenotype ontology consists of two composite terms: (1) the anatomical part or the biological process changed in the mutant, and (2) a quality describing that modification. For example, a ‘delayed aggregation’ phenotype qualifies the ‘aggregation’ (biological process) as being ‘delayed’, or the ‘decreased spore size’ qualifies the ‘spore’ to be of ‘decreased size’.",
     "domains": [
-      "Phenotype"
+      "Phenotype",
+      "Microbe-host interaction phenotype"
     ],
-    "homepage": "https://github.com/dictyBase/migration-data/blob/master/ontologies/dicty_phenotypes.obo",
+    "homepage": "https://github.com/obophenotype/dicty-phenotype-ontology",
+    "license": "https://creativecommons.org/licenses/by/1.0",
     "name": "Dictyostelium Phenotype Ontology",
     "publications": [
       {
@@ -6112,8 +6171,14 @@
         "year": 2013
       }
     ],
+    "repository": "https://github.com/obophenotype/dicty-phenotype-ontology/issues",
     "subjects": [
-      "Life Science"
+      "Soil Science",
+      "Anatomy",
+      "Microbial Ecology",
+      "Developmental Biology",
+      "Life Science",
+      "Phenomics"
     ]
   },
   "FAIRsharing.9c2azc": {
@@ -6736,7 +6801,8 @@
     "repository": "https://github.com/ORCID",
     "subjects": [
       "Knowledge and Information Systems",
-      "Omics"
+      "Data Management",
+      "Subject Agnostic"
     ]
   },
   "FAIRsharing.OsiqlF": {
@@ -7360,6 +7426,7 @@
     "domains": [
       "Analysis",
       "Data acquisition",
+      "Omics data analysis",
       "Data transformation"
     ],
     "homepage": "http://edamontology.org",
@@ -7386,7 +7453,8 @@
     "repository": "https://github.com/edamontology/edamontology",
     "subjects": [
       "Bioinformatics",
-      "Life Science"
+      "Life Science",
+      "Omics"
     ],
     "twitter": "edamontology"
   },
@@ -7489,7 +7557,7 @@
       "Disease",
       "Classification"
     ],
-    "homepage": "https://github.com/infectious-disease-ontology/infectious-disease-ontology",
+    "homepage": "https://github.com/infectious-disease-ontology",
     "license": "https://creativecommons.org/licenses/by/3.0/us",
     "name": "Infectious Disease Ontology Core",
     "publications": [
@@ -7677,17 +7745,19 @@
     ]
   },
   "FAIRsharing.agvc7y": {
-    "abbreviation": "WB-PHENOTYPE",
+    "abbreviation": "WBPHENOTYPE",
     "contact": {
       "email": "garys@caltech.edu",
       "name": "Gary Schindelman",
       "orcid": "0000-0001-7883-4388"
     },
-    "description": "A structured controlled vocabulary of Caenorhabditis elegans phenotypes .",
+    "description": "An ontology for phenotypes pertaining to the nematode Caenorhabditis elegans (C. elegans) and related nematodes used by the nematode genome database WormBase.",
     "domains": [
+      "Omics data analysis",
       "Phenotype"
     ],
-    "homepage": "https://wormbase.org/tools/ontology_browser#o_browser",
+    "homepage": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
+    "license": "CC-BY-4.0",
     "name": "C. elegans phenotype",
     "publications": [
       {
@@ -7697,10 +7767,12 @@
         "year": 2011
       }
     ],
-    "repository": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
+    "repository": "https://github.com/obophenotype/c-elegans-phenotype-ontology/issues",
     "subjects": [
       "Anatomy",
-      "Life Science"
+      "Life Science",
+      "Phenomics",
+      "Omics"
     ]
   },
   "FAIRsharing.akmeb9": {
@@ -9155,9 +9227,16 @@
   },
   "FAIRsharing.cc3f2x": {
     "abbreviation": "OMP",
+    "contact": {
+      "email": "jimhu@tamu.edu",
+      "name": "James C. Hu",
+      "orcid": "0000-0001-9016-2684"
+    },
     "description": "The Ontology of Microbial Phenotypes (OMP) is a community ontology for annotating microbial phenotypes, including bacteria, archaea, protists, fungi, and viruses. It has been created to help with standardized capture of essential phenotypic information. OMP is designed to be compatible with other microbial phenotype ontologies, such as the Fission Yeast Phenotype Ontology (FYPO) and the Ascomycete Phenotype Ontology (APO), and aims to standardize the capture of phenotypic information to allow improved cross-species data mining and analysis.",
     "domains": [
-      "Phenotype"
+      "Omics data analysis",
+      "Phenotype",
+      "Microbe-host interaction phenotype"
     ],
     "homepage": "https://github.com/microbialphenotypes/OMP-ontology",
     "license": "CC-BY-3.0",
@@ -9168,13 +9247,20 @@
         "pubmed": "25433798",
         "title": "An ontology for microbial phenotypes",
         "year": 2014
+      },
+      {
+        "doi": "10.1186/s13326-019-0205-5",
+        "title": "Phenotype annotation with the ontology of microbial phenotypes (OMP)",
+        "year": 2019
       }
     ],
     "repository": "https://github.com/microbialphenotypes/OMP-ontology/issues",
     "subjects": [
-      "Data Mining",
+      "Microbial Ecology",
+      "Chemical Biology",
+      "Phenomics",
       "Microbiology",
-      "Biology"
+      "Omics"
     ]
   },
   "FAIRsharing.cd7603": {
@@ -9646,7 +9732,7 @@
     ],
     "homepage": "https://qudt.org/",
     "license": "CC-BY-4.0",
-    "name": "Quantities, Units, Dimensions and Types",
+    "name": "Quantities, Units, Dimensions and Types ",
     "repository": "https://github.com/qudt/qudt-public-repo/blob/master/docs/2020-04-28%20Intro%20to%20QUDT.pdf",
     "subjects": [
       "Astrophysics and Astronomy"
@@ -10454,11 +10540,23 @@
       "Morphology",
       "Life cycle stage"
     ],
-    "homepage": "http://bioportal.bioontology.org/ontologies/APO?p=summary",
+    "homepage": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
+    "license": "CC-BY-4.0",
     "name": "Ascomycete Phenotype Ontology",
+    "publications": [
+      {
+        "doi": "10.1093/database/bap001",
+        "pubmed": "20157474",
+        "title": "New mutant phenotype data curation system in the Saccharomyces Genome Database",
+        "year": 2010
+      }
+    ],
+    "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology/issues",
     "subjects": [
+      "Genomics",
       "Life Science",
-      "Cell Biology"
+      "Cell Biology",
+      "Phenomics"
     ],
     "twitter": "yeastgenome"
   },
@@ -10594,6 +10692,37 @@
     "description": "Record does not exist anymore: Protein-Protein Interaction Ontology. The record with identifier content https://doi.org/10.25504/FAIRsharing.e21b3k was invalid.Records previously linked: [3533]. ",
     "homepage": "http://psidev.sf.net",
     "name": "Protein-Protein Interaction Ontology"
+  },
+  "FAIRsharing.e2ed4e": {
+    "abbreviation": "GOLD ID",
+    "contact": {
+      "email": "tbreddy@lbl.gov",
+      "name": "TBK Reddy",
+      "orcid": "0000-0002-0871-5567"
+    },
+    "description": "Identifier schema for the Department of Energy Joint Genome Institute (DOE-JGI) Genomes OnLine Database (GOLD). The GOLD database is a web-based resource that hosts a large catalogue of genome and metagenome sequencing projects, and associated metadata, from around the world. GOLD IDs are unique accessions assigned by the JGI-GOLD database and are organized into five levels: Studies (Gs), Biosamples (Gb), Organisms (Go), Sequencing Projects (Gp), and Analysis Projects (Ga).",
+    "domains": [
+      "Taxonomic classification",
+      "Biological sample annotation",
+      "Analysis",
+      "Centrally registered identifier",
+      "Study design",
+      "Sequencing"
+    ],
+    "homepage": "https://registry.identifiers.org/registry/gold",
+    "name": "JGI-GOLD Identifiers",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gkac974",
+        "title": "Twenty-five years of Genomes OnLine Database (GOLD): data updates and new features in v.9",
+        "year": 2022
+      }
+    ],
+    "subjects": [
+      "Metagenomics",
+      "Genomics",
+      "Phylogenetics"
+    ]
   },
   "FAIRsharing.e2zy7j": {
     "abbreviation": "apollo-ls",
@@ -11132,14 +11261,20 @@
   },
   "FAIRsharing.ez2nhb": {
     "abbreviation": "OPL",
-    "description": "OPL models the life cycle stage details of T.cruzi and two related kinetoplastids, Trypanosoma brucei and Leishmania major. In addition, the ontology also models necessary contextual details such as host information, vector information, strain and anatomical location. OPL is based on the Basic Formal Ontology (BFO) and follows the rules set by the OBO Foundry consortium.",
+    "contact": {
+      "email": "zhengj2007@gmail.com",
+      "name": "Jie Zheng",
+      "orcid": "0000-0002-2999-0103"
+    },
+    "description": "The Ontology for Parasite Lifecycle (OPL) models the life cycle stage details of various parasites, including Trypanosoma sp., Leishmania major, and Plasmodium sp., etc. In addition to life cycle stages, the ontology also models necessary contextual details, such as host information, vector information, and anatomical location. OPL is based on the Basic Formal Ontology (BFO) and follows the rules set by the OBO Foundry consortium.",
     "domains": [
       "Parasite",
       "Host",
       "Life cycle",
       "Life cycle stage"
     ],
-    "homepage": "https://bioportal.bioontology.org/ontologies/OPL",
+    "homepage": "https://github.com/OPL-ontology/OPL",
+    "license": "CC-BY-4.0",
     "name": "Ontology for Parasite LifeCycle",
     "publications": [
       {
@@ -11538,13 +11673,17 @@
     "description": "UniProt protein identifiers are stable identifiers and should be used to cite UniProtKB entries. Upon integration into UniProtKB, each entry is assigned a unique accession number, which is called 'Primary (citable) accession number'. UniProtKB accession numbers consist of 6 or 10 alphanumeric characters in the format.",
     "domains": [
       "Data retrieval",
+      "Omics data analysis",
       "Publication",
       "Centrally registered identifier"
     ],
     "homepage": "https://www.uniprot.org/help/accession_numbers",
     "name": "UniProt Protein Identifier",
     "subjects": [
-      "Knowledge and Information Systems"
+      "Knowledge and Information Systems",
+      "Metaproteomics",
+      "Genomics",
+      "Proteomics"
     ]
   },
   "FAIRsharing.fe4816": {
@@ -11674,39 +11813,36 @@
     ]
   },
   "FAIRsharing.fj07xj": {
-    "abbreviation": "NCBITAXON",
-    "description": "The NCBI Taxonomy is a database of taxonomic information. It does not follow a single taxonomic treatise but rather attempts to incorporate phylogenetic and taxonomic knowledge from a variety of sources, including the published literature, web-based databases, and the advice of sequence submitters and outside taxonomy experts.",
+    "abbreviation": "NCBITaxon",
+    "contact": {
+      "email": "frederic.bastian@unil.ch",
+      "name": "Frederic Bastian",
+      "orcid": "0000-0002-9415-5104"
+    },
+    "description": "The National Center for Biotechnology Information Organismal Classification ontology (NCBITaxon) is an automatic semantic translation of the NCBI taxonomy database into obo/owl. ",
     "domains": [
       "Taxonomic classification"
     ],
-    "homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
-    "license": "CC0-1.0",
-    "name": "NCBI Taxonomy",
+    "homepage": "https://github.com/obophenotype/ncbitaxon",
+    "name": "NCBI Organismal Classification",
     "publications": [
       {
-        "doi": "10.1093/nar/gkx1094",
-        "pubmed": "29140468",
-        "title": "GenBank",
-        "year": 2017
-      },
-      {
-        "doi": "10.1093/nar/gkr1178",
-        "pubmed": "22139910",
-        "title": "The NCBI Taxonomy database",
-        "year": 2011
-      },
-      {
-        "doi": "10.1093/database/baaa062",
-        "pubmed": "32761142",
-        "title": "NCBI Taxonomy: a comprehensive update on curation, resources and tools",
-        "year": 2020
+        "doi": "10.5281/zenodo.8065005",
+        "title": "obophenotype/ncbitaxon: 2023-06-20 Release (v2023-06-20)",
+        "year": 2023
       }
     ],
-    "repository": "https://github.com/obophenotype/ncbitaxon",
+    "repository": "https://github.com/obophenotype/ncbitaxon/issues",
     "subjects": [
+      "Knowledge and Information Systems",
+      "Genomics",
       "Taxonomy",
+      "Proteomics",
       "Phylogenetics",
-      "Life Science"
+      "Evolutionary Biology",
+      "Life Science",
+      "Ontology and Terminology",
+      "Omics"
     ]
   },
   "FAIRsharing.fmz635": {
@@ -12885,12 +13021,24 @@
   },
   "FAIRsharing.jpxsv1": {
     "abbreviation": "MPO",
-    "description": "An ontology for describing microbial phenotypes",
+    "contact": {
+      "email": "shuichi.kawashima@gmail.com",
+      "name": "Shuichi Kawashima",
+      "orcid": "0000-0001-7883-3756"
+    },
+    "description": "An ontology for describing microbial phenotypes.",
     "domains": [
       "Phenotype"
     ],
     "homepage": "http://bioportal.bioontology.org/ontologies/MPO",
     "name": "Microbial Phenotype Ontology",
+    "publications": [
+      {
+        "doi": "10.1093/database/bay132",
+        "title": "TogoGenome/TogoStanza: modularized Semantic Web genome database",
+        "year": 2019
+      }
+    ],
     "subjects": [
       "Anatomy",
       "Microbiology"
@@ -13226,6 +13374,12 @@
         "pubmed": "18950739",
         "title": "The Human Phenotype Ontology: a tool for annotating and analyzing human hereditary disease",
         "year": 2008
+      },
+      {
+        "doi": "10.1093/nar/gkad1005",
+        "pubmed": "37953324",
+        "title": "The Human Phenotype Ontology in 2024: phenotypes around the world",
+        "year": 2024
       }
     ],
     "subjects": [
@@ -13448,16 +13602,23 @@
   },
   "FAIRsharing.knp11s": {
     "abbreviation": "CMPO",
-    "description": "Cellular Microscopy Phenotype Ontology (CMPO) is a species neutral ontology for describing general phenotypic observations relating to the whole cell, cellular components, cellular processes and cell populations",
+    "contact": {
+      "email": "jupp@abi.ac.uk",
+      "name": "Simon Jupp",
+      "orcid": "0000-0002-0643-3144"
+    },
+    "description": "The Cellular Microscopy Phenotype Ontology (CMPO) provides a species-neutral controlled vocabulary for describing phenotypic qualities relating to the whole cell, cellular components, cellular processes and cell populations. Terms from CMPO are being used to annotate phenotype descriptions from high-content screening databases and cellular image repositories.",
     "domains": [
+      "Bioimaging",
       "Cell",
       "Microscopy",
+      "Imaging",
       "Cellular component",
       "Phenotype"
     ],
     "homepage": "http://www.ebi.ac.uk/cmpo/",
     "license": "Apache 2.0 License",
-    "name": "Cellular Microscopy Phenotype Ontology",
+    "name": "The Cellular Microscopy Phenotype Ontology",
     "publications": [
       {
         "doi": "10.1186/s13326-016-0074-0",
@@ -13468,7 +13629,8 @@
     ],
     "repository": "https://github.com/EBISPOT/CMPO",
     "subjects": [
-      "Cell Biology"
+      "Cell Biology",
+      "Phenomics"
     ]
   },
   "FAIRsharing.kpbna7": {
@@ -14202,6 +14364,7 @@
     "description": "STATO is a general-purpose STATistics Ontology. Its aim is to provide coverage for processes such as statistical tests, their conditions of applications, and information needed or resulting from statistical methods, such as probability distributions, variable, spread and variation metrics. STATO also covers aspects of experimental design and description of plots and graphical representations commonly used to provide visual cues of data distribution or layout and to assist review of the results.",
     "domains": [
       "Experimental measurement",
+      "Omics data analysis",
       "Graph",
       "Protocol",
       "Study design"
@@ -14212,6 +14375,7 @@
     "repository": "https://github.com/ISA-tools/stato",
     "subjects": [
       "Statistics",
+      "Omics",
       "Data Visualization"
     ]
   },
@@ -14299,8 +14463,12 @@
       "name": "Chris Mungall",
       "orcid": "0000-0002-6601-2165"
     },
-    "description": "This ontology represents spatial concepts, anatomical axes, gradients, regions, planes, sides, and surfaces. These concepts can be used at multiple biological scales and in a diversity of taxa, including plants, animals and fungi. The BSPO is used to provide a source of anatomical location descriptors for logically defining anatomical entity classes in anatomy ontologies.",
-    "homepage": "http://bioportal.bioontology.org/ontologies/BSPO",
+    "description": "The Biological SPatial Ontology (BSPO) ontology is representative of spatial concepts, anatomical axes, gradients, regions, planes, sides and surfaces. These concepts can be used at multiple biological scales and in a diversity of taxa, including plants, animals and fungi. The BSPO is used to provide a source of anatomical location descriptors for logically defining anatomical entity classes in anatomy ontologies.",
+    "domains": [
+      "Functional domain",
+      "Phenotype"
+    ],
+    "homepage": "https://github.com/obophenotype/biological-spatial-ontology",
     "license": "CC-BY-3.0",
     "name": "Biological SPatial Ontology",
     "publications": [
@@ -14311,10 +14479,13 @@
         "year": 2014
       }
     ],
-    "repository": "https://github.com/obophenotype/biological-spatial-ontology",
+    "repository": "https://github.com/obophenotype/biological-spatial-ontology/issues",
     "subjects": [
       "Anatomy",
-      "Life Science"
+      "Life Science",
+      "Physiology",
+      "Phenomics",
+      "Systems Biology"
     ]
   },
   "FAIRsharing.nft558": {
@@ -14544,7 +14715,7 @@
     "description": "The Flora Phenotype Ontology is a domain ontology for the description of plant characters. FLOPO contains more than 25000 phenotype and traits classes, the creation of FLOPO is data-driven: For each trait/phenotype class exists a taxon annotation in the underlying Floras.",
     "domains": [
       "Phenotype",
-      "Life cycle stage"
+      "Plant development stage"
     ],
     "homepage": "https://github.com/flora-phenotype-ontology/flopoontology",
     "license": "CC0-1.0",
@@ -14563,11 +14734,14 @@
         "year": 2016
       }
     ],
-    "repository": "https://github.com/flora-phenotype-ontology/flopoontology",
+    "repository": "https://github.com/flora-phenotype-ontology/flopoontology/issues",
     "subjects": [
       "Botany",
+      "Horticulture",
       "Biodiversity",
-      "Plant Anatomy"
+      "Plant Anatomy",
+      "Phenomics",
+      "Plant Cell Biology"
     ]
   },
   "FAIRsharing.nygmp7": {
@@ -15439,6 +15613,50 @@
       "Earth Science"
     ]
   },
+  "FAIRsharing.qv4b3c": {
+    "abbreviation": "SMILES",
+    "description": "This format is an open specification version of the SMILES language, a typographical line notation for specifying chemical structure. It is hosted under the banner of the Blue Obelisk project, with the intent to solicit contributions and comments from the entire computational chemistry community.",
+    "domains": [
+      "Molecular structure",
+      "Molecular entity",
+      "Omics data analysis"
+    ],
+    "homepage": "http://opensmiles.org/opensmiles.html",
+    "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazRFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--047d6c77b3abf77702d511a7e6a66acd8eb554b8/19335777.jpg?disposition=inline",
+    "name": "Simplified Molecular Input Line Entry Specification Format",
+    "publications": [
+      {
+        "doi": "10.1021/ci00062a008",
+        "title": "SMILES. 2. Algorithm for generation of unique SMILES notation",
+        "year": 1989
+      },
+      {
+        "doi": "10.1186/1758-2946-4-24",
+        "pubmed": "23031664",
+        "title": "mol2chemfig, a tool for rendering chemical structures from molfile or SMILES format to LATE X code",
+        "year": 2012
+      },
+      {
+        "doi": "10.1021/ci00057a005",
+        "title": "SMILES, a chemical language and information system. 1. Introduction to methodology and encoding rules",
+        "year": 1988
+      },
+      {
+        "doi": "10.1021/ci00067a005",
+        "title": "SMILES, a chemical language and information system. 1. Introduction to methodology and encoding rules",
+        "year": 1990
+      }
+    ],
+    "repository": "https://github.com/opensmiles",
+    "subjects": [
+      "Chemistry",
+      "Life Science",
+      "Metabolomics"
+    ],
+    "user_defined_tags": [
+      "lipidomics"
+    ]
+  },
   "FAIRsharing.qwz9f2": {
     "abbreviation": "CEDARPC",
     "description": "This resource is no longer available because its underlying source material is not suitable for FAIRsharing. ",
@@ -15504,18 +15722,30 @@
     ]
   },
   "FAIRsharing.r41qhx": {
-    "abbreviation": "UPHENO",
-    "description": "The uPheno ontology integrates multiple phenotype ontologies into a unified cross-species phenotype ontology. Version 2 is the active release of the ontology, while version 1 should be considered deprecated. ",
+    "abbreviation": "uPheno",
+    "description": "The Unified Phenotype Ontology (uPheno) framework is a community effort providing unified integration layers over domain-specific phenotype ontologies. uPheno is comprised of (1) computational definitions of phenotype terms using ontology design patterns, (2) hierarchical species-neutral phenotype vocabulary terms grouped with species-specific counterparts, and (3) a mapping between species-specific ontologies.",
     "domains": [
+      "Expression data",
+      "Omics data analysis",
       "Phenotype"
     ],
     "homepage": "https://github.com/obophenotype/upheno",
     "license": "CC0-1.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa01CIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3f5258d2bcf30a7e127b5a9fe209b27e25e88883/up.png?disposition=inline",
-    "name": "Unified phenotype ontology",
+    "name": "The Unified Phenotype Ontology",
+    "publications": [
+      {
+        "doi": "10.1093/genetics/iyaf027",
+        "pubmed": "40048704",
+        "title": "The Unified Phenotype Ontology : a framework for cross-species integrative phenomics",
+        "year": 2025
+      }
+    ],
+    "repository": "https://github.com/obophenotype/upheno/issues",
     "subjects": [
       "Evolutionary Biology",
-      "Phenomics"
+      "Phenomics",
+      "Omics"
     ]
   },
   "FAIRsharing.r7Kwy7": {
@@ -16443,8 +16673,8 @@
     "abbreviation": "PSI-MS CV",
     "description": "The PSI-MS Controlled Vocabulary is developed in common with the PSI-Proteomics Informatics group. It consists of a large collection of structured terms covering description and use of Mass Spectrometry instrumentation as well as Protein Identification and Quantitation software. The source of the terms are multiple: they include vocabulary and definitions in chapter 12 of the IUPAC nomenclature book, instrument and software vendors and developers and other user-submitted terms. Although its structure and use is linked to mzML, mzIdentML and mzQuantML, it is dynamically maintained in a OBO format. The PSI-Mass Spectrometry (MS) CV contains all the terms used in the PSI MS–related data standards. The CV contains a logical hierarchical structure to ensure ease of maintenance and the development of software that makes use of complex semantics. The CV contains terms required for a complete description of an MS analysis pipeline used in proteomics, including sample labeling, digestion enzymes, instrumentation parts and parameters, software used for identification and quantification of peptides/proteins and the parameters and scores used to determine their significance. Owing to the range of topics covered by the CV, collaborative development across several PSI working groups, including proteomics research groups, instrument manufacturers and software vendors, was necessary.",
     "domains": [
-      "Mass spectrometry assay",
-      "Protein"
+      "Data acquisition",
+      "Mass spectrometry assay"
     ],
     "homepage": "http://www.psidev.info/groups/mass-spectrometry#controlled",
     "license": "CC-BY-4.0",
@@ -16460,7 +16690,12 @@
     "repository": "https://github.com/HUPO-PSI/psi-ms-CV",
     "subjects": [
       "Proteomics",
-      "Life Science"
+      "Scientific Instrument Design",
+      "Life Science",
+      "Metabolomics"
+    ],
+    "user_defined_tags": [
+      "lipidomics"
     ]
   },
   "FAIRsharing.szexty": {
@@ -16548,7 +16783,8 @@
     ],
     "subjects": [
       "Anatomy",
-      "Life Science"
+      "Life Science",
+      "Phenomics"
     ]
   },
   "FAIRsharing.tbep2b": {
@@ -16953,6 +17189,10 @@
       "orcid": "0000-0002-7509-4801"
     },
     "description": "NIF Standard ontology (NIFSTD) is a core component of Neuroscience Information Framework (NIF) project (http://neuinfo.org), a semantically enhanced portal for accessing and integrating neuroscience data, tools and information. NIFSTD includes a set of modular ontologies that provide a comprehensive collection of terminologies to describe neuroscience data and resources.",
+    "domains": [
+      "Disease",
+      "Brain"
+    ],
     "homepage": "http://ontology.neuinfo.org",
     "license": "CC-BY-4.0",
     "name": "Neuroscience Information Framework Standard Ontology",
@@ -19011,6 +19251,7 @@
     "domains": [
       "Biological process",
       "Pathogen",
+      "Infection",
       "Vaccine",
       "Vaccination"
     ],
@@ -19032,16 +19273,32 @@
         "year": 2012
       },
       {
-        "doi": "10.2174/1381612826666201125112131",
-        "pubmed": "33238868",
-        "title": "Ontology-based Precision Vaccinology for Deep Mechanism Understanding and Precision Vaccine Development",
-        "year": 2020
+        "doi": "10.1186/2041-1480-2-s2-s8",
+        "pubmed": "21624163",
+        "title": "Mining of vaccine-associated IFN-gamma gene interaction networks using the Vaccine Ontology",
+        "year": 2011
+      },
+      {
+        "doi": "10.1038/npre.2009.3553",
+        "pubmed": "21871085",
+        "title": "VO: Vaccine Ontology",
+        "year": 2010
+      },
+      {
+        "doi": "10.1186/2041-1480-4-33",
+        "pubmed": "24209834",
+        "title": "Network-based analysis of vaccine-related associations reveals consistent knowledge with the vaccine ontology",
+        "year": 2013
       }
     ],
     "repository": "https://github.com/vaccineontology",
     "subjects": [
       "Pathobiochemistry",
-      "Biomedical Science"
+      "Clinical Studies",
+      "Immunology",
+      "Infectious Disease Medicine",
+      "Biomedical Science",
+      "Preclinical Studies"
     ]
   }
 }
