@@ -1,14 +1,17 @@
 """Download registry information from N2T."""
 
+from __future__ import annotations
+
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "N2TAligner",
@@ -35,11 +38,10 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_n2t(force_download: bool = False):
+def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the N2T registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     # they give malformed YAML so time to write a new parser
@@ -57,7 +59,7 @@ def get_n2t(force_download: bool = False):
     return rv
 
 
-def _process(record):
+def _process(record: dict[str, Any]) -> dict[str, Any]:
     rv = {
         "name": record.get("name"),
         URI_FORMAT_KEY: _get_uri_format(record),
@@ -70,8 +72,8 @@ def _process(record):
     return {k: v for k, v in rv.items() if v is not None}
 
 
-def _get_uri_format(record):
-    raw_redirect = record.get("redirect")
+def _get_uri_format(record: dict[str, Any]) -> str | None:
+    raw_redirect: str | None = record.get("redirect")
     if raw_redirect is None:
         return None
     uri_format = raw_redirect.replace("$id", "$1")
@@ -85,7 +87,7 @@ class N2TAligner(Aligner):
 
     key = "n2t"
     getter = get_n2t
-    curation_header = ("name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage", "description")
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in N2T that should be skipped."""

@@ -6,7 +6,7 @@ Run this script with python -m bioregistry.curation.clean_publications.
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Any, cast
+from typing import Any
 
 from manubot.cite.doi import get_doi_csl_item
 from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
@@ -20,32 +20,32 @@ from bioregistry.utils import removeprefix
 @lru_cache(None)
 def _get_pubmed_csl_item(pubmed_id: str) -> dict[str, Any] | None:
     try:
-        return get_pubmed_csl_item(pubmed_id)
+        return get_pubmed_csl_item(pubmed_id)  # type:ignore
     except Exception:
         return None
 
 
 @lru_cache(None)
-def _get_doi_csl_item(pubmed_id) -> dict[str, Any] | None:
-    return get_doi_csl_item(pubmed_id)
+def _get_doi_csl_item(pubmed_id: str) -> dict[str, Any] | None:
+    return get_doi_csl_item(pubmed_id)  # type:ignore
 
 
 @lru_cache(None)
 def _get_pubmed_from_doi(doi: str) -> str | None:
     tqdm.write(f"getting pubmed from DOI:{doi}")
-    doi = cast(str, removeprefix(doi, "https://doi.org/"))
-    return get_pmid_for_doi(doi)
+    doi = removeprefix(doi, "https://doi.org/")
+    return get_pmid_for_doi(doi)  # type:ignore
 
 
 def _clean_doi(doi: str) -> str:
     doi = doi.lower()
-    doi = cast(str, removeprefix(doi, "https://doi.org/"))
-    doi = cast(str, removeprefix(doi, "http://doi.org/"))
-    doi = cast(str, removeprefix(doi, "doi:"))
+    doi = removeprefix(doi, "https://doi.org/")
+    doi = removeprefix(doi, "http://doi.org/")
+    doi = removeprefix(doi, "doi:")
     return doi
 
 
-def _main() -> None:  # noqa:C901
+def _main() -> None:
     c = 0
 
     resource_dois = []
