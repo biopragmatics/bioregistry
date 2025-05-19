@@ -1,13 +1,15 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from collections.abc import Sequence
 from operator import itemgetter
 from pathlib import Path
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "MiriamAligner",
@@ -31,11 +33,12 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_miriam(force_download: bool = False, force_process: bool = False):
+def get_miriam(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the MIRIAM registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
     with open(RAW_PATH) as file:
@@ -66,7 +69,7 @@ PROVIDER_BLACKLIST = {
 }
 
 
-def _process(record):
+def _process(record: dict[str, Any]) -> dict[str, Any]:
     prefix = record["prefix"]
     rv = {
         "prefix": prefix,
@@ -115,7 +118,7 @@ SKIP_PROVIDERS = {
 }
 
 
-def _preprocess_resource(resource):
+def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
     rv = {
         "official": resource["official"],
         "homepage": resource["resourceHomeUrl"],
@@ -134,7 +137,7 @@ class MiriamAligner(Aligner):
 
     key = "miriam"
     getter = get_miriam
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
 
 
