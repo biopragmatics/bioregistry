@@ -819,7 +819,20 @@ def parse_curie(
     *,
     sep: str = ...,
     use_preferred: bool = ...,
+    on_failure_return_type: FailureReturnType = ...,
+    strict: Literal[True] = True,
+) -> ReferenceTuple: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def parse_curie(
+    curie: str,
+    *,
+    sep: str = ...,
+    use_preferred: bool = ...,
     on_failure_return_type: Literal[FailureReturnType.single],
+    strict: Literal[False] = False,
 ) -> ReferenceTuple | None: ...
 
 
@@ -831,6 +844,7 @@ def parse_curie(
     sep: str = ...,
     use_preferred: bool = ...,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+    strict: Literal[False] = False,
 ) -> ReferenceTuple | tuple[None, None]: ...
 
 
@@ -840,6 +854,7 @@ def parse_curie(
     sep: str = ":",
     use_preferred: bool = False,
     on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+    strict: bool = False,
 ) -> MaybeCURIE:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
@@ -899,12 +914,20 @@ def parse_curie(
     >>> parse_curie("pdb:1234", use_preferred=True)
     ReferenceTuple('pdb', '1234')
     """
-    if on_failure_return_type == FailureReturnType.single:
+    if strict:
+        return manager.parse_curie(
+            curie,
+            sep=sep,
+            use_preferred=use_preferred,
+            strict=strict,
+        )
+    elif on_failure_return_type == FailureReturnType.single:
         return manager.parse_curie(
             curie,
             sep=sep,
             use_preferred=use_preferred,
             on_failure_return_type=on_failure_return_type,
+            strict=strict,
         )
     elif on_failure_return_type == FailureReturnType.pair:
         return manager.parse_curie(
@@ -912,6 +935,7 @@ def parse_curie(
             sep=sep,
             use_preferred=use_preferred,
             on_failure_return_type=on_failure_return_type,
+            strict=strict,
         )
     else:
         raise TypeError
@@ -922,6 +946,7 @@ def normalize_parsed_curie(
     identifier: str,
     *,
     use_preferred: bool = False,
+    strict: bool = False,
 ) -> MaybeCURIE:
     """Normalize a prefix/identifier pair.
 
@@ -930,18 +955,33 @@ def normalize_parsed_curie(
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
+    :param strict: If true, raises an error if the prefix can't be standardized
     :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
         prefixes or bananas, all lowercase.
     """
+    if strict:
+        return manager.normalize_parsed_curie(
+            prefix,
+            identifier,
+            use_preferred=use_preferred,
+            strict=strict,
+        )
     return manager.normalize_parsed_curie(
         prefix,
         identifier,
         use_preferred=use_preferred,
         on_failure_return_type=FailureReturnType.pair,
+        strict=strict,
     )
 
 
-def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> str | None:
+def normalize_curie(
+    curie: str,
+    *,
+    sep: str = ":",
+    use_preferred: bool = False,
+    strict: bool = False,
+) -> str | None:
     """Normalize a CURIE.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
@@ -950,6 +990,7 @@ def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) 
     :param use_preferred:
         If set to true, uses the "preferred prefix", if available, instead
         of the canonicalized Bioregistry prefix.
+    :param strict: If true, raises an error if the prefix can't be standardized
     :return: A normalized CURIE, if possible using the colon as a separator
 
     >>> normalize_curie("pdb:1234")
@@ -991,7 +1032,7 @@ def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) 
     >>> normalize_curie("GO_1234", sep="_", use_preferred=True)
     'GO:1234'
     """
-    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
+    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred, strict=strict)
 
 
 # docstr-coverage:excused `overload`

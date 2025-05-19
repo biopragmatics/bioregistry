@@ -290,7 +290,7 @@ def validate_identifiers(
             raise ValueError(f"No prefixes found in column {prefix_column}")
         if 1 == len(prefixes):
             return _help_validate_identifiers(df, column, next(iter(prefixes)))
-        patterns: dict[str, Pattern | None] = {}
+        patterns: dict[str, Pattern[str] | None] = {}
         for prefix in df[prefix_column].unique():
             if pd.isna(prefix):
                 continue
@@ -462,7 +462,11 @@ def identifiers_to_iris(
 
 
 def _multi_column_map(
-    df: pd.DataFrame, columns: list[str], func: Callable, *, use_tqdm: bool = False
+    df: pd.DataFrame,
+    columns: list[str],
+    func: Callable,  # type:ignore
+    *,
+    use_tqdm: bool = False,
 ) -> pd.Series:
     rows = df[columns].values
     if use_tqdm:
