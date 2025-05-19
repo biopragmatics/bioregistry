@@ -134,6 +134,8 @@ MIRIAM_BLACKLIST = {
     "neurolex",
     # Miriam needs to be extended
     "ccds",
+    # Miriam completely misses the actual usage
+    "agricola",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 

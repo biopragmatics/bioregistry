@@ -6,13 +6,15 @@
 """
 
 import csv
-from collections.abc import Mapping
 from pathlib import Path
 
 __all__ = [
     "HL7Aligner",
     "get_hl7",
 ]
+
+from collections.abc import Sequence
+from typing import ClassVar
 
 from bioregistry.external.alignment_utils import Aligner
 
@@ -30,7 +32,7 @@ COLUMNS = {
 }
 
 
-def get_hl7(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
+def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get HL7 OIDs."""
     rv = {}
     with DATA.open() as file:
@@ -60,7 +62,13 @@ class HL7Aligner(Aligner):
 
     # This lists all of the keys inside each record to be displayed in the curation
     # sheet. Below, the
-    curation_header = ("status", "preferred_prefix", "name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = (
+        "status",
+        "preferred_prefix",
+        "name",
+        "homepage",
+        "description",
+    )
 
 
 if __name__ == "__main__":
