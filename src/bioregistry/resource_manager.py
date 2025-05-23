@@ -302,11 +302,10 @@ class Manager:
         return norm_prefix
 
     @overload
-    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource:...
+    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
 
     @overload
-    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None:...
-
+    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
 
     def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
