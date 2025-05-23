@@ -21,6 +21,7 @@ __all__ = [
     "METAREGISTRY_PATH",
     "RAW_DIRECTORY",
     "FailureReturnType",
+    "MaybeCURIE",
     "get_failure_return_type",
 ]
 

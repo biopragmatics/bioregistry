@@ -63,6 +63,7 @@ from .utils import NormDict, _norm
 __all__ = [
     "Manager",
     "manager",
+    "MetaresourceAnnotatedValue",
 ]
 
 logger = logging.getLogger(__name__)
@@ -410,16 +411,31 @@ class Manager:
         """
         reference = self.converter.parse_uri(uri, return_none=True)
         if reference is not None:
-            return self._make_preferred(reference, use_preferred=use_preferred)
+            return self.make_preferred(reference, use_preferred=use_preferred)
         return get_failure_return_type(on_failure_return_type)
 
-    def _make_preferred(self, t: ReferenceTuple, use_preferred: bool = False) -> ReferenceTuple:
+    def make_preferred(self, t: ReferenceTuple, use_preferred: bool = False) -> ReferenceTuple:
+        """Replace a reference tuple's prefix with a preferred one."""
         if not use_preferred:
             return t
         prefix = self.get_preferred_prefix(t.prefix) or t.prefix
         return ReferenceTuple(prefix, t.identifier)
 
-    def compress(self, uri: str, *, use_preferred: bool = False) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def compress(
+        self, uri: str, *, use_preferred: bool = ..., strict: Literal[True] = False
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def compress(
+        self, uri: str, *, use_preferred: bool = ..., strict: Literal[False] = False
+    ) -> str | None: ...
+
+    def compress(
+        self, uri: str, *, use_preferred: bool = False, strict: bool = False
+    ) -> str | None:
         """Parse a compact uniform resource identifier (CURIE) from a URI.
 
         :param uri: A valid URI
@@ -529,42 +545,35 @@ class Manager:
                 raise NoCURIEDelimiterError(curie)
             return get_failure_return_type(on_failure_return_type)
 
-        if on_failure_return_type == FailureReturnType.single:
-            if strict:
-                return self.normalize_parsed_curie(
-                    prefix,
-                    identifier,
-                    use_preferred=use_preferred,
-                    on_failure_return_type=FailureReturnType.single,
-                    strict=strict,
-                )
-            else:
-                return self.normalize_parsed_curie(
-                    prefix,
-                    identifier,
-                    use_preferred=use_preferred,
-                    on_failure_return_type=FailureReturnType.single,
-                    strict=strict,
-                )
-        elif on_failure_return_type == FailureReturnType.pair:
-            if strict:
-                return self.normalize_parsed_curie(
-                    prefix,
-                    identifier,
-                    use_preferred=use_preferred,
-                    on_failure_return_type=FailureReturnType.pair,
-                    strict=strict,
-                )
-            else:
-                return self.normalize_parsed_curie(
-                    prefix,
-                    identifier,
-                    use_preferred=use_preferred,
-                    on_failure_return_type=FailureReturnType.pair,
-                    strict=strict,
-                )
-        else:
-            raise TypeError
+        return self.normalize_parsed_curie(  # type:ignore
+            prefix,
+            identifier,
+            use_preferred=use_preferred,
+            on_failure_return_type=FailureReturnType.single,
+            strict=strict,
+        )
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        strict: Literal[True] = True,
+    ) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
+        use_preferred: bool = ...,
+        strict: Literal[False] = False,
+    ) -> str | None: ...
 
     def normalize_curie(
         self,
@@ -808,14 +817,14 @@ class Manager:
         return entry.get_namespace_in_lui(provenance=False)
 
     def get_description(self, prefix: str, *, use_markdown: bool = False) -> str | None:
-        """Get the description for the given prefix, it it's available."""
+        """Get the description for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
         return entry.get_description(use_markdown=use_markdown)
 
     def get_homepage(self, prefix: str) -> str | None:
-        """Get the description for the given prefix, it it's available."""
+        """Get the description for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
@@ -1158,7 +1167,7 @@ class Manager:
         return conflicts
 
     def get_appears_in(self, prefix: str) -> list[str] | None:
-        """Return a list of resources that this resources (has been annotated to) depends on.
+        """Return a list of resources that this resource (has been annotated to) depends on.
 
         This is complementary to :func:`get_depends_on`.
 
@@ -1176,7 +1185,7 @@ class Manager:
         return sorted(set(rv))
 
     def get_depends_on(self, prefix: str) -> list[str] | None:
-        """Return a list of resources that this resources (has been annotated to) depends on.
+        """Return a list of resources that this resource (has been annotated to) depends on.
 
         This is complementary to :func:`get_appears_in`.
 
