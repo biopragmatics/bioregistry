@@ -26,6 +26,7 @@ from typing import (
 )
 
 import click
+from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
@@ -1968,19 +1969,38 @@ class Resource(BaseModel):
             return None
         return uri_format[: -len("$1")]
 
-    def get_uri_prefixes(self) -> set[str]:
-        """Get the set of all URI prefixes."""
-        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+    def get_uri_prefixes(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI prefixes.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI prefixes.
+        """
+        uri_prefixes = (
+            self._clip_uri_format(uri_format)
+            for uri_format in self.get_uri_formats(enforce_w3c=enforce_w3c)
+        )
         return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
-    def get_uri_formats(self) -> set[str]:
-        """Get the set of all URI format strings."""
+    def get_uri_formats(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI format strings.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI format strings, containing ``$1`` where a local
+            unique identifier should be formatted in.
+        """
         uri_formats = itt.chain.from_iterable(
-            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
+            _yield_protocol_variations(uri_format)
+            for uri_format in self._iter_uri_formats(enforce_w3c=enforce_w3c)
         )
         return set(uri_formats)
 
-    def _iter_uri_formats(self) -> Iterable[str]:
+    def _iter_uri_formats(self, *, enforce_w3c: bool = False) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
         yield f"https://bioregistry.io/{self.prefix}:$1"
@@ -1988,7 +2008,8 @@ class Resource(BaseModel):
         if preferred_prefix:
             yield f"https://bioregistry.io/{preferred_prefix}:$1"
         for synonym in self.get_synonyms():
-            yield f"https://bioregistry.io/{synonym}:$1"
+            if not enforce_w3c or NCNAME_RE.fullmatch(synonym):
+                yield f"https://bioregistry.io/{synonym}:$1"
         # TODO consider adding bananas
         for provider in self.get_extra_providers():
             yield provider.uri_format

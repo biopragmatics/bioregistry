@@ -4607,7 +4607,7 @@
   "imex": {
     "deprecated": false,
     "description": "The International Molecular Exchange (IMEx) is a consortium of molecular interaction databases which collaborate to share manual curation efforts and provide accessibility to multiple information sources.",
-    "homepage": "https://www.imexconsortium.org/",
+    "homepage": "https://www.ebi.ac.uk/intact/",
     "id": "00000122",
     "name": "IMEx",
     "namespaceEmbeddedInLui": false,
@@ -4615,15 +4615,15 @@
     "prefix": "imex",
     "providers": [
       {
-        "code": "CURATOR_REVIEW",
-        "description": "IMEx Consortium though Intact",
-        "homepage": "https://www.ebi.ac.uk/intact/",
-        "name": "IMEx Consortium though Intact",
-        "uri_format": "https://imexcentral.org/icentral/imex/rec/$1"
+        "code": "ebi",
+        "description": "IMEx Consortium running at EBI",
+        "homepage": "https://www.imexconsortium.org/",
+        "name": "IMEx Consortium running at EBI",
+        "uri_format": "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1"
       }
     ],
     "sampleId": "IM-19210-3",
-    "uri_format": "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1"
+    "uri_format": "https://www.ebi.ac.uk/intact/search?query=$1#interaction"
   },
   "img.gene": {
     "deprecated": false,
@@ -6697,7 +6697,7 @@
     "pattern": "^(urn|URN):(nbn|NBN)(:[A-Za-z_0-9]+)*.+$",
     "prefix": "nbn",
     "sampleId": "urn:nbn:fi:tkk-004781",
-    "uri_format": "http://nbn-resolving.org/resolver?identifier=$1&verb=redirect"
+    "uri_format": "http://nbn-resolving.org/$1"
   },
   "nbrc": {
     "deprecated": false,
@@ -8456,13 +8456,6 @@
         "uri_format": "http://europepmc.org/abstract/MED/$1"
       },
       {
-        "code": "CURATOR_REVIEW",
-        "description": "PubMed through Linkedlife data",
-        "homepage": "http://linkedlifedata.com/",
-        "name": "PubMed through Linkedlife data",
-        "uri_format": "http://linkedlifedata.com/resource/pubmed/id/$1"
-      },
-      {
         "code": "hubmed",
         "description": "HubMed",
         "homepage": "http://www.hubmed.org/",
@@ -9567,26 +9560,26 @@
   "tair.locus": {
     "deprecated": false,
     "description": "The Arabidopsis Information Resource (TAIR) maintains a database of genetic and molecular biology data for the model higher plant Arabidopsis thaliana. The name of a Locus is unique and used by TAIR, TIGR, and MIPS.",
-    "homepage": "http://arabidopsis.org/index.jsp",
+    "homepage": "http://arabidopsis.org/",
     "id": "00000050",
     "name": "TAIR Locus",
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d{7}$",
     "prefix": "tair.locus",
     "sampleId": "2200950",
-    "uri_format": "http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1"
+    "uri_format": "https://www.arabidopsis.org/locus?accession=$1"
   },
   "tair.name": {
     "deprecated": false,
     "description": "The Arabidopsis Information Resource (TAIR) maintains a database of genetic and molecular biology data for the model higher plant Arabidopsis thaliana. The name of a Locus is unique and used by TAIR, TIGR, and MIPS.",
-    "homepage": "https://www.arabidopsis.org/index.jsp",
+    "homepage": "https://www.arabidopsis.org/",
     "id": "00000976",
     "name": "TAIR gene name",
     "namespaceEmbeddedInLui": false,
     "pattern": "^AT.G[0-9]{5}$",
     "prefix": "tair.name",
     "sampleId": "AT5G05330",
-    "uri_format": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
+    "uri_format": "https://www.arabidopsis.org/locus?name=$1"
   },
   "tair.protein": {
     "deprecated": false,
