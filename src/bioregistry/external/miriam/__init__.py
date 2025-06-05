@@ -27,6 +27,8 @@ SKIP = {
     "f82a1a",
     "4503",
     "6vts",
+    # Appears to be a duplicate of modeldb causing URI prefix clash
+    "modeldb.concept",
 }
 SKIP_URI_FORMATS = {
     "http://arabidopsis.org/servlets/TairObject?accession=$1",
