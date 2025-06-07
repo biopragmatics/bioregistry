@@ -136,6 +136,9 @@ MIRIAM_BLACKLIST = {
     "ccds",
     # Miriam completely misses the actual usage
     "agricola",
+    # Miriam pattern/example combo is broken
+    # See https://github.com/biopragmatics/bioregistry/issues/1588
+    "hogenom",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
