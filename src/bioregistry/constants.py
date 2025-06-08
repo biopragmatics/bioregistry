@@ -139,6 +139,8 @@ MIRIAM_BLACKLIST = {
     # Miriam pattern/example combo is broken
     # See https://github.com/biopragmatics/bioregistry/issues/1588
     "hogenom",
+    # Miriam pattern/example combo is broken
+    "homd.seq",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
