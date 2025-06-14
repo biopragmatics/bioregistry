@@ -1163,7 +1163,6 @@
     "description": "Identifier schema for PubMed Central, a U.S. National Institutes of Health's National Library of Medicine (NIH/NLM) free full-text archive of biomedical and life sciences journal literature.",
     "domains": [
       "Bibliography",
-      "publication",
       "centrally registered identifier"
     ],
     "homepage": "https://www.nihms.nih.gov/help/glossary/#pmcid",
@@ -1177,8 +1176,7 @@
     "description": "The PubMed Unique Identifier (PMID) is a 1- to 8-digit accession number with no leading zeros for managing and disseminating records at the PubMed repository. The PMID is a unique reference number for PubMed citations and is a distinctly different number from the PMCID and is used only for PubMed records. PMIDs are not reused after records are deleted. Prior to the 2004 version of PubMed (available December 3, 2003), many records contained a MEDLINE Unique Identifier in addition to the PMID. NLM no longer displays the MEDLINE Unique Identifier. The PMID has become the unique identifier for the MEDLINE record.",
     "domains": [
       "Citation",
-      "Bibliography",
-      "publication"
+      "Bibliography"
     ],
     "homepage": "https://www.nihms.nih.gov/help/glossary/#pmid",
     "name": "PubMed Unique Identifier",
@@ -1447,14 +1445,15 @@
   },
   "FAIRsharing.2m4ms9": {
     "abbreviation": "PSI-MOD",
-    "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
+    "description": "The HUPO Proteomic Standards Initiative (PSI) protein modifications ontology (MOD) consists of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
     "domains": [
+      "post-translational protein modification",
       "enzymatic reaction",
       "protein"
     ],
     "homepage": "https://github.com/hupo-psi/psi-mod-cv",
     "license": "CC-BY-4.0",
-    "name": "Protein MODification",
+    "name": "PSI Protein Modifications Ontology",
     "publications": [
       {
         "doi": "10.1038/nbt0808-864",
@@ -1465,6 +1464,7 @@
     ],
     "subjects": [
       "Life Science",
+      "Chemical Biology",
       "Proteomics"
     ]
   },
@@ -3257,8 +3257,9 @@
     "description": "The sepCV is a controlled vocabulary for teminology associated with sample preparation and sample processing for proteomics. The sepCV was originally designed to provide terminology for the MIAPE GE reporting guidelines and the gelML data transfer format. It has now been expanded to include terminology for gel image informatics to support the MIAPE GI reporting guidelines and the GelInfoML data transfer format. In addition it includes relevant terminology for general sample processing to support the data transfer format of spML. The sepCV is beign jointly developed by the Proteomics Standards Intiative (PSI) and the Metabolomics Standards Intitative (MSI).",
     "domains": [
       "2D PAGE image",
+      "Bioimaging",
+      "chromatography",
       "sample preparation for assay",
-      "material processing",
       "protein"
     ],
     "homepage": "http://www.psidev.info/sepcv",
@@ -3266,7 +3267,11 @@
     "repository": "https://raw.githubusercontent.com/HUPO-PSI/gelml/master/CV/sep.obo",
     "subjects": [
       "Life Science",
+      "Cheminformatics",
       "Proteomics"
+    ],
+    "user_defined_tags": [
+      "gel electrophoresis"
     ]
   },
   "FAIRsharing.5794af": {
@@ -3847,6 +3852,22 @@
     "subjects": [
       "Computer Science",
       "Subject Agnostic"
+    ]
+  },
+  "FAIRsharing.670b83": {
+    "description": "The U.S. Department of Agriculture (USDA), Natural Resources Conservation Service (NRCS), Soil Taxonomy provides leadership for amending Soil Taxonomy and for maintaining the soil series classification data. All USDA soil surveys within the National Cooperative Soil Survey (NCSS) must use Soil Taxonomy. The second edition of Soil Taxonomy, A Basic System of Soil Classification for Making and Interpreting Soil Surveys is the result of the collective experience and contributions of thousands of pedologists from around the world.",
+    "domains": [
+      "Taxonomic classification",
+      "Geographic location"
+    ],
+    "homepage": "https://www.nrcs.usda.gov/resources/guides-and-instructions/soil-taxonomy",
+    "name": "USDA Soil Taxonomy Classification Guide",
+    "subjects": [
+      "Agriculture",
+      "Environmental Science",
+      "Soil Science",
+      "Earth Science",
+      "Geoinformatics"
     ]
   },
   "FAIRsharing.67sssf": {
@@ -6105,7 +6126,7 @@
     "abbreviation": "SLM ID",
     "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
     "domains": [
-      "Data analysis",
+      "Annotation",
       "lipid",
       "small molecule"
     ],
@@ -6121,12 +6142,10 @@
     ],
     "subjects": [
       "Life Science",
+      "Lipidomics",
       "Metabolomics",
       "Biochemistry",
       "Chemistry"
-    ],
-    "user_defined_tags": [
-      "lipidomics"
     ]
   },
   "FAIRsharing.9c1p18": {
@@ -7101,10 +7120,15 @@
   },
   "FAIRsharing.a08d34": {
     "abbreviation": "PaNET",
-    "description": "The PaNET ontology provides a taxonomy and thesaurus of photon and neutron (PaN) experimental techniques, based mainly on accelerator-based light sources and neutron facilities. The primary use of the ontology is to enhance the FAIRness of PaN data catalogues services. The ontology defines specific techniques in terms of more general technique classes and provides synonyms and references.",
+    "description": "The ExPaNDS Photon and Neutron Experimental Techniques (PaNET) ontology provides a taxonomy and thesaurus of photon and neutron (PaN) experimental techniques. Based mainly on accelerator-based light sources and neutron facilities, the primary use of the ontology is to enhance the FAIRness of PaN data catalogues services. The ontology defines specific techniques in terms of more general technique classes and provides synonyms and references.",
+    "domains": [
+      "Experimental measurement",
+      "Imaging",
+      "X-ray diffraction"
+    ],
     "homepage": "https://github.com/ExPaNDS-eu/ExPaNDS-experimental-techniques-ontology",
     "license": "CC-BY-4.0",
-    "name": "PaN Experimental technique ",
+    "name": "ExPaNDS Photon and Neutron Experimental Techniques Ontology",
     "publications": [
       {
         "doi": "10.5281/zenodo.4806026",
@@ -7250,12 +7274,10 @@
     "subjects": [
       "Environmental Science",
       "Life Science",
+      "Lipidomics",
       "Metabolomics",
       "Biomedical Science",
       "Molecular Chemistry"
-    ],
-    "user_defined_tags": [
-      "lipidomics"
     ]
   },
   "FAIRsharing.a1j1a7": {
@@ -8365,12 +8387,10 @@
     ],
     "repository": "https://github.com/HUPO-PSI/usi/tree/master/Specification",
     "subjects": [
+      "Lipidomics",
       "Metabolomics",
       "Data Governance",
       "Proteomics"
-    ],
-    "user_defined_tags": [
-      "lipidomics"
     ]
   },
   "FAIRsharing.b5yzzf": {
@@ -9653,7 +9673,7 @@
       "name": "Dan Connolly",
       "orcid": "0000-0002-0928-7103"
     },
-    "description": "A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource. This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet. The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier. This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme.",
+    "description": "A Uniform Resource Identifier (URI), also known as RFC 3986, is a compact sequence of characters that identifies an abstract or physical resource. This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet. The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier. This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme.",
     "domains": [
       "web service"
     ],
@@ -11492,10 +11512,9 @@
   },
   "FAIRsharing.f928f1": {
     "abbreviation": "ARK Identifier",
-    "description": "Archival Resource Keys (ARKs) serve as persistent identifiers, or stable, trusted references for information objects. Among other things, they aim to be web addresses (URLs) that don’t return 404 Page Not Found errors. The ARK Alliance is an open global community supporting the ARK infrastructure on behalf of research and scholarship. End users, especially researchers, rely on ARKs for long term access to the global scientific and cultural record. Since 2001 some 8.2 billion ARKs have been created by over 1000 organizations — libraries, data centers, archives, museums, publishers, government agencies, and vendors. They identify anything digital, physical, or abstract. ARKs are open, mainstream, non-paywalled, decentralized persistent identifiers that can be created by an organization as soon as it is registered with a NAAN (Name Assigning Authority Number). Once registered, an ARK organization can create unlimited numbers of ARKs and publicize them via the n2t.net global resolver or via their own local resolver.",
+    "description": "Archival Resource Keys (ARKs) serve as persistent identifiers, or stable, trusted references for information objects. Among other things, they aim to be web addresses (URLs) that don’t return 404 Page Not Found errors. The ARK Alliance is an open global community supporting the ARK infrastructure on behalf of research and scholarship. End users, especially researchers, rely on ARKs for long term access to the global scientific and cultural record. Since 2001 some 8.2 billion ARKs have been created by over 1600 organizations — libraries, data centers, archives, museums, publishers, government agencies, and vendors. They identify anything digital, physical, or abstract. ARKs are open, mainstream, non-paywalled, decentralized persistent identifiers that can be created by an organization as soon as it is registered with a NAAN (Name Assigning Authority Number). Once registered, an ARK organization can create unlimited numbers of ARKs and publicize them via the n2t.net global resolver or via their own local resolver.",
     "domains": [
-      "Data retrieval",
-      "centrally registered identifier"
+      "Data retrieval"
     ],
     "homepage": "https://arks.org/",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline",
@@ -11505,7 +11524,10 @@
       "Data Management",
       "Subject Agnostic"
     ],
-    "twitter": "arks_org"
+    "twitter": "arks_org",
+    "user_defined_tags": [
+      "decentralized object registration and resolution"
+    ]
   },
   "FAIRsharing.faej7j": {
     "abbreviation": "PHMAMMADO",
@@ -11643,17 +11665,14 @@
   "FAIRsharing.fd6003": {
     "description": "UniProt protein identifiers are stable identifiers and should be used to cite UniProtKB entries. Upon integration into UniProtKB, each entry is assigned a unique accession number, which is called 'Primary (citable) accession number'. UniProtKB accession numbers consist of 6 or 10 alphanumeric characters in the format.",
     "domains": [
-      "Data retrieval",
-      "Data analysis",
-      "publication",
-      "centrally registered identifier"
+      "proteome"
     ],
     "homepage": "https://www.uniprot.org/help/accession_numbers",
     "name": "UniProt Protein Identifier",
     "subjects": [
       "Knowledge and Information Systems",
+      "Proteogenomics",
       "Proteomics",
-      "Genomics",
       "Metaproteomics"
     ]
   },
@@ -14637,7 +14656,6 @@
     "description": "A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.",
     "domains": [
       "Imaging",
-      "image",
       "assay"
     ],
     "homepage": "http://flybase.org/vocabularies",
@@ -15567,6 +15585,11 @@
   },
   "FAIRsharing.qv4b3c": {
     "abbreviation": "SMILES",
+    "contact": {
+      "email": "egon.willighagen@maastrichtuniversity.nl",
+      "name": "Egon Willighagen",
+      "orcid": "0000-0001-7542-0286"
+    },
     "description": "This format is an open specification version of the SMILES language, a typographical line notation for specifying chemical structure. It is hosted under the banner of the Blue Obelisk project, with the intent to solicit contributions and comments from the entire computational chemistry community.",
     "domains": [
       "Structure",
@@ -15602,11 +15625,10 @@
     "repository": "https://github.com/opensmiles",
     "subjects": [
       "Life Science",
+      "Lipidomics",
       "Metabolomics",
-      "Chemistry"
-    ],
-    "user_defined_tags": [
-      "lipidomics"
+      "Chemistry",
+      "Bioinformatics"
     ]
   },
   "FAIRsharing.qwz9f2": {

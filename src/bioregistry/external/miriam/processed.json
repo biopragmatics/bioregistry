@@ -699,10 +699,10 @@
     "id": "00000264",
     "name": "BindingDB",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^\\w\\d+$",
+    "pattern": "^\\d+$",
     "prefix": "bindingdb",
-    "sampleId": "e999",
-    "uri_format": "http://www.bindingdb.org/compact/$1"
+    "sampleId": "999",
+    "uri_format": "http://www.bindingdb.org/rwd/entry/$1"
   },
   "biocarta.pathway": {
     "deprecated": false,
@@ -3365,7 +3365,7 @@
     "uri_format": "https://dataguids.org/ga4gh/dos/v1/dataobjects/$1"
   },
   "gabi": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "GabiPD (Genome Analysis of Plant Biological Systems Primary Database) constitutes a repository for a wide array of heterogeneous data from high-throughput experiments in several plant species. These data (i.e. genomics, transcriptomics, proteomics and metabolomics), originating from different model or crop species, can be accessed through a central gene 'Green Card'.",
     "homepage": "http://www.gabipd.org/",
     "id": "00000164",
@@ -3985,7 +3985,7 @@
     "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "grsdb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "GRSDB is a database of G-quadruplexes and contains information on composition and distribution of putative Quadruplex-forming G-Rich Sequences (QGRS) mapped in the eukaryotic pre-mRNA sequences, including those that are alternatively processed (alternatively spliced or alternatively polyadenylated). The data stored in the GRSDB is based on computational analysis of NCBI Entrez Gene entries and their corresponding annotated genomic nucleotide sequences of RefSeq/GenBank.",
     "homepage": "http://bioinformatics.ramapo.edu/GRSDB2/",
     "id": "00000495",
@@ -4363,7 +4363,7 @@
     "uri_format": "http://www.humanproteomemap.org/spectrum.php?pep_id=$1"
   },
   "hpm.protein": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Human Proteome Map (HPM) portal integrates the peptide sequencing result from the draft map of the human proteome project. The project was based on LC-MS/MS by utilizing of high resolution and high accuracy Fourier transform mass spectrometry. The HPM contains direct evidence of translation of a number of protein products derived from human genes, based on peptide identifications of multiple organs/tissues and cell types from individuals with clinically defined healthy tissues. The HPM portal provides data on individual proteins, as well as on individual peptide spectra. This collection references proteins.",
     "homepage": "http://www.humanproteomemap.org/index.php",
     "id": "00000526",
@@ -5324,7 +5324,7 @@
     "uri_format": "https://s3.us-east-2.amazonaws.com/lg.cede/$1"
   },
   "lgic": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Ligand-Gated Ion Channel database provides nucleic and proteic sequences of the subunits of ligand-gated ion channels. These transmembrane proteins can exist under different conformations, at least one of which forms a pore through the membrane connecting two neighbouring compartments. The database can be used to generate multiple sequence alignments from selected subunits, and gives the atomic coordinates of subunits, or portion of subunits, where available.",
     "homepage": "https://www.ebi.ac.uk/compneur-srv/LGICdb/LGICdb.php",
     "id": "00000087",
@@ -5540,6 +5540,18 @@
     "prefix": "lw",
     "sampleId": "6e3b1371-59d7-481a-9db4-cd0d0de98436",
     "uri_format": "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/$1"
+  },
+  "m4i": {
+    "deprecated": false,
+    "description": "The ontology Metadata4Ing provides a framework for the semantic description of research data and of the whole data generation process, embracing the object of investigation, all sample and data manipulation methods and tools, the data files themselves, and the roles of persons and institutions. The structure and application of the ontology are based on the principles of modularity and inheritance.",
+    "homepage": "http://www.rwth-aachen.de/cms/~a/root/lidx/1/",
+    "id": "00001008",
+    "name": "Metadata4Ing",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[A-Za-z_0-9]*",
+    "prefix": "m4i",
+    "sampleId": "ProcessingStep",
+    "uri_format": "http://w3id.org/nfdi4ing/metadata4ing#$1"
   },
   "ma": {
     "deprecated": false,
