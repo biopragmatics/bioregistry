@@ -3,7 +3,7 @@
 import unittest
 
 import curies
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
 from bioregistry.reference import (
     NormalizedNamableReference,
@@ -138,6 +138,18 @@ class TestNormalizedReference(unittest.TestCase):
         self.assertNotEqual(r2, r3)
         self.assertNotEqual(r2, r4)
 
+    def test_derived_with_normalized(self) -> None:
+        """Test derived."""
+
+        class DerivedWithNormalizedReference(BaseModel):
+            """A derived class with a normalized reference."""
+
+            reference: NormalizedReference
+
+        derived = DerivedWithNormalizedReference(reference="GO:0032571")
+        self.assertEqual("go", derived.reference.prefix)
+        self.assertEqual("0032571", derived.reference.identifier)
+
 
 class TestStandardizeReference(unittest.TestCase):
     """Test standardized references, which use preferred prefixes."""
@@ -203,3 +215,15 @@ class TestStandardizeReference(unittest.TestCase):
                 self.assertEqual(TEST_LUID, r4.identifier)
                 self.assertTrue(hasattr(r4, "name"))
                 self.assertEqual(TEST_NAME, r4.name)
+
+    def test_derived_with_standard(self) -> None:
+        """Test derived."""
+
+        class DerivedWithStandardReference(BaseModel):
+            """A derived class with a standard reference."""
+
+            reference: StandardReference
+
+        derived = DerivedWithStandardReference(reference="go:0032571")
+        self.assertEqual("GO", derived.reference.prefix)
+        self.assertEqual("0032571", derived.reference.identifier)
