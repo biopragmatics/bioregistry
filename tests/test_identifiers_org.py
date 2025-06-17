@@ -103,8 +103,8 @@ class TestIdentifiersOrg(unittest.TestCase):
 
         .. warning::
 
-            This test takes up to 5 minutes since it makes a lot of web requests, and
-            is therefore skipped by default.
+            This test takes up to 5 minutes since it makes a lot of web requests, and is
+            therefore skipped by default.
         """
         for prefix, entry in self.entries.items():
             miriam_prefix = entry.get_identifiers_org_prefix()

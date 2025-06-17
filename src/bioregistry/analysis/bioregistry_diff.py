@@ -36,7 +36,9 @@ def get_commit_before_date(
     :param owner: The repository owner.
     :param name: The repository name.
     :param branch: The branch name.
-    :returns: The SHA of the commit before the given date, or None if no commit is found.
+
+    :returns: The SHA of the commit before the given date, or None if no commit is
+        found.
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/commits"
     params = {"sha": branch, "until": date.isoformat()}
@@ -65,6 +67,7 @@ def get_file_at_commit(
     :param commit_sha: The commit SHA.
     :param owner: The repository owner.
     :param name: The repository name.
+
     :returns: The file content as a dictionary.
     """
     url = f"{GITHUB_API_URL}/repos/{owner}/{name}/contents/{file_path}"
@@ -97,7 +100,9 @@ def compare_bioregistry(
 
     :param old_data: The old bioregistry data.
     :param new_data: The new bioregistry data.
-    :returns: Sets of added prefixes, deleted prefixes, and a count of updated prefixes, along with update details.
+
+    :returns: Sets of added prefixes, deleted prefixes, and a count of updated prefixes,
+        along with update details.
     """
     old_prefixes = set(old_data.keys())
     new_prefixes = set(new_data.keys())
@@ -123,6 +128,7 @@ def compare_entries(old_entry: dict[str, Any], new_entry: dict[str, Any]) -> Com
 
     :param old_entry: The old entry data.
     :param new_entry: The new entry data.
+
     :returns: A dictionary of changes.
     """
     changes = {}
@@ -136,6 +142,7 @@ def get_all_mapping_keys(data: dict[str, dict[str, Any]]) -> set[str]:
     """Return all unique mapping keys from the bioregistry data.
 
     :param data: The bioregistry data.
+
     :returns: A set of all unique mapping keys.
     """
     mapping_keys: set[str] = set()
@@ -159,7 +166,9 @@ def get_data(old_date_str: str, new_date_str: str) -> DataResult | None:
 
     :param old_date_str: The starting date in ISO format.
     :param new_date_str: The ending date in ISO format.
-    :returns: Data on added, deleted, and updated prefixes, update details, and old and new bioregistry data.
+
+    :returns: Data on added, deleted, and updated prefixes, update details, and old and
+        new bioregistry data.
     """
     old_date = isoparse(old_date_str).astimezone(tz.tzutc())
     date2 = isoparse(new_date_str).astimezone(tz.tzutc())

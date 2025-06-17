@@ -1,7 +1,7 @@
 """Code for standardizing permissive licenses.
 
-Could be extended later for non-permissive information as well as using
-vocabularies like SPDX for storing synonyms.
+Could be extended later for non-permissive information as well as using vocabularies
+like SPDX for storing synonyms.
 """
 
 from __future__ import annotations

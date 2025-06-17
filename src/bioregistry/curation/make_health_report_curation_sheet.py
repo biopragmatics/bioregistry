@@ -1,6 +1,8 @@
 """Get a curation sheet for recently failing prefixes from the Bioregistry Health Report.
 
-.. seealso:: https://biopragmatics.github.io/bioregistry/health/
+.. seealso::
+
+    https://biopragmatics.github.io/bioregistry/health/
 """
 
 from pathlib import Path
