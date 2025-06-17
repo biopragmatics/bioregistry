@@ -94,6 +94,7 @@ class NormalizedReference(curies.Reference):
     >>> class Derived(BaseModel):
     ...     reference: NormalizedReference
     >>> Derived(reference="go:0032571")
+    Derived(reference=NormalizedReference(prefix='go', identifier='0032571'))
 
     """
 
@@ -159,6 +160,15 @@ class StandardReference(curies.Reference):
 
     >>> StandardReference(prefix="GOBP", identifier="0032571")
     StandardReference(prefix='GO', identifier='0032571')
+
+    If you're deriving a model, then pass a string, this can still work
+
+    >>> from pydantic import BaseModel
+    >>> class Derived(BaseModel):
+    ...     reference: StandardReference
+    >>> Derived(reference="go:0032571")
+    Derived(reference=StandardReference(prefix='GO', identifier='0032571'))
+
     """
 
     @model_validator(mode="before")
