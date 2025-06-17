@@ -301,9 +301,11 @@ class Manager:
             norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
         return norm_prefix
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
 
+    # docstr-coverage:excused `overload`
     @overload
     def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
 
