@@ -67,8 +67,9 @@ def list_pulls(
 
     :param owner: The name of the owner/organization for the repository.
     :param repo: The name of the repository.
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+
     :returns: JSON response from GitHub
     """
     return cast(list[dict[str, Any]], requests_get(f"repos/{owner}/{repo}/pulls", token=token))
@@ -111,8 +112,9 @@ def open_pull_request(
     :param head: name of the source branch
     :param base: name of the target branch
     :param body: body of the PR (optional)
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+
     :returns: JSON response from GitHub
     """
     data = {
@@ -139,11 +141,13 @@ def get_bioregistry_form_data(
     """Get parsed form data from issues on the Bioregistry matching the given labels via :func:get_form_data`.
 
     :param labels: Labels to match
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
-    :param remapping: A dictionary for mapping the headers of the form into new values. This is useful since
-        the headers themselves will be human readable text, and not nice keys for JSON data
-    :return: A mapping from github issue issue data
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+    :param remapping: A dictionary for mapping the headers of the form into new values.
+        This is useful since the headers themselves will be human readable text, and not
+        nice keys for JSON data
+
+    :returns: A mapping from github issue issue data
     """
     return get_form_data(
         owner="bioregistry", repo="bioregistry", labels=labels, token=token, remapping=remapping
@@ -162,11 +166,13 @@ def get_form_data(
     :param owner: The name of the owner/organization for the repository.
     :param repo: The name of the repository.
     :param labels: Labels to match
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
-    :param remapping: A dictionary for mapping the headers of the form into new values. This is useful since
-        the headers themselves will be human readable text, and not nice keys for JSON data
-    :return: A mapping from github issue issue data
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+    :param remapping: A dictionary for mapping the headers of the form into new values.
+        This is useful since the headers themselves will be human readable text, and not
+        nice keys for JSON data
+
+    :returns: A mapping from github issue issue data
     """
     labels = labels if isinstance(labels, str) else ",".join(labels)
     res_json = requests_get(
@@ -199,11 +205,13 @@ def get_form_data_for_issue(
     :param owner: The name of the owner/organization for the repository.
     :param repo: The name of the repository.
     :param issue: The issue number
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
-    :param remapping: A dictionary for mapping the headers of the form into new values. This is useful since
-        the headers themselves will be human readable text, and not nice keys for JSON data
-    :return: A mapping from github issue issue data
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+    :param remapping: A dictionary for mapping the headers of the form into new values.
+        This is useful since the headers themselves will be human readable text, and not
+        nice keys for JSON data
+
+    :returns: A mapping from github issue issue data
     """
     res_json = requests_get(f"repos/{owner}/{repo}/issues/{issue}", token=token)
     data = parse_body(res_json["body"])
@@ -226,7 +234,9 @@ def remap(data: dict[str, Any], mapping: Mapping[str, str]) -> dict[str, Any]:
 def parse_body(body: str) -> dict[str, Any]:
     """Parse the body string from a GitHub issue (via the API).
 
-    :param body: The body string from a GitHub issue (via the API) that corresponds to a form
+    :param body: The body string from a GitHub issue (via the API) that corresponds to a
+        form
+
     :returns: A dictionary of keys (headers) to values
     """
     rv = {}
@@ -255,9 +265,12 @@ def branch(name: str) -> str | None:
     """Create a new branch and switch to it.
 
     :param name: The name of the new branch
+
     :returns: The message from the command
 
-    .. seealso:: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+    .. seealso::
+
+        https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
     """
     return _git("checkout", "-b", name)
 
@@ -279,9 +292,12 @@ def commit_all(message: str) -> str | None:
     """Make a commit with the following message.
 
     :param message: The message to go with the commit.
+
     :returns: The message from the command
 
-    .. note:: ``-a`` means "commit all files"
+    .. note::
+
+        ``-a`` means "commit all files"
     """
     return _git("commit", "-m", message, "-a")
 

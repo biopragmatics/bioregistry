@@ -51,7 +51,9 @@ class TestRegistry(unittest.TestCase):
     def test_lint(self):
         """Test that the lint command was run.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/180
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/180
         """
         text = BIOREGISTRY_PATH.read_text(encoding="utf8")
         linted_text = json.dumps(
@@ -371,11 +373,10 @@ class TestRegistry(unittest.TestCase):
     def test_examples(self):
         """Test examples for the required conditions.
 
-        1. All resources must have an example, with the following exceptions:
-           - deprecated resources
-           - resources that are marked as not having their own terms (e.g., ChIRO)
-           - resources that are providers for other resources (e.g., CTD Gene)
-           - proprietary resources (e.g., Eurofir)
+        1. All resources must have an example, with the following exceptions: -
+           deprecated resources - resources that are marked as not having their own
+           terms (e.g., ChIRO) - resources that are providers for other resources (e.g.,
+           CTD Gene) - proprietary resources (e.g., Eurofir)
         2. Examples are stored in normal form (i.e., no redundant prefixes)
         3. Examples pass the regular expression pattern for the resource, if available
         """
@@ -755,8 +756,8 @@ class TestRegistry(unittest.TestCase):
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
 
-        This is required because the annotation from MIRIAM is simply not granular enough
-        to support actual use cases.
+        This is required because the annotation from MIRIAM is simply not granular
+        enough to support actual use cases.
         """
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope"))
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=True))
