@@ -65,7 +65,9 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
 
     :param issue_id: The issue identifier
     :param resource_data: The data from the issue form
-    :returns: A Resource instance or None if there is an issue that warrants skipping the issue
+
+    :returns: A Resource instance or None if there is an issue that warrants skipping
+        the issue
     """
     prefix = resource_data.pop("prefix").lower()
     try:
@@ -95,8 +97,8 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
         contact = None
 
     wikidata_property = resource_data.pop("wikidata_prefix", None)
-    wikidata: Mapping | None
-    mappings: Mapping | None
+    wikidata: Mapping[str, Any] | None
+    mappings: Mapping[str, str | None] | None
     if wikidata_property:
         wikidata = {"prefix": wikidata_property}
         mappings = {"wikidata": wikidata_property}
@@ -135,7 +137,7 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
         wikidata=wikidata,
         mappings=mappings,
         publications=publications,
-        **resource_data,  # type:ignore
+        **resource_data,
     )
 
 
@@ -149,10 +151,11 @@ def get_new_prefix_issues(token: str | None = None) -> dict[int, Resource]:
         Issues corresponding to a prefix that is already in the Bioregistry should be sent a message then
         automatically closed
 
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
-    :returns: A mapping of issue identifiers to pairs of the prefix itself and a :class:`Resource` instance
-        that has been parsed out of the issue form
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+
+    :returns: A mapping of issue identifiers to pairs of the prefix itself and a
+        :class:`Resource` instance that has been parsed out of the issue form
     """
     data = github_client.get_bioregistry_form_data(
         ["New", "Prefix"], remapping=MAPPING, token=token
@@ -225,7 +228,7 @@ def process_all_relevant_issues() -> dict[int, Resource]:
     return issue_to_resource
 
 
-def _yield_publications(data) -> Iterable[Publication]:
+def _yield_publications(data: dict[str, Any]) -> Iterable[Publication]:
     for curie in data.pop("publications", "").split("|"):
         curie = curie.strip().lower()
         try:
@@ -251,7 +254,7 @@ def _trim_orcid(orcid: str) -> str:
     return orcid
 
 
-def _join(x: Iterable[int], sep=", ") -> str:
+def _join(x: Iterable[int], sep: str = ", ") -> str:
     return sep.join(map(str, sorted(x)))
 
 
@@ -273,8 +276,8 @@ def make_title(prefixes: Sequence[str]) -> str:
 @click.option(
     "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
 )
-@force_option
-@verbose_option
+@force_option  # type:ignore
+@verbose_option  # type:ignore
 def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
     """Run the automatic curator."""
     click.echo(
@@ -335,7 +338,7 @@ def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None
     if "url" in rv:
         click.secho(f"PR at {rv['url']}")
     else:  # probably an error
-        click.secho(rv, fg="red")
+        click.secho(str(rv), fg="red")
 
     click.secho(f"switching back to {github_client.MAIN_BRANCH} branch", fg="green")
     click.echo(github_client.home())

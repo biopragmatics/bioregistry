@@ -26,6 +26,7 @@ from typing import (
 )
 
 import click
+from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
 
@@ -241,43 +242,6 @@ class Author(Attributable):
     )
 
 
-class Provider(BaseModel):
-    """A provider."""
-
-    code: str = Field(..., description="A locally unique code within the prefix for the provider")
-    name: str = Field(..., description="Name of the provider")
-    description: str = Field(..., description="Description of the provider")
-    homepage: str = Field(..., description="Homepage of the provider")
-    uri_format: str = Field(
-        ...,
-        title="URI Format",
-        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
-    )
-    first_party: bool | None = Field(
-        None, description="Annotates whether a provider is from the first-party organization"
-    )
-    publications: list[Publication] | None = Field(
-        default=None,
-        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
-    )
-    example: str | None = Field(
-        default=None,
-        description="An example local identifier, specific to the provider. Providing this value is "
-        "only necessary if the example associated with the prefix for which this is a provider "
-        "is not resolvable by the provider. The example identifier should exclude any redundant "
-        "usage of the prefix. For example, a GO identifier should only "
-        "look like ``1234567`` and not like ``GO:1234567``",
-    )
-
-    def resolve(self, identifier: str) -> str:
-        """Resolve the identifier into a URI.
-
-        :param identifier: The identifier in the semantic space
-        :return: The URI for the identifier
-        """
-        return self.uri_format.replace("$1", identifier)
-
-
 class Publication(BaseModel):
     """Metadata about a publication."""
 
@@ -317,6 +281,43 @@ class Publication(BaseModel):
             or (self.doi is not None and self.doi == other.doi)
             or (self.pmc is not None and self.pmc == other.pmc)
         )
+
+
+class Provider(BaseModel):
+    """A provider."""
+
+    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    name: str = Field(..., description="Name of the provider")
+    description: str = Field(..., description="Description of the provider")
+    homepage: str = Field(..., description="Homepage of the provider")
+    uri_format: str = Field(
+        ...,
+        title="URI Format",
+        description=f"The URI format string, which must have at least one ``$1`` in it. {URI_IRI_INFO}",
+    )
+    first_party: bool | None = Field(
+        None, description="Annotates whether a provider is from the first-party organization"
+    )
+    publications: list[Publication] | None = Field(
+        default=None,
+        description="A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
+    )
+    example: str | None = Field(
+        default=None,
+        description="An example local identifier, specific to the provider. Providing this value is "
+        "only necessary if the example associated with the prefix for which this is a provider "
+        "is not resolvable by the provider. The example identifier should exclude any redundant "
+        "usage of the prefix. For example, a GO identifier should only "
+        "look like ``1234567`` and not like ``GO:1234567``",
+    )
+
+    def resolve(self, identifier: str) -> str:
+        """Resolve the identifier into a URI.
+
+        :param identifier: The identifier in the semantic space
+        :return: The URI for the identifier
+        """
+        return self.uri_format.replace("$1", identifier)
 
 
 class Resource(BaseModel):
@@ -1212,7 +1213,13 @@ class Resource(BaseModel):
             keywords.append("ontology")
         if self.lov:
             keywords.extend(self.lov.get("keywords", []))
-        return sorted({keyword.lower().replace("’", "'") for keyword in keywords if keyword})
+        return sorted(
+            {
+                keyword.lower().replace("’", "'")  # noqa:RUF001
+                for keyword in keywords
+                if keyword
+            }
+        )
 
     def get_repository(self) -> str | None:
         """Return the repository, if available."""
@@ -1962,19 +1969,38 @@ class Resource(BaseModel):
             return None
         return uri_format[: -len("$1")]
 
-    def get_uri_prefixes(self) -> set[str]:
-        """Get the set of all URI prefixes."""
-        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+    def get_uri_prefixes(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI prefixes.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI prefixes.
+        """
+        uri_prefixes = (
+            self._clip_uri_format(uri_format)
+            for uri_format in self.get_uri_formats(enforce_w3c=enforce_w3c)
+        )
         return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
-    def get_uri_formats(self) -> set[str]:
-        """Get the set of all URI format strings."""
+    def get_uri_formats(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI format strings.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI format strings, containing ``$1`` where a local
+            unique identifier should be formatted in.
+        """
         uri_formats = itt.chain.from_iterable(
-            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
+            _yield_protocol_variations(uri_format)
+            for uri_format in self._iter_uri_formats(enforce_w3c=enforce_w3c)
         )
         return set(uri_formats)
 
-    def _iter_uri_formats(self) -> Iterable[str]:
+    def _iter_uri_formats(self, *, enforce_w3c: bool = False) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
         yield f"https://bioregistry.io/{self.prefix}:$1"
@@ -1982,7 +2008,8 @@ class Resource(BaseModel):
         if preferred_prefix:
             yield f"https://bioregistry.io/{preferred_prefix}:$1"
         for synonym in self.get_synonyms():
-            yield f"https://bioregistry.io/{synonym}:$1"
+            if not enforce_w3c or NCNAME_RE.fullmatch(synonym):
+                yield f"https://bioregistry.io/{synonym}:$1"
         # TODO consider adding bananas
         for provider in self.get_extra_providers():
             yield provider.uri_format
@@ -2315,7 +2342,7 @@ class Resource(BaseModel):
         import markupsafe
         from markdown import markdown
 
-        rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
+        rv = removesuffix(removeprefix(markdown(rv), "<p>"), "</p>")
         return markupsafe.Markup(rv)
 
     def get_bioschemas_jsonld(self) -> dict[str, Any]:

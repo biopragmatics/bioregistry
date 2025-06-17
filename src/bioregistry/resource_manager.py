@@ -22,6 +22,7 @@ from typing import (
 
 import curies
 from curies import ReferenceTuple
+from curies.api import NoCURIEDelimiterError, PrefixStandardizationError
 from pydantic import BaseModel
 
 from .constants import (
@@ -131,7 +132,7 @@ class Manager:
     metaregistry: dict[str, Registry]
     collections: dict[str, Collection]
     contexts: dict[str, Context]
-    mismatches: Mapping[str, Mapping[str, str]]
+    mismatches: Mapping[str, Mapping[str, set[str]]]
 
     _converter: curies.Converter | None
 
@@ -141,7 +142,7 @@ class Manager:
         metaregistry: None | str | Path | Mapping[str, Registry] = None,
         collections: None | str | Path | Mapping[str, Collection] = None,
         contexts: None | str | Path | Mapping[str, Context] = None,
-        mismatches: Mapping[str, Mapping[str, str]] | None = None,
+        mismatches: Mapping[str, Mapping[str, set[str]]] | None = None,
         base_url: str | None = None,
     ):
         """Instantiate a registry manager.
@@ -296,29 +297,41 @@ class Manager:
             will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
             in a few cases, such as NCBITaxon.
 
-        :raises ValueError: If strict is set to true and the prefix could not be standardized
+        :raises PrefixStandardizationError: If strict is set to true and the prefix could not be standardized
         """
         norm_prefix = self.synonyms.get(prefix)
         if norm_prefix is None:
             if strict:
-                raise ValueError(f"could not standardize {prefix}")
+                raise PrefixStandardizationError(prefix)
             return None
         if use_preferred:
             norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
         return norm_prefix
 
-    def get_resource(self, prefix: str) -> Resource | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+
+    def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
 
         :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
             before lookup in the Bioregistry
+        :param strict: If true, requires the prefix to be valid or raise an exveption
         :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
             other registries when available.
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
             return None
-        return self.registry.get(norm_prefix)
+        rv = self.registry.get(norm_prefix)
+        if rv is None and strict:
+            raise ValueError
+        return rv
 
     # docstr-coverage:excused `overload`
     @overload
@@ -489,9 +502,22 @@ class Manager:
         self,
         curie: str,
         *,
-        sep: str = ":",
+        sep: str = ...,
+        use_preferred: bool = ...,
+        on_failure_return_type: FailureReturnType = ...,
+        strict: Literal[True] = True,
+    ) -> ReferenceTuple: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def parse_curie(
+        self,
+        curie: str,
+        *,
+        sep: str = ...,
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.single] = FailureReturnType.single,
+        strict: Literal[False] = False,
     ) -> ReferenceTuple | None: ...
 
     # docstr-coverage:excused `overload`
@@ -500,9 +526,10 @@ class Manager:
         self,
         curie: str,
         *,
-        sep: str = ":",
+        sep: str = ...,
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
+        strict: Literal[False] = False,
     ) -> ReferenceTuple | tuple[None, None]: ...
 
     def parse_curie(
@@ -512,44 +539,79 @@ class Manager:
         sep: str = ":",
         use_preferred: bool = False,
         on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+        strict: bool = False,
     ) -> MaybeCURIE:
         """Parse a CURIE and normalize its prefix and identifier."""
-        try:
-            prefix, identifier = curie.split(sep, 1)
-        except ValueError:
+        prefix, _delimiter, identifier = curie.partition(sep)
+        if not _delimiter:
+            if strict:
+                raise NoCURIEDelimiterError(curie)
             return get_failure_return_type(on_failure_return_type)
 
         if on_failure_return_type == FailureReturnType.single:
-            return self.normalize_parsed_curie(
-                prefix,
-                identifier,
-                use_preferred=use_preferred,
-                on_failure_return_type=FailureReturnType.single,
-            )
+            if strict:
+                return self.normalize_parsed_curie(
+                    prefix,
+                    identifier,
+                    use_preferred=use_preferred,
+                    on_failure_return_type=FailureReturnType.single,
+                    strict=strict,
+                )
+            else:
+                return self.normalize_parsed_curie(
+                    prefix,
+                    identifier,
+                    use_preferred=use_preferred,
+                    on_failure_return_type=FailureReturnType.single,
+                    strict=strict,
+                )
         elif on_failure_return_type == FailureReturnType.pair:
-            return self.normalize_parsed_curie(
-                prefix,
-                identifier,
-                use_preferred=use_preferred,
-                on_failure_return_type=FailureReturnType.pair,
-            )
+            if strict:
+                return self.normalize_parsed_curie(
+                    prefix,
+                    identifier,
+                    use_preferred=use_preferred,
+                    on_failure_return_type=FailureReturnType.pair,
+                    strict=strict,
+                )
+            else:
+                return self.normalize_parsed_curie(
+                    prefix,
+                    identifier,
+                    use_preferred=use_preferred,
+                    on_failure_return_type=FailureReturnType.pair,
+                    strict=strict,
+                )
         else:
             raise TypeError
 
     def normalize_curie(
-        self, curie: str, *, sep: str = ":", use_preferred: bool = False
+        self,
+        curie: str,
+        *,
+        sep: str = ":",
+        use_preferred: bool = False,
+        strict: bool = False,
     ) -> str | None:
         """Normalize the prefix and identifier in the CURIE."""
+        if strict:
+            return self.parse_curie(
+                curie,
+                sep=sep,
+                use_preferred=use_preferred,
+                on_failure_return_type=FailureReturnType.single,
+                strict=True,
+            ).curie
         reference = self.parse_curie(
             curie,
             sep=sep,
             use_preferred=use_preferred,
             on_failure_return_type=FailureReturnType.single,
+            strict=strict,
         )
-        if reference is None:
-            return None
-        else:
+        if reference is not None:
             return reference.curie
+        return None
 
     # docstr-coverage:excused `overload`
     @overload
@@ -559,8 +621,9 @@ class Manager:
         identifier: str,
         *,
         use_preferred: bool = ...,
-        on_failure_return_type: Literal[FailureReturnType.pair],
-    ) -> ReferenceTuple | tuple[None, None]: ...
+        on_failure_return_type: FailureReturnType = ...,
+        strict: Literal[True] = True,
+    ) -> ReferenceTuple: ...
 
     # docstr-coverage:excused `overload`
     @overload
@@ -571,7 +634,20 @@ class Manager:
         *,
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.single],
+        strict: Literal[False] = False,
     ) -> ReferenceTuple | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def normalize_parsed_curie(
+        self,
+        prefix: str,
+        identifier: str,
+        *,
+        use_preferred: bool = ...,
+        on_failure_return_type: Literal[FailureReturnType.pair],
+        strict: Literal[False] = False,
+    ) -> ReferenceTuple | tuple[None, None]: ...
 
     def normalize_parsed_curie(
         self,
@@ -580,6 +656,7 @@ class Manager:
         *,
         use_preferred: bool = False,
         on_failure_return_type: FailureReturnType = FailureReturnType.pair,
+        strict: bool = False,
     ) -> MaybeCURIE:
         """Normalize a prefix/identifier pair.
 
@@ -589,11 +666,16 @@ class Manager:
             If set to true, uses the "preferred prefix", if available, instead
             of the canonicalized Bioregistry prefix.
         :param on_failure_return_type: whether to return a single None or a pair of None's
+        :param strict: If true, raises an error if the prefix can't be standardized
         :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
             prefixes or bananas, all lowercase.
+
+        :raises PrefixStandardizationError: If strict is set to true and the prefix could not be standardized
         """
-        norm_prefix = self.normalize_prefix(prefix)
+        norm_prefix = self.normalize_prefix(prefix, strict=False)
         if not norm_prefix:
+            if strict:
+                raise PrefixStandardizationError(prefix)
             return get_failure_return_type(on_failure_return_type)
         resource = self.registry[norm_prefix]
         norm_identifier = resource.standardize_identifier(identifier)

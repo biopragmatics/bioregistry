@@ -54,7 +54,8 @@ prefix_resource_blacklist = {
     ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
     ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
 }
-assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
+if not all(not x.endswith("$1") for _, x in prefix_resource_blacklist):
+    raise RuntimeError
 
 
 def _debug_or_raise(msg: str, strict: bool = False) -> None:
@@ -119,6 +120,7 @@ def get_converter(
         include_prefixes=include_prefixes,
         strict=strict,
         blacklist=blacklist,
+        enforce_w3c=enforce_w3c,
     )
     converter = curies.Converter(records)
     if remapping:
@@ -140,13 +142,14 @@ def _w3c_clean_converter(converter: Converter) -> Converter:
     return Converter(_w3c_clean_record(record) for record in converter.records)
 
 
-def _get_records(  # noqa: C901
+def _get_records(
     resources: list[Resource],
     prefix_priority: Sequence[str] | None = None,
     uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
     blacklist: Collection[str] | None = None,
+    enforce_w3c: bool = False,
 ) -> list[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
@@ -261,7 +264,7 @@ def _get_records(  # noqa: C901
             continue
         for synonym in resource.get_synonyms():
             _add_synonym(synonym=synonym, prefix=resource.prefix)
-        for uri_prefix in resource.get_uri_prefixes():
+        for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
             _add_uri_synonym(uri_prefix=uri_prefix, prefix=resource.prefix)
         if include_prefixes:
             _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)
@@ -284,7 +287,7 @@ def _get_records(  # noqa: C901
             _add_synonym(synonym=resource.prefix, prefix=prefix)
             for synonym in resource.get_synonyms():
                 _add_synonym(synonym=synonym, prefix=prefix)
-            for uri_prefix in resource.get_uri_prefixes():
+            for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
                 _add_uri_synonym(uri_prefix=uri_prefix, prefix=prefix)
             if include_prefixes:
                 _add_prefix_prefixes(
@@ -293,7 +296,7 @@ def _get_records(  # noqa: C901
         elif has_part:
             uri_prefixes = {
                 p
-                for p in resource.get_uri_prefixes()
+                for p in resource.get_uri_prefixes(enforce_w3c=enforce_w3c)
                 if (resource.prefix, p) not in prefix_resource_blacklist
             }
             _duplicats = [
@@ -322,7 +325,7 @@ def _get_records(  # noqa: C901
                     continue
                 for synonym in resource.get_synonyms():
                     _add_synonym(synonym=synonym, prefix=resource.prefix)
-                for uri_prefix in resource.get_uri_prefixes():
+                for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
                     _add_uri_synonym(uri_prefix=uri_prefix, prefix=resource.prefix)
                 if include_prefixes:
                     _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)
