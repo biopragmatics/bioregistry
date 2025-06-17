@@ -215,6 +215,7 @@ class Manager:
         self.registry[resource.prefix] = resource
         if self._converter is not None and (uri_prefix := resource.get_uri_prefix()):
             self._converter.add_prefix(resource.prefix, uri_prefix)
+            # TODO what about synonyms
 
     @property
     def converter(self) -> curies.Converter:
