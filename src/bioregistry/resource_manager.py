@@ -209,6 +209,14 @@ class Manager:
 
         self._converter = None
 
+    def add_resource(self, resource: Resource) -> None:
+        """Add a custom resource to the manager."""
+        self.synonyms[resource.prefix] = resource.prefix
+        self.registry[resource.prefix] = resource
+        if self._converter is not None and (uri_prefix := resource.get_uri_prefix()):
+            self._converter.add_prefix(resource.prefix, uri_prefix)
+            # TODO what about synonyms
+
     @property
     def converter(self) -> curies.Converter:
         """Get the default converter."""
