@@ -7,7 +7,7 @@ from typing import Literal, overload
 import curies
 from curies import ReferenceTuple
 
-from .constants import FailureReturnType, MaybeCURIE, get_failure_return_type
+from .constants import FailureReturnType, MaybeCURIE, NonePair, get_failure_return_type
 from .resource_manager import manager
 
 __all__ = [
@@ -54,7 +54,7 @@ def parse_iri(
     *,
     use_preferred: bool = ...,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
-) -> ReferenceTuple | tuple[None, None]: ...
+) -> ReferenceTuple | NonePair: ...
 
 
 # docstr-coverage:excused `overload`
@@ -72,7 +72,7 @@ def parse_iri(
     *,
     use_preferred: bool = False,
     on_failure_return_type: FailureReturnType = FailureReturnType.pair,
-) -> ReferenceTuple | tuple[None, None] | None:
+) -> ReferenceTuple | NonePair | None:
     """Parse a compact identifier from an IRI that wraps :meth:`Manager.parse_uri`.
 
     :param iri: A valid IRI
@@ -91,6 +91,28 @@ def parse_iri(
     if not use_preferred:
         return rv
     return manager.make_preferred(rv, use_preferred=True)
+
+
+# docstr-coverage:excused `overload`
+@overload
+def normalize_curie(
+    curie: str,
+    *,
+    sep: str = ...,
+    use_preferred: bool = ...,
+    strict: Literal[True] = True,
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def normalize_curie(
+    curie: str,
+    *,
+    sep: str = ...,
+    use_preferred: bool = ...,
+    strict: Literal[False] = False,
+) -> str | None: ...
 
 
 def normalize_curie(
@@ -150,7 +172,31 @@ def normalize_curie(
     >>> normalize_curie("GO_1234", sep="_", use_preferred=True)
     'GO:1234'
     """
-    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred, strict=strict)
+    if strict:
+        return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred, strict=True)
+    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred, strict=False)
+
+
+# docstr-coverage:excused `overload`
+@overload
+def normalize_parsed_curie(
+    prefix: str,
+    identifier: str,
+    *,
+    use_preferred: bool = ...,
+    strict: Literal[True] = True,
+) -> ReferenceTuple: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def normalize_parsed_curie(
+    prefix: str,
+    identifier: str,
+    *,
+    use_preferred: bool = ...,
+    strict: Literal[False] = False,
+) -> ReferenceTuple | NonePair: ...
 
 
 def normalize_parsed_curie(
@@ -159,7 +205,7 @@ def normalize_parsed_curie(
     *,
     use_preferred: bool = False,
     strict: bool = False,
-) -> MaybeCURIE:
+) -> ReferenceTuple | NonePair:
     """Normalize a prefix/identifier pair.
 
     :param prefix: The prefix in the CURIE
@@ -272,7 +318,7 @@ def parse_curie(
     use_preferred: bool = ...,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
     strict: Literal[False] = False,
-) -> ReferenceTuple | tuple[None, None]: ...
+) -> ReferenceTuple | NonePair: ...
 
 
 def parse_curie(

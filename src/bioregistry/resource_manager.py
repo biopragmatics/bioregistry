@@ -38,6 +38,7 @@ from .constants import (
     SHIELDS_BASE,
     FailureReturnType,
     MaybeCURIE,
+    NonePair,
     get_failure_return_type,
 )
 from .license_standardizer import standardize_license
@@ -62,8 +63,8 @@ from .utils import NormDict, _norm
 
 __all__ = [
     "Manager",
-    "manager",
     "MetaresourceAnnotatedValue",
+    "manager",
 ]
 
 logger = logging.getLogger(__name__)
@@ -353,7 +354,7 @@ class Manager:
         *,
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
-    ) -> ReferenceTuple | tuple[None, None]: ...
+    ) -> ReferenceTuple | NonePair: ...
 
     def parse_uri(
         self,
@@ -361,7 +362,7 @@ class Manager:
         *,
         use_preferred: bool = False,
         on_failure_return_type: FailureReturnType = FailureReturnType.pair,
-    ) -> ReferenceTuple | None | tuple[None, None]:
+    ) -> ReferenceTuple | None | NonePair:
         """Parse a compact identifier from a URI.
 
         :param uri: A valid URI
@@ -444,7 +445,7 @@ class Manager:
     # docstr-coverage:excused `overload`
     @overload
     def compress(
-        self, uri: str, *, use_preferred: bool = ..., strict: Literal[True] = False
+        self, uri: str, *, use_preferred: bool = ..., strict: Literal[True] = True
     ) -> str: ...
 
     # docstr-coverage:excused `overload`
@@ -547,7 +548,7 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
         strict: Literal[False] = False,
-    ) -> ReferenceTuple | tuple[None, None]: ...
+    ) -> ReferenceTuple | NonePair: ...
 
     def parse_curie(
         self,
@@ -657,7 +658,7 @@ class Manager:
         use_preferred: bool = ...,
         on_failure_return_type: Literal[FailureReturnType.pair],
         strict: Literal[False] = False,
-    ) -> ReferenceTuple | tuple[None, None]: ...
+    ) -> ReferenceTuple | NonePair: ...
 
     def normalize_parsed_curie(
         self,

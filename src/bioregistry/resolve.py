@@ -886,11 +886,6 @@ def get_converter(**kwargs: Any) -> curies.Converter:
     return manager.get_converter(**kwargs)
 
 
-def get_default_converter() -> curies.Converter:
-    """Get a converter from this manager."""
-    return manager.converter
-
-
 def add_resource(resource: Resource) -> None:
     """Add a resource."""
     manager.add_resource(resource)
