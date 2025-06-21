@@ -88,6 +88,7 @@
 @prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix bgee.family: <http://bgee.unil.ch/bgee/bgee?page=gene_family&action=family_details&gene_family_id=> .
 @prefix bgee.gene: <https://www.bgee.org/gene/> .
+@prefix bibframe: <http://id.loc.gov/ontologies/bibframe/> .
 @prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix bido: <http://purl.org/spar/bido/> .
 @prefix bigg.compartment: <http://bigg.ucsd.edu/compartments/> .
@@ -96,7 +97,7 @@
 @prefix bigg.reaction: <http://bigg.ucsd.edu/models/universal/reactions/> .
 @prefix bila: <http://4dx.embl.de/4DXpress/reg/all/cview/gene.do?geneID=> .
 @prefix bind: <http://www.bind.ca/Action?identifier=bindid&idsearch=> .
-@prefix bindingdb: <http://www.bindingdb.org/compact/> .
+@prefix bindingdb: <http://www.bindingdb.org/rwd/entry/> .
 @prefix biocarta.pathway: <https://cgap.nci.nih.gov/Pathways/BioCarta/> .
 @prefix biocatalogue.service: <https://www.biocatalogue.org/services/> .
 @prefix biocompute: <https://biocomputeobject.org/BCO_> .
@@ -239,6 +240,7 @@
 @prefix clyh: <http://purl.obolibrary.org/obo/CLYH_> .
 @prefix cmo: <http://purl.obolibrary.org/obo/CMO_> .
 @prefix cmpo: <http://www.ebi.ac.uk/cmpo/CMPO_> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
 @prefix co_320: <https://cropontology.org/rdf/CO_320:> .
 @prefix co_321: <https://cropontology.org/rdf/CO_321:> .
 @prefix co_322: <https://cropontology.org/rdf/CO_322:> .
@@ -327,6 +329,7 @@
 @prefix cvdo: <http://purl.obolibrary.org/obo/CVDO_> .
 @prefix cvx: <https://biopragmatics.github.io/providers/cvx/> .
 @prefix dailymed: <https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=> .
+@prefix dalia: <https://purl.org/ontology/modalia#> .
 @prefix daml.pt: <http://www.daml.org/2003/01/periodictable/PeriodicTable#> .
 @prefix dandi: <https://dandiarchive.org/dandiset/> .
 @prefix darc: <http://darcsite.genzentrum.lmu.de/darc/view.php?id=> .
@@ -427,6 +430,7 @@
 @prefix duo: <http://purl.obolibrary.org/obo/DUO_> .
 @prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 @prefix eaglei: <http://hawaii.eagle-i.net/i/> .
+@prefix earl: <http://www.w3.org/ns/earl#> .
 @prefix easychair.cfp: <https://easychair.org/cfp/> .
 @prefix easychair.topic: <https://easychair.org/cfp/topic.cgi?tid=> .
 @prefix ebisc: <https://cells.ebisc.org/> .
@@ -454,6 +458,7 @@
 @prefix edam.operation: <http://edamontology.org/operation_> .
 @prefix edam.topic: <http://edamontology.org/topic_> .
 @prefix edda: <http://ontologies.dbmi.pitt.edu/edda/StudyDesigns.owl#> .
+@prefix educor: <https://github.com/tibonto/educor#> .
 @prefix efo: <http://www.ebi.ac.uk/efo/EFO_> .
 @prefix ega.dataset: <https://www.ebi.ac.uk/ega/datasets/> .
 @prefix ega.study: <https://www.ebi.ac.uk/ega/studies/> .
@@ -846,6 +851,7 @@
 @prefix maizegdb.locus: <http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=> .
 @prefix mamo: <http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_> .
 @prefix mampol: <http://mampol.uab.es/cgi-bin/MamPol_s2.pl?Accession=> .
+@prefix marc21: <https://id.loc.gov/vocabulary/languages/> .
 @prefix massbank: <https://massbank.jp/RecordDisplay?id=> .
 @prefix massive: <https://www.omicsdi.org/dataset/massive/> .
 @prefix matrixdb: <http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=> .
@@ -1247,6 +1253,7 @@
 @prefix psipar: <https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:> .
 @prefix pso: <http://purl.obolibrary.org/obo/PSO_> .
 @prefix psskb: <https://psskb.org/motif/card/> .
+@prefix ptr: <https://www.w3.org/2009/pointers#> .
 @prefix pubchem.bioassay: <https://pubchem.ncbi.nlm.nih.gov/bioassay/> .
 @prefix pubchem.cell: <https://pubchem.ncbi.nlm.nih.gov/cell/> .
 @prefix pubchem.classification: <https://pubchem.ncbi.nlm.nih.gov/classification/#hid=> .
@@ -1409,6 +1416,7 @@
 @prefix spbase: <http://www.spbase.org/SpBase/search/viewAnnoGeneInfo.php?spu_id=> .
 @prefix spd: <http://purl.obolibrary.org/obo/SPD_> .
 @prefix spdx: <https://spdx.org/licenses/> .
+@prefix spdx.term: <http://spdx.org/rdf/terms#> .
 @prefix sphn: <https://biomedit.ch/rdf/sphn-ontology/sphn#> .
 @prefix splash: <http://mona.fiehnlab.ucdavis.edu/#/spectra/splash/> .
 @prefix splicenest: <http://splicenest.molgen.mpg.de/cgi-bin/splicegraph.cgi?cluster=> .
@@ -4218,6 +4226,20 @@ bioregistry:bgee.stage a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 <http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=HsapDO:0000004> ;
     bioregistry.schema:0000029 "bgee.stage" .
 
+bioregistry:bibframe a bioregistry.schema:0000001 ;
+    rdfs:label "Bibliographic Framework Initiative Vocabulary" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "The Bibframe vocabulary consists of RDF classes and properties used for the description of items cataloged principally by libraries, but may also be used to describe items cataloged by museums and archives. Classes include the three core classes - Work, Instance, and Item - in addition to many more classes to support description. Properties describe characteristics of the resource being described as well as relationships among resources. For example: one Work might be a \"translation of\" another Work; an Instance may be an \"instance of\" a particular Bibframe Work. Other properties describe attributes of Works and Instances. For example: the Bibframe property \"subject\" expresses an important attribute of a Work (what the Work is about), and the property \"extent\" (e.g. number of pages) expresses an attribute of an Instance."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/lcnetdev/bibframe-ontology> ;
+    foaf:homepage <https://id.loc.gov/ontologies/bibframe.html> ;
+    bioregistry.schema:0000005 "DescriptionLevel"^^xsd:string ;
+    bioregistry.schema:0000006 "http://id.loc.gov/ontologies/bibframe/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://id.loc.gov/ontologies/bibframe/"^^xsd:string ;
+    bioregistry.schema:0000027 bibframe:DescriptionLevel ;
+    bioregistry.schema:0000029 "bibframe" .
+
 bioregistry:bigg dcterms:hasPart bioregistry:bigg.compartment .
 
 bioregistry:bigg.metabolite a bioregistry.schema:0000001 ;
@@ -4331,13 +4353,13 @@ bioregistry:bindingdb a bioregistry.schema:0000001 ;
         "medicinal chemistry",
         "protein" ;
     foaf:homepage <https://www.bindingdb.org> ;
-    bioregistry.schema:0000005 "e999"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.bindingdb.org/compact/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\w\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "999"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.bindingdb.org/rwd/entry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3375-1738 ;
-    bioregistry.schema:0000024 "http://www.bindingdb.org/compact/"^^xsd:string ;
-    bioregistry.schema:0000027 bindingdb:e999 ;
+    bioregistry.schema:0000024 "http://www.bindingdb.org/rwd/entry/"^^xsd:string ;
+    bioregistry.schema:0000027 bindingdb:999 ;
     bioregistry.schema:0000029 "bindingdb" .
 
 bioregistry:biocarta.pathway a bioregistry.schema:0000001 ;
@@ -4951,17 +4973,33 @@ bioregistry:bko a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 bko:0000204 ;
     bioregistry.schema:0000029 "bko" .
 
+bioregistry:bmbf.glossary a bioregistry.schema:0000001 ;
+    rdfs:label "German Federal Ministry of Education and Research Glossary" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "A german-language glossary provides you with definitions of the terms used in the portal in the fields of education, science, research and innovation and is updated regularly."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.datenportal.bmbf.de/portal/de/glossary.html> ;
+    bioregistry.schema:0000005 "G1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.datenportal.bmbf.de/portal/de/$1.html"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://bioregistry.io/bmbf.glossary:"^^xsd:string ;
+    bioregistry.schema:0000027 <https://www.datenportal.bmbf.de/portal/de/G1.html> ;
+    bioregistry.schema:0000029 "bmbf.glossary" .
+
 bioregistry:bmont a bioregistry.schema:0000001 ;
     rdfs:label "Biomarker Ontology" ;
     dcterms:description "An application ontology that represents comprehensive knowledge involving a variety of fields of medical and biological aspects."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/SCAI-BIO/BiomarkerOntology> ;
-    skos:exactMatch obofoundry:bmont ;
+    skos:exactMatch aberowl:BMONT,
+        ontobee:BMONT,
+        obofoundry:bmont ;
     dcat:keyword "obo",
         "ontology" ;
     foaf:homepage <https://github.com/SCAI-BIO/BiomarkerOntology> ;
     bioregistry.schema:0000005 "0000006"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BMONT_$1"^^xsd:string ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BMONT/1/bmont.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BMONT_"^^xsd:string ;
@@ -6331,6 +6369,19 @@ bioregistry:cnrs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 <https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=UMR7315&p_origine_appel=u> ;
     bioregistry.schema:0000029 "cnrs" .
 
+bioregistry:cnt a bioregistry.schema:0000001 ;
+    rdfs:label "Representing Content in RDF" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "This vocabulary is intended to provide a flexible framework within different usage scenarios to semantically represent any type of content, be it on the Web or in local storage media. For example, it can be used by web quality assurance tools such as web accessibility evaluation tools to record a representation of the assessed web content, including text, images, or other types of formats. In many cases, it can be used together with HTTP Vocabulary in RDF 1.0, which allows quality assurance tools to record the HTTP headers that have been exchanged between a client and a server. This is particularly useful for quality assurance testing, conformance claims, and reporting languages like the W3C Evaluation And Report Language (EARL). [from homepage]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.w3.org/TR/Pointers-in-RDF/#ref-content> ;
+    bioregistry.schema:0000005 "Content"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/2011/content#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://www.w3.org/2011/content#"^^xsd:string ;
+    bioregistry.schema:0000027 cnt:Content ;
+    bioregistry.schema:0000029 "cnt" .
+
 bioregistry:co_320 a bioregistry.schema:0000001 ;
     rdfs:label "Rice ontology" ;
     dcterms:description "Rice Trait Dictionary in template v 5.0 - IRRI - March 2016 - Based on SES, RD, UPOV variables and on variables used by CIAT, FLAR and the GRISP Phenotyping Network variables"^^xsd:string ;
@@ -7637,7 +7688,7 @@ bioregistry:creativebiolabs.protein a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "creativebiolabs.protein" .
 
 bioregistry:credit a bioregistry.schema:0000001 ;
-    rdfs:label "CASRAI Contributor Roles Taxonomy" ;
+    rdfs:label "Contributor Roles Taxonomy" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
@@ -8032,6 +8083,21 @@ bioregistry:dailymed a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid="^^xsd:string ;
     bioregistry.schema:0000027 dailymed:973a9333-fec7-46dd-8eb5-25738f06ee54 ;
     bioregistry.schema:0000029 "dailymed" .
+
+bioregistry:dalia a bioregistry.schema:0000001 ;
+    rdfs:label "MoDALIA Ontology" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "The aim of DALIA project is to build a platform for learning material for Research Data Management (RDM) and Data Science. The platform is based on a knowledge graph. We introduce MoDalia, the base ontology of DALIA knowledge graph. Modalia inherits some modules from EduCOR. It includes also modelling of micro -credentials and certificates"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://git.rwth-aachen.de/dalia/dalia-ontology> ;
+    foaf:homepage <https://dalia.pages.rwth-aachen.de/dalia-ontology/> ;
+    bioregistry.schema:0000005 "belongsToCluster"^^xsd:string ;
+    bioregistry.schema:0000006 "https://purl.org/ontology/modalia#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-2083-1277 ;
+    bioregistry.schema:0000024 "https://purl.org/ontology/modalia#"^^xsd:string ;
+    bioregistry.schema:0000027 dalia:belongsToCluster ;
+    bioregistry.schema:0000029 "dalia" .
 
 bioregistry:daml.pt a bioregistry.schema:0000001 ;
     rdfs:label "DAML Periodic Table of the Elements" ;
@@ -9228,6 +9294,19 @@ bioregistry:eaglei a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 eaglei:0000012b-5661-2f63-2f73-b43980000000 ;
     bioregistry.schema:0000029 "eaglei" .
 
+bioregistry:earl a bioregistry.schema:0000001 ;
+    rdfs:label "Evaluation and Report Language" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description " EARL is a vocabulary, the terms of which are defined across a set of specifications and technical notes, and that is used to describe test results. The primary motivation for developing this vocabulary is to facilitate the exchange of test results between Web accessibility evaluation tools in a vendor-neutral and platform-independent format. It also provides reusable terms for generic quality assurance and validation purposes. [from homepage]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.w3.org/TR/EARL10/> ;
+    bioregistry.schema:0000005 "Assertion"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/ns/earl#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://www.w3.org/ns/earl#"^^xsd:string ;
+    bioregistry.schema:0000027 earl:Assertion ;
+    bioregistry.schema:0000029 "earl" .
+
 bioregistry:easychair.cfp a bioregistry.schema:0000001 ;
     rdfs:label "EasyChair Call for Paper" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
@@ -9508,6 +9587,21 @@ bioregistry:edda a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://ontologies.dbmi.pitt.edu/edda/StudyDesigns.owl#"^^xsd:string ;
     bioregistry.schema:0000027 edda:health_care_quality_assessment ;
     bioregistry.schema:0000029 "edda" .
+
+bioregistry:educor a bioregistry.schema:0000001 ;
+    rdfs:label "An Educational and Career-Oriented Recommendation Ontology" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "An educational ontology for personalised recommendation learning systems that is based on learning path and user profile. It represents the key components for a personalised learning system based on our requirement analysis."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/tibonto/educor> ;
+    foaf:homepage <http://ontology.tib.eu/educor/> ;
+    bioregistry.schema:0000005 "stri"^^xsd:string ;
+    bioregistry.schema:0000006 "https://github.com/tibonto/educor#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-4847-6177 ;
+    bioregistry.schema:0000024 "https://github.com/tibonto/educor#"^^xsd:string ;
+    bioregistry.schema:0000027 educor:stri ;
+    bioregistry.schema:0000029 "educor" .
 
 bioregistry:eggnog a bioregistry.schema:0000001 ;
     rdfs:label "eggNOG" ;
@@ -10285,7 +10379,6 @@ bioregistry:fbbi a bioregistry.schema:0000001 ;
     dcat:keyword "assay",
         "biomedical science",
         "experiment",
-        "image",
         "imaging",
         "life science",
         "obo",
@@ -10928,7 +11021,7 @@ bioregistry:gabi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "2679240"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=$1&Mode=ShowBioObject"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-9900-9133 ;
     bioregistry.schema:0000024 "https://bioregistry.io/gabi:"^^xsd:string ;
     bioregistry.schema:0000027 <http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=2679240&Mode=ShowBioObject> ;
@@ -12272,7 +12365,7 @@ bioregistry:grsdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "10142"^^xsd:string ;
     bioregistry.schema:0000006 "http://bioinformatics.ramapo.edu/GRSDB2/geneview.php?geneID=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://bioinformatics.ramapo.edu/GRSDB2/geneview.php?geneID="^^xsd:string ;
     bioregistry.schema:0000027 grsdb:10142 ;
     bioregistry.schema:0000029 "grsdb" .
@@ -13304,7 +13397,7 @@ bioregistry:hpm.protein a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1968"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.humanproteomemap.org/protein.php?hpm_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://www.humanproteomemap.org/protein.php?hpm_id="^^xsd:string ;
     bioregistry.schema:0000027 hpm.protein:1968 ;
     bioregistry.schema:0000029 "hpm.protein" .
@@ -15534,7 +15627,8 @@ bioregistry:m4i a bioregistry.schema:0000001 ;
         bartoc:20402,
         zazuko:m4i,
         fairsharing:FAIRsharing.f8b3ec,
-        lov:m4i ;
+        lov:m4i,
+        miriam:m4i ;
     dcat:keyword "academy",
         "engineering science",
         "metadata",
@@ -15718,6 +15812,19 @@ bioregistry:mao a bioregistry.schema:0000001 ;
             foaf:mbox "julie@igbmc.u-strasbg.fr" ] ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/MAO_"^^xsd:string ;
     bioregistry.schema:0000029 "mao" .
+
+bioregistry:marc21 a bioregistry.schema:0000001 ;
+    rdfs:label "Machine-readable Cataloging (MARC) List for Languages" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "MARC List for Languages provides three-character lowercase alphabetic strings that serve as the identifiers of languages and language groups. The codes are usually based on the first three letters of the English form or, in some cases, vernacular form of the corresponding language name. The codes are varied where necessary to resolve conflicts and are not intended to be abbreviations of a language name. When the name of a language is changed in the list, the original code is generally retained. The codes in this list are equivalent to those of ISO 639-2 (Bibliographic) codes and some codes from ISO 639-5, although the language name labels may differ. They are linked to the equivalent codes in ISO 639-2 and ISO 639-5 and the corresponding two-character codes in ISO 639-1. The list contains over 480 discrete codes. It is also searchable at: MARC Code List for Languages."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://id.loc.gov/vocabulary/languages.html> ;
+    bioregistry.schema:0000005 "amh"^^xsd:string ;
+    bioregistry.schema:0000006 "https://id.loc.gov/vocabulary/languages/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://id.loc.gov/vocabulary/languages/"^^xsd:string ;
+    bioregistry.schema:0000027 marc21:amh ;
+    bioregistry.schema:0000029 "marc21" .
 
 bioregistry:markerdb a bioregistry.schema:0000001 ;
     rdfs:label "MarkerDB" ;
@@ -15954,6 +16061,8 @@ bioregistry:medgen a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/medgen/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(CN)?\\d{2,7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-5493-2602 ;
+    bioregistry.schema:0000023 "medgen.uid" ;
     bioregistry.schema:0000024 "https://www.ncbi.nlm.nih.gov/medgen/"^^xsd:string ;
     bioregistry.schema:0000027 medgen:760050 ;
     bioregistry.schema:0000029 "medgen" .
@@ -18044,11 +18153,11 @@ bioregistry:ncats.drug a bioregistry.schema:0000001 ;
     bioregistry.schema:0000029 "ncats.drug" .
 
 bioregistry:ncbi.gc a bioregistry.schema:0000001 ;
-    rdfs:label "Genetic Code" ;
+    rdfs:label "NCBI Genetic Code" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    foaf:homepage <https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html> ;
+    foaf:homepage <https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes> ;
     bioregistry.schema:0000005 "11"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -22027,6 +22136,19 @@ bioregistry:psskb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 psskb:2VM6_A55_A135 ;
     bioregistry.schema:0000029 "psskb" .
 
+bioregistry:ptr a bioregistry.schema:0000001 ;
+    rdfs:label "Pointer Methods in RDF" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "This specification contains a framework for representing pointers - entities that permit identifying a portion or segment of a piece of content - making use of the Resource Description Framework (RDF). It also describes a number of specific types of pointers that permit portions of a document to be referred to in different ways. When referring to a specific part of, say, a piece of web content, it is useful to be able to have a consistent manner by which to refer to a particular segment of a web document, to have a variety of ways by which to refer to that same segment, and to make the reference robust in the face of changes to that document. This specification is part of the Evaluation And Report Language (EARL) but can be reused in other contexts too. [from homepage]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://www.w3.org/TR/Pointers-in-RDF/> ;
+    bioregistry.schema:0000005 "Pointer"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.w3.org/2009/pointers#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://www.w3.org/2009/pointers#"^^xsd:string ;
+    bioregistry.schema:0000027 ptr:Pointer ;
+    bioregistry.schema:0000029 "ptr" .
+
 bioregistry:publons.publication a bioregistry.schema:0000001 ;
     rdfs:label "Publons publication" ;
     dcterms:description "identifier for the defunct/merged Publons website; URL redirects to Web of Science's P8372 (WOSID)"^^xsd:string ;
@@ -24121,7 +24243,8 @@ bioregistry:smiles a bioregistry.schema:0000001 ;
     doap:GitRepository github:opensmiles ;
     skos:exactMatch wikidata:P233,
         fairsharing:FAIRsharing.qv4b3c ;
-    dcat:keyword "chemistry",
+    dcat:keyword "bioinformatics",
+        "chemistry",
         "data analysis",
         "life science",
         "lipidomics",
@@ -24133,8 +24256,7 @@ bioregistry:smiles a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.simolecule.com/cdkdepict/depict/bow/svg?smi=$1&zoom=2.0&annotate=cip"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z0-9+\\-\\*=#$:().>/\\\\\\[\\]%]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Tim Vandermeersch" ;
-            foaf:mbox "tim.vandermeersch@gmail.com" ] ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 ;
     bioregistry.schema:0000024 "https://bioregistry.io/smiles:"^^xsd:string ;
     bioregistry.schema:0000029 "smiles" .
 
@@ -24363,16 +24485,33 @@ bioregistry:spdx a bioregistry.schema:0000001 ;
     rdfs:label "Software Package Data Exchange License" ;
     dcterms:description "The SPDX License List is a list of commonly found licenses and exceptions used in free and open source and other collaborative software or documentation. The purpose of the SPDX License List is to enable easy and efficient identification of such licenses and exceptions in an SPDX document, in source files or elsewhere. The SPDX License List includes a standardized short identifier, full name, vetted license text including matching guidelines markup as appropriate, and a canonical permanent URL for each license and exception."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/spdx/license-list-data> ;
     skos:exactMatch n2t:spdx,
         miriam:spdx ;
     foaf:homepage <https://spdx.org/licenses> ;
     bioregistry.schema:0000005 "CC-BY-1.0"^^xsd:string ;
     bioregistry.schema:0000006 "https://spdx.org/licenses/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9A-Za-z\\-.]+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9A-Za-z\\-.\\+]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "spdx.license",
+        "spdx.licenses" ;
     bioregistry.schema:0000024 "https://spdx.org/licenses/"^^xsd:string ;
     bioregistry.schema:0000027 spdx:CC-BY-1.0 ;
     bioregistry.schema:0000029 "spdx" .
+
+bioregistry:spdx.term a bioregistry.schema:0000001 ;
+    rdfs:label "Software Package Data Exchange RDF Vocabulary" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "A dictionary of named properties and classes for Software Package Data Exchange (SPDX) - an open standard for communicating software bill of material information, including components, licenses, copyrights, and security references. SPDX reduces redundant work by providing a common format for companies and communities to share important data, thereby streamlining and improving compliance. [from homepage]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://spdx.org/rdf/terms/> ;
+    bioregistry.schema:0000005 "annotation"^^xsd:string ;
+    bioregistry.schema:0000006 "http://spdx.org/rdf/terms#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000023 "spdx.terms" ;
+    bioregistry.schema:0000024 "http://spdx.org/rdf/terms#"^^xsd:string ;
+    bioregistry.schema:0000027 spdx.term:annotation ;
+    bioregistry.schema:0000029 "spdx.term" .
 
 bioregistry:sphn a bioregistry.schema:0000001 ;
     rdfs:label "Swiss Personalized Health Network Schema" ;
@@ -27628,9 +27767,6 @@ orcid:0000-0001-5424-1393 rdfs:label "Marilyn Safran" ;
 orcid:0000-0001-5472-917X rdfs:label "Stacia R Engel" ;
     foaf:mbox "stacia@stanford.edu" .
 
-orcid:0000-0001-5493-2602 rdfs:label "Megan S. Kane" ;
-    foaf:mbox "megan.kane@nih.gov" .
-
 orcid:0000-0001-5501-853X rdfs:label "Karen R. Christie" ;
     foaf:mbox "Karen.Christie@jax.org" .
 
@@ -28235,6 +28371,9 @@ orcid:0000-0002-4348-0169 rdfs:label "Richard John Roberts" ;
 orcid:0000-0002-4841-7927 rdfs:label "Guangshun Wang" ;
     foaf:mbox "gwang@unmc.edu" .
 
+orcid:0000-0002-4847-6177 rdfs:label "Eleni Ilkou" ;
+    foaf:mbox "ilkou@l3s.de" .
+
 orcid:0000-0002-4855-2571 rdfs:label "Matthias Samwald" ;
     foaf:mbox "matthias.samwald@meduniwien.ac.at" .
 
@@ -28750,6 +28889,9 @@ orcid:0000-0003-1898-4426 rdfs:label "Etsuko Yasugi" ;
 orcid:0000-0003-2023-4608 rdfs:label "Alexey M. Eroshkin" ;
     foaf:mbox "eroshkin@burnham.org" .
 
+orcid:0000-0003-2083-1277 rdfs:label "Abdelmoneim Amer Desouki" ;
+    foaf:mbox "abdelmoneim.desouki@tu-darmstadt.de" .
+
 orcid:0000-0003-2129-5269 rdfs:label "Ian Foster" ;
     foaf:mbox "foster@uchicago.edu" .
 
@@ -28994,6 +29136,8 @@ aberowl:BIOLINK dcterms:isPartOf bioregistry.registry:aberowl .
 aberowl:BIRNLEX dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:BKO dcterms:isPartOf bioregistry.registry:aberowl .
+
+aberowl:BMONT dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:BSPO dcterms:isPartOf bioregistry.registry:aberowl .
 
@@ -30202,6 +30346,8 @@ ontobee:BCO dcterms:isPartOf bioregistry.registry:ontobee .
 ontobee:BFO dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:BIDO dcterms:isPartOf bioregistry.registry:ontobee .
+
+ontobee:BMONT dcterms:isPartOf bioregistry.registry:ontobee .
 
 ontobee:BSPO dcterms:isPartOf bioregistry.registry:ontobee .
 
@@ -36208,9 +36354,9 @@ bioregistry:ark a bioregistry.schema:0000001 ;
         n2t:ark,
         fairsharing:FAIRsharing.f928f1,
         miriam:ark ;
-    dcat:keyword "centrally registered identifier",
-        "data management",
+    dcat:keyword "data management",
         "data retrieval",
+        "decentralized object registration and resolution",
         "subject agnostic" ;
     foaf:homepage <https://arks.org> ;
     bioregistry.schema:0000005 "/53355/cl010066723"^^xsd:string ;
@@ -40432,11 +40578,13 @@ bioregistry:mod a bioregistry.schema:0000001 ;
         miriam:mod,
         ols:mod,
         obofoundry:mod ;
-    dcat:keyword "enzymatic reaction",
+    dcat:keyword "chemical biology",
+        "enzymatic reaction",
         "life science",
         "molecule",
         "obo",
         "ontology",
+        "post-translational protein modification",
         "protein",
         "proteomics",
         "structure" ;
@@ -45641,6 +45789,9 @@ orcid:0000-0001-5208-3432 rdfs:label "Nicole Vasilevsky" ;
     foaf:mbox "nicole@tislab.org",
         "vasilevs@ohsu.edu" .
 
+orcid:0000-0001-5493-2602 rdfs:label "Megan S. Kane" ;
+    foaf:mbox "megan.kane@nih.gov" .
+
 orcid:0000-0001-5699-0515 rdfs:label "Rafael Richards" ;
     foaf:mbox "rmrich5@gmail.com" .
 
@@ -47638,6 +47789,8 @@ miriam:lipidmaps dcterms:isPartOf bioregistry.registry:miriam .
 miriam:lrg dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:lw dcterms:isPartOf bioregistry.registry:miriam .
+
+miriam:m4i dcterms:isPartOf bioregistry.registry:miriam .
 
 miriam:ma dcterms:isPartOf bioregistry.registry:miriam .
 
@@ -55934,7 +56087,6 @@ bioregistry:pmc a bioregistry.schema:0000001 ;
         togoid:Pmc ;
     dcat:keyword "bibliography",
         "centrally registered identifier",
-        "publication",
         "subject agnostic" ;
     foaf:homepage <http://europepmc.org/> ;
     bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
@@ -56018,7 +56170,6 @@ bioregistry:pubmed a bioregistry.schema:0000001 ;
         togoid:Pubmed ;
     dcat:keyword "bibliography",
         "citation",
-        "publication",
         "subject agnostic" ;
     foaf:homepage <https://www.ncbi.nlm.nih.gov/PubMed/> ;
     bioregistry.schema:0000005 "16333295"^^xsd:string ;
@@ -56971,10 +57122,6 @@ bioregistry:ons a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 ons:0000060 ;
     bioregistry.schema:0000029 "ons" .
 
-orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" ;
-    foaf:mbox "egon.willighagen@gmail.com",
-        "egon.willighagen@maastrichtuniversity.nl" .
-
 bioregistry.registry:ecoportal a bioregistry.schema:0000002 ;
     rdfs:label "EcoPortal" ;
     dc:description "The LifeWatch ERIC repository of semantic resources for the ecological domain." ;
@@ -57109,6 +57256,12 @@ bioregistry:pco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/PCO_"^^xsd:string ;
     bioregistry.schema:0000027 pco:0000021 ;
     bioregistry.schema:0000029 "pco" .
+
+orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen",
+        "Tim Vandermeersch" ;
+    foaf:mbox "egon.willighagen@gmail.com",
+        "egon.willighagen@maastrichtuniversity.nl",
+        "tim.vandermeersch@gmail.com" .
 
 orcid:0000-0001-9189-9661 rdfs:label "Yongqun Oliver He",
         "Yongqunh He" ;
@@ -59986,6 +60139,7 @@ bioregistry.registry:ontobee a bioregistry.schema:0000002 ;
         ontobee:BCO,
         ontobee:BFO,
         ontobee:BIDO,
+        ontobee:BMONT,
         ontobee:BSPO,
         ontobee:BTO,
         ontobee:CARO,
@@ -61401,6 +61555,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:BIOLINK,
         aberowl:BIRNLEX,
         aberowl:BKO,
+        aberowl:BMONT,
         aberowl:BSPO,
         aberowl:BTO,
         aberowl:CAO,
@@ -63945,6 +64100,7 @@ bioregistry.registry:miriam a bioregistry.schema:0000002 ;
         miriam:lipidmaps,
         miriam:lrg,
         miriam:lw,
+        miriam:m4i,
         miriam:ma,
         miriam:macie,
         miriam:maggot,
@@ -65313,6 +65469,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bgee.gene,
         bioregistry:bgee.organ,
         bioregistry:bgee.stage,
+        bioregistry:bibframe,
         bioregistry:bibo,
         bioregistry:bido,
         bioregistry:bigg.compartment,
@@ -65365,6 +65522,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bitterdb.rec,
         bioregistry:bko,
         bioregistry:blastrule,
+        bioregistry:bmbf.glossary,
         bioregistry:bmont,
         bioregistry:bmrb,
         bioregistry:bmrb.restraint,
@@ -65487,6 +65645,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cmpo,
         bioregistry:cncb.gwh,
         bioregistry:cnrs,
+        bioregistry:cnt,
         bioregistry:co_320,
         bioregistry:co_321,
         bioregistry:co_322,
@@ -65588,6 +65747,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cvx,
         bioregistry:d1id,
         bioregistry:dailymed,
+        bioregistry:dalia,
         bioregistry:daml.pt,
         bioregistry:dandi,
         bioregistry:darc,
@@ -65710,6 +65870,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:duo,
         bioregistry:dwc,
         bioregistry:eaglei,
+        bioregistry:earl,
         bioregistry:easychair.cfp,
         bioregistry:easychair.topic,
         bioregistry:ebisc,
@@ -65739,6 +65900,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:edam.operation,
         bioregistry:edam.topic,
         bioregistry:edda,
+        bioregistry:educor,
         bioregistry:efo,
         bioregistry:ega.dataset,
         bioregistry:ega.study,
@@ -66237,6 +66399,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:mamo,
         bioregistry:mampol,
         bioregistry:mao,
+        bioregistry:marc21,
         bioregistry:markerdb,
         bioregistry:massbank,
         bioregistry:massive,
@@ -66711,6 +66874,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pso,
         bioregistry:pspub,
         bioregistry:psskb,
+        bioregistry:ptr,
         bioregistry:pubchem.bioassay,
         bioregistry:pubchem.cell,
         bioregistry:pubchem.classification,
@@ -66898,6 +67062,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:spbase,
         bioregistry:spd,
         bioregistry:spdx,
+        bioregistry:spdx.term,
         bioregistry:sphn,
         bioregistry:spike.map,
         bioregistry:splash,

@@ -327,7 +327,7 @@
     "id": "00000035",
     "name": "arXiv",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
+    "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?\\/?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
     "prefix": "arxiv",
     "sampleId": "0807.4956v1",
     "uri_format": "https://arxiv.org/abs/$1"
@@ -5494,6 +5494,18 @@
     "sampleId": "LMPR0102010012",
     "uri_format": "http://www.lipidmaps.org/data/LMSDRecord.php?LMID=$1"
   },
+  "lncbook": {
+    "deprecated": false,
+    "description": "LncBook accommodates a high-quality collection of human lncRNA genes and transcripts, and incorporates their abundant annotations at different omics levels, thereby enabling users to decipher functional signatures of lncRNAs in human diseases and different biological contexts.\n\n",
+    "homepage": "https://ngdc.cncb.ac.cn/?lang=en",
+    "id": "00001109",
+    "name": "LncBook",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^HSALNG\\d{7}$",
+    "prefix": "lncbook",
+    "sampleId": "HSALNG0006197",
+    "uri_format": "https://ngdc.cncb.ac.cn/lncbook/gene?geneid=$1"
+  },
   "lrg": {
     "deprecated": false,
     "description": "A Locus Reference Genomic (LRG) is a manually curated record that contains stable genomic, transcript and protein reference sequences for reporting clinically relevant sequence variants. All LRGs are generated and maintained by the NCBI and EMBL-EBI.",
@@ -8317,7 +8329,7 @@
     "uri_format": "http://prodom.prabi.fr/prodom/current/cgi-bin/request.pl?question=DBEN&query=$1"
   },
   "proglyc": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "ProGlycProt (Prokaryotic Glycoprotein) is a repository of bacterial and archaeal glycoproteins with at least one experimentally validated glycosite (glycosylated residue). Each entry in the database is fully cross-referenced and enriched with available published information about source organism, coding gene, protein, glycosites, glycosylation type, attached glycan, associated oligosaccharyl/glycosyl transferases (OSTs/GTs), supporting references, and applicable additional information.",
     "homepage": "http://www.proglycprot.org/",
     "id": "00000354",
@@ -8584,6 +8596,18 @@
     "prefix": "qtldb",
     "sampleId": "4685",
     "uri_format": "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"
+  },
+  "raid": {
+    "deprecated": false,
+    "description": "RAiD is an identifier and global system, governed by ISO 23527:2022, to uniquely identifiy research projects, collaboratively, collect and publicly share information about them.",
+    "homepage": "https://ardc.edu.au/",
+    "id": "00001107",
+    "name": "Research Activity Identifier",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^102?\\.\\d+\\/.+$",
+    "prefix": "raid",
+    "sampleId": "10.26259/0e59e9a5",
+    "uri_format": "https://raid.org/$1"
   },
   "rapdb.locus": {
     "deprecated": false,

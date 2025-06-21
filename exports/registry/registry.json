@@ -2470,9 +2470,9 @@
     "example": "/53355/cl010066723",
     "homepage": "https://arks.org",
     "keywords": [
-      "centrally registered identifier",
       "data management",
       "data retrieval",
+      "decentralized object registration and resolution",
       "subject agnostic"
     ],
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline",
@@ -3752,7 +3752,7 @@
     "pattern": "^\\d{6}$",
     "preferred_prefix": "bcio",
     "uri_format": "https://w3id.org/BCI-ontology#$1",
-    "version": "2025-05-26"
+    "version": "2025-06-12"
   },
   "bco": {
     "appears_in": [
@@ -4262,6 +4262,27 @@
     ],
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=$1"
   },
+  "bibframe": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Bibframe vocabulary consists of RDF classes and properties used for the description of items cataloged principally by libraries, but may also be used to describe items cataloged by museums and archives. Classes include the three core classes - Work, Instance, and Item - in addition to many more classes to support description. Properties describe characteristics of the resource being described as well as relationships among resources. For example: one Work might be a \"translation of\" another Work; an Instance may be an \"instance of\" a particular Bibframe Work. Other properties describe attributes of Works and Instances. For example: the Bibframe property \"subject\" expresses an important attribute of a Work (what the Work is about), and the property \"extent\" (e.g. number of pages) expresses an attribute of an Instance.",
+    "download_rdf": "https://id.loc.gov/ontologies/bibframe.rdf",
+    "example": "DescriptionLevel",
+    "homepage": "https://id.loc.gov/ontologies/bibframe.html",
+    "license": "CC0-1.0",
+    "name": "Bibliographic Framework Initiative Vocabulary",
+    "preferred_prefix": "bibframe",
+    "rdf_uri_format": "http://id.loc.gov/ontologies/bibframe/$1",
+    "references": [
+      "https://www.loc.gov/bibframe/"
+    ],
+    "repository": "https://github.com/lcnetdev/bibframe-ontology",
+    "uri_format": "http://id.loc.gov/ontologies/bibframe/$1"
+  },
   "bibo": {
     "contact": {
       "email": "fred@fgiasson.com",
@@ -4486,7 +4507,7 @@
       "orcid": "0000-0002-3375-1738"
     },
     "description": "BindingDB is the first public database of protein-small molecule affinity data.",
-    "example": "e999",
+    "example": "999",
     "homepage": "https://www.bindingdb.org",
     "keywords": [
       "chemistry",
@@ -4508,7 +4529,7 @@
       "uniprot": "DB-0127"
     },
     "name": "BindingDB",
-    "pattern": "^\\w\\d+$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "bindingdb",
     "providers": [
       {
@@ -4541,7 +4562,7 @@
         "year": 2006
       }
     ],
-    "uri_format": "http://www.bindingdb.org/compact/$1"
+    "uri_format": "http://www.bindingdb.org/rwd/entry/$1"
   },
   "biocarta.pathway": {
     "description": "BioCarta is a supplier and distributor of characterized reagents and assays for biopharmaceutical and academic research. It catalogs community produced online maps depicting molecular relationships from areas of active research, generating classical pathways as well as suggestions for new pathways. This collections references pathway maps.",
@@ -6000,6 +6021,20 @@
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/genome/annotation_prok/evidence/$1"
   },
+  "bmbf.glossary": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A german-language glossary provides you with definitions of the terms used in the portal in the fields of education, science, research and innovation and is updated regularly.",
+    "example": "G1",
+    "homepage": "https://www.datenportal.bmbf.de/portal/de/glossary.html",
+    "name": "German Federal Ministry of Education and Research Glossary",
+    "preferred_prefix": "bmbf.glossary",
+    "uri_format": "https://www.datenportal.bmbf.de/portal/de/$1.html"
+  },
   "bmont": {
     "contact": {
       "email": "alpha.tom.kodamullil@scai.fraunhofer.de",
@@ -6008,6 +6043,7 @@
       "orcid": "0000-0001-9896-3531"
     },
     "description": "An application ontology that represents comprehensive knowledge involving a variety of fields of medical and biological aspects.",
+    "download_owl": "http://aber-owl.net/media/ontologies/BMONT/1/bmont.owl",
     "example": "0000006",
     "homepage": "https://github.com/SCAI-BIO/BiomarkerOntology",
     "keywords": [
@@ -6016,7 +6052,9 @@
     ],
     "license": "CC-BY-4.0",
     "mappings": {
-      "obofoundry": "bmont"
+      "aberowl": "BMONT",
+      "obofoundry": "bmont",
+      "ontobee": "BMONT"
     },
     "name": "Biomarker Ontology",
     "preferred_prefix": "BMONT",
@@ -7763,7 +7801,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
     "repository": "https://github.com/CompositionalDietaryNutritionOntology/cdno",
     "uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
-    "version": "2024-11-12"
+    "version": "2025-06-09"
   },
   "cdpd": {
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
@@ -10374,7 +10412,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.244"
+    "version": "2.245"
   },
   "cmpo": {
     "contact": {
@@ -10476,6 +10514,22 @@
     "pattern": "^(UMR|UMS|UMI|UPR|URA|USR|GDR|EA|FR|SNC|ERL|FRC|FRE|IFR|MOY|UPS)\\d+$",
     "preferred_prefix": "cnrs",
     "uri_format": "https://web-ast.dsi.cnrs.fr/l3c/owa/structure.infos_admin?&p_lab=$1&p_origine_appel=u"
+  },
+  "cnt": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This vocabulary is intended to provide a flexible framework within different usage scenarios to semantically represent any type of content, be it on the Web or in local storage media. For example, it can be used by web quality assurance tools such as web accessibility evaluation tools to record a representation of the assessed web content, including text, images, or other types of formats. In many cases, it can be used together with HTTP Vocabulary in RDF 1.0, which allows quality assurance tools to record the HTTP headers that have been exchanged between a client and a server. This is particularly useful for quality assurance testing, conformance claims, and reporting languages like the W3C Evaluation And Report Language (EARL). [from homepage]",
+    "example": "Content",
+    "homepage": "https://www.w3.org/TR/Pointers-in-RDF/#ref-content",
+    "name": "Representing Content in RDF",
+    "preferred_prefix": "cnt",
+    "rdf_uri_format": "http://www.w3.org/2011/content#$1",
+    "uri_format": "http://www.w3.org/2011/content#$1",
+    "version": "2011"
   },
   "co_320": {
     "contact": {
@@ -12616,7 +12670,7 @@
     "mappings": {
       "fairsharing": "FAIRsharing.fe4816"
     },
-    "name": "CASRAI Contributor Roles Taxonomy",
+    "name": "Contributor Roles Taxonomy",
     "pattern": "^(conceptualization|data-curation|formal-analysis|funding-acquisition|investigation|methodology|project-administration|resources|software|supervision|validation|visualization|writing-original-draft|writing-review-editing)$",
     "preferred_prefix": "credit",
     "publications": [
@@ -13397,6 +13451,30 @@
       }
     ],
     "uri_format": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=$1"
+  },
+  "dalia": {
+    "contact": {
+      "email": "abdelmoneim.desouki@tu-darmstadt.de",
+      "github": "abdoudesouki",
+      "name": "Abdelmoneim Amer Desouki",
+      "orcid": "0000-0003-2083-1277"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The aim of DALIA project is to build a platform for learning material for Research Data Management (RDM) and Data Science. The platform is based on a knowledge graph. We introduce MoDalia, the base ontology of DALIA knowledge graph. Modalia inherits some modules from EduCOR. It includes also modelling of micro -credentials and certificates",
+    "download_rdf": "https://dalia.pages.rwth-aachen.de/dalia-ontology/ontology.ttl",
+    "example": "belongsToCluster",
+    "homepage": "https://dalia.pages.rwth-aachen.de/dalia-ontology/",
+    "license": "CC-BY-4.0",
+    "name": "MoDALIA Ontology",
+    "preferred_prefix": "dalia",
+    "rdf_uri_format": "https://purl.org/ontology/modalia#$1",
+    "repository": "https://git.rwth-aachen.de/dalia/dalia-ontology",
+    "uri_format": "https://purl.org/ontology/modalia#$1"
   },
   "daml.pt": {
     "contributor": {
@@ -14314,7 +14392,7 @@
       "drugs",
       "relationships"
     ],
-    "license": "CC-BY-NC-SA-4.0",
+    "license": "CC BY-NC-SA 4.0",
     "name": "Curated Drug-Drug Interactions Database - Drug",
     "pattern": "^DDInter\\d+$",
     "preferred_prefix": "ddinter.drug",
@@ -14348,7 +14426,7 @@
       "drugs",
       "relationships"
     ],
-    "license": "CC-BY-NC-SA-4.0",
+    "license": "CC BY-NC-SA 4.0",
     "name": "Curated Drug-Drug Interactions Database - Interaction",
     "pattern": "^\\d+$",
     "preferred_prefix": "ddinter.interaction",
@@ -17387,6 +17465,21 @@
     "preferred_prefix": "eaglei",
     "uri_format": "http://hawaii.eagle-i.net/i/$1"
   },
+  "earl": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": " EARL is a vocabulary, the terms of which are defined across a set of specifications and technical notes, and that is used to describe test results. The primary motivation for developing this vocabulary is to facilitate the exchange of test results between Web accessibility evaluation tools in a vendor-neutral and platform-independent format. It also provides reusable terms for generic quality assurance and validation purposes. [from homepage]",
+    "example": "Assertion",
+    "homepage": "https://www.w3.org/TR/EARL10/",
+    "name": "Evaluation and Report Language",
+    "preferred_prefix": "earl",
+    "rdf_uri_format": "http://www.w3.org/ns/earl#$1",
+    "uri_format": "http://www.w3.org/ns/earl#$1"
+  },
   "easychair.cfp": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -18457,6 +18550,36 @@
     "name": "EDDA Study Designs Taxonomy",
     "preferred_prefix": "edda",
     "uri_format": "http://ontologies.dbmi.pitt.edu/edda/StudyDesigns.owl#$1"
+  },
+  "educor": {
+    "contact": {
+      "email": "ilkou@l3s.de",
+      "github": "eilkou",
+      "name": "Eleni Ilkou",
+      "orcid": "0000-0002-4847-6177"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An educational ontology for personalised recommendation learning systems that is based on learning path and user profile. It represents the key components for a personalised learning system based on our requirement analysis.",
+    "download_rdf": "https://github.com/tibonto/educor/raw/refs/heads/main/educor.ttl",
+    "example": "stri",
+    "homepage": "http://ontology.tib.eu/educor/",
+    "license": "CC0-1.0",
+    "name": "An Educational and Career-Oriented Recommendation Ontology",
+    "preferred_prefix": "educor",
+    "publications": [
+      {
+        "doi": "10.1007/978-3-030-88361-4_32",
+        "title": "EduCOR: An Educational and Career-Oriented Recommendation Ontology",
+        "year": 2021
+      }
+    ],
+    "repository": "https://github.com/tibonto/educor",
+    "uri_format": "https://github.com/tibonto/educor#$1"
   },
   "efo": {
     "contact": {
@@ -21712,7 +21835,6 @@
       "assay",
       "biomedical science",
       "experiment",
-      "image",
       "imaging",
       "life science",
       "obo",
@@ -23131,7 +23253,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FOODON_$1",
     "repository": "https://github.com/FoodOntology/foodon",
     "uri_format": "http://purl.obolibrary.org/obo/FOODON_$1",
-    "version": "2025-02-01"
+    "version": "2025-06-07"
   },
   "fossilworks.journal": {
     "contributor": {
@@ -23718,6 +23840,7 @@
       "name": "Birgit Kersten",
       "orcid": "0000-0001-9900-9133"
     },
+    "deprecated": true,
     "description": "GabiPD (Genome Analysis of Plant Biological Systems Primary Database) constitutes a repository for a wide array of heterogeneous data from high-throughput experiments in several plant species. These data (i.e. genomics, transcriptomics, proteomics and metabolomics), originating from different model or crop species, can be accessed through a central gene 'Green Card'.",
     "example": "2679240",
     "homepage": "http://www.gabipd.org/",
@@ -27119,6 +27242,7 @@
     "uri_format": "http://www.bootstrep.eu/ontology/GRO#$1"
   },
   "grsdb": {
+    "deprecated": true,
     "description": "GRSDB is a database of G-quadruplexes and contains information on composition and distribution of putative Quadruplex-forming G-Rich Sequences (QGRS) mapped in the eukaryotic pre-mRNA sequences, including those that are alternatively processed (alternatively spliced or alternatively polyadenylated). The data stored in the GRSDB is based on computational analysis of NCBI Entrez Gene entries and their corresponding annotated genomic nucleotide sequences of RefSeq/GenBank.",
     "example": "10142",
     "homepage": "http://bioinformatics.ramapo.edu/GRSDB2/",
@@ -29533,6 +29657,7 @@
     "uri_format": "http://www.humanproteomemap.org/spectrum.php?pep_id=$1"
   },
   "hpm.protein": {
+    "deprecated": true,
     "description": "The Human Proteome Map (HPM) portal integrates the peptide sequencing result from the draft map of the human proteome project. The project was based on LC-MS/MS by utilizing of high resolution and high accuracy Fourier transform mass spectrometry. The HPM contains direct evidence of translation of a number of protein products derived from human genes, based on peptide identifications of multiple organs/tissues and cell types from individuals with clinically defined healthy tissues. The HPM portal provides data on individual proteins, as well as on individual peptide spectra. This collection references proteins.",
     "example": "1968",
     "homepage": "http://www.humanproteomemap.org/index.php",
@@ -36493,6 +36618,7 @@
       "bartoc": "20402",
       "fairsharing": "FAIRsharing.f8b3ec",
       "lov": "m4i",
+      "miriam": "m4i",
       "wikidata": "Q111516803",
       "zazuko": "m4i"
     },
@@ -36841,6 +36967,22 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MAO_$1",
     "uri_format": "http://purl.obolibrary.org/obo/MAO_$1"
+  },
+  "marc21": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "MARC List for Languages provides three-character lowercase alphabetic strings that serve as the identifiers of languages and language groups. The codes are usually based on the first three letters of the English form or, in some cases, vernacular form of the corresponding language name. The codes are varied where necessary to resolve conflicts and are not intended to be abbreviations of a language name. When the name of a language is changed in the list, the original code is generally retained. The codes in this list are equivalent to those of ISO 639-2 (Bibliographic) codes and some codes from ISO 639-5, although the language name labels may differ. They are linked to the equivalent codes in ISO 639-2 and ISO 639-5 and the corresponding two-character codes in ISO 639-1. The list contains over 480 discrete codes. It is also searchable at: MARC Code List for Languages.",
+    "download_rdf": "https://id.loc.gov/vocabulary/languages.skos.rdf",
+    "example": "amh",
+    "homepage": "https://id.loc.gov/vocabulary/languages.html",
+    "name": "Machine-readable Cataloging (MARC) List for Languages",
+    "preferred_prefix": "marc21",
+    "rdf_uri_format": "http://id.loc.gov/vocabulary/languages/$1",
+    "uri_format": "https://id.loc.gov/vocabulary/languages/$1"
   },
   "markerdb": {
     "contact": {
@@ -37518,6 +37660,12 @@
     "uri_format": "http://bioportal.bioontology.org/ontologies/MEDDRA?p=classes&conceptid=$1"
   },
   "medgen": {
+    "contact": {
+      "email": "megan.kane@nih.gov",
+      "github": "kanems",
+      "name": "Megan S. Kane",
+      "orcid": "0000-0001-5493-2602"
+    },
     "contributor_extras": [
       {
         "email": "nicolas.matentzoglu@gmail.com",
@@ -37551,6 +37699,9 @@
     "preferred_prefix": "medgen",
     "references": [
       "https://github.com/biopragmatics/bioregistry/pull/1567"
+    ],
+    "synonyms": [
+      "medgen.uid"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/medgen/$1"
   },
@@ -40348,7 +40499,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.151"
+    "version": "2.152"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -40650,11 +40801,13 @@
     "example": "01467",
     "homepage": "http://www.psidev.info/MOD",
     "keywords": [
+      "chemical biology",
       "enzymatic reaction",
       "life science",
       "molecule",
       "obo",
       "ontology",
+      "post-translational protein modification",
       "protein",
       "proteomics",
       "structure"
@@ -42755,13 +42908,14 @@
     },
     "description": "Genetic code, mitochontrial genetic code, and other linked information to NCBI taxonomy entries.",
     "example": "11",
-    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
+    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes",
     "license": "public domain",
-    "name": "Genetic Code",
+    "name": "NCBI Genetic Code",
     "pattern": "^\\d+$",
     "preferred_prefix": "ncbi.gc",
     "references": [
-      "https://github.com/obophenotype/ncbitaxon/issues/47"
+      "https://github.com/obophenotype/ncbitaxon/issues/47",
+      "https://www.ncbi.nlm.nih.gov/home/about/policies"
     ],
     "synonyms": [
       "gc",
@@ -52586,7 +52740,6 @@
     "keywords": [
       "bibliography",
       "centrally registered identifier",
-      "publication",
       "subject agnostic"
     ],
     "mappings": {
@@ -54477,6 +54630,26 @@
     },
     "uri_format": "https://psskb.org/motif/card/$1"
   },
+  "ptr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This specification contains a framework for representing pointers - entities that permit identifying a portion or segment of a piece of content - making use of the Resource Description Framework (RDF). It also describes a number of specific types of pointers that permit portions of a document to be referred to in different ways. When referring to a specific part of, say, a piece of web content, it is useful to be able to have a consistent manner by which to refer to a particular segment of a web document, to have a variety of ways by which to refer to that same segment, and to make the reference robust in the face of changes to that document. This specification is part of the Evaluation And Report Language (EARL) but can be reused in other contexts too. [from homepage]",
+    "download_rdf": "https://www.w3.org/2009/pointers",
+    "example": "Pointer",
+    "homepage": "https://www.w3.org/TR/Pointers-in-RDF/",
+    "name": "Pointer Methods in RDF",
+    "preferred_prefix": "ptr",
+    "rdf_uri_format": "https://www.w3.org/2009/pointers#$1",
+    "references": [
+      "https://www.w3.org/blog/2009/pointer-methods-in-rdf-first-draft/"
+    ],
+    "uri_format": "https://www.w3.org/2009/pointers#$1",
+    "version": "2009"
+  },
   "pubchem.bioassay": {
     "contact": {
       "email": "pruitt@ncbi.nlm.nih.gov",
@@ -54805,7 +54978,6 @@
     "keywords": [
       "bibliography",
       "citation",
-      "publication",
       "subject agnostic"
     ],
     "mappings": {
@@ -55421,7 +55593,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
     "repository": "https://github.com/Radiobiology-Informatics-Consortium/RBO",
     "uri_format": "http://purl.obolibrary.org/obo/RBO_$1",
-    "version": "2025-03-20"
+    "version": "2025-05-30"
   },
   "rcb": {
     "contact": {
@@ -61016,7 +61188,8 @@
     "contact": {
       "email": "tim.vandermeersch@gmail.com",
       "github": "timvdm",
-      "name": "Tim Vandermeersch"
+      "name": "Tim Vandermeersch",
+      "orcid": "0000-0001-7542-0286"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -61035,6 +61208,7 @@
     "example": "CC2(C)C\\1CCC(C)/C=C/12",
     "homepage": "https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html",
     "keywords": [
+      "bioinformatics",
       "chemistry",
       "data analysis",
       "life science",
@@ -61813,15 +61987,42 @@
   "spdx": {
     "description": "The SPDX License List is a list of commonly found licenses and exceptions used in free and open source and other collaborative software or documentation. The purpose of the SPDX License List is to enable easy and efficient identification of such licenses and exceptions in an SPDX document, in source files or elsewhere. The SPDX License List includes a standardized short identifier, full name, vetted license text including matching guidelines markup as appropriate, and a canonical permanent URL for each license and exception.",
     "example": "CC-BY-1.0",
+    "example_extras": [
+      "GPL-1.0+"
+    ],
     "homepage": "https://spdx.org/licenses",
     "mappings": {
       "miriam": "spdx",
       "n2t": "spdx"
     },
     "name": "Software Package Data Exchange License",
-    "pattern": "^[0-9A-Za-z\\-.]+$",
+    "pattern": "^[0-9A-Za-z\\-.\\+]+$",
     "preferred_prefix": "spdx",
+    "repository": "https://github.com/spdx/license-list-data",
+    "synonyms": [
+      "spdx.license",
+      "spdx.licenses"
+    ],
     "uri_format": "https://spdx.org/licenses/$1"
+  },
+  "spdx.term": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A dictionary of named properties and classes for Software Package Data Exchange (SPDX) - an open standard for communicating software bill of material information, including components, licenses, copyrights, and security references. SPDX reduces redundant work by providing a common format for companies and communities to share important data, thereby streamlining and improving compliance. [from homepage]",
+    "example": "annotation",
+    "github_request_issue": 1598,
+    "homepage": "https://spdx.org/rdf/terms/",
+    "name": "Software Package Data Exchange RDF Vocabulary",
+    "preferred_prefix": "spdx.term",
+    "rdf_uri_format": "http://spdx.org/rdf/terms#$1",
+    "synonyms": [
+      "spdx.terms"
+    ],
+    "uri_format": "http://spdx.org/rdf/terms#$1"
   },
   "sphn": {
     "contact": {
@@ -69894,7 +70095,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.202"
+    "version": "4.203"
   },
   "xenbase": {
     "contact": {
