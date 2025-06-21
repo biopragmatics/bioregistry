@@ -89,7 +89,8 @@ def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
     """Query Wikidata's sparql service.
 
     :param sparql: A SPARQL query string
-    :return: A list of bindings
+
+    :returns: A list of bindings
     """
     logger.debug("running query: %s", sparql)
     headers = {

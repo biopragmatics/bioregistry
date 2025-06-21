@@ -210,6 +210,14 @@ class Manager:
 
         self._converter = None
 
+    def add_resource(self, resource: Resource) -> None:
+        """Add a custom resource to the manager."""
+        self.synonyms[resource.prefix] = resource.prefix
+        self.registry[resource.prefix] = resource
+        if self._converter is not None and (uri_prefix := resource.get_uri_prefix()):
+            self._converter.add_prefix(resource.prefix, uri_prefix)
+            # TODO what about synonyms
+
     @property
     def converter(self) -> curies.Converter:
         """Get the default converter."""
@@ -302,18 +310,30 @@ class Manager:
             norm_prefix = self.registry[norm_prefix].get_preferred_prefix() or norm_prefix
         return norm_prefix
 
-    def get_resource(self, prefix: str) -> Resource | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resource(self, prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_resource(self, prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+
+    def get_resource(self, prefix: str, *, strict: bool = False) -> Resource | None:
         """Get the Bioregistry entry for the given prefix.
 
         :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
             before lookup in the Bioregistry
+        :param strict: If true, requires the prefix to be valid or raise an exveption
         :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
             other registries when available.
         """
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
             return None
-        return self.registry.get(norm_prefix)
+        rv = self.registry.get(norm_prefix)
+        if rv is None and strict:
+            raise ValueError
+        return rv
 
     # docstr-coverage:excused `overload`
     @overload

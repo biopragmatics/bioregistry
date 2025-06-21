@@ -163,12 +163,13 @@ class Aligner:
     def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
-        The default implementation returns `external_entry` unchanged.
-        If you need more than that, override this method.
+        The default implementation returns `external_entry` unchanged. If you need more
+        than that, override this method.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
-        :return: The dictionary to be added to the bioregistry for the aligned entry
+
+        :returns: The dictionary to be added to the bioregistry for the aligned entry
         """
         return external_entry
 
@@ -216,14 +217,19 @@ class Aligner:
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
-        :return: A sequence of cells to add to the curation table.
+
+        :returns: A sequence of cells to add to the curation table.
+
         :raises TypeError: If an invalid value is encountered
 
-        The default implementation of this function iterates over all of the keys
-        in the class variable :data:`curation_header` and looks inside each record
-        for those in order.
+        The default implementation of this function iterates over all of the keys in the
+        class variable :data:`curation_header` and looks inside each record for those in
+        order.
 
-        .. note:: You don't need to pass the external ID. this will automatically be the first element.
+        .. note::
+
+            You don't need to pass the external ID. this will automatically be the first
+            element.
         """
         rv = []
         for k in self.curation_header:

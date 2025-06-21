@@ -14,6 +14,7 @@ from .resource_manager import MetaresourceAnnotatedValue, manager
 from .schema import Attributable, Resource
 
 __all__ = [
+    "add_resource",
     "count_mappings",
     "get_appears_in",
     "get_banana",
@@ -883,3 +884,13 @@ def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
 def get_converter(**kwargs: Any) -> curies.Converter:
     """Get a converter from this manager."""
     return manager.get_converter(**kwargs)
+
+
+def get_default_converter() -> curies.Converter:
+    """Get a converter from this manager."""
+    return manager.converter
+
+
+def add_resource(resource: Resource) -> None:
+    """Add a resource."""
+    manager.add_resource(resource)

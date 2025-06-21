@@ -135,10 +135,13 @@ def get_app(
     """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
-    :param config: Additional configuration to be passed to the flask application. See below.
+    :param config: Additional configuration to be passed to the flask application. See
+        below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
+
     :returns: An instantiated WSGI application
+
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)

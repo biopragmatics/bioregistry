@@ -97,7 +97,8 @@ class TestSPARQL(unittest.TestCase):
 
         How to run blazegraph locally:
 
-        1. Get: https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_2_1_6_RC/blazegraph.jar
+        1. Get:
+           https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_2_1_6_RC/blazegraph.jar
         2. Run: java -jar blazegraph.jar
         """
         for mimetype in HANDLERS:

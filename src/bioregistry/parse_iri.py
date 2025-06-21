@@ -34,10 +34,10 @@ def curie_from_iri(
     """Generate a CURIE from an IRI via :meth:`Manager.compress`.
 
     :param iri: A valid IRI
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :return: A CURIE string, if the IRI can be parsed.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
+
+    :returns: A CURIE string, if the IRI can be parsed.
     """
     rv = parse_iri(
         iri, use_preferred=use_preferred, on_failure_return_type=FailureReturnType.single
@@ -76,11 +76,12 @@ def parse_iri(
     """Parse a compact identifier from an IRI that wraps :meth:`Manager.parse_uri`.
 
     :param iri: A valid IRI
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
+    :param use_preferred: If set to true, uses the "preferred prefix", if available,
+        instead of the canonicalized Bioregistry prefix.
     :param on_failure_return_type: whether to return a single None or a pair of None's
-    :return: A pair of prefix/identifier, if can be parsed
+
+    :returns: A pair of prefix/identifier, if can be parsed
+
     :raises TypeError: if an invalid on_failure_return_type is given
     """
     rv = get_default_converter().parse_uri(iri, return_none=True)

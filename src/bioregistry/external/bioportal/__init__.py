@@ -1,6 +1,7 @@
 """Download the NCBO BioPortal registry.
 
-Get an API key by logging up, signing in, and navigating to https://bioportal.bioontology.org/account.
+Get an API key by logging up, signing in, and navigating to
+https://bioportal.bioontology.org/account.
 """
 
 import json
@@ -51,6 +52,7 @@ class OntoPortalClient:
 
         :param url: URL to query
         :param params: Kwargs to give as params to :func:`requests.get`
+
         :returns: The response from :func:`requests.get`
 
         The rate limit is 15 queries per second. See:

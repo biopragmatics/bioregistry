@@ -70,6 +70,7 @@ def add_resource(resource: Resource) -> None:
     """Add a resource to the registry.
 
     :param resource: A resource object to write
+
     :raises KeyError: if the prefix is already present in the registry
     """
     registry = dict(read_registry())
