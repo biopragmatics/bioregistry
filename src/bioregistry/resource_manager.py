@@ -243,12 +243,13 @@ class Manager:
     def get_registry_name(
         self, metaprefix: str, *, strict: Literal[False] = False
     ) -> str | None: ...
+
     def get_registry_name(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry name."""
         registry = self.get_registry(metaprefix)
         if registry is None:
             if strict:
-                raise ValueError
+                raise ValueError(f"could not look up metaregistry: {metaprefix}")
             return None
         return registry.name
 
@@ -268,6 +269,7 @@ class Manager:
     def get_registry_homepage(
         self, metaprefix: str, *, strict: Literal[False] = False
     ) -> str | None: ...
+
     def get_registry_homepage(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry homepage."""
         registry = self.get_registry(metaprefix)
