@@ -197,6 +197,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 desc = bioregistry.get_description(prefix)
                 self.assertIsNotNone(desc)
+                self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
 
     def test_has_homepage(self):
