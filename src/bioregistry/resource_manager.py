@@ -234,10 +234,21 @@ class Manager:
         """Get the metaregistry entry for the given prefix."""
         return self.metaregistry.get(metaprefix)
 
-    def get_registry_name(self, metaprefix: str) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_name(self, metaprefix: str, *, strict: Literal[True] = True) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_name(
+        self, metaprefix: str, *, strict: Literal[False] = False
+    ) -> str | None: ...
+    def get_registry_name(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry name."""
         registry = self.get_registry(metaprefix)
         if registry is None:
+            if strict:
+                raise ValueError
             return None
         return registry.name
 
@@ -248,10 +259,21 @@ class Manager:
             return None
         return registry.get_short_name()
 
-    def get_registry_homepage(self, metaprefix: str) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_homepage(self, metaprefix: str, *, strict: Literal[True] = True) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_registry_homepage(
+        self, metaprefix: str, *, strict: Literal[False] = False
+    ) -> str | None: ...
+    def get_registry_homepage(self, metaprefix: str, *, strict: bool = False) -> str | None:
         """Get the registry homepage."""
         registry = self.get_registry(metaprefix)
         if registry is None:
+            if strict:
+                raise ValueError
             return None
         return registry.homepage
 
@@ -794,20 +816,36 @@ class Manager:
 
     # docstr-coverage:excused `overload`
     @overload
-    def get_name(self, prefix: str, *, provenance: Literal[False] = False) -> str | None: ...
+    def get_name(
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
+    ) -> str: ...
 
     # docstr-coverage:excused `overload`
     @overload
     def get_name(
-        self, prefix: str, *, provenance: Literal[True] = True
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
+    ) -> MetaresourceAnnotatedValue[str]: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self, prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
+    ) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_name(
+        self, prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
     ) -> MetaresourceAnnotatedValue[str] | None: ...
 
     def get_name(
-        self, prefix: str, *, provenance: bool = False
+        self, prefix: str, *, provenance: bool = False, strict: bool = False
     ) -> str | MetaresourceAnnotatedValue[str] | None:
         """Get the name for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
+            if strict:
+                raise ValueError
             return None
         if provenance:
             _tmp = entry.get_name(provenance=True)
@@ -844,10 +882,20 @@ class Manager:
             return None
         return entry.get_description(use_markdown=use_markdown)
 
-    def get_homepage(self, prefix: str) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_homepage(self, prefix: str, *, strict: Literal[True] = True) -> str: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_homepage(self, prefix: str, *, strict: Literal[False] = False) -> str | None: ...
+
+    def get_homepage(self, prefix: str, *, strict: bool = False) -> str | None:
         """Get the description for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
+            if strict:
+                raise ValueError
             return None
         return entry.get_homepage()
 

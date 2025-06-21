@@ -68,36 +68,70 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 
-def get_resource(prefix: str) -> Resource | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_resource(prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_resource(prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+
+
+def get_resource(prefix: str, *, strict: bool = False) -> Resource | None:
     """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
         before lookup in the Bioregistry
+    :param strict: If true, requires the prefix to be valid or raise an exveption
     :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
         other registries when available.
     """
-    return manager.get_resource(prefix)
-
-
-# docstr-coverage:excused `overload`
-@overload
-def get_name(prefix: str, *, provenance: Literal[False] = False) -> None | str: ...
+    if strict:
+        return manager.get_resource(prefix, strict=True)
+    return manager.get_resource(prefix, strict=False)
 
 
 # docstr-coverage:excused `overload`
 @overload
 def get_name(
-    prefix: str, *, provenance: Literal[True] = True
+    prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
+) -> MetaresourceAnnotatedValue[str]: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
+) -> None | str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
 ) -> None | MetaresourceAnnotatedValue[str]: ...
 
 
 def get_name(
-    prefix: str, *, provenance: bool = False
+    prefix: str, *, provenance: bool = False, strict: bool = False
 ) -> str | MetaresourceAnnotatedValue[str] | None:
     """Get the name for the given prefix, if it's available."""
     if provenance:
-        return manager.get_name(prefix, provenance=True)
-    return manager.get_name(prefix, provenance=False)
+        if strict:
+            return manager.get_name(prefix, provenance=True, strict=True)
+        else:
+            return manager.get_name(prefix, provenance=True, strict=False)
+    if strict:
+        return manager.get_name(prefix, provenance=False, strict=True)
+    return manager.get_name(prefix, provenance=False, strict=False)
 
 
 def get_description(prefix: str, *, use_markdown: bool = False) -> str | None:
