@@ -611,6 +611,22 @@
     "twitter": "Addgene",
     "uri_format": "http://addgene.org/$1"
   },
+  "addicto": {
+    "description": "The Addiction Ontology (AddictO) is an ontology being developed all aspects of addiction research.",
+    "download_owl": "http://addictovocab.org/addicto.owl/2025-03-17",
+    "example": "0000447",
+    "homepage": "https://addictovocab.org",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "ols": "addicto"
+    },
+    "name": "Addiction Ontology",
+    "preferred_prefix": "addicto",
+    "uri_format": "http://addictovocab.org/ADDICTO_$1",
+    "version": "2025-03-17"
+  },
   "adms": {
     "contact": {
       "email": "bert.van.nuffelen@tenforce.com",
@@ -923,7 +939,7 @@
     "name": "Allotrope Merged Ontology Suite",
     "no_own_terms": true,
     "preferred_prefix": "afo",
-    "version": "2025/03"
+    "version": "2025-03-01"
   },
   "afpo": {
     "contact": {
@@ -947,13 +963,15 @@
       "aberowl": "AFPO",
       "bioportal": "AFPO",
       "obofoundry": "afpo",
+      "ols": "afpo",
       "ontobee": "AfPO"
     },
     "name": "African Population Ontology",
     "preferred_prefix": "AfPO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/AfPO_$1",
     "repository": "https://github.com/h3abionet/afpo",
-    "uri_format": "http://purl.obolibrary.org/obo/AfPO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/AfPO_$1",
+    "version": "2024-03-21"
   },
   "aftol.category": {
     "contact": {
@@ -1355,10 +1373,8 @@
     "keywords": [
       "artificial intelligence",
       "computational biology",
-      "hidden markov model",
       "knowledge representation",
       "machine learning",
-      "model",
       "natural language processing",
       "ontology"
     ],
@@ -1760,6 +1776,25 @@
     "repository": "https://github.com/EBISPOT/amphx_ontology",
     "uri_format": "http://purl.obolibrary.org/obo/AMPHX_$1",
     "version": "2020-12-18"
+  },
+  "ans.educationlevel": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This vocabulary defines education levels for pre-kindergarten through grade 12 for the United States. It also defines general categories for post-secondary education (vocational, professional and life-long learning).",
+    "example": "Pre-K",
+    "example_extras": [
+      "1",
+      "2",
+      "K"
+    ],
+    "homepage": "http://purl.org/ASN/scheme/ASNEducationLevel/",
+    "name": "U.S. Education Level Vocabulary",
+    "preferred_prefix": "ans.educationlevel",
+    "uri_format": "http://purl.org/ASN/scheme/ASNEducationLevel/$1"
   },
   "antibodyregistry": {
     "contributor_extras": [
@@ -2202,7 +2237,7 @@
     "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
     "twitter": "yeastgenome",
     "uri_format": "http://purl.obolibrary.org/obo/APO_$1",
-    "version": "2025-03-25"
+    "version": "2025-06-17"
   },
   "apollosv": {
     "appears_in": [
@@ -2477,6 +2512,7 @@
     ],
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaThDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c69281eac0647c6b7a664f0932bee0d5fd27781d/gold_boat_arka.png?disposition=inline",
     "mappings": {
+      "bartoc": "20715",
       "biocontext": "ARK",
       "fairsharing": "FAIRsharing.f928f1",
       "miriam": "ark",
@@ -2736,7 +2772,7 @@
       "wikidata": "P818"
     },
     "name": "arXiv",
-    "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
+    "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?\\/?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
     "preferred_prefix": "arxiv",
     "providers": [
       {
@@ -3752,7 +3788,7 @@
     "pattern": "^\\d{6}$",
     "preferred_prefix": "bcio",
     "uri_format": "https://w3id.org/BCI-ontology#$1",
-    "version": "2025-06-12"
+    "version": "2025-06-13"
   },
   "bco": {
     "appears_in": [
@@ -4263,6 +4299,10 @@
     "uri_format": "http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=$1"
   },
   "bibframe": {
+    "contact": {
+      "email": "khes@loc.gov",
+      "name": "Kirk Hess"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -4270,10 +4310,20 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The Bibframe vocabulary consists of RDF classes and properties used for the description of items cataloged principally by libraries, but may also be used to describe items cataloged by museums and archives. Classes include the three core classes - Work, Instance, and Item - in addition to many more classes to support description. Properties describe characteristics of the resource being described as well as relationships among resources. For example: one Work might be a \"translation of\" another Work; an Instance may be an \"instance of\" a particular Bibframe Work. Other properties describe attributes of Works and Instances. For example: the Bibframe property \"subject\" expresses an important attribute of a Work (what the Work is about), and the property \"extent\" (e.g. number of pages) expresses an attribute of an Instance.",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIBFRAME/3/bibframe.owl",
     "download_rdf": "https://id.loc.gov/ontologies/bibframe.rdf",
     "example": "DescriptionLevel",
     "homepage": "https://id.loc.gov/ontologies/bibframe.html",
+    "keywords": [
+      "ontology",
+      "subject agnostic"
+    ],
     "license": "CC0-1.0",
+    "mappings": {
+      "aberowl": "BIBFRAME",
+      "bioportal": "BIBFRAME",
+      "fairsharing": "FAIRsharing.xj5egt"
+    },
     "name": "Bibliographic Framework Initiative Vocabulary",
     "preferred_prefix": "bibframe",
     "rdf_uri_format": "http://id.loc.gov/ontologies/bibframe/$1",
@@ -4327,9 +4377,6 @@
     "example": "CategorialBibliometricData",
     "homepage": "http://www.sparontologies.net/ontologies/bido",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -4961,6 +5008,7 @@
     },
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
     "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/70/biolink.owl",
+    "download_rdf": "https://w3id.org/biolink/biolink-model.owl.ttl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "keywords": [
@@ -4976,7 +5024,8 @@
       "biolink": "biolink",
       "bioportal": "BIOLINK",
       "fairsharing": "FAIRsharing.ad9d85",
-      "miriam": "biolink"
+      "miriam": "biolink",
+      "ols": "biolink"
     },
     "name": "Biolink Model",
     "pattern": "^\\S+$",
@@ -5097,8 +5146,6 @@
       "algorithm",
       "bioinformatics",
       "computer science",
-      "kinetic model",
-      "model",
       "obo",
       "ontology"
     ],
@@ -5166,7 +5213,6 @@
     "example": "0000066",
     "homepage": "http://teddyontology.sourceforge.net/",
     "keywords": [
-      "model",
       "neurophysiology",
       "ontology",
       "synthetic biology",
@@ -5902,9 +5948,6 @@
     "example": "BibliographicRecord",
     "homepage": "http://www.sparontologies.net/ontologies/biro",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "spar",
       "subject agnostic"
     ],
@@ -6053,6 +6096,7 @@
     "license": "CC-BY-4.0",
     "mappings": {
       "aberowl": "BMONT",
+      "bioportal": "BMONT",
       "obofoundry": "bmont",
       "ontobee": "BMONT"
     },
@@ -6691,9 +6735,6 @@
     "example": "InTextReferencePointer",
     "homepage": "http://www.sparontologies.net/ontologies/c4o",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "spar",
       "subject agnostic"
     ],
@@ -6891,7 +6932,7 @@
       "ontology",
       "orthologous",
       "phylogenetics",
-      "polypeptide_region",
+      "polypeptide region",
       "protein",
       "transcript",
       "transport and kinetic data"
@@ -7842,6 +7883,21 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "cdt"
   },
+  "ceds.element": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Common Entity Data Standards (CEDS) Domain Entity Schema (DES) provides a hierarchy of domains, entities, categories, and elements. It is intended for use primarily by people as an index to search, map, and organize elements in a logical way. [from homepage]",
+    "example": "000254",
+    "homepage": "https://ceds.ed.gov/domainEntitySchema.aspx",
+    "name": "Common Entity Data Standards - Domain Entity Schema",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "ceds.element",
+    "uri_format": "https://ceds.ed.gov/element/$1"
+  },
   "cell_biolabs": {
     "description": "Cell line collections (Providers)",
     "example": "AKR-270",
@@ -8627,6 +8683,10 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/nar/gkad1004",
+        "pubmed": "37933841"
+      },
       {
         "doi": "10.1093/nar/gky1075",
         "pmc": "PMC6323927",
@@ -9428,6 +9488,27 @@
     "uri_format": "http://purl.obolibrary.org/obo/CIO_$1",
     "version": "2015-03-10"
   },
+  "citedcat": {
+    "contact": {
+      "email": "andrea.perego@jrc.ec.europa.eu",
+      "github": "andrea-perego",
+      "name": "Andrea Perego",
+      "orcid": "0000-0001-9300-2694"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabuarly for describing the background and methodology for the design of the DataCite profile of DCAT-AP (CiteDCAT-AP), as well as the defined mappings.",
+    "example": "isSupplementedBy",
+    "homepage": "https://ec-jrc.github.io/datacite-to-dcat-ap/",
+    "name": "DataCite to DCAT-AP Mapping",
+    "preferred_prefix": "citedcat",
+    "rdf_uri_format": "https://w3id.org/citedcat-ap/$1",
+    "uri_format": "https://w3id.org/citedcat-ap/$1"
+  },
   "citexplore": {
     "contact": {
       "email": "maria.taboada@usc.es",
@@ -9500,7 +9581,6 @@
     "example": "sharesAuthorInstitutionWith",
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "keywords": [
-      "citation",
       "knowledge and information systems",
       "spar"
     ],
@@ -10412,7 +10492,7 @@
     "repository": "https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/CMO_$1",
-    "version": "2.245"
+    "version": "2.246"
   },
   "cmpo": {
     "contact": {
@@ -10525,6 +10605,13 @@
     "description": "This vocabulary is intended to provide a flexible framework within different usage scenarios to semantically represent any type of content, be it on the Web or in local storage media. For example, it can be used by web quality assurance tools such as web accessibility evaluation tools to record a representation of the assessed web content, including text, images, or other types of formats. In many cases, it can be used together with HTTP Vocabulary in RDF 1.0, which allows quality assurance tools to record the HTTP headers that have been exchanged between a client and a server. This is particularly useful for quality assurance testing, conformance claims, and reporting languages like the W3C Evaluation And Report Language (EARL). [from homepage]",
     "example": "Content",
     "homepage": "https://www.w3.org/TR/Pointers-in-RDF/#ref-content",
+    "keywords": [
+      "rdf"
+    ],
+    "mappings": {
+      "lov": "cnt",
+      "zazuko": "cnt"
+    },
     "name": "Representing Content in RDF",
     "preferred_prefix": "cnt",
     "rdf_uri_format": "http://www.w3.org/2011/content#$1",
@@ -12657,11 +12744,9 @@
     "example": "software",
     "homepage": "https://credit.niso.org/",
     "keywords": [
-      "citation",
       "classification",
       "data quality",
       "omics",
-      "publication",
       "resource metadata",
       "subject agnostic"
     ],
@@ -13428,6 +13513,20 @@
     "preferred_prefix": "d1id",
     "uri_format": "https://cn.dataone.org/cn/v2/resolve/%7B$1%7D"
   },
+  "dai.thesauri": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A thesaurus of terms useful for digital archaeology",
+    "example": "_fe65f286",
+    "homepage": "http://thesauri.dainst.org/en.html",
+    "name": "German Archaeological Institute Thesaurus",
+    "preferred_prefix": "dai.thesauri",
+    "uri_format": "http://thesauri.dainst.org/en/concepts/$1"
+  },
   "dailymed": {
     "description": "DailyMed provides information about marketed drugs. This information includes FDA labels (package inserts). The Web site provides a standard, comprehensive, up-to-date, look-up and download resource of medication content and labeling as found in medication package inserts. Drug labeling is the most recent submitted to the Food and Drug Administration (FDA) and currently in use; it may include, for example, strengthened warnings undergoing FDA review or minor editorial changes. These labels have been reformatted to make them easier to read.",
     "example": "973a9333-fec7-46dd-8eb5-25738f06ee54",
@@ -13470,6 +13569,9 @@
     "example": "belongsToCluster",
     "homepage": "https://dalia.pages.rwth-aachen.de/dalia-ontology/",
     "license": "CC-BY-4.0",
+    "mappings": {
+      "re3data": "r3d100014403"
+    },
     "name": "MoDALIA Ontology",
     "preferred_prefix": "dalia",
     "rdf_uri_format": "https://purl.org/ontology/modalia#$1",
@@ -13620,10 +13722,7 @@
     "example": "AgentIdentifierScheme",
     "homepage": "http://www.sparontologies.net/ontologies/datacite",
     "keywords": [
-      "bibliography",
-      "citation",
       "ontology",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -14208,7 +14307,8 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "DCAT is an RDF vocabulary designed to facilitate interoperability between data catalogs published on the Web",
-    "download_owl": "http://aber-owl.net/media/ontologies/DCAT/2/dcat.owl",
+    "download_owl": "http://www.w3.org/ns/dcat3",
+    "download_rdf": "https://www.w3.org/ns/dcat.ttl",
     "example": "Dataset",
     "homepage": "https://www.w3.org/ns/dcat",
     "keywords": [
@@ -14224,12 +14324,14 @@
       "bioportal": "DCAT",
       "fairsharing": "FAIRsharing.h4j3qm",
       "lov": "dcat",
+      "ols": "dcat",
       "zazuko": "dcat"
     },
     "name": "Data Catalog",
     "preferred_prefix": "dcat",
     "repository": "https://github.com/w3c/dxwg/",
-    "uri_format": "http://www.w3.org/ns/dcat#$1"
+    "uri_format": "http://www.w3.org/ns/dcat#$1",
+    "version": "3"
   },
   "dcterms": {
     "contact": {
@@ -14962,9 +15064,6 @@
     "example": "Reference",
     "homepage": "http://www.sparontologies.net/ontologies/deo",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "spar",
       "subject agnostic"
     ],
@@ -15256,11 +15355,15 @@
     },
     "description": "A controlled vocabulary to support the study of transcription in the developing human brain",
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dhba.obo",
+    "download_owl": "https://purl.brain-bican.org/ontology/dhbao/releases/2025-02-10/dhbao.owl",
     "example": "10153",
     "homepage": "https://www.brainspan.org/",
     "keywords": [
       "ontology"
     ],
+    "mappings": {
+      "ols": "dhba"
+    },
     "name": "Developing Human Brain Atlas",
     "pattern": "^\\d+$",
     "preferred_prefix": "DHBA",
@@ -15273,7 +15376,8 @@
         "uri_format": "https://biopragmatics.github.io/providers/dhba/$1"
       }
     ],
-    "uri_format": "https://purl.brain-bican.org/ontology/dhbao/DHBA_$1"
+    "uri_format": "https://purl.brain-bican.org/ontology/dhbao/DHBA_$1",
+    "version": "2025-02-10"
   },
   "dialnet.article": {
     "contributor": {
@@ -16001,9 +16105,6 @@
     "example": "Paragraph",
     "homepage": "http://www.sparontologies.net/ontologies/doco",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "spar",
       "subject agnostic"
     ],
@@ -16059,11 +16160,11 @@
       "bibliography",
       "centrally registered identifier",
       "knowledge and information systems",
-      "publication",
       "subject agnostic"
     ],
     "logo": "https://upload.wikimedia.org/wikipedia/commons/1/11/DOI_logo.svg",
     "mappings": {
+      "bartoc": "20716",
       "biocontext": "DOI",
       "biolink": "doi",
       "cellosaurus": "DOI",
@@ -17475,6 +17576,13 @@
     "description": " EARL is a vocabulary, the terms of which are defined across a set of specifications and technical notes, and that is used to describe test results. The primary motivation for developing this vocabulary is to facilitate the exchange of test results between Web accessibility evaluation tools in a vendor-neutral and platform-independent format. It also provides reusable terms for generic quality assurance and validation purposes. [from homepage]",
     "example": "Assertion",
     "homepage": "https://www.w3.org/TR/EARL10/",
+    "keywords": [
+      "quality"
+    ],
+    "mappings": {
+      "lov": "earl",
+      "zazuko": "earl"
+    },
     "name": "Evaluation and Report Language",
     "preferred_prefix": "earl",
     "rdf_uri_format": "http://www.w3.org/ns/earl#$1",
@@ -18242,7 +18350,6 @@
     "example": "0000001",
     "homepage": "https://github.com/EnvironmentOntology/environmental-exposure-ontology",
     "keywords": [
-      "diet",
       "environmental science",
       "exposure",
       "obo",
@@ -18658,7 +18765,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo/",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.78.0"
+    "version": "3.79.0"
   },
   "ega.dataset": {
     "contact": {
@@ -19214,16 +19321,24 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The EMI ontology is used to structure spectrum annotation provenance by reusing the PROV-O ontology (a W3C recommendation) and sample and observation data by applying the SOSA ontology. EMI reuses the SOSA ontology as a data schema for struturing the Sample and Observation data. SOSA (Sensor, Observation, Sample, and Actuator) is a subset of SSN (Semantic Sensor Network Ontology) that is a W3C recommendation. [from homepage]",
+    "download_owl": "https://purl.org/emi/version/0.3",
     "download_rdf": "https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology/blob/main/emi.ttl",
     "example": "ChemicalStructure",
     "github_request_issue": 1516,
     "homepage": "https://www.dbgi.org/earth_metabolome_ontology/",
+    "keywords": [
+      "ontology"
+    ],
     "license": "CC0-1.0",
+    "mappings": {
+      "ols": "emi"
+    },
     "name": "Earth Metabolome Ontology",
     "preferred_prefix": "emi",
     "rdf_uri_format": " https://purl.org/emi#$1",
     "repository": "https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology",
-    "uri_format": "https://www.dbgi.org/earth_metabolome_ontology/#$1"
+    "uri_format": "https://www.dbgi.org/earth_metabolome_ontology/#$1",
+    "version": "0.3"
   },
   "emmo": {
     "banana": "EMMO",
@@ -20987,7 +21102,6 @@
       "life science",
       "obo",
       "ontology",
-      "protocol",
       "reagent",
       "study design"
     ],
@@ -21067,6 +21181,64 @@
     "pattern": "^[A-Za-z0-9\\-\\_]+$",
     "preferred_prefix": "erv",
     "uri_format": "https://herv.img.cas.cz/s/$1"
+  },
+  "esco.isco": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The European Skills, Competences, Qualifications and Occupations (ESCO) International Standard Classification of Occupations (ISCO).",
+    "example": "C4",
+    "homepage": "https://esco.ec.europa.eu/classification",
+    "name": "ESCO - International Standard Classification of Occupations",
+    "preferred_prefix": "esco.isco",
+    "uri_format": "http://data.europa.eu/esco/isco/$1"
+  },
+  "esco.model": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The ontology of the taxonomy \"European Skills, Competences, qualifications and Occupations\". The ontology considers three ESCO pillars (or taxonomy) and 2 registers. The three pillars are: 1) Occupation, 2) Skill (and competences), and 3) Qualification",
+    "example": "Occupation",
+    "homepage": "https://ec.europa.eu/esco/lod/static/model.html",
+    "name": "ESCO Ontology",
+    "preferred_prefix": "esco.model",
+    "rdf_uri_format": "http://data.europa.eu/esco/model#$1",
+    "uri_format": "https://ec.europa.eu/esco/lod/static/model.html#$1"
+  },
+  "esco.occupation": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The ESCO occupations pillar is built on ISCO-08 which serves as its hierarchical structure. ISCO-08 provides the top four levels for the occupations pillar and ESCO occupations are located at level 5 and lower. In ESCO, each occupation is mapped to exactly one ISCO-08 code. [from homepage]",
+    "example": "eea2b5c6-48d1-4612-957e-585783b3c7bb",
+    "homepage": "https://esco.ec.europa.eu/en/classification/occupation_main",
+    "name": "ESCO Occupation",
+    "preferred_prefix": "esco.occupation",
+    "rdf_uri_format": "http://data.europa.eu/esco/occupation/$1",
+    "uri_format": "http://data.europa.eu/esco/occupation/$1"
+  },
+  "esco.skill": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary of knowledge, skills and competences relevant to the European labour market. In ESCO v1.2.0, the skills pillar is structured in a hierarchy which contains the following four sub-classifications: 1) Knowledge, 2) Language skills and knowledge, 3) Skills, and 4) Transversal skills. [adapted from homepage]",
+    "example": "dc06de9f-dd3a-4f28-b58f-b01b5ae72ab8",
+    "homepage": "http://data.europa.eu/esco/skill",
+    "name": "ESCO Skill",
+    "preferred_prefix": "esco.skill",
+    "uri_format": "http://data.europa.eu/esco/skill/$1"
   },
   "esldb": {
     "description": "eSLDB is a database of protein subcellular localization annotation for eukaryotic organisms. It contains experimental annotations derived from primary protein databases, homology based annotations and computational predictions.",
@@ -21294,6 +21466,24 @@
     "preferred_prefix": "eurofir",
     "proprietary": true
   },
+  "europe.pic": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An identifier for an organization",
+    "example": "881104060",
+    "homepage": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/participant-register-search?isExactMatch=true&type=ORGANISATION&order=DESC&pageNumber=1&pageSize=50&sortBy=lastModified",
+    "name": "European Commission Participant Identification Code (PIC)",
+    "pattern": "^\\d{9}$",
+    "preferred_prefix": "europe.pic",
+    "references": [
+      "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/participant-register"
+    ],
+    "uri_format": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/$1"
+  },
   "ev": {
     "appears_in": [
       "cl"
@@ -21350,6 +21540,20 @@
     "references": [
       "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229"
     ]
+  },
+  "evorao": {
+    "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
+    "download_rdf": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
+    "example": "AlternateName",
+    "homepage": "https://github.com/EVORA-project/evora-ontology",
+    "mappings": {
+      "ols": "evorao"
+    },
+    "name": "EVORA Ontology",
+    "preferred_prefix": "evorao",
+    "rdf_uri_format": "https://w3id.org/evorao/$1",
+    "repository": "https://github.com/EVORA-project/evora-ontology",
+    "uri_format": "https://w3id.org/evorao/$1"
   },
   "evr": {
     "contact": {
@@ -21491,12 +21695,7 @@
     "example": "d4e2515",
     "homepage": "https://github.com/sparontologies/fabio",
     "keywords": [
-      "bibliography",
-      "citation",
       "ontology",
-      "protocol",
-      "publication",
-      "report",
       "spar",
       "subject agnostic"
     ],
@@ -21680,14 +21879,14 @@
     "example": "ForwardStrandPosition",
     "homepage": "http://biohackathon.org/resource/faldo",
     "keywords": [
-      "binding_site",
+      "binding site",
       "gene feature",
       "genetics",
       "geography",
       "nucleic acid sequence",
       "ontology",
       "sequence annotation",
-      "sequence_feature"
+      "sequence feature"
     ],
     "mappings": {
       "aberowl": "FALDO",
@@ -21889,7 +22088,6 @@
       "developmental biology",
       "fly",
       "gene expression",
-      "image",
       "life cycle stage",
       "life science",
       "obo",
@@ -22181,13 +22379,17 @@
   "fcb": {
     "description": "Created by researchers and data managers professionals, the FAIR Cookbook is an online resource for the Life Sciences with recipes that help you to make and keep data Findable, Accessible, Interoperable, and Reusable (FAIR).\n\n",
     "example": "FCB005",
-    "homepage": "https://w3id.org",
+    "homepage": "https://w3id.org/faircookbook/",
     "mappings": {
       "miriam": "fcb"
     },
-    "name": "the FAIR Cookbook",
+    "name": "FAIR Cookbook",
     "pattern": "^FCB\\d{3}$",
     "preferred_prefix": "fcb",
+    "repository": "https://github.com/FAIRplus/the-fair-cookbook",
+    "synonyms": [
+      "faircookbook"
+    ],
     "uri_format": "https://w3id.org/faircookbook/$1"
   },
   "fcsfree": {
@@ -22377,9 +22579,6 @@
     "example": "hasOpenAccessRating",
     "homepage": "http://www.sparontologies.net/ontologies/fivestars",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -22416,8 +22615,7 @@
       "experimental measurement",
       "obo",
       "ontology",
-      "property",
-      "protocol"
+      "property"
     ],
     "mappings": {
       "aberowl": "FIX",
@@ -23405,9 +23603,6 @@
     "example": "ReviewVersion",
     "homepage": "http://www.sparontologies.net/ontologies/fr",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -23438,7 +23633,6 @@
       "academy",
       "funding bodies",
       "grant application",
-      "report",
       "research project",
       "subject agnostic"
     ],
@@ -23470,10 +23664,7 @@
     "example": "Expression",
     "homepage": "http://www.sparontologies.net/ontologies/frbr",
     "keywords": [
-      "bibliography",
-      "citation",
       "frbr",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -23956,6 +24147,7 @@
       "agroportal": "GALLONT",
       "bioportal": "GALLONT",
       "obofoundry": "gallont",
+      "ols": "gallont",
       "ontobee": "GALLONT"
     },
     "name": "Plant Gall Ontology",
@@ -23963,7 +24155,8 @@
     "preferred_prefix": "GALLONT",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/GALLONT_$1",
     "repository": "https://github.com/adeans/gallont",
-    "uri_format": "http://purl.obolibrary.org/obo/GALLONT_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/GALLONT_$1",
+    "version": "2024-04-19"
   },
   "gard": {
     "contact": {
@@ -25258,7 +25451,6 @@
     "keywords": [
       "biomedical science",
       "life science",
-      "model",
       "ontology"
     ],
     "mappings": {
@@ -25846,7 +26038,6 @@
     "keywords": [
       "culture",
       "knowledge and information systems",
-      "publication",
       "social science"
     ],
     "mappings": {
@@ -26188,6 +26379,10 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/genetics/iyad031",
+        "pubmed": "36866529"
+      },
       {
         "doi": "10.1093/nar/gkaa1113",
         "pmc": "PMC7779012",
@@ -27819,7 +28014,6 @@
     "homepage": "http://hymao.org",
     "keywords": [
       "anatomy",
-      "image",
       "life science",
       "obo",
       "ontology"
@@ -27898,6 +28092,7 @@
     },
     "description": "A controlled vocabulary to support the study of transcription in the human brain",
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-hba.obo",
+    "download_owl": "https://purl.brain-bican.org/ontology/hbao/releases/2025-02-10/hbao.owl",
     "example": "4005",
     "example_extras": [
       "265504410"
@@ -27906,6 +28101,9 @@
     "keywords": [
       "ontology"
     ],
+    "mappings": {
+      "ols": "hba"
+    },
     "name": "Human Brain Atlas",
     "pattern": "^\\d+$",
     "preferred_prefix": "HBA",
@@ -27918,7 +28116,8 @@
         "uri_format": "https://biopragmatics.github.io/providers/hba/$1"
       }
     ],
-    "uri_format": "https://purl.brain-bican.org/ontology/hbao/HBA_$1"
+    "uri_format": "https://purl.brain-bican.org/ontology/hbao/HBA_$1",
+    "version": "2025-02-10"
   },
   "hbvar": {
     "description": "This is a relational database of information about hemoglobin variants and mutations that cause thalassemia.",
@@ -28846,6 +29045,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "description": "Database contains all publicly available HMS LINCS datasets and information for each dataset about experimental reagents (small molecule perturbagens, cells, antibodies, and proteins) and experimental and data analysis protocols.",
     "example": "20003",
     "homepage": "https://lincs.hms.harvard.edu/db/datasets/",
     "name": "HMS Library of Integrated Network-based Cellular Signatures Datasets",
@@ -30265,7 +30465,6 @@
       "knowledge and information systems",
       "obo",
       "ontology",
-      "protocol",
       "reagent",
       "study design",
       "subject agnostic"
@@ -31144,6 +31343,27 @@
     "uri_format": "http://purl.obolibrary.org/obo/ICO_$1",
     "version": "2025-03-15"
   },
+  "iconclass": {
+    "contact": {
+      "email": "ep@epoz.org",
+      "github": "epoz",
+      "name": "Etienne Posthumus",
+      "orcid": "0000-0002-0006-7542"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A classification system for the subject matter of works of art, originating from work from Henri van de Waal in the 1940.",
+    "example": "3",
+    "homepage": "https://iconclass.org",
+    "name": "Iconclass Classification",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "iconclass",
+    "uri_format": "https://iconclass.org/$1"
+  },
   "icpd.project": {
     "contact": {
       "email": "sonia.balyan@ibdc.rcb.res.in",
@@ -31204,6 +31424,20 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://ibdc.dbtindia.gov.in/icpd/study-view-home/$1"
+  },
+  "ictv": {
+    "description": "Ontology representation of the [International Committee on Taxonomy of Viruses (ICTV)](https://ictv.global/) for the [EVORA project](https://evora-project.eu/)",
+    "download_rdf": "https://github.com/EVORA-project/ictv-ontology/raw/refs/heads/main/out/MSL40.owl.ttl",
+    "example": "ICTV19990991",
+    "homepage": "https://github.com/EVORA-project/ictv-ontology",
+    "mappings": {
+      "ols": "ictv"
+    },
+    "name": "International Committee on Taxonomy of Viruses Ontology",
+    "preferred_prefix": "ictv",
+    "repository": "https://github.com/EVORA-project/ictv-ontology",
+    "uri_format": "http://ictv.global/id/MSL40/$1",
+    "version": "40"
   },
   "ideal": {
     "contact": {
@@ -32074,6 +32308,7 @@
     ],
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4d19e53906f86cdaca6a9752fde1dd82276b7f22/igsn-original.jpg?disposition=inline",
     "mappings": {
+      "bartoc": "20719",
       "fairsharing": "FAIRsharing.c7f365",
       "miriam": "igsn",
       "n2t": "igsn"
@@ -32891,6 +33126,36 @@
     ],
     "uri_format": "https://www.chemspider.com/search?params=$1"
   },
+  "infores": {
+    "contact": {
+      "email": "smoxon@lbl.gov",
+      "github": "sierra-moxon",
+      "name": "Sierra Moxon",
+      "orcid": "0000-0002-8719-7760"
+    },
+    "contributor": {
+      "email": "nicolas.matentzoglu@gmail.com",
+      "github": "matentzn",
+      "name": "Nicolas Matentzoglu",
+      "orcid": "0000-0002-7356-1779"
+    },
+    "description": "The information resource registry is a listing of data sources present in the NCATS Data Translator system. Each information resource has an identifier, a short description, and a URL to more information about that resource.",
+    "example": "agrkb",
+    "github_request_issue": 1601,
+    "homepage": "https://biolink.github.io/information-resource-registry/",
+    "license": "Apache-2.0",
+    "name": "Information Resource Registry",
+    "pattern": "^[a-z0-9-_.]+$",
+    "preferred_prefix": "infores",
+    "repository": "https://github.com/biolink/information-resource-registry",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://w3id.org/information-content-resource/$1"
+  },
   "informall": {
     "appears_in": [
       "doid"
@@ -33032,7 +33297,6 @@
     "homepage": "https://github.com/INO-ontology/ino",
     "keywords": [
       "life science",
-      "model",
       "molecular interaction",
       "obo",
       "ontology"
@@ -34784,6 +35048,10 @@
     "preferred_prefix": "kegg",
     "publications": [
       {
+        "doi": "10.1093/nar/gkae909",
+        "pubmed": "39417505"
+      },
+      {
         "doi": "10.1093/nar/gkw1092",
         "pmc": "PMC5210567",
         "pubmed": "27899662",
@@ -35399,6 +35667,68 @@
     "preferred_prefix": "kestrelo",
     "uri_format": "http://purl.obolibrary.org/obo/kestrelo_$1"
   },
+  "kim.educationlevel": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocabulary for education levels, such as primary eduation, secondary education, and post-secondary education",
+    "example": "6",
+    "example_extras": [
+      "B"
+    ],
+    "homepage": "https://w3id.org/kim/educationalLevel/",
+    "name": "KIM Education Level",
+    "preferred_prefix": "kim.educationlevel",
+    "uri_format": "https://w3id.org/kim/educationalLevel/level_$1"
+  },
+  "kim.hcrt": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocbualry of higher education resource types",
+    "example": "simulation",
+    "homepage": "https://w3id.org/kim/hcrt/scheme.html",
+    "name": "Higher Education Resource Types",
+    "preferred_prefix": "kim.hcrt",
+    "rdf_uri_format": "https://w3id.org/kim/hcrt/$1",
+    "uri_format": "https://w3id.org/kim/hcrt/$1"
+  },
+  "kim.hochschulfaechersystematik": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A classification of subjects in Hochschule (universities of applied sciences)",
+    "example": "n2",
+    "homepage": "https://w3id.org/kim/hochschulfaechersystematik/scheme",
+    "name": "German University Subject Classification System",
+    "preferred_prefix": "kim.hochschulfaechersystematik",
+    "rdf_uri_format": "https://w3id.org/kim/hochschulfaechersystematik/$1",
+    "uri_format": "https://w3id.org/kim/hochschulfaechersystematik/$1"
+  },
+  "kim.license": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A vocabulary describing licenses for data and code",
+    "example": "nonCommercial",
+    "homepage": "https://w3id.org/kim/license/",
+    "name": "KIM License",
+    "preferred_prefix": "kim.license",
+    "rdf_uri_format": "https://w3id.org/kim/license/$1",
+    "uri_format": "https://w3id.org/kim/license/$1"
+  },
   "knapsack": {
     "description": "KNApSAcK provides information on metabolites and the\ntaxonomic class with which they are associated.",
     "example": "C00000001",
@@ -35773,6 +36103,22 @@
     "preferred_prefix": "licebase",
     "uri_format": "https://licebase.org/?q=$1"
   },
+  "lifestylefactors": {
+    "description": "In this ontology, we defined nine distinct categories that encompass various aspects of lifestyle factors (LSFs), creating a unified Lifestyle Factors Ontology (LSFO) across these categories. Within the context of lifestyle, we have identified nine categories that can collectively describe all LSFs, namely: 1-Nutrition, a category that covers different branches such as dietary habits, food groups, food processing and preparation, macronutrients, and micronutrients, among others. 2-Socioeconomic factors, which includes social and economic conditions such as income, wealth, education and socioeconomic status. 3-Environmental exposures, includes exposure to various environmental factors, such as air pollution, water quality, and workplace hazards, that can impact an individual’s health. 4-Substance use, covers concepts such as smoking, as well as illicit drug use. 5-Physical activities, includes regular exercise and physically demanding activities like leisure time, occupational, and household physical activities. 6-Non-physical leisure time activities, describes any activity an individual might engage in during their free time that is not a physical activity. 7-Personal care products and cosmetic procedures, covers activities related to hygiene, use of cosmetic and cleaning products as well as invasive procedures that people undergo to improve their appearance, such as cosmetic surgery. 8-Sleep, covers sleep quality, stages, and habits. 9-Mental health practices, includes the behaviors and habits related to maintaining good mental health and emotional well-being such as meditation, and psychotherapy.",
+    "download_owl": "https://raw.githubusercontent.com/EsmaeilNourani/Lifestyle-factors-ontology/main/LSFO/owl/LSFO.owl",
+    "example": "0000015",
+    "homepage": "https://bioportal.bioontology.org/ontologies/LSFO",
+    "keywords": [
+      "ontology"
+    ],
+    "mappings": {
+      "bioportal": "LSFO",
+      "ols": "lifestylefactors"
+    },
+    "name": "Lifestyle Factors Ontology",
+    "preferred_prefix": "lifestylefactors",
+    "uri_format": "http://purl.obolibrary.org/obo/LFID_$1"
+  },
   "ligandbook": {
     "description": "Ligandbook is a public repository for force field parameters with a special emphasis on small molecules and known ligands of proteins. It acts as a warehouse for parameter files that are supplied by the community.",
     "example": "785",
@@ -36099,7 +36445,7 @@
     },
     "description": "The LIPID MAPS Lipid Classification System is comprised of eight lipid categories, each with its own subclassification hierarchy. All lipids in the LIPID MAPS Structure Database (LMSD) have been classified using this system and have been assigned LIPID MAPS ID's which reflects their position in the classification hierarchy.",
     "example": "LMPR0102010012",
-    "homepage": "http://www.lipidmaps.org",
+    "homepage": "https://lipidmaps.org",
     "keywords": [
       "biomedical science",
       "endocrinology",
@@ -36117,6 +36463,7 @@
       "fairsharing": "FAIRsharing.cpneh8",
       "miriam": "lipidmaps",
       "n2t": "lipidmaps",
+      "ols": "lipidmaps",
       "pathguide": "503",
       "prefixcommons": "lipidmaps",
       "re3data": "r3d100012315",
@@ -36206,6 +36553,18 @@
     "preferred_prefix": "LIPRO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/LIPRO_$1",
     "uri_format": "http://purl.obolibrary.org/obo/LIPRO_$1"
+  },
+  "lncbook": {
+    "description": "LncBook accommodates a high-quality collection of human lncRNA genes and transcripts, and incorporates their abundant annotations at different omics levels, thereby enabling users to decipher functional signatures of lncRNAs in human diseases and different biological contexts.\n\n",
+    "example": "HSALNG0006197",
+    "homepage": "https://ngdc.cncb.ac.cn/?lang=en",
+    "mappings": {
+      "miriam": "lncbook"
+    },
+    "name": "LncBook",
+    "pattern": "^HSALNG\\d{7}$",
+    "preferred_prefix": "lncbook",
+    "uri_format": "https://ngdc.cncb.ac.cn/lncbook/gene?geneid=$1"
   },
   "lncipedia": {
     "contact": {
@@ -36879,7 +37238,6 @@
     "keywords": [
       "computational biology",
       "mathematics",
-      "model",
       "obo",
       "ontology",
       "systems biology"
@@ -37529,6 +37887,7 @@
       "bioportal": "MCRO",
       "miriam": "mcro",
       "obofoundry": "mcro",
+      "ols": "mcro",
       "ontobee": "MCRO"
     },
     "name": "Model Card Report Ontology",
@@ -37543,7 +37902,8 @@
     ],
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MCRO_$1",
     "repository": "https://github.com/UTHealth-Ontology/MCRO",
-    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mcro/classes?obo_id=MCRO:$1"
+    "uri_format": "https://www.ebi.ac.uk/ols4/ontologies/mcro/classes?obo_id=MCRO:$1",
+    "version": "2023-03-07"
   },
   "mdl": {
     "appears_in": [
@@ -38788,7 +39148,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/MFOEM_$1",
     "repository": "https://github.com/jannahastings/emotion-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/MFOEM_$1",
-    "version": "2025-01-06"
+    "version": "2025-06-16"
   },
   "mfomd": {
     "contact": {
@@ -38970,6 +39330,10 @@
         "pubmed": "8091224",
         "title": "A database for mouse development",
         "year": 1994
+      },
+      {
+        "doi": "10.1093/genetics/iyae031",
+        "pubmed": "38531069"
       },
       {
         "doi": "10.1093/nar/gky1056",
@@ -39497,9 +39861,7 @@
     "example": "b97957",
     "homepage": "https://fair-research.org",
     "keywords": [
-      "citation",
       "data retrieval",
-      "publication",
       "subject agnostic"
     ],
     "mappings": {
@@ -40112,7 +40474,6 @@
     "example": "40000617",
     "homepage": "https://github.com/VEuPathDB-ontology/MIRO",
     "keywords": [
-      "insecticide resistance",
       "life science",
       "mutation",
       "obo",
@@ -40499,7 +40860,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.152"
+    "version": "2.153"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -43251,7 +43612,6 @@
       "obo",
       "omics",
       "ontology",
-      "ontology and terminology",
       "phylogenetics",
       "protein",
       "proteomics",
@@ -44218,6 +44578,22 @@
     "homepage": "https://zenodo.org/record/5237774#.YXq72hxCRGo",
     "name": "Ontology for simulation, modelling, and optimization",
     "preferred_prefix": "nfdi4chem.osmo"
+  },
+  "nfdi4dso": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The NFDI4DS ontology (nfdi4dso) is an ontology describing various resources all resources (datasets, data providers, persons, projects and other entities) within the domain of NFDI4DataScience. nfdi4dso is a module that builds upon the NFDIcore Ontology (https://ise-fizkarlsruhe.github.io/nfdicore/2.0.0/) and maintains alignment with the Basic Formal Ontology (BFO). [from homepage]",
+    "download_rdf": "https://ise-fizkarlsruhe.github.io/NFDI4DS-Ontology/ontology.ttl",
+    "example": "City",
+    "homepage": "https://nfdi.fiz-karlsruhe.de/nfdi4dso/",
+    "name": "NFDI4DS Ontology",
+    "preferred_prefix": "nfdi4dso",
+    "rdf_uri_format": "https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1",
+    "uri_format": "https://nfdi.fiz-karlsruhe.de/nfdi4dso/$1"
   },
   "ngbo": {
     "contact": {
@@ -46208,9 +46584,7 @@
       "life science",
       "obo",
       "ontology",
-      "protocol",
       "reagent",
-      "report",
       "study design"
     ],
     "license": "CC-BY-4.0",
@@ -46456,7 +46830,7 @@
       "biocontext": "oboInOwl",
       "biolink": "oboformat",
       "fairsharing": "FAIRsharing.aa0eat",
-      "ols": "oboinowl"
+      "ols": "oio"
     },
     "name": "OBO in OWL",
     "pattern": "^[\\w-]+$",
@@ -46505,7 +46879,7 @@
       "name": "Jie Zheng",
       "orcid": "0000-0002-2999-0103"
     },
-    "description": "An ontology representing occupations. It is designed to facilitate harmonization of existing occupation standards, such as the US Bureau of Labor Statistics Standard Occupational Classification (US SOC), the International Standard Classification of Occupations (ISCO), the UK National Statistics Standard Occupational Classification (UK SOC), and the European Skills, Competences, Qualifications and Occupations (ESCO) of the European Union.",
+    "description": "This Occupaton Ontology (OccO) is an ontology in the domain of human occupaitons. Current OccO version is developed based on the US Bureau of Labor Statistics Standard Occupation Classification (SOC) and the related O*Net System. The OccO development follows the principles of the Open Biological and Biomedical (OBO) Foundry.",
     "download_owl": "http://purl.obolibrary.org/obo/occo.owl",
     "example": "00000001",
     "homepage": "https://github.com/Occupation-Ontology/OccO",
@@ -46518,6 +46892,7 @@
       "aberowl": "OCCO",
       "bioportal": "OCCO",
       "obofoundry": "occo",
+      "ols": "occo",
       "ontobee": "OCCO"
     },
     "name": "Occupation Ontology",
@@ -46525,7 +46900,8 @@
     "preferred_prefix": "OCCO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OCCO_$1",
     "repository": "https://github.com/Occupation-Ontology/OccO",
-    "uri_format": "http://purl.obolibrary.org/obo/OCCO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/OCCO_$1",
+    "version": "2024-04-28"
   },
   "oci": {
     "description": "Each OCI (Open Citation Identifier) has a simple structure: oci:<identifier>-<identifier>, where “oci:” is the identifier prefix, and is used to identify a citation as a first-class data entity - see https://doi.org/10.6084/m9.figshare.7127816.v2 for additional information. In each OCI, the first <identifier> is the identifier for the citing bibliographic resource, while the second <identifier> is the identifier for the cited bibliographic resource.",
@@ -47909,7 +48285,6 @@
     "example": "0001021",
     "homepage": "https://github.com/cyang0128/Nutritional-epidemiologic-ontologies",
     "keywords": [
-      "diet",
       "epidemiology",
       "metabolomics",
       "nutritional science",
@@ -48202,9 +48577,7 @@
     "homepage": "http://bioportal.bioontology.org/ontologies/OPB",
     "keywords": [
       "concentration",
-      "kinetic model",
       "life science",
-      "model",
       "ontology",
       "physics",
       "structure"
@@ -48326,8 +48699,7 @@
       "life cycle stage",
       "life science",
       "obo",
-      "ontology",
-      "parasite"
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -48853,6 +49225,10 @@
     ],
     "provides": "uniprot",
     "publications": [
+      {
+        "doi": "10.1093/nar/gkae987",
+        "pubmed": "39535043"
+      },
       {
         "doi": "10.1093/nar/gky1053",
         "pmc": "PMC6323947",
@@ -49855,7 +50231,6 @@
     "github_request_issue": 186,
     "homepage": "https://pav-ontology.github.io/pav/",
     "keywords": [
-      "citation",
       "data management",
       "ontology",
       "quality",
@@ -50685,7 +51060,7 @@
       "botany",
       "experimental condition",
       "experimental measurement",
-      "experimentally_determined",
+      "experimentally determined",
       "obo",
       "ontology",
       "study design"
@@ -52618,7 +52993,6 @@
     "homepage": "http://journals.plos.org",
     "keywords": [
       "ontology",
-      "publication",
       "subject agnostic"
     ],
     "mappings": {
@@ -53229,6 +53603,10 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/genetics/iyae007",
+        "pubmed": "38376816"
+      },
+      {
         "doi": "10.1093/nar/gky961",
         "pmc": "PMC6324063",
         "pubmed": "30321395",
@@ -53440,7 +53818,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/PPO_$1",
     "repository": "https://github.com/PlantPhenoOntology/PPO",
     "uri_format": "http://purl.obolibrary.org/obo/PPO_$1",
-    "version": "2025-03-13"
+    "version": "2025-06-16"
   },
   "ppr": {
     "contributor": {
@@ -54034,6 +54412,7 @@
     "uri_format": "http://prodom.prabi.fr/prodom/current/cgi-bin/request.pl?question=DBEN&query=$1"
   },
   "proglyc": {
+    "deprecated": true,
     "description": "ProGlycProt (Prokaryotic Glycoprotein) is a repository of bacterial and archaeal glycoproteins with at least one experimentally validated glycosite (glycosylated residue). Each entry in the database is fully cross-referenced and enriched with available published information about source organism, coding gene, protein, glycosites, glycosylation type, attached glycan, associated oligosaccharyl/glycosyl transferases (OSTs/GTs), supporting references, and applicable additional information.",
     "example": "AC119",
     "homepage": "http://www.proglycprot.org/",
@@ -54977,7 +55356,6 @@
     "homepage": "https://www.ncbi.nlm.nih.gov/PubMed/",
     "keywords": [
       "bibliography",
-      "citation",
       "subject agnostic"
     ],
     "mappings": {
@@ -55084,9 +55462,6 @@
     "example": "RoleInTime",
     "homepage": "http://www.sparontologies.net/ontologies/pro",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -55126,7 +55501,6 @@
       "enzymatic reaction",
       "human",
       "life science",
-      "model",
       "molecular entity",
       "obo",
       "ontology",
@@ -55221,9 +55595,6 @@
     "example": "Workflow",
     "homepage": "http://www.sparontologies.net/ontologies/pwo",
     "keywords": [
-      "bibliography",
-      "citation",
-      "report",
       "spar",
       "subject agnostic"
     ],
@@ -55312,6 +55683,30 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "qtldb",
     "uri_format": "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"
+  },
+  "qualo": {
+    "contact": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An ontology of qualifications, distinctions, and certifications that uses the Phenotype And Trait Ontology term quality (PATO:0000001) as a root term.",
+    "example": "0000001",
+    "homepage": "https://github.com/cthoyt/qualo",
+    "license": "CC0-1.0",
+    "name": "Qualification Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "qualo",
+    "rdf_uri_format": "https://w3id.org/qualo/id/$1",
+    "repository": "https://github.com/cthoyt/qualo",
+    "uri_format": "https://w3id.org/qualo/id/$1"
   },
   "qudt": {
     "contributor": {
@@ -55432,6 +55827,18 @@
     ],
     "uri_format": "https://radlex.org/RID/$1",
     "version": "4.1"
+  },
+  "raid": {
+    "description": "RAiD is an identifier and global system, governed by ISO 23527:2022, to uniquely identifiy research projects, collaboratively, collect and publicly share information about them.",
+    "example": "10.26259/0e59e9a5",
+    "homepage": "https://ardc.edu.au/",
+    "mappings": {
+      "miriam": "raid"
+    },
+    "name": "Research Activity Identifier",
+    "pattern": "^102?\\.\\d+\\/.+$",
+    "preferred_prefix": "raid",
+    "uri_format": "https://raid.org/$1"
   },
   "rapdb.locus": {
     "description": "Rice Annotation Project Database (RAP-DB) is a primary rice (Oryza sativa) annotation database established in 2004 upon the completion of the Oryza sativa ssp. japonica cv. Nipponbare genome sequencing by the International Rice Genome Sequencing Project. RAP-DB provides comprehensive resources (e.g. genome annotation, gene expression, DNA markers, genetic diversity, etc.) for biological and agricultural research communities. This collection provides locus information in RAP-DB.",
@@ -55968,6 +56375,10 @@
     ],
     "publications": [
       {
+        "doi": "10.1093/nar/gkac975",
+        "pubmed": "36318248"
+      },
+      {
         "doi": "10.1093/nar/gku1046",
         "pmc": "PMC4383893",
         "pubmed": "25378308",
@@ -55998,6 +56409,26 @@
     "pattern": "^RBR-\\w+$",
     "preferred_prefix": "rebec",
     "uri_format": "https://ensaiosclinicos.gov.br/rg/$1"
+  },
+  "rec": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Recommendation Ontology specification provides basic concepts and properties for describing recommendations on/for the Semantic Web.",
+    "download_owl": "https://web.archive.org/web/20250116013621/https://smiy.sourceforge.net/rec/rdf/recommendationontology.owl",
+    "example": "Recommendation",
+    "homepage": "https://web.archive.org/web/20250105164652/https://smiy.sourceforge.net/rec/spec/recommendationontology.html",
+    "keywords": [
+      "ontology"
+    ],
+    "license": "CC-BY-3.0",
+    "name": "Recommendation Ontology",
+    "preferred_prefix": "rec",
+    "rdf_uri_format": "http://purl.org/ontology/rec/core#$1",
+    "uri_format": "http://purl.org/ontology/rec/core#$1"
   },
   "receptome.family": {
     "contributor": {
@@ -57315,7 +57746,7 @@
       "ontology",
       "ribonucleic acid",
       "rna secondary structure",
-      "sequence_motif",
+      "sequence motif",
       "structure"
     ],
     "license": "CC0-1.0",
@@ -57666,7 +58097,6 @@
       "annotation",
       "centrally registered identifier",
       "chemistry",
-      "citation",
       "data retrieval",
       "knowledge and information systems",
       "life science",
@@ -57866,7 +58296,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.249"
+    "version": "6.250"
   },
   "rtecs": {
     "contact": {
@@ -58403,7 +58833,6 @@
     "example": "0000485",
     "homepage": "http://www.ebi.ac.uk/sbo/",
     "keywords": [
-      "model",
       "molecular interaction",
       "obo",
       "ontology",
@@ -58983,9 +59412,6 @@
     "homepage": "http://www.sparontologies.net/ontologies/scoro",
     "keywords": [
       "academy",
-      "bibliography",
-      "citation",
-      "report",
       "subject agnostic"
     ],
     "mappings": {
@@ -59414,7 +59840,8 @@
     ],
     "license": "CC0-1.0",
     "mappings": {
-      "bartoc": "20428"
+      "bartoc": "20428",
+      "ols": "semapv"
     },
     "name": "Semantic Mapping Vocabulary",
     "owners": [
@@ -59432,7 +59859,8 @@
       "semapv_voc",
       "sempav_voc"
     ],
-    "uri_format": "https://w3id.org/semapv/vocab/$1"
+    "uri_format": "https://w3id.org/semapv/vocab/$1",
+    "version": "2025-01-06"
   },
   "semion": {
     "description": "identifier of an author or reviewer, in Semion",
@@ -59699,6 +60127,10 @@
         "pubmed": "7660459",
         "title": "Genetic nomenclature guide. Saccharomyces cerevisiae",
         "year": 1995
+      },
+      {
+        "doi": "10.1093/genetics/iyae185",
+        "pubmed": "39530598"
       },
       {
         "doi": "10.1101/2024.09.16.613348",
@@ -60848,6 +61280,25 @@
     "preferred_prefix": "skos",
     "uri_format": "http://www.w3.org/2004/02/skos/core#$1"
   },
+  "skos.thes": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SKOS-Thes: An extension to SKOS based on the ISO 25964 data model. The ISO 25964 standard, published in 2011, covers all aspects of developing thesauri and setting up mappings across vocabularies to encourage high quality information retrieval across networked resources. [from https://www.dublincore.org/specifications/skos-thes/]",
+    "example": "CompoundEquivalence",
+    "homepage": "https://www.dublincore.org/specifications/skos-thes/ns/",
+    "name": "SKOS Thesaurus Extension",
+    "preferred_prefix": "skos.thes",
+    "rdf_uri_format": "http://purl.org/iso25964/skos-thes#$1",
+    "synonyms": [
+      "skos-thes",
+      "skosthes"
+    ],
+    "uri_format": "https://www.dublincore.org/specifications/skos-thes/ns/#$1"
+  },
   "skosxl": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -60871,6 +61322,10 @@
     },
     "name": "Simple Knowledge Organization System eXtension for Labels",
     "preferred_prefix": "skosxl",
+    "synonyms": [
+      "skos-xl",
+      "skos.xl"
+    ],
     "uri_format": "http://www.w3.org/2008/05/skos-xl#$1"
   },
   "slctr": {
@@ -60973,13 +61428,15 @@
       "aberowl": "SLSO",
       "bioportal": "SLSO",
       "obofoundry": "slso",
+      "ols": "slso",
       "ontobee": "SLSO"
     },
     "name": "Space Life Sciences Ontology",
     "preferred_prefix": "SLSO",
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
     "repository": "https://github.com/nasa/LSDAO",
-    "uri_format": "http://purl.obolibrary.org/obo/SLSO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
+    "version": "2025-02-26"
   },
   "smart": {
     "contact": {
@@ -61671,7 +62128,7 @@
       "ribonucleic acid",
       "rna",
       "sequence annotation",
-      "sequence_feature",
+      "sequence feature",
       "structure",
       "transcriptomics"
     ],
@@ -62566,7 +63023,6 @@
       "obo",
       "omics",
       "ontology",
-      "protocol",
       "statistics",
       "study design"
     ],
@@ -62881,6 +63337,10 @@
         "pubmed": "39558183",
         "title": "The STRING database in 2025: protein networks with directionality of regulation",
         "year": 2024
+      },
+      {
+        "doi": "10.1093/nar/gkac1000",
+        "pubmed": "36370105"
       },
       {
         "doi": "10.1093/nar/gky1131",
@@ -63375,9 +63835,7 @@
       "bioinformatics",
       "computer science",
       "obo",
-      "ontology",
-      "software",
-      "workflow"
+      "ontology"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -63552,6 +64010,12 @@
     "version": "2024-05-17"
   },
   "synapse": {
+    "contact": {
+      "email": "kevin.boske@sagebase.org",
+      "github": "kevinboske",
+      "name": "Kevin Boske",
+      "orcid": "0000-0002-3278-5207"
+    },
     "description": "Synapse is a collaborative, open-source research platform that allows teams to share data, track analyses, and collaborate.",
     "example": "41455251.1",
     "homepage": "https://sagebionetworks.org",
@@ -63563,7 +64027,10 @@
     "name": "Synapse Data Repository",
     "pattern": "^[0-9]*\\.*[0-9]*$",
     "preferred_prefix": "synapse",
-    "uri_format": "https://repo-prod.prod.sagebase.org/ga4gh/drs/v1/objects/syn$1"
+    "synonyms": [
+      "syn"
+    ],
+    "uri_format": "https://www.synapse.org/Synapse:syn$1"
   },
   "synbip.bts": {
     "contact": {
@@ -64435,7 +64902,7 @@
     "homepage": "http://tfclass.bioinf.med.uni-goettingen.de",
     "keywords": [
       "binding",
-      "binding_site",
+      "binding site",
       "bioinformatics",
       "expression data",
       "phylogenetics",
@@ -65709,6 +66176,10 @@
     "preferred_prefix": "ucsc",
     "publications": [
       {
+        "doi": "10.1093/nar/gkae974",
+        "pubmed": "39460617"
+      },
+      {
         "doi": "10.1093/nar/gky1095",
         "pmc": "PMC6323953",
         "pubmed": "30407534",
@@ -66485,11 +66956,13 @@
       "ontology"
     ],
     "mappings": {
-      "lov": "uniprot"
+      "lov": "uniprot",
+      "ols": "uniprotrdfs"
     },
     "name": "Uniprot Core Ontology",
     "preferred_prefix": "uniprot.core",
-    "uri_format": "http://purl.uniprot.org/core/$1"
+    "uri_format": "http://purl.uniprot.org/core/$1",
+    "version": "2025_02"
   },
   "uniprot.disease": {
     "contributor": {
@@ -67410,14 +67883,14 @@
     "example": "0376",
     "homepage": "http://variationontology.org",
     "keywords": [
-      "chromosome_structure_variation",
+      "chromosome structure variation",
       "deoxyribonucleic acid",
       "genetics",
       "obo",
       "ontology",
       "protein",
       "ribonucleic acid",
-      "sequence_variant"
+      "sequence variant"
     ],
     "license": "CC-BY-4.0",
     "mappings": {
@@ -68469,7 +68942,6 @@
       "academy",
       "natural science",
       "ontology",
-      "protocol",
       "researcher data",
       "resource metadata",
       "study design"
@@ -68890,7 +69362,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2025-05-05"
+    "version": "2025-06-16"
   },
   "vto": {
     "contact": {
@@ -69158,6 +69630,34 @@
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBPhenotype_$1",
     "version": "2025-04-01"
+  },
+  "wdr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Underlying schema for POWDER",
+    "example": "tag",
+    "homepage": "https://www.w3.org/TR/powder-formal/",
+    "name": "Protocol for Web Description Resources (POWDER) Schema",
+    "preferred_prefix": "wdr",
+    "uri_format": "http://www.w3.org/2007/05/powder#$1"
+  },
+  "wdrs": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Protocol for Web Description Resources (POWDER) allows metadata to be associated with groups of resources such as those found on a Web site. Its main 'unit of information' is the Description Resource (DR), one or more of which are contained in a POWDER document. Processing such a document yields RDF triples describing the resources that are within the scope of the DRs. POWDER documents are written in XML and have relatively loose semantics, however, a GRDDL transform, associated with the root namespace, renders the data in RDF/OWL with more formal semantics. [from homepage]",
+    "example": "structure",
+    "homepage": "https://www.w3.org/2007/05/powder-s",
+    "name": "Protocol for Web Description Resources (POWDER): POWDER-S Vocabulary",
+    "preferred_prefix": "wdrs",
+    "uri_format": "http://www.w3.org/2007/05/powder-s#$1"
   },
   "webelements": {
     "contributor": {
@@ -70043,12 +70543,11 @@
       "biomedical science",
       "experimental condition",
       "experimental measurement",
-      "experimentally_determined",
+      "experimentally determined",
       "life science",
       "measurement",
       "obo",
       "ontology",
-      "protocol",
       "study design"
     ],
     "license": "CC0-1.0",
@@ -70095,7 +70594,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.203"
+    "version": "4.204"
   },
   "xenbase": {
     "contact": {
@@ -70233,6 +70732,20 @@
     ],
     "twitter": "Xenbase",
     "uri_format": "https://www.xenbase.org/entry/$1"
+  },
+  "xhv": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This is a vocabulary collection utilized by XHTML Family modules and document types using XHTML Modularization, including XHTML Role and XHTML + RDFa as defined in rdfa-syntax. The XHTML specifications are developed by the W3C XHTML 2 Working Group as part of the W3C HTML Activity. [from homepage]",
+    "example": "alternate",
+    "homepage": "https://www.w3.org/1999/xhtml/vocab",
+    "name": "XHTML Vocabulary",
+    "preferred_prefix": "xhv",
+    "uri_format": "http://www.w3.org/1999/xhtml/vocab#$1"
   },
   "ximbio": {
     "contributor": {
@@ -70985,6 +71498,10 @@
       }
     ],
     "publications": [
+      {
+        "doi": "10.1093/genetics/iyac016",
+        "pubmed": "35166825"
+      },
       {
         "doi": "10.1093/nar/gky1090",
         "pmc": "PMC6323962",
