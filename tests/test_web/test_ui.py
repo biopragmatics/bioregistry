@@ -18,6 +18,7 @@ class TestUI(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case with an app."""
         _, self.app = get_app(return_flask=True)
+        self.app.testing = True
         self.manager = self.app.manager
 
     def test_ui(self):

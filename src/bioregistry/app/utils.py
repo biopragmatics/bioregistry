@@ -26,21 +26,25 @@ from .proxies import manager
 from ..utils import _norm
 
 
-def _get_resource_providers(prefix: str, identifier: str | None) -> list[dict[str, Any]] | None:
+def _get_resource_providers(
+    prefix: str, identifier: str | None
+) -> list[dict[str, str | None]] | None:
     if identifier is None:
         return None
-    rv = []
+    rv: list[dict[str, str | None]] = []
     for metaprefix, uri in manager.get_providers_list(prefix, identifier):
+        name: str | None
+        homepage: str | None
         if metaprefix == "default":
             metaprefix = prefix
-            name = manager.get_name(prefix)
-            homepage = manager.get_homepage(prefix)
+            name = manager.get_name(prefix, strict=True)
+            homepage = manager.get_homepage(prefix, strict=True)
         elif metaprefix == "rdf":
-            name = f"{manager.get_name(prefix)} (RDF)"
-            homepage = manager.get_homepage(prefix)
+            name = f"{manager.get_name(prefix, strict=True)} (RDF)"
+            homepage = manager.get_homepage(prefix, strict=True)
         else:
-            name = manager.get_registry_name(metaprefix)
-            homepage = manager.get_registry_homepage(metaprefix)
+            name = manager.get_registry_name(metaprefix, strict=False)
+            homepage = manager.get_registry_homepage(metaprefix, strict=False)
         rv.append(
             {
                 "metaprefix": metaprefix,

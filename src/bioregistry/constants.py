@@ -10,6 +10,7 @@ from typing import Union
 
 import pystow
 from curies import ReferenceTuple
+from typing_extensions import TypeAlias
 
 __all__ = [
     "BIOREGISTRY_MODULE",
@@ -21,6 +22,7 @@ __all__ = [
     "METAREGISTRY_PATH",
     "RAW_DIRECTORY",
     "FailureReturnType",
+    "MaybeCURIE",
     "get_failure_return_type",
 ]
 
@@ -136,6 +138,11 @@ MIRIAM_BLACKLIST = {
     "ccds",
     # Miriam completely misses the actual usage
     "agricola",
+    # Miriam pattern/example combo is broken
+    # See https://github.com/biopragmatics/bioregistry/issues/1588
+    "hogenom",
+    # Miriam pattern/example combo is broken
+    "homd.seq",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
@@ -162,7 +169,9 @@ EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
-MaybeCURIE = Union[ReferenceTuple, tuple[None, None], None]
+NonePair: TypeAlias = tuple[None, None]
+
+MaybeCURIE = Union[ReferenceTuple, NonePair, None]
 
 DISALLOWED_EMAIL_PARTS = {
     "contact@",
@@ -182,7 +191,7 @@ class FailureReturnType(enum.Enum):
     pair = enum.auto()
 
 
-def get_failure_return_type(frt: FailureReturnType) -> None | tuple[None, None]:
+def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
     """Get the right failure return type."""
     if frt == FailureReturnType.single:
         return None

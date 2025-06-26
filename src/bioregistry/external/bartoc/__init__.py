@@ -26,11 +26,14 @@ URL = "https://bartoc.org/data/dumps/latest.ndjson"
 def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     """Get the BARTOC registry.
 
-    :param force_download: If true, forces download. If false and the file
-        is already cached, reuses it.
+    :param force_download: If true, forces download. If false and the file is already
+        cached, reuses it.
+
     :returns: The BARTOC registry
 
-    .. seealso:: https://bartoc.org/
+    .. seealso::
+
+        https://bartoc.org/
     """
     if PROCESSED_PATH.is_file() and not force_download:
         return load_processed(PROCESSED_PATH)

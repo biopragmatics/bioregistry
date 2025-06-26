@@ -1,3 +1,4 @@
 Alignment
 =========
+
 .. automodapi:: bioregistry.external
