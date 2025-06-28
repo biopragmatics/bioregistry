@@ -8494,10 +8494,13 @@
       "biochemistry",
       "chemical",
       "chemistry",
+      "lipidomics",
+      "metabolomics",
       "molecular entity",
       "natural product",
       "obo",
       "ontology",
+      "proteomics",
       "small molecule",
       "structure",
       "taxonomic classification"
@@ -9504,6 +9507,13 @@
     "description": "A vocabuarly for describing the background and methodology for the design of the DataCite profile of DCAT-AP (CiteDCAT-AP), as well as the defined mappings.",
     "example": "isSupplementedBy",
     "homepage": "https://ec-jrc.github.io/datacite-to-dcat-ap/",
+    "keywords": [
+      "catalogs",
+      "methods"
+    ],
+    "mappings": {
+      "lov": "citedcat"
+    },
     "name": "DataCite to DCAT-AP Mapping",
     "preferred_prefix": "citedcat",
     "rdf_uri_format": "https://w3id.org/citedcat-ap/$1",
@@ -9853,9 +9863,12 @@
       "annotation",
       "cell",
       "cell biology",
+      "immunogenetics",
+      "immunology",
       "life science",
       "morphology",
       "obo",
+      "omics",
       "ontology"
     ],
     "license": "CC-BY-4.0",
@@ -11642,6 +11655,23 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://coconut.naturalproducts.net/compound/coconut_id/$1"
+  },
+  "codata.rdmt": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The goal of the CODATA Research Data Management Terminology is to gather the key terms needed for a common understanding of the research data management domain.  The RDMT was revised by the CODATA RDM Terminology Working Group, shared for public review, and then confirmed and finalised in 2023.\n\nThe RDMT grew out of the CASRAI Research Data Management Glossary, which was intended as a practical reference for individuals and groups concerned with the improvement of research data management (RDM).  In 2020, CASRAI requested that CODATA assume responsibility for the curation of this valued resource. \n\nTo that end, the RDM Terminology Working Group uses a lightweight and pragmatic biennial process to review the resource now restructured as the CODATA RDM Terminology and suggest any edits, additions and removals that are required in order to develop and improve this important reference resource.",
+    "example": "aggregated-data",
+    "homepage": "https://vocabs.ardc.edu.au/viewById/685",
+    "name": "CODATA Research Data Management Terminology",
+    "preferred_prefix": "codata.rdmt",
+    "references": [
+      "https://zenodo.org/records/10626170"
+    ],
+    "uri_format": "https://terms.codata.org/rdmt/$1"
   },
   "codelink": {
     "contributor": {
@@ -21542,11 +21572,21 @@
     ]
   },
   "evorao": {
+    "contact": {
+      "email": "evorao@evora-project.eu",
+      "name": "d3fk"
+    },
     "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
+    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/1/evorao.owl",
     "download_rdf": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
     "example": "AlternateName",
     "homepage": "https://github.com/EVORA-project/evora-ontology",
+    "keywords": [
+      "ontology"
+    ],
     "mappings": {
+      "aberowl": "EVORAO",
+      "bioportal": "EVORAO",
       "ols": "evorao"
     },
     "name": "EVORA Ontology",
@@ -28456,7 +28496,7 @@
       "orcid": "0000-0002-8380-5247"
     },
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
-    "download_owl": "http://aber-owl.net/media/ontologies/HGNC/3/hgnc.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/HGNC/4/hgnc.owl",
     "example": "16793",
     "homepage": "http://www.genenames.org",
     "keywords": [
@@ -30429,6 +30469,20 @@
     ],
     "uri_format": "https://humap3.proteincomplexes.org/displayComplexes?complex_key=$1"
   },
+  "iana.mediatype": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The official list of MIME types, now renamed to media types",
+    "example": "application/cdmi-queue",
+    "homepage": "https://www.iana.org/assignments/media-types/media-types.xhtml",
+    "name": "Media Types",
+    "preferred_prefix": "iana.mediatype",
+    "uri_format": "https://www.iana.org/assignments/media-types/$1"
+  },
   "iao": {
     "appears_in": [
       "agro",
@@ -31359,6 +31413,9 @@
     "description": "A classification system for the subject matter of works of art, originating from work from Henri van de Waal in the 1940.",
     "example": "3",
     "homepage": "https://iconclass.org",
+    "mappings": {
+      "bartoc": "459"
+    },
     "name": "Iconclass Classification",
     "pattern": "^\\d+$",
     "preferred_prefix": "iconclass",
@@ -31431,6 +31488,7 @@
     "example": "ICTV19990991",
     "homepage": "https://github.com/EVORA-project/ictv-ontology",
     "mappings": {
+      "bartoc": "507",
       "ols": "ictv"
     },
     "name": "International Committee on Taxonomy of Viruses Ontology",
@@ -36104,6 +36162,10 @@
     "uri_format": "https://licebase.org/?q=$1"
   },
   "lifestylefactors": {
+    "contact": {
+      "email": "lars.juhl.jensen@cpr.ku.dk",
+      "name": "Lars Juhl Jensen"
+    },
     "description": "In this ontology, we defined nine distinct categories that encompass various aspects of lifestyle factors (LSFs), creating a unified Lifestyle Factors Ontology (LSFO) across these categories. Within the context of lifestyle, we have identified nine categories that can collectively describe all LSFs, namely: 1-Nutrition, a category that covers different branches such as dietary habits, food groups, food processing and preparation, macronutrients, and micronutrients, among others. 2-Socioeconomic factors, which includes social and economic conditions such as income, wealth, education and socioeconomic status. 3-Environmental exposures, includes exposure to various environmental factors, such as air pollution, water quality, and workplace hazards, that can impact an individual’s health. 4-Substance use, covers concepts such as smoking, as well as illicit drug use. 5-Physical activities, includes regular exercise and physically demanding activities like leisure time, occupational, and household physical activities. 6-Non-physical leisure time activities, describes any activity an individual might engage in during their free time that is not a physical activity. 7-Personal care products and cosmetic procedures, covers activities related to hygiene, use of cosmetic and cleaning products as well as invasive procedures that people undergo to improve their appearance, such as cosmetic surgery. 8-Sleep, covers sleep quality, stages, and habits. 9-Mental health practices, includes the behaviors and habits related to maintaining good mental health and emotional well-being such as meditation, and psychotherapy.",
     "download_owl": "https://raw.githubusercontent.com/EsmaeilNourani/Lifestyle-factors-ontology/main/LSFO/owl/LSFO.owl",
     "example": "0000015",
@@ -36559,6 +36621,7 @@
     "example": "HSALNG0006197",
     "homepage": "https://ngdc.cncb.ac.cn/?lang=en",
     "mappings": {
+      "integbio": "nbdc02541",
       "miriam": "lncbook"
     },
     "name": "LncBook",
@@ -52836,6 +52899,18 @@
     "uri_format": "http://purl.obolibrary.org/obo/PLANP_$1",
     "version": "2020-03-28"
   },
+  "plant_reactome": {
+    "description": "PLANT REACTOME is an open-source, open access, manually curated and peer-reviewed pathway database. Pathway annotations are authored by expert biologists, in collaboration with the Reactome editorial staff and cross-referenced to many bioinformatics databases. These include project databases like Gramene, Ensembl, UniProt, ChEBI small molecule databases, PubMed, and Gene Ontology.",
+    "example": "R-ACH-1120024",
+    "homepage": "https://www.gramene.org",
+    "mappings": {
+      "miriam": "plant_reactome"
+    },
+    "name": "Plant Reactome",
+    "pattern": "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$",
+    "preferred_prefix": "plant_reactome",
+    "uri_format": "https://plantreactome.gramene.org/content/detail/$1"
+  },
   "planttfdb": {
     "contact": {
       "email": "gaog@mail.cbi.pku.edu.cn",
@@ -55832,12 +55907,21 @@
     "description": "RAiD is an identifier and global system, governed by ISO 23527:2022, to uniquely identifiy research projects, collaboratively, collect and publicly share information about them.",
     "example": "10.26259/0e59e9a5",
     "homepage": "https://ardc.edu.au/",
+    "keywords": [
+      "centrally registered identifier",
+      "fair",
+      "knowledge representation",
+      "resource metadata",
+      "subject agnostic"
+    ],
     "mappings": {
+      "fairsharing": "FAIRsharing.dc702a",
       "miriam": "raid"
     },
     "name": "Research Activity Identifier",
     "pattern": "^102?\\.\\d+\\/.+$",
     "preferred_prefix": "raid",
+    "repository": "https://github.com/ResearchDataServices",
     "uri_format": "https://raid.org/$1"
   },
   "rapdb.locus": {
@@ -56422,9 +56506,13 @@
     "example": "Recommendation",
     "homepage": "https://web.archive.org/web/20250105164652/https://smiy.sourceforge.net/rec/spec/recommendationontology.html",
     "keywords": [
-      "ontology"
+      "ontology",
+      "rec"
     ],
     "license": "CC-BY-3.0",
+    "mappings": {
+      "lov": "rec"
+    },
     "name": "Recommendation Ontology",
     "preferred_prefix": "rec",
     "rdf_uri_format": "http://purl.org/ontology/rec/core#$1",
@@ -58666,6 +58754,21 @@
         "year": 2004
       }
     ]
+  },
+  "sage.socialsciencethesaurus": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The SAGE Social Science Thesaurus is a multidisciplinary vocabulary of the most important concepts in the social sciences. SAGE uses this vocabulary as its principal keyword vocabulary for automated tagging of content on SAGE Knowledge and SAGE Research Methods. You are welcome to browse, download, use and transform the vocabulary for any non-commercial purpose.\n\nThe majority of concepts in the thesaurus have been mined from headwords in SAGE encyclopedias and other reference works. Relationships between concepts have been inferred from implicit structures in those works, for example subject indexes and readers' guides. As such, the thesaurus is a structured representation of what the editors of those reference works consider to be the most important concepts in the social sciences.\n\nAdditional scraping work has extracted and structured concept-specific metadata, such as dates (for events and people) and definitions. In addition to broader-narrower relationships, concepts are grouped by type: concepts, people, organizations, events, methods, theories or laws.",
+    "example": "-LHR8P7WS-K",
+    "homepage": "https://loterre.istex.fr/N9J/en/",
+    "license": "CC BY-NC-SA 4.0",
+    "name": "SAGE Social Science Thesaurus",
+    "preferred_prefix": "sage.socialsciencethesaurus",
+    "uri_format": "http://data.loterre.fr/ark:/67375/N9J$1"
   },
   "salk": {
     "appears_in": [
@@ -66450,6 +66553,22 @@
       "UMLS_ICD9CM_2005_AUI"
     ]
   },
+  "unesco.thesaurus": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The UNESCO Thesaurus is a controlled and structured list of terms used in subject analysis and retrieval of documents and publications in the fields of education, culture, natural sciences, social and human sciences, communication and information. Continuously enriched and updated, its multidisciplinary terminology reflects the evolution of UNESCO's programmes and activities. [from homepage]",
+    "example": "585",
+    "homepage": "http://vocabularies.unesco.org/thesaurus",
+    "license": "CC-BY-3.0-IGO",
+    "name": "UNESCO Thesaurus",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "unesco.thesaurus",
+    "uri_format": "http://vocabularies.unesco.org/thesaurus/concept$1"
+  },
   "unicarbdb": {
     "contact": {
       "email": "niclas.karlsson@medkem.gu.se",
@@ -69655,6 +69774,13 @@
     "description": "The Protocol for Web Description Resources (POWDER) allows metadata to be associated with groups of resources such as those found on a Web site. Its main 'unit of information' is the Description Resource (DR), one or more of which are contained in a POWDER document. Processing such a document yields RDF triples describing the resources that are within the scope of the DRs. POWDER documents are written in XML and have relatively loose semantics, however, a GRDDL transform, associated with the root namespace, renders the data in RDF/OWL with more formal semantics. [from homepage]",
     "example": "structure",
     "homepage": "https://www.w3.org/2007/05/powder-s",
+    "keywords": [
+      "api"
+    ],
+    "mappings": {
+      "lov": "wdrs",
+      "zazuko": "wdrs"
+    },
     "name": "Protocol for Web Description Resources (POWDER): POWDER-S Vocabulary",
     "preferred_prefix": "wdrs",
     "uri_format": "http://www.w3.org/2007/05/powder-s#$1"
@@ -70743,6 +70869,13 @@
     "description": "This is a vocabulary collection utilized by XHTML Family modules and document types using XHTML Modularization, including XHTML Role and XHTML + RDFa as defined in rdfa-syntax. The XHTML specifications are developed by the W3C XHTML 2 Working Group as part of the W3C HTML Activity. [from homepage]",
     "example": "alternate",
     "homepage": "https://www.w3.org/1999/xhtml/vocab",
+    "keywords": [
+      "api"
+    ],
+    "mappings": {
+      "lov": "xhv",
+      "zazuko": "xhv"
+    },
     "name": "XHTML Vocabulary",
     "preferred_prefix": "xhv",
     "uri_format": "http://www.w3.org/1999/xhtml/vocab#$1"
