@@ -13,7 +13,7 @@ from pathlib import Path
 
 from curies import Reference
 from pydantic import BaseModel, Field
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -241,7 +241,10 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+OrcidStr: TypeAlias = str
+
+
+def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -253,7 +256,7 @@ def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, 
     return dict(rv)
 
 
-def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -265,7 +268,7 @@ def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[st
     return dict(rv)
 
 
-def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -281,7 +284,9 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[s
     return dict(rv)
 
 
-def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, set[str]]:
+def read_collections_contributions(
+    collections: Mapping[str, Collection],
+) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
@@ -290,7 +295,9 @@ def read_collections_contributions(collections: Mapping[str, Collection]) -> Map
     return dict(rv)
 
 
-def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, set[str]]:
+def read_registry_contributions(
+    metaregistry: Mapping[str, Registry],
+) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for metaprefix, resource in metaregistry.items():
@@ -299,12 +306,24 @@ def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping
     return dict(rv)
 
 
-def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, set[str]]:
+def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to contexts."""
     rv = defaultdict(set)
     for context_key, context in contexts.items():
         for maintainer in context.maintainers:
             rv[maintainer.orcid].add(context_key)
+    return dict(rv)
+
+
+def read_status_contributions(
+    registry: Mapping[str, Resource],
+) -> Mapping[OrcidStr, set[tuple[str, str]]]:
+    """Get a mapping from contributor ORCID identifiers to prefixes/provider code pairs where status checks were performed."""
+    rv = defaultdict(set)
+    for prefix, resource in registry.items():
+        for provider in resource.get_extra_providers():
+            if provider.status:
+                rv[provider.status.contributor].add((prefix, provider.code))
     return dict(rv)
 
 
