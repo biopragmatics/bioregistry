@@ -1375,7 +1375,15 @@ class Resource(BaseModel):
                 return cast(str, rv)
         return None
 
-    def get_example(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_example(self, *, strict: Literal[False] = False) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_example(self, *, strict: Literal[True] = True) -> str: ...
+
+    def get_example(self, *, strict: bool = False) -> str | None:
         """Get an example identifier, if it's available."""
         example = self.example
         if example is not None:
@@ -1390,6 +1398,8 @@ class Resource(BaseModel):
         wikidata_examples = self.get_external("wikidata").get("example", [])
         if wikidata_examples:
             return cast(str, wikidata_examples[0])
+        if strict:
+            raise ValueError
         return None
 
     def get_examples(self) -> list[str]:

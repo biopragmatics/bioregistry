@@ -27,26 +27,31 @@ def add_provider_status_curations(url: str) -> None:
             tqdm.write(f"[{prefix}] missing url")
             continue
 
-        # FIXME need to handle the fact that google stripped all
-        #  lefthand zeros from the example
-        uri_format = url.replace(example, "$1")
-
         resource = manager.get_resource(prefix, strict=True)
         if not resource.providers:
             continue
 
-        tqdm.write(f"[{prefix}] - {uri_format}")
+        resource_example = resource.get_example(strict=True)
+        if not resource_example.endswith(example):
+            tqdm.write(
+                f"[{prefix}] PROBLEM WITH EXAMPLE. {example} in sheet, {resource_example} in bioregistry"
+            )
+            continue
+
+        uri_format = url.replace(resource_example, "$1")
 
         for provider in resource.providers:
-            if provider.uri_format == uri_format:
-                tqdm.write(f"[{prefix} - {provider.code}] - {uri_format}")
-            if provider.uri_format == uri_format and call != "available":
-                provider.status = StatusCheck(
-                    value=call,
-                    date=date,
-                    contributor=curator_orcid,
-                    notes=notes,
-                )
+            if provider.uri_format != uri_format:
+                continue
+            if call == "available":
+                tqdm.write(f"[{prefix}] skipping available")
+                continue
+            provider.status = StatusCheck(
+                value=call,
+                date=date,
+                contributor=curator_orcid,
+                notes=notes,
+            )
 
     manager.write_registry()
 
