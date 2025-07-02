@@ -222,4 +222,6 @@ class TestUI(unittest.TestCase):
         with self.app.test_client() as client:
             res = client.get("/registry/oid", follow_redirects=False)
             self.assertEqual(200, res.status_code)
-            self.assertNotIn("oid_www", res.text, msg="Should not be showing extra provider with code `oid_www`")
+            self.assertNotIn(
+                "oid_www", res.text, msg="Should not be showing extra provider with code `oid_www`"
+            )

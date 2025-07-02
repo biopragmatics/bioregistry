@@ -1173,6 +1173,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_inactive_filter(self) -> None:
         """Test filtering out known inactive extra providers."""
-        oid = self.registry['oid']
+        oid = self.registry["oid"]
         self.assertEqual([], oid.get_extra_providers(filter_known_inactive=True))
-        self.assertEqual({"oid_www", "orange"}, {p.code for p in oid.get_extra_providers(filter_known_inactive=False)})
+        self.assertEqual(
+            {"oid_www", "orange"},
+            {p.code for p in oid.get_extra_providers(filter_known_inactive=False)},
+        )
