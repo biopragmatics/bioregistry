@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import datetime
 import itertools as itt
 import json
 import logging
@@ -110,12 +111,6 @@ def _yield_protocol_variations(u: str) -> Iterable[str]:
 def _dedent(s: str) -> str:
     return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
 
-
-#: The status of a resource.
-ResourceStatus: TypeAlias = Literal[
-    "available", "moved", "gone", "hijacked", "degraded", "misconfigured"
-]
-ResourceStatusAvailable: ResourceStatus = "available"
 
 ORCID_DESCRIPTION = _dedent(
     """\
@@ -291,6 +286,22 @@ class Publication(BaseModel):
         )
 
 
+#: The status of a resource.
+ResourceStatus: TypeAlias = Literal[
+    "available", "moved", "gone", "hijacked", "degraded", "misconfigured"
+]
+ResourceStatusAvailable: ResourceStatus = "available"
+
+
+class StatusCheck(BaseModel):
+    """A status check."""
+
+    value: ResourceStatus
+    date: str = Field(pattern="^\\d{4}-\\d{2}-\\d{2}$")
+    contributor: str = Field(..., pattern=ORCID_PATTERN)
+    notes: str | None = None
+
+
 class Provider(BaseModel):
     """A provider."""
 
@@ -318,7 +329,7 @@ class Provider(BaseModel):
         "usage of the prefix. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
     )
-    status: ResourceStatus | None = Field(
+    status: StatusCheck | None = Field(
         None,
         description="Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387.",
     )
@@ -335,7 +346,7 @@ class Provider(BaseModel):
         """Check if the resource is known to be inactive."""
         if self.status is None:
             return False
-        return self.status != ResourceStatusAvailable
+        return self.status.value != ResourceStatusAvailable
 
 
 class Resource(BaseModel):
