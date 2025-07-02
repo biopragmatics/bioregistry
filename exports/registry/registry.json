@@ -11657,6 +11657,10 @@
     "uri_format": "https://coconut.naturalproducts.net/compound/coconut_id/$1"
   },
   "codata.rdmt": {
+    "contact": {
+      "email": "laura@codata.org",
+      "name": "Laura Molloy"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -11666,6 +11670,9 @@
     "description": "The goal of the CODATA Research Data Management Terminology is to gather the key terms needed for a common understanding of the research data management domain.  The RDMT was revised by the CODATA RDM Terminology Working Group, shared for public review, and then confirmed and finalised in 2023.\n\nThe RDMT grew out of the CASRAI Research Data Management Glossary, which was intended as a practical reference for individuals and groups concerned with the improvement of research data management (RDM).  In 2020, CASRAI requested that CODATA assume responsibility for the curation of this valued resource. \n\nTo that end, the RDM Terminology Working Group uses a lightweight and pragmatic biennial process to review the resource now restructured as the CODATA RDM Terminology and suggest any edits, additions and removals that are required in order to develop and improve this important reference resource.",
     "example": "aggregated-data",
     "homepage": "https://vocabs.ardc.edu.au/viewById/685",
+    "mappings": {
+      "ecoportal": "CODATA-RDMT"
+    },
     "name": "CODATA Research Data Management Terminology",
     "preferred_prefix": "codata.rdmt",
     "references": [
@@ -19121,6 +19128,22 @@
       }
     ],
     "uri_format": "http://elm.eu.org/elms/elmPages/$1.html"
+  },
+  "elsst": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The European Language Social Science Thesaurus (ELSST) is a broad-based, multilingual thesaurus for the social sciences. It is owned and published by the Consortium of European Social Science Data Archives (CESSDA) and its national Service Providers. The thesaurus consists of over 3,000 concepts and covers the core social science disciplines: politics, sociology, economics, education, law, crime, demography, health, employment, information and communication technology and, increasingly, environmental science. [from homepage]",
+    "example": "ffdd3a7e-f82e-4600-98b1-20402e74b0a6",
+    "github_request_issue": 1614,
+    "homepage": "https://elsst.cessda.eu/id/3/",
+    "license": "CC-BY-SA 4.0",
+    "name": "European Language Social Science Thesaurus",
+    "preferred_prefix": "elsst",
+    "uri_format": "https://elsst.cessda.eu/id/3/$1"
   },
   "emap": {
     "contact": {
@@ -34375,6 +34398,30 @@
     "preferred_prefix": "iso.3166",
     "uri_format": "https://data.who.int/countries/$1"
   },
+  "iso.639-3": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Since the introduction of ISO 639-3 in 2007, access to language information has increased tremendously. The code set initially adopted as ISO639-3:2007 was based on a harmonization of ISO 639-2 with the code set of SIL’s Ethnologue 15th edition and languages from Linguist List to form a comprehensive set of code elements for world languages.  SIL International, the Language Coding Agency for 639-3, relies on the contributions of linguists, language coding experts, and language users around the world to maintain and improve the code set through the change request process defined in the ISO 639 standard. [from homepage]",
+    "example": "spa",
+    "github_request_issue": 1614,
+    "homepage": "https://iso639-3.sil.org/",
+    "name": "ISO 639 3-Letter Language Code",
+    "preferred_prefix": "iso.639-3",
+    "providers": [
+      {
+        "code": "loc",
+        "description": "ISO 639-2 is part of the ISO 639 language code family, which provides also a two-character code set (ISO 639-1) for the representation of names of languages. ISO 639-2 contains codes for all languages contained in ISO 639-1 and several hundred additional languages. The ISO 639-2 (Bibliographic) codes were devised for use in bibliographic metadata, e.g., for libraries, information services, and publishers, and ISO 639-2 (Terminology) targets terminology, lexicography, and linguistic applications. The lists are the same except for 20 languages that have different Bibliographic and Terminology codes. The list contains over 500 discrete codes. The ISO 639-2 (Bibliographic) codes are equivalent to the MARC Language Codes. The ISO 639-2 codes are linked to two-character codes for the same language in ISO 639-1, to the MARC Language Codes, and to equivalent codes for language groups in ISO 639-5. [from homepage]",
+        "homepage": "http://id.loc.gov/vocabulary/iso639-2",
+        "name": "ISO 639-2: Codes for the Representation of Names of Languages - Part 2: Alpha-3 Code for the Names of Languages",
+        "uri_format": "http://id.loc.gov/vocabulary/iso639-2/$1"
+      }
+    ],
+    "uri_format": "https://iso639-3.sil.org/code/$1"
+  },
   "iso15926": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -47506,12 +47553,24 @@
     "version": "2019-09-30"
   },
   "oid": {
+    "contact": {
+      "email": "info@daniel-marschall.de",
+      "github": "danielmarschall",
+      "name": "Daniel Marschall",
+      "orcid": "0009-0001-5055-9262"
+    },
     "contributor_extras": [
       {
         "email": "cthoyt@gmail.com",
         "github": "cthoyt",
         "name": "Charles Tapley Hoyt",
         "orcid": "0000-0003-4423-4370"
+      },
+      {
+        "email": "info@daniel-marschall.de",
+        "github": "danielmarschall",
+        "name": "Daniel Marschall",
+        "orcid": "0009-0001-5055-9262"
       }
     ],
     "description": "OIDs provide a persistent identification of objects based on a hierarchical structure of Registration Authorities (RA), where each parent has an object identifier and allocates object identifiers to child nodes.",
@@ -47551,7 +47610,7 @@
     "references": [
       "https://en.wikipedia.org/wiki/Object_identifier"
     ],
-    "uri_format": "http://oid-info.com/get/$1"
+    "uri_format": "https://oid-base.com/get/$1"
   },
   "olatdv": {
     "contact": {
@@ -52904,7 +52963,8 @@
     "example": "R-ACH-1120024",
     "homepage": "https://www.gramene.org",
     "mappings": {
-      "miriam": "plant_reactome"
+      "miriam": "plant_reactome",
+      "pathguide": "587"
     },
     "name": "Plant Reactome",
     "pattern": "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$",
@@ -71369,6 +71429,24 @@
     "name": "Zazuko Prefix Server",
     "preferred_prefix": "zazuko",
     "uri_format": "https://prefix.zazuko.com/prefix/$1:"
+  },
+  "zbw.stw": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Der Thesaurus enthält Vokabular zu allen ökonomischen Themenstellungen: über 6.000 Schlagwörter und über 28.000 zusätzliche Synonyme als Zugangshilfe, um individuelle Formulierungen bei der Suche aufzufangen. Auch Fachbegriffe aus benachbarten Bereichen wie z.B. Recht, Soziologie oder Politik sowie Geobegriffe sind dort zu finden. Wenn Sie Schlagwörter aus diesem Vokabular auswählen, können Sie sicher sein Treffer zu erhalten, die zu dem gewünschten Sachgebiet passen. [from homepage]",
+    "example": "n",
+    "example_extras": [
+      "70060"
+    ],
+    "github_request_issue": 1614,
+    "homepage": "https://zbw.eu/stw/",
+    "name": "Standard-Thesaurus Wirtschaft",
+    "preferred_prefix": "zbw.stw",
+    "uri_format": "http://zbw.eu/stw/thsys/$1"
   },
   "zea": {
     "contact": {
