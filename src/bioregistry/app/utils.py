@@ -32,7 +32,9 @@ def _get_resource_providers(
     if identifier is None:
         return None
     rv: list[dict[str, str | None]] = []
-    for metaprefix, uri in manager.get_providers_list(prefix, identifier):
+    for metaprefix, uri in manager.get_providers_list(
+        prefix, identifier, filter_known_inactive=True
+    ):
         name: str | None
         homepage: str | None
         if metaprefix == "default":
