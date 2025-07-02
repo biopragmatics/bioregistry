@@ -331,6 +331,12 @@ class Provider(BaseModel):
         """
         return self.uri_format.replace("$1", identifier)
 
+    def is_known_inactive(self) -> bool:
+        """Check if the resource is known to be inactive."""
+        if self.status is None:
+            return False
+        return self.status != ResourceStatusAvailable
+
 
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
@@ -2040,7 +2046,7 @@ class Resource(BaseModel):
         if rdf_uri_format:
             yield rdf_uri_format
 
-    def get_extra_providers(self) -> list[Provider]:
+    def get_extra_providers(self, *, filter_known_inactive: bool = False) -> list[Provider]:
         """Get a list of all extra providers."""
         rv = []
         providers = self.providers or []
@@ -2068,7 +2074,10 @@ class Resource(BaseModel):
                     "set of heterogeneously formatted sources obtained from multiple data providers.",
                 )
             )
-        return sorted(rv, key=attrgetter("code"))
+        rv = sorted(rv, key=attrgetter("code"))
+        if filter_known_inactive:
+            rv = [v for v in rv if not v.is_known_inactive()]
+        return rv
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.

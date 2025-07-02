@@ -1580,7 +1580,9 @@ class Manager:
             "rrid": self.get_rrid_iri,
         }
 
-    def get_providers_list(self, prefix: str, identifier: str) -> Sequence[tuple[str, str]]:
+    def get_providers_list(
+        self, prefix: str, identifier: str, *, filter_known_inactive: bool = False
+    ) -> Sequence[tuple[str, str]]:
         """Get all providers for the CURIE."""
         rv = []
         for metaprefix, get_url in self.get_provider_functions().items():
@@ -1591,7 +1593,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             raise KeyError(f"Could not look up a resource by prefix: {prefix}")
-        for provider in resource.get_extra_providers():
+        for provider in resource.get_extra_providers(filter_known_inactive=filter_known_inactive):
             rv.append((provider.code, provider.resolve(identifier)))
 
         if not rv:
