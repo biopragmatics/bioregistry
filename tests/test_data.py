@@ -26,7 +26,7 @@ from bioregistry.schema.struct import (
     Publication,
     get_json_schema,
 )
-from bioregistry.schema_utils import is_mismatch
+from bioregistry.schema_utils import is_mismatch, read_status_contributions
 from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
@@ -1179,3 +1179,8 @@ class TestRegistry(unittest.TestCase):
             {"oid_www", "orange"},
             {p.code for p in oid.get_extra_providers(filter_known_inactive=False)},
         )
+
+    def test_status_contributions(self) -> None:
+        """Test status contributions."""
+        status_contributions = read_status_contributions(self.registry)
+        self.assertIn("0009-0006-4842-7427", status_contributions)
