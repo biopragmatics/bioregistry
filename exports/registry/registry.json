@@ -3544,8 +3544,8 @@
   },
   "bao": {
     "contact": {
-      "email": "sschurer@med.miami.edu",
-      "name": "Stephan Schurer"
+      "email": "c.chung@miami.edu",
+      "name": "Caty Chung"
     },
     "description": "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis.",
     "download_owl": "http://www.bioassayontology.org/bao/bao_complete.owl",
@@ -13615,6 +13615,40 @@
     "repository": "https://git.rwth-aachen.de/dalia/dalia-ontology",
     "uri_format": "https://purl.org/ontology/modalia#$1"
   },
+  "dalia.community": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A UUID for a community indexed in the Data Liteacy Alliance (DALIA) web application",
+    "example": "bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf",
+    "github_request_issue": 1616,
+    "homepage": "https://search.dalia.education",
+    "name": "DALIA Community",
+    "part_of": "dalia",
+    "pattern": "^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$",
+    "preferred_prefix": "dalia.community",
+    "uri_format": "https://search.dalia.education/communities/$1"
+  },
+  "dalia.oer": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A UUID for an open educational resource indexed in the Data Liteacy Alliance (DALIA) web application",
+    "example": "69aebdfe-73f6-4bac-85d7-047dd8cec076",
+    "github_request_issue": 1616,
+    "homepage": "https://search.dalia.education",
+    "name": "DALIA Open Educational Resource",
+    "part_of": "dalia",
+    "pattern": "^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$",
+    "preferred_prefix": "dalia.oer",
+    "uri_format": "https://search.dalia.education/items/$1"
+  },
   "daml.pt": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -19141,6 +19175,9 @@
     "github_request_issue": 1614,
     "homepage": "https://elsst.cessda.eu/id/3/",
     "license": "CC-BY-SA 4.0",
+    "mappings": {
+      "bartoc": "14"
+    },
     "name": "European Language Social Science Thesaurus",
     "preferred_prefix": "elsst",
     "uri_format": "https://elsst.cessda.eu/id/3/$1"
@@ -21600,13 +21637,14 @@
       "name": "d3fk"
     },
     "description": "The EVORAO Ontology provides a structured and harmonized vocabulary for describing shareable pathogens as characterized biological materials, along with their derived products and associated services, organized into collections. Developed within the EVORA project, it supports consistent metadata annotation across research infrastructures, promoting findability, accessibility, interoperability, and reusability (FAIR). By aligning with relevant standards and ontologies, EVORAO facilitates cross-domain collaboration, integration, and sharing of pathogenic resources and services to enhance pandemic preparedness and response. While initially focused on virology, EVORAO is designed to be extensible and also supports metadata harmonization for other pathogens. [from repository]",
-    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/1/evorao.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/EVORAO/2/evorao.owl",
     "download_rdf": "https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl",
     "example": "AlternateName",
     "homepage": "https://github.com/EVORA-project/evora-ontology",
     "keywords": [
       "ontology"
     ],
+    "license": "CC0-1.0",
     "mappings": {
       "aberowl": "EVORAO",
       "bioportal": "EVORAO",
@@ -26981,6 +27019,13 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "github": "ArslaanZahid",
+        "name": "Arslaan Zahid",
+        "orcid": "0009-0006-4842-7427"
+      }
+    ],
     "description": "Documentation of GO that provides a description of some of the commonly used relationships and conventions in GO.",
     "download_owl": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
     "example": "0002005",
@@ -27001,6 +27046,12 @@
         "description": "Legacy OBO PURLs",
         "homepage": "http://purl.obolibrary.org/obo/gorel.owl",
         "name": "Legacy OBO",
+        "status": {
+          "contributor": "0009-0006-4842-7427",
+          "date": "2024-04-14",
+          "notes": "The URL is not working and no alternate link found on homepage",
+          "value": "degraded"
+        },
         "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
       }
     ],
@@ -34409,6 +34460,9 @@
     "example": "spa",
     "github_request_issue": 1614,
     "homepage": "https://iso639-3.sil.org/",
+    "mappings": {
+      "hl7": "1.0.639.3"
+    },
     "name": "ISO 639 3-Letter Language Code",
     "preferred_prefix": "iso.639-3",
     "providers": [
@@ -47597,6 +47651,11 @@
         "description": "OID w/ WWW",
         "homepage": "http://www.oid-info.com",
         "name": "OID w/ WWW",
+        "status": {
+          "contributor": "0000-0003-4423-4370",
+          "date": "2025-07-02",
+          "value": "gone"
+        },
         "uri_format": "http://www.oid-info.com/get/$1"
       },
       {
@@ -47604,6 +47663,11 @@
         "description": "Mirror of OID site from Orange",
         "homepage": "https://oid-rep.orange-labs.fr",
         "name": "Mirror of OID site from Orange",
+        "status": {
+          "contributor": "0000-0003-4423-4370",
+          "date": "2025-07-02",
+          "value": "gone"
+        },
         "uri_format": "https://oid-rep.orange-labs.fr/get/$1"
       }
     ],
