@@ -1,14 +1,14 @@
 """A script for doing bulk import.
 
-If you have a local file or remote file accessible by HTTP/HTTPS/FTP,
-you can use the `--path` option like in:
+If you have a local file or remote file accessible by HTTP/HTTPS/FTP, you can use the
+`--path` option like in:
 
 .. code-block:: shell
 
     $ python -m bioregistry.curation.bulk_google_import --path <your file path>
 
-If you are doing curation on Google Sheets, you can copy the sheet identifier
-and use the `--google-sheet` option like in:
+If you are doing curation on Google Sheets, you can copy the sheet identifier and use
+the `--google-sheet` option like in:
 
 .. code-block:: shell
 

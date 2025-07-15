@@ -3,13 +3,14 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
 
 from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "BiolinkAligner",
@@ -45,7 +46,7 @@ class BiolinkAligner(Aligner):
 
     key = "biolink"
     getter = get_biolink
-    curation_header = [URI_FORMAT_KEY, "identifiers", "purl"]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY, "identifiers", "purl"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Biolink identifiers."""
@@ -53,7 +54,16 @@ class BiolinkAligner(Aligner):
             j = json.load(file)
         return {entry["prefix"]: entry["reason"] for entry in j["skip"]}
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
+        """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
+        uri_format = external_entry[URI_FORMAT_KEY]
+        return {
+            URI_FORMAT_KEY: uri_format,
+            "is_identifiers": uri_format.startswith("http://identifiers.org"),
+            "is_obo": uri_format.startswith("http://purl.obolibrary.org"),
+        }
+
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Prepare curation rows for unaligned Biolink registry entries."""
         uri_format = external_entry[URI_FORMAT_KEY]
         return [

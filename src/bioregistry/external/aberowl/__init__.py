@@ -1,7 +1,9 @@
 """Download the AberOWL registry."""
 
+import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import yaml
 from pystow.utils import download
@@ -15,7 +17,7 @@ from bioregistry.alignment_model import (
     load_records,
 )
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "AberOWLAligner",
@@ -98,7 +100,7 @@ class AberOWLAligner(Aligner):
 
     key = "aberowl"
     getter = get_aberowl
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

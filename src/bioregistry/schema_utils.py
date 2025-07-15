@@ -13,7 +13,7 @@ from pathlib import Path
 
 from curies import Reference
 from pydantic import BaseModel, Field
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -70,6 +70,7 @@ def add_resource(resource: Resource) -> None:
     """Add a resource to the registry.
 
     :param resource: A resource object to write
+
     :raises KeyError: if the prefix is already present in the registry
     """
     registry = dict(read_registry())
@@ -91,6 +92,14 @@ class SemanticMapping(BaseModel):
     creator: Reference = Field(..., alias="creator_id")
     mapping_justification: Reference = Field(...)
     comment: str | None = Field(None)
+    issue_tracker_item: int | None = Field(
+        None, description="The PR or issue associated with the change"
+    )
+    date: str = Field(
+        ...,
+        pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        description="The ISO-8601 date of curation in YYYY-MM-DD",
+    )
 
 
 def read_mismatches() -> dict[str, dict[str, set[str]]]:
@@ -112,7 +121,7 @@ def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
     """Read curated mappings as a nested dict data structure."""
     with Path(path).expanduser().resolve().open() as file:
         return [
-            SemanticMapping.model_validate(record)
+            SemanticMapping.model_validate({k: v for k, v in record.items() if v})
             for record in csv.DictReader(file, delimiter="\t")
         ]
 
@@ -138,6 +147,8 @@ def write_mappings(mappings: list[SemanticMapping]) -> None:
         "creator_id",
         "mapping_justification",
         "comment",
+        "issue_tracker_item",
+        "date",
     ]
     with CURATED_MAPPINGS_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t", lineterminator="\n")
@@ -151,6 +162,8 @@ def write_mappings(mappings: list[SemanticMapping]) -> None:
                 mapping.creator.curie,
                 mapping.mapping_justification.curie,
                 mapping.comment,
+                mapping.issue_tracker_item,
+                mapping.date,
             )
             for mapping in mappings
         )
@@ -230,7 +243,10 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+OrcidStr: TypeAlias = str
+
+
+def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -242,7 +258,7 @@ def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, 
     return dict(rv)
 
 
-def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -254,7 +270,7 @@ def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[st
     return dict(rv)
 
 
-def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -270,7 +286,9 @@ def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[s
     return dict(rv)
 
 
-def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, set[str]]:
+def read_collections_contributions(
+    collections: Mapping[str, Collection],
+) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
@@ -279,7 +297,9 @@ def read_collections_contributions(collections: Mapping[str, Collection]) -> Map
     return dict(rv)
 
 
-def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, set[str]]:
+def read_registry_contributions(
+    metaregistry: Mapping[str, Registry],
+) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for metaprefix, resource in metaregistry.items():
@@ -288,12 +308,24 @@ def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping
     return dict(rv)
 
 
-def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, set[str]]:
+def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to contexts."""
     rv = defaultdict(set)
     for context_key, context in contexts.items():
         for maintainer in context.maintainers:
             rv[maintainer.orcid].add(context_key)
+    return dict(rv)
+
+
+def read_status_contributions(
+    registry: Mapping[str, Resource],
+) -> Mapping[OrcidStr, set[tuple[str, str]]]:
+    """Get a mapping from contributor ORCID identifiers to prefixes/provider code pairs where status checks were performed."""
+    rv = defaultdict(set)
+    for prefix, resource in registry.items():
+        for provider in resource.get_extra_providers():
+            if provider.status:
+                rv[provider.status.contributor].add((prefix, provider.code))
     return dict(rv)
 
 

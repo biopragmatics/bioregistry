@@ -1,11 +1,12 @@
 """Import accessions from EDAM."""
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 from bioregistry.alignment_model import Record, dump_records, load_records
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [
@@ -33,7 +34,7 @@ def get_edam(force_download: bool = False) -> dict[str, Record]:
     return rv
 
 
-def _get_identifier(term, ontology: str) -> str:
+def _get_identifier(term: dict[str, str], ontology: str) -> str:
     # note that this prefix doesn't match the ontology name
     return term["obo_id"][len("data:") :]
 
@@ -44,7 +45,7 @@ class EDAMAligner(Aligner):
     key = "edam"
     getter = get_edam
     alt_key_match = "name"
-    curation_header = ("name", "description")
+    curation_header: ClassVar[Sequence[str]] = ["name", "description"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries that should be skipped and their reasons."""

@@ -10,11 +10,12 @@ See the OBO Foundry workflow for preparing a docker container that has ROBOT ava
 """
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import Any, ClassVar
 
 from bioregistry.alignment_model import Record, dump_records, load_records
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [
@@ -47,7 +48,7 @@ class ChemInfAligner(Aligner):
 
     key = "cheminf"
     getter = get_cheminf
-    curation_header = ("name", "description")
+    curation_header: ClassVar[Sequence[str]] = ["name", "description"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped identifiers."""

@@ -1,24 +1,25 @@
 """Download the NCBO BioPortal registry.
 
-Get an API key by logging up, signing in, and navigating to https://bioportal.bioontology.org/account.
+Get an API key by logging up, signing in, and navigating to
+https://bioportal.bioontology.org/account.
 """
 
 import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional, Any
+from typing import Any, Optional
 
 import pystow
 import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
+from bioregistry.external.alignment_utils import load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
-from bioregistry.alignment_model import Record, dump_records, load_records
-
 
 __all__ = [
     "get_agroportal",
@@ -43,15 +44,16 @@ class OntoPortalClient:
     processed_path: Path = field(init=False)
     max_workers: int = 2
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.raw_path = RAW_DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
         self.processed_path = DIRECTORY.joinpath(self.metaprefix).with_suffix(".json")
 
-    def query(self, url: str, **params) -> requests.Response:
+    def query(self, url: str, **params: Any) -> requests.Response:
         """Query the given endpoint on the OntoPortal site.
 
         :param url: URL to query
         :param params: Kwargs to give as params to :func:`requests.get`
+
         :returns: The response from :func:`requests.get`
 
         The rate limit is 15 queries per second. See:
@@ -60,7 +62,7 @@ class OntoPortalClient:
         if self.api_key is None:
             self.api_key = pystow.get_config(self.metaprefix, "api_key", raise_on_missing=True)
         params.setdefault("apikey", self.api_key)
-        return requests.get(url, params=params)
+        return requests.get(url, params=params, timeout=30)
 
     def download(self, force_download: bool = False) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
@@ -70,7 +72,7 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        records = thread_map(
+        records = thread_map(  # type:ignore
             self._preprocess,
             records,
             unit="ontology",
@@ -80,7 +82,7 @@ class OntoPortalClient:
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
-        records = thread_map(
+        records = thread_map(  # type:ignore
             self.process, records, disable=True, description=f"Processing {self.metaprefix}"
         )
         rv = {result["prefix"]: result for result in records}
@@ -168,7 +170,7 @@ class OntoPortalClient:
             "example_uri": entry.get("exampleIdentifier"),
             "license": entry.get("license"),
         }
-        return {k: v for k, v in rv.items() if v}
+        return Record.model_validate({k: v for k, v in rv.items() if v})
 
 
 bioportal_client = OntoPortalClient(
@@ -177,7 +179,7 @@ bioportal_client = OntoPortalClient(
 )
 
 
-def get_bioportal(force_download: bool = False):
+def get_bioportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the BioPortal registry."""
     return bioportal_client.download(force_download=force_download)
 
@@ -188,7 +190,7 @@ ecoportal_client = OntoPortalClient(
 )
 
 
-def get_ecoportal(force_download: bool = False):
+def get_ecoportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the EcoPortal registry."""
     return ecoportal_client.download(force_download=force_download)
 
@@ -199,7 +201,7 @@ agroportal_client = OntoPortalClient(
 )
 
 
-def get_agroportal(force_download: bool = False):
+def get_agroportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the AgroPortal registry."""
     return agroportal_client.download(force_download=force_download)
 

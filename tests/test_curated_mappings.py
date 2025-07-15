@@ -5,7 +5,7 @@ from collections import Counter
 
 from bioregistry import is_valid_curie
 from bioregistry.constants import CURATED_MAPPINGS_PATH
-from bioregistry.schema_utils import read_metaregistry
+from bioregistry.schema_utils import SemanticMapping, read_mappings, read_metaregistry
 
 
 class TestTSV(unittest.TestCase):
@@ -18,16 +18,16 @@ class TestTSV(unittest.TestCase):
     def validate_row(self, row):
         """Validate a single row from the TSV file."""
         # Constraints on what prefix has to be used for some columns
-        assert row["creator_id"].split(":")[0] == "orcid"
-        assert row["subject_id"].split(":")[0] == "bioregistry"
+        self.assertEqual("orcid", row["creator_id"].split(":")[0])
+        self.assertEqual("bioregistry", row["subject_id"].split(":")[0])
 
         # Check that all CURIE fields are overall valid
         for column in ["subject_id", "predicate_id", "creator_id"]:
-            assert is_valid_curie(row[column])
+            self.assertTrue(is_valid_curie(row[column]))
 
         # Special handling for metaregistry CURIEs
         object_prefix, object_id = row["object_id"].split(":", maxsplit=1)
-        assert object_prefix in self.metaregistry
+        self.assertIn(object_prefix, self.metaregistry)
 
         # Make sure we don't have quotes around comments
         if row["comment"] is not None:
@@ -86,3 +86,18 @@ class TestTSV(unittest.TestCase):
     $ tox -e bioregistry-lint
             """,
             )
+
+
+class TestSemanticMappings(unittest.TestCase):
+    """Tests to make sure semantic mappings are read correctly from TSV."""
+
+    def setUp(self):
+        """Set up the test case."""
+        self.mappings = read_mappings()
+
+    def test_semantic_mappings(self):
+        """Test semantic mapping validity."""
+        for mapping in self.mappings:
+            self.assertIsInstance(mapping, SemanticMapping)
+            self.assertNotEqual(mapping.comment, "")
+            self.assertIn(mapping.predicate_modifier, {None, "Not"})

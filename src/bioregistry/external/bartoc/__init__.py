@@ -1,8 +1,9 @@
 """Download the BARTOC registry."""
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 from pystow.utils import download
 from tqdm import tqdm
@@ -10,7 +11,7 @@ from tqdm import tqdm
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
-from ..alignment_utils import Aligner
+from ..alignment_utils import Aligner, load_processed
 from ...alignment_model import (
     License,
     Record,
@@ -32,11 +33,14 @@ URL = "https://bartoc.org/data/dumps/latest.ndjson"
 def get_bartoc(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the BARTOC registry.
 
-    :param force_download: If true, forces download. If false and the file
-        is already cached, reuses it.
+    :param force_download: If true, forces download. If false and the file is already
+        cached, reuses it.
+
     :returns: The BARTOC registry
 
-    .. seealso:: https://bartoc.org/
+    .. seealso::
+
+        https://bartoc.org/
     """
     if PROCESSED_PATH.is_file() and not force_process:
         return load_records(PROCESSED_PATH)
@@ -97,7 +101,7 @@ class BartocAligner(Aligner):
     key = "bartoc"
     getter = get_bartoc
     alt_key_match = "short_name"
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

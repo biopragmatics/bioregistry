@@ -135,10 +135,13 @@ def get_app(
     """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
-    :param config: Additional configuration to be passed to the flask application. See below.
+    :param config: Additional configuration to be passed to the flask application. See
+        below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
+
     :returns: An instantiated WSGI application
+
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
@@ -205,7 +208,7 @@ def get_app(
             "url": conf["METAREGISTRY_LICENSE_URL"],
         },
     )
-    fast_api.manager = manager
+    fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
@@ -236,7 +239,7 @@ SELECT ?s ?o WHERE {
 def _get_sparql_router(app: Flask) -> APIRouter:
     sparql_graph = MappingServiceGraph(converter=app.manager.converter)
     sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
-    sparql_router = SparqlRouter(
+    sparql_router: APIRouter = SparqlRouter(
         path="/sparql",
         title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
         description="An identifier mapping service",

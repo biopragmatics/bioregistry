@@ -1,6 +1,8 @@
 """Download Zazuko."""
 
+from collections.abc import Sequence
 from pathlib import Path
+from typing import ClassVar
 
 import requests
 
@@ -20,7 +22,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://prefix.zazuko.com/api/v1/prefixes"
 
 
-def get_zazuko(force_download: bool = False) -> dict[str, Record]:
+def get_zazuko(*, force_download: bool = False) -> dict[str, Record]:
     """Get the Zazuko context map."""
     if PROCESSED_PATH.exists() and not force_download:
         return load_records(PROCESSED_PATH)
@@ -38,7 +40,7 @@ class ZazukoAligner(Aligner):
 
     key = "zazuko"
     getter = get_zazuko
-    curation_header = [URI_FORMAT_KEY]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY]
 
 
 if __name__ == "__main__":

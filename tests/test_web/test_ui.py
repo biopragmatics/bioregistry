@@ -18,6 +18,7 @@ class TestUI(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case with an app."""
         _, self.app = get_app(return_flask=True)
+        self.app.testing = True
         self.manager = self.app.manager
 
     def test_ui(self):
@@ -161,8 +162,8 @@ class TestUI(unittest.TestCase):
             for prefix, identifier, location in [
                 ("agrovoc", "c_2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
                 ("agrovoc", "2842", "http://aims.fao.org/aos/agrovoc/c_2842"),
-                # Related to https://github.com/biopragmatics/bioregistry/issues/93, the app route is not greedy,
-                # so it parses on the rightmost colon.
+                # Related to https://github.com/biopragmatics/bioregistry/issues/93,
+                # the app route is not greedy, so it parses on the rightmost colon.
                 # ("go", "0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
                 # ("go", "GO:0032571", "http://amigo.geneontology.org/amigo/term/GO:0032571"),
             ]:
@@ -215,3 +216,12 @@ class TestUI(unittest.TestCase):
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(200, res.status_code)
+
+    def test_inactive_reference(self) -> None:
+        """Test filtering out legacy providers."""
+        with self.app.test_client() as client:
+            res = client.get("/registry/oid", follow_redirects=False)
+            self.assertEqual(200, res.status_code)
+            self.assertNotIn(
+                "oid_www", res.text, msg="Should not be showing extra provider with code `oid_www`"
+            )

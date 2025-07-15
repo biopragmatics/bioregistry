@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import itertools as itt
 import logging
-import warnings
 from collections import ChainMap, defaultdict
 from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
@@ -12,13 +11,12 @@ from pathlib import Path
 from typing import (
     Any,
     Callable,
-    TypeVar,
     cast,
+    overload,
 )
 
 import click
 import requests
-from pydantic import BaseModel
 from pystow.utils import get_hashes
 
 from .alignment_model import Record, Status
@@ -36,7 +34,7 @@ logger = logging.getLogger(__name__)
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
-class OLSBroken(RuntimeError):
+class OLSBrokenError(RuntimeError):
     """Raised when the OLS is having a problem."""
 
 
@@ -47,6 +45,16 @@ def secho(s: str, fg: str = "cyan", bold: bool = True, **kwargs: Any) -> None:
     )
 
 
+# docstr-coverage:excused `overload`
+@overload
+def removeprefix(s: str, prefix: str) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removeprefix(s: None, prefix: str) -> None: ...
+
+
 def removeprefix(s: str | None, prefix: str) -> str | None:
     """Remove the prefix from the string."""
     if s is None:
@@ -54,6 +62,16 @@ def removeprefix(s: str | None, prefix: str) -> str | None:
     if s.startswith(prefix):
         return s[len(prefix) :]
     return s
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removesuffix(s: str, suffix: str) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def removesuffix(s: None, suffix: str) -> None: ...
 
 
 def removesuffix(s: str | None, suffix: str) -> str | None:
@@ -69,14 +87,15 @@ def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
     """Query Wikidata's sparql service.
 
     :param sparql: A SPARQL query string
-    :return: A list of bindings
+
+    :returns: A list of bindings
     """
     logger.debug("running query: %s", sparql)
     headers = {
         "User-Agent": f"bioregistry v{get_version()}",
     }
     res = requests.get(
-        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers
+        WIKIDATA_ENDPOINT, params={"query": sparql, "format": "json"}, headers=headers, timeout=300
     )
     res.raise_for_status()
     res_json = res.json()
@@ -171,13 +190,13 @@ def get_ols_descendants(
 ) -> dict[str, Record]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
-    res = requests.get(url)
+    res = requests.get(url, timeout=15)
     res.raise_for_status()
     res_json = res.json()
     try:
         terms = res_json["_embedded"]["terms"]
     except KeyError:
-        raise OLSBroken from None
+        raise OLSBrokenError from None
     return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 
@@ -212,9 +231,9 @@ def _get_identifier(term: dict[str, Any], ontology: str) -> str:
 
 
 def _clean(s: str) -> str:
-    s = cast(str, removesuffix(s, "identifier")).strip()
-    s = cast(str, removesuffix(s, "ID")).strip()
-    s = cast(str, removesuffix(s, "accession")).strip()
+    s = removesuffix(s, "identifier").strip()
+    s = removesuffix(s, "ID").strip()
+    s = removesuffix(s, "accession").strip()
     return s
 
 
@@ -264,30 +283,3 @@ def deduplicate(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Seque
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
     return sorted(rv, key=_key, reverse=True)
-
-
-def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
-    """Convert a pydantic model to a dict."""
-    warnings.warn("use BaseModel.model_dump() directly", DeprecationWarning, stacklevel=2)
-    return x.model_dump(**kwargs)
-
-
-M = TypeVar("M", bound=BaseModel)
-
-
-def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
-    """Convert a dict to a pydantic model."""
-    warnings.warn("use BaseModel.model_validate() directly", DeprecationWarning, stacklevel=2)
-    return m.model_validate(d)
-
-
-def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
-    """Get the fields."""
-    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
-    return m.model_fields
-
-
-def pydantic_schema(m: type[M]) -> dict[str, Any]:
-    """Get the schema."""
-    warnings.warn("use BaseModel.model_json_schema() directly", DeprecationWarning, stacklevel=2)
-    return m.model_json_schema()

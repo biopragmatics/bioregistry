@@ -1,10 +1,11 @@
 """Download registry information from the OBO Foundry."""
 
-import json
+from __future__ import annotations
+
 import logging
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, ClassVar
 
 import requests
 import yaml
@@ -43,7 +44,10 @@ SKIP = {
 }
 
 
-def get_obofoundry(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
+def get_obofoundry(
+    force_download: bool = False,
+    force_process: bool = False,
+) -> dict[str, Record]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         return load_records(PROCESSED_PATH)
@@ -178,11 +182,11 @@ def _process(record: dict[str, Any]) -> Record:
     return Record.model_validate(rv)
 
 
-def get_obofoundry_example(prefix: str) -> Optional[str]:
+def get_obofoundry_example(prefix: str) -> str | None:
     """Get an example identifier from the OBO Library PURL configuration."""
     url = f"https://raw.githubusercontent.com/OBOFoundry/purl.obolibrary.org/master/config/{prefix}.yml"
-    data = yaml.safe_load(requests.get(url).content)
-    examples = data.get("example_terms")
+    data = yaml.safe_load(requests.get(url, timeout=15).content)
+    examples: list[str] | None = data.get("example_terms")
     if not examples:
         return None
     return examples[0].rsplit("_")[-1]
@@ -193,7 +197,7 @@ class OBOFoundryAligner(Aligner):
 
     key = "obofoundry"
     getter = get_obofoundry
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
     normalize_invmap = True
 
@@ -201,7 +205,9 @@ class OBOFoundryAligner(Aligner):
         """Get the prefixes in the OBO Foundry that should be skipped."""
         return SKIP
 
-    def _align_action(self, bioregistry_id, external_id, external_entry):
+    def _align_action(
+        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
+    ) -> None:
         super()._align_action(bioregistry_id, external_id, external_entry)
         if (
             self.manager.get_example(bioregistry_id)

@@ -249,7 +249,9 @@ class TestWeb(unittest.TestCase):
     def test_iri_mapping(self):
         """Test IRI mappings.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/1065
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/1065
         """
         uri = "http://id.nlm.nih.gov/mesh/C063233"
         res = self.client.post("/api/uri/parse/", json={"uri": uri})

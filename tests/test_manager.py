@@ -3,7 +3,7 @@
 import unittest
 
 import bioregistry
-from bioregistry import Manager, parse_curie
+from bioregistry import Manager, Resource, parse_curie
 from bioregistry.export.rdf_export import get_full_rdf
 from bioregistry.resource_manager import MappingsDiff
 
@@ -259,3 +259,28 @@ class TestResourceManager(unittest.TestCase):
         self.assertIn("loggerhead", res.source_only)
         # This is a non-ontology so it won't get in OBO Foundry
         self.assertIn("DCTERMS", res.target_only)
+
+    def test_add_resource(self) -> None:
+        """Test adding a resource to a manager."""
+        manager = Manager()
+
+        test_prefix = "test1234"
+        test_synonym = "TEST.1234"
+
+        self.assertNotIn(test_prefix, manager.registry)
+        self.assertNotIn(test_synonym, manager.registry)
+
+        manager.add_resource(
+            Resource(
+                prefix=test_prefix,
+                name="Test",
+                description="Test",
+                synonyms=[test_synonym],
+            )
+        )
+
+        self.assertIn(test_prefix, manager.registry)
+        self.assertNotIn(test_synonym, manager.registry)
+
+        self.assertIsNotNone(manager.get_resource(test_prefix))
+        self.assertIsNotNone(manager.get_resource(test_synonym))

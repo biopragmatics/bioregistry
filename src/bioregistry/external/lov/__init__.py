@@ -2,13 +2,14 @@
 
 import tempfile
 from collections import defaultdict
+from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Union
+from typing import Any, ClassVar, Union, cast
 
 from pystow.utils import download, read_rdf
 
 from bioregistry.alignment_model import Record, dump_records, load_records
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "LOVAligner",
@@ -51,11 +52,11 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False) -> dic
         graph = read_rdf(path)
 
     keywords = defaultdict(set)
-    for vocab, keyword in graph.query(KEYWORD_SPARQL):
+    for vocab, keyword in cast(Iterable[tuple[str, str]], graph.query(KEYWORD_SPARQL)):
         keywords[str(vocab)].add(str(keyword))
 
     records = {}
-    for result in graph.query(RECORD_SPARQL):
+    for result in cast(Iterable[tuple[str, ...]], graph.query(RECORD_SPARQL)):
         d: dict[str, Union[str, list[str]]] = {k: str(v) for k, v in zip(columns, result) if v}
         if k := keywords.get(str(result[0])):
             d["keywords"] = sorted(k)
@@ -65,7 +66,7 @@ def get_lov(*, force_download: bool = False, force_refresh: bool = False) -> dic
             del d["vocab"]
         else:
             d["homepage"] = d.pop("vocab")
-        records[d["prefix"]] = Record.model_validate(d)
+        records[cast(str, d["prefix"])] = Record.model_validate(d)
 
     dump_records(records, PROCESSED_PATH)
     return records
@@ -76,7 +77,7 @@ class LOVAligner(Aligner):
 
     key = "lov"
     getter = get_lov
-    curation_header = ("name", "homepage", "uri_prefix")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage", "uri_prefix")
 
 
 if __name__ == "__main__":
