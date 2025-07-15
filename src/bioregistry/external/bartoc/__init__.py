@@ -11,13 +11,8 @@ from tqdm import tqdm
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
-from ..alignment_utils import Aligner, load_processed
-from ...alignment_model import (
-    License,
-    Record,
-    dump_records,
-    load_records,
-)
+from ..alignment_utils import Aligner
+from ...alignment_model import License, Record, dump_records, load_records
 
 __all__ = [
     "BartocAligner",

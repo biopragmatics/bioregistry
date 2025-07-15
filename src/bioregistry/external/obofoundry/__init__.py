@@ -19,7 +19,6 @@ from bioregistry.alignment_model import (
     Person,
     Publication,
     Record,
-    Registry,
     dump_records,
     load_records,
 )

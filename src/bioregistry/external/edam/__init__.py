@@ -1,12 +1,11 @@
 """Import accessions from EDAM."""
 
-import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from bioregistry.alignment_model import Record, dump_records, load_records
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
 
 __all__ = [

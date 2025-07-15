@@ -4,12 +4,12 @@ import tempfile
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, Union, cast
+from typing import ClassVar, Union, cast
 
 from pystow.utils import download, read_rdf
 
 from bioregistry.alignment_model import Record, dump_records, load_records
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "LOVAligner",

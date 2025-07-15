@@ -17,7 +17,6 @@ from tqdm.contrib.concurrent import thread_map
 
 from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
-from bioregistry.external.alignment_utils import load_processed
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
 

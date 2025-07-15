@@ -1,6 +1,5 @@
 """Download the AberOWL registry."""
 
-import json
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, ClassVar
@@ -9,15 +8,9 @@ import yaml
 from pystow.utils import download
 from tqdm import tqdm
 
-from bioregistry.alignment_model import (
-    Artifact,
-    ArtifactType,
-    Record,
-    dump_records,
-    load_records,
-)
+from bioregistry.alignment_model import Artifact, ArtifactType, Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "AberOWLAligner",

@@ -10,7 +10,7 @@ from pystow.utils import download
 
 from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "BiolinkAligner",
