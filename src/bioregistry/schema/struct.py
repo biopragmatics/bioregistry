@@ -53,6 +53,8 @@ if TYPE_CHECKING:
     import rdflib
     import rdflib.term
 
+    import bioregistry.alignment_model
+
 __all__ = [
     "Attributable",
     "Author",
@@ -1459,14 +1461,16 @@ class Resource(BaseModel):
         return False
 
     @staticmethod
-    def _convert_publication(publication) -> Publication | None:
+    def _convert_publication(
+        publication: bioregistry.alignment_model.Publication,
+    ) -> Publication | None:
         if all(not x for x in (publication.doi, publication.pmc, publication.pubmed)):
             return None
         return Publication(
             title=publication.name,
             year=publication.year,
             # ids
-            doi=publication.doi.lower(),
+            doi=publication.doi.lower() if publication.doi else None,
             pmc=publication.pmc,
             pubmed=publication.pubmed,
         )

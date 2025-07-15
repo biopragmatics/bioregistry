@@ -178,7 +178,7 @@ bioportal_client = OntoPortalClient(
 )
 
 
-def get_bioportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_bioportal(force_download: bool = False) -> dict[str, Record]:
     """Get the BioPortal registry."""
     return bioportal_client.download(force_download=force_download)
 
@@ -189,7 +189,7 @@ ecoportal_client = OntoPortalClient(
 )
 
 
-def get_ecoportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_ecoportal(force_download: bool = False) -> dict[str, Record]:
     """Get the EcoPortal registry."""
     return ecoportal_client.download(force_download=force_download)
 
@@ -200,7 +200,7 @@ agroportal_client = OntoPortalClient(
 )
 
 
-def get_agroportal(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_agroportal(force_download: bool = False) -> dict[str, Record]:
     """Get the AgroPortal registry."""
     return agroportal_client.download(force_download=force_download)
 

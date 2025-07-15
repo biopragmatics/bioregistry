@@ -126,7 +126,7 @@ class Aligner:
                             break
 
             if bioregistry_id is None and self.alt_keys_match:
-                for alt_match in external_entry.get(self.alt_keys_match, []):
+                for alt_match in getattr(external_entry, self.alt_keys_match, []):
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
                     if bioregistry_id:
                         break
