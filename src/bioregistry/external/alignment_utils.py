@@ -1,7 +1,7 @@
 """Utilities for registry alignment."""
 
 import csv
-import json
+import warnings
 from collections.abc import Iterable, Mapping, Sequence
 from pathlib import Path
 from typing import Any, Callable, ClassVar, Optional
@@ -10,7 +10,7 @@ import click
 from curies.w3c import NCNAME_RE
 from tabulate import tabulate
 
-from ..alignment_model import Record
+from ..alignment_model import Record, load_records
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
@@ -166,23 +166,9 @@ class Aligner:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
-        processed_record = self.prepare_external(external_id, external_entry)
         # setattr(_entry, self.subkey, external_id)
-        self.internal_registry[bioregistry_id][self.key] = processed_record
+        self.internal_registry[bioregistry_id][self.key] = external_entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
-
-    def prepare_external(self, external_id: str, external_entry: Record) -> Record:
-        """Prepare a dictionary to be added to the bioregistry for each external registry entry.
-
-        The default implementation returns `external_entry` unchanged. If you need more
-        than that, override this method.
-
-        :param external_id: The external registry identifier
-        :param external_entry: The external registry data
-
-        :returns: The dictionary to be added to the bioregistry for the aligned entry
-        """
-        return external_entry
 
     def write_registry(self) -> None:
         """Write the internal registry."""
@@ -311,7 +297,7 @@ class Aligner:
             print(s)  # noqa:T201
 
 
-def load_processed(path: Path) -> dict[str, dict[str, Any]]:
+def load_processed(path: Path) -> dict[str, Record]:
     """Load a processed."""
-    with path.open() as file:
-        return json.load(file)  # type:ignore
+    warnings.warn("use load_records", DeprecationWarning, stacklevel=2)
+    return load_records(path)

@@ -3,16 +3,16 @@
 from __future__ import annotations
 
 import itertools as itt
-import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "CellosaurusAligner",
@@ -36,10 +36,10 @@ KEYMAP = {
 
 def get_cellosaurus(
     force_download: bool = False, keep_missing_uri: bool = True
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     """Get the Cellosaurus registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
+        return load_records(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open(encoding="ISO8859-1") as file:
@@ -71,10 +71,9 @@ def get_cellosaurus(
             d[mapped_key] = value
         if not keep_missing_uri and URI_FORMAT_KEY not in d:
             continue
-        rv[d.pop("prefix")] = d
+        rv[d.pop("prefix")] = Record.model_validate(d)
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
 
     return rv
 

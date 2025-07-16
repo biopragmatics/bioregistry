@@ -1,16 +1,16 @@
 """Download registry information from OntoBee."""
 
-import json
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "OntobeeAligner",
@@ -29,10 +29,10 @@ LEGEND = {
 }
 
 
-def get_ontobee(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_ontobee(force_download: bool = False) -> dict[str, Record]:
     """Get the OntoBee registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
+        return load_records(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as f:
@@ -49,14 +49,15 @@ def get_ontobee(force_download: bool = False) -> dict[str, dict[str, Any]]:
     for row in table_body.find_all("tr"):  # type:ignore
         cells = row.find_all("td")
         prefix = cells[1].text
-        rv[prefix] = {
-            "name": cells[2].text,
-            "library": LEGEND[cells[3].text.upper()],
-            # "link": cells[1].find("a").attrs["href"],
-        }
+        rv[prefix] = Record.model_validate(
+            {
+                "name": cells[2].text,
+                "keywords": [LEGEND[cells[3].text.upper()]],
+                # "link": cells[1].find("a").attrs["href"],
+            }
+        )
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
 
     return rv
 
@@ -68,11 +69,11 @@ class OntobeeAligner(Aligner):
     getter = get_ontobee
     curation_header: ClassVar[Sequence[str]] = ("name", "url")
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("url", ""),
+            textwrap.shorten(external_entry.name, 50),
+            external_entry.uri_format or "",
         ]
 
 

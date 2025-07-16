@@ -295,17 +295,6 @@ class PrefixCommonsAligner(Aligner):
         """Get skip prefixes."""
         return {**SKIP, **PROVIDERS}
 
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
-        """Prepare curation rows for unaligned Prefix Commons registry entries."""
-        return [
-            external_entry["name"],
-            ", ".join(external_entry.get("synonyms", [])),
-            external_entry.get("description", "").replace('"', ""),
-            external_entry.get("example", ""),
-            external_entry.get("pattern", ""),
-            external_entry.get("uri_format", ""),
-        ]
-
 
 if __name__ == "__main__":
     PrefixCommonsAligner.cli()

@@ -1,7 +1,6 @@
 """Download registry information from CROPOCT."""
 
 import io
-import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -10,8 +9,9 @@ from typing import Any, ClassVar
 import yaml
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "CropOCTAligner",
@@ -26,10 +26,10 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 CROPOCT_URL = "https://cropontology.org/metadata"
 
 
-def get_cropoct(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_cropoct(force_download: bool = False) -> dict[str, Record]:
     """Get the CropOCT registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
+        return load_records(PROCESSED_PATH)
 
     download(url=CROPOCT_URL, path=RAW_PATH, force=True)
 
@@ -55,20 +55,20 @@ def get_cropoct(force_download: bool = False) -> dict[str, dict[str, Any]]:
         data = yaml.safe_load(file)
 
     rv = {record["id"]: _process(record) for record in data["ontologies"]}
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
-def _process(record: Mapping[str, Any]) -> dict[str, Any]:
+def _process(record: Mapping[str, Any]) -> Record:
     rv = {
         "prefix": record["id"],
         "name": record["title"],
         "homepage": record["homepage"],
-        "download_owl": record.get("ontology_purl"),
+        "download_owl": record.get("ontology_purl"),  # FIXME w/ artifact
         "description": record.get("description"),
     }
-    return {k: v for k, v in rv.items() if k and v}
+    rv = {k: v for k, v in rv.items() if k and v}
+    return Record.model_validate(rv)
 
 
 class CropOCTAligner(Aligner):

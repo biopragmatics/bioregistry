@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any, ClassVar
@@ -10,8 +9,9 @@ from typing import Any, ClassVar
 import yaml
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "N2TAligner",
@@ -38,10 +38,10 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_n2t(force_download: bool = False) -> dict[str, Record]:
     """Get the N2T registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
+        return load_records(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     # they give malformed YAML so time to write a new parser
@@ -54,12 +54,11 @@ def get_n2t(force_download: bool = False) -> dict[str, dict[str, Any]]:
         if record["type"] == "scheme" and "/" not in key and key not in SKIP
     }
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, sort_keys=True, indent=2)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
-def _process(record: dict[str, Any]) -> dict[str, Any]:
+def _process(record: dict[str, Any]) -> Record:
     rv = {
         "name": record.get("name"),
         URI_FORMAT_KEY: _get_uri_format(record),
@@ -69,7 +68,8 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
         "example": record.get("test"),
         "namespaceEmbeddedInLui": (record.get("prefixed") == "true"),
     }
-    return {k: v for k, v in rv.items() if v is not None}
+    rv = {k: v for k, v in rv.items() if v is not None}
+    return Record.model_validate(rv)
 
 
 def _get_uri_format(record: dict[str, Any]) -> str | None:

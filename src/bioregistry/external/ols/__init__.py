@@ -17,8 +17,9 @@ from typing import Any, ClassVar
 import requests
 from pydantic import BaseModel
 
+from bioregistry.alignment_model import Record, dump_records, load_records
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
 from bioregistry.utils import OLSBrokenError
 
@@ -47,10 +48,10 @@ OLS_SKIP = {
 }
 
 
-def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_ols(force_download: bool = False) -> dict[str, Record]:
     """Get the OLS registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_processed(PROCESSED_PATH)
+        return load_records(PROCESSED_PATH)
 
     data = requests.get(URL, timeout=15).json()
     if "_embedded" not in data:
@@ -81,8 +82,7 @@ def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
             continue
         processed[ols_id] = record
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(processed, file, indent=2, sort_keys=True)
+    dump_records(processed, PROCESSED_PATH)
     return processed
 
 
@@ -208,7 +208,7 @@ def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> 
     return version
 
 
-def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, str] | None:
+def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Record:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]
@@ -238,7 +238,7 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, s
     else:
         logger.warning("[%s] unknown download type %s", ols_id, download)
     rv = {k: v.strip() for k, v in rv.items() if v}
-    return rv
+    return Record.model_validate(rv)
 
 
 def _clean_url(url: str | None) -> str | None:

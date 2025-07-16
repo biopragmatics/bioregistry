@@ -3,7 +3,7 @@
 import json
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from pystow.utils import download
 
@@ -41,8 +41,9 @@ def get_biocontext(*, force_download: bool = False) -> Mapping[str, Record]:
     with RAW_PATH.open() as file:
         data = json.load(file)
     rv = {
-        prefix: Record(uri_format="{uri_prefix.strip()}$1")
+        prefix: Record(uri_format=f"{uri_prefix.strip()}$1")
         for prefix, uri_prefix in data["@context"].items()
+        if any(p in uri_prefix for p in SKIP_PARTS)
     }
     dump_records(rv, PROCESSED_PATH)
     return rv
@@ -60,18 +61,6 @@ class BioContextAligner(Aligner):
         return {
             "fbql": "not a real resource, as far as I can tell",
         }
-
-    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
-        """Prepare BioContext data to be added to the BioContext for each BioPortal registry entry."""
-        uri_format = external_entry[URI_FORMAT_KEY]
-        if any(p in uri_format for p in SKIP_PARTS):
-            return {}
-        return {URI_FORMAT_KEY: uri_format}
-
-    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
-        """Prepare curation rows for unaligned BioContext registry entries."""
-        formatter = external_entry[URI_FORMAT_KEY]
-        return [formatter]
 
 
 if __name__ == "__main__":
