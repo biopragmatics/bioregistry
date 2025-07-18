@@ -17,7 +17,7 @@ from typing import Any, ClassVar
 import requests
 from pydantic import BaseModel
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Person, Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.parse_version_iri import parse_obo_version_iri
@@ -48,23 +48,26 @@ OLS_SKIP = {
 }
 
 
-def get_ols(force_download: bool = False) -> dict[str, Record]:
+def get_ols(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the OLS registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
+        return load_processed(PROCESSED_PATH)
 
-    data = requests.get(URL, timeout=15).json()
-    if "_embedded" not in data:
-        raise OLSBrokenError
-    data["_embedded"]["ontologies"] = sorted(
-        data["_embedded"]["ontologies"],
-        key=itemgetter("ontologyId"),
-    )
-    if "next" in data["_links"]:
-        raise NotImplementedError(
-            "Need to implement paging since there are more entries than fit into one page"
+    if RAW_PATH.is_file() and not force_download:
+        data = json.loads(RAW_PATH.read_text())
+    else:
+        data = requests.get(URL, timeout=15).json()
+        if "_embedded" not in data:
+            raise OLSBrokenError
+        data["_embedded"]["ontologies"] = sorted(
+            data["_embedded"]["ontologies"],
+            key=itemgetter("ontologyId"),
         )
-    RAW_PATH.write_text(json.dumps(data, indent=2, sort_keys=True))
+        if "next" in data["_links"]:
+            raise NotImplementedError(
+                "Need to implement paging since there are more entries than fit into one page"
+            )
+        RAW_PATH.write_text(json.dumps(data, indent=2, sort_keys=True))
 
     processed = {}
     for ontology in data["_embedded"]["ontologies"]:
@@ -110,7 +113,7 @@ class OLSConfig(BaseModel):
     version_iri_suffix: str | None = None
 
 
-def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
+def _get_contact(ols_id: str, config: dict[str, Any]) -> Person | None:
     mailing_list = config.get("mailingList")
     if not mailing_list:
         return None
@@ -118,7 +121,7 @@ def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
     if email.startswith("//"):
         logger.debug("[%s] invalid email address: %s", ols_id, mailing_list)
         return None
-    return email
+    return Person(email=email, name=name or None)
 
 
 def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
@@ -223,7 +226,7 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Record:
         "description": description,
         "homepage": _clean_url(config["homepage"]),
         # "tracker": _clean_url(config["tracker"]),
-        "contact": _get_email(ols_id, config),
+        "contact": _get_contact(ols_id, config),
         "license": _get_license(ols_id, config),
     }
     download = _clean_url(config["fileLocation"])
@@ -235,15 +238,18 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Record:
         rv["download_owl"] = download
     elif download.endswith(".rdf") or download.endswith(".ttl"):
         rv["download_rdf"] = download
+    elif download.endswith(".xml"):
+        logger.warning("[%s] XML download is unhandled %s", ols_id, download)
     else:
         logger.warning("[%s] unknown download type %s", ols_id, download)
-    rv = {k: v.strip() for k, v in rv.items() if v}
+    rv = {k: v.strip() if isinstance(v, str) else v for k, v in rv.items() if v}
     return Record.model_validate(rv)
 
 
 def _clean_url(url: str | None) -> str | None:
     if url is None:
-        return url
+        return None
+    url = url.strip()
     if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
         return "https://cropontology.org" + url[len("http://127.0.0.1:5900") :]
     return url

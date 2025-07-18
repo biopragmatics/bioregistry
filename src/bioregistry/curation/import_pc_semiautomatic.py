@@ -1,6 +1,7 @@
 """A script for semi-automatically importing part of Prefix Commons."""
 
 import json
+from typing import cast
 
 import click
 import requests
@@ -55,32 +56,34 @@ def main() -> None:
     pc = get_prefixcommons(force_download=False)
     prefixes = manager.get_registry_invmap("prefixcommons")
     c = 0
-    for prefix, data in tqdm(pc.items(), unit="prefix", desc="Checking PC prefixes"):
+    for prefix, record in tqdm(pc.items(), unit="prefix", desc="Checking PC prefixes"):
         if prefix in prefixes or prefix in skip or prefix in dead_prefixes or len(prefix) < 4:
             continue
         if bioregistry.normalize_prefix(prefix):
             tqdm.write(f"[{prefix:15}] duplicate alignment")
             continue
 
-        uri_format = data.get("uri_format")
+        uri_format = record.uri_format
         if uri_format is None:
             continue
         if not uri_format.endswith("$1"):
             tqdm.write(f"[{prefix:15}] URI format: {uri_format}")
             continue
 
-        if not all(data.get(k) for k in ["name", "description", "homepage", "pattern", "example"]):
+        if not all(
+            [record.name, record.description, record.homepage, record.pattern, record.example]
+        ):
             continue
 
-        example = data["example"]
+        example = record.example[0]
         if uniprot_pattern.match(example):
             tqdm.write(f"[{prefix:15}] skipping duplicate of UniProt: {example}")
             continue
 
-        example_url = uri_format.replace("$1", data["example"])
+        example_url = uri_format.replace("$1", example)
 
         tqdm.write(f"checking {prefix}")
-        homepage_res = _works(data["homepage"])
+        homepage_res = _works(cast(str, record.homepage))
         entry_res = _works(example_url)
         if homepage_res and entry_res:
             c += 1
@@ -89,7 +92,7 @@ def main() -> None:
                 Resource(
                     prefix=norm(prefix),
                     mappings={"prefixcommons": prefix},
-                    prefixcommons=data,
+                    prefixcommons=record,
                 )
             )
         else:

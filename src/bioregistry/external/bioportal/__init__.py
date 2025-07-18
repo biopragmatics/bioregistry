@@ -15,7 +15,7 @@ import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import EMAIL_RE, RAW_DIRECTORY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import removeprefix
@@ -66,7 +66,7 @@ class OntoPortalClient:
     def download(self, force_download: bool = False) -> dict[str, Record]:
         """Get the full dump of the OntoPortal site's registry."""
         if self.processed_path.exists() and not force_download:
-            return load_records(self.processed_path)
+            return load_processed(self.processed_path)
 
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)

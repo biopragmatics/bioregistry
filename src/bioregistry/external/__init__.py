@@ -1,6 +1,6 @@
 """Acquisition, processing, and alignment of external registries."""
 
-from typing import Any, Callable
+from typing import Callable
 
 from .aberowl import get_aberowl
 from .bartoc import get_bartoc
@@ -30,6 +30,7 @@ from .togoid import get_togoid
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
 from .zazuko import get_zazuko
+from ..alignment_model import Record
 
 __all__ = [
     "GETTERS",
@@ -62,7 +63,7 @@ __all__ = [
     "get_zazuko",
 ]
 
-GETTERS: list[tuple[str, str, Callable[..., dict[str, dict[str, Any]]]]] = [
+GETTERS: list[tuple[str, str, Callable[..., dict[str, Record]]]] = [
     ("obofoundry", "OBO", get_obofoundry),
     ("ols", "OLS", get_ols),
     ("miriam", "MIRIAM", get_miriam),

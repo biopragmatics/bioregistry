@@ -9,7 +9,7 @@ from typing import Any, ClassVar
 import yaml
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -47,7 +47,7 @@ PROCESSING_GO_PATH = DIRECTORY / "processing_go.json"
 def get_go(force_download: bool = False) -> dict[str, Record]:
     """Get the GO registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
     download(url=GO_URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         raw_entries = yaml.full_load(file)

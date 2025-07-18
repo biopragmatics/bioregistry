@@ -3,17 +3,19 @@
 Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 """
 
-import json
+from __future__ import annotations
+
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar, Optional
+from typing import ClassVar
 from xml.etree import ElementTree
 
 import requests
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.alignment_model import Record, dump_records, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -29,7 +31,7 @@ BASE_URL = "https://www.re3data.org"
 SCHEMA = "{http://www.re3data.org/schema/2-2}"
 
 
-def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_re3data(force_download: bool = False) -> dict[str, Record]:
     """Get the re3data registry.
 
     This takes about 9 minutes since it has to look up each of the ~3K records with
@@ -76,19 +78,17 @@ def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
         if doi:
             record["doi"] = doi
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
-
+    dump_records(records, PROCESSED_PATH)
     return records
 
 
-def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
+def _get_record(identifier: str) -> tuple[str, Record]:
     res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}", timeout=15)
     tree = ElementTree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
 
 
-def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[str, Any]:
+def _process_record(identifier: str, tree_inner: ElementTree.Element) -> Record:
     xrefs = (
         _clean_xref(element.text.strip())
         for element in tree_inner.findall(f"{SCHEMA}repositoryIdentifier")
@@ -111,10 +111,11 @@ def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[st
     if license_element is not None:
         data["license"] = license_element.text
 
-    return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
+    rv = {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
+    return Record.model_validate(rv)
 
 
-def _clean_xref(xref: str) -> Optional[tuple[str, str]]:
+def _clean_xref(xref: str) -> tuple[str, str] | None:
     if (
         xref.startswith("FAIRsharing_DOI:10.25504/")
         or xref.startswith("FAIRsharing_doi:10.25504/")

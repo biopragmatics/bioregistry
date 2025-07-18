@@ -8,8 +8,9 @@ from typing import Any, ClassVar
 
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, Status, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "MiriamAligner",
@@ -35,21 +36,25 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_miriam(
-    force_download: bool = False, force_process: bool = False
-) -> dict[str, dict[str, Any]]:
+def get_miriam(force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the MIRIAM registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
         return load_processed(PROCESSED_PATH)
 
     download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
-    with open(RAW_PATH) as file:
-        data = json.load(file)
 
-    data["payload"]["namespaces"] = sorted(data["payload"]["namespaces"], key=itemgetter("prefix"))
-    if force_download:
-        with open(RAW_PATH, "w") as file:
-            json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
+    if RAW_PATH.is_file() and not force_process:
+        data = json.loads(RAW_PATH.read_text())
+    else:
+        with open(RAW_PATH) as file:
+            data = json.load(file)
+
+        data["payload"]["namespaces"] = sorted(
+            data["payload"]["namespaces"], key=itemgetter("prefix")
+        )
+        if force_download:
+            with open(RAW_PATH, "w") as file:
+                json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
 
     rv = {
         record["prefix"]: _process(record)
@@ -57,8 +62,7 @@ def get_miriam(
         # records whose prefixes start with `dg.` appear to be unreleased
         if not record["prefix"].startswith("dg.") and record["prefix"] not in SKIP
     }
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
@@ -71,15 +75,15 @@ PROVIDER_BLACKLIST = {
 }
 
 
-def _process(record: dict[str, Any]) -> dict[str, Any]:
+def _process(record: dict[str, Any]) -> Record:
     prefix = record["prefix"]
     rv = {
         "prefix": prefix,
         "id": record["mirId"][len("MIR:") :],
         "name": record["name"],
-        "deprecated": record["deprecated"],
+        "status": Status.deprecated if record["deprecated"] else Status.active,
         "namespaceEmbeddedInLui": record["namespaceEmbeddedInLui"],
-        "sampleId": record["sampleId"],
+        "examples": [record["sampleId"]],
         "description": record["description"],
         "pattern": record["pattern"],
     }
@@ -89,7 +93,7 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
         if not resource.get("deprecated")
     ]
     if not resources:
-        return rv
+        return Record.model_validate(rv)
 
     has_official = any(resource["official"] for resource in resources)
     if has_official:
@@ -110,7 +114,7 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
         extras.append(provider)
     if extras:
         rv["providers"] = extras
-    return rv
+    return Record.model_validate(rv)
 
 
 SKIP_PROVIDERS = {

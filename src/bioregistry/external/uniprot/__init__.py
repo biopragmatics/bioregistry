@@ -10,8 +10,9 @@ from typing import Any, ClassVar
 
 import requests
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import removeprefix
 
 __all__ = [
@@ -37,7 +38,7 @@ skip_prefixes = {
 }
 
 
-def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
+def get_uniprot(*, force_download: bool = True) -> dict[str, Record]:
     """Get the UniProt registry."""
     if PROCESSED_PATH.is_file() and not force_download:
         return load_processed(PROCESSED_PATH)
@@ -49,22 +50,21 @@ def get_uniprot(*, force_download: bool = True) -> dict[str, dict[str, str]]:
     )
     rv = {}
     for record in json.loads(RAW_PATH.read_text())["results"]:
+        prefix = record.pop("id")
+        if prefix in skip_prefixes:
+            continue
+
         processed_record = _process_record(record)
         if processed_record is None:
             continue
-        prefix = processed_record.pop("prefix")
-        if prefix in skip_prefixes:
-            continue
         rv[prefix] = processed_record
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 
-def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
+def _process_record(record: dict[str, Any]) -> Record | None:
     rv = {
-        "prefix": record.pop("id"),
         "name": record.pop("name"),
         "abbreviation": record.pop("abbrev"),
         "homepage": record.pop("servers")[0],
@@ -100,7 +100,7 @@ def _process_record(record: dict[str, Any]) -> dict[str, Any] | None:
             logger.debug("no annotation in %s", rv["prefix"])
     if record:
         logger.debug("forgot something: %s", record)
-    return rv
+    return Record.model_validate(rv)
 
 
 class UniProtAligner(Aligner):

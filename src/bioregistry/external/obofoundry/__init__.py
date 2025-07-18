@@ -19,8 +19,9 @@ from bioregistry.alignment_model import (
     Person,
     Publication,
     Record,
+    Status,
     dump_records,
-    load_records,
+    load_processed,
 )
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
@@ -30,7 +31,6 @@ __all__ = [
     "get_obofoundry",
     "get_obofoundry_example",
 ]
-
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ def get_obofoundry(
 ) -> dict[str, Record]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
@@ -86,7 +86,7 @@ def _get_contact(record: dict[str, Any]) -> Person | None:
     )
 
 
-def _get_license(record) -> License | None:
+def _get_license(record: dict[str, Any]) -> License | None:
     ll = record.get("license")
     if not ll:
         return None
@@ -99,7 +99,7 @@ def _get_license(record) -> License | None:
     return License(name=license_name, url=license_url)
 
 
-def _process_publication(p) -> Publication:
+def _process_publication(p: dict[str, Any]) -> Publication:
     d = {"name": p["title"]}
     url = p["id"]
     if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
@@ -134,9 +134,17 @@ def _process(record: dict[str, Any]) -> Record:
 
     prefix = record["id"].lower()
     contact = _get_contact(record)
-    status = record["activity_status"]
-    if status == "active" and contact is None:
-        status = "orphaned"
+    if record["activity_status"] == "active":
+        if contact is None:
+            status = Status.orphaned
+        else:
+            status = Status.active
+    elif record["activity_status"] == "orphaned":
+        status = Status.orphaned
+    elif record["activity_status"] == "inactive":
+        status = Status.inactive
+    else:
+        raise NotImplementedError(f"unhandled obo foundry status: {record['activity_status']}")
 
     rv = {
         "prefix": prefix,

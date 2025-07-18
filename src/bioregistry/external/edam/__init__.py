@@ -4,7 +4,7 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import ClassVar
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import get_ols_descendants
 
@@ -22,7 +22,7 @@ EDAM_PARENT_IRI = "http%253A%252F%252Fedamontology.org%252Fdata_2091"
 def get_edam(force_download: bool = False) -> dict[str, Record]:
     """Get the EDAM registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
     rv = get_ols_descendants(
         ontology="edam",
         uri=EDAM_PARENT_IRI,

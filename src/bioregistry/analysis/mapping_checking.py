@@ -34,6 +34,7 @@ from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import cos_sim
 
 from bioregistry import Resource, manager, read_mismatches, read_registry
+from bioregistry.alignment_model import Record
 from bioregistry.constants import EXPORT_ANALYSES
 from bioregistry.external import GETTERS
 
@@ -132,7 +133,7 @@ def get_scored_mappings_for_prefix(
 
 def _get_mismatch_entries() -> dict[str, Any]:
     """Return a dictionary of entries corresponding to known mismatches."""
-    external_registries = {}
+    external_registries: dict[str, dict[str, Record]] = {}
     # Get functions to read processed external registry content
     external_getters = {
         external_registry: getter_fun for external_registry, _, getter_fun in GETTERS
@@ -156,7 +157,7 @@ def _get_mismatch_entries() -> dict[str, Any]:
                 external_entry = external_registries[external_registry].get(external_prefix)
                 if not external_entry:
                     continue
-                external_entry["prefix"] = external_prefix
+                # external_entry.prefix = external_prefix
                 mismatch_entries[bioregistry_prefix][external_registry] = external_entry
     return dict(mismatch_entries)
 

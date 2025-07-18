@@ -7,7 +7,7 @@ from pathlib import Path
 from textwrap import dedent
 from typing import ClassVar
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 from bioregistry.utils import query_wikidata, removeprefix
@@ -209,7 +209,7 @@ def _get_query(properties: Iterable[str]) -> str:
     return QUERY_FMT % values
 
 
-def _get_wikidata() -> dict[str, Record]:
+def _get_wikidata(*, force_process: bool = False) -> dict[str, Record]:
     """Iterate over Wikidata properties connected to biological databases."""
     mapped = _get_mapped()
     # throw out anything that can be queried directly
@@ -307,12 +307,12 @@ def _get_wikidata() -> dict[str, Record]:
     return rv
 
 
-def get_wikidata(force_download: bool = False) -> dict[str, Record]:
+def get_wikidata(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the wikidata registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+    if PROCESSED_PATH.exists() and not force_download and not force_process:
+        return load_processed(PROCESSED_PATH)
 
-    data = _get_wikidata()
+    data = _get_wikidata(force_process=force_process)
     dump_records(data, PROCESSED_PATH)
     return data
 

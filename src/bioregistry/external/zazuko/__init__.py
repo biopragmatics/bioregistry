@@ -6,7 +6,7 @@ from typing import ClassVar
 
 import requests
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -25,7 +25,7 @@ URL = "https://prefix.zazuko.com/api/v1/prefixes"
 def get_zazuko(*, force_download: bool = False) -> dict[str, Record]:
     """Get the Zazuko context map."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     data = requests.get(URL, timeout=15).json()
     rv = {

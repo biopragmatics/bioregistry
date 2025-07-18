@@ -105,6 +105,7 @@ class Record(BaseModel):
     example: list[str] = Field(default_factory=list)
     keywords: list[str] = Field(default_factory=list)
     modified: datetime.datetime | None = Field(None, description="Date last modified")
+    xrefs: dict[str, str] = Field(default_factory=dict)
 
 
 class Registry(BaseModel):
@@ -124,7 +125,7 @@ def dump_records(records: dict[str, Record], path: Path) -> None:
         json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 
-def load_records(path: Path) -> dict[str, Record]:
+def load_processed(path: Path) -> dict[str, Record]:
     """Load records."""
     with path.open() as file:
         rv = json.load(file)

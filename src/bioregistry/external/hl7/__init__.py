@@ -6,17 +6,18 @@
 """
 
 import csv
+from collections.abc import Sequence
 from pathlib import Path
+from typing import ClassVar
+
+from bioregistry.alignment_model import Record
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "HL7Aligner",
     "get_hl7",
 ]
 
-from collections.abc import Sequence
-from typing import ClassVar
-
-from bioregistry.external.alignment_utils import Aligner
 
 HERE = Path(__file__).parent.resolve()
 DATA = HERE.joinpath("OID_Report.csv")
@@ -32,7 +33,7 @@ COLUMNS = {
 }
 
 
-def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
+def get_hl7(*, force_download: bool = False) -> dict[str, Record]:
     """Get HL7 OIDs."""
     rv = {}
     with DATA.open() as file:
@@ -41,7 +42,7 @@ def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
         for row in reader:
             row_dict = dict(zip(header, row))
             record = {COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v}
-            rv[record.pop("prefix")] = record
+            rv[record.pop("prefix")] = Record.model_validate(record)
     return rv
 
 

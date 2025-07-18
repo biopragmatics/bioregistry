@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-import json
 import logging
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from bioregistry.alignment_model import Record, dump_records
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
@@ -109,7 +109,7 @@ def _parse_fairsharing_url(s: str) -> str | None:
     return None
 
 
-def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
+def get_integbio(*, force_download: bool = False) -> dict[str, Record]:
     """Get the integbio resource."""
     url = get_url()
     df = pd.read_csv(url)
@@ -146,8 +146,9 @@ def get_integbio(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     # TODO ground database maintenance with ROR?
     rv = {}
     for _, row in df.iterrows():
-        rv[row["prefix"].lower()] = {k: v for k, v in row.items() if isinstance(v, (str, list))}
-    PROCESSED_PATH.write_text(json.dumps(rv, indent=True, ensure_ascii=False, sort_keys=True))
+        rr = {k: v for k, v in row.items() if isinstance(v, (str, list))}
+        rv[row["prefix"].lower()] = Record.model_validate(rr)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 

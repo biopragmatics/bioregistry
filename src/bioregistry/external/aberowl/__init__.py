@@ -8,7 +8,7 @@ import yaml
 from pystow.utils import download
 from tqdm import tqdm
 
-from bioregistry.alignment_model import Artifact, ArtifactType, Record, dump_records, load_records
+from bioregistry.alignment_model import Artifact, ArtifactType, Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -28,7 +28,7 @@ SKIP = {"vfdsad": "test", "dlgkj": "test", "hi": "test", "zinnane": "test", "alp
 def get_aberowl(*, force_download: bool = False, force_process: bool = False) -> dict[str, Record]:
     """Get the AberOWL registry."""
     if PROCESSED_PATH.exists() and not force_process:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     download(url=ABEROWL_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:

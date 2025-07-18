@@ -8,9 +8,9 @@ def _main() -> None:
     fairsharing_invmap = manager.get_registry_invmap("fairsharing")
     re3data_map = manager.get_registry_map("re3data")
     fairsharing_to_re3data = {
-        value["xrefs"]["fairsharing"]: key
+        value.xrefs["fairsharing"]: key
         for key, value in get_re3data(force_download=False).items()
-        if "fairsharing" in value.get("xrefs", {})
+        if "fairsharing" in value.xrefs
     }
     for fairsharing_id, prefix in fairsharing_invmap.items():
         re3data_id = fairsharing_to_re3data.get(fairsharing_id)

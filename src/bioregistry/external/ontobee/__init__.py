@@ -8,7 +8,7 @@ from typing import ClassVar
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -32,7 +32,7 @@ LEGEND = {
 def get_ontobee(force_download: bool = False) -> dict[str, Record]:
     """Get the OntoBee registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as f:
@@ -72,7 +72,7 @@ class OntobeeAligner(Aligner):
     def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry.name, 50),
+            textwrap.shorten(external_entry.name or "", 50),
             external_entry.uri_format or "",
         ]
 

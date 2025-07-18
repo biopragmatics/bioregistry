@@ -1,16 +1,14 @@
 """Utilities for registry alignment."""
 
 import csv
-import warnings
 from collections.abc import Iterable, Mapping, Sequence
-from pathlib import Path
 from typing import Any, Callable, ClassVar, Optional
 
 import click
 from curies.w3c import NCNAME_RE
 from tabulate import tabulate
 
-from ..alignment_model import Record, load_records
+from ..alignment_model import Record
 from ..constants import METADATA_CURATION_DIRECTORY
 from ..resource_manager import Manager
 from ..schema import Resource
@@ -19,7 +17,6 @@ from ..utils import norm
 
 __all__ = [
     "Aligner",
-    "load_processed",
 ]
 
 
@@ -295,9 +292,3 @@ class Aligner:
         s = self.get_curation_table(**kwargs)
         if s:
             print(s)  # noqa:T201
-
-
-def load_processed(path: Path) -> dict[str, Record]:
-    """Load a processed."""
-    warnings.warn("use load_records", DeprecationWarning, stacklevel=2)
-    return load_records(path)

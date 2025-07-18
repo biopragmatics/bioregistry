@@ -7,7 +7,7 @@ from typing import ClassVar
 
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -23,7 +23,7 @@ URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registr
 SKIP_PARTS = {"identifiers.org", "purl.obolibrary.org"}
 
 
-def get_biocontext(*, force_download: bool = False) -> Mapping[str, Record]:
+def get_biocontext(*, force_download: bool = False) -> dict[str, Record]:
     """Get the BioContext context map.
 
     :param force_download: If true, forces download. If false and the file is already
@@ -36,7 +36,7 @@ def get_biocontext(*, force_download: bool = False) -> Mapping[str, Record]:
         https://github.com/prefixcommons/biocontext
     """
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
     download(url=URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
         data = json.load(file)

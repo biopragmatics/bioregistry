@@ -11,7 +11,7 @@ from urllib.parse import urlsplit, urlunsplit
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -57,7 +57,7 @@ OBSOLETE = {
 def get_ncbi(force_download: bool = False) -> dict[str, Record]:
     """Get the NCBI data."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
@@ -142,7 +142,7 @@ def get_ncbi(force_download: bool = False) -> dict[str, Record]:
 
             item["example"] = identifier
 
-        rv[prefix] = item
+        rv[prefix] = Record.model_validate(item)
 
     dump_records(rv, PROCESSED_PATH)
     return rv
@@ -159,8 +159,8 @@ class NcbiAligner(Aligner):
     def get_curation_row(self, external_id: str, external_entry: Record) -> Sequence[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
-            textwrap.shorten(external_entry.name, 50),
-            external_entry.example or "",
+            textwrap.shorten(external_entry.name or "", 50),
+            external_entry.example[0] if external_entry.example else "",
             external_entry.homepage or "",
         ]
 

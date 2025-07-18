@@ -8,7 +8,6 @@
 
 from __future__ import annotations
 
-import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -16,8 +15,9 @@ from typing import Any, ClassVar
 
 from pystow.utils import download
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
@@ -97,7 +97,7 @@ SKIP_URI_FORMATS = {
 
 def get_prefixcommons(
     force_download: bool = False, force_process: bool = False
-) -> dict[str, dict[str, Any]]:
+) -> dict[str, Record]:
     """Get the Life Science Registry."""
     if PROCESSED_PATH.exists() and not (force_download or force_process):
         return load_processed(PROCESSED_PATH)
@@ -110,9 +110,9 @@ def get_prefixcommons(
         for line in lines:
             prefix, data = _process_row(line)
             if prefix and data:
-                rows[prefix] = data
+                rows[prefix] = Record.model_validate(data)
 
-    PROCESSED_PATH.write_text(json.dumps(rows, sort_keys=True, indent=2))
+    dump_records(rows, PROCESSED_PATH)
     return rows
 
 

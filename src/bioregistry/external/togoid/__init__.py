@@ -1,15 +1,15 @@
 """Download TogoID."""
 
-import json
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import ClassVar
 
 import requests
 import yaml
 
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner, load_processed
+from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
     "TogoIDAligner",
@@ -54,10 +54,19 @@ def _get_descriptions() -> dict[str, str]:
     }
 
 
-def _get_dataset() -> dict[str, dict[str, Any]]:
-    data = yaml.safe_load(requests.get(DATASET_URL, timeout=15).text)
+def get_togoid(*, force_download: bool = False, force_refresh: bool = False) -> dict[str, Record]:
+    """Get the TogoID data."""
+    if PROCESSED_PATH.exists() and not force_refresh:
+        return load_processed(PROCESSED_PATH)
+
+    key_to_prefix = _get_ontology()
+    key_to_description = _get_descriptions()
+
+    res = requests.get(DATASET_URL, timeout=15)
+    data = yaml.safe_load(res.text)
     rv = {}
-    for prefix, record in data.items():
+    for key, record in data.items():
+        prefix = key_to_prefix[key]
         name = record.get("label")
         if not name:
             continue
@@ -75,29 +84,14 @@ def _get_dataset() -> dict[str, dict[str, Any]]:
         integbio_catalog_id = record.get("catalog")
         if integbio_catalog_id and integbio_catalog_id != "FIXME":
             rr["catalog"] = integbio_catalog_id
-        rv[prefix] = rr
-    return rv
 
+        description = key_to_description.get(key)
+        if description:
+            rr["description"] = description
 
-def get_togoid(
-    *, force_download: bool = False, force_refresh: bool = False
-) -> dict[str, dict[str, Any]]:
-    """Get the TogoID data."""
-    if PROCESSED_PATH.exists() and not force_refresh:
-        return load_processed(PROCESSED_PATH)
+        rv[prefix] = Record.model_validate(rr)
 
-    key_to_prefix = _get_ontology()
-    key_to_description = _get_descriptions()
-    records = _get_dataset()
-    rv = {
-        key_to_prefix[key]: record
-        | {"prefix": key_to_prefix[key]}
-        | ({"description": key_to_description.get(key)} if key in key_to_description else {})
-        for key, record in records.items()
-    }
-
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    dump_records(rv, PROCESSED_PATH)
     return rv
 
 

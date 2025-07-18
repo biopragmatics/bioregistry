@@ -12,7 +12,7 @@ from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
 from ..alignment_utils import Aligner
-from ...alignment_model import License, Record, dump_records, load_records
+from ...alignment_model import License, Record, dump_records, load_processed
 
 __all__ = [
     "BartocAligner",
@@ -38,7 +38,7 @@ def get_bartoc(*, force_download: bool = False, force_process: bool = False) -> 
         https://bartoc.org/
     """
     if PROCESSED_PATH.is_file() and not force_process:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     download(URL, path=RAW_PATH, force=force_download)
 
@@ -66,7 +66,7 @@ def _process_bartoc_record(prefix: str, data: dict[str, Any]) -> Record:
     # FIXME what about external mappings?
     for identifier in data.get("identifier", []):
         if identifier.startswith("http://www.wikidata.org/entity/"):
-            rv["wikidata_database"] = identifier[len("http://www.wikidata.org/entity/") :]
+            rv["xrefs"]["wikidata"] = identifier[len("http://www.wikidata.org/entity/") :]
 
     for short_name in data.get("notation", []):
         short_name = short_name.strip()

@@ -10,7 +10,7 @@ from typing import ClassVar
 
 from pystow.utils import download
 
-from bioregistry.alignment_model import Record, dump_records, load_records
+from bioregistry.alignment_model import Record, dump_records, load_processed
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.alignment_utils import Aligner
 
@@ -39,7 +39,7 @@ def get_cellosaurus(
 ) -> dict[str, Record]:
     """Get the Cellosaurus registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        return load_records(PROCESSED_PATH)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open(encoding="ISO8859-1") as file:
