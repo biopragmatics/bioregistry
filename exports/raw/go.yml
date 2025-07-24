@@ -2998,13 +2998,13 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
-      id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+
+      id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE)-[0-9]{6}-[0-9]+
       url_syntax: http://zfin.org/[example_id]
       example_id: ZDB-GENE-990415-103
       example_url: http://zfin.org/ZDB-GENE-990415-103
     - type_name: variation
       type_id: VariO:0001
-      id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+
+      id_syntax: ZDB-(GENO|MRPHLNO|CRISPR|FISH|TALEN)-[0-9]{6}-[0-9]+
       url_syntax: http://zfin.org/[example_id]
       example_id: ZDB-GENE-990415-103
       example_url: http://zfin.org/ZDB-GENE-990415-103
@@ -3072,6 +3072,7 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
+      id_syntax: S\w+(\_)?\d
       url_syntax: https://www.japonicusdb.org/gene/[example_id]
       example_id: JaponicusDB:SJAG_01143
       example_url: https://www.japonicusdb.org/gene/SJAG_01143
