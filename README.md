@@ -471,8 +471,8 @@ It looks like this:
 > <br />Hoyt, C. T., Balk, M., Callahan, T. J., Domingo-Fernandez, D., Haendel,
 > M. A., Hegde, H. B., Himmelstein, D. S., Karis, K., Kunze, J., Lubiana, T.,
 > Matentzoglu, N., McMurry, J., Moxon, S., Mungall, C. J., Rutz, A., Unni, D.
-> R., Willighagen, E., Winston, D., and Gyori, B. M. (2022) <br />_Nature
-> Scientific Data_, s41597-022-01807-3
+> R., Willighagen, E., Winston, D., and Gyori, B. M. (2022) <br /> _Scientific
+> Data_, s41597-022-01807-3
 
 ```bibtex
 @article{Hoyt2022Bioregistry,

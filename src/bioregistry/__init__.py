@@ -11,7 +11,15 @@ from .metaresource_api import (
     get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import curie_from_iri, parse_iri
+from .parse_iri import (
+    curie_from_iri,
+    get_default_converter,
+    normalize_curie,
+    normalize_parsed_curie,
+    normalize_prefix,
+    parse_curie,
+    parse_iri,
+)
 from .reference import (
     NormalizedNamableReference,
     NormalizedNamedReference,
@@ -21,6 +29,7 @@ from .reference import (
     StandardReference,
 )
 from .resolve import (
+    add_resource,
     count_mappings,
     get_appears_in,
     get_banana,
@@ -34,7 +43,6 @@ from .resolve import (
     get_contact_orcid,
     get_converter,
     get_curie_pattern,
-    get_default_converter,
     get_default_format,
     get_depends_on,
     get_description,
@@ -86,10 +94,6 @@ from .resolve import (
     is_novel,
     is_obo_foundry,
     is_proprietary,
-    normalize_curie,
-    normalize_parsed_curie,
-    normalize_prefix,
-    parse_curie,
     read_contributors,
 )
 from .resolve_identifier import (
@@ -155,6 +159,7 @@ __all__ = [
     "StandardNamableReference",
     "StandardNamedReference",
     "StandardReference",
+    "add_resource",
     "count_mappings",
     "curie_from_iri",
     "curie_to_str",

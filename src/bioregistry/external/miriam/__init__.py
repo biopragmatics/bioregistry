@@ -62,12 +62,13 @@ def get_miriam(
     return rv
 
 
-#: Pairs of MIRIAM prefix and provider codes to skip
+#: Pairs of MIRIAM prefix and provider codes (or name, since some providers don't have codes)
 PROVIDER_BLACKLIST = {
     ("ega.study", "omicsdi"),
     # see discussion at https://github.com/biopragmatics/bioregistry/pull/944
     ("bioproject", "ebi"),
     ("pmc", "ncbi"),
+    ("inchi", "InChI through Chemspider"),
 }
 
 
@@ -104,7 +105,11 @@ def _process(record: dict[str, Any]) -> dict[str, Any]:
     extras = []
     for provider in rest:
         code = provider["code"]
-        if code in SKIP_PROVIDERS or (prefix, code) in PROVIDER_BLACKLIST:
+        if (
+            code in SKIP_PROVIDERS
+            or (prefix, code) in PROVIDER_BLACKLIST
+            or (prefix, provider["name"]) in PROVIDER_BLACKLIST
+        ):
             continue
         del provider["official"]
         extras.append(provider)
