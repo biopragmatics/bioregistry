@@ -39,7 +39,8 @@ FOOTER_DEFAULT = dedent(
     at Northeastern University.<br/>
     Funded by Chan Zuckerberg Initiative (CZI) Award
     <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
-    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
+    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a> and
+    <a rel="me" href="https://fosstodon.org/@bioregistry" title="bioregistry">@bioregistry@fosstodon.org</a>
     (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
 """
 )
@@ -135,10 +136,13 @@ def get_app(
     """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
-    :param config: Additional configuration to be passed to the flask application. See below.
+    :param config: Additional configuration to be passed to the flask application. See
+        below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
+
     :returns: An instantiated WSGI application
+
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)

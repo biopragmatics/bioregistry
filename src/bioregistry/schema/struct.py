@@ -26,8 +26,10 @@ from typing import (
 )
 
 import click
+from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
+from typing_extensions import TypeAlias
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -59,6 +61,7 @@ __all__ = [
     "Publication",
     "Registry",
     "Resource",
+    "ResourceStatus",
     "get_json_schema",
 ]
 
@@ -282,6 +285,22 @@ class Publication(BaseModel):
         )
 
 
+#: The status of a resource.
+ResourceStatus: TypeAlias = Literal[
+    "available", "moved", "gone", "hijacked", "degraded", "misconfigured"
+]
+ResourceStatusAvailable: ResourceStatus = "available"
+
+
+class StatusCheck(BaseModel):
+    """A status check."""
+
+    value: ResourceStatus
+    date: str = Field(pattern="^\\d{4}-\\d{2}-\\d{2}$")
+    contributor: str = Field(..., pattern=ORCID_PATTERN)
+    notes: str | None = None
+
+
 class Provider(BaseModel):
     """A provider."""
 
@@ -309,6 +328,10 @@ class Provider(BaseModel):
         "usage of the prefix. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
     )
+    status: StatusCheck | None = Field(
+        None,
+        description="Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387.",
+    )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI.
@@ -317,6 +340,12 @@ class Provider(BaseModel):
         :return: The URI for the identifier
         """
         return self.uri_format.replace("$1", identifier)
+
+    def is_known_inactive(self) -> bool:
+        """Check if the resource is known to be inactive."""
+        if self.status is None:
+            return False
+        return self.status.value != ResourceStatusAvailable
 
 
 class Resource(BaseModel):
@@ -1346,7 +1375,15 @@ class Resource(BaseModel):
                 return cast(str, rv)
         return None
 
-    def get_example(self) -> str | None:
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_example(self, *, strict: Literal[False] = False) -> str | None: ...
+
+    # docstr-coverage:excused `overload`
+    @overload
+    def get_example(self, *, strict: Literal[True] = True) -> str: ...
+
+    def get_example(self, *, strict: bool = False) -> str | None:
         """Get an example identifier, if it's available."""
         example = self.example
         if example is not None:
@@ -1361,6 +1398,8 @@ class Resource(BaseModel):
         wikidata_examples = self.get_external("wikidata").get("example", [])
         if wikidata_examples:
             return cast(str, wikidata_examples[0])
+        if strict:
+            raise ValueError
         return None
 
     def get_examples(self) -> list[str]:
@@ -1968,19 +2007,38 @@ class Resource(BaseModel):
             return None
         return uri_format[: -len("$1")]
 
-    def get_uri_prefixes(self) -> set[str]:
-        """Get the set of all URI prefixes."""
-        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+    def get_uri_prefixes(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI prefixes.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI prefixes.
+        """
+        uri_prefixes = (
+            self._clip_uri_format(uri_format)
+            for uri_format in self.get_uri_formats(enforce_w3c=enforce_w3c)
+        )
         return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
-    def get_uri_formats(self) -> set[str]:
-        """Get the set of all URI format strings."""
+    def get_uri_formats(self, *, enforce_w3c: bool = False) -> set[str]:
+        """Get the set of all URI format strings.
+
+        :param enforce_w3c:
+            When generating URI prefixes from prefix synonyms,
+            should synonyms that aren't W3C-compliant be filtered out?
+        :returns:
+            A set of URI format strings, containing ``$1`` where a local
+            unique identifier should be formatted in.
+        """
         uri_formats = itt.chain.from_iterable(
-            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
+            _yield_protocol_variations(uri_format)
+            for uri_format in self._iter_uri_formats(enforce_w3c=enforce_w3c)
         )
         return set(uri_formats)
 
-    def _iter_uri_formats(self) -> Iterable[str]:
+    def _iter_uri_formats(self, *, enforce_w3c: bool = False) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
         yield f"https://bioregistry.io/{self.prefix}:$1"
@@ -1988,7 +2046,8 @@ class Resource(BaseModel):
         if preferred_prefix:
             yield f"https://bioregistry.io/{preferred_prefix}:$1"
         for synonym in self.get_synonyms():
-            yield f"https://bioregistry.io/{synonym}:$1"
+            if not enforce_w3c or NCNAME_RE.fullmatch(synonym):
+                yield f"https://bioregistry.io/{synonym}:$1"
         # TODO consider adding bananas
         for provider in self.get_extra_providers():
             yield provider.uri_format
@@ -2007,7 +2066,7 @@ class Resource(BaseModel):
         if rdf_uri_format:
             yield rdf_uri_format
 
-    def get_extra_providers(self) -> list[Provider]:
+    def get_extra_providers(self, *, filter_known_inactive: bool = False) -> list[Provider]:
         """Get a list of all extra providers."""
         rv = []
         providers = self.providers or []
@@ -2035,7 +2094,10 @@ class Resource(BaseModel):
                     "set of heterogeneously formatted sources obtained from multiple data providers.",
                 )
             )
-        return sorted(rv, key=attrgetter("code"))
+        rv = sorted(rv, key=attrgetter("code"))
+        if filter_known_inactive:
+            rv = [v for v in rv if not v.is_known_inactive()]
+        return rv
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
