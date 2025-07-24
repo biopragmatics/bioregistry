@@ -56,6 +56,7 @@ from ..schema_utils import (
     read_prefix_contributions,
     read_prefix_reviews,
     read_registry_contributions,
+    read_status_contributions,
 )
 from ..utils import curie_to_str
 
@@ -468,6 +469,7 @@ def contributors() -> str:
     prefix_reviews = read_prefix_reviews(manager.registry)
     prefix_contacts = read_prefix_contacts(manager.registry)
     registries = read_registry_contributions(manager.metaregistry)
+    status_contributions = read_status_contributions(manager.registry)
     unique_direct_count = len(
         set(itt.chain(collections, contexts, prefix_contributions, prefix_reviews))
     )
@@ -484,6 +486,7 @@ def contributors() -> str:
         formats=FORMATS,
         unique_direct_count=unique_direct_count,
         unique_indirect_count=unique_indirect_count,
+        status_contributions=status_contributions,
     )
 
 

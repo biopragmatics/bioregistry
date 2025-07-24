@@ -25,11 +25,14 @@ SKIP_PARTS = {"identifiers.org", "purl.obolibrary.org"}
 def get_biocontext(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the BioContext context map.
 
-    :param force_download: If true, forces download. If false and the file
-        is already cached, reuses it.
+    :param force_download: If true, forces download. If false and the file is already
+        cached, reuses it.
+
     :returns: The biocontext data dictionary
 
-    .. seealso:: https://github.com/prefixcommons/biocontext
+    .. seealso::
+
+        https://github.com/prefixcommons/biocontext
     """
     if PROCESSED_PATH.exists() and not force_download:
         return load_processed(PROCESSED_PATH)

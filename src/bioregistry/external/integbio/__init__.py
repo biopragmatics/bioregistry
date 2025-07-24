@@ -50,12 +50,13 @@ def get_url() -> str:
     """Scrape the current download URL for Integbio.
 
     :returns: The URL of the Integbio data download.
+
     :raises ValueError: if the URL can't be found
 
     .. warning::
 
-        Integbio deletes its old files, so it's impossible to download an old version of the
-        database
+        Integbio deletes its old files, so it's impossible to download an old version of
+        the database
     """
     base = "https://catalog.integbio.jp/dbcatalog/en/download"
     download_prefix = "/dbcatalog/files/zip/en_integbio_dbcatalog_ccbysa_"

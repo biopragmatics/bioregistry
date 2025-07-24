@@ -193,7 +193,7 @@ wrong_patterns:
   name: Gene Ontology
   prefix: go
 - correct: ^\d{7}$
-  homepage: http://www.geneontology.org/cgi-bin/references.cgi
+  homepage: http://www.geneontology.org
   miriam: ^GO_REF:\d{7}$
   name: Gene Ontology Database references
   prefix: go.ref
@@ -223,12 +223,12 @@ wrong_patterns:
   name: HUGO Gene Nomenclature Committee
   prefix: hgnc
 - correct: ^[A-Z][A-Z0-9_]+\.PE\d+$
-  homepage: http://pbil.univ-lyon1.fr/databases/hogenom/
+  homepage: http://hogenom.univ-lyon1.fr/
   miriam: ^\w+$
   name: Database of Complete Genome Homologous Genes Families
   prefix: hogenom
 - correct: ^SEQF\d+(?:\.\d+)?$
-  homepage: http://www.homd.org/index.php
+  homepage: https://www.homd.org/
   miriam: ^SEQF\d+$
   name: HOMD Sequence Metainformation
   prefix: homd.seq
@@ -277,6 +277,11 @@ wrong_patterns:
   miriam: ^LRG_\d+$
   name: Locus Reference Genomic
   prefix: lrg
+- correct: ^\w+$
+  homepage: https://w3id.org/nfdi4ing/metadata4ing/
+  miriam: '[A-Za-z_0-9]*'
+  name: Metadata4Ing
+  prefix: m4i
 - correct: ^\d+$
   homepage: https://github.com/obophenotype/mouse-anatomy-ontology
   miriam: ^MA:\d+$
@@ -303,7 +308,7 @@ wrong_patterns:
   name: MediaDive Medium
   prefix: mediadive.medium
 - correct: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
-  homepage: http://merops.sanger.ac.uk/index.htm
+  homepage: https://www.ebi.ac.uk/merops
   miriam: ^I\d{2}\.\d{3}$
   name: MEROPS Entry
   prefix: merops.entry
@@ -547,6 +552,11 @@ wrong_patterns:
   miriam: ^SO:\d{7}$
   name: Sequence types and features ontology
   prefix: so
+- correct: ^[0-9A-Za-z\-.\+]+$
+  homepage: https://spdx.org/licenses
+  miriam: ^[0-9A-Za-z\-.]+$
+  name: Software Package Data Exchange License
+  prefix: spdx
 - correct: ^\d{7}$
   homepage: http://stato-ontology.org/
   miriam: ^STATO:\d+$

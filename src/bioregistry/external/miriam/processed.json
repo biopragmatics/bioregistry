@@ -327,7 +327,7 @@
     "id": "00000035",
     "name": "arXiv",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
+    "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?\\/?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$",
     "prefix": "arxiv",
     "sampleId": "0807.4956v1",
     "uri_format": "https://arxiv.org/abs/$1"
@@ -699,10 +699,10 @@
     "id": "00000264",
     "name": "BindingDB",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^\\w\\d+$",
+    "pattern": "^\\d+$",
     "prefix": "bindingdb",
-    "sampleId": "e999",
-    "uri_format": "http://www.bindingdb.org/compact/$1"
+    "sampleId": "999",
+    "uri_format": "http://www.bindingdb.org/rwd/entry/$1"
   },
   "biocarta.pathway": {
     "deprecated": false,
@@ -1090,7 +1090,7 @@
     "uri_format": "http://purl.bioontology.org/ontology/BTO/BTO:$1"
   },
   "bugbase.expt": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BugBase is a MIAME-compliant microbial gene expression and comparative genomic database. It stores experimental annotation and multiple raw and analysed data formats, as well as protocols for bacterial microarray designs. This collection references microarray experiments.",
     "homepage": "http://bugs.sgul.ac.uk/E-BUGS",
     "id": "00000404",
@@ -1102,7 +1102,7 @@
     "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view"
   },
   "bugbase.protocol": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BugBase is a MIAME-compliant microbial gene expression and comparative genomic database. It stores experimental annotation and multiple raw and analysed data formats, as well as protocols for bacterial microarray designs. This collection references design protocols.",
     "homepage": "http://bugs.sgul.ac.uk/E-BUGS",
     "id": "00000403",
@@ -2215,7 +2215,7 @@
         "description": "dbEST through DNA Data Bank of Japan (DDBJ)",
         "homepage": "http://www.ddbj.nig.ac.jp/",
         "name": "dbEST through DNA Data Bank of Japan (DDBJ)",
-        "uri_format": "http://getentry.ddbj.nig.ac.jp/getentry/na/$1"
+        "uri_format": "https://getentry.ddbj.nig.ac.jp/getentry/na/$1"
       }
     ],
     "sampleId": "BP100000",
@@ -3365,7 +3365,7 @@
     "uri_format": "https://dataguids.org/ga4gh/dos/v1/dataobjects/$1"
   },
   "gabi": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "GabiPD (Genome Analysis of Plant Biological Systems Primary Database) constitutes a repository for a wide array of heterogeneous data from high-throughput experiments in several plant species. These data (i.e. genomics, transcriptomics, proteomics and metabolomics), originating from different model or crop species, can be accessed through a central gene 'Green Card'.",
     "homepage": "http://www.gabipd.org/",
     "id": "00000164",
@@ -3985,7 +3985,7 @@
     "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "grsdb": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "GRSDB is a database of G-quadruplexes and contains information on composition and distribution of putative Quadruplex-forming G-Rich Sequences (QGRS) mapped in the eukaryotic pre-mRNA sequences, including those that are alternatively processed (alternatively spliced or alternatively polyadenylated). The data stored in the GRSDB is based on computational analysis of NCBI Entrez Gene entries and their corresponding annotated genomic nucleotide sequences of RefSeq/GenBank.",
     "homepage": "http://bioinformatics.ramapo.edu/GRSDB2/",
     "id": "00000495",
@@ -4363,7 +4363,7 @@
     "uri_format": "http://www.humanproteomemap.org/spectrum.php?pep_id=$1"
   },
   "hpm.protein": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Human Proteome Map (HPM) portal integrates the peptide sequencing result from the draft map of the human proteome project. The project was based on LC-MS/MS by utilizing of high resolution and high accuracy Fourier transform mass spectrometry. The HPM contains direct evidence of translation of a number of protein products derived from human genes, based on peptide identifications of multiple organs/tissues and cell types from individuals with clinically defined healthy tissues. The HPM portal provides data on individual proteins, as well as on individual peptide spectra. This collection references proteins.",
     "homepage": "http://www.humanproteomemap.org/index.php",
     "id": "00000526",
@@ -4699,13 +4699,6 @@
       },
       {
         "code": "",
-        "description": "InChI through Chemspider",
-        "homepage": "http://www.chemspider.com/",
-        "name": "InChI through Chemspider",
-        "uri_format": "http://www.chemspider.com/$1"
-      },
-      {
-        "code": "",
         "description": "InChI through NIST",
         "homepage": "http://webbook.nist.gov/chemistry",
         "name": "InChI through NIST",
@@ -4975,9 +4968,9 @@
       {
         "code": "",
         "description": "ISSN at Library of Congress",
-        "homepage": "http://catalog.loc.gov/webvoy.htm",
+        "homepage": "http://catalog.loc.gov",
         "name": "ISSN at Library of Congress",
-        "uri_format": "https://catalog.loc.gov/vwebv/search?searchCode=STNO&searchArg=$1&searchType=1&recCount=25"
+        "uri_format": "https://search.catalog.loc.gov/search?option=keyword&query=$1"
       }
     ],
     "sampleId": "0745-4570",
@@ -5324,7 +5317,7 @@
     "uri_format": "https://s3.us-east-2.amazonaws.com/lg.cede/$1"
   },
   "lgic": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The Ligand-Gated Ion Channel database provides nucleic and proteic sequences of the subunits of ligand-gated ion channels. These transmembrane proteins can exist under different conformations, at least one of which forms a pore through the membrane connecting two neighbouring compartments. The database can be used to generate multiple sequence alignments from selected subunits, and gives the atomic coordinates of subunits, or portion of subunits, where available.",
     "homepage": "https://www.ebi.ac.uk/compneur-srv/LGICdb/LGICdb.php",
     "id": "00000087",
@@ -5494,6 +5487,18 @@
     "sampleId": "LMPR0102010012",
     "uri_format": "http://www.lipidmaps.org/data/LMSDRecord.php?LMID=$1"
   },
+  "lncbook": {
+    "deprecated": false,
+    "description": "LncBook accommodates a high-quality collection of human lncRNA genes and transcripts, and incorporates their abundant annotations at different omics levels, thereby enabling users to decipher functional signatures of lncRNAs in human diseases and different biological contexts.\n\n",
+    "homepage": "https://ngdc.cncb.ac.cn/?lang=en",
+    "id": "00001109",
+    "name": "LncBook",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^HSALNG\\d{7}$",
+    "prefix": "lncbook",
+    "sampleId": "HSALNG0006197",
+    "uri_format": "https://ngdc.cncb.ac.cn/lncbook/gene?geneid=$1"
+  },
   "lrg": {
     "deprecated": false,
     "description": "A Locus Reference Genomic (LRG) is a manually curated record that contains stable genomic, transcript and protein reference sequences for reporting clinically relevant sequence variants. All LRGs are generated and maintained by the NCBI and EMBL-EBI.",
@@ -5540,6 +5545,18 @@
     "prefix": "lw",
     "sampleId": "6e3b1371-59d7-481a-9db4-cd0d0de98436",
     "uri_format": "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/$1"
+  },
+  "m4i": {
+    "deprecated": false,
+    "description": "The ontology Metadata4Ing provides a framework for the semantic description of research data and of the whole data generation process, embracing the object of investigation, all sample and data manipulation methods and tools, the data files themselves, and the roles of persons and institutions. The structure and application of the ontology are based on the principles of modularity and inheritance.",
+    "homepage": "http://www.rwth-aachen.de/cms/~a/root/lidx/1/",
+    "id": "00001008",
+    "name": "Metadata4Ing",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[A-Za-z_0-9]*",
+    "prefix": "m4i",
+    "sampleId": "ProcessingStep",
+    "uri_format": "http://w3id.org/nfdi4ing/metadata4ing#$1"
   },
   "ma": {
     "deprecated": false,
@@ -5620,7 +5637,7 @@
       }
     ],
     "sampleId": "MSBNK-IPB_Halle-PB000166",
-    "uri_format": "https://massbank.jp/RecordDisplay?id=$1"
+    "uri_format": "https://massbank.jp/MassBank/RecordDisplay?id=$1"
   },
   "massive": {
     "deprecated": false,
@@ -5898,7 +5915,7 @@
     "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
   },
   "metlin": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The METLIN (Metabolite and Tandem Mass Spectrometry) Database is a repository of metabolite information as well as tandem mass spectrometry data, providing public access to its comprehensive MS and MS/MS metabolite data. An annotated list of known metabolites and their mass, chemical formula, and structure are available, with each metabolite linked to external resources for further reference and inquiry.",
     "homepage": "http://masspec.scripps.edu/",
     "id": "00000322",
@@ -8051,6 +8068,18 @@
     "sampleId": "PKDB00198",
     "uri_format": "https://pk-db.com/data/$1"
   },
+  "plant_reactome": {
+    "deprecated": false,
+    "description": "PLANT REACTOME is an open-source, open access, manually curated and peer-reviewed pathway database. Pathway annotations are authored by expert biologists, in collaboration with the Reactome editorial staff and cross-referenced to many bioinformatics databases. These include project databases like Gramene, Ensembl, UniProt, ChEBI small molecule databases, PubMed, and Gene Ontology.",
+    "homepage": "https://www.gramene.org",
+    "id": "00001111",
+    "name": "Plant Reactome",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$",
+    "prefix": "plant_reactome",
+    "sampleId": "R-ACH-1120024",
+    "uri_format": "https://plantreactome.gramene.org/content/detail/$1"
+  },
   "planttfdb": {
     "deprecated": false,
     "description": "The Plant TF database (PlantTFDB) systematically identifies transcription factors for plant species. It includes annotation for identified TFs, including information on expression, regulation, interaction, conserved elements, phenotype information. It also provides curated descriptions and cross-references to other life science databases, as well as identifying evolutionary relationship among identified factors.",
@@ -8305,7 +8334,7 @@
     "uri_format": "http://prodom.prabi.fr/prodom/current/cgi-bin/request.pl?question=DBEN&query=$1"
   },
   "proglyc": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "ProGlycProt (Prokaryotic Glycoprotein) is a repository of bacterial and archaeal glycoproteins with at least one experimentally validated glycosite (glycosylated residue). Each entry in the database is fully cross-referenced and enriched with available published information about source organism, coding gene, protein, glycosites, glycosylation type, attached glycan, associated oligosaccharyl/glycosyl transferases (OSTs/GTs), supporting references, and applicable additional information.",
     "homepage": "http://www.proglycprot.org/",
     "id": "00000354",
@@ -8572,6 +8601,18 @@
     "prefix": "qtldb",
     "sampleId": "4685",
     "uri_format": "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"
+  },
+  "raid": {
+    "deprecated": false,
+    "description": "RAiD is an identifier and global system, governed by ISO 23527:2022, to uniquely identifiy research projects, collaboratively, collect and publicly share information about them.",
+    "homepage": "https://ardc.edu.au/",
+    "id": "00001107",
+    "name": "Research Activity Identifier",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^102?\\.\\d+\\/.+$",
+    "prefix": "raid",
+    "sampleId": "10.26259/0e59e9a5",
+    "uri_format": "https://raid.org/$1"
   },
   "rapdb.locus": {
     "deprecated": false,
