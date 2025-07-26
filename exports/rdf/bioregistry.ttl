@@ -359,8 +359,8 @@
 @prefix dbvar.variant: <https://www.ncbi.nlm.nih.gov/dbvar/variants/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dctypes: <http://purl.org/dc/dcmitype/> .
 @prefix ddanat: <http://purl.obolibrary.org/obo/DDANAT_> .
 @prefix ddinter.drug: <http://ddinter.scbdd.com/ddinter/drug-detail/> .
 @prefix ddinter.interaction: <http://ddinter.scbdd.com/ddinter/interact/> .
@@ -439,6 +439,11 @@
 @prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 @prefix eaglei: <http://hawaii.eagle-i.net/i/> .
 @prefix earl: <http://www.w3.org/ns/earl#> .
+@prefix earthcube.aut: <http://cor.esipfed.org/ont/earthcube/AUT_> .
+@prefix earthcube.mola: <http://cor.esipfed.org/ont/earthcube/MOLA_> .
+@prefix earthcube.sfo: <http://cor.esipfed.org/ont/earthcube/SFO_> .
+@prefix earthcube.srt: <http://cor.esipfed.org/ont/earthcube/srt_> .
+@prefix earthcube.swl: <http://cor.esipfed.org/ont/SWL_> .
 @prefix easychair.cfp: <https://easychair.org/cfp/> .
 @prefix easychair.topic: <https://easychair.org/cfp/topic.cgi?tid=> .
 @prefix ebisc: <https://cells.ebisc.org/> .
@@ -803,6 +808,8 @@
 @prefix iresite: <http://www.iresite.org/IRESite_web.php?page=view&entry_id=> .
 @prefix iro: <https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:> .
 @prefix isbn: <https://isbnsearch.org/isbn/> .
+@prefix isced1997: <https://w3id.org/kim/isced-1997/level> .
+@prefix isced2011: <https://w3id.org/kim/isced-2011/level> .
 @prefix isfinder: <https://www-is.biotoul.fr/scripts/ficheIS.php?name=> .
 @prefix isni: <http://www.isni.org/isni/> .
 @prefix iso.3166: <https://data.who.int/countries/> .
@@ -836,6 +843,8 @@
 @prefix kim.hcrt: <https://w3id.org/kim/hcrt/> .
 @prefix kim.hochschulfaechersystematik: <https://w3id.org/kim/hochschulfaechersystematik/> .
 @prefix kim.license: <https://w3id.org/kim/license/> .
+@prefix kim.schularten: <https://w3id.org/kim/schularten/> .
+@prefix kim.schulfaecher: <http://w3id.org/kim/schulfaecher/> .
 @prefix knapsack: <http://www.knapsackfamily.com/knapsack_core/information.php?word=> .
 @prefix labo: <http://purl.obolibrary.org/obo/LABO_> .
 @prefix langual: <https://www.langual.org/langual_thesaurus.asp?termid=> .
@@ -878,7 +887,7 @@
 @prefix mamo: <http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_> .
 @prefix mampol: <http://mampol.uab.es/cgi-bin/MamPol_s2.pl?Accession=> .
 @prefix marc21: <https://id.loc.gov/vocabulary/languages/> .
-@prefix massbank: <https://massbank.jp/RecordDisplay?id=> .
+@prefix massbank: <https://massbank.jp/MassBank/RecordDisplay?id=> .
 @prefix massive: <https://www.omicsdi.org/dataset/massive/> .
 @prefix matrixdb: <http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=> .
 @prefix matrixdb.association: <https://matrixdb.univ-lyon1.fr/association/> .
@@ -1040,6 +1049,7 @@
 @prefix nextprot: <https://www.nextprot.org/db/entry/> .
 @prefix nextprot.family: <https://www.nextprot.org/term/FA-> .
 @prefix nfdi.core: <https://nfdi.fiz-karlsruhe.de/ontology/NFDI_> .
+@prefix nfdi4culture.id: <https://nfdi4culture.de/id/> .
 @prefix nfdi4dso: <https://nfdi.fiz-karlsruhe.de/nfdi4dso/> .
 @prefix ngbo: <http://purl.obolibrary.org/obo/NGBO_> .
 @prefix ngl: <https://genelab-data.ndc.nasa.gov/genelab/accession/> .
@@ -1110,6 +1120,7 @@
 @prefix odc.tbi: <https://odc-tbi.org/data/> .
 @prefix odor: <https://ordb.biotech.ttu.edu/OdorDB/Data/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix oeh.educationlevel: <http://w3id.org/openeduhub/vocabs/educationalLevel/> .
 @prefix ogg: <http://purl.obolibrary.org/obo/OGG_> .
 @prefix ogms: <http://purl.obolibrary.org/obo/OGMS_> .
 @prefix ogsf: <http://purl.obolibrary.org/obo/OGSF_> .
@@ -2277,6 +2288,8 @@ bioregistry.collection:0000017 a bioregistry.schema:0000003 ;
         bioregistry:emmo,
         bioregistry:fabio,
         bioregistry:iana.mediatype,
+        bioregistry:isced1997,
+        bioregistry:isced2011,
         bioregistry:m4i,
         bioregistry:marc21,
         bioregistry:nfdi4dso,
@@ -4080,8 +4093,8 @@ bioregistry:bcio a bioregistry.schema:0000001 ;
     rdfs:label "The Behaviour Change Intervention Ontology" ;
     dcterms:description "The Behaviour Change Intervention Ontology is an ontology for all aspects of human behaviour change interventions and their evaluation."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch aberowl:BCI-O,
-        bioportal:BCI-O,
+    skos:exactMatch aberowl:BCIO,
+        bioportal:BCIO,
         ols:bcio ;
     dcat:keyword "ontology" ;
     foaf:homepage <https://www.humanbehaviourchange.org/> ;
@@ -5074,7 +5087,7 @@ bioregistry:bmont a bioregistry.schema:0000001 ;
     foaf:homepage <https://github.com/SCAI-BIO/BiomarkerOntology> ;
     bioregistry.schema:0000005 "0000006"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BMONT_$1"^^xsd:string ;
-    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BMONT/1/bmont.owl> ;
+    bioregistry.schema:0000010 <http://aber-owl.net/media/ontologies/BMONT/2/bmont.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 ;
     bioregistry.schema:0000024 "http://purl.obolibrary.org/obo/BMONT_"^^xsd:string ;
@@ -5207,7 +5220,7 @@ bioregistry:bugbase.expt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "288"^^xsd:string ;
     bioregistry.schema:0000006 "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id="^^xsd:string ;
     bioregistry.schema:0000027 bugbase.expt:288 ;
     bioregistry.schema:0000029 "bugbase.expt" .
@@ -5223,7 +5236,7 @@ bioregistry:bugbase.protocol a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "67"^^xsd:string ;
     bioregistry.schema:0000006 "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id="^^xsd:string ;
     bioregistry.schema:0000027 bugbase.protocol:67 ;
     bioregistry.schema:0000029 "bugbase.protocol" .
@@ -6464,7 +6477,8 @@ bioregistry:cnt a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "This vocabulary is intended to provide a flexible framework within different usage scenarios to semantically represent any type of content, be it on the Web or in local storage media. For example, it can be used by web quality assurance tools such as web accessibility evaluation tools to record a representation of the assessed web content, including text, images, or other types of formats. In many cases, it can be used together with HTTP Vocabulary in RDF 1.0, which allows quality assurance tools to record the HTTP headers that have been exchanged between a client and a server. This is particularly useful for quality assurance testing, conformance claims, and reporting languages like the W3C Evaluation And Report Language (EARL). [from homepage]"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
-    skos:exactMatch zazuko:cnt,
+    skos:exactMatch bartoc:17875,
+        zazuko:cnt,
         lov:cnt ;
     dcat:keyword "rdf" ;
     foaf:homepage <https://www.w3.org/TR/Pointers-in-RDF/#ref-content> ;
@@ -7256,7 +7270,7 @@ bioregistry:co_367 a bioregistry.schema:0000001 ;
 
 bioregistry:co_370 a bioregistry.schema:0000001 ;
     rdfs:label "Apple Ontology" ;
-    dcterms:description "Apple (Malus domestica) defines crop traits and variables to support the standardisation of apple breeding databases providing description of agronomic, morphological, physiological, quality traits, its methods and scales."^^xsd:string ;
+    dcterms:description "Apple (Malus domestica) defines crop traits and variables to support the standardisation of apple breeding databases providing description of agronomic, morphological, physiological, quality traits, its methods and scales. This project has received funding from the European Union's Horizon 2020 research and innovation program under the Marie Skłodowska-Curie grant agreement No 894215."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/bioversity/Crop-Ontology> ;
     skos:exactMatch agroportal:CO_370,
@@ -7863,11 +7877,13 @@ bioregistry:cryoem a bioregistry.schema:0000001 ;
     rdfs:label "Cryo Electron Microscopy ontology" ;
     dcterms:description "Ontology that describes data types and image processing operations in Cryo Electron Microscopy of Single Particles"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/I2PC/cryoem> ;
     skos:exactMatch aberowl:CRYOEM,
         bioportal:CRYOEM,
         fairsharing:FAIRsharing.q47I0t,
         ols:cryoem ;
-    dcat:keyword "electron microscopy",
+    dcat:keyword "bioimaging",
+        "electron microscopy",
         "ontology",
         "structural biology" ;
     foaf:homepage <http://scipion.i2pc.es/ontology/cryoem> ;
@@ -9385,6 +9401,87 @@ bioregistry:earl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://www.w3.org/ns/earl#"^^xsd:string ;
     bioregistry.schema:0000027 earl:Assertion ;
     bioregistry.schema:0000029 "earl" .
+
+bioregistry:earthcube.aut a bioregistry.schema:0000001 ;
+    rdfs:label "Audience Types Controlled Vocabulary" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "The Audience Types Controlled Vocabulary was created for NSF's EarthCube program's Resource Registry. The vocabulary defines the types of audience each resource in the program is targeted to.  At this point the vocabulary is very bare - no term definitions even; however, the intention is to extend the vocabulary over time.  If you would like to assist with this or in extending any of the other controlled vocabularies/ontologies developed as part of the Resource Registry project, please see https://github.com/earthcubearchitecture-ecresourcereg."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/earthcubearchitecture-ecresourcereg/AUT> ;
+    foaf:homepage <http://cor.esipfed.org/ont/earthcube/AUT> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cor.esipfed.org/ont/earthcube/AUT_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4808-4736 ;
+    bioregistry.schema:0000024 "http://cor.esipfed.org/ont/earthcube/AUT_"^^xsd:string ;
+    bioregistry.schema:0000027 earthcube.aut:0000001 ;
+    bioregistry.schema:0000029 "earthcube.aut" .
+
+bioregistry:earthcube.mola a bioregistry.schema:0000001 ;
+    rdfs:label "Data Model Language Controlled Vocabulary" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "The Data Model Language Controlled Vocabulary was created for NSF's EarthCube Program's Resource Registry.  At this point it merely lists a few of the languages used by data model resources in the registry."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/earthcubearchitecture-ecresourcereg/mola> ;
+    foaf:homepage <http://cor.esipfed.org/ont/earthcube/mola> ;
+    bioregistry.schema:0000005 "000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cor.esipfed.org/ont/earthcube/MOLA_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4808-4736 ;
+    bioregistry.schema:0000024 "http://cor.esipfed.org/ont/earthcube/MOLA_"^^xsd:string ;
+    bioregistry.schema:0000027 earthcube.mola:000001 ;
+    bioregistry.schema:0000029 "earthcube.mola" .
+
+bioregistry:earthcube.sfo a bioregistry.schema:0000001 ;
+    rdfs:label "Software Functions Ontology" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "This ontology defines a taxonomy of software functions based on the work of the NSF-funded EarthCube Resource Registry working group.  The functions are generally organized by their role in the research process."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/earthcubearchitecture-ecresourcereg/sfo> ;
+    foaf:homepage <http://cor.esipfed.org/ont/earthcube/sfo> ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cor.esipfed.org/ont/earthcube/SFO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4808-4736 ;
+    bioregistry.schema:0000024 "http://cor.esipfed.org/ont/earthcube/SFO_"^^xsd:string ;
+    bioregistry.schema:0000027 earthcube.sfo:0000001 ;
+    bioregistry.schema:0000029 "earthcube.sfo" .
+
+bioregistry:earthcube.srt a bioregistry.schema:0000001 ;
+    rdfs:label "Semantic Resource Types Vocabulary" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "The Semantic Resource Types Vocabulary was created for NSF's EarthCube Program's Resource Repository.  At this point it merely lists the types of semantic resources in the repository.  Primary use case - give me a list of the ontologies in use within EarthCube projects."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/earthcubearchitecture-ecresourcereg/srt> ;
+    foaf:homepage <http://cor.esipfed.org/ont/earthcube/srt> ;
+    bioregistry.schema:0000005 "000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cor.esipfed.org/ont/earthcube/srt_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4808-4736 ;
+    bioregistry.schema:0000024 "http://cor.esipfed.org/ont/earthcube/srt_"^^xsd:string ;
+    bioregistry.schema:0000027 earthcube.srt:000001 ;
+    bioregistry.schema:0000029 "earthcube.srt" .
+
+bioregistry:earthcube.swl a bioregistry.schema:0000001 ;
+    rdfs:label "Software Licenses Ontology" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "This mini-ontology contains classes and instances for each version of the licenses that are commonly used in software projects, particularly open source software projects. The URI's for each are the canonical URI's for that license (where they exist)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/earthcubearchitecture-ecresourcereg/swl> ;
+    dcat:keyword "license" ;
+    foaf:homepage <https://earthcubearchitecture-ecresourcereg.github.io/swl/index-en.html> ;
+    bioregistry.schema:0000005 "0000013"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cor.esipfed.org/ont/SWL_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 orcid:0000-0003-4808-4736 ;
+    bioregistry.schema:0000024 "http://cor.esipfed.org/ont/SWL_"^^xsd:string ;
+    bioregistry.schema:0000027 earthcube.swl:0000013 ;
+    bioregistry.schema:0000029 "earthcube.swl" .
 
 bioregistry:easychair.cfp a bioregistry.schema:0000001 ;
     rdfs:label "EasyChair Call for Paper" ;
@@ -11700,6 +11797,7 @@ bioregistry:gfo a bioregistry.schema:0000001 ;
         bioportal:GFO,
         fairsharing:FAIRsharing.175hsz ;
     dcat:keyword "biomedical science",
+        "conceptual modeling",
         "life science",
         "ontology" ;
     foaf:homepage <https://www.onto-med.de/ontologies/gfo> ;
@@ -15264,6 +15362,8 @@ bioregistry:kim.educationlevel a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "A controlled vocabulary for education levels, such as primary eduation, secondary education, and post-secondary education"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "education level",
+        "open educational resources" ;
     foaf:homepage <https://w3id.org/kim/educationalLevel/> ;
     bioregistry.schema:0000005 "6"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/kim/educationalLevel/level_$1"^^xsd:string ;
@@ -15277,6 +15377,7 @@ bioregistry:kim.hcrt a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "A controlled vocbualry of higher education resource types"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/dini-ag-kim/hcrt> ;
     foaf:homepage kim.hcrt:scheme.html ;
     bioregistry.schema:0000005 "simulation"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/kim/hcrt/$1"^^xsd:string ;
@@ -15290,6 +15391,7 @@ bioregistry:kim.hochschulfaechersystematik a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "A classification of subjects in Hochschule (universities of applied sciences)"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/dini-ag-kim/hochschulfaechersystematik> ;
     foaf:homepage kim.hochschulfaechersystematik:scheme ;
     bioregistry.schema:0000005 "n2"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/kim/hochschulfaechersystematik/$1"^^xsd:string ;
@@ -15303,6 +15405,8 @@ bioregistry:kim.license a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "A vocabulary describing licenses for data and code"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/dini-ag-kim/license> ;
+    dcat:keyword "license" ;
     foaf:homepage kim.license: ;
     bioregistry.schema:0000005 "nonCommercial"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/kim/license/$1"^^xsd:string ;
@@ -15310,6 +15414,34 @@ bioregistry:kim.license a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://w3id.org/kim/license/"^^xsd:string ;
     bioregistry.schema:0000027 kim.license:nonCommercial ;
     bioregistry.schema:0000029 "kim.license" .
+
+bioregistry:kim.schularten a bioregistry.schema:0000001 ;
+    rdfs:label "KIM School Types" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "Types of schooling in germany"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/dini-ag-kim/schularten> ;
+    foaf:homepage <https://github.com/dini-ag-kim/schularten> ;
+    bioregistry.schema:0000005 "s02"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/kim/schularten/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://w3id.org/kim/schularten/"^^xsd:string ;
+    bioregistry.schema:0000027 kim.schularten:s02 ;
+    bioregistry.schema:0000029 "kim.schularten" .
+
+bioregistry:kim.schulfaecher a bioregistry.schema:0000001 ;
+    rdfs:label "KIM School Subjects" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "A vocabulary describing german school subjects"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/dini-ag-kim/schulfaecher> ;
+    foaf:homepage <https://github.com/dini-ag-kim/schulfaecher> ;
+    bioregistry.schema:0000005 "s1000"^^xsd:string ;
+    bioregistry.schema:0000006 "http://w3id.org/kim/schulfaecher/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://w3id.org/kim/schulfaecher/"^^xsd:string ;
+    bioregistry.schema:0000027 kim.schulfaecher:s1000 ;
+    bioregistry.schema:0000029 "kim.schulfaecher" .
 
 bioregistry:kupo a bioregistry.schema:0000001 ;
     rdfs:label "Kidney and Urinary Pathway Ontology" ;
@@ -16142,11 +16274,11 @@ bioregistry:massbank a bioregistry.schema:0000001 ;
         "physics" ;
     foaf:homepage <http://www.massbank.jp> ;
     bioregistry.schema:0000005 "MSBNK-IPB_Halle-PB000166"^^xsd:string ;
-    bioregistry.schema:0000006 "https://massbank.jp/RecordDisplay?id=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://massbank.jp/MassBank/RecordDisplay?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^MSBNK-[0-9a-zA-Z_]+-[A-Z0-9_]+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9744-8914 ;
-    bioregistry.schema:0000024 "https://massbank.jp/RecordDisplay?id="^^xsd:string ;
+    bioregistry.schema:0000024 "https://massbank.jp/MassBank/RecordDisplay?id="^^xsd:string ;
     bioregistry.schema:0000027 massbank:MSBNK-IPB_Halle-PB000166 ;
     bioregistry.schema:0000029 "massbank" .
 
@@ -16640,7 +16772,7 @@ bioregistry:metlin a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1455"^^xsd:string ;
     bioregistry.schema:0000006 "http://metlin.scripps.edu/metabo_info.php?molid=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000012 true ;
     bioregistry.schema:0000024 "http://metlin.scripps.edu/metabo_info.php?molid="^^xsd:string ;
     bioregistry.schema:0000027 metlin:1455 ;
     bioregistry.schema:0000029 "metlin" .
@@ -18863,6 +18995,19 @@ bioregistry:nfdi.core a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 nfdi.core:0000106 ;
     bioregistry.schema:0000029 "nfdi.core" .
 
+bioregistry:nfdi4culture.id a bioregistry.schema:0000001 ;
+    rdfs:label "NFDI4Culture Metadata API" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "The NFDI4Culture portal offers all content as Linked Open Data over this RESTful API. The API implements the Hydra-Specification of the W3C Hydra Community Group. The semantic description of this API can be retrieved by clients via the Hydra documentation file (JSON). Each metadata record offered via this API can also be retrieved in one of following machine-readable LOD serializations. The API is the basis for the Culture Research Information Graph, which together with the Culture Research Data Graph forms the [Culture Knowledge Graph](https://nfdi4culture.de/services/details/culture-knowledge-graph.html) (for more details see [this presentation](https://doi.org/10.5281/zenodo.7748740)) (from homepage)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    foaf:homepage <https://nfdi4culture.de/id> ;
+    bioregistry.schema:0000005 "E4330"^^xsd:string ;
+    bioregistry.schema:0000006 "https://nfdi4culture.de/id/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://nfdi4culture.de/id/"^^xsd:string ;
+    bioregistry.schema:0000027 nfdi4culture.id:E4330 ;
+    bioregistry.schema:0000029 "nfdi4culture.id" .
+
 bioregistry:ngbo a bioregistry.schema:0000001 ;
     rdfs:label "Next Generation Biobanking Ontology" ;
     dcterms:description "Next Generation Biobanking Ontology (NGBO) is an open application ontology representing contextual data about omics digital assets in biobank. The ontology focuses on capturing the information about three main activities: wet bench analysis used to generate omics data, bioinformatics analysis used to analyze and interpret data, and data management."^^xsd:string ;
@@ -19784,6 +19929,22 @@ bioregistry:oecd.template a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 ;
     bioregistry.schema:0000029 "oecd.template" .
+
+bioregistry:oeh.educationlevel a bioregistry.schema:0000001 ;
+    rdfs:label "OpenEduHub Education Level" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "A list of values for class levels. Created in the context of the OpenEduHub"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/openeduhub/oeh-metadata-vocabs> ;
+    dcat:keyword "education level",
+        "open educational resources" ;
+    foaf:homepage <https://github.com/openeduhub/oeh-metadata-vocabs> ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://w3id.org/openeduhub/vocabs/educationalLevel/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "http://w3id.org/openeduhub/vocabs/educationalLevel/"^^xsd:string ;
+    bioregistry.schema:0000027 oeh.educationlevel:1 ;
+    bioregistry.schema:0000029 "oeh.educationlevel" .
 
 bioregistry:ogg a bioregistry.schema:0000001 ;
     rdfs:label "The Ontology of Genes and Genomes" ;
@@ -25097,6 +25258,8 @@ bioregistry:sulo a bioregistry.schema:0000001 ;
     dcterms:description "The Simplified Upper Level Ontology (SULO) is ontology with a minimal set of classes and relations to guide the development of a personal health knowledge graph. [from homepage]"^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     doap:GitRepository <https://github.com/aidava-dev/sulo/> ;
+    skos:exactMatch lov:sulo ;
+    dcat:keyword "health" ;
     foaf:homepage <https://aidava-dev.github.io/sulo/> ;
     bioregistry.schema:0000005 "Capability"^^xsd:string ;
     bioregistry.schema:0000006 "https://w3id.org/sulo/$1"^^xsd:string ;
@@ -27322,6 +27485,7 @@ bioregistry:vso a bioregistry.schema:0000001 ;
     dcterms:description "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements. "^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
     skos:exactMatch aberowl:VSO,
+        bartoc:18355,
         bioportal:VSO,
         zazuko:vso,
         fairsharing:FAIRsharing.jjb2p2,
@@ -29451,7 +29615,7 @@ aberowl:BAO dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:BCGO dcterms:isPartOf bioregistry.registry:aberowl .
 
-aberowl:BCI-O dcterms:isPartOf bioregistry.registry:aberowl .
+aberowl:BCIO dcterms:isPartOf bioregistry.registry:aberowl .
 
 aberowl:BCO dcterms:isPartOf bioregistry.registry:aberowl .
 
@@ -31621,6 +31785,8 @@ bartoc:16 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:17791 dcterms:isPartOf bioregistry.registry:bartoc .
 
+bartoc:17875 dcterms:isPartOf bioregistry.registry:bartoc .
+
 bartoc:181 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:18206 dcterms:isPartOf bioregistry.registry:bartoc .
@@ -31628,6 +31794,8 @@ bartoc:18206 dcterms:isPartOf bioregistry.registry:bartoc .
 bartoc:18274 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:18311 dcterms:isPartOf bioregistry.registry:bartoc .
+
+bartoc:18355 dcterms:isPartOf bioregistry.registry:bartoc .
 
 bartoc:18377 dcterms:isPartOf bioregistry.registry:bartoc .
 
@@ -31787,7 +31955,7 @@ bioportal:BAO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:BCGO dcterms:isPartOf bioregistry.registry:bioportal .
 
-bioportal:BCI-O dcterms:isPartOf bioregistry.registry:bioportal .
+bioportal:BCIO dcterms:isPartOf bioregistry.registry:bioportal .
 
 bioportal:BCO dcterms:isPartOf bioregistry.registry:bioportal .
 
@@ -36563,6 +36731,8 @@ bioregistry:ans.educationlevel a bioregistry.schema:0000001 ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
     dcterms:description "This vocabulary defines education levels for pre-kindergarten through grade 12 for the United States. It also defines general categories for post-secondary education (vocational, professional and life-long learning)."^^xsd:string ;
     dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "education level",
+        "open educational resources" ;
     foaf:homepage ans.educationlevel: ;
     bioregistry.schema:0000005 "Pre-K"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/ASN/scheme/ASNEducationLevel/$1"^^xsd:string ;
@@ -37841,7 +38011,7 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000024 "http://purl.org/dc/dcmitype/"^^xsd:string ;
-    bioregistry.schema:0000027 dctypes:Collection ;
+    bioregistry.schema:0000027 dcmitype:Collection ;
     bioregistry.schema:0000029 "dctypes" .
 
 bioregistry:decipher a bioregistry.schema:0000001 ;
@@ -38642,7 +38812,10 @@ bioregistry:emapa a bioregistry.schema:0000001 ;
         ols:emapa,
         obofoundry:emapa ;
     dcat:keyword "anatomy",
+        "animal organ development",
+        "bioinformatics",
         "developmental biology",
+        "gene expression",
         "obo",
         "ontology" ;
     foaf:homepage <http://www.informatics.jax.org/expression.shtml> ;
@@ -40255,6 +40428,36 @@ Note that the website uses a different identifier then the one reported in this 
     bioregistry.schema:0000008 "^IRCT\\d+N\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000029 "irct" .
+
+bioregistry:isced1997 a bioregistry.schema:0000001 ;
+    rdfs:label "International Standard Classification of Education, 1997 Edition" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "ISCED is designed to serve as a framework to classify educational activities as defined in programmes and the resulting qualifications into internationally agreed categories. The basic concepts and definitions of ISCED are therefore intended to be internationally valid and comprehensive of the full range of education systems."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "education level",
+        "open educational resources" ;
+    foaf:homepage <https://ec.europa.eu/eurostat/statistics-explained/index.php?title=International_Standard_Classification_of_Education_(ISCED)> ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/kim/isced-1997/level$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://w3id.org/kim/isced-1997/level"^^xsd:string ;
+    bioregistry.schema:0000027 isced1997:1 ;
+    bioregistry.schema:0000029 "isced1997" .
+
+bioregistry:isced2011 a bioregistry.schema:0000001 ;
+    rdfs:label "International Standard Classification of Education, 2011 Edition" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "ISCED is designed to serve as a framework to classify educational activities as defined in programmes and the resulting qualifications into internationally agreed categories. The basic concepts and definitions of ISCED are therefore intended to be internationally valid and comprehensive of the full range of education systems."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    dcat:keyword "education level",
+        "open educational resources" ;
+    foaf:homepage <https://ec.europa.eu/eurostat/statistics-explained/index.php?title=International_Standard_Classification_of_Education_(ISCED)> ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/kim/isced-2011/level$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000024 "https://w3id.org/kim/isced-2011/level"^^xsd:string ;
+    bioregistry.schema:0000027 isced2011:1 ;
+    bioregistry.schema:0000029 "isced2011" .
 
 bioregistry:iso15926 a bioregistry.schema:0000001 ;
     rdfs:label "ISO 15926-14" ;
@@ -43214,6 +43417,7 @@ bioregistry:spdx a bioregistry.schema:0000001 ;
     doap:GitRepository <https://github.com/spdx/license-list-data> ;
     skos:exactMatch n2t:spdx,
         miriam:spdx ;
+    dcat:keyword "license" ;
     foaf:homepage <https://spdx.org/licenses> ;
     bioregistry.schema:0000005 "CC-BY-1.0"^^xsd:string ;
     bioregistry.schema:0000006 "https://spdx.org/licenses/$1"^^xsd:string ;
@@ -46358,6 +46562,8 @@ lov:skosxl dcterms:isPartOf bioregistry.registry:lov .
 lov:sosa dcterms:isPartOf bioregistry.registry:lov .
 
 lov:ssn dcterms:isPartOf bioregistry.registry:lov .
+
+lov:sulo dcterms:isPartOf bioregistry.registry:lov .
 
 lov:swrl dcterms:isPartOf bioregistry.registry:lov .
 
@@ -51255,7 +51461,7 @@ bioregistry:afo a bioregistry.schema:0000001 ;
         "ontology",
         "veterinary medicine" ;
     foaf:homepage <https://www.allotrope.org/> ;
-    bioregistry.schema:0000010 <http://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred> ;
+    bioregistry.schema:0000010 <http://purl.allotrope.org/voc/afo/merged/REC/2025/06/merged-without-qudt-and-inferred> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Allotrope Foundation" ;
             foaf:mbox "more.info@allotrope.org" ] ;
@@ -52852,7 +53058,7 @@ bioregistry:mba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "688"^^xsd:string ;
     bioregistry.schema:0000006 "https://purl.brain-bican.org/ontology/mbao/MBA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000010 <https://purl.brain-bican.org/ontology/mbao/releases/2025-04-17/mbao.owl> ;
+    bioregistry.schema:0000010 <https://purl.brain-bican.org/ontology/mbao/releases/2025-07-04/mbao.owl> ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Allen Institute for Brain Science" ;
             foaf:mbox "cellsemantics@gmail.com" ] ;
@@ -54083,6 +54289,7 @@ bioregistry:swo a bioregistry.schema:0000001 ;
     dcat:keyword "algorithm",
         "bioinformatics",
         "computer science",
+        "license",
         "obo",
         "ontology" ;
     foaf:homepage <https://github.com/allysonlister/swo> ;
@@ -56451,6 +56658,9 @@ orcid:0000-0002-1373-1705 rdfs:label "Clare Pilgrim" ;
 
 orcid:0000-0002-3321-6137 rdfs:label "Katy Börner" ;
     foaf:mbox "katy@indiana.edu" .
+
+orcid:0000-0003-4808-4736 rdfs:label "Ruth Duerr" ;
+    foaf:mbox "ruth.duerr3@gmail.com" .
 
 bioregistry:cdno a bioregistry.schema:0000001 ;
     rdfs:label "Compositional Dietary Nutrition Ontology" ;
@@ -59474,6 +59684,7 @@ bioregistry.registry:lov a bioregistry.schema:0000002 ;
         lov:skosxl,
         lov:sosa,
         lov:ssn,
+        lov:sulo,
         lov:swrl,
         lov:tax,
         lov:time,
@@ -59501,10 +59712,12 @@ bioregistry.registry:bartoc a bioregistry.schema:0000002 ;
         bartoc:14,
         bartoc:16,
         bartoc:17791,
+        bartoc:17875,
         bartoc:181,
         bartoc:18206,
         bartoc:18274,
         bartoc:18311,
+        bartoc:18355,
         bartoc:18377,
         bartoc:1884,
         bartoc:1895,
@@ -61995,7 +62208,7 @@ bioregistry.registry:bioportal a bioregistry.schema:0000002 ;
         bioportal:ATOL,
         bioportal:BAO,
         bioportal:BCGO,
-        bioportal:BCI-O,
+        bioportal:BCIO,
         bioportal:BCO,
         bioportal:BFO,
         bioportal:BIBFRAME,
@@ -62354,7 +62567,7 @@ bioregistry.registry:aberowl a bioregistry.schema:0000002 ;
         aberowl:ATOL,
         aberowl:BAO,
         aberowl:BCGO,
-        aberowl:BCI-O,
+        aberowl:BCIO,
         aberowl:BCO,
         aberowl:BFO,
         aberowl:BIBFRAME,
@@ -66694,6 +66907,11 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dwc,
         bioregistry:eaglei,
         bioregistry:earl,
+        bioregistry:earthcube.aut,
+        bioregistry:earthcube.mola,
+        bioregistry:earthcube.sfo,
+        bioregistry:earthcube.srt,
+        bioregistry:earthcube.swl,
         bioregistry:easychair.cfp,
         bioregistry:easychair.topic,
         bioregistry:ebisc,
@@ -67132,6 +67350,8 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:iresite,
         bioregistry:iro,
         bioregistry:isbn,
+        bioregistry:isced1997,
+        bioregistry:isced2011,
         bioregistry:ised,
         bioregistry:isfinder,
         bioregistry:isni,
@@ -67186,6 +67406,8 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:kim.hcrt,
         bioregistry:kim.hochschulfaechersystematik,
         bioregistry:kim.license,
+        bioregistry:kim.schularten,
+        bioregistry:kim.schulfaecher,
         bioregistry:knapsack,
         bioregistry:kupo,
         bioregistry:kyinno,
@@ -67435,6 +67657,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nfdi.core,
         bioregistry:nfdi4chem.ontocape,
         bioregistry:nfdi4chem.osmo,
+        bioregistry:nfdi4culture.id,
         bioregistry:nfdi4dso,
         bioregistry:ngbo,
         bioregistry:ngl,
@@ -67519,6 +67742,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:odor,
         bioregistry:odrl,
         bioregistry:oecd.template,
+        bioregistry:oeh.educationlevel,
         bioregistry:ogg,
         bioregistry:ogi,
         bioregistry:ogms,
