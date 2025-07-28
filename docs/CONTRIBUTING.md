@@ -140,6 +140,29 @@ addressed the two important points above, then it might be useful to give more
 context about the database that they came from, the project that motivated it,
 etc.
 
+#### Including a Useful Set of Keywords
+
+Any prefixes submitted after PR 1628 now require keyword(s) to be submitted.
+Part of the rationale behind adding this requirement is that new contributors
+frequently struggle to write good descriptions, and having a more specific field
+where they can include information that might also appear as prose might be
+helpful.
+
+A good keyword list might include:
+
+- the entity type(s), like `biological process`, `molecular function`, and
+  `cellular component` for `go`
+- the resource's domain, like `biochemistry` for `chembl.compound`
+- project that it was curated as a part of, like `chembl` for `chembl.compound`
+- infrastructures that the resource is part of, like `elixir` for `fairsharing`
+
+Curation tips:
+
+1. Use lowercase keywords
+2. Spaces are allowed, but try to minimize usage of non-alphanumeric characters
+3. Keywords should be sorted. You can use `bioregistry lint` on the command line
+   to automate this after you're done curating.
+
 #### Handling Collisions
 
 While they have proven to be rather infrequent between high quality resources,
