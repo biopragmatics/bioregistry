@@ -1107,7 +1107,7 @@ class TestRegistry(unittest.TestCase):
                 )
 
     def _should_test_keywords(self, resource: Resource) -> bool:
-        if resource.github_request_issue and resource.github_request_issue >= (1628 - 5):
+        if resource.github_request_issue and resource.github_request_issue >= 1627:
             return True
         if resource.is_deprecated():
             return False
