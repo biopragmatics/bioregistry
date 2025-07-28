@@ -1132,7 +1132,17 @@ class TestRegistry(unittest.TestCase):
                             msg=f"[{resource.prefix}] manually curated keywords are not sorted. Please run `bioregistry lint`",
                         )
                 elif not resource.get_keywords():
-                    txt = f"{resource.prefix} is missing a list of keywords given in `keywords` field."
+                    txt = dedent(f"""
+
+                        {resource.prefix} is missing a list of keywords that
+                        should be curated in the `keywords` key. A good list
+                        of keywords might include:
+
+                        - the entity type(s), like `biological process` for `go`
+                        - the resource's domain, like `biochemistry` for `chembl.compound`
+                        - project that it was curated as a part of, like `chembl` for `chembl.compound`
+                        - infrastructures that the resource is part of, like `elixir` for `fairsharing`
+                    """)
                     description = resource.get_description()
                     if not description or not importlib.util.find_spec("yake"):
                         self.fail(msg=txt)
@@ -1150,7 +1160,7 @@ class TestRegistry(unittest.TestCase):
                                 }
                             )
                         )
-                        txt += f"\n\ntry one of: {keywords}"
+                        txt += f"\nwe used `yake` to extract some keywords. here are the top five suggestions:\n{keywords}"
 
                     self.fail(msg=txt)
 
