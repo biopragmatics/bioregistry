@@ -1,5 +1,6 @@
 """Tests for data integrity."""
 
+import importlib.util
 import itertools as itt
 import json
 import logging
@@ -1105,26 +1106,63 @@ class TestRegistry(unittest.TestCase):
                     norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
                 )
 
-    @unittest.skip
-    def test_keywords(self):
+    def _should_test_keywords(self, resource: Resource) -> bool:
+        if resource.github_request_issue and resource.github_request_issue >= 1627:
+            return True
+        if resource.is_deprecated():
+            return False
+        # if not resource.contributor:
+        #     continue
+        # if resource.get_mappings():
+        #     continue  # TODO remove this after first found of curation is done
+
+    def test_keywords(self) -> None:
         """Assert that all entries have keywords."""
         for resource in self.registry.values():
-            if resource.is_deprecated():
+            if not self._should_test_keywords(resource):
                 continue
-            if not resource.contributor:
-                continue
-            if resource.get_mappings():
-                continue  # TODO remove this after first found of curation is done
             with self.subTest(prefix=resource.prefix, name=resource.get_name()):
                 if resource.keywords:
-                    self.assertEqual(
-                        sorted(k.lower() for k in resource.keywords),
-                        resource.keywords,
-                        msg="manually curated keywords should be sorted and exclusively lowercase",
-                    )
-                keywords = resource.get_keywords()
-                self.assertIsNotNone(keywords)
-                self.assertLess(0, len(keywords), msg=f"{resource.prefix} is missing keywords")
+                    if [k.casefold() for k in resource.keywords] != resource.keywords:
+                        self.fail(
+                            f"[{resource.prefix}] manually curated keywords should all be exclusively lowercase. Please run `bioregistry lint`"
+                        )
+                    if sorted(resource.keywords) != resource.keywords:
+                        self.fail(
+                            msg=f"[{resource.prefix}] manually curated keywords are not sorted. Please run `bioregistry lint`",
+                        )
+                elif not resource.get_keywords():
+                    txt = dedent(f"""
+
+                        {resource.prefix} is missing a list of keywords that
+                        should be curated in the `keywords` key. A good list
+                        of keywords might include:
+
+                        - the entity type(s), like `biological process` for `go`
+                        - the resource's domain, like `biochemistry` for `chembl.compound`
+                        - project that it was curated as a part of, like `chembl` for `chembl.compound`
+                        - infrastructures that the resource is part of, like `elixir` for `fairsharing`
+                    """)
+                    description = resource.get_description()
+                    if not description or not importlib.util.find_spec("yake"):
+                        self.fail(msg=txt)
+                    else:
+                        import yake
+
+                        extractor = yake.KeywordExtractor(top=5)
+                        keywords = "".join(
+                            sorted(
+                                {
+                                    "\n- " + keyword
+                                    for keyword, _ in extractor.extract_keywords(
+                                        description.lower()
+                                    )
+                                }
+                            )
+                        )
+                        txt += f"\nwe used `yake` to extract some keywords. here are the top five suggestions:\n{keywords}"
+
+                    self.fail(msg=txt)
 
     def test_owners(self):
         """Test owner annotations."""

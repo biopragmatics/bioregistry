@@ -39,7 +39,8 @@ FOOTER_DEFAULT = dedent(
     at Northeastern University.<br/>
     Funded by Chan Zuckerberg Initiative (CZI) Award
     <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
-    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
+    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a> and
+    <a rel="me" href="https://fosstodon.org/@bioregistry" title="bioregistry">@bioregistry@fosstodon.org</a>
     (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
 """
 )

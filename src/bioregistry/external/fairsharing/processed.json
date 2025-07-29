@@ -379,6 +379,9 @@
     "subjects": [
       "Life Science",
       "Biomedical Science"
+    ],
+    "user_defined_tags": [
+      "conceptual modeling"
     ]
   },
   "FAIRsharing.17zapb": {
@@ -412,6 +415,7 @@
         "year": 2008
       }
     ],
+    "repository": "https://github.com/xenopus-anatomy",
     "subjects": [
       "Life Science",
       "Anatomy",
@@ -4553,8 +4557,7 @@
       "Engineering Science"
     ],
     "user_defined_tags": [
-      "Open Science",
-      "open source software"
+      "Open Science"
     ]
   },
   "FAIRsharing.72b7ef": {
@@ -4836,7 +4839,7 @@
     "domains": [
       "Rare Disorder"
     ],
-    "homepage": "https://sites.google.com/site/laiasubirats",
+    "homepage": "https://bioportal.bioontology.org/ontologies/HORD",
     "name": "Holistic Ontology of Rare Diseases",
     "subjects": [
       "Primary Health Care"
@@ -4960,7 +4963,7 @@
   },
   "FAIRsharing.7y955w": {
     "abbreviation": "GO-EXT",
-    "description": "Gene Ontology Extension",
+    "description": "The Gene Ontology (GO) is a structured, standardized representation of biological knowledge. GO describes concepts (also known as terms, or formally, classes) that are connected to each other via formally defined relations. The GO is designed to be species-agnostic to enable the annotation of gene products across the entire tree of life. The computational framework of the GO enables consistent gene annotation, comparison of functions across organisms, and integration of knowledge across diverse biological databases.",
     "domains": [
       "Expression data",
       "GO-term enrichment data",
@@ -6716,7 +6719,7 @@
       "name": "Stuart Chalk",
       "orcid": "0000-0002-0703-7776"
     },
-    "description": "The IUPAC Gold Book is a database of ~7000 chemical concepts derived from IUPAC's Recommendations published in Pure and Applied Chemistry.",
+    "description": "The IUPAC Gold Book is a database of ~12000 chemical concepts derived from IUPAC's Recommendations published in Pure and Applied Chemistry.",
     "domains": [
       "small molecule"
     ],
@@ -7188,6 +7191,7 @@
       }
     ],
     "subjects": [
+      "Clinical Studies",
       "Gynecology",
       "Obstetrics"
     ]
@@ -7930,8 +7934,18 @@
   "FAIRsharing.azq2t6": {
     "abbreviation": "MIM",
     "description": "A Molecular Interaction Map (MIM) is a diagram convention that is capable of unambiguous representation of networks containing multi-protein complexes, protein modifications, and enzymes that are substrates of other enzymes. This graphical representation makes it possible to view all of the many interactions in which a given molecule may be involved, and it can portray competing interactions, which are common in bioregulatory networks. In order to facilitate linkage to databases, each molecular species is represented only once in a diagram. ",
+    "domains": [
+      "protein"
+    ],
     "homepage": "http://discover.nci.nih.gov/mim/",
     "name": "Molecular Interaction Map",
+    "publications": [
+      {
+        "doi": "10.1091/mbc.e05-09-0824",
+        "title": "Molecular Interaction Maps of Bioregulatory Networks: A General Rubric for Systems Biology",
+        "year": 2006
+      }
+    ],
     "subjects": [
       "Enzymology",
       "Proteomics"
@@ -9382,7 +9396,16 @@
       "microbiome"
     ],
     "homepage": "https://github.com/ohmi-ontology/ohmi",
+    "license": "CC-BY-4.0",
     "name": "Ontology of Host-Microbe Interactions",
+    "publications": [
+      {
+        "doi": "10.1186/s13326-019-0217-1",
+        "title": "OHMI: the ontology of host-microbiome interactions",
+        "year": 2019
+      }
+    ],
+    "repository": "https://github.com/OHMI-ontology/OHMI/issues",
     "subjects": [
       "Life Science"
     ]
@@ -9940,7 +9963,7 @@
       "GO-term enrichment data",
       "phenotype"
     ],
-    "homepage": "http://www.yeastgenome.org/ontology/phenotype/ypo/overview",
+    "homepage": "https://www.yeastgenome.org/ontology/phenotype/ypo",
     "name": "Yeast Phenotypes",
     "subjects": [
       "Life Science",
@@ -11510,18 +11533,13 @@
   },
   "FAIRsharing.fe4816": {
     "abbreviation": "CRediT",
-    "contact": {
-      "email": "info@casrai.org",
-      "name": "Liz Allen",
-      "orcid": "0000-0002-9298-3168"
-    },
     "description": "CRediT (Contributor Roles Taxonomy) is a high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
     "domains": [
       "Resource metadata",
       "Classification"
     ],
     "homepage": "https://credit.niso.org/",
-    "license": "https://creativecommons.org/licenses/by-nd/2.0/uk",
+    "license": "CC-BY-4.0",
     "logo": "https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUFCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af4f02374db4f42007e6674ea2055ccaa36aa830/credit-icon-499x500-1.png?disposition=inline",
     "name": "Contributor Roles Taxonomy",
     "publications": [
@@ -12456,6 +12474,10 @@
   "FAIRsharing.j0fa1d": {
     "abbreviation": "EMAPA",
     "description": "The ontology of mouse developmental anatomy was originally developed by Jonathan Bard and his colleagues as part of the Edinburgh Mouse Atlas Project (EMAP) in order to provide a structured controlled vocabulary of stage-specific anatomical structures for the developing laboratory mouse.\n\nInitial versions listed anatomical entities for each developmental stage (Theiler Stages 1 through 26) separately. Stage-specific instances were presented as uniparental hierarchies organized solely using part-of relationships (i.e. as a strict partonomy). An ‘abstract’ (i.e. non-stage-specific) representation of the mouse developmental anatomy ontology was subsequently developed.\n\nThe mouse developmental anatomy ontology has been substantially extended and refined over many years in a collaborative effort between EMAP and the Gene Expression Database (GXD) project, part of the Mouse Genome Informatics (MGI) resource at The Jackson Laboratory. The ontology continues to be maintained and expanded by GXD.",
+    "domains": [
+      "gene expression",
+      "animal organ development"
+    ],
     "homepage": "https://www.informatics.jax.org/vocab/gxd/anatomy",
     "license": "CC-BY-4.0",
     "name": "Mouse Developmental Anatomy Ontology",
@@ -12470,7 +12492,8 @@
     "repository": "https://github.com/obophenotype/mouse-anatomy-ontology",
     "subjects": [
       "Anatomy",
-      "Developmental Biology"
+      "Developmental Biology",
+      "Bioinformatics"
     ]
   },
   "FAIRsharing.j2cgnn": {
@@ -13570,7 +13593,9 @@
     },
     "description": "RefMet provides a standardized reference nomenclature for both discrete metabolite structures and metabolite species identified by spectroscopic techniques in metabolomics experiments. This is an essential prerequisite for the ability to compare and contrast metabolite data across different experiments and studies. Over 200,000 names from a set of over 1,100 MS and NMR studies on the Metabolomics Workbench has been used to generate a highly curated analytical chemistry-centric list of common names for metabolite structures and isobaric species. Additionally, the vast majority of these names have been linked to a metabolite classification system using a combination of LIPID MAPS and ClassyFire classification methods. A name-conversion user interface is provided where users can submit a list of metabolite names and map them to the corresponding RefMet names. New metabolites are constantly being added to RefMet, however very new metabolite names generated by metabolomics experiments may not currently map to RefMet identifiers. Nevertheless, RefMet has the ability to greatly increase the data-sharing potential of metabolomics experiments and facilitate \"meta-analysis\" and systems biology objectives for the majority of commonly encountered metabolite species.",
     "domains": [
+      "lipid",
       "metabolite",
+      "small molecule",
       "Classification"
     ],
     "homepage": "https://www.metabolomicsworkbench.org/databases/refmet/index.php",
@@ -13583,6 +13608,7 @@
       }
     ],
     "subjects": [
+      "Lipidomics",
       "Systems Biology",
       "Metabolomics"
     ]
@@ -13916,7 +13942,7 @@
   },
   "FAIRsharing.mp0rwf": {
     "abbreviation": "OBA",
-    "description": "A collection of biological attributes / traits covering all kingdoms of life. It is interoperable with a number of other community ontologies.",
+    "description": "The Ontology of Biological Attributes (OBA) is a formalised, species-independent collection of interoperable phenotypic trait categories that is intended to fulfil a data integration role. OBA is a standardised representational framework for observable attributes that are characteristics of biological entities, organisms, or parts of organisms. ",
     "homepage": "https://github.com/obophenotype/bio-attribute-ontology",
     "license": "CC0-1.0",
     "name": "Ontology of Biological Attributes",
@@ -13985,7 +14011,7 @@
       "morphology",
       "structure"
     ],
-    "homepage": "http://bioportal.bioontology.org/ontologies/1001",
+    "homepage": "https://bioportal.bioontology.org/ontologies/GRO-CPGA",
     "name": "Cereal Plant Gross Anatomy Ontology",
     "subjects": [
       "Life Science",
@@ -14219,6 +14245,18 @@
     ],
     "homepage": "https://www.facebase.org/ocdm/",
     "name": "Ontology of Craniofacial Development and Malformation",
+    "publications": [
+      {
+        "pubmed": "28261023",
+        "title": "Human Development Domain of the Ontology of Craniofacial Development and Malformation",
+        "year": 2013
+      },
+      {
+        "pubmed": "28217040",
+        "title": "Multi-species Ontologies of the Craniofacial Musculoskeletal System",
+        "year": 2016
+      }
+    ],
     "subjects": [
       "Anatomy",
       "Developmental Biology",
@@ -15084,7 +15122,7 @@
   },
   "FAIRsharing.q053vb": {
     "abbreviation": "MFOMD",
-    "description": "An ontology to describe and classify mental diseases such as schizophrenia, annotated with DSM-IV and ICD codes where applicable.",
+    "description": "The Mental Functioning Ontology (MF) is an ontology for mental functioning, including mental processes such as cognition and traits such as intelligence. There is a module (MFO-MD) which covers mental disorders, within which the IDs are reused from the Disease Ontology as far as is possible. It is developed in the context of the Ontology for General Medical Science (OGMS) and the Basic Formal Ontology (BFO). ",
     "domains": [
       "disease"
     ],
@@ -15113,11 +15151,13 @@
     },
     "description": "The CryoEM Ontology for describing objects and workflows in Single Particle Analysis by Cryo Electron Microscopy.",
     "domains": [
+      "Bioimaging",
       "electron microscopy"
     ],
     "homepage": "http://scipion.i2pc.es/ontology/cryoem",
     "license": "CC-BY-3.0",
     "name": "CryoEM Ontology",
+    "repository": "https://github.com/I2PC/cryoem",
     "subjects": [
       "Structural Biology"
     ]
@@ -16447,7 +16487,7 @@
       "Data acquisition",
       "mass spectrometry assay"
     ],
-    "homepage": "http://www.psidev.info/groups/mass-spectrometry#controlled",
+    "homepage": "https://raw.githubusercontent.com/HUPO-PSI/psi-ms-CV/master/psi-ms.obo",
     "license": "CC-BY-4.0",
     "name": "HUPO PSI Mass Spectrometry Controlled Vocabulary",
     "publications": [
@@ -16475,6 +16515,8 @@
     "homepage": "http://bioportal.bioontology.org/ontologies/INSECTH",
     "name": "insectH",
     "subjects": [
+      "Anatomy",
+      "Neurobiology",
       "Entomology"
     ]
   },
@@ -16743,8 +16785,14 @@
         "pubmed": "25093068",
         "title": "OAE: The Ontology of Adverse Events",
         "year": 2014
+      },
+      {
+        "doi": "10.1371/journal.pone.0049941",
+        "title": "Ontology-Based Combinatorial Comparative Analysis of Adverse Events Associated with Killed and Live Influenza Vaccines",
+        "year": 2012
       }
     ],
+    "repository": "https://github.com/OAE-ontology/OAE/issues",
     "subjects": [
       "Biomedical Science"
     ]
@@ -16839,8 +16887,7 @@
   "FAIRsharing.v665h": {
     "abbreviation": "MST",
     "description": "The Minimal Standard Terminology (MST) for gastrointestinal endoscopy  is the result of a continuous work by WEO, the European Society of Gastrointestinal Endoscopy (ESGE), the American Society of Gastrointestinal Endoscopy (ASGE) and a large group of international collaborators. Standardization of the language of gastrointestinal endoscopy is becoming increasingly important on account of international collaboration, standardized documentation requirements, and computer-based reporting. The MST offers a selection of terms and attributes for appropriate description of findings, procedures and complications with regards to gastrointestinal endoscopy. It does not offer a complete reference for the endoscopic report.",
-    "homepage": "https://www.worldendo.org/resources/minimal-standard-terminology-mst/",
-    "license": "https://www.worldendo.org/resources/minimal-standard-terminology-mst",
+    "homepage": "https://www.worldendo.org/resources/minimal-standard-terminology",
     "name": "Minimal Standard Terminology for Gastrointestinal Endoscopy",
     "publications": [
       {
@@ -17227,7 +17274,7 @@
       "organ",
       "tissue"
     ],
-    "homepage": "https://www.uniprot.org/docs/tisslist",
+    "homepage": "https://www.uniprot.org/help/controlled_vocabulary",
     "license": "CC-BY-4.0",
     "name": "Uniprot Tissues controlled vocabulary",
     "subjects": [
@@ -17835,6 +17882,21 @@
         "pubmed": "27235801",
         "title": "From frames to OWL2: Converting the Foundational Model of Anatomy",
         "year": 2016
+      },
+      {
+        "doi": "10.1016/j.websem.2007.12.001",
+        "title": "Translating the Foundational Model of Anatomy into OWL",
+        "year": 2008
+      },
+      {
+        "doi": "10.1016/j.websem.2006.05.007",
+        "title": "The foundational model of anatomy in OWL: Experience and perspectives",
+        "year": 2006
+      },
+      {
+        "pubmed": "16779026",
+        "title": "Challenges in converting frame-based ontology into OWL: the Foundational Model of Anatomy case-study",
+        "year": 2005
       }
     ],
     "subjects": [
@@ -18151,6 +18213,7 @@
     "description": "A structured controlled vocabulary for the anatomy of fungi.",
     "homepage": "https://github.com/obophenotype/fungal-anatomy-ontology",
     "name": "Fungal Gross Anatomy Ontology",
+    "repository": "https://github.com/obophenotype/fungal-anatomy-ontology/issues",
     "subjects": [
       "Life Science",
       "Anatomy",
@@ -18197,7 +18260,10 @@
   "FAIRsharing.xx2wv5": {
     "abbreviation": "PharmGKB-owl",
     "description": "The PharmGKB Ontology imports genetic sequence data, collected in relational format, into the OWL, and aims to automate the process of updating the links between the ontology and data acquisition when the ontology changes. They have linked PharmGKB with data acquisition from a relational model of genetic sequence information.",
-    "homepage": "https://code.google.com/p/pharmgkb-owl/",
+    "domains": [
+      "DNA sequence"
+    ],
+    "homepage": "https://code.google.com/archive/p/pharmgkb-owl/",
     "name": "Pharmacogenomics Ontology",
     "publications": [
       {
@@ -18940,6 +19006,13 @@
     ],
     "homepage": "http://bioportal.bioontology.org/ontologies/HFO",
     "name": "Heart Failure Ontology",
+    "publications": [
+      {
+        "doi": "10.1016/j.artmed.2016.02.003",
+        "title": "A method for the development of disease-specific reference standards vocabularies from textual biomedical literature resources",
+        "year": 2016
+      }
+    ],
     "subjects": [
       "Human Biology"
     ]
