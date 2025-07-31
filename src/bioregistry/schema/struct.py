@@ -87,6 +87,43 @@ URI_IRI_INFO = (
 
 X = TypeVar("X")
 
+#: A controlled vocabulary of domains.
+Domain: TypeAlias = Literal[
+    "chemical",
+    "reaction",
+    "gene",
+    "cell and cell line",
+    "cellular component",
+    "model",
+    "organization",
+    "clinical trial",
+    "pathway",
+    "protein family",
+    "gene family",
+    "disease",
+    "vaccine",
+    "multiple",
+    "variant",
+    "publication",
+    "protein complex",
+    "mirna",
+    "taxonomy",
+    "project",
+    "grant",
+    "classification",
+    "protein",
+    "study",
+    "relationship",
+    "antibody",
+    "schema",
+    "license",
+    "semantic web",
+    "geography",
+    "ptm",
+    "bibliometrics",
+    "genetic code",
+]
+
 
 def _uri_sort(uri: str) -> tuple[str, str]:
     try:
@@ -548,6 +585,7 @@ class Resource(BaseModel):
     keywords: list[str] | None = Field(
         default=None, description="A list of keywords for the resource"
     )
+    domain: Domain | None = Field(default=None, examples=cast(list[str], typing.get_args(Domain)))
     references: list[str] | None = Field(
         default=None,
         description="A list of URLs to also see, such as publications describing the resource",
@@ -1220,6 +1258,13 @@ class Resource(BaseModel):
             "homepage",
             metaprefixes,
         )
+
+    def get_domain(self) -> str | None:
+        """Get the domain."""
+        if self.domain:
+            return self.domain
+        # TODO map in OBO Foundry domain
+        return None
 
     def get_keywords(self) -> list[str]:
         """Get keywords."""
