@@ -90,6 +90,7 @@ X = TypeVar("X")
 #: A controlled vocabulary of domains.
 Domain: TypeAlias = Literal[
     "chemical",
+    "tissue",
     "reaction",
     "gene",
     "cell and cell line",
