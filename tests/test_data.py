@@ -1134,7 +1134,11 @@ class TestRegistry(unittest.TestCase):
 
                     first_part, delimiter, _ = resource.prefix.partition(".")
                     if delimiter:
-                        self.assertNotIn(first_part, resource.keywords, msg="Don't use the grouping part of the namespace as a keyword. Encode it using the `part_of` key instead.")
+                        self.assertNotIn(
+                            first_part,
+                            resource.keywords,
+                            msg="Don't use the grouping part of the namespace as a keyword. Encode it using the `part_of` key instead.",
+                        )
 
                 elif not resource.get_keywords():
                     txt = dedent(f"""
