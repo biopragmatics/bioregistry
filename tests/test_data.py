@@ -1107,7 +1107,7 @@ class TestRegistry(unittest.TestCase):
                 )
 
     def _should_test_keywords(self, resource: Resource) -> bool:
-        if resource.github_request_issue and resource.github_request_issue >= 1627:
+        if resource.github_request_issue and resource.github_request_issue >= 1617:
             return True
         if resource.is_deprecated():
             return False
@@ -1131,6 +1131,15 @@ class TestRegistry(unittest.TestCase):
                         self.fail(
                             msg=f"[{resource.prefix}] manually curated keywords are not sorted. Please run `bioregistry lint`",
                         )
+
+                    first_part, delimiter, _ = resource.prefix.partition(".")
+                    if delimiter:
+                        self.assertNotIn(
+                            first_part,
+                            resource.keywords,
+                            msg="Don't use the grouping part of the namespace as a keyword. Encode it using the `part_of` key instead.",
+                        )
+
                 elif not resource.get_keywords():
                     txt = dedent(f"""
 
