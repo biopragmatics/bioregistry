@@ -1008,9 +1008,9 @@ class Resource(BaseModel):
         if self.mappings and "wikidata.entity" in self.mappings:
             return self.mappings["wikidata.entity"]
         if self.wikidata and "database" in self.wikidata:
-            return self.wikidata["database"]
+            return cast(str, self.wikidata["database"])
         if self.bartoc and "wikidata_database" in self.bartoc:
-            return self.bartoc["wikidata_database"]
+            return cast(str, self.bartoc["wikidata_database"])
         return None
 
     def get_mappings(self) -> dict[str, str]:
