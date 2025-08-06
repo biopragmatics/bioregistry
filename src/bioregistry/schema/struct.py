@@ -667,6 +667,8 @@ class Resource(BaseModel):
     prefixcommons: Mapping[str, Any] | None = None
     #: External data from Wikidata Properties
     wikidata: Mapping[str, Any] | None = None
+    #: External data from Wikidata Entity
+    wikidata_entity: Mapping[str, Any] | None = None
     #: External data from the Gene Ontology's custom registry
     go: Mapping[str, Any] | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
@@ -1000,6 +1002,19 @@ class Resource(BaseModel):
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+
+    def get_wikidata_entity(self) -> str | None:
+        """Get the wikidata database mapping."""
+        if self.wikidata_entity:
+            return self.wikidata_entity
+        if self.mappings:
+            if "wikidata.entity" in self.mappings:
+                return self.mappings["wikidata.entity"]
+            if "wikidata" in self.mappings and "database" in self.mappings["wikidata"]:
+                return self.mappings["wikidata"]["database"]
+            if "bartoc" in self.mappings and "wikidata_database" in self.mappings["bartoc"]:
+                return self.mappings["bartoc"]["wikidata_database"]
+        return None
 
     def get_mappings(self) -> dict[str, str]:
         """Get the mappings to external registries, if available."""
