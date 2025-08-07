@@ -371,9 +371,9 @@ def get_registry_map(metaprefix: str) -> dict[str, str]:
     return manager.get_registry_map(metaprefix)
 
 
-def get_registry_invmap(metaprefix: str) -> dict[str, str]:
+def get_registry_invmap(metaprefix: str, **kwargs: Any) -> dict[str, str]:
     """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
-    return manager.get_registry_invmap(metaprefix)
+    return manager.get_registry_invmap(metaprefix, **kwargs)
 
 
 def get_obofoundry_uri_prefix(prefix: str) -> str | None:
