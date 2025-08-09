@@ -9948,6 +9948,16 @@
         ]
     },
     {
+        "pattern": "^CFc\\d{9}$",
+        "prefix": "chemfont.chemical",
+        "uri_prefix": "https://www.chemfont.ca/chemicals/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/chemfont.chemical:",
+            "http://www.chemfont.ca/chemicals/",
+            "https://bioregistry.io/chemfont.chemical:"
+        ]
+    },
+    {
         "pattern": "^\\d+\\-\\d+\\-\\d+$",
         "prefix": "chemidplus",
         "prefix_synonyms": [
@@ -11580,6 +11590,15 @@
         ]
     },
     {
+        "prefix": "ddi",
+        "uri_prefix": "http://rdf-vocabulary.ddialliance.org/lifecycle#",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/ddi:",
+            "https://bioregistry.io/ddi:",
+            "https://rdf-vocabulary.ddialliance.org/lifecycle#"
+        ]
+    },
+    {
         "pattern": "^DDInter\\d+$",
         "prefix": "ddinter.drug",
         "uri_prefix": "http://ddinter.scbdd.com/ddinter/drug-detail/",
@@ -11877,6 +11896,16 @@
             "http://bioregistry.io/dgrc:",
             "http://dgrc.bio.indiana.edu/product/View?product=",
             "https://bioregistry.io/dgrc:"
+        ]
+    },
+    {
+        "pattern": "^sample_\\d{3}$",
+        "prefix": "diabetesomic",
+        "uri_prefix": "https://bio.liclab.net/diabetesOmicdb/RNA-seq?sampleId=",
+        "uri_prefix_synonyms": [
+            "http://bio.liclab.net/diabetesOmicdb/RNA-seq?sampleId=",
+            "http://bioregistry.io/diabetesomic:",
+            "https://bioregistry.io/diabetesomic:"
         ]
     },
     {
@@ -14353,6 +14382,15 @@
         ]
     },
     {
+        "prefix": "gesiskg",
+        "uri_prefix": "https://data.gesis.org/gesiskg/schema/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/gesiskg:",
+            "http://data.gesis.org/gesiskg/schema/",
+            "https://bioregistry.io/gesiskg:"
+        ]
+    },
+    {
         "prefix": "gfo",
         "uri_prefix": "http://www.onto-med.de/ontologies/gfo.owl#",
         "uri_prefix_synonyms": [
@@ -16191,14 +16229,16 @@
         "prefix_synonyms": [
             "ICD10CM"
         ],
-        "uri_prefix": "https://icd.codes/icd10cm/",
+        "uri_prefix": "https://www.icd10data.com/search?s=",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/ICD10CM:",
             "http://bioregistry.io/icd10cm:",
             "http://icd.codes/icd10cm/",
             "http://purl.bioontology.org/ontology/ICD10CM/",
+            "http://www.icd10data.com/search?s=",
             "https://bioregistry.io/ICD10CM:",
             "https://bioregistry.io/icd10cm:",
+            "https://icd.codes/icd10cm/",
             "https://purl.bioontology.org/ontology/ICD10CM/"
         ]
     },
@@ -17201,6 +17241,15 @@
         ]
     },
     {
+        "prefix": "isced2013",
+        "uri_prefix": "https://w3id.org/kim/isced-2013/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/isced2013:",
+            "http://w3id.org/kim/isced-2013/",
+            "https://bioregistry.io/isced2013:"
+        ]
+    },
+    {
         "pattern": "^IS\\w+(\\-\\d)?$",
         "prefix": "isfinder",
         "uri_prefix": "https://www-is.biotoul.fr/scripts/ficheIS.php?name=",
@@ -17843,6 +17892,15 @@
             "http://bioregistry.io/kim.educationlevel:",
             "http://w3id.org/kim/educationalLevel/level_",
             "https://bioregistry.io/kim.educationlevel:"
+        ]
+    },
+    {
+        "prefix": "kim.esv",
+        "uri_prefix": "https://w3id.org/class/sectors/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/kim.esv:",
+            "http://w3id.org/class/sectors/",
+            "https://bioregistry.io/kim.esv:"
         ]
     },
     {
@@ -21508,6 +21566,15 @@
             "http://bioregistry.io/oeh.educationlevel:",
             "https://bioregistry.io/oeh.educationlevel:",
             "https://w3id.org/openeduhub/vocabs/educationalLevel/"
+        ]
+    },
+    {
+        "prefix": "og",
+        "uri_prefix": "https://ogp.me/ns#",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/og:",
+            "http://ogp.me/ns#",
+            "https://bioregistry.io/og:"
         ]
     },
     {
@@ -25812,7 +25879,7 @@
         ]
     },
     {
-        "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        "pattern": "^(?:[a-zA-Z]+\\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
         "prefix": "sparcdrs",
         "uri_prefix": "https://services.scicrunch.io/sparc/drs/v1/package/",
         "uri_prefix_synonyms": [
@@ -28249,39 +28316,37 @@
         "prefix_synonyms": [
             "WD_Entity",
             "wd",
-            "wdeschema"
+            "wdeschema",
+            "wikidata.entity",
+            "wikidata.property"
         ],
         "uri_prefix": "http://www.wikidata.org/entity/",
         "uri_prefix_synonyms": [
             "http://bioregistry.io/WD_Entity:",
             "http://bioregistry.io/wd:",
             "http://bioregistry.io/wdeschema:",
+            "http://bioregistry.io/wikidata.entity:",
+            "http://bioregistry.io/wikidata.property:",
             "http://bioregistry.io/wikidata:",
             "http://identifiers.org/wikidata/",
             "http://identifiers.org/wikidata:",
             "http://n2t.net/wikidata:",
             "http://scholia.toolforge.org/",
             "http://www.wikidata.org/wiki/",
+            "http://www.wikidata.org/wiki/Property:",
             "https://bioregistry.io/WD_Entity:",
             "https://bioregistry.io/wd:",
             "https://bioregistry.io/wdeschema:",
+            "https://bioregistry.io/wikidata.entity:",
+            "https://bioregistry.io/wikidata.property:",
             "https://bioregistry.io/wikidata:",
             "https://identifiers.org/wikidata/",
             "https://identifiers.org/wikidata:",
             "https://n2t.net/wikidata:",
             "https://scholia.toolforge.org/",
             "https://www.wikidata.org/entity/",
-            "https://www.wikidata.org/wiki/"
-        ]
-    },
-    {
-        "pattern": "^P\\d+$",
-        "prefix": "wikidata.property",
-        "uri_prefix": "https://www.wikidata.org/wiki/Property:",
-        "uri_prefix_synonyms": [
-            "http://bioregistry.io/wikidata.property:",
-            "http://www.wikidata.org/wiki/Property:",
-            "https://bioregistry.io/wikidata.property:"
+            "https://www.wikidata.org/wiki/",
+            "https://www.wikidata.org/wiki/Property:"
         ]
     },
     {
