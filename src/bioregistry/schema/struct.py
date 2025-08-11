@@ -400,8 +400,8 @@ class Resource(BaseModel):
     )
     contact_group_email: EmailStr | None = Field(
         default=None,
-        description="A group contact email for the project. It's required to have a primary contact "
-        "to have this field.",
+        description="A group contact email (e.g., a mailing list, a shared address) for the project. "
+        "It's required to have a primary contact to have this field.",
     )
     contact_page: str | None = Field(
         default=None,
@@ -1578,6 +1578,12 @@ class Resource(BaseModel):
             return cast(str, self.obofoundry["logo"])
         if self.fairsharing and "logo" in self.fairsharing:
             return cast(str, self.fairsharing["logo"])
+        return None
+
+    def get_mailing_list(self) -> str | None:
+        """Get the group email."""
+        if self.contact_group_email:
+            return str(self.contact_group_email)
         return None
 
     def get_obofoundry_prefix(self) -> str | None:

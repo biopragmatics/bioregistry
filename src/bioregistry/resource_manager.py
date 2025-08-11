@@ -915,6 +915,13 @@ class Manager:
             return None
         return entry.get_logo()
 
+    def get_mailing_list(self, prefix: str) -> str | None:
+        """Get the mailing list for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_mailing_list()
+
     def get_pattern(self, prefix: str) -> str | None:
         """Get the pattern for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
@@ -1222,6 +1229,7 @@ class Manager:
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
             proprietary=resource.proprietary,
+            # TODO automate checking that all fields have a function?
         )
 
     def get_license_conflicts(self) -> list[tuple[str, str | None, str | None, str | None]]:
