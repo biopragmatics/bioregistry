@@ -59,7 +59,7 @@ from .schema_utils import (
     read_mismatches,
     write_registry,
 )
-from .utils import NormDict, _norm
+from .utils import NormDict, _norm, get_ec_url
 
 __all__ = [
     "Manager",
@@ -1729,7 +1729,7 @@ class Manager:
 
         # TODO decide how this works with custom provider
         if reference.prefix in CUSTOM_RESOLVERS:
-            return CUSTOM_RESOLVERS[reference.prefix](identifier)
+            return CUSTOM_RESOLVERS[reference.prefix](reference.identifier)
 
         if prefix_map and reference.prefix in prefix_map:
             providers["custom"] = f"{prefix_map[reference.prefix]}{reference.identifier}"
@@ -2070,11 +2070,8 @@ def _read_contributors(
                 rv[maintainer.orcid] = maintainer
     return rv
 
-def _resolve_ec(identifier: str) -> str | None:
-    raise NotImplementedError
 
-
-CUSTOM_RESOLVERS: dict[str, Callable[[str], str | None]] = {"ec": _resolve_ec}
+CUSTOM_RESOLVERS: dict[str, Callable[[str], str | None]] = {"ec": get_ec_url}
 
 #: The default manager for the Bioregistry
 manager = Manager()

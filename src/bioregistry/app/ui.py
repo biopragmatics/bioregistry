@@ -10,7 +10,6 @@ from collections import defaultdict
 from collections.abc import Iterable
 from operator import attrgetter
 from pathlib import Path
-from typing import Callable
 
 import flask
 import werkzeug
@@ -376,7 +375,6 @@ def reference(
 ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
 
 
-
 @ui_blueprint.route("/<prefix>")
 @ui_blueprint.route("/<prefix>:<path:identifier>")
 @ark_hacked_route
@@ -396,15 +394,12 @@ def resolve(
     except ResponseWrapperError as rw:
         return rw.get_value()
 
-    if _resource.prefix in CUSTOM_RESOLVERS:
-        url = CUSTOM_RESOLVERS[_resource.prefix](identifier)
-    else:
-        url = manager.get_iri(
-            _resource.prefix,
-            identifier,
-            use_bioregistry_io=False,
-            provider=request.args.get("provider"),
-        )
+    url = manager.get_iri(
+        _resource.prefix,
+        identifier,
+        use_bioregistry_io=False,
+        provider=request.args.get("provider"),
+    )
     if not url:
         return (
             render_template(
