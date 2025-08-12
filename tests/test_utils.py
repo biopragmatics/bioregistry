@@ -74,5 +74,15 @@ class TestDeduplicate(unittest.TestCase):
         self.assertEqual(
             "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3", get_ec_url("1.2.3")
         )
+        self.assertEqual(
+            "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3", get_ec_url("1.2.3.-")
+        )
         self.assertEqual("https://www.enzyme-database.org/class.php?c=1&sc=2", get_ec_url("1.2"))
+        self.assertEqual("https://www.enzyme-database.org/class.php?c=1&sc=2", get_ec_url("1.2.-"))
+        self.assertEqual(
+            "https://www.enzyme-database.org/class.php?c=1&sc=2", get_ec_url("1.2.-.-")
+        )
         self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1"))
+        self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1.-"))
+        self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1.-.-"))
+        self.assertEqual("https://www.enzyme-database.org/class.php?c=1", get_ec_url("1.-.-.-"))

@@ -290,8 +290,8 @@ _EC_BASES = {
 def get_ec_url(identifier: str, *, ep: str = "class") -> str:
     """Get a URL for an enzyme code (EC)."""
     base = _EC_BASES[ep]
-    for _ in range(4):
-        identifier = identifier.removeprefix(".-")
+    for _ in range(3):
+        identifier = identifier.removesuffix(".-")
     x = identifier.split(".")
     if len(x) == 4:
         return f"https://www.enzyme-database.org/query.php?ec={identifier}"
