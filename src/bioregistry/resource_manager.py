@@ -59,7 +59,7 @@ from .schema_utils import (
     read_mismatches,
     write_registry,
 )
-from .utils import NormDict, _norm
+from .utils import NormDict, _norm, get_ec_url
 
 __all__ = [
     "Manager",
@@ -908,6 +908,20 @@ class Manager:
             return None
         return entry.get_preferred_prefix()
 
+    def get_logo(self, prefix: str) -> str | None:
+        """Get the logo for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_logo()
+
+    def get_mailing_list(self, prefix: str) -> str | None:
+        """Get the mailing list for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_mailing_list()
+
     def get_pattern(self, prefix: str) -> str | None:
         """Get the pattern for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
@@ -1215,6 +1229,7 @@ class Manager:
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
             proprietary=resource.proprietary,
+            # TODO automate checking that all fields have a function?
         )
 
     def get_license_conflicts(self) -> list[tuple[str, str | None, str | None, str | None]]:
@@ -1728,6 +1743,11 @@ class Manager:
             if provider not in providers:
                 return None
             return providers[provider]
+
+        # TODO decide how this works with custom provider
+        if reference.prefix in CUSTOM_RESOLVERS:
+            return CUSTOM_RESOLVERS[reference.prefix](reference.identifier)
+
         if prefix_map and reference.prefix in prefix_map:
             providers["custom"] = f"{prefix_map[reference.prefix]}{reference.identifier}"
         for key in priority or LINK_PRIORITY:
@@ -2067,6 +2087,8 @@ def _read_contributors(
                 rv[maintainer.orcid] = maintainer
     return rv
 
+
+CUSTOM_RESOLVERS: dict[str, Callable[[str], str | None]] = {"ec": get_ec_url}
 
 #: The default manager for the Bioregistry
 manager = Manager()

@@ -34,6 +34,8 @@ __all__ = [
     "get_homepage",
     "get_json_download",
     "get_keywords",
+    "get_logo",
+    "get_mailing_list",
     "get_mappings",
     "get_name",
     "get_namespace_in_lui",
@@ -62,7 +64,6 @@ __all__ = [
     "is_novel",
     "is_obo_foundry",
     "is_proprietary",
-    # CURIE handling
 ]
 
 logger = logging.getLogger(__name__)
@@ -923,3 +924,13 @@ def get_converter(**kwargs: Any) -> curies.Converter:
 def add_resource(resource: Resource) -> None:
     """Add a resource."""
     manager.add_resource(resource)
+
+
+def get_logo(prefix: str) -> str | None:
+    """Get the logo for the resource, if it's available."""
+    return manager.get_logo(prefix)
+
+
+def get_mailing_list(prefix: str) -> str | None:
+    """Get the mailing list for the resource, if it's available."""
+    return manager.get_mailing_list(prefix)
