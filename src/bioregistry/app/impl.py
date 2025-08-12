@@ -17,7 +17,7 @@ from starlette.middleware.wsgi import WSGIMiddleware
 from bioregistry import curie_to_str, resource_manager, version
 
 from .api import api_router
-from .constants import BIOSCHEMAS
+from .constants import BIOSCHEMAS, KEY_A, KEY_C, KEY_D, KEY_B, KEY_E
 from .ui import ui_blueprint
 
 if TYPE_CHECKING:
@@ -187,8 +187,10 @@ def get_app(
     fast_api.include_router(_get_sparql_router(app))
     fast_api.mount("/", WSGIMiddleware(app))
 
+    # yes, this isn't very secure. just for testing now.
+    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
     analytics_api_key = conf.get("ANALYTICS_API_KEY") or pystow.get_config(
-        "bioregistry", "analytics_api_key"
+        "bioregistry", "analytics_api_key", passthrough=key,
     )
     if analytics_api_key:
         from api_analytics.fastapi import Analytics
