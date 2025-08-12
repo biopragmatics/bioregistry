@@ -196,6 +196,31 @@ class TestUI(unittest.TestCase):
                     res = client.get(endpoint, follow_redirects=False)
                     self.assertEqual(302, res.status_code)  # , msg=res.text)
 
+    def test_custom_redirects(self) -> None:
+        """Test custom redirects."""
+        with self.app.test_client() as client:
+            # test some custom redirects
+            for endpoint, expected in [
+                ("/EC:1.2.3.4", "https://www.enzyme-database.org/query.php?ec=1.2.3.4"),
+                ("/EC:2.3.1.n12", "https://www.enzyme-database.org/query.php?ec=2.3.1.n12"),
+                ("/EC:3.4.24.B15", "https://www.enzyme-database.org/query.php?ec=3.4.24.B15"),
+                ("/EC:1.2.3", "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3"),
+                ("/EC:1.2.3.-", "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3"),
+                ("/EC:1.2.3.-", "https://www.enzyme-database.org/class.php?c=1&sc=2&ssc=3"),
+            ]:
+                with self.subTest(endpoint=endpoint):
+                    res = client.get(endpoint, follow_redirects=False)
+                    self.assertEqual(302, res.status_code)
+                    self.assertEqual(expected, res.location)
+
+            # test some bad ones
+            for endpoint in [
+                "/EC:1.2.3.4.5",
+            ]:
+                with self.subTest(endpoint=endpoint):
+                    res = client.get(endpoint)
+                    self.assertEqual(404, res.status_code)
+
     def test_redirect_404(self):
         """Test 404 errors."""
         with self.app.test_client() as client:
