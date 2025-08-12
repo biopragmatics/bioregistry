@@ -376,12 +376,6 @@ def reference(
 ark_hacked_route = ui_blueprint.route("/<prefix>:/<path:identifier>")
 
 
-def _resolve_ec(identifier: str) -> str | None:
-    raise NotImplementedError
-
-
-CUSTOM_RESOLVERS: dict[str, Callable[[str], str | None]] = {"ec": _resolve_ec}
-
 
 @ui_blueprint.route("/<prefix>")
 @ui_blueprint.route("/<prefix>:<path:identifier>")

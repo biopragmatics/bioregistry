@@ -1726,6 +1726,11 @@ class Manager:
             if provider not in providers:
                 return None
             return providers[provider]
+
+        # TODO decide how this works with custom provider
+        if reference.prefix in CUSTOM_RESOLVERS:
+            return CUSTOM_RESOLVERS[reference.prefix](identifier)
+
         if prefix_map and reference.prefix in prefix_map:
             providers["custom"] = f"{prefix_map[reference.prefix]}{reference.identifier}"
         for key in priority or LINK_PRIORITY:
@@ -2065,6 +2070,11 @@ def _read_contributors(
                 rv[maintainer.orcid] = maintainer
     return rv
 
+def _resolve_ec(identifier: str) -> str | None:
+    raise NotImplementedError
+
+
+CUSTOM_RESOLVERS: dict[str, Callable[[str], str | None]] = {"ec": _resolve_ec}
 
 #: The default manager for the Bioregistry
 manager = Manager()
