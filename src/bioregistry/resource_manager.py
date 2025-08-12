@@ -908,6 +908,20 @@ class Manager:
             return None
         return entry.get_preferred_prefix()
 
+    def get_logo(self, prefix: str) -> str | None:
+        """Get the logo for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_logo()
+
+    def get_mailing_list(self, prefix: str) -> str | None:
+        """Get the mailing list for the resource, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_mailing_list()
+
     def get_pattern(self, prefix: str) -> str | None:
         """Get the pattern for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
@@ -1215,6 +1229,7 @@ class Manager:
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
             proprietary=resource.proprietary,
+            # TODO automate checking that all fields have a function?
         )
 
     def get_license_conflicts(self) -> list[tuple[str, str | None, str | None, str | None]]:
@@ -1580,7 +1595,9 @@ class Manager:
             "rrid": self.get_rrid_iri,
         }
 
-    def get_providers_list(self, prefix: str, identifier: str) -> Sequence[tuple[str, str]]:
+    def get_providers_list(
+        self, prefix: str, identifier: str, *, filter_known_inactive: bool = False
+    ) -> Sequence[tuple[str, str]]:
         """Get all providers for the CURIE."""
         rv = []
         for metaprefix, get_url in self.get_provider_functions().items():
@@ -1591,7 +1608,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             raise KeyError(f"Could not look up a resource by prefix: {prefix}")
-        for provider in resource.get_extra_providers():
+        for provider in resource.get_extra_providers(filter_known_inactive=filter_known_inactive):
             rv.append((provider.code, provider.resolve(identifier)))
 
         if not rv:

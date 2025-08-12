@@ -628,7 +628,7 @@
             {% if providers %}{{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}{% endif %}
         </div>
 
-        {% set extra_providers = resource.get_extra_providers() %}
+        {% set extra_providers = resource.get_extra_providers(filter_known_inactive=True) %}
         {% if extra_providers %}
             <div class="card" style="margin-top: 20px">
                 <a id="mappings"></a>

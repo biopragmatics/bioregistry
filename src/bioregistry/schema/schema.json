@@ -417,6 +417,18 @@
           "default": null,
           "description": "An example local identifier, specific to the provider. Providing this value is only necessary if the example associated with the prefix for which this is a provider is not resolvable by the provider. The example identifier should exclude any redundant usage of the prefix. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
           "title": "Example"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StatusCheck"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387."
         }
       },
       "required": [
@@ -1169,7 +1181,7 @@
             }
           ],
           "default": null,
-          "description": "A group contact email for the project. It's required to have a primary contact to have this field.",
+          "description": "A group contact email (e.g., a mailing list, a shared address) for the project. It's required to have a primary contact to have this field.",
           "title": "Contact Group Email"
         },
         "contact_page": {
@@ -1739,6 +1751,19 @@
           "default": null,
           "title": "Wikidata"
         },
+        "wikidata_entity": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wikidata Entity"
+        },
         "go": {
           "anyOf": [
             {
@@ -2082,6 +2107,52 @@
         "prefix"
       ],
       "title": "Resource",
+      "type": "object"
+    },
+    "StatusCheck": {
+      "description": "A status check.",
+      "properties": {
+        "value": {
+          "enum": [
+            "available",
+            "moved",
+            "gone",
+            "hijacked",
+            "degraded",
+            "misconfigured"
+          ],
+          "title": "Value",
+          "type": "string"
+        },
+        "date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Date",
+          "type": "string"
+        },
+        "contributor": {
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
+          "title": "Contributor",
+          "type": "string"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "value",
+        "date",
+        "contributor"
+      ],
+      "title": "StatusCheck",
       "type": "object"
     }
   },

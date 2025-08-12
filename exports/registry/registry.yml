@@ -69,6 +69,7 @@ _4dn.biosource:
     fairsharing: FAIRsharing.CugtbQ
     miriam: 4dn
     prefixcommons: 4dn
+    wikidata.entity: Q110613621
   name: 4D Nucleome Data Portal Biosource
   pattern: ^4DN[A-Z]{2}[A-Z0-9]{7}$
   preferred_prefix: _4dn.biosource
@@ -116,6 +117,8 @@ _4dn.replicate:
     and samples
   example: 4DNESWX1J3QU
   homepage: https://data.4dnucleome.org/experiment-set-replicates/
+  mappings:
+    wikidata.entity: Q110613797
   name: 4D Nucleome Data Portal Experiment Replicate
   preferred_prefix: _4dn.replicate
   synonyms:
@@ -141,6 +144,7 @@ aaindex:
     edam: '1128'
     integbio: nbdc00004
     prefixcommons: aaindex
+    wikidata.entity: Q85738825
   name: AAindex
   preferred_prefix: aaindex
   providers:
@@ -187,6 +191,7 @@ aao:
     fairsharing: FAIRsharing.mxx5rp
     obofoundry: aao
     prefixcommons: aao
+    wikidata.entity: Q114677701
   name: Amphibian gross anatomy
   pattern: ^\d{7}$
   preferred_prefix: AAO
@@ -229,6 +234,7 @@ abcam:
   homepage: https://www.abcam.com
   mappings:
     cellosaurus: Abcam
+    wikidata.entity: Q29123382
   name: Abcam
   preferred_prefix: abcam
   references:
@@ -260,6 +266,7 @@ abcd:
     cellosaurus: ABCD
     fairsharing: FAIRsharing.Z8OKi5
     uniprot: DB-0236
+    wikidata.entity: Q110998933
   name: AntiBodies Chemically Defined database
   preferred_prefix: abcd
   publications:
@@ -308,6 +315,7 @@ abs:
     n2t: abs
     pathguide: '217'
     prefixcommons: abs
+    wikidata.entity: Q111134507
   name: Annotated Regulatory Binding Sites
   pattern: ^A\d+$
   preferred_prefix: abs
@@ -382,6 +390,8 @@ ac:
   keywords:
   - semantic web
   - social media
+  mappings:
+    wikidata.entity: Q4677626
   name: Activity Streams
   preferred_prefix: ac
   references:
@@ -528,17 +538,29 @@ addgene:
   twitter: Addgene
   uri_format: http://addgene.org/$1
 addicto:
+  contact:
+    email: robertwest100@gmail.com
+    github: robertjwest
+    name: Robert J. West
+    orcid: 0000-0001-6398-0921
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Addiction Ontology (AddictO) is an ontology being developed all
     aspects of addiction research.
-  download_owl: http://addictovocab.org/addicto.owl/2025-03-17
+  download_owl: https://addictovocab.org/addicto.owl
   example: '0000447'
   homepage: https://addictovocab.org
   keywords:
   - ontology
+  logo: https://addictovocab.org/images/logo.svg
   mappings:
     ols: addicto
   name: Addiction Ontology
   preferred_prefix: addicto
+  repository: https://github.com/addicto-org/addiction-ontology
   uri_format: http://addictovocab.org/ADDICTO_$1
   version: '2025-03-17'
 adms:
@@ -599,6 +621,7 @@ ado:
     obofoundry: ado
     ols: ado
     ontobee: ADO
+    wikidata.entity: Q54887745
   name: Alzheimer's Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: ADO
@@ -644,6 +667,7 @@ adw:
     miriam: adw
     n2t: adw
     obofoundry: adw
+    wikidata.entity: Q114677837
   name: Animal natural history and life history
   pattern: ^[A-Z_a-z]+$
   preferred_prefix: ADW
@@ -683,6 +707,7 @@ aeo:
     obofoundry: aeo
     ols: aeo
     ontobee: AEO
+    wikidata.entity: Q81661532
   name: Anatomical Entity Ontology
   pattern: ^\d{7}$
   preferred_prefix: AEO
@@ -768,6 +793,7 @@ aero:
     fairsharing: FAIRsharing.rycy2x
     obofoundry: aero
     ols: aero
+    wikidata.entity: Q55118235
   name: Adverse Event Reporting Ontology
   pattern: ^\d{7}$
   preferred_prefix: AERO
@@ -795,7 +821,7 @@ afo:
     email: more.info@allotrope.org
     name: Allotrope Foundation
   description: Allotrope Merged Ontology Suite
-  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2025/03/merged-without-qudt-and-inferred
+  download_owl: http://purl.allotrope.org/voc/afo/merged/REC/2025/06/merged-without-qudt-and-inferred
   homepage: https://www.allotrope.org/
   keywords:
   - agricultural engineering
@@ -816,7 +842,7 @@ afo:
   name: Allotrope Merged Ontology Suite
   no_own_terms: true
   preferred_prefix: afo
-  version: '2025-03-01'
+  version: '2025-06-01'
 afpo:
   contact:
     email: mcmelek@msn.com
@@ -949,6 +975,7 @@ agricola:
     go: AGRICOLA_ID
     miriam: agricola
     n2t: agricola
+    wikidata.entity: Q4651693
   name: Agricultural Online Access
   pattern: ^IND\d+$
   preferred_prefix: agricola
@@ -1075,6 +1102,7 @@ agro:
     obofoundry: agro
     ols: agro
     ontobee: AGRO
+    wikidata.entity: Q81661533
   name: Agronomy Ontology
   pattern: ^\d{8}$
   preferred_prefix: AGRO
@@ -1116,6 +1144,7 @@ agrovoc:
     ecoportal: AGROVOC
     fairsharing: FAIRsharing.anpj91
     wikidata: P8061
+    wikidata.entity: Q292649
   name: Agronomy Vocabulary
   pattern: ^[a-z0-9]+$
   preferred_prefix: agrovoc
@@ -1182,6 +1211,7 @@ agsd:
     fairsharing: FAIRsharing.efp5v2
     prefixcommons: agsd
     re3data: r3d100012517
+    wikidata.entity: Q4764809
   name: Animal Genome Size Database
   preferred_prefix: agsd
   providers:
@@ -1286,6 +1316,7 @@ aism:
     obofoundry: aism
     ols: aism
     ontobee: AISM
+    wikidata.entity: Q112972813
   name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   pattern: ^\d{7}$
   preferred_prefix: AISM
@@ -1313,6 +1344,7 @@ alfred:
   - genome
   mappings:
     prefixcommons: alfred
+    wikidata.entity: Q294392
   name: The ALlele FREquency Database
   preferred_prefix: alfred
   providers:
@@ -1368,6 +1400,7 @@ allergome:
     n2t: allergome
     prefixcommons: allergome
     uniprot: DB-0160
+    wikidata.entity: Q111136043
   name: Allergome
   pattern: ^\d+$
   preferred_prefix: allergome
@@ -1416,6 +1449,8 @@ alzforum.mutation:
   - alzheimer's disease
   - genes
   - variants
+  mappings:
+    wikidata.entity: Q111254799
   name: Alzforum Mutations
   preferred_prefix: alzforum.mutation
   references:
@@ -1494,6 +1529,7 @@ amoebadb:
     n2t: amoebadb
     prefixcommons: amoebadb
     re3data: r3d100012457
+    wikidata.entity: Q4747456
   name: AmoebaDB
   pattern: ^EDI_\d+$
   preferred_prefix: amoebadb
@@ -1562,6 +1598,7 @@ amphx:
     obofoundry: amphx
     ols: amphx
     ontobee: AMPHX
+    wikidata.entity: Q112972859
   name: The Amphioxus Development and Anatomy Ontology
   pattern: ^\d+$
   preferred_prefix: AMPHX
@@ -1580,12 +1617,16 @@ ans.educationlevel:
   description: This vocabulary defines education levels for pre-kindergarten through
     grade 12 for the United States. It also defines general categories for post-secondary
     education (vocational, professional and life-long learning).
+  download_rdf: https://s3.amazonaws.com/jestaticd2l/purl/scheme/ASNEducationLevel
   example: Pre-K
   example_extras:
   - '1'
   - '2'
   - K
   homepage: http://purl.org/ASN/scheme/ASNEducationLevel/
+  keywords:
+  - education level
+  - open educational resources
   name: U.S. Education Level Vocabulary
   preferred_prefix: ans.educationlevel
   uri_format: http://purl.org/ASN/scheme/ASNEducationLevel/$1
@@ -1605,12 +1646,14 @@ antibodyregistry:
   - antibody
   - reagent
   - unique identifiers
+  logo: https://www.antibodyregistry.org/assets/logo.svg
   mappings:
     biocontext: ANTIBODYREGISTRY
     integbio: nbdc01696
     miriam: antibodyregistry
     n2t: antibodyregistry
     rrid: AB
+    wikidata.entity: Q111182712
   name: Antibody Registry
   pattern: ^\d{6}$
   preferred_prefix: antibodyregistry
@@ -1715,6 +1758,8 @@ anzctr:
     (from website)'
   example: ACTRN12623000498695
   homepage: https://anzctr.org.au
+  mappings:
+    wikidata.entity: Q65242932
   name: Australian New Zealand Clinical Trials Registry
   pattern: ^ACTRN\d+$
   preferred_prefix: anzctr
@@ -1742,6 +1787,7 @@ aop:
     biocontext: AOP
     miriam: aop
     n2t: aop
+    wikidata.entity: Q111254792
   name: AOPWiki
   pattern: ^\d+$
   preferred_prefix: aop
@@ -1808,6 +1854,7 @@ apaonto:
     aberowl: APAONTO
     bioportal: APAONTO
     fairsharing: FAIRsharing.gkw1w8
+    wikidata.entity: Q111194686
   name: Psychology Ontology
   preferred_prefix: apaonto
   references:
@@ -1926,6 +1973,7 @@ apid.interactions:
     biocontext: APID.INTERACTIONS
     miriam: apid.interactions
     n2t: apid.interactions
+    wikidata.entity: Q111047825
   name: APID Interactomes
   pattern: ^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z,
     0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$
@@ -1972,6 +2020,7 @@ apo:
     obofoundry: apo
     ols: apo
     ontobee: APO
+    wikidata.entity: Q81661535
   name: Ascomycete phenotype ontology
   pattern: ^\d{7}$
   preferred_prefix: APO
@@ -2075,6 +2124,7 @@ arachnoserver:
     prefixcommons: arachnoserver
     re3data: r3d100012902
     uniprot: DB-0145
+    wikidata.entity: Q4783563
   name: ArachnoServer
   pattern: ^AS\d{6}$
   preferred_prefix: arachnoserver
@@ -2193,6 +2243,7 @@ ardb:
     biocontext: ARDB
     miriam: ardb
     n2t: ardb
+    wikidata.entity: Q112205944
   name: Antibiotic Resistance Genes Database
   pattern: ^[A-Z_]{3}[0-9]{4,}$
   preferred_prefix: ardb
@@ -2246,6 +2297,7 @@ ark:
     fairsharing: FAIRsharing.f928f1
     miriam: ark
     n2t: ark
+    wikidata.entity: Q2860403
   mastodon: arks_org@fosstodon.org
   name: Archival Resource Key
   namespace_in_lui: true
@@ -2292,6 +2344,7 @@ aro:
     obofoundry: aro
     ols: aro
     ontobee: ARO
+    wikidata.entity: Q81661539
   name: Antibiotic Resistance Ontology
   pattern: ^\d{7}$
   preferred_prefix: ARO
@@ -2336,6 +2389,7 @@ arrayexpress:
     n2t: arrayexpress
     prefixcommons: arrayexpress
     re3data: r3d100010222
+    wikidata.entity: Q106638376
   name: ArrayExpress
   pattern: ^[AEP]-\w{4}-\d+$
   preferred_prefix: arrayexpress
@@ -2464,6 +2518,7 @@ arxiv:
     n2t: arxiv
     prefixcommons: arxiv
     wikidata: P818
+    wikidata.entity: Q118398
   name: arXiv
   pattern: ^(\w+(\-\w+)?(\.\w+)?\/?)?\d{4,7}(\.\d+(v\d+)?)?$
   preferred_prefix: arxiv
@@ -2571,6 +2626,7 @@ ascl:
     miriam: ascl
     n2t: ascl
     re3data: r3d100011865
+    wikidata.entity: Q17013974
   name: Astrophysics Source Code Library
   pattern: ^[0-9\.]+$
   preferred_prefix: ascl
@@ -2595,6 +2651,7 @@ asin:
     biocontext: ASIN
     miriam: asin
     n2t: asin
+    wikidata.entity: Q1753278
   name: Amazon Standard Identification Number
   pattern: ^[0-9]{10}$
   preferred_prefix: asin
@@ -2819,6 +2876,7 @@ atc:
     prefixcommons: atc
     togoid: Atc
     wikidata: P267
+    wikidata.entity: Q192093
   name: Anatomical Therapeutic Chemical Classification System
   pattern: ^[A-Z](\d+([A-Z]{1,2}(\d+)?)?)?$
   preferred_prefix: atc
@@ -2932,6 +2990,7 @@ ato:
     bioportal: ATO
     fairsharing: FAIRsharing.ayjdsm
     obofoundry: ato
+    wikidata.entity: Q114677879
   name: Amphibian taxonomy
   pattern: ^\d{7}$
   preferred_prefix: ATO
@@ -3199,8 +3258,8 @@ bams:
   - https://www.frontiersin.org/articles/10.3389/neuro.11.002.2008/full
 bao:
   contact:
-    email: sschurer@med.miami.edu
-    name: Stephan Schurer
+    email: c.chung@miami.edu
+    name: Caty Chung
   description: The BioAssay Ontology (BAO) describes chemical biology screening assays
     and their results including high-throughput screening (HTS) data for the purpose
     of categorizing assays and data analysis.
@@ -3258,7 +3317,7 @@ bao:
   synonyms:
   - BAO
   uri_format: http://www.bioassayontology.org/bao#BAO_$1
-  version: 2.8.14
+  version: 2.8.16
 bartoc:
   contact:
     email: voss@gbv.de
@@ -3421,15 +3480,16 @@ bcio:
   homepage: https://www.humanbehaviourchange.org/
   keywords:
   - ontology
+  license: CC-BY-4.0
   mappings:
-    aberowl: BCI-O
-    bioportal: BCI-O
+    aberowl: BCIO
+    bioportal: BCIO
     ols: bcio
   name: The Behaviour Change Intervention Ontology
   pattern: ^\d{6}$
   preferred_prefix: bcio
   uri_format: https://w3id.org/BCI-ontology#$1
-  version: '2025-06-13'
+  version: '2025-07-18'
 bco:
   appears_in:
   - fovt
@@ -3466,6 +3526,7 @@ bco:
     obofoundry: bco
     ols: bco
     ontobee: BCO
+    wikidata.entity: Q55118250
   name: Biological Collections Ontology
   pattern: ^\d{7}$
   preferred_prefix: BCO
@@ -3776,6 +3837,7 @@ bfo:
     obofoundry: bfo
     ols: bfo
     ontobee: BFO
+    wikidata.entity: Q4866972
   name: Basic Formal Ontology
   pattern: ^\d{7}$
   preferred_prefix: BFO
@@ -3984,7 +4046,12 @@ bigg.compartment:
     more). This collection references model compartments.
   example: c
   homepage: http://bigg.ucsd.edu/compartments/
+  keywords:
+  - cellular component
+  - compartment
+  - subcellular compartment
   license: http://bigg.ucsd.edu/license#license
+  logo: http://bigg.ucsd.edu/static/assets/bigg-github.png
   mappings:
     biocontext: BIGG.COMPARTMENT
     miriam: bigg.compartment
@@ -4005,7 +4072,13 @@ bigg.metabolite:
   example_extras:
   - 12dgr161[c]
   homepage: http://bigg.ucsd.edu/universal/metabolites
+  keywords:
+  - chemical
+  - compound
+  - metabolite
+  - small molecule
   license: http://bigg.ucsd.edu/license#license
+  logo: http://bigg.ucsd.edu/static/assets/bigg-github.png
   mappings:
     biocontext: BIGG.METABOLITE
     miriam: bigg.metabolite
@@ -4023,7 +4096,11 @@ bigg.model:
     more). This collection references individual models.
   example: iECABU_c1320
   homepage: http://bigg.ucsd.edu/models
+  keywords:
+  - metabolic model
+  - pathway
   license: http://bigg.ucsd.edu/license#license
+  logo: http://bigg.ucsd.edu/static/assets/bigg-github.png
   mappings:
     biocontext: BIGG.MODEL
     miriam: bigg.model
@@ -4041,7 +4118,10 @@ bigg.reaction:
     more). This collection references reactions.
   example: 13GS
   homepage: http://bigg.ucsd.edu/universal/reactions
+  keywords:
+  - reaction
   license: http://bigg.ucsd.edu/license#license
+  logo: http://bigg.ucsd.edu/static/assets/bigg-github.png
   mappings:
     biocontext: BIGG.REACTION
     miriam: bigg.reaction
@@ -4073,6 +4153,7 @@ bila:
     obofoundry: bila
     ols: bila
     prefixcommons: 4dxpress
+    wikidata.entity: Q114677880
   name: Bilateria anatomy
   pattern: ^\d{7}$
   preferred_prefix: BILA
@@ -4962,6 +5043,7 @@ bioregistry:
   mappings:
     bartoc: '18951'
     fairsharing: FAIRsharing.250a8c
+    wikidata.entity: Q109302681
   mastodon: bioregistry@fosstodon.org
   name: Bioregistry
   pattern: ^[A-Za-z_][A-Za-z0-9\.\-_]*$
@@ -5544,7 +5626,7 @@ bmont:
     orcid: 0000-0001-9896-3531
   description: An application ontology that represents comprehensive knowledge involving
     a variety of fields of medical and biological aspects.
-  download_owl: http://aber-owl.net/media/ontologies/BMONT/1/bmont.owl
+  download_owl: http://aber-owl.net/media/ontologies/BMONT/2/bmont.owl
   example: '0000006'
   homepage: https://github.com/SCAI-BIO/BiomarkerOntology
   keywords:
@@ -5919,6 +6001,7 @@ bspo:
     obofoundry: bspo
     ols: bspo
     ontobee: BSPO
+    wikidata.entity: Q81661546
   name: Biological Spatial Ontology
   pattern: ^\d{7}$
   preferred_prefix: BSPO
@@ -5977,6 +6060,7 @@ bto:
     ontobee: BTO
     prefixcommons: bto
     wikidata: P5501
+    wikidata.entity: Q4836352
   name: BRENDA Tissue Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -6031,6 +6115,7 @@ bto:
   uri_format: http://purl.obolibrary.org/obo/BTO_$1
   version: '2021-10-26'
 bugbase.expt:
+  deprecated: true
   description: BugBase is a MIAME-compliant microbial gene expression and comparative
     genomic database. It stores experimental annotation and multiple raw and analysed
     data formats, as well as protocols for bacterial microarray designs. This collection
@@ -6046,6 +6131,7 @@ bugbase.expt:
   preferred_prefix: bugbase.expt
   uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1
 bugbase.protocol:
+  deprecated: true
   description: BugBase is a MIAME-compliant microbial gene expression and comparative
     genomic database. It stores experimental annotation and multiple raw and analysed
     data formats, as well as protocols for bacterial microarray designs. This collection
@@ -6404,6 +6490,7 @@ caro:
     obofoundry: caro
     ols: caro
     ontobee: CARO
+    wikidata.entity: Q55118319
   name: Common Anatomy Reference Ontology
   pattern: ^\d{7}$
   preferred_prefix: CARO
@@ -6939,7 +7026,12 @@ ccle:
     Institute and Novartis
   example: BT20_BREAST
   homepage: https://www.cbioportal.org/study/summary?id=ccle_broad_2019
+  keywords:
+  - cancer cell line
+  - cell
+  - cell line
   license: ODbL-1.0
+  logo: https://sites.broadinstitute.org/files/files/ccle/files/cclelogo_200h_4.jpg
   mappings:
     cellosaurus: CCLE
   name: Cancer Cell Line Encyclopedia Cells
@@ -7048,6 +7140,7 @@ cdao:
     obofoundry: cdao
     ols: cdao
     ontobee: CDAO
+    wikidata.entity: Q55118328
   name: Comparative Data Analysis Ontology
   pattern: ^\d{7}$
   preferred_prefix: CDAO
@@ -7175,6 +7268,7 @@ cdno:
     obofoundry: cdno
     ols: cdno
     ontobee: CDNO
+    wikidata.entity: Q111272479
   name: Compositional Dietary Nutrition Ontology
   pattern: ^\d{7}$
   preferred_prefix: CDNO
@@ -7373,6 +7467,7 @@ cellosaurus:
     rrid: CVCL
     togoid: Cellosaurus
     wikidata: P3289
+    wikidata.entity: Q21014462
   mastodon: cellosaurus@fediscience.org
   name: Cellosaurus
   pattern: ^[A-Z0-9]{4}$
@@ -7578,6 +7673,7 @@ ceph:
     obofoundry: ceph
     ols: ceph
     ontobee: CEPH
+    wikidata.entity: Q104030182
   name: Cephalopod Ontology
   pattern: ^\d{7}$
   preferred_prefix: CEPH
@@ -7668,10 +7764,11 @@ cgnc:
   description: Nomenclature Consortium around Chicken genes (analogous to the HGNC
     for humans)
   example: '10087'
-  homepage: http://birdgenenames.org/cgnc/
+  homepage: http://birdgenenames.org
   keywords:
   - gene
   license: CC-BY-4.0
+  logo: https://birdgenenames.org/img/CGNC.png
   mappings:
     cellosaurus: CGNC
     prefixcommons: cgnc
@@ -7793,10 +7890,13 @@ chebi:
   - biochemistry
   - chemical
   - chemistry
+  - lipidomics
+  - metabolomics
   - molecular entity
   - natural product
   - obo
   - ontology
+  - proteomics
   - small molecule
   - structure
   - taxonomic classification
@@ -7822,6 +7922,7 @@ chebi:
     re3data: r3d100012626
     togoid: Chebi
     wikidata: P683
+    wikidata.entity: Q902623
   name: Chemical Entities of Biological Interest
   namespace_in_lui: true
   pattern: ^\d+$
@@ -8029,7 +8130,12 @@ chembl.compound:
     abstracted and curated from the primary scientific literature.
   example: CHEMBL465070
   homepage: https://www.ebi.ac.uk/chembldb/
+  keywords:
+  - chemical
+  - compound
+  - small molecule
   license: CC-BY-SA-3.0
+  logo: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5LCdi4mEW56jpmM0YDjEwLtGUUy2F9I7m02I9hygI0OPugnZKlTrAgfBtug5yJS5RbpCXifID0pzA5Wxdc6un1UjCCtOJcvlkeoAFgzQspvplZcstYNwx8lBtvlYY8WJ-kLj-I891VIAO/s1600/Screenshot+2018-12-20+at+10.30.09.png
   mappings:
     biocontext: CHEMBL.COMPOUND
     edam: '2646'
@@ -8043,6 +8149,21 @@ chembl.compound:
   preferred_prefix: chembl.compound
   rdf_uri_format: http://rdf.ebi.ac.uk/resource/chembl/molecule/$1
   uri_format: https://www.ebi.ac.uk/chembl/compound/inspect/$1
+chembl.mechanism:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Qualifiers for measurementsn, such as `allosteric modulator` from the
+    ACTION_TYPE table
+  example: activator
+  example_extras:
+  - allosteric-antagonist
+  homepage: https://www.ebi.ac.uk/chembl
+  name: ChEMBL mechanism
+  pattern: ^[\w-]+$
+  preferred_prefix: chembl.mechanism
 chembl.target:
   contact:
     email: dmendez@ebi.ac.uk
@@ -8054,7 +8175,13 @@ chembl.target:
     abstracted and curated from the primary scientific literature.
   example: CHEMBL3467
   homepage: https://www.ebi.ac.uk/chembldb/
+  keywords:
+  - cell
+  - cell line
+  - protein
+  - protein complex
   license: CC-BY-SA-3.0
+  logo: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5LCdi4mEW56jpmM0YDjEwLtGUUy2F9I7m02I9hygI0OPugnZKlTrAgfBtug5yJS5RbpCXifID0pzA5Wxdc6un1UjCCtOJcvlkeoAFgzQspvplZcstYNwx8lBtvlYY8WJ-kLj-I891VIAO/s1600/Screenshot+2018-12-20+at+10.30.09.png
   mappings:
     biocontext: CHEMBL.TARGET
     cellosaurus: ChEMBL-Targets
@@ -8068,6 +8195,22 @@ chembl.target:
   synonyms:
   - ChEMBL-Targets
   uri_format: https://www.ebi.ac.uk/chembl/target/inspect/$1
+chembl.tissue:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Tissues used to annotate cells and cell lines, cross-referenced to
+    EFO, BTO, UBERON, and CALOHA
+  example: CHEMBL3559721
+  homepage: https://www.ebi.ac.uk/chembl
+  name: ChEMBL tissue
+  part_of: chembl
+  pattern: ^CHEMBL\d+$
+  preferred_prefix: chembl.tissue
+  references:
+  - https://chembl.blogspot.com/2018/03/chembl-tissues-increasing-depth-breadth.html
 chemdb:
   contact:
     email: pfbaldi@uci.edu
@@ -8115,6 +8258,83 @@ chemdb:
       resources'
     year: 2005
   uri_format: http://cdb.ics.uci.edu/cgibin/ChemicalDetailWeb.py?chemical_id=$1
+chemfont.chemical:
+  contact:
+    email: david.wishart@ualberta.ca
+    name: David Wishart
+    orcid: 0000-0002-3207-2434
+  contributor:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: The Chemical Functional Ontology (ChemFOnt) is a hierarchical, OWL-compatible
+    ontology describing the functions and actions of biologically important chemicals
+    including primary metabolites, secondary metabolites, natural products, food chemicals,
+    synthetic food additives, drugs, herbicides, pesticides and environmental chemicals.
+    The identifiers in this semantic space correspond to individual chemicals.
+  example: CFc000239295
+  github_request_issue: 1617
+  homepage: https://www.chemfont.ca/chemicals
+  keywords:
+  - chemical
+  - ontology
+  name: ChemFOnt Chemical
+  part_of: chemfont
+  pattern: ^CFc\d{9}$
+  preferred_prefix: chemfont.chemical
+  publications:
+  - doi: 10.1093/nar/gkac919
+    pmc: PMC9825615
+    pubmed: '36305829'
+    title: 'ChemFOnt: the chemical functional ontology resource'
+    year: 2023
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.chemfont.ca/chemicals/$1
+chemfont.ontology:
+  contact:
+    email: david.wishart@ualberta.ca
+    name: David Wishart
+    orcid: 0000-0002-3207-2434
+  contributor:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: The Chemical Functional Ontology (ChemFOnt) is a hierarchical, OWL-compatible
+    ontology describing the functions and actions of biologically important chemicals
+    including primary metabolites, secondary metabolites, natural products, food chemicals,
+    synthetic food additives, drugs, herbicides, pesticides and environmental chemicals.
+    The identifiers in this semantic space correspond to entries in the ChemFOnt ontology
+    that are used to organize individual chemicals. Terms can be looked up using the
+    following URL (https://www.chemfont.ca/ontology_browse/term_info/18), but not
+    directly by ID
+  download_owl: https://www.chemfont.ca/system/downloads/1.0/chemfont.owl.zip
+  example: CFo000000197
+  github_request_issue: 1617
+  homepage: https://www.chemfont.ca/ontology_browse
+  keywords:
+  - chemical
+  - ontology
+  name: ChemFOnt Ontology
+  part_of: chemfont
+  pattern: ^CFo\d{9}$
+  preferred_prefix: chemfont.ontology
+  publications:
+  - doi: 10.1093/nar/gkac919
+    pmc: PMC9825615
+    pubmed: '36305829'
+    title: 'ChemFOnt: the chemical functional ontology resource'
+    year: 2023
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
 chemicalbook:
   contributor:
     email: cthoyt@gmail.com
@@ -8208,6 +8428,7 @@ cheminf:
     obofoundry: cheminf
     ols: cheminf
     ontobee: CHEMINF
+    wikidata.entity: Q55118298
   name: Chemical Information Ontology
   namespace_in_lui: true
   pattern: ^\d{6}$
@@ -8478,6 +8699,7 @@ chiro:
     obofoundry: chiro
     ols: chiro
     ontobee: CHIRO
+    wikidata.entity: Q113006226
   name: ChEBI Integrated Role Ontology
   no_own_terms: true
   preferred_prefix: CHIRO
@@ -8521,6 +8743,7 @@ chmo:
     obofoundry: chmo
     ols: chmo
     ontobee: CHMO
+    wikidata.entity: Q55118301
   name: Chemical Methods Ontology
   pattern: ^\d{7}$
   preferred_prefix: CHMO
@@ -8597,6 +8820,7 @@ cido:
     obofoundry: cido
     ols: cido
     ontobee: CIDO
+    wikidata.entity: Q110998476
   name: Coronavirus Infectious Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: CIDO
@@ -8662,6 +8886,7 @@ cio:
     obofoundry: cio
     ols: cio
     ontobee: CIO
+    wikidata.entity: Q81661853
   name: Confidence Information Ontology
   pattern: ^\d{7}$
   preferred_prefix: CIO
@@ -8692,6 +8917,11 @@ citedcat:
     mappings.
   example: isSupplementedBy
   homepage: https://ec-jrc.github.io/datacite-to-dcat-ap/
+  keywords:
+  - catalogs
+  - methods
+  mappings:
+    lov: citedcat
   name: DataCite to DCAT-AP Mapping
   preferred_prefix: citedcat
   rdf_uri_format: https://w3id.org/citedcat-ap/$1
@@ -8793,6 +9023,7 @@ civic.aid:
   example: '3'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.aid
   name: CIViC Assertion
@@ -8815,6 +9046,7 @@ civic.did:
   example: '46'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.did
   name: CIViC Disease
@@ -8845,6 +9077,7 @@ civic.eid:
   example: '1199'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.eid
   name: CIViC Evidence
@@ -8870,7 +9103,10 @@ civic.gid:
     functions of the gene with associated roles in oncogenesis
   example: '272'
   homepage: https://civicdb.org/
+  keywords:
+  - gene
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.gid
     wikidata: P11277
@@ -8899,6 +9135,7 @@ civic.mpid:
   example: '559'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.mpid
   name: CIViC Molecular Profile
@@ -8923,6 +9160,7 @@ civic.sid:
   example: '62'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.sid
   name: CIViC Source
@@ -8947,6 +9185,7 @@ civic.tid:
   example: '14'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.tid
   name: CIViC Therapy
@@ -8970,6 +9209,7 @@ civic.vgid:
   example: '16'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.vgid
   name: CIViC Variant Group
@@ -8997,6 +9237,7 @@ civic.vid:
   example: '12'
   homepage: https://civicdb.org/
   license: CC0-1.0
+  logo: https://civic.readthedocs.io/en/latest/_images/CIViC_logo_for-light-bg_LG_v5a1.png
   mappings:
     miriam: civic.vid
     wikidata: P3329
@@ -9049,9 +9290,12 @@ cl:
   - annotation
   - cell
   - cell biology
+  - immunogenetics
+  - immunology
   - life science
   - morphology
   - obo
+  - omics
   - ontology
   license: CC-BY-4.0
   logo: https://obofoundry.org/images/CL-logo.jpg
@@ -9070,6 +9314,7 @@ cl:
     ontobee: CL
     prefixcommons: cl
     wikidata: P7963
+    wikidata.entity: Q55118285
   name: Cell Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -9105,7 +9350,7 @@ cl:
   repository: https://github.com/obophenotype/cell-ontology
   twitter: CellOntology
   uri_format: http://purl.obolibrary.org/obo/CL_$1
-  version: '2025-04-10'
+  version: '2025-06-20'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -9130,6 +9375,7 @@ clao:
     obofoundry: clao
     ols: clao
     ontobee: CLAO
+    wikidata.entity: Q111274067
   name: Collembola Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: CLAO
@@ -9274,6 +9520,7 @@ clinicaltrials:
   - drug
   - human
   license: https://clinicaltrials.gov/about-site/terms-conditions#availability
+  logo: https://clinicaltrials.gov/assets/images/ctg-header-logo.svg
   mappings:
     biocontext: CLINICALTRIALS
     miriam: clinicaltrials
@@ -9473,6 +9720,7 @@ clo:
     ontobee: CLO
     prefixcommons: clo
     wikidata: P2158
+    wikidata.entity: Q21039006
   name: Cell Line Ontology
   pattern: ^\d{7}$
   preferred_prefix: CLO
@@ -9548,6 +9796,7 @@ clyh:
     obofoundry: clyh
     ols: clyh
     ontobee: CLYH
+    wikidata.entity: Q111274068
   name: Clytia hemisphaerica Development and Anatomy Ontology
   pattern: ^\d+$
   preferred_prefix: CLYH
@@ -9601,6 +9850,7 @@ cmf:
     biocontext: CMF
     obofoundry: cmf
     ontobee: CMF
+    wikidata.entity: Q114677881
   name: CranioMaxilloFacial ontology
   preferred_prefix: CMF
   rdf_uri_format: http://purl.obolibrary.org/obo/CMF_$1
@@ -9639,6 +9889,7 @@ cmo:
     obofoundry: cmo
     ols: cmo
     ontobee: CMO
+    wikidata.entity: Q81661570
   name: Clinical measurement ontology
   pattern: ^\d{7}$
   preferred_prefix: CMO
@@ -9658,7 +9909,7 @@ cmo:
   repository: https://github.com/rat-genome-database/CMO-Clinical-Measurement-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/CMO_$1
-  version: '2.246'
+  version: '2.248'
 cmpo:
   contact:
     email: jupp@ebi.ac.uk
@@ -9770,6 +10021,7 @@ cnt:
   keywords:
   - rdf
   mappings:
+    bartoc: '17875'
     lov: cnt
     zazuko: cnt
   name: Representing Content in RDF
@@ -10599,7 +10851,9 @@ co_370:
     orcid: 0000-0002-8981-0442
   description: Apple (Malus domestica) defines crop traits and variables to support
     the standardisation of apple breeding databases providing description of agronomic,
-    morphological, physiological, quality traits, its methods and scales.
+    morphological, physiological, quality traits, its methods and scales. This project
+    has received funding from the European Union's Horizon 2020 research and innovation
+    program under the Marie Skłodowska-Curie grant agreement No 894215.
   example: 0000890
   homepage: http://cropontology.org/term/CO_370:ROOT
   license: CC-BY-4.0
@@ -10632,13 +10886,14 @@ cob:
     obofoundry: cob
     ols: cob
     ontobee: COB
+    wikidata.entity: Q113006456
   name: Core Ontology for Biology and Biomedicine
   pattern: ^\d{7}$
   preferred_prefix: COB
   rdf_uri_format: http://purl.obolibrary.org/obo/COB_$1
   repository: https://github.com/OBOFoundry/COB
   uri_format: http://purl.obolibrary.org/obo/COB_$1
-  version: '2025-02-20'
+  version: '2025-06-30'
 coconut:
   comment: '@mSorok is the dev of the resource, hope I got it right!'
   contributor:
@@ -10684,6 +10939,36 @@ coconut:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: https://coconut.naturalproducts.net/compound/coconut_id/$1
+codata.rdmt:
+  contact:
+    email: laura@codata.org
+    name: Laura Molloy
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: "The goal of the CODATA Research Data Management Terminology is to\
+    \ gather the key terms needed for a common understanding of the research data\
+    \ management domain.  The RDMT was revised by the CODATA RDM Terminology Working\
+    \ Group, shared for public review, and then confirmed and finalised in 2023.\n\
+    \nThe RDMT grew out of the CASRAI Research Data Management Glossary, which was\
+    \ intended as a practical reference for individuals and groups concerned with\
+    \ the improvement of research data management (RDM).  In 2020, CASRAI requested\
+    \ that CODATA assume responsibility for the curation of this valued resource.\
+    \ \n\nTo that end, the RDM Terminology Working Group uses a lightweight and pragmatic\
+    \ biennial process to review the resource now restructured as the CODATA RDM Terminology\
+    \ and suggest any edits, additions and removals that are required in order to\
+    \ develop and improve this important reference resource."
+  example: aggregated-data
+  homepage: https://vocabs.ardc.edu.au/viewById/685
+  mappings:
+    ecoportal: CODATA-RDMT
+  name: CODATA Research Data Management Terminology
+  preferred_prefix: codata.rdmt
+  references:
+  - https://zenodo.org/records/10626170
+  uri_format: https://terms.codata.org/rdmt/$1
 codelink:
   contributor:
     email: cthoyt@gmail.com
@@ -10879,6 +11164,7 @@ col:
   mappings:
     bartoc: '1915'
     miriam: col
+    wikidata.entity: Q38840
   name: Catalogue of Life
   pattern: ^[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}$
   preferred_prefix: col
@@ -10941,6 +11227,7 @@ colao:
     obofoundry: colao
     ols: colao
     ontobee: COLAO
+    wikidata.entity: Q113009128
   name: Coleoptera Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: COLAO
@@ -11077,7 +11364,10 @@ complexportal:
     and provides links to details about these complexes in other databases.
   example: CPX-263
   homepage: https://www.ebi.ac.uk/complexportal
+  keywords:
+  - protein complex
   license: CC0-1.0
+  logo: https://www.ebi.ac.uk/complexportal/assets/images/logo.png
   mappings:
     biocontext: COMPLEXPORTAL
     biolink: ComplexPortal
@@ -11602,6 +11892,7 @@ cpt:
   - health science
   - medicine
   - ontology
+  logo: https://edhub.ama-assn.org/ImageLibrary/Ed-Hub-Self-Serve/CPT-monogram.png
   mappings:
     aberowl: CPT
     biolink: CPT
@@ -11818,6 +12109,7 @@ cro:
     obofoundry: cro
     ols: cro
     ontobee: CRO
+    wikidata.entity: Q70987840
   name: Contributor Role Ontology
   pattern: ^\d{7}$
   preferred_prefix: CRO
@@ -11847,6 +12139,7 @@ cryoem:
   example: '0000052'
   homepage: http://scipion.i2pc.es/ontology/cryoem
   keywords:
+  - bioimaging
   - electron microscopy
   - ontology
   - structural biology
@@ -11858,6 +12151,7 @@ cryoem:
   name: Cryo Electron Microscopy ontology
   pattern: ^\d{7}$
   preferred_prefix: cryoem
+  repository: https://github.com/I2PC/cryoem
   uri_format: http://scipion.i2pc.es/ontology/CRYOEM_$1
   version: '2021-03-09'
 cryptodb:
@@ -12238,6 +12532,7 @@ cteno:
     obofoundry: cteno
     ols: cteno
     ontobee: CTENO
+    wikidata.entity: Q81661576
   name: Ctenophore Ontology
   pattern: ^\d{7}$
   preferred_prefix: CTENO
@@ -12291,6 +12586,7 @@ cto:
     obofoundry: cto
     ols: cto
     ontobee: CTO
+    wikidata.entity: Q113009139
   name: Clinical Trials Ontology
   pattern: ^\d{7}$
   preferred_prefix: CTO
@@ -12398,6 +12694,7 @@ cvdo:
     obofoundry: cvdo
     ols: cvdo
     ontobee: CVDO
+    wikidata.entity: Q55118269
   name: Cardiovascular Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: CVDO
@@ -12418,6 +12715,8 @@ cvx:
     immunization records.
   example: '54'
   homepage: https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx
+  keywords:
+  - vaccine
   mappings:
     hl7: 2.16.840.1.113883.6.59
   name: Vaccine administered code set
@@ -12505,6 +12804,38 @@ dalia:
   rdf_uri_format: https://purl.org/ontology/modalia#$1
   repository: https://git.rwth-aachen.de/dalia/dalia-ontology
   uri_format: https://purl.org/ontology/modalia#$1
+dalia.community:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A UUID for a community indexed in the Data Liteacy Alliance (DALIA)
+    web application
+  example: bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf
+  github_request_issue: 1616
+  homepage: https://search.dalia.education
+  name: DALIA Community
+  part_of: dalia
+  pattern: ^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$
+  preferred_prefix: dalia.community
+  uri_format: https://search.dalia.education/communities/$1
+dalia.oer:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A UUID for an open educational resource indexed in the Data Liteacy
+    Alliance (DALIA) web application
+  example: 69aebdfe-73f6-4bac-85d7-047dd8cec076
+  github_request_issue: 1616
+  homepage: https://search.dalia.education
+  name: DALIA Open Educational Resource
+  part_of: dalia
+  pattern: ^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$
+  preferred_prefix: dalia.oer
+  uri_format: https://search.dalia.education/items/$1
 daml.pt:
   contributor:
     email: cthoyt@gmail.com
@@ -12838,7 +13169,7 @@ dbest:
     description: dbEST through DNA Data Bank of Japan (DDBJ)
     homepage: http://www.ddbj.nig.ac.jp/
     name: dbEST through DNA Data Bank of Japan (DDBJ)
-    uri_format: http://getentry.ddbj.nig.ac.jp/getentry/na/$1
+    uri_format: https://getentry.ddbj.nig.ac.jp/getentry/na/$1
   - code: bio2rdf
     description: Bio2RDF is an open-source project that uses Semantic Web technologies
       to build and provide the largest network of Linked Data for the Life Sciences.
@@ -13318,6 +13649,7 @@ ddanat:
     ols: ddanat
     ontobee: DDANAT
     prefixcommons: ddanat
+    wikidata.entity: Q81661582
   name: Dictyostelium discoideum anatomy
   pattern: ^\d{7}$
   preferred_prefix: DDANAT
@@ -13362,9 +13694,26 @@ ddc:
   homepage: http://www.oclc.org/dewey/
   mappings:
     bartoc: '241'
+    wikidata.entity: Q48460
   name: Dewey Decimal Classification
   pattern: ^(([0-9][0-9]?|[0-9]{3}(-[0-9]{3})?|[0-9]{3}(-[0-9]{3}(:[0-9]+)?)?|[0-9]{3}\.[0-9]+(-[0-9]{3}\.[0-9]+(:[0-9]+)?)?|T[1-9][A-Z]?--[0-9]+(-T[1-9][A-Z]?--[0-9]+(:[0-9]+)?)?|[1-9][A-Z]?--[0-9]+(-[1-9][A-Z]?--[0-9]+(:[0-9]+)?)?)?)$
   preferred_prefix: ddc
+ddi:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A set of controlled vocabularies in the Data Documentation Initiative,
+    each of which has its own code.
+  example: Instrument
+  github_request_issue: 1632
+  homepage: https://rdf-vocabulary.ddialliance.org/
+  keywords:
+  - registry
+  name: Data Documentation Initiative Vocabulary
+  preferred_prefix: ddi
+  uri_format: http://rdf-vocabulary.ddialliance.org/lifecycle#$1
 ddinter.drug:
   contact:
     email: oriental-cds@163.com
@@ -13457,6 +13806,7 @@ ddpheno:
     obofoundry: ddpheno
     ols: ddpheno
     ontobee: DDPHENO
+    wikidata.entity: Q81661585
   name: Dictyostelium discoideum phenotype ontology
   pattern: ^\d{7}$
   preferred_prefix: DDPHENO
@@ -13911,7 +14261,12 @@ depmap:
     Cells.
   example: ACH-000001
   homepage: https://depmap.org/portal
+  keywords:
+  - cancer cell line
+  - cell
+  - cell line
   license: CC-BY-4.0
+  logo: https://target-discovery.depmap.org/img/depmaplogo.png
   mappings:
     cellosaurus: DepMap
   name: DepMap Cell Lines
@@ -14188,6 +14543,47 @@ dhba:
     uri_format: https://biopragmatics.github.io/providers/dhba/$1
   uri_format: https://purl.brain-bican.org/ontology/dhbao/DHBA_$1
   version: '2025-02-10'
+diabetesomic:
+  contact:
+    email: liujianghua@usc.edu.cn
+    name: Jiang-hua Liu
+    orcid: 0000-0003-0344-3168
+  contributor:
+    email: maaya.m466@gmail.com
+    github: maayamanoj466
+    name: Maaya Manoj
+    orcid: 0009-0000-6974-6386
+  description: DiabetesOmic is a multi-omics database designed to collect and analyze
+    transcriptional regulatory information across five high-throughput sequencing
+    modalities, including ChIP-seq, RNA-seq, ATAC-seq, scATAC-seq, and scRNA-seq.
+    This database's identifiers each represent a single sample. It contains clinical
+    complication annotations including diabetic nephropathy, retinopathy, and atherosclerosis
+    to enhance translational relevance. It enables the identification of disease-associated
+    regulatory elements, epigenetic modifications, and cell type-specific molecular
+    signatures, providing valuable insights into the molecular mechanisms of diabetes
+    and its complications.
+  example: sample_002
+  github_request_issue: 1628
+  homepage: https://bio.liclab.net/diabetesOmicdb/
+  keywords:
+  - diabetes
+  - omics
+  - sample
+  name: DiabetesOmic
+  pattern: ^sample_\d{3}$
+  preferred_prefix: diabetesomic
+  publications:
+  - doi: 10.1016/j.csbj.2025.05.008
+    pmc: PMC12158550
+    pubmed: '40502930'
+    title: 'DiabetesOmic: A comprehensive multi-omics diabetes database'
+    year: 2025
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://bio.liclab.net/diabetesOmicdb/RNA-seq?sampleId=$1
 dialnet.article:
   contributor:
     email: cthoyt@gmail.com
@@ -14308,6 +14704,7 @@ dictybase:
   - genome
   - life science
   license: CC-BY-SA-4.0
+  logo: https://dictybase-docker.github.io/developer-docs/static/4eeedc37c188406acdddc392200815a7/logo-nav-light.png
   mappings:
     biocontext: dictyBase
     fairsharing: FAIRsharing.4shj9c
@@ -14357,6 +14754,7 @@ dictybase.est:
   example: DDB0016567
   homepage: http://dictybase.org/
   license: CC-BY-SA-4.0
+  logo: https://dictybase-docker.github.io/developer-docs/static/4eeedc37c188406acdddc392200815a7/logo-nav-light.png
   mappings:
     biocontext: DICTYBASE.EST
     miriam: dictybase.est
@@ -14372,7 +14770,10 @@ dictybase.gene:
     gene models and functional annotations. This collection references gene information.
   example: DDB_G0267522
   homepage: http://dictybase.org/
+  keywords:
+  - gene
   license: CC-BY-SA-4.0
+  logo: https://dictybase-docker.github.io/developer-docs/static/4eeedc37c188406acdddc392200815a7/logo-nav-light.png
   mappings:
     biocontext: DICTYBASE.GENE
     miriam: dictybase.gene
@@ -14424,6 +14825,7 @@ dideo:
     obofoundry: dideo
     ols: dideo
     ontobee: DIDEO
+    wikidata.entity: Q81661586
   name: Drug-drug Interaction and Drug-drug Interaction Evidence Ontology
   pattern: ^\d{8}$
   preferred_prefix: DIDEO
@@ -14567,6 +14969,7 @@ disdriv:
     obofoundry: disdriv
     ols: disdriv
     ontobee: DISDRIV
+    wikidata.entity: Q113009148
   name: Disease Drivers Ontology
   pattern: ^\d+$
   preferred_prefix: DISDRIV
@@ -14888,6 +15291,7 @@ doi:
     n2t: doi
     prefixcommons: doi
     wikidata: P356
+    wikidata.entity: Q25670
   name: Digital Object Identifier
   pattern: ^10.\d{2,9}/.*$
   preferred_prefix: doi
@@ -14986,6 +15390,7 @@ doid:
     prefixcommons: do
     togoid: Doid
     wikidata: P699
+    wikidata.entity: Q5282129
   name: Human Disease Ontology
   namespace_in_lui: true
   pattern: ^\d+$
@@ -15100,7 +15505,7 @@ doid:
   - do
   twitter: diseaseontology
   uri_format: http://purl.obolibrary.org/obo/DOID_$1
-  version: '2025-05-30'
+  version: '2025-06-27'
 dolce:
   comment: This resource doesn't exist anymore
   contributor:
@@ -15622,6 +16027,7 @@ dron:
     obofoundry: dron
     ols: dron
     ontobee: DRON
+    wikidata.entity: Q81661592
   name: The Drug Ontology
   pattern: ^\d{8}$
   preferred_prefix: DRON
@@ -15712,6 +16118,7 @@ drugbank:
     togoid: Drugbank
     uniprot: DB-0019
     wikidata: P715
+    wikidata.entity: Q1122544
   name: DrugBank
   pattern: ^DB\d{5}$
   preferred_prefix: drugbank
@@ -15760,6 +16167,7 @@ drugbank.bioentity:
     This collection references target information from version 4 of the database.
   example: BE0000048
   homepage: http://www.drugbank.ca/targets
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png
   mappings:
     biocontext: DRUGBANKV4.TARGET
     miriam: drugbankv4.target
@@ -15786,6 +16194,7 @@ drugbank.category:
   - drugs
   - metascience
   - topics
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png
   name: DrugBank Drug Category
   part_of: drugbank
   pattern: ^DBCAT\d+$
@@ -15800,6 +16209,7 @@ drugbank.condition:
   description: Indications and other conditions in drugbank
   example: DBCOND0066902
   homepage: https://go.drugbank.com
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png
   name: DrugBank Condition
   pattern: ^DBCOND\d+$
   preferred_prefix: drugbank.condition
@@ -15813,6 +16223,7 @@ drugbank.metabolite:
   description: Metabolites in drugbank
   example: DBMET02292
   homepage: https://go.drugbank.com
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png
   name: DrugBank Metabolite
   pattern: ^DBMET\d+$
   preferred_prefix: drugbank.metabolite
@@ -15826,6 +16237,7 @@ drugbank.reaction:
   description: Reactions in drugbank
   example: '1537'
   homepage: https://go.drugbank.com
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png
   name: DrugBank Reaction
   pattern: ^\d+$
   preferred_prefix: drugbank.reaction
@@ -15840,6 +16252,12 @@ drugbank.salt:
     information about drugs, their mechanisms, their interactions and their targets.
   example: DBSALT001211
   homepage: http://www.drugbank.ca
+  keywords:
+  - chemical
+  - compound
+  - salt
+  - small molecule
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Drugbank_logo.svg/1280px-Drugbank_logo.svg.png
   name: DrugBank Salts
   part_of: drugbank
   pattern: ^DBSALT\d{6}$
@@ -15867,6 +16285,7 @@ drugcentral:
   - pharmacology
   - pharmacy
   license: CC-BY-SA-4.0
+  logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV8USVHMzllhzTb3yLIUbEA9qKRR4Sub2QDA&s
   mappings:
     biolink: DrugCentral
     fairsharing: FAIRsharing.3me82d
@@ -15909,6 +16328,7 @@ dsm4:
   mappings:
     hl7: 2.16.840.1.113883.6.126
     wikidata: P663
+    wikidata.entity: Q3078495
   name: Diagnostic and Statistical Manual of Mental Disorders (4th Edition)
   pattern: ^\d+\.\d+$
   preferred_prefix: dsm4
@@ -16070,6 +16490,7 @@ duo:
     obofoundry: duo
     ols: duo
     ontobee: DUO
+    wikidata.entity: Q113009193
   name: Data Use Ontology
   pattern: ^\d{7}$
   preferred_prefix: DUO
@@ -16167,6 +16588,150 @@ earl:
   preferred_prefix: earl
   rdf_uri_format: http://www.w3.org/ns/earl#$1
   uri_format: http://www.w3.org/ns/earl#$1
+earthcube.aut:
+  contact:
+    email: ruth.duerr3@gmail.com
+    github: rduerr
+    name: Ruth Duerr
+    orcid: 0000-0003-4808-4736
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Audience Types Controlled Vocabulary was created for NSF's EarthCube
+    program's Resource Registry. The vocabulary defines the types of audience each
+    resource in the program is targeted to.  At this point the vocabulary is very
+    bare - no term definitions even; however, the intention is to extend the vocabulary
+    over time.  If you would like to assist with this or in extending any of the other
+    controlled vocabularies/ontologies developed as part of the Resource Registry
+    project, please see https://github.com/earthcubearchitecture-ecresourcereg.
+  download_rdf: https://github.com/earthcubearchitecture-ecresourcereg/AUT/raw/refs/heads/master/aut.ttl
+  example: '0000001'
+  github_request_issue: 1627
+  homepage: http://cor.esipfed.org/ont/earthcube/AUT
+  keywords:
+  - audience type
+  - person
+  - role
+  name: Audience Types Controlled Vocabulary
+  pattern: ^\d{7}$
+  preferred_prefix: earthcube.aut
+  repository: https://github.com/earthcubearchitecture-ecresourcereg/AUT
+  uri_format: http://cor.esipfed.org/ont/earthcube/AUT_$1
+earthcube.mola:
+  contact:
+    email: ruth.duerr3@gmail.com
+    github: rduerr
+    name: Ruth Duerr
+    orcid: 0000-0003-4808-4736
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Data Model Language Controlled Vocabulary was created for NSF's
+    EarthCube Program's Resource Registry.  At this point it merely lists a few of
+    the languages used by data model resources in the registry.
+  download_rdf: https://github.com/earthcubearchitecture-ecresourcereg/mola/raw/refs/heads/master/mola.ttl
+  example: '000001'
+  github_request_issue: 1627
+  homepage: http://cor.esipfed.org/ont/earthcube/mola
+  keywords:
+  - metamodel
+  name: Data Model Language Controlled Vocabulary
+  pattern: ^\d+$
+  preferred_prefix: earthcube.mola
+  rdf_uri_format: http://cor.esipfed.org/ont/earthcube/MOLA_$1
+  repository: https://github.com/earthcubearchitecture-ecresourcereg/mola
+  uri_format: http://cor.esipfed.org/ont/earthcube/MOLA_$1
+earthcube.sfo:
+  contact:
+    email: ruth.duerr3@gmail.com
+    github: rduerr
+    name: Ruth Duerr
+    orcid: 0000-0003-4808-4736
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This ontology defines a taxonomy of software functions based on the
+    work of the NSF-funded EarthCube Resource Registry working group.  The functions
+    are generally organized by their role in the research process.
+  download_rdf: https://github.com/earthcubearchitecture-ecresourcereg/sfo/raw/refs/heads/master/sfo.ttl
+  example: '0000001'
+  github_request_issue: 1627
+  homepage: http://cor.esipfed.org/ont/earthcube/sfo
+  keywords:
+  - software
+  - software function
+  name: Software Functions Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: earthcube.sfo
+  repository: https://github.com/earthcubearchitecture-ecresourcereg/sfo
+  uri_format: http://cor.esipfed.org/ont/earthcube/SFO_$1
+earthcube.srt:
+  contact:
+    email: ruth.duerr3@gmail.com
+    github: rduerr
+    name: Ruth Duerr
+    orcid: 0000-0003-4808-4736
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Semantic Resource Types Vocabulary was created for NSF's EarthCube
+    Program's Resource Repository. Includes entries for things like 'thesaurus', 'ontology',
+    'controlled vocabulary', 'taxonomy'.
+  download_rdf: https://github.com/earthcubearchitecture-ecresourcereg/srt/raw/refs/heads/master/srt.ttl
+  example: '000001'
+  github_request_issue: 1627
+  homepage: http://cor.esipfed.org/ont/earthcube/srt
+  keywords:
+  - semantic resource
+  name: Semantic Resource Types Vocabulary
+  pattern: ^\d+$
+  preferred_prefix: earthcube.srt
+  rdf_uri_format: http://cor.esipfed.org/ont/earthcube/srt_$1
+  repository: https://github.com/earthcubearchitecture-ecresourcereg/srt
+  uri_format: http://cor.esipfed.org/ont/earthcube/srt_$1
+earthcube.swl:
+  contact:
+    email: ruth.duerr3@gmail.com
+    github: rduerr
+    name: Ruth Duerr
+    orcid: 0000-0003-4808-4736
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: This mini-ontology contains classes and instances for each version
+    of the licenses that are commonly used in software projects, particularly open
+    source software projects. The URI's for each are the canonical URI's for that
+    license (where they exist).
+  download_rdf: https://earthcubearchitecture-ecresourcereg.github.io/swl/ontology.ttl
+  example: '0000013'
+  github_request_issue: 1627
+  homepage: https://earthcubearchitecture-ecresourcereg.github.io/swl/index-en.html
+  keywords:
+  - license
+  license: CC0-1.0
+  name: Software Licenses Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: earthcube.swl
+  providers:
+  - code: earthcube
+    description: It's not clear why some URIs have this earthcube subpath
+    homepage: https://earthcubearchitecture-ecresourcereg.github.io/swl/index-en.html
+    name: Earthcube URI
+    uri_format: http://cor.esipfed.org/ont/earthcube/swl/SWL_$1
+  rdf_uri_format: http://cor.esipfed.org/ont/SWL_$1
+  repository: https://github.com/earthcubearchitecture-ecresourcereg/swl
+  uri_format: http://cor.esipfed.org/ont/SWL_$1
 easychair.cfp:
   contributor:
     email: cthoyt@gmail.com
@@ -16272,6 +16837,7 @@ ec:
   - enzyme commission number
   - enzymology
   license: CC-BY-4.0
+  logo: https://www.enzyme-database.org/images/banner_5.gif
   mappings:
     bartoc: '671'
     biocontext: EC-CODE
@@ -16287,6 +16853,7 @@ ec:
     togoid: Ec
     uniprot: DB-0024
     wikidata: P591
+    wikidata.entity: Q741108
   name: Enzyme Nomenclature
   owners:
   - name: International Union of Biochemistry and Molecular Biology
@@ -16375,6 +16942,7 @@ ecao:
     obofoundry: ecao
     ols: ecao
     ontobee: ECAO
+    wikidata.entity: Q113012596
   name: The Echinoderm Anatomy and Development Ontology
   pattern: ^\d{7}$
   preferred_prefix: ECAO
@@ -16497,6 +17065,7 @@ ecmdb:
   homepage: https://ecmdb.ca
   mappings:
     pathguide: '386'
+    wikidata.entity: Q17052437
   name: E. coli Metabolite Database
   pattern: ^ECMDB\d+$
   preferred_prefix: ecmdb
@@ -16570,6 +17139,7 @@ eco:
     ontobee: ECO
     prefixcommons: eco
     wikidata: P3811
+    wikidata.entity: Q28445410
   name: Evidence and Conclusion Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -16619,7 +17189,7 @@ eco:
   rdf_uri_format: http://purl.obolibrary.org/obo/ECO_$1
   repository: https://github.com/evidenceontology/evidenceontology
   uri_format: http://purl.obolibrary.org/obo/ECO_$1
-  version: '2025-04-30'
+  version: '2025-06-23'
 ecocore:
   contact:
     email: p.buttigieg@gmail.com
@@ -16655,6 +17225,7 @@ ecocore:
     obofoundry: ecocore
     ols: ecocore
     ontobee: ECOCORE
+    wikidata.entity: Q81661598
   name: An ontology of core ecological entities
   pattern: ^\d+$
   preferred_prefix: ECOCORE
@@ -16881,6 +17452,7 @@ ecto:
     obofoundry: ecto
     ols: ecto
     ontobee: ECTO
+    wikidata.entity: Q113012651
   name: Environmental conditions, treatments and exposures ontology
   pattern: ^\d{7}$
   preferred_prefix: ECTO
@@ -17271,7 +17843,7 @@ efo:
     year: 2010
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.79.0
+  version: 3.80.0
 ega.dataset:
   contact:
     email: tk2@ebi.ac.uk
@@ -17425,6 +17997,7 @@ ehda:
     bioportal: EHDA
     obofoundry: ehda
     prefixcommons: ehda
+    wikidata.entity: Q114677884
   name: Human developmental anatomy, timed version
   pattern: ^\d+$
   preferred_prefix: EHDA
@@ -17469,6 +18042,7 @@ ehdaa:
     bioportal: EHDAA
     obofoundry: ehdaa
     prefixcommons: ehdaa
+    wikidata.entity: Q114677885
   name: Human developmental anatomy, abstract version
   pattern: ^\d+$
   preferred_prefix: EHDAA
@@ -17515,6 +18089,7 @@ ehdaa2:
     obofoundry: ehdaa2
     ols: ehdaa2
     ontobee: EHDAA2
+    wikidata.entity: Q114667913
   name: Human developmental anatomy, abstract
   pattern: ^\d{7}$
   preferred_prefix: EHDAA2
@@ -17580,6 +18155,38 @@ elm:
       modular eukaryotic proteins'
     year: 2003
   uri_format: http://elm.eu.org/elms/elmPages/$1.html
+elsst:
+  contact:
+    email: carsten.thiel@cessda.eu
+    name: 'Carsten Thiel '
+    orcid: 0000-0003-0804-8992
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The European Language Social Science Thesaurus (ELSST) is a broad-based,
+    multilingual thesaurus for the social sciences. It is owned and published by the
+    Consortium of European Social Science Data Archives (CESSDA) and its national
+    Service Providers. The thesaurus consists of over 3,000 concepts and covers the
+    core social science disciplines: politics, sociology, economics, education, law,
+    crime, demography, health, employment, information and communication technology
+    and, increasingly, environmental science. [from homepage]'
+  example: ffdd3a7e-f82e-4600-98b1-20402e74b0a6
+  github_request_issue: 1614
+  homepage: https://elsst.cessda.eu/id/3/
+  keywords:
+  - economics
+  - social science
+  license: CC-BY-SA 4.0
+  logo: https://api.fairsharing.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFFDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ee784912b873e09e9d907ebf15f37fb26c0ce50d/Screenshot%20from%202022-11-22%2021-00-34.png?disposition=inline
+  mappings:
+    bartoc: '14'
+    fairsharing: FAIRsharing.acd824
+  name: European Language Social Science Thesaurus
+  preferred_prefix: elsst
+  twitter: CESSDA_Data/
+  uri_format: https://elsst.cessda.eu/id/3/$1
 emap:
   contact:
     email: Terry.Hayamizu@jax.org
@@ -17634,7 +18241,10 @@ emapa:
   homepage: http://www.informatics.jax.org/expression.shtml
   keywords:
   - anatomy
+  - animal organ development
+  - bioinformatics
   - developmental biology
+  - gene expression
   - obo
   - ontology
   license: CC-BY-4.0
@@ -17648,6 +18258,7 @@ emapa:
     obofoundry: emapa
     ols: emapa
     ontobee: EMAPA
+    wikidata.entity: Q113012656
   name: Mouse Developmental Anatomy Ontology
   pattern: ^\d+$
   preferred_prefix: EMAPA
@@ -18217,6 +18828,7 @@ ensembl:
     re3data: r3d100010228
     uniprot: DB-0023
     wikidata: P594
+    wikidata.entity: Q7187
   mastodon: ensembl@genomic.social
   name: Ensembl Gene
   pattern: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
@@ -18252,6 +18864,19 @@ ensembl:
     homepage: https://ciliogenics.com
     name: CilioGenics
     uri_format: https://ciliogenics.com/?page=General%20info&query=$1
+  - code: digger
+    description: Digger integrates protein-protein interactions and domain-domain
+      interactions into a joint graph and maps interacting residues to exons.
+    homepage: https://exbio.wzw.tum.de/digger/
+    name: Domain Interaction Graph Guided Explorer
+    publications:
+    - doi: 10.1093/nar/gkaf384
+      pmc: PMC12230681
+      pubmed: '40337913'
+      title: 'DIGGER 2.0: digging into the functional impact of differential splicing
+        on human and mouse disorders'
+      year: 2025
+    uri_format: https://exbio.wzw.tum.de/digger/ID/gene/human/$1
   - code: gnomad
     description: The Genome Aggregation Database (gnomAD) is a resource developed
       by an international coalition of investigators, with the goal of aggregating
@@ -18269,6 +18894,12 @@ ensembl:
     name: OpenTargets Genetics
     uri_format: https://genetics.opentargets.org/gene/$1
   publications:
+  - doi: 10.1093/nar/gkaf384
+    pmc: PMC12230681
+    pubmed: '40337913'
+    title: 'DIGGER 2.0: digging into the functional impact of differential splicing
+      on human and mouse disorders'
+    year: 2025
   - doi: 10.1093/nar/gkab1049
     pmc: PMC8728283
     pubmed: '34791404'
@@ -18843,6 +19474,7 @@ envo:
     obofoundry: envo
     ols: envo
     ontobee: ENVO
+    wikidata.entity: Q31110555
   name: Environment Ontology
   namespace_in_lui: true
   pattern: ^\d{7,8}$
@@ -19194,6 +19826,7 @@ epio:
     bioportal: EPIO
     obofoundry: epio
     ontobee: EPIO
+    wikidata.entity: Q113012657
   name: Epilepsy Ontology
   pattern: ^\d{7}$
   preferred_prefix: EPIO
@@ -19642,6 +20275,7 @@ eupath:
     obofoundry: eupath
     ols: eupath
     ontobee: EUPATH
+    wikidata.entity: Q81661607
   name: VEuPathDB ontology
   pattern: ^\d{7}$
   preferred_prefix: EUPATH
@@ -19706,6 +20340,7 @@ ev:
     biocontext: EV
     obofoundry: ev
     prefixcommons: evoc
+    wikidata.entity: Q114677886
   name: eVOC (Expressed Sequence Annotation for Humans)
   pattern: ^\d{7}$
   preferred_prefix: EV
@@ -19735,6 +20370,9 @@ evm:
   references:
   - https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229
 evorao:
+  contact:
+    email: evorao@evora-project.eu
+    name: d3fk
   description: The EVORAO Ontology provides a structured and harmonized vocabulary
     for describing shareable pathogens as characterized biological materials, along
     with their derived products and associated services, organized into collections.
@@ -19745,10 +20383,16 @@ evorao:
     resources and services to enhance pandemic preparedness and response. While initially
     focused on virology, EVORAO is designed to be extensible and also supports metadata
     harmonization for other pathogens. [from repository]
+  download_owl: http://aber-owl.net/media/ontologies/EVORAO/2/evorao.owl
   download_rdf: https://raw.githubusercontent.com/EVORA-project/evora-ontology/refs/heads/main/models/owl/evora_ontology.owl.ttl
   example: AlternateName
   homepage: https://github.com/EVORA-project/evora-ontology
+  keywords:
+  - ontology
+  license: CC0-1.0
   mappings:
+    aberowl: EVORAO
+    bioportal: EVORAO
     ols: evorao
   name: EVORA Ontology
   preferred_prefix: evorao
@@ -19879,6 +20523,7 @@ exo:
     obofoundry: exo
     ols: exo
     ontobee: ExO
+    wikidata.entity: Q113012658
   name: Exposure ontology
   pattern: ^\d{7}$
   preferred_prefix: ExO
@@ -20163,6 +20808,7 @@ fao:
     ols: fao
     ontobee: FAO
     prefixcommons: fao
+    wikidata.entity: Q81661616
   name: Fungal gross anatomy
   pattern: ^\d{7}$
   preferred_prefix: FAO
@@ -20179,7 +20825,7 @@ fao:
   rdf_uri_format: http://purl.obolibrary.org/obo/FAO_$1
   repository: https://github.com/obophenotype/fungal-anatomy-ontology
   uri_format: http://purl.obolibrary.org/obo/FAO_$1
-  version: '2020-05-07'
+  version: '2025-07-15'
 fao.asfis:
   comment: This resource is offered freely by FAO for download but no obvious licensing
     is indicated, and no caution about appropriate reuse.
@@ -20243,6 +20889,7 @@ fbbi:
     ols: fbbi
     ontobee: FBbi
     prefixcommons: fbbi
+    wikidata.entity: Q81661618
   name: Biological Imaging Methods Ontology
   pattern: ^\d+$
   preferred_prefix: FBbi
@@ -20295,6 +20942,7 @@ fbbt:
     ols: fbbt
     ontobee: FBbt
     prefixcommons: fbbt
+    wikidata.entity: Q81661620
   name: Drosophila gross anatomy
   pattern: ^\d{8}$
   preferred_prefix: FBbt
@@ -20367,6 +21015,7 @@ fbcv:
     ols: fbcv
     ontobee: FBcv
     prefixcommons: fbcv
+    wikidata.entity: Q81661622
   name: FlyBase Controlled Vocabulary
   part_of: flybase
   pattern: ^\d{7}$
@@ -20426,6 +21075,7 @@ fbdv:
     ols: fbdv
     ontobee: FBdv
     prefixcommons: fbdv
+    wikidata.entity: Q81661623
   name: Drosophila development
   pattern: ^\d{8}$
   preferred_prefix: FBdv
@@ -20510,6 +21160,7 @@ fbsp:
     bioportal: FB-SP
     obofoundry: fbsp
     ols: fbsp
+    wikidata.entity: Q114677887
   name: Fly taxonomy
   part_of: flybase
   pattern: ^\d{8}$
@@ -20680,6 +21331,7 @@ fideo:
     obofoundry: fideo
     ols: fideo
     ontobee: FIDEO
+    wikidata.entity: Q111854958
   name: Food Interactions with Drugs Evidence Ontology
   pattern: ^\d+$
   preferred_prefix: FIDEO
@@ -20765,6 +21417,7 @@ fix:
     ols: fix
     ontobee: FIX
     prefixcommons: fix
+    wikidata.entity: Q114677850
   name: Physico-chemical methods and properties
   owners:
   - name: European Bioinformatics Institute
@@ -20819,6 +21472,7 @@ flopo:
     obofoundry: flopo
     ols: flopo
     ontobee: FLOPO
+    wikidata.entity: Q81661625
   name: Flora Phenotype Ontology
   pattern: ^\d{7}$
   preferred_prefix: FLOPO
@@ -21219,6 +21873,7 @@ fma:
     ontobee: FMA
     prefixcommons: fma
     wikidata: P1402
+    wikidata.entity: Q1406710
   name: Foundational Model of Anatomy
   namespace_in_lui: true
   pattern: ^\d+$
@@ -21331,6 +21986,7 @@ fobi:
     obofoundry: fobi
     ols: fobi
     ontobee: FOBI
+    wikidata.entity: Q113012660
   name: Food-Biomarker Ontology
   pattern: ^\d{4,6}$
   preferred_prefix: FOBI
@@ -21459,6 +22115,7 @@ foodon:
     obofoundry: foodon
     ols: foodon
     ontobee: FOODON
+    wikidata.entity: Q55118395
   name: The Food Ontology
   namespace_in_lui: true
   pattern: ^[0-9]{8}$
@@ -21557,6 +22214,7 @@ fovt:
     obofoundry: fovt
     ols: fovt
     ontobee: FOVT
+    wikidata.entity: Q113012661
   name: FuTRES Ontology of Vertebrate Traits
   pattern: ^\d{7}$
   preferred_prefix: FOVT
@@ -21991,6 +22649,7 @@ fypo:
     obofoundry: fypo
     ols: fypo
     ontobee: FYPO
+    wikidata.entity: Q55118393
   name: Fission Yeast Phenotype Ontology
   pattern: ^\d{7}$
   preferred_prefix: FYPO
@@ -22003,7 +22662,7 @@ fypo:
   rdf_uri_format: http://purl.obolibrary.org/obo/FYPO_$1
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2025-05-09'
+  version: '2025-07-04'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -22157,6 +22816,11 @@ gard:
     resources, and organizations supporting research of the disease.
   example: '6038'
   homepage: https://rarediseases.info.nih.gov/diseases
+  keywords:
+  - condition
+  - disease
+  - symptom
+  logo: https://rarediseases.info.nih.gov/assets/GARD_Logo_Mobile.svg
   mappings:
     wikidata: P4317
   name: Genetic and Rare Diseases Information Center
@@ -22220,6 +22884,7 @@ gaz:
     ols: gaz
     ontobee: GAZ
     wikidata: P6778
+    wikidata.entity: Q81661634
   name: Gazetteer
   pattern: ^\d{8}$
   preferred_prefix: GAZ
@@ -22371,6 +23036,7 @@ gecko:
     obofoundry: gecko
     ols: gecko
     ontobee: GECKO
+    wikidata.entity: Q113012662
   name: Genomics Cohorts Knowledge Ontology
   pattern: ^\d{7}$
   preferred_prefix: GECKO
@@ -22402,6 +23068,7 @@ gemet:
     agroportal: GEMET
     bartoc: '16'
     fairsharing: FAIRsharing.9091d9
+    wikidata.entity: Q1485161
   name: General Multilingual Environmental Thesaurus
   pattern: ^\d+$
   preferred_prefix: gemet
@@ -22912,6 +23579,7 @@ genepio:
     obofoundry: genepio
     ols: genepio
     ontobee: GENEPIO
+    wikidata.entity: Q55118402
   name: Genomic Epidemiology Ontology
   pattern: ^\d{7}$
   preferred_prefix: GENEPIO
@@ -23049,6 +23717,7 @@ geno:
     obofoundry: geno
     ols: geno
     ontobee: GENO
+    wikidata.entity: Q81661639
   name: Genotype Ontology
   pattern: ^\d{7}$
   preferred_prefix: GENO
@@ -23203,6 +23872,7 @@ geogeo:
     obofoundry: geo
     ols: geo
     ontobee: GEO
+    wikidata.entity: Q81661641
   name: Geographical Entity Ontology
   namespace_in_lui: true
   pattern: ^\d{9}$
@@ -23226,6 +23896,7 @@ geonames:
   - geography
   - geoinformatics
   license: CC-BY-4.0
+  logo: https://www.geonames.org/img/globe.gif
   mappings:
     fairsharing: FAIRsharing.6dba71
     re3data: r3d100010245
@@ -23247,10 +23918,30 @@ geonames.feature:
     codes.
   example: ADM1
   homepage: https://www.geonames.org/export/codes.html
+  keywords:
+  - geography
   license: CC-BY-4.0
+  logo: https://www.geonames.org/img/globe.gif
   name: GeoNames Feature Code
   preferred_prefix: geonames.feature
   uri_format: https://www.geonames.org/recent-changes/featurecode/$1/
+gesiskg:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Predicates that are used to construct the GESIS Knowledge Graph, a
+    bibliometrics KG.
+  example: linkContext
+  github_request_issue: 1632
+  homepage: https://data.gesis.org/gesiskg
+  keywords:
+  - data schema
+  - nfdi
+  name: GESIS Knowledge Graph Schema
+  preferred_prefix: gesiskg
+  uri_format: https://data.gesis.org/gesiskg/schema/$1
 gexo:
   contact:
     email: kuiper@bio.ntnu.no
@@ -23302,6 +23993,7 @@ gfo:
   homepage: https://www.onto-med.de/ontologies/gfo
   keywords:
   - biomedical science
+  - conceptual modeling
   - life science
   - ontology
   mappings:
@@ -23866,6 +24558,7 @@ gnd:
     fairsharing: FAIRsharing.8337e2
     miriam: gnd
     wikidata: P227
+    wikidata.entity: Q54506313
   name: GND ID
   pattern: ^[0-9X\-]+$
   preferred_prefix: gnd
@@ -23896,6 +24589,7 @@ gno:
     obofoundry: gno
     ols: gno
     ontobee: GNO
+    wikidata.entity: Q113012663
   name: Glycan Naming and Subsumption Ontology
   pattern: ^(\d{8}|(\w+\d+\w+))$
   preferred_prefix: GNO
@@ -24097,6 +24791,7 @@ go:
     togoid: Go
     uniprot: DB-0037
     wikidata: P686
+    wikidata.entity: Q135085
   mastodon: go@genomic.social
   name: Gene Ontology
   namespace_in_lui: true
@@ -24213,7 +24908,7 @@ go:
   - gomfid
   twitter: news4go
   uri_format: http://purl.obolibrary.org/obo/GO_$1
-  version: '2024-11-03'
+  version: '2025-06-01'
 go.gpi:
   contributor:
     email: cthoyt@gmail.com
@@ -24569,6 +25264,7 @@ goldbook:
   mappings:
     bartoc: '1884'
     wikidata: P4732
+    wikidata.entity: Q902163
   name: IUPAC Gold Book Compendium of Chemical Terminology
   pattern: ^[A-Z]{1,2}\d{5}$
   preferred_prefix: goldbook
@@ -24652,6 +25348,10 @@ gorel:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - github: ArslaanZahid
+    name: Arslaan Zahid
+    orcid: 0009-0006-4842-7427
   description: Documentation of GO that provides a description of some of the commonly
     used relationships and conventions in GO.
   download_owl: ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl
@@ -24670,6 +25370,11 @@ gorel:
     description: Legacy OBO PURLs
     homepage: http://purl.obolibrary.org/obo/gorel.owl
     name: Legacy OBO
+    status:
+      contributor: 0009-0006-4842-7427
+      date: '2024-04-14'
+      notes: The URL is not working and no alternate link found on homepage
+      value: degraded
     uri_format: http://purl.obolibrary.org/obo/GOREL_$1
   uri_format: http://purl.obolibrary.org/obo/GOREL_$1
 gpcrdb:
@@ -24894,6 +25599,7 @@ gramene.growthstage:
     n2t: gramene.growthstage
     obofoundry: gro
     prefixcommons: gramene.po
+    wikidata.entity: Q114677888
   name: Gramene Growth Stage Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -25113,6 +25819,7 @@ grin.taxonomy:
     n2t: grin.taxonomy
     ncbi: GRIN
     wikidata: P1421
+    wikidata.entity: Q19576476
   name: GRIN URL
   pattern: ^\d+$
   preferred_prefix: grin.taxonomy
@@ -25219,6 +25926,7 @@ gsso:
     obofoundry: gsso
     ols: gsso
     ontobee: GSSO
+    wikidata.entity: Q97063846
   name: Gender, Sex, and Sexual Orientation Ontology
   namespace_in_lui: true
   pattern: ^\d{6}$
@@ -25243,7 +25951,10 @@ gtdb:
   example: g__Prochlorococcus_A
   github_request_issue: 1242
   homepage: https://gtdb.ecogenomic.org
+  keywords:
+  - taxonomy
   license: CC-BY-SA-4.0
+  logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqQRuB8VW0FaaLLXHx8O6oKfFEZzY5jtgtRg&s
   mappings:
     pathguide: '190'
   name: Genome Taxonomy Database
@@ -25363,6 +26074,7 @@ gwascentral.marker:
     Central Marker.
   example: HGVM15354
   homepage: https://www.gwascentral.org/markers
+  logo: https://help.gwascentral.org/wp-content/uploads/2017/04/logo.png
   mappings:
     biocontext: GWASCENTRAL.MARKER
     miriam: gwascentral.marker
@@ -25383,6 +26095,12 @@ gwascentral.phenotype:
     Central Phenotype.
   example: HGVPM623
   homepage: https://www.gwascentral.org/phenotypes
+  keywords:
+  - condition
+  - disease
+  - phenotype
+  - symptom
+  logo: https://help.gwascentral.org/wp-content/uploads/2017/04/logo.png
   mappings:
     biocontext: GWASCENTRAL.PHENOTYPE
     miriam: gwascentral.phenotype
@@ -25406,6 +26124,7 @@ gwascentral.study:
   keywords:
   - gene
   - genome
+  logo: https://help.gwascentral.org/wp-content/uploads/2017/04/logo.png
   mappings:
     biocontext: GWASCENTRAL.STUDY
     miriam: gwascentral.study
@@ -25484,6 +26203,7 @@ habronattus:
   mappings:
     biocontext: HABRONATTUS
     obofoundry: habronattus
+    wikidata.entity: Q114677889
   name: Habronattus courtship
   preferred_prefix: HABRONATTUS
   rdf_uri_format: http://purl.obolibrary.org/obo/HABRONATTUS_$1
@@ -25648,6 +26368,7 @@ hancestro:
     obofoundry: hancestro
     ols: hancestro
     ontobee: HANCESTRO
+    wikidata.entity: Q81661647
   name: Human Ancestry Ontology
   owners:
   - name: European Bioinformatics Institute
@@ -25698,6 +26419,7 @@ hao:
     obofoundry: hao
     ols: hao
     ontobee: HAO
+    wikidata.entity: Q81661648
   name: Hymenoptera Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: HAO
@@ -26104,7 +26826,7 @@ hgnc:
     name and symbol (short-form abbreviation) for each known human gene.  All approved
     symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers
     refer to records in the HGNC symbol database.
-  download_owl: http://aber-owl.net/media/ontologies/HGNC/3/hgnc.owl
+  download_owl: http://aber-owl.net/media/ontologies/HGNC/4/hgnc.owl
   example: '16793'
   homepage: http://www.genenames.org
   keywords:
@@ -26215,7 +26937,12 @@ hgnc.genefamily:
   example: '2029'
   has_canonical: hgnc.genegroup
   homepage: http://www.genenames.org
+  keywords:
+  - gene
+  - gene family
+  - gene group
   license: CC0-1.0
+  logo: https://www.genenames.org/img/hgnc/logo/hgnc-logo-dark-bckgrnd-large.svg
   mappings:
     biocontext: HGNC.GENEFAMILY
     miriam: hgnc.genefamily
@@ -26236,7 +26963,12 @@ hgnc.genegroup:
     a display of curated hierarchical relationships between families.
   example: '141'
   homepage: https://www.genenames.org
+  keywords:
+  - gene
+  - gene family
+  - gene group
   license: CC0-1.0
+  logo: https://www.genenames.org/img/hgnc/logo/hgnc-logo-dark-bckgrnd-large.svg
   mappings:
     miriam: hgnc.genegroup
   name: HGNC Gene Group
@@ -26251,6 +26983,7 @@ hgnc.symbol:
   example: DAPK1
   homepage: https://www.genenames.org/
   license: CC0-1.0
+  logo: https://www.genenames.org/img/hgnc/logo/hgnc-logo-dark-bckgrnd-large.svg
   mappings:
     biocontext: HGNC.SYMBOL
     miriam: hgnc.symbol
@@ -26891,6 +27624,7 @@ hom:
     obofoundry: hom
     ols: hom
     ontobee: HOM
+    wikidata.entity: Q81661651
   name: Homology Ontology
   pattern: ^\d{7}$
   preferred_prefix: HOM
@@ -27192,12 +27926,19 @@ hp:
     ols: hp
     ontobee: HP
     wikidata: P3841
+    wikidata.entity: Q17027854
   mastodon: hpo@masto.ai
   name: Human Phenotype Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: HP
   publications:
+  - doi: 10.1186/s13059-025-03616-4
+    pmc: PMC12131445
+    pubmed: '40462185'
+    title: A resource for whole-body gene expression map of human tissues based on
+      integration of single cell and bulk transcriptomics.
+    year: 2025
   - doi: 10.1093/nar/gkad1005
     pubmed: '37953324'
     title: 'The Human Phenotype Ontology in 2024: phenotypes around the world'
@@ -27240,7 +27981,7 @@ hp:
   - hpo
   twitter: hp_ontology
   uri_format: http://purl.obolibrary.org/obo/HP_$1
-  version: '2025-01-16'
+  version: '2025-05-06'
 hpa:
   contact:
     email: mathias.uhlen@scilifelab.se
@@ -27544,6 +28285,7 @@ hsapdv:
     obofoundry: hsapdv
     ols: hsapdv
     ontobee: HsapDv
+    wikidata.entity: Q81661653
   name: Human Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: HsapDv
@@ -27601,6 +28343,7 @@ hso:
     obofoundry: hso
     ols: hso
     ontobee: HSO
+    wikidata.entity: Q113012664
   name: Health Surveillance Ontology
   pattern: ^\d{7}$
   preferred_prefix: HSO
@@ -27685,6 +28428,7 @@ htn:
     obofoundry: htn
     ols: htn
     ontobee: HTN
+    wikidata.entity: Q81661655
   name: Hypertension Ontology
   pattern: ^\d{8}$
   preferred_prefix: HTN
@@ -27906,6 +28650,21 @@ humap:
   synonyms:
   - humap3
   uri_format: https://humap3.proteincomplexes.org/displayComplexes?complex_key=$1
+iana.mediatype:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The official list of MIME types, now renamed to media types
+  example: application/cdmi-queue
+  homepage: https://www.iana.org/assignments/media-types/media-types.xhtml
+  keywords:
+  - data classification
+  logo: https://www.iana.org/_img/2022/iana-logo-header.svg
+  name: Media Types
+  preferred_prefix: iana.mediatype
+  uri_format: https://www.iana.org/assignments/media-types/$1
 iao:
   appears_in:
   - agro
@@ -27958,6 +28717,7 @@ iao:
     obofoundry: iao
     ols: iao
     ontobee: IAO
+    wikidata.entity: Q55118415
   name: Information Artifact Ontology
   pattern: ^\d{7}$
   preferred_prefix: IAO
@@ -28044,6 +28804,7 @@ icd10:
   - ontology
   - taxonomy
   license: https://cdn.who.int/media/docs/default-source/publishing-policies/copyright/who-faq-licensing-icd-10.pdf
+  logo: https://upload.wikimedia.org/wikipedia/commons/a/a4/Icd10codeslogo.png
   mappings:
     aberowl: ICD10
     bartoc: '447'
@@ -28057,6 +28818,7 @@ icd10:
     n2t: icd
     prefixcommons: icd
     wikidata: P494
+    wikidata.entity: Q50018
   name: International Classification of Diseases, 10th Revision
   pattern: ^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\.[0-9]))?))$
   preferred_prefix: icd10
@@ -28162,9 +28924,18 @@ icd10cm:
     homepage: http://purl.bioontology.org/ontology/ICD10CM
     name: BioPortal PURL
     uri_format: http://purl.bioontology.org/ontology/ICD10CM/$1
+  - code: icd.codes
+    description: ICD Codes provider
+    homepage: https://icd.codes
+    name: ICD Codes provider
+    status:
+      contributor: 0000-0001-9439-5346
+      date: '2025-07-28'
+      value: gone
+    uri_format: https://icd.codes/icd10cm/$1
   synonyms:
   - ICD10CM
-  uri_format: https://icd.codes/icd10cm/$1
+  uri_format: https://www.icd10data.com/search?s=$1
 icd10pcs:
   contact:
     email: patricia.brooks2@cms.hhs.gov
@@ -28236,6 +29007,7 @@ icd11:
   - health science
   - morbidity
   license: CC-BY-ND-3.0-IGO
+  logo: https://upload.wikimedia.org/wikipedia/commons/2/23/ICD-11_Logo.jpg
   mappings:
     biolink: icd11.foundation
     fairsharing: FAIRsharing.97805c
@@ -28313,9 +29085,11 @@ icd9:
   - V15.01
   homepage: https://www.cdc.gov/nchs/icd/icd9.htm
   mappings:
+    bartoc: '447'
     biolink: ICD9
     hl7: 2.16.840.1.113883.6.42
     wikidata: P493
+    wikidata.entity: Q50018
   name: International Classification of Diseases, 9th Revision
   pattern: ^((\d\d\d|V\d\d|E[8-9]\d\d)(\.\d{1,2})?)|(\d{1,3}-\d{1,3})$
   preferred_prefix: icd9
@@ -28353,6 +29127,7 @@ icd9cm:
     fairsharing: FAIRsharing.10zsxb
     hl7: 2.16.840.1.113883.6.2
     wikidata: P1692
+    wikidata.entity: Q5737131
   name: International Classification of Diseases, 9th Revision, Clinical Modification
   pattern: ^([\dA-Z]\d{2}(\.\d{1,3}|))|(\d{2}(\.\d{1,2}|))$
   preferred_prefix: icd9cm
@@ -28407,6 +29182,7 @@ icdo:
     hl7: 2.16.840.1.113883.6.43
     prefixcommons: icdo
     wikidata: P563
+    wikidata.entity: Q1430635
   name: International Classification of Diseases for Oncology
   pattern: ^[8-9]\d{3}(/[0-3])?$
   preferred_prefix: icdo
@@ -28617,6 +29393,7 @@ iceo:
     obofoundry: iceo
     ols: iceo
     ontobee: ICEO
+    wikidata.entity: Q81661661
   name: Integrative and Conjugative Element Ontology
   pattern: ^\d{7}(_\d)?$
   preferred_prefix: ICEO
@@ -28752,6 +29529,7 @@ ico:
     obofoundry: ico
     ols: ico
     ontobee: ICO
+    wikidata.entity: Q55118417
   name: Informed Consent Ontology
   pattern: ^\d{7}$
   preferred_prefix: ICO
@@ -28774,6 +29552,9 @@ iconclass:
     from work from Henri van de Waal in the 1940.
   example: '3'
   homepage: https://iconclass.org
+  mappings:
+    bartoc: '459'
+    wikidata.entity: Q1502787
   name: Iconclass Classification
   pattern: ^\d+$
   preferred_prefix: iconclass
@@ -28852,16 +29633,16 @@ icpd.study:
 ictv:
   description: Ontology representation of the [International Committee on Taxonomy
     of Viruses (ICTV)](https://ictv.global/) for the [EVORA project](https://evora-project.eu/)
-  download_rdf: https://github.com/EVORA-project/ictv-ontology/raw/refs/heads/main/out/MSL40.owl.ttl
   example: ICTV19990991
   homepage: https://github.com/EVORA-project/ictv-ontology
   mappings:
+    bartoc: '507'
     ols: ictv
   name: International Committee on Taxonomy of Viruses Ontology
   preferred_prefix: ictv
   repository: https://github.com/EVORA-project/ictv-ontology
   uri_format: http://ictv.global/id/MSL40/$1
-  version: '40'
+  version: '1'
 ideal:
   contact:
     email: sfukuchi@maebashi-it.ac.jp
@@ -29526,6 +30307,7 @@ ietf.language:
   mappings:
     bartoc: '2022'
     wikidata: P305
+    wikidata.entity: Q1059900
   name: Internet Engineering Task Force Language Tag
   pattern: ^\w{2,3}(-\w+)?$
   preferred_prefix: ietf.language
@@ -30278,15 +31060,11 @@ inchi:
     miriam: inchi
     n2t: inchi
     wikidata: P234
+    wikidata.entity: Q203250
   name: InChI
   pattern: ^InChI\=1S?\/[A-Za-z0-9\.]+(\+[0-9]+)?(\/[cnpqbtmsih][A-Za-z0-9\-\+\(\)\,\/\?\;\.]+)*$
   preferred_prefix: inchi
   providers:
-  - code: ''
-    description: InChI through Chemspider
-    homepage: http://www.chemspider.com/
-    name: InChI through Chemspider
-    uri_format: http://www.chemspider.com/$1
   - code: ''
     description: InChI through NIST
     homepage: http://webbook.nist.gov/chemistry
@@ -30333,6 +31111,7 @@ inchikey:
     n2t: inchikey
     togoid: InchiKey
     wikidata: P235
+    wikidata.entity: Q21445422
   name: InChIKey
   pattern: ^[A-Z]{14}\-[A-Z]{10}(\-[A-Z])?$
   preferred_prefix: inchikey
@@ -30372,7 +31151,7 @@ infores:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  uri_format: https://w3id.org/information-content-resource/$1
+  uri_format: https://w3id.org/information-resource-registry/$1
 informall:
   appears_in:
   - doid
@@ -30432,6 +31211,7 @@ inn:
   homepage: https://www.who.int/teams/health-product-and-policy-standards/inn
   mappings:
     wikidata: P2275
+    wikidata.entity: Q824258
   name: International Nonproprietary Names
   preferred_prefix: inn
   synonyms:
@@ -30519,6 +31299,7 @@ ino:
     obofoundry: ino
     ols: ino
     ontobee: INO
+    wikidata.entity: Q55118418
   name: Interaction Network Ontology
   pattern: ^\d{7}$
   preferred_prefix: INO
@@ -30991,6 +31772,7 @@ interpro:
     togoid: Interpro
     uniprot: DB-0052
     wikidata: P2926
+    wikidata.entity: Q114677890
   name: InterPro
   pattern: ^IPR\d{6}$
   preferred_prefix: interpro
@@ -31331,6 +32113,72 @@ isbn:
   - ISBN-10
   - ISBN-13
   uri_format: https://isbnsearch.org/isbn/$1
+isced1997:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ISCED is designed to serve as a framework to classify educational activities
+    as defined in programmes and the resulting qualifications into internationally
+    agreed categories. The basic concepts and definitions of ISCED are therefore intended
+    to be internationally valid and comprehensive of the full range of education systems.
+  download_rdf: https://github.com/dini-ag-kim/vocabs-edu/raw/refs/heads/master/isced-1997.ttl
+  example: '1'
+  github_request_issue: 1625
+  homepage: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=International_Standard_Classification_of_Education_(ISCED)
+  keywords:
+  - education level
+  - open educational resources
+  name: International Standard Classification of Education, 1997 Edition
+  preferred_prefix: isced1997
+  references:
+  - https://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-1997-en_0.pdf
+  uri_format: https://w3id.org/kim/isced-1997/level$1
+isced2011:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ISCED is designed to serve as a framework to classify educational activities
+    as defined in programmes and the resulting qualifications into internationally
+    agreed categories. The basic concepts and definitions of ISCED are therefore intended
+    to be internationally valid and comprehensive of the full range of education systems.
+  download_rdf: https://github.com/dini-ag-kim/vocabs-edu/raw/refs/heads/master/isced-2011.ttl
+  example: '1'
+  github_request_issue: 1625
+  homepage: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=International_Standard_Classification_of_Education_(ISCED)
+  keywords:
+  - education level
+  - open educational resources
+  name: International Standard Classification of Education, 2011 Edition
+  preferred_prefix: isced2011
+  references:
+  - https://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf
+  uri_format: https://w3id.org/kim/isced-2011/level$1
+isced2013:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: ISCED is designed to serve as a framework to classify educational activities
+    as defined in programmes and the resulting qualifications into internationally
+    agreed categories. The basic concepts and definitions of ISCED are therefore intended
+    to be internationally valid and comprehensive of the full range of education systems.
+  download_rdf: https://github.com/dini-ag-kim/vocabs-edu/raw/refs/heads/master/isced-2013.ttl
+  example: n0021
+  github_request_issue: 1625
+  homepage: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=International_Standard_Classification_of_Education_(ISCED)
+  keywords:
+  - education level
+  - open educational resources
+  name: International Standard Classification of Education, 2013 Edition
+  preferred_prefix: isced2013
+  references:
+  - http://www.uis.unesco.org/Education/Documents/isced-fields-of-education-training-2013.pdf
+  uri_format: https://w3id.org/kim/isced-2013/$1
 ised:
   description: ISED catalogues the influenza sequence and epitope information obtained
     in countries worldwide and currently hosts a total of 49368 influenza A and 4761
@@ -31424,6 +32272,7 @@ isni:
     miriam: isni
     n2t: isni
     wikidata: P213
+    wikidata.entity: Q423048
   name: International Standard Name Identifier
   pattern: ^[0-9]{15}[0-9X]{1}$
   preferred_prefix: isni
@@ -31449,6 +32298,52 @@ iso.3166:
   pattern: ^\d+$
   preferred_prefix: iso.3166
   uri_format: https://data.who.int/countries/$1
+iso.639-3:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Since the introduction of ISO 639-3 in 2007, access to language information
+    has increased tremendously. The code set initially adopted as ISO639-3:2007 was
+    based on a harmonization of ISO 639-2 with the code set of SIL’s Ethnologue 15th
+    edition and languages from Linguist List to form a comprehensive set of code elements
+    for world languages.  SIL International, the Language Coding Agency for 639-3,
+    relies on the contributions of linguists, language coding experts, and language
+    users around the world to maintain and improve the code set through the change
+    request process defined in the ISO 639 standard. [from homepage]
+  example: spa
+  github_request_issue: 1614
+  homepage: https://iso639-3.sil.org/
+  keywords:
+  - computer science
+  - informatics
+  - language
+  - linguistics
+  mappings:
+    fairsharing: FAIRsharing.33aa85
+    hl7: 1.0.639.3
+  name: ISO 639 3-Letter Language Code
+  preferred_prefix: iso.639-3
+  providers:
+  - code: loc
+    description: ISO 639-2 is part of the ISO 639 language code family, which provides
+      also a two-character code set (ISO 639-1) for the representation of names of
+      languages. ISO 639-2 contains codes for all languages contained in ISO 639-1
+      and several hundred additional languages. The ISO 639-2 (Bibliographic) codes
+      were devised for use in bibliographic metadata, e.g., for libraries, information
+      services, and publishers, and ISO 639-2 (Terminology) targets terminology, lexicography,
+      and linguistic applications. The lists are the same except for 20 languages
+      that have different Bibliographic and Terminology codes. The list contains over
+      500 discrete codes. The ISO 639-2 (Bibliographic) codes are equivalent to the
+      MARC Language Codes. The ISO 639-2 codes are linked to two-character codes for
+      the same language in ISO 639-1, to the MARC Language Codes, and to equivalent
+      codes for language groups in ISO 639-5. [from homepage]
+    homepage: http://id.loc.gov/vocabulary/iso639-2
+    name: 'ISO 639-2: Codes for the Representation of Names of Languages - Part 2:
+      Alpha-3 Code for the Names of Languages'
+    uri_format: http://id.loc.gov/vocabulary/iso639-2/$1
+  uri_format: https://iso639-3.sil.org/code/$1
 iso15926:
   contributor:
     email: cthoyt@gmail.com
@@ -31512,9 +32407,9 @@ issn:
   providers:
   - code: ''
     description: ISSN at Library of Congress
-    homepage: http://catalog.loc.gov/webvoy.htm
+    homepage: http://catalog.loc.gov
     name: ISSN at Library of Congress
-    uri_format: https://catalog.loc.gov/vwebv/search?searchCode=STNO&searchArg=$1&searchType=1&recCount=25
+    uri_format: https://search.catalog.loc.gov/search?option=keyword&query=$1
   uri_format: https://portal.issn.org/resource/ISSN/$1
 istransbase:
   contact:
@@ -31564,12 +32459,14 @@ itis:
   - life science
   - taxonomy
   license: CC0-1.0
+  logo: https://www.itis.gov/Static/images/ITIS-Logo.jpg
   mappings:
     bartoc: '17791'
     fairsharing: FAIRsharing.t19hpa
     integbio: nbdc00916
     re3data: r3d100011213
     wikidata: P815
+    wikidata.entity: Q82575
   name: Integrated Taxonomic Information System
   pattern: ^\d+$
   preferred_prefix: itis
@@ -32164,6 +33061,7 @@ kegg.brite:
   - classification
   - ontology
   - pathway
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biolink: KEGG.BRITE
     integbio: nbdc00115
@@ -32193,6 +33091,7 @@ kegg.compound:
   homepage: https://www.genome.jp/kegg/ligand.html
   keywords:
   - small molecule
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.COMPOUND
     edam: '2605'
@@ -32241,6 +33140,7 @@ kegg.dgroup:
     \ the same active ingredients of drugs in different countries."
   example: DG00301
   homepage: http://www.genome.jp/kegg/reaction/
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biolink: KEGG.DGROUP
   name: KEGG Drug Group
@@ -32262,6 +33162,7 @@ kegg.disease:
   homepage: http://www.genome.jp/kegg/disease/
   keywords:
   - classification
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.DISEASE
     integbio: nbdc00813
@@ -32294,6 +33195,7 @@ kegg.drug:
   homepage: https://www.genome.jp/kegg/drug/
   keywords:
   - small molecule
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.DRUG
     edam: '2609'
@@ -32336,6 +33238,7 @@ kegg.environ:
     information whenever applicable.
   example: ev:E00032
   homepage: http://www.genome.jp/kegg/drug/environ.html
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.ENVIRON
     integbio: nbdc01059
@@ -32355,6 +33258,7 @@ kegg.enzyme:
     in the KEGG relational database with additional annotation of reaction hierarchy
     and sequence data links.
   homepage: http://www.genome.jp/dbget-bin/www_bfind?enzyme
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biolink: KEGG.ENZYME
     go: KEGG_ENZYME
@@ -32376,6 +33280,7 @@ kegg.genes:
   - dna
   - gene
   - protein
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.GENES
     biolink: KEGG.GENES
@@ -32413,7 +33318,10 @@ kegg.genome:
     sequenced.
   example: T06648
   homepage: http://www.genome.jp/kegg/catalog/org_list.html
+  keywords:
+  - genome
   license: https://www.kegg.jp/kegg/legal.html
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.GENOME
     integbio: nbdc00816
@@ -32458,6 +33366,7 @@ kegg.glycan:
   homepage: https://www.genome.jp/kegg/glycan/
   keywords:
   - small molecule
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.GLYCAN
     edam: '2613'
@@ -32490,6 +33399,7 @@ kegg.ligand:
     database
   deprecated: true
   homepage: http://www.genome.ad.jp/kegg/docs/upd_ligand.html
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     go: KEGG_LIGAND
   name: KEGG LIGAND
@@ -32507,6 +33417,7 @@ kegg.metagenome:
   homepage: http://www.genome.jp/kegg/catalog/org_list3.html
   keywords:
   - genome
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.METAGENOME
     miriam: kegg.metagenome
@@ -32540,6 +33451,7 @@ kegg.module:
     structural, functional or signature modules.
   example: M00002
   homepage: http://www.kegg.jp/kegg/module.html
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.MODULE
     integbio: nbdc01428
@@ -32559,6 +33471,7 @@ kegg.orthology:
   keywords:
   - classification
   - pathway
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.ORTHOLOGY
     miriam: kegg.orthology
@@ -32590,6 +33503,7 @@ kegg.pathway:
   homepage: https://www.genome.jp/kegg/pathway.html
   keywords:
   - pathway
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.PATHWAY
     biolink: KEGG.PATHWAY
@@ -32633,6 +33547,7 @@ kegg.rclass:
     which are represented by the so-called RDM patterns.
   example: RC00001
   homepage: http://www.genome.jp/kegg/reaction/
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biolink: KEGG.RCLASS
     integbio: nbdc00860
@@ -32657,6 +33572,7 @@ kegg.reaction:
   keywords:
   - enzyme
   - pathway
+  logo: https://www.genome.jp/Fig/kegg128.gif
   mappings:
     biocontext: KEGG.REACTION
     edam: '2608'
@@ -32725,13 +33641,33 @@ kim.educationlevel:
     orcid: 0000-0003-4423-4370
   description: A controlled vocabulary for education levels, such as primary eduation,
     secondary education, and post-secondary education
+  download_rdf: https://github.com/dini-ag-kim/educationalLevel/raw/refs/heads/main/educationalLevel.ttl
   example: '6'
   example_extras:
   - B
   homepage: https://w3id.org/kim/educationalLevel/
+  keywords:
+  - education level
+  - open educational resources
   name: KIM Education Level
   preferred_prefix: kim.educationlevel
+  repository: https://github.com/dini-ag-kim/educationalLevel
   uri_format: https://w3id.org/kim/educationalLevel/level_$1
+kim.esv:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This is a vocabulary for educational sectors as used in the OER World
+    Map (https://oerworldmap.org)
+  download_rdf: https://github.com/dini-ag-kim/vocabs-edu/raw/refs/heads/master/sectors.ttl
+  example: earlyChildhood
+  homepage: https://w3id.org/kim/educationalLevel/
+  name: Educational Sectors Vocabulary
+  preferred_prefix: kim.esv
+  repository: https://github.com/dini-ag-kim/vocabs-edu
+  uri_format: https://w3id.org/class/sectors/$1
 kim.hcrt:
   contributor:
     email: cthoyt@gmail.com
@@ -32739,11 +33675,13 @@ kim.hcrt:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: A controlled vocbualry of higher education resource types
+  download_rdf: https://github.com/dini-ag-kim/hcrt/raw/refs/heads/master/hcrt.ttl
   example: simulation
   homepage: https://w3id.org/kim/hcrt/scheme.html
   name: Higher Education Resource Types
   preferred_prefix: kim.hcrt
   rdf_uri_format: https://w3id.org/kim/hcrt/$1
+  repository: https://github.com/dini-ag-kim/hcrt
   uri_format: https://w3id.org/kim/hcrt/$1
 kim.hochschulfaechersystematik:
   contributor:
@@ -32753,11 +33691,13 @@ kim.hochschulfaechersystematik:
     orcid: 0000-0003-4423-4370
   description: A classification of subjects in Hochschule (universities of applied
     sciences)
+  download_rdf: https://github.com/dini-ag-kim/hochschulfaechersystematik/raw/refs/heads/master/hochschulfaechersystematik.ttl
   example: n2
   homepage: https://w3id.org/kim/hochschulfaechersystematik/scheme
   name: German University Subject Classification System
   preferred_prefix: kim.hochschulfaechersystematik
   rdf_uri_format: https://w3id.org/kim/hochschulfaechersystematik/$1
+  repository: https://github.com/dini-ag-kim/hochschulfaechersystematik
   uri_format: https://w3id.org/kim/hochschulfaechersystematik/$1
 kim.license:
   contributor:
@@ -32766,12 +33706,60 @@ kim.license:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   description: A vocabulary describing licenses for data and code
+  download_rdf: https://github.com/dini-ag-kim/license/raw/refs/heads/main/license.ttl
   example: nonCommercial
   homepage: https://w3id.org/kim/license/
+  keywords:
+  - license
   name: KIM License
   preferred_prefix: kim.license
   rdf_uri_format: https://w3id.org/kim/license/$1
+  repository: https://github.com/dini-ag-kim/license
   uri_format: https://w3id.org/kim/license/$1
+kim.schularten:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This SKOS vocabulary describes types of primary and secondary schools
+    in Germany, such as Grundschule, Gymnasium, and Realschule. This does not include
+    post-secondary education such as universities or hochschulen.
+  download_rdf: https://github.com/dini-ag-kim/schularten/raw/refs/heads/main/schularten.ttl
+  example: s02
+  github_request_issue: 1626
+  homepage: https://github.com/dini-ag-kim/schularten
+  keywords:
+  - primary school type
+  - school type
+  - seconary school type
+  license: CC0-1.0
+  name: KIM German School Types
+  preferred_prefix: kim.schularten
+  rdf_uri_format: https://w3id.org/kim/schularten/$1
+  repository: https://github.com/dini-ag-kim/schularten
+  uri_format: https://w3id.org/kim/schularten/$1
+kim.schulfaecher:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A vocabulary describing subjects taught in German primary and secondary
+    school (not university/hochschulen), such as German, math, and art.
+  download_rdf: https://github.com/dini-ag-kim/schulfaecher/raw/refs/heads/main/schulfaecher.ttl
+  example: s1000
+  github_request_issue: 1626
+  homepage: https://github.com/dini-ag-kim/schulfaecher
+  keywords:
+  - discipline
+  - school subject
+  - subject
+  name: KIM School Subjects
+  preferred_prefix: kim.schulfaecher
+  rdf_uri_format: http://w3id.org/kim/schulfaecher/$1
+  repository: https://github.com/dini-ag-kim/schulfaecher
+  uri_format: http://w3id.org/kim/schulfaecher/$1
 knapsack:
   description: 'KNApSAcK provides information on metabolites and the
 
@@ -32844,6 +33832,7 @@ labo:
     obofoundry: labo
     ols: labo
     ontobee: LABO
+    wikidata.entity: Q81661673
   name: clinical LABoratory Ontology
   pattern: ^\d{7}$
   preferred_prefix: LABO
@@ -32935,6 +33924,7 @@ lbo:
   - genetics
   - genomics
   - ontology
+  license: CC-BY-4.0
   mappings:
     aberowl: LBO
     agroportal: LBO
@@ -32982,6 +33972,7 @@ lcsh:
     bartoc: '454'
     fairsharing: FAIRsharing.d31795
     wikidata: P244
+    wikidata.entity: Q17109002
   name: Library of Congress Subject Headings
   pattern: ^\w{1,2}\d{8,10}$
   preferred_prefix: lcsh
@@ -33047,6 +34038,7 @@ lepao:
     obofoundry: lepao
     ols: lepao
     ontobee: LEPAO
+    wikidata.entity: Q113012667
   name: Lepidoptera Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: LEPAO
@@ -33137,6 +34129,9 @@ licebase:
   preferred_prefix: licebase
   uri_format: https://licebase.org/?q=$1
 lifestylefactors:
+  contact:
+    email: lars.juhl.jensen@cpr.ku.dk
+    name: Lars Juhl Jensen
   description: 'In this ontology, we defined nine distinct categories that encompass
     various aspects of lifestyle factors (LSFs), creating a unified Lifestyle Factors
     Ontology (LSFO) across these categories. Within the context of lifestyle, we have
@@ -33572,6 +34567,7 @@ lipro:
     biocontext: LIPRO
     bioportal: LIPRO
     obofoundry: lipro
+    wikidata.entity: Q114677891
   name: Lipid Ontology
   preferred_prefix: LIPRO
   rdf_uri_format: http://purl.obolibrary.org/obo/LIPRO_$1
@@ -33587,6 +34583,7 @@ lncbook:
   example: HSALNG0006197
   homepage: https://ngdc.cncb.ac.cn/?lang=en
   mappings:
+    integbio: nbdc02541
     miriam: lncbook
   name: LncBook
   pattern: ^HSALNG\d{7}$
@@ -33642,6 +34639,7 @@ loggerhead:
   mappings:
     biocontext: LOGGERHEAD
     obofoundry: loggerhead
+    wikidata.entity: Q114677892
   name: Loggerhead nesting
   preferred_prefix: LOGGERHEAD
   rdf_uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
@@ -33678,6 +34676,7 @@ loinc:
     fairsharing: FAIRsharing.2mk2zb
     hl7: 2.16.840.1.113883.6.1
     wikidata: P4338
+    wikidata.entity: Q502480
   name: Logical Observation Identifiers Names and Codes
   pattern: ^(\d|\w)+-\d$
   preferred_prefix: loinc
@@ -33802,6 +34801,8 @@ lotus:
   - drugs
   - metabolites
   logo: https://upload.wikimedia.org/wikipedia/commons/6/64/Lotus_initiative_logo.svg
+  mappings:
+    wikidata.entity: Q104225190
   name: LOTUS Initiative for Open Natural Products Research
   pattern: ^LTS\d{7}$
   preferred_prefix: lotus
@@ -33966,7 +34967,7 @@ m4i:
     fairsharing: FAIRsharing.f8b3ec
     lov: m4i
     miriam: m4i
-    wikidata: Q111516803
+    wikidata.entity: Q111516803
     zazuko: m4i
   mastodon: nfdi4ing@nfdi.social
   name: Metadata4Ing
@@ -34006,6 +35007,7 @@ ma:
   license: CC-BY-4.0
   mappings:
     aberowl: MA
+    bartoc: '1143'
     biocontext: MA
     bioportal: MA
     fairsharing: FAIRsharing.pdwqcr
@@ -34016,6 +35018,7 @@ ma:
     ols: ma
     ontobee: MA
     prefixcommons: ma
+    wikidata.entity: Q81661674
   name: Mouse adult gross anatomy
   namespace_in_lui: true
   pattern: ^\d+$
@@ -34217,6 +35220,7 @@ mamo:
     obofoundry: mamo
     ols: mamo
     ontobee: MAMO
+    wikidata.entity: Q113014441
   name: Mathematical modeling ontology
   pattern: ^\d{7}$
   preferred_prefix: MAMO
@@ -34271,6 +35275,7 @@ mao:
     biocontext: MAO
     obofoundry: mao
     prefixcommons: mao
+    wikidata.entity: Q114677893
   name: Multiple alignment
   pattern: ^\d{7}$
   preferred_prefix: MAO
@@ -34386,7 +35391,7 @@ massbank:
       sciences'
     year: 2010
   repository: https://github.com/MassBank
-  uri_format: https://massbank.jp/RecordDisplay?id=$1
+  uri_format: https://massbank.jp/MassBank/RecordDisplay?id=$1
 massive:
   contact:
     email: miw023@ucsd.edu
@@ -34483,6 +35488,7 @@ mat:
     biocontext: MAT
     bioportal: MAT
     obofoundry: mat
+    wikidata.entity: Q114677894
   name: Minimal Anatomical Terminology
   pattern: ^\d{7}$
   preferred_prefix: MAT
@@ -34659,6 +35665,7 @@ maxo:
     obofoundry: maxo
     ols: maxo
     ontobee: MAXO
+    wikidata.entity: Q113012668
   name: Medical Action Ontology
   pattern: ^\d{7}$
   preferred_prefix: MAXO
@@ -34685,7 +35692,7 @@ mba:
   description: A controlled vocabulary to support the study of transcription in the
     mouse brain
   download_obo: https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-mba.obo
-  download_owl: https://purl.brain-bican.org/ontology/mbao/releases/2025-04-17/mbao.owl
+  download_owl: https://purl.brain-bican.org/ontology/mbao/releases/2025-07-04/mbao.owl
   example: '688'
   homepage: https://mouse.brain-map.org
   keywords:
@@ -34703,7 +35710,7 @@ mba:
     name: MBA from Biopragmatics
     uri_format: https://biopragmatics.github.io/providers/mba/$1
   uri_format: https://purl.brain-bican.org/ontology/mbao/MBA_$1
-  version: '2025-04-17'
+  version: '2025-07-04'
 mcc:
   contact:
     email: usha@molecularconnections.com
@@ -34765,6 +35772,7 @@ mco:
     obofoundry: mco
     ols: mco
     ontobee: MCO
+    wikidata.entity: Q81661676
   name: Microbial Conditions Ontology
   pattern: ^\d+$
   preferred_prefix: MCO
@@ -34903,6 +35911,7 @@ meddra:
     n2t: meddra
     togoid: Meddra
     wikidata: P3201
+    wikidata.entity: Q1539689
   name: Medical Dictionary for Regulatory Activities Terminology
   pattern: ^\d+$
   preferred_prefix: meddra
@@ -35337,6 +36346,7 @@ mesh:
     prefixcommons: mesh
     togoid: Mesh
     wikidata: P486
+    wikidata.entity: Q199897
   name: Medical Subject Headings
   pattern: ^(C|D|M)\d{6,9}$
   preferred_prefix: mesh
@@ -35748,6 +36758,7 @@ metatlas.reaction:
     orcid: 0000-0003-4423-4370
   uri_format: https://metabolicatlas.org/identifier/MetabolicAtlas/$1
 metlin:
+  deprecated: true
   description: The METLIN (Metabolite and Tandem Mass Spectrometry) Database is a
     repository of metabolite information as well as tandem mass spectrometry data,
     providing public access to its comprehensive MS and MS/MS metabolite data. An
@@ -35846,13 +36857,14 @@ mf:
     obofoundry: mf
     ols: mf
     ontobee: MF
+    wikidata.entity: Q55118443
   name: Mental Functioning Ontology
   pattern: ^\d{7}$
   preferred_prefix: MF
   rdf_uri_format: http://purl.obolibrary.org/obo/MF_$1
   repository: https://github.com/jannahastings/mental-functioning-ontology
   uri_format: http://purl.obolibrary.org/obo/MF_$1
-  version: '2022-07-19'
+  version: '2025-07-08'
 mfmo:
   contact:
     email: druzinsk@uic.edu
@@ -35881,6 +36893,7 @@ mfmo:
     obofoundry: mfmo
     ols: mfmo
     ontobee: MFMO
+    wikidata.entity: Q81661681
   name: Mammalian Feeding Muscle Ontology
   pattern: ^\d{7}$
   preferred_prefix: MFMO
@@ -35919,6 +36932,7 @@ mfo:
     bioportal: MFO
     obofoundry: mfo
     prefixcommons: mfo
+    wikidata.entity: Q114677896
   name: Medaka fish anatomy and development
   pattern: ^\d{7}$
   preferred_prefix: MFO
@@ -35960,6 +36974,7 @@ mfoem:
     obofoundry: mfoem
     ols: mfoem
     ontobee: MFOEM
+    wikidata.entity: Q55118370
   name: Emotion Ontology
   pattern: ^\d{6}$
   preferred_prefix: MFOEM
@@ -36000,6 +37015,7 @@ mfomd:
     obofoundry: mfomd
     ols: mfomd
     ontobee: MFOMD
+    wikidata.entity: Q55118439
   name: Mental Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: MFOMD
@@ -36337,6 +37353,7 @@ mi:
     ols: mi
     ontobee: MI
     prefixcommons: psi.mi
+    wikidata.entity: Q81661689
   name: Molecular Interactions Controlled Vocabulary
   namespace_in_lui: true
   pattern: ^\d{4}$
@@ -36412,6 +37429,7 @@ miapa:
     obofoundry: miapa
     ols: miapa
     ontobee: MIAPA
+    wikidata.entity: Q81661690
   name: Minimum Anformation About a Phylogenetic Analysis Ontology
   pattern: ^\d{7}$
   preferred_prefix: MIAPA
@@ -36492,6 +37510,7 @@ micro:
     obofoundry: micro
     ols: micro
     ontobee: MICRO
+    wikidata.entity: Q81661692
   name: Ontology of Prokaryotic Phenotypic and Metabolic Characters
   pattern: ^\d{7}$
   preferred_prefix: MICRO
@@ -36900,7 +37919,13 @@ mirbase.family:
     annotation data are also available for download.
   example: MIPF0000002
   homepage: http://www.mirbase.org/
+  keywords:
+  - gene
+  - mirna
   license: public domain
+  logo: https://www.mirbase.org/static/images/mirbase-logo_new.png
+  mappings:
+    wikidata.entity: Q6826947
   name: miRBase Families
   preferred_prefix: mirbase.family
   synonyms:
@@ -36916,6 +37941,7 @@ mirbase.mature:
   - nucleotide
   - sequence
   license: public domain
+  logo: https://www.mirbase.org/static/images/mirbase-logo_new.png
   mappings:
     biocontext: MIRBASE.MATURE
     miriam: mirbase.mature
@@ -37532,6 +38558,7 @@ mmo:
     obofoundry: mmo
     ols: mmo
     ontobee: MMO
+    wikidata.entity: Q81661696
   name: Measurement method ontology
   pattern: ^\d{7}$
   preferred_prefix: MMO
@@ -37551,7 +38578,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.153'
+  version: '2.156'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -37718,6 +38745,7 @@ mmusdv:
     obofoundry: mmusdv
     ols: mmusdv
     ontobee: MmusDv
+    wikidata.entity: Q81661698
   name: Mouse Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: MmusDv
@@ -37750,6 +38778,7 @@ mo:
     miriam: mo
     n2t: mo
     obofoundry: mo
+    wikidata.entity: Q114677897
   name: Microarray experimental conditions
   pattern: ^\w+$
   preferred_prefix: MO
@@ -37846,6 +38875,7 @@ mod:
     ols: mod
     ontobee: MOD
     prefixcommons: psi.mod
+    wikidata.entity: Q81661700
   name: Protein modification
   namespace_in_lui: true
   pattern: ^\d{5}$
@@ -38184,6 +39214,7 @@ mondo:
     ontobee: MONDO
     togoid: Mondo
     wikidata: P5270
+    wikidata.entity: Q27468140
   mastodon: monarch_initiative@genomic.social
   name: Mondo Disease Ontology
   pattern: ^\d{7}$
@@ -38207,7 +39238,7 @@ mondo:
   repository: https://github.com/monarch-initiative/mondo
   twitter: MonarchInit
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2025-06-03'
+  version: '2025-07-01'
 mondo.issue:
   contributor:
     email: cthoyt@gmail.com
@@ -38250,6 +39281,7 @@ mop:
     obofoundry: mop
     ols: mop
     ontobee: MOP
+    wikidata.entity: Q81661705
   name: Molecular Process Ontology
   pattern: ^\d{7}$
   preferred_prefix: MOP
@@ -38350,6 +39382,7 @@ mp:
     ontobee: MP
     prefixcommons: mp
     togoid: Mp
+    wikidata.entity: Q81661707
   name: Mammalian Phenotype Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -38403,7 +39436,7 @@ mp:
   rdf_uri_format: http://purl.obolibrary.org/obo/MP_$1
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/MP_$1
-  version: '2025-01-30'
+  version: '2025-06-18'
 mpath:
   contact:
     email: pns12@hermes.cam.ac.uk
@@ -38438,6 +39471,7 @@ mpath:
     ols: mpath
     ontobee: MPATH
     prefixcommons: mpath
+    wikidata.entity: Q55118458
   name: Mouse pathology ontology
   pattern: ^\d+$
   preferred_prefix: MPATH
@@ -38531,6 +39565,7 @@ mpio:
     obofoundry: mpio
     ols: mpio
     ontobee: MPIO
+    wikidata.entity: Q81661711
   name: Minimum PDDI Information Ontology
   pattern: ^\d{7}$
   preferred_prefix: MPIO
@@ -38565,6 +39600,7 @@ mro:
     obofoundry: mro
     ols: mro
     ontobee: MRO
+    wikidata.entity: Q81661712
   name: MHC Restriction Ontology
   pattern: ^\d{7}$
   preferred_prefix: MRO
@@ -38613,6 +39649,7 @@ ms:
     obofoundry: ms
     ols: ms
     ontobee: MS
+    wikidata.entity: Q81661714
   name: Mass spectrometry ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -38627,7 +39664,7 @@ ms:
   rdf_uri_format: http://purl.obolibrary.org/obo/MS_$1
   repository: https://github.com/HUPO-PSI/psi-ms-CV
   uri_format: http://purl.obolibrary.org/obo/MS_$1
-  version: 4.1.193
+  version: 4.1.194
 msigdb:
   contributor:
     email: cthoyt@gmail.com
@@ -38638,7 +39675,14 @@ msigdb:
     gene sets for use with GSEA software. From this web site, you can
   example: M1
   homepage: https://www.gsea-msigdb.org
+  keywords:
+  - gene family
+  - gene group
+  - gene set
+  - pathway
+  - reaction
   license: CC-BY-4.0
+  logo: https://www.gsea-msigdb.org/gsea/images/GSEA-logo.gif
   mappings:
     biolink: MSigDB
     integbio: nbdc02550
@@ -39608,6 +40652,7 @@ nbo:
     obofoundry: nbo
     ols: nbo
     ontobee: NBO
+    wikidata.entity: Q81661716
   name: Neuro Behavior Ontology
   pattern: ^\d{7}$
   preferred_prefix: NBO
@@ -39766,6 +40811,9 @@ ncbi.gc:
     to NCBI taxonomy entries.
   example: '11'
   homepage: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes
+  keywords:
+  - genetic code
+  - genome
   license: public domain
   name: NCBI Genetic Code
   pattern: ^\d+$
@@ -40102,6 +41150,7 @@ ncbitaxon:
     re3data: r3d100010415
     togoid: Taxonomy
     wikidata: P685
+    wikidata.entity: Q81661717
   name: NCBI Taxonomy
   owners:
   - name: National Center for Biotechnology Information
@@ -40252,6 +41301,7 @@ ncit:
     ontobee: NCIT
     prefixcommons: ncit
     wikidata: P1748
+    wikidata.entity: Q113012671
   name: NCI Thesaurus
   owners:
   - name: National Cancer Institute
@@ -40332,6 +41382,7 @@ ncro:
     obofoundry: ncro
     ols: ncro
     ontobee: NCRO
+    wikidata.entity: Q55118485
   name: Non-Coding RNA Ontology
   pattern: ^\d{7}$
   preferred_prefix: NCRO
@@ -40358,6 +41409,7 @@ ndc:
     miriam: ndc
     n2t: ndc
     wikidata: P3640
+    wikidata.entity: Q6972354
   name: National Drug Code
   pattern: ^\d+\-\d+\-\d+$
   preferred_prefix: ndc
@@ -40691,6 +41743,7 @@ neuronames:
   homepage: http://braininfo.rprc.washington.edu/
   mappings:
     wikidata: P4394
+    wikidata.entity: Q1773567
   name: NeuroNames
   pattern: ^\d+$
   preferred_prefix: neuronames
@@ -40825,6 +41878,7 @@ nextprot:
     miriam: nextprot
     n2t: nextprot
     uniprot: DB-0161
+    wikidata.entity: Q6983890
   name: nextProt
   pattern: ^NX_\w+$
   preferred_prefix: nextprot
@@ -40948,6 +42002,32 @@ nfdi4chem.osmo:
   homepage: https://zenodo.org/record/5237774#.YXq72hxCRGo
   name: Ontology for simulation, modelling, and optimization
   preferred_prefix: nfdi4chem.osmo
+nfdi4culture.id:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The NFDI4Culture portal offers all content as Linked Open Data over
+    this RESTful API. The API implements the Hydra-Specification of the W3C Hydra
+    Community Group. The semantic description of this API can be retrieved by clients
+    via the Hydra documentation file (JSON). Each metadata record offered via this
+    API can also be retrieved in one of following machine-readable LOD serializations.
+    The API is the basis for the Culture Research Information Graph, which together
+    with the Culture Research Data Graph forms the [Culture Knowledge Graph](https://nfdi4culture.de/services/details/culture-knowledge-graph.html)
+    (for more details see [this presentation](https://doi.org/10.5281/zenodo.7748740))
+    (from homepage).
+  example: E4330
+  github_request_issue: 1627
+  homepage: https://nfdi4culture.de/id
+  keywords:
+  - digital humanities
+  - generic
+  - organization
+  name: NFDI4Culture Metadata API
+  preferred_prefix: nfdi4culture.id
+  rdf_uri_format: https://nfdi4culture.de/id/$1
+  uri_format: https://nfdi4culture.de/id/$1
 nfdi4dso:
   contributor:
     email: cthoyt@gmail.com
@@ -41238,6 +42318,10 @@ nihreporter.project:
   example: '10343835'
   github_request_issue: 400
   homepage: https://reporter.nih.gov/
+  keywords:
+  - bibliometrics
+  - project
+  logo: https://files.nccih.nih.gov/nccih-nih-reporter-twitter-card-01.jpg
   name: NIH RePORTER
   pattern: ^\d+$
   preferred_prefix: nihreporter.project
@@ -41321,10 +42405,14 @@ nlm:
     are also provided. [from homepage]
   example: '101775319'
   homepage: https://www.ncbi.nlm.nih.gov/nlmcatalog
+  keywords:
+  - journal
   license: public domain
+  logo: https://upload.wikimedia.org/wikipedia/commons/5/52/Logo_of_U.S._National_Library_of_Medicine.png
   mappings:
     bartoc: '528'
     biolink: NLMID
+    wikidata.entity: Q986957
   name: National Library of Medicine Catalog
   pattern: ^\d+$
   preferred_prefix: nlm
@@ -41341,7 +42429,11 @@ nlm.publisher:
   example: wiley
   github_request_issue: 1318
   homepage: https://ftp.ncbi.nlm.nih.gov/pubmed/xmlprovidernames.txt
+  keywords:
+  - bibliometrics
+  - publisher
   license: public domain
+  logo: https://upload.wikimedia.org/wikipedia/commons/5/52/Logo_of_U.S._National_Library_of_Medicine.png
   name: NLM Publisher Codes
   preferred_prefix: nlm.publisher
 nlx.anat:
@@ -41795,6 +42887,7 @@ nmdc:
   - microbiome
   mappings:
     miriam: nmdc
+    wikidata.entity: Q107698738
   name: National Microbiome Data Collaborative
   pattern: ^.{2,}$
   preferred_prefix: nmdc
@@ -41874,6 +42967,7 @@ nmr:
     obofoundry: nmr
     ols: nmrcv
     prefixcommons: nmr
+    wikidata.entity: Q114677901
   name: NMR-instrument specific component of metabolomics investigations
   namespace_in_lui: true
   pattern: ^\d+$
@@ -41967,6 +43061,7 @@ noaa.cameo:
   homepage: https://cameochemicals.noaa.gov
   mappings:
     wikidata: P11931
+    wikidata.entity: Q125807660
   name: CAMEO Chemicals ID
   pattern: ^\d*$
   preferred_prefix: noaa.cameo
@@ -41992,6 +43087,7 @@ nomen:
     obofoundry: nomen
     ols: nomen
     ontobee: NOMEN
+    wikidata.entity: Q81661723
   name: A nomenclatural ontology for biological names
   pattern: ^\d{7}$
   preferred_prefix: NOMEN
@@ -42171,7 +43267,13 @@ npass:
     '
   example: NPC139585
   homepage: http://bidd.group/NPASS/
+  keywords:
+  - chemical
+  - compound
+  - natural product
+  - small molecule
   license: CC-BY-NC
+  logo: https://bidd.group/NPASS/images/logo.png
   name: Natural Product Activity and Species Source Database
   pattern: ^NPC\d+$
   preferred_prefix: npass
@@ -42565,6 +43667,7 @@ oae:
     obofoundry: oae
     ols: oae
     ontobee: OAE
+    wikidata.entity: Q81661725
   name: Ontology of Adverse Events
   pattern: ^\d{7}$
   preferred_prefix: OAE
@@ -42574,6 +43677,10 @@ oae:
     pubmed: '25093068'
     title: 'OAE: The Ontology of Adverse Events'
     year: 2014
+  - doi: 10.1371/journal.pone.0049941
+    title: Ontology-Based Combinatorial Comparative Analysis of Adverse Events Associated
+      with Killed and Live Influenza Vaccines
+    year: 2012
   rdf_uri_format: http://purl.obolibrary.org/obo/OAE_$1
   repository: https://github.com/OAE-ontology/OAE
   uri_format: http://purl.obolibrary.org/obo/OAE_$1
@@ -42602,6 +43709,7 @@ oarcs:
     obofoundry: oarcs
     ols: oarcs
     ontobee: OARCS
+    wikidata.entity: Q81661727
   name: Ontology of Arthropod Circulatory Systems
   pattern: ^\d{7}$
   preferred_prefix: OARCS
@@ -42648,6 +43756,7 @@ oba:
     obofoundry: oba
     ols: oba
     ontobee: OBA
+    wikidata.entity: Q81661730
   name: Ontology of Biological Attributes
   pattern: ^(VT)?\d{7}$
   preferred_prefix: OBA
@@ -42753,6 +43862,7 @@ obcs:
     obofoundry: obcs
     ols: obcs
     ontobee: OBCS
+    wikidata.entity: Q55118544
   name: Ontology of Biological and Clinical Statistics
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -42824,6 +43934,7 @@ obi:
     ols: obi
     ontobee: OBI
     prefixcommons: obi
+    wikidata.entity: Q7095051
   name: Ontology for Biomedical Investigations
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -42901,6 +44012,7 @@ obib:
     obofoundry: obib
     ols: obib
     ontobee: OBIB
+    wikidata.entity: Q55118499
   name: Ontology for Biobanking
   pattern: ^\d{7}$
   preferred_prefix: OBIB
@@ -43316,6 +44428,43 @@ oecd.template:
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+oeh.educationlevel:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A list of values for class levels. Created in the context of the OpenEduHub
+  download_rdf: https://github.com/openeduhub/oeh-metadata-vocabs/raw/refs/heads/master/educationalLevel.ttl
+  example: '1'
+  github_request_issue: 1626
+  homepage: https://github.com/openeduhub/oeh-metadata-vocabs
+  keywords:
+  - education level
+  - open educational resources
+  name: OpenEduHub Education Level
+  preferred_prefix: oeh.educationlevel
+  rdf_uri_format: http://w3id.org/openeduhub/vocabs/educationalLevel/$1
+  repository: https://github.com/openeduhub/oeh-metadata-vocabs
+  uri_format: http://w3id.org/openeduhub/vocabs/educationalLevel/$1
+og:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A vocabulary for embedding provenance metadata into webpages via RDFa
+  example: title
+  github_request_issue: 1632
+  homepage: https://ogp.me
+  keywords:
+  - data schema
+  - linked open data
+  - semantic web
+  name: Open Graph protocol
+  preferred_prefix: og
+  rdf_uri_format: https://ogp.me/ns#$1
+  uri_format: https://ogp.me/ns#$1
 ogg:
   contact:
     email: yongqunh@med.umich.edu
@@ -43349,6 +44498,7 @@ ogg:
     obofoundry: ogg
     ols: ogg
     ontobee: OGG
+    wikidata.entity: Q81661736
   name: The Ontology of Genes and Genomes
   pattern: ^\d+$
   preferred_prefix: OGG
@@ -43391,6 +44541,7 @@ ogi:
     obofoundry: ogi
     ols: ogi
     ontobee: OGI
+    wikidata.entity: Q55118520
   name: Ontology for genetic interval
   pattern: ^\d{7}$
   preferred_prefix: OGI
@@ -43449,6 +44600,7 @@ ogms:
     obofoundry: ogms
     ols: ogms
     ontobee: OGMS
+    wikidata.entity: Q55118512
   name: Ontology for General Medical Science
   pattern: ^\d{7}$
   preferred_prefix: OGMS
@@ -43501,6 +44653,7 @@ ogsf:
     obofoundry: ogsf
     ols: ogsf
     ontobee: OGSF
+    wikidata.entity: Q113012672
   name: Ontology of Genetic Susceptibility Factor
   pattern: ^\d{7}$
   preferred_prefix: OGSF
@@ -43545,6 +44698,7 @@ ohd:
     obofoundry: ohd
     ols: ohd
     ontobee: OHD
+    wikidata.entity: Q55118561
   name: Oral Health and Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: OHD
@@ -43558,7 +44712,7 @@ ohd:
   rdf_uri_format: http://purl.obolibrary.org/obo/OHD_$1
   repository: https://github.com/oral-health-and-disease-ontologies/ohd-ontology
   uri_format: http://purl.obolibrary.org/obo/OHD_$1
-  version: '2024-06-21'
+  version: '2025-06-28'
 ohmi:
   contact:
     email: yongqunh@med.umich.edu
@@ -43585,9 +44739,14 @@ ohmi:
     obofoundry: ohmi
     ols: ohmi
     ontobee: OHMI
+    wikidata.entity: Q113012673
   name: Ontology of Host-Microbiome Interactions
   pattern: ^\d{7}$
   preferred_prefix: OHMI
+  publications:
+  - doi: 10.1186/s13326-019-0217-1
+    title: 'OHMI: the ontology of host-microbiome interactions'
+    year: 2019
   rdf_uri_format: http://purl.obolibrary.org/obo/OHMI_$1
   repository: https://github.com/ohmi-ontology/ohmi
   uri_format: http://purl.obolibrary.org/obo/OHMI_$1
@@ -43620,6 +44779,7 @@ ohpi:
     obofoundry: ohpi
     ols: ohpi
     ontobee: OHPI
+    wikidata.entity: Q113012674
   name: Ontology of Host Pathogen Interactions
   pattern: ^\d+$
   preferred_prefix: OHPI
@@ -43635,11 +44795,20 @@ ohpi:
   uri_format: http://purl.obolibrary.org/obo/OHPI_$1
   version: '2019-09-30'
 oid:
+  contact:
+    email: info@daniel-marschall.de
+    github: danielmarschall
+    name: Daniel Marschall
+    orcid: 0009-0001-5055-9262
   contributor_extras:
   - email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  - email: info@daniel-marschall.de
+    github: danielmarschall
+    name: Daniel Marschall
+    orcid: 0009-0001-5055-9262
   description: OIDs provide a persistent identification of objects based on a hierarchical
     structure of Registration Authorities (RA), where each parent has an object identifier
     and allocates object identifiers to child nodes.
@@ -43663,15 +44832,23 @@ oid:
     description: OID w/ WWW
     homepage: http://www.oid-info.com
     name: OID w/ WWW
+    status:
+      contributor: 0000-0003-4423-4370
+      date: '2025-07-02'
+      value: gone
     uri_format: http://www.oid-info.com/get/$1
   - code: orange
     description: Mirror of OID site from Orange
     homepage: https://oid-rep.orange-labs.fr
     name: Mirror of OID site from Orange
+    status:
+      contributor: 0000-0003-4423-4370
+      date: '2025-07-02'
+      value: gone
     uri_format: https://oid-rep.orange-labs.fr/get/$1
   references:
   - https://en.wikipedia.org/wiki/Object_identifier
-  uri_format: http://oid-info.com/get/$1
+  uri_format: https://oid-base.com/get/$1
 olatdv:
   contact:
     email: frederic.bastian@unil.ch
@@ -43700,6 +44877,7 @@ olatdv:
     obofoundry: olatdv
     ols: olatdv
     ontobee: OlatDv
+    wikidata.entity: Q81661748
   name: Medaka Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: OlatDv
@@ -43961,6 +45139,7 @@ omim:
     prefixcommons: omim
     uniprot: DB-0062
     wikidata: P492
+    wikidata.entity: Q7187
   name: Online Mendelian Inheritance in Man
   pattern: ^\d+$
   preferred_prefix: omim
@@ -44045,7 +45224,11 @@ omim.ps:
     phenotypes across the genome.
   example: '214100'
   homepage: https://www.omim.org/phenotypicSeriesTitles/all
+  keywords:
+  - disease
+  - phenotype
   license: https://www.omim.org/help/agreement
+  logo: https://www.omim.org/static/omim/icons/OMIM_davinciman.001.png
   mappings:
     biolink: OMIM.PS
   name: OMIM Phenotypic Series
@@ -44108,6 +45291,7 @@ omit:
     obofoundry: omit
     ols: omit
     ontobee: OMIT
+    wikidata.entity: Q81661752
   name: Ontology for MicroRNA Target
   pattern: ^\d{7}$
   preferred_prefix: OMIT
@@ -44159,13 +45343,14 @@ omo:
     obofoundry: omo
     ols: omo
     ontobee: OMO
+    wikidata.entity: Q113012675
   name: OBO Metadata Ontology
   pattern: ^\d{7}$
   preferred_prefix: OMO
   rdf_uri_format: http://purl.obolibrary.org/obo/OMO_$1
   repository: https://github.com/information-artifact-ontology/ontology-metadata
   uri_format: http://purl.obolibrary.org/obo/OMO_$1
-  version: '2024-11-13'
+  version: '2025-06-18'
 omon:
   contributor:
     email: oga.t@northeastern.edu
@@ -44261,6 +45446,7 @@ omp:
     obofoundry: omp
     ols: omp
     ontobee: OMP
+    wikidata.entity: Q81661753
   name: Ontology of Microbial Phenotypes
   pattern: ^\d{7}$
   preferred_prefix: OMP
@@ -44312,6 +45498,7 @@ omrse:
     obofoundry: omrse
     ols: omrse
     ontobee: OMRSE
+    wikidata.entity: Q55118551
   name: Ontology for Modeling and Representation of Social Entities
   pattern: ^\d{8}$
   preferred_prefix: OMRSE
@@ -44324,7 +45511,7 @@ omrse:
   rdf_uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
   repository: https://github.com/mcwdsi/OMRSE
   uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
-  version: '2025-03-26'
+  version: '2025-06-30'
 omx.dataset:
   contributor:
     email: cthoyt@gmail.com
@@ -44399,6 +45586,7 @@ one:
     obofoundry: one
     ols: one
     ontobee: ONE
+    wikidata.entity: Q113014430
   name: Ontology for Nutritional Epidemiology
   pattern: ^\d{7}$
   preferred_prefix: ONE
@@ -44448,6 +45636,7 @@ ons:
     obofoundry: ons
     ols: ons
     ontobee: ONS
+    wikidata.entity: Q113014431
   name: Ontology for Nutritional Studies
   pattern: ^\d{7}$
   preferred_prefix: ONS
@@ -44537,6 +45726,7 @@ ontoavida:
     obofoundry: ontoavida
     ols: ontoavida
     ontobee: ONTOAVIDA
+    wikidata.entity: Q113014432
   name: Ontology for Avida digital evolution platform
   pattern: ^\d{8}$
   preferred_prefix: ONTOAVIDA
@@ -44573,6 +45763,7 @@ ontoneo:
     obofoundry: ontoneo
     ols: ontoneo
     ontobee: ONTONEO
+    wikidata.entity: Q113014434
   name: Obstetric and Neonatal Ontology
   pattern: ^\d{8}$
   preferred_prefix: ONTONEO
@@ -44633,6 +45824,7 @@ oostt:
     obofoundry: oostt
     ols: oostt
     ontobee: OOSTT
+    wikidata.entity: Q81661760
   name: Ontology of Organizational Structures of Trauma centers and Trauma systems
   pattern: ^\d{8}$
   preferred_prefix: OOSTT
@@ -44847,6 +46039,7 @@ opmi:
     obofoundry: opmi
     ols: opmi
     ontobee: OPMI
+    wikidata.entity: Q81661763
   name: Ontology of Precision Medicine and Investigation
   pattern: ^\d{7}$
   preferred_prefix: OPMI
@@ -44927,6 +46120,7 @@ orcid:
     miriam: orcid
     n2t: orcid
     wikidata: P496
+    wikidata.entity: Q51044
   mastodon: ORCID_Org@scicomm.xyz
   name: Open Researcher and Contributor
   pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
@@ -45061,6 +46255,7 @@ ornaseq:
     obofoundry: ornaseq
     ols: ornaseq
     ontobee: ORNASEQ
+    wikidata.entity: Q81661765
   name: Ontology of RNA Sequencing
   pattern: ^\d{7}$
   preferred_prefix: ORNASEQ
@@ -45098,6 +46293,7 @@ orphanet:
     prefixcommons: orphanet
     uniprot: DB-0068
     wikidata: P1550
+    wikidata.entity: Q929833
   name: Orphanet
   pattern: ^C?\d+$
   preferred_prefix: orphanet
@@ -45186,7 +46382,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.6'
+  version: '4.7'
 orth:
   contact:
     email: jfernand@um.es
@@ -45523,6 +46719,7 @@ otol:
   homepage: https://tree.opentreeoflife.org
   mappings:
     wikidata: P9157
+    wikidata.entity: Q22661281
   name: Open Tree of Life
   pattern: ^[1-9]\d*$
   preferred_prefix: otol
@@ -45558,6 +46755,7 @@ ovae:
     obofoundry: ovae
     ols: ovae
     ontobee: OVAE
+    wikidata.entity: Q55118555
   name: Ontology of Vaccine Adverse Events
   pattern: ^\d{7}$
   preferred_prefix: OVAE
@@ -45936,6 +47134,7 @@ pao:
   mappings:
     biocontext: PAO
     obofoundry: pao
+    wikidata.entity: Q114677904
   name: Plant Anatomy Ontology
   preferred_prefix: PAO
   rdf_uri_format: http://purl.obolibrary.org/obo/PAO_$1
@@ -46003,6 +47202,7 @@ pathbank:
   - systems biology
   - transcriptomics
   license: ODbL-1.0
+  logo: https://pathbank.org/assets/pathbank_banner-2f8ec31838b9f453482e0748c0da1b7ebbb77b0f2b1a6e60ff1222ca0984db07.png
   mappings:
     fairsharing: FAIRsharing.3xwMon
     togoid: Pathbank
@@ -46184,6 +47384,7 @@ pato:
     ols: pato
     ontobee: PATO
     prefixcommons: pato
+    wikidata.entity: Q81661522
   name: Phenotype And Trait Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -46428,6 +47629,7 @@ pcl:
     obofoundry: pcl
     ols: pcl
     ontobee: PCL
+    wikidata.entity: Q113014435
   name: Provisional Cell Ontology
   pattern: ^\d{7}$
   preferred_prefix: PCL
@@ -46441,7 +47643,7 @@ pcl:
   rdf_uri_format: http://purl.obolibrary.org/obo/PCL_$1
   repository: https://github.com/obophenotype/provisional_cell_ontology
   uri_format: http://purl.obolibrary.org/obo/PCL_$1
-  version: '2025-01-08'
+  version: '2025-07-07'
 pco:
   appears_in:
   - ecocore
@@ -46491,6 +47693,7 @@ pco:
     obofoundry: pco
     ols: pco
     ontobee: PCO
+    wikidata.entity: Q55118575
   name: Population and Community Ontology
   pattern: ^\d{7}$
   preferred_prefix: PCO
@@ -46615,6 +47818,16 @@ pdb:
     homepage: http://www.pdbj.org/
     name: Protein Data Bank Japan (PDBj)
     uri_format: https://pdbj.org/mine/summary/$1
+  - code: proteinsplus
+    description: Database of protein-ligand interactions.
+    homepage: https://proteins.plus/
+    name: ProteinsPlus
+    publications:
+    - doi: 10.1093/nar/gkaf377
+      pubmed: '40326518'
+      title: 'ProteinsPlus: a publicly available resource for protein structure mining'
+      year: 2025
+    uri_format: https://proteins.plus/$1
   - code: rcsb
     description: RCSB PDB
     homepage: https://www.rcsb.org/
@@ -46649,6 +47862,10 @@ pdb:
       year: 2013
     uri_format: https://opig.stats.ox.ac.uk/webapps/sabdab-sabpred/sabdab/structureviewer/?pdb=$1
   publications:
+  - doi: 10.1093/nar/gkaf377
+    pubmed: '40326518'
+    title: 'ProteinsPlus: a publicly available resource for protein structure mining'
+    year: 2025
   - doi: 10.1016/j.jmb.2025.169012
     pubmed: '40126909'
     title: 'RNAproDB: A Webserver and Interactive Database for Analyzing Protein-RNA
@@ -46907,6 +48124,7 @@ pdro:
     obofoundry: pdro
     ols: pdro
     ontobee: PDRO
+    wikidata.entity: Q81661774
   name: The Prescription of Drugs Ontology
   pattern: ^\d{7}$
   preferred_prefix: PDRO
@@ -46954,6 +48172,7 @@ pdumdv:
     obofoundry: pdumdv
     ols: pdumdv
     ontobee: PdumDv
+    wikidata.entity: Q81661775
   name: Platynereis Developmental Stages
   pattern: ^\d{7}$
   preferred_prefix: PdumDv
@@ -46996,6 +48215,7 @@ peco:
     obofoundry: peco
     ols: peco
     ontobee: PECO
+    wikidata.entity: Q81661777
   name: Plant Experimental Conditions Ontology
   pattern: ^\d{7}$
   preferred_prefix: PECO
@@ -47309,6 +48529,7 @@ pfam:
   - domain
   - protein
   license: CC0-1.0
+  logo: https://upload.wikimedia.org/wikipedia/commons/0/03/Pfam_logo.gif
   mappings:
     biocontext: PFAM
     edam: '1138'
@@ -47439,7 +48660,10 @@ pfam.clan:
   description: Higher order grouping of Pfam families
   example: CL0192
   homepage: https://pfam.xfam.org
+  keywords:
+  - protein family
   license: CC0-1.0
+  logo: https://upload.wikimedia.org/wikipedia/commons/0/03/Pfam_logo.gif
   mappings:
     edam: '2758'
   name: Pfam Clans
@@ -47488,6 +48712,7 @@ pgdso:
   mappings:
     biocontext: PGDSO
     obofoundry: pgdso
+    wikidata.entity: Q114677907
   name: Plant Growth and Development Stage
   preferred_prefix: PGDSO
   rdf_uri_format: http://purl.obolibrary.org/obo/PGDSO_$1
@@ -47671,6 +48896,7 @@ pharmgkb.disease:
   keywords:
   - pharmacogenomics
   license: CC-BY-SA-4.0
+  logo: https://rxgenomix.com/wp-content/uploads/2019/10/pharmgKB.png
   mappings:
     biocontext: PHARMGKB.DISEASE
     biolink: PHARMGKB.DISEASE
@@ -47723,6 +48949,7 @@ pharmgkb.drug:
   - drug
   - pharmacogenomics
   license: CC-BY-SA-4.0
+  logo: https://rxgenomix.com/wp-content/uploads/2019/10/pharmgKB.png
   mappings:
     biocontext: PHARMGKB.DRUG
     biolink: PHARMGKB.DRUG
@@ -47776,6 +49003,7 @@ pharmgkb.gene:
   - ontology
   - pharmacogenomics
   license: CC-BY-SA-4.0
+  logo: https://rxgenomix.com/wp-content/uploads/2019/10/pharmgKB.png
   mappings:
     biocontext: PHARMGKB.GENE
     biolink: PHARMGKB.GENE
@@ -47831,6 +49059,7 @@ pharmgkb.pathways:
   - pathway
   - pharmacogenomics
   license: CC-BY-SA-4.0
+  logo: https://rxgenomix.com/wp-content/uploads/2019/10/pharmgKB.png
   mappings:
     biocontext: PHARMGKB.PATHWAYS
     biolink: PHARMGKB.PATHWAYS
@@ -47875,7 +49104,12 @@ pharmgkb.variant:
   example: PA166156302
   github_request_issue: 1368
   homepage: https://www.pharmgkb.org
+  keywords:
+  - genetic variant
+  - genetic variation
+  - snp
   license: CC-BY-SA-4.0
+  logo: https://rxgenomix.com/wp-content/uploads/2019/10/pharmgKB.png
   mappings:
     biolink: PHARMGKB.VARIANT
   name: PharmGKB Variant
@@ -48019,6 +49253,7 @@ phipo:
     obofoundry: phipo
     ols: phipo
     ontobee: PHIPO
+    wikidata.entity: Q81661779
   name: Pathogen Host Interaction Phenotype Ontology
   pattern: ^\d{7}$
   preferred_prefix: PHIPO
@@ -48305,6 +49540,7 @@ pid.pathway:
   - pathway
   - protein
   - small molecule
+  logo: https://home.ndexbio.org/img/pid-logo-ndex.jpg
   mappings:
     biocontext: PID.PATHWAY
     edam: '2344'
@@ -48557,6 +49793,7 @@ plana:
     obofoundry: plana
     ols: plana
     ontobee: PLANA
+    wikidata.entity: Q81661781
   name: Planarian Anatomy and Schmidtea mediterranean Developmental Stage Ontology
   pattern: ^\d{7}$
   preferred_prefix: PLANA
@@ -48598,6 +49835,7 @@ planp:
     obofoundry: planp
     ols: planp
     ontobee: PLANP
+    wikidata.entity: Q81661782
   name: Planarian Phenotype Ontology
   pattern: ^\d+$
   preferred_prefix: PLANP
@@ -48605,6 +49843,21 @@ planp:
   repository: https://github.com/obophenotype/planarian-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/PLANP_$1
   version: '2020-03-28'
+plant_reactome:
+  description: PLANT REACTOME is an open-source, open access, manually curated and
+    peer-reviewed pathway database. Pathway annotations are authored by expert biologists,
+    in collaboration with the Reactome editorial staff and cross-referenced to many
+    bioinformatics databases. These include project databases like Gramene, Ensembl,
+    UniProt, ChEBI small molecule databases, PubMed, and Gene Ontology.
+  example: R-ACH-1120024
+  homepage: https://www.gramene.org
+  mappings:
+    miriam: plant_reactome
+    pathguide: '587'
+  name: Plant Reactome
+  pattern: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
+  preferred_prefix: plant_reactome
+  uri_format: https://plantreactome.gramene.org/content/detail/$1
 planttfdb:
   contact:
     email: gaog@mail.cbi.pku.edu.cn
@@ -48734,6 +49987,7 @@ plo:
   mappings:
     biocontext: PLO
     obofoundry: plo
+    wikidata.entity: Q114677908
   name: Plasmodium Life Cycle
   preferred_prefix: PLO
   rdf_uri_format: http://purl.obolibrary.org/obo/PLO_$1
@@ -48882,6 +50136,7 @@ pmc:
     prefixcommons: pmc
     togoid: Pmc
     wikidata: P932
+    wikidata.entity: Q11801904
   name: PubMed Central
   pattern: ^PMC\d+(\.\d+)?$
   preferred_prefix: pmc
@@ -49116,6 +50371,7 @@ po:
     ols: po
     ontobee: PO
     prefixcommons: po
+    wikidata.entity: Q7201529
   name: Plant Ontology
   namespace_in_lui: true
   pattern: ^\d+$
@@ -49389,6 +50645,7 @@ poro:
     obofoundry: poro
     ols: poro
     ontobee: PORO
+    wikidata.entity: Q55118578
   name: Porifera Ontology
   pattern: ^\d{7}$
   preferred_prefix: PORO
@@ -49465,6 +50722,7 @@ ppo:
     obofoundry: ppo
     ols: ppo
     ontobee: PPO
+    wikidata.entity: Q65057180
   name: Plant Phenology Ontology
   pattern: ^\d{7}$
   preferred_prefix: PPO
@@ -49589,6 +50847,7 @@ pr:
     prefixcommons: pr
     uniprot: DB-0181
     wikidata: P4926
+    wikidata.entity: Q55118584
   name: Protein Ontology
   namespace_in_lui: true
   pattern: ^(?:\d{9}|[OPQ][0-9][A-Z0-9]{3}[0-9](?:-\d+)?|[A-NR-Z][0-9](?:[A-Z][A-Z0-9]{2}[0-9]){1,2}(?:-\d+)?)$
@@ -49892,7 +51151,7 @@ probonto:
     relationships and reparameterisation formulae.  It can be used for annotation
     of models, facilitating the encoding of distribution-based models, related functions
     and quantities.
-  download_rdf: file:///nfs/production/parkinso/spot/ols4/prod/local_ontologies/probonto.ttl
+  download_rdf: file:///mnt/nfs/local_ontologies/probonto.ttl
   example: c0000005
   example_extras:
   - k0001285
@@ -49949,6 +51208,7 @@ proco:
     obofoundry: proco
     ols: proco
     ontobee: PROCO
+    wikidata.entity: Q113014436
   name: Process Chemistry Ontology
   pattern: ^\d{7}$
   preferred_prefix: PROCO
@@ -50040,6 +51300,7 @@ propreo:
     bioportal: PROPREO
     obofoundry: propreo
     prefixcommons: propreo
+    wikidata.entity: Q114677909
   name: Proteomics data and process provenance
   preferred_prefix: PROPREO
   providers:
@@ -50418,6 +51679,7 @@ psdo:
     obofoundry: psdo
     ols: psdo
     ontobee: PSDO
+    wikidata.entity: Q81661788
   name: Performance Summary Display Ontology
   pattern: ^\d{7}$
   preferred_prefix: PSDO
@@ -50447,6 +51709,7 @@ pseudogene:
     bioportal: pseudo
     integbio: nbdc00178
     prefixcommons: pseudogene
+    wikidata.entity: Q7254809
   name: PseudoGene
   preferred_prefix: pseudogene
   providers:
@@ -50526,6 +51789,7 @@ pso:
     obofoundry: pso
     ols: pso
     ontobee: PSO
+    wikidata.entity: Q113014437
   name: Plant Stress Ontology
   pattern: ^\d{7}$
   preferred_prefix: PSO
@@ -50618,6 +51882,7 @@ pubchem.bioassay:
   homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=pcassay
   keywords:
   - small molecule
+  logo: https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png
   mappings:
     biocontext: PUBCHEM.BIOASSAY
     edam: '2638'
@@ -50664,6 +51929,7 @@ pubchem.cell:
   - bioactivities
   - cell lines
   - chemistry
+  logo: https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png
   name: PubChem Cell Line
   part_of: pubchem
   pattern: ^\d+$
@@ -50685,6 +51951,7 @@ pubchem.classification:
   homepage: https://pubchem.ncbi.nlm.nih.gov/classification/
   keywords:
   - chemistry
+  logo: https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png
   name: PubChem Classification
   part_of: pubchem
   pattern: ^\d+$
@@ -50708,6 +51975,7 @@ pubchem.compound:
   - metabolite
   - structure
   - virology
+  logo: https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png
   mappings:
     biocontext: PUBCHEM.COMPOUND
     biolink: CID
@@ -50809,6 +52077,7 @@ pubchem.element:
   homepage: https://pubchem.ncbi.nlm.nih.gov/periodic-table
   keywords:
   - chemistry
+  logo: https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png
   name: PubChem Element
   part_of: pubchem
   pattern: ^\d+$
@@ -50825,6 +52094,7 @@ pubchem.substance:
   - protein
   - small molecule
   - structure
+  logo: https://pubchem.ncbi.nlm.nih.gov/pcfe/logo/PubChem_logo_splash.png
   mappings:
     biocontext: PUBCHEM.SUBSTANCE
     cheminf: '000141'
@@ -50914,6 +52184,7 @@ pubmed:
     prefixcommons: pubmed
     togoid: Pubmed
     wikidata: P698
+    wikidata.entity: Q2082879
   name: PubMed
   pattern: ^\d+$
   preferred_prefix: pubmed
@@ -51045,6 +52316,7 @@ pw:
     ontobee: PW
     prefixcommons: pw
     wikidata: P7333
+    wikidata.entity: Q28864280
   name: Pathway ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -51340,11 +52612,19 @@ raid:
     share information about them.
   example: 10.26259/0e59e9a5
   homepage: https://ardc.edu.au/
+  keywords:
+  - centrally registered identifier
+  - fair
+  - knowledge representation
+  - resource metadata
+  - subject agnostic
   mappings:
+    fairsharing: FAIRsharing.dc702a
     miriam: raid
   name: Research Activity Identifier
   pattern: ^102?\.\d+\/.+$
   preferred_prefix: raid
+  repository: https://github.com/ResearchDataServices
   uri_format: https://raid.org/$1
 rapdb.locus:
   description: Rice Annotation Project Database (RAP-DB) is a primary rice (Oryza
@@ -51496,13 +52776,14 @@ rbo:
     obofoundry: rbo
     ols: rbo
     ontobee: RBO
+    wikidata.entity: Q113014438
   name: Radiation Biology Ontology
   pattern: ^\d{6,8}$
   preferred_prefix: RBO
   rdf_uri_format: http://purl.obolibrary.org/obo/RBO_$1
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
-  version: '2025-05-30'
+  version: '2025-07-10'
 rcb:
   contact:
     email: atsushi.yoshiki@riken.jp
@@ -51884,7 +53165,10 @@ rec:
   homepage: https://web.archive.org/web/20250105164652/https://smiy.sourceforge.net/rec/spec/recommendationontology.html
   keywords:
   - ontology
+  - rec
   license: CC-BY-3.0
+  mappings:
+    lov: rec
   name: Recommendation Ontology
   preferred_prefix: rec
   rdf_uri_format: http://purl.org/ontology/rec/core#$1
@@ -52179,6 +53463,7 @@ resid:
     n2t: resid
     obofoundry: resid
     prefixcommons: resid
+    wikidata.entity: Q114677910
   name: Protein covalent bond
   pattern: ^AA\d{4}$
   preferred_prefix: RESID
@@ -52694,6 +53979,7 @@ rhea:
     prefixcommons: rhea
     re3data: r3d100010891
     togoid: Rhea
+    wikidata.entity: Q24265951
   name: Rhea, the Annotated Reactions Database
   pattern: ^\d{5}$
   preferred_prefix: rhea
@@ -53260,6 +54546,7 @@ ro:
     ontobee: RO
     prefixcommons: ro
     wikidata: P3590
+    wikidata.entity: Q28729320
   name: Relation Ontology
   namespace_in_lui: true
   pattern: ^(HOM)?\d{7}$
@@ -53298,7 +54585,7 @@ ro:
   - obo_rel
   - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
-  version: '2025-03-05'
+  version: '2025-06-24'
 roleo:
   banana: RoleO
   banana_peel: _
@@ -53360,11 +54647,13 @@ ror:
   - data management
   - ontology
   license: CC0-1.0
+  logo: https://ror.org/img/ror-logo.svg
   mappings:
     bartoc: '20474'
     fairsharing: FAIRsharing.1jKfji
     miriam: ror
     n2t: ror
+    wikidata.entity: Q110235640
   mastodon: ResearchOrgs@mastodon.social
   name: Research Organization Registry
   pattern: ^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
@@ -53605,6 +54894,7 @@ rs:
     ols: rs
     ontobee: RS
     prefixcommons: rs
+    wikidata.entity: Q81661797
   name: Rat Strain Ontology
   pattern: ^\d{7}$
   preferred_prefix: RS
@@ -53634,7 +54924,7 @@ rs:
   repository: https://github.com/rat-genome-database/RS-Rat-Strain-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
-  version: '6.250'
+  version: '6.252'
 rtecs:
   contact:
     email: vep1@cdc.gov
@@ -53981,6 +55271,37 @@ sael:
     title: 'The SOFG Anatomy Entry List (SAEL): an annotation tool for functional
       genomics data'
     year: 2004
+sage.socialsciencethesaurus:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The SAGE Social Science Thesaurus is a multidisciplinary vocabulary
+    of the most important concepts in the social sciences. SAGE uses this vocabulary
+    as its principal keyword vocabulary for automated tagging of content on SAGE Knowledge
+    and SAGE Research Methods. You are welcome to browse, download, use and transform
+    the vocabulary for any non-commercial purpose.
+
+
+    The majority of concepts in the thesaurus have been mined from headwords in SAGE
+    encyclopedias and other reference works. Relationships between concepts have been
+    inferred from implicit structures in those works, for example subject indexes
+    and readers'' guides. As such, the thesaurus is a structured representation of
+    what the editors of those reference works consider to be the most important concepts
+    in the social sciences.
+
+
+    Additional scraping work has extracted and structured concept-specific metadata,
+    such as dates (for events and people) and definitions. In addition to broader-narrower
+    relationships, concepts are grouped by type: concepts, people, organizations,
+    events, methods, theories or laws.'
+  example: -LHR8P7WS-K
+  homepage: https://loterre.istex.fr/N9J/en/
+  license: CC BY-NC-SA 4.0
+  name: SAGE Social Science Thesaurus
+  preferred_prefix: sage.socialsciencethesaurus
+  uri_format: http://data.loterre.fr/ark:/67375/N9J$1
 salk:
   appears_in:
   - efo
@@ -54042,6 +55363,7 @@ sao:
     bioportal: SAO
     obofoundry: sao
     prefixcommons: sao
+    wikidata.entity: Q114677911
   name: Subcellular Anatomy Ontology
   pattern: ^\d+$
   preferred_prefix: SAO
@@ -54158,6 +55480,7 @@ sbo:
     ols: sbo
     ontobee: SBO
     prefixcommons: sbo
+    wikidata.entity: Q2377160
   name: Systems Biology Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -54283,6 +55606,7 @@ scdo:
     obofoundry: scdo
     ols: scdo
     ontobee: SCDO
+    wikidata.entity: Q108710019
   name: Sickle Cell Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: SCDO
@@ -55146,6 +56470,7 @@ sep:
     obofoundry: sep
     ontobee: SEP
     prefixcommons: sep
+    wikidata.entity: Q114677913
   name: Sample processing and separation techniques
   pattern: ^\d{5,6}$
   preferred_prefix: SEP
@@ -55184,6 +56509,7 @@ sepio:
     obofoundry: sepio
     ols: sepio
     ontobee: SEPIO
+    wikidata.entity: Q55118599
   name: Scientific Evidence and Provenance Information Ontology
   pattern: ^\d{7}$
   preferred_prefix: SEPIO
@@ -55690,6 +57016,8 @@ sharkipedia.species:
   example: '983'
   github_request_issue: 607
   homepage: https://www.sharkipedia.org/
+  mappings:
+    wikidata.entity: Q113989515
   name: Sharkipedia Species
   part_of: sharkipedia
   pattern: ^\d+$
@@ -55725,6 +57053,8 @@ sharkipedia.trait:
   example: '13'
   github_request_issue: 607
   homepage: https://www.sharkipedia.org/
+  mappings:
+    wikidata.entity: Q113989515
   name: Sharkipedia Trait
   part_of: sharkipedia
   pattern: ^\d+$
@@ -55760,6 +57090,8 @@ sharkipedia.trend:
   example: '3447'
   github_request_issue: 607
   homepage: https://www.sharkipedia.org/
+  mappings:
+    wikidata.entity: Q113989515
   name: Sharkipedia Trend
   part_of: sharkipedia
   pattern: ^\d+$
@@ -55892,6 +57224,7 @@ sibo:
     obofoundry: sibo
     ols: sibo
     ontobee: SIBO
+    wikidata.entity: Q114677952
   name: Social Insect Behavior Ontology
   pattern: ^\d{7}$
   preferred_prefix: SIBO
@@ -56010,6 +57343,7 @@ signor:
   keywords:
   - biology
   license: CC-BY-NC-4.0
+  logo: https://signor.uniroma2.it/img/signor_logo_noWhite.png
   mappings:
     fairsharing: FAIRsharing.ss78t4
     miriam: signor
@@ -56048,6 +57382,7 @@ signor.relation:
   homepage: https://signor.uniroma2.it
   keywords:
   - protein-protein interactions
+  logo: https://signor.uniroma2.it/img/signor_logo_noWhite.png
   name: SIGNOR Relation
   part_of: signor
   pattern: ^SIGNOR-\d+$
@@ -56415,13 +57750,14 @@ slm:
     tissue localization. Information is curated from peer-reviewed literature and
     referenced using established ontologies, and provided with full provenance and
     evidence codes for curated assertions.
-  download_rdf: file:///nfs/production/parkinso/spot/ols4/prod/local_ontologies/swisslipids.ttl
+  download_rdf: file:///mnt/nfs/local_ontologies/swisslipids.ttl
   example: '000000341'
   homepage: http://www.swisslipids.org/#/
   keywords:
   - life science
   - metabolomics
   license: CC-BY-4.0
+  logo: https://www.swisslipids.org/images/SL_title_swiss.png
   mappings:
     biocontext: SWISSLIPID
     fairsharing: FAIRsharing.pxr7x2
@@ -56685,6 +58021,7 @@ smiles:
   mappings:
     fairsharing: FAIRsharing.qv4b3c
     wikidata: P233
+    wikidata.entity: Q466769
   name: Simplified molecular-input line-entry system
   pattern: ^[A-Za-z0-9+\-\*=#$:().>/\\\[\]%]+$
   preferred_prefix: smiles
@@ -57109,6 +58446,7 @@ so:
     ols: so
     ontobee: SO
     prefixcommons: so
+    wikidata.entity: Q81661803
   name: Sequence types and features ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -57293,12 +58631,12 @@ sparcdrs:
     and retrieve data objects from various data repositories in a consistent and cloud-agnostic
     way. This implementation provides information for data objects in the SPARC repository
     (sparc.science).
-  example: 8ca67504-3167-4cc8-ba74-98137bb7cd0a
+  example: package/8ca67504-3167-4cc8-ba74-98137bb7cd0a
   homepage: https://www.fdilab.org
   mappings:
     miriam: sparc.drs
   name: SPARC DRS
-  pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
+  pattern: ^(?:[a-zA-Z]+\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
   preferred_prefix: sparcdrs
   uri_format: https://services.scicrunch.io/sparc/drs/v1/package/$1
 spbase:
@@ -57366,6 +58704,7 @@ spd:
     ontobee: SPD
     prefixcommons: spdo
     wikidata: P4537
+    wikidata.entity: Q42404539
   name: Spider Ontology
   pattern: ^\d{7}$
   preferred_prefix: SPD
@@ -57399,6 +58738,9 @@ spdx:
   example_extras:
   - GPL-1.0+
   homepage: https://spdx.org/licenses
+  keywords:
+  - license
+  logo: https://spdx.dev/wp-content/uploads/sites/31/2023/08/logo-color.svg
   mappings:
     miriam: spdx
     n2t: spdx
@@ -57425,6 +58767,7 @@ spdx.term:
   example: annotation
   github_request_issue: 1598
   homepage: https://spdx.org/rdf/terms/
+  logo: https://spdx.dev/wp-content/uploads/sites/31/2023/08/logo-color.svg
   name: Software Package Data Exchange RDF Vocabulary
   preferred_prefix: spdx.term
   rdf_uri_format: http://spdx.org/rdf/terms#$1
@@ -57960,6 +59303,7 @@ stato:
     obofoundry: stato
     ols: stato
     ontobee: STATO
+    wikidata.entity: Q83428681
   name: The Statistical Methods Ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -58290,6 +59634,7 @@ sty:
   homepage: https://lhncbc.nlm.nih.gov/semanticnetwork/
   keywords:
   - ontology
+  logo: https://www.nlm.nih.gov/research/umls/knowledge_sources/semantic_network/semantic-network.png
   mappings:
     aberowl: STY
     agroportal: STY
@@ -58469,7 +59814,11 @@ sulo:
   example: Capability
   github_request_issue: 1446
   homepage: https://aidava-dev.github.io/sulo/
+  keywords:
+  - health
   license: CC0-1.0
+  mappings:
+    lov: sulo
   name: Simplified Upper Level Ontology
   preferred_prefix: sulo
   rdf_uri_format: https://w3id.org/sulo/$1
@@ -58673,6 +60022,7 @@ swo:
   - algorithm
   - bioinformatics
   - computer science
+  - license
   - obo
   - ontology
   license: CC-BY-4.0
@@ -58685,6 +60035,7 @@ swo:
     ols: swo
     ontobee: SWO
     prefixcommons: swo
+    wikidata.entity: Q113014439
   name: Software ontology
   pattern: ^\d{7}$
   preferred_prefix: SWO
@@ -58785,6 +60136,7 @@ symp:
     ontobee: SYMP
     prefixcommons: symptom
     wikidata: P8656
+    wikidata.entity: Q81661810
   name: Symptom Ontology
   pattern: ^\d{7}$
   preferred_prefix: SYMP
@@ -58835,6 +60187,7 @@ synapse:
     integbio: nbdc02162
     miriam: synapse
     re3data: r3d100011894
+    wikidata.entity: Q56328412
   name: Synapse Data Repository
   pattern: ^[0-9]*\.*[0-9]*$
   preferred_prefix: synapse
@@ -59122,6 +60475,7 @@ tahe:
   mappings:
     biocontext: TAHE
     obofoundry: tahe
+    wikidata.entity: Q114677914
   name: Terminology of Anatomy of Human Embryology
   preferred_prefix: TAHE
   rdf_uri_format: http://purl.obolibrary.org/obo/TAHE_$1
@@ -59137,6 +60491,7 @@ tahh:
   mappings:
     biocontext: TAHH
     obofoundry: tahh
+    wikidata.entity: Q114677915
   name: Terminology of Anatomy of Human Histology
   preferred_prefix: TAHH
   rdf_uri_format: http://purl.obolibrary.org/obo/TAHH_$1
@@ -59400,6 +60755,7 @@ taxrank:
     ols: taxrank
     ontobee: TAXRANK
     prefixcommons: taxrank
+    wikidata.entity: Q81661813
   name: Taxonomic rank vocabulary
   pattern: ^\d{7}$
   preferred_prefix: TAXRANK
@@ -59751,6 +61107,7 @@ tgn:
   homepage: https://www.getty.edu/research/tools/vocabularies/tgn/
   mappings:
     bartoc: '109'
+    wikidata.entity: Q1520117
   name: Getty Thesaurus of Geographic Names
   pattern: ^\d+$
   preferred_prefix: tgn
@@ -59964,6 +61321,7 @@ to:
     ols: to
     ontobee: TO
     prefixcommons: pto
+    wikidata.entity: Q81661818
   name: Plant Trait Ontology
   pattern: ^\d{7}$
   preferred_prefix: TO
@@ -60067,6 +61425,7 @@ tol:
     miriam: tol
     n2t: tol
     wikidata: P5221
+    wikidata.entity: Q2300489
   name: Tree of Life Web Project
   pattern: ^\d+$
   preferred_prefix: tol
@@ -60193,6 +61552,7 @@ trans:
     ols: trans
     ontobee: TRANS
     prefixcommons: pt
+    wikidata.entity: Q15304508
   name: Pathogen Transmission Ontology
   pattern: ^\d{7}$
   preferred_prefix: TRANS
@@ -60386,6 +61746,40 @@ treefam:
     title: 'TreeFam v9: a new website, more species and orthology-on-the-fly'
     year: 2013
   uri_format: http://www.treefam.org/family/$1
+treehub:
+  contact:
+    email: wuhui@ibcas.ac.cn
+    name: Hui Wu
+    orcid: 0000-0003-2430-9689
+  contributor:
+    email: maaya.m466@gmail.com
+    github: maayamanoj466
+    name: Maaya Manoj
+    orcid: 0009-0000-6974-6386
+  description: TreeHub is a taxonomical database for trees. TreeHub contains extracted
+    phylogenetic data and integrates relevant species information for each identifier.
+  example: T00232742
+  github_request_issue: 1619
+  homepage: https://www.plantplus.cn/treehub
+  keywords:
+  - dendrology
+  - taxonomy
+  - tree
+  name: TreeHub
+  pattern: ^T\d{8}$
+  preferred_prefix: treehub
+  publications:
+  - doi: 10.1038/s41597-025-05282-4
+    pmc: PMC12130454
+    pubmed: '40456766'
+    title: 'TreeHub: a comprehensive dataset of phylogenetic trees'
+    year: 2025
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://www.plantplus.cn/treehub/tree/$1
 tricdb:
   description: Tri©DB is a newly developed integrated platform functioning as a knowledge
     base and reporting system for cancer precision medicine. This platform harmonizes
@@ -60607,6 +62001,7 @@ tto:
     ols: tto
     ontobee: TTO
     prefixcommons: tto
+    wikidata.entity: Q81661821
   name: Teleost taxonomy ontology
   pattern: ^\d+$
   preferred_prefix: TTO
@@ -60662,6 +62057,7 @@ txpo:
     obofoundry: txpo
     ols: txpo
     ontobee: TXPO
+    wikidata.entity: Q113014440
   name: Toxic Process Ontology
   pattern: ^\d{7}$
   preferred_prefix: TXPO
@@ -60756,6 +62152,7 @@ uberon:
     ontobee: UBERON
     togoid: Uberon
     wikidata: P1554
+    wikidata.entity: Q7876491
   name: Uber Anatomy Ontology
   namespace_in_lui: true
   pattern: ^\d+$
@@ -60931,6 +62328,7 @@ ucum:
     fairsharing: FAIRsharing.27w8k0
     hl7: 2.16.840.1.113883.6.8
     lov: ucum
+    wikidata.entity: Q2494286
   name: Unified Code for Units of Measure
   preferred_prefix: ucum
   publications:
@@ -61041,6 +62439,7 @@ umbbd.reaction:
     go: UM-BBD_reactionID
     miriam: umbbd.reaction
     n2t: umbbd.reaction
+    wikidata.entity: Q24188985
   name: EAWAG Biocatalysis/Biodegradation Database
   part_of: umbbd
   pattern: ^r\d+$
@@ -61095,6 +62494,8 @@ umls:
     be linked to external resources such as GenBank.
   example: C2584994
   homepage: https://www.nlm.nih.gov/research/umls
+  keywords:
+  - biomedicine
   license: https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/license_agreement.html
   logo: https://uts.nlm.nih.gov/uts/assets/images/umls_tree_sm.jpg
   mappings:
@@ -61105,6 +62506,7 @@ umls:
     miriam: umls
     n2t: umls
     wikidata: P2892
+    wikidata.entity: Q455338
   name: Unified Medical Language System Concept Unique Identifier
   pattern: ^C\d+$
   preferred_prefix: umls
@@ -61132,6 +62534,32 @@ umls.aui:
   preferred_prefix: umls.aui
   synonyms:
   - UMLS_ICD9CM_2005_AUI
+unesco.thesaurus:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The UNESCO Thesaurus is a controlled and structured list of terms used
+    in subject analysis and retrieval of documents and publications in the fields
+    of education, culture, natural sciences, social and human sciences, communication
+    and information. Continuously enriched and updated, its multidisciplinary terminology
+    reflects the evolution of UNESCO's programmes and activities. [from homepage]
+  example: '585'
+  homepage: http://vocabularies.unesco.org/thesaurus
+  keywords:
+  - communication science
+  - culture
+  - education science
+  - political science
+  - subject agnostic
+  license: CC-BY-3.0-IGO
+  mappings:
+    fairsharing: FAIRsharing.81dc5f
+  name: UNESCO Thesaurus
+  pattern: ^\d+$
+  preferred_prefix: unesco.thesaurus
+  uri_format: http://vocabularies.unesco.org/thesaurus/concept$1
 unicarbdb:
   contact:
     email: niclas.karlsson@medkem.gu.se
@@ -61253,6 +62681,7 @@ unimod:
   keywords:
   - bioinformatics
   - ontology
+  logo: https://www.unimod.org/images/logo.gif
   mappings:
     biocontext: UNIMOD
     edam: '3757'
@@ -61484,6 +62913,16 @@ uniprot:
     homepage: https://pharos.nih.gov/idg
     name: Pharos
     uri_format: https://pharos.nih.gov/idg/targets/$1
+  - code: proteinsplus
+    description: Database of protein-ligand interactions.
+    homepage: https://proteins.plus/
+    name: ProteinsPlus
+    publications:
+    - doi: 10.1093/nar/gkaf377
+      pubmed: '40326518'
+      title: 'ProteinsPlus: a publicly available resource for protein structure mining'
+      year: 2025
+    uri_format: https://proteins.plus/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -61492,6 +62931,10 @@ uniprot:
     name: Scholia
     uri_format: https://scholia.toolforge.org/uniprot/$1
   publications:
+  - doi: 10.1093/nar/gkaf377
+    pubmed: '40326518'
+    title: 'ProteinsPlus: a publicly available resource for protein structure mining'
+    year: 2025
   - doi: 10.1007/978-1-0716-4196-5_10
     pubmed: '39576581'
     title: DescribePROT Database of Residue-Level Protein Structure and Function Annotations
@@ -61588,7 +63031,7 @@ uniprot.core:
   name: Uniprot Core Ontology
   preferred_prefix: uniprot.core
   uri_format: http://purl.uniprot.org/core/$1
-  version: '2025_02'
+  version: '2025_03'
 uniprot.disease:
   contributor:
     email: cthoyt@gmail.com
@@ -61810,6 +63253,7 @@ uniprot.ptm:
   - post-translational modification
   - structural biology
   license: CC-BY-4.0
+  logo: https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png
   name: UniProt Post-Translational Modification
   part_of: uniprot
   pattern: ^PTM-\d{4}$
@@ -61831,6 +63275,7 @@ uniprot.resource:
     databases and genomics and proteomics resources.
   example: DB-0174
   homepage: https://www.uniprot.org/database/
+  logo: https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png
   name: UniProt Resource
   part_of: uniprot
   pattern: ^DB-\d{4}$
@@ -61866,6 +63311,7 @@ uniprot.var:
     across orthologous species.'
   example: 068078
   homepage: https://web.expasy.org/variant_pages
+  logo: https://www.uniprot.org/og-uniprot-wide-logo-1200x630.png
   name: UniProt Variants
   part_of: uniprot
   pattern: ^\d+$
@@ -62061,6 +63507,7 @@ uo:
     ols: uo
     ontobee: UO
     prefixcommons: uo
+    wikidata.entity: Q81661826
   name: Units of measurement ontology
   namespace_in_lui: true
   pattern: ^\d{7}$
@@ -62116,6 +63563,7 @@ upa:
     ontobee: UPA
     pathguide: '414'
     prefixcommons: unipathway
+    wikidata.entity: Q85719315
   name: Unipathway
   pattern: ^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\d{5}$
   preferred_prefix: UPA
@@ -62173,6 +63621,7 @@ upheno:
     obofoundry: upheno
     ols: upheno
     ontobee: UPHENO
+    wikidata.entity: Q81661827
   name: Unified Phenotype Ontology
   no_own_terms: true
   preferred_prefix: UPHENO
@@ -62188,7 +63637,7 @@ upheno:
   rdf_uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
   repository: https://github.com/obophenotype/upheno
   uri_format: http://purl.obolibrary.org/obo/UPHENO_$1
-  version: '2025-01-11'
+  version: '2025-07-11'
 urdbms.syndromefinder:
   appears_in:
   - nando
@@ -62462,6 +63911,7 @@ vario:
     obofoundry: vario
     ols: vario
     ontobee: VariO
+    wikidata.entity: Q114677953
   name: Variation Ontology
   namespace_in_lui: true
   pattern: ^\d+$
@@ -62561,6 +64011,7 @@ vbo:
     obofoundry: vbo
     ols: vbo
     ontobee: VBO
+    wikidata.entity: Q114296193
   name: Vertebrate Breed Ontology
   pattern: ^\d{7}$
   preferred_prefix: VBO
@@ -62981,6 +64432,7 @@ viaf:
     miriam: viaf
     n2t: viaf
     wikidata: P214
+    wikidata.entity: Q19832964
   name: VIAF ID
   pattern: ^\d+$
   preferred_prefix: viaf
@@ -63188,6 +64640,7 @@ viralzone:
     n2t: viralzone
     prefixcommons: vz
     re3data: r3d100013314
+    wikidata.entity: Q15674507
   name: ViralZone
   pattern: ^\d+$
   preferred_prefix: viralzone
@@ -63526,6 +64979,7 @@ vo:
     ontobee: VO
     prefixcommons: vo
     wikidata: P1928
+    wikidata.entity: Q55118646
   name: Vaccine Ontology
   pattern: ^\d{7}$
   preferred_prefix: VO
@@ -63575,7 +65029,7 @@ vo:
   rdf_uri_format: http://purl.obolibrary.org/obo/VO_$1
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: '2025-05-24'
+  version: '2025-07-06'
 voc4cat:
   comment: The most current version of a concept can be accessed so * https://w3id.org/nfdi4cat/voc4cat_0000123
     other/older versions from releases like so * https://w3id.org/nfdi4cat/voc4cat/v2023-08-17/voc4cat_0000123.
@@ -63657,6 +65111,7 @@ vsao:
     obofoundry: vsao
     ols: vsao
     prefixcommons: vao
+    wikidata.entity: Q114677916
   name: Vertebrate Skeletal Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: VSAO
@@ -63749,6 +65204,7 @@ vso:
   - owl
   mappings:
     aberowl: VSO
+    bartoc: '18355'
     bioportal: VSO
     fairsharing: FAIRsharing.jjb2p2
     prefixcommons: vso
@@ -63804,6 +65260,7 @@ vt:
     ols: vt
     ontobee: VT
     prefixcommons: vt
+    wikidata.entity: Q81661831
   name: Vertebrate trait ontology
   pattern: ^\d{7}$
   preferred_prefix: VT
@@ -63827,7 +65284,7 @@ vt:
   rdf_uri_format: http://purl.obolibrary.org/obo/VT_$1
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
-  version: '2025-06-16'
+  version: '2025-07-15'
 vto:
   contact:
     email: balhoff@renci.org
@@ -63853,6 +65310,7 @@ vto:
     obofoundry: vto
     ols: vto
     ontobee: VTO
+    wikidata.entity: Q81661832
   name: Vertebrate Taxonomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: VTO
@@ -63931,6 +65389,7 @@ wbbt:
     ols: wbbt
     ontobee: WBbt
     prefixcommons: wbbt
+    wikidata.entity: Q81661834
   name: C. elegans Gross Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: WBbt
@@ -63988,6 +65447,7 @@ wbls:
     ols: wbls
     ontobee: WBls
     prefixcommons: wbls
+    wikidata.entity: Q81661837
   name: C. elegans development ontology
   pattern: ^\d{7}$
   preferred_prefix: WBls
@@ -64045,6 +65505,7 @@ wbphenotype:
     ols: wbphenotype
     ontobee: WBPhenotype
     prefixcommons: wbphenotype
+    wikidata.entity: Q81660503
   name: C. elegans phenotype
   pattern: ^\d{7}$
   preferred_prefix: WBPhenotype
@@ -64099,6 +65560,11 @@ wdrs:
     semantics. [from homepage]
   example: structure
   homepage: https://www.w3.org/2007/05/powder-s
+  keywords:
+  - api
+  mappings:
+    lov: wdrs
+    zazuko: wdrs
   name: 'Protocol for Web Description Resources (POWDER): POWDER-S Vocabulary'
   preferred_prefix: wdrs
   uri_format: http://www.w3.org/2007/05/powder-s#$1
@@ -64176,6 +65642,7 @@ wikidata:
     fairsharing: FAIRsharing.6s749p
     miriam: wikidata
     n2t: wikidata
+    wikidata.entity: Q2013
   name: Wikidata
   pattern: ^(Q|P|E|L)\d+$
   preferred_prefix: wikidata
@@ -64190,11 +65657,35 @@ wikidata:
   - doi: 10.1145/2187980.2188242
     title: Wikidata
     year: 2012
+  rdf_uri_format: http://www.wikidata.org/entity/$1
   synonyms:
   - WD_Entity
   - wd
   - wdeschema
   twitter: wikidata
+  uri_format: http://www.wikidata.org/entity/$1
+wikidata.entity:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Entity in Wikidata
+  example: Q42
+  homepage: https://www.wikidata.org
+  license: CC0-1.0
+  name: Wikidata Entity
+  part_of: wikidata
+  pattern: ^Q\d+$
+  preferred_prefix: wikidata.entity
+  providers:
+  - code: scholia
+    description: Scholia can generally resolve many Wikidata entries in the biomedical
+      and bibliometric domains
+    homepage: https://scholia.toolforge.org
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/$1
+  rdf_uri_format: http://www.wikidata.org/entity/$1
   uri_format: http://www.wikidata.org/entity/$1
 wikidata.property:
   contributor:
@@ -64224,7 +65715,8 @@ wikidata.property:
     homepage: https://scholia.toolforge.org
     name: Scholia
     uri_format: https://scholia.toolforge.org/$1
-  uri_format: https://www.wikidata.org/wiki/Property:$1
+  rdf_uri_format: http://www.wikidata.org/entity/$1
+  uri_format: http://www.wikidata.org/entity/$1
 wikigenes:
   description: WikiGenes is a collaborative knowledge resource for the life sciences,
     which is based on the general wiki idea but employs specifically developed technology
@@ -64283,6 +65775,7 @@ wikipathways:
     re3data: r3d100013316
     togoid: Wikipathways
     wikidata: P2410
+    wikidata.entity: Q7999828
   mastodon: wikipathways@fosstodon.org
   name: WikiPathways
   pattern: ^WP\d{1,5}(\_r\d+)?$
@@ -64744,6 +66237,7 @@ worms:
     miriam: worms
     n2t: worms
     wikidata: P850
+    wikidata.entity: Q604063
   name: WoRMS-ID for taxa
   pattern: ^\d+$
   preferred_prefix: worms
@@ -64797,6 +66291,7 @@ wwf.ecoregion:
   homepage: https://www.worldwildlife.org/biomes
   mappings:
     wikidata: P1294
+    wikidata.entity: Q6617741
   name: World Wildlife Fund Ecoregion
   pattern: ^AT\d+$
   preferred_prefix: wwf.ecoregion
@@ -64843,6 +66338,7 @@ xao:
     ols: xao
     ontobee: XAO
     wikidata: P4495
+    wikidata.entity: Q42400040
   name: Xenopus Anatomy Ontology
   pattern: ^\d{7}$
   preferred_prefix: XAO
@@ -64899,6 +66395,7 @@ xco:
     ols: xco
     ontobee: XCO
     prefixcommons: xco
+    wikidata.entity: Q81661839
   name: Experimental condition ontology
   pattern: ^\d{7}$
   preferred_prefix: XCO
@@ -64928,7 +66425,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.204'
+  version: '4.207'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
@@ -65057,6 +66554,11 @@ xhv:
     2 Working Group as part of the W3C HTML Activity. [from homepage]
   example: alternate
   homepage: https://www.w3.org/1999/xhtml/vocab
+  keywords:
+  - api
+  mappings:
+    lov: xhv
+    zazuko: xhv
   name: XHTML Vocabulary
   preferred_prefix: xhv
   uri_format: http://www.w3.org/1999/xhtml/vocab#$1
@@ -65118,6 +66620,7 @@ xlmod:
     obofoundry: xlmod
     ols: xlmod
     ontobee: XLMOD
+    wikidata.entity: Q81661841
   name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
   pattern: ^\d{5}$
   preferred_prefix: XLMOD
@@ -65193,6 +66696,7 @@ xpo:
     obofoundry: xpo
     ols: xpo
     ontobee: XPO
+    wikidata.entity: Q81661843
   name: Xenopus Phenotype Ontology
   pattern: ^\d+$
   preferred_prefix: XPO
@@ -65523,6 +67027,27 @@ zazuko:
   name: Zazuko Prefix Server
   preferred_prefix: zazuko
   uri_format: 'https://prefix.zazuko.com/prefix/$1:'
+zbw.stw:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'Der Thesaurus enthält Vokabular zu allen ökonomischen Themenstellungen:
+    über 6.000 Schlagwörter und über 28.000 zusätzliche Synonyme als Zugangshilfe,
+    um individuelle Formulierungen bei der Suche aufzufangen. Auch Fachbegriffe aus
+    benachbarten Bereichen wie z.B. Recht, Soziologie oder Politik sowie Geobegriffe
+    sind dort zu finden. Wenn Sie Schlagwörter aus diesem Vokabular auswählen, können
+    Sie sicher sein Treffer zu erhalten, die zu dem gewünschten Sachgebiet passen.
+    [from homepage]'
+  example: n
+  example_extras:
+  - '70060'
+  github_request_issue: 1614
+  homepage: https://zbw.eu/stw/
+  name: Standard-Thesaurus Wirtschaft
+  preferred_prefix: zbw.stw
+  uri_format: http://zbw.eu/stw/thsys/$1
 zea:
   contact:
     email: Leszek@missouri.edu
@@ -65544,6 +67069,7 @@ zea:
     bioportal: ZEA
     obofoundry: zea
     prefixcommons: zea
+    wikidata.entity: Q114677917
   name: Maize gross anatomy
   pattern: ^\d{7}$
   preferred_prefix: ZEA
@@ -65597,6 +67123,7 @@ zeco:
     obofoundry: zeco
     ols: zeco
     ontobee: ZECO
+    wikidata.entity: Q81661845
   name: Zebrafish Experimental Conditions Ontology
   pattern: ^\d{7}$
   preferred_prefix: ZECO
@@ -65675,6 +67202,7 @@ zfa:
     ols: zfa
     ontobee: ZFA
     prefixcommons: zfa
+    wikidata.entity: Q81661530
   name: Zebrafish anatomy and development ontology
   pattern: ^\d{7}$
   preferred_prefix: ZFA
@@ -65833,6 +67361,7 @@ zfs:
     obofoundry: zfs
     ols: zfs
     ontobee: ZFS
+    wikidata.entity: Q81661847
   name: Zebrafish developmental stages ontology
   pattern: ^\d{7}$
   preferred_prefix: ZFS
@@ -65889,6 +67418,7 @@ zp:
     obofoundry: zp
     ols: zp
     ontobee: ZP
+    wikidata.entity: Q81661852
   name: Zebrafish Phenotype Ontology
   pattern: ^\d+$
   preferred_prefix: ZP
