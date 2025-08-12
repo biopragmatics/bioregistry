@@ -1217,6 +1217,10 @@ class TestRegistry(unittest.TestCase):
                     resource.repository.startswith("http"),
                     msg=f"repository is not a valid URL: {resource.repository}",
                 )
+                self.assertFalse(
+                    resource.repository.endswith("/"),
+                    msg="repository URL should not have trailing slash",
+                )
 
     def test_inactive_filter(self) -> None:
         """Test filtering out known inactive extra providers."""
