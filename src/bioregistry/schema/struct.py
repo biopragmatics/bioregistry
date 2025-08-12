@@ -2358,6 +2358,7 @@ class Resource(BaseModel):
                 self.get_download_obo(),
                 self.get_download_owl(),
                 self.get_download_obograph(),
+                self.get_download_rdf(),
             )
         )
 
