@@ -393,7 +393,6 @@ def resolve(
         _resource, identifier = _clean_reference(prefix, identifier)
     except ResponseWrapperError as rw:
         return rw.get_value()
-
     url = manager.get_iri(
         _resource.prefix,
         identifier,
