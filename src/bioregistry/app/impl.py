@@ -113,6 +113,7 @@ def get_app(
     *,
     first_party: bool = ...,
     return_flask: Literal[True] = True,
+    analytics: bool = ...,
 ) -> tuple[FastAPI, Flask]: ...
 
 
@@ -124,6 +125,7 @@ def get_app(
     *,
     first_party: bool = ...,
     return_flask: Literal[False] = False,
+    analytics: bool = ...,
 ) -> FastAPI: ...
 
 
@@ -133,6 +135,7 @@ def get_app(
     *,
     first_party: bool = True,
     return_flask: bool = False,
+    analytics: bool = False,
 ) -> FastAPI | tuple[FastAPI, Flask]:
     """Prepare the WSGI application.
 
@@ -141,6 +144,7 @@ def get_app(
         below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
+    :param analytics: Should analytics be enabled?
 
     :returns: An instantiated WSGI application
 
@@ -222,7 +226,7 @@ def get_app(
         "analytics_api_key",
         passthrough=key,
     )
-    if analytics_api_key:
+    if analytics_api_key and analytics:
         from api_analytics.fastapi import Analytics
 
         fast_api.add_middleware(Analytics, api_key=analytics_api_key)  # Add middleware
