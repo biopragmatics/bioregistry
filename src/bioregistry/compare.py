@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """This script compares what's in each resource."""
+
+from __future__ import annotations
 
 import datetime
 import itertools as itt
@@ -10,9 +10,11 @@ import random
 import sys
 import typing
 from collections import Counter, defaultdict
-from typing import Collection, List, Mapping, Set, Tuple
+from collections.abc import Collection, Mapping
+from typing import TYPE_CHECKING, Callable, TypeVar
 
 import click
+from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry import (
@@ -42,11 +44,19 @@ from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema import Resource
 
+if TYPE_CHECKING:
+    import matplotlib.axes
+    import matplotlib.figure
+
 logger = logging.getLogger(__name__)
+
+X = TypeVar("X")
 
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = "silver"
 BAR_SKIP = {"re3data", "bartoc"}
+
+FigAxPair = tuple["matplotlib.figure.Figure", "matplotlib.axes.Axes"]
 
 
 class RegistryInfo(typing.NamedTuple):
@@ -55,10 +65,10 @@ class RegistryInfo(typing.NamedTuple):
     metaprefix: str
     label: str
     color: str
-    prefixes: Set[str]
+    prefixes: set[str]
 
 
-def _get_has(func, yes: str = "Yes", no: str = "No") -> Counter:
+def _get_has(func: Callable[[str], typing.Any], yes: str = "Yes", no: str = "No") -> Counter[str]:
     return Counter(
         no if func(prefix) is None else yes
         for prefix in read_registry()
@@ -73,8 +83,9 @@ HAS_WIKIDATA_DATABASE = Counter(
 )
 
 
-def _get_has_present(func) -> Counter:
-    return Counter(x for x in (func(prefix) for prefix in read_registry()) if x)
+def _get_has_present(func: Callable[[str], X | None]) -> Counter[X]:
+    values = (func(prefix) for prefix in read_registry())
+    return Counter(value for value in values if value)
 
 
 SINGLE_FIG = (8.25, 3.5)
@@ -83,7 +94,13 @@ WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
 def _save(
-    fig, name: str, *, svg: bool = True, png: bool = False, eps: bool = False, pdf: bool = False
+    fig: matplotlib.figure.Figure,
+    name: str,
+    *,
+    svg: bool = True,
+    png: bool = False,
+    eps: bool = False,
+    pdf: bool = False,
 ) -> None:
     import matplotlib.pyplot as plt
 
@@ -102,7 +119,7 @@ def _save(
     plt.close(fig)
 
 
-def plot_attribute_pies(watermark: bool):
+def plot_attribute_pies(watermark: bool) -> FigAxPair:
     """Plot how many entries have version information."""
     licenses_mapped = _get_licenses_mapped_counter()
     licenses_mapped_counter = Counter(licenses_mapped)
@@ -136,11 +153,11 @@ def plot_attribute_pies(watermark: bool):
 
 def _plot_attribute_pies(
     *,
-    measurements: Collection[Tuple[str, typing.Counter]],
-    watermark,
+    measurements: Collection[tuple[str, typing.Counter[str]]],
+    watermark: bool,
     ncols: int = 4,
     keep_ontology: bool = True,
-):
+) -> FigAxPair:
     import matplotlib.pyplot as plt
 
     if not keep_ontology:
@@ -150,7 +167,7 @@ def _plot_attribute_pies(
             if label not in {"OWL", "JSON", "OBO"}
         ]
 
-    nrows = int(math.ceil(len(measurements) / ncols))
+    nrows = math.ceil(len(measurements) / ncols)
     figsize = (2.75 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for label_counter, ax in itt.zip_longest(measurements, axes.ravel()):
@@ -191,8 +208,10 @@ def _plot_attribute_pies(
 REMAPPED_KEY = "x"
 REMAPPED_VALUE = "y"
 
+OverlapsHint: TypeAlias = Mapping[str, Mapping[str, set[str]]]
 
-def make_overlaps(keys: List[RegistryInfo]) -> Mapping[str, Mapping[str, Set[str]]]:
+
+def make_overlaps(keys: list[RegistryInfo]) -> OverlapsHint:
     """Make overlaps dictionary."""
     rv = {}
     for metaprefix, _, _, prefixes in keys:
@@ -209,12 +228,14 @@ def make_overlaps(keys: List[RegistryInfo]) -> Mapping[str, Mapping[str, Set[str
     return rv
 
 
-def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
+def plot_overlap_venn_diagrams(
+    *, keys: list[RegistryInfo], overlaps: OverlapsHint, watermark: bool, ncols: int = 3
+) -> FigAxPair:
     """Plot overlap with venn diagrams."""
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
-    nrows = int(math.ceil(len(keys) / ncols))
+    nrows = math.ceil(len(keys) / ncols)
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
 
@@ -244,13 +265,15 @@ def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
     return fig, axes
 
 
-def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
+def _plot_external_overlap(
+    *, keys: list[RegistryInfo], watermark: bool, ncols: int = 4
+) -> FigAxPair:
     """Plot the overlap between each pair of resources."""
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
     pairs = list(itt.combinations(keys, r=2))
-    nrows = int(math.ceil(len(pairs) / ncols))
+    nrows = math.ceil(len(pairs) / ncols)
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for pair, ax in itt.zip_longest(pairs, axes.ravel()):
@@ -282,8 +305,9 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
     return fig, axes
 
 
-def get_getters():
+def get_getters() -> list[tuple[str, str, Callable]]:  # type:ignore
     """Get getter functions, which requires alignment dependencies."""
+    # FIXME replace with class_resolver
     try:
         from bioregistry.external import GETTERS
     except ImportError:
@@ -297,7 +321,7 @@ def get_getters():
         return GETTERS
 
 
-def get_registry_infos() -> List[RegistryInfo]:
+def get_registry_infos() -> list[RegistryInfo]:
     """Get keys for plots."""
     getters = get_getters()
     try:
@@ -312,7 +336,7 @@ def get_registry_infos() -> List[RegistryInfo]:
     ]
 
 
-def bibliometric_comparison():
+def bibliometric_comparison() -> None:
     """Generate images."""
     import matplotlib.pyplot as plt
     import pandas
@@ -337,7 +361,7 @@ def bibliometric_comparison():
 
 
 @click.command()
-def compare():  # noqa:C901
+def compare() -> None:
     """Compare the registries."""
     paper = False
     random.seed(0)
@@ -350,7 +374,7 @@ def compare():  # noqa:C901
             " Install bioregistry again with `pip install bioregistry[charts]`.",
             fg="red",
         )
-        return sys.exit(1)
+        sys.exit(1)
 
     bibliometric_comparison()
 
@@ -429,10 +453,11 @@ def _count_providers(resource: Resource) -> int:
     return rv
 
 
-def _get_license_and_conflicts():
-    licenses = []
-    conflicts = set()
-    obo_has_license, ols_has_license = set(), set()
+def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str]]:
+    licenses: list[str] = []
+    conflicts: set[str] = set()
+    obo_has_license: set[str] = set()
+    ols_has_license: set[str] = set()
     for key in read_registry():
         obo_license = standardize_license(get_external(key, "obofoundry").get("license"))
         if obo_license:
@@ -449,20 +474,20 @@ def _get_license_and_conflicts():
         elif not obo_license and ols_license:
             licenses.append(ols_license)
         elif obo_license == ols_license:
-            licenses.append(obo_license)
+            licenses.append(typing.cast(str, obo_license))
         else:  # different licenses!
-            licenses.append(ols_license)
-            licenses.append(obo_license)
+            licenses.append(typing.cast(str, ols_license))
+            licenses.append(typing.cast(str, obo_license))
             conflicts.add(key)
             # logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
     return licenses, conflicts, obo_has_license, ols_has_license
 
 
-def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
+def _remap(*, key: str, prefixes: Collection[str]) -> set[str]:
     br_external_to = {}
     for br_id, resource in read_registry().items():
-        _k = (resource.dict().get(key) or {}).get("prefix")
+        _k = (resource.model_dump().get(key) or {}).get("prefix")
         if _k:
             br_external_to[_k] = br_id
 
@@ -481,7 +506,7 @@ def get_regex_complexities() -> Collection[float]:
     return sorted(rows)
 
 
-def plot_coverage_overlaps(*, overlaps):
+def plot_coverage_overlaps(*, overlaps: OverlapsHint) -> FigAxPair:
     """Plot and save the abridged coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -539,7 +564,7 @@ def plot_coverage_overlaps(*, overlaps):
             f"{int(width):,}",
             horizontalalignment="center",
             verticalalignment="center",
-            fontdict=dict(weight="bold", color="white", fontsize=12),
+            fontdict={"weight": "bold", "color": "white", "fontsize": 12},
         )
 
     for (y, height), values in dd.items():
@@ -550,7 +575,7 @@ def plot_coverage_overlaps(*, overlaps):
             width + x + 20,
             y + height / 2,
             f"{percentage:.1%} coverage",
-            fontdict=dict(weight="normal", color="black", fontsize=12),
+            fontdict={"weight": "normal", "color": "black", "fontsize": 12},
             verticalalignment="center",
         )
 
@@ -558,7 +583,7 @@ def plot_coverage_overlaps(*, overlaps):
     return fig, ax
 
 
-def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
+def plot_coverage_gains(*, overlaps: OverlapsHint, minimum_width_for_text: int = 70) -> FigAxPair:
     """Plot and save the coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -627,7 +652,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
             f"{int(width):,}",
             horizontalalignment="center",
             verticalalignment="center",
-            fontdict=dict(weight="bold", color="white", fontsize=12),
+            fontdict={"weight": "bold", "color": "white", "fontsize": 12},
         )
 
     for (y, height), values in dd.items():
@@ -639,7 +664,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
             width + x + 20,
             y + height / 2,
             f"{int(width_total):,} (+{increase:,.0%})",
-            fontdict=dict(weight="normal", color="black", fontsize=12),
+            fontdict={"weight": "normal", "color": "black", "fontsize": 12},
             verticalalignment="center",
         )
 
@@ -650,7 +675,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70):
     return fig, ax
 
 
-def plot_xrefs(registry_infos, watermark: bool):
+def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair:
     """Plot a histogram of how many xrefs each entry has."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -676,7 +701,7 @@ def plot_xrefs(registry_infos, watermark: bool):
     xrefs_counter[max_mapped + 1] = 0
     xrefs_counter[max_mapped + 2] = 0
     # make the last value have a ... as its label rather than a number
-    xrefs_rows: List[Tuple[typing.Union[str, int], int]] = sorted(xrefs_counter.items())
+    xrefs_rows: list[tuple[str | int, int]] = sorted(xrefs_counter.items())
     xrefs_rows[-1] = "...", xrefs_rows[-1][1]
     xrefs_df = pd.DataFrame(xrefs_rows, columns=["frequency", "count"])
 
@@ -686,16 +711,18 @@ def plot_xrefs(registry_infos, watermark: bool):
         data=xrefs_df,
         x="frequency",
         y="count",
+        hue="frequency",
         errorbar=None,
         palette=xrefs_colors,
         alpha=1.0,
         ax=ax,
+        legend=False,
     )
     # There should only be one container here
     _labels = xrefs_df["count"].to_list()
     _labels[0] = f"{_labels[0]}\nNovel"
-    for i in ax.containers:
-        ax.bar_label(i, _labels)
+    for i, label in zip(ax.containers, _labels):
+        ax.bar_label(i, [label])
     ax.set_xlabel(
         f"Number of the {n_mappable_metaprefixes} Mapped External Registries Capturing a Given Identifier Resource"
     )
@@ -712,11 +739,10 @@ def plot_xrefs(registry_infos, watermark: bool):
     ax.text(
         x1,
         h + 1,
-        f"No identifier resources are\navailable in more than\n"
-        f"{max_mapped} external registries",
+        f"No identifier resources are\navailable in more than\n{max_mapped} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
-        fontdict=dict(fontsize=12),
+        fontdict={"fontsize": 12},
     )
     ax.arrow(x1, h, x_25 - x1, 3 - h, head_width=0.3, head_length=0.2, fc="k", ec="k")
     if watermark:
@@ -738,15 +764,17 @@ def plot_xrefs(registry_infos, watermark: bool):
     return fig, ax
 
 
-def _get_licenses_mapped_counter(threshold: int = 30) -> List[str]:
+def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
     licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
     licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [
-        "None"
-        if license_ is None
-        else license_
-        if licenses_counter[license_] > threshold
-        else "Other"
+        (
+            "None"
+            if license_ is None
+            else license_
+            if licenses_counter[license_] > threshold
+            else "Other"
+        )
         for license_ in licenses
     ]
     return licenses_mapped

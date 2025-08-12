@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
-
 """Tests for managers."""
 
 import unittest
 
 import bioregistry
-from bioregistry import Manager, parse_curie
+from bioregistry import Manager, Resource, parse_curie
 from bioregistry.export.rdf_export import get_full_rdf
+from bioregistry.resource_manager import MappingsDiff
 
 
 class TestResourceManager(unittest.TestCase):
@@ -32,8 +31,8 @@ class TestResourceManager(unittest.TestCase):
             msg="uniprot.isoform isn't registered with a URI prefix properly",
         )
 
-        records = self.manager.get_curies_records()
-        prefixes = {record.prefix for record in records}
+        converter = self.manager.get_converter()
+        prefixes = {record.prefix for record in converter.records}
         self.assertIn("uniprot.isoform", prefixes)
 
     def test_prefix_map(self):
@@ -220,7 +219,7 @@ class TestResourceManager(unittest.TestCase):
         full = get_full_rdf(self.manager)
         prefixes = {
             prefix[len("https://bioregistry.io/registry/") :]
-            for prefix, in full.query(
+            for (prefix,) in full.query(
                 "SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }"
             )
         }
@@ -247,3 +246,41 @@ class TestResourceManager(unittest.TestCase):
                 actual_prefix, actual_i = parse_curie(curie, sep=sep, use_preferred=pref)
                 self.assertEqual(p, actual_prefix)
                 self.assertEqual(i, actual_i)
+
+    def test_external_registry_mappings(self):
+        """Test external registry mappings."""
+        res = self.manager.get_external_mappings("obofoundry", "bioportal")
+        self.assertIsInstance(res, MappingsDiff)
+        self.assertEqual("obofoundry", res.source_metaprefix)
+        self.assertEqual("bioportal", res.target_metaprefix)
+        self.assertIn("gaz", res.mappings)
+        self.assertEqual("GAZ", res.mappings["gaz"])
+        # This is an obsolete OBO Foundry ontology so it won't get uploaded to BioPortal
+        self.assertIn("loggerhead", res.source_only)
+        # This is a non-ontology so it won't get in OBO Foundry
+        self.assertIn("DCTERMS", res.target_only)
+
+    def test_add_resource(self) -> None:
+        """Test adding a resource to a manager."""
+        manager = Manager()
+
+        test_prefix = "test1234"
+        test_synonym = "TEST.1234"
+
+        self.assertNotIn(test_prefix, manager.registry)
+        self.assertNotIn(test_synonym, manager.registry)
+
+        manager.add_resource(
+            Resource(
+                prefix=test_prefix,
+                name="Test",
+                description="Test",
+                synonyms=[test_synonym],
+            )
+        )
+
+        self.assertIn(test_prefix, manager.registry)
+        self.assertNotIn(test_synonym, manager.registry)
+
+        self.assertIsNotNone(manager.get_resource(test_prefix))
+        self.assertIsNotNone(manager.get_resource(test_synonym))

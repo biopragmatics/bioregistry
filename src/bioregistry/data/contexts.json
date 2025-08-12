@@ -4,15 +4,22 @@
       "icd9"
     ],
     "custom_prefix_map": {
-      "DOI": "https://doi.org/"
+      "PMID": "https://www.ncbi.nlm.nih.gov/pubmed/"
     },
     "description": "The OBO Context exists for the following reasons:\n\n- Reconciling \"database cross-references\" used by OBO ontologies and centralising their validation.\n- Standardising and validating SSSOM mappings provided in the context of OBO ontologies.\n- Providing an incentive for the documentation of non-standard prefixes for OBO ontologies.",
+    "enforce_w3c": true,
     "include_synonyms": false,
     "maintainers": [
       {
         "github": "matentzn",
         "name": "Nico Matentzoglu",
         "orcid": "0000-0002-7356-1779"
+      },
+      {
+        "email": "anitac@ebi.ac.uk",
+        "github": "anitacaron",
+        "name": "Anita Caron",
+        "orcid": "0000-0002-6523-4866"
       }
     ],
     "name": "Open Biomedical Ontologies Context",
@@ -23,9 +30,13 @@
       "default"
     ],
     "prefix_remapping": {
-      "doi": "DOI",
       "ensembl": "ENSEMBL",
       "icd10": "ICD10WHO",
+      "icd11": "icd11.foundation",
+      "mesh": "MESH",
+      "omim.ps": "OMIMPS",
+      "orphanet": "Orphanet",
+      "pubmed": "PMID",
       "snomedct": "SCTID",
       "umls": "UMLS"
     },

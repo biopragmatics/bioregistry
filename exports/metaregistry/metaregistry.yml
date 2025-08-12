@@ -131,7 +131,7 @@ bartoc:
     all across Europe and BARTOC has been approved by the International Society for
     Knowledge Organization (ISKO).'
   download: https://bartoc.org/data/dumps/latest.ndjson
-  example: '241'
+  example: '181'
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/gbv/bartoc.org
@@ -290,7 +290,7 @@ bioportal:
     status: active
   homepage: https://bioportal.bioontology.org/
   license: See https://github.com/biopragmatics/bioregistry/issues/337
-  logo_url: https://ontoportal.org/wp-content/uploads/2020/02/bioportal-logo.png
+  logo_url: https://ontoportal.org/images/alliance_member_logos/bioportal.png
   name: BioPortal Prefixes
   prefix: bioportal
   provider_uri_format: https://bioportal.bioontology.org/ontologies/$1
@@ -390,7 +390,7 @@ cellosaurus:
     status: active
   homepage: https://web.expasy.org/cellosaurus/
   license: CC BY 4.0
-  logo_url: https://www.cellosaurus.org/cellosaurus.png
+  logo_url: https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png
   name: Cellosaurus Registry
   prefix: cellosaurus
   qualities:
@@ -472,7 +472,7 @@ cropoct:
     on trait measurement and methods as well as on Germplasm with the multi-crop passport
     terms
   download: https://cropontology.org/metadata
-  example: CO_010
+  example: CO_325
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -491,7 +491,7 @@ cropoct:
   logo_url: https://cropontology.org/cropontology_static/crop_ontology_logo_2.png
   name: Crop Ontology Curation Tool
   prefix: cropoct
-  provider_uri_format: https://www.cropontology.org/ontology/$1
+  provider_uri_format: https://cropontology.org/ontology/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -522,7 +522,7 @@ ecoportal:
     orcid: 0000-0003-4494-839X
   description: The LifeWatch ERIC repository of semantic resources for the ecological
     domain.
-  example: ALIENSPECIES
+  example: AGROVOC
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -715,10 +715,10 @@ hl7:
   bibtex: Bender2013
   bioregistry_prefix: oid
   contact:
-    email: ted@tklein.com
-    github: ''
-    name: W. Ted Klein
-    orcid: ''
+    email: hq@HL7.org
+    github: null
+    name: HL7 Support
+    orcid: null
   description: HL7 External Code Systems are stored within the greater OID system
   example: 2.16.840.1.113883.6.88
   governance:
@@ -739,13 +739,124 @@ hl7:
   logo_url: https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png
   name: HL7 External Code Systems
   prefix: hl7
-  provider_uri_format: http://oid-info.com/get/$1
+  provider_uri_format: https://oid-base.com/get/$1
   qualities:
     automatable_download: false
     bulk_data: false
     no_authentication: true
     structured_data: true
   short_name: HL7
+integbio:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: required
+    example: missing
+    homepage: present
+    license: missing
+    name: required
+    pattern: missing
+    provider: missing
+    search: false
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: integbio
+  contact:
+    email: kwsm@dbcls.rois.ac.jp
+    github: skwsm
+    name: Shuichi Kawashima
+    orcid: 0000-0001-7883-3756
+  description: 'Integbio Database Catalog provides whereabouts information (URL),
+    database description, biological species and other attributes (metadata) of Japanese
+    and international life science databases to make it easier for users to find databases
+    they need. This catalog has been developed as a part of the integration of life
+    science databases promoted by four ministries in Japan: the Ministry of Education,
+    Culture, Sports, Science, and Technology (MEXT), The Ministry of Health, Labor,
+    and Welfare (MHLW), the Ministry of Agriculture, Forestry, and Fisheries (MAFF),
+    and the Ministry of Economy, Trade, and Industry of Japan (METI). (from https://integbio.jp/dbcatalog/en/about)'
+  download: https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_cc0_20240112_utf8.csv.zip
+  example: nbdc01071
+  governance:
+    accepts_external_contributions: false
+    code_repository: null
+    comments: null
+    curates: false
+    curation: import
+    data_repository: null
+    imports: true
+    issue_tracker: null
+    public_version_controlled_data: false
+    review_team: n/a
+    scope: bio-ontologies
+    status: active
+  homepage: https://integbio.jp/en/
+  license: CC0
+  logo_url: https://integbio.jp/templates/integbio/images/logo/logo.png
+  name: Integbio
+  prefix: integbio
+  provider_uri_format: https://catalog.integbio.jp/dbcatalog/en/record/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  search_uri_format: https://integbio.jp/dbcatalog/dbsearch-en?cck=database_catalog&order_en=1&dbcat_search_all_en=$1&tag2_en=&tag3_en=&inst_country_en=&inst_country_others_en=&dbarchive_en=&togotv_en=&data_downloadable_en=&biosharing_en=&record_creation_en=&status_en=&dbcat_ministry=&taxonomy=&lang=en&search=database_catalog_search_en&task=search
+lov:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: present
+    example: missing
+    homepage: present
+    license: missing
+    name: required
+    pattern: missing
+    provider: present
+    search: true
+    synonyms: missing
+    version: missing
+  contact:
+    email: py.vandenbussche@gmail.com
+    github: pyvandenbussche
+    name: Pierre-Yves Vandenbussche
+    orcid: 0000-0003-0591-6109
+  description: A vocabulary in LOV gathers definitions of a set of classes and properties
+    (together simply called terms of the vocabulary), useful to describe specific
+    types of things, or things in a given domain or industry, or things at large but
+    for a specific usage. Terms of vocabularies also provide the links in linked data,
+    in the above case between a Person and a City. The definitions of terms provided
+    by the vocabularies bring clear semantics to descriptions and links, thanks to
+    the formal language they use (some dialect of RDF such as RDFS or OWL). In short,
+    vocabularies provide the semantic glue enabling Data to become meaningful Data.
+    [from https://lov.linkeddata.es/dataset/lov/about]
+  download: https://lov.linkeddata.es/lov.n3.gz
+  example: m4i
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/pyvandenbussche/lov
+    comments: null
+    curates: true
+    curation: import
+    data_repository: null
+    imports: true
+    issue_tracker: https://github.com/pyvandenbussche/lov/issues
+    public_version_controlled_data: false
+    review_team: n/a
+    scope: semantic web
+    status: active
+  homepage: https://lov.linkeddata.es
+  license: CC BY 4.0
+  logo_url: https://lov.linkeddata.es/img/icon-LOV.png
+  name: Linked Open Vocabularies
+  prefix: lov
+  provider_uri_format: https://lov.linkeddata.es/dataset/lov/vocabs/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  search_uri_format: https://lov.linkeddata.es/dataset/lov/vocabs?q=$1
+  short_name: LOV
 miriam:
   availability:
     alternate_providers: present
@@ -921,7 +1032,7 @@ obofoundry:
   description: The mission of the OBO Foundry is to develop a family of interoperable
     ontologies that are both logically well-formed and scientifically accurate.
   download: http://www.obofoundry.org/registry/ontologies.yml
-  example: chebi
+  example: CHEBI
   governance:
     accepts_external_contributions: true
     code_repository: https://github.com/OBOFoundry/OBOFoundry.github.io
@@ -940,7 +1051,7 @@ obofoundry:
   logo_url: https://obofoundry.org/images/foundrylogo.png
   name: OBO Foundry
   prefix: obofoundry
-  provider_uri_format: http://www.obofoundry.org/ontology/$1
+  provider_uri_format: https://www.obofoundry.org/ontology/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1046,6 +1157,56 @@ ontobee:
     structured_data: false
   resolver_type: lookup
   resolver_uri_format: http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2
+pathguide:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: present
+    example: missing
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: missing
+    search: true
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: pathguide
+  contact:
+    email: gary.bader@utoronto.ca
+    github: gbader
+    name: Gary Bader
+    orcid: 0000-0003-0185-8861
+  description: Pathguide contains information about 702 biological pathway related
+    resources and molecular interaction related resources. Click on a link to go to
+    the resource home page or 'Details' for a description page. Databases that are
+    free and those supporting BioPAX, CellML, PSI-MI or SBML standards are respectively
+    indicated. (from homepage)
+  example: '235'
+  governance:
+    accepts_external_contributions: true
+    code_repository: null
+    comments: null
+    curates: true
+    curation: opaque-review
+    data_repository: null
+    imports: false
+    issue_tracker: null
+    public_version_controlled_data: false
+    review_team: n/a
+    scope: bio-ontologies
+    status: active
+  homepage: http://pathguide.org
+  license: Unknown
+  logo_url: http://pathguide.org/images/logo.gif
+  name: Pathguide
+  prefix: pathguide
+  provider_uri_format: http://www.pathguide.org/fullrecord.php?organisms=all&availability=all&standards=all&order=alphabetic&DBID=$1
+  qualities:
+    automatable_download: false
+    bulk_data: false
+    no_authentication: true
+    structured_data: false
 prefixcc:
   availability:
     alternate_providers: present
@@ -1117,7 +1278,7 @@ prefixcommons:
     Life Science Registry. This registry was previously known as Prefix Commons and
     was available at https://prefixcommons.org.
   download: http://tinyurl.com/lsregistry
-  example: CHEBI
+  example: doi
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -1132,7 +1293,7 @@ prefixcommons:
     scope: life sciences
     status: active
   homepage: https://registry.bio2kg.org
-  license: Public Domain
+  license: CC0
   logo_url: https://avatars.githubusercontent.com/u/15466415
   name: Prefix Commons
   prefix: prefixcommons
@@ -1165,7 +1326,7 @@ re3data:
     orcid: 0000-0003-4221-7956
   description: Re3data is a global registry of research data repositories that covers
     research data repositories from different academic disciplines.
-  example: r3d100010772
+  example: r3d100014165
   governance:
     accepts_external_contributions: true
     code_repository: null
@@ -1191,6 +1352,109 @@ re3data:
     no_authentication: true
     structured_data: false
   short_name: re3data
+rrid:
+  availability:
+    alternate_providers: missing
+    contact: present
+    description: missing
+    example: missing
+    homepage: required
+    license: present
+    name: required
+    pattern: missing
+    provider: missing
+    search: true
+    synonyms: present
+    version: missing
+  bioregistry_prefix: rrid
+  contact:
+    email: bandrow@gmail.com
+    github: bandrow
+    name: Anita Bandrowski
+    orcid: 0000-0002-5497-0243
+  description: 'The Research Resource Identification Initiative provides RRIDs to
+    4 main classes of resources: Antibodies, Cell Lines, Model Organisms, and Databases
+    / Software tools'
+  download: https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true
+  example: AB
+  governance:
+    accepts_external_contributions: true
+    code_repository: null
+    comments: null
+    curates: true
+    curation: opaque-review
+    data_repository: null
+    imports: false
+    issue_tracker: null
+    public_version_controlled_data: false
+    review_team: private
+    scope: life sciences
+    status: active
+  homepage: https://rrid.site
+  license: CC BY 4.0
+  logo_url: https://scicrunch.org/upload/community-logo/rin-resources_69984.png
+  name: Research Resource Identifiers
+  prefix: rrid
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  resolver_type: lookup
+  resolver_uri_format: https://scicrunch.org/resolver/RRID:$1_$2
+  short_name: RRID
+togoid:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: required
+    homepage: required
+    license: missing
+    name: required
+    pattern: required
+    provider: required
+    search: false
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: togoid
+  contact:
+    email: ktym@dbcls.jp
+    github: ktym
+    name: Toshiaki Katayama
+    orcid: 0000-0003-2391-0384
+  description: TogoID is an ID conversion service implementing unique features with
+    an intuitive web interface and an API for programmatic access. TogoID supports
+    datasets from various biological categories such as gene, protein, chemical compound,
+    pathway, disease, etc. TogoID users can perform exploratory multistep conversions
+    to find a path among IDs. To guide the interpretation of biological meanings in
+    the conversions, we crafted an ontology that defines the semantics of the dataset
+    relations. (from https://togoid.dbcls.jp/)
+  download: https://raw.githubusercontent.com/togoid/togoid-config/main/ontology/togoid-ontology.ttl
+  example: AffyProbeset
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/togoid/togoid-config
+    comments: null
+    curates: false
+    curation: import
+    data_repository: https://github.com/togoid/togoid-config
+    imports: true
+    issue_tracker: https://github.com/togoid/togoid-config/issues
+    public_version_controlled_data: true
+    review_team: inferrable
+    scope: bio-ontologies
+    status: active
+  homepage: https://togoid.dbcls.jp/
+  license: CC BY 4.0
+  name: TogoID
+  prefix: togoid
+  provider_uri_format: https://togoid.dbcls.jp/#$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
 uniprot:
   availability:
     alternate_providers: missing
@@ -1257,7 +1521,7 @@ wikidata:
     synonyms: missing
     version: present
   bibtex: Waagmeester2020
-  bioregistry_prefix: wikidata
+  bioregistry_prefix: wikidata.property
   contact:
     email: info@wikidata.org
     github: null
@@ -1291,3 +1555,106 @@ wikidata:
     no_authentication: true
     structured_data: true
   short_name: Wikidata
+wikidata.entity:
+  availability:
+    alternate_providers: present
+    contact: present
+    description: required
+    example: present
+    homepage: present
+    license: present
+    name: required
+    pattern: present
+    provider: present
+    search: true
+    synonyms: missing
+    version: present
+  bibtex: Waagmeester2020
+  bioregistry_prefix: wikidata.entity
+  contact:
+    email: info@wikidata.org
+    github: null
+    name: WikiData Support
+    orcid: null
+  description: An open, community-curated knowledgebase that contains several properties
+    corresponding to resources listed in other biomedical registries.
+  example: Q81661651
+  governance:
+    accepts_external_contributions: true
+    code_repository: null
+    comments: null
+    curates: true
+    curation: open-review
+    data_repository: null
+    imports: false
+    issue_tracker: null
+    public_version_controlled_data: false
+    review_team: inferrable
+    scope: general
+    status: active
+  homepage: https://www.wikidata.org
+  license: CC0
+  logo_url: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
+  name: Wikidata Entity
+  prefix: wikidata.entity
+  provider_uri_format: http://www.wikidata.org/entity/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  short_name: Wikidata (E)
+zazuko:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    homepage: missing
+    license: missing
+    name: missing
+    pattern: missing
+    provider: present
+    search: true
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: zazuko
+  contact:
+    email: ktk@netlabs.org
+    github: ktk
+    name: Adrian Gschwend
+    orcid: 0000-0002-2079-9636
+  description: This service fills a gap between services like prefix.cc and LOV or
+    looking up the original vocabulary specification. Not all vocabularies (or schema
+    or ontology, whatever you want to call them) provide an HTML view. If you resolve
+    some of the common prefixes all you get back is some RDF serialization which is
+    not ideal. (from <https://prefix.zazuko.com/about>)
+  download: https://prefix.zazuko.com/api/v1/prefixes
+  example: frbr
+  governance:
+    accepts_external_contributions: true
+    code_repository: https://github.com/zazuko/prefix-server
+    comments: null
+    curates: true
+    curation: open-review
+    data_repository: https://github.com/zazuko/rdf-vocabularies
+    imports: true
+    issue_tracker: https://github.com/zazuko/rdf-vocabularies/issues
+    public_version_controlled_data: true
+    review_team: inferrable
+    scope: semantic web
+    status: active
+  homepage: https://prefix.zazuko.com/
+  license: MIT
+  logo_url: https://prefix.zazuko.com/_nuxt/img/zazuko-logo.2dc686c.svg
+  name: Zazuko Prefix Server
+  prefix: zazuko
+  provider_uri_format: 'https://prefix.zazuko.com/prefix/$1:'
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  resolver_type: lookup
+  resolver_uri_format: https://prefix.zazuko.com/$1:$2
+  short_name: Zazuko

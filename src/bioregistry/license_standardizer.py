@@ -1,21 +1,21 @@
-# -*- coding: utf-8 -*-
-
 """Code for standardizing permissive licenses.
 
-Could be extended later for non-permissive information as well as using
-vocabularies like SPDX for storing synonyms.
+Could be extended later for non-permissive information as well as using vocabularies
+like SPDX for storing synonyms.
 """
 
-from typing import List, Mapping, Optional
+from __future__ import annotations
+
+from collections.abc import Mapping
 
 __all__ = [
-    "standardize_license",
-    "REVERSE_LICENSES",
     "LICENSES",
+    "REVERSE_LICENSES",
+    "standardize_license",
 ]
 
 
-def standardize_license(license_str: Optional[str]) -> Optional[str]:
+def standardize_license(license_str: str | None) -> str | None:
     """Standardize a license string."""
     if license_str is None or not license_str.strip():
         return None
@@ -35,6 +35,8 @@ CC_BY_ND_4 = "CC BY-ND 4.0"
 CC_BY_NC_SA_4 = "CC BY-NC-SA 4.0"
 #: http://creativecommons.org/licenses/by-nc/4.0
 CC_BY_NC_4 = "CC BY-NC 4.0"
+#: http://creativecommons.org/licenses/by-nc-sa/2.5
+CC_BY_NC_SA_25 = "CC BY-NC-SA 2.5"
 
 CC_BY_UNSPECIFIED = "CC-BY"
 CC_BY_SA_UNSPECIFIED = "CC BY-SA"
@@ -86,13 +88,17 @@ CC_BY_3_IGO = "CC-BY-3.0-IGO"
 CC_BY_25 = "CC BY 2.5"
 
 #: A mapping from SPDX identifiers to external
-REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
+REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     None: ["None", "license", "unspecified"],
     "CC-BY-2.5": [
         "CC BY 2.5",
         "CC-BY-2.5",
         "https://creativecommons.org/licenses/by/2.5/",
         "https://creativecommons.org/licenses/by/2.5/dk",
+    ],
+    CC_BY_NC_SA_25: [
+        CC_BY_NC_SA_25,
+        "http://creativecommons.org/licenses/by-nc-sa/2.5/deed.en",
     ],
     "CC-BY-3.0-IGO": [
         CC_BY_3_IGO,
@@ -235,6 +241,8 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
     ],
     CC_BY_NC_SA_4: [
         CC_BY_NC_SA_4,
+        "CC-BY-NC-SA 4.0",
+        "CC-BY-NC-SA-4.0",
         "http://creativecommons.org/licenses/by-nc-sa/4.0",
         "https://creativecommons.org/licenses/by-nc-sa/4.0",
     ],
@@ -260,6 +268,4 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
     ],
 }
 
-LICENSES: Mapping[str, Optional[str]] = {
-    _v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs
-}
+LICENSES: Mapping[str, str | None] = {_v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs}

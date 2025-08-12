@@ -1,3 +1,7 @@
+# This file configures the continuous integration (CI) system on GitHub.
+# Introductory materials can be found here: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions.
+# Documentation for editing this file can be found here: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
 name: Tests
 
 on:
@@ -8,76 +12,75 @@ on:
 
 jobs:
   lint:
-    name: Lint
+    name: Code Quality
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.11", "3.7" ]
+        python-version: [ "3.13", "3.9" ]
+        tox-command: ["manifest", "lint", "pyroma", "mypy"]
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - name: "Install uv"
+        uses: "astral-sh/setup-uv@v3"
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+      - name: "Run command"
         run: |
-          pip install --upgrade pip setuptools wheel
-          pip install tox
-      - name: Check manifest
-        run: tox -e manifest
-      - name: Check code quality with flake8
-        run: tox -e flake8
-      - name: Check package metadata with Pyroma
-        run: tox -e pyroma
-      - name: Check static typing with MyPy
-        run: tox -e mypy
+          uvx -p ${{ matrix.python-version }} --with tox-uv tox -e ${{ matrix.tox-command }}
+
+      # Inspired by https://github.com/astral-sh/uv/blob/98523e2014e9a5c69706623344026d76296e178f/.github/workflows/ci.yml#L67C1-L70C61
+      - name: "Prettier"
+        run: |
+          npx prettier --prose-wrap always --check "**/*.md"
+
   docs:
     name: Documentation
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.10" ]
+        # We only test documentation on the latest version
+        # sphinx 8.0 / sphinx-rtd-theme 3.0 discontinued Python 3.9 support
+        # a year early, which prompted re-thinking about this.
+        python-version: [ "3.13" ]
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - name: "Install uv"
+        uses: "astral-sh/setup-uv@v3"
         with:
-          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
       - name: Install dependencies
         run: |
-          pip install --upgrade pip setuptools wheel
-          pip install tox
+          sudo apt-get install graphviz
       - name: Check RST conformity with doc8
-        run: tox -e doc8
+        run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e doc8
       - name: Check docstring coverage
-        run: tox -e docstr-coverage
+        run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e docstr-coverage
       - name: Check documentation build with Sphinx
-        run: tox -e docs-test
+        run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e docs-test
   tests:
     name: Tests
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.11", "3.7" ]
+        python-version: [ "3.13", "3.9" ]
+        exclude:
+          - os: windows-latest
+            python-version: 3.9
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - name: "Install uv"
+        uses: "astral-sh/setup-uv@v3"
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip setuptools wheel
-          pip install tox
-      - name: Test with pytest
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+      - name: Test with pytest and generate coverage file
         run:
-          tox -e py
-      - name: Doctests
-        run:
-          tox -e doctests
+          uvx -p ${{ matrix.python-version }} --with tox-uv tox -e py
       - name: Upload coverage report to codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v4
         if: success()
         with:
           file: coverage.xml

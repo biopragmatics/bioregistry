@@ -3,6 +3,7 @@ layout: page
 title: Warnings
 permalink: /warnings/
 ---
+
 This lists any sorts of things that should be fixed upstream, but are instead
 manually curated in the Bioregistry.
 

@@ -1,10 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPV2J3MLNE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SPV2J3MLNE');
+    </script>
     {% block head %}
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- see tutorial https://rknight.me/blog/setting-up-mastodon-author-tags/ -->
+        <meta name="fediverse:creator" content="@bioregistry@fosstodon.org" />
 
         {% block styles %}
             <!-- Bootstrap CSS -->
@@ -83,7 +95,7 @@
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
                     {% if config.METAREGISTRY_FIRST_PARTY %}
                     <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Maitenance</h6>
+                    <h6 class="dropdown-header">Maintenance</h6>
                     <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/bioregistry/health/">
                         Health Report <i class="fa fa-external-link" aria-hidden="true"></i>
@@ -102,6 +114,9 @@
                     </a>
                     <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2022">
                         WPCI 2022 <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                    <a class="dropdown-item" target="_blank" href="https://biopragmatics.github.io/workshops/WPCI2023">
+                        WPCI 2023 (upcoming) <i class="fa fa-external-link" aria-hidden="true"></i>
                     </a>
                 </div>
             </li>

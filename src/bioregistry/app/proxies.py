@@ -1,5 +1,7 @@
 """Proxies for the web application."""
 
+from typing import cast
+
 from flask import current_app
 from werkzeug.local import LocalProxy
 
@@ -9,4 +11,4 @@ __all__ = [
     "manager",
 ]
 
-manager: Manager = LocalProxy(lambda: current_app.manager)
+manager: Manager = cast(Manager, LocalProxy(lambda: current_app.manager))

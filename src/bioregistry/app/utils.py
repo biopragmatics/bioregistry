@@ -1,11 +1,13 @@
-# -*- coding: utf-8 -*-
-
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
-import json
-from functools import partial
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
+from __future__ import annotations
 
+import json
+from collections.abc import Mapping, Sequence
+from functools import partial
+from typing import Any, Callable, cast
+
+import werkzeug
 import yaml
 from flask import (
     Response,
@@ -19,39 +21,46 @@ from flask import (
 from pydantic import BaseModel
 
 from bioregistry.resource_manager import Manager
-from bioregistry.schema import sanitize_model
-from bioregistry.utils import extended_encoder
 
 from .proxies import manager
 from ..utils import _norm
 
 
 def _get_resource_providers(
-    prefix: str, identifier: Optional[str]
-) -> Optional[List[Dict[str, Any]]]:
+    prefix: str, identifier: str | None
+) -> list[dict[str, str | None]] | None:
     if identifier is None:
         return None
-    rv = []
-    for metaprefix, uri in manager.get_providers_list(prefix, identifier):
+    rv: list[dict[str, str | None]] = []
+    for metaprefix, uri in manager.get_providers_list(
+        prefix, identifier, filter_known_inactive=True
+    ):
+        name: str | None
+        homepage: str | None
         if metaprefix == "default":
             metaprefix = prefix
-            name = manager.get_name(prefix)
-            homepage = manager.get_homepage(prefix)
+            name = manager.get_name(prefix, strict=True)
+            homepage = manager.get_homepage(prefix, strict=True)
+        elif metaprefix == "rdf":
+            name = f"{manager.get_name(prefix, strict=True)} (RDF)"
+            homepage = manager.get_homepage(prefix, strict=True)
         else:
-            name = manager.get_registry_name(metaprefix)
-            homepage = manager.get_registry_homepage(metaprefix)
+            name = manager.get_registry_name(metaprefix, strict=False)
+            homepage = manager.get_registry_homepage(metaprefix, strict=False)
         rv.append(
-            dict(
-                metaprefix=metaprefix,
-                homepage=homepage,
-                name=name,
-                uri=uri,
-            )
+            {
+                "metaprefix": metaprefix,
+                "homepage": homepage,
+                "name": name,
+                "uri": uri,
+            }
         )
     return rv
 
 
-def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
+def _normalize_prefix_or_404(
+    prefix: str, endpoint: str | None = None
+) -> str | werkzeug.Response | tuple[str, int]:
     try:
         norm_prefix = manager.normalize_prefix(prefix)
     except ValueError:
@@ -63,7 +72,7 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(manager_: Manager, q: str) -> List[Tuple[str, str]]:
+def _search(manager_: Manager, q: str) -> list[tuple[str, str]]:
     q_norm = _norm(q)
     results = [
         (prefix, lookup if _norm(prefix) != lookup else "")
@@ -73,7 +82,7 @@ def _search(manager_: Manager, q: str) -> List[Tuple[str, str]]:
     return sorted(results)
 
 
-def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -> Mapping[str, Any]:
+def _autocomplete(manager_: Manager, q: str, url_prefix: str | None = None) -> Mapping[str, Any]:
     r"""Run the autocomplete algorithm.
 
     :param manager_: A manager
@@ -86,53 +95,53 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
     Before completion is of prefix:
 
     >>> from bioregistry import manager
-    >>> _autocomplete(manager, 'cheb')
+    >>> _autocomplete(manager, "cheb")
     {'query': 'cheb', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
-    >>> _autocomplete(manager, 'chebi')
+    >>> _autocomplete(manager, "chebi")
     {'query': 'chebi', 'results': [('chebi', ''), ('chebi', 'chebiid'), ('goche', 'gochebi')], 'success': True, 'reason': 'matched prefix', 'url': '/chebi'}
 
     Not matching the pattern:
 
-    >>> _autocomplete(manager, 'chebi:NOPE')
+    >>> _autocomplete(manager, "chebi:NOPE")
     {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
 
     Matching the pattern:
 
-    >>> _autocomplete(manager, 'chebi:1234')
+    >>> _autocomplete(manager, "chebi:1234")
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': '/chebi:1234'}
-    """  # noqa: E501
+    """
     if url_prefix is None:
         url_prefix = ""
     url_prefix = url_prefix.rstrip().rstrip("/")
 
     if ":" not in q:
-        url: Optional[str]
+        url: str | None
         if q in manager_.registry:
             reason = "matched prefix"
             url = f"{url_prefix}/{q}"
         else:
             reason = "searched prefix"
             url = None
-        return dict(
-            query=q,
-            results=_search(manager_, q),
-            success=True,
-            reason=reason,
-            url=url,
-        )
+        return {
+            "query": q,
+            "results": _search(manager_, q),
+            "success": True,
+            "reason": reason,
+            "url": url,
+        }
     prefix, identifier = q.split(":", 1)
     resource = manager_.get_resource(prefix)
     if resource is None:
-        return dict(
-            query=q,
-            prefix=prefix,
-            identifier=identifier,
-            success=False,
-            reason="bad prefix",
-        )
+        return {
+            "query": q,
+            "prefix": prefix,
+            "identifier": identifier,
+            "success": False,
+            "reason": "bad prefix",
+        }
     pattern = manager_.get_pattern(prefix)
     if pattern is None:
         success = True
@@ -148,38 +157,21 @@ def _autocomplete(manager_: Manager, q: str, url_prefix: Optional[str] = None) -
         success = False
         reason = "failed validation"
         url = None
-    return dict(
-        query=q,
-        prefix=prefix,
-        pattern=pattern,
-        identifier=identifier,
-        success=success,
-        reason=reason,
-        url=url,
-    )
-
-
-def jsonify(data):
-    """Dump data as JSON, like like :func:`flask.jsonify`."""
-    return current_app.response_class(
-        json.dumps(data, ensure_ascii=False, default=extended_encoder),
-        mimetype="application/json",
-    )
-
-
-def yamlify(data):
-    """Dump data as YAML, like :func:`flask.jsonify`."""
-    if isinstance(data, BaseModel):
-        data = sanitize_model(data)
-
-    return current_app.response_class(
-        yaml.safe_dump(data=data),
-        mimetype="text/plain",
-    )
+    return {
+        "query": q,
+        "prefix": prefix,
+        "pattern": pattern,
+        "identifier": identifier,
+        "success": success,
+        "reason": reason,
+        "url": url,
+    }
 
 
 def serialize(
-    data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None, negotiate: bool = False
+    data: BaseModel,
+    serializers: Sequence[tuple[str, str, Callable[[BaseModel], str]]] | None = None,
+    negotiate: bool = False,
 ) -> Response:
     """Serialize either as JSON or YAML."""
     if negotiate:
@@ -193,24 +185,32 @@ def serialize(
         accept = FORMAT_MAP[arg]
 
     if accept == "application/json":
-        return jsonify(
-            data.dict(exclude_unset=True, exclude_none=True)
-            if isinstance(data, BaseModel)
-            else data
+        return cast(
+            Response,
+            current_app.response_class(
+                json.dumps(
+                    data.model_dump(exclude_unset=True, exclude_none=True), ensure_ascii=False
+                ),
+                mimetype="application/json",
+            ),
         )
     elif accept in "application/yaml":
-        return yamlify(
-            data.dict(exclude_unset=True, exclude_none=True)
-            if isinstance(data, BaseModel)
-            else data
+        return cast(
+            Response,
+            current_app.response_class(
+                yaml.safe_dump(
+                    data.model_dump(exclude_unset=True, exclude_none=True), allow_unicode=True
+                ),
+                mimetype="text/plain",
+            ),
         )
     for _name, mimetype, func in serializers or []:
         if accept == mimetype:
-            return current_app.response_class(func(data), mimetype=mimetype)
+            return cast(Response, current_app.response_class(func(data), mimetype=mimetype))
     return abort(404, f"unhandled media type: {accept}")
 
 
-def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:
+def serialize_model(entry: BaseModel, func, negotiate: bool = False) -> Response:  # type:ignore
     """Serialize a model."""
     return serialize(
         entry,

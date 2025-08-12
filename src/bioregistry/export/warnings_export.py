@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """Generate the warnings file.
 
-This lists any sorts of things that should be fixed upstream, but are instead manually curated in the Bioregistry.
+This lists any sorts of things that should be fixed upstream, but are instead manually
+curated in the Bioregistry.
 """
+
+from __future__ import annotations
 
 import os
 from typing import Callable
@@ -23,12 +24,12 @@ __all__ = [
 CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
 
 ENTRIES = sorted(
-    (prefix, resource.dict(exclude_none=True))
+    (prefix, resource.model_dump(exclude_none=True))
     for prefix, resource in bioregistry.read_registry().items()
 )
 
 
-def _g(predicate: Callable[[str], bool]):
+def _g(predicate: Callable[[str], bool]) -> list[dict[str, str | None]]:
     return [
         {
             "prefix": prefix,
@@ -40,7 +41,7 @@ def _g(predicate: Callable[[str], bool]):
     ]
 
 
-def get_unparsable_uris():
+def get_unparsable_uris() -> list[tuple[str, str, str]]:
     """Get a list of IRIs that can be constructed, but not parsed."""
     rows = []
     for prefix in tqdm(bioregistry.read_registry(), desc="Checking URIs"):
@@ -51,20 +52,27 @@ def get_unparsable_uris():
         if uri is None:
             continue
         k, v = bioregistry.parse_iri(uri)
-        if k is None:
-            rows.append((prefix, example, uri, k, v))
+        if k is None or v is None:
+            rows.append((prefix, example, uri))
     return rows
 
 
 @click.command()
-def export_warnings():
+def export_warnings() -> None:
     """Make warnings list."""
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
+        and not bioregistry.has_no_terms(prefix)
     )
-    missing_pattern = _g(lambda prefix: bioregistry.get_pattern(prefix) is None)
-    missing_format_url = _g(lambda prefix: bioregistry.get_uri_format(prefix) is None)
+    missing_pattern = _g(
+        lambda prefix: bioregistry.get_pattern(prefix) is None
+        and not bioregistry.has_no_terms(prefix)
+    )
+    missing_format_url = _g(
+        lambda prefix: bioregistry.get_uri_format(prefix) is None
+        and not bioregistry.has_no_terms(prefix)
+    )
     missing_example = _g(
         lambda prefix: bioregistry.get_example(prefix) is None
         and not bioregistry.has_no_terms(prefix)
@@ -87,20 +95,20 @@ def export_warnings():
                 "pattern": missing_pattern,
                 "formatter": missing_format_url,
                 "example": missing_example,
-                "prefix_xrefs": prefix_xrefs
+                "prefix_xrefs": prefix_xrefs,
                 # "unparsable": unparsable,
             },
             file,
         )
 
     miriam_pattern_wrong = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            correct=entry["pattern"],
-            miriam=entry["miriam"]["pattern"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "correct": entry["pattern"],
+            "miriam": entry["miriam"]["pattern"],
+        }
         for prefix, entry in ENTRIES
         if "miriam" in entry
         and "pattern" in entry
@@ -108,27 +116,27 @@ def export_warnings():
     ]
 
     miriam_embedding_rewrites = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            correct=entry["namespace.embedded"],
-            miriam=entry["miriam"]["namespaceEmbeddedInLui"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "pattern": bioregistry.get_pattern(prefix),
+            "correct": entry["namespace.embedded"],
+            "miriam": entry["miriam"]["namespaceEmbeddedInLui"],
+        }
         for prefix, entry in ENTRIES
         if "namespace.embedded" in entry
     ]
 
     # When are namespace rewrites required?
     miriam_prefix_rewrites = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            correct=entry["namespace.rewrite"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "pattern": bioregistry.get_pattern(prefix),
+            "correct": entry["namespace.rewrite"],
+        }
         for prefix, entry in ENTRIES
         if "namespace.rewrite" in entry
     ]
@@ -140,7 +148,7 @@ def export_warnings():
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
                 "license_conflict": [
-                    dict(prefix=prefix, obo=obo, ols=ols)
+                    {"prefix": prefix, "obo": obo, "ols": ols}
                     for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
                 ],
             },

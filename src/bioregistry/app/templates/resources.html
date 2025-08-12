@@ -54,7 +54,9 @@
         <div class="card-body">
             <p>
                 The registry contains metadata about ontologies, controlled vocabularies, and resources including their
-                preferred prefix, name, description, homepage, mappings to other registries, and more.
+                preferred prefix, name, description, homepage, mappings to other registries, and more. An alternate
+                view over the registry by keywords can be found
+                <a href="{{ url_for('metaregistry_ui.highlights_keywords') }}">here</a>.
             </p>
             {% if config.METAREGISTRY_RESOURCES_SUBHEADER %}
             {{ config.METAREGISTRY_RESOURCES_SUBHEADER | safe}}
