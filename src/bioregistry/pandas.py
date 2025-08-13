@@ -28,9 +28,9 @@ __all__ = [
     "identifiers_to_curies",
     "identifiers_to_iris",
     "iris_to_curies",
-    "pd_collapse_to_curies",
     "normalize_curies",
     "normalize_prefixes",
+    "pd_collapse_to_curies",
     "validate_curies",
     "validate_identifiers",
     "validate_prefixes",
@@ -157,7 +157,7 @@ def validate_prefixes(
     return results
 
 
-def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series, column) -> None:
+def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series, column: str) -> None:
     """Provide a summary of prefix validation."""
     # TODO add suggestions on what to do next, e.g.:,
     #  1. can some be normalized? use normalization function
@@ -562,7 +562,13 @@ def iris_to_curies(
     df[target_column or column] = df[column].map(bioregistry.curie_from_iri, na_action="ignore")
 
 
-def pd_collapse_to_curies(df: pd.DataFrame, prefix_column: Union[int, str], identifier_column: Union[int, str], *, target_column: str) -> None:
+def pd_collapse_to_curies(
+    df: pd.DataFrame,
+    prefix_column: int | str,
+    identifier_column: int | str,
+    *,
+    target_column: str,
+) -> None:
     prefix_column = _norm_column(df, prefix_column)
     identifier_column = _norm_column(df, identifier_column)
     df[target_column] = [
@@ -571,6 +577,3 @@ def pd_collapse_to_curies(df: pd.DataFrame, prefix_column: Union[int, str], iden
     ]
     del df[prefix_column]
     del df[identifier_column]
-
-
-
