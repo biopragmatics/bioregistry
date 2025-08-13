@@ -133,7 +133,11 @@ class TestRegistry(unittest.TestCase):
                 name = entry.get_name()
                 self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
                 if entry.name:
-                    self.assertEqual(entry.name.strip(), entry.name, msg="name should not have leading nor trailing whitespace")
+                    self.assertEqual(
+                        entry.name.strip(),
+                        entry.name,
+                        msg="name should not have leading nor trailing whitespace",
+                    )
 
                 for ss in self._construct_substrings(prefix):
                     self.assertNotIn(
@@ -203,7 +207,11 @@ class TestRegistry(unittest.TestCase):
                 self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
                 if resource.description:
-                    self.assertEqual(resource.description.strip(), resource.description, msg="description should not have leading nor trailing whitespace")
+                    self.assertEqual(
+                        resource.description.strip(),
+                        resource.description,
+                        msg="description should not have leading nor trailing whitespace",
+                    )
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
