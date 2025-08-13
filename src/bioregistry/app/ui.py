@@ -643,16 +643,18 @@ def highlights_relations() -> str:
     return render_template("highlights/relations.html")
 
 
-@ui_blueprint.route("/keywords")
+@ui_blueprint.route("/keyword")
 def highlights_keywords() -> str:
     """Render the keywords highlights page."""
-    keyword_to_prefix = defaultdict(list)
-    for resource in manager.registry.values():
-        for keyword in resource.get_keywords():
-            keyword_to_prefix[keyword].append(resource)
-
+    keyword_to_prefix = manager.get_keyword_to_resources()
     return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
 
+
+@ui_blueprint.route("/keyword/<keyword>")
+def get_keyword(keyword: str) -> str:
+    """Render the keywords highlights page."""
+    resources_ = manager.get_resources_with_keyword(keyword)
+    return render_template("highlights/keyword.html", keyword=keyword, resources=resources_)
 
 @ui_blueprint.route("/highlights/owners")
 def highlights_owners() -> str:
