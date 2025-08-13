@@ -76,8 +76,8 @@ assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
 assert 'pubchem.compound' == bioregistry.normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
-assert 'eccode' == bioregistry.normalize_prefix('ec-code')
-assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
+assert 'ec' == bioregistry.normalize_prefix('ec-code')
+assert 'ec' == bioregistry.normalize_prefix('EC_CODE')
 
 # If a prefix is not registered, it gives back `None`
 assert bioregistry.normalize_prefix('not a real key') is None</code></pre>

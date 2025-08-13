@@ -291,7 +291,7 @@
       },
       "homepage": "https://bioportal.bioontology.org/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/337",
-      "logo_url": "https://ontoportal.org/wp-content/uploads/2020/02/bioportal-logo.png",
+      "logo_url": "https://ontoportal.org/images/alliance_member_logos/bioportal.png",
       "name": "BioPortal Prefixes",
       "prefix": "bioportal",
       "provider_uri_format": "https://bioportal.bioontology.org/ontologies/$1",
@@ -395,7 +395,7 @@
       },
       "homepage": "https://web.expasy.org/cellosaurus/",
       "license": "CC BY 4.0",
-      "logo_url": "https://www.cellosaurus.org/cellosaurus.png",
+      "logo_url": "https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png",
       "name": "Cellosaurus Registry",
       "prefix": "cellosaurus",
       "qualities": {
@@ -729,10 +729,8 @@
       "bibtex": "Bender2013",
       "bioregistry_prefix": "oid",
       "contact": {
-        "email": "ted@tklein.com",
-        "github": "",
-        "name": "W. Ted Klein",
-        "orcid": ""
+        "email": "hq@HL7.org",
+        "name": "HL7 Support"
       },
       "description": "HL7 External Code Systems are stored within the greater OID system",
       "example": "2.16.840.1.113883.6.88",
@@ -751,7 +749,7 @@
       "logo_url": "https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png",
       "name": "HL7 External Code Systems",
       "prefix": "hl7",
-      "provider_uri_format": "http://oid-info.com/get/$1",
+      "provider_uri_format": "https://oid-base.com/get/$1",
       "qualities": {
         "automatable_download": false,
         "bulk_data": false,
@@ -759,6 +757,106 @@
         "structured_data": true
       },
       "short_name": "HL7"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "required",
+        "example": "missing",
+        "homepage": "present",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "integbio",
+      "contact": {
+        "email": "kwsm@dbcls.rois.ac.jp",
+        "github": "skwsm",
+        "name": "Shuichi Kawashima",
+        "orcid": "0000-0001-7883-3756"
+      },
+      "description": "Integbio Database Catalog provides whereabouts information (URL), database description, biological species and other attributes (metadata) of Japanese and international life science databases to make it easier for users to find databases they need. This catalog has been developed as a part of the integration of life science databases promoted by four ministries in Japan: the Ministry of Education, Culture, Sports, Science, and Technology (MEXT), The Ministry of Health, Labor, and Welfare (MHLW), the Ministry of Agriculture, Forestry, and Fisheries (MAFF), and the Ministry of Economy, Trade, and Industry of Japan (METI). (from https://integbio.jp/dbcatalog/en/about)",
+      "download": "https://integbio.jp/dbcatalog/files/zip/en_integbio_dbcatalog_cc0_20240112_utf8.csv.zip",
+      "example": "nbdc01071",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": false,
+        "curation": "import",
+        "imports": true,
+        "public_version_controlled_data": false,
+        "review_team": "n/a",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
+      "homepage": "https://integbio.jp/en/",
+      "license": "CC0",
+      "logo_url": "https://integbio.jp/templates/integbio/images/logo/logo.png",
+      "name": "Integbio",
+      "prefix": "integbio",
+      "provider_uri_format": "https://catalog.integbio.jp/dbcatalog/en/record/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "search_uri_format": "https://integbio.jp/dbcatalog/dbsearch-en?cck=database_catalog&order_en=1&dbcat_search_all_en=$1&tag2_en=&tag3_en=&inst_country_en=&inst_country_others_en=&dbarchive_en=&togotv_en=&data_downloadable_en=&biosharing_en=&record_creation_en=&status_en=&dbcat_ministry=&taxonomy=&lang=en&search=database_catalog_search_en&task=search"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "present",
+        "example": "missing",
+        "homepage": "present",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "present",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "py.vandenbussche@gmail.com",
+        "github": "pyvandenbussche",
+        "name": "Pierre-Yves Vandenbussche",
+        "orcid": "0000-0003-0591-6109"
+      },
+      "description": "A vocabulary in LOV gathers definitions of a set of classes and properties (together simply called terms of the vocabulary), useful to describe specific types of things, or things in a given domain or industry, or things at large but for a specific usage. Terms of vocabularies also provide the links in linked data, in the above case between a Person and a City. The definitions of terms provided by the vocabularies bring clear semantics to descriptions and links, thanks to the formal language they use (some dialect of RDF such as RDFS or OWL). In short, vocabularies provide the semantic glue enabling Data to become meaningful Data. [from https://lov.linkeddata.es/dataset/lov/about]",
+      "download": "https://lov.linkeddata.es/lov.n3.gz",
+      "example": "m4i",
+      "governance": {
+        "accepts_external_contributions": true,
+        "code_repository": "https://github.com/pyvandenbussche/lov",
+        "curates": true,
+        "curation": "import",
+        "imports": true,
+        "issue_tracker": "https://github.com/pyvandenbussche/lov/issues",
+        "public_version_controlled_data": false,
+        "review_team": "n/a",
+        "scope": "semantic web",
+        "status": "active"
+      },
+      "homepage": "https://lov.linkeddata.es",
+      "license": "CC BY 4.0",
+      "logo_url": "https://lov.linkeddata.es/img/icon-LOV.png",
+      "name": "Linked Open Vocabularies",
+      "prefix": "lov",
+      "provider_uri_format": "https://lov.linkeddata.es/dataset/lov/vocabs/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "search_uri_format": "https://lov.linkeddata.es/dataset/lov/vocabs?q=$1",
+      "short_name": "LOV"
     },
     {
       "availability": {
@@ -1069,6 +1167,53 @@
     },
     {
       "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "present",
+        "example": "missing",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "pathguide",
+      "contact": {
+        "email": "gary.bader@utoronto.ca",
+        "github": "gbader",
+        "name": "Gary Bader",
+        "orcid": "0000-0003-0185-8861"
+      },
+      "description": "Pathguide contains information about 702 biological pathway related resources and molecular interaction related resources. Click on a link to go to the resource home page or 'Details' for a description page. Databases that are free and those supporting BioPAX, CellML, PSI-MI or SBML standards are respectively indicated. (from homepage)",
+      "example": "235",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_controlled_data": false,
+        "review_team": "n/a",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
+      "homepage": "http://pathguide.org",
+      "license": "Unknown",
+      "logo_url": "http://pathguide.org/images/logo.gif",
+      "name": "Pathguide",
+      "prefix": "pathguide",
+      "provider_uri_format": "http://www.pathguide.org/fullrecord.php?organisms=all&availability=all&standards=all&order=alphabetic&DBID=$1",
+      "qualities": {
+        "automatable_download": false,
+        "bulk_data": false,
+        "no_authentication": true,
+        "structured_data": false
+      }
+    },
+    {
+      "availability": {
         "alternate_providers": "present",
         "contact": "missing",
         "description": "missing",
@@ -1269,6 +1414,56 @@
         "alternate_providers": "missing",
         "contact": "missing",
         "description": "missing",
+        "example": "required",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "required",
+        "provider": "required",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "togoid",
+      "contact": {
+        "email": "ktym@dbcls.jp",
+        "github": "ktym",
+        "name": "Toshiaki Katayama",
+        "orcid": "0000-0003-2391-0384"
+      },
+      "description": "TogoID is an ID conversion service implementing unique features with an intuitive web interface and an API for programmatic access. TogoID supports datasets from various biological categories such as gene, protein, chemical compound, pathway, disease, etc. TogoID users can perform exploratory multistep conversions to find a path among IDs. To guide the interpretation of biological meanings in the conversions, we crafted an ontology that defines the semantics of the dataset relations. (from https://togoid.dbcls.jp/)",
+      "download": "https://raw.githubusercontent.com/togoid/togoid-config/main/ontology/togoid-ontology.ttl",
+      "example": "AffyProbeset",
+      "governance": {
+        "accepts_external_contributions": true,
+        "code_repository": "https://github.com/togoid/togoid-config",
+        "curates": false,
+        "curation": "import",
+        "data_repository": "https://github.com/togoid/togoid-config",
+        "imports": true,
+        "issue_tracker": "https://github.com/togoid/togoid-config/issues",
+        "public_version_controlled_data": true,
+        "review_team": "inferrable",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
+      "homepage": "https://togoid.dbcls.jp/",
+      "license": "CC BY 4.0",
+      "name": "TogoID",
+      "prefix": "togoid",
+      "provider_uri_format": "https://togoid.dbcls.jp/#$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      }
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
         "example": "missing",
         "homepage": "required",
         "license": "missing",
@@ -1330,7 +1525,7 @@
         "version": "present"
       },
       "bibtex": "Waagmeester2020",
-      "bioregistry_prefix": "wikidata",
+      "bioregistry_prefix": "wikidata.property",
       "contact": {
         "email": "info@wikidata.org",
         "name": "WikiData Support"
@@ -1360,6 +1555,107 @@
         "structured_data": true
       },
       "short_name": "Wikidata"
+    },
+    {
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "present",
+        "description": "required",
+        "example": "present",
+        "homepage": "present",
+        "license": "present",
+        "name": "required",
+        "pattern": "present",
+        "provider": "present",
+        "search": true,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "bibtex": "Waagmeester2020",
+      "bioregistry_prefix": "wikidata.entity",
+      "contact": {
+        "email": "info@wikidata.org",
+        "name": "WikiData Support"
+      },
+      "description": "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries.",
+      "example": "Q81661651",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_controlled_data": false,
+        "review_team": "inferrable",
+        "scope": "general",
+        "status": "active"
+      },
+      "homepage": "https://www.wikidata.org",
+      "license": "CC0",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg",
+      "name": "Wikidata Entity",
+      "prefix": "wikidata.entity",
+      "provider_uri_format": "http://www.wikidata.org/entity/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "short_name": "Wikidata (E)"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "homepage": "missing",
+        "license": "missing",
+        "name": "missing",
+        "pattern": "missing",
+        "provider": "present",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "zazuko",
+      "contact": {
+        "email": "ktk@netlabs.org",
+        "github": "ktk",
+        "name": "Adrian Gschwend",
+        "orcid": "0000-0002-2079-9636"
+      },
+      "description": "This service fills a gap between services like prefix.cc and LOV or looking up the original vocabulary specification. Not all vocabularies (or schema or ontology, whatever you want to call them) provide an HTML view. If you resolve some of the common prefixes all you get back is some RDF serialization which is not ideal. (from <https://prefix.zazuko.com/about>)",
+      "download": "https://prefix.zazuko.com/api/v1/prefixes",
+      "example": "frbr",
+      "governance": {
+        "accepts_external_contributions": true,
+        "code_repository": "https://github.com/zazuko/prefix-server",
+        "curates": true,
+        "curation": "open-review",
+        "data_repository": "https://github.com/zazuko/rdf-vocabularies",
+        "imports": true,
+        "issue_tracker": "https://github.com/zazuko/rdf-vocabularies/issues",
+        "public_version_controlled_data": true,
+        "review_team": "inferrable",
+        "scope": "semantic web",
+        "status": "active"
+      },
+      "homepage": "https://prefix.zazuko.com/",
+      "license": "MIT",
+      "logo_url": "https://prefix.zazuko.com/_nuxt/img/zazuko-logo.2dc686c.svg",
+      "name": "Zazuko Prefix Server",
+      "prefix": "zazuko",
+      "provider_uri_format": "https://prefix.zazuko.com/prefix/$1:",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
+      "resolver_uri_format": "https://prefix.zazuko.com/$1:$2",
+      "short_name": "Zazuko"
     }
   ]
 }

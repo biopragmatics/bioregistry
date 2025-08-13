@@ -1,26 +1,33 @@
-# -*- coding: utf-8 -*-
-
 """Constants and utilities for registries."""
 
-import importlib.metadata
+from __future__ import annotations
+
+import enum
 import os
 import pathlib
 import re
-from typing import Tuple, Union
+from typing import Union
 
 import pystow
+from curies import ReferenceTuple
+from typing_extensions import TypeAlias
 
 __all__ = [
-    "HERE",
-    "DATA_DIRECTORY",
-    "BIOREGISTRY_PATH",
-    "METAREGISTRY_PATH",
-    "COLLECTIONS_PATH",
-    "MISMATCH_PATH",
     "BIOREGISTRY_MODULE",
+    "BIOREGISTRY_PATH",
+    "COLLECTIONS_PATH",
+    "CURATED_MAPPINGS_PATH",
+    "DATA_DIRECTORY",
+    "HERE",
+    "METAREGISTRY_PATH",
+    "RAW_DIRECTORY",
+    "FailureReturnType",
+    "MaybeCURIE",
+    "get_failure_return_type",
 ]
 
-PYDANTIC_1 = importlib.metadata.version("pydantic").startswith("1.")
+PATTERN_KEY = "pattern"
+ORCID_PATTERN = r"^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$"
 
 HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 DATA_DIRECTORY = HERE / "data"
@@ -28,8 +35,9 @@ EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
 METAREGISTRY_PATH = DATA_DIRECTORY / "metaregistry.json"
 COLLECTIONS_PATH = DATA_DIRECTORY / "collections.json"
-MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
+CURATED_MAPPINGS_PATH = DATA_DIRECTORY / "curated_mappings.sssom.tsv"
 CONTEXTS_PATH = DATA_DIRECTORY / "contexts.json"
+CURATED_PAPERS_PATH = DATA_DIRECTORY / "curated_papers.tsv"
 
 BIOREGISTRY_MODULE = pystow.module("bioregistry")
 
@@ -40,6 +48,8 @@ DOCS_IMG = DOCS.joinpath("img")
 
 EXPORT_DIRECTORY = ROOT.joinpath("exports")
 
+METADATA_CURATION_DIRECTORY = EXPORT_DIRECTORY.joinpath("alignment")
+RAW_DIRECTORY = EXPORT_DIRECTORY.joinpath("raw")
 EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
 CONTEXT_BIOREGISTRY_PATH = EXPORT_CONTEXTS / "bioregistry.context.jsonld"
 SHACL_TURTLE_PATH = EXPORT_CONTEXTS / "bioregistry.context.ttl"
@@ -124,6 +134,15 @@ MIRIAM_BLACKLIST = {
     "pid.pathway",
     # this uses namespace-in-namespace
     "neurolex",
+    # Miriam needs to be extended
+    "ccds",
+    # Miriam completely misses the actual usage
+    "agricola",
+    # Miriam pattern/example combo is broken
+    # See https://github.com/biopragmatics/bioregistry/issues/1588
+    "hogenom",
+    # Miriam pattern/example combo is broken
+    "homd.seq",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
@@ -147,7 +166,35 @@ HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data
 EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 
 # not a perfect email regex, but close enough
-EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$"
+EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,7}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
-MaybeCURIE = Union[Tuple[str, str], Tuple[None, None]]
+NonePair: TypeAlias = tuple[None, None]
+
+MaybeCURIE = Union[ReferenceTuple, NonePair, None]
+
+DISALLOWED_EMAIL_PARTS = {
+    "contact@",
+    "help@",
+    "helpdesk@",
+    "discuss@",
+    "support@",
+}
+
+
+class FailureReturnType(enum.Enum):
+    """A flag for what to return when handling reference tuples."""
+
+    #: return a single None
+    single = enum.auto()
+    #: return a pair of None's
+    pair = enum.auto()
+
+
+def get_failure_return_type(frt: FailureReturnType) -> None | NonePair:
+    """Get the right failure return type."""
+    if frt == FailureReturnType.single:
+        return None
+    elif frt == FailureReturnType.pair:
+        return None, None
+    raise TypeError

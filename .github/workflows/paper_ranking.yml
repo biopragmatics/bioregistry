@@ -1,0 +1,118 @@
+name: Run Paper Ranking Script and Update Issue
+
+on:
+  schedule:
+    - cron: '0 5 1 * *' # runs on the first day of every month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  paper-ranking:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.12"
+
+    - name: Install dependencies
+      run: |
+        # TODO update to using uv
+        python -m pip install --upgrade pip
+        pip install .[paper-ranking]
+
+    - name: Set Date Variables
+      id: set-date-variables
+      run: |
+        start_date=$(date -d "$(date +'%Y-%m-01') -1 month" +'%Y-%m-01')
+        end_date=$(date -d "$start_date +1 month -1 day" +'%Y-%m-%d')
+        echo "START_DATE=$start_date" >> $GITHUB_ENV
+        echo "END_DATE=$end_date" >> $GITHUB_ENV
+    
+    - name: Set PYTHONPATH
+      run: |
+        echo "PYTHONPATH=$PWD/src" >> $GITHUB_ENV
+
+    - name: Run Paper Ranking Script
+      id: run-ranking-script
+      run: |
+        echo "PYTHONPATH=$PYTHONPATH"  # Verify PYTHONPATH
+        # TODO update to using python -m
+        python src/bioregistry/analysis/paper_ranking.py --start-date ${{ env.START_DATE }} --end-date ${{ env.END_DATE }}
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+    - name: Commit and Push Changes
+      run: |
+        git add exports/analyses/paper_ranking/predictions.tsv
+        git commit -m "Update predictions file with papers between ${{ env.START_DATE }} and ${{ env.END_DATE }}"
+        git push
+
+    - name: Find Commit Hash
+      id: get-commit-hash
+      run: echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+
+    - name: Find Existing Issue
+      id: find-issue
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { data: issues } = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: 'paper-ranking-results'
+          });
+          const issue = issues.find(issue => issue.title === 'Potentially relevant papers ranked for curation');
+          return issue ? issue.number : null;
+
+    - name: Create or Update Issue with Comment
+      id: create-or-update-issue
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          const issueNumber = ${{ steps.find-issue.outputs.result }};
+          const startDate = process.env.START_DATE;
+          const endDate = process.env.END_DATE;
+          const commitHash = process.env.COMMIT_HASH;
+          const rankingFileLink = `https://github.com/${{ github.repository }}/blob/${commitHash}/exports/analyses/paper_ranking/predictions.tsv`;
+          const content = fs.readFileSync(`exports/analyses/paper_ranking/predictions.tsv`, 'utf8');
+          const lines = content.split('\n').slice(1, 21);
+          const rows = lines.map(line => {
+            const [pubmed, title] = line.split('\t');
+            const link = `https://bioregistry.io/pubmed:${pubmed}`;
+            return `| [${pubmed}](${link}) | ${title} |`;
+          });
+          const tableHeader = '| PubMed ID | Title |\n| --- | --- |\n';
+          const commentBody = `This issue contains monthly updates to an automatically ranked list of PubMed papers as candidates for curation in the Bioregistry. Papers may be relevant in at least three ways: \n(1) as a new prefix for a resource that can be added to the Bioregistry,\n(2) as a provider for an existing prefix, or\n(3) as a new publication for an existing prefix already in the Bioregistry.\n\nThese curations can happen in separate issues and pull requests. The full list of ranked papers can be found [here](${rankingFileLink}). If you review any of these papers for relevance, you should edit the curated papers file [here](https://github.com/${{ github.repository }}/blob/main/src/bioregistry/data/curated_papers.tsv); these curations are taken into account when retraining the ranking model.\n\n**New entries for ${startDate} to ${endDate}:**\n\n${tableHeader}${rows.join('\n')}`;
+
+          if (issueNumber) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: commentBody,
+            });
+          } else {
+            const response = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Potentially relevant papers ranked for curation',
+              body: `${commentBody}`,
+              labels: ['paper-ranking-results'],
+            });
+            core.setOutput('issue-number', response.data.number);
+          }

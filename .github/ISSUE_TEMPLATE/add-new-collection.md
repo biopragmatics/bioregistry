@@ -3,8 +3,7 @@ name: Add new collection
 about: Add a collection of resources
 title: Add new collection
 labels: New
-assignees: ''
-
+assignees: ""
 ---
 
 ## Title
@@ -25,4 +24,5 @@ assignees: ''
 
 ## Author ORCID Identifier
 
-> Replace this with the ORCID identifier of the author, or list of ORCID identifiers separated by commas corresponding to the author list
+> Replace this with the ORCID identifier of the author, or list of ORCID
+> identifiers separated by commas corresponding to the author list

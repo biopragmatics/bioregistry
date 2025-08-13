@@ -2,13 +2,11 @@ name: Add provider for resource
 description: Add a URL for resolving identifiers in a given resource
 title: Add provider for [X]
 labels: [ Provider, New ]
-assignees:
-  - cthoyt
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out the new provider form!
+        Thanks for taking the time to fill out the new provider form! A curation guide for new providers can be found here: https://biopragmatics.github.io/bioregistry/curation/providers.
   - type: input
     id: prefix
     attributes:
@@ -33,3 +31,10 @@ body:
       placeholder: ex. 0000-0003-4423-4370
     validations:
       required: true
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Please add any additional explanation, if desired
+    validations:
+      required: false
