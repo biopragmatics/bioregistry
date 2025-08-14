@@ -646,7 +646,7 @@ def highlights_relations() -> str:
 @ui_blueprint.route("/keywords")
 def highlights_keywords() -> werkzeug.Response:
     """Redirect to the keywords index."""
-    return redirect(url_for("." + highlights_keywords.__name__))
+    return redirect(url_for("." + get_keywords.__name__))
 
 
 @ui_blueprint.route("/keyword")
