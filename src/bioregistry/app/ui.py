@@ -643,18 +643,25 @@ def highlights_relations() -> str:
     return render_template("highlights/relations.html")
 
 
+@ui_blueprint.route("/keywords")
+def highlights_keywords() -> werkzeug.Response:
+    """Redirect to the keywords index."""
+    return redirect(url_for("." + highlights_keywords.__name__))
+
+
 @ui_blueprint.route("/keyword")
-def highlights_keywords() -> str:
+def get_keywords() -> str:
     """Render the keywords highlights page."""
     keyword_to_prefix = manager.get_keyword_to_resources()
-    return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
+    return render_template("keywords.html", keywords=keyword_to_prefix)
 
 
 @ui_blueprint.route("/keyword/<keyword>")
 def get_keyword(keyword: str) -> str:
     """Render the keywords highlights page."""
     resources_ = manager.get_resources_with_keyword(keyword)
-    return render_template("highlights/keyword.html", keyword=keyword, resources=resources_)
+    return render_template("keyword.html", keyword=keyword, resources=resources_)
+
 
 @ui_blueprint.route("/highlights/owners")
 def highlights_owners() -> str:

@@ -145,7 +145,7 @@
                     <dt>Keywords</dt>
                     <dd>
                         {% for keyword in keywords|sort %}
-                            <span class="badge badge-light">{{ keyword }}</span>
+                            <a class="badge badge-light" href="{{ url_for(".get_keyword", keyword=keyword) }}">{{ keyword }}</a>
                         {% endfor %}
                     </dd>
                 {% endif %}

@@ -1,27 +1,28 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}{{ config.METAREGISTRY_TITLE }} - Keywords{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Keyword - {{ keyword }}{% endblock %}
 
 {% block container %}
-    <div class="card">
-        <div class="card-header">
-            Keywords
-        </div>
-        <table class="table">
-            <thead></thead>
-            <tbody>
-            {% for keyword, resources in keywords|dictsort %}
-                <tr>
-                    <td>{{ keyword }}</td>
-                    <td>
-                        {% for resource in resources %}
-                            {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
-                        {% endfor %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+<div class="card">
+    <div class="card-header">
+        <h5 style="margin: 0">
+            <a href="{{ url_for("metaregistry_ui.get_keywords") }}">Keywords</a>
+            <i class="fas fa-angle-right"></i> {{ keyword }}
+        </h5>
     </div>
+    <table class="table">
+        <thead></thead>
+        <tbody>
+        {% for resource in resources %}
+        <tr>
+            <td>
+                {{ utils.render_prefix(resource.prefix) }}
+            </td>
+            <td>{{ resource.get_name() }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
