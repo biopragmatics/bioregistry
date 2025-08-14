@@ -43,174 +43,6 @@
   },
   "@graph": [
     {
-      "@id": "https://bioregistry.io/schema/#0000008",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The pattern for identifiers in the given resource"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has local unique identifier pattern"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      },
-      "http://www.w3.org/2002/07/owl#equivalentProperty": [
-        {
-          "@id": "http://identifiers.org/idot/identifierPattern"
-        },
-        {
-          "@id": "http://www.wikidata.org/entity/P1793"
-        },
-        {
-          "@id": "http://vocabularies.bridgedb.org/ops#hasRegexPattern"
-        }
-      ]
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000024",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier) that should be resolved."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has URI prefix"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      },
-      "http://www.w3.org/2002/07/owl#equivalentProperty": [
-        {
-          "@id": "http://purl.org/vocab/vann/preferredNamespaceUri"
-        },
-        {
-          "@id": "http://rdfs.org/ns/void#uriSpace"
-        },
-        {
-          "@id": "http://www.w3.org/ns/shacl#namespace"
-        }
-      ]
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000019",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The responsible person for a resource"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has responsible"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://bioregistry.io/schema/#0000020"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000022",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The main contact person for a registry"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000002"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has responsible"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://bioregistry.io/schema/#0000020"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000006",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The URL format for a provider that contains $1 for the identifier (or metaidentifier) that should be resolved."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has provider formatter"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      },
-      "http://www.w3.org/2002/07/owl#equivalentProperty": [
-        {
-          "@id": "http://identifiers.org/idot/accessPattern"
-        },
-        {
-          "@id": "http://www.wikidata.org/entity/P1630"
-        },
-        {
-          "@id": "http://vocabularies.bridgedb.org/ops#hasPrimaryUriPattern"
-        }
-      ]
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000001",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://purl.org/dc/terms/description": {
-        "@value": "A type for entries in the Bioregistry's registry."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "Resource"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000027",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "An expanded example URL for a resource or metaresource."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has resource example"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      },
-      "http://www.w3.org/2002/07/owl#equivalentProperty": {
-        "@id": "http://rdfs.org/ns/void#exampleResource"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000021",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The reviewer of a prefix"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has reviewer"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://bioregistry.io/schema/#0000020"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000002",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://purl.org/dc/terms/description": {
-        "@value": "A type for entries in the Bioregistry's metaregistry."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "Registry"
-      }
-    },
-    {
       "@id": "https://bioregistry.io/schema/#0000005",
       "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
       "http://purl.org/dc/terms/description": {
@@ -238,142 +70,19 @@
       ]
     },
     {
-      "@id": "https://bioregistry.io/schema/#0000018",
+      "@id": "https://bioregistry.io/schema/#0000017",
       "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
       "http://purl.org/dc/terms/description": {
-        "@value": "Terms from the source appear in the target resource"
+        "@value": "The data in resource denoted by the subject prefix depends on the data in the resources denoted by the object prefix"
       },
       "http://www.w3.org/2000/01/rdf-schema#domain": {
         "@id": "https://bioregistry.io/schema/#0000001"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "appears in"
+        "@value": "depends on"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
         "@id": "https://bioregistry.io/schema/#0000001"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000026",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "An organization"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has identifier space owner"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://bioregistry.io/schema/#0000025"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000007",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The URL format for a resolver that contains $1 for the prefix and $2 for the identifier that should be resolved."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000002"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has resolver formatter"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000023",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "An alternative or synonymous prefix"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has alternative prefix"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": {
-        "@id": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"
-      },
-      "http://www.w3.org/2002/07/owl#equivalentProperty": {
-        "@id": "http://identifiers.org/idot/alternatePrefix"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000012",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "A property whose subject is a resource that denotes if it is still available and usable? Currently this is a blanket term for decommissioned, unable to locate, abandoned, etc."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "is deprecated"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000028",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "The pattern for expanded URIs in the given resource"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has URI pattern"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      },
-      "http://www.w3.org/2002/07/owl#equivalentProperty": [
-        {
-          "@id": "http://rdfs.org/ns/void#uriRegexPattern"
-        },
-        {
-          "@id": "http://www.wikidata.org/entity/P8966"
-        },
-        {
-          "@id": "http://identifiers.org/idot/accessIdentifierPattern"
-        }
-      ]
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000016",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://purl.org/dc/terms/description": {
-        "@value": "A property connecting two prefixes that share an IRI where the subject is the non-preferred prefix and the target is the preferred prefix. See examples [here](https://bioregistry.io/highlights/relations#canonical)."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "has canonical"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://bioregistry.io/schema/#0000001"
-      }
-    },
-    {
-      "@id": "https://bioregistry.io/schema/#0000025",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://purl.org/dc/terms/description": {
-        "@value": "An organization"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "Organization"
       }
     },
     {
@@ -390,6 +99,84 @@
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
         "@id": "https://bioregistry.io/schema/#0000001"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000008",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The pattern for identifiers in the given resource"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has local unique identifier pattern"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "http://www.w3.org/2002/07/owl#equivalentProperty": [
+        {
+          "@id": "http://identifiers.org/idot/identifierPattern"
+        },
+        {
+          "@id": "http://www.wikidata.org/entity/P1793"
+        },
+        {
+          "@id": "http://vocabularies.bridgedb.org/ops#hasRegexPattern"
+        }
+      ]
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000021",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The reviewer of a prefix"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has reviewer"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://bioregistry.io/schema/#0000020"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000027",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "An expanded example URL for a resource or metaresource."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has resource example"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "http://www.w3.org/2002/07/owl#equivalentProperty": {
+        "@id": "http://rdfs.org/ns/void#exampleResource"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000007",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The URL format for a resolver that contains $1 for the prefix and $2 for the identifier that should be resolved."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000002"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has resolver formatter"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
       }
     },
     {
@@ -423,19 +210,13 @@
       ]
     },
     {
-      "@id": "https://bioregistry.io/schema/#0000017",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "@id": "https://bioregistry.io/schema/#0000003",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://purl.org/dc/terms/description": {
-        "@value": "The data in resource denoted by the subject prefix depends on the data in the resources denoted by the object prefix"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://bioregistry.io/schema/#0000001"
+        "@value": "A type for entries in the Bioregistry's collections"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "depends on"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://bioregistry.io/schema/#0000001"
+        "@value": "Collection"
       }
     },
     {
@@ -455,14 +236,185 @@
       }
     },
     {
-      "@id": "https://bioregistry.io/schema/#0000003",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "@id": "https://bioregistry.io/schema/#0000022",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
       "http://purl.org/dc/terms/description": {
-        "@value": "A type for entries in the Bioregistry's collections"
+        "@value": "The main contact person for a registry"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000002"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@value": "Collection"
+        "@value": "has responsible"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://bioregistry.io/schema/#0000020"
       }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000024",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The URL prefix for a provider that does not $1 for the identifier (or metaidentifier) that should be resolved."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has URI prefix"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "http://www.w3.org/2002/07/owl#equivalentProperty": [
+        {
+          "@id": "http://purl.org/vocab/vann/preferredNamespaceUri"
+        },
+        {
+          "@id": "http://rdfs.org/ns/void#uriSpace"
+        },
+        {
+          "@id": "http://www.w3.org/ns/shacl#namespace"
+        }
+      ]
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000018",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "Terms from the source appear in the target resource"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "appears in"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000002",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://purl.org/dc/terms/description": {
+        "@value": "A type for entries in the Bioregistry's metaregistry."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "Registry"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000012",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "A property whose subject is a resource that denotes if it is still available and usable? Currently this is a blanket term for decommissioned, unable to locate, abandoned, etc."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "is deprecated"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000006",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The URL format for a provider that contains $1 for the identifier (or metaidentifier) that should be resolved."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has provider formatter"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "http://www.w3.org/2002/07/owl#equivalentProperty": [
+        {
+          "@id": "http://identifiers.org/idot/accessPattern"
+        },
+        {
+          "@id": "http://www.wikidata.org/entity/P1630"
+        },
+        {
+          "@id": "http://vocabularies.bridgedb.org/ops#hasPrimaryUriPattern"
+        }
+      ]
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000026",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "An organization"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has identifier space owner"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://bioregistry.io/schema/#0000025"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000016",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "A property connecting two prefixes that share an IRI where the subject is the non-preferred prefix and the target is the preferred prefix. See examples [here](https://bioregistry.io/highlights/relations#canonical)."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has canonical"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000001",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://purl.org/dc/terms/description": {
+        "@value": "A type for entries in the Bioregistry's registry."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "Resource"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000028",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The pattern for expanded URIs in the given resource"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has URI pattern"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "http://www.w3.org/2002/07/owl#equivalentProperty": [
+        {
+          "@id": "http://rdfs.org/ns/void#uriRegexPattern"
+        },
+        {
+          "@id": "http://www.wikidata.org/entity/P8966"
+        },
+        {
+          "@id": "http://identifiers.org/idot/accessIdentifierPattern"
+        }
+      ]
     },
     {
       "@id": "https://bioregistry.io/schema/#0000020",
@@ -475,6 +427,54 @@
       },
       "http://www.w3.org/2002/07/owl#equivalentClass": {
         "@id": "http://xmlns.com/foaf/0.1/Person"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000019",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "The responsible person for a resource"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has responsible"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://bioregistry.io/schema/#0000020"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000023",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://purl.org/dc/terms/description": {
+        "@value": "An alternative or synonymous prefix"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://bioregistry.io/schema/#0000001"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "has alternative prefix"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": {
+        "@id": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"
+      },
+      "http://www.w3.org/2002/07/owl#equivalentProperty": {
+        "@id": "http://identifiers.org/idot/alternatePrefix"
+      }
+    },
+    {
+      "@id": "https://bioregistry.io/schema/#0000025",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://purl.org/dc/terms/description": {
+        "@value": "An organization"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@value": "Organization"
       }
     }
   ]
