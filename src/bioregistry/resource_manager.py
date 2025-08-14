@@ -943,6 +943,18 @@ class Manager:
             return None
         return entry.get_keywords()
 
+    def get_keyword_to_resources(self) -> dict[str, list[Resource]]:
+        """Get a dictionary from keywords to resources."""
+        keyword_to_resource = defaultdict(list)
+        for resource in manager.registry.values():
+            for keyword in resource.get_keywords():
+                keyword_to_resource[keyword].append(resource)
+        return dict(keyword_to_resource)
+
+    def get_resources_with_keyword(self, keyword: str) -> list[Resource]:
+        """Get resources with the given keyword."""
+        return self.get_keyword_to_resources().get(keyword, [])
+
     def get_example(self, prefix: str) -> str | None:
         """Get an example identifier, if it's available."""
         entry = self.get_resource(prefix)

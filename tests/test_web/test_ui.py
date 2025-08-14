@@ -47,6 +47,9 @@ class TestUI(unittest.TestCase):
                 "sustainability",
                 "related",
                 "acknowledgements",
+                "keywords",  # for backwards compatibility
+                "keyword",
+                "keyword/unit",
             ]:
                 with self.subTest(endpoint=endpoint):
                     res = client.get(endpoint, follow_redirects=True)
