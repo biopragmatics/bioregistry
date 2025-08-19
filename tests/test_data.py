@@ -1,5 +1,6 @@
 """Tests for data integrity."""
 
+import importlib.util
 import itertools as itt
 import json
 import logging
@@ -26,7 +27,7 @@ from bioregistry.schema.struct import (
     Publication,
     get_json_schema,
 )
-from bioregistry.schema_utils import is_mismatch
+from bioregistry.schema_utils import is_mismatch, read_status_contributions
 from bioregistry.utils import _norm
 
 logger = logging.getLogger(__name__)
@@ -51,7 +52,9 @@ class TestRegistry(unittest.TestCase):
     def test_lint(self):
         """Test that the lint command was run.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/180
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/180
         """
         text = BIOREGISTRY_PATH.read_text(encoding="utf8")
         linted_text = json.dumps(
@@ -129,6 +132,12 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
                 self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+                if entry.name:
+                    self.assertEqual(
+                        entry.name.strip(),
+                        entry.name,
+                        msg="name should not have leading nor trailing whitespace",
+                    )
 
                 for ss in self._construct_substrings(prefix):
                     self.assertNotIn(
@@ -189,13 +198,20 @@ class TestRegistry(unittest.TestCase):
 
     def test_has_description(self):
         """Test that all non-deprecated entries have a description."""
-        for prefix in self.registry:
+        for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 desc = bioregistry.get_description(prefix)
                 self.assertIsNotNone(desc)
+                self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
+                if resource.description:
+                    self.assertEqual(
+                        resource.description.strip(),
+                        resource.description,
+                        msg="description should not have leading nor trailing whitespace",
+                    )
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
@@ -371,11 +387,10 @@ class TestRegistry(unittest.TestCase):
     def test_examples(self):
         """Test examples for the required conditions.
 
-        1. All resources must have an example, with the following exceptions:
-           - deprecated resources
-           - resources that are marked as not having their own terms (e.g., ChIRO)
-           - resources that are providers for other resources (e.g., CTD Gene)
-           - proprietary resources (e.g., Eurofir)
+        1. All resources must have an example, with the following exceptions: -
+           deprecated resources - resources that are marked as not having their own
+           terms (e.g., ChIRO) - resources that are providers for other resources (e.g.,
+           CTD Gene) - proprietary resources (e.g., Eurofir)
         2. Examples are stored in normal form (i.e., no redundant prefixes)
         3. Examples pass the regular expression pattern for the resource, if available
         """
@@ -755,8 +770,8 @@ class TestRegistry(unittest.TestCase):
     def test_namespace_in_lui(self):
         """Test having the namespace in LUI requires a banana annotation.
 
-        This is required because the annotation from MIRIAM is simply not granular enough
-        to support actual use cases.
+        This is required because the annotation from MIRIAM is simply not granular
+        enough to support actual use cases.
         """
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope"))
         self.assertIsNone(bioregistry.get_namespace_in_lui("nope", provenance=True))
@@ -1103,26 +1118,72 @@ class TestRegistry(unittest.TestCase):
                     norm_identifier, bioregistry.standardize_identifier(prefix, identifier)
                 )
 
-    @unittest.skip
-    def test_keywords(self):
+    def _should_test_keywords(self, resource: Resource) -> bool:
+        if resource.github_request_issue and resource.github_request_issue >= 1617:
+            return True
+        if resource.is_deprecated():
+            return False
+        # if not resource.contributor:
+        #     continue
+        # if resource.get_mappings():
+        #     continue  # TODO remove this after first found of curation is done
+
+    def test_keywords(self) -> None:
         """Assert that all entries have keywords."""
         for resource in self.registry.values():
-            if resource.is_deprecated():
+            if not self._should_test_keywords(resource):
                 continue
-            if not resource.contributor:
-                continue
-            if resource.get_mappings():
-                continue  # TODO remove this after first found of curation is done
             with self.subTest(prefix=resource.prefix, name=resource.get_name()):
                 if resource.keywords:
-                    self.assertEqual(
-                        sorted(k.lower() for k in resource.keywords),
-                        resource.keywords,
-                        msg="manually curated keywords should be sorted and exclusively lowercase",
-                    )
-                keywords = resource.get_keywords()
-                self.assertIsNotNone(keywords)
-                self.assertLess(0, len(keywords), msg=f"{resource.prefix} is missing keywords")
+                    if [k.casefold() for k in resource.keywords] != resource.keywords:
+                        self.fail(
+                            f"[{resource.prefix}] manually curated keywords should all be exclusively lowercase. Please run `bioregistry lint`"
+                        )
+                    if sorted(resource.keywords) != resource.keywords:
+                        self.fail(
+                            msg=f"[{resource.prefix}] manually curated keywords are not sorted. Please run `bioregistry lint`",
+                        )
+
+                    first_part, delimiter, _ = resource.prefix.partition(".")
+                    if delimiter:
+                        self.assertNotIn(
+                            first_part,
+                            resource.keywords,
+                            msg="Don't use the grouping part of the namespace as a keyword. Encode it using the `part_of` key instead.",
+                        )
+
+                elif not resource.get_keywords():
+                    txt = dedent(f"""
+
+                        {resource.prefix} is missing a list of keywords that
+                        should be curated in the `keywords` key. A good list
+                        of keywords might include:
+
+                        - the entity type(s), like `biological process` for `go`
+                        - the resource's domain, like `biochemistry` for `chembl.compound`
+                        - project that it was curated as a part of, like `chembl` for `chembl.compound`
+                        - infrastructures that the resource is part of, like `elixir` for `fairsharing`
+                    """)
+                    description = resource.get_description()
+                    if not description or not importlib.util.find_spec("yake"):
+                        self.fail(msg=txt)
+                    else:
+                        import yake
+
+                        extractor = yake.KeywordExtractor(top=5)
+                        keywords = "".join(
+                            sorted(
+                                {
+                                    "\n- " + keyword
+                                    for keyword, _ in extractor.extract_keywords(
+                                        description.lower()
+                                    )
+                                }
+                            )
+                        )
+                        txt += f"\nwe used `yake` to extract some keywords. here are the top five suggestions:\n{keywords}"
+
+                    self.fail(msg=txt)
 
     def test_owners(self):
         """Test owner annotations."""
@@ -1168,3 +1229,21 @@ class TestRegistry(unittest.TestCase):
                     resource.repository.startswith("http"),
                     msg=f"repository is not a valid URL: {resource.repository}",
                 )
+                self.assertFalse(
+                    resource.repository.endswith("/"),
+                    msg="repository URL should not have trailing slash",
+                )
+
+    def test_inactive_filter(self) -> None:
+        """Test filtering out known inactive extra providers."""
+        oid = self.registry["oid"]
+        self.assertEqual([], oid.get_extra_providers(filter_known_inactive=True))
+        self.assertEqual(
+            {"oid_www", "orange"},
+            {p.code for p in oid.get_extra_providers(filter_known_inactive=False)},
+        )
+
+    def test_status_contributions(self) -> None:
+        """Test status contributions."""
+        status_contributions = read_status_contributions(self.registry)
+        self.assertIn("0009-0006-4842-7427", status_contributions)

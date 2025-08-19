@@ -5,6 +5,7 @@
       "name": "Steve Baskauf"
     },
     "description": "Audubon Core borrows the Dublin Core terms dc:format and dcterms:format to provide information about the physical or electronic format of a media item. This controlled vocabulary provides values for those two terms., Controlled values list for Dublin Core format",
+    "license": "CC-BY-4.0",
     "name": "Audubon Core Controlled Vocabulary for Dublin Core format",
     "prefix": "ACFORMAT",
     "publications": [
@@ -19,6 +20,7 @@
     },
     "description": "Audubon Core uses the terms ac:subtype and ac:subtypeLiteral to refine the type of a media item to a level more specific than the Dublin Core Type Vocabulary, http://purl.org/dc/dcmitype/. This controlled vocabulary provides values for ac:subtype and ac:subtypeLiteral.",
     "homepage": "http://rs.tdwg.org/ac/doc/subtype/",
+    "license": "CC-BY-4.0",
     "name": "Audubon Core subtype Controlled Vocabulary",
     "prefix": "ACSUBTYPE",
     "publications": [
@@ -59,6 +61,7 @@
       "name": "Steve Baskauf"
     },
     "description": "Audubon Core uses the terms ac:variant and ac:variantLiteral to provide information about the size, extent, and availability of the Service Access Point of a media item. This controlled vocabulary provides values for those terms.",
+    "license": "CC-BY-4.0",
     "name": "Audubon Core variant Controlled Vocabulary",
     "prefix": "ACVARIANT",
     "publications": [
@@ -95,17 +98,6 @@
       "https://www.lifewatchitaly.eu/publications/#1590425563910-01d9d51a-b764"
     ],
     "version": "2.5"
-  },
-  "APTO": {
-    "contact": {
-      "email": "filipivgp2011@gmail.com",
-      "name": "Filipi Soares"
-    },
-    "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the GBIF Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
-    "license": "CC-BY-4.0",
-    "name": "Agriculture Product Types Ontology",
-    "prefix": "APTO",
-    "version": "1.31"
   },
   "ARCHIVE": {
     "contact": {
@@ -261,6 +253,7 @@
     "description": "The Darwin Core term degreeOfEstablishment provides information about degree to which an Organism survives, reproduces, and expands its range at the given place and time. The Degree of Establishment Controlled Vocabulary provides term that should be used as values for dwc:degreeOfEstablishment and dwciri:degreeOfEstablishment",
     "example_uri": "http://xmlns.com/foaf/0.1/document",
     "homepage": "https://dwc.tdwg.org/doe/",
+    "license": "CC-BY-4.0",
     "name": "Darwin Core Degree Of Establishment Controlled Vocabulary",
     "prefix": "DWCDOE",
     "publications": [
@@ -298,6 +291,31 @@
     ],
     "version": "2021-09-01"
   },
+  "ECOCORE": {
+    "contact": {
+      "email": "pier.buttigieg@awi.de",
+      "name": "Pier Luigi Buttigieg"
+    },
+    "description": "This ontology aims to provide core semantics for ecological entities, such as ecological functions (for predators, prey, etc), food webs, and ecological interactions. The ontology, closely interoperates with existing OBO ontologies such as the Environment Ontology, the Population and Community Ontology (PCO), the Relations Ontology (RO), the Gene Ontology (for biological processes etc), the Phenotype and Quality Ontology (PATO), the Plant Ontology (PO), and many others. Ecocore is under active development.",
+    "homepage": "https://github.com/EcologicalSemantics/ecocore",
+    "license": "CC-BY-3.0",
+    "name": "An ontology of core ecological entities",
+    "prefix": "ECOCORE",
+    "repository": "https://github.com/EcologicalSemantics/ecocore",
+    "version": "2022-03-09"
+  },
+  "ECOTOXICTHES": {
+    "contact": {
+      "email": "contact-terminologietal@inist.fr",
+      "name": "Contact"
+    },
+    "description": "This bilingual, French-English thesaurus structures the key concepts of ecotoxicology, the study of the impact of pollutants on ecosystems, with searchable synonyms. The resource area includes risks to human health. It also contains terms from geography, animal and plant taxonomy and chemical compounds. It uses polyhierarchy. Concepts are grouped into semantic categories. Definitions are given for some concepts., Ce thésaurus bilingue, français-anglais, structure les concepts-clefs de l’écotoxicologie, étude de l’impact des polluants sur les écosystèmes, accompagnés de synonymes interrogeables. Le domaine de la ressource englobe les risques pour la santé humaine. Il contient également des termes de géographie, de taxonomie animale et végétale et de composés chimiques. Il utilise la polyhiérarchie. Les concepts sont regroupés par catégories sémantiques. Des définitions sont données pour certains concepts.",
+    "homepage": "http://www.inist.fr",
+    "license": "CC-BY-4.0",
+    "name": "Ecotoxicology thesaurus",
+    "prefix": "ECOTOXICTHES",
+    "version": "1.1"
+  },
   "ECSO": {
     "contact": {
       "email": "mecum@nceas.ucsb.edu",
@@ -324,6 +342,7 @@
       "name": "Stefano De Felici"
     },
     "description": "Thesaurus on endemisms",
+    "license": "CC-BY-4.0",
     "name": "Endemisms Thesaurus",
     "prefix": "ENDEMISMS",
     "publications": [
@@ -339,7 +358,22 @@
     "publications": [
       "https://www.w3.org/2013/share-psi/wiki/images/0/00/Schentz_et_al_SemanticDataIntegrationforLTER.pdf"
     ],
-    "version": "5.0.13"
+    "version": "5.0.15"
+  },
+  "ESMO": {
+    "contact": {
+      "email": "flavio.affinito@mail.mcgill.ca",
+      "name": "Flavio Affinito"
+    },
+    "description": "The Ecosystem Services Monitoring Ontology systematises the language of ecosystem services across major conceptual frameworks advancing conceptual clarity and operationalisation of ecosystem services.",
+    "homepage": "https://github.com/FlavAff/ESMOntology/tree/main",
+    "license": "CC-BY-4.0",
+    "name": "The Ecosystem Services Monitoring Ontology",
+    "prefix": "ESMO",
+    "publications": [
+      "https://doi.org/10.1016/j.ecoser.2025.101726"
+    ],
+    "version": "1.0.0"
   },
   "ETS": {
     "contact": {
@@ -375,6 +409,7 @@
     },
     "description": "EURIO (EUropean Research Information Ontology) conceptualises, formally encodes and makes available in an open, structured and machine-readable format data about resarch projects funded by the EU's framework programmes for research and innovation., The EUropean Research Information Ontology (EURIO) conceptualises",
     "homepage": "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurio",
+    "license": "CC-BY-4.0",
     "name": "eurio",
     "prefix": "EURIO",
     "publications": [
@@ -389,6 +424,7 @@
     },
     "description": "European Science Vocabulary (EuroSciVoc) is the taxonomy of fields of science based on OECD's 2015 Frascati Manual taxonomy. It was extended with fields of science categories extracted from CORDIS content through a semi-automatic process developed with Natural Language Processing (NLP) techniques.",
     "homepage": "https://op.europa.eu/s/y4UK",
+    "license": "CC-BY-4.0",
     "name": "EuroSciVoc",
     "prefix": "EUROSCIVOC",
     "publications": [
@@ -401,14 +437,12 @@
       "email": "OP-EU-VOCABULARIES@publications.europa.eu",
       "name": "Publications Office of the European Union"
     },
-    "description": "EuroVoc is a multilingual, multidisciplinary thesaurus covering the activities of the EU. It contains terms in 24 EU languages, plus in three languages of countries which are candidate for EU accession. EuroVoc is managed by the Publications Office of the European Union, which moved forward to ontology-based thesaurus management and semantic web technologies conformant to W3C recommendations as well as latest trends in thesaurus standards. EuroVoc users include the European Union institutions, the Publications Office of the EU, national and regional parliaments in Europe, plus national governments and private users around the world. EcoPortal is currently hosting the core concepts of EuroVoc, including all their attributes, except alternative labels.",
+    "description": "EuroVoc is a multilingual, multidisciplinary thesaurus covering the activities of the EU. It contains terms in 24 EU languages, plus in three languages of countries which are candidate for EU accession. EuroVoc is managed by the Publications Office of the European Union, which moved forward to ontology-based thesaurus management and semantic web technologies conformant to W3C recommendations as well as latest trends in thesaurus standards. EuroVoc users include the European Union institutions, the Publications Office of the EU, national and regional parliaments in Europe, plus national governments and private users around the world.",
     "homepage": "https://op.europa.eu/s/y4TH",
-    "name": "EuroVoc Core Concepts",
+    "license": "CC-BY-4.0",
+    "name": "EuroVoc",
     "prefix": "EUROVOC",
-    "publications": [
-      "https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurovoc"
-    ],
-    "version": "20211217-0"
+    "version": "4.21"
   },
   "FABIO": {
     "contact": {
@@ -417,6 +451,7 @@
     },
     "description": "FaBiO, the FRBR-aligned Bibliographic Ontology, is an ontology for recording and publishing on the Semantic Web descriptions of entities that are published or potentially publishable, and that contain or are referred to by bibliographic references, or entities used to define such bibliographic references. FaBiO entities are primarily textual publications such as books, magazines, newspapers and journals, and items of their content such as poems, conference papers and editorials. However, they also include blogs, web pages, datasets, computer algorithms, experimental protocols, formal specifications and vocabularies, legal records, governmental papers, technical and commercial reports and similar publications, and also anthologies, catalogues and similar collections. FaBiO classes are structured according to the FRBR schema of Works, Expressions, Manifestations and Items. Additional properties have been added to extends the FRBR data model by linking Works and Manifestations (fabio:hasManifestation and fabio:isManifestationOf), Works and Items (fabio:hasPortrayal and fabio:isPortrayedBy), and Expressions and Items (fabio:hasRepresentation and fabio:isRepresentedBy)., conference papers and editorials. However, catalogues and similar collections. \n\nFaBiO classes are structured according to the FRBR schema of Works, http://purl.org/spar/fabio/FRBR%20diagram%20with%20new%20Fabio%20verbs.png",
     "homepage": "http://www.sparontologies.net/ontologies/fabio",
+    "license": "CC-BY-4.0",
     "name": "FRBR-aligned Bibliographic Ontology",
     "prefix": "FABIO",
     "publications": [
@@ -524,7 +559,7 @@
     "publications": [
       "https://doi.org/10.15497/RDA00071/2"
     ],
-    "version": "1.0.3"
+    "version": "1.1.0"
   },
   "INBIO": {
     "contact": {
@@ -535,7 +570,7 @@
     "license": "CC BY-NC-SA 4.0",
     "name": "Invasion Biology Ontology",
     "prefix": "INBIO",
-    "version": "1.1"
+    "version": "1.2"
   },
   "INSTRUMENT": {
     "contact": {
@@ -562,33 +597,6 @@
     "name": "The Interpretation Ontology",
     "prefix": "INTERPRETATION",
     "version": "2.0.0"
-  },
-  "ISO---639-2": {
-    "contact": {
-      "email": "parham.ramezani@lifewatch.eu",
-      "name": "Parham Ramezani"
-    },
-    "description": "test 3",
-    "name": "ISO-639-2-test3",
-    "prefix": "ISO---639-2"
-  },
-  "ISO--639--2": {
-    "contact": {
-      "email": "parham.ramezani@lifewatch.eu",
-      "name": "Parham Ramezani"
-    },
-    "description": "test 4",
-    "name": "iso639-2-test4",
-    "prefix": "ISO--639--2"
-  },
-  "ISO--639-2": {
-    "contact": {
-      "email": "parham.ramezani@lifewatch.eu",
-      "name": "Parham Ramezani"
-    },
-    "description": "test 2",
-    "name": "ISO-639-2-test2",
-    "prefix": "ISO--639-2"
   },
   "ISO_639-2": {
     "contact": {
@@ -635,6 +643,7 @@
       "name": "Xeni Kechagioglou"
     },
     "description": "The LifeWatch ERIC Upper Ontology (LUPO) is the model defining the core set of LifeWatch ERIC elements (Actors, Services and Infrastructure) and describing their high-level arrangement. LUPO is extendable and will foster, connect and describe lower level models of its core elements, with the vision to provide functionalities that facilitate the uptake, re-use and enrichment of LifeWatch ERIC resources by an ever broader community.",
+    "license": "CC-BY-4.0",
     "name": "LifeWatch ERIC Upper Ontology",
     "prefix": "LUPO",
     "publications": [
@@ -648,6 +657,7 @@
       "name": "Caterina Bergami"
     },
     "description": "The Macroalgae Traits Thesaurus contains several concepts on demographic and functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 100 traits.",
+    "license": "CC-BY-4.0",
     "name": "Macroalgae Traits Thesaurus",
     "prefix": "MACROALGAETRAITS",
     "version": "1.5"
@@ -692,12 +702,23 @@
     },
     "description": "The Marine Regions PlaceType code list provides definitions for the PlaceTypes used in the Marine Regions dataset.",
     "homepage": "https://www.marineregions.org/",
+    "license": "CC-BY-4.0",
     "name": "Marine Regions PlaceTypes code list",
     "prefix": "MRPTCODELIST",
     "publications": [
       "http://www.vliz.be/en/imis?refid=346947"
     ],
     "version": "1"
+  },
+  "MSFDVOCAB": {
+    "contact": {
+      "email": "cr@eionet.europa.eu",
+      "name": "European Environment Agency"
+    },
+    "description": "Marine Strategy Framework Directive vocabulary containing information about the habitats, species groups and marine regions targeted in the European Directive.",
+    "license": "CC-BY-4.0",
+    "name": "Marine Strategy Framework Directive Vocabulary",
+    "prefix": "MSFDVOCAB"
   },
   "N2000_HABITATS": {
     "contact": {
@@ -754,6 +775,20 @@
     "prefix": "PALEO_UNITS",
     "version": "2.0.0"
   },
+  "PAST": {
+    "contact": {
+      "email": "ncei.info@noaa.gov",
+      "name": "NOAA National Centers for Environmental Information"
+    },
+    "description": "The World Data Service for Paleoclimatology defines measured variables using the PaST thesaurus of standard terms. These terms describe the quantity measured, the material on which it was measured, reported error, units, analytical or statistical methods, transformations made to raw data, reconstructed seasonality, data type, and data format. Standard terms organize heterogeneous paleoclimate datasets and improve the findability, interoperability, and reusability of data., This file contains concepts, labels, and relationships that make up the Paleoenvironmental Standard Terms (PaST) thesaurus. This representation of the thesaurus follows the Simple Knowledge Organization System (SKOS) data model and has Resource Description Framework (RDF) syntax. This file gives a snapshot of the thesaurus as of the date tagged in the SKOS ConceptScheme. Additional documentation as well as archived, static versions of the thesaurus are available at: https://www.ncdc.noaa.gov/paleo-search/study/31892. Please cite the preceding URL, the publication listed at that URL, and the date accessed when referencing the thesaurus.",
+    "license": "CC-BY-4.0",
+    "name": "Paleoenvironmental Standard Terms (PaST) Thesaurus",
+    "prefix": "PAST",
+    "publications": [
+      "https://doi.org/10.1029/2020PA004193"
+    ],
+    "version": "1.1.0"
+  },
   "PCO": {
     "contact": {
       "email": "rlwalls2008@gmail.com",
@@ -766,7 +801,7 @@
     "name": "Population and Community Ontology",
     "prefix": "PCO",
     "publications": [
-      "https://github.com/PopulationAndCommunityOntology/pco"
+      "https://doi.org/10.1371/journal.pone.0089606"
     ],
     "repository": "https://github.com/PopulationAndCommunityOntology/pco",
     "version": "2021-05-03"
@@ -777,12 +812,24 @@
       "name": "Elena Stanca"
     },
     "description": "The Phytoplankton Traits Thesaurus is the first initiative to deal with the semantics of phytoplankton functional traits focusing on morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). PhytoTraits reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 120 traits.",
+    "license": "CC-BY-4.0",
     "name": "Phytoplankton Traits Thesaurus",
     "prefix": "PHYTOTRAITS",
     "publications": [
       "https://doi.org/10.1016/j.ecoinf.2017.10.014"
     ],
     "version": "1.5"
+  },
+  "PORO": {
+    "contact": {
+      "email": "thacker@uab.edu",
+      "name": "Bob Thacker"
+    },
+    "description": "An ontology describing the anatomical structures and characteristics of Porifera (sponges).",
+    "homepage": "https://github.com/obophenotype/porifera-ontology",
+    "license": "CC0-1.0",
+    "name": "Porifera Ontology",
+    "prefix": "PORO"
   },
   "PPI": {
     "contact": {
@@ -792,6 +839,17 @@
     "description": "The Plant-Pollinator Interactions (PPI) is a vocabulary of terms for transmitting information about plant-pollinator interactions using the Darwin Core standard. This document lists all terms in namespaces currently used in the vocabulary., Term list for plant-pollinator interactions vocabulary",
     "name": "Plant-Pollinator Interactions",
     "prefix": "PPI"
+  },
+  "SBTHES": {
+    "contact": {
+      "email": "senem.onentarantini@unisalento.it",
+      "name": "Senem Onen Tarantini"
+    },
+    "description": "Standardized terminology for describing both qualitative and quantitative variables crucial for characterizing sandy beach ecosystems.",
+    "license": "CC-BY-4.0",
+    "name": "Sandy Beach Thesaurus",
+    "prefix": "SBTHES",
+    "version": "1.0.0"
   },
   "SFWO": {
     "contact": {
@@ -809,6 +867,19 @@
     ],
     "repository": "https://github.com/soilfoodwebontology/sfwo",
     "version": "2023-09-22"
+  },
+  "SIBO": {
+    "contact": {
+      "email": "cjmungall@lbl.gov",
+      "name": "Chris Mungall"
+    },
+    "description": "The Social Insect Behavior Ontology (SIBO) was created by Chris Smith. This ontology will eventually be integrated into the NBO ando contains collected terms for Chemical, Anatomy, Behavior, Species. The most developed use cases are for Pogonomyrmex harvester ant foraging and apis mellifera honeybee colony defense.",
+    "homepage": "https://github.com/obophenotype/sibo",
+    "license": "CC-BY-3.0",
+    "name": "Social Insect Behavior Ontology",
+    "prefix": "SIBO",
+    "repository": "https://github.com/obophenotype/sibo",
+    "version": "1.2"
   },
   "SNOWTERM": {
     "contact": {
@@ -840,6 +911,21 @@
       "https://doi.org/10.1002/cfg.255"
     ]
   },
+  "SUMSO": {
+    "contact": {
+      "email": "ga.ubbiali@gmail.com",
+      "name": "Giorgio A. Ubbiali"
+    },
+    "description": "The Sustainable Meat Systems Ontology (SuMSO) is a domain ontology addressing meat systems sustainability. It extends Sustainability Core Ontology (SCO) and Basic Formal Ontology (BFO). Currently, SuMSO provides a representation of the core architectural features of a sustainable meat system, focusing on cow-derived meat as an initial use case. SuMSO deals with meat in a broad sense: it contemplates the liaisons with other cow-derived materials, such as leather and bones., SuMSO is a domain of ontology, representing meat systems sustainability. Currently, this resource provides the core ontological module of SuMSO that deals with the essential architectural features of a sustainable meat system. This ontological module addresses meat in a broad, genuine sense focusing on cow-derived meat as a starting use-case example. It does not address features related to fish, insects, novel meats, and plant-based meats. The SuMSO core ontological module aims to be the starting basis on which to extend SuMSO to more comprehensively represent meat systems sustainability., representing meat systems sustainability.\n\nCurrently",
+    "homepage": "https://www.w3id.org/sumso/repo",
+    "license": "CC-BY-4.0",
+    "name": "Sustainable Meat Systems Ontology",
+    "prefix": "SUMSO",
+    "publications": [
+      "https://air.unimi.it/handle/2434/1161515"
+    ],
+    "version": "2025-06-13"
+  },
   "TRAITS_THES": {
     "contact": {
       "email": "jessica.titocci@cnr.it",
@@ -869,6 +955,7 @@
       "name": "Caterina Bergami"
     },
     "description": "The Zooplankton Traits Thesaurus contains several concepts mainly on zooplankton morpho-functional traits. It has been developed and published by LifeWatch Italy, the Italian node of the e-science European infrastructure for biodiversity and ecosystem research (LifeWatch ERIC). It reflects the agreement of a scientific expert community to fix semantic properties (e.g. label, definition) of approximately 90 traits.",
+    "license": "CC-BY-4.0",
     "name": "Zooplankton Traits Thesaurus",
     "prefix": "ZOOPLANKTRAITS",
     "publications": [

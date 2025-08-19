@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import itertools as itt
 import logging
-import warnings
 from collections import ChainMap, defaultdict
 from collections.abc import Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
@@ -12,14 +11,12 @@ from pathlib import Path
 from typing import (
     Any,
     Callable,
-    TypeVar,
     cast,
     overload,
 )
 
 import click
 import requests
-from pydantic import BaseModel
 from pystow.utils import get_hashes
 
 from .constants import (
@@ -89,7 +86,8 @@ def query_wikidata(sparql: str) -> list[Mapping[str, Any]]:
     """Query Wikidata's sparql service.
 
     :param sparql: A SPARQL query string
-    :return: A list of bindings
+
+    :returns: A list of bindings
     """
     logger.debug("running query: %s", sparql)
     headers = {
@@ -283,28 +281,25 @@ def deduplicate(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Seque
     return sorted(rv, key=_key, reverse=True)
 
 
-def pydantic_dict(x: BaseModel, **kwargs: Any) -> dict[str, Any]:
-    """Convert a pydantic model to a dict."""
-    warnings.warn("use BaseModel.model_dump() directly", DeprecationWarning, stacklevel=2)
-    return x.model_dump(**kwargs)
+_EC_BASES = {
+    "class": "https://www.enzyme-database.org/class.php",
+    "info": "https://www.enzyme-database.org/cinfo.php",
+}
 
 
-M = TypeVar("M", bound=BaseModel)
-
-
-def pydantic_parse(m: type[M], d: dict[str, Any]) -> M:
-    """Convert a dict to a pydantic model."""
-    warnings.warn("use BaseModel.model_validate() directly", DeprecationWarning, stacklevel=2)
-    return m.model_validate(d)
-
-
-def pydantic_fields(m: type[M]):  # type:ignore[no-untyped-def]
-    """Get the fields."""
-    warnings.warn("use BaseModel.model_fields directly", DeprecationWarning, stacklevel=2)
-    return m.model_fields
-
-
-def pydantic_schema(m: type[M]) -> dict[str, Any]:
-    """Get the schema."""
-    warnings.warn("use BaseModel.model_json_schema() directly", DeprecationWarning, stacklevel=2)
-    return m.model_json_schema()
+def get_ec_url(identifier: str, *, ep: str = "class") -> str:
+    """Get a URL for an enzyme code (EC)."""
+    base = _EC_BASES[ep]
+    for _ in range(3):
+        identifier = identifier.removesuffix(".-")
+    x = identifier.split(".")
+    if len(x) == 4:
+        return f"https://www.enzyme-database.org/query.php?ec={identifier}"
+    elif len(x) == 3:
+        return f"{base}?c={x[0]}&sc={x[1]}&ssc={x[2]}"
+    elif len(x) == 2:
+        return f"{base}?c={x[0]}&sc={x[1]}"
+    elif len(x) == 1:
+        return f"{base}?c={x[0]}"
+    else:
+        raise ValueError

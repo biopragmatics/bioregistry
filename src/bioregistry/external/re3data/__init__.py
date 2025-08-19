@@ -32,10 +32,11 @@ SCHEMA = "{http://www.re3data.org/schema/2-2}"
 def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the re3data registry.
 
-    This takes about 9 minutes since it has to look up each of the ~3K
-    records with their own API call.
+    This takes about 9 minutes since it has to look up each of the ~3K records with
+    their own API call.
 
     :param force_download: If true, re-downloads the data
+
     :returns: The re3data pre-processed data
     """
     if PROCESSED_PATH.exists() and not force_download:

@@ -85,7 +85,8 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param path: Path to the bioregistry JSON file.
-    :return: DataFrame containing publication details.
+
+    :returns: DataFrame containing publication details.
     """
     if path is None:
         path = BIOREGISTRY_PATH
@@ -117,7 +118,8 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
     """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
 
     :param file_path: Path to the curated_papers.tsv file.
-    :return: DataFrame containing curated publication details.
+
+    :returns: DataFrame containing curated publication details.
     """
     curated_df = pd.read_csv(file_path, sep="\t")
     curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
@@ -178,7 +180,8 @@ def fetch_pubmed_papers(
     :param pubmed_ids_to_filter: List containing already curated PMIDs.
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
-    :return: DataFrame containing PubMed paper details.
+
+    :returns: DataFrame containing PubMed paper details.
     """
     paper_to_terms = _search(
         DEFAULT_SEARCH_TERMS,
@@ -217,7 +220,7 @@ def fetch_pubmed_papers(
 def load_google_curation_df() -> pd.DataFrame:
     """Download and load curation data from a Google Sheets URL.
 
-    :return: DataFrame containing curated publication details.
+    :returns: DataFrame containing curated publication details.
     """
     click.echo("Downloading curation sheet")
     df = pd.read_csv(URL)
@@ -239,7 +242,8 @@ def _map_labels(s: str) -> int | None:
     """Map labels to binary values.
 
     :param s: Label value.
-    :return: Mapped binary label value.
+
+    :returns: Mapped binary label value.
     """
     if s in {"1", "1.0", 1}:
         return 1
@@ -253,7 +257,8 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
 
     :param x_train: Training features.
     :param y_train: Training labels.
-    :return: List of trained classifiers.
+
+    :returns: List of trained classifiers.
     """
     classifiers = [
         ("rf", RandomForestClassifier()),
@@ -278,7 +283,8 @@ def generate_meta_features(
     :param x_train: Training features.
     :param y_train: Training labels.
     :param cv: Number of folds for cross-validation
-    :return: DataFrame containing meta-features.
+
+    :returns: DataFrame containing meta-features.
     """
     df = pd.DataFrame()
     for name, clf in classifiers:
@@ -316,7 +322,8 @@ def _evaluate_meta_classifier(
     :param meta_clf: Trained meta-classifier.
     :param x_test_meta: Test meta-features.
     :param y_test: Test labels.
-    :return: MCC and AUC-ROC scores.
+
+    :returns: MCC and AUC-ROC scores.
     """
     y_pred = meta_clf.predict(x_test_meta)
     mcc = matthews_corrcoef(y_test, y_pred)

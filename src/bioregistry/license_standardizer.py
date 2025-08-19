@@ -1,7 +1,7 @@
 """Code for standardizing permissive licenses.
 
-Could be extended later for non-permissive information as well as using
-vocabularies like SPDX for storing synonyms.
+Could be extended later for non-permissive information as well as using vocabularies
+like SPDX for storing synonyms.
 """
 
 from __future__ import annotations
@@ -241,6 +241,8 @@ REVERSE_LICENSES: Mapping[str | None, list[str]] = {
     ],
     CC_BY_NC_SA_4: [
         CC_BY_NC_SA_4,
+        "CC-BY-NC-SA 4.0",
+        "CC-BY-NC-SA-4.0",
         "http://creativecommons.org/licenses/by-nc-sa/4.0",
         "https://creativecommons.org/licenses/by-nc-sa/4.0",
     ],
