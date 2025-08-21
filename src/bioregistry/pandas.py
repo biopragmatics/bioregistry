@@ -218,7 +218,7 @@ def validate_curies(
     results = df[column].map(bioregistry.is_valid_curie, na_action="ignore")
     if target_column:
         df[target_column] = results
-    return cast(pd.Series[str], results)
+    return cast("pd.Series[str]", results)
 
 
 def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
