@@ -16,6 +16,7 @@ from re import Pattern
 from typing import Callable, cast, TypeVar
 
 import pandas as pd
+from bioregistry.constants import MaybeCURIE
 from tabulate import tabulate
 from tqdm.auto import tqdm
 
@@ -544,7 +545,11 @@ def curies_to_identifiers(
                 "auto-generated prefix column is already present. please specify explicitly."
             )
 
-    prefixes, identifiers = zip(*df[column].map(bioregistry.parse_curie, na_action="ignore")) # type:ignore
+    series: list[MaybeCURIE] = [
+        bioregistry.parse_curie(curie) if pd.notna(curie) else (None, None)
+        for curie in df[column]
+    ]
+    prefixes, identifiers = zip(*series)
     df[prefix_column_name] = prefixes
     df[target_column] = identifiers
 
