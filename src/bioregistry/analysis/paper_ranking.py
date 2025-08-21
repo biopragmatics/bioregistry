@@ -20,13 +20,12 @@ Run with:
 from __future__ import annotations
 
 import datetime
-import json
 import logging
 import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Union, cast
+from typing import TYPE_CHECKING, NamedTuple, Union, cast
 
 import click
 import numpy as np
@@ -44,7 +43,11 @@ from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
 from typing_extensions import TypeAlias
 
-from bioregistry.constants import BIOREGISTRY_PATH, CURATED_PAPERS_PATH
+import bioregistry
+from bioregistry.constants import CURATED_PAPERS_PATH
+
+if TYPE_CHECKING:
+    import pubmed_downloader
 
 logger = logging.getLogger(__name__)
 
@@ -75,9 +78,11 @@ DEFAULT_SEARCH_TERMS = [
     "nomenclature",
 ]
 
+#: A mapping from the NLM Catalog ID to the journal name for journals
+#: that should be excluded
 EXCLUDE_JOURNALS = {
-    "bioRxiv",
-    "medRxiv",
+    "101680187": "bioRxiv",
+    "101767986": "medRxiv",
 }
 
 
@@ -88,26 +93,27 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
 
     :returns: DataFrame containing publication details.
     """
-    if path is None:
-        path = BIOREGISTRY_PATH
+    if path is not None:
+        raise NotImplementedError
 
-    records = json.loads(path.read_text(encoding="utf-8"))
-    publications = []
-    pubmeds = set()
-    for record in records.values():
-        # TODO replace with usage of bioregistry code, this is duplicate logic
-        #  see Resource.get_publications()
-        for publication in record.get("publications", []):
-            pubmed = publication.get("pubmed")
-            if pubmed:
-                pubmeds.add(pubmed)
-            publications.append({"pubmed": pubmed, "title": publication.get("title"), "label": 1})
+    import pubmed_downloader
 
-    pubmed_to_metadata = _get_metadata_for_ids(sorted(pubmeds))
-    for publication in publications:
-        publication["abstract"] = pubmed_to_metadata.get(publication["pubmed"], {}).get(
-            "abstract", ""
-        )
+    publications = {}
+    for resource in bioregistry.resources():
+        for publication in resource.get_publications():
+            if not publication.pubmed:
+                continue
+            publications[publication.pubmed] = {
+                "pubmed": publication.pubmed,
+                "title": publication.title,
+                "label": 1,
+            }
+
+    pubmed_ids = list(publications)
+    abstracts = pubmed_downloader.get_abstracts(pubmed_ids, error_strategy="none")
+    for pubmed_id, abstract in zip(pubmed_ids, abstracts):
+        if abstract:
+            publications[pubmed_id]["abstract"] = abstract
 
     logger.info(f"Got {len(publications):,} publications from the bioregistry")
 
@@ -121,42 +127,35 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
 
     :returns: DataFrame containing curated publication details.
     """
-    curated_df = pd.read_csv(file_path, sep="\t")
+    curated_df = pd.read_csv(file_path, sep="\t", dtype=str)
     curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
-    curated_df["title"] = ""
-    curated_df["abstract"] = ""
 
-    pubmeds = curated_df["pubmed"].tolist()
-    fetched_metadata = _get_metadata_for_ids(pubmeds)
+    fetched_metadata = _get_metadata_for_ids(curated_df["pubmed"])
 
-    for index, row in curated_df.iterrows():
-        if row["pubmed"] in fetched_metadata:
-            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
-            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+    curated_df["title"] = curated_df["pubmed"].map(
+        lambda pubmed: article.title if (article := fetched_metadata.get(pubmed)) else None
+    )
+    curated_df["abstract"] = curated_df["pubmed"].map(
+        lambda pubmed: article.get_abstract() if (article := fetched_metadata.get(pubmed)) else None
+    )
 
     click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
     return curated_df
 
 
-def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, dict[str, Any]]:
+def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, pubmed_downloader.Article]:
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
-    from indra.literature import pubmed_client
+    from pubmed_downloader.client import _fetch_iter
 
-    return cast(
-        dict[str, dict[str, Any]],
-        pubmed_client.get_metadata_for_all_ids(pubmed_ids, get_abstracts=True),
+    return {str(article.pubmed): article for article in _fetch_iter(pubmed_ids, error_strategy="skip")}
+
+
+def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> list[str]:
+    import pubmed_downloader
+
+    return pubmed_downloader.search(
+        term, use_text_word=use_text_word, mindate=start_date, maxdate=end_date
     )
-
-
-def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> set[str]:
-    from indra.literature import pubmed_client
-
-    return {
-        str(pubmed_id)
-        for pubmed_id in pubmed_client.get_ids(
-            term, use_text_word=use_text_word, mindate=start_date, maxdate=end_date
-        )
-    }
 
 
 def _search(
@@ -193,22 +192,22 @@ def fetch_pubmed_papers(
     papers = _get_metadata_for_ids(paper_to_terms)
 
     records = []
-    for pubmed_id, paper in papers.items():
+    for pubmed_id, article in papers.items():
         # Filter out papers that are from journals (typically
         # preprint servers that have PMIDs) to be excluded
-        if paper.get("journal_abbrev") in EXCLUDE_JOURNALS:
+        if article.journal.nlm_catalog_id in EXCLUDE_JOURNALS:
             continue
 
-        title = paper.get("title")
-        abstract = paper.get("abstract", "")
+        title = article.title
+        abstract = article.get_abstract()
 
         if title and abstract:
             records.append(
                 {
-                    "pubmed": pubmed_id,
+                    "pubmed": str(pubmed_id),
                     "title": title,
                     "abstract": abstract,
-                    "year": paper.get("publication_date", {}).get("year"),
+                    "year": article.date_completed.year if article.date_completed else None,
                     "search_terms": paper_to_terms[pubmed_id],
                 }
             )
@@ -223,16 +222,16 @@ def load_google_curation_df() -> pd.DataFrame:
     :returns: DataFrame containing curated publication details.
     """
     click.echo("Downloading curation sheet")
-    df = pd.read_csv(URL)
+    df = pd.read_csv(URL, dtype=str)
     df["label"] = df["relevant"].map(_map_labels)
     df = df[["pubmed", "title", "abstract", "label"]]
 
     pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
     fetched_metadata = _get_metadata_for_ids(pmids_to_fetch)
 
-    for index, row in df.iterrows():
-        if row["pubmed"] in fetched_metadata:
-            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+    df["abstract"] = df["pubmed"].map(
+        lambda pubmed: article.get_abstract() if (article := fetched_metadata.get(pubmed)) else None
+    )
 
     click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
     return df
@@ -413,8 +412,7 @@ def _get_evaluation_df(
 @click.option(
     "--bioregistry-file",
     type=Path,
-    help="Path to the bioregistry.json file",
-    default=BIOREGISTRY_PATH,
+    help="Path to the bioregistry.json file. Defaults to internal",
 )
 @click.option(
     "--start-date",
@@ -428,7 +426,7 @@ def _get_evaluation_df(
     help="End date of the period",
     default=datetime.date.today().isoformat(),
 )
-def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
+def main(bioregistry_file: Path | None, start_date: str, end_date: str) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
@@ -446,7 +444,7 @@ def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
 
 def runner(
     *,
-    bioregistry_file: Path,
+    bioregistry_file: Path | None = None,
     curated_papers_path: Path,
     start_date: str,
     end_date: str,
