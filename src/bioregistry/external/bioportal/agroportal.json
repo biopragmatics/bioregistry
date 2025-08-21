@@ -212,13 +212,14 @@
     },
     "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
     "example_uri": "https://w3id.org/APTO#Product_type",
-    "homepage": "https://github.com/AlmesCore/APTO/blob/main/README.md",
+    "homepage": "https://almescore.github.io/APTO/",
     "license": "CC-BY-4.0",
     "name": "Agriculture Product Types Ontology",
     "prefix": "APTO",
     "publications": [
       "https://doi.org/10.3724/2096-7004.di.2025.0020",
-      "https://doi.org/10.5281/zenodo.13499357"
+      "https://doi.org/10.5281/zenodo.13499357",
+      "https://doi.org/10.1109/ACCESS.2025.3595447"
     ],
     "repository": "https://github.com/AlmesCore/APTO/tree/main",
     "version": "1.2999999523162841797"
@@ -564,7 +565,7 @@
     "name": "Cell Ontology",
     "prefix": "CL",
     "repository": "https://github.com/obophenotype/cell-ontology",
-    "version": "2025-06-20"
+    "version": "2025-07-30"
   },
   "CLC": {
     "contact": {
@@ -577,6 +578,22 @@
     "name": "Corine Land Cover Nomenclature",
     "prefix": "CLC",
     "version": "2015"
+  },
+  "COFFEEWKG": {
+    "contact": {
+      "email": "cfigmart@unicauca.edu.co",
+      "name": "Cristhian Figueroa"
+    },
+    "description": "A knowledge graph for meteorological conditions in Colombia's coffee regions created from data extracted from FNC yearbooks available at: https://www.cenicafe.org/es/index.php/nuestras\\_publicaciones/anuarios\\_meteorologicos , The WeKG ontology is a modular ontology that re-uses and extends standard ontologies, such as GeoSPARQL ontology for spatial features, the Time ontology for temporal entities, the Sensor, Observation, Sample, and Actuator (SOSA) and Semantic Sensor Network (SSN) ontologies for sensors and observations. Individuals of weo:WeatherProperty and weo:MeteorologicalFeature classes are declared in a separate namespace (wepv) as skos:Concept. The WeKG ontology and vocabulary are generic enough to be adopted and extended by meteorological data providers to publish and integrate their sources while complying with Linked Data principles.",
+    "homepage": "https://github.com/cfigmart/coffeeWKG",
+    "license": "CC-BY-4.0",
+    "name": "CoffeeWKG",
+    "prefix": "COFFEEWKG",
+    "publications": [
+      "https://link.springer.com/chapter/10.1007/978-3-031-47112-4_30"
+    ],
+    "repository": "https://github.com/cfigmart/coffeeWKG/blob/main/meteo/CoffeeWKG/result_fnc_stations.ttl",
+    "version": "1.1.0"
   },
   "COSWOT": {
     "contact": {
@@ -1589,7 +1606,7 @@
     "name": "FoodOn",
     "prefix": "FOODON",
     "repository": "https://github.com/FoodOntology/foodon",
-    "version": "2025-02-01"
+    "version": "2025-08-01"
   },
   "FOWL": {
     "contact": {
@@ -1764,7 +1781,7 @@
       "http://geneontology.org/page/publications"
     ],
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2025-06-01"
+    "version": "2025-07-22"
   },
   "GR-TAX": {
     "contact": {
@@ -1890,7 +1907,7 @@
     "name": "Livestock Breed Ontology",
     "prefix": "LBO",
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
-    "version": "2025-07-24"
+    "version": "2025-07-30"
   },
   "LEXEAU": {
     "contact": {
@@ -1927,13 +1944,14 @@
       "email": "jreecy@iastate.edu",
       "name": "Jim Reecy"
     },
-    "description": "The Livestock Product Trait (LPT) Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit.",
+    "description": "The Livestock Product Trait (LPT) Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit., The Livestock Product Trait Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit.",
     "example_uri": "http://purl.obolibrary.org/obo/LPT_0000156",
     "homepage": "https://www.animalgenome.org/bioinfo/projects/lpt/",
+    "license": "CC-BY-4.0",
     "name": "Livestock Product Trait Ontology",
     "prefix": "LPT",
     "repository": "https://github.com/AnimalGenome/livestock-product-trait-ontology",
-    "version": "4.3"
+    "version": "2025-08-14"
   },
   "MEAT-T": {
     "contact": {
@@ -2642,6 +2660,15 @@
     "prefix": "SOIL",
     "version": "V-2014"
   },
+  "SOILBR-ONTO": {
+    "contact": {
+      "email": "ghelfer@unisc.br",
+      "name": "Gilson Augusto Helfer"
+    },
+    "description": "SoilBR: an ontology for management and classification of Brazilian soil fertility extended from AgroRDF https://ghelfer.net/ontologies/soil-ontology/agro.rdf To use the reasoner in Protégé, you need the Pellet plugin and set the Individual inferences as Object properties and Data properties assertions.",
+    "name": "SoilBR-Onto",
+    "prefix": "SOILBR-ONTO"
+  },
   "SOSA": {
     "contact": {
       "email": "simon.cox@csiro.au",
@@ -2742,6 +2769,22 @@
     "name": "UMLS Semantic Network",
     "prefix": "STY",
     "version": "12 (2022AA)"
+  },
+  "SUMSO": {
+    "contact": {
+      "email": "ga.ubbiali@gmail.com",
+      "name": "Giorgio A. Ubbiali"
+    },
+    "description": "The Sustainable Meat Systems Ontology (SuMSO) is a domain ontology addressing meat systems sustainability. It extends Sustainability Core Ontology (SCO) and Basic Formal Ontology (BFO). Currently, SuMSO provides a representation of the core architectural features of a sustainable meat system, focusing on cow-derived meat as an initial use case. SuMSO deals with meat in a broad sense: it contemplates the liaisons with other cow-derived materials, such as leather and bones., SuMSO is a domain of ontology, representing meat systems sustainability. Currently, this resource provides the core ontological module of SuMSO that deals with the essential architectural features of a sustainable meat system. This ontological module addresses meat in a broad, genuine sense focusing on cow-derived meat as a starting use-case example. It does not address features related to fish, insects, novel meats, and plant-based meats. The SuMSO core ontological module aims to be the starting basis on which to extend SuMSO to more comprehensively represent meat systems sustainability., representing meat systems sustainability.\n\nCurrently",
+    "homepage": "https://www.w3id.org/sumso/repo",
+    "license": "CC-BY-4.0",
+    "name": "Sustainable Meat Systems Ontology",
+    "prefix": "SUMSO",
+    "publications": [
+      "https://air.unimi.it/handle/2434/1161515"
+    ],
+    "repository": "https://github.com/GioUbbiali/Sustainable-Meat-Systems-Ontology",
+    "version": "2025-06-13"
   },
   "T-SITA": {
     "contact": {
@@ -2852,7 +2895,7 @@
     "license": "http://publications.europa.eu/resource/authority/access-right/PUBLIC",
     "name": "PO2/TransformON",
     "prefix": "TRANSFORMON",
-    "version": "2.4"
+    "version": "22.0"
   },
   "TRANSMAT": {
     "contact": {
@@ -2954,6 +2997,23 @@
       "http://genome.cshlp.org/content/early/2013/10/25/gr.157495.113.abstract"
     ],
     "version": "2017-02-06"
+  },
+  "VBO": {
+    "contact": {
+      "email": "Sabrina@tislab.org",
+      "name": "Sabrina Toro"
+    },
+    "description": "VBO is used in the Online Mendelian Inheritance in Animals (OMIA) for breed annotations., None, Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names.",
+    "example_uri": "http://purl.obolibrary.org/obo/VBO_0016224",
+    "homepage": "https://monarch-initiative.github.io/vertebrate-breed-ontology/",
+    "license": "CC-BY-4.0",
+    "name": "Vertebrate Breed Ontology",
+    "prefix": "VBO",
+    "publications": [
+      "https://doi.org/10.48550/arXiv.2406.02623"
+    ],
+    "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
+    "version": "2025-02-12"
   },
   "VOCGEO": {
     "contact": {

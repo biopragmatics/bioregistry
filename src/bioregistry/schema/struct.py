@@ -400,8 +400,8 @@ class Resource(BaseModel):
     )
     contact_group_email: EmailStr | None = Field(
         default=None,
-        description="A group contact email for the project. It's required to have a primary contact "
-        "to have this field.",
+        description="A group contact email (e.g., a mailing list, a shared address) for the project. "
+        "It's required to have a primary contact to have this field.",
     )
     contact_page: str | None = Field(
         default=None,
@@ -667,6 +667,8 @@ class Resource(BaseModel):
     prefixcommons: Mapping[str, Any] | None = None
     #: External data from Wikidata Properties
     wikidata: Mapping[str, Any] | None = None
+    #: External data from Wikidata Entity
+    wikidata_entity: Mapping[str, Any] | None = None
     #: External data from the Gene Ontology's custom registry
     go: Mapping[str, Any] | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
@@ -1000,6 +1002,16 @@ class Resource(BaseModel):
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+
+    def get_wikidata_entity(self) -> str | None:
+        """Get the wikidata database mapping."""
+        if self.mappings and "wikidata.entity" in self.mappings:
+            return self.mappings["wikidata.entity"]
+        if self.wikidata and "database" in self.wikidata:
+            return cast(str, self.wikidata["database"])
+        if self.bartoc and "wikidata_database" in self.bartoc:
+            return cast(str, self.bartoc["wikidata_database"])
+        return None
 
     def get_mappings(self) -> dict[str, str]:
         """Get the mappings to external registries, if available."""
@@ -1566,6 +1578,12 @@ class Resource(BaseModel):
             return cast(str, self.obofoundry["logo"])
         if self.fairsharing and "logo" in self.fairsharing:
             return cast(str, self.fairsharing["logo"])
+        return None
+
+    def get_mailing_list(self) -> str | None:
+        """Get the group email."""
+        if self.contact_group_email:
+            return str(self.contact_group_email)
         return None
 
     def get_obofoundry_prefix(self) -> str | None:
@@ -2340,6 +2358,7 @@ class Resource(BaseModel):
                 self.get_download_obo(),
                 self.get_download_owl(),
                 self.get_download_obograph(),
+                self.get_download_rdf(),
             )
         )
 

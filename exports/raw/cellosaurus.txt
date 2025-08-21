@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 52.0
- Last update: 10-April-2025
+ Version: 53.0
+ Last update: 14-August-2025
 
 ----------------------------------------------------------------------------
 
@@ -23,11 +23,11 @@ link out from the following DR line:
 you should use the information on the "Db_URL" line of the ATCC entry in
 this document which currently indicates:
 
- https://www.atcc.org/Products/%s
+ https://www.atcc.org/products/%s
 
 thus your corresponding web link should go to:
 
- https://www.atcc.org/Products/HTB-30
+ https://www.atcc.org/products/HTB-30
 
 b) For historical and reference purposes we keep in Cellosaurus
 cross-references to catalog entries corresponding to cell lines that are no
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|Abeomics|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BioGRID_ORCS_Cell_line|BTO|BioSample|BioSamples|cancercelllines|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSHB|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|Evercyte|FANTOM5_SSTAR|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GeneCopoeia|Genomeditech|GenScript|GEO|HipSci|Horizon_Discovery|hPSCreg|Hysigen|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|InvivoGen|IPD-IMGT/HLA|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|RIKEN_BRC_EPD|Rockland|RSCB|Sigma-Aldrich|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|Ubigene|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|Abeomics|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BioGRID_ORCS_Cell_line|BTO|BioSample|BioSamples|cancercelllines|CancerTools|CBA|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbGAP|dbMHC|DepMap|DGRC|DiscoverX|DSHB|DSMZ|DSMZCellDive|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|Evercyte|FANTOM5_SSTAR|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GeneCopoeia|Genomeditech|GenScript|GEO|HipSci|Horizon_Discovery|hPSCreg|Hysigen|IARC_TP53|IBRC|ICLC|ICLDB|IGRhCellID|IGSR|IHW|Imanis|Innoprot|InvivoGen|IPD-IMGT/HLA|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NIHhESC|NISES|NRFC|PharmacoDB|PRIDE|Progenetix|PubChem_Cell_line|RCB|Revvity/PerkinElmer|RIKEN_BRC_EPD|Rockland|RSCB|Sigma-Aldrich|SKIP|SKY/M-FISH/CGH|SLKBase|TKG|TNGB|TOKU-E|Ubigene|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -182,7 +182,7 @@ Cat   : Gene expression databases
 Abbrev: ATCC
 Name  : American Type Culture Collection
 Server: https://www.atcc.org/
-Db_URL: https://www.atcc.org/Products/%s
+Db_URL: https://www.atcc.org/products/%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -452,8 +452,8 @@ Cat   : Cell line collections (Providers)
 //
 Abbrev: DiscoverX
 Name  : DiscoverX cell line products
-Server: https://www.discoverx.com/product_types/cell-lines-primary-cells
-Db_URL: https://www.discoverx.com/catalogmanagement/catalog/?searchText=%s
+Server: https://emea.discoverx.com/product_types/cell-lines-primary-cells
+Db_URL: https://emea.discoverx.com/catalog/%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -782,7 +782,7 @@ Cat   : Cell line collections (Providers)
 Abbrev: KYinno
 Name  : KYinno cell lines
 Server: https://www.kyinno.com/
-Db_URL: https://innopedia.kyinno.com/DataBase/CellLine.aspx?file=%s.pdf
+Db_URL: https://www.kyinno.com/?s=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -936,13 +936,6 @@ Db_URL: https://patents.google.com/patent/%s
 Term. : No
 Cat   : Reference resources
 //
-Abbrev: PerkinElmer
-Name  : PerkinElmer cell line collection
-Server: https://www.perkinelmer.com/
-Db_URL: https://www.perkinelmer.com/searchresult?searchName=%s
-Term. : No
-Cat   : Cell line collections (Providers)
-//
 Abbrev: PharmacoDB
 Name  : PharmacoDB integrative pharmacogenomic database
 Server: https://pharmacodb.ca/
@@ -1004,6 +997,13 @@ Abbrev: RCB
 Name  : RIKEN Bioresource Center Cell Bank
 Server: https://cell.brc.riken.jp/en/rcb
 Db_URL: https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=%s&lang=En
+Term. : No
+Cat   : Cell line collections (Providers)
+//
+Abbrev: Revvity/PerkinElmer
+Name  : Revvity/PerkinElmer cell line collection
+Server: https://www.revvity.com
+Db_URL: https://www.revvity.com/ch-en/search?q=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -1082,8 +1082,8 @@ Cat   : Cell line collections (Providers)
 //
 Abbrev: TNGB
 Name  : Telethon Network of Genetic Biobanks
-Server: http://biobanknetwork.telethon.it/
-Db_URL: http://biobanknetwork.telethon.it/Sample/View?sampleId=%s
+Server: https://biobanknetwork.telethon.it/
+Db_URL: https://biobanknetwork.telethon.it/Sample/View?sampleId=%s
 Term. : No
 Cat   : Cell line collections (Providers)
 //
@@ -1113,6 +1113,7 @@ Abbrev: UniProtKB
 Name  : UniProt knowledgebase
 Server  https://www.uniprot.org
 Db_URL: https://www.uniprot.org/uniprotkb/%s/entry
+Db_IRI: http://purl.uniprot.org/uniprot/%s
 Term. : Yes
 Cat   : Sequence databases
 //

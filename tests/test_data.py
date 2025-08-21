@@ -132,6 +132,12 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
                 self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+                if entry.name:
+                    self.assertEqual(
+                        entry.name.strip(),
+                        entry.name,
+                        msg="name should not have leading nor trailing whitespace",
+                    )
 
                 for ss in self._construct_substrings(prefix):
                     self.assertNotIn(
@@ -192,7 +198,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_has_description(self):
         """Test that all non-deprecated entries have a description."""
-        for prefix in self.registry:
+        for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
@@ -200,6 +206,12 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(desc)
                 self.assertNotEqual("", desc.strip())
                 self.assertNotIn("\r", desc)
+                if resource.description:
+                    self.assertEqual(
+                        resource.description.strip(),
+                        resource.description,
+                        msg="description should not have leading nor trailing whitespace",
+                    )
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
@@ -1107,7 +1119,7 @@ class TestRegistry(unittest.TestCase):
                 )
 
     def _should_test_keywords(self, resource: Resource) -> bool:
-        if resource.github_request_issue and resource.github_request_issue >= 1627:
+        if resource.github_request_issue and resource.github_request_issue >= 1617:
             return True
         if resource.is_deprecated():
             return False
@@ -1131,6 +1143,15 @@ class TestRegistry(unittest.TestCase):
                         self.fail(
                             msg=f"[{resource.prefix}] manually curated keywords are not sorted. Please run `bioregistry lint`",
                         )
+
+                    first_part, delimiter, _ = resource.prefix.partition(".")
+                    if delimiter:
+                        self.assertNotIn(
+                            first_part,
+                            resource.keywords,
+                            msg="Don't use the grouping part of the namespace as a keyword. Encode it using the `part_of` key instead.",
+                        )
+
                 elif not resource.get_keywords():
                     txt = dedent(f"""
 
@@ -1207,6 +1228,10 @@ class TestRegistry(unittest.TestCase):
                 self.assertTrue(
                     resource.repository.startswith("http"),
                     msg=f"repository is not a valid URL: {resource.repository}",
+                )
+                self.assertFalse(
+                    resource.repository.endswith("/"),
+                    msg="repository URL should not have trailing slash",
                 )
 
     def test_inactive_filter(self) -> None:

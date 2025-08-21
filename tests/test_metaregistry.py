@@ -154,8 +154,8 @@ class TestMetaregistry(unittest.TestCase):
             with self.subTest(metaprefix=metaprefix):
                 self.assertRegex(registry.example, pattern)
 
-            # Test URI format string
-            if registry.provider_uri_format:
-                uri_formats = resource.get_uri_formats()
-                self.assertLess(0, len(uri_formats))
-                self.assertIn(registry.provider_uri_format, uri_formats)
+                # Test URI format string
+                if registry.provider_uri_format:
+                    uri_formats = resource.get_uri_formats()
+                    self.assertLess(0, len(uri_formats))
+                    self.assertIn(registry.provider_uri_format, uri_formats)
