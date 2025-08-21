@@ -6,6 +6,11 @@
 #
 # [tool.uv.sources]
 # bioregistry = { path = "../../../" }
+#
+# [tool.uv]
+# override-dependencies = [
+#     "torch; sys_platform == 'never'",
+# ]
 # ///
 
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry.
@@ -357,7 +362,7 @@ def predict_and_save(
     for name, clf in classifiers:
         x_meta[name] = _predict(clf, x_transformed)
 
-    df["meta_score"] = _predict(meta_clf, x_meta)
+    df["meta_score"] = _predict(meta_clf, x_meta.to_numpy())
     df = df.sort_values(by="meta_score", ascending=False)
     df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 25))
     path = Path(path).resolve()
