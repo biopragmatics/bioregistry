@@ -17,8 +17,8 @@ def main() -> None:
     df = pd.read_csv(URL, sep="\t")
     del df[df.columns[0]]
     df = df[df.description.notna()]
-    df = df[df["prefix"].map(lambda p: bioregistry.get_description(p) is None)]
-    df = df[df["prefix"].map(lambda p: bioregistry.get_obofoundry_prefix(p) is None)]
+    df = df[df["prefix"].map(lambda p: bioregistry.get_description(p) is None)] # type:ignore
+    df = df[df["prefix"].map(lambda p: bioregistry.get_obofoundry_prefix(p) is None)]# type:ignore
     click.echo(df.to_markdown())
     r = dict(bioregistry.read_registry())
     for prefix, description in df[["prefix", "description"]].values:
