@@ -2073,6 +2073,7 @@
       {
         "example_id": "JaponicusDB:SJAG_01143",
         "example_url": "https://www.japonicusdb.org/gene/SJAG_01143",
+        "id_syntax": "S\\w+(\\_)?\\d",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "https://www.japonicusdb.org/gene/[example_id]"
@@ -2722,15 +2723,15 @@
     "entity_types": [
       {
         "example_id": "PANTHER:PTHR11455",
-        "example_url": "http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
+        "example_url": "https://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
         "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+",
         "type_id": "NCIT:C20130",
         "type_name": "protein family",
-        "url_syntax": "http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
+        "url_syntax": "https://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://www.pantherdb.org/"
+      "https://www.pantherdb.org/"
     ],
     "name": "Protein ANalysis THrough Evolutionary Relationships Classification System",
     "rdf_uri_prefix": "http://identifiers.org/panther.family/"
@@ -3571,11 +3572,11 @@
     "database": "SGD_PWY",
     "entity_types": [
       {
-        "example_id": "SGD_PWY:CYSTEINE-SYN2-PWY",
+        "example_id": "SGD_PWY:SERSYN-PWY",
         "example_url": "https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=SERSYN-PWY",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "https://www.yeastgenome.org/locus/[example_id]"
+        "url_syntax": "https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=[example_id]"
       }
     ],
     "generic_urls": [
@@ -3991,15 +3992,15 @@
     "entity_types": [
       {
         "example_id": "PANTHER:PTHR11455",
-        "example_url": "http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
+        "example_url": "https://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
         "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+",
         "type_id": "NCIT:C20130",
         "type_name": "protein family",
-        "url_syntax": "http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
+        "url_syntax": "https://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://www.pantherdb.org/"
+      "https://www.pantherdb.org/"
     ],
     "name": "TreeGrafter-generated GO annotations",
     "rdf_uri_prefix": "http://identifiers.org/panther.family/"
@@ -4494,7 +4495,7 @@
       {
         "example_id": "ZDB-GENE-990415-103",
         "example_url": "http://zfin.org/ZDB-GENE-990415-103",
-        "id_syntax": "ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+",
+        "id_syntax": "ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE)-[0-9]{6}-[0-9]+",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "http://zfin.org/[example_id]"
@@ -4502,7 +4503,7 @@
       {
         "example_id": "ZDB-GENE-990415-103",
         "example_url": "http://zfin.org/ZDB-GENE-990415-103",
-        "id_syntax": "ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+",
+        "id_syntax": "ZDB-(GENO|MRPHLNO|CRISPR|FISH|TALEN)-[0-9]{6}-[0-9]+",
         "type_id": "VariO:0001",
         "type_name": "variation",
         "url_syntax": "http://zfin.org/[example_id]"

@@ -18,8 +18,13 @@ __all__ = [
 ]
 
 
-def _normalize_values(values: dict[str, str]) -> dict[str, str]:
+def _normalize_values(values: dict[str, str] | str) -> dict[str, str]:
     """Validate the identifier."""
+    if isinstance(values, str):
+        prefix_, _, identifier_ = values.partition(":")
+        if not identifier_:
+            raise ValueError("not formatted as a CURIE")
+        values = {"prefix": prefix_, "identifier": identifier_}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
         raise RuntimeError(f"missing prefix/identifier from values: {values}")
@@ -37,8 +42,13 @@ def _normalize_values(values: dict[str, str]) -> dict[str, str]:
     return values
 
 
-def _standardize_values(values: dict[str, str]) -> dict[str, str]:
+def _standardize_values(values: dict[str, str] | str) -> dict[str, str]:
     """Validate the identifier."""
+    if isinstance(values, str):
+        prefix_, _, identifier_ = values.partition(":")
+        if not identifier_:
+            raise ValueError("not formatted as a CURIE")
+        values = {"prefix": prefix_, "identifier": identifier_}
     prefix, identifier = values.get("prefix"), values.get("identifier")
     if prefix is None or identifier is None:
         raise RuntimeError(f"missing prefix/identifier from values: {values}")
@@ -77,10 +87,19 @@ class NormalizedReference(curies.Reference):
 
     >>> NormalizedReference(prefix="GOBP", identifier="0032571")
     NormalizedReference(prefix='go', identifier='0032571')
+
+    If you're deriving a model, then pass a string, this can still work
+
+    >>> from pydantic import BaseModel
+    >>> class Derived(BaseModel):
+    ...     reference: NormalizedReference
+    >>> Derived(reference="go:0032571")
+    Derived(reference=NormalizedReference(prefix='go', identifier='0032571'))
+
     """
 
     @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
+    def validate_identifier(cls, values: dict[str, str] | str) -> dict[str, str]:  # noqa
         """Validate the identifier."""
         return _normalize_values(values)
 
@@ -141,10 +160,19 @@ class StandardReference(curies.Reference):
 
     >>> StandardReference(prefix="GOBP", identifier="0032571")
     StandardReference(prefix='GO', identifier='0032571')
+
+    If you're deriving a model, then pass a string, this can still work
+
+    >>> from pydantic import BaseModel
+    >>> class Derived(BaseModel):
+    ...     reference: StandardReference
+    >>> Derived(reference="go:0032571")
+    Derived(reference=StandardReference(prefix='GO', identifier='0032571'))
+
     """
 
     @model_validator(mode="before")
-    def validate_identifier(cls, values: dict[str, str]) -> dict[str, str]:  # noqa
+    def validate_identifier(cls, values: dict[str, str] | str) -> dict[str, str]:  # noqa
         """Validate the identifier."""
         return _standardize_values(values)
 

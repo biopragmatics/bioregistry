@@ -162,7 +162,8 @@ def _get_metadata_df() -> pd.DataFrame:
 def export_tables() -> None:
     """Export tables.
 
-    1. TODO: Export data model comparison, see also https://bioregistry.io/related#data-models
+    1. TODO: Export data model comparison, see also
+       https://bioregistry.io/related#data-models
     2. Export governance comparison, see also https://bioregistry.io/related#governance
     """
     governance_df = _get_governance_df()

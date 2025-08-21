@@ -43,6 +43,7 @@ OLS_SKIP = {
     "cpont": "no own terms?",
     "schemaorg_https": "duplicate of canonical HTTP version",
     "hpi": "nonsensical duplication of HP",
+    "hra": "project ontology",
 }
 
 

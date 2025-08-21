@@ -56,6 +56,7 @@ from ..schema_utils import (
     read_prefix_contributions,
     read_prefix_reviews,
     read_registry_contributions,
+    read_status_contributions,
 )
 from ..utils import curie_to_str
 
@@ -468,6 +469,7 @@ def contributors() -> str:
     prefix_reviews = read_prefix_reviews(manager.registry)
     prefix_contacts = read_prefix_contacts(manager.registry)
     registries = read_registry_contributions(manager.metaregistry)
+    status_contributions = read_status_contributions(manager.registry)
     unique_direct_count = len(
         set(itt.chain(collections, contexts, prefix_contributions, prefix_reviews))
     )
@@ -484,6 +486,7 @@ def contributors() -> str:
         formats=FORMATS,
         unique_direct_count=unique_direct_count,
         unique_indirect_count=unique_indirect_count,
+        status_contributions=status_contributions,
     )
 
 
@@ -641,14 +644,23 @@ def highlights_relations() -> str:
 
 
 @ui_blueprint.route("/keywords")
-def highlights_keywords() -> str:
-    """Render the keywords highlights page."""
-    keyword_to_prefix = defaultdict(list)
-    for resource in manager.registry.values():
-        for keyword in resource.get_keywords():
-            keyword_to_prefix[keyword].append(resource)
+def highlights_keywords() -> werkzeug.Response:
+    """Redirect to the keywords index."""
+    return redirect(url_for("." + get_keywords.__name__))
 
-    return render_template("highlights/keywords.html", keywords=keyword_to_prefix)
+
+@ui_blueprint.route("/keyword")
+def get_keywords() -> str:
+    """Render the keywords highlights page."""
+    keyword_to_prefix = manager.get_keyword_to_resources()
+    return render_template("keywords.html", keywords=keyword_to_prefix)
+
+
+@ui_blueprint.route("/keyword/<keyword>")
+def get_keyword(keyword: str) -> str:
+    """Render the keywords highlights page."""
+    resources_ = manager.get_resources_with_keyword(keyword)
+    return render_template("keyword.html", keyword=keyword, resources=resources_)
 
 
 @ui_blueprint.route("/highlights/owners")

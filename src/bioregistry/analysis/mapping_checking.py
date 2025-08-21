@@ -10,9 +10,10 @@
 
 """Run the mapping checking workflow.
 
-Detect potentially incorrect mappings by comparing embeddings of bioregistry entry metadata
-against the metadata corresponding to mapped prefixes. Low similarity scores indicate a potential
-false positive mapping that can be reviewed manually and removed if confirmed to be incorrect.
+Detect potentially incorrect mappings by comparing embeddings of bioregistry entry
+metadata against the metadata corresponding to mapped prefixes. Low similarity scores
+indicate a potential false positive mapping that can be reviewed manually and removed if
+confirmed to be incorrect.
 
 Run with either of the following commands:
 

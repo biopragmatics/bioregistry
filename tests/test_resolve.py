@@ -135,7 +135,9 @@ class TestResolve(unittest.TestCase):
     def test_curie_pattern(self):
         """Test CURIE pattern.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/245
         """
         self.assertEqual("^chebi:\\d+$", bioregistry.get_curie_pattern("chebi"))
         self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi", use_preferred=True))

@@ -1,6 +1,8 @@
 """Scraper for FAIRsharing.
 
-.. seealso:: https://beta.fairsharing.org/API_doc
+.. seealso::
+
+    https://beta.fairsharing.org/API_doc
 """
 
 from __future__ import annotations

@@ -65,7 +65,9 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
 
     :param issue_id: The issue identifier
     :param resource_data: The data from the issue form
-    :returns: A Resource instance or None if there is an issue that warrants skipping the issue
+
+    :returns: A Resource instance or None if there is an issue that warrants skipping
+        the issue
     """
     prefix = resource_data.pop("prefix").lower()
     try:
@@ -149,10 +151,11 @@ def get_new_prefix_issues(token: str | None = None) -> dict[int, Resource]:
         Issues corresponding to a prefix that is already in the Bioregistry should be sent a message then
         automatically closed
 
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
-    :returns: A mapping of issue identifiers to pairs of the prefix itself and a :class:`Resource` instance
-        that has been parsed out of the issue form
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+
+    :returns: A mapping of issue identifiers to pairs of the prefix itself and a
+        :class:`Resource` instance that has been parsed out of the issue form
     """
     data = github_client.get_bioregistry_form_data(
         ["New", "Prefix"], remapping=MAPPING, token=token

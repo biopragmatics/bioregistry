@@ -1,6 +1,8 @@
 """Update Prefix.cc to reflect the content of the Bioregistry.
 
-.. seealso:: https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1038
+.. seealso::
+
+    https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1038
 """
 
 import random
