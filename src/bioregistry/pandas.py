@@ -469,10 +469,11 @@ def _multi_column_map(
     use_tqdm: bool = False,
 ) -> pd.Series:
     rows = df[columns].values
-    if use_tqdm:
-        rows = tqdm(rows, unit_scale=True)
     return pd.Series(
-        [func(*row) if all(pd.notna(cell) for cell in row) else None for row in rows],
+        [
+            func(*row) if all(pd.notna(cell) for cell in row) else None
+            for row in tqdm(rows, unit_scale=True, disable=not use_tqdm)
+        ],
         index=df.index,
     )
 
