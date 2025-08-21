@@ -296,15 +296,21 @@ def _cross_val_predict(
     clf: ClassifierHint, x_train: XTrain, y_train: YTrain, cv: int
 ) -> NDArray[np.float64]:
     if not hasattr(clf, "predict_proba"):
-        return cross_val_predict(clf, x_train, y_train, cv=cv, method="decision_function")
-    return cross_val_predict(clf, x_train, y_train, cv=cv, method="predict_proba")[:, 1]
+        return cast(
+            NDArray[np.float64],
+            cross_val_predict(clf, x_train, y_train, cv=cv, method="decision_function"),
+        )
+    return cast(
+        NDArray[np.float64],
+        cross_val_predict(clf, x_train, y_train, cv=cv, method="predict_proba")[:, 1],
+    )
 
 
-def _predict(clf: ClassifierHint, x: NDArray[np.float64]) -> NDArray[np.float64]:
+def _predict(clf: ClassifierHint, x: NDArray[np.float64] | NDArray[np.str_]) -> NDArray[np.float64]:
     if hasattr(clf, "predict_proba"):
-        return clf.predict_proba(x)[:, 1]
+        return cast(NDArray[np.float64], clf.predict_proba(x)[:, 1])
     else:
-        return clf.decision_function(x)
+        return cast(NDArray[np.float64], clf.decision_function(x))
 
 
 class MetaClassifierEvaluationResults(NamedTuple):

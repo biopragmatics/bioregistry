@@ -11,9 +11,10 @@ import sys
 import typing
 from collections import Counter, defaultdict
 from collections.abc import Collection, Mapping
-from typing import TYPE_CHECKING, Callable, TypeVar
+from typing import TYPE_CHECKING, Callable, TypeVar, cast
 
 import click
+import numpy as np
 from typing_extensions import TypeAlias
 
 import bioregistry
@@ -57,6 +58,7 @@ BIOREGISTRY_COLOR = "silver"
 BAR_SKIP = {"re3data", "bartoc"}
 
 FigAxPair = tuple["matplotlib.figure.Figure", "matplotlib.axes.Axes"]
+FigMultiAxPair = tuple["matplotlib.figure.Figure", np.ndarray["matplotlib.axes.Axes"]]
 
 
 class RegistryInfo(typing.NamedTuple):
@@ -157,7 +159,7 @@ def _plot_attribute_pies(
     watermark: bool,
     ncols: int = 4,
     keep_ontology: bool = True,
-) -> FigAxPair:
+) -> FigMultiAxPair:
     import matplotlib.pyplot as plt
 
     if not keep_ontology:
@@ -275,7 +277,7 @@ def _plot_external_overlap(
     pairs = list(itt.combinations(keys, r=2))
     nrows = math.ceil(len(pairs) / ncols)
     figsize = (3 * ncols, 2.5 * nrows)
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    fig, axes = cast(FigAxPair, plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize))
     for pair, ax in itt.zip_longest(pairs, axes.ravel()):
         if pair is None:
             ax.axis("off")
@@ -542,7 +544,7 @@ def plot_coverage_overlaps(*, overlaps: OverlapsHint) -> FigAxPair:
     )
     ax.grid(False)
     ax.set_ylabel("")
-    ax.set_xticks([])
+    ax.set_xticks([])  # type:ignore[operator]
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
@@ -629,7 +631,7 @@ def plot_coverage_gains(*, overlaps: OverlapsHint, minimum_width_for_text: int =
     )
     plt.legend()
     ax.set_ylabel("")
-    ax.set_xticks([])
+    ax.set_xticks([])  # type:ignore[operator]
     ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -668,7 +670,7 @@ def plot_coverage_gains(*, overlaps: OverlapsHint, minimum_width_for_text: int =
             verticalalignment="center",
         )
 
-    for label in ax.get_yticklabels():
+    for label in ax.get_yticklabels():  # type:ignore[operator]
         label.set_fontweight("bold")
 
     plt.tight_layout()
