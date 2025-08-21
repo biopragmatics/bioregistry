@@ -16,7 +16,7 @@ import click
 import pandas as pd
 import pystow
 import yaml
-from pystow.github import MAX_PER_PAGE, get_default_branch, search_code
+from pystow.github import MAXIMUM_SEARCH_PAGE_SIZE, get_default_branch, search_code
 from pystow.utils import safe_open_dict_reader
 from tqdm import tqdm
 
@@ -115,7 +115,7 @@ SKIP_USERS = [
 
 
 @click.command()
-@click.option("--per-page", type=int, default=MAX_PER_PAGE)
+@click.option("--per-page", type=int, default=MAXIMUM_SEARCH_PAGE_SIZE)
 @click.option("--refresh", is_flag=True)
 def main(per_page: int, refresh: bool) -> None:
     """Survey ODK usage and propose new Bioregistry prefixes."""
@@ -142,7 +142,7 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
     skip_repo_part = " ".join(f"-repo:{repo}" for repo in SKIP_REPOS)
     query = f'filename:"-odk.yaml" {skip_user_part} {skip_repo_part} -is:fork'
 
-    for item in search_code(query=query, per_page=per_page):
+    for item in search_code(query=query, page_size=per_page):
         name = item["name"]
         path = item["path"]
         if path in SKIP_PATHS:
