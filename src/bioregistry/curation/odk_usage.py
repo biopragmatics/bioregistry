@@ -8,6 +8,8 @@ This script does the following:
 4. Otherwise, make stub entries in the Bioregistry for new prefixes
 """
 
+from __future__ import annotations
+
 import enum
 from itertools import islice
 from typing import Any, TypedDict, cast
@@ -43,7 +45,7 @@ class Row(TypedDict):
 COLUMNS = ["repository", "name", "path", "version", "prefix"]
 
 
-class SkipReason(enum.StrEnum):
+class SkipReason(enum.Enum):
     """The reason a repository is skipped."""
 
     false_positive = enum.auto()
