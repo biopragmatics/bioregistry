@@ -244,6 +244,16 @@ class Author(Attributable):
     )
 
 
+CHARLIE_AUTHOR = Author.model_validate(
+    {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370",
+    }
+)
+
+
 class Publication(BaseModel):
     """Metadata about a publication."""
 
