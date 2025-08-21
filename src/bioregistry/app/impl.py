@@ -15,7 +15,7 @@ from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from markdown import markdown
-from rdflib_endpoint import SparqlRouter
+from rdflib_endpoint.sparql_router import SparqlRouter
 
 from bioregistry import Manager, curie_to_str, resource_manager, version
 
@@ -217,7 +217,7 @@ def get_app(
     fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
-    fast_api.mount("/", WSGIMiddleware(app))
+    fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
 
     # yes, this isn't very secure. just for testing now.
     key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])

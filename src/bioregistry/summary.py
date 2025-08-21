@@ -8,7 +8,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from itertools import combinations
 from textwrap import dedent
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING
 
 import click
 from more_click import force_option
@@ -96,15 +96,12 @@ class BioregistrySummary:
 
     def get_table_latex(self) -> str:
         """Get the latex for table 1 in the manuscript."""
-        return cast(
-            str,
-            self._table_df().to_latex(
-                index=False,
-                caption=f"Overview statistics of the Bioregistry on {self.datetime_str}.",
-                label="tab:bioregistry-summary",
-                bold_rows=True,
-                column_format="lr",
-            ),
+        return self._table_df().to_latex(
+            index=False,
+            caption=f"Overview statistics of the Bioregistry on {self.datetime_str}.",
+            label="tab:bioregistry-summary",
+            bold_rows=True,
+            column_format="lr",
         )
 
     @classmethod
