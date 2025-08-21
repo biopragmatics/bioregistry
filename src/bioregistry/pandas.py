@@ -13,14 +13,14 @@ import functools
 import logging
 import re
 from re import Pattern
-from typing import Callable, cast, TypeVar
+from typing import Callable, TypeVar, cast
 
 import pandas as pd
-from bioregistry.constants import MaybeCURIE
 from tabulate import tabulate
 from tqdm.auto import tqdm
 
 import bioregistry
+from bioregistry.constants import MaybeCURIE
 
 __all__ = [
     "curies_to_identifiers",
@@ -39,6 +39,7 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 X = TypeVar("X")
+
 
 class PrefixLocationError(ValueError):
     """Raised when not exactly one of prefix and prefix_column were given."""
@@ -310,12 +311,15 @@ def validate_identifiers(
         # pandas has its own internal notion of none's,
         # so even though this should be a pd.Series[bool | None],
         # we squash it down
-        results = cast(pd.Series[bool], _multi_column_map(
-            df,
-            [cast(str, prefix_column), column],
-            _validate_lambda,
-            use_tqdm=use_tqdm,
-        ))
+        results = cast(
+            pd.Series[bool],
+            _multi_column_map(
+                df,
+                [cast(str, prefix_column), column],
+                _validate_lambda,
+                use_tqdm=use_tqdm,
+            ),
+        )
     if target_column:
         df[target_column] = results
     return results
@@ -333,10 +337,13 @@ def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd
             f"Can't validate identifiers for {prefix} because it has no pattern in the Bioregistry"
         )
     pattern_re = re.compile(pattern)
-    return cast(pd.Series[bool], df[column].map(
-        lambda s: bool(pattern_re.fullmatch(s)),
-        na_action="ignore",
-    ))
+    return cast(
+        pd.Series[bool],
+        df[column].map(
+            lambda s: bool(pattern_re.fullmatch(s)),
+            na_action="ignore",
+        ),
+    )
 
 
 def identifiers_to_curies(
@@ -472,7 +479,7 @@ def _multi_column_map(
     func: Callable[..., X],
     *,
     use_tqdm: bool = False,
-) -> pd.Series[X]: # type:ignore[type-var]
+) -> pd.Series[X]:  # type:ignore[type-var]
     rows = df[columns].values
     return pd.Series(
         [
@@ -546,8 +553,7 @@ def curies_to_identifiers(
             )
 
     series: list[MaybeCURIE] = [
-        bioregistry.parse_curie(curie) if pd.notna(curie) else (None, None)
-        for curie in df[column]
+        bioregistry.parse_curie(curie) if pd.notna(curie) else (None, None) for curie in df[column]
     ]
     prefixes, identifiers = zip(*series)
     df[prefix_column_name] = prefixes

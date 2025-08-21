@@ -29,8 +29,10 @@ def main() -> None:
 def _has_description(prefix: str) -> bool:
     return bioregistry.get_description(prefix) is None
 
+
 def _is_obofoundry(prefix: str) -> bool:
     return bioregistry.get_obofoundry_prefix(prefix) is None
+
 
 if __name__ == "__main__":
     main()
