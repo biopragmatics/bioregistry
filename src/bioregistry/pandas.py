@@ -124,7 +124,7 @@ def normalize_curies(
 
 def validate_prefixes(
     df: pd.DataFrame, column: int | str, *, target_column: str | None = None
-) -> pd.Series:
+) -> pd.Series[str]:
     """Validate prefixes in a given column.
 
     :param df: A DataFrame
@@ -156,7 +156,7 @@ def validate_prefixes(
     return results
 
 
-def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series) -> None:
+def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
     """Provide a summary of prefix validation."""
     # TODO add suggestions on what to do next, e.g.:,
     #  1. can some be normalized? use normalization function
@@ -186,7 +186,7 @@ def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series) -> None:
 
 def validate_curies(
     df: pd.DataFrame, column: int | str, *, target_column: str | None = None
-) -> pd.Series:
+) -> pd.Series[str]:
     """Validate CURIEs in a given column.
 
     :param df: A DataFrame
@@ -215,10 +215,10 @@ def validate_curies(
     results = df[column].map(bioregistry.is_valid_curie, na_action="ignore")
     if target_column:
         df[target_column] = results
-    return results
+    return cast(pd.Series[str], results)
 
 
-def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series) -> None:
+def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
     """Provide a summary of CURIE validation."""
     count = (~idx).sum()
     unique = sorted(df[~idx][0].unique())
@@ -237,7 +237,7 @@ def validate_identifiers(
     prefix_column: str | None = None,
     target_column: str | None = None,
     use_tqdm: bool = False,
-) -> pd.Series:
+) -> pd.Series[str]:
     """Validate local unique identifiers in a given column.
 
     Some data sources split the prefix and identifier in separate columns,
@@ -316,7 +316,7 @@ def validate_identifiers(
     return results
 
 
-def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd.Series:
+def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd.Series[str]:
     norm_prefix = bioregistry.normalize_prefix(prefix)
     if norm_prefix is None:
         raise ValueError(
@@ -467,9 +467,9 @@ def _multi_column_map(
     func: Callable,  # type:ignore
     *,
     use_tqdm: bool = False,
-) -> pd.Series:
+) -> pd.Series[str]:
     rows = df[columns].values
-    return pd.Series(
+    return pd.Series[str](
         [
             func(*row) if all(pd.notna(cell) for cell in row) else None
             for row in tqdm(rows, unit_scale=True, disable=not use_tqdm)
