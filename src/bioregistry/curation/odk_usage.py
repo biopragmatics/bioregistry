@@ -10,7 +10,7 @@ This script does the following:
 
 import enum
 from itertools import islice
-from typing import Any, TypedDict
+from typing import Any, TypedDict, cast
 
 import click
 import pandas as pd
@@ -205,19 +205,19 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
 def _get_odk_configuration(repository: str, branch: str, path: str) -> dict[str, Any] | None:
     odk_config_url = f"https://raw.githubusercontent.com/{repository}/{branch}/{path}"
     try:
-        with MODULE.ensure_open("configuration", url=odk_config_url) as file:
+        with MODULE.ensure_open("configuration", url=odk_config_url) as file:  # type:ignore
             odk_config = yaml.safe_load(file)
     except pystow.utils.DownloadError:
         return None
     else:
-        return odk_config
+        return cast(dict[str, Any], odk_config)
 
 
 def _odk_version(repository: str, branch: str) -> str | None:
     makefile_url = f"https://raw.githubusercontent.com/{repository}/{branch}/src/ontology/Makefile"
     name = repository.replace("/", "_").casefold() + ".makefile.txt"
     try:
-        with MODULE.ensure_open("makefile", url=makefile_url, name=name) as file:
+        with MODULE.ensure_open("makefile", url=makefile_url, name=name) as file:  # type:ignore
             version_line, *_ = islice(file, 3, 4)
         version = version_line.removeprefix("# ODK Version: v")
     except ValueError:
@@ -227,7 +227,7 @@ def _odk_version(repository: str, branch: str) -> str | None:
         tqdm.write(f"Could not download {makefile_url}")
         return None
     else:
-        return version
+        return cast(str, version)
 
 
 if __name__ == "__main__":
