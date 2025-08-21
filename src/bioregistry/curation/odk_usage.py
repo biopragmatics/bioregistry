@@ -21,8 +21,8 @@ from pystow.utils import safe_open_dict_reader
 from tqdm import tqdm
 
 import bioregistry
+from bioregistry import Author
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.schema.struct import CHARLIE_AUTHOR
 
 MODULE = pystow.module("bioregistry", "odk-impact")
 PATH = MODULE.join(name="results.tsv")
@@ -183,7 +183,7 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
                     download_obo=download_url_base + "obo" if "obo" in export_formats else None,
                     download_owl=download_url_base + "owl" if "owl" in export_formats else None,
                     download_json=download_url_base + "json" if "json" in export_formats else None,
-                    contributor=CHARLIE_AUTHOR,
+                    contributor=Author.get_charlie(),
                     example=" ",  # needs to be filled in,
                     description=" ",  # needs to be filled in,
                     pattern="^\\d{7}$",

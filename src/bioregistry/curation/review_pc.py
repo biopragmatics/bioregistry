@@ -5,9 +5,8 @@ import webbrowser
 import click
 import pandas
 
-from bioregistry import manager
+from bioregistry import Author, manager
 from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.schema.struct import CHARLIE_AUTHOR
 
 
 @click.command()
@@ -33,13 +32,13 @@ def main() -> None:
         webbrowser.open_new_tab(example_iri)
         res = input(f"[{prefix}] type y or yes to accept, anything else to continue: ")
         if res.lower() in {"yes", "y"}:
-            resource.reviewer = CHARLIE_AUTHOR
+            resource.reviewer = Author.get_charlie()
             manager.write_registry()
             reviewed_count += 1
         elif res.lower() in {"n", "no"}:
             resource.deprecated = True
             resource.comment = "This resource doesn't exist on the web anymore"
-            resource.reviewer = CHARLIE_AUTHOR
+            resource.reviewer = Author.get_charlie()
             manager.write_registry()
             reviewed_count += 1
         else:

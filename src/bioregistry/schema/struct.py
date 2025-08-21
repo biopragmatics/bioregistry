@@ -29,7 +29,7 @@ import click
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
-from typing_extensions import TypeAlias
+from typing_extensions import Literal, Self, TypeAlias
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -42,11 +42,6 @@ from bioregistry.constants import (
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
-
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal  # type:ignore
 
 if TYPE_CHECKING:
     import rdflib
@@ -243,15 +238,17 @@ class Author(Attributable):
         **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
 
-
-CHARLIE_AUTHOR = Author.model_validate(
-    {
-        "email": "cthoyt@gmail.com",
-        "github": "cthoyt",
-        "name": "Charles Tapley Hoyt",
-        "orcid": "0000-0003-4423-4370",
-    }
-)
+    @classmethod
+    def get_charlie(cls) -> Self:
+        """Get an author object representing Charlie."""
+        return cls.model_validate(
+            {
+                "email": "cthoyt@gmail.com",
+                "github": "cthoyt",
+                "name": "Charles Tapley Hoyt",
+                "orcid": "0000-0003-4423-4370",
+            }
+        )
 
 
 class Publication(BaseModel):
