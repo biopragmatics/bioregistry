@@ -6,11 +6,6 @@
 #
 # [tool.uv.sources]
 # bioregistry = { path = "../../../" }
-#
-# [tool.uv]
-# override-dependencies = [
-#     "torch; sys_platform == 'never'",
-# ]
 # ///
 
 """Train a TF-IDF classifier and use it to score the relevance of new PubMed papers to the Bioregistry.
