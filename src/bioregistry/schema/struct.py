@@ -216,16 +216,16 @@ class Attributable(BaseModel):
         :param graph: An RDF graph
         :returns: The RDF node representing this author using an ORCiD URI.
         """
-        from rdflib import BNode, Literal
+        from rdflib import BNode, Literal, Node
         from rdflib.namespace import FOAF, RDFS
 
         if not self.orcid:
-            node = BNode()
+            node: Node = BNode()
         else:
             from .constants import orcid
 
             node = orcid.term(self.orcid)
-        graph.add((node, RDFS["label"], Literal(self.name)))
+        graph.add((node, RDFS.label, Literal(self.name)))
         if self.email:
             graph.add((node, FOAF.mbox, Literal(self.email)))
         return node
@@ -2915,7 +2915,7 @@ class Collection(BaseModel):
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
 
-    def add_triples(self, graph: rdflib.Graph) -> rdflib.Graph:
+    def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
 
         :param graph: An RDF graph
@@ -2941,8 +2941,6 @@ class Collection(BaseModel):
 
         for resource in self.resources:
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
-
-        return node
 
     def as_context_jsonld_str(self) -> str:
         """Get the JSON-LD context as a string from a given collection."""
