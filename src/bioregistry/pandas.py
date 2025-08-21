@@ -312,7 +312,7 @@ def validate_identifiers(
         # so even though this should be a pd.Series[bool | None],
         # we squash it down
         results = cast(
-            pd.Series[bool],
+            "pd.Series[bool]",
             _multi_column_map(
                 df,
                 [cast(str, prefix_column), column],
