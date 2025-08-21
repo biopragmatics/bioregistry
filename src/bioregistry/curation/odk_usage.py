@@ -10,13 +10,11 @@ This script does the following:
 
 import enum
 from itertools import islice
-from pathlib import Path
 from typing import Any, TypedDict
 
 import click
 import pandas as pd
 import pystow
-import requests
 import yaml
 from pystow.github import MAX_PER_PAGE, get_default_branch, search_code
 from pystow.utils import safe_open_dict_reader
@@ -26,12 +24,8 @@ import bioregistry
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.struct import CHARLIE_AUTHOR
 
-HERE = Path(__file__).parent.resolve()
-DATA = HERE.joinpath("data")
-DATA.mkdir(exist_ok=True)
-PATH = DATA.joinpath("00-odk.tsv")
-
 MODULE = pystow.module("bioregistry", "odk-impact")
+PATH = MODULE.join(name="results.tsv")
 
 
 class Row(TypedDict):
@@ -73,6 +67,7 @@ SKIP_REPOS: dict[str, SkipReason] = {
     "NhanAZ/FunnyBlock": SkipReason.false_positive,
     "NhanAZ/SLBSER": SkipReason.false_positive,
     "gootools/token-list": SkipReason.false_positive,
+    "InSilicoVida-Research-Lab/pbpko": SkipReason.false_positive,
     #
     "yasuhide0802/Eye2": SkipReason.hard_fork,  # of HP
     "vyasakhilesh/digitrubber": SkipReason.hard_fork,
@@ -131,9 +126,7 @@ def main(per_page: int, refresh: bool) -> None:
     else:
         data = {}
 
-    repository_to_bioregistry = get_repository_to_bioregistry()
-
-    _get_rows(data=data, per_page=per_page, repository_to_bioregistry=repository_to_bioregistry)
+    _get_rows(data=data, per_page=per_page)
 
     rows = sorted(data.values(), key=lambda row: row["repository"].casefold())
     df = pd.DataFrame(rows).sort_values(["prefix", "repository"])
@@ -142,12 +135,9 @@ def main(per_page: int, refresh: bool) -> None:
     df.to_csv(PATH, sep="\t", index=False)
 
 
-def _get_rows(
-    *,
-    data: dict[str, Row],
-    per_page: int | None = None,
-    repository_to_bioregistry: dict[str, str],
-) -> None:
+def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
+    repository_to_prefix = bioregistry.get_repository_to_prefix()
+
     skip_user_part = " ".join(f"-user:{user}" for user in SKIP_USERS)
     skip_repo_part = " ".join(f"-repo:{repo}" for repo in SKIP_REPOS)
     query = f'filename:"-odk.yaml" {skip_user_part} {skip_repo_part} -is:fork'
@@ -166,7 +156,7 @@ def _get_rows(
             item["repository"]["owner"]["login"], item["repository"]["name"]
         )
 
-        bioregistry_prefix = repository_to_bioregistry.get(repository.casefold())
+        bioregistry_prefix = repository_to_prefix.get(repository.casefold())
 
         odk_version = _odk_version(repository, branch) or "unknown"
         odk_config = _get_odk_configuration(repository, branch, path)
@@ -215,7 +205,7 @@ def _get_rows(
 def _get_odk_configuration(repository: str, branch: str, path: str) -> dict[str, Any] | None:
     odk_config_url = f"https://raw.githubusercontent.com/{repository}/{branch}/{path}"
     try:
-        with MODULE.ensure_open(url=odk_config_url) as file:
+        with MODULE.ensure_open("configuration", url=odk_config_url) as file:
             odk_config = yaml.safe_load(file)
     except pystow.utils.DownloadError:
         return None
@@ -225,29 +215,19 @@ def _get_odk_configuration(repository: str, branch: str, path: str) -> dict[str,
 
 def _odk_version(repository: str, branch: str) -> str | None:
     makefile_url = f"https://raw.githubusercontent.com/{repository}/{branch}/src/ontology/Makefile"
+    name = repository.replace("/", "_").casefold() + ".makefile.txt"
     try:
-        line, *_ = islice(
-            requests.get(makefile_url, stream=True, timeout=15).iter_lines(decode_unicode=True),
-            3,
-            4,
-        )
-        version = line.removeprefix("# ODK Version: v")
+        with MODULE.ensure_open("makefile", url=makefile_url, name=name) as file:
+            version_line, *_ = islice(file, 3, 4)
+        version = version_line.removeprefix("# ODK Version: v")
     except ValueError:
         tqdm.write(f"Could not get ODK version in https://github.com/{repository}")
         return None
+    except pystow.utils.DownloadError:
+        tqdm.write(f"Could not download {makefile_url}")
+        return None
     else:
         return version
-
-
-def get_repository_to_bioregistry() -> dict[str, str]:
-    """Get a dictionary from GitHub repository to Bioregistry prefix."""
-    rv = {}
-    for resource in bioregistry.resources():
-        repository = resource.get_repository()
-        if not repository or not repository.startswith("https://github.com/"):
-            continue
-        rv[repository.removeprefix("https://github.com/").casefold()] = resource.prefix
-    return rv
 
 
 if __name__ == "__main__":
