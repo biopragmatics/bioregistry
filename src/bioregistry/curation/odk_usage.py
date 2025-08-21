@@ -37,12 +37,26 @@ class Row(TypedDict):
     name: str
     path: str
     version: str
+    branch: str
     #: The Bioregistry prefix, mapped via the repository
     prefix: str | None
+    license: str | None
+    description: str | None
+    contact: str | None
 
 
 #: The column ordering for the ODK summary sheet
-COLUMNS = ["repository", "name", "path", "version", "prefix"]
+COLUMNS = [
+    "prefix",
+    "repository",
+    "version",
+    "name",
+    "branch",
+    "path",
+    "license",
+    "description",
+    "contact",
+]
 
 
 class SkipReason(enum.Enum):
@@ -87,6 +101,7 @@ SKIP_REPOS: dict[str, SkipReason] = {
     "monarch-initiative/phenio": SkipReason.application,
     "EBISPOT/scatlas_ontology": SkipReason.application,
     "futres/uberonfovt": SkipReason.application,
+    "rsc3/biocoreterms": SkipReason.application,
     #
     "cmungall/lsfo": SkipReason.in_development,
     "StroemPhi/semunit": SkipReason.in_development,
@@ -95,6 +110,7 @@ SKIP_REPOS: dict[str, SkipReason] = {
     "Mjvolk3/torchcell_ontology": SkipReason.low_quality,
     "JPReceveur/sudo_ontology": SkipReason.low_quality,
 }
+SKIP_REPOS_CASEFOLDED: set[str] = {k.casefold() for k in SKIP_REPOS}
 
 SKIP_PATHS = {
     "src/ontology/rto-odk.yamlZone.Identifier",
@@ -102,7 +118,7 @@ SKIP_PATHS = {
 
 #: Users who have many test ODK files
 #: or other reasons to not be considered
-SKIP_USERS = [
+SKIP_USERS = {
     "INCATools",
     "matentzn",
     "one-acre-fund",
@@ -113,7 +129,7 @@ SKIP_USERS = [
     "acevesp",
     "cthoyt",  # self reference
     "OBOAcademy",  # teaching material
-]
+}
 
 
 @click.command()
@@ -132,7 +148,7 @@ def main(per_page: int, refresh: bool) -> None:
 
     rows = sorted(data.values(), key=lambda row: row["repository"].casefold())
     df = pd.DataFrame(rows).sort_values(["prefix", "repository"])
-    df = df[["prefix", "repository", "name", "version", "path"]]
+    df = df[COLUMNS]
     click.echo(f"Writing to {PATH}")
     df.to_csv(PATH, sep="\t", index=False)
 
@@ -141,8 +157,7 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
     repository_to_prefix = bioregistry.get_repository_to_prefix()
 
     skip_user_part = " ".join(f"-user:{user}" for user in SKIP_USERS)
-    skip_repo_part = " ".join(f"-repo:{repo}" for repo in SKIP_REPOS)
-    query = f'filename:"-odk.yaml" {skip_user_part} {skip_repo_part} -is:fork'
+    query = f'filename:"-odk.yaml" {skip_user_part} -is:fork'
 
     for item in search_code(query=query, page_size=per_page):
         name = item["name"]
@@ -151,7 +166,7 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
             continue
 
         repository = item["repository"]["full_name"]
-        if repository in SKIP_REPOS:
+        if repository.casefold() in SKIP_REPOS_CASEFOLDED:
             continue
 
         branch = get_default_branch(
@@ -161,7 +176,12 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
         bioregistry_prefix = repository_to_prefix.get(repository.casefold())
 
         odk_version = _odk_version(repository, branch) or "unknown"
-        odk_config = _get_odk_configuration(repository, branch, path)
+        odk_config = _get_odk_configuration(repository, branch, path) or {}
+
+        license_ = standardize_license(odk_config.get("license"))
+        description = odk_config.get("description")
+        if contact := odk_config.get("contact"):
+            contact = contact.strip().replace(" ", "").replace("[at]", "@").replace("[.]", ".")
 
         if odk_config and not bioregistry_prefix:
             export_formats = odk_config.get("export_formats", [])
@@ -176,9 +196,7 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
                 rr = bioregistry.Resource(
                     prefix=internal_prefix.lower(),
                     name=odk_config["title"],
-                    license=standardize_license(odk_config["license"])
-                    if "license" in odk_config
-                    else None,
+                    license=license_,
                     repository=f"https://github.com/{repository}",
                     homepage=f"https://github.com/{repository}",
                     uri_format=f"{format_uri_base}/{odk_config['id'].upper()}_$1",
@@ -187,7 +205,7 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
                     download_json=download_url_base + "json" if "json" in export_formats else None,
                     contributor=Author.get_charlie(),
                     example=" ",  # needs to be filled in,
-                    description=" ",  # needs to be filled in,
+                    description=description or " ",  # needs to be filled in
                     pattern="^\\d{7}$",
                 )
                 bioregistry.add_resource(rr)
@@ -201,6 +219,10 @@ def _get_rows(*, data: dict[str, Row], per_page: int | None = None) -> None:
             version=odk_version,
             path=path,
             prefix=bioregistry_prefix,
+            branch=branch,
+            license=license_,
+            description=description,
+            contact=contact,
         )
 
 
@@ -221,7 +243,7 @@ def _odk_version(repository: str, branch: str) -> str | None:
     try:
         with MODULE.ensure_open("makefile", url=makefile_url, name=name) as file:  # type:ignore
             version_line, *_ = islice(file, 3, 4)
-        version = version_line.removeprefix("# ODK Version: v")
+        version = version_line.removeprefix("# ODK Version: v").strip()
     except ValueError:
         tqdm.write(f"Could not get ODK version in https://github.com/{repository}")
         return None
