@@ -1115,8 +1115,8 @@ agro:
 agrovoc:
   banana: c_
   contact:
-    email: agrovoc@fao.org
-    name: AGROVOC Team
+    email: alex.skrenchuk@stanford.edu
+    name: Alex Skrenchuk
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -1137,9 +1137,11 @@ agrovoc:
   - food
   - forest management
   - nutritional science
+  - ontology
   mappings:
     agroportal: AGROVOC
     bartoc: '305'
+    bioportal: AGROVOC
     ecoportal: AGROVOC
     fairsharing: FAIRsharing.anpj91
     wikidata: P8061
@@ -3801,7 +3803,6 @@ bervo:
   homepage: https://github.com/bioepic-data/bervo
   keywords:
   - ontology
-  license: https://creativecommons.org/licenses/unspecified
   mappings:
     aberowl: BERVO
     bioportal: BERVO
@@ -4710,6 +4711,63 @@ biomagresbank:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://www.bmrb.wisc.edu/data_library/generate_summary.php?bmrbId=$1
+biomarkerkb.biomarker:
+  contact:
+    email: mazumder@gwu.edu
+    name: Raja Mazumder
+    orcid: 0000-0001-8823-9945
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: jeetvora@email.gwu.edu
+    github: jeet-vora
+    name: Jeet Kiran Vora
+    orcid: 0000-0002-5317-1458
+  description: A disease/condition-specific instantiation of a canonical biomarker
+  example: AN6278-5
+  example_extras:
+  - AO2172-10
+  github_request_issue: 1526
+  homepage: https://biomarkerkb.org
+  keywords:
+  - biomarker
+  name: Biomarker Knowledgebase - Biomarker
+  part_of: biomarkerkb
+  pattern: ^A(N|O)\d+-\d+$
+  preferred_prefix: biomarkerkb.biomarker
+  uri_format: https://biomarkerkb.org/biomarker/$1
+biomarkerkb.canonical:
+  contact:
+    email: mazumder@gwu.edu
+    name: Raja Mazumder
+    orcid: 0000-0001-8823-9945
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  contributor_extras:
+  - email: jeetvora@email.gwu.edu
+    github: jeet-vora
+    name: Jeet Kiran Vora
+    orcid: 0000-0002-5317-1458
+  description: A canonical biomarker, which describes the composition of a measurement
+    on a change to an entity. For example, the increase in IL6 level
+  example: AN6278
+  example_extras:
+  - AO1391
+  github_request_issue: 1526
+  homepage: https://biomarkerkb.org
+  keywords:
+  - biomarker
+  name: Biomarker Knowledgebase - Canonical Biomarker
+  part_of: biomarkerkb
+  pattern: ^A(N|O)\d+$
+  preferred_prefix: biomarkerkb.canonical
+  uri_format: https://biomarkerkb.org/canonical/$1
 biominder:
   description: Database of the dielectric properties of biological tissues.
   example: aef4c195-9cf9-46db-a12a-7cfd1ff3eec3
@@ -8092,6 +8150,160 @@ chembank:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
   uri_format: http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1
+chembiosys.assay:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A assay in the ChemBioSys data platform
+  example: '31'
+  homepage: https://data.chembiosys.de/assays
+  name: ChemBioSys Assay
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.assay
+  uri_format: https://data.chembiosys.de/assays/$1
+chembiosys.data:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A dataset in the ChemBioSys data platform
+  example: '103'
+  homepage: https://data.chembiosys.de/data_files
+  name: ChemBioSys Dataset
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.data
+  uri_format: https://data.chembiosys.de/data_files/$1
+chembiosys.institution:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An institution in the ChemBioSys data platform
+  example: '13'
+  homepage: https://data.chembiosys.de/institutions
+  name: ChemBioSys Institution
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.institution
+  uri_format: https://data.chembiosys.de/institutions/$1
+chembiosys.investigation:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An investigation in the ChemBioSys data platform
+  example: '27'
+  homepage: https://data.chembiosys.de/investigations
+  name: ChemBioSys Investigation
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.investigation
+  uri_format: https://data.chembiosys.de/investigations/$1
+chembiosys.model:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A model in the ChemBioSys data platform
+  example: '11'
+  homepage: https://data.chembiosys.de/models
+  name: ChemBioSys Model
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.model
+  uri_format: https://data.chembiosys.de/models/$1
+chembiosys.organism:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An organism in the ChemBioSys data platform
+  example: '604090889'
+  homepage: https://data.chembiosys.de/
+  name: ChemBioSys Organism
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.organism
+  uri_format: https://data.chembiosys.de/organisms/$1
+chembiosys.project:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A project in the ChemBioSys data platform
+  example: '15'
+  homepage: https://data.chembiosys.de/projects
+  name: ChemBioSys Project
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.project
+  uri_format: https://data.chembiosys.de/projects/$1
+chembiosys.publication:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A publication in the ChemBioSys data platform
+  example: '157'
+  homepage: https://data.chembiosys.de/publications
+  name: ChemBioSys Publication
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.publication
+  uri_format: https://data.chembiosys.de/publications/$1
+chembiosys.strain:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A strain in the ChemBioSys data platform
+  example: '33'
+  homepage: https://data.chembiosys.de/strains
+  name: ChemBioSys Strain
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.strain
+  uri_format: https://data.chembiosys.de/strains/$1
+chembiosys.study:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A study in the ChemBioSys data platform
+  example: '20'
+  homepage: https://data.chembiosys.de/studies
+  name: ChemBioSys Study
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.study
+  uri_format: https://data.chembiosys.de/studies/$1
+chembiosys.tag:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A tag in the ChemBioSys data platform
+  example: '59'
+  homepage: https://data.chembiosys.de/tags
+  name: ChemBioSys Tag
+  part_of: chembiosys
+  pattern: ^\d+$
+  preferred_prefix: chembiosys.tag
+  uri_format: https://data.chembiosys.de/tags/$1
 chembl:
   contact:
     email: dmendez@ebi.ac.uk
@@ -9454,6 +9666,32 @@ clao:
   repository: https://github.com/luis-gonzalez-m/Collembola
   uri_format: http://purl.obolibrary.org/obo/CLAO_$1
   version: '2021-09-27'
+clarin.clavas:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Representation of languages
+  example: CDB-00133756-001
+  homepage: https://vocabularies.clarin.eu/clavas/ISO639-3/en/
+  keywords:
+  - language
+  name: 'CLAVAS: ISO 639-3 Language Codes'
+  preferred_prefix: clarin.clavas
+  uri_format: http://cdb.iso.org/lg/$1
+clarin.concept:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Concepts for encoding bibliometric information
+  example: CCR_C-3784_55fa12c9-35ad-7b55-b7a5-f9926c801952
+  homepage: https://vocabularies.clarin.eu/clavas/ccr/en/
+  name: CLARIN Concept Registry
+  preferred_prefix: clarin.concept
+  uri_format: http://hdl.handle.net/11459/$1
 classyfire:
   banana: C
   comment: There's a mismatch between the MIRIAM URI format string, which has a C
@@ -18276,6 +18514,25 @@ ehdaa2:
   - RETIRED_EHDAA2
   uri_format: http://purl.obolibrary.org/obo/EHDAA2_$1
   version: '2013-07-04'
+ejprd:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This ontology is designed to support data search, retrieval and information
+    identification in the EJP-RD catalogs which covers the registries and biobanks
+    for rare diseases. (from repository)
+  download_owl: https://github.com/EBISPOT/EJP-Ontology/raw/refs/heads/master/ejp-rd.owl
+  example: alternative_term
+  homepage: https://github.com/EBISPOT/EJP-Ontology
+  keywords:
+  - ontology
+  logo: https://github.com/EBISPOT/EJP-Ontology/raw/master/docs/ejp.jpg
+  name: European Joint Programme for Rare Disease Ontology
+  preferred_prefix: ejprd
+  repository: https://github.com/EBISPOT/EJP-Ontology
+  uri_format: http://purl.org/ejp-rd/vocabulary/$1
 elm:
   contact:
     email: toby.gibson@embl.de
@@ -18692,6 +18949,34 @@ empiar:
     title: 'EMPIAR: a public archive for raw electron microscopy image data'
     year: 2016
   uri_format: https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/$1
+empty:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Experimental Measurements, Purposes, and Treatments ontologY (EMPTY)
+    is a structured vocabulary designed to capture and standardize the scientific
+    reasoning behind experimental measurements. It addresses a critical gap in existing
+    metadata standards, which primarily focus on technical specifications rather than
+    scientific intent. The ontology provides a common language to express why a measurement
+    was taken and the conceptual conditions under which it should be interpreted.
+    By focusing on experimental purposes and treatments, EMPTY is designed to significantly
+    improve the findability, interoperability, and reusability of scientific data.
+    This enables researchers to discover relevant datasets for meta-analyses and cross-disciplinary
+    research based on shared scientific goals. (from https://github.com/OBOFoundry/OBOFoundry.github.io/issues/2753)
+  download_json: https://github.com/Waltham-Data-Science/empty-ontology/raw/refs/heads/main/empty.json
+  download_obo: https://github.com/Waltham-Data-Science/empty-ontology/raw/refs/heads/main/empty.obo
+  download_owl: https://github.com/Waltham-Data-Science/empty-ontology/raw/refs/heads/main/empty.owl
+  example: 00000085
+  homepage: https://github.com/Waltham-Data-Science/empty-ontology
+  keywords:
+  - ontology
+  name: Experimental Measurements Purposes and Treatments ontologY
+  pattern: ^\d+$
+  preferred_prefix: empty
+  repository: https://github.com/Waltham-Data-Science/empty-ontology
+  uri_format: http://purl.obolibrary.org/obo/EMPTY_$1
 emsl.project:
   contact:
     email: montana.smith@pnnl.gov
@@ -23240,7 +23525,7 @@ gecko:
   repository: https://github.com/IHCC-cohorts/GECKO
   uri_format: http://purl.obolibrary.org/obo/GECKO_$1
   version: '2021-01-18'
-gemet:
+gemet.concept:
   contact:
     email: helpdesk@eionet.europa.eu
     name: Eionet Helpdesk
@@ -23260,21 +23545,71 @@ gemet:
   - biodiversity
   - ecology
   - environmental science
+  license: CC-BY-4.0
   mappings:
     agroportal: GEMET
     bartoc: '16'
     fairsharing: FAIRsharing.9091d9
     wikidata.entity: Q1485161
-  name: General Multilingual Environmental Thesaurus
+  name: General Multilingual Environmental Thesaurus Concept
+  part_of: gemet
   pattern: ^\d+$
-  preferred_prefix: gemet
+  preferred_prefix: gemet.concept
   providers:
   - code: gemet.multilingual
     description: An alternate URI that doesn't have the language encoded in it
     homepage: https://www.eionet.europa.eu/gemet
     name: GEMET Multilingual
     uri_format: http://www.eionet.europa.eu/gemet/concept/$1
+  rdf_uri_format: ' http://www.eionet.europa.eu/gemet/concept/$1'
   uri_format: https://www.eionet.europa.eu/gemet/en/concept/$1
+gemet.group:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Groups listed in GEMET
+  example: '893'
+  homepage: https://www.eionet.europa.eu/gemet/en/groups/
+  license: CC-BY-4.0
+  name: General Multilingual Environmental Thesaurus Group
+  part_of: gemet
+  pattern: ^\d+$
+  preferred_prefix: gemet.group
+  rdf_uri_format: http://www.eionet.europa.eu/gemet/group/$1
+  uri_format: https://www.eionet.europa.eu/gemet/en/group/$1
+gemet.relation:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Relations in GEMET
+  example: '6237'
+  homepage: https://www.eionet.europa.eu/gemet/en
+  license: CC-BY-4.0
+  name: General Multilingual Environmental Thesaurus Relation
+  part_of: gemet
+  pattern: ^\d+$
+  preferred_prefix: gemet.relation
+  uri_format: https://www.eionet.europa.eu/gemet/en/relations/$1
+gemet.theme:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Themes listed in GEMET
+  example: '4'
+  homepage: https://www.eionet.europa.eu/gemet/en/themes
+  license: CC-BY-4.0
+  name: General Multilingual Environmental Thesaurus Theme
+  part_of: gemet
+  pattern: ^\d+$
+  preferred_prefix: gemet.theme
+  rdf_uri_format: http://www.eionet.europa.eu/gemet/theme/$1
+  uri_format: https://www.eionet.europa.eu/gemet/en/theme/$1
 genatlas:
   description: GenAtlas is a database containing information on human genes, markers
     and phenotypes.
@@ -26031,6 +26366,7 @@ gro:
     relations between classes.
   download_owl: http://aber-owl.net/media/ontologies/GRO/5/gro.owl
   example: Lipid
+  homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   keywords:
   - ontology
   mappings:
@@ -30137,6 +30473,7 @@ idpo:
     title: Best practices for the manual curation of intrinsically disordered proteins
       in DisProt
     year: 2024
+  repository: https://github.com/BioComputingUP/idpo
   uri_format: https://www.disprot.org/idpo/IDPO:$1
 idr:
   contact:
@@ -31729,6 +32066,25 @@ insdc.sra:
     title: Database resources of the National Center for Biotechnology Information
     year: 2007
   uri_format: https://www.ncbi.nlm.nih.gov/sra/$1
+inspire.theme:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The INSPIRE theme register contains all spatial data themes, as defined
+    in the Annexes of the INSPIRE Directive ( Directive 2007/2/EC of the European
+    Parliament and of the Council of 14 March 2007 establishing an Infrastructure
+    for Spatial Information in the European Community (INSPIRE)). The descriptions
+    of the themes are based on version 3.0 of the "Definition of Annex Themes and
+    Scope (D 2.3)" by the data specifications drafting team and subsequent updates
+    by the INSPIRE Thematic Working Groups (TWGs). (from homepage)
+  download_rdf: http://inspire.ec.europa.eu/theme/theme.en.rdf
+  example: mr
+  homepage: https://inspire.ec.europa.eu/theme
+  name: INSPIRE theme register
+  preferred_prefix: inspire.theme
+  uri_format: https://inspire.ec.europa.eu/theme/$1
 intact:
   contact:
     email: kalpanap@ebi.ac.uk
@@ -33927,6 +34283,25 @@ kim.license:
   rdf_uri_format: https://w3id.org/kim/license/$1
   repository: https://github.com/dini-ag-kim/license
   uri_format: https://w3id.org/kim/license/$1
+kim.lp:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This ontology is a formal representation that captures the fundamental
+    concepts and their relationships to one another in the field of curriculum design
+    and implementation of the German school system.
+  download_owl: https://github.com/dini-ag-kim/school-curriculum-pg/raw/refs/heads/main/lp.owl
+  example: '0000141'
+  homepage: https://github.com/dini-ag-kim/school-curriculum-pg
+  keywords:
+  - ontology
+  name: Lehrplan Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: kim.lp
+  repository: https://github.com/dini-ag-kim/school-curriculum-pg
+  uri_format: https://w3id.org/lehrplan/ontology/LP_$1
 kim.schularten:
   contributor:
     email: cthoyt@gmail.com
@@ -35046,6 +35421,7 @@ lpt:
   - animal husbandry
   - ontology
   - phenotype
+  license: CC-BY-4.0
   mappings:
     aberowl: LPT
     agroportal: LPT
@@ -35941,6 +36317,7 @@ mcc:
     to enable different combinations of queries. The ontology covers all cell lines
     from major sources like ATCC, DSMZ, ECACC, ICLC etc. and is built in OWL format.
   example: ThoracicArtery
+  homepage: http://www.molecularconnections.com
   keywords:
   - ontology
   mappings:
@@ -39049,6 +39426,25 @@ mobidb:
     title: 'MobiDB: a comprehensive database of intrinsic protein disorder annotations'
     year: 2012
   uri_format: https://mobidb.org/$1
+mobio:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Mobilome Ontology describes bacterial mobile genetic elements,
+    their mechanisms, and associated epidemiology.
+  download_obo: https://github.com/arpcard/mobio/raw/refs/heads/master/mobio.obo
+  download_owl: https://github.com/arpcard/mobio/raw/refs/heads/master/mobio.owl
+  example: '0000001'
+  homepage: https://github.com/arpcard/mobio
+  keywords:
+  - ontology
+  name: Mobilome Ontology
+  pattern: ^\d+$
+  preferred_prefix: mobio
+  repository: https://github.com/arpcard/mobio
+  uri_format: http://purl.obolibrary.org/obo/MOBIO_$1
 mod:
   banana: MOD
   contact:
@@ -40134,6 +40530,41 @@ mw.study:
     name: Metabolomics Workbench Study through OmicsDI
     uri_format: https://www.omicsdi.org/dataset/metabolomics_workbench/$1
   uri_format: http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=$1
+mwo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: NFDI-MatWerk aims to establish a digital infrastructure for Materials
+    Science and Engineering (MSE), fostering improved data sharing and collaboration.
+    This repository provides comprehensive documentation for NFDI MatWerk Ontology
+    (MWO) v3.0.0, a foundational framework designed to structure research data and
+    enhance interoperability within the MSE community. To ensure compliance with top-level
+    ontology standards, MWO v3.0.0 is aligned with the Basic Formal Ontology (BFO)
+    and incorporates the modular approach of the NFDIcore mid-level ontology, enriching
+    metadata through standardized classes and properties. The mwo addresses key aspects
+    of MSE research data, including the NFDI-MatWerk community structure, covering
+    task areas, infrastructure use cases, projects, researchers, and organizations.
+    It also describes essential NFDI resources, such as software, workflows, ontologies,
+    publications, datasets, metadata schemas, instruments, facilities, and educational
+    materials. Additionally, mwo represents NFDI-MatWerk services, academic events,
+    courses, and international collaborations. As the foundation for the MSE Knowledge
+    Graph, mwo facilitates efficient data integration and retrieval, promoting collaboration
+    and knowledge representation across MSE domains. This digital transformation enhances
+    data discoverability, reusability, and accelerates scientific exchange, innovation,
+    and discoveries by optimizing research data management and accessibility. (from
+    repository)
+  download_owl: https://github.com/ISE-FIZKarlsruhe/mwo/raw/refs/heads/main/mwo.owl
+  example: 0001109
+  homepage: https://github.com/ISE-FIZKarlsruhe/mwo
+  keywords:
+  - ontology
+  name: NFDI MatWerk Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: mwo
+  repository: https://github.com/ISE-FIZKarlsruhe/mwo
+  uri_format: http://purls.helmholtz-metadaten.de/mwo/mwo_$1
 myco:
   contributor:
     email: cthoyt@gmail.com
@@ -41855,6 +42286,62 @@ nemo2:
       Tools for Representation and Integration of Event-related Brain Potentials'
     year: 2009
   uri_format: http://purl.bioontology.org/NEMO/ontology/NEMO.owl#NEMO_$1
+nepomuk.nao:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The annotation ontology provides vocabulary that enables users to attach
+    custom descriptions, identifiers, tags and ratings to resources on their desktop.
+    Via other properties, the user is also able to make generic relationships between
+    related resources explicit. Some relationships between resources are too general
+    to be included at the domain ontology level. Instead, these properties are also
+    defined in the annotation ontology. Given the high-level status of this ontology,
+    these propreties can be used to link any related resources on the user's desktop,
+    as well as provide custom human-readable textual annotations. (from homepage)
+  example: created
+  homepage: http://www.semanticdesktop.org/ontologies/nao
+  license: https://www.semanticdesktop.org/ontologies/2007/11/01/pimo/LICENSE.txt
+  name: NEPOMUK Annotation Ontology Specification
+  preferred_prefix: nepomuk.nao
+  rdf_uri_format: http://www.semanticdesktop.org/ontologies/2007/08/15/nao#$1
+  uri_format: http://www.semanticdesktop.org/ontologies/2007/08/15/nao#$1
+nepomuk.nco:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: NEPOMUK Contact Ontology describes contact information, common in many
+    places on the desktop. It evolved from the VCARD specification (RFC 2426) and
+    has been inspired by the Vcard Ontology by Renato Ianella. The scope of NCO is
+    much broader though. This document gives an overview of the classes, properties
+    and intended use cases of the NCO ontology. (from homepage)
+  example: fullname
+  homepage: http://www.semanticdesktop.org/ontologies/2007/03/22/nco
+  license: https://www.semanticdesktop.org/ontologies/2007/11/01/pimo/LICENSE.txt
+  name: NEPOMUK Contact Ontology
+  preferred_prefix: nepomuk.nco
+  rdf_uri_format: http://www.semanticdesktop.org/ontologies/2007/03/22/nco#$1
+  uri_format: http://www.semanticdesktop.org/ontologies/2007/03/22/nco#$1
+nepomuk.pimo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The PIMO Ontology can be used to express Personal Information Models
+    of individuals. It is based on RDF and NRL, the NEPOMUK Representational Language
+    and other Semantic Web ontologies. This document describes the principle elements
+    of the language and how to use them. (from homepage)
+  example: Note
+  homepage: http://www.semanticdesktop.org/ontologies/pimo
+  license: https://www.semanticdesktop.org/ontologies/2007/11/01/pimo/LICENSE.txt
+  name: Personal Information Model
+  preferred_prefix: nepomuk.pimo
+  rdf_uri_format: http://www.semanticdesktop.org/ontologies/2007/11/01/pimo#$1
+  uri_format: http://www.semanticdesktop.org/ontologies/2007/11/01/pimo#$1
 neurolex:
   contact:
     email: tgbugs@gmail.com
@@ -51173,6 +51660,20 @@ prefixcommons:
   name: Prefix Commons
   preferred_prefix: prefixcommons
   uri_format: https://bioregistry.io/metaregistry/prefixcommons/$1
+premis:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ontology for PREMIS 3, the international standard for metadata to support
+    the preservation of digital objects and ensure their long-term usability.
+  example: Agent
+  homepage: https://id.loc.gov/ontologies/premis-3-0-0.html
+  name: PREMIS 3 Ontology
+  preferred_prefix: premis
+  rdf_uri_format: http://www.loc.gov/premis/rdf/v3/$1
+  uri_format: http://www.loc.gov/premis/rdf/v3/$1
 pride:
   contact:
     email: yperez@ebi.ac.uk
@@ -52732,6 +53233,9 @@ qualo:
   repository: https://github.com/cthoyt/qualo
   uri_format: https://w3id.org/qualo/id/$1
 qudt:
+  contact:
+    email: noreply@bioontology.org
+    name: Unknown
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -56646,6 +57150,7 @@ semapv:
   preferred_prefix: semapv
   references:
   - https://github.com/biopragmatics/bioregistry/pull/714
+  repository: https://github.com/mapping-commons/semantic-mapping-vocabulary
   synonyms:
   - semapv_voc
   - sempav_voc
@@ -57732,6 +58237,126 @@ sio:
   repository: https://github.com/micheldumontier/semanticscience
   uri_format: https://semanticscience.org/resource/SIO_$1
   version: '1.59'
+sioc.access:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities)
+    by defining basic information on permissions and access rights.
+  download_rdf: http://rdfs.org/sioc/access#
+  example: Permission
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Access Ontology
+  part_of: sioc
+  preferred_prefix: sioc.access
+  rdf_uri_format: http://rdfs.org/sioc/access#$1
+  uri_format: http://rdfs.org/sioc/access#$1
+sioc.actions:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology of predicates for actions in SIOC
+  download_rdf: http://rdfs.org/sioc/actions#
+  example: DigitalArtifact
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Actions Ontology
+  part_of: sioc
+  preferred_prefix: sioc.actions
+  rdf_uri_format: http://rdfs.org/sioc/actions#$1
+  uri_format: http://rdfs.org/sioc/actions#$1
+sioc.argument:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A vocabulary of argumentation predicates for SIOC
+  download_rdf: http://rdfs.org/sioc/argument#
+  example: decides
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Argumentation Ontology
+  part_of: sioc
+  preferred_prefix: sioc.argument
+  rdf_uri_format: http://rdfs.org/sioc/argument#$1
+  uri_format: http://rdfs.org/sioc/argument#$1
+sioc.core:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Semantically-Interlinked Online Communities, or SIOC, is an attempt
+    to link online community sites, to use Semantic Web technologies to describe the
+    information that communities have about their structure and contents, and to find
+    related information and new connections between content items and other community
+    objects. SIOC is based around the use of machine-readable information provided
+    by these sites.
+  download_rdf: http://rdfs.org/sioc/ns#
+  example: Item
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Core Ontology
+  part_of: sioc
+  preferred_prefix: sioc.core
+  rdf_uri_format: http://rdfs.org/sioc/ns#$1
+  uri_format: http://rdfs.org/sioc/ns#$1
+sioc.quote:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities)
+    by defining basic information on community-related web services.
+  download_rdf: http://rdfs.org/sioc/services#
+  example: has_service
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Services Ontology
+  part_of: sioc
+  preferred_prefix: sioc.quote
+  rdf_uri_format: http://rdfs.org/sioc/services#$1
+  uri_format: http://rdfs.org/sioc/services#$1
+sioc.swan:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Mappings from SIOC to SWAN, with a small number of aux terms
+  download_rdf: http://rdfs.org/sioc/swan#
+  example: OnlineJournal
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Services Ontology
+  part_of: sioc
+  preferred_prefix: sioc.swan
+  rdf_uri_format: http://rdfs.org/sioc/swan#$1
+  uri_format: http://rdfs.org/sioc/swan#$1
+sioc.types:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Extends the SIOC Core Ontology (Semantically-Interlinked Online Communities)
+    by defining subclasses and subproperties of SIOC terms.
+  download_rdf: http://rdfs.org/sioc/types#
+  example: AddressBook
+  homepage: http://rdfs.org/sioc/spec/
+  license: CC-BY-1.0
+  name: Semantically-Interlinked Online Communities Types Ontology
+  part_of: sioc
+  preferred_prefix: sioc.types
+  rdf_uri_format: http://rdfs.org/sioc/types#$1
+  uri_format: http://rdfs.org/sioc/types#$1
 siren:
   comment: appears in FOODON, there is no website other than the spreadsheet referenced
     below on langual's site
@@ -60121,6 +60746,31 @@ supfam:
       models that represent all proteins of known structure
     year: 2001
   uri_format: http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1
+swan:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: SWAN ontology consists in a collection of ontologies used to create,
+    manage and share scientific knowledge bases.
+  download_owl: https://rawcdn.githack.com/pav-ontology/swan-ontology/2.0.1/swan.owl
+  homepage: https://code.google.com/archive/p/swan-ontology
+  keywords:
+  - ontology
+  license: CC-BY-3.0
+  name: Semantic Web Applications in Neuromedicine
+  preferred_prefix: swan
+  publications:
+  - doi: 10.1016/j.jbi.2008.04.010
+    pmc: PMC4536833
+    pubmed: '18583197'
+    title: The SWAN biomedical discourse ontology
+    year: 2008
+  references:
+  - https://www.hcklab.org/swan-project.html
+  repository: https://github.com/pav-ontology/swan-ontology
 sweetrealm:
   contributor:
     email: cthoyt@gmail.com
@@ -66532,6 +67182,21 @@ wos.researcher:
   pattern: ^[A-Z]{1,3}-\d{4}-(19|20)\d\d$
   preferred_prefix: wos.researcher
   uri_format: https://www.webofscience.com/wos/author/record/$1
+wot:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: he WOT, or Web Of Trust, schema is designed to facilitate the use of
+    Public Key Cryptography tools such as PGP or GPG to sign RDF documents and document
+    these signatures.
+  example: EncryptedDocument
+  homepage: http://xmlns.com/wot/0.1/
+  name: XML Web of Trust Ontology
+  preferred_prefix: wot
+  rdf_uri_format: http://xmlns.com/wot/0.1/$1
+  uri_format: http://xmlns.com/wot/0.1/$1
 wwf.ecoregion:
   comment: ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658
   contributor:
