@@ -14,7 +14,6 @@ from collections.abc import Collection, Mapping
 from typing import TYPE_CHECKING, Any, Callable, TypeVar, cast
 
 import click
-import numpy as np
 from typing_extensions import TypeAlias
 
 import bioregistry
@@ -48,6 +47,7 @@ from bioregistry.schema import Resource
 if TYPE_CHECKING:
     import matplotlib.axes
     import matplotlib.figure
+    import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +58,7 @@ BIOREGISTRY_COLOR = "silver"
 BAR_SKIP = {"re3data", "bartoc"}
 
 FigAxPair = tuple["matplotlib.figure.Figure", "matplotlib.axes.Axes"]
-FigMultiAxPair = tuple["matplotlib.figure.Figure", np.ndarray[Any, "matplotlib.axes.Axes"]]  # type:ignore
+FigMultiAxPair = tuple["matplotlib.figure.Figure", "np.ndarray[Any, 'matplotlib.axes.Axes']"]  # type:ignore
 
 
 class RegistryInfo(typing.NamedTuple):
