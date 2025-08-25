@@ -145,9 +145,9 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
 
 def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, pubmed_downloader.Article]:
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
-    from pubmed_downloader.client import _fetch_iter
+    from pubmed_downloader.client import get_articles
 
-    return {str(article.pubmed): article for article in _fetch_iter(pubmed_ids, error_strategy="skip")}
+    return {str(article.pubmed): article for article in get_articles(pubmed_ids, error_strategy="skip")}
 
 
 def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> list[str]:
