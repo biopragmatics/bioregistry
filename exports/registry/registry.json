@@ -1274,6 +1274,7 @@
       "ontology"
     ],
     "mappings": {
+      "aberowl": "AGROVOC",
       "agroportal": "AGROVOC",
       "bartoc": "305",
       "bioportal": "AGROVOC",
@@ -6378,6 +6379,9 @@
     "license": "CC-BY-4.0",
     "name": "British Oceanographic Data Centre data storage units",
     "preferred_prefix": "bodc.unit",
+    "synonyms": [
+      "nvs.P06"
+    ],
     "uri_format": "http://vocab.nerc.ac.uk/collection/P06/current/$1"
   },
   "bold.taxonomy": {
@@ -13785,6 +13789,30 @@
     ],
     "uri_format": "http://purl.bioontology.org/ontology/CSP/$1"
   },
+  "csso": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "CCSO is an educational ontology acting as a data model for concepts and entities within an academic setting, enabling also the annotation of potentially available resources. The ontology aims to conceptualize educational entities within Curriculum and Syllabus with appropriate coverage and quality, in order to support rich services on top for improving curriculum management and automatically enabling syllabus semantic processes. (from homepage)",
+    "download_owl": "https://vkreations.github.io/CCSO/CCSO_071owl.owl",
+    "example": "AcademicStaff",
+    "homepage": "https://vkreations.github.io/CCSO/",
+    "keywords": [
+      "curricula",
+      "curriculum",
+      "education",
+      "oer",
+      "ontology"
+    ],
+    "license": "GNU GPL v3",
+    "name": "Curriculum Course Syllabus Ontology",
+    "preferred_prefix": "csso",
+    "rdf_uri_format": "https://w3id.org/ccso/ccso#$1",
+    "uri_format": "https://w3id.org/ccso/ccso#$1"
+  },
   "cst": {
     "description": "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references pathways.",
     "example": "Akt_PKB",
@@ -19838,7 +19866,7 @@
     ],
     "repository": "https://github.com/EBISPOT/efo",
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.80.0"
+    "version": "3.81.0"
   },
   "ega.dataset": {
     "contact": {
@@ -21787,7 +21815,7 @@
     "repository": "https://github.com/EnvironmentOntology/envo",
     "twitter": "envoTweets",
     "uri_format": "http://purl.obolibrary.org/obo/ENVO_$1",
-    "version": "2025-02-05"
+    "version": "2025-08-19"
   },
   "enzo": {
     "contributor": {
@@ -25250,7 +25278,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2025-07-04"
+    "version": "2025-08-13"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -42602,7 +42630,7 @@
     "repository": "https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/MMO_$1",
-    "version": "2.158"
+    "version": "2.159"
   },
   "mmp.cat": {
     "description": "MarCat is a gene (protein) catalogue of uncultivable and cultivable marine genes and proteins derived from metagenomics samples.",
@@ -44082,6 +44110,10 @@
     "uri_format": "http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=$1"
   },
   "mwo": {
+    "contact": {
+      "email": "ho_beygi@yahoo.com",
+      "name": "Hossein Beygi Nasrabadi"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -44095,6 +44127,11 @@
     "keywords": [
       "ontology"
     ],
+    "license": "CC0-1.0",
+    "mappings": {
+      "aberowl": "MWO",
+      "bioportal": "MWO"
+    },
     "name": "NFDI MatWerk Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "mwo",
@@ -48143,6 +48180,20 @@
     "preferred_prefix": "nucleotide",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
   },
+  "nvs": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SKOS concept collections held in the NERC Vocabulary Server. A concept collection is useful where a group of concepts shares something in common, and it is convenient to group them under a common label. In the NVS, concept collections are synonymous with controlled vocabularies or code lists. Each collection is associated with its governance body. An external website link is displayed when applicable.",
+    "example": "P06",
+    "homepage": "https://vocab.nerc.ac.uk/collection/",
+    "name": "NERC Vocabulary Server",
+    "preferred_prefix": "nvs",
+    "uri_format": "https://vocab.nerc.ac.uk/collection/$1"
+  },
   "nxr": {
     "description": "National stock center for X. laevis and X. tropicalis and training center for advanced technologies (e.g. husbandry, cell biology, imaging, genetics, transgenesis, genomics). [from RRID]",
     "example": "0024",
@@ -48373,7 +48424,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
     "repository": "https://github.com/obophenotype/bio-attribute-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/OBA_$1",
-    "version": "2025-03-28"
+    "version": "2025-08-20"
   },
   "oban": {
     "contributor": {
@@ -56177,6 +56228,12 @@
     "description": "Ontology for PREMIS 3, the international standard for metadata to support the preservation of digital objects and ensure their long-term usability.",
     "example": "Agent",
     "homepage": "https://id.loc.gov/ontologies/premis-3-0-0.html",
+    "keywords": [
+      "catalogs"
+    ],
+    "mappings": {
+      "lov": "premis"
+    },
     "name": "PREMIS 3 Ontology",
     "preferred_prefix": "premis",
     "rdf_uri_format": "http://www.loc.gov/premis/rdf/v3/$1",
@@ -60484,7 +60541,7 @@
     "repository": "https://github.com/rat-genome-database/RS-Rat-Strain-Ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/RS_$1",
-    "version": "6.256"
+    "version": "6.257"
   },
   "rtecs": {
     "contact": {
@@ -63785,7 +63842,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
     "repository": "https://github.com/nasa/LSDAO",
     "uri_format": "http://purl.obolibrary.org/obo/SLSO_$1",
-    "version": "2025-02-26"
+    "version": "2025-08-18"
   },
   "smart": {
     "contact": {
@@ -68535,7 +68592,7 @@
     ],
     "twitter": "uberanat",
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2025-05-28"
+    "version": "2025-08-15"
   },
   "uberon.issue": {
     "contributor": {
@@ -71882,7 +71939,7 @@
     "rdf_uri_format": "http://purl.obolibrary.org/obo/VT_$1",
     "repository": "https://github.com/AnimalGenome/vertebrate-trait-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/VT_$1",
-    "version": "2025-08-07"
+    "version": "2025-08-20"
   },
   "vto": {
     "contact": {
@@ -72023,7 +72080,7 @@
       "WBbt"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1",
-    "version": "2025-03-26"
+    "version": "2025-08-19"
   },
   "wbls": {
     "contact": {
@@ -73004,6 +73061,13 @@
     "description": "he WOT, or Web Of Trust, schema is designed to facilitate the use of Public Key Cryptography tools such as PGP or GPG to sign RDF documents and document these signatures.",
     "example": "EncryptedDocument",
     "homepage": "http://xmlns.com/wot/0.1/",
+    "keywords": [
+      "quality",
+      "security"
+    ],
+    "mappings": {
+      "lov": "wot"
+    },
     "name": "XML Web of Trust Ontology",
     "preferred_prefix": "wot",
     "rdf_uri_format": "http://xmlns.com/wot/0.1/$1",
@@ -73175,7 +73239,7 @@
     "repository": "https://github.com/rat-genome-database/XCO-experimental-condition-ontology",
     "twitter": "ratgenome",
     "uri_format": "http://purl.obolibrary.org/obo/XCO_$1",
-    "version": "4.210"
+    "version": "4.211"
   },
   "xenbase": {
     "contact": {
