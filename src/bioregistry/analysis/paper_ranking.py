@@ -109,11 +109,8 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
                 "label": 1,
             }
 
-    pubmed_ids = list(publications)
-    abstracts = pubmed_downloader.get_abstracts(pubmed_ids, error_strategy="none")
-    for pubmed_id, abstract in zip(pubmed_ids, abstracts):
-        if abstract:
-            publications[pubmed_id]["abstract"] = abstract
+    for pubmed_id, abstract in pubmed_downloader.get_abstracts_dict(publications).items():
+        publications[pubmed_id]["abstract"] = abstract
 
     logger.info(f"Got {len(publications):,} publications from the bioregistry")
 
@@ -147,7 +144,9 @@ def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, pubmed_d
     """Get metadata for articles in PubMed, wrapping the INDRA client."""
     from pubmed_downloader.client import get_articles
 
-    return {str(article.pubmed): article for article in get_articles(pubmed_ids, error_strategy="skip")}
+    return {
+        str(article.pubmed): article for article in get_articles(pubmed_ids, error_strategy="skip")
+    }
 
 
 def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> list[str]:
