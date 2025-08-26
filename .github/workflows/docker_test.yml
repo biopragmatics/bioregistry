@@ -1,0 +1,40 @@
+name: Docker Build and Test
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: |
+          cat <<'EOT' > Dockerfile.ci
+          FROM python:3.11-alpine
+          RUN python -m pip install --upgrade pip wheel
+          WORKDIR /app
+          COPY . /app
+          RUN python -m pip install -e .[web]
+          ENTRYPOINT python -m bioregistry web --port 8766 --host "0.0.0.0"
+          EOT
+          docker build -f Dockerfile.ci -t bioregistry:test .
+      - name: Run container and check
+        run: |
+          docker run -d -p 8766:8766 --name bioregistry bioregistry:test
+          for i in {1..10}; do
+            status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8766 || true)
+            if [ "$status" -eq 200 ]; then
+              break
+            fi
+            sleep 3
+          done
+          docker logs bioregistry
+          docker stop bioregistry
+          if [ "$status" -ne 200 ]; then
+            echo "Service did not return 200" >&2
+            exit 1
+          fi
