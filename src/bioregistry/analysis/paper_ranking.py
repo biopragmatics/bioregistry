@@ -23,9 +23,8 @@ import datetime
 import logging
 import textwrap
 from collections import defaultdict
-from collections.abc import Iterable
 from pathlib import Path
-from typing import TYPE_CHECKING, NamedTuple, Union, cast
+from typing import NamedTuple, Union, cast
 
 import click
 import numpy as np
@@ -45,9 +44,6 @@ from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH
-
-if TYPE_CHECKING:
-    import pubmed_downloader
 
 logger = logging.getLogger(__name__)
 
@@ -124,29 +120,24 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
 
     :returns: DataFrame containing curated publication details.
     """
+    import pubmed_downloader
+
     curated_df = pd.read_csv(file_path, sep="\t", dtype=str)
     curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
 
-    fetched_metadata = _get_metadata_for_ids(curated_df["pubmed"])
+    pubmed_to_article = pubmed_downloader.get_articles_dict(curated_df["pubmed"])
 
     curated_df["title"] = curated_df["pubmed"].map(
-        lambda pubmed: article.title if (article := fetched_metadata.get(pubmed)) else None
+        lambda pubmed: article.title if (article := pubmed_to_article.get(pubmed)) else None
     )
     curated_df["abstract"] = curated_df["pubmed"].map(
-        lambda pubmed: article.get_abstract() if (article := fetched_metadata.get(pubmed)) else None
+        lambda pubmed: article.get_abstract()
+        if (article := pubmed_to_article.get(pubmed))
+        else None
     )
 
     click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
     return curated_df
-
-
-def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, pubmed_downloader.Article]:
-    """Get metadata for articles in PubMed, wrapping the INDRA client."""
-    from pubmed_downloader.client import get_articles
-
-    return {
-        str(article.pubmed): article for article in get_articles(pubmed_ids, error_strategy="skip")
-    }
 
 
 def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> list[str]:
@@ -160,14 +151,14 @@ def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> 
 def _search(
     terms: list[str], pubmed_ids_to_filter: set[str], start_date: str, end_date: str
 ) -> dict[str, list[str]]:
-    paper_to_terms: defaultdict[str, list[str]] = defaultdict(list)
+    pubmed_to_terms: defaultdict[str, list[str]] = defaultdict(list)
     for term in tqdm(terms, desc="Searching PubMed", unit="search term", leave=False):
         for pubmed_id in _get_ids(
             term, use_text_word=True, start_date=start_date, end_date=end_date
         ):
             if pubmed_id not in pubmed_ids_to_filter:
-                paper_to_terms[pubmed_id].append(term)
-    return dict(paper_to_terms)
+                pubmed_to_terms[pubmed_id].append(term)
+    return dict(pubmed_to_terms)
 
 
 def fetch_pubmed_papers(
@@ -181,35 +172,31 @@ def fetch_pubmed_papers(
 
     :returns: DataFrame containing PubMed paper details.
     """
-    paper_to_terms = _search(
+    import pubmed_downloader
+
+    pubmed_to_terms = _search(
         DEFAULT_SEARCH_TERMS,
         pubmed_ids_to_filter=pubmed_ids_to_filter,
         start_date=start_date,
         end_date=end_date,
     )
-
-    papers = _get_metadata_for_ids(paper_to_terms)
-
-    records = []
-    for pubmed_id, article in papers.items():
-        # Filter out papers that are from journals (typically
-        # preprint servers that have PMIDs) to be excluded
-        if article.journal.nlm_catalog_id in EXCLUDE_JOURNALS:
-            continue
-
-        title = article.title
-        abstract = article.get_abstract()
-
-        if title and abstract:
-            records.append(
-                {
-                    "pubmed": str(pubmed_id),
-                    "title": title,
-                    "abstract": abstract,
-                    "year": article.date_completed.year if article.date_completed else None,
-                    "search_terms": paper_to_terms[pubmed_id],
-                }
-            )
+    records = [
+        {
+            "pubmed": str(article.pubmed),
+            "title": article.title,
+            "abstract": abstract,
+            "year": article.date_completed.year if article.date_completed else None,
+            "search_terms": pubmed_to_terms[str(article.pubmed)],
+        }
+        for article in pubmed_downloader.get_articles(pubmed_to_terms, error_strategy="skip")
+        if (
+            # Filter out papers that are from journals (typically
+            # preprint servers that have PMIDs) to be excluded
+            article.journal.nlm_catalog_id not in EXCLUDE_JOURNALS
+            and article.title
+            and (abstract := article.get_abstract())
+        )
+    ]
 
     click.echo(f"{len(records):,} records fetched from PubMed")
     return pd.DataFrame(records)
@@ -220,13 +207,15 @@ def load_google_curation_df() -> pd.DataFrame:
 
     :returns: DataFrame containing curated publication details.
     """
+    import pubmed_downloader
+
     click.echo("Downloading curation sheet")
     df = pd.read_csv(URL, dtype=str)
     df["label"] = df["relevant"].map(_map_labels)
     df = df[["pubmed", "title", "abstract", "label"]]
 
     pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
-    fetched_metadata = _get_metadata_for_ids(pmids_to_fetch)
+    fetched_metadata = pubmed_downloader.get_articles_dict(pmids_to_fetch)
 
     df["abstract"] = df["pubmed"].map(
         lambda pubmed: article.get_abstract() if (article := fetched_metadata.get(pubmed)) else None
