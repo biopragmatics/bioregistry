@@ -2,7 +2,7 @@ name: Docker Build and Test
 
 on:
   push:
-    branches: ["**"]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -13,14 +13,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build image
         run: |
-          cat <<'EOT' > Dockerfile.ci
-          FROM python:3.11-alpine
-          RUN python -m pip install --upgrade pip wheel
-          WORKDIR /app
-          COPY . /app
-          RUN python -m pip install -e .[web]
-          ENTRYPOINT python -m bioregistry web --port 8766 --host "0.0.0.0"
-          EOT
+          sed '/RUN python -m pip install bioregistry\[web\]/{
+            a\WORKDIR /app
+            a\COPY . /app
+            a\RUN python -m pip install -e .[web]
+            d
+          }' Dockerfile > Dockerfile.ci
           docker build -f Dockerfile.ci -t bioregistry:test .
       - name: Run container and check
         run: |
