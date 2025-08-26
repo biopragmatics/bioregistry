@@ -905,8 +905,9 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.contact.name, msg=f"Contact for {prefix} is missing a label"
                 )
-                self.assertIsNotNone(
-                    resource.contact.email, msg=f"Contact for {prefix} is missing an email"
+                self.assertFalse(
+                    resource.contact.email is None and resource.contact.github is None,
+                    msg=f"Contact for {prefix} needs at least an email or GitHub",
                 )
                 self.assert_contact_metadata(resource.contact)
 
