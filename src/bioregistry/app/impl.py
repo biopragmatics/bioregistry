@@ -8,18 +8,19 @@ from pathlib import Path
 from textwrap import dedent
 from typing import Any, Literal, overload
 
+import pystow
 from a2wsgi import WSGIMiddleware
 from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
 from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 from markdown import markdown
-from rdflib_endpoint import SparqlRouter
+from rdflib_endpoint.sparql_router import SparqlRouter
 
 from bioregistry import Manager, curie_to_str, resource_manager, version
 
 from .api import api_router
-from .constants import BIOSCHEMAS
+from .constants import BIOSCHEMAS, KEY_A, KEY_B, KEY_C, KEY_D, KEY_E
 from .ui import ui_blueprint
 
 __all__ = [
@@ -39,7 +40,8 @@ FOOTER_DEFAULT = dedent(
     at Northeastern University.<br/>
     Funded by Chan Zuckerberg Initiative (CZI) Award
     <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
-    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
+    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a> and
+    <a rel="me" href="https://fosstodon.org/@bioregistry" title="bioregistry">@bioregistry@fosstodon.org</a>
     (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
 """
 )
@@ -111,6 +113,7 @@ def get_app(
     *,
     first_party: bool = ...,
     return_flask: Literal[True] = True,
+    analytics: bool = ...,
 ) -> tuple[FastAPI, Flask]: ...
 
 
@@ -122,6 +125,7 @@ def get_app(
     *,
     first_party: bool = ...,
     return_flask: Literal[False] = False,
+    analytics: bool = ...,
 ) -> FastAPI: ...
 
 
@@ -131,6 +135,7 @@ def get_app(
     *,
     first_party: bool = True,
     return_flask: bool = False,
+    analytics: bool = False,
 ) -> FastAPI | tuple[FastAPI, Flask]:
     """Prepare the WSGI application.
 
@@ -139,6 +144,7 @@ def get_app(
         below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
     :param return_flask: Set to true to get internal flask app
+    :param analytics: Should analytics be enabled?
 
     :returns: An instantiated WSGI application
 
@@ -211,7 +217,19 @@ def get_app(
     fast_api.manager = manager  # type:ignore
     fast_api.include_router(api_router)
     fast_api.include_router(_get_sparql_router(app))
-    fast_api.mount("/", WSGIMiddleware(app))
+    fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
+
+    # yes, this isn't very secure. just for testing now.
+    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
+    analytics_api_key = conf.get("ANALYTICS_API_KEY") or pystow.get_config(
+        "bioregistry",
+        "analytics_api_key",
+        passthrough=key,
+    )
+    if analytics_api_key and analytics:
+        from api_analytics.fastapi import Analytics
+
+        fast_api.add_middleware(Analytics, api_key=analytics_api_key)  # Add middleware
 
     # Make manager available in all jinja templates
     app.jinja_env.globals.update(

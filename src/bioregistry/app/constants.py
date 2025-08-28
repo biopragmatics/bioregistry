@@ -58,3 +58,9 @@ BIOSCHEMAS = {
         },
     ],
 }
+
+KEY_A = "df1808a3"
+KEY_B = "0d15"
+KEY_C = "4e75"
+KEY_D = "9b71"
+KEY_E = "b9e7da1d6ac3"

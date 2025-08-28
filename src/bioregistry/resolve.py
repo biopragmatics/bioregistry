@@ -34,6 +34,8 @@ __all__ = [
     "get_homepage",
     "get_json_download",
     "get_keywords",
+    "get_logo",
+    "get_mailing_list",
     "get_mappings",
     "get_name",
     "get_namespace_in_lui",
@@ -53,6 +55,7 @@ __all__ = [
     # Registry-level functions
     "get_registry_map",
     "get_repository",
+    "get_repository_to_prefix",
     "get_resource",
     "get_synonyms",
     "get_version",
@@ -62,7 +65,6 @@ __all__ = [
     "is_novel",
     "is_obo_foundry",
     "is_proprietary",
-    # CURIE handling
 ]
 
 logger = logging.getLogger(__name__)
@@ -371,9 +373,9 @@ def get_registry_map(metaprefix: str) -> dict[str, str]:
     return manager.get_registry_map(metaprefix)
 
 
-def get_registry_invmap(metaprefix: str) -> dict[str, str]:
+def get_registry_invmap(metaprefix: str, **kwargs: Any) -> dict[str, str]:
     """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
-    return manager.get_registry_invmap(metaprefix)
+    return manager.get_registry_invmap(metaprefix, **kwargs)
 
 
 def get_obofoundry_uri_prefix(prefix: str) -> str | None:
@@ -923,3 +925,24 @@ def get_converter(**kwargs: Any) -> curies.Converter:
 def add_resource(resource: Resource) -> None:
     """Add a resource."""
     manager.add_resource(resource)
+
+
+def get_logo(prefix: str) -> str | None:
+    """Get the logo for the resource, if it's available."""
+    return manager.get_logo(prefix)
+
+
+def get_mailing_list(prefix: str) -> str | None:
+    """Get the mailing list for the resource, if it's available."""
+    return manager.get_mailing_list(prefix)
+
+
+def get_repository_to_prefix() -> dict[str, str]:
+    """Get a mapping from GitHub repository to Bioregistry prefix."""
+    rv = {}
+    for resource in manager.registry.values():
+        repository = resource.get_repository()
+        if not repository or not repository.startswith("https://github.com/"):
+            continue
+        rv[repository.removeprefix("https://github.com/").casefold()] = resource.prefix
+    return rv
