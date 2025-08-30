@@ -124,7 +124,7 @@ def get_scored_mappings_for_prefix(
     cosine_scores = cos_sim(ref_embedding, embeddings)[0].tolist()
 
     # Add similarity score and reference text to each entry in the mapping entries
-    for entry, score in zip(mapping_entries, cosine_scores):
+    for entry, score in zip(mapping_entries, cosine_scores, strict=False):
         entry["similarity"] = score
 
     return mapping_entries

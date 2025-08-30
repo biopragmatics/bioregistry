@@ -10,10 +10,10 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
+from typing import Literal, TypeAlias
 
 from curies import Reference
 from pydantic import BaseModel, Field
-from typing_extensions import Literal, TypeAlias
 
 from .constants import (
     BIOREGISTRY_PATH,

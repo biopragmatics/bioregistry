@@ -26,7 +26,7 @@ import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Union, cast
+from typing import Any, NamedTuple, TypeAlias, cast
 
 import click
 import numpy as np
@@ -42,7 +42,6 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
-from typing_extensions import TypeAlias
 
 from bioregistry.constants import BIOREGISTRY_PATH, CURATED_PAPERS_PATH
 
@@ -64,7 +63,7 @@ YTrain: TypeAlias = NDArray[np.float64]
 XTest: TypeAlias = NDArray[np.str_]
 YTest: TypeAlias = NDArray[np.str_]
 
-ClassifierHint: TypeAlias = Union[ClassifierMixin, LinearClassifierMixin]
+ClassifierHint: TypeAlias = ClassifierMixin | LinearClassifierMixin
 Classifiers: TypeAlias = list[tuple[str, ClassifierHint]]
 
 DEFAULT_SEARCH_TERMS = [
@@ -131,8 +130,8 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
 
     for index, row in curated_df.iterrows():
         if row["pubmed"] in fetched_metadata:
-            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
-            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")  # type:ignore
+            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")  # type:ignore
 
     click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
     return curated_df
@@ -232,7 +231,7 @@ def load_google_curation_df() -> pd.DataFrame:
 
     for index, row in df.iterrows():
         if row["pubmed"] in fetched_metadata:
-            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")  # type:ignore
 
     click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
     return df
@@ -495,6 +494,7 @@ def runner(
                 vectorizer.idf_,
                 random_forest_clf.feature_importances_,
                 lr_clf.coef_[0],
+                strict=False,
             ),
             columns=["word", "idf", "rf_importance", "lr_importance"],
         )

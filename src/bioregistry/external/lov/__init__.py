@@ -5,7 +5,7 @@ import tempfile
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, Union, cast
+from typing import Any, ClassVar, cast
 
 from pystow.utils import download, read_rdf
 
@@ -59,7 +59,9 @@ def get_lov(
 
     records = {}
     for result in cast(Iterable[tuple[str, ...]], graph.query(RECORD_SPARQL)):
-        d: dict[str, Union[str, list[str]]] = {k: str(v) for k, v in zip(columns, result) if v}
+        d: dict[str, str | list[str]] = {
+            k: str(v) for k, v in zip(columns, result, strict=False) if v
+        }
         if k := keywords.get(str(result[0])):
             d["keywords"] = sorted(k)
         if "uri_prefix" in d:
