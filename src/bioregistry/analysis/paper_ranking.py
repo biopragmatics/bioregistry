@@ -130,8 +130,8 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
 
     for index, row in curated_df.iterrows():
         if row["pubmed"] in fetched_metadata:
-            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
-            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")  # type:ignore
+            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")  # type:ignore
 
     click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
     return curated_df
@@ -231,7 +231,7 @@ def load_google_curation_df() -> pd.DataFrame:
 
     for index, row in df.iterrows():
         if row["pubmed"] in fetched_metadata:
-            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")  # type:ignore
 
     click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
     return df
