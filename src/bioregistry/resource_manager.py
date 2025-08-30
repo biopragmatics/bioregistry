@@ -5,17 +5,15 @@ from __future__ import annotations
 import logging
 import typing
 from collections import Counter, defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 from typing import (
     Any,
-    Callable,
     Generic,
     Literal,
     TypeVar,
-    Union,
     cast,
     overload,
 )
@@ -69,7 +67,7 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-X = TypeVar("X", bound=Union[int, str])
+X = TypeVar("X", bound=int | str)
 
 
 @dataclass
@@ -160,7 +158,7 @@ class Manager:
 
         if registry is None:
             self.registry = dict(_registry_from_path(BIOREGISTRY_PATH))
-        elif isinstance(registry, (str, Path)):
+        elif isinstance(registry, str | Path):
             self.registry = dict(_registry_from_path(registry))
         else:
             self.registry = dict(registry)
@@ -168,21 +166,21 @@ class Manager:
 
         if metaregistry is None:
             self.metaregistry = dict(_read_metaregistry(METAREGISTRY_PATH))
-        elif isinstance(metaregistry, (str, Path)):
+        elif isinstance(metaregistry, str | Path):
             self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
 
         if collections is None:
             self.collections = dict(_collections_from_path(COLLECTIONS_PATH))
-        elif isinstance(collections, (str, Path)):
+        elif isinstance(collections, str | Path):
             self.collections = dict(_collections_from_path(collections))
         else:
             self.collections = dict(collections)
 
         if contexts is None:
             self.contexts = dict(_contexts_from_path(CONTEXTS_PATH))
-        elif isinstance(contexts, (str, Path)):
+        elif isinstance(contexts, str | Path):
             self.contexts = dict(_contexts_from_path(contexts))
         else:
             self.contexts = dict(contexts)

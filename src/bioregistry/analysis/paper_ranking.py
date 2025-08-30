@@ -26,7 +26,7 @@ import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Union, cast
+from typing import Any, NamedTuple, TypeAlias, cast
 
 import click
 import numpy as np
@@ -42,7 +42,6 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
-from typing_extensions import TypeAlias
 
 from bioregistry.constants import BIOREGISTRY_PATH, CURATED_PAPERS_PATH
 
@@ -64,7 +63,7 @@ YTrain: TypeAlias = NDArray[np.float64]
 XTest: TypeAlias = NDArray[np.str_]
 YTest: TypeAlias = NDArray[np.str_]
 
-ClassifierHint: TypeAlias = Union[ClassifierMixin, LinearClassifierMixin]
+ClassifierHint: TypeAlias = ClassifierMixin | LinearClassifierMixin
 Classifiers: TypeAlias = list[tuple[str, ClassifierHint]]
 
 DEFAULT_SEARCH_TERMS = [
@@ -495,6 +494,7 @@ def runner(
                 vectorizer.idf_,
                 random_forest_clf.feature_importances_,
                 lr_clf.coef_[0],
+                strict=False,
             ),
             columns=["word", "idf", "rf_importance", "lr_importance"],
         )

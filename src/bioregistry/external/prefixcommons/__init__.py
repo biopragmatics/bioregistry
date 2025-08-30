@@ -122,7 +122,7 @@ def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
     rv: dict[str, Any] = {
         key: value.strip()
-        for key, value in zip(COLUMNS, cells_processed)
+        for key, value in zip(COLUMNS, cells_processed, strict=False)
         if key and value and key in KEEP
     }
     for key in ["name", "description", "example", "pattern"]:

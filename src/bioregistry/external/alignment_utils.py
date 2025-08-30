@@ -2,9 +2,9 @@
 
 import csv
 import json
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
-from typing import Any, Callable, ClassVar, Optional
+from typing import Any, ClassVar
 
 import click
 from curies.w3c import NCNAME_RE
@@ -36,16 +36,16 @@ class Aligner:
     getter: ClassVar[Callable[..., Mapping[str, Any]]]
 
     #: Keyword arguments to pass to the getter function on call
-    getter_kwargs: ClassVar[Optional[Mapping[str, Any]]] = None
+    getter_kwargs: ClassVar[Mapping[str, Any] | None] = None
 
     #: Should new entries be included automatically? Only set this true for aligners of
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
     #: Set this if there's another part of the data besides the ID that should be matched
-    alt_key_match: ClassVar[Optional[str]] = None
+    alt_key_match: ClassVar[str | None] = None
 
-    alt_keys_match: ClassVar[Optional[str]] = None
+    alt_keys_match: ClassVar[str | None] = None
 
     #: Set to true if you don't want to align to deprecated resources
     skip_deprecated: ClassVar[bool] = False
@@ -54,7 +54,7 @@ class Aligner:
 
     normalize_invmap: ClassVar[bool] = False
 
-    def __init__(self, force_download: Optional[bool] = None):
+    def __init__(self, force_download: bool | None = None):
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError
@@ -182,7 +182,7 @@ class Aligner:
         cls,
         dry: bool = False,
         show: bool = False,
-        force_download: Optional[bool] = None,
+        force_download: bool | None = None,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -240,7 +240,7 @@ class Aligner:
                 rv.append(value.strip().replace("\n", " ").replace("  ", " "))
             elif isinstance(value, bool):
                 rv.append("true" if value else "false")
-            elif isinstance(value, (list, tuple, set)):
+            elif isinstance(value, list | tuple | set):
                 rv.append("|".join(sorted(v.strip() for v in value)))
             else:
                 raise TypeError(f"unexpected type in curation header: {value}")
@@ -275,7 +275,7 @@ class Aligner:
             writer.writerow((self.subkey, *self.curation_header))
             writer.writerows(rows)
 
-    def get_curation_table(self, **kwargs: Any) -> Optional[str]:
+    def get_curation_table(self, **kwargs: Any) -> str | None:
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault("tablefmt", "rst")
         headers = (self.subkey, *self.curation_header)

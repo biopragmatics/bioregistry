@@ -12,8 +12,9 @@ from __future__ import annotations
 import functools
 import logging
 import re
+from collections.abc import Callable
 from re import Pattern
-from typing import Callable, TypeVar, cast
+from typing import TypeVar, cast
 
 import pandas as pd
 from tabulate import tabulate
@@ -555,7 +556,7 @@ def curies_to_identifiers(
     series: list[MaybeCURIE] = [
         bioregistry.parse_curie(curie) if pd.notna(curie) else (None, None) for curie in df[column]
     ]
-    prefixes, identifiers = zip(*series)
+    prefixes, identifiers = zip(*series, strict=False)
     df[prefix_column_name] = prefixes
     df[target_column] = identifiers
 

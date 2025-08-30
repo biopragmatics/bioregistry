@@ -5,9 +5,9 @@ from __future__ import annotations
 import json
 from collections.abc import Mapping
 from pathlib import Path
+from typing import Literal
 
 from pydantic import BaseModel
-from typing_extensions import Literal
 
 import bioregistry
 
