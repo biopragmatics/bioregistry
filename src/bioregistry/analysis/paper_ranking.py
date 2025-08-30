@@ -69,7 +69,7 @@ YTest: TypeAlias = NDArray[np.str_]
 ClassifierHint: TypeAlias = Union[ClassifierMixin, LinearClassifierMixin]
 Classifiers: TypeAlias = list[tuple[str, ClassifierHint]]
 
-DEFAULT_SEARCH_TERMS = [
+DEFAULT_SEARCH_TERMS: list[str] = [
     "database",
     "ontology",
     "resource",
@@ -79,7 +79,7 @@ DEFAULT_SEARCH_TERMS = [
 
 #: A mapping from the NLM Catalog ID to the journal name for journals
 #: that should be excluded
-EXCLUDE_JOURNALS = {
+EXCLUDE_JOURNALS: dict[str, str] = {
     "101680187": "bioRxiv",
     "101767986": "medRxiv",
 }
