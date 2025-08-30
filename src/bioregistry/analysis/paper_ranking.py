@@ -112,7 +112,7 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
     return df
 
 
-def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
+def load_curated_papers(file_path: Path | None = None) -> pd.DataFrame:
     """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
 
     :param file_path: Path to the curated_papers.tsv file.
@@ -120,6 +120,9 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
     :returns: DataFrame containing curated publication details.
     """
     import pubmed_downloader
+
+    if file_path is None:
+        file_path = CURATED_PAPERS_PATH
 
     df = pd.read_csv(file_path, sep="\t", dtype=str)
     df["label"] = df["relevant"].map(_map_labels)
@@ -219,19 +222,18 @@ def fetch_pubmed_papers(
             continue
         title = article.title
         abstract = article.get_abstract()
-        if not title and not abstract:
-            continue
-        records.append(
-            {
-                "pubmed": str(article.pubmed),
-                "title": article.title,
-                "abstract": abstract,
-                "year": article.date_completed.year if article.date_completed else None,
-                "search_terms": pubmed_to_terms[str(article.pubmed)],
-            }
-        )
+        if title and abstract:
+            records.append(
+                {
+                    "pubmed": str(article.pubmed),
+                    "title": article.title,
+                    "abstract": abstract,
+                    "year": article.date_completed.year if article.date_completed else None,
+                    "search_terms": pubmed_to_terms[str(article.pubmed)],
+                }
+            )
 
-    click.echo(f"Retained {len(records):,} articles after filter")
+    click.echo(f"{len(records):,} records fetched from PubMed")
     return pd.DataFrame(records)
 
 
@@ -278,7 +280,7 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
 
 
 def generate_meta_features(
-    classifiers: Classifiers, x_train: XTrain, y_train: YTrain, cv: int = 5
+    classifiers: Classifiers, x_train: XTrain, y_train: YTrain, *, cv: int = 5
 ) -> pd.DataFrame:
     """Generate meta-features for training a meta-classifier using cross-validation predictions.
 
@@ -292,8 +294,8 @@ def generate_meta_features(
     :returns: DataFrame containing meta-features.
     """
     df = pd.DataFrame()
-    for name, clf in classifiers:
-        df[name] = _cross_val_predict(clf, x_train, y_train, cv=cv)
+    for classifier_name, classifier in classifiers:
+        df[classifier_name] = _cross_val_predict(classifier, x_train, y_train, cv=cv)
     return df
 
 
@@ -451,9 +453,9 @@ def main(bioregistry_file: Path | None, start_date: str, end_date: str) -> None:
 def runner(
     *,
     bioregistry_file: Path | None = None,
-    curated_papers_path: Path,
+    curated_papers_path: Path | None = None,
     start_date: str,
-    end_date: str,
+    end_date: str | None = None,
     include_remote: bool = True,
     output_path: Path,
 ) -> None:
@@ -466,6 +468,7 @@ def runner(
         curated_dfs.append(load_google_curation_df())
 
     df = pd.concat(curated_dfs)
+    df["label"] = df["label"].map(_map_labels)
     df["abstract"] = df["abstract"].fillna("")
     df["title_abstract"] = df["title"] + " " + df["abstract"]
     df = df[df.title_abstract.notna()]
@@ -473,7 +476,7 @@ def runner(
     vectorizer = TfidfVectorizer(stop_words="english")
 
     # do this after the vectorizer so we can still capture the text
-    # from unannotated entries, e.g., from google sheet
+    # from unannotated entries, e.g., from a Google Sheet
     annotated_df = df[df.label.notna()]
     x = vectorizer.fit_transform(annotated_df.title_abstract)
     y = annotated_df.label
