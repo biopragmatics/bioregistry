@@ -155,7 +155,7 @@ def get_app(
     if manager is None:
         manager = resource_manager.manager
 
-    if isinstance(config, (str, Path)):
+    if isinstance(config, str | Path):
         with open(config) as file:
             conf = json.load(file)
     elif config is None:

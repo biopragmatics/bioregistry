@@ -5,13 +5,12 @@ import random
 import time
 from collections.abc import Iterable
 from statistics import mean
-from typing import cast
+from typing import TypeAlias, cast
 
 import click
 import matplotlib.pyplot as plt
 import seaborn as sns
 from tqdm import tqdm, trange
-from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry import manager
