@@ -24,7 +24,7 @@ import logging
 import textwrap
 from collections import defaultdict
 from pathlib import Path
-from typing import NamedTuple, Union, cast
+from typing import TYPE_CHECKING, NamedTuple, Union, cast
 
 import click
 import numpy as np
@@ -44,6 +44,9 @@ from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry.constants import CURATED_PAPERS_PATH
+
+if TYPE_CHECKING:
+    import pubmed_downloader
 
 logger = logging.getLogger(__name__)
 
@@ -92,8 +95,6 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
     if path is not None:
         raise NotImplementedError
 
-    import pubmed_downloader
-
     publications = {}
     for resource in bioregistry.resources():
         for publication in resource.get_publications():
@@ -105,12 +106,10 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
                 "label": 1,
             }
 
-    for pubmed_id, abstract in pubmed_downloader.get_abstracts_dict(publications).items():
-        publications[pubmed_id]["abstract"] = abstract
-
-    logger.info(f"Got {len(publications):,} publications from the bioregistry")
-
-    return pd.DataFrame(publications)
+    df = pd.DataFrame.from_dict(publications, orient="index")
+    _fill_abstracts(df)
+    click.echo(f"Got {len(publications):,} publications from the bioregistry")
+    return df
 
 
 def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
@@ -122,26 +121,42 @@ def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
     """
     import pubmed_downloader
 
-    curated_df = pd.read_csv(file_path, sep="\t", dtype=str)
-    curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
+    df = pd.read_csv(file_path, sep="\t", dtype=str)
+    df["label"] = df["relevant"].map(_map_labels)
 
-    pubmed_to_article = pubmed_downloader.get_articles_dict(curated_df["pubmed"])
+    pubmed_to_article = pubmed_downloader.get_articles_dict(df["pubmed"])
 
-    curated_df["title"] = curated_df["pubmed"].map(
+    df["title"] = df["pubmed"].map(
         lambda pubmed: article.title if (article := pubmed_to_article.get(pubmed)) else None
     )
-    curated_df["abstract"] = curated_df["pubmed"].map(
+    _fill_abstracts(df, pubmed_to_article)
+    click.echo(f"Got {len(df):,} curated publications from the curated_papers.tsv file")
+    return df
+
+
+def _fill_abstracts(
+    df: pd.DataFrame, pubmed_to_article: dict[str, pubmed_downloader.Article] | None = None
+) -> None:
+    if pubmed_to_article is None:
+        import pubmed_downloader
+
+        pubmed_to_article = pubmed_downloader.get_articles_dict(df["pubmed"])
+
+    df["abstract"] = df["pubmed"].map(
         lambda pubmed: article.get_abstract()
         if (article := pubmed_to_article.get(pubmed))
-        else None
+        else None,
+        na_action="ignore",
     )
 
-    click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
-    return curated_df
 
-
-def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> list[str]:
+def _get_ids(
+    term: str, *, use_text_word: bool, start_date: str, end_date: str | None = None
+) -> list[str]:
     import pubmed_downloader
+
+    if end_date is None:
+        end_date = datetime.date.today().isoformat()
 
     return pubmed_downloader.search(
         term, use_text_word=use_text_word, mindate=start_date, maxdate=end_date
@@ -149,8 +164,14 @@ def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> 
 
 
 def _search(
-    terms: list[str], pubmed_ids_to_filter: set[str], start_date: str, end_date: str
+    terms: list[str],
+    *,
+    pubmed_ids_to_filter: set[str] | None = None,
+    start_date: str,
+    end_date: str | None = None,
 ) -> dict[str, list[str]]:
+    if pubmed_ids_to_filter is None:
+        pubmed_ids_to_filter = set()
     pubmed_to_terms: defaultdict[str, list[str]] = defaultdict(list)
     for term in tqdm(terms, desc="Searching PubMed", unit="search term", leave=False):
         for pubmed_id in _get_ids(
@@ -162,7 +183,10 @@ def _search(
 
 
 def fetch_pubmed_papers(
-    *, pubmed_ids_to_filter: set[str], start_date: str, end_date: str
+    *,
+    pubmed_ids_to_filter: set[str] | None = None,
+    start_date: str,
+    end_date: str | None = None,
 ) -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
@@ -180,25 +204,34 @@ def fetch_pubmed_papers(
         start_date=start_date,
         end_date=end_date,
     )
-    records = [
-        {
-            "pubmed": str(article.pubmed),
-            "title": article.title,
-            "abstract": abstract,
-            "year": article.date_completed.year if article.date_completed else None,
-            "search_terms": pubmed_to_terms[str(article.pubmed)],
-        }
-        for article in pubmed_downloader.get_articles(pubmed_to_terms, error_strategy="skip")
-        if (
-            # Filter out papers that are from journals (typically
-            # preprint servers that have PMIDs) to be excluded
-            article.journal.nlm_catalog_id not in EXCLUDE_JOURNALS
-            and article.title
-            and (abstract := article.get_abstract())
-        )
-    ]
+    click.echo(
+        f"Search for {'/'.join(DEFAULT_SEARCH_TERMS)} return {len(pubmed_to_terms):,} articles"
+    )
 
-    click.echo(f"{len(records):,} records fetched from PubMed")
+    articles = list(pubmed_downloader.get_articles(pubmed_to_terms, error_strategy="skip"))
+    click.echo(f"Substantiated {len(articles):,} articles")
+
+    records = []
+    for article in articles:
+        # Filter out papers that are from journals (typically
+        # preprint servers that have PMIDs) to be excluded
+        if article.journal.nlm_catalog_id in EXCLUDE_JOURNALS:
+            continue
+        title = article.title
+        abstract = article.get_abstract()
+        if not title and not abstract:
+            continue
+        records.append(
+            {
+                "pubmed": str(article.pubmed),
+                "title": article.title,
+                "abstract": abstract,
+                "year": article.date_completed.year if article.date_completed else None,
+                "search_terms": pubmed_to_terms[str(article.pubmed)],
+            }
+        )
+
+    click.echo(f"Retained {len(records):,} articles after filter")
     return pd.DataFrame(records)
 
 
@@ -207,31 +240,16 @@ def load_google_curation_df() -> pd.DataFrame:
 
     :returns: DataFrame containing curated publication details.
     """
-    import pubmed_downloader
-
-    click.echo("Downloading curation sheet")
     df = pd.read_csv(URL, dtype=str)
     df["label"] = df["relevant"].map(_map_labels)
-    df = df[["pubmed", "title", "abstract", "label"]]
-
-    pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
-    fetched_metadata = pubmed_downloader.get_articles_dict(pmids_to_fetch)
-
-    df["abstract"] = df["pubmed"].map(
-        lambda pubmed: article.get_abstract() if (article := fetched_metadata.get(pubmed)) else None
-    )
-
-    click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
+    df = df[["pubmed", "title", "label"]]
+    _fill_abstracts(df)
+    click.echo(f"Got {len(df):,} curated publications from Google Sheets")
     return df
 
 
 def _map_labels(s: str) -> int | None:
-    """Map labels to binary values.
-
-    :param s: Label value.
-
-    :returns: Mapped binary label value.
-    """
+    """Map labels to binary values."""
     if s in {"1", "1.0", 1}:
         return 1
     if s in {"0", "0.0", 0}:
@@ -254,7 +272,7 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
         ("svc", LinearSVC()),
         ("svm", SVC(kernel="rbf", probability=True)),
     ]
-    for _, clf in tqdm(classifiers, desc="Training classifiers"):
+    for _, clf in classifiers:
         clf.fit(x_train, y_train)
     return classifiers
 
@@ -375,7 +393,7 @@ def _get_evaluation_df(
     classifiers: Classifiers, x_train: XTrain, x_test: XTest, y_train: YTrain, y_test: YTest
 ) -> tuple[LogisticRegression, pd.DataFrame]:
     scores = []
-    for name, clf in tqdm(classifiers, desc="evaluating"):
+    for name, clf in classifiers:
         y_pred = clf.predict(x_test)
         try:
             mcc = matthews_corrcoef(y_test, y_pred)
@@ -440,22 +458,24 @@ def runner(
     output_path: Path,
 ) -> None:
     """Run functionality directly."""
-    publication_df = get_publications_from_bioregistry(bioregistry_file)
-    curated_papers_df = load_curated_papers(curated_papers_path)
-
-    curated_dfs = [curated_papers_df]
+    curated_dfs = [
+        get_publications_from_bioregistry(bioregistry_file),
+        load_curated_papers(curated_papers_path),
+    ]
     if include_remote:
         curated_dfs.append(load_google_curation_df())
 
-    df = pd.concat([publication_df, *curated_dfs])
+    df = pd.concat(curated_dfs)
     df["abstract"] = df["abstract"].fillna("")
     df["title_abstract"] = df["title"] + " " + df["abstract"]
+    df = df[df.title_abstract.notna()]
 
     vectorizer = TfidfVectorizer(stop_words="english")
-    vectorizer.fit(df.title_abstract)
 
+    # do this after the vectorizer so we can still capture the text
+    # from unannotated entries, e.g., from google sheet
     annotated_df = df[df.label.notna()]
-    x = vectorizer.transform(annotated_df.title_abstract)
+    x = vectorizer.fit_transform(annotated_df.title_abstract)
     y = annotated_df.label
 
     x_train, x_test, y_train, y_test = train_test_split(
