@@ -26,24 +26,40 @@ class TestPaperRanking(unittest.TestCase):
         """Smoke test to ensure pipeline runs successfully without error."""
         import pubmed_downloader
         from pubmed_downloader import Article
+        from pubmed_downloader.api import JournalIssue
 
         abstract = [pubmed_downloader.AbstractText(text="sample text")]
         journal = pubmed_downloader.Journal(nlm_catalog_id="abcdef")
+        journal_issue = JournalIssue(published=datetime.date.today())
 
         n = 30
         positive_group_1 = [
             Article(
-                pubmed=i, title=f"test positive {i}", abstract=abstract, journal=journal, authors=[]
+                pubmed=i,
+                title=f"test positive {i}",
+                abstract=abstract,
+                journal=journal,
+                journal_issue=journal_issue,
             )
             for i in range(1, n)
         ]
         uncurated_group = [
-            Article(pubmed=i, title=f"test {i}", abstract=abstract, journal=journal, authors=[])
+            Article(
+                pubmed=i,
+                title=f"test {i}",
+                abstract=abstract,
+                journal=journal,
+                journal_issue=journal_issue,
+            )
             for i in range(n, 2 * n)
         ]
         negative_group = [
             Article(
-                pubmed=i, title=f"test negative {i}", abstract=abstract, journal=journal, authors=[]
+                pubmed=i,
+                title=f"test negative {i}",
+                abstract=abstract,
+                journal=journal,
+                journal_issue=journal_issue,
             )
             for i in range(2 * n, 3 * n)
         ]
