@@ -5,12 +5,11 @@ from __future__ import annotations
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
-from collections.abc import Hashable, Iterable, Mapping, Sequence
+from collections.abc import Callable, Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import (
     Any,
-    Callable,
     cast,
     overload,
 )
@@ -279,3 +278,27 @@ def deduplicate(records: Iterable[dict[str, Any]], keys: Sequence[str]) -> Seque
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
     return sorted(rv, key=_key, reverse=True)
+
+
+_EC_BASES = {
+    "class": "https://www.enzyme-database.org/class.php",
+    "info": "https://www.enzyme-database.org/cinfo.php",
+}
+
+
+def get_ec_url(identifier: str, *, ep: str = "class") -> str:
+    """Get a URL for an enzyme code (EC)."""
+    base = _EC_BASES[ep]
+    for _ in range(3):
+        identifier = identifier.removesuffix(".-")
+    x = identifier.split(".")
+    if len(x) == 4:
+        return f"https://www.enzyme-database.org/query.php?ec={identifier}"
+    elif len(x) == 3:
+        return f"{base}?c={x[0]}&sc={x[1]}&ssc={x[2]}"
+    elif len(x) == 2:
+        return f"{base}?c={x[0]}&sc={x[1]}"
+    elif len(x) == 1:
+        return f"{base}?c={x[0]}"
+    else:
+        raise ValueError

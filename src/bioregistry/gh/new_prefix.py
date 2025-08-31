@@ -81,11 +81,11 @@ def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Re
         logger.warning("Validation error occured")
         contributor = None
 
-    contact_name = resource_data.pop("contact_name", None)
-    contact_orcid = resource_data.pop("contact_orcid", None)
-    contact_email = resource_data.pop("contact_email", None)
-    contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
-    if contact_orcid and contact_name:
+    contact_name: str | None = resource_data.pop("contact_name", None)
+    contact_orcid: str | None = resource_data.pop("contact_orcid", None)
+    contact_email: str | None = resource_data.pop("contact_email", None)
+    contact_github: str | None = removeprefix(resource_data.pop("contact_github", None), "@")
+    if contact_orcid is not None and contact_name is not None:
         contact = Author(
             name=contact_name,
             orcid=_trim_orcid(contact_orcid),

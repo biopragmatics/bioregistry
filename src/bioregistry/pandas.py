@@ -12,14 +12,16 @@ from __future__ import annotations
 import functools
 import logging
 import re
+from collections.abc import Callable
 from re import Pattern
-from typing import Callable, cast
+from typing import TypeVar, cast
 
 import pandas as pd
 from tabulate import tabulate
 from tqdm.auto import tqdm
 
 import bioregistry
+from bioregistry.constants import MaybeCURIE
 
 __all__ = [
     "curies_to_identifiers",
@@ -36,6 +38,8 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
+
+X = TypeVar("X")
 
 
 class PrefixLocationError(ValueError):
@@ -124,7 +128,7 @@ def normalize_curies(
 
 def validate_prefixes(
     df: pd.DataFrame, column: int | str, *, target_column: str | None = None
-) -> pd.Series:
+) -> pd.Series[str]:
     """Validate prefixes in a given column.
 
     :param df: A DataFrame
@@ -156,7 +160,7 @@ def validate_prefixes(
     return results
 
 
-def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series) -> None:
+def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
     """Provide a summary of prefix validation."""
     # TODO add suggestions on what to do next, e.g.:,
     #  1. can some be normalized? use normalization function
@@ -186,7 +190,7 @@ def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series) -> None:
 
 def validate_curies(
     df: pd.DataFrame, column: int | str, *, target_column: str | None = None
-) -> pd.Series:
+) -> pd.Series[str]:
     """Validate CURIEs in a given column.
 
     :param df: A DataFrame
@@ -215,10 +219,10 @@ def validate_curies(
     results = df[column].map(bioregistry.is_valid_curie, na_action="ignore")
     if target_column:
         df[target_column] = results
-    return results
+    return cast("pd.Series[str]", results)
 
 
-def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series) -> None:
+def summarize_curie_validation(df: pd.DataFrame, idx: pd.Series[str]) -> None:
     """Provide a summary of CURIE validation."""
     count = (~idx).sum()
     unique = sorted(df[~idx][0].unique())
@@ -237,7 +241,7 @@ def validate_identifiers(
     prefix_column: str | None = None,
     target_column: str | None = None,
     use_tqdm: bool = False,
-) -> pd.Series:
+) -> pd.Series[bool]:
     """Validate local unique identifiers in a given column.
 
     Some data sources split the prefix and identifier in separate columns,
@@ -257,7 +261,7 @@ def validate_identifiers(
     :param use_tqdm:
         Should a progress bar be shown?
     :returns:
-        A pandas series corresponding to the validity of each row
+        A pandas boolean series corresponding to the validity of each row
     :raises PrefixLocationError:
         If not exactly one of the prefix and prefix_column arguments are given
     :raises ValueError:
@@ -305,18 +309,24 @@ def validate_identifiers(
                 return None
             return bool(_pattern.fullmatch(_i))
 
-        results = _multi_column_map(
-            df,
-            [cast(str, prefix_column), column],
-            _validate_lambda,
-            use_tqdm=use_tqdm,
+        # pandas has its own internal notion of none's,
+        # so even though this should be a pd.Series[bool | None],
+        # we squash it down
+        results = cast(
+            "pd.Series[bool]",
+            _multi_column_map(
+                df,
+                [cast(str, prefix_column), column],
+                _validate_lambda,
+                use_tqdm=use_tqdm,
+            ),
         )
     if target_column:
         df[target_column] = results
     return results
 
 
-def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd.Series:
+def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd.Series[bool]:
     norm_prefix = bioregistry.normalize_prefix(prefix)
     if norm_prefix is None:
         raise ValueError(
@@ -328,9 +338,12 @@ def _help_validate_identifiers(df: pd.DataFrame, column: str, prefix: str) -> pd
             f"Can't validate identifiers for {prefix} because it has no pattern in the Bioregistry"
         )
     pattern_re = re.compile(pattern)
-    return df[column].map(
-        lambda s: bool(pattern_re.fullmatch(s)),
-        na_action="ignore",
+    return cast(
+        pd.Series[bool],
+        df[column].map(
+            lambda s: bool(pattern_re.fullmatch(s)),
+            na_action="ignore",
+        ),
     )
 
 
@@ -464,15 +477,16 @@ def identifiers_to_iris(
 def _multi_column_map(
     df: pd.DataFrame,
     columns: list[str],
-    func: Callable,  # type:ignore
+    func: Callable[..., X],
     *,
     use_tqdm: bool = False,
-) -> pd.Series:
+) -> pd.Series[X]:  # type:ignore[type-var]
     rows = df[columns].values
-    if use_tqdm:
-        rows = tqdm(rows, unit_scale=True)
     return pd.Series(
-        [func(*row) if all(pd.notna(cell) for cell in row) else None for row in rows],
+        [
+            func(*row) if all(pd.notna(cell) for cell in row) else None
+            for row in tqdm(rows, unit_scale=True, disable=not use_tqdm)
+        ],
         index=df.index,
     )
 
@@ -539,7 +553,10 @@ def curies_to_identifiers(
                 "auto-generated prefix column is already present. please specify explicitly."
             )
 
-    prefixes, identifiers = zip(*df[column].map(bioregistry.parse_curie, na_action="ignore"))
+    series: list[MaybeCURIE] = [
+        bioregistry.parse_curie(curie) if pd.notna(curie) else (None, None) for curie in df[column]
+    ]
+    prefixes, identifiers = zip(*series, strict=False)
     df[prefix_column_name] = prefixes
     df[target_column] = identifiers
 

@@ -266,7 +266,7 @@ types:
       - qud:Unit
 
   time type:
-    uri: xsd:time
+    uri: xsd:string
     typeof: time
 
   biological sequence:
@@ -332,7 +332,6 @@ slots:
       - NCIT:role_has_range
       - INO:0000154
       - HANCESTRO:0308
-      - OMIM:has_inheritance_type
       - orphanet:C016
       - orphanet:C017
       - RO:0000053
@@ -556,6 +555,19 @@ slots:
     narrow_mappings:
       - dct:title
       - WIKIDATA_PROPERTY:P1476
+
+  hgvs nomenclature:
+    is_a: node property
+    domain: sequence variant
+    multivalued: true
+    description: >-
+      HGVS syntax refers to the specific rules and conventions used by the Human Variant Nomenclature Committee 
+      to describe the location and change in DNA, RNA, and protein sequence variants.  This slot is used to capture all the 
+      different forms of HGVS nomenclature that may be used to describe a sequence variant, including genomic, transcript,
+      and protein HGVS expressions/nomenclatures and is thus multivalued.
+    comments: >-
+      For more information, please see: https://hgvs-nomenclature.org/stable/background/simple/ and examples:
+      https://hgvs-nomenclature.org/stable/recommendations/summary/.  
 
   stoichiometry:
     description: >-
@@ -827,7 +839,7 @@ slots:
 
   creation date:
     is_a: node property
-    aliases: ['publication date']
+    aliases: ['publication date', 'date started']
     range: date
     description: >-
       date on which an entity was created. This can be applied to nodes or edges
@@ -1076,7 +1088,63 @@ slots:
     exact_mappings:
       - dcid:MeSHTerm
 
-   ## Biology
+   ## Clinical Trials
+  clinical trial phase:
+    is_a: node property
+    description: >-
+      The phase that a clinical trials study represents
+    range: ResearchPhaseEnum
+  
+  clinical trial primary purpose:
+    aliases: ['primary purpose']
+    is_a: node property
+    description: >-
+      The primary purpose of a clinical trial as determined by clinicaltrials.gov.  The most common values are 
+      TREATMENT and PREVENTION. Other possible values include BASIC_SCIENCE, SUPPORTIVE_CARE, 
+      DIAGNOSTIC, HEALTH_SERVICES_RESEARCH, SCREENING, DEVICE_FEASIBILITY, OTHER, and (null).
+    range: string
+    domain: clinical trial
+
+  clinical trial intervention model:
+    is_a: node property
+    description: >-
+      The intervention model of a clinical trial as determined by clinicaltrials.gov.  The most common values are 
+      SINGLE_GROUP, PARALLEL, CROSSOVER, FACTORIAL, and (null).
+    range: string
+    domain: clinical trial
+
+  clinical trial time perspective:
+    is_a: node property
+    description: >-
+      The time perspective of a clinical trial as determined by clinicaltrials.gov.  The most common values are 
+      PROSPECTIVE, RETROSPECTIVE, CROSS_SECTIONAL, or OTHER (most common)..
+    range: string
+    domain: clinical trial
+
+  clinical trial overall status:
+    is_a: node property
+    description: >-
+      The overall status of a clinical trial as determined by clinicaltrials.gov
+    range: ClinicalTrialStatusEnum
+    domain: clinical trial
+
+  clinical trial intervention boxed warning:
+    is_a: node property
+    description: >-
+      A boolean flag indicating whether a clinical trial intervention has a boxed warning.
+      A boxed warning is the strongest warning that the FDA requires on a prescription drug label. This property should
+      be populated from DailyMed.
+    range: boolean
+    domain: association
+
+  clinical trial tested intervention:
+    is_a: node property
+    description: >-
+      Records whether the clinical trials are testing the intervention.
+    domain: association
+    range: string
+
+   ## Biological Entity properties
 
   has biological sequence:
     is_a: node property
@@ -1097,6 +1165,15 @@ slots:
       connects an entity associated with one or more genes
     range: gene
     multivalued: true
+
+  inheritance:
+    is_a: node property
+    description: >-
+      Connects genetic inheritance to a disease or phenotypic feature, as a node property.
+    domain: disease or phenotypic feature
+    range: genetic inheritance
+    exact_mappings:
+      - OMIM:has_inheritance_type
 
   has zygosity:
     is_a: node property
@@ -1183,12 +1260,26 @@ slots:
       - SNOMED:has_route_of_administration
 
 
+  response context qualifier:
+    description: >-
+      a biological response (general, study, cohort, etc.) with a specific set of characteristics to constrain 
+      an association.
+    is_a: context qualifier
+    range: ResponseEnum
+
+  response target context qualifier:
+    description: >-
+      a biological response target (a patient, a cohort, a model system, a cell line, a sample of biological material, 
+      etc.)
+    is_a: context qualifier
+    range: ResponseTargetEnum
+
   population context qualifier:
     description: >-
       a biological population (general, study, cohort, etc.) with a specific
       set of characteristics to constrain an association.
     is_a: qualifier
-    range: population of individual organisms
+    range: population of individual organisms  # TODO: harmonize with 'response target context qualifier'
 
   temporal context qualifier:
     description: >-
@@ -2666,8 +2757,38 @@ slots:
       another existing entity.
     inverse: affects
 
-  associated with sensitivity to:
+  associated with response to:
     is_a: associated with
+    description: >-
+      A statistical association used to indicate that the object of a statement using this predicate
+      induces a response of some kind in the subject entity.  Intentionally broad in definition, this predicate
+      should be used with qualifiers to narrow the type of response (E.g. whether the response is therapeutic, 
+      phenotypic, detrimental, resistant, etc. is captured in context, direction, and 
+      aspect qualifiers).
+    annotations:
+      canonical_predicate: true
+    comments: >-
+        subject: NCBIGene:2064 # HER2
+        subject_aspect: Amplification
+        predicate: associated with response to
+        object: CHEBI:10035 # Trastuzumab
+        response_type_qualifier: therapeutic_sensitivity
+        response_direction_qualifer: increased
+        response_target_qualifier: human patient
+        disease_context_qualifier: MONDO:0007254  # breast cancer
+      
+        subject: MONDO:0007254
+        predicate: associated with response to
+        qualified_predicate: associated with
+        object: CHEBI:10035 # Trastuzumab
+        response_context_qualifier: therapeutic_sensitivity
+
+  response associated with:
+    is_a: associated with
+    inverse: associated with response to
+
+  associated with sensitivity to:
+    is_a: associated with response to
     description: >-
       A relation that holds between a named thing and a chemical
       that specifies that the change in the named
@@ -2688,7 +2809,7 @@ slots:
     domain: chemical entity
 
   associated with resistance to:
-    is_a: associated with
+    is_a: associated with response to
     description: >-
       A relation that holds between a named thing and a chemical
       that specifies that the change in the named
@@ -5646,6 +5767,19 @@ slots:
     description: >-
       connects an association to a qualitative term denoting the level of confidence
 
+  has confidence score:
+    is_a: association slot
+    range: float
+    description: >-
+      connects an association to a quantitative (numeric) value that can be interpreted
+      as an indicator of the degree of confidence that a piece of information is true,
+      and accurately reflects the aspect of reality it is about.
+    exact_mappings:
+      - SEPIO:0000168
+    close_mappings:
+      - SEPIO:0000187
+      - SEPIO:0000167
+
   has evidence:
     is_a: association slot
     range: evidence type
@@ -6022,6 +6156,22 @@ slots:
     is_a: association slot
     range: disease or phenotypic feature
 
+  allelic requirement:
+    description: >-
+      The allele configuration of a particular gene or variant required for the 
+      expression of a disease or phenotype in a specific patient or instance. 
+    is_a: association slot
+    range: string
+    pattern: "^HP:\\d{7}$"
+    comments: >- 
+      This edge property may be used by associations between Genes or 
+      SequenceVariants and DiseaseOrPhenotypicFeatures to provide the inheritance 
+      pattern and genetic context of the relationship.
+      Terms from the HP mode of inheritance sub-ontology (HP:0000005) should be used 
+      in the value of this slot. This slot differs from the predicate "has_mode_of_inheritance", 
+      in that the predicate is used to link a disease or phenotype with its general 
+      inheritance pattern (how it is typically transmitted from one generation to the next, 
+      regardless of the specific genetic variant that is present in an individual or instance).
 
   publications:
     aliases: ['supporting publications', 'supporting documents']
@@ -8236,6 +8386,8 @@ classes:
     is_a: biological entity
     mixins:
       - ontology class
+    slots:
+      - inheritance
     description: >-
       Either one of a disease or an individual phenotypic feature.
       Some knowledge resources such as Monarch treat these as
@@ -9004,6 +9156,7 @@ classes:
         A contiguous change at a Location
     slots:
       - has gene
+      - hgvs nomenclature
     slot_usage:
       has gene:
         multivalued: true
@@ -9112,7 +9265,20 @@ classes:
       biological realm. Diseases are placed under biological entities
 
   clinical trial:
-    is_a: clinical entity
+    is_a: study
+    description: >-
+      A clinical trial is a research study that prospectively assigns human participants or groups of humans to one or
+      more health-related interventions to evaluate the effects on health outcomes.
+    exact_mappings:
+      - NCIT:C71104
+      - SIO:001000
+    slots:
+      - clinical trial phase
+      - clinical trial primary purpose
+      - creation date  # maybe?
+    id_prefixes:
+      - CLINICALTRIALS
+
 
   clinical intervention:
     is_a: clinical entity
@@ -9515,10 +9681,36 @@ classes:
       category:
         range: uriorcurie
         required: false
+      sources:
+        inlined_as_list: true
     exact_mappings:
       - OBAN:association
       - rdf:Statement
       - owl:Axiom
+
+
+  disease associated with response to chemical entity association:
+    description: >-
+      A statistical association between a disease and a chemical entity where the
+      chemical entity has a therapeutic or adverse effect on the disease progression, symptoms or outcomes
+      in a patient, cell line, or any model system.
+    is_a: association
+    slots:
+      - response context qualifier
+      - response target context qualifier
+    defining_slots:
+      - subject
+      - predicate
+      - object
+      - response context qualifier
+      - response target context qualifier
+    slot_usage:
+      subject:
+        range: disease
+      object:
+        range: chemical entity
+      predicate:
+        subproperty_of: associated with response to
 
 
   chemical entity assesses named thing association:
@@ -10139,7 +10331,7 @@ classes:
       value:
         subject: "NCBIGene:551"
         predicate: regulates
-        qualified_predicte: causes
+        qualified_predicate: causes
         object: "NCBIGene:1636"
         object_aspect_qualifier: activity_or_abundance
         object_direction_qualifier: downregulated
@@ -10223,7 +10415,7 @@ classes:
       value:
         subject: TRPC4
         predicate: affects
-        qualified_predicte: causes
+        qualified_predicate: causes
         object: Barium
         object_aspect_qualifier: transport
         object_direction_qualifier: increased
@@ -11779,6 +11971,66 @@ classes:
 
 
 enums:
+
+  ResponseEnum:
+    description: >-
+      A response to a treatment or intervention
+    permissible_values:
+      therapeutic_response:
+        description: >-
+          A positive response to a treatment or intervention
+      negative:
+        description: >-
+          A negative response to a treatment or intervention
+
+  ResponseTargetEnum:
+    description: >-
+      The target of a treatment or intervention
+    permissible_values:
+      cohort:
+        description: >-
+          A group of individuals that are the target of a treatment or intervention
+      cell line:
+        description: >-
+          A cell line that is the target of a treatment or intervention
+      individual:
+        description: >-
+          An individual that is the target of a treatment or intervention
+      sample:
+        description: >-
+          A biological materialsample that is the target of a treatment or intervention
+
+  ClinicalTrialStatusEnum:
+    description: >
+      Enumeration of clinical trial statuses indicating the recruitment state,
+      availability, or regulatory status of a clinical study or intervention.
+    permissible_values:
+      ACTIVE_NOT_RECRUITING:
+        description: The study is ongoing but not currently recruiting participants.
+      APPROVED_FOR_MARKETING:
+        description: The intervention has received regulatory approval for marketing.
+      AVAILABLE:
+        description: The intervention or data is available for use or distribution.
+      COMPLETED:
+        description: The study has ended normally and participants are no longer being examined or treated.
+      ENROLLING_BY_INVITATION:
+        description: Participants are being enrolled by invitation only.
+      NO_LONGER_AVAILABLE:
+        description: The intervention or data is no longer available.
+      NOT_YET_RECRUITING:
+        description: The study has not yet started recruiting participants.
+      RECRUITING:
+        description: The study is currently recruiting participants.
+      SUSPENDED:
+        description: The study has been temporarily halted but may resume.
+      TEMPORARILY_NOT_AVAILABLE:
+        description: The intervention or data is not currently available but may become available later.
+      TERMINATED:
+        description: The study has stopped prematurely and will not start again.
+      UNKNOWN:
+        description: The recruitment or availability status is unknown.
+      WITHDRAWN:
+        description: The study was halted before enrolling its first participant.
 
   ApprovalStatusEnum:
     description: >-

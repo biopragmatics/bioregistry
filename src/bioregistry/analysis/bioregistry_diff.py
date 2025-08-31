@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import datetime
 import logging
-from typing import Any, NamedTuple, cast
+from typing import Any, NamedTuple, TypeAlias, cast
 
 import click
 import matplotlib.pyplot as plt
@@ -12,7 +12,6 @@ import pandas as pd
 import requests
 from dateutil import tz
 from dateutil.parser import isoparse
-from typing_extensions import TypeAlias
 
 logger = logging.getLogger(__name__)
 
@@ -255,7 +254,7 @@ def visualize_changes(
             plt.xticks(rotation=45, ha="right")
             plt.grid(axis="y", linestyle="--", alpha=0.7)
             plt.tight_layout(pad=3.0)
-            plt.show()
+            plt.show()  # type:ignore
 
         # Plot for mapping fields
         if mapping_fields:
@@ -272,7 +271,7 @@ def visualize_changes(
             plt.xticks(rotation=45, ha="right")
             plt.grid(axis="y", linestyle="--", alpha=0.7)
             plt.tight_layout(pad=3.0)
-            plt.show()
+            plt.show()  # type:ignore
 
 
 @click.command()
