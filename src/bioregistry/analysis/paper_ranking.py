@@ -42,17 +42,15 @@ from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry.constants import CURATED_PAPERS_PATH
+from bioregistry import Manager
+from bioregistry.constants import CURATED_PAPERS_PATH, EXPORT_DIRECTORY
 
 if TYPE_CHECKING:
     import pubmed_downloader
 
 logger = logging.getLogger(__name__)
 
-HERE = Path(__file__).parent.resolve()
-ROOT = HERE.parent.parent.parent.resolve()
-
-DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
+DIRECTORY = EXPORT_DIRECTORY.joinpath("analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = (
@@ -84,7 +82,12 @@ EXCLUDE_JOURNALS: dict[str, str] = {
 }
 
 
-def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
+def get_publications_from_bioregistry(
+    path: Path | None = None,
+    *,
+    loud: bool = True,
+    strict: bool = False,
+) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param path: Path to the bioregistry JSON file.
@@ -92,57 +95,72 @@ def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
     :returns: DataFrame containing publication details.
     """
     if path is not None:
-        raise NotImplementedError
+        manager = Manager(registry=path)
+    else:
+        manager = bioregistry.manager
 
     publications = {}
-    for resource in bioregistry.resources():
+    for resource in manager.registry.values():
         for publication in resource.get_publications():
             if not publication.pubmed:
                 continue
             publications[publication.pubmed] = {
-                "pubmed": publication.pubmed,
+                "pubmed": str(publication.pubmed),
                 "title": publication.title,
-                "label": 1,
+                "relevant": POSITIVE_VALUE,
             }
 
     df = pd.DataFrame.from_dict(publications, orient="index")
-    _fill_abstracts(df)
-    click.echo(f"Got {len(publications):,} publications from the bioregistry")
+    _fill_abstracts(df, strict=strict)
+    if loud:
+        _echo_stats(df, "publications from the bioregistry")
     return df
 
 
-def load_curated_papers(file_path: Path | None = None) -> pd.DataFrame:
+def load_curated_papers(
+    file_path: Path | None = None, *, loud: bool = True, strict: bool = False
+) -> pd.DataFrame:
     """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
 
     :param file_path: Path to the curated_papers.tsv file.
 
     :returns: DataFrame containing curated publication details.
     """
-    import pubmed_downloader
-
     if file_path is None:
         file_path = CURATED_PAPERS_PATH
 
     df = pd.read_csv(file_path, sep="\t", dtype=str)
-    df["label"] = df["relevant"].map(_map_labels)
+    df["relevant"] = df["relevant"].map(_map_labels)
 
-    pubmed_to_article = pubmed_downloader.get_articles_dict(df["pubmed"])
+    pubmed_to_article = _get_articles_dict(df)
 
     df["title"] = df["pubmed"].map(
         lambda pubmed: article.title if (article := pubmed_to_article.get(pubmed)) else None
     )
-    _fill_abstracts(df, pubmed_to_article)
-    click.echo(f"Got {len(df):,} curated publications from the curated_papers.tsv file")
+    _fill_abstracts(df, pubmed_to_article, strict=strict)
+    if loud:
+        _echo_stats(df, "curated publications from the curated_papers.tsv file")
     return df
 
 
+def _echo_stats(df: pd.DataFrame, end: str) -> None:
+    n_positive = (df["relevant"] == POSITIVE_VALUE).sum()
+    n_negative = (df["relevant"] == NEGATIVE_VALUE).sum()
+    n_uncurated = (~df["relevant"].isin({POSITIVE_VALUE, NEGATIVE_VALUE})).sum()
+    n_total = len(df)
+    click.echo(
+        f"Got {n_total:,} (positive: {n_positive:,}, negative: {n_negative:,}, uncurated: {n_uncurated:,}) {end}"
+    )
+
+
 def _fill_abstracts(
-    df: pd.DataFrame, pubmed_to_article: dict[str, pubmed_downloader.Article] | None = None
+    df: pd.DataFrame,
+    pubmed_to_article: dict[str, pubmed_downloader.Article] | None = None,
+    *,
+    strict: bool = False,
 ) -> None:
     if pubmed_to_article is None:
-        import pubmed_downloader
-
-        pubmed_to_article = pubmed_downloader.get_articles_dict(df["pubmed"])
+        pubmed_to_article = _get_articles_dict(df)
 
     df["abstract"] = df["pubmed"].map(
         lambda pubmed: article.get_abstract()
@@ -150,6 +168,20 @@ def _fill_abstracts(
         else None,
         na_action="ignore",
     )
+
+    abstract_na_idx = df["abstract"].isna()
+    if abstract_na_idx.all():
+        raise ValueError(
+            f"no abstracts were mapped properly.\n\nPubMeds: {df['pubmed'].unique()}\n\nArticles: {pubmed_to_article}"
+        )
+    if strict and abstract_na_idx.any():
+        raise ValueError(f"some abstracts weren't found\n\n{df[abstract_na_idx]}")
+
+
+def _get_articles_dict(df: pd.DataFrame) -> dict[str, pubmed_downloader.Article]:
+    import pubmed_downloader
+
+    return pubmed_downloader.get_articles_dict(df["pubmed"])
 
 
 def _get_ids(
@@ -236,25 +268,32 @@ def fetch_pubmed_papers(
     return pd.DataFrame(records)
 
 
-def load_google_curation_df() -> pd.DataFrame:
+def load_google_curation_df(*, strict: bool = False, loud: bool = True) -> pd.DataFrame:
     """Download and load curation data from a Google Sheets URL.
 
     :returns: DataFrame containing curated publication details.
     """
     df = pd.read_csv(URL, dtype=str)
-    df["label"] = df["relevant"].map(_map_labels)
-    df = df[["pubmed", "title", "label"]]
-    _fill_abstracts(df)
-    click.echo(f"Got {len(df):,} curated publications from Google Sheets")
+    df["relevant"] = df["relevant"].map(_map_labels)
+    df = df[["pubmed", "title", "relevant"]]
+    _fill_abstracts(df, strict=strict)
+    if loud:
+        _echo_stats(df, "curated publications from Google Sheets")
     return df
 
 
-def _map_labels(s: str) -> int | None:
-    """Map labels to binary values."""
-    if s in {"1", "1.0", 1}:
-        return 1
-    if s in {"0", "0.0", 0}:
-        return 0
+POSITIVE_VALUE = "yes"
+NEGATIVE_VALUE = "no"
+
+
+def _map_labels(s: str) -> str | None:
+    """Standardize labels."""
+    if pd.isna(s):
+        return None
+    if s in {"1", "1.0", 1, POSITIVE_VALUE}:
+        return POSITIVE_VALUE
+    if s in {"0", "0.0", 0, NEGATIVE_VALUE}:
+        return NEGATIVE_VALUE
     return None
 
 
@@ -359,7 +398,7 @@ def predict_and_save(
     :param path: Path to save the predictions.
     """
     x_meta = pd.DataFrame()
-    x_transformed = vectorizer.transform(df.title + " " + df.abstract)
+    x_transformed = vectorizer.transform(df["title"] + " " + df["abstract"])
     for name, clf in classifiers:
         x_meta[name] = _predict(clf, x_transformed)
 
@@ -433,52 +472,73 @@ def _get_evaluation_df(
     help="End date of the period",
     default=datetime.date.today().isoformat(),
 )
-def main(bioregistry_file: Path | None, start_date: str, end_date: str) -> None:
+@click.option("--directory", type=Path, default=DIRECTORY)
+def main(bioregistry_file: Path | None, start_date: str, end_date: str, directory: Path) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
     """
-    runner(
+    curated_pubmed_ids, vectorizer, classifiers, meta_clf = train(
         bioregistry_file=bioregistry_file,
         curated_papers_path=CURATED_PAPERS_PATH,
-        start_date=start_date,
-        end_date=end_date,
-        output_path=DIRECTORY,
+        output_path=directory,
     )
+    predictions_df = fetch_pubmed_papers(
+        pubmed_ids_to_filter=curated_pubmed_ids, start_date=start_date, end_date=end_date
+    )
+    if not predictions_df.empty:
+        predictions_path = directory.joinpath("predictions.tsv")
+        predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
 
 
-def runner(
+class TrainingResult(NamedTuple):
+    """The results from training."""
+
+    curated_pubmed_ids: set[str]
+    vectorizer: TfidfVectorizer
+    classifiers: Classifiers
+    meta_clf: LogisticRegression
+
+
+def train(
     *,
     bioregistry_file: Path | None = None,
     curated_papers_path: Path | None = None,
-    start_date: str,
-    end_date: str | None = None,
     include_remote: bool = True,
     output_path: Path,
-) -> None:
-    """Run functionality directly."""
+    loud: bool = True,
+    strict: bool = False,
+) -> TrainingResult:
+    """Run training."""
     curated_dfs = [
-        get_publications_from_bioregistry(bioregistry_file),
-        load_curated_papers(curated_papers_path),
+        get_publications_from_bioregistry(bioregistry_file, loud=loud, strict=strict),
+        load_curated_papers(curated_papers_path, loud=loud, strict=strict),
     ]
     if include_remote:
-        curated_dfs.append(load_google_curation_df())
+        curated_dfs.append(load_google_curation_df(strict=strict))
 
-    df = pd.concat(curated_dfs)
-    df["label"] = df["label"].map(_map_labels)
+    df = pd.concat(curated_dfs)[["pubmed", "title", "abstract", "relevant"]]
+
     df["abstract"] = df["abstract"].fillna("")
     df["title_abstract"] = df["title"] + " " + df["abstract"]
     df = df[df.title_abstract.notna()]
+    df = df.drop_duplicates()
+    _echo_stats(df, "combine curated publications")
+
+    if not (df["relevant"] == NEGATIVE_VALUE).sum():
+        raise ValueError(f"no negative labels found. Values: {df['relevant'].unique()}")
+
+    _echo_stats(df, "combine curated publications")
 
     vectorizer = TfidfVectorizer(stop_words="english")
 
     # do this after the vectorizer so we can still capture the text
     # from unannotated entries, e.g., from a Google Sheet
-    annotated_df = df[df.label.notna()]
+    annotated_df = df[df["relevant"].notna()]
     x = vectorizer.fit_transform(annotated_df.title_abstract)
-    y = annotated_df.label
+    y = annotated_df["relevant"].map({POSITIVE_VALUE: True, NEGATIVE_VALUE: False}.__getitem__)
 
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.33, random_state=42, shuffle=True
@@ -517,13 +577,7 @@ def runner(
 
     # These have already been curated and will therefore be filtered out
     curated_pubmed_ids: set[str] = {str(pubmed) for pubmed in df["pubmed"] if pd.notna(pubmed)}
-
-    predictions_df = fetch_pubmed_papers(
-        pubmed_ids_to_filter=curated_pubmed_ids, start_date=start_date, end_date=end_date
-    )
-    if not predictions_df.empty:
-        predictions_path = output_path.joinpath("predictions.tsv")
-        predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
+    return TrainingResult(curated_pubmed_ids, vectorizer, classifiers, meta_clf)
 
 
 if __name__ == "__main__":
