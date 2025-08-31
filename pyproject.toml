@@ -11,7 +11,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.12.36-dev"
+version = "0.12.37-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -33,7 +33,6 @@ classifiers = [
     "Framework :: tox",
     "Framework :: Sphinx",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -54,7 +53,7 @@ keywords = [
 # See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
 license = { file = "LICENSE" }
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "requests",
     "tqdm",
@@ -128,10 +127,10 @@ web = [
     "api-analytics[fastapi]",
 ]
 paper-ranking = [
-    "indra",
     "pandas",
     "scikit-learn",
     "tabulate",
+    "pubmed-downloader>=0.0.12",
 ]
 mapping-checking = [
     "pandas",
@@ -266,7 +265,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.12.36-dev"
+current_version = "0.12.37-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

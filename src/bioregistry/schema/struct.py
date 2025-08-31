@@ -9,17 +9,17 @@ import pathlib
 import re
 import textwrap
 import typing
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     ClassVar,
     Generic,
-    Optional,
+    Literal,
+    TypeAlias,
     TypeVar,
     cast,
     overload,
@@ -29,7 +29,7 @@ import click
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
-from typing_extensions import Literal, Self, TypeAlias
+from typing_extensions import Self
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -963,7 +963,7 @@ class Resource(BaseModel):
         if self.uri_format is not None:
             return self.uri_format
         for metaprefix, key in URI_FORMAT_PATHS:
-            rv = cast(Optional[str], self.get_external(metaprefix).get(key))
+            rv = cast(str | None, self.get_external(metaprefix).get(key))
             if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
@@ -3108,7 +3108,7 @@ def _get(resource: Resource, key: str) -> Any:
         x = getattr(x1, k2, None) if x1 is not None else None
     else:
         x = None
-    if isinstance(x, (list, set)):
+    if isinstance(x, list | set):
         return "|".join(sorted(x))
     return x or ""
 
