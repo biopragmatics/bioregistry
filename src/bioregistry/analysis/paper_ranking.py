@@ -172,7 +172,7 @@ def _fill_abstracts(
     abstract_na_idx = df["abstract"].isna()
     if abstract_na_idx.all():
         raise ValueError(
-            f"no abstracts were mapped properly.\n\nPubMeds: {df['pubmed'].unique()}\n\nArticles: {pubmed_to_article}"
+            f"no abstracts were mapped properly.\n\n{df['pubmed'].nunique():,} PubMeds: {df['pubmed'].unique()}\n\nArticles: {pubmed_to_article}"
         )
     if strict and abstract_na_idx.any():
         raise ValueError(f"some abstracts weren't found\n\n{df[abstract_na_idx]}")
@@ -181,7 +181,7 @@ def _fill_abstracts(
 def _get_articles_dict(df: pd.DataFrame) -> dict[str, pubmed_downloader.Article]:
     import pubmed_downloader
 
-    return pubmed_downloader.get_articles_dict(df["pubmed"])
+    return pubmed_downloader.get_articles_dict(df["pubmed"], progress=True)
 
 
 def _get_ids(
@@ -257,9 +257,11 @@ def fetch_pubmed_papers(
             records.append(
                 {
                     "pubmed": str(article.pubmed),
-                    "title": article.title,
+                    "title": title,
                     "abstract": abstract,
-                    "year": article.date_completed.year if article.date_completed else None,
+                    "date": article.journal_issue.published
+                    if article.journal_issue and article.journal_issue.published
+                    else None,
                     "search_terms": pubmed_to_terms[str(article.pubmed)],
                 }
             )
@@ -404,7 +406,7 @@ def predict_and_save(
 
     df["meta_score"] = _predict(meta_clf, x_meta.to_numpy())
     df = df.sort_values(by="meta_score", ascending=False)
-    df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 25))
+    df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 50))
     path = Path(path).resolve()
     df.to_csv(path, sep="\t", index=False)
     click.echo(f"Wrote predicted scores to {path}")
