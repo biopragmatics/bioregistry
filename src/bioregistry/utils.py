@@ -5,12 +5,11 @@ from __future__ import annotations
 import itertools as itt
 import logging
 from collections import ChainMap, defaultdict
-from collections.abc import Hashable, Iterable, Mapping, Sequence
+from collections.abc import Callable, Hashable, Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import (
     Any,
-    Callable,
     cast,
     overload,
 )

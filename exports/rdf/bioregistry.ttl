@@ -182,6 +182,7 @@
 @prefix ccle: <https://www.cbioportal.org/patient?studyId=ccle_broad_2019&caseId=> .
 @prefix cco: <https://www.ebi.ac.uk/ols4/ontologies/cco/terms?obo_id=CCO:> .
 @prefix ccrid: <http://www.cellresource.cn/cellsearch.aspx?sc=1&where=> .
+@prefix ccso: <https://w3id.org/ccso/ccso#> .
 @prefix cdao: <http://purl.obolibrary.org/obo/CDAO_> .
 @prefix cdd: <https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=> .
 @prefix cdno: <http://purl.obolibrary.org/obo/CDNO_> .
@@ -342,7 +343,6 @@
 @prefix cryptodb: <https://cryptodb.org/cryptodb/app/record/gene/> .
 @prefix csa: <https://www.ebi.ac.uk/thornton-srv/databases/CSA/SearchResults.php?PDBID=> .
 @prefix csp: <http://purl.bioontology.org/ontology/CSP/> .
-@prefix csso: <https://w3id.org/ccso/ccso#> .
 @prefix cstr: <https://cstr.cn/> .
 @prefix ctd.chemical: <http://ctdbase.org/detail.go?type=chem&acc=> .
 @prefix ctd.disease: <http://ctdbase.org/detail.go?type=disease&db=MESH&acc=> .
@@ -992,6 +992,7 @@
 @prefix mirnest: <http://rhesus.amu.edu.pl/mirnest/copy/details.php?id=> .
 @prefix mirtarbase: <https://mirtarbase.cuhk.edu.cn/~miRTarBase/miRTarBase_2022/php/detail.php?mirtid=> .
 @prefix mite: <https://mite.bioinformatics.nl/repository/> .
+@prefix mito: <http://purl.org/spar/mito/> .
 @prefix mixs: <https://w3id.org/mixs/> .
 @prefix mlc: <https://www.mlcommons.org/mlc-id/> .
 @prefix mmdb: <http://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?uid=> .
@@ -1165,6 +1166,7 @@
 @prefix odor: <https://ordb.biotech.ttu.edu/OdorDB/Data/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix oeh.educationlevel: <http://w3id.org/openeduhub/vocabs/educationalLevel/> .
+@prefix oerschema: <https://oerschema.org/> .
 @prefix og: <https://ogp.me/ns#> .
 @prefix ogg: <http://purl.obolibrary.org/obo/OGG_> .
 @prefix ogms: <http://purl.obolibrary.org/obo/OGMS_> .
@@ -1847,6 +1849,7 @@ bioregistry.collection:0000006 a bioregistry.schema:0000003 ;
         bioregistry:doco,
         bioregistry:fabio,
         bioregistry:frapo,
+        bioregistry:mito,
         bioregistry:pso,
         bioregistry:puro,
         bioregistry:pwo,
@@ -5785,6 +5788,30 @@ bioregistry:ccrid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 ccrid:4201PAT-CCTCC00348 ;
     bioregistry.schema:0000029 "ccrid" .
 
+bioregistry:ccso a bioregistry.schema:0000001 ;
+    rdfs:label "Curriculum Course Syllabus Ontology" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "CCSO is an educational ontology acting as a data model for concepts and entities within an academic setting, enabling also the annotation of potentially available resources. The ontology aims to conceptualize educational entities within Curriculum and Syllabus with appropriate coverage and quality, in order to support rich services on top for improving curriculum management and automatically enabling syllabus semantic processes. (from homepage)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/Vkreations/CCSO> ;
+    dcat:keyword "curricula",
+        "curriculum",
+        "education",
+        "oer",
+        "oers",
+        "ontology",
+        "open educational resources" ;
+    foaf:homepage <https://vkreations.github.io/CCSO/> ;
+    bioregistry.schema:0000005 "AcademicStaff"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/ccso/ccso#$1"^^xsd:string ;
+    bioregistry.schema:0000010 <https://vkreations.github.io/CCSO/CCSO_071owl.owl> ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Evangelos Katis" ;
+            foaf:mbox "merocknyxta@gmail.com" ] ;
+    bioregistry.schema:0000024 "https://w3id.org/ccso/ccso#"^^xsd:string ;
+    bioregistry.schema:0000027 ccso:AcademicStaff ;
+    bioregistry.schema:0000029 "ccso" .
+
 bioregistry:cdao a bioregistry.schema:0000001 ;
     rdfs:label "Comparative Data Analysis Ontology" ;
     dcterms:description "a formalization of concepts and relations relevant to evolutionary comparative analysis"^^xsd:string ;
@@ -8188,25 +8215,6 @@ bioregistry:csp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "http://purl.bioontology.org/ontology/CSP/"^^xsd:string ;
     bioregistry.schema:0000027 csp:2004-2820 ;
     bioregistry.schema:0000029 "csp" .
-
-bioregistry:csso a bioregistry.schema:0000001 ;
-    rdfs:label "Curriculum Course Syllabus Ontology" ;
-    dcterms:contributor orcid:0000-0003-4423-4370 ;
-    dcterms:description "CCSO is an educational ontology acting as a data model for concepts and entities within an academic setting, enabling also the annotation of potentially available resources. The ontology aims to conceptualize educational entities within Curriculum and Syllabus with appropriate coverage and quality, in order to support rich services on top for improving curriculum management and automatically enabling syllabus semantic processes. (from homepage)"^^xsd:string ;
-    dcterms:isPartOf bioregistry.registry:bioregistry ;
-    dcat:keyword "curricula",
-        "curriculum",
-        "education",
-        "oer",
-        "ontology" ;
-    foaf:homepage <https://vkreations.github.io/CCSO/> ;
-    bioregistry.schema:0000005 "AcademicStaff"^^xsd:string ;
-    bioregistry.schema:0000006 "https://w3id.org/ccso/ccso#$1"^^xsd:string ;
-    bioregistry.schema:0000010 <https://vkreations.github.io/CCSO/CCSO_071owl.owl> ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000024 "https://w3id.org/ccso/ccso#"^^xsd:string ;
-    bioregistry.schema:0000027 csso:AcademicStaff ;
-    bioregistry.schema:0000029 "csso" .
 
 bioregistry:cst a bioregistry.schema:0000001 ;
     rdfs:label "Cell Signaling Technology Pathways" ;
@@ -20561,6 +20569,27 @@ bioregistry:oeh.educationlevel a bioregistry.schema:0000001 ;
     bioregistry.schema:0000027 oeh.educationlevel:1 ;
     bioregistry.schema:0000029 "oeh.educationlevel" .
 
+bioregistry:oerschema a bioregistry.schema:0000001 ;
+    rdfs:label "OER Schema" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "A RDF vocabulary for OER content on the web."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/open-curriculum/oerschema> ;
+    dcat:keyword "curricula",
+        "curriculum",
+        "education",
+        "oer",
+        "oers",
+        "open educational resources" ;
+    foaf:homepage <https://oerschema.org> ;
+    bioregistry.schema:0000005 "InstructionalPattern"^^xsd:string ;
+    bioregistry.schema:0000006 "https://oerschema.org/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Michael Collins" ] ;
+    bioregistry.schema:0000024 "https://oerschema.org/"^^xsd:string ;
+    bioregistry.schema:0000027 oerschema:InstructionalPattern ;
+    bioregistry.schema:0000029 "oerschema" .
+
 bioregistry:og a bioregistry.schema:0000001 ;
     rdfs:label "Open Graph protocol" ;
     dcterms:contributor orcid:0000-0003-4423-4370 ;
@@ -30300,6 +30329,8 @@ orcid:0009-0001-6787-3995 rdfs:label "Tomohiro Oga" ;
 
 orcid:0009-0003-4268-6207 rdfs:label "Justin Whorton" ;
     foaf:mbox "jmwhorton@uams.edu" .
+
+orcid:0009-0006-3139-1667 rdfs:label "Matteo Guenci" .
 
 orcid:0009-0006-4755-1039 rdfs:label "Nisha Sharma" .
 
@@ -42939,6 +42970,27 @@ bioregistry:miriam.resource a bioregistry.schema:0000001 ;
     bioregistry.schema:0000024 "https://resolver.api.identifiers.org/resolveMirId/"^^xsd:string ;
     bioregistry.schema:0000027 miriam.resource:00100005 ;
     bioregistry.schema:0000029 "miriam.resource" .
+
+bioregistry:mito a bioregistry.schema:0000001 ;
+    rdfs:label "Mention Typing Ontology" ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    dcterms:description "An ontology with predicates to formalization of the concept of mentions. The mentions may be either explicit (e.g. as when well stated into an article \"Dr. Johnson's groundbreaking research on climate change\") or implicit (e.g. such as discussing \"seminal studies in the field\"). MiTO contains the object property mito:mentions and its inverse mito:isMentionedBy."^^xsd:string ;
+    dcterms:isPartOf bioregistry.registry:bioregistry ;
+    doap:GitRepository <https://github.com/SPAROntologies/mito> ;
+    dcat:keyword "mentions",
+        "natural language processing",
+        "ner",
+        "nlp",
+        "ontology",
+        "text mining" ;
+    foaf:homepage <http://purl.org/spar/mito> ;
+    bioregistry.schema:0000005 "MentionType"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/mito/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0009-0006-3139-1667 ;
+    bioregistry.schema:0000024 "http://purl.org/spar/mito/"^^xsd:string ;
+    bioregistry.schema:0000027 mito:MentionType ;
+    bioregistry.schema:0000029 "mito" .
 
 bioregistry:mmusdv a bioregistry.schema:0000001 ;
     rdfs:label "Mouse Developmental Stages" ;
@@ -69044,6 +69096,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ccle,
         bioregistry:cco,
         bioregistry:ccrid,
+        bioregistry:ccso,
         bioregistry:cdao,
         bioregistry:cdd,
         bioregistry:cdno,
@@ -69228,7 +69281,6 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:csa,
         bioregistry:csd,
         bioregistry:csp,
-        bioregistry:csso,
         bioregistry:cst,
         bioregistry:cst.ab,
         bioregistry:cstr,
@@ -70031,6 +70083,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:mirtarbase,
         bioregistry:mirte,
         bioregistry:mite,
+        bioregistry:mito,
         bioregistry:mixs,
         bioregistry:mlc,
         bioregistry:mmdb,
@@ -70233,6 +70286,7 @@ bioregistry.registry:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:odrl,
         bioregistry:oecd.template,
         bioregistry:oeh.educationlevel,
+        bioregistry:oerschema,
         bioregistry:og,
         bioregistry:ogg,
         bioregistry:ogi,

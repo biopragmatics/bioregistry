@@ -32,7 +32,7 @@ def _handle_res_json(res: requests.Response) -> set[tuple[str, str]]:
 
 def _handle_res_csv(res: requests.Response) -> set[tuple[str, str]]:
     header, *lines = (line.strip().split(",") for line in res.text.splitlines())
-    records = (dict(zip(header, line)) for line in lines)
+    records = (dict(zip(header, line, strict=False)) for line in lines)
     return {(record["s"], record["o"]) for record in records}
 
 

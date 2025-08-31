@@ -77,7 +77,7 @@ class TestTSV(unittest.TestCase):
                         len(line),
                         msg="wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
                     )
-                    data = dict(zip(COLUMNS, line))
+                    data = dict(zip(COLUMNS, line, strict=False))
                     self.validate_row(data)
                     pubmeds.append(data["pubmed"])
 

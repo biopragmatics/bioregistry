@@ -10,11 +10,10 @@ import random
 import sys
 import typing
 from collections import Counter, defaultdict
-from collections.abc import Collection, Mapping
-from typing import TYPE_CHECKING, Any, Callable, TypeVar, cast
+from collections.abc import Callable, Collection, Mapping
+from typing import TYPE_CHECKING, Any, TypeAlias, TypeVar, cast
 
 import click
-from typing_extensions import TypeAlias
 
 import bioregistry
 from bioregistry import (
@@ -178,7 +177,7 @@ def _plot_attribute_pies(
             continue
         label, counter = label_counter
         if label == "License Type":
-            labels, sizes = zip(*counter.most_common())
+            labels, sizes = zip(*counter.most_common(), strict=False)
             explode = None
         else:
             labels = ("Yes", "No")
@@ -334,7 +333,7 @@ def get_registry_infos() -> list[RegistryInfo]:
         palette = sns.color_palette("Paired", len(getters))
     return [
         RegistryInfo(metaprefix, label, color, set(func(force_download=False)))
-        for (metaprefix, label, func), color in zip(getters, palette)
+        for (metaprefix, label, func), color in zip(getters, palette, strict=False)
     ]
 
 
@@ -721,7 +720,7 @@ def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair
     # There should only be one container here
     _labels = xrefs_df["count"].to_list()
     _labels[0] = f"{_labels[0]}\nNovel"
-    for i, label in zip(ax.containers, _labels):  # type:ignore[attr-defined]
+    for i, label in zip(ax.containers, _labels, strict=False):  # type:ignore[attr-defined]
         ax.bar_label(i, [label])
     ax.set_xlabel(
         f"Number of the {n_mappable_metaprefixes} Mapped External Registries Capturing a Given Identifier Resource"

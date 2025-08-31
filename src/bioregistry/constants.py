@@ -6,11 +6,10 @@ import enum
 import os
 import pathlib
 import re
-from typing import Union
+from typing import TypeAlias
 
 import pystow
 from curies import ReferenceTuple
-from typing_extensions import TypeAlias
 
 __all__ = [
     "BIOREGISTRY_MODULE",
@@ -171,7 +170,7 @@ EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 NonePair: TypeAlias = tuple[None, None]
 
-MaybeCURIE = Union[ReferenceTuple, NonePair, None]
+MaybeCURIE = ReferenceTuple | NonePair | None
 
 DISALLOWED_EMAIL_PARTS = {
     "contact@",
