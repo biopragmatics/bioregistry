@@ -27,6 +27,7 @@ __all__ = [
 @click.option("--collections", type=Path, help="Path to a local collections file")
 @click.option("--contexts", type=Path, help="Path to a local contexts file")
 @click.option("--config", type=Path, help="Path to a configuration file")
+@click.option("--analytics", is_flag=True)
 @click.option(
     "--base-url",
     type=str,
@@ -45,6 +46,7 @@ def web(
     contexts: Path | None,
     config: Path | None,
     base_url: str | None,
+    analytics: bool,
 ) -> None:
     """Run the web application."""
     import uvicorn
@@ -71,5 +73,6 @@ def web(
         and collections is None
         and contexts is None,
         return_flask=False,
+        analytics=analytics,
     )
     uvicorn.run(app, host=host, port=int(port), workers=workers)

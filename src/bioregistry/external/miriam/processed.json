@@ -1090,7 +1090,7 @@
     "uri_format": "http://purl.bioontology.org/ontology/BTO/BTO:$1"
   },
   "bugbase.expt": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BugBase is a MIAME-compliant microbial gene expression and comparative genomic database. It stores experimental annotation and multiple raw and analysed data formats, as well as protocols for bacterial microarray designs. This collection references microarray experiments.",
     "homepage": "http://bugs.sgul.ac.uk/E-BUGS",
     "id": "00000404",
@@ -1102,7 +1102,7 @@
     "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view"
   },
   "bugbase.protocol": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "BugBase is a MIAME-compliant microbial gene expression and comparative genomic database. It stores experimental annotation and multiple raw and analysed data formats, as well as protocols for bacterial microarray designs. This collection references design protocols.",
     "homepage": "http://bugs.sgul.ac.uk/E-BUGS",
     "id": "00000403",
@@ -2215,7 +2215,7 @@
         "description": "dbEST through DNA Data Bank of Japan (DDBJ)",
         "homepage": "http://www.ddbj.nig.ac.jp/",
         "name": "dbEST through DNA Data Bank of Japan (DDBJ)",
-        "uri_format": "http://getentry.ddbj.nig.ac.jp/getentry/na/$1"
+        "uri_format": "https://getentry.ddbj.nig.ac.jp/getentry/na/$1"
       }
     ],
     "sampleId": "BP100000",
@@ -4699,13 +4699,6 @@
       },
       {
         "code": "",
-        "description": "InChI through Chemspider",
-        "homepage": "http://www.chemspider.com/",
-        "name": "InChI through Chemspider",
-        "uri_format": "http://www.chemspider.com/$1"
-      },
-      {
-        "code": "",
         "description": "InChI through NIST",
         "homepage": "http://webbook.nist.gov/chemistry",
         "name": "InChI through NIST",
@@ -4975,9 +4968,9 @@
       {
         "code": "",
         "description": "ISSN at Library of Congress",
-        "homepage": "http://catalog.loc.gov/webvoy.htm",
+        "homepage": "http://catalog.loc.gov",
         "name": "ISSN at Library of Congress",
-        "uri_format": "https://catalog.loc.gov/vwebv/search?searchCode=STNO&searchArg=$1&searchType=1&recCount=25"
+        "uri_format": "https://search.catalog.loc.gov/search?option=keyword&query=$1"
       }
     ],
     "sampleId": "0745-4570",
@@ -5644,7 +5637,7 @@
       }
     ],
     "sampleId": "MSBNK-IPB_Halle-PB000166",
-    "uri_format": "https://massbank.jp/RecordDisplay?id=$1"
+    "uri_format": "https://massbank.jp/MassBank/RecordDisplay?id=$1"
   },
   "massive": {
     "deprecated": false,
@@ -5922,7 +5915,7 @@
     "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
   },
   "metlin": {
-    "deprecated": false,
+    "deprecated": true,
     "description": "The METLIN (Metabolite and Tandem Mass Spectrometry) Database is a repository of metabolite information as well as tandem mass spectrometry data, providing public access to its comprehensive MS and MS/MS metabolite data. An annotated list of known metabolites and their mass, chemical formula, and structure are available, with each metabolite linked to external resources for further reference and inquiry.",
     "homepage": "http://masspec.scripps.edu/",
     "id": "00000322",
@@ -9437,9 +9430,9 @@
     "id": "00001102",
     "name": "SPARC DRS",
     "namespaceEmbeddedInLui": false,
-    "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
+    "pattern": "(?:[a-zA-Z]+\\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
     "prefix": "sparc.drs",
-    "sampleId": "8ca67504-3167-4cc8-ba74-98137bb7cd0a",
+    "sampleId": "package/8ca67504-3167-4cc8-ba74-98137bb7cd0a",
     "uri_format": "https://services.scicrunch.io/sparc/drs/v1/package/$1"
   },
   "spdx": {
@@ -10135,7 +10128,7 @@
     "id": "00000005",
     "name": "UniProt Knowledgebase",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
+    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?(-\\d+)?(#PRO_\\d+)?$",
     "prefix": "uniprot",
     "providers": [
       {

@@ -7,7 +7,7 @@ import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 from xml.etree import ElementTree
 
 import requests
@@ -114,7 +114,7 @@ def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[st
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
 
 
-def _clean_xref(xref: str) -> Optional[tuple[str, str]]:
+def _clean_xref(xref: str) -> tuple[str, str] | None:
     if (
         xref.startswith("FAIRsharing_DOI:10.25504/")
         or xref.startswith("FAIRsharing_doi:10.25504/")

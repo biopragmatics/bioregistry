@@ -9,17 +9,17 @@ import pathlib
 import re
 import textwrap
 import typing
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     ClassVar,
     Generic,
-    Optional,
+    Literal,
+    TypeAlias,
     TypeVar,
     cast,
     overload,
@@ -29,7 +29,7 @@ import click
 from curies.w3c import NCNAME_RE
 from pydantic import BaseModel, EmailStr, Field, PrivateAttr
 from pydantic.json_schema import models_json_schema
-from typing_extensions import TypeAlias
+from typing_extensions import Self
 
 from bioregistry import constants as brc
 from bioregistry.constants import (
@@ -42,11 +42,6 @@ from bioregistry.constants import (
 )
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
-
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal  # type:ignore
 
 if TYPE_CHECKING:
     import rdflib
@@ -216,16 +211,16 @@ class Attributable(BaseModel):
         :param graph: An RDF graph
         :returns: The RDF node representing this author using an ORCiD URI.
         """
-        from rdflib import BNode, Literal
+        from rdflib import BNode, Literal, Node
         from rdflib.namespace import FOAF, RDFS
 
         if not self.orcid:
-            node = BNode()
+            node: Node = BNode()
         else:
             from .constants import orcid
 
             node = orcid.term(self.orcid)
-        graph.add((node, RDFS["label"], Literal(self.name)))
+        graph.add((node, RDFS.label, Literal(self.name)))
         if self.email:
             graph.add((node, FOAF.mbox, Literal(self.email)))
         return node
@@ -242,6 +237,18 @@ class Author(Attributable):
         description=ORCID_DESCRIPTION,
         **{PATTERN_KEY: ORCID_PATTERN},  # type:ignore
     )
+
+    @classmethod
+    def get_charlie(cls) -> Self:
+        """Get an author object representing Charlie."""
+        return cls.model_validate(
+            {
+                "email": "cthoyt@gmail.com",
+                "github": "cthoyt",
+                "name": "Charles Tapley Hoyt",
+                "orcid": "0000-0003-4423-4370",
+            }
+        )
 
 
 class Publication(BaseModel):
@@ -400,8 +407,8 @@ class Resource(BaseModel):
     )
     contact_group_email: EmailStr | None = Field(
         default=None,
-        description="A group contact email for the project. It's required to have a primary contact "
-        "to have this field.",
+        description="A group contact email (e.g., a mailing list, a shared address) for the project. "
+        "It's required to have a primary contact to have this field.",
     )
     contact_page: str | None = Field(
         default=None,
@@ -667,6 +674,8 @@ class Resource(BaseModel):
     prefixcommons: Mapping[str, Any] | None = None
     #: External data from Wikidata Properties
     wikidata: Mapping[str, Any] | None = None
+    #: External data from Wikidata Entity
+    wikidata_entity: Mapping[str, Any] | None = None
     #: External data from the Gene Ontology's custom registry
     go: Mapping[str, Any] | None = None
     #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
@@ -954,7 +963,7 @@ class Resource(BaseModel):
         if self.uri_format is not None:
             return self.uri_format
         for metaprefix, key in URI_FORMAT_PATHS:
-            rv = cast(Optional[str], self.get_external(metaprefix).get(key))
+            rv = cast(str | None, self.get_external(metaprefix).get(key))
             if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
@@ -1000,6 +1009,16 @@ class Resource(BaseModel):
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+
+    def get_wikidata_entity(self) -> str | None:
+        """Get the wikidata database mapping."""
+        if self.mappings and "wikidata.entity" in self.mappings:
+            return self.mappings["wikidata.entity"]
+        if self.wikidata and "database" in self.wikidata:
+            return cast(str, self.wikidata["database"])
+        if self.bartoc and "wikidata_database" in self.bartoc:
+            return cast(str, self.bartoc["wikidata_database"])
+        return None
 
     def get_mappings(self) -> dict[str, str]:
         """Get the mappings to external registries, if available."""
@@ -1566,6 +1585,12 @@ class Resource(BaseModel):
             return cast(str, self.obofoundry["logo"])
         if self.fairsharing and "logo" in self.fairsharing:
             return cast(str, self.fairsharing["logo"])
+        return None
+
+    def get_mailing_list(self) -> str | None:
+        """Get the group email."""
+        if self.contact_group_email:
+            return str(self.contact_group_email)
         return None
 
     def get_obofoundry_prefix(self) -> str | None:
@@ -2340,6 +2365,7 @@ class Resource(BaseModel):
                 self.get_download_obo(),
                 self.get_download_owl(),
                 self.get_download_obograph(),
+                self.get_download_rdf(),
             )
         )
 
@@ -2896,7 +2922,7 @@ class Collection(BaseModel):
     context: str | None = Field(default=None, description="The JSON-LD context's name")
     references: list[str] | None = Field(default=None, description="URL references")
 
-    def add_triples(self, graph: rdflib.Graph) -> rdflib.Graph:
+    def add_triples(self, graph: rdflib.Graph) -> None:
         """Add triples to an RDF graph for this collection.
 
         :param graph: An RDF graph
@@ -2922,8 +2948,6 @@ class Collection(BaseModel):
 
         for resource in self.resources:
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
-
-        return node
 
     def as_context_jsonld_str(self) -> str:
         """Get the JSON-LD context as a string from a given collection."""
@@ -3084,7 +3108,7 @@ def _get(resource: Resource, key: str) -> Any:
         x = getattr(x1, k2, None) if x1 is not None else None
     else:
         x = None
-    if isinstance(x, (list, set)):
+    if isinstance(x, list | set):
         return "|".join(sorted(x))
     return x or ""
 
