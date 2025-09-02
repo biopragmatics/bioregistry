@@ -41,8 +41,8 @@ def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None)
 def validate_turtle(url: str):
     """Validate prefixes in a Turtle file (either remove or local).
 
-    For example, the Turtle file at
-    https://github.com/ISE-FIZKarlsruhe/chemotion-kg/raw/4cb5c24af6494d66fb8cd849921131dbc789c163/processing/output_bfo_compliant.ttl
+    For example, you can validate an old version of the chemotion
+    knowledge graph. It has the following prefixes:
 
     @prefix nfdicore: <https://nfdi.fiz-karlsruhe.de/ontology/> .
     @prefix ns1: <http://purls.helmholtz-metadaten.de/mwo/> .
@@ -51,9 +51,13 @@ def validate_turtle(url: str):
     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-    https://github.com/ISE-FIZKarlsruhe/chemotion-kg/issues/2
+    The Bioregistry will error on ``ns1`` and ``ns2`` since they're not
+    standard prefixes. Run it like this:
 
-    :return:
+    $ bioregistry validate ttl https://github.com/ISE-FIZKarlsruhe/chemotion-kg/raw/4cb5c24af/processing/output_bfo_compliant.ttl
+
+    See follow-up discussion on improving the chemotion-kg using
+    this feedback in https://github.com/ISE-FIZKarlsruhe/chemotion-kg/issues/2
     """
     from .utils import click_write_messages, validate_ttl
 

@@ -40,18 +40,22 @@ def click_write_messages(messages: list[Message]) -> None:
     import click
 
     for message in messages:
-        click.secho(
-            f"{message.prefix} - {message.error}", fg=LEVEL_TO_COLOR[message.level], nl=False
-        )
-        if message.solution:
-            click.echo(" > " + message.solution)
-        else:
-            click.echo("")
+        s = ""
+        if message.line:
+            s += f"[line {message.line}] "
 
-    if any(message.level == "error" for message in messages):
+        s += f"prefix: {message.prefix} - {message.error}"
+
+        if message.solution:
+            s += " > " + message.solution
+
+        click.secho(s, fg=LEVEL_TO_COLOR[message.level])
+
+    errors = sum(message.level == "error" for message in messages)
+    if errors:
         import sys
 
-        click.secho("failed", fg="red")
+        click.secho(f"\nfailed with {errors:,} errors", fg="red")
         sys.exit(1)
 
 
@@ -131,14 +135,12 @@ def validate_ttl(url: str) -> list[Message]:
     """Validate a Turtle file."""
     import requests
 
-    import bioregistry
-
     def _get_curie_prefix_from_uri_prefix(uri_prefix: str) -> str | None:
         return None
 
     messages = []
     with requests.get(url, stream=True, timeout=15) as res:
-        for _i, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
+        for line_number, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
             if not line.startswith("@"):
                 break
 
@@ -156,7 +158,7 @@ def validate_ttl(url: str) -> list[Message]:
                 if suggestion:
                     messages.append(
                         Message(
-                            line=line,
+                            line=line_number,
                             prefix=curie_prefix,
                             error="non-standard CURIE prefix",
                             solution=f"switch to {suggestion}",
@@ -166,7 +168,7 @@ def validate_ttl(url: str) -> list[Message]:
                 else:
                     messages.append(
                         Message(
-                            line=line,
+                            line=line_number,
                             prefix=curie_prefix,
                             error="non-standard CURIE prefix",
                             level="error",
