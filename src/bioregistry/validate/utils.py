@@ -146,7 +146,7 @@ def _get_all_messages(
                 return y
         return suggies
 
-    _check = _get_checker(context, use_preferred=use_preferred)
+    _checker = _get_checker(context, use_preferred=use_preferred)
 
     messages: list[Message] = []
     for curie_prefix, uri_prefix, line_number in inputs:
@@ -159,7 +159,7 @@ def _get_all_messages(
                         line=line_number,
                         prefix=curie_prefix,
                         uri_prefix=uri_prefix,
-                        error="non-standard CURIE prefix",
+                        error="unknown CURIE prefix",
                         level="error",
                     )
                 )
@@ -181,7 +181,7 @@ def _get_all_messages(
                         line=line_number,
                         prefix=curie_prefix,
                         uri_prefix=uri_prefix,
-                        error="non-standard CURIE prefix",
+                        error="unknown CURIE prefix",
                         solution=solution,
                         level=level,
                     )
@@ -189,7 +189,12 @@ def _get_all_messages(
 
         else:
             if message := _get_message(
-                curie_prefix, uri_prefix, _check, strict=strict, line_number=line_number
+                curie_prefix,
+                uri_prefix,
+                _checker,
+                strict=strict,
+                line_number=line_number,
+                use_preferred=use_preferred,
             ):
                 messages.append(message)
 
@@ -203,13 +208,18 @@ def _get_message(
     *,
     strict: bool = False,
     line_number: int | None = None,
+    use_preferred: bool = False,
 ) -> Message | None:
     norm_prefix = _checker(curie_prefix)
+    if use_preferred:
+        middle = "preferred"
+    else:
+        middle = "standard"
     if norm_prefix is None:
         return Message(
             prefix=curie_prefix,
             uri_prefix=uri_prefix,
-            error="non-standard CURIE prefix",
+            error="unknown CURIE prefix",
             level="error",
             line=line_number,
         )
@@ -217,8 +227,8 @@ def _get_message(
         return Message(
             prefix=curie_prefix,
             uri_prefix=uri_prefix,
-            error="nonstandard",
-            solution=f"Switch to prefix: {norm_prefix}",
+            error="non-standard CURIE prefix",
+            solution=f"Switch to {middle} prefix: {norm_prefix}",
             level="error" if strict else "warning",
             line=line_number,
         )
