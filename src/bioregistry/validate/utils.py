@@ -47,7 +47,7 @@ def click_write_messages(messages: list[Message]) -> None:
         s += f"prefix: {message.prefix} - {message.error}"
 
         if message.solution:
-            s += " > " + message.solution
+            s += ". " + message.solution
 
         click.secho(s, fg=LEVEL_TO_COLOR[message.level])
 
@@ -131,13 +131,14 @@ def validate_jsonld(
     return messages
 
 
-def validate_ttl(url: str) -> list[Message]:
+def validate_ttl(url: str, *, rpm: dict[str, str] | None = None) -> list[Message]:
     """Validate a Turtle file."""
     import requests
 
-    rpm = bioregistry.manager.get_reverse_prefix_map()
+    if rpm is None:
+        rpm = bioregistry.manager.get_reverse_prefix_map()
 
-    def _get_curie_prefix_from_uri_prefix(uri_prefix: str) -> list[tuple[str, str]] | str:
+    def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
         suggies = []
         for x, y in rpm.items():
             if x.startswith(uri_prefix):
@@ -162,8 +163,8 @@ def validate_ttl(url: str) -> list[Message]:
 
             resource = bioregistry.get_resource(curie_prefix)
             if resource is None:
-                suggestion = _get_curie_prefix_from_uri_prefix(uri_prefix)
-                if not suggestion:
+                suggestions = _get_suggestions(uri_prefix)
+                if not suggestions:
                     messages.append(
                         Message(
                             line=line_number,
@@ -173,19 +174,18 @@ def validate_ttl(url: str) -> list[Message]:
                         )
                     )
                 else:
-                    if isinstance(suggestion, str):
-                        solution = f"Switch to {suggestion}"
+                    if isinstance(suggestions, str):
+                        solution = f"Switch to {suggestions}"
                         level = "warning"
-                    elif len(suggestion) == 1:
-                        solution = "Consider switching to :\n\n"
-                        for up, cp in suggestion:
-                            solution += f"\t@prefix {cp}: <{up}> ."
-                        level = "error"
                     else:
-                        solution = "Consider switching to one of:\n\n"
-                        for up, cp in suggestion:
-                            solution += f"\t@prefix {cp}: <{up}> ."
                         level = "error"
+                        if len(suggestions) == 1:
+                            up, cp = suggestions[0]
+                            solution = f"Consider switching to this more specific CURIE/URI prefix pair:\n\n  @prefix {cp}: <{up}> .\n"
+                        else:
+                            solution = "Consider switching one of these more specific CURIE/URI prefix pairs:\n\n"
+                            for up, cp in suggestions:
+                                solution += f"\t@prefix {cp}: <{up}> ."
                     messages.append(
                         Message(
                             line=line_number,
@@ -195,5 +195,8 @@ def validate_ttl(url: str) -> list[Message]:
                             level=level,
                         )
                     )
+
+            else:
+                pass  # check that it's standard
 
     return messages

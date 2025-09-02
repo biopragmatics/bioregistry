@@ -60,6 +60,8 @@ def validate_turtle(url: str) -> None:
     this feedback in https://github.com/ISE-FIZKarlsruhe/chemotion-kg/issues/2
     """
     from .utils import click_write_messages, validate_ttl
+    from ..resource_manager import manager
 
-    messages = validate_ttl(url)
+    rpm = manager.get_reverse_prefix_map()
+    messages = validate_ttl(url, rpm=rpm)
     click_write_messages(messages)
