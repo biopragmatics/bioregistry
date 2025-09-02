@@ -38,7 +38,7 @@ def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None)
 
 @validate.command(name="ttl")
 @click.argument("url")
-def validate_turtle(url: str):
+def validate_turtle(url: str) -> None:
     """Validate prefixes in a Turtle file (either remove or local).
 
     For example, you can validate an old version of the chemotion
