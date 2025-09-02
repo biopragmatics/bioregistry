@@ -18,6 +18,7 @@ class TestValidation(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
+        """Set up the test case with a reusable reverse prefix map."""
         cls.rpm = bioregistry.manager.get_reverse_prefix_map()
 
     def test_validate_jsonld_exceptions(self) -> None:
@@ -74,10 +75,8 @@ class TestValidation(unittest.TestCase):
         )
 
     def assert_messages_equal(self, expected: list[Message], actual: list[Message]) -> None:
+        """Assert a list of messages are equal by dumping them from Pydantic to dicts first."""
         self.assertEqual(
             [m.model_dump() for m in expected],
             [m.model_dump() for m in actual],
         )
-
-    def test_validate_ttl(self) -> None:
-        """Test validation of turtle."""
