@@ -19,8 +19,8 @@ class TestValidation(unittest.TestCase):
 
         test_context = {
             "@context": {
-                "GO": ...,
-                "nope": ...,
+                "GO": "https://purl.obolibrary.org/obo/GO_",
+                "nope": "https://example.org/nope/",
             }
         }
         messages = validate_jsonld(test_context, strict=True)
@@ -28,11 +28,17 @@ class TestValidation(unittest.TestCase):
             [
                 Message(
                     prefix="GO",
+                    uri_prefix="https://purl.obolibrary.org/obo/GO_",
                     solution="Switch to standard prefix: go",
-                    error="nonstandard",
+                    error="non-standard CURIE prefix",
                     level="error",
                 ),
-                Message(prefix="nope", error="invalid", level="error"),
+                Message(
+                    prefix="nope",
+                    uri_prefix="https://example.org/nope/",
+                    error="invalid",
+                    level="error",
+                ),
             ],
             messages,
         )
@@ -42,11 +48,21 @@ class TestValidation(unittest.TestCase):
             [
                 Message(
                     prefix="GO",
+                    uri_prefix="https://purl.obolibrary.org/obo/GO_",
                     solution="Switch to standard prefix: go",
                     error="nonstandard",
                     level="warning",
                 ),
-                Message(prefix="nope", error="invalid", level="error"),
+                Message(
+                    prefix="nope",
+                    uri_prefix="https://example.org/nope/",
+                    error="invalid",
+                    level="error",
+                ),
             ],
             messages,
         )
+
+    def test_validate_ttl(self) -> None:
+        """Test validation of turtle."""
+        raise NotImplementedError

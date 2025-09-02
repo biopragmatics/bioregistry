@@ -126,7 +126,7 @@ def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
 def _get_all_messages(
     inputs: list[tuple[str, str, int | None]],
     *,
-    context: str | None | Context,
+    context: str | None | Context = None,
     use_preferred: bool = False,
     rpm: Mapping[str, str] | None = None,
     strict: bool = False,
@@ -209,7 +209,7 @@ def _get_message(
         return Message(
             prefix=curie_prefix,
             uri_prefix=uri_prefix,
-            error="invalid",
+            error="non-standard CURIE prefix",
             level="error",
             line=line_number,
         )
