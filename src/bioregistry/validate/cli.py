@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import sys
-
 import click
 
 __all__ = [
@@ -30,26 +28,34 @@ def validate() -> None:
 )
 def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None) -> None:
     """Validate a JSON-LD file."""
-    from .utils import validate_jsonld
+    from .utils import click_write_messages, validate_jsonld
 
     messages = validate_jsonld(
         location, strict=not relax, use_preferred=use_preferred, context=context
     )
-    for message in messages:
-        click.secho(
-            f"{message.prefix} - {message.error}", fg=LEVEL_TO_COLOR[message.level], nl=False
-        )
-        if message.solution:
-            click.echo(" > " + message.solution)
-        else:
-            click.echo("")
-
-    if any(message.level == "error" for message in messages):
-        click.secho("failed", fg="red")
-        sys.exit(1)
+    click_write_messages(messages)
 
 
-LEVEL_TO_COLOR = {
-    "warning": "yellow",
-    "error": "red",
-}
+@validate.command(name="ttl")
+@click.argument("url")
+def validate_turtle(url: str):
+    """Validate prefixes in a Turtle file (either remove or local).
+
+    For example, the Turtle file at
+    https://github.com/ISE-FIZKarlsruhe/chemotion-kg/raw/4cb5c24af6494d66fb8cd849921131dbc789c163/processing/output_bfo_compliant.ttl
+
+    @prefix nfdicore: <https://nfdi.fiz-karlsruhe.de/ontology/> .
+    @prefix ns1: <http://purls.helmholtz-metadaten.de/mwo/> .
+    @prefix ns2: <http://purl.obolibrary.org/obo/chebi/> .
+    @prefix obo: <http://purl.obolibrary.org/obo/> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    https://github.com/ISE-FIZKarlsruhe/chemotion-kg/issues/2
+
+    :return:
+    """
+    from .utils import click_write_messages, validate_ttl
+
+    messages = validate_ttl(url)
+    click_write_messages(messages)

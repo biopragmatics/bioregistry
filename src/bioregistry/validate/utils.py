@@ -13,7 +13,9 @@ import bioregistry
 
 __all__ = [
     "Message",
+    "click_write_messages",
     "validate_jsonld",
+    "validate_ttl",
 ]
 
 
@@ -23,7 +25,34 @@ class Message(BaseModel):
     prefix: str
     error: str
     solution: str | None = None
+    line: int | None = None
     level: Literal["warning", "error"]
+
+
+LEVEL_TO_COLOR = {
+    "warning": "yellow",
+    "error": "red",
+}
+
+
+def click_write_messages(messages: list[Message]) -> None:
+    """Write messages."""
+    import click
+
+    for message in messages:
+        click.secho(
+            f"{message.prefix} - {message.error}", fg=LEVEL_TO_COLOR[message.level], nl=False
+        )
+        if message.solution:
+            click.echo(" > " + message.solution)
+        else:
+            click.echo("")
+
+    if any(message.level == "error" for message in messages):
+        import sys
+
+        click.secho("failed", fg="red")
+        sys.exit(1)
 
 
 def validate_jsonld(
@@ -95,4 +124,53 @@ def validate_jsonld(
                     }
                 )
             )
+    return messages
+
+
+def validate_ttl(url: str) -> list[Message]:
+    """Validate a Turtle file."""
+    import requests
+
+    import bioregistry
+
+    def _get_curie_prefix_from_uri_prefix(uri_prefix: str) -> str | None:
+        return None
+
+    messages = []
+    with requests.get(url, stream=True, timeout=15) as res:
+        for _i, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
+            if not line.startswith("@"):
+                break
+
+            # skip @base, or other
+            if not line.startswith("@prefix"):
+                continue
+            line = line.removeprefix("@prefix ")
+
+            curie_prefix, uri_prefix = line.split(":", 1)
+            uri_prefix = uri_prefix.strip().rstrip(".").strip().strip("<>")
+
+            resource = bioregistry.get_resource(curie_prefix)
+            if resource is None:
+                suggestion = _get_curie_prefix_from_uri_prefix(uri_prefix)
+                if suggestion:
+                    messages.append(
+                        Message(
+                            line=line,
+                            prefix=curie_prefix,
+                            error="non-standard CURIE prefix",
+                            solution=f"switch to {suggestion}",
+                            level="warning",
+                        )
+                    )
+                else:
+                    messages.append(
+                        Message(
+                            line=line,
+                            prefix=curie_prefix,
+                            error="non-standard CURIE prefix",
+                            level="error",
+                        )
+                    )
+
     return messages
