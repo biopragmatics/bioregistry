@@ -5,11 +5,13 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
 from pydantic import BaseModel
+from typing_extensions import NotRequired, TypedDict, Unpack
 
-import bioregistry
+if TYPE_CHECKING:
+    from bioregistry import Context
 
 __all__ = [
     "Message",
@@ -45,7 +47,7 @@ def click_write_messages(messages: list[Message]) -> None:
         if message.line:
             s += f"[line {message.line}] "
 
-        s += f"prefix: {message.prefix} - {message.error}"
+        s += f"{message.prefix}: {message.uri_prefix}\n  {message.error}"
 
         if message.solution:
             s += ". " + message.solution
@@ -60,29 +62,17 @@ def click_write_messages(messages: list[Message]) -> None:
         sys.exit(1)
 
 
-def _get_checker(
-    context: str | None | bioregistry.Context = None, use_preferred: bool = False
-) -> Callable[[str], str | None]:
-    if context is not None:
-        converter = bioregistry.manager.get_converter_from_context(context)
+class ValidateKwargs(TypedDict):
+    """Keyword arguments for validators, passed to :func:`_get_all_messages`."""
 
-        def _check(pp: str) -> str | None:
-            return converter.standardize_prefix(pp, strict=False)
-
-    else:
-
-        def _check(pp: str) -> str | None:
-            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
-
-    return _check
+    rpm: NotRequired[Mapping[str, str] | None]
+    use_preferred: NotRequired[bool]
+    context: NotRequired[str | Context | None]
+    strict: NotRequired[bool]
 
 
 def validate_jsonld(
-    obj: str | Mapping[str, Mapping[str, str]],
-    *,
-    strict: bool = True,
-    use_preferred: bool = False,
-    context: str | None | bioregistry.Context = None,
+    obj: str | Mapping[str, Mapping[str, str]], **kwargs: Unpack[ValidateKwargs]
 ) -> list[Message]:
     """Validate a JSON-LD object."""
     if isinstance(obj, str):
@@ -106,12 +96,102 @@ def validate_jsonld(
     if not isinstance(context_inner, dict):
         raise TypeError(f"@context is not a dictionary: {context_inner}")
 
-    _checker = _get_checker(context, use_preferred=use_preferred)
+    inputs: list[tuple[str, str, int | None]] = [(cp, up, None) for cp, up in context_inner.items()]
 
-    messages = []
-    for curie_prefix, uri_prefix in context_inner.items():
-        if message := _get_message(curie_prefix, uri_prefix, _checker, strict=strict):
-            messages.append(message)
+    return _get_all_messages(inputs, **kwargs)
+
+
+def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
+    """Validate a remote Turtle file."""
+    import requests
+
+    inputs: list[tuple[str, str, int | None]] = []
+    with requests.get(url, stream=True, timeout=15) as res:
+        for line_number, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
+            if not line.startswith("@"):
+                break
+
+            # skip @base, or other
+            if not line.startswith("@prefix"):
+                continue
+            line = line.removeprefix("@prefix ")
+
+            curie_prefix, uri_prefix = line.split(":", 1)
+            uri_prefix = uri_prefix.strip().rstrip(".").strip().strip("<>")
+            inputs.append((curie_prefix, uri_prefix, line_number))
+
+    return _get_all_messages(inputs, **kwargs)
+
+
+def _get_all_messages(
+    inputs: list[tuple[str, str, int | None]],
+    *,
+    context: str | None | Context,
+    use_preferred: bool = False,
+    rpm: Mapping[str, str] | None = None,
+    strict: bool = False,
+) -> list[Message]:
+    """Get messages for the given inputs."""
+    import bioregistry
+
+    if rpm is None:
+        rpm = bioregistry.manager.get_reverse_prefix_map()
+
+    def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
+        suggies = []
+        for x, y in rpm.items():
+            if x.startswith(uri_prefix):
+                suggies.append((x, y))
+            if x == uri_prefix:
+                return y
+        return suggies
+
+    _check = _get_checker(context, use_preferred=use_preferred)
+
+    messages: list[Message] = []
+    for curie_prefix, uri_prefix, line_number in inputs:
+        resource = bioregistry.get_resource(curie_prefix)
+        if resource is None:
+            suggestions = _get_suggestions(uri_prefix)
+            if not suggestions:
+                messages.append(
+                    Message(
+                        line=line_number,
+                        prefix=curie_prefix,
+                        uri_prefix=uri_prefix,
+                        error="non-standard CURIE prefix",
+                        level="error",
+                    )
+                )
+            else:
+                if isinstance(suggestions, str):
+                    solution = f"Switch to {suggestions}"
+                    level = "warning"
+                else:
+                    level = "error"
+                    if len(suggestions) == 1:
+                        up, cp = suggestions[0]
+                        solution = f"Consider switching to the specific CURIE/URI prefix pair `{cp}` and `{up}`"
+                    else:
+                        solution = "Consider switching one of these more specific CURIE/URI prefix pairs:\n\n"
+                        for up, cp in suggestions:
+                            solution += f"  `{cp}` and `{up}`\n"
+                messages.append(
+                    Message(
+                        line=line_number,
+                        prefix=curie_prefix,
+                        uri_prefix=uri_prefix,
+                        error="non-standard CURIE prefix",
+                        solution=solution,
+                        level=level,
+                    )
+                )
+
+        else:
+            if message := _get_message(
+                curie_prefix, uri_prefix, _check, strict=strict, line_number=line_number
+            ):
+                messages.append(message)
 
     return messages
 
@@ -146,86 +226,20 @@ def _get_message(
         return None
 
 
-def validate_ttl(
-    url: str,
-    *,
-    rpm: Mapping[str, str] | None = None,
-    use_preferred: bool = False,
-    context: None = None,
-    strict: bool = False,
-) -> list[Message]:
-    """Validate a Turtle file."""
-    import requests
+def _get_checker(
+    context: str | None | Context = None, use_preferred: bool = False
+) -> Callable[[str], str | None]:
+    import bioregistry
 
-    if rpm is None:
-        rpm = bioregistry.manager.get_reverse_prefix_map()
+    if context is not None:
+        converter = bioregistry.manager.get_converter_from_context(context)
 
-    def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
-        suggies = []
-        for x, y in rpm.items():
-            if x.startswith(uri_prefix):
-                suggies.append((x, y))
-            if x == uri_prefix:
-                return y
-        return suggies
+        def _check(pp: str) -> str | None:
+            return converter.standardize_prefix(pp, strict=False)
 
-    _check = _get_checker(context, use_preferred=use_preferred)
+    else:
 
-    messages: list[Message] = []
-    with requests.get(url, stream=True, timeout=15) as res:
-        for line_number, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
-            if not line.startswith("@"):
-                break
+        def _check(pp: str) -> str | None:
+            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
 
-            # skip @base, or other
-            if not line.startswith("@prefix"):
-                continue
-            line = line.removeprefix("@prefix ")
-
-            curie_prefix, uri_prefix = line.split(":", 1)
-            uri_prefix = uri_prefix.strip().rstrip(".").strip().strip("<>")
-
-            resource = bioregistry.get_resource(curie_prefix)
-            if resource is None:
-                suggestions = _get_suggestions(uri_prefix)
-                if not suggestions:
-                    messages.append(
-                        Message(
-                            line=line_number,
-                            prefix=curie_prefix,
-                            uri_prefix=uri_prefix,
-                            error="non-standard CURIE prefix",
-                            level="error",
-                        )
-                    )
-                else:
-                    if isinstance(suggestions, str):
-                        solution = f"Switch to {suggestions}"
-                        level = "warning"
-                    else:
-                        level = "error"
-                        if len(suggestions) == 1:
-                            up, cp = suggestions[0]
-                            solution = f"Consider switching to this more specific CURIE/URI prefix pair:\n\n  @prefix {cp}: <{up}> .\n"
-                        else:
-                            solution = "Consider switching one of these more specific CURIE/URI prefix pairs:\n\n"
-                            for up, cp in suggestions:
-                                solution += f"\t@prefix {cp}: <{up}> ."
-                    messages.append(
-                        Message(
-                            line=line_number,
-                            prefix=curie_prefix,
-                            uri_prefix=uri_prefix,
-                            error="non-standard CURIE prefix",
-                            solution=solution,
-                            level=level,
-                        )
-                    )
-
-            else:
-                if message := _get_message(
-                    curie_prefix, uri_prefix, _check, strict=strict, line_number=line_number
-                ):
-                    messages.append(message)
-
-    return messages
+    return _check
