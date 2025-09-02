@@ -171,11 +171,11 @@ def _get_all_messages(
                     level = "error"
                     if len(suggestions) == 1:
                         up, cp = suggestions[0]
-                        solution = f"Consider switching to the specific CURIE/URI prefix pair `{cp}` and `{up}`"
+                        solution = f"Consider switching to the more specific CURIE/URI prefix pair {cp}: {up}"
                     else:
                         solution = "Consider switching one of these more specific CURIE/URI prefix pairs:\n\n"
                         for up, cp in suggestions:
-                            solution += f"  `{cp}` and `{up}`\n"
+                            solution += f"  {cp}: {up}\n"
                 messages.append(
                     Message(
                         line=line_number,
