@@ -122,26 +122,25 @@ def _get_message(
     _checker: Callable[[str], str | None],
     *,
     strict: bool = False,
+    line_number: int | None = None,
 ) -> Message | None:
     norm_prefix = _checker(curie_prefix)
     if norm_prefix is None:
-        return Message.model_validate(
-            {
-                "prefix": curie_prefix,
-                "uri_prefix": uri_prefix,
-                "error": "invalid",
-                "level": "error",
-            }
+        return Message(
+            prefix=curie_prefix,
+            uri_prefix=uri_prefix,
+            error="invalid",
+            level="error",
+            line=line_number,
         )
     elif norm_prefix != curie_prefix:
-        return Message.model_validate(
-            {
-                "prefix": curie_prefix,
-                "uri_prefix": uri_prefix,
-                "error": "nonstandard",
-                "solution": f"Switch to prefix: {norm_prefix}",
-                "level": "error" if strict else "warning",
-            }
+        return Message(
+            prefix=curie_prefix,
+            uri_prefix=uri_prefix,
+            error="nonstandard",
+            solution=f"Switch to prefix: {norm_prefix}",
+            level="error" if strict else "warning",
+            line=line_number,
         )
     else:
         return None
@@ -224,7 +223,9 @@ def validate_ttl(
                     )
 
             else:
-                if message := _get_message(curie_prefix, uri_prefix, _check, strict=strict):
+                if message := _get_message(
+                    curie_prefix, uri_prefix, _check, strict=strict, line_number=line_number
+                ):
                     messages.append(message)
 
     return messages
