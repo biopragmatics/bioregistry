@@ -135,10 +135,18 @@ def validate_ttl(url: str) -> list[Message]:
     """Validate a Turtle file."""
     import requests
 
-    def _get_curie_prefix_from_uri_prefix(uri_prefix: str) -> str | None:
-        return None
+    rpm = bioregistry.manager.get_reverse_prefix_map()
 
-    messages = []
+    def _get_curie_prefix_from_uri_prefix(uri_prefix: str) -> list[tuple[str, str]] | str:
+        suggies = []
+        for x, y in rpm.items():
+            if x.startswith(uri_prefix):
+                suggies.append((x, y))
+            if x == uri_prefix:
+                return y
+        return suggies
+
+    messages: list[Message] = []
     with requests.get(url, stream=True, timeout=15) as res:
         for line_number, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
             if not line.startswith("@"):
@@ -155,23 +163,36 @@ def validate_ttl(url: str) -> list[Message]:
             resource = bioregistry.get_resource(curie_prefix)
             if resource is None:
                 suggestion = _get_curie_prefix_from_uri_prefix(uri_prefix)
-                if suggestion:
-                    messages.append(
-                        Message(
-                            line=line_number,
-                            prefix=curie_prefix,
-                            error="non-standard CURIE prefix",
-                            solution=f"switch to {suggestion}",
-                            level="warning",
-                        )
-                    )
-                else:
+                if not suggestion:
                     messages.append(
                         Message(
                             line=line_number,
                             prefix=curie_prefix,
                             error="non-standard CURIE prefix",
                             level="error",
+                        )
+                    )
+                else:
+                    if isinstance(suggestion, str):
+                        solution = f"Switch to {suggestion}"
+                        level = "warning"
+                    elif len(suggestion) == 1:
+                        solution = "Consider switching to :\n\n"
+                        for up, cp in suggestion:
+                            solution += f"\t@prefix {cp}: <{up}> ."
+                        level = "error"
+                    else:
+                        solution = "Consider switching to one of:\n\n"
+                        for up, cp in suggestion:
+                            solution += f"\t@prefix {cp}: <{up}> ."
+                        level = "error"
+                    messages.append(
+                        Message(
+                            line=line_number,
+                            prefix=curie_prefix,
+                            error="non-standard CURIE prefix",
+                            solution=solution,
+                            level=level,
                         )
                     )
 
