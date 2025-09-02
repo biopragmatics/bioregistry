@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Literal
 
@@ -23,6 +23,7 @@ class Message(BaseModel):
     """A message."""
 
     prefix: str
+    uri_prefix: str
     error: str
     solution: str | None = None
     line: int | None = None
@@ -59,6 +60,23 @@ def click_write_messages(messages: list[Message]) -> None:
         sys.exit(1)
 
 
+def _get_checker(
+    context: str | None | bioregistry.Context = None, use_preferred: bool = False
+) -> Callable[[str], str | None]:
+    if context is not None:
+        converter = bioregistry.manager.get_converter_from_context(context)
+
+        def _check(pp: str) -> str | None:
+            return converter.standardize_prefix(pp, strict=False)
+
+    else:
+
+        def _check(pp: str) -> str | None:
+            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
+
+    return _check
+
+
 def validate_jsonld(
     obj: str | Mapping[str, Mapping[str, str]],
     *,
@@ -87,51 +105,56 @@ def validate_jsonld(
         raise TypeError("data is missing a @context field")
     if not isinstance(context_inner, dict):
         raise TypeError(f"@context is not a dictionary: {context_inner}")
-    if use_preferred:
-        prefix_text = "preferred"
-    else:
-        prefix_text = "standard"
+
+    _checker = _get_checker(context, use_preferred=use_preferred)
+
     messages = []
+    for curie_prefix, uri_prefix in context_inner.items():
+        if message := _get_message(curie_prefix, uri_prefix, _checker, strict=strict):
+            messages.append(message)
 
-    if context is not None:
-        converter = bioregistry.manager.get_converter_from_context(context)
-
-        def _check(pp: str) -> str | None:
-            return converter.standardize_prefix(pp, strict=False)
-
-    else:
-
-        def _check(pp: str) -> str | None:
-            return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
-
-    for prefix, _uri_prefix in context_inner.items():
-        norm_prefix = _check(prefix)
-        if norm_prefix is None:
-            messages.append(
-                Message.model_validate(
-                    {
-                        "prefix": prefix,
-                        "error": "invalid",
-                        "solution": None,
-                        "level": "error",
-                    }
-                )
-            )
-        elif norm_prefix != prefix:
-            messages.append(
-                Message.model_validate(
-                    {
-                        "prefix": prefix,
-                        "error": "nonstandard",
-                        "solution": f"Switch to {prefix_text} prefix: {norm_prefix}",
-                        "level": "error" if strict else "warning",
-                    }
-                )
-            )
     return messages
 
 
-def validate_ttl(url: str, *, rpm: dict[str, str] | None = None) -> list[Message]:
+def _get_message(
+    curie_prefix: str,
+    uri_prefix: str,
+    _checker: Callable[[str], str | None],
+    *,
+    strict: bool = False,
+) -> Message | None:
+    norm_prefix = _checker(curie_prefix)
+    if norm_prefix is None:
+        return Message.model_validate(
+            {
+                "prefix": curie_prefix,
+                "uri_prefix": uri_prefix,
+                "error": "invalid",
+                "level": "error",
+            }
+        )
+    elif norm_prefix != curie_prefix:
+        return Message.model_validate(
+            {
+                "prefix": curie_prefix,
+                "uri_prefix": uri_prefix,
+                "error": "nonstandard",
+                "solution": f"Switch to prefix: {norm_prefix}",
+                "level": "error" if strict else "warning",
+            }
+        )
+    else:
+        return None
+
+
+def validate_ttl(
+    url: str,
+    *,
+    rpm: Mapping[str, str] | None = None,
+    use_preferred: bool = False,
+    context: None = None,
+    strict: bool = False,
+) -> list[Message]:
     """Validate a Turtle file."""
     import requests
 
@@ -146,6 +169,8 @@ def validate_ttl(url: str, *, rpm: dict[str, str] | None = None) -> list[Message
             if x == uri_prefix:
                 return y
         return suggies
+
+    _check = _get_checker(context, use_preferred=use_preferred)
 
     messages: list[Message] = []
     with requests.get(url, stream=True, timeout=15) as res:
@@ -169,6 +194,7 @@ def validate_ttl(url: str, *, rpm: dict[str, str] | None = None) -> list[Message
                         Message(
                             line=line_number,
                             prefix=curie_prefix,
+                            uri_prefix=uri_prefix,
                             error="non-standard CURIE prefix",
                             level="error",
                         )
@@ -190,6 +216,7 @@ def validate_ttl(url: str, *, rpm: dict[str, str] | None = None) -> list[Message
                         Message(
                             line=line_number,
                             prefix=curie_prefix,
+                            uri_prefix=uri_prefix,
                             error="non-standard CURIE prefix",
                             solution=solution,
                             level=level,
@@ -197,6 +224,7 @@ def validate_ttl(url: str, *, rpm: dict[str, str] | None = None) -> list[Message
                     )
 
             else:
-                pass  # check that it's standard
+                if message := _get_message(curie_prefix, uri_prefix, _check, strict=strict):
+                    messages.append(message)
 
     return messages
