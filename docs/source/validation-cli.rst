@@ -24,19 +24,20 @@ Bioregistry. It can be checked with:
 
 .. code-block:: console
 
-    $ bioregistry validate jsonld "https://raw.githubusercontent.com/prefixcommons/prefixcommons-py/master/prefixcommons/registry/go_context.jsonld"
+    $ bioregistry validate jsonld "https://raw.githubusercontent.com/prefixcommons/prefixcommons-py/master/prefixcommons/registry/go_context.jsonld" --tablefmt rst
 
-============== =================================================================== ========================= =======================================
-prefix         uri_prefix                                                          issue                     solution
-============== =================================================================== ========================= =======================================
-BIOMD          http://www.ebi.ac.uk/compneur-srv/biomodels-main/publ-model.do?mid= non-standard CURIE prefix Switch to standard prefix: biomodels.db
-COG_Function   http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=               unknown CURIE prefix
-WB             http://identifiers.org/wormbase/                                    non-standard CURIE prefix Switch to standard prefix: wormbase
-FBbt           http://purl.obolibrary.org/obo/ FBbt_                               non-standard CURIE prefix Switch to standard prefix: fbbt
-KEGG_LIGAND    http://www.genome.jp/dbget-bin/www_bget?cpd:                        non-standard CURIE prefix Switch to standard prefix: kegg.ligand
-PSO_GIT        https://github.com/Planteome/plant-stress-ontology/issues/          unknown CURIE prefix
-MaizeGDB_stock http://maizegdb.org/data_center/stock?id=                           unknown CURIE prefix
-============== =================================================================== ========================= =======================================
+============== ===================================================================== ========================= =======================================
+prefix         uri_prefix                                                            issue                     solution
+============== ===================================================================== ========================= =======================================
+BIOMD          `http://www.ebi.ac.uk/compneur-srv/biomodels-main/publ-model.do?mid=` non-standard CURIE prefix Switch to standard prefix: biomodels.db
+COG_Function   `http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=`               unknown CURIE prefix
+WB             `http://identifiers.org/wormbase/`                                    non-standard CURIE prefix Switch to standard prefix: wormbase
+FBbt           `http://purl.obolibrary.org/obo/FBbt_`                                non-standard CURIE prefix Switch to standard prefix: fbbt
+KEGG_LIGAND    `http://www.genome.jp/dbget-bin/www_bget?cpd:`                        non-standard CURIE prefix Switch to standard prefix: kegg.ligand
+PSO_GIT        `https://github.com/Planteome/plant-stress-ontology/issues/`          unknown CURIE prefix
+MaizeGDB_stock `http://maizegdb.org/data_center/stock?id=`                           unknown CURIE prefix
+...
+============== ===================================================================== ========================= =======================================
 
 There are two things that might be the problem. First, the resource might use stylized
 (i.e. mixed case) prefixes. Therefore, we could try passing ``--use-preferred`` to
@@ -46,32 +47,39 @@ respect prefix stylization
 
     $ bioregistry validate jsonld --use-preferred "https://raw.githubusercontent.com/prefixcommons/prefixcommons-py/master/prefixcommons/registry/go_context.jsonld"
 
-============== =================================================================== ========================= ========================================
-prefix         uri_prefix                                                          issue                     solution
-============== =================================================================== ========================= ========================================
-BIOMD          http://www.ebi.ac.uk/compneur-srv/biomodels-main/publ-model.do?mid= non-standard CURIE prefix Switch to preferred prefix: biomodels.db
-COG_Function   http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=               unknown CURIE prefix
-WB             http://identifiers.org/wormbase/                                    non-standard CURIE prefix Switch to preferred prefix: WormBase
-KEGG_LIGAND    http://www.genome.jp/dbget-bin/www_bget?cpd:                        non-standard CURIE prefix Switch to preferred prefix: kegg.ligand
-PSO_GIT        https://github.com/Planteome/plant-stress-ontology/issues/          unknown CURIE prefix
-MaizeGDB_stock http://maizegdb.org/data_center/stock?id=                           unknown CURIE prefix
-NCBI_GP        http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=      unknown CURIE prefix
-============== =================================================================== ========================= ========================================
+============== ===================================================================== ========================= ========================================
+prefix         uri_prefix                                                            issue                     solution
+============== ===================================================================== ========================= ========================================
+BIOMD          `http://www.ebi.ac.uk/compneur-srv/biomodels-main/publ-model.do?mid=` non-standard CURIE prefix Switch to preferred prefix: biomodels.db
+COG_Function   `http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=`               unknown CURIE prefix
+WB             `http://identifiers.org/wormbase/`                                    non-standard CURIE prefix Switch to preferred prefix: WormBase
+KEGG_LIGAND    `http://www.genome.jp/dbget-bin/www_bget?cpd:`                        non-standard CURIE prefix Switch to preferred prefix: kegg.ligand
+PSO_GIT        `https://github.com/Planteome/plant-stress-ontology/issues/`          unknown CURIE prefix
+MaizeGDB_stock `http://maizegdb.org/data_center/stock?id=`                           unknown CURIE prefix
+NCBI_GP        `http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=`      unknown CURIE prefix
+...
+============== ===================================================================== ========================= ========================================
 
 Second, we could use a pre-defined community context that might have deviations from the
 vanilla Bioregistry context using the ``--context`` option in combination with one of
-the contexts' keys (see all contexts here: https://bioregistry.io/context/):
+the contexts' keys (see `all contexts <https://bioregistry.io/context/>`_):
 
 .. code-block:: console
 
     $ bioregistry validate jsonld --context obo "https://raw.githubusercontent.com/prefixcommons/prefixcommons-py/master/prefixcommons/registry/go_context.jsonld"
-    BIOMD - nonstandard > Switch to preferred prefix: biomodels.db
-    COG_Function - invalid
-    WB - nonstandard > Switch to preferred prefix: WormBase
-    KEGG_LIGAND - invalid
-    PSO_GIT - invalid
-    MaizeGDB_stock - invalid
-    ...
+
+============== ===================================================================== ========================= =======================================
+prefix         uri_prefix                                                            issue                     solution
+============== ===================================================================== ========================= =======================================
+BIOMD          `http://www.ebi.ac.uk/compneur-srv/biomodels-main/publ-model.do?mid=` non-standard CURIE prefix Switch to standard prefix: biomodels.db
+COG_Function   `http://www.ncbi.nlm.nih.gov/COG/grace/shokog.cgi?fun=`               unknown CURIE prefix
+WB             `http://identifiers.org/wormbase/`                                    non-standard CURIE prefix Switch to standard prefix: WormBase
+KEGG_LIGAND    `http://www.genome.jp/dbget-bin/www_bget?cpd:`                        unknown CURIE prefix
+PSO_GIT        `https://github.com/Planteome/plant-stress-ontology/issues/`          unknown CURIE prefix
+MaizeGDB_stock `http://maizegdb.org/data_center/stock?id=`                           unknown CURIE prefix
+NCBI_GP        `http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=`      unknown CURIE prefix
+...
+============== ===================================================================== ========================= =======================================
 
 It turns out that the GO JSON-LD file doesn't even validate against the OBO context!
 

@@ -7,9 +7,9 @@ from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import TYPE_CHECKING, Literal
 
+import click
 from pydantic import BaseModel
 from typing_extensions import NotRequired, TypedDict, Unpack
-import click
 
 if TYPE_CHECKING:
     from bioregistry import Context
@@ -46,12 +46,19 @@ def click_write_messages(messages: list[Message], tablefmt: str | None) -> None:
             click.secho(_spacious_message(message))
     else:
         from tabulate import tabulate
+
         rows = [
-            (message.prefix, message.uri_prefix, message.error, message.solution or "")
+            (
+                message.prefix,
+                f"`{message.uri_prefix}`" if tablefmt == "rst" else message.uri_prefix,
+                message.error,
+                message.solution or "",
+            )
             for message in messages
         ]
-        click.echo(tabulate(rows, headers=['prefix', 'uri_prefix', 'issue', 'solution'], tablefmt=tablefmt))
-
+        click.echo(
+            tabulate(rows, headers=["prefix", "uri_prefix", "issue", "solution"], tablefmt=tablefmt)
+        )
 
     errors = sum(message.level == "error" for message in messages)
     if errors:
@@ -71,7 +78,7 @@ def _spacious_message(message: Message) -> str:
 
     if message.solution:
         s += click.style("\n  suggestion: " + message.solution, fg="green")
-    return s + '\n'
+    return s + "\n"
 
 
 class ValidateKwargs(TypedDict):
@@ -81,7 +88,6 @@ class ValidateKwargs(TypedDict):
     use_preferred: NotRequired[bool]
     context: NotRequired[str | Context | None]
     strict: NotRequired[bool]
-    format: NotRequired[str | None]
 
 
 def validate_jsonld(

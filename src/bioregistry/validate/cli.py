@@ -19,7 +19,9 @@ PREFERRED_OPTION = click.option(
     help="If true, use preferred prefixes instead of normalized ones. If a context is given, this is disregarded.",
 )
 FORMAT_OPTION = click.option(
-    "--tablefmt", type=click.Choice(['github', 'rst']), help="The table format to use with the `tabulate` package.",
+    "--tablefmt",
+    type=click.Choice(["github", "rst"]),
+    help="The table format to use with the `tabulate` package.",
 )
 
 
@@ -34,7 +36,9 @@ def validate() -> None:
 @CONTEXT_OPTION
 @PREFERRED_OPTION
 @FORMAT_OPTION
-def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None, tablefmt: str | None) -> None:
+def jsonld(
+    location: str, relax: bool, use_preferred: bool, context: str | None, tablefmt: str | None
+) -> None:
     """Validate a JSON-LD file."""
     from .utils import click_write_messages, validate_jsonld
 
@@ -50,7 +54,9 @@ def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None,
 @CONTEXT_OPTION
 @PREFERRED_OPTION
 @FORMAT_OPTION
-def validate_turtle(location: str, relax: bool, use_preferred: bool, context: str | None, tablefmt: str | None) -> None:
+def validate_turtle(
+    location: str, relax: bool, use_preferred: bool, context: str | None, tablefmt: str | None
+) -> None:
     """Validate prefixes in a Turtle file (either remove or local).
 
     For example, you can validate an old version of the chemotion knowledge graph. It
