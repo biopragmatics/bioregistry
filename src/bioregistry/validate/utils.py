@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Literal
 
 from pydantic import BaseModel
 from typing_extensions import NotRequired, TypedDict, Unpack
+import click
 
 if TYPE_CHECKING:
     from bioregistry import Context
@@ -38,21 +39,19 @@ LEVEL_TO_COLOR = {
 }
 
 
-def click_write_messages(messages: list[Message]) -> None:
+def click_write_messages(messages: list[Message], tablefmt: str | None) -> None:
     """Write messages."""
-    import click
+    if tablefmt is None:
+        for message in messages:
+            click.secho(_spacious_message(message))
+    else:
+        from tabulate import tabulate
+        rows = [
+            (message.prefix, message.uri_prefix, message.error, message.solution or "")
+            for message in messages
+        ]
+        click.echo(tabulate(rows, headers=['prefix', 'uri_prefix', 'issue', 'solution'], tablefmt=tablefmt))
 
-    for message in messages:
-        s = ""
-        if message.line:
-            s += f"[line {message.line}] "
-
-        s += f"{message.prefix}: {message.uri_prefix}\n  {message.error}"
-
-        if message.solution:
-            s += ". " + message.solution
-
-        click.secho(s, fg=LEVEL_TO_COLOR[message.level])
 
     errors = sum(message.level == "error" for message in messages)
     if errors:
@@ -62,6 +61,19 @@ def click_write_messages(messages: list[Message]) -> None:
         sys.exit(1)
 
 
+def _spacious_message(message: Message) -> str:
+    s = ""
+    if message.line:
+        s += f"[line {message.line}] "
+
+    s += f"{message.prefix}: {message.uri_prefix}\n  "
+    s += click.style("issue: " + message.error, fg=LEVEL_TO_COLOR[message.level])
+
+    if message.solution:
+        s += click.style("\n  suggestion: " + message.solution, fg="green")
+    return s + '\n'
+
+
 class ValidateKwargs(TypedDict):
     """Keyword arguments for validators, passed to :func:`_get_all_messages`."""
 
@@ -69,6 +81,7 @@ class ValidateKwargs(TypedDict):
     use_preferred: NotRequired[bool]
     context: NotRequired[str | Context | None]
     strict: NotRequired[bool]
+    format: NotRequired[str | None]
 
 
 def validate_jsonld(
@@ -148,6 +161,8 @@ def _get_all_messages(
 
     _checker = _get_checker(context, use_preferred=use_preferred)
 
+    # TODO need to implement URI prefix normalization and errors
+
     messages: list[Message] = []
     for curie_prefix, uri_prefix, line_number in inputs:
         resource = bioregistry.get_resource(curie_prefix)
@@ -165,17 +180,17 @@ def _get_all_messages(
                 )
             else:
                 if isinstance(suggestions, str):
-                    solution = f"Switch to {suggestions}"
+                    solution = f"Switch to CURIE prefix {suggestions}, inferred from URI prefix"
                     level = "warning"
                 else:
                     level = "error"
                     if len(suggestions) == 1:
                         up, cp = suggestions[0]
-                        solution = f"Consider switching to the more specific CURIE/URI prefix pair {cp}: {up}"
+                        solution = f"Consider switching to the more specific CURIE/URI prefix pair {cp}: `{up}`"
                     else:
                         solution = "Consider switching one of these more specific CURIE/URI prefix pairs:\n\n"
                         for up, cp in suggestions:
-                            solution += f"  {cp}: {up}\n"
+                            solution += f"  {cp}: `{up}`\n"
                 messages.append(
                     Message(
                         line=line_number,
