@@ -8,6 +8,17 @@ __all__ = [
     "validate",
 ]
 
+RELAX_OPTION = click.option("--relax", is_flag=True)
+CONTEXT_OPTION = click.option(
+    "--context",
+    help="The Bioregistry context, e.g., obo. If none given, uses the default Bioregistry context.",
+)
+PREFERRED_OPTION = click.option(
+    "--use-preferred",
+    is_flag=True,
+    help="If true, use preferred prefixes instead of normalized ones. If a context is given, this is disregarded.",
+)
+
 
 @click.group()
 def validate() -> None:
@@ -16,16 +27,9 @@ def validate() -> None:
 
 @validate.command()
 @click.argument("location")
-@click.option("--relax", is_flag=True)
-@click.option(
-    "--context",
-    help="The Bioregistry context, e.g., obo. If none given, uses the default Bioregistry context.",
-)
-@click.option(
-    "--use-preferred",
-    is_flag=True,
-    help="If true, use preferred prefixes instead of normalized ones. If a context is given, this is disregarded.",
-)
+@RELAX_OPTION
+@CONTEXT_OPTION
+@PREFERRED_OPTION
 def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None) -> None:
     """Validate a JSON-LD file."""
     from .utils import click_write_messages, validate_jsonld
@@ -37,8 +41,11 @@ def jsonld(location: str, relax: bool, use_preferred: bool, context: str | None)
 
 
 @validate.command(name="ttl")
-@click.argument("url")
-def validate_turtle(url: str) -> None:
+@click.argument("location")
+@RELAX_OPTION
+@CONTEXT_OPTION
+@PREFERRED_OPTION
+def validate_turtle(location: str, relax: bool, use_preferred: bool, context: str | None) -> None:
     """Validate prefixes in a Turtle file (either remove or local).
 
     For example, you can validate an old version of the chemotion
@@ -60,8 +67,8 @@ def validate_turtle(url: str) -> None:
     this feedback in https://github.com/ISE-FIZKarlsruhe/chemotion-kg/issues/2
     """
     from .utils import click_write_messages, validate_ttl
-    from ..resource_manager import manager
 
-    rpm = manager.get_reverse_prefix_map()
-    messages = validate_ttl(url, rpm=rpm)
+    messages = validate_ttl(
+        location, strict=not relax, use_preferred=use_preferred, context=context
+    )
     click_write_messages(messages)
