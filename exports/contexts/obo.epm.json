@@ -6308,7 +6308,7 @@
         ]
     },
     {
-        "pattern": "^\\d{7}$",
+        "pattern": "^\\d{7,8}$",
         "prefix": "SWO",
         "prefix_synonyms": [
             "swo"
@@ -6321,9 +6321,14 @@
             "http://www.ebi.ac.uk/efo/swo/SWO_",
             "http://www.ebi.ac.uk/ols/ontologies/swo/terms?iri=http://purl.obolibrary.org/obo/SWO_",
             "http://www.ebi.ac.uk/swo/SWO_",
+            "http://www.ebi.ac.uk/swo/algorithm/SWO_",
             "http://www.ebi.ac.uk/swo/data/SWO_",
+            "http://www.ebi.ac.uk/swo/interface/SWO_",
             "http://www.ebi.ac.uk/swo/license/SWO_",
             "http://www.ebi.ac.uk/swo/maturity/SWO_",
+            "http://www.ebi.ac.uk/swo/objective/SWO_",
+            "http://www.ebi.ac.uk/swo/organization/SWO_",
+            "http://www.ebi.ac.uk/swo/version/SWO_",
             "https://bio2rdf.org/swo:",
             "https://bioregistry.io/SWO:",
             "https://bioregistry.io/swo:",
@@ -6331,9 +6336,14 @@
             "https://www.ebi.ac.uk/efo/swo/SWO_",
             "https://www.ebi.ac.uk/ols/ontologies/swo/terms?iri=http://purl.obolibrary.org/obo/SWO_",
             "https://www.ebi.ac.uk/swo/SWO_",
+            "https://www.ebi.ac.uk/swo/algorithm/SWO_",
             "https://www.ebi.ac.uk/swo/data/SWO_",
+            "https://www.ebi.ac.uk/swo/interface/SWO_",
             "https://www.ebi.ac.uk/swo/license/SWO_",
-            "https://www.ebi.ac.uk/swo/maturity/SWO_"
+            "https://www.ebi.ac.uk/swo/maturity/SWO_",
+            "https://www.ebi.ac.uk/swo/objective/SWO_",
+            "https://www.ebi.ac.uk/swo/organization/SWO_",
+            "https://www.ebi.ac.uk/swo/version/SWO_"
         ]
     },
     {
@@ -14294,6 +14304,16 @@
         ]
     },
     {
+        "pattern": "^\\d{7}$",
+        "prefix": "gaidet",
+        "uri_prefix": "https://w3id.org/gaidet/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/gaidet:",
+            "http://w3id.org/gaidet/",
+            "https://bioregistry.io/gaidet:"
+        ]
+    },
+    {
         "prefix": "gainesville.core",
         "uri_prefix": "http://purl.org/gc/",
         "uri_prefix_synonyms": [
@@ -16487,6 +16507,7 @@
         ]
     },
     {
+        "pattern": "^(application|audio|font|haptics|image|message|model|multipart|text|video)(/.*)?$",
         "prefix": "iana.mediatype",
         "uri_prefix": "https://www.iana.org/assignments/media-types/",
         "uri_prefix_synonyms": [
@@ -21108,6 +21129,16 @@
         ]
     },
     {
+        "pattern": "^KGR\\d+$",
+        "prefix": "nfdi.kgi",
+        "uri_prefix": "http://kgi.services.base4nfdi.de/entity/",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/nfdi.kgi:",
+            "https://bioregistry.io/nfdi.kgi:",
+            "https://kgi.services.base4nfdi.de/entity/"
+        ]
+    },
+    {
         "pattern": "^\\d{7}$",
         "prefix": "nfdi4culture.cto",
         "uri_prefix": "https://nfdi4culture.de/ontology/CTO_",
@@ -22218,6 +22249,20 @@
             "http://bioregistry.io/ontie:",
             "http://ontology.iedb.org/ontology/ONTIE_",
             "https://bioregistry.io/ontie:"
+        ]
+    },
+    {
+        "pattern": "^\\d+$",
+        "prefix": "ontodm",
+        "uri_prefix": "http://www.ontodm.com/OntoDM-core/OntoDM_",
+        "uri_prefix_synonyms": [
+            "http://bioregistry.io/ontodm:",
+            "http://kt.ijs.si/panovp/OntoDM#OntoDM-KDD_",
+            "http://kt.ijs.si/panovp/OntoDM#OntoDM_",
+            "https://bioregistry.io/ontodm:",
+            "https://kt.ijs.si/panovp/OntoDM#OntoDM-KDD_",
+            "https://kt.ijs.si/panovp/OntoDM#OntoDM_",
+            "https://www.ontodm.com/OntoDM-core/OntoDM_"
         ]
     },
     {
@@ -26313,6 +26358,16 @@
         ]
     },
     {
+        "pattern": "^snoDB\\d{4}$",
+        "prefix": "snodb",
+        "uri_prefix": "https://bioinfo-scottgroup.med.usherbrooke.ca/snoDB/detailed_view/",
+        "uri_prefix_synonyms": [
+            "http://bioinfo-scottgroup.med.usherbrooke.ca/snoDB/detailed_view/",
+            "http://bioregistry.io/snodb:",
+            "https://bioregistry.io/snodb:"
+        ]
+    },
+    {
         "prefix": "snornabase",
         "uri_prefix": "http://www-snorna.biotoul.fr/plus.php?id=",
         "uri_prefix_synonyms": [
@@ -27737,7 +27792,7 @@
         ]
     },
     {
-        "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
+        "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?(-\\d+)?(#PRO_\\d+)?$",
         "prefix": "uniprot",
         "prefix_synonyms": [
             "SwissProt",

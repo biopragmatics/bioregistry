@@ -4026,16 +4026,19 @@ bibo:
   description: The Bibliographic Ontology Specification provides main concepts and
     properties for describing citations and bibliographic references (i.e. quotes,
     books, articles, etc) on the Semantic Web.
+  download_owl: https://www.dublincore.org/specifications/bibo/bibo/bibo.rdf.xml
   example: authorList
-  homepage: https://bibliontology.com/
+  homepage: http://purl.org/ontology/bibo/
   keywords:
   - bibliometrics
   - catalogs
+  - ontology
   mappings:
     lov: bibo
     zazuko: bibo
   name: The Bibliographic Ontology
   preferred_prefix: bibo
+  repository: https://github.com/dcmi/bibo
   uri_format: http://purl.org/ontology/bibo/$1
 bido:
   contact:
@@ -12350,7 +12353,9 @@ credit:
   example: software
   homepage: https://credit.niso.org/
   keywords:
+  - attribution
   - classification
+  - contributor roles
   - data quality
   - omics
   - resource metadata
@@ -12444,6 +12449,8 @@ cro:
   example: 0000038
   homepage: https://github.com/data2health/contributor-role-ontology
   keywords:
+  - attribution
+  - contributor roles
   - obo
   - ontology
   license: CC BY 2.0
@@ -18858,7 +18865,7 @@ emi:
     for struturing the Sample and Observation data. SOSA (Sensor, Observation, Sample,
     and Actuator) is a subset of SSN (Semantic Sensor Network Ontology) that is a
     W3C recommendation. [from homepage]
-  download_owl: https://purl.org/emi/version/0.3
+  download_owl: https://w3id.org/emi/version/1.0
   download_rdf: https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology/blob/main/emi.ttl
   example: ChemicalStructure
   github_request_issue: 1516
@@ -18873,7 +18880,7 @@ emi:
   rdf_uri_format: ' https://purl.org/emi#$1'
   repository: https://github.com/digital-botanical-gardens-initiative/earth_metabolome_ontology
   uri_format: https://www.dbgi.org/earth_metabolome_ontology/#$1
-  version: '0.3'
+  version: '1.0'
 emmo:
   banana: EMMO
   banana_peel: _
@@ -23236,6 +23243,43 @@ gabi:
     title: 'GabiPD: the GABI primary database--a plant integrative ''omics'' database'
     year: 2008
   uri_format: http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=$1&Mode=ShowBioObject
+gaidet:
+  contact:
+    email: serhii.nazarovets@gmail.com
+    github: panbibliotekar
+    name: Serhii Nazarovets
+    orcid: 0000-0002-5067-4498
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Generative Artificial Intelligence Delegation Taxonomy (GAIDeT)
+    assigns identifiers to contributor roles as an extension to the Contributor Roles
+    Taxonomy (CRediT) to support promoting transparency and accountability in academic
+    publishing when AI contribtors are involved in research. It is operationalized
+    in the [GAIDeT Declaration Generator](https://panbibliotekar.github.io/gaidet-declaration/),
+    an interactive tool for researchers to disclose the delegation of tasks to generative
+    AI (GAI) tools in accordance with the GAIDeT taxonomy.
+  download_owl: https://w3id.org/gaidet/gaidet.owl
+  example: '0000001'
+  homepage: https://github.com/panbibliotekar/gaidet-declaration
+  keywords:
+  - attribution
+  - contributor roles
+  - delegation
+  - ontology
+  name: Generative Artificial Intelligence Delegation Taxonomy
+  pattern: ^\d{7}$
+  preferred_prefix: gaidet
+  publications:
+  - doi: 10.1080/08989621.2025.2544331
+    title: A taxonomy for humans to delegate tasks to generative artificial intelligence
+      in scientific research and publishing
+    year: 2025
+  rdf_uri_format: https://w3id.org/gaidet/$1
+  repository: https://github.com/panbibliotekar/gaidet-declaration
+  uri_format: https://w3id.org/gaidet/$1
 gainesville.core:
   contributor:
     email: cthoyt@gmail.com
@@ -29226,11 +29270,33 @@ iana.mediatype:
     orcid: 0000-0003-4423-4370
   description: The official list of MIME types, now renamed to media types
   example: application/cdmi-queue
+  example_extras:
+  - application
+  - application/3gpp-ims+xml
+  - audio
+  - audio/1d-interleaved-parityfec
+  - font
+  - font/woff
+  - haptics
+  - haptics/hmpg
+  - image
+  - image/heif-sequence
+  - message
+  - message/disposition-notification
+  - model
+  - model/3mf
+  - multipart
+  - multipart/parallel
+  - text
+  - text/directory
+  - video
+  - video/vnd.blockfact.factv
   homepage: https://www.iana.org/assignments/media-types/media-types.xhtml
   keywords:
   - data classification
   logo: https://www.iana.org/_img/2022/iana-logo-header.svg
   name: Media Types
+  pattern: ^(application|audio|font|haptics|image|message|model|multipart|text|video)(/.*)?$
   preferred_prefix: iana.mediatype
   uri_format: https://www.iana.org/assignments/media-types/$1
 iao:
@@ -39232,7 +39298,7 @@ mmo:
   repository: https://github.com/rat-genome-database/MMO-Measurement-Method-Ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/MMO_$1
-  version: '2.159'
+  version: '2.160'
 mmp.cat:
   description: MarCat is a gene (protein) catalogue of uncultivable and cultivable
     marine genes and proteins derived from metagenomics samples.
@@ -42733,6 +42799,30 @@ nfdi.core:
   preferred_prefix: nfdi.core
   repository: https://github.com/ISE-FIZKarlsruhe/nfdicore
   uri_format: https://nfdi.fiz-karlsruhe.de/ontology/NFDI_$1
+nfdi.kgi:
+  contact:
+    email: lozana.rossenova@tib.eu
+    github: lozanaross
+    name: Lozana Rossenova
+    orcid: 0000-0002-5190-1867
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Assigns identifiers to knowledge graphs (KGs) that are used and/or
+    maintained within any NFDI consortium.
+  example: KGR1
+  github_request_issue: 1665
+  homepage: https://kgi.services.base4nfdi.de
+  keywords:
+  - knowledge graph
+  license: CC-BY-SA-4.0
+  name: NFDI Knowledge Graph Registry
+  pattern: ^KGR\d+$
+  preferred_prefix: nfdi.kgi
+  repository: https://github.com/KGI4NFDI/kgi4nfdi_registry_data
+  uri_format: http://kgi.services.base4nfdi.de/entity/$1
 nfdi4chem.ontocape:
   comment: This ontology ecosystem is near unusable
   contributor:
@@ -46590,6 +46680,50 @@ ontoavida:
   repository: https://gitlab.com/fortunalab/ontoavida
   uri_format: http://purl.obolibrary.org/obo/ONTOAVIDA_$1
   version: '2022-03-15'
+ontodm:
+  appears_in:
+  - efo
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: OntoDM-core defines the most essential data mining entities in a three-layered
+    ontological structure comprising of a specification, an implementation and an
+    application layer. It provides a representational framework for the description
+    of mining structured data, and in addition provides taxonomies of datasets, data
+    mining tasks, generalizations, data mining algorithms and constraints, based on
+    the type of data. OntoDM-core is designed to support a wide range of applications/use
+    cases, such as semantic annotation of data mining algorithms, datasets and results;
+    annotation of QSAR studies in the context of drug discovery investigations; and
+    disambiguation of terms in text mining. (from abstract)
+  download_owl: https://raw.githubusercontent.com/panovp/ontodm-core/master/OntoDM.owl
+  example: '000072'
+  homepage: http://www.ontodm.com/
+  keywords:
+  - ontology
+  mappings:
+    bioportal: ONTODM-CORE
+  name: Ontology of Core Data Mining Entities
+  pattern: ^\d+$
+  preferred_prefix: ontodm
+  providers:
+  - code: legacy
+    description: legacy URIs
+    homepage: http://kt.ijs.si/panovp
+    name: Legacy URIs
+    uri_format: http://kt.ijs.si/panovp/OntoDM#OntoDM_$1
+  - code: legacy2
+    description: legacy URIs
+    homepage: http://kt.ijs.si/panovp
+    name: Legacy URIs
+    uri_format: http://kt.ijs.si/panovp/OntoDM#OntoDM-KDD_$1
+  publications:
+  - doi: 10.1007/s10618-014-0363-0
+    title: Ontology of core data mining entities
+    year: 2014
+  repository: https://github.com/panovp/ontodm-core
+  uri_format: http://www.ontodm.com/OntoDM-core/OntoDM_$1
 ontoneo:
   contact:
     email: fernanda.farinelli@gmail.com
@@ -59221,6 +59355,48 @@ snctp:
   homepage: https://kofam.ch/en/snctp-portal
   name: Swiss National Clinical Trials Portal
   preferred_prefix: snctp
+snodb:
+  contact:
+    email: michelle.scott@usherbrooke.ca
+    name: Michelle S Scott
+    orcid: 0000-0001-6231-7714
+  contributor:
+    email: maaya.m466@gmail.com
+    github: maayamanoj466
+    name: Maaya Manoj
+    orcid: 0009-0000-6974-6386
+  description: Contains identifiers for human small nucleolar RNAs (snoRNAs) from
+    snoDB, an interactive database of human small nucleolar RNAs (snoRNAs) that includes
+    up-to-date information on snoRNA features, genomic location, conservation, host
+    gene, snoRNA–RNA targets and snoRNA abundance and provides links to other resources.
+  example: snoDB0001
+  github_request_issue: 1655
+  homepage: https://bioinfo-scottgroup.med.usherbrooke.ca/snoDB
+  keywords:
+  - human nucleolar rna
+  - rna
+  - snorna-protein
+  name: snoDB
+  pattern: ^snoDB\d{4}$
+  preferred_prefix: snodb
+  publications:
+  - doi: 10.1093/nar/gkac835
+    pmc: PMC9825428
+    pubmed: '36165892'
+    title: 'snoDB 2.0: an enhanced interactive database, specializing in human snoRNAs'
+    year: 2023
+  - doi: 10.1093/nar/gkz884
+    pmc: PMC6943035
+    pubmed: '31598696'
+    title: 'snoDB: an interactive database of human snoRNA sequences, abundance and
+      interactions'
+    year: 2020
+  reviewer:
+    email: b.gyori@northeastern.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  uri_format: https://bioinfo-scottgroup.med.usherbrooke.ca/snoDB/detailed_view/$1
 snomedct:
   contact:
     email: custserv@nlm.nih.gov
@@ -61036,7 +61212,6 @@ swo:
     information on licensing and formats as well as software applications themselves,
     mainly (but not limited) to the bioinformatics community.
   download_json: https://raw.githubusercontent.com/allysonlister/swo/master/swo.json
-  download_obo: https://raw.githubusercontent.com/allysonlister/swo/master/swo.obo
   download_owl: https://raw.githubusercontent.com/allysonlister/swo/master/swo.owl
   example: '0000144'
   homepage: https://github.com/allysonlister/swo
@@ -61059,7 +61234,7 @@ swo:
     prefixcommons: swo
     wikidata.entity: Q113014439
   name: Software ontology
-  pattern: ^\d{7}$
+  pattern: ^\d{7,8}$
   preferred_prefix: SWO
   providers:
   - code: bio2rdf
@@ -61076,6 +61251,11 @@ swo:
     homepage: http://www.ebi.ac.uk/swo/license
     name: Legacy EBI SWO
     uri_format: http://www.ebi.ac.uk/swo/SWO_$1
+  - code: ebi.algorithm
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/algorithm
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/algorithm/SWO_$1
   - code: ebi.data
     description: The EBI's old SWO URIs before switching over to OBO PURLs
     homepage: http://www.ebi.ac.uk/swo/data
@@ -61086,6 +61266,11 @@ swo:
     homepage: http://www.ebi.ac.uk/efo/swo/
     name: Legacy EBI SWO
     uri_format: http://www.ebi.ac.uk/efo/swo/SWO_$1
+  - code: ebi.interface
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/interface
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/interface/SWO_$1
   - code: ebi.license
     description: The EBI's old SWO URIs before switching over to OBO PURLs
     homepage: http://www.ebi.ac.uk/swo/license
@@ -61096,6 +61281,21 @@ swo:
     homepage: http://www.ebi.ac.uk/swo/maturity
     name: Legacy EBI SWO
     uri_format: http://www.ebi.ac.uk/swo/maturity/SWO_$1
+  - code: ebi.objective
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/objective
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/objective/SWO_$1
+  - code: ebi.organization
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/organization
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/organization/SWO_$1
+  - code: ebi.version
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/version
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/version/SWO_$1
   publications:
   - doi: 10.1186/2041-1480-5-25
     pmc: PMC4098953
@@ -63836,7 +64036,7 @@ uniprot:
     wikidata: P352
   name: UniProt Protein
   pattern: ^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z,
-    0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$
+    0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?(-\d+)?(#PRO_\d+)?$
   preferred_prefix: uniprot
   providers:
   - code: aipd
@@ -67468,7 +67668,7 @@ xco:
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/XCO_$1
-  version: '4.211'
+  version: '4.212'
 xenbase:
   contact:
     email: troy_pells@yahoo.ca
