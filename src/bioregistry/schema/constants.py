@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 """Schema constants."""
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, List, Mapping, Optional, Union
+from typing import TYPE_CHECKING, Optional
 
 import rdflib.namespace
 from rdflib import (
@@ -30,12 +29,12 @@ if TYPE_CHECKING:
     import bioregistry.resource_manager
 
 __all__ = [
-    "bioregistry_schema_terms",
     # Namespaces
     "bioregistry_collection",
-    "bioregistry_resource",
     "bioregistry_metaresource",
+    "bioregistry_resource",
     "bioregistry_schema",
+    "bioregistry_schema_terms",
     "orcid",
 ]
 
@@ -54,17 +53,17 @@ class Term:
 class ClassTerm(Term):
     """A term for a class."""
 
-    xrefs: List[URIRef] = field(default_factory=list)
+    xrefs: list[URIRef] = field(default_factory=list)
 
 
 @dataclass
 class PropertyTerm(Term):
     """A term for a property."""
 
-    domain: Union[str, Node]
-    range: Union[str, Node]
-    xrefs: List[URIRef] = field(default_factory=list)
-    parent: Optional[URIRef] = None
+    domain: str | Node
+    range: str | Node
+    xrefs: list[URIRef] = field(default_factory=list)
+    parent: URIRef | None = None
 
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")

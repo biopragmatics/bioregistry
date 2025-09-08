@@ -1,15 +1,16 @@
-# -*- coding: utf-8 -*-
-
 """A script for creating pull requests for each new prefix issue on the Bioregistry's GitHub page.
 
 Run with: ``python -m bioregistry.gh.new_prefix``
 """
 
+from __future__ import annotations
+
 import copy
 import logging
 import sys
 import time
-from typing import Any, Dict, Iterable, Mapping, Optional, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from typing import Any
 from uuid import uuid4
 
 import click
@@ -59,12 +60,14 @@ ORCID_HTTP_PREFIX = "http://orcid.org/"
 ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
-def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Optional[Resource]:
+def process_new_prefix_issue(issue_id: int, resource_data: dict[str, Any]) -> Resource | None:
     """Return a Resource constructed from a new prefix issue.
 
     :param issue_id: The issue identifier
     :param resource_data: The data from the issue form
-    :returns: A Resource instance or None if there is an issue that warrants skipping the issue
+
+    :returns: A Resource instance or None if there is an issue that warrants skipping
+        the issue
     """
     prefix = resource_data.pop("prefix").lower()
     try:
@@ -78,11 +81,11 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
         logger.warning("Validation error occured")
         contributor = None
 
-    contact_name = resource_data.pop("contact_name", None)
-    contact_orcid = resource_data.pop("contact_orcid", None)
-    contact_email = resource_data.pop("contact_email", None)
-    contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
-    if contact_orcid and contact_name:
+    contact_name: str | None = resource_data.pop("contact_name", None)
+    contact_orcid: str | None = resource_data.pop("contact_orcid", None)
+    contact_email: str | None = resource_data.pop("contact_email", None)
+    contact_github: str | None = removeprefix(resource_data.pop("contact_github", None), "@")
+    if contact_orcid is not None and contact_name is not None:
         contact = Author(
             name=contact_name,
             orcid=_trim_orcid(contact_orcid),
@@ -94,8 +97,8 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
         contact = None
 
     wikidata_property = resource_data.pop("wikidata_prefix", None)
-    wikidata: Optional[Mapping]
-    mappings: Optional[Mapping]
+    wikidata: Mapping[str, Any] | None
+    mappings: Mapping[str, str | None] | None
     if wikidata_property:
         wikidata = {"prefix": wikidata_property}
         mappings = {"wikidata": wikidata_property}
@@ -134,11 +137,11 @@ def process_new_prefix_issue(issue_id: int, resource_data: Dict[str, Any]) -> Op
         wikidata=wikidata,
         mappings=mappings,
         publications=publications,
-        **resource_data,  # type:ignore
+        **resource_data,
     )
 
 
-def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]:
+def get_new_prefix_issues(token: str | None = None) -> dict[int, Resource]:
     """Process Bioregistry prefix issues from the GitHub API into Resources.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
@@ -148,15 +151,16 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         Issues corresponding to a prefix that is already in the Bioregistry should be sent a message then
         automatically closed
 
-    :param token: The GitHub OAuth token. Not required, but if given, will let
-        you make many more queries before getting rate limited.
-    :returns: A mapping of issue identifiers to pairs of the prefix itself and a :class:`Resource` instance
-        that has been parsed out of the issue form
+    :param token: The GitHub OAuth token. Not required, but if given, will let you make
+        many more queries before getting rate limited.
+
+    :returns: A mapping of issue identifiers to pairs of the prefix itself and a
+        :class:`Resource` instance that has been parsed out of the issue form
     """
     data = github_client.get_bioregistry_form_data(
         ["New", "Prefix"], remapping=MAPPING, token=token
     )
-    rv: Dict[int, Resource] = {}
+    rv: dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
         try:
             # The processing modifies the resource_data, so we copy it here
@@ -170,64 +174,22 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     return rv
 
 
-def _yield_publications(data) -> Iterable[Publication]:
-    for curie in data.pop("publications", "").split("|"):
-        curie = curie.strip().lower()
-        try:
-            prefix, luid = curie.split(":", 1)
-        except ValueError:
-            click.echo(f"invalid CURIE: {curie}")
-            continue
-        if prefix == "pmid":
-            prefix = "pubmed"
-        yield Publication(**{prefix: luid})
-
-
-def _pop_orcid(data: Dict[str, str]) -> str:
-    orcid = data.pop("contributor_orcid")
-    return _trim_orcid(orcid)
-
-
-def _trim_orcid(orcid: str) -> str:
-    if orcid.startswith(ORCID_HTTP_PREFIX):
-        return orcid[len(ORCID_HTTP_PREFIX) :]
-    if orcid.startswith(ORCID_HTTPS_PREFIX):
-        return orcid[len(ORCID_HTTPS_PREFIX) :]
-    return orcid
-
-
-def _join(x: Iterable[int], sep=", ") -> str:
-    return sep.join(map(str, sorted(x)))
-
-
-def make_title(prefixes: Sequence[str]) -> str:
-    """Make a title for the PR."""
-    if len(prefixes) == 0:
-        raise ValueError
-    if len(prefixes) == 1:
-        return f"Add prefix: {prefixes[0]}"
-    elif len(prefixes) == 2:
-        return f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
-    else:
-        return f'Add prefixes: {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
-
-
-@click.command()
-@click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
-@click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
-@force_option
-@verbose_option
-def main(dry: bool, github: bool, force: bool):
-    """Run the automatic curator."""
-    status_porcelain_result = github_client.status_porcelain()
-    if status_porcelain_result and not force and not dry:
-        click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
+def process_specific_issue(issue: int) -> dict[int, Resource]:
+    """Process a specific issue and return a dictionary mapping the issue number to the resource."""
+    click.echo(f"Processing specific issue {issue}")
+    resource_data = github_client.get_form_data_for_issue(
+        "biopragmatics", "bioregistry", issue, remapping=MAPPING
+    )
+    resource = process_new_prefix_issue(issue, resource_data)
+    if not resource:
+        click.echo(f"Issue {issue} could not be processed or does not exist.")
         sys.exit(1)
+    return {issue: resource}
 
-    if not github_client.has_token():
-        click.secho("No GitHub access token is available through GITHUB_TOKEN", fg="red")
-        sys.exit(1)
 
+def process_all_relevant_issues() -> dict[int, Resource]:
+    """Process all relevant issues and return a dictionary mapping issue numbers to resources."""
+    click.echo("No specific issue provided. Searching for all relevant issues")
     issue_to_resource = get_new_prefix_issues()
     if issue_to_resource:
         click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
@@ -250,7 +212,7 @@ def main(dry: bool, github: bool, force: bool):
     else:
         click.echo("Found no PRs covering new prefix issues")
 
-    # filter out issues that already have an associated pull request
+    # Filter out issues that already have an associated pull request
     issue_to_resource = {
         issue_id: value
         for issue_id, value in issue_to_resource.items()
@@ -262,6 +224,80 @@ def main(dry: bool, github: bool, force: bool):
     else:
         click.secho("No issues without PRs to worry about. Exiting.")
         sys.exit(0)
+
+    return issue_to_resource
+
+
+def _yield_publications(data: dict[str, Any]) -> Iterable[Publication]:
+    for curie in data.pop("publications", "").split("|"):
+        curie = curie.strip().lower()
+        try:
+            prefix, luid = curie.split(":", 1)
+        except ValueError:
+            click.echo(f"invalid CURIE: {curie}")
+            continue
+        if prefix == "pmid":
+            prefix = "pubmed"
+        yield Publication(**{prefix: luid})
+
+
+def _pop_orcid(data: dict[str, str]) -> str:
+    orcid = data.pop("contributor_orcid")
+    return _trim_orcid(orcid)
+
+
+def _trim_orcid(orcid: str) -> str:
+    if orcid.startswith(ORCID_HTTP_PREFIX):
+        return orcid[len(ORCID_HTTP_PREFIX) :]
+    if orcid.startswith(ORCID_HTTPS_PREFIX):
+        return orcid[len(ORCID_HTTPS_PREFIX) :]
+    return orcid
+
+
+def _join(x: Iterable[int], sep: str = ", ") -> str:
+    return sep.join(map(str, sorted(x)))
+
+
+def make_title(prefixes: Sequence[str]) -> str:
+    """Make a title for the PR."""
+    if len(prefixes) == 0:
+        raise ValueError
+    if len(prefixes) == 1:
+        return f"Add prefix: {prefixes[0]}"
+    elif len(prefixes) == 2:
+        return f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
+    else:
+        return f"Add prefixes: {', '.join(prefixes[:-1])}, and {prefixes[-1]}"
+
+
+@click.command()
+@click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
+@click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
+@click.option(
+    "--issue", type=int, help="Specific issue to process rather than finding all relevant ones"
+)
+@force_option  # type:ignore
+@verbose_option  # type:ignore
+def main(dry: bool, github: bool, force: bool, issue: int | None = None) -> None:
+    """Run the automatic curator."""
+    click.echo(
+        f"Running workflow with issue: {issue}"
+        if issue
+        else "Running workflow for all relevant issues"
+    )
+
+    status_porcelain_result = github_client.status_porcelain()
+    if status_porcelain_result and not force and not dry:
+        click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
+        sys.exit(1)
+
+    if not github_client.has_token():
+        click.secho("No GitHub access token is available through GITHUB_TOKEN", fg="red")
+        sys.exit(1)
+
+    issue_to_resource = (
+        process_specific_issue(issue) if issue is not None else process_all_relevant_issues()
+    )
 
     for issue_number, resource in issue_to_resource.items():
         click.echo(f"🚀 Adding resource {resource.prefix} (#{issue_number})")
@@ -279,12 +315,12 @@ def main(dry: bool, github: bool, force: bool):
           ::set-output name=BR_TITLE::{title}
         """
         )
-        return sys.exit(0)
+        raise sys.exit(0)
     elif dry:
         click.secho(
             f"skipping making branch {branch_name}, committing, pushing, and PRing", fg="yellow"
         )
-        return sys.exit(0)
+        raise sys.exit(0)
 
     click.secho("creating and switching to branch", fg="green")
     click.echo(github_client.branch(branch_name))
@@ -300,9 +336,9 @@ def main(dry: bool, github: bool, force: bool):
         body=body,
     )
     if "url" in rv:
-        click.secho(f'PR at {rv["url"]}')
+        click.secho(f"PR at {rv['url']}")
     else:  # probably an error
-        click.secho(rv, fg="red")
+        click.secho(str(rv), fg="red")
 
     click.secho(f"switching back to {github_client.MAIN_BRANCH} branch", fg="green")
     click.echo(github_client.home())

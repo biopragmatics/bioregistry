@@ -1,10 +1,20 @@
 """Tests for new prefix pipeline."""
 
+import copy
+import json
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
-from bioregistry.gh.new_prefix import process_new_prefix_issue
+from click.testing import CliRunner
+
+from bioregistry.gh.new_prefix import MAPPING, main, process_new_prefix_issue
 from bioregistry.schema import Author, Resource
+
+HERE = Path(__file__).parent.resolve()
+RESOURCES = HERE.joinpath("resources")
+NCBIORTHOLOG_TEST = json.load(RESOURCES.joinpath("ncbiortholog_test.json").open())
+VIBSO_TEST = json.load(RESOURCES.joinpath("vibso_test.json").open())
 
 
 class TestNewPrefix(unittest.TestCase):
@@ -16,38 +26,10 @@ class TestNewPrefix(unittest.TestCase):
         mock_get_resource.return_value = None
 
         issue_id = 1181
-        resource_data = {
-            "prefix": "ncbiortholog",
-            "name": "National Center for Biotechnology Information",
-            "homepage": "https://www.ncbi.nlm.nih.gov/gene/",
-            "repository": "n/a",
-            "description": (
-                "Database of one-to-one ortholog information provided by the NCBI "
-                "as a subset of their Gene resource. Used for users to access ortholog "
-                "information for over 1000 species of vertebrates and arthropods."
-            ),
-            "license": "US gov't public domain",
-            "example": "2",
-            "pattern": "^\\d+$",
-            "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1/ortholog/",
-            "contributor_name": "Terence Murphy",
-            "contributor_github": "murphyte",
-            "contributor_orcid": "0000-0001-9311-9745",
-            "contributor_email": "murphyte@ncbi.nlm.nih.gov",
-            "contact_name": "Terence Murphy",
-            "contact_orcid": "0000-0001-9311-9745",
-            "contact_github": "murphyte",
-            "contact_email": "murphyte@ncbi.nlm.nih.gov",
-            "comment": (
-                "We do not currently have the source code for our ortholog resource available publicly, "
-                "although we are looking at how to split it off and make it available in the next year. "
-                "We are now in the process of adding this tag to the INSDC list for use in annotations, "
-                "so I'd like to mirror that tag in bioregistry."
-            ),
-        }
+        resource_data = copy.deepcopy(NCBIORTHOLOG_TEST)
 
         expected_resource = Resource(
-            prefix="ncbiortholog",
+            prefix="ncbiortholog.test",
             name="National Center for Biotechnology Information",
             description=(
                 "Database of one-to-one ortholog information provided by the NCBI as a subset "
@@ -150,6 +132,49 @@ class TestNewPrefix(unittest.TestCase):
         self.assertEqual(
             actual, expected_resource, "Resource object does not match the expected output"
         )
+
+    @patch("bioregistry.gh.new_prefix.github_client")
+    @patch("bioregistry.gh.new_prefix.add_resource")
+    def test_specific_issue(self, mock_add_resource, mock_github_client):
+        """Test the workflow in a dry run for a specific issue."""
+        mock_github_client.get_form_data_for_issue.return_value = copy.deepcopy(NCBIORTHOLOG_TEST)
+
+        runner = CliRunner()
+        result = runner.invoke(main, ["--dry", "--issue", "1181"])
+
+        self.assertEqual(result.exit_code, 0)
+        self.assertIn("Processing specific issue 1181", result.output)
+
+        self.assertIn("🚀 Adding resource ncbiortholog.test (#1181)", result.output)
+        mock_add_resource.assert_called_once()
+
+        mock_github_client.get_form_data_for_issue.assert_called_once_with(
+            "biopragmatics", "bioregistry", 1181, remapping=MAPPING
+        )
+
+    @patch("bioregistry.gh.new_prefix.github_client")
+    @patch("bioregistry.gh.new_prefix.add_resource")
+    def test_all_relevant_issues(self, mock_add_resource, mock_github_client):
+        """Test the workflow in a dry run for a all relevant issues."""
+        mock_github_client.get_bioregistry_form_data.return_value = {
+            1181: copy.deepcopy(NCBIORTHOLOG_TEST),
+            1278: copy.deepcopy(VIBSO_TEST),
+        }
+
+        runner = CliRunner()
+        result = runner.invoke(main, ["--dry"])
+
+        self.assertEqual(result.exit_code, 0)
+        self.assertIn("Running workflow for all relevant issues", result.output)
+
+        self.assertIn(
+            "No specific issue provided. Searching for all relevant issues", result.output
+        )
+        self.assertIn("Adding 2 issues after filter", result.output)
+
+        self.assertIn("🚀 Adding resource ncbiortholog.test (#1181)", result.output)
+        self.assertIn("🚀 Adding resource vibso.test (#1278)", result.output)
+        self.assertEqual(mock_add_resource.call_count, 2)
 
 
 if __name__ == "__main__":

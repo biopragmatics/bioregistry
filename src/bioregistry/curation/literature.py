@@ -3,8 +3,8 @@
 import enum
 
 __all__ = [
-    "CurationRelevance",
     "COLUMNS",
+    "CurationRelevance",
 ]
 
 COLUMNS = [
@@ -27,10 +27,10 @@ class CurationRelevance(str, enum.Enum):
     new_provider = enum.auto()
     #: A new publication for an existing prefix
     new_publication = enum.auto()
-    #: A database, but not for identifier information
+    #: Papers linking to external non-identifier resources such as software repositories, visualization tools, etc.
     not_identifiers_resource = enum.auto()
-    #: Paper suggestive of a new database, but no link to website provided
-    no_website = enum.auto()
+    #: Self-contained papers that do not link to any external resources
+    non_resource_paper = enum.auto()
     #: An existing entry in the bioregistry
     existing = enum.auto()
     #: Not clear how to curate in the bioregistry, follow up discussion required

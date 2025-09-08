@@ -74,6 +74,7 @@
                 <td>Contexts</td>
                 <td>Resource</td>
                 <td>Registry</td>
+                <td>Status</td>
             </tr>
             </thead>
             {% for row in rows %}
@@ -93,6 +94,7 @@
                     <td style="text-align: right;">{{ contexts.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ prefix_contacts.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ registries.get(row.orcid, []) | length }}</td>
+                    <td style="text-align: right;">{{ status_contributions.get(row.orcid, []) | length }}</td>
                 </tr>
             {% endfor %}
         </table>

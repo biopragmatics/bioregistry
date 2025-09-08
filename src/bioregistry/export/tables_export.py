@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Make tables exports."""
 
 from textwrap import dedent
@@ -67,7 +65,7 @@ schema_status_map = {
 }
 
 
-def _sort_key(registry: bioregistry.Registry):
+def _sort_key(registry: bioregistry.Registry) -> tuple[int, str]:
     if registry.prefix == "bioregistry":
         return 0, registry.prefix
     return 1, registry.prefix
@@ -164,7 +162,8 @@ def _get_metadata_df() -> pd.DataFrame:
 def export_tables() -> None:
     """Export tables.
 
-    1. TODO: Export data model comparison, see also https://bioregistry.io/related#data-models
+    1. TODO: Export data model comparison, see also
+       https://bioregistry.io/related#data-models
     2. Export governance comparison, see also https://bioregistry.io/related#governance
     """
     governance_df = _get_governance_df()

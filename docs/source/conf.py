@@ -1,15 +1,13 @@
-"""
-Configuration file for the Sphinx documentation builder.
+"""Configuration file for the Sphinx documentation builder.
 
-This file does only contain a selection of the most common options. For a
-full list see the documentation:
-http://www.sphinx-doc.org/en/master/config
+This file does only contain a selection of the most common options. For a full list see
+the documentation: http://www.sphinx-doc.org/en/master/config
 
 -- Path setup --------------------------------------------------------------
 
-If extensions (or modules to document with autodoc) are in another directory,
-add these directories to ``sys.path`` here. If the directory is relative to the
-documentation root, use ``os.path.abspath`` to make it absolute, like shown here.
+If extensions (or modules to document with autodoc) are in another directory, add these
+directories to ``sys.path`` here. If the directory is relative to the documentation
+root, use ``os.path.abspath`` to make it absolute, like shown here.
 """
 
 import os
@@ -26,7 +24,7 @@ copyright = f"{date.today().year}, Charles Tapley Hoyt"
 author = "Charles Tapley Hoyt"
 
 # The full version, including alpha/beta/rc tags.
-release = "0.11.34-dev"
+release = "0.12.39-dev"
 
 # The short X.Y version.
 parsed_version = re.match(
@@ -48,7 +46,7 @@ html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 if os.environ.get("READTHEDOCS", "") == "True":
     if "html_context" not in globals():
         html_context = {}
-    html_context["READTHEDOCS"] = True  # noqa: F821
+    html_context["READTHEDOCS"] = True
 
 
 # -- General configuration ---------------------------------------------------
@@ -242,7 +240,9 @@ texinfo_documents = [
 # Note: don't add trailing slashes, since sphinx adds "/objects.inv" to the end
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "rdflib": ("https://rdflib.readthedocs.io/en/stable/", None),
+    "rdflib": ("https://rdflib.readthedocs.io/en/stable", None),
+    "curies": ("https://curies.readthedocs.io/en/latest/", None),
+    "pydantic": ("https://docs.pydantic.dev/latest/", None),
     "pandas": ("https://pandas.pydata.org/docs", None),
 }
 

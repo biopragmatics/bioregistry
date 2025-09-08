@@ -44,17 +44,17 @@ a paper, curators should update the TSV file with the following information:
 This table of `relevancy_type` tags is continuously evolving as new papers are
 evaluated and is subject to change in the future.
 
-| Key                      | Definition                                                                                 |
-| ------------------------ | ------------------------------------------------------------------------------------------ |
-| new_prefix               | A resource for new primary identifiers                                                     |
-| new_provider             | A resolver for existing identifiers                                                        |
-| new_publication          | A new publication for an existing prefix                                                   |
-| not_identifiers_resource | A database, but not for identifier information                                             |
-| no_website               | Paper suggestive of a new database, but no link to website provided                        |
-| existing                 | An existing entry in the bioregistry                                                       |
-| unclear                  | Not clear how to curate in the bioregistry, follow up discussion required                  |
-| irrelevant_other         | Completely unrelated information                                                           |
-| not_notable              | Relevant for training purposes, but not curated in Bioregistry due to poor/unknown quality |
+| Key                      | Definition                                                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| new_prefix               | A resource for new primary identifiers                                                                       |
+| new_provider             | A resolver for existing identifiers                                                                          |
+| new_publication          | A new publication for an existing prefix                                                                     |
+| not_identifiers_resource | Papers linking to external non-identifier resources such as software repositories, visualization tools, etc. |
+| non_resource_paper       | Self-contained papers that do not link to any external resources                                             |
+| existing                 | An existing entry in the bioregistry                                                                         |
+| unclear                  | Not clear how to curate in the bioregistry, follow up discussion required                                    |
+| irrelevant_other         | Completely unrelated information                                                                             |
+| not_notable              | Relevant for training purposes, but not curated in Bioregistry due to poor/unknown quality                   |
 
 ## Common Mistakes
 

@@ -1,6 +1,8 @@
 """Get a curation sheet for recently failing prefixes from the Bioregistry Health Report.
 
-.. seealso:: https://biopragmatics.github.io/bioregistry/health/
+.. seealso::
+
+    https://biopragmatics.github.io/bioregistry/health/
 """
 
 from pathlib import Path
@@ -46,7 +48,7 @@ def _get_df() -> pd.DataFrame:
 
 @click.command()
 @click.option("--path", type=click.Path(), default=OUTPUT_PATH, show_default=True)
-def main(path: Path):
+def main(path: Path) -> None:
     """Write the curation sheet."""
     df = _get_df()
     df.to_csv(path, sep="\t", index=False)

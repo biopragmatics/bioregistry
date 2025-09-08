@@ -1,29 +1,30 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from the OLS."""
+
+from __future__ import annotations
 
 import datetime
 import enum
 import json
 import logging
+from collections.abc import Mapping, Sequence
 from email.utils import parseaddr
 from functools import lru_cache
 from operator import itemgetter
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Mapping, Optional
+from typing import Any, ClassVar
 
 import requests
 from pydantic import BaseModel
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.parse_version_iri import parse_obo_version_iri
-from bioregistry.utils import OLSBroken
+from bioregistry.utils import OLSBrokenError
 
 __all__ = [
-    "get_ols",
     "OLSAligner",
+    "get_ols",
 ]
 
 logger = logging.getLogger(__name__)
@@ -42,18 +43,18 @@ OLS_SKIP = {
     "cpont": "no own terms?",
     "schemaorg_https": "duplicate of canonical HTTP version",
     "hpi": "nonsensical duplication of HP",
+    "hra": "project ontology",
 }
 
 
-def get_ols(force_download: bool = False):
+def get_ols(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the OLS registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
-    data = requests.get(URL).json()
+    data = requests.get(URL, timeout=15).json()
     if "_embedded" not in data:
-        raise OLSBroken
+        raise OLSBrokenError
     data["_embedded"]["ontologies"] = sorted(
         data["_embedded"]["ontologies"],
         key=itemgetter("ontologyId"),
@@ -75,7 +76,10 @@ def get_ols(force_download: bool = False):
             if ols_id not in OLS_SKIP:
                 logger.warning("[%s] need to curate processing file", ols_id)
             continue
-        processed[ols_id] = _process(ontology, config)
+        record = _process(ontology, config)
+        if not record:
+            continue
+        processed[ols_id] = record
 
     with PROCESSED_PATH.open("w") as file:
         json.dump(processed, file, indent=2, sort_keys=True)
@@ -98,15 +102,15 @@ class OLSConfig(BaseModel):
 
     prefix: str
     version_type: VersionType
-    version_date_format: Optional[str] = None
-    version_prefix: Optional[str] = None
-    version_suffix: Optional[str] = None
-    version_suffix_split: Optional[str] = None
-    version_iri_prefix: Optional[str] = None
-    version_iri_suffix: Optional[str] = None
+    version_date_format: str | None = None
+    version_prefix: str | None = None
+    version_suffix: str | None = None
+    version_suffix_split: str | None = None
+    version_iri_prefix: str | None = None
+    version_iri_suffix: str | None = None
 
 
-def _get_email(ols_id, config) -> Optional[str]:
+def _get_email(ols_id: str, config: dict[str, Any]) -> str | None:
     mailing_list = config.get("mailingList")
     if not mailing_list:
         return None
@@ -117,8 +121,8 @@ def _get_email(ols_id, config) -> Optional[str]:
     return email
 
 
-def _get_license(ols_id, config) -> Optional[str]:
-    license_value = (config.get("annotations") or {}).get("license", [None])[0]
+def _get_license(ols_id: str, config: dict[str, Any]) -> str | None:
+    license_value: str | None = (config.get("annotations") or {}).get("license", [None])[0]
     if license_value == "Unspecified":
         logger.info("[%s] unspecified license in OLS. Contact: %s", ols_id, config["mailingList"])
         return None
@@ -127,21 +131,22 @@ def _get_license(ols_id, config) -> Optional[str]:
     return license_value
 
 
-def _get_version(ols_id, config, processing: OLSConfig) -> Optional[str]:
-    version_iri = config.get("versionIri")
+def _get_version(ols_id: str, config: dict[str, Any], processing: OLSConfig) -> str | None:
+    version_iri: str | None = config.get("versionIri")
     if version_iri:
-        _, _, version = parse_obo_version_iri(version_iri, ols_id)
-        if version:
-            return version
+        _, _, version_from_iri = parse_obo_version_iri(version_iri, ols_id)
+        if version_from_iri:
+            return version_from_iri
 
-    version = config.get("version")
-    if version is None and processing.version_iri_prefix:
+    version: str | None = config.get("version")
+    if version is None and version_iri and processing.version_iri_prefix:
         if not version_iri.startswith(processing.version_iri_prefix):
             logger.info("[%s] version IRI does not start with appropriate prefix", ols_id)
         else:
-            version = version_iri[len(processing.version_iri_prefix) :]
+            version_cut = version_iri[len(processing.version_iri_prefix) :]
             if processing.version_iri_suffix:
-                version = version[: -len(processing.version_iri_suffix)]
+                version_cut = version_cut[: -len(processing.version_iri_suffix)]
+            return version_cut
 
     if version is None:
         logger.info(
@@ -150,61 +155,60 @@ def _get_version(ols_id, config, processing: OLSConfig) -> Optional[str]:
             config["mailingList"],
             version_iri,
         )
-    else:
-        if version != version.strip():
+        return None
+
+    if version != version.strip():
+        logger.info(
+            "[%s] extra whitespace in version: %s. Contact: %s",
+            ols_id,
+            version,
+            config["mailingList"],
+        )
+        version = version.strip()
+
+    version_prefix = processing.version_prefix
+    if version_prefix:
+        if not version.startswith(version_prefix):
+            raise ValueError(
+                dedent(
+                    f"""\
+                [{ols_id}] version "{version}" does not start with prefix "{version_prefix}".
+                Update the ["{ols_id}"]["prefix"] entry in the OLS processing configuration.
+                """
+                )
+            )
+        version = version[len(version_prefix) :]
+    if processing.version_suffix_split:
+        version = version.split()[0]
+    version_suffix = processing.version_suffix
+    if version_suffix:
+        if not version.endswith(version_suffix):
+            raise ValueError(
+                f"[{ols_id}] version {version} does not end with prefix {version_suffix}"
+            )
+        version = version[: -len(version_suffix)]
+
+    version_type = processing.version_type
+    version_date_fmt = processing.version_date_format
+    if version_date_fmt:
+        if version_date_fmt in {"%Y-%d-%m"}:
             logger.info(
-                "[%s] extra whitespace in version: %s. Contact: %s",
+                "[%s] confusing date format: %s. Contact: %s",
                 ols_id,
-                version,
+                version_date_fmt,
                 config["mailingList"],
             )
-            version = version.strip()
-
-        version_prefix = processing.version_prefix
-        if version_prefix:
-            if not version.startswith(version_prefix):
-                raise ValueError(
-                    dedent(
-                        f"""\
-                    [{ols_id}] version "{version}" does not start with prefix "{version_prefix}".
-                    Update the ["{ols_id}"]["prefix"] entry in the OLS processing configuration.
-                    """
-                    )
-                )
-            version = version[len(version_prefix) :]
-        if processing.version_suffix_split:
-            version = version.split()[0]
-        version_suffix = processing.version_suffix
-        if version_suffix:
-            if not version.endswith(version_suffix):
-                raise ValueError(
-                    f"[{ols_id}] version {version} does not end with prefix {version_suffix}"
-                )
-            version = version[: -len(version_suffix)]
-
-        version_type = processing.version_type
-        version_date_fmt = processing.version_date_format
-        if version_date_fmt:
-            if version_date_fmt in {"%Y-%d-%m"}:
-                logger.info(
-                    "[%s] confusing date format: %s. Contact: %s",
-                    ols_id,
-                    version_date_fmt,
-                    config["mailingList"],
-                )
-            try:
-                version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
-            except ValueError:
-                logger.info("[%s] wrong format for version %s", ols_id, version)
-        elif not version_type:
-            logger.info("[%s] no type for version %s", ols_id, version)
+        try:
+            version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            logger.info("[%s] wrong format for version %s", ols_id, version)
+    elif not version_type:
+        logger.info("[%s] no type for version %s", ols_id, version)
 
     return version
 
 
-def _process(  # noqa:C901
-    ols_entry: Mapping[str, Any], processing: OLSConfig
-) -> Optional[Mapping[str, str]]:
+def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> dict[str, str] | None:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]
@@ -237,7 +241,7 @@ def _process(  # noqa:C901
     return rv
 
 
-def _clean_url(url: Optional[str]) -> Optional[str]:
+def _clean_url(url: str | None) -> str | None:
     if url is None:
         return url
     if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
@@ -258,7 +262,7 @@ class OLSAligner(Aligner):
 
     key = "ols"
     getter = get_ols
-    curation_header = ("name",)
+    curation_header: ClassVar[Sequence[str]] = ("name",)
     include_new = True
 
     def get_skip(self) -> Mapping[str, str]:

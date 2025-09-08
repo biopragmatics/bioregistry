@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests to make sure there are no duplicates."""
 
 import unittest

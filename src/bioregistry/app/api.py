@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
-
 """FastAPI blueprint and routes."""
 
 from __future__ import annotations
 
-from typing import Any, List, Mapping, Optional, Set
+from collections.abc import Mapping
+from typing import Annotated, Any
 
 import yaml
 from curies import Reference
 from curies.mapping_service.utils import handle_header
-from fastapi import APIRouter, Body, Header, HTTPException, Path, Query, Request
+from fastapi import APIRouter, Body, Depends, Header, HTTPException, Path, Query, Request
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
-from bioregistry import Collection, Context, Registry, Resource
+from bioregistry import Collection, Context, Manager, Registry, Resource
 from bioregistry.export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
@@ -29,13 +28,19 @@ from bioregistry.schema_utils import (
 )
 
 from .utils import FORMAT_MAP, _autocomplete, _search
-from ..utils import pydantic_dict
 
 __all__ = [
     "api_router",
 ]
 
 api_router = APIRouter(prefix="/api")
+
+
+def _get_manager(request: Request) -> Manager:
+    return request.app.manager  # type:ignore
+
+
+DependsManager = Annotated[Manager, Depends(_get_manager)]
 
 
 class UnhandledFormat(HTTPException):
@@ -57,8 +62,7 @@ class YAMLResponse(Response):
     def render(self, content: Any) -> bytes:
         """Render content as YAML."""
         if isinstance(content, BaseModel):
-            content = pydantic_dict(
-                content,
+            content = content.model_dump(
                 exclude_none=True,
                 exclude_unset=True,
             )
@@ -86,7 +90,7 @@ CONTENT_TYPE_SYNONYMS = {
 }
 
 
-def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
+def _handle_formats(accept: str | None, fmt: str | None) -> str:
     if fmt:
         if fmt not in FORMAT_MAP:
             raise HTTPException(
@@ -105,16 +109,16 @@ def _handle_formats(accept: Optional[str], fmt: Optional[str]) -> str:
 
 @api_router.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
 def get_resources(
-    request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
-):
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | dict[str, Resource]:
     """Get all resources."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
-        return request.app.manager.registry
+        return manager.registry
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(request.app.manager.registry))
+        return YAMLResponse(sanitize_mapping(manager.registry))
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -137,18 +141,18 @@ def get_resources(
     response_model_exclude_unset=True,
 )
 def get_resource(
-    request: Request,
+    manager: DependsManager,
     prefix: str = Path(
         title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
     ),
     accept: str = ACCEPT_HEADER,
     format: str = FORMAT_QUERY,
-):
+) -> Response | Resource:
     """Get a resource."""
-    resource = request.app.manager.get_resource(prefix)
+    resource = manager.get_resource(prefix)
     if resource is None:
         raise HTTPException(status_code=404, detail=f"Prefix not found: {prefix}")
-    resource = request.app.manager.rasterized_resource(resource)
+    resource = manager.rasterized_resource(resource)
     accept = _handle_formats(accept, format)
     if accept == "application/json":
         return resource
@@ -156,7 +160,7 @@ def get_resource(
         return YAMLResponse(resource)
     elif accept in RDF_MEDIA_TYPES:
         return Response(
-            resource_to_rdf_str(resource, fmt=RDF_MEDIA_TYPES[accept], manager=request.app.manager),
+            resource_to_rdf_str(resource, fmt=RDF_MEDIA_TYPES[accept], manager=manager),
             media_type=accept,
         )
     else:
@@ -170,16 +174,16 @@ def get_resource(
     description="Get all metaresource representing registries.",
 )
 def get_metaresources(
-    request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
-):
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | Mapping[str, Registry]:
     """Get all registries."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
-        return request.app.manager.metaregistry
+        return manager.metaregistry
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(request.app.manager.metaregistry))
+        return YAMLResponse(sanitize_mapping(manager.metaregistry))
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -210,13 +214,12 @@ METAPREFIX_PATH = Path(
     response_model_exclude_unset=True,
 )
 def get_metaresource(
-    request: Request,
+    manager: DependsManager,
     metaprefix: str = METAPREFIX_PATH,
     accept: str = ACCEPT_HEADER,
     format: str = FORMAT_QUERY,
-):
+) -> Response | Registry:
     """Get all registries."""
-    manager = request.app.manager
     metaresource = manager.get_registry(metaprefix)
     if metaresource is None:
         raise HTTPException(status_code=404, detail=f"Registry not found: {metaprefix}")
@@ -244,11 +247,10 @@ def get_metaresource(
     tags=["metaresource"],
 )
 def get_external_registry_slim(
-    request: Request,
+    manager: DependsManager,
     metaprefix: str = METAPREFIX_PATH,
-):
+) -> dict[str, Resource]:
     """Get a slim version of the registry with only resources mapped to the given external registry."""
-    manager = request.app.manager
     return {
         resource_.prefix: manager.rasterized_resource(resource_)
         for resource_ in manager.registry.values()
@@ -264,8 +266,8 @@ class MappingResponseMeta(BaseModel):
     target: str
     len_source_only: int
     len_target_only: int
-    source_only: List[str]
-    target_only: List[str]
+    source_only: list[str]
+    target_only: list[str]
 
 
 class MappingResponse(BaseModel):
@@ -282,12 +284,11 @@ class MappingResponse(BaseModel):
     description="Get mappings from the given metaresource to another",
 )
 def get_metaresource_external_mappings(
-    request: Request,
+    manager: DependsManager,
     metaprefix: str = METAPREFIX_PATH,
     target: str = Path(title="target metaprefix"),
-):
+) -> MappingResponse | tuple[dict[str, str], int]:
     """Get mappings between two external prefixes."""
-    manager = request.app.manager
     try:
         diff = manager.get_external_mappings(metaprefix, target)
     except KeyError as e:
@@ -311,9 +312,10 @@ def get_metaresource_external_mappings(
     response_model=Mapping[str, str],
     tags=["metaresource"],
 )
-def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PATH):
+def get_metaresource_mappings(
+    manager: DependsManager, metaprefix: str = METAPREFIX_PATH
+) -> dict[str, str]:
     """Get mappings from the Bioregistry to an external registry."""
-    manager = request.app.manager
     if metaprefix not in manager.metaregistry:
         raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
     return manager.get_registry_map(metaprefix)
@@ -321,16 +323,16 @@ def get_metaresource_mappings(request: Request, metaprefix: str = METAPREFIX_PAT
 
 @api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
 def get_collections(
-    request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
-):
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | dict[str, Collection]:
     """Get all collections."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
-        return request.app.manager.collections
+        return manager.collections
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(request.app.manager.collections))
+        return YAMLResponse(sanitize_mapping(manager.collections))
     elif accept in RDF_MEDIA_TYPES:
         raise NotImplementedError
     else:
@@ -353,17 +355,16 @@ def get_collections(
     response_model_exclude_unset=True,
 )
 def get_collection(
-    request: Request,
+    manager: DependsManager,
     identifier: str = Path(
         title="Collection Identifier",
         description="The 7-digit collection identifier",
         examples=["0000001"],
     ),
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
-):
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | Collection:
     """Get a collection."""
-    manager = request.app.manager
     collection = manager.collections.get(identifier)
     if collection is None:
         raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
@@ -389,27 +390,27 @@ def get_collection(
 
 @api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
 def get_contexts(
-    request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
-):
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | dict[str, Context]:
     """Get all context."""
     accept = _handle_formats(accept, format)
     if accept == "application/json":
-        return request.app.manager.contexts
+        return manager.contexts
     elif accept == "application/yaml":
-        return YAMLResponse(sanitize_mapping(request.app.manager.contexts))
+        return YAMLResponse(sanitize_mapping(manager.contexts))
     else:
         raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
 @api_router.get("/context/{identifier}", response_model=Context, tags=["context"])
 def get_context(
-    request: Request,
+    manager: DependsManager,
     identifier: str = Path(title="Context Key", description="The context key", examples=["obo"]),
-):
+) -> Context:
     """Get a context."""
-    context = request.app.manager.contexts.get(identifier)
+    context: Context | None = manager.contexts.get(identifier)
     if context is None:
         raise HTTPException(status_code=404, detail=f"Context not found: {identifier}")
     return context
@@ -417,12 +418,12 @@ def get_context(
 
 @api_router.get("/contributors", response_model=Mapping[str, Attributable], tags=["contributor"])
 def get_contributors(
-    request: Request,
-    accept: Optional[str] = ACCEPT_HEADER,
-    format: Optional[str] = FORMAT_QUERY,
-):
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | Mapping[str, Attributable]:
     """Get all context."""
-    contributors = request.app.manager.read_contributors()
+    contributors = manager.read_contributors()
     accept = _handle_formats(accept, format)
     if accept == "application/json":
         return contributors
@@ -436,19 +437,19 @@ class ContributorResponse(BaseModel):
     """A response with information about a contributor."""
 
     contributor: Attributable
-    prefix_contributions: Set[str]
-    prefix_reviews: Set[str]
-    prefix_contacts: Set[str]
-    registries: Set[str]
-    collections: Set[str]
+    prefix_contributions: set[str]
+    prefix_reviews: set[str]
+    prefix_contacts: set[str]
+    registries: set[str]
+    collections: set[str]
 
 
 @api_router.get("/contributor/{orcid}", response_model=ContributorResponse, tags=["contributor"])
 def get_contributor(
-    request: Request, orcid: str = Path(title="Open Researcher and Contributor Identifier")
-):
+    manager: DependsManager,
+    orcid: Annotated[str, Path(..., title="Open Researcher and Contributor Identifier")],
+) -> ContributorResponse:
     """Get all context."""
-    manager = request.app.manager
     author = manager.read_contributors().get(orcid)
     if author is None:
         raise HTTPException(404, f"No contributor with orcid: {orcid}")
@@ -472,11 +473,10 @@ class IdentifierResponse(BaseModel):
 @api_router.get(
     "/reference/{prefix}:{identifier:path}", response_model=IdentifierResponse, tags=["reference"]
 )
-def get_reference(request: Request, prefix: str, identifier: str):
+def get_reference(manager: DependsManager, prefix: str, identifier: str) -> IdentifierResponse:
     """Look up information on the reference."""
     # see https://fastapi.tiangolo.com/tutorial/path-params/#path-parameters-containing-paths
     # for more understanding on how the identifier:path handling works
-    manager = request.app.manager
     resource = manager.get_resource(prefix)
     if resource is None:
         raise HTTPException(404, f"invalid prefix: {prefix}")
@@ -530,13 +530,14 @@ class URIQuery(BaseModel):
     "/uri/parse/", response_model=URIResponse, tags=["reference"], summary="Parse a URI"
 )
 def post_parse_uri(
-    request: Request,
-    query: URIQuery = Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")]),
-):
+    manager: DependsManager,
+    query: Annotated[
+        URIQuery, Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")])
+    ],
+) -> URIResponse:
     """Parse a URI, return a CURIE, and all equivalent URIs."""
-    manager = request.app.manager
     prefix, identifier = manager.parse_uri(query.uri)
-    if prefix is None:
+    if prefix is None or identifier is None:
         raise HTTPException(404, f"can't parse URI: {query.uri}")
     return URIResponse(
         uri=query.uri,
@@ -548,9 +549,11 @@ def post_parse_uri(
 
 @api_router.get("/context.jsonld", tags=["resource"])
 def generate_context_json_ld(
-    request: Request,
-    prefix: List[str] = Query(description="The prefix for the entry. Can be given multiple."),
-):
+    manager: DependsManager,
+    prefix: Annotated[
+        list[str], Query(..., description="The prefix for the entry. Can be given multiple.")
+    ],
+) -> JSONResponse:
     """Generate an *ad-hoc* context JSON-LD file from the given parameters.
 
     You can either give prefixes as a comma-separated list like:
@@ -560,8 +563,7 @@ def generate_context_json_ld(
     or you can use multiple entries for "prefix" like:
 
     https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
-    """  # noqa:DAR101,DAR201
-    manager = request.app.manager
+    """
     prefix_map = {}
     for value in prefix:
         for prefix_ in value.split(","):
@@ -582,17 +584,17 @@ def generate_context_json_ld(
 
 @api_router.get("/autocomplete", tags=["search"])
 def autocomplete(
-    request: Request,
-    q: str = Query(description="A query for the prefix"),
-):
+    manager: DependsManager,
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
     """Complete a resolution query."""
-    return JSONResponse(_autocomplete(request.app.manager, q))
+    return JSONResponse(_autocomplete(manager, q))
 
 
 @api_router.get("/search", tags=["search"])
 def search(
-    request: Request,
-    q: str = Query(description="A query for the prefix"),
-):
+    manager: DependsManager,
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
     """Search for a prefix."""
-    return JSONResponse(_search(request.app.manager, q))
+    return JSONResponse(_search(manager, q))

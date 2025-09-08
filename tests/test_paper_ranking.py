@@ -1,70 +1,131 @@
 """Test for checking the paper ranking model."""
 
 import datetime
-import json
+import importlib.util
+import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
-from unittest.mock import patch
 
-from click.testing import CliRunner
+import pandas as pd
 
-from bioregistry.analysis.paper_ranking import main
+from bioregistry.analysis.paper_ranking import load_curated_papers, train
+from bioregistry.schema.struct import Publication, Resource
+from bioregistry.schema_utils import write_registry
 
 
+@unittest.skipUnless(
+    importlib.util.find_spec("pubmed_downloader"), reason="test needs pubmed-downloader"
+)
 class TestPaperRanking(unittest.TestCase):
     """Tests the paper ranking model."""
 
-    def setUp(self):
-        """Set up the test case with paths for the files."""
-        root_dir = root_dir = Path(__file__).resolve().parent.parent
-        self.bioregistry_file = root_dir / "src" / "bioregistry" / "data" / "bioregistry.json"
-        self.output_directory = root_dir / "exports" / "analyses" / "paper_ranking"
-        self.mock_data_path = root_dir / "tests" / "mock_pubmed_data.json"
-
-        # Check if bioregistry and mock data files exists
-        self.assertTrue(self.mock_data_path.exists(), "Mock data file does not exist")
-        self.assertTrue(self.bioregistry_file.exists(), "Bioregistry file does not exist")
-
-    @patch("bioregistry.analysis.paper_ranking.pubmed_client.get_metadata_for_ids")
-    def test_pipeline(self, mock_get_metadata_for_ids):
+    @unittest.mock.patch("bioregistry.analysis.paper_ranking._get_articles_dict")
+    @unittest.mock.patch("bioregistry.analysis.paper_ranking._search")
+    def test_pipeline(self, mock_search, mock_get_articles_dict):
         """Smoke test to ensure pipeline runs successfully without error."""
-        start_date = datetime.date.today().isoformat()
-        end_date = datetime.date.today().isoformat()
+        import pubmed_downloader
+        from pubmed_downloader import Article
+        from pubmed_downloader.api import JournalIssue
 
-        # Mock return value for get_metadata_for_ids
-        with open(self.mock_data_path, "r", encoding="utf-8") as file:
-            mock_data = json.load(file)
+        abstract = [pubmed_downloader.AbstractText(text="sample text")]
+        journal = pubmed_downloader.Journal(nlm_catalog_id="abcdef")
+        journal_issue = JournalIssue(published=datetime.date.today())
 
-        mock_get_metadata_for_ids.return_value = mock_data
+        n = 30
+        positive_group_1 = [
+            Article(
+                pubmed=i,
+                title=f"test positive {i}",
+                abstract=abstract,
+                journal=journal,
+                journal_issue=journal_issue,
+            )
+            for i in range(1, n)
+        ]
+        uncurated_group = [
+            Article(
+                pubmed=i,
+                title=f"test {i}",
+                abstract=abstract,
+                journal=journal,
+                journal_issue=journal_issue,
+            )
+            for i in range(n, 2 * n)
+        ]
+        negative_group = [
+            Article(
+                pubmed=i,
+                title=f"test negative {i}",
+                abstract=abstract,
+                journal=journal,
+                journal_issue=journal_issue,
+            )
+            for i in range(2 * n, 3 * n)
+        ]
 
-        runner = CliRunner()
+        registry = {
+            "test": Resource(
+                prefix="test",
+                name="Test",
+                publications=[
+                    Publication(
+                        pubmed=str(positive_group_1[0].pubmed), title=positive_group_1[0].title
+                    )
+                ],
+            )
+        }
 
-        result = runner.invoke(
-            main,
-            [
-                "--bioregistry-file",
-                str(self.bioregistry_file),
-                "--start-date",
-                start_date,
-                "--end-date",
-                end_date,
-            ],
-        )
+        articles = [
+            *positive_group_1,
+            *uncurated_group,
+            *negative_group,
+        ]
 
-        # Check if the pipeline ran successfully
-        self.assertEqual(result.exit_code, 0, f"Pipeline failed with: {result.exit_code}")
+        curated_paper_rows = [
+            *((str(article.pubmed), 1) for article in positive_group_1),
+            *((str(article.pubmed), 0) for article in negative_group),
+            *((str(article.pubmed), None) for article in uncurated_group),
+        ]
+        curated_papers_df = pd.DataFrame(curated_paper_rows, columns=["pubmed", "relevant"])
 
-        # Check if the output directory exists
-        self.assertTrue(self.output_directory.exists(), f"{self.output_directory} does not exist")
+        # set the mocks
+        mock_get_articles_dict.return_value = {str(article.pubmed): article for article in articles}
+        mock_search.return_value = {str(i): ["database"] for i in range(1, 3 * n)}
 
-        # Check if the evaluation file was created
-        evaluation_file = self.output_directory.joinpath("evaluation.tsv")
-        self.assertTrue(evaluation_file.exists(), f"{evaluation_file} was not created")
+        # these are dummy values, since we will mock
+        # the functions that use them
+        datetime.date.today().isoformat()
+        datetime.date.today().isoformat()
 
-        # Check if the importances file was created
-        importances_file = self.output_directory.joinpath("importances.tsv")
-        self.assertTrue(importances_file.exists(), f"{importances_file} was not created")
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            directory = Path(temporary_directory)
 
+            curated_papers_path = directory.joinpath("curated-papers.tsv")
+            curated_papers_df.to_csv(curated_papers_path, sep="\t", index=False)
 
-if __name__ == "__main__":
-    unittest.main()
+            # check that adding in the mock content works
+            df = load_curated_papers(curated_papers_path, loud=False)
+            self.assertEqual(
+                {str(i) for i in range(1, 3 * n)},
+                set(df.pubmed),
+            )
+
+            registry_path = directory.joinpath("registry.json")
+            write_registry(registry, path=registry_path)
+
+            train(
+                bioregistry_file=registry_path,
+                curated_papers_path=curated_papers_path,
+                include_remote=False,
+                output_path=directory,
+                strict=True,
+            )
+
+            # Check if the evaluation file was created
+            evaluation_file = directory.joinpath("evaluation.tsv")
+            self.assertTrue(evaluation_file.exists(), f"{evaluation_file} was not created")
+
+            # Check if the importances file was created
+            importances_file = directory.joinpath("importances.tsv")
+            self.assertTrue(importances_file.exists(), f"{importances_file} was not created")

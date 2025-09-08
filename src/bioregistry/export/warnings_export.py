@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-
 """Generate the warnings file.
 
-This lists any sorts of things that should be fixed upstream, but are instead manually curated in the Bioregistry.
+This lists any sorts of things that should be fixed upstream, but are instead manually
+curated in the Bioregistry.
 """
 
 from __future__ import annotations
 
 import os
-from typing import Callable
+from collections.abc import Callable
 
 import click
 import yaml
@@ -17,7 +16,6 @@ from tqdm import tqdm
 import bioregistry
 from bioregistry.constants import DOCS_DATA, EXTERNAL
 from bioregistry.resolve import get_external
-from bioregistry.utils import pydantic_dict
 
 __all__ = [
     "export_warnings",
@@ -26,7 +24,7 @@ __all__ = [
 CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
 
 ENTRIES = sorted(
-    (prefix, pydantic_dict(resource, exclude_none=True))
+    (prefix, resource.model_dump(exclude_none=True))
     for prefix, resource in bioregistry.read_registry().items()
 )
 
@@ -104,13 +102,13 @@ def export_warnings() -> None:
         )
 
     miriam_pattern_wrong = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            correct=entry["pattern"],
-            miriam=entry["miriam"]["pattern"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "correct": entry["pattern"],
+            "miriam": entry["miriam"]["pattern"],
+        }
         for prefix, entry in ENTRIES
         if "miriam" in entry
         and "pattern" in entry
@@ -118,27 +116,27 @@ def export_warnings() -> None:
     ]
 
     miriam_embedding_rewrites = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            correct=entry["namespace.embedded"],
-            miriam=entry["miriam"]["namespaceEmbeddedInLui"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "pattern": bioregistry.get_pattern(prefix),
+            "correct": entry["namespace.embedded"],
+            "miriam": entry["miriam"]["namespaceEmbeddedInLui"],
+        }
         for prefix, entry in ENTRIES
         if "namespace.embedded" in entry
     ]
 
     # When are namespace rewrites required?
     miriam_prefix_rewrites = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            correct=entry["namespace.rewrite"],
-        )
+        {
+            "prefix": prefix,
+            "name": bioregistry.get_name(prefix),
+            "homepage": bioregistry.get_homepage(prefix),
+            "pattern": bioregistry.get_pattern(prefix),
+            "correct": entry["namespace.rewrite"],
+        }
         for prefix, entry in ENTRIES
         if "namespace.rewrite" in entry
     ]
@@ -150,7 +148,7 @@ def export_warnings() -> None:
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
                 "license_conflict": [
-                    dict(prefix=prefix, obo=obo, ols=ols)
+                    {"prefix": prefix, "obo": obo, "ols": ols}
                     for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
                 ],
             },

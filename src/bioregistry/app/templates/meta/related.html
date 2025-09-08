@@ -11,15 +11,9 @@
 {% endmacro %}
 
 {% macro registry_field_dl(cls, key) -%}
-    {% if is_pydantic_1 %}
-        {% set field = cls.__fields__[key].field_info %}
-        <dt>{{ field.title or key.replace("_", " ").title() }}</dt>
-        <dd>{{ field.description }}</dd>
-    {% else %}
-        {% set field = cls.model_fields[key] %}
-        <dt>{{ field.title or key.replace("_", " ").title() }}</dt>
-        <dd>{{ field.description }}</dd>
-    {% endif %}
+    {% set field = cls.model_fields[key] %}
+    <dt>{{ field.title or key.replace("_", " ").title() }}</dt>
+    <dd>{{ field.description }}</dd>
 {% endmacro %}
 
 {% block styles %}

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tools for getting URI format strings.
 
 .. warning::
@@ -8,19 +6,21 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-from typing import Collection, Mapping, Optional, Sequence
+from __future__ import annotations
+
+from collections.abc import Collection, Mapping, Sequence
 
 from .resource_manager import manager
 
 __all__ = [
+    "get_pattern_map",
+    "get_prefix_map",
     "get_uri_format",
     "get_uri_prefix",
-    "get_prefix_map",
-    "get_pattern_map",
 ]
 
 
-def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+def get_uri_format(prefix: str, priority: Sequence[str] | None = None) -> str | None:
     """Get the URI format string for the given prefix, if it's available.
 
     :param prefix: The name of the prefix (possibly unnormalized)
@@ -39,7 +39,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
         identifier. ``$1`` could potentially appear multiple times.
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_format('chebi')
+    >>> bioregistry.get_uri_format("chebi")
     'http://purl.obolibrary.org/obo/CHEBI_$1'
 
     If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
@@ -48,13 +48,15 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     ChEBI example above). Do so like:
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols'])
+    >>> bioregistry.get_uri_format(
+    ...     "chebi", priority=["obofoundry", "bioregistry", "biocontext", "miriam", "ols"]
+    ... )
     'http://purl.obolibrary.org/obo/CHEBI_$1'
     """
     return manager.get_uri_format(prefix=prefix, priority=priority)
 
 
-def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+def get_uri_prefix(prefix: str, priority: Sequence[str] | None = None) -> str | None:
     """Get a well-formed URI prefix for usage in a prefix map.
 
     :param prefix: The prefix to lookup.
@@ -63,7 +65,7 @@ def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
         it MUST have only one ``$1`` and end with ``$1`` to use thie function.
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_prefix('chebi')
+    >>> bioregistry.get_uri_prefix("chebi")
     'http://purl.obolibrary.org/obo/CHEBI_'
     """
     return manager.get_uri_prefix(prefix=prefix, priority=priority)
@@ -71,11 +73,11 @@ def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
 def get_prefix_map(
     *,
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_synonyms: bool = False,
-    remapping: Optional[Mapping[str, str]] = None,
-    blacklist: Optional[Collection[str]] = None,
+    remapping: Mapping[str, str] | None = None,
+    blacklist: Collection[str] | None = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their URI prefixes.
 
@@ -103,8 +105,8 @@ def get_prefix_map(
 def get_pattern_map(
     *,
     include_synonyms: bool = False,
-    remapping: Optional[Mapping[str, str]] = None,
-    blacklist: Optional[Collection[str]] = None,
+    remapping: Mapping[str, str] | None = None,
+    blacklist: Collection[str] | None = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their regular expression patterns.
 

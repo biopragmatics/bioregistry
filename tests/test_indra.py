@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test the ability of the bioregistry to cover INDRA identifiers."""
 
 import unittest

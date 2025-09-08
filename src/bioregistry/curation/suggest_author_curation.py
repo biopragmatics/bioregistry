@@ -41,7 +41,7 @@ EMAIL_BLACKLIST = {
 }
 
 
-def _main():
+def _main() -> None:
     rows = defaultdict(set)
     for resource in bioregistry.resources():
         if resource.is_deprecated():

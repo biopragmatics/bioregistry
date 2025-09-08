@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Workflows for aligning external registries."""
 
 from class_resolver import ClassResolver
@@ -40,40 +38,40 @@ from .wikidata import WikidataAligner
 from .zazuko import ZazukoAligner
 
 __all__ = [
-    # Abstract
-    "Aligner",
-    "aligner_resolver",
     # Concrete
     "AberOWLAligner",
+    "AgroPortalAligner",
+    # Abstract
+    "Aligner",
     "BartocAligner",
     "BioContextAligner",
-    "BiolinkAligner",
     "BioPortalAligner",
-    "CropOCTAligner",
-    "EcoPortalAligner",
-    "AgroPortalAligner",
+    "BiolinkAligner",
     "CellosaurusAligner",
     "ChemInfAligner",
+    "CropOCTAligner",
+    "EDAMAligner",
+    "EcoPortalAligner",
     "FairsharingAligner",
     "GoAligner",
+    "HL7Aligner",
+    "IntegbioAligner",
+    "LOVAligner",
     "MiriamAligner",
     "N2TAligner",
     "NcbiAligner",
     "OBOFoundryAligner",
     "OLSAligner",
     "OntobeeAligner",
+    "PathguideAligner",
     "PrefixCommonsAligner",
+    "RRIDAligner",
+    "Re3dataAligner",
+    "TogoIDAligner",
     "UniProtAligner",
     "WikidataAligner",
-    "EDAMAligner",
-    "Re3dataAligner",
-    "HL7Aligner",
     "ZazukoAligner",
-    "LOVAligner",
-    "IntegbioAligner",
-    "PathguideAligner",
-    "RRIDAligner",
-    "TogoIDAligner",
+    "aligner_resolver",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(

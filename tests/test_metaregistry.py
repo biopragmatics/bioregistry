@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for the metaregistry."""
 
 import unittest
@@ -10,7 +8,6 @@ import bioregistry
 from bioregistry import manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
-from bioregistry.utils import pydantic_dict, pydantic_fields
 
 
 class TestMetaregistry(unittest.TestCase):
@@ -82,7 +79,7 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.resolver_type)
                     self.assertIn(registry.resolver_type, {"lookup", "resolver"})
 
-                invalid_keys = set(pydantic_dict(registry)).difference(pydantic_fields(Registry))
+                invalid_keys = set(registry.model_dump()).difference(Registry.model_fields)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
                 self.assertIsNotNone(registry.qualities)
                 self.assertIsInstance(registry.qualities.bulk_data, bool)
@@ -157,8 +154,8 @@ class TestMetaregistry(unittest.TestCase):
             with self.subTest(metaprefix=metaprefix):
                 self.assertRegex(registry.example, pattern)
 
-            # Test URI format string
-            if registry.provider_uri_format:
-                uri_formats = resource.get_uri_formats()
-                self.assertLess(0, len(uri_formats))
-                self.assertIn(registry.provider_uri_format, uri_formats)
+                # Test URI format string
+                if registry.provider_uri_format:
+                    uri_formats = resource.get_uri_formats()
+                    self.assertLess(0, len(uri_formats))
+                    self.assertIn(registry.provider_uri_format, uri_formats)
