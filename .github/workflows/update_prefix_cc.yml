@@ -1,0 +1,22 @@
+name: Send data to Prefix.cc
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 4 * * *"  # run at 4:05 in the morning (cron format is minute hour day month day, check https://crontab.guru)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install tox tox-uv
+
+      - name: Send a prefix to Prefix.cc
+        run: tox -e send-prefixcc

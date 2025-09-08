@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for checking the integrity of the contexts."""
 
 import json

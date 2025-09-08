@@ -1,18 +1,25 @@
 """A script to generate summaries and text for the Bioregistry manuscript."""
 
+from __future__ import annotations
+
 import datetime
 from collections import defaultdict
+from collections.abc import Mapping
 from dataclasses import dataclass
 from itertools import combinations
 from textwrap import dedent
-from typing import Mapping
+from typing import TYPE_CHECKING
 
 import click
 from more_click import force_option
+from typing_extensions import Self
 
 from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
 from bioregistry.version import get_version
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 
 @dataclass
@@ -39,7 +46,7 @@ class BioregistrySummary:
         """Get the date as an ISO 8601 string."""
         return self.date.strftime("%Y-%m-%d")
 
-    def get_text(self):
+    def get_text(self) -> str:
         """Write the introduction summary sentence."""
         remaining = self.number_prefixes - self.number_prefixes_novel
         return (
@@ -48,10 +55,10 @@ class BioregistrySummary:
         The Bioregistry ({get_version()}; {self.datetime_str}) integrates content from and aligns
         {self.number_registries_aligned:,} external registries and contains {self.number_prefixes:,}
         individual records. These records extend on each prior registry
-        (e.g., 838 records in {self.external_sizes['prefixcommons']}, {self.external_sizes['miriam']:,}
-        in MIRIAM/Identifiers.org, and {self.external_sizes['n2t']:,}  in Name-to-Thing (Wimalaratne et al., 2018),
+        (e.g., 838 records in {self.external_sizes["prefixcommons"]}, {self.external_sizes["miriam"]:,}
+        in MIRIAM/Identifiers.org, and {self.external_sizes["n2t"]:,}  in Name-to-Thing (Wimalaratne et al., 2018),
         each accessed on {self.datetime_str}), as well as the aligned registries combined:
-        {self.number_prefixes_novel:,} of the Bioregistry’s {self.number_prefixes:,} records are novel,
+        {self.number_prefixes_novel:,} of the Bioregistry's {self.number_prefixes:,} records are novel,
         i.e. they do not appear in any existing registry. The Bioregistry also adds novel curated metadata
         for {self.number_prefixes_curated:,} of the remaining {remaining:,} records
         ({self.number_prefixes_curated / remaining:.0%} of all records).
@@ -61,7 +68,7 @@ class BioregistrySummary:
             .replace("\n", " ")
         )
 
-    def _table_rows(self):
+    def _table_rows(self) -> list[tuple[str, str | int]]:
         return [
             ("Version", get_version()),
             ("Registries Surveyed", self.number_registries),
@@ -75,12 +82,12 @@ class BioregistrySummary:
             ("Total Contributors", self.number_total_contributors),
         ]
 
-    def _table_df(self):
+    def _table_df(self) -> pd.DataFrame:
         import pandas as pd
 
         return pd.DataFrame(self._table_rows(), columns=["Category", "Count"])
 
-    def get_table_text(self, tablefmt: str = "github"):
+    def get_table_text(self, tablefmt: str = "github") -> str:
         """Get the text version of table 1 in the manuscript."""
         from tabulate import tabulate
 
@@ -98,7 +105,7 @@ class BioregistrySummary:
         )
 
     @classmethod
-    def make(cls, force_download: bool = False):
+    def make(cls, force_download: bool = False) -> Self:
         """Instantiate the class."""
         registry = manager.registry
 
@@ -123,7 +130,7 @@ class BioregistrySummary:
         prefixes_curated = sum(
             any(
                 x not in metaprefixes
-                for x, v in entry.dict().items()
+                for x, v in entry.model_dump().items()
                 if v is not None and x not in {"prefix", "mappings"}
             )
             for prefix, entry in registry.items()
@@ -141,7 +148,7 @@ class BioregistrySummary:
             number_mappings=total_mapping_count,
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
-            number_mismatches_curated=sum(len(v) for v in manager.mismatches.values()),
+            number_mismatches_curated=sum(len(v.values()) for v in manager.mismatches.values()),
             external_sizes={
                 metaprefix: len(getter(force_download=force_download))
                 for metaprefix, _, getter in GETTERS
@@ -190,7 +197,7 @@ class MappingBurdenSummary:
         )
 
     @classmethod
-    def make(cls, force_download: bool = False):
+    def make(cls, force_download: bool = False) -> Self:
         """Instantiate the class."""
         from bioregistry.external import GETTERS
 
@@ -231,13 +238,13 @@ class MappingBurdenSummary:
 
 @click.command()
 @click.option("--split-lines", is_flag=True)
-@force_option
-def _main(split_lines: bool, force: bool):
+@force_option  # type:ignore
+def _main(split_lines: bool, force: bool) -> None:
     if split_lines:
         from textwrap import fill as _fill
     else:
 
-        def _fill(_s):  # type:ignore
+        def _fill(_s: str) -> str:  # type:ignore
             return _s
 
     click.echo(_fill(MappingBurdenSummary.make(force_download=force).get_text()) + "\n")

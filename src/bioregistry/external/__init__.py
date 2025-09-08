@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
+"""Acquisition, processing, and alignment of external registries."""
 
-"""Workflows for downloading and aligning various external registries."""
-
-from typing import Callable, List, Tuple
+from collections.abc import Callable
+from typing import Any
 
 from .aberowl import get_aberowl
 from .bartoc import get_bartoc
@@ -27,7 +26,7 @@ from .ontobee import get_ontobee
 from .pathguide import get_pathguide
 from .prefixcommons import get_prefixcommons
 from .re3data import get_re3data
-from .scicrunch import get_rrid
+from .rrid import get_rrid
 from .togoid import get_togoid
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
@@ -35,36 +34,36 @@ from .zazuko import get_zazuko
 
 __all__ = [
     "GETTERS",
+    "get_bartoc",
     # Getter functions
     "get_biocontext",
     "get_biolink",
     "get_bioportal",
     "get_cellosaurus",
     "get_cheminf",
+    "get_edam",
     "get_fairsharing",
     "get_go",
+    "get_hl7",
+    "get_integbio",
+    "get_lov",
     "get_miriam",
     "get_n2t",
     "get_ncbi",
     "get_obofoundry",
     "get_ols",
     "get_ontobee",
+    "get_pathguide",
     "get_prefixcommons",
+    "get_re3data",
+    "get_rrid",
+    "get_togoid",
     "get_uniprot",
     "get_wikidata",
-    "get_edam",
-    "get_re3data",
-    "get_hl7",
-    "get_bartoc",
-    "get_integbio",
-    "get_lov",
-    "get_pathguide",
-    "get_togoid",
     "get_zazuko",
-    "get_rrid",
 ]
 
-GETTERS: List[Tuple[str, str, Callable]] = [
+GETTERS: list[tuple[str, str, Callable[..., dict[str, dict[str, Any]]]]] = [
     ("obofoundry", "OBO", get_obofoundry),
     ("ols", "OLS", get_ols),
     ("miriam", "MIRIAM", get_miriam),

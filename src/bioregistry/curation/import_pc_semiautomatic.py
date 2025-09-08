@@ -37,7 +37,7 @@ def norm(s: str) -> str:
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run semi-automated import of Prefix Commons."""
     dead_stuff_path = BIOREGISTRY_MODULE.join(name="pc_dead_prefixes.json")
     if dead_stuff_path.is_file():
@@ -46,7 +46,12 @@ def main():
         dead_prefixes = set()
     click.echo(f"see {dead_stuff_path}")
 
-    uniprot_pattern = bioregistry.get_resource("uniprot").get_pattern_re()
+    uniprot_resource = bioregistry.get_resource("uniprot")
+    if uniprot_resource is None:
+        raise RuntimeError
+    uniprot_pattern = uniprot_resource.get_pattern_re()
+    if uniprot_pattern is None:
+        raise RuntimeError
     pc = get_prefixcommons(force_download=False)
     prefixes = manager.get_registry_invmap("prefixcommons")
     c = 0
@@ -83,7 +88,7 @@ def main():
             add_resource(
                 Resource(
                     prefix=norm(prefix),
-                    mappings=dict(prefixcommons=prefix),
+                    mappings={"prefixcommons": prefix},
                     prefixcommons=data,
                 )
             )
@@ -97,7 +102,7 @@ def main():
 def _works(url: str) -> bool:
     try:
         homepage_res = requests.head(url, timeout=3, allow_redirects=True)
-    except IOError:
+    except OSError:
         return False
     else:
         return homepage_res.status_code == 200

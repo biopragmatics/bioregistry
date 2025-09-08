@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """Tests for identifiers.org."""
 
 import unittest
-from typing import Mapping
+from collections.abc import Mapping
 
 import requests
 
@@ -38,12 +36,13 @@ class TestIdentifiersOrg(unittest.TestCase):
         """Test getting identifiers.org prefixes."""
         for prefix, miriam_prefix in [
             ("ncbitaxon", "taxonomy"),
-            ("eccode", "ec-code"),
+            ("ec", "ec-code"),
         ]:
             with self.subTest(prefix=prefix):
                 self.assertEqual(miriam_prefix, bioregistry.get_identifiers_org_prefix(prefix))
 
-        for prefix in ["MONDO"]:
+        # Test prefixes that don't exist in MIRIAM
+        for prefix in ["IDOMAL"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
     def test_standardize_identifier(self):
@@ -104,8 +103,8 @@ class TestIdentifiersOrg(unittest.TestCase):
 
         .. warning::
 
-            This test takes up to 5 minutes since it makes a lot of web requests, and
-            is therefore skipped by default.
+            This test takes up to 5 minutes since it makes a lot of web requests, and is
+            therefore skipped by default.
         """
         for prefix, entry in self.entries.items():
             miriam_prefix = entry.get_identifiers_org_prefix()
@@ -123,14 +122,14 @@ class TestIdentifiersOrg(unittest.TestCase):
             ("chebi", "1234", "CHEBI:1234", "test exclusion of redundant namespace (standard)"),
             (
                 "mzspec",
-                "PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
-                "mzspec:PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
+                "PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
+                "mzspec:PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
                 "test simple concatenation with false banana",
             ),
             (
                 "mzspec",
-                "mzspec:PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
-                "mzspec:PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
+                "mzspec:PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
+                "mzspec:PXD002255:ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2",
                 "test simple concatenation (redundant) with false banana",
             ),
         ]:

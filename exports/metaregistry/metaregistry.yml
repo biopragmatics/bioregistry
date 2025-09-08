@@ -290,7 +290,7 @@ bioportal:
     status: active
   homepage: https://bioportal.bioontology.org/
   license: See https://github.com/biopragmatics/bioregistry/issues/337
-  logo_url: https://ontoportal.org/wp-content/uploads/2020/02/bioportal-logo.png
+  logo_url: https://ontoportal.org/images/alliance_member_logos/bioportal.png
   name: BioPortal Prefixes
   prefix: bioportal
   provider_uri_format: https://bioportal.bioontology.org/ontologies/$1
@@ -390,7 +390,7 @@ cellosaurus:
     status: active
   homepage: https://web.expasy.org/cellosaurus/
   license: CC BY 4.0
-  logo_url: https://www.cellosaurus.org/cellosaurus.png
+  logo_url: https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png
   name: Cellosaurus Registry
   prefix: cellosaurus
   qualities:
@@ -739,7 +739,7 @@ hl7:
   logo_url: https://comjoodoc.de/wp-content/uploads/2019/03/blog_comjoodoc_hl7fhir-1200x800.png
   name: HL7 External Code Systems
   prefix: hl7
-  provider_uri_format: http://oid-info.com/get/$1
+  provider_uri_format: https://oid-base.com/get/$1
   qualities:
     automatable_download: false
     bulk_data: false
@@ -794,7 +794,7 @@ integbio:
   logo_url: https://integbio.jp/templates/integbio/images/logo/logo.png
   name: Integbio
   prefix: integbio
-  provider_uri_format: https://integbio.jp/dbcatalog/en/record/$1
+  provider_uri_format: https://catalog.integbio.jp/dbcatalog/en/record/$1
   qualities:
     automatable_download: true
     bulk_data: true
@@ -1521,7 +1521,7 @@ wikidata:
     synonyms: missing
     version: present
   bibtex: Waagmeester2020
-  bioregistry_prefix: wikidata
+  bioregistry_prefix: wikidata.property
   contact:
     email: info@wikidata.org
     github: null
@@ -1555,6 +1555,55 @@ wikidata:
     no_authentication: true
     structured_data: true
   short_name: Wikidata
+wikidata.entity:
+  availability:
+    alternate_providers: present
+    contact: present
+    description: required
+    example: present
+    homepage: present
+    license: present
+    name: required
+    pattern: present
+    provider: present
+    search: true
+    synonyms: missing
+    version: present
+  bibtex: Waagmeester2020
+  bioregistry_prefix: wikidata.entity
+  contact:
+    email: info@wikidata.org
+    github: null
+    name: WikiData Support
+    orcid: null
+  description: An open, community-curated knowledgebase that contains several properties
+    corresponding to resources listed in other biomedical registries.
+  example: Q81661651
+  governance:
+    accepts_external_contributions: true
+    code_repository: null
+    comments: null
+    curates: true
+    curation: open-review
+    data_repository: null
+    imports: false
+    issue_tracker: null
+    public_version_controlled_data: false
+    review_team: inferrable
+    scope: general
+    status: active
+  homepage: https://www.wikidata.org
+  license: CC0
+  logo_url: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg
+  name: Wikidata Entity
+  prefix: wikidata.entity
+  provider_uri_format: http://www.wikidata.org/entity/$1
+  qualities:
+    automatable_download: true
+    bulk_data: true
+    no_authentication: true
+    structured_data: true
+  short_name: Wikidata (E)
 zazuko:
   availability:
     alternate_providers: missing

@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
+
+from __future__ import annotations
 
 import datetime
 from operator import attrgetter
-from typing import List, NamedTuple, Optional
+from typing import NamedTuple
 
 import click
 import requests
@@ -28,13 +28,13 @@ HEALTH_YAML_PATH = DOCS_DATA.joinpath("health.yaml")
 class ProviderStatus(BaseModel):
     """A container for provider information."""
 
-    prefix: str
-    example: str
-    url: str
-    status_code: Optional[int]
-    failed: bool
-    exception: Optional[str]
-    context: Optional[str]
+    prefix: str = Field(...)
+    example: str = Field(...)
+    url: str = Field(...)
+    status_code: int | None = Field(None)
+    failed: bool = Field(...)
+    exception: str | None = Field(None)
+    context: str | None = Field(None)
 
 
 class Summary(BaseModel):
@@ -60,16 +60,16 @@ class Summary(BaseModel):
 class Delta(BaseModel):
     """Change between runs."""
 
-    new: List[str] = Field(
+    new: list[str] = Field(
         description="Prefixes that are new in the current run that were not present in the previous run"
     )
-    forgotten: List[str] = Field(
+    forgotten: list[str] = Field(
         description="Prefixes that were checked in the previous run but not the current run"
     )
-    revived: List[str] = Field(
+    revived: list[str] = Field(
         description="Prefixes that failed in the previous run but are now passing the current run"
     )
-    fallen: List[str] = Field(
+    fallen: list[str] = Field(
         description="Prefixes that were passing in the previous run but are now failing in the current run"
     )
     intersection: int = Field(description="Size of intersection")
@@ -82,15 +82,17 @@ class Run(BaseModel):
 
     time: datetime.datetime = Field(default_factory=datetime.datetime.now)
     date: str = Field(default_factory=lambda: datetime.datetime.now().strftime("%Y-%m-%d"))
-    results: List[ProviderStatus]
+    results: list[ProviderStatus]
     summary: Summary
-    delta: Optional[Delta] = Field(description="Information about the changes since the last run")
+    delta: Delta | None = Field(
+        None, description="Information about the changes since the last run"
+    )
 
 
 class Database(BaseModel):
     """A database of runs of the provider check."""
 
-    runs: List[Run] = Field(default_factory=list)
+    runs: list[Run] = Field(default_factory=list)
 
 
 class QueueTuple(NamedTuple):
@@ -110,7 +112,7 @@ def main() -> None:
         click.secho(f"Creating new database at {HEALTH_YAML_PATH}", fg="green")
         database = Database()
 
-    queue: List[QueueTuple] = []
+    queue: list[QueueTuple] = []
 
     # this is very fast and does not require tqdm
     for resource in bioregistry.resources():
@@ -125,7 +127,7 @@ def main() -> None:
         queue.append(QueueTuple(resource.prefix, example, url))
 
     with logging_redirect_tqdm():
-        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")
+        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")  # type:ignore[no-untyped-call]
 
     total = len(results)
     total_failed = sum(result.failed for result in results)
@@ -157,11 +159,11 @@ def main() -> None:
     database.runs.append(current_run)
     database.runs = sorted(database.runs, key=attrgetter("time"), reverse=True)
 
-    HEALTH_YAML_PATH.write_text(yaml.safe_dump(database.dict(exclude_none=True)))
+    HEALTH_YAML_PATH.write_text(yaml.safe_dump(database.model_dump(exclude_none=True)))
     click.echo(f"Wrote to {HEALTH_YAML_PATH}")
 
 
-def _calculate_delta(current: List[ProviderStatus], previous: List[ProviderStatus]) -> Delta:
+def _calculate_delta(current: list[ProviderStatus], previous: list[ProviderStatus]) -> Delta:
     current_results = {status.prefix: status.failed for status in current}
     previous_results = {status.prefix: status.failed for status in previous}
     new = set(current_results).difference(previous_results)
@@ -198,13 +200,13 @@ def _calculate_delta(current: List[ProviderStatus], previous: List[ProviderStatu
 def _process(element: QueueTuple) -> ProviderStatus:
     prefix, example, url = element
 
-    status_code: Optional[int]
-    exception: Optional[str]
-    context: Optional[str]
+    status_code: int | None
+    exception: str | None
+    context: str | None
 
     try:
         res = requests.head(url, timeout=10, allow_redirects=True)
-    except IOError as e:
+    except OSError as e:
         status_code = None
         failed = True
         exception = e.__class__.__name__
@@ -217,7 +219,7 @@ def _process(element: QueueTuple) -> ProviderStatus:
 
     if failed:
         text = (
-            f'[{datetime.datetime.now().strftime("%H:%M:%S")}] '
+            f"[{datetime.datetime.now().strftime('%H:%M:%S')}] "
             + click.style(prefix, fg="green")
             + " at "
             + click.style(url, fg="red")

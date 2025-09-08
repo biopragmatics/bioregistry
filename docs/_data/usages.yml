@@ -76,6 +76,7 @@
   type: project
   repository: https://github.com/pangaea-data-publisher/fuji
   homepage: https://github.com/pangaea-data-publisher/
+  wikidata: Q123267667
   logo: https://www.f-uji.net/images/fuji_logo.png
   uses:
     - description: Uses the Bioregistry data file directly to implement its own URI parser
@@ -114,6 +115,7 @@
 - homepage: https://lamin.ai/docs/bionty
   name: Bionty
   type: project
+  wikidata: Q135641301
   repository: https://github.com/laminlabs/bionty
   logo: https://raw.githubusercontent.com/laminlabs/lamin-profile/main/assets/logo.svg
   uses:
@@ -143,6 +145,7 @@
 
 - name: Gut-brain Axis Knowledge Graph
   abbreviation: GBA-KG
+  wikidata: Q135641313
   homepage: https://github.com/liwenqingi/GBA-KG
   repository: https://github.com/liwenqingi/GBA-KG
   type: package
@@ -185,6 +188,7 @@
   description: A knowledge extraction tool that uses a large language model to extract semantic information from text.
   homepage: https://monarch-initiative.github.io/ontogpt/
   type: package
+  wikidata: Q125352352
   repository: https://github.com/monarch-initiative/ontogpt
   uses:
     - description: Generate links from CURIEs
@@ -208,6 +212,7 @@
   homepage: https://github.com/Ostrzyciel/ontology-quality-2022
   repository: https://github.com/Ostrzyciel/ontology-quality-2022
   type: analysis
+  wikidata: Q135641322
   uses:
     - description: Uses Bioregistry data directly to identify prefixes in ontologies that aren't OBO Foundry prefixes
       links:
@@ -228,6 +233,7 @@
   type: project
   repository: https://github.com/saezlab/BioCypher
   logo: https://biocypher.org/_images/banner.png
+  wikidata: Q135641346
   uses:
     - description: Uses the Bioregistry Python package for normalizing CURIEs
       links:
@@ -237,6 +243,7 @@
   homepage: https://github.com/TranslatorSRI/babel-validation
   repository: https://github.com/TranslatorSRI/babel-validation
   type: package
+  wikidata: Q135641352
   uses:
     - description: Uses the Bioregistry resolver for creating resolvable links
       links:
@@ -273,6 +280,7 @@
 - name: Ontology Quality Assessment Toolkit
   repository: https://github.com/cthoyt/oquat
   homepage: https://cthoyt.github.io/oquat
+  wikidata: Q135641357
   type: package
   uses:
     - description: Uses the Bioregistry Python package to check the standardization of prefixes in OBO Foundry ontologies
@@ -328,3 +336,13 @@
     - description: CURIE validation
       links:
         - https://github.com/draeger-lab/refinegems/blob/3c3587a1de30a836326a73e6111769e04bd2bbf7/refinegems/polish.py#L565
+
+- name: Synapse
+  type: project
+  wikidata: Q56328412
+  homepage: https://www.synapse.org/
+  logo: https://python-docs.synapse.org/en/v4.3.1/tutorials/authentication/
+  uses:
+    - description: CURIE redirection
+      links:
+      - https://nf.synapse.org/Explore/Studies?QueryWrapper0=%7B%22sql%22%3A%22SELECT%20*%20FROM%20syn52694652%22%2C%22limit%22%3A25%2C%22selectedFacets%22%3A%5B%7B%22concreteType%22%3A%22org.sagebionetworks.repo.model.table.FacetColumnValuesRequest%22%2C%22columnName%22%3A%22alternateDataRepository%22%2C%22facetValues%22%3A%5B%22cbioportal%3Aschw_ctf_synodos_2025%22%2C%22cellxgene.collection%3Ac11009b8-b113-4a99-9890-78b2f9df9d79%22%2C%22dbgap%3Aphs002504.v3.p2%22%2C%22dbgap%3Aphs003519.v1.p1%22%2C%22ega.study%3AEGAS00001003186%22%2C%22ega.study%3AEGAS00001006069%22%2C%22geo%3AGSE145064%22%2C%22geo%3AGSE165826%22%2C%22geo%3AGSE179587%22%2C%22geo%3AGSE179699%22%2C%22geo%3AGSE179703%22%2C%22geo%3AGSE202555%22%2C%22geo%3AGSE206527%22%2C%22geo%3AGSE277301%22%2C%22geo%3AGSE278154%22%2C%22geo%3AGSE283902%22%2C%22pride.project%3APXD052910%22%5D%7D%5D%7D

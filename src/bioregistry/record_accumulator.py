@@ -1,26 +1,18 @@
 """Generating records for :mod:`curies`."""
 
+from __future__ import annotations
+
 import itertools as itt
 import logging
 from collections import defaultdict
-from typing import (
-    Collection,
-    DefaultDict,
-    Dict,
-    Iterable,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Set,
-    Tuple,
-    cast,
-)
+from collections.abc import Collection, Iterable, Mapping, Sequence
+from typing import cast
 
 import curies
-from curies import Converter
+from curies import Converter, Record
+from curies.w3c import NCNAME_RE
 
-from bioregistry import Resource
+from .schema.struct import Resource
 
 __all__ = [
     "get_converter",
@@ -62,16 +54,17 @@ prefix_resource_blacklist = {
     ("uniprot.isoform", "http://purl.uniprot.org/uniprot/"),  # wrong in miriam
     ("uniprot.isoform", "https://purl.uniprot.org/uniprot/"),  # wrong in miriam
 }
-assert all(not x.endswith("$1") for _, x in prefix_resource_blacklist)
+if not all(not x.endswith("$1") for _, x in prefix_resource_blacklist):
+    raise RuntimeError
 
 
-def _debug_or_raise(msg: str, strict: bool = False):
+def _debug_or_raise(msg: str, strict: bool = False) -> None:
     if strict:
         raise ValueError(msg)
     logger.debug(msg)
 
 
-def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], List[Resource]]:
+def _stratify_resources(resources: Iterable[Resource]) -> tuple[list[Resource], list[Resource]]:
     primary_resources, secondary_resources = [], []
     for resource in resources:
         if resource.prefix in prefix_blacklist:
@@ -83,7 +76,7 @@ def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], 
     return primary_resources, secondary_resources
 
 
-def _iterate_prefix_prefix(resource: Resource, *extras: str):
+def _iterate_prefix_prefix(resource: Resource, *extras: str) -> Iterable[str]:
     prefixes_ = [
         resource.prefix,
         *resource.get_synonyms(),
@@ -93,12 +86,11 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str):
     for prefix_ in prefixes_:
         if not prefix_:
             continue
-        for prefix_prefix in [
+        yield from [
             f"{prefix_}:",
             f"{prefix_.upper()}:",
             f"{prefix_.lower()}:",
-        ]:
-            yield prefix_prefix
+        ]
 
 
 # TODO handle situations where a URI format string is available but
@@ -110,14 +102,15 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str):
 
 
 def get_converter(
-    resources: List[Resource],
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+    resources: list[Resource],
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
-    blacklist: Optional[Collection[str]] = None,
-    remapping: Optional[Mapping[str, str]] = None,
-    rewiring: Optional[Mapping[str, str]] = None,
+    blacklist: Collection[str] | None = None,
+    remapping: Mapping[str, str] | None = None,
+    rewiring: Mapping[str, str] | None = None,
+    enforce_w3c: bool = False,
 ) -> Converter:
     """Generate a converter from resources."""
     records = _get_records(
@@ -127,6 +120,7 @@ def get_converter(
         include_prefixes=include_prefixes,
         strict=strict,
         blacklist=blacklist,
+        enforce_w3c=enforce_w3c,
     )
     converter = curies.Converter(records)
     if remapping:
@@ -134,17 +128,30 @@ def get_converter(
     if rewiring:
         converter = curies.rewire(converter, rewiring)
     converter = _enrich_converter_synonyms(converter)
+    if enforce_w3c:
+        converter = _w3c_clean_converter(converter)
     return converter
 
 
-def _get_records(  # noqa: C901
-    resources: List[Resource],
-    prefix_priority: Optional[Sequence[str]] = None,
-    uri_prefix_priority: Optional[Sequence[str]] = None,
+def _w3c_clean_record(record: Record) -> Record:
+    record.prefix_synonyms = [s for s in record.prefix_synonyms if NCNAME_RE.match(s)]
+    return record
+
+
+def _w3c_clean_converter(converter: Converter) -> Converter:
+    """Remove all non-W3C-compliant records in the converter."""
+    return Converter(_w3c_clean_record(record) for record in converter.records)
+
+
+def _get_records(
+    resources: list[Resource],
+    prefix_priority: Sequence[str] | None = None,
+    uri_prefix_priority: Sequence[str] | None = None,
     include_prefixes: bool = False,
     strict: bool = False,
-    blacklist: Optional[Collection[str]] = None,
-) -> List[curies.Record]:
+    blacklist: Collection[str] | None = None,
+    enforce_w3c: bool = False,
+) -> list[curies.Record]:
     """Generate records from resources."""
     blacklist = set(blacklist or []).union(prefix_blacklist)
     resource_dict: Mapping[str, Resource] = {
@@ -152,11 +159,11 @@ def _get_records(  # noqa: C901
         for resource in resources
         if resource.get_uri_prefix() and resource.prefix not in blacklist
     }
-    primary_uri_prefixes: Dict[str, str] = {
+    primary_uri_prefixes: dict[str, str] = {
         resource.prefix: cast(str, resource.get_uri_prefix(priority=uri_prefix_priority))
         for resource in resource_dict.values()
     }
-    primary_prefixes: Dict[str, str] = {
+    primary_prefixes: dict[str, str] = {
         resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
         for resource in resource_dict.values()
     }
@@ -165,20 +172,20 @@ def _get_records(  # noqa: C901
         for prefix in primary_prefixes
         if (pattern := resource_dict[prefix].get_pattern()) is not None
     }
-    secondary_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
-    secondary_uri_prefixes: DefaultDict[str, Set[str]] = defaultdict(set)
+    secondary_prefixes: defaultdict[str, set[str]] = defaultdict(set)
+    secondary_uri_prefixes: defaultdict[str, set[str]] = defaultdict(set)
 
     #: A mapping from URI prefixes (both primary and secondary) appearing
     #: in all records to bioregistry prefixes
-    reverse_uri_prefix_lookup: Dict[str, str] = {
+    reverse_uri_prefix_lookup: dict[str, str] = {
         "http://purl.obolibrary.org/obo/": "obo",
         "https://purl.obolibrary.org/obo/": "obo",
     }
     #: A mapping from prefixes (both primary and secondary) appearing
     #: in all records to bioregistry prefixes
-    reverse_prefix_lookup: Dict[str, str] = {}
+    reverse_prefix_lookup: dict[str, str] = {}
 
-    def _add_primary_uri_prefix(prefix: str) -> Optional[str]:
+    def _add_primary_uri_prefix(prefix: str) -> str | None:
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if primary_uri_prefix in reverse_uri_prefix_lookup:
             logger.debug(
@@ -192,7 +199,7 @@ def _get_records(  # noqa: C901
         reverse_uri_prefix_lookup[primary_uri_prefix] = prefix
         return primary_uri_prefix
 
-    def _add_primary_prefix(prefix: str) -> Optional[str]:
+    def _add_primary_prefix(prefix: str) -> str | None:
         primary_prefix = primary_prefixes[prefix]
         if primary_prefix in reverse_prefix_lookup:
             logger.debug(
@@ -231,7 +238,7 @@ def _get_records(  # noqa: C901
             secondary_uri_prefixes[prefix].add(uri_prefix)
 
     def _add_prefix_prefixes(
-        primary_prefix: str, resource: Resource, target_prefix: Optional[str] = None
+        primary_prefix: str, resource: Resource, target_prefix: str | None = None
     ) -> None:
         if target_prefix is None:
             target_prefix = resource.prefix
@@ -258,7 +265,7 @@ def _get_records(  # noqa: C901
             continue
         for synonym in resource.get_synonyms():
             _add_synonym(synonym=synonym, prefix=resource.prefix)
-        for uri_prefix in resource.get_uri_prefixes():
+        for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
             _add_uri_synonym(uri_prefix=uri_prefix, prefix=resource.prefix)
         if include_prefixes:
             _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)
@@ -281,7 +288,7 @@ def _get_records(  # noqa: C901
             _add_synonym(synonym=resource.prefix, prefix=prefix)
             for synonym in resource.get_synonyms():
                 _add_synonym(synonym=synonym, prefix=prefix)
-            for uri_prefix in resource.get_uri_prefixes():
+            for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
                 _add_uri_synonym(uri_prefix=uri_prefix, prefix=prefix)
             if include_prefixes:
                 _add_prefix_prefixes(
@@ -290,7 +297,7 @@ def _get_records(  # noqa: C901
         elif has_part:
             uri_prefixes = {
                 p
-                for p in resource.get_uri_prefixes()
+                for p in resource.get_uri_prefixes(enforce_w3c=enforce_w3c)
                 if (resource.prefix, p) not in prefix_resource_blacklist
             }
             _duplicats = [
@@ -319,7 +326,7 @@ def _get_records(  # noqa: C901
                     continue
                 for synonym in resource.get_synonyms():
                     _add_synonym(synonym=synonym, prefix=resource.prefix)
-                for uri_prefix in resource.get_uri_prefixes():
+                for uri_prefix in resource.get_uri_prefixes(enforce_w3c=enforce_w3c):
                     _add_uri_synonym(uri_prefix=uri_prefix, prefix=resource.prefix)
                 if include_prefixes:
                     _add_prefix_prefixes(primary_prefix=primary_prefix, resource=resource)
@@ -327,7 +334,7 @@ def _get_records(  # noqa: C901
         else:
             raise RuntimeError
 
-    records: Dict[str, curies.Record] = {}
+    records: dict[str, curies.Record] = {}
     for prefix, primary_prefix in primary_prefixes.items():
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if not primary_prefix or not primary_uri_prefix:
