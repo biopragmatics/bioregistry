@@ -165,7 +165,8 @@ class TestRegistry(unittest.TestCase):
 
         name_to_prefix = {name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1}
         if name_to_prefix:
-            self.fail(msg=f"There are duplicate names: {name_to_prefix}")
+            from tabulate import tabulate
+            self.fail(msg=f"There are duplicate names:\n{tabulate(name_to_prefix.items())}")
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
