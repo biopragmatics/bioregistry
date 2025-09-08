@@ -3,17 +3,22 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from pathlib import Path
+from typing import TYPE_CHECKING, Literal
 
+import click
 from pydantic import BaseModel
-from typing_extensions import Literal
+from typing_extensions import NotRequired, TypedDict, Unpack
 
-import bioregistry
+if TYPE_CHECKING:
+    from bioregistry import Context
 
 __all__ = [
     "Message",
+    "click_write_messages",
     "validate_jsonld",
+    "validate_ttl",
 ]
 
 
@@ -21,17 +26,72 @@ class Message(BaseModel):
     """A message."""
 
     prefix: str
+    uri_prefix: str
     error: str
     solution: str | None = None
+    line: int | None = None
     level: Literal["warning", "error"]
 
 
+LEVEL_TO_COLOR = {
+    "warning": "yellow",
+    "error": "red",
+}
+
+
+def click_write_messages(messages: list[Message], tablefmt: str | None) -> None:
+    """Write messages."""
+    if tablefmt is None:
+        for message in messages:
+            click.secho(_spacious_message(message))
+    else:
+        from tabulate import tabulate
+
+        rows = [
+            (
+                message.prefix,
+                f"`{message.uri_prefix}`" if tablefmt == "rst" else message.uri_prefix,
+                message.error,
+                message.solution or "",
+            )
+            for message in messages
+        ]
+        click.echo(
+            tabulate(rows, headers=["prefix", "uri_prefix", "issue", "solution"], tablefmt=tablefmt)
+        )
+
+    errors = sum(message.level == "error" for message in messages)
+    if errors:
+        import sys
+
+        click.secho(f"\nfailed with {errors:,} errors", fg="red")
+        sys.exit(1)
+
+
+def _spacious_message(message: Message) -> str:
+    s = ""
+    if message.line:
+        s += f"[line {message.line}] "
+
+    s += f"{message.prefix}: {message.uri_prefix}\n  "
+    s += click.style("issue: " + message.error, fg=LEVEL_TO_COLOR[message.level])
+
+    if message.solution:
+        s += click.style("\n  suggestion: " + message.solution, fg="green")
+    return s + "\n"
+
+
+class ValidateKwargs(TypedDict):
+    """Keyword arguments for validators, passed to :func:`_get_all_messages`."""
+
+    rpm: NotRequired[Mapping[str, str] | None]
+    use_preferred: NotRequired[bool]
+    context: NotRequired[str | Context | None]
+    strict: NotRequired[bool]
+
+
 def validate_jsonld(
-    obj: str | Mapping[str, Mapping[str, str]],
-    *,
-    strict: bool = True,
-    use_preferred: bool = False,
-    context: str | None | bioregistry.Context = None,
+    obj: str | Mapping[str, Mapping[str, str]], **kwargs: Unpack[ValidateKwargs]
 ) -> list[Message]:
     """Validate a JSON-LD object."""
     if isinstance(obj, str):
@@ -54,11 +114,153 @@ def validate_jsonld(
         raise TypeError("data is missing a @context field")
     if not isinstance(context_inner, dict):
         raise TypeError(f"@context is not a dictionary: {context_inner}")
+
+    inputs: list[tuple[str, str, int | None]] = [(cp, up, None) for cp, up in context_inner.items()]
+
+    return _get_all_messages(inputs, **kwargs)
+
+
+def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
+    """Validate a remote Turtle file."""
+    import requests
+
+    inputs: list[tuple[str, str, int | None]] = []
+    with requests.get(url, stream=True, timeout=15) as res:
+        for line_number, line in enumerate(res.iter_lines(decode_unicode=True), start=1):
+            if not line.startswith("@"):
+                break
+
+            # skip @base, or other
+            if not line.startswith("@prefix"):
+                continue
+            line = line.removeprefix("@prefix ")
+
+            curie_prefix, uri_prefix = line.split(":", 1)
+            uri_prefix = uri_prefix.strip().rstrip(".").strip().strip("<>")
+            inputs.append((curie_prefix, uri_prefix, line_number))
+
+    return _get_all_messages(inputs, **kwargs)
+
+
+def _get_all_messages(
+    inputs: list[tuple[str, str, int | None]],
+    *,
+    context: str | None | Context = None,
+    use_preferred: bool = False,
+    rpm: Mapping[str, str] | None = None,
+    strict: bool = False,
+) -> list[Message]:
+    """Get messages for the given inputs."""
+    import bioregistry
+
+    if rpm is None:
+        rpm = bioregistry.manager.get_reverse_prefix_map()
+
+    def _get_suggestions(uri_prefix: str) -> list[tuple[str, str]] | str:
+        suggies = []
+        for x, y in rpm.items():
+            if x.startswith(uri_prefix):
+                suggies.append((x, y))
+            if x == uri_prefix:
+                return y
+        return suggies
+
+    _checker = _get_checker(context, use_preferred=use_preferred)
+
+    # TODO need to implement URI prefix normalization and errors
+
+    messages: list[Message] = []
+    for curie_prefix, uri_prefix, line_number in inputs:
+        resource = bioregistry.get_resource(curie_prefix)
+        if resource is None:
+            suggestions = _get_suggestions(uri_prefix)
+            if not suggestions:
+                messages.append(
+                    Message(
+                        line=line_number,
+                        prefix=curie_prefix,
+                        uri_prefix=uri_prefix,
+                        error="unknown CURIE prefix",
+                        level="error",
+                    )
+                )
+            else:
+                if isinstance(suggestions, str):
+                    solution = f"Switch to CURIE prefix {suggestions}, inferred from URI prefix"
+                    level = "warning"
+                else:
+                    level = "error"
+                    if len(suggestions) == 1:
+                        up, cp = suggestions[0]
+                        solution = f"Consider switching to the more specific CURIE/URI prefix pair {cp}: `{up}`"
+                    else:
+                        solution = "Consider switching one of these more specific CURIE/URI prefix pairs:\n\n"
+                        for up, cp in suggestions:
+                            solution += f"  {cp}: `{up}`\n"
+                messages.append(
+                    Message(
+                        line=line_number,
+                        prefix=curie_prefix,
+                        uri_prefix=uri_prefix,
+                        error="unknown CURIE prefix",
+                        solution=solution,
+                        level=level,
+                    )
+                )
+
+        else:
+            if message := _get_message(
+                curie_prefix,
+                uri_prefix,
+                _checker,
+                strict=strict,
+                line_number=line_number,
+                use_preferred=use_preferred,
+            ):
+                messages.append(message)
+
+    return messages
+
+
+def _get_message(
+    curie_prefix: str,
+    uri_prefix: str,
+    _checker: Callable[[str], str | None],
+    *,
+    strict: bool = False,
+    line_number: int | None = None,
+    use_preferred: bool = False,
+) -> Message | None:
+    norm_prefix = _checker(curie_prefix)
     if use_preferred:
-        prefix_text = "preferred"
+        middle = "preferred"
     else:
-        prefix_text = "standard"
-    messages = []
+        middle = "standard"
+    if norm_prefix is None:
+        return Message(
+            prefix=curie_prefix,
+            uri_prefix=uri_prefix,
+            error="unknown CURIE prefix",
+            level="error",
+            line=line_number,
+        )
+    elif norm_prefix != curie_prefix:
+        return Message(
+            prefix=curie_prefix,
+            uri_prefix=uri_prefix,
+            error="non-standard CURIE prefix",
+            solution=f"Switch to {middle} prefix: {norm_prefix}",
+            level="error" if strict else "warning",
+            line=line_number,
+        )
+    else:
+        return None
+
+
+def _get_checker(
+    context: str | None | Context = None, use_preferred: bool = False
+) -> Callable[[str], str | None]:
+    import bioregistry
 
     if context is not None:
         converter = bioregistry.manager.get_converter_from_context(context)
@@ -71,28 +273,4 @@ def validate_jsonld(
         def _check(pp: str) -> str | None:
             return bioregistry.normalize_prefix(pp, use_preferred=use_preferred)
 
-    for prefix, _uri_prefix in context_inner.items():
-        norm_prefix = _check(prefix)
-        if norm_prefix is None:
-            messages.append(
-                Message.model_validate(
-                    {
-                        "prefix": prefix,
-                        "error": "invalid",
-                        "solution": None,
-                        "level": "error",
-                    }
-                )
-            )
-        elif norm_prefix != prefix:
-            messages.append(
-                Message.model_validate(
-                    {
-                        "prefix": prefix,
-                        "error": "nonstandard",
-                        "solution": f"Switch to {prefix_text} prefix: {norm_prefix}",
-                        "level": "error" if strict else "warning",
-                    }
-                )
-            )
-    return messages
+    return _check

@@ -26,7 +26,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from collections.abc import Mapping
-from typing import Any
+from typing import Any, cast
 
 import pandas as pd
 import tqdm
@@ -114,7 +114,7 @@ def get_scored_mappings_for_prefix(
 
     # Compute embeddings for each mapping entry (in a single list but the
     # calculation is done individually)
-    texts = [entry["external_text"] for entry in mapping_entries]
+    texts = cast(list[str], [entry["external_text"] for entry in mapping_entries])
     embeddings = model.encode(texts, convert_to_tensor=True)
     # Calculate embedding for the reference text
     ref_embedding = model.encode(reference_text, convert_to_tensor=True)
@@ -124,7 +124,7 @@ def get_scored_mappings_for_prefix(
     cosine_scores = cos_sim(ref_embedding, embeddings)[0].tolist()
 
     # Add similarity score and reference text to each entry in the mapping entries
-    for entry, score in zip(mapping_entries, cosine_scores):
+    for entry, score in zip(mapping_entries, cosine_scores, strict=False):
         entry["similarity"] = score
 
     return mapping_entries

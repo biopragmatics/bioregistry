@@ -2,7 +2,7 @@
 
 from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING, Optional
 
 import rdflib.namespace
 from rdflib import (
@@ -60,10 +60,10 @@ class ClassTerm(Term):
 class PropertyTerm(Term):
     """A term for a property."""
 
-    domain: Union[str, Node]
-    range: Union[str, Node]
+    domain: str | Node
+    range: str | Node
     xrefs: list[URIRef] = field(default_factory=list)
-    parent: Optional[URIRef] = None
+    parent: URIRef | None = None
 
 
 IDOT = rdflib.Namespace("http://identifiers.org/idot/")

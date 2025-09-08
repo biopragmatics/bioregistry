@@ -5828,7 +5828,7 @@
     "id": "00000380",
     "name": "MetaboLights",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^MTBLS\\d+$",
+    "pattern": "^MTBL[CS]\\d+$",
     "prefix": "metabolights",
     "providers": [
       {
@@ -6447,7 +6447,7 @@
     "id": "00000768",
     "name": "MolMeDB",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[m,M]{2}[0-9]{5}[0-9]*$",
+    "pattern": "^[Mm]{2}[0-9]{5,}(\\.[0-9]+)?$",
     "prefix": "molmedb",
     "sampleId": "MM00040",
     "uri_format": "https://molmedb.upol.cz/mol/$1"
@@ -10128,7 +10128,7 @@
     "id": "00000005",
     "name": "UniProt Knowledgebase",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
+    "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?(-\\d+)?(#PRO_\\d+)?$",
     "prefix": "uniprot",
     "providers": [
       {

@@ -738,6 +738,14 @@ class TestRegistry(unittest.TestCase):
             for provider in resource.providers:
                 with self.subTest(prefix=prefix, code=provider.code):
                     self.assertNotEqual(provider.code, prefix)
+                    self.assertNotEqual(provider.code, "", msg="code should not be an empty string")
+                    self.assertNotEqual(
+                        provider.homepage, "", msg="homepage should not be an empty string"
+                    )
+                    self.assertNotEqual(
+                        provider.description, "", msg="desc. should not be an empty string"
+                    )
+                    self.assertNotEqual(provider.name, "", msg="name should not be an empty string")
                     self.assertNotIn(
                         provider.code,
                         set(self.metaregistry),
@@ -749,7 +757,7 @@ class TestRegistry(unittest.TestCase):
                         provider.code,
                         msg="Provider codes must be lowercase. Ideally, they should be simple and memorable",
                     )
-                    # self.assertIn("$1", provider.uri_format)
+                    self.assertIn("$1", provider.uri_format)
                     self.assertNotIn(
                         "$2",
                         provider.uri_format,
@@ -905,8 +913,9 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(
                     resource.contact.name, msg=f"Contact for {prefix} is missing a label"
                 )
-                self.assertIsNotNone(
-                    resource.contact.email, msg=f"Contact for {prefix} is missing an email"
+                self.assertFalse(
+                    resource.contact.email is None and resource.contact.github is None,
+                    msg=f"Contact for {prefix} needs at least an email or GitHub",
                 )
                 self.assert_contact_metadata(resource.contact)
 

@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from functools import partial
-from typing import Any, Callable, cast
+from typing import Any, cast
 
 import werkzeug
 import yaml
