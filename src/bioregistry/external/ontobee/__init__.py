@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from OntoBee."""
 
 import json
 import textwrap
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
+from typing import Any, ClassVar
 
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
-    "get_ontobee",
     "OntobeeAligner",
+    "get_ontobee",
 ]
 
 DIRECTORY = Path(__file__).parent.resolve()
@@ -30,18 +29,24 @@ LEGEND = {
 }
 
 
-def get_ontobee(force_download: bool = False):
+def get_ontobee(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the OntoBee registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as f:
         soup = BeautifulSoup(f, "html.parser")
 
+    ontology_list = soup.find(id="ontologyList")
+    if ontology_list is None:
+        raise ValueError
+    table_body = ontology_list.find("tbody")
+    if table_body is None:
+        raise ValueError
+
     rv = {}
-    for row in soup.find(id="ontologyList").find("tbody").find_all("tr"):
+    for row in table_body.find_all("tr"):  # type:ignore
         cells = row.find_all("td")
         prefix = cells[1].text
         rv[prefix] = {
@@ -61,13 +66,13 @@ class OntobeeAligner(Aligner):
 
     key = "ontobee"
     getter = get_ontobee
-    curation_header = ("name", "url")
+    curation_header: ClassVar[Sequence[str]] = ("name", "url")
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Return the relevant fields from an OntoBee entry for pretty-printing."""
         return [
             textwrap.shorten(external_entry["name"], 50),
-            external_entry.get("url"),
+            external_entry.get("url", ""),
         ]
 
 

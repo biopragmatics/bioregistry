@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for collections."""
 
 import logging
@@ -11,7 +9,6 @@ import rdflib
 from bioregistry import manager
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
-from bioregistry.utils import pydantic_dict
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +26,7 @@ class TestCollections(unittest.TestCase):
 
         for key, collection_pydantic in sorted(self.manager.collections.items()):
             self.assertIsInstance(collection_pydantic, Collection)
-            collection = pydantic_dict(collection_pydantic)
+            collection = collection_pydantic.model_dump()
             with self.subTest(key=key):
                 self.assertRegex(key, "^\\d{7}$")
                 self.assertIn("name", collection)

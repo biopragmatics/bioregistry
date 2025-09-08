@@ -4,6 +4,8 @@ This folder contains various task-specific curation guides.
 
 - [Curating new providers](curation/providers)
 - [Curating new publications and references](curation/publications)
+- [Semi-automated curation workflow for new prefixes, providers, and publications](curation/literature)
+- [Semi-automated Review of Cross-registry Mappings](curation/mappings)
 
 ## How to add new guides
 
@@ -13,6 +15,9 @@ This folder contains various task-specific curation guides.
    for an example)
 3. Add it to the list above. Don't include a forward slash `/` in the beginning
    of the link!
+4. Make sure you run
+   `npx prettier --prose-wrap always --check "**/*.md" --write` to properly
+   format your markdown
 
 ## What makes a good guide
 

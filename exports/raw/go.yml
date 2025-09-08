@@ -368,9 +368,9 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog=[example_id]
+      url_syntax: https://www.ncbi.nlm.nih.gov/research/cog/cog/[example_id]
       example_id: COG_Cluster:COG0001
-      example_url: http://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog=COG0001
+      example_url: https://www.ncbi.nlm.nih.gov/research/cog/cog/COG0001
 - database: COG_Function
   name: NCBI COG function
   generic_urls:
@@ -592,7 +592,7 @@
       id_syntax: ^[A-Za-z0-9+_.%-:]+$
       url_syntax: https://ecocyc.org/ECOLI/NEW-IMAGE?id=[example_id]
       example_id: EcoCyc:ABC-28-CPLX
-      example_url: https://ecocyc.org/ECOLI/NEW-IMAGE?id=ABC-28-CPLX   
+      example_url: https://ecocyc.org/ECOLI/NEW-IMAGE?id=ABC-28-CPLX
 - database: EcoCyc_REF
   name: Scientific database for the bacterium Escherichia coli K-12 MG1655
   synonyms:
@@ -809,7 +809,7 @@
       id_syntax: FBrf[0-9]{7}
       url_syntax: http://flybase.org/reports/[example_id].htm
       example_id: FBrf0193169
-      example_url: https://flybase.org/reports/FBrf0193169.htm      
+      example_url: https://flybase.org/reports/FBrf0193169.htm
 - database: FBbt
   name: Drosophila gross anatomy
   rdf_uri_prefix: http://purl.obolibrary.org/obo/FBbt_
@@ -957,7 +957,7 @@
     - GO_CENTRAL
   description: Manual annotation from PAINT curators into the UniProt Protein2GO curation tool.
   generic_urls:
-    - http://www.geneontology.org/GO.refgenome.shtml
+    - http://www.geneontology.org/
   entity_types:
     - type_name: entity
       type_id: BET:0000000
@@ -980,18 +980,18 @@
       id_syntax: \d{7}
       url_syntax: http://purl.obolibrary.org/obo/go/references/[example_id]
       example_id: "0000001"
-      example_url: http://purl.obolibrary.org/obo/go/references/0000001
+      example_url: http://purl.obolibrary.org/obo/go/references/0000002
 - database: gomodel
-  name: Gene Ontology Causal Activity Model Database
+  name: Gene Ontology Causal Activity Model (GO-CAM)
   rdf_uri_prefix: http://model.geneontology.org/
   generic_urls:
-    - http://www.geneontology.org/gocam
+    - https://geneontology.org/go-cam
   entity_types:
     - type_name: model
       type_id: BET:0000000
-      url_syntax: http://www.geneontology.org/gocam/[example_id]
+      url_syntax: https://model.geneontology.org/[example_id]
       example_id: gomodel:5ae3b0f600001522
-      example_url: http://www.geneontology.org/gocam/gomodel:5ae3b0f600001522
+      example_url: https://model.geneontology.org/5ae3b0f600001522
 - database: GOC
   name: Gene Ontology Consortium
   generic_urls:
@@ -1613,13 +1613,13 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
-      id_syntax: MGI:[0-9]{5,}
+      id_syntax: MGI:[0-9]+
       url_syntax: http://www.informatics.jax.org/accession/[example_id]
       example_id: MGI:MGI:1345277
       example_url: http://www.informatics.jax.org/accession/MGI:1345277
     - type_name: variation
       type_id: VariO:0001
-      id_syntax: MGI:[0-9]{5,}
+      id_syntax: MGI:[0-9]+
       url_syntax: http://www.informatics.jax.org/accession/[example_id]
       example_id: MGI:MGI:3590672
       example_url: http://www.informatics.jax.org/accession/MGI:3590672
@@ -1806,14 +1806,14 @@
   name: Protein ANalysis THrough Evolutionary Relationships Classification System
   rdf_uri_prefix: http://identifiers.org/panther.family/
   generic_urls:
-    - http://www.pantherdb.org/
+    - https://www.pantherdb.org/
   entity_types:
     - type_name: protein family
       type_id: NCIT:C20130
       id_syntax: PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+
-      url_syntax: http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
+      url_syntax: https://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
       example_id: PANTHER:PTHR11455
-      example_url: http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000
+      example_url: https://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000
 - database: orcid
   name: Open Researcher and Contributor
   description: ORCID (Open Researcher and Contributor ID) is an open, non-profit, community-based effort to create and maintain a registry of unique identifiers for individual researchers.
@@ -2293,7 +2293,7 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
-      id_syntax: '[0-9]{4,7}'
+      id_syntax: '[0-9]{4,8}'
       url_syntax: https://rgd.mcw.edu/rgdweb/search/search.html?term=[example_id]
       example_id: RGD:2004
       example_url: https://rgd.mcw.edu/rgdweb/search/search.html?term=2004
@@ -2424,8 +2424,8 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax:  https://www.yeastgenome.org/locus/[example_id]
-      example_id: SGD_PWY:CYSTEINE-SYN2-PWY
+      url_syntax: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=[example_id]
+      example_id: SGD_PWY:SERSYN-PWY
       example_url: https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=SERSYN-PWY
 - database: SGN
   name: Sol Genomics Network
@@ -2998,13 +2998,13 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
-      id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+
+      id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE)-[0-9]{6}-[0-9]+
       url_syntax: http://zfin.org/[example_id]
       example_id: ZDB-GENE-990415-103
       example_url: http://zfin.org/ZDB-GENE-990415-103
     - type_name: variation
       type_id: VariO:0001
-      id_syntax: ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+
+      id_syntax: ZDB-(GENO|MRPHLNO|CRISPR|FISH|TALEN)-[0-9]{6}-[0-9]+
       url_syntax: http://zfin.org/[example_id]
       example_id: ZDB-GENE-990415-103
       example_url: http://zfin.org/ZDB-GENE-990415-103
@@ -3072,6 +3072,7 @@
   entity_types:
     - type_name: gene
       type_id: SO:0000704
+      id_syntax: S\w+(\_)?\d
       url_syntax: https://www.japonicusdb.org/gene/[example_id]
       example_id: JaponicusDB:SJAG_01143
       example_url: https://www.japonicusdb.org/gene/SJAG_01143
@@ -3079,11 +3080,11 @@
   name: TreeGrafter-generated GO annotations
   rdf_uri_prefix: http://identifiers.org/panther.family/
   generic_urls:
-    - http://www.pantherdb.org/
+    - https://www.pantherdb.org/
   entity_types:
     - type_name: protein family
       type_id: NCIT:C20130
       id_syntax: PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+
-      url_syntax: http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
+      url_syntax: https://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]
       example_id: PANTHER:PTHR11455
-      example_url: http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000
+      example_url: https://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000

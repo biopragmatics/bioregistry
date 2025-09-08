@@ -12,7 +12,7 @@ __all__ = [
 
 
 @click.command(name="standardize-licenses")
-def main():
+def main() -> None:
     """Standardize manually curated licenses."""
     licensed = [resource for resource in manager.registry.values() if resource.license]
     for resource in tqdm(licensed, unit="resource", desc="Standardizing manually curated licenses"):

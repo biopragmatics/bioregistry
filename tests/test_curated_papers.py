@@ -1,6 +1,7 @@
 """Test for checking the integrity of the curated_papers TSV file."""
 
 import unittest
+from collections import Counter
 from datetime import datetime
 
 from bioregistry.constants import CURATED_PAPERS_PATH, ORCID_PATTERN
@@ -76,9 +77,20 @@ class TestTSV(unittest.TestCase):
                         len(line),
                         msg="wrong number of columns. This is usually due to the wrong amount of trailing tabs.",
                     )
-                    data = dict(zip(COLUMNS, line))
+                    data = dict(zip(COLUMNS, line, strict=False))
                     self.validate_row(data)
                     pubmeds.append(data["pubmed"])
+
+            duplicated_pubmeds = sorted(
+                pubmed for pubmed, count in Counter(pubmeds).items() if count > 1
+            )
+            if duplicated_pubmeds:
+                kk = "\n".join(f"- {pubmed}" for pubmed in duplicated_pubmeds)
+                self.fail(
+                    msg=f"The following PubMed identifiers have multiple curations:\n\n{kk}\n\nI"
+                    f"f you meant to overwrite an existing curation, delete the old row."
+                )
+
             self.assertEqual(
                 sorted(pubmeds),
                 pubmeds,

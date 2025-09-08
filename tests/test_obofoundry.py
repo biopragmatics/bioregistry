@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for OBO Foundry data."""
 
 import unittest

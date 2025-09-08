@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
-
 """Download Zazuko."""
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, ClassVar
 
 import requests
 
 from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
-    "get_zazuko",
     "ZazukoAligner",
+    "get_zazuko",
 ]
 
 
@@ -23,13 +22,12 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://prefix.zazuko.com/api/v1/prefixes"
 
 
-def get_zazuko(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
+def get_zazuko(*, force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the Zazuko context map."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
-    data = requests.get(URL).json()
+    data = requests.get(URL, timeout=15).json()
     rv = {
         prefix: {URI_FORMAT_KEY: f"{uri_prefix.strip()}$1"} for prefix, uri_prefix in data.items()
     }
@@ -43,7 +41,7 @@ class ZazukoAligner(Aligner):
 
     key = "zazuko"
     getter = get_zazuko
-    curation_header = [URI_FORMAT_KEY]
+    curation_header: ClassVar[Sequence[str]] = [URI_FORMAT_KEY]
 
 
 if __name__ == "__main__":

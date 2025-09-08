@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Command line interface for the bioregistry."""
 
 from .cli import main

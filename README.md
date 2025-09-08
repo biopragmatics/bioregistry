@@ -169,8 +169,8 @@ assert 'ncbitaxon' == normalize_prefix('taxonomy')
 assert 'pubchem.compound' == normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
-assert 'eccode' == normalize_prefix('ec-code')
-assert 'eccode' == normalize_prefix('EC_CODE')
+assert 'ec' == normalize_prefix('ec-code')
+assert 'ec' == normalize_prefix('EC_CODE')
 
 # If a prefix is not registered, it gives back `None`
 assert normalize_prefix('not a real key') is None
@@ -471,8 +471,8 @@ It looks like this:
 > <br />Hoyt, C. T., Balk, M., Callahan, T. J., Domingo-Fernandez, D., Haendel,
 > M. A., Hegde, H. B., Himmelstein, D. S., Karis, K., Kunze, J., Lubiana, T.,
 > Matentzoglu, N., McMurry, J., Moxon, S., Mungall, C. J., Rutz, A., Unni, D.
-> R., Willighagen, E., Winston, D., and Gyori, B. M. (2022) <br />_Nature
-> Scientific Data_, s41597-022-01807-3
+> R., Willighagen, E., Winston, D., and Gyori, B. M. (2022) <br /> _Scientific
+> Data_, s41597-022-01807-3
 
 ```bibtex
 @article{Hoyt2022Bioregistry,

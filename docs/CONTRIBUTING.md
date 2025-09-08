@@ -62,16 +62,24 @@ that's required to go with a given prefix.
    or more characters for legibility.
 6. New prefixes must be lowercase. However, lexical variants can be stored as
    synonyms for reference (e.g., FBbt).
-7. New prefixes must validate against the following regular expression:
-   `^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$`
+7. New prefixes must validate against the regular expression for the W3C
+   definition of an
+   [`NCNAME`](https://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-NCName):
+   `^[A-Za-z_][A-Za-z0-9\\.\\-_]*$`. As an additional requirement, new prefixes
+   must not start with an underscore.
 8. New prefixes must pass all metadata checks, which are canonically defined by
    the quality assurance workflow.
 
 Unfortunately, these requirements can not be applied retroactively and can not
 be trivially applied to automatically imported prefixes. In some cases,
 historical prefixes can be modified to follow these requirements. For example,
-Identifiers.org's `ec-code` was renamed to `eccode` while maintaining `ec-code`
-as a synonym.
+Identifiers.org's `ec-code` was renamed to `ec` while maintaining `ec-code` as a
+synonym.
+
+Some external registries' prefixes are not W3C conformant because they start
+with a number, such as `3dmet` in MIRIAM. If it's not clear what a better prefix
+might be, add an underscore to the start of the prefix and maintain the other
+prefix as a synonym.
 
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.
@@ -101,9 +109,59 @@ https://github.com/biopragmatics/bioregistry/issues/158.
 6. New prefixes should not end with "ID" as a way to signify that the prefix is
    used for identifiers, like in `doid` for the Disease Ontology or `caid` for
    ClinGen Canonical Allele identifier.
+7. New prefixes should be singular instead of plural. For example `hgnc.genes`
+   would be bad while `hgnc.gene` would be better.
 
 These policies were developed in parallel with the OBO Foundry policy on
 choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
+
+#### Writing a Good Description
+
+A good description minimally contains the following:
+
+1. **What kind of entities are in the semantic space?** For example, does the
+   semantic space cover proteins, diseases, publications, etc.?
+2. **Why does the resource exist / what are the entities used for?** This can
+   include a justification of why the resource was made, for example to support
+   curation of relationships, annotation of data, etc.
+
+**Warning - don't confuse semantic spaces and databases** Records in the
+Bioregistry are not about databases, but rather about semantic spaces. While
+it's often the case that these have a one-to-one correspondence, the job of a
+Bioregistry record is to say what a semantic space is about.
+
+For example, if you were submitting a new prefix request `chembl.compound` for
+the chemicals inside ChEMBL, you might be tempted to describe ChEMBL, its
+history, and all the things inside it. However, this is a Bioregistry
+anti-pattern. Do not do this (at least, initially). Describe what the entities
+are in the specific semantic space (e.g., this is a semantic space of small
+molecules for which there is published biochemical activity data). After you've
+addressed the two important points above, then it might be useful to give more
+context about the database that they came from, the project that motivated it,
+etc.
+
+#### Including a Useful Set of Keywords
+
+Any prefixes submitted after PR 1628 now require keyword(s) to be submitted.
+Part of the rationale behind adding this requirement is that new contributors
+frequently struggle to write good descriptions, and having a more specific field
+where they can include information that might also appear as prose might be
+helpful.
+
+A good keyword list might include:
+
+- the entity type(s), like `biological process`, `molecular function`, and
+  `cellular component` for `go`
+- the resource's domain, like `biochemistry` for `chembl.compound`
+- project that it was curated as a part of, like `chembl` for `chembl.compound`
+- infrastructures that the resource is part of, like `elixir` for `fairsharing`
+
+Curation tips:
+
+1. Use lowercase keywords
+2. Spaces are allowed, but try to minimize usage of non-alphanumeric characters
+3. Keywords should be sorted. You can use `bioregistry lint` on the command line
+   to automate this after you're done curating.
 
 #### Handling Collisions
 
@@ -221,6 +279,50 @@ https://github.com/biopragmatics/bioregistry/issues/359.
 Original discussion about prefix parking can be found at
 https://github.com/biopragmatics/bioregistry/issues/365.
 
+#### Contact and Attribution
+
+The Bioregistry collects the name, email, and optionally, the GitHub username
+and ORCID identifier for individuals in several places:
+
+1. As the primary responsible contact person for the semantic space associated
+   with a prefix.
+2. As the creator, contributor, or reviewer of record in the Bioregistry
+
+We require in each situation that all fields explicitly correspond to the
+individual with the goal to promote transparency and decrease the diffusion of
+responsibility. This is inspired by and mirrors the OBO Foundry's
+[Principle 11 "Locus of Authority"](https://obofoundry.org/principles/fp-011-locus-of-authority.html).
+
+For the email field, this means that the following kinds of email addresses are
+not acceptable:
+
+1. Mailing lists
+2. Help desks
+3. Group emails
+4. Issue trackers
+5. Email addresses associated with a responsible person's assistant or
+   administration
+
+For the GitHub field, this means that GitHub organizations or GitHub users that
+represent a group, such as a lab, are not acceptable.
+
+For the ORCID field, it understood that an ORCID record should correspond to an
+individual in the same spirit as this policy, and that the ORCID service should
+not be abused to represent any non-individual.
+
+In addition to the primary responsible contact person, the Bioregistry has
+structured fields for additional contact methods, such as:
+
+- `contact_extras` for annotating secondary contact people
+- `contact_group_email` for annotating a contact email such as a mailing list
+  that might be preferred by the resource over directly contacting the primary
+  person. Only curate this field in addition to a primary contact person, to
+  promote transparency.
+- `contact_page` for annotating the URL of a web page that has contact
+  information, e.g., containing a contact form. Only curate this field if a
+  direct email is not available, as this is the least transparent option for
+  contact
+
 #### Review of New Prefix Requests
 
 Review of new prefix requests is handled by the Bioregistry Review Team, whose
@@ -333,20 +435,20 @@ acceptance and merge into the main branch. This has several benefits:
 
 ### Code Style
 
-This project encourages the use of optional static typing. It uses
-[`mypy`](http://mypy-lang.org/) as a type checker and
-[`sphinx_autodoc_typehints`](https://github.com/agronholm/sphinx-autodoc-typehints)
-to automatically generate documentation based on type hints. You can check if
-your code passes `mypy` with `tox -e mypy`.
+This project requires the use of static typing, which has the dual benefits of
+being implicit documentation as well as enable comprehensive static analysis of
+the code. It uses [`mypy`](http://mypy-lang.org/) as a type checker. You can
+check if your code passes `mypy` with `tox -e mypy`.
 
-This project uses [`black`](https://github.com/psf/black) to automatically
-enforce a consistent code style. You can apply `black` and other pre-configured
-linters with `tox -e lint`.
+This project uses [`ruff`](https://github.com/astral-sh/ruff) to automatically
+enforce a consistent code style. You can apply `ruff` and other pre-configured
+formatters with `tox -e format`.
 
-This project uses [`flake8`](https://flake8.pycqa.org) and several plugins for
-additional checks of documentation style, security issues, good variable
-nomenclature, and more ( see [`tox.ini`](tox.ini) for a list of flake8 plugins).
-You can check if your code passes `flake8` with `tox -e flake8`.
+This project uses [`ruff`](https://github.com/astral-sh/ruff) and several
+plugins for additional checks of documentation style, security issues, good
+variable nomenclature, and more ( see [`pyproject.toml`](pyproject.toml) for a
+list of ruff plugins). You can check if your code passes `ruff` with
+`tox -e lint`.
 
 Each of these checks are run on each commit using GitHub Actions as a continuous
 integration service. Passing all of them is required for accepting a
@@ -357,9 +459,8 @@ comment, and we will help you.
 ### Logging
 
 Python's builtin `print()` should not be used (except when writing to files),
-it's checked by the [`flake8-print`](https://github.com/jbkahn/flake8-print)
-plugin to `flake8`. If you're in a command line setting or `main()` function for
-a module, you can use `click.echo()`. Otherwise, you can use the builtin
+it's checked by `ruff`. If you're in a command line setting or `main()` function
+for a module, you can use `click.echo()`. Otherwise, you can use the builtin
 `logging` module by adding `logger = logging.getLogger(__name__)` below the
 imports at the top of your file.
 
@@ -368,7 +469,7 @@ imports at the top of your file.
 All public functions (i.e., not starting with an underscore `_`) must be
 documented using the
 [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
-The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `flake8`
+The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `ruff`
 reports on functions that are not fully documented.
 
 This project uses [`sphinx`](https://www.sphinx-doc.org) to automatically build

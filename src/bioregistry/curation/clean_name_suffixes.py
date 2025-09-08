@@ -9,11 +9,13 @@ suffixes = ["id", "accession"]
 
 
 @click.command()
-def _main():
+def _main() -> None:
     rows = []
     registry = bioregistry.read_registry()
     for prefix, resource in registry.items():
         name = bioregistry.get_name(prefix)
+        if not name:
+            continue
         for suffix in suffixes:
             if name.lower().endswith(f" {suffix}"):
                 resource.name = name[: -len(suffix) - 1]

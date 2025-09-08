@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.12", "3.9" ]
+        python-version: [ "3.13", "3.10" ]
         tox-command: ["manifest", "lint", "pyroma", "mypy"]
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
         # We only test documentation on the latest version
         # sphinx 8.0 / sphinx-rtd-theme 3.0 discontinued Python 3.9 support
         # a year early, which prompted re-thinking about this.
-        python-version: [ "3.12" ]
+        python-version: [ "3.13" ]
     steps:
       - uses: actions/checkout@v4
       - name: "Install uv"
@@ -65,15 +65,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.12", "3.9" ]
-        pydantic: [ "pydantic1", "pydantic2" ]
-        exclude:
-          - os: windows-latest
-            python-version: 3.9
-          - python-version: 3.9
-            pydantic: "pydantic1"
-          - os: windows-latest
-            pydantic: "pydantic1"
+        python-version: [ "3.13", "3.10" ]
     steps:
       - uses: actions/checkout@v4
       - name: "Install uv"
@@ -83,7 +75,7 @@ jobs:
           cache-dependency-glob: "pyproject.toml"
       - name: Test with pytest and generate coverage file
         run:
-          uvx -p ${{ matrix.python-version }} --with tox-uv tox -e py-${{ matrix.pydantic }}
+          uvx -p ${{ matrix.python-version }} --with tox-uv tox -e py
       - name: Upload coverage report to codecov
         uses: codecov/codecov-action@v4
         if: success()
