@@ -170,6 +170,8 @@ class TestRegistry(unittest.TestCase):
             if entry.name:
                 continue
             name = bioregistry.get_name(prefix)
+            if name is None:
+                continue  # checking that there's a name happens in test_names()
             if prefix == name.lower() and name.upper() == name:
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
@@ -266,6 +268,8 @@ class TestRegistry(unittest.TestCase):
             if "name" in entry:
                 continue
             name = bioregistry.get_name(prefix)
+            if name is None:
+                continue  # the other test checks this
 
             try:
                 _, rest = name.rstrip(")").rsplit("(", 1)
