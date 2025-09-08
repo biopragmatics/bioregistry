@@ -1,15 +1,16 @@
 """Ingest manually curated BioPortal PURLs from :mod:`prefixmaps`, curated by Harry Caufield."""
 
+import click
 import requests
 import yaml
 
 import bioregistry
 from bioregistry.external.bioportal import get_bioportal
-import click
 
 URL = "https://raw.githubusercontent.com/linkml/prefixmaps/main/src/prefixmaps/data/bioportal.curated.yaml"
 #: A mapping from BioPortal prefixes to lists of URI prefixes to skip
 BLACKLIST = {"BFO": ["http://www.ifomis.org/bfo/1.1/snap#"]}
+
 
 @click.command()
 def main() -> None:
@@ -20,7 +21,7 @@ def main() -> None:
 
     bioportal_to_bioregistry = bioregistry.get_registry_invmap("bioportal")
 
-    res = requests.get(URL)
+    res = requests.get(URL, timeout=15)
     data = yaml.safe_load(res.text)["prefixes"]
     for bioportal_prefix, uri_prefixes in data.items():
         if bioportal_prefix not in bioportal:
@@ -45,7 +46,7 @@ def main() -> None:
                 uri_prefix = "http://purl.obolibrary.org/obo/" + uri_prefix[len("OBO:") :]
             if uri_prefix in bioregistry_uri_prefixes:
                 continue
-            print(bioregistry_prefix, uri_prefix)
+            click.echo(f"{bioregistry_prefix} {uri_prefix}")
 
             if count > max_count:
                 continue
