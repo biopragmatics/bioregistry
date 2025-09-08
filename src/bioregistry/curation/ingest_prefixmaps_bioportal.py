@@ -5,12 +5,13 @@ import yaml
 
 import bioregistry
 from bioregistry.external.bioportal import get_bioportal
+import click
 
 URL = "https://raw.githubusercontent.com/linkml/prefixmaps/main/src/prefixmaps/data/bioportal.curated.yaml"
 #: A mapping from BioPortal prefixes to lists of URI prefixes to skip
 BLACKLIST = {"BFO": ["http://www.ifomis.org/bfo/1.1/snap#"]}
 
-
+@click.command()
 def main() -> None:
     """Ingest manually curated BioPortal PURLs from :mod:`prefixmaps`, curated by Harry Caufield."""
     count = 0
