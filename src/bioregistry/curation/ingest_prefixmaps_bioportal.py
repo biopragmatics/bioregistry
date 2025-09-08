@@ -1,7 +1,8 @@
-"""Intest manually curated BioPortal PURLs from :mod:`prefixmaps`, curated by Harry Caufield."""
+"""Ingest manually curated BioPortal PURLs from :mod:`prefixmaps`, curated by Harry Caufield."""
 
 import requests
 import yaml
+
 import bioregistry
 from bioregistry.external.bioportal import get_bioportal
 
@@ -10,7 +11,8 @@ URL = "https://raw.githubusercontent.com/linkml/prefixmaps/main/src/prefixmaps/d
 BLACKLIST = {"BFO": ["http://www.ifomis.org/bfo/1.1/snap#"]}
 
 
-def main():
+def main() -> None:
+    """Ingest manually curated BioPortal PURLs from :mod:`prefixmaps`, curated by Harry Caufield."""
     count = 0
     max_count = 10
     bioportal = get_bioportal(force_download=False)
