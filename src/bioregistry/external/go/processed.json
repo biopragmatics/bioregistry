@@ -598,10 +598,10 @@
     "entity_types": [
       {
         "example_id": "COG_Cluster:COG0001",
-        "example_url": "http://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog=COG0001",
+        "example_url": "https://www.ncbi.nlm.nih.gov/research/cog/cog/COG0001",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "http://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog=[example_id]"
+        "url_syntax": "https://www.ncbi.nlm.nih.gov/research/cog/cog/[example_id]"
       }
     ],
     "generic_urls": [
@@ -1022,16 +1022,7 @@
         "type_id": "GO:0008150",
         "type_name": "biological_process",
         "url_syntax": "https://ecocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=[example_id]"
-      }
-    ],
-    "generic_urls": [
-      "https://ecocyc.org/"
-    ],
-    "name": "Scientific database for the bacterium Escherichia coli K-12 MG1655"
-  },
-  "EcoCyc_GENE": {
-    "database": "EcoCyc_GENE",
-    "entity_types": [
+      },
       {
         "example_id": "EcoCyc:RBSA-MONOMER",
         "example_url": "https://ecocyc.org/gene?orgid=ECOLI&id=RBSA-MONOMER",
@@ -1202,6 +1193,14 @@
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "http://flybase.org/reports/[example_id].html"
+      },
+      {
+        "example_id": "FBrf0193169",
+        "example_url": "https://flybase.org/reports/FBrf0193169.htm",
+        "id_syntax": "FBrf[0-9]{7}",
+        "type_id": "BET:0000000",
+        "type_name": "reference",
+        "url_syntax": "http://flybase.org/reports/[example_id].htm"
       }
     ],
     "generic_urls": [
@@ -1413,7 +1412,7 @@
       }
     ],
     "generic_urls": [
-      "http://www.geneontology.org/GO.refgenome.shtml"
+      "http://www.geneontology.org/"
     ],
     "name": "GO Central",
     "synonyms": [
@@ -1439,7 +1438,7 @@
     "entity_types": [
       {
         "example_id": "0000001",
-        "example_url": "http://purl.obolibrary.org/obo/go/references/0000001",
+        "example_url": "http://purl.obolibrary.org/obo/go/references/0000002",
         "id_syntax": "\\d{7}",
         "type_id": "BET:0000000",
         "type_name": "entity",
@@ -1447,9 +1446,10 @@
       }
     ],
     "generic_urls": [
-      "http://current.geneontology.org/metadata/gorefs/index.html"
+      "http://geneontology.org/gorefs"
     ],
-    "name": "Gene Ontology Database references"
+    "name": "Gene Ontology Database references",
+    "rdf_uri_prefix": "http://purl.obolibrary.org/obo/go/references/"
   },
   "GR": {
     "database": "GR",
@@ -2029,7 +2029,7 @@
       "http://www.ebi.ac.uk/interpro/"
     ],
     "name": "InterPro database of protein domains and motifs",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/interpro",
+    "rdf_uri_prefix": "http://identifiers.org/interpro/",
     "synonyms": [
       "INTERPRO",
       "IPR"
@@ -2073,6 +2073,7 @@
       {
         "example_id": "JaponicusDB:SJAG_01143",
         "example_url": "https://www.japonicusdb.org/gene/SJAG_01143",
+        "id_syntax": "S\\w+(\\_)?\\d",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "https://www.japonicusdb.org/gene/[example_id]"
@@ -2308,7 +2309,7 @@
       {
         "example_id": "MGI:MGI:1345277",
         "example_url": "http://www.informatics.jax.org/accession/MGI:1345277",
-        "id_syntax": "MGI:[0-9]{5,}",
+        "id_syntax": "MGI:[0-9]+",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "http://www.informatics.jax.org/accession/[example_id]"
@@ -2316,7 +2317,7 @@
       {
         "example_id": "MGI:MGI:3590672",
         "example_url": "http://www.informatics.jax.org/accession/MGI:3590672",
-        "id_syntax": "MGI:[0-9]{5,}",
+        "id_syntax": "MGI:[0-9]+",
         "type_id": "VariO:0001",
         "type_name": "variation",
         "url_syntax": "http://www.informatics.jax.org/accession/[example_id]"
@@ -2326,7 +2327,7 @@
       "http://www.informatics.jax.org/"
     ],
     "name": "Mouse Genome Informatics",
-    "rdf_uri_prefix": "https://identifiers.org/MGI"
+    "rdf_uri_prefix": "http://identifiers.org/MGI/"
   },
   "MIPS_funcat": {
     "database": "MIPS_funcat",
@@ -2389,7 +2390,7 @@
       "https://www.maizegdb.org/"
     ],
     "name": "MaizeGDB",
-    "rdf_uri_prefix": "https://identifiers.org/maizegdb.locus"
+    "rdf_uri_prefix": "http://identifiers.org/maizegdb.locus/"
   },
   "MaizeGDB_QTL": {
     "database": "MaizeGDB_QTL",
@@ -2475,7 +2476,7 @@
       "https://metacyc.org/"
     ],
     "name": "Metabolic Encyclopedia of metabolic and other pathways",
-    "rdf_uri_prefix": "https://identifiers.org/metacyc.reaction",
+    "rdf_uri_prefix": "http://identifiers.org/metacyc.reaction/",
     "synonyms": [
       "METACYC"
     ]
@@ -2557,11 +2558,32 @@
       "http://www.ncbi.nlm.nih.gov/"
     ],
     "name": "NCBI Gene",
-    "rdf_uri_prefix": "https://identifiers.org/ncbigene",
+    "rdf_uri_prefix": "http://identifiers.org/ncbigene/",
     "synonyms": [
       "GeneID",
       "LocusID",
       "NCBI_Gene"
+    ]
+  },
+  "NCBITaxon": {
+    "database": "NCBITaxon",
+    "entity_types": [
+      {
+        "example_id": "NCBITaxon:7227",
+        "example_url": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702",
+        "type_id": "BET:0000000",
+        "type_name": "entity",
+        "url_syntax": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/"
+    ],
+    "name": "NCBI Taxonomy",
+    "rdf_uri_prefix": "http://purl.obolibrary.org/obo/NCBITaxon_",
+    "synonyms": [
+      "taxon",
+      "ncbi_taxid"
     ]
   },
   "NCBI_GP": {
@@ -2701,18 +2723,18 @@
     "entity_types": [
       {
         "example_id": "PANTHER:PTHR11455",
-        "example_url": "http://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
-        "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}_[A-Z0-9]+",
+        "example_url": "https://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
+        "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+",
         "type_id": "NCIT:C20130",
         "type_name": "protein family",
-        "url_syntax": "http://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
+        "url_syntax": "https://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://www.pantherdb.org/"
+      "https://www.pantherdb.org/"
     ],
     "name": "Protein ANalysis THrough Evolutionary Relationships Classification System",
-    "rdf_uri_prefix": "https://identifiers.org/panther.family"
+    "rdf_uri_prefix": "http://identifiers.org/panther.family/"
   },
   "PATO": {
     "database": "PATO",
@@ -2850,6 +2872,7 @@
       "https://www.ncbi.nlm.nih.gov/pubmed"
     ],
     "name": "PubMed",
+    "rdf_uri_prefix": "http://identifiers.org/pubmed/",
     "synonyms": [
       "PUBMED"
     ]
@@ -3111,7 +3134,7 @@
       "https://plasmodb.org"
     ],
     "name": "PlasmoDB",
-    "rdf_uri_prefix": "https://identifiers.org/plasmodb"
+    "rdf_uri_prefix": "http://identifiers.org/plasmodb/"
   },
   "PomBase": {
     "database": "PomBase",
@@ -3123,13 +3146,21 @@
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "https://www.pombase.org/gene/[example_id]"
+      },
+      {
+        "example_id": "PomBase:SPCC548.03c.2",
+        "example_url": "https://www.pombase.org/gene/SPCC548.03c.2",
+        "id_syntax": "S\\w+(\\.)?\\w+(\\.)?\\d+",
+        "type_id": "SO:0000673",
+        "type_name": "transcript",
+        "url_syntax": "https://www.pombase.org/gene/[example_id]"
       }
     ],
     "generic_urls": [
       "https://www.pombase.org/"
     ],
     "name": "PomBase",
-    "rdf_uri_prefix": "https://identifiers.org/pombase"
+    "rdf_uri_prefix": "http://identifiers.org/pombase/"
   },
   "Pompep": {
     "database": "Pompep",
@@ -3283,7 +3314,7 @@
       {
         "example_id": "RGD:2004",
         "example_url": "https://rgd.mcw.edu/rgdweb/search/search.html?term=2004",
-        "id_syntax": "[0-9]{4,7}",
+        "id_syntax": "[0-9]{4,8}",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "https://rgd.mcw.edu/rgdweb/search/search.html?term=[example_id]"
@@ -3293,7 +3324,7 @@
       "https://rgd.mcw.edu/"
     ],
     "name": "Rat Genome Database",
-    "rdf_uri_prefix": "https://identifiers.org/rgd",
+    "rdf_uri_prefix": "http://identifiers.org/rgd/",
     "synonyms": [
       "RAD",
       "RGDID"
@@ -3387,7 +3418,7 @@
       "https://www.reactome.org/"
     ],
     "name": "Reactome - a curated knowledgebase of biological pathways",
-    "rdf_uri_prefix": "https://identifiers.org/reactome",
+    "rdf_uri_prefix": "http://identifiers.org/reactome/",
     "synonyms": [
       "REACTOME",
       "REAC"
@@ -3516,7 +3547,7 @@
       "http://www.yeastgenome.org/"
     ],
     "name": "Saccharomyces Genome Database",
-    "rdf_uri_prefix": "https://identifiers.org/sgd",
+    "rdf_uri_prefix": "http://identifiers.org/sgd/",
     "synonyms": [
       "SGDID"
     ]
@@ -3541,11 +3572,11 @@
     "database": "SGD_PWY",
     "entity_types": [
       {
-        "example_id": "SGD_PWY:CYSTEINE-SYN2-PWY",
+        "example_id": "SGD_PWY:SERSYN-PWY",
         "example_url": "https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=SERSYN-PWY",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "https://www.yeastgenome.org/locus/[example_id]"
+        "url_syntax": "https://pathway.yeastgenome.org/YEAST/NEW-IMAGE?type=NIL&object=[example_id]"
       }
     ],
     "generic_urls": [
@@ -3584,7 +3615,7 @@
       "https://www.sgn.cornell.edu/"
     ],
     "name": "Sol Genomics Network",
-    "rdf_uri_prefix": "https://identifiers.org/sgn",
+    "rdf_uri_prefix": "http://identifiers.org/sgn/",
     "synonyms": [
       "SGN_gene"
     ]
@@ -3821,7 +3852,7 @@
       "http://www.arabidopsis.org/"
     ],
     "name": "The Arabidopsis Information Resource",
-    "rdf_uri_prefix": "https://identifiers.org/tair.locus"
+    "rdf_uri_prefix": "http://identifiers.org/tair.locus/"
   },
   "TC": {
     "database": "TC",
@@ -3873,7 +3904,7 @@
       "http://www.ciliate.org/"
     ],
     "name": "Tetrahymena Genome Database",
-    "rdf_uri_prefix": "https://identifiers.org/tgd"
+    "rdf_uri_prefix": "http://identifiers.org/tgd/"
   },
   "TGD_LOCUS": {
     "database": "TGD_LOCUS",
@@ -3956,6 +3987,24 @@
     ],
     "name": "Forest Tree Genome Database"
   },
+  "TreeGrafter": {
+    "database": "TreeGrafter",
+    "entity_types": [
+      {
+        "example_id": "PANTHER:PTHR11455",
+        "example_url": "https://www.pantherdb.org/panther/lookupId.jsp?id=PTHR10000",
+        "id_syntax": "PTN[0-9]{9}|PTHR[0-9]{5}|PTHR[0-9]{5}:SF[0-9]+",
+        "type_id": "NCIT:C20130",
+        "type_name": "protein family",
+        "url_syntax": "https://www.pantherdb.org/panther/lookupId.jsp?id=[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://www.pantherdb.org/"
+    ],
+    "name": "TreeGrafter-generated GO annotations",
+    "rdf_uri_prefix": "http://identifiers.org/panther.family/"
+  },
   "TriTrypDB": {
     "database": "TriTrypDB",
     "entity_types": [
@@ -3972,7 +4021,7 @@
       "https://tritrypdb.org/"
     ],
     "name": "TriTrypDB",
-    "rdf_uri_prefix": "https://identifiers.org/tritrypdb"
+    "rdf_uri_prefix": "http://identifiers.org/tritrypdb/"
   },
   "UBERON": {
     "database": "UBERON",
@@ -4142,7 +4191,7 @@
       "http://www.uniprot.org"
     ],
     "name": "Universal Protein Knowledgebase",
-    "rdf_uri_prefix": "https://identifiers.org/uniprot"
+    "rdf_uri_prefix": "http://identifiers.org/uniprot/"
   },
   "UniProtKB-KW": {
     "database": "UniProtKB-KW",
@@ -4263,7 +4312,7 @@
       "http://www.wormbase.org/"
     ],
     "name": "WormBase database of nematode biology",
-    "rdf_uri_prefix": "https://identifiers.org/wb",
+    "rdf_uri_prefix": "http://identifiers.org/wormbase/",
     "synonyms": [
       "WormBase"
     ]
@@ -4417,7 +4466,7 @@
       "http://www.xenbase.org/"
     ],
     "name": "Xenbase",
-    "rdf_uri_prefix": "https://identifiers.org/xenbase"
+    "rdf_uri_prefix": "http://identifiers.org/xenbase/"
   },
   "YeastFunc": {
     "database": "YeastFunc",
@@ -4446,7 +4495,7 @@
       {
         "example_id": "ZDB-GENE-990415-103",
         "example_url": "http://zfin.org/ZDB-GENE-990415-103",
-        "id_syntax": "ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+",
+        "id_syntax": "ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE)-[0-9]{6}-[0-9]+",
         "type_id": "SO:0000704",
         "type_name": "gene",
         "url_syntax": "http://zfin.org/[example_id]"
@@ -4454,7 +4503,7 @@
       {
         "example_id": "ZDB-GENE-990415-103",
         "example_url": "http://zfin.org/ZDB-GENE-990415-103",
-        "id_syntax": "ZDB-(TRNAG|LINCRNAG|MIRNAG|NCRNAG|SNORNAG|GENE|GENO|MRPHLNO)-[0-9]{6}-[0-9]+",
+        "id_syntax": "ZDB-(GENO|MRPHLNO|CRISPR|FISH|TALEN)-[0-9]{6}-[0-9]+",
         "type_id": "VariO:0001",
         "type_name": "variation",
         "url_syntax": "http://zfin.org/[example_id]"
@@ -4464,7 +4513,7 @@
       "http://zfin.org/"
     ],
     "name": "Zebrafish Information Network",
-    "rdf_uri_prefix": "https://identifiers.org/zfin"
+    "rdf_uri_prefix": "http://identifiers.org/zfin/"
   },
   "cribi_vitis": {
     "database": "cribi_vitis",
@@ -4562,16 +4611,16 @@
     "entity_types": [
       {
         "example_id": "gomodel:5ae3b0f600001522",
-        "example_url": "http://www.geneontology.org/gocam/gomodel:5ae3b0f600001522",
+        "example_url": "https://model.geneontology.org/5ae3b0f600001522",
         "type_id": "BET:0000000",
         "type_name": "model",
-        "url_syntax": "http://www.geneontology.org/gocam/[example_id]"
+        "url_syntax": "https://model.geneontology.org/[example_id]"
       }
     ],
     "generic_urls": [
-      "http://www.geneontology.org/gocam"
+      "https://geneontology.org/go-cam"
     ],
-    "name": "Gene Ontology Causal Activity Model Database",
+    "name": "Gene Ontology Causal Activity Model (GO-CAM)",
     "rdf_uri_prefix": "http://model.geneontology.org/"
   },
   "iBB": {
@@ -4642,26 +4691,5 @@
       "http://www.ncbi.nlm.nih.gov/Genbank/"
     ],
     "name": "DDBJ / ENA / GenBank"
-  },
-  "taxon": {
-    "database": "taxon",
-    "entity_types": [
-      {
-        "example_id": "taxon:7227",
-        "example_url": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3702",
-        "type_id": "BET:0000000",
-        "type_name": "entity",
-        "url_syntax": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=[example_id]"
-      }
-    ],
-    "generic_urls": [
-      "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/"
-    ],
-    "name": "NCBI Taxonomy",
-    "rdf_uri_prefix": "http://purl.obolibrary.org/obo/NCBITaxon_",
-    "synonyms": [
-      "NCBITaxon",
-      "ncbi_taxid"
-    ]
   }
 }

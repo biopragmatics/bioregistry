@@ -1,19 +1,28 @@
-# See: https://docs.readthedocs.io/en/latest/config-file/v2.html
+# .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 version: 2
 
-build:
-  image: latest
+sphinx:
+  # Path to your Sphinx configuration file, required as of
+  # https://about.readthedocs.com/blog/2024/12/deprecate-config-files-without-sphinx-or-mkdocs-config/
+  configuration: docs/source/conf.py
 
-python:
-  version: "3.8"
-  install:
-    - method: pip
-      path: .
-      extra_requirements:
-        - docs
-        - gha
-        - align
-        - export
-        - charts
-        - web
+# Set the version of Python and other tools you might need
+build:
+  os: ubuntu-22.04
+  apt_packages:
+    - graphviz
+  tools:
+    python: "3.12"
+
+  # adapted from uv recipe at https://docs.readthedocs.io/en/stable/build-customization.html#install-dependencies-with-uv
+  # and comment at https://github.com/readthedocs/readthedocs.org/issues/11289#issuecomment-2103832834
+  commands:
+    - asdf plugin add uv
+    - asdf install uv latest
+    - asdf global uv latest
+    - uv venv $READTHEDOCS_VIRTUALENV_PATH
+    - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv pip install .[docs,gha,align,export,charts,web]
+    - python -m sphinx -T -b html -d docs/_build/doctrees -D language=en docs/source $READTHEDOCS_OUTPUT/html

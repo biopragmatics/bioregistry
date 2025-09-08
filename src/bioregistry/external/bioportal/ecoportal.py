@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Align the EcoPortal with the Bioregistry."""
 
 from .bioportal import EcoPortalAligner

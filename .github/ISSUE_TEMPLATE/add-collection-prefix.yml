@@ -1,0 +1,44 @@
+name: Add prefix to collection
+description: |
+  Add a Bioregistry to an existing Bioregistry collection. A list of
+  existing collections can be found at https://bioregistry.io/collection.
+title: Add prefix [X] to collection [Y]
+labels: [ Collection, Update ]
+body:
+
+  - type: input
+    id: collection
+    attributes:
+      label: Bioregistry Collection Identifier
+      description: |
+        A seven number long identifier for an _existing_ bioregistry collection.
+        See https://bioregistry.io/collection for a list of existing collections.
+      placeholder: ex. `0000002` for semantic web contexts
+    validations:
+      required: true
+
+  - type: input
+    id: prefix
+    attributes:
+      label: Prefix
+      description: The Bioregistry prefix to add to the given collection
+      placeholder: ex. chebi
+    validations:
+      required: true
+
+  - type: input
+    id: orcid
+    attributes:
+      label: Contributor ORCID
+      description: Please provide your ORCiD identifier so we can attribute this contribution to you.
+      placeholder: ex. 0000-0003-4423-4370
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Please add any additional explanation, if desired
+    validations:
+      required: false

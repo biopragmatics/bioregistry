@@ -4,7 +4,7 @@ from bioregistry import manager
 from bioregistry.external.re3data import get_re3data
 
 
-def _main():
+def _main() -> None:
     fairsharing_invmap = manager.get_registry_invmap("fairsharing")
     re3data_map = manager.get_registry_map("re3data")
     fairsharing_to_re3data = {
@@ -15,7 +15,10 @@ def _main():
     for fairsharing_id, prefix in fairsharing_invmap.items():
         re3data_id = fairsharing_to_re3data.get(fairsharing_id)
         if re3data_id and re3data_id not in re3data_map:
-            manager.registry[prefix].mappings["re3data"] = re3data_id
+            if manager.registry[prefix].mappings is None:
+                manager.registry[prefix].mappings = {"re3data": re3data_id}
+            else:
+                manager.registry[prefix].mappings["re3data"] = re3data_id  # type:ignore
     manager.write_registry()
 
 
