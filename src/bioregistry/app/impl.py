@@ -1,34 +1,47 @@
 """App builder interface."""
 
+from __future__ import annotations
+
 import json
+from collections.abc import Mapping
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Mapping, Optional, Union
+from typing import Any, Literal, overload
 
-from flasgger import Swagger
+import pystow
+from a2wsgi import WSGIMiddleware
+from curies.mapping_service import MappingServiceGraph, MappingServiceSPARQLProcessor
+from fastapi import APIRouter, FastAPI
 from flask import Flask
 from flask_bootstrap import Bootstrap4
+from markdown import markdown
+from rdflib_endpoint.sparql_router import SparqlRouter
 
-from bioregistry import curie_to_str, resource_manager, version
+from bioregistry import Manager, curie_to_str, resource_manager, version
 
-from .api import api_blueprint
-from .constants import BIOSCHEMAS
+from .api import api_router
+from .constants import BIOSCHEMAS, KEY_A, KEY_B, KEY_C, KEY_D, KEY_E
 from .ui import ui_blueprint
-
-if TYPE_CHECKING:
-    import bioregistry
 
 __all__ = [
     "get_app",
 ]
 
 TITLE_DEFAULT = "Bioregistry"
+DESCRIPTION_DEFAULT = dedent(
+    """\
+    An open source, community curated registry, meta-registry,
+    and compact identifier (CURIE) resolver.
+"""
+)
 FOOTER_DEFAULT = dedent(
     """\
-    Developed with ❤️ by the <a href="https://indralab.github.io">INDRA Lab</a> in the
-    <a href="https://hits.harvard.edu">Harvard Program in Therapeutic Science (HiTS)</a>.<br/>
-    Funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).<br/>
-    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
+    Developed with ❤️ by the <a href="https://gyorilab.github.io">Gyori Lab for Computational Biomedicine</a>
+    at Northeastern University.<br/>
+    Funded by Chan Zuckerberg Initiative (CZI) Award
+    <a href="https://gyorilab.github.io/#czi-bioregistry">2023-329850</a>.<br/>
+    Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a> and
+    <a rel="me" href="https://fosstodon.org/@bioregistry" title="bioregistry">@bioregistry@fosstodon.org</a>
     (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
 """
 )
@@ -43,7 +56,7 @@ HEADER_DEFAULT = dedent(
         <dd class="col-lg-10">
             A collection of prefixes and metadata for ontologies, controlled vocabularies, and other semantic
             spaces. Some other well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
-            <a href="https://identifiers.org">Identifiers.org</a>, and the
+            <a href="https://identifiers.org">Identifiers.org</a>, and
             the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>.
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
@@ -92,41 +105,80 @@ RESOURCES_SUBHEADER_DEFAULT = dedent(
 )
 
 
+# docstr-coverage:excused `overload`
+@overload
 def get_app(
-    manager: Optional["bioregistry.Manager"] = None,
-    config: Union[None, str, Path, Mapping[str, Any]] = None,
+    manager: Manager | None = ...,
+    config: None | str | Path | Mapping[str, Any] = ...,
+    *,
+    first_party: bool = ...,
+    return_flask: Literal[True] = True,
+    analytics: bool = ...,
+) -> tuple[FastAPI, Flask]: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_app(
+    manager: Manager | None = ...,
+    config: None | str | Path | Mapping[str, Any] = ...,
+    *,
+    first_party: bool = ...,
+    return_flask: Literal[False] = False,
+    analytics: bool = ...,
+) -> FastAPI: ...
+
+
+def get_app(
+    manager: Manager | None = None,
+    config: None | str | Path | Mapping[str, Any] = None,
+    *,
     first_party: bool = True,
-) -> Flask:
-    """Prepare the flask application.
+    return_flask: bool = False,
+    analytics: bool = False,
+) -> FastAPI | tuple[FastAPI, Flask]:
+    """Prepare the WSGI application.
 
     :param manager: A pre-configured manager. If none given, uses the default manager.
-    :param config: Additional configuration to be passed to the flask application. See below.
+    :param config: Additional configuration to be passed to the flask application. See
+        below.
     :param first_party: Set to true if deploying the "canonical" bioregistry instance
-    :returns: An instantiated flask application
+    :param return_flask: Set to true to get internal flask app
+    :param analytics: Should analytics be enabled?
+
+    :returns: An instantiated WSGI application
+
     :raises ValueError: if there's an issue with the configuration's integrity
     """
     app = Flask(__name__)
-    if isinstance(config, (str, Path)):
+
+    if manager is None:
+        manager = resource_manager.manager
+
+    if isinstance(config, str | Path):
         with open(config) as file:
-            app.config.update(json.load(file))
-    elif config is not None:
-        app.config.update(config)
-    app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
-    app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
-    app.config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
-    app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
-    app.config.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+            conf = json.load(file)
+    elif config is None:
+        conf = {}
+    else:
+        conf = config
+    conf.setdefault("METAREGISTRY_TITLE", TITLE_DEFAULT)
+    conf.setdefault("METAREGISTRY_DESCRIPTION", DESCRIPTION_DEFAULT)
+    conf.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
+    conf.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
+    conf.setdefault("METAREGISTRY_VERSION", version.get_version())
+    example_prefix = conf.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    conf.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
+    conf.setdefault("METAREGISTRY_FIRST_PARTY", first_party)
+    conf.setdefault("METAREGISTRY_CONTACT_NAME", "Charles Tapley Hoyt")
+    conf.setdefault("METAREGISTRY_CONTACT_EMAIL", "cthoyt@gmail.com")
+    conf.setdefault("METAREGISTRY_LICENSE_NAME", "MIT License")
+    conf.setdefault(
+        "METAREGISTRY_LICENSE_URL", "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE"
+    )
 
-    app.manager = manager or resource_manager.manager
-
-    if app.config.get("METAREGISTRY_FIRST_PARTY"):
-        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
-
-    example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
-    resource = app.manager.registry.get(example_prefix)
+    resource = manager.registry.get(example_prefix)
     if resource is None:
         raise ValueError(
             f"{example_prefix} is not available as a prefix. Set a different METAREGISTRY_EXAMPLE_PREFIX"
@@ -136,39 +188,113 @@ def get_app(
     if resource.get_uri_format() is None:
         raise ValueError("Must use an example prefix with a URI format")
 
-    Swagger.DEFAULT_CONFIG.update(
-        {
-            "info": {
-                "title": app.config["METAREGISTRY_TITLE"],
-                "description": "A service for resolving CURIEs",
-                "contact": {
-                    "responsibleDeveloper": "Charles Tapley Hoyt",
-                    "email": "cthoyt@gmail.com",
-                },
-                "version": "1.0",
-                "license": {
-                    "name": "Code available under the MIT License",
-                    "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
-                },
-            },
-            "host": app.manager.base_url,
-            "tags": [
-                {
-                    "name": "collections",
-                    "externalDocs": {
-                        "url": f"{app.manager.base_url}/collection/",
-                    },
-                },
-            ],
-        }
-    )
+    # note from klas:
+    # "host": removeprefix(removeprefix(manager.base_url, "https://"), "http://"),
 
-    Swagger(app)
     Bootstrap4(app)
 
-    app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
+    app.config.update(conf)
+    app.manager = manager
+
+    if app.config.get("METAREGISTRY_FIRST_PARTY"):
+        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
+
+    fast_api = FastAPI(
+        openapi_tags=_get_tags_metadata(conf, manager),
+        title=conf["METAREGISTRY_TITLE"],
+        description=conf["METAREGISTRY_DESCRIPTION"],
+        contact={
+            "name": conf["METAREGISTRY_CONTACT_NAME"],
+            "email": conf["METAREGISTRY_CONTACT_EMAIL"],
+        },
+        license_info={
+            "name": conf["METAREGISTRY_LICENSE_NAME"],
+            "url": conf["METAREGISTRY_LICENSE_URL"],
+        },
+    )
+    fast_api.manager = manager  # type:ignore
+    fast_api.include_router(api_router)
+    fast_api.include_router(_get_sparql_router(app))
+    fast_api.mount("/", WSGIMiddleware(app))  # type:ignore
+
+    # yes, this isn't very secure. just for testing now.
+    key = "-".join([KEY_A, KEY_B, KEY_C, KEY_D, KEY_E])
+    analytics_api_key = conf.get("ANALYTICS_API_KEY") or pystow.get_config(
+        "bioregistry",
+        "analytics_api_key",
+        passthrough=key,
+    )
+    if analytics_api_key and analytics:
+        from api_analytics.fastapi import Analytics
+
+        fast_api.add_middleware(Analytics, api_key=analytics_api_key)  # Add middleware
+
     # Make manager available in all jinja templates
-    app.jinja_env.globals.update(manager=app.manager, curie_to_str=curie_to_str)
-    return app
+    app.jinja_env.globals.update(
+        manager=manager,
+        curie_to_str=curie_to_str,
+        fastapi_url_for=fast_api.url_path_for,
+        markdown=markdown,
+    )
+
+    if return_flask:
+        return fast_api, app
+    return fast_api
+
+
+example_query = """\
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?s ?o WHERE {
+    VALUES ?s { <http://purl.obolibrary.org/obo/CHEBI_1> }
+    ?s owl:sameAs ?o
+}
+""".rstrip()
+
+
+def _get_sparql_router(app: Flask) -> APIRouter:
+    sparql_graph = MappingServiceGraph(converter=app.manager.converter)
+    sparql_processor = MappingServiceSPARQLProcessor(graph=sparql_graph)
+    sparql_router: APIRouter = SparqlRouter(
+        path="/sparql",
+        title=f"{app.config['METAREGISTRY_TITLE']} SPARQL Service",
+        description="An identifier mapping service",
+        version=version.get_version(),
+        example_query=example_query,
+        graph=sparql_graph,
+        processor=sparql_processor,
+        public_url=f"{app.manager.base_url}/sparql",
+    )
+    return sparql_router
+
+
+def _get_tags_metadata(conf: dict[str, str], manager: Manager) -> list[dict[str, Any]]:
+    tags_metadata = [
+        {
+            "name": "resource",
+            "description": "Identifier resources in the registry",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Resource Catalog",
+                "url": f"{manager.base_url}/registry/",
+            },
+        },
+        {
+            "name": "metaresource",
+            "description": "Resources representing registries",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Registry Catalog",
+                "url": f"{manager.base_url}/metaregistry/",
+            },
+        },
+        {
+            "name": "collection",
+            "description": "Fit-for-purpose lists of prefixes",
+            "externalDocs": {
+                "description": f"{conf['METAREGISTRY_TITLE']} Collection Catalog",
+                "url": f"{manager.base_url}/collection/",
+            },
+        },
+    ]
+    return tags_metadata

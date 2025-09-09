@@ -13,7 +13,7 @@ FALSE_POSITIVES = {
 
 
 @click.command()
-def _main():
+def _main() -> None:
     rows = []
     for prefix, resource in bioregistry.read_registry().items():
         if prefix == "uniprot" or prefix in FALSE_POSITIVES:

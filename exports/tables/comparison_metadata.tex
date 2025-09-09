@@ -1,37 +1,43 @@
 \begin{table}
-\centering
 \caption{An overview on registries covering biomedical ontologies, controlled vocabularies, and databases. A Y means the field is required. A o means it is part of the schema, but not required or incomplete on some entries. A blank cell means that it is not part of the metadata schema. The FAIR column denotes that a structured dump of the data is easily findable, accessible, and in a structured format in bulk. For lookup services, some fields (i.e., Example ID, Default Provider, Alternate Providers) are omitted because inclusion would be redundant. The search column means there is a URL into which a search query can be formatted to show a list of results. The provider column means there is a URL into which a prefix can be formatted to show a dedicated page for its metadata.}
 \label{tab:registry-comparison-governance}
 \begin{tabular}{llllllllllllllllllll}
 \toprule
-                                        & \multicolumn{11}{l}{Metadata Model} & \multicolumn{8}{l}{Capabilities and Qualities} \\
-                               Registry &           Name & Homepage & Desc. & Example ID & ID Pattern & Provider & Alt. Providers & Alt. Prefixes & License & Version & Contact &            Structured Data & Bulk Data & No Auth. for Data & Permissive License & Prefix Search & Prefix Provider & Resolve CURIEs & Lookup CURIEs \\
+ & \multicolumn{11}{r}{Metadata Model} & \multicolumn{8}{r}{Capabilities and Qualities} \\
+Registry & Name & Homepage & Desc. & Example ID & ID Pattern & Provider & Alt. Providers & Alt. Prefixes & License & Version & Contact & Structured Data & Bulk Data & No Auth. for Data & Permissive License & Prefix Search & Prefix Provider & Resolve CURIEs & Lookup CURIEs \\
 \midrule
-            Bioregistry~\cite{Hoyt2022} &              Y &        Y &     Y &          Y &          o &        o &              o &             o &       o &       o &       o &                          Y &         Y &                 Y &                  Y &             Y &               Y &              Y &               \\
-           AberOWL~\cite{Hoehndorf2015} &              Y &        Y &     Y &          o &            &        o &                &               &         &       o &         &                          Y &         Y &                 Y &                    &             Y &               Y &                &             Y \\
-          AgroPortal~\cite{Jonquet2018} &              Y &        Y &     Y &          o &            &        Y &                &               &       o &       o &       o &                          Y &           &                   &                    &             Y &               Y &                &             Y \\
-                                 BARTOC &              Y &        o &     o &            &          o &          &              o &               &       o &         &       o &                          Y &         Y &                 Y &                    &             Y &               Y &                &               \\
-           BioContext~\cite{biocontext} &                &          &       &            &            &        o &                &               &         &         &         &                          Y &         Y &                 Y &                    &               &               Y &                &               \\
-                Biolink~\cite{Unni2022} &              Y &          &       &            &            &        Y &                &               &       o &         &         &                          Y &         Y &                 Y &                    &               &                 &                &               \\
-           BioPortal~\cite{Whetzel2011} &              Y &        Y &     Y &          o &            &        Y &                &               &         &       Y &       o &                          Y &           &                   &                    &             Y &               Y &                &             Y \\
-         Cellosaurus~\cite{Bairoch2018} &              Y &        Y &       &            &            &        Y &                &               &         &         &         &                          Y &         Y &                 Y &                  Y &               &                 &                &               \\
-            CHEMINF~\cite{Hastings2011} &              Y &          &       &            &            &          &                &               &         &         &         &                          Y &         Y &                 Y &                  Y &               &               Y &                &             Y \\
-              CropOCT~\cite{Arnaud2020} &              Y &        Y &       &          o &            &        Y &                &               &         &         &         &                          Y &         Y &                 Y &                  Y &             Y &               Y &                &             Y \\
-      EcoPortal~\cite{Kechagioglou2021} &              Y &        o &     Y &          o &            &        o &                &               &       o &       o &       o &                          Y &           &                   &                    &             Y &               Y &                &             Y \\
-                   EDAM~\cite{Ison2013} &              Y &          &       &            &            &          &                &               &         &         &         &                          Y &         Y &                 Y &                    &             Y &               Y &                &               \\
-         FAIRSharing~\cite{Sansone2019} &              Y &        Y &     Y &            &            &          &                &               &         &         &       Y &                          Y &           &                   &                    &             Y &               Y &                &               \\
-GO~\cite{TheGeneOntologyConsortium2019} &              Y &        o &     o &          o &          o &        o &              o &               &         &         &         &                          Y &         Y &                 Y &                  Y &               &                 &                &               \\
-                  HL7~\cite{Bender2013} &              Y &        o &     o &            &            &          &                &               &         &         &       o &                          Y &           &                 Y &                    &               &               Y &                &               \\
-        Identifiers.org~\cite{Juty2012} &              Y &        Y &     Y &          Y &          Y &        Y &              o &               &         &         &         &                          Y &         Y &                 Y &                  Y &             Y &               Y &              Y &               \\
-             N2T~\cite{Wimalaratne2018} &              Y &        Y &     Y &          Y &          Y &        Y &              o &             o &         &         &         &                          Y &         Y &                 Y &                  Y &               &               Y &              Y &               \\
-                  NCBI~\cite{Clark2016} &              Y &        Y &       &          Y &            &          &                &               &         &         &         &                            &         Y &                 Y &                    &               &                 &                &               \\
-         OBO Foundry~\cite{Jackson2021} &              Y &        Y &     Y &            &            &          &                &               &       Y &         &       Y &                          Y &         Y &                 Y &                  Y &             Y &               Y &              Y &               \\
-                   OLS~\cite{Cote2006a} &              Y &        o &     Y &          o &            &        o &                &               &       Y &       o &       o &                          Y &         Y &                 Y &                    &             Y &               Y &                &             Y \\
-                 OntoBee~\cite{Ong2017} &              Y &        Y &     Y &          o &            &        o &                &               &         &         &       Y &                            &         Y &                 Y &                    &               &               Y &                &             Y \\
-    Prefix Commons~\cite{prefixcommons} &              Y &        o &     o &          o &          o &        o &              o &             o &         &         &         &                          Y &         Y &                 Y &                    &             Y &               Y &                &               \\
-              re3data~\cite{Pampel2013} &              Y &        Y &     Y &            &            &          &                &               &       o &         &       o &                            &           &                 Y &                  Y &             Y &               Y &                &               \\
-             UniProt~\cite{Bateman2021} &              Y &        Y &       &            &            &        Y &                &               &         &         &         &                          Y &         Y &                 Y &                  Y &             Y &               Y &                &               \\
-        Wikidata~\cite{Waagmeester2020} &              Y &        o &     Y &          o &          o &        o &              o &               &       o &       o &       o &                          Y &         Y &                 Y &                  Y &             Y &               Y &                &               \\
+Bioregistry~\cite{Hoyt2022} & Y & Y & Y & Y & o & o & o & o & o & o & o & Y & Y & Y & Y & Y & Y & Y &  \\
+AberOWL~\cite{Hoehndorf2015} & Y & Y & Y & o &  & o &  &  &  & o &  & Y & Y & Y &  & Y & Y &  & Y \\
+AgroPortal~\cite{Jonquet2018} & Y & Y & Y & o &  & Y &  &  & o & o & o & Y &  &  &  & Y & Y &  & Y \\
+BARTOC & Y & o & o &  & o &  & o &  & o &  & o & Y & Y & Y &  & Y & Y &  &  \\
+BioContext~\cite{biocontext} &  &  &  &  &  & o &  &  &  &  &  & Y & Y & Y &  &  & Y &  &  \\
+Biolink~\cite{Unni2022} & Y &  &  &  &  & Y &  &  & o &  &  & Y & Y & Y &  &  &  &  &  \\
+BioPortal~\cite{Whetzel2011} & Y & Y & Y & o &  & Y &  &  &  & Y & o & Y &  &  &  & Y & Y &  & Y \\
+Cellosaurus~\cite{Bairoch2018} & Y & Y &  &  &  & Y &  &  &  &  &  & Y & Y & Y & Y &  &  &  &  \\
+CHEMINF~\cite{Hastings2011} & Y &  &  &  &  &  &  &  &  &  &  & Y & Y & Y & Y &  & Y &  & Y \\
+CropOCT~\cite{Arnaud2020} & Y & Y &  & o &  & Y &  &  &  &  &  & Y & Y & Y & Y & Y & Y &  & Y \\
+EcoPortal~\cite{Kechagioglou2021} & Y & o & Y & o &  & o &  &  & o & o & o & Y &  &  &  & Y & Y &  & Y \\
+EDAM~\cite{Ison2013} & Y &  &  &  &  &  &  &  &  &  &  & Y & Y & Y &  & Y & Y &  &  \\
+FAIRSharing~\cite{Sansone2019} & Y & Y & Y &  &  &  &  &  &  &  & Y & Y &  &  &  & Y & Y &  &  \\
+GO~\cite{TheGeneOntologyConsortium2019} & Y & o & o & o & o & o & o &  &  &  &  & Y & Y & Y & Y &  &  &  &  \\
+HL7~\cite{Bender2013} & Y & o & o &  &  &  &  &  &  &  & o & Y &  & Y &  &  & Y &  &  \\
+Integbio & Y & o & Y &  &  &  &  &  &  &  &  & Y & Y & Y & Y &  & Y &  &  \\
+LOV & Y & o & o &  &  & o &  &  &  &  &  & Y & Y & Y & Y & Y & Y &  &  \\
+Identifiers.org~\cite{Juty2012} & Y & Y & Y & Y & Y & Y & o &  &  &  &  & Y & Y & Y & Y & Y & Y & Y &  \\
+N2T~\cite{Wimalaratne2018} & Y & Y & Y & Y & Y & Y & o & o &  &  &  & Y & Y & Y & Y &  & Y & Y &  \\
+NCBI~\cite{Clark2016} & Y & Y &  & Y &  &  &  &  &  &  &  &  & Y & Y &  &  &  &  &  \\
+OBO Foundry~\cite{Jackson2021} & Y & Y & Y &  &  &  &  &  & Y &  & Y & Y & Y & Y & Y & Y & Y & Y &  \\
+OLS~\cite{Cote2006a} & Y & o & Y & o &  & o &  &  & Y & o & o & Y & Y & Y &  & Y & Y &  & Y \\
+OntoBee~\cite{Ong2017} & Y & Y & Y & o &  & o &  &  &  &  & Y &  & Y & Y &  &  & Y &  & Y \\
+Pathguide & Y & Y & o &  &  &  &  &  &  &  &  &  &  & Y &  & Y & Y &  &  \\
+Prefix Commons~\cite{prefixcommons} & Y & o & o & o & o & o & o & o &  &  &  & Y & Y & Y & Y & Y & Y &  &  \\
+re3data~\cite{Pampel2013} & Y & Y & Y &  &  &  &  &  & o &  & o &  &  & Y & Y & Y & Y &  &  \\
+RRID & Y & Y &  &  &  &  &  & o & o &  & o & Y & Y & Y & Y & Y &  &  & Y \\
+TogoID & Y & Y &  & Y & Y & Y &  &  &  &  &  & Y & Y & Y & Y &  & Y &  &  \\
+UniProt~\cite{Bateman2021} & Y & Y &  &  &  & Y &  &  &  &  &  & Y & Y & Y & Y & Y & Y &  &  \\
+Wikidata~\cite{Waagmeester2020} & Y & o & Y & o & o & o & o &  & o & o & o & Y & Y & Y & Y & Y & Y &  &  \\
+Wikidata (E)~\cite{Waagmeester2020} & Y & o & Y & o & o & o & o &  & o & o & o & Y & Y & Y & Y & Y & Y &  &  \\
+Zazuko &  &  &  &  &  & o &  &  &  &  &  & Y & Y & Y &  & Y & Y &  & Y \\
 \bottomrule
 \end{tabular}
 \end{table}

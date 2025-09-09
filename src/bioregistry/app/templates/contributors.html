@@ -43,7 +43,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("metaregistry_api.contributors", format=key) }}">
+                                   href="{{ fastapi_url_for("get_contributors") }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -54,11 +54,12 @@
         </div>
         <div class="card-body">
             <p style="margin-bottom: 0">
-                The following users have made contributions to the {{ config.METAREGISTRY_TITLE }} either directly
-                (i.e., {{ unique_direct_count }} unique researchers have submitted a prefix, contributed
+                The following {{ unique_direct_count }} researchers have made direct contributions to the
+                {{ config.METAREGISTRY_TITLE }} by having submitted a prefix, contributed
                 an update for a prefix, reviewed a prefix, submitted a collection, or taken responsibility
-                for a context) or indirectly (i.e., {{ unique_indirect_count }} unique researchers are
-                listed as the primary responsible person for a prefix or registry).
+                for a context). Additional, {{ unique_indirect_count }} researchers have
+                contributed indirectly by being listed as the primary responsible person for a prefix or registry
+                (not shown in the table).
             </p>
         </div>
         <table id="contributor-entries" class="table table-striped table-hover">
@@ -73,6 +74,7 @@
                 <td>Contexts</td>
                 <td>Resource</td>
                 <td>Registry</td>
+                <td>Status</td>
             </tr>
             </thead>
             {% for row in rows %}
@@ -92,6 +94,7 @@
                     <td style="text-align: right;">{{ contexts.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ prefix_contacts.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ registries.get(row.orcid, []) | length }}</td>
+                    <td style="text-align: right;">{{ status_contributions.get(row.orcid, []) | length }}</td>
                 </tr>
             {% endfor %}
         </table>

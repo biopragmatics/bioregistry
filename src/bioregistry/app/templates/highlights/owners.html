@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Owners{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <h5 class="card-header">
+            Partners
+        </h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>CURIE</th>
+                <th>Name</th>
+                <th>Resources</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for curie, resources in owner_to_resources|dictsort %}
+                <tr>
+                    <td>{{ utils.code_curie(*curie) }}</td>
+                    <td><a href="{{ owners[curie].link }}">{{ owners[curie].name }}</a></td>
+                    <td>
+                        {% for resource in resources %}
+                            {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

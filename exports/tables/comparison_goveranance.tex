@@ -1,36 +1,42 @@
 \begin{table}
-\centering
 \caption{A survey of registries' governance and maintenance models. The scope column describes the kinds of prefixes contained within the registry. The status column is active if the registry is currently being maintained and is responsive to public external feedback, unresponsive if the registry is currently being maintained but is not responsive to public external feedback, and inactive otherwise. The imports external prefixes column denotes if the registry reuses and harmonizes content from external registries. The curates novel prefixes column denotes whether novel curation of prefixes and their associated metadata is done for the registry. The accepts external contributions column denotes whether the registry has both the governance model and technical infrastructure for accepting external contributions in the form of the suggestion of new prefixes, improvement to metadata associated with existing prefixes, etc. The uses public version control column denotes whether the data underlying the registry and/or its associated code are stored in a publicly accessible version-controlled system (e.g., git via GitHub). The has public review team column denotes whether there is a publicly accessible list of the reviewers. Asterisks in this column denote that rather than an explicit list, the reviewers can be inferred through the registry's version control system.}
 \label{tab:registry-comparison-governance}
 \begin{tabular}{lllllllll}
 \toprule
-                               Registry &           Scope &       Status & Imports External Prefixes & Curates Novel Prefixes & Accepts External Contributions & Public Version Control & Public Issue Tracker & Has Public Review Team \\
+Registry & Scope & Status & Imports External Prefixes & Curates Novel Prefixes & Accepts External Contributions & Public Version Control & Public Issue Tracker & Has Public Review Team \\
 \midrule
-            Bioregistry~\cite{Hoyt2022} &   Life Sciences &       Active &                         Y &                      Y &                              Y &                      Y &                    Y &                      Y \\
-           AberOWL~\cite{Hoehndorf2015} &  Bio-Ontologies &       Active &                         Y &                        &                                &                        &                      &                        \\
-          AgroPortal~\cite{Jonquet2018} & Agro-Ontologies &       Active &                           &                      Y &                              Y &                        &                    Y &                      x \\
-                                 BARTOC &         General &       Active &                           &                      Y &                              Y &                        &                    Y &                      Y \\
-           BioContext~\cite{biocontext} &        Internal &       Active &                           &                      Y &                              Y &                      Y &                    Y &                     Y* \\
-                Biolink~\cite{Unni2022} &        Internal &       Active &                           &                      Y &                              Y &                      Y &                    Y &                     Y* \\
-           BioPortal~\cite{Whetzel2011} &  Bio-Ontologies &       Active &                           &                      Y &                              Y &                        &                    Y &                      x \\
-         Cellosaurus~\cite{Bairoch2018} &        Internal &       Active &                           &                      Y &                                &                        &                      &                        \\
-            CHEMINF~\cite{Hastings2011} &       Chemistry & Unresponsive &                           &                      Y &                              Y &                      Y &                    Y &                     Y* \\
-              CropOCT~\cite{Arnaud2020} & Agro-Ontologies &       Active &                           &                      Y &                              Y &                        &                    Y &                      Y \\
-      EcoPortal~\cite{Kechagioglou2021} &  Eco-Ontologies &       Active &                           &                      Y &                              Y &                        &                      &                      x \\
-                   EDAM~\cite{Ison2013} &   Life Sciences &       Active &                           &                      Y &                              Y &                      Y &                    Y &                     Y* \\
-         FAIRSharing~\cite{Sansone2019} &   Life Sciences &       Active &                           &                      Y &                              Y &                        &                      &                      x \\
-GO~\cite{TheGeneOntologyConsortium2019} &        Internal &     Inactive &                           &                      Y &                              Y &                      Y &                    Y &                     Y* \\
-                  HL7~\cite{Bender2013} &         General &       Active &                           &                      Y &                              Y &                        &                      &                        \\
-        Identifiers.org~\cite{Juty2012} &   Life Sciences & Unresponsive &                           &                      Y &                              Y &                        &                    Y &                      x \\
-             N2T~\cite{Wimalaratne2018} &   Life Sciences &       Active &                         Y &                        &                                &                        &                      &                        \\
-                  NCBI~\cite{Clark2016} &        Internal &     Inactive &                           &                      Y &                                &                        &                      &                        \\
-         OBO Foundry~\cite{Jackson2021} &  Bio-Ontologies &       Active &                           &                      Y &                              Y &                      Y &                    Y &                      Y \\
-                   OLS~\cite{Cote2006a} &  Bio-Ontologies &       Active &                         Y &                        &                              Y &                      Y &                    Y &                     Y* \\
-                 OntoBee~\cite{Ong2017} &  Bio-Ontologies &       Active &                         Y &                        &                              Y &                        &                    Y &                        \\
-    Prefix Commons~\cite{prefixcommons} &   Life Sciences &       Active &                           &                      Y &                              Y &                        &                      &                      Y \\
-              re3data~\cite{Pampel2013} &         General &       Active &                           &                      Y &                              Y &                        &                      &                      x \\
-             UniProt~\cite{Bateman2021} &        Internal &       Active &                           &                      Y &                                &                        &                      &                        \\
-        Wikidata~\cite{Waagmeester2020} &         General &       Active &                           &                      Y &                              Y &                        &                      &                     Y* \\
+Bioregistry~\cite{Hoyt2022} & Life Sciences & Active & Y & Y & Y & Y & Y & Y \\
+AberOWL~\cite{Hoehndorf2015} & Bio-Ontologies & Active & Y &  &  &  &  &  \\
+AgroPortal~\cite{Jonquet2018} & Agro-Ontologies & Active &  & Y & Y &  & Y & x \\
+BARTOC & General & Active &  & Y & Y &  & Y & Y \\
+BioContext~\cite{biocontext} & Internal & Active &  & Y & Y & Y & Y & Y* \\
+Biolink~\cite{Unni2022} & Internal & Active &  & Y & Y & Y & Y & Y* \\
+BioPortal~\cite{Whetzel2011} & Bio-Ontologies & Active &  & Y & Y &  & Y & x \\
+Cellosaurus~\cite{Bairoch2018} & Internal & Active &  & Y &  &  &  &  \\
+CHEMINF~\cite{Hastings2011} & Chemistry & Unresponsive &  & Y & Y & Y & Y & Y* \\
+CropOCT~\cite{Arnaud2020} & Agro-Ontologies & Active &  & Y & Y &  & Y & Y \\
+EcoPortal~\cite{Kechagioglou2021} & Eco-Ontologies & Active &  & Y & Y &  &  & x \\
+EDAM~\cite{Ison2013} & Life Sciences & Active &  & Y & Y & Y & Y & Y* \\
+FAIRSharing~\cite{Sansone2019} & Life Sciences & Active &  & Y & Y &  &  & x \\
+GO~\cite{TheGeneOntologyConsortium2019} & Internal & Inactive &  & Y & Y & Y & Y & Y* \\
+HL7~\cite{Bender2013} & General & Active &  & Y & Y &  &  &  \\
+Integbio & Bio-Ontologies & Active & Y &  &  &  &  &  \\
+LOV & Semantic Web & Active & Y & Y & Y &  & Y &  \\
+Identifiers.org~\cite{Juty2012} & Life Sciences & Unresponsive &  & Y & Y &  & Y & x \\
+N2T~\cite{Wimalaratne2018} & Life Sciences & Active & Y &  &  &  &  &  \\
+NCBI~\cite{Clark2016} & Internal & Inactive &  & Y &  &  &  &  \\
+OBO Foundry~\cite{Jackson2021} & Bio-Ontologies & Active &  & Y & Y & Y & Y & Y \\
+OLS~\cite{Cote2006a} & Bio-Ontologies & Active & Y &  & Y & Y & Y & Y* \\
+OntoBee~\cite{Ong2017} & Bio-Ontologies & Active & Y &  & Y &  & Y &  \\
+Pathguide & Bio-Ontologies & Active &  & Y & Y &  &  &  \\
+Prefix Commons~\cite{prefixcommons} & Life Sciences & Active &  & Y & Y &  &  & Y \\
+re3data~\cite{Pampel2013} & General & Active &  & Y & Y &  &  & x \\
+RRID & Life Sciences & Active &  & Y & Y &  &  & x \\
+TogoID & Bio-Ontologies & Active & Y &  & Y & Y & Y & Y* \\
+UniProt~\cite{Bateman2021} & Internal & Active &  & Y &  &  &  &  \\
+Wikidata~\cite{Waagmeester2020} & General & Active &  & Y & Y &  &  & Y* \\
+Wikidata (E)~\cite{Waagmeester2020} & General & Active &  & Y & Y &  &  & Y* \\
+Zazuko & Semantic Web & Active & Y & Y & Y & Y & Y & Y* \\
 \bottomrule
 \end{tabular}
 \end{table}

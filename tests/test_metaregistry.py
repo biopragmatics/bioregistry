@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for the metaregistry."""
 
 import unittest
@@ -23,10 +21,17 @@ class TestMetaregistry(unittest.TestCase):
         """Test the metaregistry entries have a minimum amount of data."""
         for metaprefix, registry in self.manager.metaregistry.items():
             self.assertIsInstance(registry, Registry)
+            external_prefixes = set(self.manager.get_registry_invmap(metaprefix))
             with self.subTest(metaprefix=metaprefix):
                 self.assertIsNotNone(registry.name)
                 self.assertIsNotNone(registry.homepage)
                 self.assertIsNotNone(registry.example)
+                if metaprefix != "bioregistry" and external_prefixes:
+                    self.assertIn(
+                        registry.example,
+                        external_prefixes,
+                        msg="Examples should be external-registry specific and mapped",
+                    )
                 self.assertIsNotNone(registry.description)
                 self.assertIsNotNone(registry.contact)
                 self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
@@ -74,7 +79,7 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIsNotNone(registry.resolver_type)
                     self.assertIn(registry.resolver_type, {"lookup", "resolver"})
 
-                invalid_keys = set(registry.dict()).difference(Registry.__fields__)
+                invalid_keys = set(registry.model_dump()).difference(Registry.model_fields)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
                 self.assertIsNotNone(registry.qualities)
                 self.assertIsInstance(registry.qualities.bulk_data, bool)
@@ -147,10 +152,10 @@ class TestMetaregistry(unittest.TestCase):
             if pattern is None:
                 continue
             with self.subTest(metaprefix=metaprefix):
-                self.assertRegexpMatches(registry.example, pattern)
+                self.assertRegex(registry.example, pattern)
 
-            # Test URI format string
-            if registry.provider_uri_format:
-                uri_formats = resource.get_uri_formats()
-                self.assertLess(0, len(uri_formats))
-                self.assertIn(registry.provider_uri_format, uri_formats)
+                # Test URI format string
+                if registry.provider_uri_format:
+                    uri_formats = resource.get_uri_formats()
+                    self.assertLess(0, len(uri_formats))
+                    self.assertIn(registry.provider_uri_format, uri_formats)

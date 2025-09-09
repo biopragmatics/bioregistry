@@ -20,7 +20,8 @@
     </p>
     <div class="list-group">
         {% for term in terms %}
-            <a name="{{ term.identifier }}" href="#{{ term.identifier }}" class="list-group-item list-group-item-action">
+            <div class="list-group-item list-group-item-action">
+                <a id="{{ term.identifier }}"></a>
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
                         <span class="badge badge-pill badge-info">
@@ -30,8 +31,8 @@
                     </h5>
                     <small>bioregistry.schema:{{ term.identifier }}</small>
                 </div>
-                <p class="mb-1">{{ term.description }}</p>
-            </a>
+                <p class="mb-1">{{ markdown(term.description) | safe }}</p>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

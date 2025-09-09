@@ -1,500 +1,559 @@
-# -*- coding: utf-8 -*-
+"""FastAPI blueprint and routes."""
 
-"""API blueprint and routes."""
+from __future__ import annotations
 
-from typing import cast
+from collections.abc import Mapping
+from typing import Annotated, Any
 
-from flask import Blueprint, abort, jsonify, request
+import yaml
+from curies import Reference
+from curies.mapping_service.utils import handle_header
+from fastapi import APIRouter, Body, Depends, Header, HTTPException, Path, Query, Request
+from fastapi.responses import JSONResponse, Response
+from pydantic import BaseModel, Field
 
-from .proxies import manager
-from .utils import (
-    _autocomplete,
-    _normalize_prefix_or_404,
-    _search,
-    serialize,
-    serialize_model,
-)
-from .. import Collection, Registry
-from ..export.rdf_export import (
+from bioregistry import Collection, Context, Manager, Registry, Resource
+from bioregistry.export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
-from ..schema import sanitize_mapping
-from ..schema_utils import (
+from bioregistry.schema import Attributable, sanitize_mapping
+from bioregistry.schema_utils import (
     read_collections_contributions,
     read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
     read_registry_contributions,
 )
-from ..utils import curie_to_str
+
+from .utils import FORMAT_MAP, _autocomplete, _search
 
 __all__ = [
-    "api_blueprint",
+    "api_router",
 ]
 
-api_blueprint = Blueprint("metaregistry_api", __name__, url_prefix="/api")
+api_router = APIRouter(prefix="/api")
 
 
-@api_blueprint.route("/registry")
-def resources():
-    """Get all resources.
-
-    ---
-    tags:
-    - resource
-    parameters:
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(manager.registry))
+def _get_manager(request: Request) -> Manager:
+    return request.app.manager  # type:ignore
 
 
-@api_blueprint.route("/registry/<prefix>")
-def resource(prefix: str):
-    """Get a resource.
+DependsManager = Annotated[Manager, Depends(_get_manager)]
 
-    ---
-    tags:
-    - resource
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: doid
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml, turtle, jsonld]
-    """  # noqa:DAR101,DAR201
-    prefix = _normalize_prefix_or_404(prefix)
-    if not isinstance(prefix, str):
-        return jsonify(query=prefix, message="Invalid prefix"), 404
+
+class UnhandledFormat(HTTPException):
+    """An exception for an unhandled format."""
+
+    def __init__(self, fmt: str) -> None:
+        """Instantiate the exception.
+
+        :param fmt: The header that was bad
+        """
+        super().__init__(400, f"Bad Accept header: {fmt}")
+
+
+class YAMLResponse(Response):
+    """A custom response encoded in YAML."""
+
+    media_type = "application/yaml"
+
+    def render(self, content: Any) -> bytes:
+        """Render content as YAML."""
+        if isinstance(content, BaseModel):
+            content = content.model_dump(
+                exclude_none=True,
+                exclude_unset=True,
+            )
+        return yaml.safe_dump(
+            content,
+            allow_unicode=True,
+            indent=2,
+        ).encode("utf-8")
+
+
+ACCEPT_HEADER = Header(default=None)
+FORMAT_QUERY = Query(
+    title="Format", default=None, description=f"The return format, one of: {list(FORMAT_MAP)}"
+)
+#: A mapping of mimetypes to RDFLib formats
+RDF_MEDIA_TYPES = {
+    "text/turtle": "turtle",
+    "application/ld+json": "json-ld",
+    "application/rdf+xml": "xml",
+    "text/n3": "n3",
+}
+CONTENT_TYPE_SYNONYMS = {
+    "text/json": "application/json",
+    "text/yaml": "application/yaml",
+}
+
+
+def _handle_formats(accept: str | None, fmt: str | None) -> str:
+    if fmt:
+        if fmt not in FORMAT_MAP:
+            raise HTTPException(
+                400, f"bad query parameter format={fmt}. Should be one of {list(FORMAT_MAP)}"
+            )
+        return FORMAT_MAP[fmt]
+    if not accept:
+        return "application/json"
+    for header in handle_header(accept):
+        if header in CONTENT_TYPE_SYNONYMS:
+            return CONTENT_TYPE_SYNONYMS[header]
+        if header in RDF_MEDIA_TYPES or header in CONTENT_TYPE_SYNONYMS.values():
+            return header
+    return "application/json"
+
+
+@api_router.get("/registry", response_model=Mapping[str, Resource], tags=["resource"])
+def get_resources(
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | dict[str, Resource]:
+    """Get all resources."""
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return manager.registry
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(manager.registry))
+    elif accept in RDF_MEDIA_TYPES:
+        raise NotImplementedError
+    else:
+        raise UnhandledFormat(accept)
+
+
+@api_router.get(
+    "/registry/{prefix}",
+    response_model=Resource,
+    tags=["resource"],
+    responses={
+        200: {
+            "content": {
+                "application/yaml": {},
+                **{k: {} for k in RDF_MEDIA_TYPES},
+            },
+        },
+    },
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
+)
+def get_resource(
+    manager: DependsManager,
+    prefix: str = Path(
+        title="Prefix", description="The Bioregistry prefix for the entry", examples=["doid"]
+    ),
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
+) -> Response | Resource:
+    """Get a resource."""
     resource = manager.get_resource(prefix)
-    assert resource is not None
-    # TODO rasterize?
-    return serialize_model(resource, resource_to_rdf_str)
-
-
-@api_blueprint.route("/metaregistry/<metaprefix>/resolve/<metaidentifier>")
-def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
-    """Get a resource by an external prefix.
-
-    ---
-    tags:
-    - resource
-    parameters:
-    - name: metaprefix
-      in: path
-      description: The meteprefix for a registry
-      required: true
-      type: string
-      example: obofoundry
-    - name: metaidentifier
-      in: path
-      description: The prefix instide for a registry
-      required: true
-      type: string
-      example: GO
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml, turtle, jsonld]
-
-    """  # noqa:DAR101,DAR201
-    if metaprefix not in manager.metaregistry:
-        return abort(404, f"invalid metaprefix: {metaprefix}")
-    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
-    if not prefix:
-        return abort(404, f"invalid metaidentifier: {metaidentifier}")
-    resource = manager.get_resource(prefix)
-    assert resource is not None
+    if resource is None:
+        raise HTTPException(status_code=404, detail=f"Prefix not found: {prefix}")
     resource = manager.rasterized_resource(resource)
-    return serialize_model(resource, resource_to_rdf_str)
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return resource
+    elif accept == "application/yaml":
+        return YAMLResponse(resource)
+    elif accept in RDF_MEDIA_TYPES:
+        return Response(
+            resource_to_rdf_str(resource, fmt=RDF_MEDIA_TYPES[accept], manager=manager),
+            media_type=accept,
+        )
+    else:
+        raise UnhandledFormat(format)
 
 
-@api_blueprint.route("/metaregistry/<metaprefix>/mappings.json")
-def bioregistry_to_external_mapping(metaprefix: str):
-    """Get mappings from the Bioregistry to an external registry.
+@api_router.get(
+    "/metaregistry",
+    response_model=Mapping[str, Registry],
+    tags=["metaresource"],
+    description="Get all metaresource representing registries.",
+)
+def get_metaresources(
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | Mapping[str, Registry]:
+    """Get all registries."""
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return manager.metaregistry
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(manager.metaregistry))
+    elif accept in RDF_MEDIA_TYPES:
+        raise NotImplementedError
+    else:
+        raise UnhandledFormat(accept)
 
-    ---
-    parameters:
-    - name: metaprefix
-      in: path
-      description: The target metaprefix (e.g., bioportal)
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    if metaprefix not in manager.metaregistry:
-        return abort(404, f"invalid metaprefix: {metaprefix}")
-    return jsonify(manager.get_registry_map(metaprefix))
+
+METAPREFIX_PATH = Path(
+    title="Metaprefix",
+    description="The Bioregistry metaprefix for the external registry",
+    examples=["n2t"],
+)
 
 
-@api_blueprint.route("/metaregistry/<metaprefix>/registry_subset.json")
-def get_external_registry_slim(metaprefix: str):
-    """Get a slim, rasterized version of the Bioregistry for records in the external registry.
+@api_router.get(
+    "/metaregistry/{metaprefix}",
+    response_model=Registry,
+    tags=["metaresource"],
+    description="Get a metaresource representing a registry.",
+    responses={
+        200: {
+            "content": {
+                "application/yaml": {},
+                **{k: {} for k in RDF_MEDIA_TYPES},
+            },
+        },
+    },
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
+)
+def get_metaresource(
+    manager: DependsManager,
+    metaprefix: str = METAPREFIX_PATH,
+    accept: str = ACCEPT_HEADER,
+    format: str = FORMAT_QUERY,
+) -> Response | Registry:
+    """Get all registries."""
+    metaresource = manager.get_registry(metaprefix)
+    if metaresource is None:
+        raise HTTPException(status_code=404, detail=f"Registry not found: {metaprefix}")
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return metaresource
+    elif accept == "application/yaml":
+        return YAMLResponse(metaresource)
+    elif accept in RDF_MEDIA_TYPES:
+        return Response(
+            metaresource_to_rdf_str(
+                metaresource,
+                fmt=RDF_MEDIA_TYPES[accept],
+                manager=manager,
+            ),
+            media_type=accept,
+        )
+    else:
+        raise UnhandledFormat(format)
 
-    ---
-    parameters:
-    - name: metaprefix
-      in: path
-      description: The target metaprefix (e.g., bioportal)
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    if metaprefix not in manager.metaregistry:
-        return abort(404, f"invalid metaprefix: {metaprefix}")
-    return sanitize_mapping(
-        {
-            prefix: manager.rasterized_resource(resource_)
-            for prefix, resource_ in manager.registry.items()
-            if metaprefix in resource_.get_mappings()
-        }
+
+@api_router.get(
+    "/metaregistry/{metaprefix}/registry_subset.json",
+    response_model=Mapping[str, Resource],
+    tags=["metaresource"],
+)
+def get_external_registry_slim(
+    manager: DependsManager,
+    metaprefix: str = METAPREFIX_PATH,
+) -> dict[str, Resource]:
+    """Get a slim version of the registry with only resources mapped to the given external registry."""
+    return {
+        resource_.prefix: manager.rasterized_resource(resource_)
+        for resource_ in manager.registry.values()
+        if metaprefix in resource_.get_mappings()
+    }
+
+
+class MappingResponseMeta(BaseModel):
+    """A response describing the overlap between two external registries."""
+
+    len_overlap: int
+    source: str
+    target: str
+    len_source_only: int
+    len_target_only: int
+    source_only: list[str]
+    target_only: list[str]
+
+
+class MappingResponse(BaseModel):
+    """A response describing the overlap between two registries and their mapping."""
+
+    meta: MappingResponseMeta
+    mappings: Mapping[str, str]
+
+
+@api_router.get(
+    "/metaregistry/{metaprefix}/mapping/{target}",
+    response_model=MappingResponse,
+    tags=["metaresource"],
+    description="Get mappings from the given metaresource to another",
+)
+def get_metaresource_external_mappings(
+    manager: DependsManager,
+    metaprefix: str = METAPREFIX_PATH,
+    target: str = Path(title="target metaprefix"),
+) -> MappingResponse | tuple[dict[str, str], int]:
+    """Get mappings between two external prefixes."""
+    try:
+        diff = manager.get_external_mappings(metaprefix, target)
+    except KeyError as e:
+        return {"message": str(e)}, 400
+    return MappingResponse(
+        meta=MappingResponseMeta(
+            len_overlap=len(diff.mappings),
+            source=metaprefix,
+            target=target,
+            len_source_only=len(diff.source_only),
+            len_target_only=len(diff.target_only),
+            source_only=sorted(diff.source_only),
+            target_only=sorted(diff.target_only),
+        ),
+        mappings=diff.mappings,
     )
 
 
-@api_blueprint.route("/metaregistry")
-def metaresources():
-    """Get all metaresources.
-
-    ---
-    tags:
-    - metaresource
-    parameters:
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(manager.metaregistry))
+@api_router.get(
+    "/metaregistry/{metaprefix}/mappings.json",
+    response_model=Mapping[str, str],
+    tags=["metaresource"],
+)
+def get_metaresource_mappings(
+    manager: DependsManager, metaprefix: str = METAPREFIX_PATH
+) -> dict[str, str]:
+    """Get mappings from the Bioregistry to an external registry."""
+    if metaprefix not in manager.metaregistry:
+        raise HTTPException(404, detail=f"Invalid metaprefix: {metaprefix}")
+    return manager.get_registry_map(metaprefix)
 
 
-@api_blueprint.route("/metaregistry/<metaprefix>")
-def metaresource(metaprefix: str):
-    """Get a metaresource.
-
-    ---
-    tags:
-    - metaresource
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the metaresource
-      required: true
-      type: string
-      example: doid
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml, turtle, jsonld]
-    """  # noqa:DAR101,DAR201
-    data = manager.metaregistry.get(metaprefix)
-    if data is None:
-        abort(404, f"Invalid metaprefix: {metaprefix}")
-    return serialize_model(cast(Registry, data), metaresource_to_rdf_str)
+@api_router.get("/collection", response_model=Mapping[str, Collection], tags=["collection"])
+def get_collections(
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | dict[str, Collection]:
+    """Get all collections."""
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return manager.collections
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(manager.collections))
+    elif accept in RDF_MEDIA_TYPES:
+        raise NotImplementedError
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@api_blueprint.route("/collections")
-def collections():
-    """Get all collections.
-
-    ---
-    tags:
-    - collection
-    parameters:
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(manager.collections))
-
-
-@api_blueprint.route("/collection/<identifier>")
-def collection(identifier: str):
-    """Get a collection.
-
-    ---
-    tags:
-    - collection
-    parameters:
-    - name: prefix
-      in: path
-      description: The identifier of the collection
-      required: true
-      type: string
-      example: 0000001
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml, context, turtle, jsonld]
-    """  # noqa:DAR101,DAR201
-    data = manager.collections.get(identifier)
-    if not data:
-        abort(404, f"Invalid collection: {identifier}")
-    # ("context", "application/ld+json", Collection.as_context_jsonld_str),
-    return serialize_model(cast(Collection, data), collection_to_rdf_str)
-
-
-@api_blueprint.route("/collection/<identifier>.context.jsonld")
-def collection_context(identifier: str):
-    """Get a collection as a JSON-LD context.
-
-    ---
-    tags:
-    - collection
-    parameters:
-    - name: prefix
-      in: path
-      description: The identifier of the collection
-      required: true
-      type: string
-      example: 0000001
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml, context, turtle, jsonld]
-    """  # noqa:DAR101,DAR201
-    data = manager.collections.get(identifier)
-    if data is None:
-        abort(404, f"Invalid collection: {identifier}")
-    return jsonify(cast(Collection, data).as_context_jsonld())
-
-
-@api_blueprint.route("/contexts")
-def contexts():
-    """Get all contexts.
-
-    ---
-    tags:
-    - context
-    parameters:
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(manager.contexts))
-
-
-@api_blueprint.route("/context/<identifier>")
-def context(identifier: str):
-    """Get a context.
-
-    ---
-    tags:
-    - context
-    parameters:
-    - name: identifier
-      in: path
-      description: The identifier of the context
-      required: true
-      type: string
-      example: obo
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    data = manager.contexts.get(identifier)
-    if not data:
-        abort(404, f"Invalid context: {identifier}")
-    return serialize(data)
-
-
-@api_blueprint.route("/reference/<prefix>:<identifier>")
-def reference(prefix: str, identifier: str):
-    """Look up information on the reference.
-
-    ---
-    tags:
-    - reference
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: efo
-    - name: identifier
-      in: path
-      description: The identifier for the entry
-      required: true
-      type: string
-      example: 0000311
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    prefix = _normalize_prefix_or_404(prefix)
-    if not manager.is_standardizable_identifier(prefix, identifier):
-        return abort(
-            404,
-            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
+@api_router.get(
+    "/collection/{identifier}",
+    response_model=Collection,
+    tags=["collection"],
+    responses={
+        200: {
+            "content": {
+                "application/yaml": {},
+                **{k: {} for k in RDF_MEDIA_TYPES},
+            },
+        },
+    },
+    response_model_exclude_none=True,
+    response_model_exclude_unset=True,
+)
+def get_collection(
+    manager: DependsManager,
+    identifier: str = Path(
+        title="Collection Identifier",
+        description="The 7-digit collection identifier",
+        examples=["0000001"],
+    ),
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | Collection:
+    """Get a collection."""
+    collection = manager.collections.get(identifier)
+    if collection is None:
+        raise HTTPException(status_code=404, detail=f"Collection not found: {identifier}")
+    if accept == "x-bioregistry-context" or format == "context":
+        return JSONResponse(collection.as_context_jsonld())
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return collection
+    elif accept == "application/yaml":
+        return YAMLResponse(collection)
+    elif accept in RDF_MEDIA_TYPES:
+        return Response(
+            collection_to_rdf_str(
+                collection,
+                fmt=RDF_MEDIA_TYPES[accept],
+                manager=manager,
+            ),
+            media_type=accept,
         )
-    providers = manager.get_providers(prefix, identifier)
-    if not providers:
-        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
-
-    return serialize(
-        dict(
-            query=dict(prefix=prefix, identifier=identifier),
-            providers=providers,
-        )
-    )
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@api_blueprint.route("/contributors")
-def contributors():
-    """Get all contributors.
-
-    ---
-    tags:
-    - contributor
-    parameters:
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(manager.read_contributors()))
+@api_router.get("/context", response_model=Mapping[str, Context], tags=["context"])
+def get_contexts(
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | dict[str, Context]:
+    """Get all context."""
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return manager.contexts
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(manager.contexts))
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
 
 
-@api_blueprint.route("/contributor/<orcid>")
-def contributor(orcid: str):
-    """Get a contributor.
+@api_router.get("/context/{identifier}", response_model=Context, tags=["context"])
+def get_context(
+    manager: DependsManager,
+    identifier: str = Path(title="Context Key", description="The context key", examples=["obo"]),
+) -> Context:
+    """Get a context."""
+    context: Context | None = manager.contexts.get(identifier)
+    if context is None:
+        raise HTTPException(status_code=404, detail=f"Context not found: {identifier}")
+    return context
 
-    ---
-    tags:
-    - contributor
-    parameters:
-    - name: orcid
-      in: path
-      description: The ORCID identifier of the contributor
-      required: true
-      type: string
-      example: 0000-0002-8424-0604
-    - name: format
-      description: The file type
-      in: query
-      required: false
-      default: json
-      schema:
-        type: string
-        enum: [json, yaml]
-    """  # noqa:DAR101,DAR201
+
+@api_router.get("/contributors", response_model=Mapping[str, Attributable], tags=["contributor"])
+def get_contributors(
+    manager: DependsManager,
+    accept: str | None = ACCEPT_HEADER,
+    format: str | None = FORMAT_QUERY,
+) -> Response | Mapping[str, Attributable]:
+    """Get all context."""
+    contributors = manager.read_contributors()
+    accept = _handle_formats(accept, format)
+    if accept == "application/json":
+        return contributors
+    elif accept == "application/yaml":
+        return YAMLResponse(sanitize_mapping(contributors))
+    else:
+        raise HTTPException(400, f"Bad Accept header: {accept}")
+
+
+class ContributorResponse(BaseModel):
+    """A response with information about a contributor."""
+
+    contributor: Attributable
+    prefix_contributions: set[str]
+    prefix_reviews: set[str]
+    prefix_contacts: set[str]
+    registries: set[str]
+    collections: set[str]
+
+
+@api_router.get("/contributor/{orcid}", response_model=ContributorResponse, tags=["contributor"])
+def get_contributor(
+    manager: DependsManager,
+    orcid: Annotated[str, Path(..., title="Open Researcher and Contributor Identifier")],
+) -> ContributorResponse:
+    """Get all context."""
     author = manager.read_contributors().get(orcid)
     if author is None:
-        return abort(404, f"No contributor with orcid:{orcid}")
-
-    return serialize(
-        {
-            **author.dict(),
-            "prefix_contributions": sorted(
-                read_prefix_contributions(manager.registry).get(orcid, [])
-            ),
-            "prefix_reviews": sorted(read_prefix_reviews(manager.registry).get(orcid, [])),
-            "prefix_contacts": sorted(read_prefix_contacts(manager.registry).get(orcid, [])),
-            "registries": sorted(read_registry_contributions(manager.metaregistry).get(orcid, [])),
-            "collections": sorted(
-                read_collections_contributions(manager.collections).get(orcid, [])
-            ),
-        }
+        raise HTTPException(404, f"No contributor with orcid: {orcid}")
+    return ContributorResponse(
+        contributor=author,
+        prefix_contributions=sorted(read_prefix_contributions(manager.registry).get(orcid, [])),
+        prefix_reviews=sorted(read_prefix_reviews(manager.registry).get(orcid, [])),
+        prefix_contacts=sorted(read_prefix_contacts(manager.registry).get(orcid, [])),
+        registries=sorted(read_registry_contributions(manager.metaregistry).get(orcid, [])),
+        collections=sorted(read_collections_contributions(manager.collections).get(orcid, [])),
     )
 
 
-@api_blueprint.route("/search")
-def search():
-    """Search for a prefix.
+class IdentifierResponse(BaseModel):
+    """A response for looking up a reference."""
 
-    ---
-    parameters:
-    - name: q
-      in: query
-      description: The prefix for the entry
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    q = request.args.get("q")
-    if q is None:
-        abort(400)
-    return jsonify(_search(manager, q))
+    query: Reference
+    providers: Mapping[str, str]
 
 
-@api_blueprint.route("/autocomplete")
-def autocomplete():
-    """Complete a resolution query.
+@api_router.get(
+    "/reference/{prefix}:{identifier:path}", response_model=IdentifierResponse, tags=["reference"]
+)
+def get_reference(manager: DependsManager, prefix: str, identifier: str) -> IdentifierResponse:
+    """Look up information on the reference."""
+    # see https://fastapi.tiangolo.com/tutorial/path-params/#path-parameters-containing-paths
+    # for more understanding on how the identifier:path handling works
+    resource = manager.get_resource(prefix)
+    if resource is None:
+        raise HTTPException(404, f"invalid prefix: {prefix}")
 
-    ---
-    parameters:
-    - name: q
-      in: query
-      description: The prefix for the entry
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    q = request.args.get("q")
-    if q is None:
-        abort(400)
-    return jsonify(_autocomplete(manager, q))
+    if not resource.is_standardizable_identifier(identifier):
+        raise HTTPException(
+            404,
+            f"invalid identifier: {resource.get_curie(identifier)} for pattern {resource.get_pattern()}",
+        )
+
+    providers = manager.get_providers(resource.prefix, identifier)
+    if not providers:
+        raise HTTPException(404, f"no providers available for {resource.get_curie(identifier)}")
+
+    return IdentifierResponse(
+        query=Reference(prefix=prefix, identifier=identifier),
+        providers=providers,
+    )
 
 
-@api_blueprint.route("/context.jsonld")
-def generate_context_json_ld():
+class URIResponse(BaseModel):
+    """A response for looking up a reference."""
+
+    uri: str = Field(
+        ..., description="The query URI", examples=["http://id.nlm.nih.gov/mesh/C063233"]
+    )
+    reference: Reference = Field(
+        ...,
+        description="The compact URI (CURIE)",
+        examples=[Reference(prefix="mesh", identifier="C063233")],
+    )
+    providers: Mapping[str, str] = Field(
+        ...,
+        description="Equivalent URIs",
+        examples=[
+            {
+                "default": "https://meshb.nlm.nih.gov/record/ui?ui=C063233",
+                "rdf": "http://id.nlm.nih.gov/mesh/C063233",
+            }
+        ],
+    )
+
+
+class URIQuery(BaseModel):
+    """A query for parsing a URI."""
+
+    uri: str = Field(..., examples=["http://id.nlm.nih.gov/mesh/C063233"])
+
+
+@api_router.post(
+    "/uri/parse/", response_model=URIResponse, tags=["reference"], summary="Parse a URI"
+)
+def post_parse_uri(
+    manager: DependsManager,
+    query: Annotated[
+        URIQuery, Body(..., examples=[URIQuery(uri="http://id.nlm.nih.gov/mesh/C063233")])
+    ],
+) -> URIResponse:
+    """Parse a URI, return a CURIE, and all equivalent URIs."""
+    prefix, identifier = manager.parse_uri(query.uri)
+    if prefix is None or identifier is None:
+        raise HTTPException(404, f"can't parse URI: {query.uri}")
+    return URIResponse(
+        uri=query.uri,
+        reference=Reference(prefix=prefix, identifier=identifier),
+        # Given the fact that we're able to parse the URI, there must be at least one provider
+        providers=manager.get_providers(prefix, identifier),
+    )
+
+
+@api_router.get("/context.jsonld", tags=["resource"])
+def generate_context_json_ld(
+    manager: DependsManager,
+    prefix: Annotated[
+        list[str], Query(..., description="The prefix for the entry. Can be given multiple.")
+    ],
+) -> JSONResponse:
     """Generate an *ad-hoc* context JSON-LD file from the given parameters.
 
     You can either give prefixes as a comma-separated list like:
@@ -504,76 +563,38 @@ def generate_context_json_ld():
     or you can use multiple entries for "prefix" like:
 
     https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
-    ---
-    parameters:
-    - name: prefix
-      in: query
-      description: The prefix for the entry. Can be given multiple.
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
+    """
     prefix_map = {}
-    for arg in request.args.getlist("prefix", type=str):
-        for prefix in arg.split(","):
-            prefix = manager.normalize_prefix(prefix.strip())
-            if prefix is None:
+    for value in prefix:
+        for prefix_ in value.split(","):
+            prefix_ = manager.normalize_prefix(prefix_.strip())
+            if prefix_ is None:
                 continue
-            uri_prefix = manager.get_uri_prefix(prefix)
+            uri_prefix = manager.get_uri_prefix(prefix_)
             if uri_prefix is None:
                 continue
-            prefix_map[prefix] = uri_prefix
+            prefix_map[prefix_] = uri_prefix
 
-    return jsonify(
+    return JSONResponse(
         {
             "@context": prefix_map,
         }
     )
 
 
-@api_blueprint.route("/external/mapping/<source>/<target>")
-def mapping(source: str, target: str):
-    """Get mappings between two external prefixes.
+@api_router.get("/autocomplete", tags=["search"])
+def autocomplete(
+    manager: DependsManager,
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
+    """Complete a resolution query."""
+    return JSONResponse(_autocomplete(manager, q))
 
-    ---
-    parameters:
-    - name: source
-      in: path
-      description: The source metaprefix (e.g., obofoundry)
-      required: true
-      type: string
-    - name: target
-      in: path
-      description: The target metaprefix (e.g., bioportal)
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    if source not in manager.metaregistry:
-        return {"bad source prefix": source}, 400
-    if target not in manager.metaregistry:
-        return {"bad target prefix": target}, 400
-    rv = {}
-    source_only = set()
-    target_only = set()
-    for resource in manager.registry.values():
-        mappings = resource.get_mappings()
-        mp1_prefix = mappings.get(source)
-        mp2_prefix = mappings.get(target)
-        if mp1_prefix and mp2_prefix:
-            rv[mp1_prefix] = mp2_prefix
-        elif mp1_prefix and not mp2_prefix:
-            source_only.add(mp1_prefix)
-        elif not mp1_prefix and mp2_prefix:
-            target_only.add(mp2_prefix)
 
-    return jsonify(
-        meta=dict(
-            len_overlap=len(rv),
-            source=source,
-            target=target,
-            len_source_only=len(source_only),
-            len_target_only=len(target_only),
-            source_only=sorted(source_only),
-            target_only=sorted(target_only),
-        ),
-        mappings=rv,
-    )
+@api_router.get("/search", tags=["search"])
+def search(
+    manager: DependsManager,
+    q: Annotated[str, Query(description="A query for the prefix")],
+) -> JSONResponse:
+    """Search for a prefix."""
+    return JSONResponse(_search(manager, q))

@@ -3,19 +3,18 @@ layout: page
 title: Data Model
 permalink: /datamodel/
 ---
+
 The following section describes the contents of entries in the Bioregistry. The
-associated schema is encoded in Python classes using the [Pydantic
-package](https://github.com/samuelcolvin/pydantic) which also generates a
-generally reusable JSON schema. Each element of the schema has associated unit
-tests that are run on any change to the Bioregistry to ensure that not only the
-schema is conformant, but also enables higher-level tests for style and content
-to be implemented.
+associated schema is encoded in Python classes using the
+[Pydantic package](https://github.com/samuelcolvin/pydantic) which also
+generates a generally reusable JSON schema. Each element of the schema has
+associated unit tests that are run on any change to the Bioregistry to ensure
+that not only the schema is conformant, but also enables higher-level tests for
+style and content to be implemented.
 
 <details>
-   <summary>Expand for a UMLS diagram of the datamodel</summary>
-
-   ![](img/datamodel_umls.svg)
-   
+   <summary>Expand for a UML diagram of the datamodel</summary>
+   <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/datamodel_umls.svg" alt="Bioregistry data model in a UML diagram"/>
 </details>
 
 ## Metadata and Properties
@@ -125,12 +124,12 @@ provide more "health" checks over each registry and the Bioregistry as a whole.
 ### Availability
 
 Each entry includes three optional fields for when the resource is available as
-an ontology in the OWL (https://www.w3.org/TR/owl2-syntax),
-OBO (https://owlcollab.github.io/oboformat/doc/obo-syntax.html), or OBO Graph
-JSON (https://github.com/geneontology/obographs) formats. These entries are
-typically imported from the OBO Foundry and OLS and are manually annotated to
-support large-scale ontology acquisition and processing such as with ROBOT,
-Pronto, or PyOBO.
+an ontology in the OWL (https://www.w3.org/TR/owl2-syntax), OBO
+(https://owlcollab.github.io/oboformat/doc/obo-syntax.html), or OBO Graph JSON
+(https://github.com/geneontology/obographs) formats. These entries are typically
+imported from the OBO Foundry and OLS and are manually annotated to support
+large-scale ontology acquisition and processing such as with ROBOT, Pronto, or
+PyOBO.
 
 ### Attribution
 
@@ -242,5 +241,5 @@ The Rat Genome Database (RGD) constitutes an edge case with its three prefixes:
 rgd, rgd.qtl, and rgd.strain. The rgd prefix is more of a bucket than a parent -
 it includes all of the entity types (e.g., genes, articles) in the RGD that are
 neither quantitative trait loci (QTLs) nor strains. Because of cases like this,
-we have begun discussions on imposing a prefix subspacing policy
-at https://github.com/biopragmatics/bioregistry/issues/133.
+we have begun discussions on imposing a prefix subspacing policy at
+https://github.com/biopragmatics/bioregistry/issues/133.

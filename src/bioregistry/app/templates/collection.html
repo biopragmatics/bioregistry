@@ -12,6 +12,7 @@
                         <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
                 </div>
                 <div class="col-4 text-right">
+                    <div class="d-flex flex-row-reverse">
                     <div class="dropdown">
                         <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -21,15 +22,16 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("metaregistry_api.collection", identifier=identifier, format=key) }}">
+                                   href="{{ fastapi_url_for("get_collection", identifier=identifier) }}?format={{ key }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
-                            <a class="dropdown-item"
-                               href="{{ url_for("metaregistry_api.collection_context", identifier=identifier) }}">
-                               Context JSON-LD  <i class="fas fa-download"></i>
-                            </a>
                         </div>
+                    </div>
+                    <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"
+                       href="https://github.com/biopragmatics/bioregistry/issues/new?template=add-collection-prefix.yml&collection={{ entry.identifier}}&title=Add+prefix+X+to+collection+{{ entry.identifier}}">
+                        Suggest
+                    </a>
                     </div>
                 </div>
             </div>
@@ -48,7 +50,13 @@
                         </a>{% if not loop.last %}, {% endif %}
                     {% endfor %}
                 </dd>
-                <dt>Resources</dt>
+                {% if entry.references %}
+                    <dt>References</dt>
+                    {% for reference in entry.references %}
+                        <dd><a href="{{ reference }}">{{ reference }}</a></dd>
+                    {% endfor %}
+                {% endif %}
+                <dt>Resources ({{ entry.resources | length }})</dt>
                 <dd>
                     <ul>
                         {% for prefix in entry.resources %}
