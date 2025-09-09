@@ -1004,7 +1004,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertTrue(
                     prefix in set(self.registry),
-                    msg=f"mismatches.json has invalid prefix: {prefix}",
+                    msg=f"curated_mappings.sssom.tsv has invalid prefix: {prefix}",
                 )
 
     def test_request_issue(self):
