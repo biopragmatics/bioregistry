@@ -575,6 +575,10 @@ class TestRegistry(unittest.TestCase):
                 #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
                 # )
 
+                self.assertNotEqual(
+                    resource.has_canonical, resource.part_of, msg="don't double annotate these"
+                )
+
     def test_provides(self):
         """Make sure all provides relations point to valid prefixes."""
         for prefix, resource in self.registry.items():
