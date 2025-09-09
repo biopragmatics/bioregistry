@@ -1,9 +1,12 @@
 """Update Prefix.cc to reflect the content of the Bioregistry.
 
-.. seealso:: https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1038
+.. seealso::
+
+    https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1038
 """
 
 import random
+from typing import cast
 
 import click
 import requests
@@ -16,12 +19,13 @@ def create(curie_prefix: str, uri_prefix: str) -> requests.Response:
     return requests.post(
         f"https://prefix.cc/{curie_prefix}",
         data={"create": uri_prefix},
+        timeout=15,
     )
 
 
-def main():
+def main() -> None:
     """Add an OBO Foundry prefix to Prefix.cc."""
-    prefix_cc_map = requests.get("https://prefix.cc/context").json()["@context"]
+    prefix_cc_map = requests.get("https://prefix.cc/context", timeout=15).json()["@context"]
     records = []
     for record in bioregistry.resources():
         if not record.get_obofoundry_prefix():
@@ -42,11 +46,13 @@ def main():
     click.echo(f"{len(records):,} records remain to submit to Prefix.cc")
 
     # shuffle records to make sure that if there's an error, it doesn't
-    # lock the update permenantly
+    # lock the update permanently
     random.shuffle(records)
 
     # Pick only the first record, since we can only make one update per day
     record = records[0]
+    # the URI prefix is already existing, by construction
+    uri_prefix = cast(str, record.get_uri_prefix())
     click.echo(f"Attempting to create a record for {record.prefix} {uri_prefix}")
     res = create(record.prefix, uri_prefix)
     click.echo(res.text)

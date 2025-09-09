@@ -3,8 +3,9 @@
 import itertools as itt
 import random
 import time
+from collections.abc import Iterable
 from statistics import mean
-from typing import Iterable, Tuple
+from typing import TypeAlias, cast
 
 import click
 import matplotlib.pyplot as plt
@@ -15,19 +16,22 @@ import bioregistry
 from bioregistry import manager
 from bioregistry.constants import CURIE_PARSING_DATA_PATH, CURIE_PARSING_SVG_PATH
 
+Row: TypeAlias = tuple[str, str, str, str, str]
 
-def get_curies(rebuild: bool = True):
+
+def get_curies(rebuild: bool = True) -> list[Row]:
     """Get prefix-identifier-banana-curie tuples for benchmarking."""
     if CURIE_PARSING_DATA_PATH.is_file() and not rebuild:
         return [
-            line.strip().split("\t") for line in CURIE_PARSING_DATA_PATH.read_text().splitlines()
+            cast(Row, line.strip().split("\t"))
+            for line in CURIE_PARSING_DATA_PATH.read_text().splitlines()
         ]
     rows = sorted(set(iter_curies()))
     CURIE_PARSING_DATA_PATH.write_text("\n".join("\t".join(line) for line in rows))
     return rows
 
 
-def iter_curies() -> Iterable[Tuple[str, str, str, str, str]]:
+def iter_curies() -> Iterable[Row]:
     """Generate prefix-identifier-banana-curie tuples for benchmarking."""
     for prefix, resource in tqdm(
         manager.registry.items(), desc="Generating test CURIEs", unit="prefix"
@@ -58,7 +62,7 @@ def iter_curies() -> Iterable[Tuple[str, str, str, str, str]]:
 @click.command()
 @click.option("--rebuild", is_flag=True)
 @click.option("--replicates", type=int, default=10)
-def main(rebuild: bool, replicates: int):
+def main(rebuild: bool, replicates: int) -> None:
     """Test parsing CURIEs."""
     curies = get_curies(rebuild=rebuild)
 
