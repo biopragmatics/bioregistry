@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for getting HL7 OIDs.
 
 1. Navigate to https://www.hl7.org/oid/index.cfm?Comp_OID=2.16.840.1.113883.6.9
@@ -9,12 +7,14 @@
 
 import csv
 from pathlib import Path
-from typing import Mapping
 
 __all__ = [
-    "get_hl7",
     "HL7Aligner",
+    "get_hl7",
 ]
+
+from collections.abc import Sequence
+from typing import ClassVar
 
 from bioregistry.external.alignment_utils import Aligner
 
@@ -32,14 +32,14 @@ COLUMNS = {
 }
 
 
-def get_hl7(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
+def get_hl7(*, force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get HL7 OIDs."""
     rv = {}
     with DATA.open() as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
-            row_dict = dict(zip(header, row))
+            row_dict = dict(zip(header, row, strict=False))
             record = {COLUMNS[k]: v for k, v in row_dict.items() if k in COLUMNS and v}
             rv[record.pop("prefix")] = record
     return rv
@@ -62,7 +62,13 @@ class HL7Aligner(Aligner):
 
     # This lists all of the keys inside each record to be displayed in the curation
     # sheet. Below, the
-    curation_header = ("status", "preferred_prefix", "name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = (
+        "status",
+        "preferred_prefix",
+        "name",
+        "homepage",
+        "description",
+    )
 
 
 if __name__ == "__main__":

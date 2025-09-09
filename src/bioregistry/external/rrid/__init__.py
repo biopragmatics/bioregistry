@@ -1,22 +1,22 @@
 """A source for the SciCrunch Registry (SCR).
 
 The SciCrunch static data was suggested by Anita Bandrowski in
-https://github.com/biopragmatics/bioregistry/issues/949#issuecomment-1747702117.
-Based on the name, it was likely exported on August 24th, 2023. It can be accessed at
-https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?\
-usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true.
+https://github.com/biopragmatics/bioregistry/issues/949#issuecomment-1747702117. Based
+on the name, it was likely exported on August 24th, 2023. It can be accessed at
+https://docs.google.com/spreadsheets/d/1BEPZXZsENhK7592AR83xUwbPbR2J-GVQ/edit?usp=sharing&ouid=107737386203376389514&rtpof=true&sd=true.
 """
 
 import csv
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Mapping
+from typing import ClassVar
 
 from bioregistry.constants import RAW_DIRECTORY
 from bioregistry.external.alignment_utils import Aligner
 
 __all__ = [
-    "get_rrid",
     "RRIDAligner",
+    "get_rrid",
 ]
 
 
@@ -45,7 +45,7 @@ UNCURATABLE = {
 }
 
 
-def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
+def get_rrid(*, force_download: bool = False) -> dict[str, dict[str, str]]:
     """Get RRIDs."""
     rv = {}
     with PATH.open() as file:
@@ -88,7 +88,7 @@ def get_rrid(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
     return rv
 
 
-def _split(s: str):
+def _split(s: str) -> list[str]:
     return [c.strip() for c in s.split(",")]
 
 
@@ -98,7 +98,7 @@ class RRIDAligner(Aligner):
     key = "rrid"
     getter = get_rrid
     alt_key_match = "abbreviation"
-    curation_header = ("name", "homepage")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage")
 
     def get_skip(self) -> Mapping[str, str]:
         """Get prefixes to skip."""

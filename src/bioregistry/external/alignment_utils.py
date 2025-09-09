@@ -1,11 +1,13 @@
-# -*- coding: utf-8 -*-
-
 """Utilities for registry alignment."""
 
 import csv
-from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
+import json
+from collections.abc import Callable, Iterable, Mapping, Sequence
+from pathlib import Path
+from typing import Any, ClassVar
 
 import click
+from curies.w3c import NCNAME_RE
 from tabulate import tabulate
 
 from ..constants import METADATA_CURATION_DIRECTORY
@@ -16,6 +18,7 @@ from ..utils import norm
 
 __all__ = [
     "Aligner",
+    "load_processed",
 ]
 
 
@@ -33,16 +36,16 @@ class Aligner:
     getter: ClassVar[Callable[..., Mapping[str, Any]]]
 
     #: Keyword arguments to pass to the getter function on call
-    getter_kwargs: ClassVar[Optional[Mapping[str, Any]]] = None
+    getter_kwargs: ClassVar[Mapping[str, Any] | None] = None
 
     #: Should new entries be included automatically? Only set this true for aligners of
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
     #: Set this if there's another part of the data besides the ID that should be matched
-    alt_key_match: ClassVar[Optional[str]] = None
+    alt_key_match: ClassVar[str | None] = None
 
-    alt_keys_match: ClassVar[Optional[str]] = None
+    alt_keys_match: ClassVar[str | None] = None
 
     #: Set to true if you don't want to align to deprecated resources
     skip_deprecated: ClassVar[bool] = False
@@ -51,7 +54,7 @@ class Aligner:
 
     normalize_invmap: ClassVar[bool] = False
 
-    def __init__(self, force_download: Optional[bool] = None):
+    def __init__(self, force_download: bool | None = None):
         """Instantiate the aligner."""
         if not hasattr(self.__class__, "key"):
             raise TypeError
@@ -80,7 +83,7 @@ class Aligner:
         self._align()
 
     @property
-    def internal_registry(self) -> Dict[str, Resource]:
+    def internal_registry(self) -> dict[str, Resource]:
         """Get the internal registry."""
         return self.manager.registry
 
@@ -88,7 +91,7 @@ class Aligner:
         """Get the mapping prefixes that should be skipped to their reasons (strings)."""
         return {}
 
-    def _align(self):
+    def _align(self) -> None:
         """Align the external registry."""
         for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
@@ -96,7 +99,7 @@ class Aligner:
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
             # There's already a mapping for this external ID to a bioregistry
-            # entry. Just add all of the latest metadata and move on
+            # entry. Just add all the latest metadata and move on
             if bioregistry_id is not None:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
@@ -129,6 +132,16 @@ class Aligner:
             # add the identifier from an external resource if it's been marked as high quality
             elif self.include_new:
                 bioregistry_id = norm(external_id)
+                if not NCNAME_RE.match(bioregistry_id):
+                    if NCNAME_RE.match("_" + bioregistry_id):
+                        # The prefix is non-conformant to W3C, but if we prepend
+                        # an underscore, it is. This happens for prefixes that start
+                        # with numbers.
+                        bioregistry_id = "_" + bioregistry_id
+                    else:
+                        # The prefix is non-conformant to W3C, therefore we can't
+                        # add it safely without manual intervention
+                        continue
                 if is_mismatch(bioregistry_id, self.key, external_id):
                     continue
                 self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
@@ -136,7 +149,7 @@ class Aligner:
                 continue
 
     def _align_action(
-        self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
+        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
     ) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
@@ -147,15 +160,16 @@ class Aligner:
         self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id: str, external_entry: Dict[str, Any]) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: dict[str, Any]) -> dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
-        The default implementation returns `external_entry` unchanged.
-        If you need more than that, override this method.
+        The default implementation returns `external_entry` unchanged. If you need more
+        than that, override this method.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
-        :return: The dictionary to be added to the bioregistry for the aligned entry
+
+        :returns: The dictionary to be added to the bioregistry for the aligned entry
         """
         return external_entry
 
@@ -168,7 +182,7 @@ class Aligner:
         cls,
         dry: bool = False,
         show: bool = False,
-        force_download: Optional[bool] = None,
+        force_download: bool | None = None,
     ) -> None:
         """Align and output the curation sheet.
 
@@ -184,34 +198,39 @@ class Aligner:
         instance.write_curation_table()
 
     @classmethod
-    def cli(cls):
+    def cli(cls, *args: Any, **kwargs: Any) -> None:
         """Construct a CLI for the aligner."""
 
-        @click.command()
+        @click.command(help=f"Align {cls.key}")
         @click.option("--dry", is_flag=True, help="if set, don't write changes to the registry")
         @click.option("--show", is_flag=True, help="if set, print a curation table")
         @click.option(
             "--no-force", is_flag=True, help="if set, do not force re-downloading the data"
         )
-        def _main(dry: bool, show: bool, no_force: bool):
+        def _main(dry: bool, show: bool, no_force: bool) -> None:
             cls.align(dry=dry, show=show, force_download=not no_force)
 
-        _main()
+        _main(*args, **kwargs)
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
-        :return: A sequence of cells to add to the curation table.
+
+        :returns: A sequence of cells to add to the curation table.
+
         :raises TypeError: If an invalid value is encountered
 
-        The default implementation of this function iterates over all of the keys
-        in the class variable :data:`curation_header` and looks inside each record
-        for those in order.
+        The default implementation of this function iterates over all of the keys in the
+        class variable :data:`curation_header` and looks inside each record for those in
+        order.
 
-        .. note:: You don't need to pass the external ID. this will automatically be the first element.
-        """  # noqa:DAR202
+        .. note::
+
+            You don't need to pass the external ID. this will automatically be the first
+            element.
+        """
         rv = []
         for k in self.curation_header:
             value = external_entry.get(k)
@@ -221,7 +240,7 @@ class Aligner:
                 rv.append(value.strip().replace("\n", " ").replace("  ", " "))
             elif isinstance(value, bool):
                 rv.append("true" if value else "false")
-            elif isinstance(value, (list, tuple, set)):
+            elif isinstance(value, list | tuple | set):
                 rv.append("|".join(sorted(v.strip() for v in value)))
             else:
                 raise TypeError(f"unexpected type in curation header: {value}")
@@ -256,7 +275,7 @@ class Aligner:
             writer.writerow((self.subkey, *self.curation_header))
             writer.writerows(rows)
 
-    def get_curation_table(self, **kwargs) -> Optional[str]:
+    def get_curation_table(self, **kwargs: Any) -> str | None:
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault("tablefmt", "rst")
         headers = (self.subkey, *self.curation_header)
@@ -269,8 +288,14 @@ class Aligner:
             **kwargs,
         )
 
-    def print_curation_table(self, **kwargs) -> None:
+    def print_curation_table(self, **kwargs: Any) -> None:
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:
             print(s)  # noqa:T201
+
+
+def load_processed(path: Path) -> dict[str, dict[str, Any]]:
+    """Load a processed."""
+    with path.open() as file:
+        return json.load(file)  # type:ignore

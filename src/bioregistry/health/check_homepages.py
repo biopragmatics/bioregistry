@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """A script to check which homepages in entries in the Bioregistry actually can be accessed."""
+
+from __future__ import annotations
 
 import sys
 from collections import defaultdict
 from datetime import datetime
-from typing import Optional, Set, Tuple
 
 import click
 import pandas as pd
@@ -20,7 +19,7 @@ __all__ = [
 ]
 
 
-def _process(element: Tuple[str, Set[str]]) -> Tuple[str, Set[str], bool, Optional[str]]:
+def _process(element: tuple[str, set[str]]) -> tuple[str, set[str], bool, str | None]:
     homepage, prefixes = element
     if "github.com" in homepage:  # skip github links for now
         return homepage, prefixes, False, None
@@ -31,7 +30,7 @@ def _process(element: Tuple[str, Set[str]]) -> Tuple[str, Set[str], bool, Option
     msg = ""
     try:
         res = requests.get(homepage, timeout=10)
-    except IOError as e:
+    except OSError as e:
         failed = True
         msg = e.__class__.__name__
     else:
@@ -41,7 +40,7 @@ def _process(element: Tuple[str, Set[str]]) -> Tuple[str, Set[str], bool, Option
     if failed:
         with tqdm.external_write_mode():
             click.echo(
-                f'[{datetime.now().strftime("%H:%M:%S")}] '
+                f"[{datetime.now().strftime('%H:%M:%S')}] "
                 + click.style(", ".join(sorted(prefixes)), fg="green")
                 + " at "
                 + click.style(homepage, fg="red")
@@ -52,7 +51,7 @@ def _process(element: Tuple[str, Set[str]]) -> Tuple[str, Set[str], bool, Option
 
 
 @click.command()
-def main():
+def main() -> None:
     """Run the homepage health check script."""
     homepage_to_prefixes = defaultdict(set)
     for prefix in bioregistry.read_registry():
@@ -63,7 +62,7 @@ def main():
             continue
         homepage_to_prefixes[homepage].add(prefix)
 
-    rv = thread_map(_process, list(homepage_to_prefixes.items()), desc="Checking homepages")
+    rv = thread_map(_process, list(homepage_to_prefixes.items()), desc="Checking homepages")  # type:ignore[no-untyped-call]
 
     failed = sum(failed for _, _, failed, _ in rv)
     click.secho(

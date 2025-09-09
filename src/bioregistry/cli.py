@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Command line interface for the bioregistry."""
 
 import sys
@@ -10,28 +8,34 @@ from .app.cli import web
 from .compare import compare
 from .export.cli import export
 from .lint import lint
-from .utils import OLSBroken, get_hexdigests, secho
+from .schema.struct import generate_schema
+from .utils import get_hexdigests, secho
+from .validate.cli import validate
 from .version import VERSION
+
+__all__ = [
+    "main",
+]
 
 
 @click.group()
 @click.version_option(version=VERSION)
-def main():
+def main() -> None:
     """Run the Bioregistry CLI."""
 
 
 @click.command()
-def download():
+def download() -> None:
     """Download/update the external entries in the Bioregistry."""
     try:
         from .external import GETTERS
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     for _, name, getter in GETTERS:
         secho(f"Downloading {name}")
@@ -52,17 +56,17 @@ def align(
     skip_agroportal: bool,
     skip_slow: bool,
     no_force: bool,
-):
+) -> None:
     """Align all external registries."""
     try:
         from .external.align import aligner_resolver
-    except ImportError:
+    except ImportError as exc:
         click.secho(
             "Could not import alignment dependencies."
             " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
-        return sys.exit(1)
+        raise sys.exit(1) from exc
 
     pre_digests = get_hexdigests()
 
@@ -75,13 +79,15 @@ def align(
         skip.add("bioportal")
     if skip_agroportal or skip_slow:
         skip.add("agroportal")
+    # Temporary fix to avoid issue with duplicate URI prefix
+    skip.add("wikidata")
     for aligner_cls in aligner_resolver:
         if aligner_cls.key in skip:
             continue
         secho(f"Aligning {aligner_cls.key}")
         try:
             aligner_cls.align(force_download=not no_force)
-        except (IOError, OLSBroken) as e:
+        except Exception as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
     if pre_digests != get_hexdigests():
@@ -92,12 +98,14 @@ def align(
 main.add_command(lint)
 main.add_command(compare)
 main.add_command(export)
+main.add_command(validate)
 main.add_command(web)
+main.add_command(generate_schema)
 
 
 @main.command()
 @click.pass_context
-def update(ctx: click.Context):
+def update(ctx: click.Context) -> None:
     """Update the Bioregistry."""
     ctx.invoke(align)
     ctx.invoke(lint)

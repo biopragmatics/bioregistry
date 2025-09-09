@@ -5,13 +5,14 @@ permalink: /usages/
 ---
 
 Are you using the Bioregistry and want your project/organization on this list?
-Please let us know on the [issue tracker](https://github.com/biopragmatics/bioregistry/issues/new).
+Please let us know on the
+[issue tracker](https://github.com/biopragmatics/bioregistry/issues/new).
 
-To find new users, start with
-this [GitHub search for the Bioregistry](https://github.com/search?q=%22import+bioregistry%22+OR+%22from+bioregistry+import%22+-user%3Acthoyt+-user%3Asorgerlab+-user%3Abiopragmatics+-is%3Afork+-user%3Apyobo+-user%3Apybel+-user%3Agyorilab&type=code).
-Similarly, downstream users of the Bioregistry often use the [`curies`](https://github.com/cthoyt/curies) package.
-See its usages
-with [this search](https://github.com/search?q=%22import+curies%22+OR+%22from+curies+import%22+-user%3Acthoyt+-user%3Asorgerlab+-user%3Abiopragmatics+-is%3Afork+-user%3Apyobo+-user%3Apybel+-user%3Agyorilab+-repo%3ANCATS-Gamma%2Frobokop+-repo%3Anutanix%2Fcurie+language%3APython&type=code&p=4&l=Python).
+To find new users, start with this
+[GitHub search for the Bioregistry](https://github.com/search?q=%22import+bioregistry%22+OR+%22from+bioregistry+import%22+-user%3Acthoyt+-user%3Asorgerlab+-user%3Abiopragmatics+-is%3Afork+-user%3Apyobo+-user%3Apybel+-user%3Agyorilab&type=code).
+Similarly, downstream users of the Bioregistry often use the
+[`curies`](https://github.com/cthoyt/curies) package. See its usages with
+[this search](https://github.com/search?q=%22import+curies%22+OR+%22from+curies+import%22+-user%3Acthoyt+-user%3Asorgerlab+-user%3Abiopragmatics+-is%3Afork+-user%3Apyobo+-user%3Apybel+-user%3Agyorilab+-repo%3ANCATS-Gamma%2Frobokop+-repo%3Anutanix%2Fcurie+language%3APython&type=code&p=4&l=Python).
 
 {% for entry in site.data.usages %}
 

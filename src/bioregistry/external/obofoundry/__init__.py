@@ -1,23 +1,24 @@
-# -*- coding: utf-8 -*-
-
 """Download registry information from the OBO Foundry."""
+
+from __future__ import annotations
 
 import json
 import logging
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Mapping, Optional
+from typing import Any, ClassVar
 
 import requests
 import yaml
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
+    "OBOFoundryAligner",
     "get_obofoundry",
     "get_obofoundry_example",
-    "OBOFoundryAligner",
 ]
 
 
@@ -32,11 +33,12 @@ SKIP = {
 }
 
 
-def get_obofoundry(force_download: bool = False, force_process: bool = False):
+def get_obofoundry(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the OBO Foundry registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
     with RAW_PATH.open() as file:
@@ -57,12 +59,17 @@ def get_obofoundry(force_download: bool = False, force_process: bool = False):
     return rv
 
 
-def _process(record):
+def _process(record: dict[str, Any]) -> dict[str, Any]:
     for key in ("browsers", "usages", "build", "layout", "taxon"):
-        if key in record:
-            del record[key]
+        record.pop(key, None)
 
     oid = record["id"].lower()
+
+    # added to throw away placeholder contact
+    contact_github = record.get("contact", {}).get("github")
+    if contact_github == "ghost":
+        del record["contact"]
+
     rv = {
         "name": record["title"],
         "description": record.get("description"),
@@ -109,11 +116,11 @@ def _process(record):
     return {k: v for k, v in rv.items() if v is not None}
 
 
-def get_obofoundry_example(prefix: str) -> Optional[str]:
+def get_obofoundry_example(prefix: str) -> str | None:
     """Get an example identifier from the OBO Library PURL configuration."""
     url = f"https://raw.githubusercontent.com/OBOFoundry/purl.obolibrary.org/master/config/{prefix}.yml"
-    data = yaml.safe_load(requests.get(url).content)
-    examples = data.get("example_terms")
+    data = yaml.safe_load(requests.get(url, timeout=15).content)
+    examples: list[str] | None = data.get("example_terms")
     if not examples:
         return None
     return examples[0].rsplit("_")[-1]
@@ -124,7 +131,7 @@ class OBOFoundryAligner(Aligner):
 
     key = "obofoundry"
     getter = get_obofoundry
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
     normalize_invmap = True
 
@@ -132,7 +139,9 @@ class OBOFoundryAligner(Aligner):
         """Get the prefixes in the OBO Foundry that should be skipped."""
         return SKIP
 
-    def _align_action(self, bioregistry_id, external_id, external_entry):
+    def _align_action(
+        self, bioregistry_id: str, external_id: str, external_entry: dict[str, Any]
+    ) -> None:
         super()._align_action(bioregistry_id, external_id, external_entry)
         if (
             self.manager.get_example(bioregistry_id)

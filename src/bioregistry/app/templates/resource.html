@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ name_pack.value }}{% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -57,7 +57,10 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
-                            class="fas fa-angle-right"></i> {{ name }}
+                            class="fas fa-angle-right"></i> {{ name_pack.value }}
+                        <a type="button" data-toggle="modal" data-target="#name-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
                         {{ utils.render_resource_warnings(resource) }}
                     </h5>
                 </div>
@@ -79,7 +82,7 @@
                         </div>
                     </div>
                     <a class="btn btn-sm btn-outline-dark" style="margin-right: 0.5em"
-                       href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&template=update-misc.yml&prefix={{ prefix }}&title=Update+{{ name }}">
+                       href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update&template=update-misc.yml&prefix={{ prefix }}&title=Update+{{ name_pack.value }}">
                         Suggest
                     </a>
                     </div>
@@ -90,7 +93,7 @@
             {% if description %}
                 <p>
                 {% if resource.get_logo() %}
-                <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ resource.get_name() }}"/>
+                <img style="max-height: 70px; float: right;" src="{{ resource.get_logo() }}" alt="Logo for {{ name_pack.value }}"/>
                 {% endif %}
                 {{ description }}
                 </p>
@@ -142,7 +145,7 @@
                     <dt>Keywords</dt>
                     <dd>
                         {% for keyword in keywords|sort %}
-                            <span class="badge badge-light">{{ keyword }}</span>
+                            <a class="badge badge-light" href="{{ url_for(".get_keyword", keyword=keyword) }}">{{ keyword }}</a>
                         {% endfor %}
                     </dd>
                 {% endif %}
@@ -186,6 +189,14 @@
                             Repository <i class="fab fa-github"></i>
                         </a>
                     {% endif %}
+                    {%- if resource.contact_group_email %}
+                        <a class="badge badge-pill badge-light" href="{{ resource.contact_group_email }}">
+                            Mailing List <i class="fas fa-address-book"></i></i></a>
+                    {%- endif %}
+                    {%- if resource.contact_page %}
+                        <a class="badge badge-pill badge-light" href="{{ resource.contact_page }}">
+                            Contact Page <i class="fas fa-address-book"></i></i></a>
+                    {%- endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
                             OBO <i class="fas fa-download"></i>
@@ -232,6 +243,11 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {%- for secondary_contact in resource.contact_extras or [] %}
+                <dd>
+                    {{ utils.render_author(secondary_contact, link=none) }}
+                </dd>
+                {%- endfor %}
                 {% if resource.owners %}
                     <dt>Identifier Space Owner{% if resource.owners | length > 1 %}s{% endif %}</dt>
                     {% for owner in resource.owners %}
@@ -251,7 +267,7 @@
                 <dd>
                     {% if pattern %}
                         <p>
-                            Local identifiers in {{ name }} should match this
+                            Local identifiers in {{ name_pack.value }} should match this
                             regular expression:<br/><kbd>{{ pattern }}</kbd>
                         </p>
                     {% elif has_no_terms %}
@@ -286,7 +302,7 @@
                 <dt>Pattern for CURIES</dt>
                 <dd>
                     <p>
-                        Compact URIs (CURIEs) constructed from {{ name }} should match
+                        Compact URIs (CURIEs) constructed from {{ name_pack.value }} should match
                         this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
                     </p>
                 </dd>
@@ -368,6 +384,11 @@
                     <dd>
                         {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
+                    {%- for reviewer in resource.reviewer_extras or [] %}
+                    <dd>
+                        {{ utils.render_author(reviewer, link=url_for('metaregistry_ui.contributor', orcid=reviewer.orcid)) }}
+                    </dd>
+                    {%- endfor %}
                 {% endif %}
             </dl>
         </div>
@@ -484,7 +505,7 @@
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
             <h5 class="card-header">
-                Metaregistry <i class="fas fa-angle-right"></i> {{ name }}
+                Metaregistry <i class="fas fa-angle-right"></i> {{ name_pack.value }}
             </h5>
             <div class="card-body">
                 <p>
@@ -529,7 +550,7 @@
                         {# <td>{{ resource.get_prefix_key("name", mapping.metaprefix) or "" }}</td> #}
                         <td style="text-align: center;">
                             <a data-toggle="tooltip" data-html="true"
-                               title="Report misalignment between {{ name }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
+                               title="Report misalignment between {{ name_pack.value }} and <code>{{ mapping.metaprefix }}:{{ mapping.xref }}</code>"
                                href="https://github.com/biopragmatics/bioregistry/issues/new?labels=Update%2CPrefix&template=mismatch.yml&title=Remove+incorrect+mapping+from+{{ resource.prefix }}+to+%60{{ mapping.metaprefix }}%3A{{ mapping.xref }}%60&prefix={{ resource.prefix }}&metaprefix={{ mapping.metaprefix }}&external-prefix={{ mapping.xref }}">
                                 <i class="fas fa-pen"></i>
                             </a>
@@ -592,7 +613,8 @@
                 {% if providers %}
                 <p>
                     The local unique identifier <code>{{ example }}</code> is used to demonstrate the providers
-                    available for {{ name }}. A guide for curating additional providers can be found
+                    available for {{ name_pack.value }}. Some providers may use a different example, which is displayed in the table below. 
+                    A guide for curating additional providers can be found
                     <a href="https://biopragmatics.github.io/bioregistry/curation/providers">here</a>.
                 </p>
                 {% else %}
@@ -606,7 +628,7 @@
             {% if providers %}{{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}{% endif %}
         </div>
 
-        {% set extra_providers = resource.get_extra_providers() %}
+        {% set extra_providers = resource.get_extra_providers(filter_known_inactive=True) %}
         {% if extra_providers %}
             <div class="card" style="margin-top: 20px">
                 <a id="mappings"></a>
@@ -630,7 +652,8 @@
                         <tr>
                             <td><code>{{ provider.code }}</code></td>
                             <td>{{ provider.name }}</td>
-                            {% set url = provider.resolve(example) %}
+                            {% set example_id = provider.example if provider.example else example %}
+                            {% set url = provider.resolve(example_id) %}
                             <td><a href="{{ url }}">{{ url }}</a></td>
                         </tr>
                     {% endfor %}
@@ -684,6 +707,28 @@
         </div>
     </div>
     {% endif %}
+
+    <div class="modal fade" id="name-modal" tabindex="-1" role="dialog" aria-labelledby="nameModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nameModalLabel">Programmatic Access to Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    This name annotation was originally annotated in
+                        <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=name_pack.metaprefix) }}">{{ name_pack.name }}</a>
+                        and is redistributed under the {{ name_pack.license }} license.
+                    </p>
+                    <p>Get the name:</p>
+                    {{ utils.code_example(prefix, "get_name", name_pack.value) }}
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% if resource_license %}
     <div class="modal fade" id="license-modal" tabindex="-1" role="dialog" aria-labelledby="licenseModalLabel" aria-hidden="true">

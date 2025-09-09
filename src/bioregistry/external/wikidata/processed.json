@@ -59,6 +59,17 @@
     "prefix": "P10064",
     "uri_format": "https://www.enr.gov.nt.ca/species-search/$1"
   },
+  "P1007": {
+    "description": "number for the Lattes Platform entry on the person or group. Relationship between entry and subject must be supported by a source",
+    "example": [
+      "0061106995455595",
+      "9975840620597737"
+    ],
+    "name": "Lattes Platform number",
+    "pattern": "^\\d{16}$",
+    "prefix": "P1007",
+    "uri_format": "https://lattes.cnpq.br/$1"
+  },
   "P10074": {
     "description": "identifier for chemicals linked to information on occurrence in plants",
     "example": [
@@ -510,13 +521,6 @@
     "prefix": "P10755",
     "uri_format": "https://xueshu.baidu.com/usercenter/paper/show?paperid=$1"
   },
-  "P1076": {
-    "description": "identifier in the Universal Virus Database (ICTVdB)",
-    "homepage": "http://ictvdb.bio-mirror.cn/Ictv/vc_code.htm",
-    "name": "ICTV virus ID",
-    "pattern": "^\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\.(|\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\d\\.(|\\d\\d\\d\\.(|\\d\\d\\d\\.)))))))$",
-    "prefix": "P1076"
-  },
   "P10770": {
     "description": "identifier for a horse in netkeiba",
     "example": [
@@ -667,21 +671,6 @@
     "prefix": "P10835",
     "uri_format": "https://www.ukbeetles.co.uk/$1"
   },
-  "P10863": {
-    "description": "identifier for an article in Springer Nature (SN) SciGraph",
-    "example": [
-      "10.1006/bulm.1997.0030",
-      "10.1007/978-3-319-11964-9_4",
-      "10.1007/bf00170901",
-      "10.1007/s00285-002-0173-7",
-      "10.1186/1756-0500-2-265",
-      "10.7603/s40632-015-0036-1"
-    ],
-    "name": "Springer Nature article ID",
-    "pattern": "^10\\.\\d{4,9}/[0-9a-z._-]+$",
-    "prefix": "P10863",
-    "uri_format": "https://scigraph.springernature.com/pub.$1"
-  },
   "P10876": {
     "description": "code for a vaccine administered by the CDC's National Center for Immunization and Respiratory Diseases",
     "example": [
@@ -735,7 +724,7 @@
       "69148"
     ],
     "homepage": "https://paleobiodb.org/",
-    "name": "Paleobiology Database ID",
+    "name": "Paleobiology Database taxon ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P10907",
     "uri_format": "https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=$1"
@@ -1173,6 +1162,7 @@
     "uri_format": "https://civicdb.org/genes/$1/summary"
   },
   "P11311": {
+    "database": "Q115641818",
     "description": "identifier for a taxon on the Lygaeoidea Species File website",
     "example": [
       "1211893",
@@ -1180,7 +1170,7 @@
       "1224199"
     ],
     "homepage": "http://lygaeoidea.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
-    "name": "Lygaeoidea Species File ID",
+    "name": "Lygaeoidea Species File ID (old)",
     "pattern": "^[1-9]\\d{6}$",
     "prefix": "P11311",
     "uri_format": "http://lygaeoidea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -1236,7 +1226,7 @@
     "name": "Plazi reference ID",
     "pattern": "^[0-9A-F]{8}[0-9A-F]{4}[0-9A-F]{4}[0-9A-F]{4}[0-9A-F]{12}$",
     "prefix": "P11409",
-    "uri_format": "http://publication.plazi.org/id/$1"
+    "uri_format": "https://publication.plazi.org/GgServer/summary/$1"
   },
   "P11430": {
     "description": "identifier for a disease in the UniProt database",
@@ -1648,7 +1638,7 @@
     ],
     "homepage": "https://floraveg.eu/taxon",
     "name": "FloraVeg.EU taxon ID",
-    "pattern": "^[A-Za-z]+(\\ [A-Za-z\\.]+)*$",
+    "pattern": "^[A-Za-z]+(\\ [-A-Za-z\\.]+)*$",
     "prefix": "P12100",
     "uri_format": "https://floraveg.eu/taxon/overview/$1"
   },
@@ -2555,6 +2545,316 @@
     "prefix": "P12670",
     "uri_format": "https://hirc.botanic.hr/fcd/DetaljiFrame.aspx?IdVrste=$1"
   },
+  "P12742": {
+    "database": "Q125976761",
+    "description": "numeric identifier of a Hospital at the Bundes-Klinik-Atlas",
+    "example": [
+      "772807",
+      "772859",
+      "772916"
+    ],
+    "homepage": "https://bundes-klinik-atlas.de/krankenhaussuche",
+    "name": "Bundes-Klinik-Atlas hospital ID",
+    "pattern": "^\\d+$",
+    "prefix": "P12742",
+    "uri_format": "https://bundes-klinik-atlas.de/krankenhaussuche/krankenhaus/$1/"
+  },
+  "P12750": {
+    "database": "Q115665911",
+    "description": "identifier for a taxon on the Dermaptera Species File database",
+    "example": [
+      "887721",
+      "888282",
+      "888460",
+      "888572"
+    ],
+    "homepage": "https://zoraptera.speciesfile.org/otus/887721/overview",
+    "name": "Dermaptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12750",
+    "uri_format": "https://dermaptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12751": {
+    "database": "Q115665913",
+    "description": "identifier for a taxon in the Embioptera Species File database",
+    "example": [
+      "915589",
+      "915942",
+      "915989",
+      "916293"
+    ],
+    "homepage": "https://embioptera.speciesfile.org/otus/915589/overview",
+    "name": "Embioptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12751",
+    "uri_format": "https://embioptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12752": {
+    "database": "Q122839980",
+    "description": "identifier for a taxon in the Isoptera Species File database",
+    "example": [
+      "585557",
+      "83484",
+      "85193",
+      "85835"
+    ],
+    "homepage": "https://isoptera.speciesfile.org/otus/585557/overview",
+    "name": "Isoptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12752",
+    "uri_format": "https://isoptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12753": {
+    "database": "Q115665927",
+    "description": "identifier for a taxon on the Zoraptera Species File Online website",
+    "example": [
+      "924464",
+      "924470",
+      "924500",
+      "924520"
+    ],
+    "homepage": "https://zoraptera.speciesfile.org/otus/924464/overview",
+    "name": "Zoraptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12753",
+    "uri_format": "https://zoraptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12767": {
+    "database": "Q115665963",
+    "description": "identifier for a taxon in the Aphid Species File database",
+    "example": [
+      "901309",
+      "901982",
+      "907566",
+      "910324"
+    ],
+    "homepage": "https://aphid.speciesfile.org/otus/901309/overview",
+    "name": "Aphid Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12767",
+    "uri_format": "https://aphid.speciesfile.org/otus/$1/overview"
+  },
+  "P12768": {
+    "database": "Q122839961",
+    "description": "identifier for a taxon in the Grylloblattodea Species File database",
+    "example": [
+      "924558",
+      "925080",
+      "925108",
+      "925119"
+    ],
+    "homepage": "https://grylloblattodea.speciesfile.org/otus/924558/overview",
+    "name": "Grylloblattodea Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12768",
+    "uri_format": "https://grylloblattodea.speciesfile.org/otus/$1/overview"
+  },
+  "P12769": {
+    "database": "Q115665941",
+    "description": "identifier for a taxon in the Mantophasmatodea Species File database",
+    "example": [
+      "925578",
+      "925579",
+      "925586",
+      "925587"
+    ],
+    "homepage": "https://mantophasmatodea.speciesfile.org/otus/925578/overview",
+    "name": "Mantophasmatodea Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12769",
+    "uri_format": "https://mantophasmatodea.speciesfile.org/otus/$1/overview"
+  },
+  "P12770": {
+    "database": "Q115665917",
+    "description": "identifier for a taxon in the Plecoptera Species File database",
+    "example": [
+      "890815",
+      "891549",
+      "891621",
+      "891804"
+    ],
+    "homepage": "https://plecoptera.speciesfile.org/otus/890815/overview",
+    "name": "Plecoptera Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12770",
+    "uri_format": "https://plecoptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12771": {
+    "database": "Q115666044",
+    "description": "identifier for a taxon in the Coleorrhyncha Species File database",
+    "example": [
+      "915385",
+      "915518",
+      "915527",
+      "915555"
+    ],
+    "homepage": "https://coleorrhyncha.speciesfile.org/otus/890815/overview",
+    "name": "Coleorrhyncha Species File taxon ID",
+    "pattern": "^[0-9]\\d*$",
+    "prefix": "P12771",
+    "uri_format": "https://coleorrhyncha.speciesfile.org/otus/$1/overview"
+  },
+  "P12785": {
+    "database": "Q57673331",
+    "description": "identifier for a taxon in the Orthoptera Species File database",
+    "example": [
+      "805980",
+      "806395",
+      "809837",
+      "813824"
+    ],
+    "homepage": "https://orthoptera.speciesfile.org/otus/805980/overview",
+    "name": "Orthoptera Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12785",
+    "uri_format": "https://orthoptera.speciesfile.org/otus/$1/overview"
+  },
+  "P12788": {
+    "database": "Q126172076",
+    "description": "identifier for an entry in online fourth edition of A Dictionary of Plant Sciences",
+    "example": [
+      "7324",
+      "7843",
+      "8040"
+    ],
+    "homepage": "https://www.oxfordreference.com/display/10.1093/acref/9780198833338.001.0001/acref-9780198833338",
+    "name": "A Dictionary of Plant Sciences ID",
+    "pattern": "^[1-9][0-9]*$",
+    "prefix": "P12788",
+    "uri_format": "https://www.oxfordreference.com/display/10.1093/acref/9780198833338.001.0001/acref-9780198833338-e-$1"
+  },
+  "P12789": {
+    "database": "Q126125058",
+    "description": "identifier for an entry in online fifth edition of A Dictionary of Zoology",
+    "example": [
+      "1310",
+      "5750",
+      "6",
+      "9541",
+      "9668"
+    ],
+    "homepage": "https://www.oxfordreference.com/display/10.1093/acref/9780198845089.001.0001/acref-9780198845089",
+    "name": "A Dictionary of Zoology ID",
+    "pattern": "^[1-9][0-9]*$",
+    "prefix": "P12789",
+    "uri_format": "https://www.oxfordreference.com/display/10.1093/acref/9780198845089.001.0001/acref-9780198845089-e-$1"
+  },
+  "P12793": {
+    "database": "Q17073815",
+    "description": "identifier for bibliographic references in the Paleobiology Database",
+    "example": [
+      "35003",
+      "64522",
+      "87508"
+    ],
+    "homepage": "https://paleobiodb.org",
+    "name": "Paleobiology database reference ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12793",
+    "uri_format": "https://paleobiodb.org/classic/displayReference?reference_no=$1"
+  },
+  "P12797": {
+    "description": "IMAIOS page describing the anatomical entity",
+    "example": [
+      "anterior-compartment-of-arm-1541084152",
+      "sacral-horn-1537019392",
+      "short-head-of-biceps-brachii-1541083748"
+    ],
+    "homepage": "https://www.imaios.com/en/e-anatomy/",
+    "name": "IMAIOS entity ID",
+    "pattern": "^[^\\s]+$",
+    "prefix": "P12797",
+    "uri_format": "https://www.imaios.com/en/e-anatomy/anatomical-structure/$1"
+  },
+  "P12798": {
+    "database": "Q126204556",
+    "description": "identifier for publications in the Institutional Repository of the Naturalis Biodiversity Center",
+    "example": [
+      "209963",
+      "317642",
+      "508389"
+    ],
+    "homepage": "https://repository.naturalis.nl/",
+    "name": "Naturalis Repository ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12798",
+    "uri_format": "https://repository.naturalis.nl/pub/$1"
+  },
+  "P12817": {
+    "database": "Q57715163",
+    "description": "identifier for a taxon in the Cockroach Species File database",
+    "example": [
+      "856752",
+      "856754",
+      "863107"
+    ],
+    "homepage": "https://cockroach.speciesfile.org/otus/856752/overview",
+    "name": "Cockroach Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12817",
+    "uri_format": "https://cockroach.speciesfile.org/otus/$1/overview"
+  },
+  "P12818": {
+    "database": "Q115641818",
+    "description": "identifier for a taxon in the Lygaeoidea Species File database",
+    "example": [
+      "916338",
+      "918053",
+      "918453",
+      "919704"
+    ],
+    "homepage": "https://lygaeoidea.speciesfile.org/otus/916338/overview",
+    "name": "Lygaeoidea Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12818",
+    "uri_format": "https://lygaeoidea.speciesfile.org/otus/$1/overview"
+  },
+  "P12819": {
+    "database": "Q49417701",
+    "description": "identifier for a taxon in the Phasmida Species File database",
+    "example": [
+      "851140",
+      "852904",
+      "853138",
+      "933298"
+    ],
+    "homepage": "https://phasmida.speciesfile.org/otus/851140/overview",
+    "name": "Phasmida Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12819",
+    "uri_format": "https://phasmida.speciesfile.org/otus/$1/overview"
+  },
+  "P12820": {
+    "database": "Q89384967",
+    "description": "identifier for a taxon in the Psocodea Species File database",
+    "example": [
+      "870927",
+      "871605",
+      "876123",
+      "876150",
+      "878996"
+    ],
+    "homepage": "https://psocodea.speciesfile.org/otus/870927/overview",
+    "name": "Psocodea Species File taxon ID (new)",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P12820",
+    "uri_format": "https://psocodea.speciesfile.org/otus/$1/overview"
+  },
+  "P12834": {
+    "database": "Q229883",
+    "description": "identifier for a journal on PubMed Central (PMC)",
+    "example": [
+      "2849",
+      "3851",
+      "4152",
+      "440"
+    ],
+    "homepage": "https://www.ncbi.nlm.nih.gov/pmc/journals/",
+    "name": "PMC journal ID",
+    "pattern": "^[1-9]\\d+$",
+    "prefix": "P12834",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/pmc/journals/$1/"
+  },
   "P1294": {
     "database": "Q6617741",
     "description": "identifier for ecoregions",
@@ -2599,7 +2899,7 @@
       "17030",
       "90345"
     ],
-    "name": "Index Fungorum ID",
+    "name": "Index Fungorum taxon ID",
     "pattern": "^[1-9]\\d{0,5}|$",
     "prefix": "P1391",
     "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
@@ -2664,7 +2964,7 @@
     "name": "Orphanet ID",
     "pattern": "^[1-9]\\d{0,5}$",
     "prefix": "P1550",
-    "uri_format": "https://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=$1"
+    "uri_format": "https://www.orpha.net/en/disease/detail/$1"
   },
   "P1554": {
     "description": "identifier from UBERON ontology (without prefix)",
@@ -2714,6 +3014,43 @@
     "pattern": "^[a-z0-9_]+$",
     "prefix": "P1583",
     "uri_format": "https://www.malacards.org/card/$1"
+  },
+  "P1607": {
+    "description": "identifier of an author in Dialnet",
+    "example": [
+      "241889",
+      "3073901"
+    ],
+    "homepage": "https://dialnet.unirioja.es",
+    "name": "Dialnet author ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P1607",
+    "uri_format": "https://dialnet.unirioja.es/servlet/autor?codigo=$1"
+  },
+  "P1608": {
+    "description": "identifier of a book in Dialnet",
+    "example": [
+      "187021",
+      "190555",
+      "3555"
+    ],
+    "homepage": "https://dialnet.unirioja.es",
+    "name": "Dialnet book ID",
+    "prefix": "P1608",
+    "uri_format": "https://dialnet.unirioja.es/servlet/libro?codigo=$1"
+  },
+  "P1609": {
+    "description": "identifier of a journal in Dialnet",
+    "example": [
+      "1119",
+      "206",
+      "8911"
+    ],
+    "homepage": "http://dialnet.unirioja.es",
+    "name": "Dialnet journal ID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "prefix": "P1609",
+    "uri_format": "https://dialnet.unirioja.es/servlet/revista?codigo=$1"
   },
   "P1610": {
     "description": "identifier of an article in Dialnet",
@@ -3015,6 +3352,18 @@
     "prefix": "P1940",
     "uri_format": "https://conifers.org/$1.php"
   },
+  "P1960": {
+    "description": "identifier of a person, in the Google Scholar academic search service",
+    "example": [
+      "CUO0vDcAAAAJ",
+      "QPdLuj8AAAAJ"
+    ],
+    "homepage": "https://scholar.google.com/",
+    "name": "Google Scholar author ID",
+    "pattern": "^[-_0-9A-Za-z]{12}$",
+    "prefix": "P1960",
+    "uri_format": "https://scholar.google.com/citations?user=$1"
+  },
   "P1978": {
     "description": "identifier for a food item in the United States Department of Agriculture National Nutrient Database",
     "example": [
@@ -3122,7 +3471,7 @@
       "D3FDB845E68693CE"
     ],
     "homepage": "https://avibase.bsc-eoc.org/avibase.jsp",
-    "name": "Avibase ID",
+    "name": "Avibase taxon ID",
     "pattern": "^[A-Z0-9]{16}$",
     "prefix": "P2026",
     "uri_format": "https://avibase.bsc-eoc.org/species.jsp?avibaseid=$1"
@@ -3148,6 +3497,29 @@
     "pattern": "^\\d{1,6}$",
     "prefix": "P2036",
     "uri_format": "https://africanplantdatabase.ch/en/nomen/$1"
+  },
+  "P2037": {
+    "description": "username of this project, person or organization on GitHub",
+    "example": [
+      "google",
+      "michaelni"
+    ],
+    "homepage": "https://github.com/",
+    "name": "GitHub username",
+    "pattern": "^[0-9A-Za-z]([0-9A-Za-z\\-]{0,37}[0-9A-Za-z])?$",
+    "prefix": "P2037",
+    "uri_format": "https://github.com/$1"
+  },
+  "P2038": {
+    "description": "identifier for a person, used by ResearchGate profiles",
+    "example": [
+      "Rita-Heuser",
+      "William-White-32"
+    ],
+    "name": "ResearchGate profile ID",
+    "pattern": "^[0-9A-Za-z_-]+$",
+    "prefix": "P2038",
+    "uri_format": "https://www.researchgate.net/profile/$1"
   },
   "P2040": {
     "description": "identifier for a taxon in the Species+ database (CITES)",
@@ -3288,7 +3660,7 @@
     ],
     "homepage": "http://zinc.docking.org/",
     "name": "ZINC ID",
-    "pattern": "^\\d{5,9}$",
+    "pattern": "^\\d{5,10}$",
     "prefix": "P2084",
     "uri_format": "http://zinc.docking.org/substances/ZINC$1"
   },
@@ -3338,6 +3710,46 @@
     "prefix": "P2115",
     "uri_format": "https://bioportal.bioontology.org/ontologies/NDFRT?p=classes&conceptid=$1",
     "uri_format_rdf": "http://purl.bioontology.org/ontology/NDFRT/$1"
+  },
+  "P213": {
+    "database": "Q423048",
+    "description": "International Standard Name Identifier for an identity. Starting with 0000.",
+    "example": [
+      "000000006629310X",
+      "0000000103545207",
+      "0000000109397559",
+      "0000000121416409",
+      "0000000122974701",
+      "0000000403855362"
+    ],
+    "name": "ISNI",
+    "pattern": "^[0]{7}[0-9]{8}[0-9X]$",
+    "prefix": "P213",
+    "uri_format": "https://isni.org/isni/$1"
+  },
+  "P214": {
+    "database": "Q19832964",
+    "description": "identifier for the Virtual International Authority File database [format: up to 22 digits]",
+    "example": [
+      "120062731",
+      "141940265",
+      "15",
+      "150088538",
+      "198592695",
+      "214796741",
+      "240782041",
+      "44298806",
+      "9972147907520779210008"
+    ],
+    "homepage": "https://viaf.org",
+    "name": "VIAF ID",
+    "pattern": "^[1-9]\\d(\\d{0,7}|\\d{17,20})$",
+    "prefix": "P214",
+    "short_name": [
+      "VIAF"
+    ],
+    "uri_format": "https://viaf.org/viaf/$1/",
+    "uri_format_rdf": "http://viaf.org/viaf/$1"
   },
   "P2153": {
     "description": "substance (e.g. mixtures, undefined stereochemistry, ...) identifier in the PubChem database",
@@ -3406,6 +3818,29 @@
     ],
     "name": "life expectancy",
     "prefix": "P2250"
+  },
+  "P227": {
+    "database": "Q54506313",
+    "description": "identifier from an international authority file of names, subjects, and organizations (please don't use type n = name, disambiguation) - Deutsche Nationalbibliothek",
+    "example": [
+      "118604740",
+      "118627813",
+      "1231643-X",
+      "4010921-5",
+      "4079154-3",
+      "4131406-2",
+      "4426550-5",
+      "7505698-7"
+    ],
+    "homepage": "https://portal.dnb.de",
+    "name": "GND ID",
+    "pattern": "^1[0123]?\\d{7}[0-9X]|[47]\\d{6}-\\d|[1-9]\\d{0,7}-[0-9X]|3\\d{7}[0-9X]$",
+    "prefix": "P227",
+    "short_name": [
+      "GND"
+    ],
+    "uri_format": "https://d-nb.info/gnd/$1",
+    "uri_format_rdf": "https://d-nb.info/gnd/$1"
   },
   "P2273": {
     "description": "entry in the list of members of the Heidelberg Academy for Sciences and Humanities",
@@ -3607,6 +4042,7 @@
     "pattern": "^(gf|n|nb|nr|no|ns|sh|sj)([4-9][0-9]|00|20[0-2][0-9])[0-9]{6}$",
     "prefix": "P244",
     "short_name": [
+      "LCAuth",
       "LOC authority ID"
     ],
     "uri_format": "https://id.loc.gov/authorities/$1",
@@ -3729,7 +4165,7 @@
     "name": "BARTOC ID",
     "pattern": "^[1-9][0-9]*$",
     "prefix": "P2689",
-    "uri_format": "http://bartoc.org/en/node/$1",
+    "uri_format": "https://bartoc.org/en/node/$1",
     "uri_format_rdf": "http://bartoc.org/en/node/$1"
   },
   "P2699": {
@@ -3814,6 +4250,19 @@
     "pattern": "^B\\d{5}$",
     "prefix": "P2796",
     "uri_format": "http://www.3dmet.dna.affrc.go.jp/cgi/show_data.php?acc=$1"
+  },
+  "P2798": {
+    "description": "identifier for a person, in the Loop database of researcher impact",
+    "example": [
+      "1859",
+      "2187",
+      "82461"
+    ],
+    "homepage": "https://loop.frontiersin.org/",
+    "name": "Loop ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P2798",
+    "uri_format": "https://loop.frontiersin.org/people/$1/overview"
   },
   "P2809": {
     "description": "identifier for a pollen or spore in the Australasian Pollen and Spore Atlas, managed by the Australian National University",
@@ -3963,7 +4412,8 @@
       "554"
     ],
     "name": "ISO 3166-1 numeric code",
-    "prefix": "P299"
+    "prefix": "P299",
+    "uri_format": "https://data.who.int/countries/$1"
   },
   "P3031": {
     "description": "identifier for a taxon in the EPPO Global Database",
@@ -3999,7 +4449,7 @@
     "name": "ButMoth ID",
     "pattern": "^[1-9]\\d{0,4}\\.0$",
     "prefix": "P3060",
-    "uri_format": "https://www.nhm.ac.uk/our-science/data/butmoth/search/GenusDetails.dsml?NUMBER=$1"
+    "uri_format": "https://data.nhm.ac.uk/dataset/buttmoth/resource/c1727662-2d1e-426f-818c-d144552a747c?q=$1+&view_id=3ae940ca-69b8-430b-9cb8-8b509cac5289&field=Author&value="
   },
   "P3063": {
     "database": "Q12912864",
@@ -4692,6 +5142,7 @@
     "uri_format": "https://tga-search.clients.funnelback.com/s/search.html?collection=tga-artg&profile=record&meta_i=$1"
   },
   "P356": {
+    "database": "Q25670",
     "description": "serial code used to uniquely identify digital objects like academic papers (use upper case letters only)",
     "example": [
       "10.12987/YALE/9780300197051.003.0010",
@@ -4814,6 +5265,18 @@
     "pattern": "^[1-9]\\d{0,3}$",
     "prefix": "P3746",
     "uri_format": "https://www.wildflowers.co.il/english/plant.asp?ID=$1"
+  },
+  "P3747": {
+    "description": "identifier for an author at the Social Science Research Network",
+    "example": [
+      "112517",
+      "1585413",
+      "9"
+    ],
+    "name": "SSRN author ID",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "prefix": "P3747",
+    "uri_format": "https://ssrn.com/author=$1"
   },
   "P3753": {
     "database": "Q2393193",
@@ -5117,8 +5580,7 @@
     "homepage": "http://finess.esante.gouv.fr/",
     "name": "FINESS ID",
     "pattern": "^\\d{9}$",
-    "prefix": "P4058",
-    "uri_format": "http://finess.esante.gouv.fr/finess/jsp/actionDetailEtablissement.do?noFiness=$1"
+    "prefix": "P4058"
   },
   "P4122": {
     "description": "identifier for a plant species in the Palynological Database (PalDat) for pollen of the University of Vienna",
@@ -5296,11 +5758,13 @@
   "P4393": {
     "description": "identifier provided by Anvisa, a regulatory body of the Brazilian government responsible for the regulation and approval of pharmaceutical drugs, sanitary standards and regulation of the food industry",
     "example": [
-      "medicamentos/25351097947201706/"
+      "medicamentos/25351097947201706",
+      "medicamentos/25351390235200627",
+      "medicamentos/25351656162201251"
     ],
     "name": "Anvisa drug ID",
     "prefix": "P4393",
-    "uri_format": "https://consultas.anvisa.gov.br/#/$1"
+    "uri_format": "https://consultas.anvisa.gov.br/#/$1/"
   },
   "P4394": {
     "database": "Q1773567",
@@ -5660,7 +6124,7 @@
       "1201090"
     ],
     "homepage": "http://phasmida.speciesfile.org/HomePage/Phasmida/HomePage.aspx",
-    "name": "Phasmida Species File ID",
+    "name": "Phasmida Species File ID (old version)",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P4855",
     "uri_format": "http://phasmida.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -6956,14 +7420,14 @@
     "uri_format": "https://www.fisheries.noaa.gov/species/$1"
   },
   "P6050": {
-    "description": "identifier for a taxon on the Orthoptera Species File Online website",
+    "description": "identifier for a taxon on the Orthoptera Species File Online website (old version now archived)",
     "example": [
       "1103489",
       "1115773",
       "1121320"
     ],
     "homepage": "http://orthoptera.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
-    "name": "Orthoptera Species File ID",
+    "name": "Orthoptera Species File ID (old version)",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6050",
     "uri_format": "http://orthoptera.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -6989,7 +7453,7 @@
       "1178871"
     ],
     "homepage": "http://cockroach.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
-    "name": "Cockroach Species File ID",
+    "name": "Cockroach Species File ID (old version)",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6052",
     "uri_format": "http://cockroach.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -7146,7 +7610,7 @@
     "name": "FloraWeb ID",
     "pattern": "^[1-9]\\d*$",
     "prefix": "P6094",
-    "uri_format": "http://www.floraweb.de/pflanzenarten/artenhome.xsql?suchnr=$1"
+    "uri_format": "https://www.floraweb.de/php/artenhome.php?suchnr=$1"
   },
   "P6096": {
     "description": "identifier for a species on the Fulgoromorpha Lists On the Web website",
@@ -7674,6 +8138,18 @@
     "pattern": "^[1-9]\\d{3,6}$",
     "prefix": "P6433"
   },
+  "P6479": {
+    "description": "identifier for an author in IEEE Xplore",
+    "example": [
+      "37271072100",
+      "37274652000",
+      "37393195900"
+    ],
+    "name": "IEEE Xplore author ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P6479",
+    "uri_format": "https://ieeexplore.ieee.org/author/$1"
+  },
   "P6480": {
     "description": "identifier for a document in IEEE Xplore",
     "example": [
@@ -7726,7 +8202,7 @@
     "uri_format": "https://www.hemiptera-databases.org/cgi-bin/Tessaratomidae/tessaratomidae.pl?db=tessaratomidae&lang=en&card=taxon&rank=species&id=$1"
   },
   "P6516": {
-    "description": "identifier for a taxon in ScaleNet",
+    "description": "identifier for a genus or species in ScaleNet",
     "example": [
       "Diaspidiotus juglansregiae",
       "Waxiella",
@@ -7853,6 +8329,18 @@
     "name": "DSM-IV classification",
     "pattern": "^\\d+\\.\\d+$",
     "prefix": "P663"
+  },
+  "P6634": {
+    "description": "identifier for a person, on the LinkedIn website",
+    "example": [
+      "deborahlehr",
+      "h\u00e9l\u00e8ne-gasnault-a2543562",
+      "joan-rivers-ba163a15"
+    ],
+    "name": "LinkedIn personal profile ID",
+    "pattern": "^[\\p{L}0-9\\-&_'\u2019\\.]+$",
+    "prefix": "P6634",
+    "uri_format": "https://www.linkedin.com/in/$1/"
   },
   "P665": {
     "description": "identifier from\u00a0databases dealing with genomes, enzymatic pathways, and biological chemicals",
@@ -8287,7 +8775,7 @@
       "823"
     ],
     "homepage": "https://pubmed.ncbi.nlm.nih.gov",
-    "name": "PubMed ID",
+    "name": "PubMed publication ID",
     "pattern": "^([1-3]\\d{7}|[1-9]\\d{0,6})$",
     "prefix": "P698",
     "uri_format": "https://pubmed.ncbi.nlm.nih.gov/$1",
@@ -8393,9 +8881,9 @@
     ],
     "homepage": "https://www.drugbank.ca",
     "name": "DrugBank ID",
-    "pattern": "^(SALT\\d{1}|CAT\\d{1})?\\d{5}$",
+    "pattern": "^DB(SALT\\d|CAT\\d)?\\d{5}$",
     "prefix": "P715",
-    "uri_format": "https://go.drugbank.com/drugs/DB$1"
+    "uri_format": "https://go.drugbank.com/drugs/$1"
   },
   "P7173": {
     "description": "Terminologia Anatomica second edition (2019) identifier. Unique identifier for human anatomical terminology.",
@@ -8447,6 +8935,18 @@
     "pattern": "^\\d{1,7}$",
     "prefix": "P7224",
     "uri_format": "http://insecta.pro/taxonomy/$1"
+  },
+  "P7238": {
+    "description": "ID in osf.io",
+    "example": [
+      "2u4tf",
+      "e9tg8",
+      "wx9bf"
+    ],
+    "name": "Open Science Framework ID",
+    "pattern": "^[a-z0-9]{5}$",
+    "prefix": "P7238",
+    "uri_format": "https://osf.io/$1"
   },
   "P7254": {
     "description": "identifier for a taxon in the database of German Mycological Society (voluntary association - DGfM)",
@@ -8809,6 +9309,21 @@
     "prefix": "P7830",
     "uri_format": "https://www.ncbi.nlm.nih.gov/books/n/livertox/$1"
   },
+  "P7834": {
+    "description": "ID of a researcher in Authenticus website",
+    "example": [
+      "P-008-GD6",
+      "P-00A-A83",
+      "P-00N-E5D",
+      "R-000-008",
+      "R-000-00F",
+      "R-001-0W1"
+    ],
+    "name": "Authenticus ID",
+    "pattern": "^[A-Z]-[0-9A-Z]{3}-[0-9A-Z]{3}$",
+    "prefix": "P7834",
+    "uri_format": "https://www.authenticus.pt/$1"
+  },
   "P7864": {
     "description": "identifier for an article in the HAL (Hyper Articles en Ligne) open access repository",
     "example": [
@@ -8820,6 +9335,19 @@
     "pattern": "^[a-z\\d]+-\\d+$",
     "prefix": "P7864",
     "uri_format": "https://hal.science/$1"
+  },
+  "P7893": {
+    "description": "identifier of scientific author in www.cienciavitae.pt",
+    "example": [
+      "0C1F-DA6C-4B02",
+      "7510-6641-5A42",
+      "A11B-38F7-A1B1"
+    ],
+    "homepage": "https://www.ciencia-id.pt",
+    "name": "CI\u00caNCIAVITAE ID",
+    "pattern": "^([0-9A-F]{4}-){2}[0-9A-F]{4}$",
+    "prefix": "P7893",
+    "uri_format": "https://www.cienciavitae.pt/$1"
   },
   "P7896": {
     "description": "identifier of a publication at Academia.edu",
@@ -8902,6 +9430,7 @@
     "uri_format": "https://www.nhs.uk/conditions/$1"
   },
   "P8061": {
+    "database": "Q292649",
     "description": "identifier for a subject in AGROVOC thesaurus",
     "example": [
       "c_00824893",
@@ -9034,7 +9563,7 @@
       "24515059"
     ],
     "homepage": "https://pascal-francis.inist.fr/vibad/index.php?action=advancedSearch",
-    "name": "Pascal et Francis ID",
+    "name": "INIST ID",
     "pattern": "^\\d+$",
     "prefix": "P8109",
     "uri_format": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=$1"
@@ -9069,7 +9598,7 @@
       "1193213",
       "1225873"
     ],
-    "name": "Psocodea Species File ID",
+    "name": "Psocodea Species File ID (old)",
     "pattern": "^\\d+$",
     "prefix": "P8145",
     "uri_format": "http://psocodea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1"
@@ -9111,6 +9640,19 @@
     "pattern": "^[A-Za-z]+([-_]([A-Za-z0-9]+))*$",
     "prefix": "P8153",
     "uri_format": "https://www.accademiadellescienze.it/accademia/soci/$1"
+  },
+  "P8159": {
+    "description": "numerical identifier for an author in SciProfiles by MDPI",
+    "example": [
+      "118021",
+      "92927",
+      "94648"
+    ],
+    "homepage": "https://sciprofiles.com/",
+    "name": "SciProfiles ID",
+    "pattern": "^[1-9]\\d*$",
+    "prefix": "P8159",
+    "uri_format": "https://sciprofiles.com/profile/$1"
   },
   "P8162": {
     "description": "identifier for a facility indexed by Bangladesh's Directorate General of Health Services",
@@ -9524,6 +10066,18 @@
     "prefix": "P8765",
     "uri_format": "https://www.rhs.org.uk/Plants/$1/wd/Details"
   },
+  "P8778": {
+    "description": "Docker repository hosted on Docker Hub",
+    "example": [
+      "gitea/gitea",
+      "library/nginx",
+      "library/redis"
+    ],
+    "homepage": "https://hub.docker.com/",
+    "name": "Docker Hub repository",
+    "prefix": "P8778",
+    "uri_format": "https://hub.docker.com/r/$1"
+  },
   "P8792": {
     "example": [
       "faunaweb/amphibiaweb/FichaEspecie/Pristimantis%20erythros",
@@ -9852,7 +10406,7 @@
       "3682911"
     ],
     "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
-    "name": "PMCID",
+    "name": "PMC publication ID",
     "pattern": "^[1-9]\\d+$",
     "prefix": "P932",
     "uri_format": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC$1"
@@ -10274,6 +10828,7 @@
     "uri_format": "https://www.aadfi.it/?accademico=$1"
   },
   "P9635": {
+    "database": "Q37155",
     "description": "identifier of a medicine listed in the electronic Essential Medicines List (eEML) published by the WHO",
     "example": [
       "108",
@@ -10290,7 +10845,8 @@
     "example": [
       "deceased/abderhalden",
       "former/funes",
-      "ordinary/bagnato"
+      "ordinary/bagnato",
+      "perdurante/pasini"
     ],
     "homepage": "http://www.pas.va/content/accademia/en/academicians.html",
     "name": "PAS member ID",
@@ -10454,6 +11010,19 @@
     "homepage": "https://incubator.wikimedia.org",
     "name": "Wikimedia Incubator URL",
     "prefix": "P9748"
+  },
+  "P9776": {
+    "description": "identifier for researchers in Japan used in goverment-based research funding (from 1980s)",
+    "example": [
+      "00011461",
+      "10295694",
+      "90050426"
+    ],
+    "homepage": "https://nrid.nii.ac.jp/ja/search/?kw=",
+    "name": "e-Rad researcher number",
+    "pattern": "^\\d{8}$",
+    "prefix": "P9776",
+    "uri_format": "https://nrid.nii.ac.jp/ja/nrid/10000$1"
   },
   "P9784": {
     "description": "identifier of a publication in Index Theologicus",

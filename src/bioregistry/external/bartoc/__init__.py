@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
 """Download the BARTOC registry."""
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, ClassVar
 
 import requests
 from tqdm import tqdm
@@ -12,11 +11,11 @@ from tqdm import tqdm
 from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 
-from ..alignment_utils import Aligner
+from ..alignment_utils import Aligner, load_processed
 
 __all__ = [
-    "get_bartoc",
     "BartocAligner",
+    "get_bartoc",
 ]
 
 HERE = Path(__file__).parent.resolve()
@@ -24,19 +23,22 @@ PROCESSED_PATH = HERE / "processed.json"
 URL = "https://bartoc.org/data/dumps/latest.ndjson"
 
 
-def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
+def get_bartoc(*, force_download: bool = True) -> dict[str, dict[str, Any]]:
     """Get the BARTOC registry.
 
-    :param force_download: If true, forces download. If false and the file
-        is already cached, reuses it.
+    :param force_download: If true, forces download. If false and the file is already
+        cached, reuses it.
+
     :returns: The BARTOC registry
 
-    .. seealso:: https://bartoc.org/
+    .. seealso::
+
+        https://bartoc.org/
     """
     if PROCESSED_PATH.is_file() and not force_download:
-        return json.loads(PROCESSED_PATH.read_text())
+        return load_processed(PROCESSED_PATH)
     rv = {}
-    for line in requests.get(URL).iter_lines():
+    for line in requests.get(URL, timeout=15).iter_lines():
         record = json.loads(line)
         record = _process_bartoc_record(record)
         rv[record["prefix"]] = record
@@ -45,7 +47,7 @@ def get_bartoc(force_download: bool = True) -> Mapping[str, Mapping[str, Any]]:
     return rv
 
 
-def _process_bartoc_record(record):
+def _process_bartoc_record(record: dict[str, Any]) -> dict[str, Any]:
     prefix = record["uri"][len("http://bartoc.org/en/node/") :]
     rv = {
         "prefix": prefix,
@@ -90,7 +92,7 @@ class BartocAligner(Aligner):
     key = "bartoc"
     getter = get_bartoc
     alt_key_match = "abbreviation"
-    curation_header = ["name", "homepage", "description"]
+    curation_header: ClassVar[Sequence[str]] = ["name", "homepage", "description"]
 
 
 if __name__ == "__main__":

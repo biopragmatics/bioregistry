@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Re3data is a registry of research data repositories.
 
 Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
@@ -7,19 +5,20 @@ Example API endpoint: https://www.re3data.org/api/v1/repository/r3d100010772
 
 import json
 import logging
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Mapping, Optional, Tuple
+from typing import Any, ClassVar
 from xml.etree import ElementTree
 
 import requests
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import removeprefix
 
 __all__ = [
-    "get_re3data",
     "Re3dataAligner",
+    "get_re3data",
 ]
 
 logger = logging.getLogger(__name__)
@@ -30,20 +29,20 @@ BASE_URL = "https://www.re3data.org"
 SCHEMA = "{http://www.re3data.org/schema/2-2}"
 
 
-def get_re3data(force_download: bool = False):
+def get_re3data(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the re3data registry.
 
-    This takes about 9 minutes since it has to look up each of the ~3K
-    records with their own API call.
+    This takes about 9 minutes since it has to look up each of the ~3K records with
+    their own API call.
 
     :param force_download: If true, re-downloads the data
+
     :returns: The re3data pre-processed data
     """
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
-    res = requests.get(f"{BASE_URL}/api/v1/repositories")
+    res = requests.get(f"{BASE_URL}/api/v1/repositories", timeout=15)
     tree = ElementTree.fromstring(res.text)
 
     identifier_to_doi = {}
@@ -55,13 +54,13 @@ def get_re3data(force_download: bool = False):
         doi_element = repository.find("doi")
         doi = (
             removeprefix(doi_element.text, "https://doi.org/")
-            if doi_element and doi_element.text
+            if doi_element is not None and doi_element.text
             else None
         )
         identifier_to_doi[identifier_element.text.strip()] = doi
 
     records = dict(
-        thread_map(
+        thread_map(  # type:ignore
             _get_record,
             identifier_to_doi,
             unit_scale=True,
@@ -83,36 +82,39 @@ def get_re3data(force_download: bool = False):
     return records
 
 
-def _get_record(identifier: str) -> Tuple[str, Mapping[str, Any]]:
-    res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}")
+def _get_record(identifier: str) -> tuple[str, Mapping[str, Any]]:
+    res = requests.get(f"{BASE_URL}/api/v1/repository/{identifier}", timeout=15)
     tree = ElementTree.fromstring(res.text)[0]
     return identifier, _process_record(identifier, tree)
 
 
-def _process_record(identifier: str, tree_inner):
+def _process_record(identifier: str, tree_inner: ElementTree.Element) -> dict[str, Any]:
     xrefs = (
         _clean_xref(element.text.strip())
         for element in tree_inner.findall(f"{SCHEMA}repositoryIdentifier")
+        if element.text is not None
     )
     data = {
         "prefix": identifier,
-        "name": tree_inner.find(f"{SCHEMA}repositoryName").text,
-        "description": tree_inner.find(f"{SCHEMA}description").text,
-        "homepage": tree_inner.find(f"{SCHEMA}repositoryURL").text,
+        "name": tree_inner.findtext(f"{SCHEMA}repositoryName"),
+        "description": tree_inner.findtext(f"{SCHEMA}description"),
+        "homepage": tree_inner.findtext(f"{SCHEMA}repositoryURL"),
         "synonyms": [
-            element.text.strip() for element in tree_inner.findall(f"{SCHEMA}additionalName")
+            element.text.strip()
+            for element in tree_inner.findall(f"{SCHEMA}additionalName")
+            if element.text is not None
         ],
         "xrefs": dict(tup for tup in xrefs if tup),
     }
 
     license_element = tree_inner.find(f"{SCHEMA}databaseLicense/{SCHEMA}databaseLicenseName")
-    if license_element:
+    if license_element is not None:
         data["license"] = license_element.text
 
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
 
 
-def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
+def _clean_xref(xref: str) -> tuple[str, str] | None:
     if (
         xref.startswith("FAIRsharing_DOI:10.25504/")
         or xref.startswith("FAIRsharing_doi:10.25504/")
@@ -191,7 +193,7 @@ class Re3dataAligner(Aligner):
     key = "re3data"
     alt_key_match = "name"
     getter = get_re3data
-    curation_header = ("name", "homepage", "description")
+    curation_header: ClassVar[Sequence[str]] = ("name", "homepage", "description")
 
 
 if __name__ == "__main__":
