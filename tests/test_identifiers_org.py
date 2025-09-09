@@ -36,12 +36,13 @@ class TestIdentifiersOrg(unittest.TestCase):
         """Test getting identifiers.org prefixes."""
         for prefix, miriam_prefix in [
             ("ncbitaxon", "taxonomy"),
-            ("eccode", "ec-code"),
+            ("ec", "ec-code"),
         ]:
             with self.subTest(prefix=prefix):
                 self.assertEqual(miriam_prefix, bioregistry.get_identifiers_org_prefix(prefix))
 
-        for prefix in ["MONDO"]:
+        # Test prefixes that don't exist in MIRIAM
+        for prefix in ["IDOMAL"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
     def test_standardize_identifier(self):
@@ -102,8 +103,8 @@ class TestIdentifiersOrg(unittest.TestCase):
 
         .. warning::
 
-            This test takes up to 5 minutes since it makes a lot of web requests, and
-            is therefore skipped by default.
+            This test takes up to 5 minutes since it makes a lot of web requests, and is
+            therefore skipped by default.
         """
         for prefix, entry in self.entries.items():
             miriam_prefix = entry.get_identifiers_org_prefix()

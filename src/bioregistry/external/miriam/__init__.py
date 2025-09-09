@@ -1,13 +1,15 @@
 """Download registry information from Identifiers.org/MIRIAMs."""
 
 import json
+from collections.abc import Sequence
 from operator import itemgetter
 from pathlib import Path
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 
 __all__ = [
     "MiriamAligner",
@@ -25,17 +27,20 @@ SKIP = {
     "f82a1a",
     "4503",
     "6vts",
+    # Appears to be a duplicate of modeldb causing URI prefix clash
+    "modeldb.concept",
 }
 SKIP_URI_FORMATS = {
     "http://arabidopsis.org/servlets/TairObject?accession=$1",
 }
 
 
-def get_miriam(force_download: bool = False, force_process: bool = False):
+def get_miriam(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the MIRIAM registry."""
     if PROCESSED_PATH.exists() and not force_download and not force_process:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
     with open(RAW_PATH) as file:
@@ -57,16 +62,17 @@ def get_miriam(force_download: bool = False, force_process: bool = False):
     return rv
 
 
-#: Pairs of MIRIAM prefix and provider codes to skip
+#: Pairs of MIRIAM prefix and provider codes (or name, since some providers don't have codes)
 PROVIDER_BLACKLIST = {
     ("ega.study", "omicsdi"),
     # see discussion at https://github.com/biopragmatics/bioregistry/pull/944
     ("bioproject", "ebi"),
     ("pmc", "ncbi"),
+    ("inchi", "InChI through Chemspider"),
 }
 
 
-def _process(record):
+def _process(record: dict[str, Any]) -> dict[str, Any]:
     prefix = record["prefix"]
     rv = {
         "prefix": prefix,
@@ -99,7 +105,11 @@ def _process(record):
     extras = []
     for provider in rest:
         code = provider["code"]
-        if code in SKIP_PROVIDERS or (prefix, code) in PROVIDER_BLACKLIST:
+        if (
+            code in SKIP_PROVIDERS
+            or (prefix, code) in PROVIDER_BLACKLIST
+            or (prefix, provider["name"]) in PROVIDER_BLACKLIST
+        ):
             continue
         del provider["official"]
         extras.append(provider)
@@ -115,7 +125,7 @@ SKIP_PROVIDERS = {
 }
 
 
-def _preprocess_resource(resource):
+def _preprocess_resource(resource: dict[str, Any]) -> dict[str, Any]:
     rv = {
         "official": resource["official"],
         "homepage": resource["resourceHomeUrl"],
@@ -134,7 +144,7 @@ class MiriamAligner(Aligner):
 
     key = "miriam"
     getter = get_miriam
-    curation_header = ("deprecated", "name", "description")
+    curation_header: ClassVar[Sequence[str]] = ("deprecated", "name", "description")
     include_new = True
 
 

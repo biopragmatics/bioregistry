@@ -180,7 +180,7 @@
       "type": "object"
     },
     "Context": {
-      "description": "A prescriptive context contains configuration for generating fit-for-purpose\nprefix maps to serve various communities based on the standard Bioregistry\nprefix map, custom prefix remapping rules, custom URI prefix remapping rules,\ncustom prefix maps, and other community-specific logic.",
+      "description": "A prescriptive context.\n\nA prescriptive context contains configuration for generating fit-for-purpose\nprefix maps to serve various communities based on the standard Bioregistry\nprefix map, custom prefix remapping rules, custom URI prefix remapping rules,\ncustom prefix maps, and other community-specific logic.",
       "properties": {
         "name": {
           "description": "The name of the context",
@@ -280,6 +280,12 @@
           ],
           "description": "This is a list of canonical Bioregistry prefixes that should not be included in the context.",
           "title": "Blacklist"
+        },
+        "enforce_w3c": {
+          "default": false,
+          "description": "Should w3c prefix synonyms be enforced?",
+          "title": "Enforce W3C",
+          "type": "boolean"
         }
       },
       "required": [
@@ -398,6 +404,31 @@
           "default": null,
           "description": "A list of publications about the provider. See the `indra` provider for `hgnc` for an example.",
           "title": "Publications"
+        },
+        "example": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "An example local identifier, specific to the provider. Providing this value is only necessary if the example associated with the prefix for which this is a provider is not resolvable by the provider. The example identifier should exclude any redundant usage of the prefix. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
+          "title": "Example"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StatusCheck"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Tracks the status of the provider. If this isn't set, assume that the provider is still active. See discussion in in https://github.com/biopragmatics/bioregistry/issues/1387."
         }
       },
       "required": [
@@ -1123,6 +1154,49 @@
           "default": null,
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account."
         },
+        "contact_extras": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Attributable"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Secondary contacts. It's required to have a primary contact to have this field.",
+          "title": "Contact Extras"
+        },
+        "contact_group_email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A group contact email (e.g., a mailing list, a shared address) for the project. It's required to have a primary contact to have this field.",
+          "title": "Contact Group Email"
+        },
+        "contact_page": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A URL for a web page that has contact information, e.g., containing a contact form. It's required to have a primary contact to have this field, even if the primary contact isn't the preferred mechanism for contact. Only curate this field if a direct email is not available, as this is the least transparent option for contact.",
+          "title": "Contact Page"
+        },
         "owners": {
           "anyOf": [
             {
@@ -1518,6 +1592,22 @@
           "default": null,
           "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optional their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub."
         },
+        "reviewer_extras": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Author"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Additional reviewers of the prefix.",
+          "title": "Reviewer Extras"
+        },
         "proprietary": {
           "anyOf": [
             {
@@ -1612,6 +1702,7 @@
         "miriam": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1624,6 +1715,7 @@
         "n2t": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1636,6 +1728,7 @@
         "prefixcommons": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1648,6 +1741,7 @@
         "wikidata": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1657,9 +1751,23 @@
           "default": null,
           "title": "Wikidata"
         },
+        "wikidata_entity": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wikidata Entity"
+        },
         "go": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1672,6 +1780,7 @@
         "obofoundry": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1684,6 +1793,7 @@
         "bioportal": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1696,6 +1806,7 @@
         "ecoportal": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1708,6 +1819,7 @@
         "agroportal": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1720,6 +1832,7 @@
         "cropoct": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1732,6 +1845,7 @@
         "ols": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1744,6 +1858,7 @@
         "aberowl": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1756,6 +1871,7 @@
         "ncbi": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1768,6 +1884,7 @@
         "uniprot": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1780,6 +1897,7 @@
         "biolink": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1792,6 +1910,7 @@
         "cellosaurus": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1804,6 +1923,7 @@
         "ontobee": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1816,6 +1936,7 @@
         "cheminf": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1828,6 +1949,7 @@
         "fairsharing": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1840,6 +1962,7 @@
         "biocontext": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1852,6 +1975,7 @@
         "edam": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1864,6 +1988,7 @@
         "re3data": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1876,6 +2001,7 @@
         "hl7": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1888,6 +2014,7 @@
         "bartoc": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1900,6 +2027,7 @@
         "rrid": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1912,6 +2040,7 @@
         "lov": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1924,6 +2053,7 @@
         "zazuko": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1936,6 +2066,7 @@
         "togoid": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1948,6 +2079,7 @@
         "integbio": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1960,6 +2092,7 @@
         "pathguide": {
           "anyOf": [
             {
+              "additionalProperties": true,
               "type": "object"
             },
             {
@@ -1974,6 +2107,52 @@
         "prefix"
       ],
       "title": "Resource",
+      "type": "object"
+    },
+    "StatusCheck": {
+      "description": "A status check.",
+      "properties": {
+        "value": {
+          "enum": [
+            "available",
+            "moved",
+            "gone",
+            "hijacked",
+            "degraded",
+            "misconfigured"
+          ],
+          "title": "Value",
+          "type": "string"
+        },
+        "date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Date",
+          "type": "string"
+        },
+        "contributor": {
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
+          "title": "Contributor",
+          "type": "string"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "value",
+        "date",
+        "contributor"
+      ],
+      "title": "StatusCheck",
       "type": "object"
     }
   },

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+import itertools as itt
 import json
 import unittest
-from typing import ClassVar, Dict, List
+from typing import ClassVar
 
 import rdflib
 import rdflib.plugins.parsers.notation3
@@ -54,11 +55,11 @@ class TestWeb(unittest.TestCase):
         self.assertEqual("CHEBI", registry["chebi"].get_preferred_prefix())
 
     @staticmethod
-    def _parse_registry_json(res) -> Dict[str, Resource]:
+    def _parse_registry_json(res) -> dict[str, Resource]:
         data = res.json().items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
-    def _parse_registry_rdf(self, res, fmt: str) -> Dict[str, Resource]:
+    def _parse_registry_rdf(self, res, fmt: str) -> dict[str, Resource]:
         graph = rdflib.Graph()
         try:
             graph.parse(data=res.text, format=fmt)
@@ -88,7 +89,7 @@ class TestWeb(unittest.TestCase):
         return rv
 
     @staticmethod
-    def _parse_registry_yaml(res) -> Dict[str, Resource]:
+    def _parse_registry_yaml(res) -> dict[str, Resource]:
         data = yaml.safe_load(res.text).items()
         return {key: Resource.model_validate(resource) for key, resource in data}
 
@@ -109,13 +110,14 @@ class TestWeb(unittest.TestCase):
 
     def test_ui_resource_rdf(self):
         """Test the UI resource with content negotiation."""
-        prefix = "3dmet"
-        for accept, fmt in [
+        prefixes = ["3dmet", "_3dmet"]
+        fmts = [
             ("text/turtle", "turtle"),
             ("text/n3", "n3"),
             ("application/ld+json", "jsonld"),
-        ]:
-            with self.subTest(format=fmt):
+        ]
+        for prefix, (accept, fmt) in itt.product(prefixes, fmts):
+            with self.subTest(prefix=prefix, format=fmt):
                 res = self.client.get(f"/registry/{prefix}", headers={"Accept": accept})
                 self.assertEqual(
                     200, res.status_code, msg=f"Failed on {prefix} to accept {accept} ({fmt})"
@@ -133,7 +135,7 @@ class TestWeb(unittest.TestCase):
                     g.query("SELECT ?s WHERE { ?s a <https://bioregistry.io/schema/#0000001> }")
                 )
                 self.assertEqual(1, len(results))
-                self.assertEqual(f"https://bioregistry.io/registry/{prefix}", str(results[0][0]))
+                self.assertEqual("https://bioregistry.io/registry/_3dmet", str(results[0][0]))
 
     def test_api_metaregistry(self):
         """Test the metaregistry endpoint."""
@@ -206,7 +208,7 @@ class TestWeb(unittest.TestCase):
             ["json", "yaml"],
         )
 
-    def assert_endpoint(self, endpoint: str, formats: List[str]) -> None:
+    def assert_endpoint(self, endpoint: str, formats: list[str]) -> None:
         """Test downloading the full registry as JSON."""
         self.assertTrue(endpoint.startswith("/"))
         with self.subTest(fmt=None):
@@ -247,7 +249,9 @@ class TestWeb(unittest.TestCase):
     def test_iri_mapping(self):
         """Test IRI mappings.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/1065
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/1065
         """
         uri = "http://id.nlm.nih.gov/mesh/C063233"
         res = self.client.post("/api/uri/parse/", json={"uri": uri})

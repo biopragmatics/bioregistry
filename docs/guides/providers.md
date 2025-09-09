@@ -54,6 +54,15 @@ that highlights three parts:
    resolution, JSON/XML/structured data artifacts, or other
 2. URI patterns that appear in data, but aren't necessarily for resolution
 
+## Providers for a Subset
+
+Some providers only resolve a subset of the corresponding semantic space. For
+example, the Immune Epitope Database providers for UniProt identifiers, but only
+the subset that have been curated as antigens.
+
+In general, it's okay to curate such providers, given that the description field
+makes it clear what the limitations are.
+
 ## What Can I Do with Providers?
 
 The Bioregistry resolver has the ability to redirect based on providers. For

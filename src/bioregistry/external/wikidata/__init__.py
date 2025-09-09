@@ -2,12 +2,13 @@
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping, Sequence
 from pathlib import Path
 from textwrap import dedent
+from typing import Any, ClassVar
 
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.utils import query_wikidata, removeprefix
 
 __all__ = [
@@ -193,7 +194,7 @@ MIRIAM_BLACKLIST = {
 }
 
 
-def _get_mapped():
+def _get_mapped() -> set[str]:
     return {
         value
         for record in json.loads(BIOREGISTRY_PATH.read_text()).values()
@@ -202,12 +203,12 @@ def _get_mapped():
     }
 
 
-def _get_query(properties) -> str:
+def _get_query(properties: Iterable[str]) -> str:
     values = " ".join(f"wd:{p}" for p in properties)
     return QUERY_FMT % values
 
 
-def _get_wikidata():
+def _get_wikidata() -> dict[str, dict[str, Any]]:
     """Iterate over Wikidata properties connected to biological databases."""
     mapped = _get_mapped()
     # throw out anything that can be queried directly
@@ -226,7 +227,7 @@ def _get_wikidata():
         prefix = bindings["prefix"] = removeprefix(
             bindings["prefix"], "http://www.wikidata.org/entity/"
         )
-        if prefix in SKIP:
+        if prefix in SKIP or not prefix:
             continue
 
         examples = bindings.get("example", "").split("\t")
@@ -305,11 +306,10 @@ def _get_wikidata():
     return rv
 
 
-def get_wikidata(force_download: bool = False):
+def get_wikidata(force_download: bool = False) -> dict[str, dict[str, Any]]:
     """Get the wikidata registry."""
     if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     data = _get_wikidata()
     with PROCESSED_PATH.open("w") as file:
@@ -326,7 +326,13 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header = ("name", "homepage", "description", "uri_format", "example")
+    curation_header: ClassVar[Sequence[str]] = (
+        "name",
+        "homepage",
+        "description",
+        "uri_format",
+        "example",
+    )
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries to skip."""

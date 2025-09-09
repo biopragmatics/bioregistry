@@ -20,18 +20,15 @@ Run with:
 from __future__ import annotations
 
 import datetime
-import json
 import logging
 import textwrap
 from collections import defaultdict
-from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, NamedTuple, Union
+from typing import TYPE_CHECKING, NamedTuple, TypeAlias, cast
 
 import click
 import numpy as np
 import pandas as pd
-from more_itertools import chunked
 from numpy.typing import NDArray
 from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
@@ -43,16 +40,17 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
-from typing_extensions import TypeAlias
 
-from bioregistry.constants import BIOREGISTRY_PATH, CURATED_PAPERS_PATH
+import bioregistry
+from bioregistry import Manager
+from bioregistry.constants import CURATED_PAPERS_PATH, EXPORT_DIRECTORY
+
+if TYPE_CHECKING:
+    import pubmed_downloader
 
 logger = logging.getLogger(__name__)
 
-HERE = Path(__file__).parent.resolve()
-ROOT = HERE.parent.parent.parent.resolve()
-
-DIRECTORY = ROOT.joinpath("exports", "analyses", "paper_ranking")
+DIRECTORY = EXPORT_DIRECTORY.joinpath("analyses", "paper_ranking")
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 
 URL = (
@@ -65,10 +63,10 @@ YTrain: TypeAlias = NDArray[np.float64]
 XTest: TypeAlias = NDArray[np.str_]
 YTest: TypeAlias = NDArray[np.str_]
 
-ClassifierHint: TypeAlias = Union[ClassifierMixin, LinearClassifierMixin]
+ClassifierHint: TypeAlias = ClassifierMixin | LinearClassifierMixin
 Classifiers: TypeAlias = list[tuple[str, ClassifierHint]]
 
-DEFAULT_SEARCH_TERMS = [
+DEFAULT_SEARCH_TERMS: list[str] = [
     "database",
     "ontology",
     "resource",
@@ -76,130 +74,195 @@ DEFAULT_SEARCH_TERMS = [
     "nomenclature",
 ]
 
+#: A mapping from the NLM Catalog ID to the journal name for journals
+#: that should be excluded
+EXCLUDE_JOURNALS: dict[str, str] = {
+    "101680187": "bioRxiv",
+    "101767986": "medRxiv",
+}
 
-def get_publications_from_bioregistry(path: Path | None = None) -> pd.DataFrame:
+
+def get_publications_from_bioregistry(
+    path: Path | None = None,
+    *,
+    loud: bool = True,
+    strict: bool = False,
+) -> pd.DataFrame:
     """Load bioregistry data from a JSON file, extracting publication details and fetching abstracts if missing.
 
     :param path: Path to the bioregistry JSON file.
-    :return: DataFrame containing publication details.
+
+    :returns: DataFrame containing publication details.
     """
-    if path is None:
-        path = BIOREGISTRY_PATH
+    if path is not None:
+        manager = Manager(registry=path)
+    else:
+        manager = bioregistry.manager
 
-    records = json.loads(path.read_text(encoding="utf-8"))
-    publications = []
-    pubmeds = set()
-    for record in records.values():
-        # TODO replace with usage of bioregistry code, this is duplicate logic
-        #  see Resource.get_publications()
-        for publication in record.get("publications", []):
-            pubmed = publication.get("pubmed")
-            if pubmed:
-                pubmeds.add(pubmed)
-            publications.append({"pubmed": pubmed, "title": publication.get("title"), "label": 1})
+    publications = {}
+    for resource in manager.registry.values():
+        for publication in resource.get_publications():
+            if not publication.pubmed:
+                continue
+            publications[publication.pubmed] = {
+                "pubmed": str(publication.pubmed),
+                "title": publication.title,
+                "relevant": POSITIVE_VALUE,
+            }
 
-    pubmed_to_metadata = _get_metadata_for_ids(sorted(pubmeds))
-    for publication in publications:
-        publication["abstract"] = pubmed_to_metadata.get(publication["pubmed"], {}).get(
-            "abstract", ""
-        )
-
-    logger.info(f"Got {len(publications):,} publications from the bioregistry")
-
-    return pd.DataFrame(publications)
+    df = pd.DataFrame.from_dict(publications, orient="index")
+    _fill_abstracts(df, strict=strict)
+    if loud:
+        _echo_stats(df, "publications from the bioregistry")
+    return df
 
 
-def load_curated_papers(file_path: Path = CURATED_PAPERS_PATH) -> pd.DataFrame:
+def load_curated_papers(
+    file_path: Path | None = None, *, loud: bool = True, strict: bool = False
+) -> pd.DataFrame:
     """Load curated papers data from TSV file, and fetch titles and abstracts for PMIDs.
 
     :param file_path: Path to the curated_papers.tsv file.
-    :return: DataFrame containing curated publication details.
+
+    :returns: DataFrame containing curated publication details.
     """
-    curated_df = pd.read_csv(file_path, sep="\t")
-    curated_df = curated_df.rename(columns={"pmid": "pubmed", "relevant": "label"})
-    curated_df["title"] = ""
-    curated_df["abstract"] = ""
+    if file_path is None:
+        file_path = CURATED_PAPERS_PATH
 
-    pubmeds = curated_df["pubmed"].tolist()
-    fetched_metadata = _get_metadata_for_ids(pubmeds)
+    df = pd.read_csv(file_path, sep="\t", dtype=str)
+    df["relevant"] = df["relevant"].map(_map_labels)
 
-    for index, row in curated_df.iterrows():
-        if row["pubmed"] in fetched_metadata:
-            curated_df.at[index, "title"] = fetched_metadata[row["pubmed"]].get("title", "")
-            curated_df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
+    pubmed_to_article = _get_articles_dict(df)
 
-    click.echo(f"Got {len(curated_df)} curated publications from the curated_papers.tsv file")
-    return curated_df
-
-
-def _get_metadata_for_ids(pubmed_ids: Iterable[int | str]) -> dict[str, dict[str, Any]]:
-    """Get metadata for articles in PubMed, wrapping the INDRA client."""
-    from indra.literature import pubmed_client
-
-    fetched_metadata = {}
-    for chunk in chunked(
-        tqdm(pubmed_ids, unit="article", unit_scale=True, desc="Getting metadata"), 200
-    ):
-        fetched_metadata.update(pubmed_client.get_metadata_for_ids(chunk, get_abstracts=True))
-    return fetched_metadata
+    df["title"] = df["pubmed"].map(
+        lambda pubmed: article.title if (article := pubmed_to_article.get(pubmed)) else None
+    )
+    _fill_abstracts(df, pubmed_to_article, strict=strict)
+    if loud:
+        _echo_stats(df, "curated publications from the curated_papers.tsv file")
+    return df
 
 
-def _get_ids(term: str, use_text_word: bool, start_date: str, end_date: str) -> set[str]:
-    from indra.literature import pubmed_client
+def _echo_stats(df: pd.DataFrame, end: str) -> None:
+    n_positive = (df["relevant"] == POSITIVE_VALUE).sum()
+    n_negative = (df["relevant"] == NEGATIVE_VALUE).sum()
+    n_uncurated = (~df["relevant"].isin({POSITIVE_VALUE, NEGATIVE_VALUE})).sum()
+    n_total = len(df)
+    click.echo(
+        f"Got {n_total:,} (positive: {n_positive:,}, negative: {n_negative:,}, uncurated: {n_uncurated:,}) {end}"
+    )
 
-    return {
-        str(pubmed_id)
-        for pubmed_id in pubmed_client.get_ids(
-            term, use_text_word=use_text_word, mindate=start_date, maxdate=end_date
+
+def _fill_abstracts(
+    df: pd.DataFrame,
+    pubmed_to_article: dict[str, pubmed_downloader.Article] | None = None,
+    *,
+    strict: bool = False,
+) -> None:
+    if pubmed_to_article is None:
+        pubmed_to_article = _get_articles_dict(df)
+
+    df["abstract"] = df["pubmed"].map(
+        lambda pubmed: article.get_abstract()
+        if (article := pubmed_to_article.get(pubmed))
+        else None,
+        na_action="ignore",
+    )
+
+    abstract_na_idx = df["abstract"].isna()
+    if abstract_na_idx.all():
+        raise ValueError(
+            f"no abstracts were mapped properly.\n\n{df['pubmed'].nunique():,} PubMeds: {df['pubmed'].unique()}\n\nArticles: {pubmed_to_article}"
         )
-    }
+    if strict and abstract_na_idx.any():
+        raise ValueError(f"some abstracts weren't found\n\n{df[abstract_na_idx]}")
+
+
+def _get_articles_dict(df: pd.DataFrame) -> dict[str, pubmed_downloader.Article]:
+    import pubmed_downloader
+
+    return pubmed_downloader.get_articles_dict(df["pubmed"], progress=True)
+
+
+def _get_ids(
+    term: str, *, use_text_word: bool, start_date: str, end_date: str | None = None
+) -> list[str]:
+    import pubmed_downloader
+
+    if end_date is None:
+        end_date = datetime.date.today().isoformat()
+
+    return pubmed_downloader.search(
+        term, use_text_word=use_text_word, mindate=start_date, maxdate=end_date
+    )
 
 
 def _search(
-    terms: list[str], pubmed_ids_to_filter: set[str], start_date: str, end_date: str
+    terms: list[str],
+    *,
+    pubmed_ids_to_filter: set[str] | None = None,
+    start_date: str,
+    end_date: str | None = None,
 ) -> dict[str, list[str]]:
-    paper_to_terms: defaultdict[str, list[str]] = defaultdict(list)
+    if pubmed_ids_to_filter is None:
+        pubmed_ids_to_filter = set()
+    pubmed_to_terms: defaultdict[str, list[str]] = defaultdict(list)
     for term in tqdm(terms, desc="Searching PubMed", unit="search term", leave=False):
         for pubmed_id in _get_ids(
             term, use_text_word=True, start_date=start_date, end_date=end_date
         ):
             if pubmed_id not in pubmed_ids_to_filter:
-                paper_to_terms[pubmed_id].append(term)
-    return dict(paper_to_terms)
+                pubmed_to_terms[pubmed_id].append(term)
+    return dict(pubmed_to_terms)
 
 
 def fetch_pubmed_papers(
-    *, pubmed_ids_to_filter: set[str], start_date: str, end_date: str
+    *,
+    pubmed_ids_to_filter: set[str] | None = None,
+    start_date: str,
+    end_date: str | None = None,
 ) -> pd.DataFrame:
     """Fetch PubMed papers from the last 30 days using specific search terms, excluding curated papers.
 
     :param pubmed_ids_to_filter: List containing already curated PMIDs.
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
-    :return: DataFrame containing PubMed paper details.
+
+    :returns: DataFrame containing PubMed paper details.
     """
-    paper_to_terms = _search(
+    import pubmed_downloader
+
+    pubmed_to_terms = _search(
         DEFAULT_SEARCH_TERMS,
         pubmed_ids_to_filter=pubmed_ids_to_filter,
         start_date=start_date,
         end_date=end_date,
     )
+    click.echo(
+        f"Search for {'/'.join(DEFAULT_SEARCH_TERMS)} return {len(pubmed_to_terms):,} articles"
+    )
 
-    papers = _get_metadata_for_ids(paper_to_terms)
+    articles = list(pubmed_downloader.get_articles(pubmed_to_terms, error_strategy="skip"))
+    click.echo(f"Substantiated {len(articles):,} articles")
 
     records = []
-    for pubmed_id, paper in papers.items():
-        title = paper.get("title")
-        abstract = paper.get("abstract", "")
-
+    for article in articles:
+        # Filter out papers that are from journals (typically
+        # preprint servers that have PMIDs) to be excluded
+        if article.journal.nlm_catalog_id in EXCLUDE_JOURNALS:
+            continue
+        title = article.title
+        abstract = article.get_abstract()
         if title and abstract:
             records.append(
                 {
-                    "pubmed": pubmed_id,
+                    "pubmed": str(article.pubmed),
                     "title": title,
                     "abstract": abstract,
-                    "year": paper.get("publication_date", {}).get("year"),
-                    "search_terms": paper_to_terms[pubmed_id],
+                    "date": article.journal_issue.published
+                    if article.journal_issue and article.journal_issue.published
+                    else None,
+                    "search_terms": pubmed_to_terms[str(article.pubmed)],
                 }
             )
 
@@ -207,37 +270,32 @@ def fetch_pubmed_papers(
     return pd.DataFrame(records)
 
 
-def load_google_curation_df() -> pd.DataFrame:
+def load_google_curation_df(*, strict: bool = False, loud: bool = True) -> pd.DataFrame:
     """Download and load curation data from a Google Sheets URL.
 
-    :return: DataFrame containing curated publication details.
+    :returns: DataFrame containing curated publication details.
     """
-    click.echo("Downloading curation sheet")
-    df = pd.read_csv(URL)
-    df["label"] = df["relevant"].map(_map_labels)
-    df = df[["pubmed", "title", "abstract", "label"]]
-
-    pmids_to_fetch = df[df["abstract"] == ""].pubmed.tolist()
-    fetched_metadata = _get_metadata_for_ids(pmids_to_fetch)
-
-    for index, row in df.iterrows():
-        if row["pubmed"] in fetched_metadata:
-            df.at[index, "abstract"] = fetched_metadata[row["pubmed"]].get("abstract", "")
-
-    click.echo(f"Got {df.label.notna().sum()} curated publications from Google Sheets")
+    df = pd.read_csv(URL, dtype=str)
+    df["relevant"] = df["relevant"].map(_map_labels)
+    df = df[["pubmed", "title", "relevant"]]
+    _fill_abstracts(df, strict=strict)
+    if loud:
+        _echo_stats(df, "curated publications from Google Sheets")
     return df
 
 
-def _map_labels(s: str) -> int | None:
-    """Map labels to binary values.
+POSITIVE_VALUE = "yes"
+NEGATIVE_VALUE = "no"
 
-    :param s: Label value.
-    :return: Mapped binary label value.
-    """
-    if s in {"1", "1.0", 1}:
-        return 1
-    if s in {"0", "0.0", 0}:
-        return 0
+
+def _map_labels(s: str) -> str | None:
+    """Standardize labels."""
+    if pd.isna(s):
+        return None
+    if s in {"1", "1.0", 1, POSITIVE_VALUE}:
+        return POSITIVE_VALUE
+    if s in {"0", "0.0", 0, NEGATIVE_VALUE}:
+        return NEGATIVE_VALUE
     return None
 
 
@@ -246,7 +304,8 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
 
     :param x_train: Training features.
     :param y_train: Training labels.
-    :return: List of trained classifiers.
+
+    :returns: List of trained classifiers.
     """
     classifiers = [
         ("rf", RandomForestClassifier()),
@@ -255,13 +314,13 @@ def train_classifiers(x_train: XTrain, y_train: YTrain) -> Classifiers:
         ("svc", LinearSVC()),
         ("svm", SVC(kernel="rbf", probability=True)),
     ]
-    for _, clf in tqdm(classifiers, desc="Training classifiers"):
+    for _, clf in classifiers:
         clf.fit(x_train, y_train)
     return classifiers
 
 
 def generate_meta_features(
-    classifiers: Classifiers, x_train: XTrain, y_train: YTrain, cv: int = 5
+    classifiers: Classifiers, x_train: XTrain, y_train: YTrain, *, cv: int = 5
 ) -> pd.DataFrame:
     """Generate meta-features for training a meta-classifier using cross-validation predictions.
 
@@ -271,11 +330,12 @@ def generate_meta_features(
     :param x_train: Training features.
     :param y_train: Training labels.
     :param cv: Number of folds for cross-validation
-    :return: DataFrame containing meta-features.
+
+    :returns: DataFrame containing meta-features.
     """
     df = pd.DataFrame()
-    for name, clf in classifiers:
-        df[name] = _cross_val_predict(clf, x_train, y_train, cv=cv)
+    for classifier_name, classifier in classifiers:
+        df[classifier_name] = _cross_val_predict(classifier, x_train, y_train, cv=cv)
     return df
 
 
@@ -283,15 +343,21 @@ def _cross_val_predict(
     clf: ClassifierHint, x_train: XTrain, y_train: YTrain, cv: int
 ) -> NDArray[np.float64]:
     if not hasattr(clf, "predict_proba"):
-        return cross_val_predict(clf, x_train, y_train, cv=cv, method="decision_function")
-    return cross_val_predict(clf, x_train, y_train, cv=cv, method="predict_proba")[:, 1]
+        return cast(
+            NDArray[np.float64],
+            cross_val_predict(clf, x_train, y_train, cv=cv, method="decision_function"),
+        )
+    return cast(
+        NDArray[np.float64],
+        cross_val_predict(clf, x_train, y_train, cv=cv, method="predict_proba")[:, 1],
+    )
 
 
-def _predict(clf: ClassifierHint, x: NDArray[np.float64]) -> NDArray[np.float64]:
+def _predict(clf: ClassifierHint, x: NDArray[np.float64] | NDArray[np.str_]) -> NDArray[np.float64]:
     if hasattr(clf, "predict_proba"):
-        return clf.predict_proba(x)[:, 1]
+        return cast(NDArray[np.float64], clf.predict_proba(x)[:, 1])
     else:
-        return clf.decision_function(x)
+        return cast(NDArray[np.float64], clf.decision_function(x))
 
 
 class MetaClassifierEvaluationResults(NamedTuple):
@@ -309,7 +375,8 @@ def _evaluate_meta_classifier(
     :param meta_clf: Trained meta-classifier.
     :param x_test_meta: Test meta-features.
     :param y_test: Test labels.
-    :return: MCC and AUC-ROC scores.
+
+    :returns: MCC and AUC-ROC scores.
     """
     y_pred = meta_clf.predict(x_test_meta)
     mcc = matthews_corrcoef(y_test, y_pred)
@@ -333,13 +400,13 @@ def predict_and_save(
     :param path: Path to save the predictions.
     """
     x_meta = pd.DataFrame()
-    x_transformed = vectorizer.transform(df.title + " " + df.abstract)
+    x_transformed = vectorizer.transform(df["title"] + " " + df["abstract"])
     for name, clf in classifiers:
         x_meta[name] = _predict(clf, x_transformed)
 
-    df["meta_score"] = _predict(meta_clf, x_meta)
+    df["meta_score"] = _predict(meta_clf, x_meta.to_numpy())
     df = df.sort_values(by="meta_score", ascending=False)
-    df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 25))
+    df["abstract"] = df["abstract"].apply(lambda x: textwrap.shorten(x, 50))
     path = Path(path).resolve()
     df.to_csv(path, sep="\t", index=False)
     click.echo(f"Wrote predicted scores to {path}")
@@ -368,7 +435,7 @@ def _get_evaluation_df(
     classifiers: Classifiers, x_train: XTrain, x_test: XTest, y_train: YTrain, y_test: YTest
 ) -> tuple[LogisticRegression, pd.DataFrame]:
     scores = []
-    for name, clf in tqdm(classifiers, desc="evaluating"):
+    for name, clf in classifiers:
         y_pred = clf.predict(x_test)
         try:
             mcc = matthews_corrcoef(y_test, y_pred)
@@ -393,8 +460,7 @@ def _get_evaluation_df(
 @click.option(
     "--bioregistry-file",
     type=Path,
-    help="Path to the bioregistry.json file",
-    default=BIOREGISTRY_PATH,
+    help="Path to the bioregistry.json file. Defaults to internal",
 )
 @click.option(
     "--start-date",
@@ -408,49 +474,73 @@ def _get_evaluation_df(
     help="End date of the period",
     default=datetime.date.today().isoformat(),
 )
-def main(bioregistry_file: Path, start_date: str, end_date: str) -> None:
+@click.option("--directory", type=Path, default=DIRECTORY)
+def main(bioregistry_file: Path | None, start_date: str, end_date: str, directory: Path) -> None:
     """Load data, train classifiers, evaluate models, and predict new data.
 
     :param bioregistry_file: Path to the bioregistry JSON file.
     :param start_date: The start date of the period for which papers are being ranked.
     :param end_date: The end date of the period for which papers are being ranked.
     """
-    runner(
+    curated_pubmed_ids, vectorizer, classifiers, meta_clf = train(
         bioregistry_file=bioregistry_file,
         curated_papers_path=CURATED_PAPERS_PATH,
-        start_date=start_date,
-        end_date=end_date,
-        output_path=DIRECTORY,
+        output_path=directory,
     )
+    predictions_df = fetch_pubmed_papers(
+        pubmed_ids_to_filter=curated_pubmed_ids, start_date=start_date, end_date=end_date
+    )
+    if not predictions_df.empty:
+        predictions_path = directory.joinpath("predictions.tsv")
+        predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
 
 
-def runner(
+class TrainingResult(NamedTuple):
+    """The results from training."""
+
+    curated_pubmed_ids: set[str]
+    vectorizer: TfidfVectorizer
+    classifiers: Classifiers
+    meta_clf: LogisticRegression
+
+
+def train(
     *,
-    bioregistry_file: Path,
-    curated_papers_path: Path,
-    start_date: str,
-    end_date: str,
+    bioregistry_file: Path | None = None,
+    curated_papers_path: Path | None = None,
     include_remote: bool = True,
     output_path: Path,
-) -> None:
-    """Run functionality directly."""
-    publication_df = get_publications_from_bioregistry(bioregistry_file)
-    curated_papers_df = load_curated_papers(curated_papers_path)
-
-    curated_dfs = [curated_papers_df]
+    loud: bool = True,
+    strict: bool = False,
+) -> TrainingResult:
+    """Run training."""
+    curated_dfs = [
+        get_publications_from_bioregistry(bioregistry_file, loud=loud, strict=strict),
+        load_curated_papers(curated_papers_path, loud=loud, strict=strict),
+    ]
     if include_remote:
-        curated_dfs.append(load_google_curation_df())
+        curated_dfs.append(load_google_curation_df(strict=strict))
 
-    df = pd.concat([publication_df, *curated_dfs])
+    df = pd.concat(curated_dfs)[["pubmed", "title", "abstract", "relevant"]]
+
     df["abstract"] = df["abstract"].fillna("")
     df["title_abstract"] = df["title"] + " " + df["abstract"]
+    df = df[df.title_abstract.notna()]
+    df = df.drop_duplicates()
+    _echo_stats(df, "combine curated publications")
+
+    if not (df["relevant"] == NEGATIVE_VALUE).sum():
+        raise ValueError(f"no negative labels found. Values: {df['relevant'].unique()}")
+
+    _echo_stats(df, "combine curated publications")
 
     vectorizer = TfidfVectorizer(stop_words="english")
-    vectorizer.fit(df.title_abstract)
 
-    annotated_df = df[df.label.notna()]
-    x = vectorizer.transform(annotated_df.title_abstract)
-    y = annotated_df.label
+    # do this after the vectorizer so we can still capture the text
+    # from unannotated entries, e.g., from a Google Sheet
+    annotated_df = df[df["relevant"].notna()]
+    x = vectorizer.fit_transform(annotated_df.title_abstract)
+    y = annotated_df["relevant"].map({POSITIVE_VALUE: True, NEGATIVE_VALUE: False}.__getitem__)
 
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.33, random_state=42, shuffle=True
@@ -475,6 +565,7 @@ def runner(
                 vectorizer.idf_,
                 random_forest_clf.feature_importances_,
                 lr_clf.coef_[0],
+                strict=False,
             ),
             columns=["word", "idf", "rf_importance", "lr_importance"],
         )
@@ -488,13 +579,7 @@ def runner(
 
     # These have already been curated and will therefore be filtered out
     curated_pubmed_ids: set[str] = {str(pubmed) for pubmed in df["pubmed"] if pd.notna(pubmed)}
-
-    predictions_df = fetch_pubmed_papers(
-        pubmed_ids_to_filter=curated_pubmed_ids, start_date=start_date, end_date=end_date
-    )
-    if not predictions_df.empty:
-        predictions_path = output_path.joinpath("predictions.tsv")
-        predict_and_save(predictions_df, vectorizer, classifiers, meta_clf, predictions_path)
+    return TrainingResult(curated_pubmed_ids, vectorizer, classifiers, meta_clf)
 
 
 if __name__ == "__main__":

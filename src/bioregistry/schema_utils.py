@@ -1,5 +1,8 @@
 """Utilities for interacting with data and the schema."""
 
+from __future__ import annotations
+
+import csv
 import json
 import logging
 from collections import defaultdict
@@ -7,14 +10,17 @@ from collections.abc import Mapping
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Optional, Union, cast
+from typing import Literal, TypeAlias
+
+from curies import Reference
+from pydantic import BaseModel, Field
 
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
     CONTEXTS_PATH,
+    CURATED_MAPPINGS_PATH,
     METAREGISTRY_PATH,
-    MISMATCH_PATH,
 )
 from .schema import Collection, Context, Registry, Resource
 
@@ -27,7 +33,7 @@ def read_metaregistry() -> Mapping[str, Registry]:
     return _read_metaregistry(METAREGISTRY_PATH)
 
 
-def _read_metaregistry(path: Union[str, Path]) -> Mapping[str, Registry]:
+def _read_metaregistry(path: str | Path) -> Mapping[str, Registry]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
@@ -52,7 +58,7 @@ def resources() -> list[Resource]:
     return sorted(read_registry().values(), key=attrgetter("prefix"))
 
 
-def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
+def _registry_from_path(path: str | Path) -> Mapping[str, Resource]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     for prefix, value in data.items():
@@ -64,6 +70,7 @@ def add_resource(resource: Resource) -> None:
     """Add a resource to the registry.
 
     :param resource: A resource object to write
+
     :raises KeyError: if the prefix is already present in the registry
     """
     registry = dict(read_registry())
@@ -75,11 +82,48 @@ def add_resource(resource: Resource) -> None:
     write_registry(registry)
 
 
+class SemanticMapping(BaseModel):
+    """A model representing a SSSOM semantic mapping."""
+
+    subject: Reference = Field(..., alias="subject_id")
+    predicate_modifier: Literal["Not"] | None = Field(None)
+    predicate: Reference = Field(..., alias="predicate_id")
+    object: Reference = Field(..., alias="object_id")
+    creator: Reference = Field(..., alias="creator_id")
+    mapping_justification: Reference = Field(...)
+    comment: str | None = Field(None)
+    issue_tracker_item: int | None = Field(
+        None, description="The PR or issue associated with the change"
+    )
+    date: str = Field(
+        ...,
+        pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        description="The ISO-8601 date of curation in YYYY-MM-DD",
+    )
+
+
+def read_mismatches() -> dict[str, dict[str, set[str]]]:
+    """Read the mismatches subset of curated mappings as a nested dictionary data structure."""
+    mismatches: defaultdict[str, defaultdict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for m in read_mappings():
+        if m.predicate.curie == "skos:exactMatch" and m.predicate_modifier == "Not":
+            mismatches[m.subject.identifier][m.object.prefix].add(m.object.identifier)
+    return {k: dict(v) for k, v in mismatches.items()}
+
+
 @lru_cache(maxsize=1)
-def read_mismatches() -> Mapping[str, Mapping[str, str]]:
-    """Read the mismatches as JSON."""
-    with MISMATCH_PATH.open() as file:
-        return cast(Mapping[str, Mapping[str, str]], json.load(file))
+def read_mappings() -> list[SemanticMapping]:
+    """Read curated mappings as a nested dict data structure."""
+    return _read_semantic_mappings(CURATED_MAPPINGS_PATH)
+
+
+def _read_semantic_mappings(path: str | Path) -> list[SemanticMapping]:
+    """Read curated mappings as a nested dict data structure."""
+    with Path(path).expanduser().resolve().open() as file:
+        return [
+            SemanticMapping.model_validate({k: v for k, v in record.items() if v})
+            for record in csv.DictReader(file, delimiter="\t")
+        ]
 
 
 def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
@@ -89,16 +133,40 @@ def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_pref
     )
 
 
-def write_mismatches(mismatches: Mapping[str, Mapping[str, str]]) -> None:
-    """Read the mismatches as JSON."""
-    MISMATCH_PATH.write_text(
-        json.dumps(
-            mismatches,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-        )
+def write_mappings(mappings: list[SemanticMapping]) -> None:
+    """Write mappings into the curated mappings file with appropriate sorting."""
+    mappings = sorted(
+        mappings,
+        key=lambda x: (x.subject, x.object, x.predicate, x.predicate_modifier),
     )
+    header = [
+        "subject_id",
+        "predicate_modifier",
+        "predicate_id",
+        "object_id",
+        "creator_id",
+        "mapping_justification",
+        "comment",
+        "issue_tracker_item",
+        "date",
+    ]
+    with CURATED_MAPPINGS_PATH.open("w") as file:
+        writer = csv.writer(file, delimiter="\t", lineterminator="\n")
+        writer.writerow(header)
+        writer.writerows(
+            (
+                mapping.subject.curie,
+                mapping.predicate_modifier,
+                mapping.predicate.curie,
+                mapping.object.curie,
+                mapping.creator.curie,
+                mapping.mapping_justification.curie,
+                mapping.comment,
+                mapping.issue_tracker_item,
+                mapping.date,
+            )
+            for mapping in mappings
+        )
 
 
 @lru_cache(maxsize=1)
@@ -107,7 +175,7 @@ def read_collections() -> Mapping[str, Collection]:
     return _collections_from_path(COLLECTIONS_PATH)
 
 
-def _collections_from_path(path: Union[str, Path]) -> Mapping[str, Collection]:
+def _collections_from_path(path: str | Path) -> Mapping[str, Collection]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
@@ -131,7 +199,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_registry(registry: Mapping[str, Resource], *, path: Optional[Path] = None) -> None:
+def write_registry(registry: Mapping[str, Resource], *, path: Path | None = None) -> None:
     """Write to the Bioregistry."""
     if path is None:
         path = BIOREGISTRY_PATH
@@ -173,7 +241,10 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+OrcidStr: TypeAlias = str
+
+
+def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
@@ -185,26 +256,37 @@ def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, 
     return dict(rv)
 
 
-def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid].add(prefix)
+        for reviewer in resource.reviewer_extras or []:
+            if reviewer.orcid:
+                rv[reviewer.orcid].add(prefix)
     return dict(rv)
 
 
-def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, set[str]]:
+def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in registry.items():
         contact_orcid = resource.get_contact_orcid()
         if contact_orcid:
             rv[contact_orcid].add(prefix)
+
+        # Add all secondary contacts' ORCIDs
+        for secondary_contact in resource.contact_extras or []:
+            if secondary_contact.orcid:
+                rv[secondary_contact.orcid].add(prefix)
+
     return dict(rv)
 
 
-def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, set[str]]:
+def read_collections_contributions(
+    collections: Mapping[str, Collection],
+) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in collections.items():
@@ -213,7 +295,9 @@ def read_collections_contributions(collections: Mapping[str, Collection]) -> Map
     return dict(rv)
 
 
-def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, set[str]]:
+def read_registry_contributions(
+    metaregistry: Mapping[str, Registry],
+) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for metaprefix, resource in metaregistry.items():
@@ -222,12 +306,24 @@ def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping
     return dict(rv)
 
 
-def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, set[str]]:
+def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[OrcidStr, set[str]]:
     """Get a mapping from contributor ORCID identifiers to contexts."""
     rv = defaultdict(set)
     for context_key, context in contexts.items():
         for maintainer in context.maintainers:
             rv[maintainer.orcid].add(context_key)
+    return dict(rv)
+
+
+def read_status_contributions(
+    registry: Mapping[str, Resource],
+) -> Mapping[OrcidStr, set[tuple[str, str]]]:
+    """Get a mapping from contributor ORCID identifiers to prefixes/provider code pairs where status checks were performed."""
+    rv = defaultdict(set)
+    for prefix, resource in registry.items():
+        for provider in resource.get_extra_providers():
+            if provider.status:
+                rv[provider.status.contributor].add((prefix, provider.code))
     return dict(rv)
 
 
@@ -237,7 +333,7 @@ def read_contexts() -> Mapping[str, Context]:
     return _contexts_from_path(CONTEXTS_PATH)
 
 
-def _contexts_from_path(path: Union[str, Path]) -> Mapping[str, Context]:
+def _contexts_from_path(path: str | Path) -> Mapping[str, Context]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {key: Context(**data) for key, data in data.items()}

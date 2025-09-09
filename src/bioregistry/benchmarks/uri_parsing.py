@@ -3,6 +3,7 @@
 import time
 from collections.abc import Iterable
 from statistics import mean
+from typing import TypeAlias, cast
 
 import click
 import matplotlib.pyplot as plt
@@ -13,17 +14,22 @@ import bioregistry
 from bioregistry import manager
 from bioregistry.constants import URI_PARSING_DATA_PATH, URI_PARSING_SVG_PATH
 
+Row: TypeAlias = tuple[str, str, str, str]
 
-def get_uris(rebuild: bool = True):
+
+def get_uris(rebuild: bool = True) -> list[Row]:
     """Get prefix-identifier-metaprefix-url quads for benchmarking."""
     if URI_PARSING_DATA_PATH.is_file() and not rebuild:
-        return [line.strip().split("\t") for line in URI_PARSING_DATA_PATH.read_text().splitlines()]
+        return [
+            cast(Row, line.strip().split("\t"))
+            for line in URI_PARSING_DATA_PATH.read_text().splitlines()
+        ]
     uris = sorted(set(iter_uris()))
     URI_PARSING_DATA_PATH.write_text("\n".join("\t".join(line) for line in uris))
     return uris
 
 
-def iter_uris() -> Iterable[tuple[str, str, str, str]]:
+def iter_uris() -> Iterable[Row]:
     """Generate prefix-identifier-metaprefix-url quads for benchmarking."""
     for prefix, resource in tqdm(
         manager.registry.items(), desc="Generating test URIs", unit="prefix"
@@ -34,7 +40,7 @@ def iter_uris() -> Iterable[tuple[str, str, str, str]]:
         for metaprefix, url in manager.get_providers_list(prefix, example):
             if url.endswith(example):  # skip funny formats
                 yield prefix, example, metaprefix, url
-        for extra_example in resource.example_extras or []:
+        for extra_example in resource.get_example_extras():
             for metaprefix, url in manager.get_providers_list(prefix, extra_example):
                 if url.endswith(extra_example):
                     yield prefix, extra_example, metaprefix, url
@@ -43,7 +49,7 @@ def iter_uris() -> Iterable[tuple[str, str, str, str]]:
 @click.command()
 @click.option("--rebuild", is_flag=True)
 @click.option("--replicates", type=int, default=10)
-def main(rebuild: bool, replicates: int):
+def main(rebuild: bool, replicates: int) -> None:
     """Test parsing IRIs."""
     uris = get_uris(rebuild=rebuild)
 

@@ -2,7 +2,6 @@
 
 import unittest
 from collections.abc import Iterable
-from typing import Tuple
 
 import bioregistry
 from bioregistry import manager
@@ -20,14 +19,17 @@ class TestResolve(unittest.TestCase):
             ("ncbitaxon", "taxonomy"),
             ("scomp", "SCOMP"),
             ("sfam", "SFAM"),
-            ("eccode", "ec-code"),
-            ("eccode", "EC_CODE"),
+            ("ec", "ec-code"),
+            ("ec", "EC_CODE"),
             ("chembl.compound", "chembl.compound"),
             ("chembl.compound", "chemblcompound"),
             ("chembl", "chembl"),
         ]:
             with self.subTest(query=query):
                 self.assertEqual(expected, bioregistry.normalize_prefix(query))
+
+        with self.assertRaises(ValueError):
+            bioregistry.normalize_prefix("nope", strict=True)
 
     def test_get(self):
         """Test getting content from the bioregistry."""
@@ -41,12 +43,12 @@ class TestResolve(unittest.TestCase):
     def test_validate_true(self):
         """Test that validation returns true."""
         tests = [
-            ("eccode", "1"),
-            ("eccode", "1.1"),
-            ("eccode", "1.1.1"),
-            ("eccode", "1.1.1.1"),
-            ("eccode", "1.1.123.1"),
-            ("eccode", "1.1.1.123"),
+            ("ec", "1"),
+            ("ec", "1.1"),
+            ("ec", "1.1.1"),
+            ("ec", "1.1.1.1"),
+            ("ec", "1.1.123.1"),
+            ("ec", "1.1.1.123"),
             # Namespace in LUI: Standard rule for upper-casing
             ("chebi", "24867"),
             ("chebi", "CHEBI:1234"),
@@ -89,7 +91,7 @@ class TestResolve(unittest.TestCase):
                     tests.append((prefix, f"{banana}{peel}{example}"))
         self.assert_known_identifiers(tests)
 
-    def assert_known_identifiers(self, examples: Iterable[Tuple[str, str]]) -> None:
+    def assert_known_identifiers(self, examples: Iterable[tuple[str, str]]) -> None:
         """Validate the examples."""
         for prefix, identifier in examples:
             with self.subTest(prefix=prefix, identifier=identifier):
@@ -133,7 +135,9 @@ class TestResolve(unittest.TestCase):
     def test_curie_pattern(self):
         """Test CURIE pattern.
 
-        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
+        .. seealso::
+
+            https://github.com/biopragmatics/bioregistry/issues/245
         """
         self.assertEqual("^chebi:\\d+$", bioregistry.get_curie_pattern("chebi"))
         self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi", use_preferred=True))

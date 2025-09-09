@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.12", "3.9" ]
+        python-version: [ "3.13", "3.10" ]
         tox-command: ["manifest", "lint", "pyroma", "mypy"]
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
         # We only test documentation on the latest version
         # sphinx 8.0 / sphinx-rtd-theme 3.0 discontinued Python 3.9 support
         # a year early, which prompted re-thinking about this.
-        python-version: [ "3.12" ]
+        python-version: [ "3.13" ]
     steps:
       - uses: actions/checkout@v4
       - name: "Install uv"
@@ -65,10 +65,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.12", "3.9" ]
-        exclude:
-          - os: windows-latest
-            python-version: 3.9
+        python-version: [ "3.13", "3.10" ]
     steps:
       - uses: actions/checkout@v4
       - name: "Install uv"

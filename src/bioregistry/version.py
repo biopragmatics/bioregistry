@@ -1,8 +1,9 @@
 """Version information for the bioregistry."""
 
+from __future__ import annotations
+
 import os
 from subprocess import CalledProcessError, check_output
-from typing import Optional
 
 __all__ = [
     "VERSION",
@@ -10,10 +11,10 @@ __all__ = [
     "get_version",
 ]
 
-VERSION = "0.12.0-dev"
+VERSION = "0.12.39-dev"
 
 
-def get_git_hash() -> Optional[str]:
+def get_git_hash() -> str | None:
     """Get the bioregistry git hash."""
     with open(os.devnull, "w") as devnull:
         try:

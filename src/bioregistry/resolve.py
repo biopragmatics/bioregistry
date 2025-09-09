@@ -6,15 +6,15 @@ import logging
 import typing
 from collections.abc import Mapping
 from functools import lru_cache
-from typing import Any
+from typing import Any, Literal, overload
 
 import curies
 
-from .constants import MaybeCURIE
-from .resource_manager import manager
+from .resource_manager import MetaresourceAnnotatedValue, manager
 from .schema import Attributable, Resource
 
 __all__ = [
+    "add_resource",
     "count_mappings",
     "get_appears_in",
     "get_banana",
@@ -24,6 +24,7 @@ __all__ = [
     "get_contact_github",
     "get_contact_name",
     "get_contact_orcid",
+    "get_converter",
     "get_curie_pattern",
     "get_depends_on",
     "get_description",
@@ -33,6 +34,8 @@ __all__ = [
     "get_homepage",
     "get_json_download",
     "get_keywords",
+    "get_logo",
+    "get_mailing_list",
     "get_mappings",
     "get_name",
     "get_namespace_in_lui",
@@ -52,6 +55,7 @@ __all__ = [
     # Registry-level functions
     "get_registry_map",
     "get_repository",
+    "get_repository_to_prefix",
     "get_resource",
     "get_synonyms",
     "get_version",
@@ -61,30 +65,75 @@ __all__ = [
     "is_novel",
     "is_obo_foundry",
     "is_proprietary",
-    "normalize_curie",
-    "normalize_parsed_curie",
-    # CURIE handling
-    "normalize_prefix",
-    "parse_curie",
 ]
 
 logger = logging.getLogger(__name__)
 
 
-def get_resource(prefix: str) -> Resource | None:
+# docstr-coverage:excused `overload`
+@overload
+def get_resource(prefix: str, *, strict: Literal[True] = True) -> Resource: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_resource(prefix: str, *, strict: Literal[False] = False) -> Resource | None: ...
+
+
+def get_resource(prefix: str, *, strict: bool = False) -> Resource | None:
     """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
         before lookup in the Bioregistry
+    :param strict: If true, requires the prefix to be valid or raise an exveption
     :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
         other registries when available.
     """
-    return manager.get_resource(prefix)
+    if strict:
+        return manager.get_resource(prefix, strict=True)
+    return manager.get_resource(prefix, strict=False)
 
 
-def get_name(prefix: str) -> str | None:
-    """Get the name for the given prefix, it it's available."""
-    return manager.get_name(prefix)
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[False] = False, strict: Literal[True] = True
+) -> str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[True] = True, strict: Literal[True] = True
+) -> MetaresourceAnnotatedValue[str]: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[False] = False, strict: Literal[False] = False
+) -> None | str: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def get_name(
+    prefix: str, *, provenance: Literal[True] = True, strict: Literal[False] = False
+) -> None | MetaresourceAnnotatedValue[str]: ...
+
+
+def get_name(
+    prefix: str, *, provenance: bool = False, strict: bool = False
+) -> str | MetaresourceAnnotatedValue[str] | None:
+    """Get the name for the given prefix, if it's available."""
+    if provenance:
+        if strict:
+            return manager.get_name(prefix, provenance=True, strict=True)
+        else:
+            return manager.get_name(prefix, provenance=True, strict=False)
+    if strict:
+        return manager.get_name(prefix, provenance=False, strict=True)
+    return manager.get_name(prefix, provenance=False, strict=False)
 
 
 def get_description(prefix: str, *, use_markdown: bool = False) -> str | None:
@@ -105,19 +154,23 @@ def get_preferred_prefix(prefix: str) -> str | None:
     :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
 
     No preferred prefix annotation, defaults to normalized prefix
+
     >>> get_preferred_prefix("rhea")
     None
 
     Preferred prefix defined in the Bioregistry
+
     >>> get_preferred_prefix("wb")
     'WormBase'
 
     Preferred prefix defined in the OBO Foundry
+
     >>> get_preferred_prefix("fbbt")
     'FBbt'
 
     Preferred prefix from the OBO Foundry overridden by the Bioregistry
     (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+
     >>> get_preferred_prefix("dpo")
     'DPO'
     """
@@ -160,12 +213,13 @@ def get_pattern(prefix: str) -> str | None:
     return manager.get_pattern(prefix)
 
 
-def get_namespace_in_lui(prefix: str) -> bool | None:
+def get_namespace_in_lui(
+    prefix: str, *, provenance: bool = False
+) -> bool | MetaresourceAnnotatedValue[bool] | None:
     """Check if the namespace should appear in the LUI."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_namespace_in_lui()
+    if provenance:
+        return manager.get_namespace_in_lui(prefix, provenance=True)
+    return manager.get_namespace_in_lui(prefix, provenance=False)
 
 
 def get_appears_in(prefix: str) -> list[str] | None:
@@ -319,9 +373,9 @@ def get_registry_map(metaprefix: str) -> dict[str, str]:
     return manager.get_registry_map(metaprefix)
 
 
-def get_registry_invmap(metaprefix: str) -> dict[str, str]:
+def get_registry_invmap(metaprefix: str, **kwargs: Any) -> dict[str, str]:
     """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
-    return manager.get_registry_invmap(metaprefix)
+    return manager.get_registry_invmap(metaprefix, **kwargs)
 
 
 def get_obofoundry_uri_prefix(prefix: str) -> str | None:
@@ -790,178 +844,9 @@ def is_obo_foundry(prefix: str) -> bool | None:
     return entry.get_obofoundry_prefix() is not None
 
 
-def parse_curie(
-    curie: str,
-    *,
-    sep: str = ":",
-    use_preferred: bool = False,
-) -> MaybeCURIE:
-    """Parse a CURIE, normalizing the prefix and identifier if necessary.
-
-    :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
-    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
-        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
-
-    The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
-    of the separator (usually a colon ":" unless specified otherwise). The left part is the prefix,
-    and the right part is the identifier.
-
-    >>> parse_curie("pdb:1234")
-    ('pdb', '1234')
-
-    Address banana problem
-    >>> parse_curie("go:GO:1234")
-    ('go', '1234')
-    >>> parse_curie("go:go:1234")
-    ('go', '1234')
-    >>> parse_curie("go:1234")
-    ('go', '1234')
-
-    Address banana problem with OBO banana
-    >>> parse_curie("fbbt:FBbt:1234")
-    ('fbbt', '1234')
-    >>> parse_curie("fbbt:fbbt:1234")
-    ('fbbt', '1234')
-    >>> parse_curie("fbbt:1234")
-    ('fbbt', '1234')
-
-    Address banana problem with explit banana
-    >>> parse_curie("go.ref:GO_REF:1234")
-    ('go.ref', '1234')
-    >>> parse_curie("go.ref:1234")
-    ('go.ref', '1234')
-
-    Parse OBO PURL curies
-    >>> parse_curie("GO_1234", sep="_")
-    ('go', '1234')
-
-    Banana with no peel:
-    >>> parse_curie("omim.ps:PS12345")
-    ('omim.ps', '12345')
-
-    Use preferred (available)
-    >>> parse_curie("GO_1234", sep="_", use_preferred=True)
-    ('GO', '1234')
-
-    Use preferred (unavailable)
-    >>> parse_curie("pdb:1234", use_preferred=True)
-    ('pdb', '1234')
-    """
-    return manager.parse_curie(curie, sep=sep, use_preferred=use_preferred)
-
-
-def normalize_parsed_curie(
-    prefix: str,
-    identifier: str,
-    *,
-    use_preferred: bool = False,
-) -> MaybeCURIE:
-    """Normalize a prefix/identifier pair.
-
-    :param prefix: The prefix in the CURIE
-    :param identifier: The identifier in the CURIE
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
-        prefixes or bananas, all lowercase.
-    """
-    return manager.normalize_parsed_curie(prefix, identifier, use_preferred=use_preferred)
-
-
-def normalize_curie(curie: str, *, sep: str = ":", use_preferred: bool = False) -> str | None:
-    """Normalize a CURIE.
-
-    :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
-    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
-        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :return: A normalized CURIE, if possible using the colon as a separator
-
-    >>> normalize_curie("pdb:1234")
-    'pdb:1234'
-
-    Fix commonly mistaken prefix
-    >>> normalize_curie("pubchem:1234")
-    'pubchem.compound:1234'
-
-    Address banana problem
-    >>> normalize_curie("GO:GO:1234")
-    'go:1234'
-    >>> normalize_curie("go:GO:1234")
-    'go:1234'
-    >>> normalize_curie("go:go:1234")
-    'go:1234'
-    >>> normalize_curie("go:1234")
-    'go:1234'
-
-    Address banana problem with OBO banana
-    >>> normalize_curie("fbbt:FBbt:1234")
-    'fbbt:1234'
-    >>> normalize_curie("fbbt:fbbt:1234")
-    'fbbt:1234'
-    >>> normalize_curie("fbbt:1234")
-    'fbbt:1234'
-
-    Address banana problem with explit banana
-    >>> normalize_curie("go.ref:GO_REF:1234")
-    'go.ref:1234'
-    >>> normalize_curie("go.ref:1234")
-    'go.ref:1234'
-
-    Parse OBO PURL curies
-    >>> normalize_curie("GO_1234", sep="_")
-    'go:1234'
-
-    Use preferred
-    >>> normalize_curie("GO_1234", sep="_", use_preferred=True)
-    'GO:1234'
-    """
-    return manager.normalize_curie(curie, sep=sep, use_preferred=use_preferred)
-
-
-def normalize_prefix(prefix: str, *, use_preferred: bool = False) -> str | None:
-    """Get the normalized prefix, or return None if not registered.
-
-    :param prefix: The prefix to normalize, which could come from Bioregistry,
-        OBO Foundry, OLS, or any of the curated synonyms in the Bioregistry
-    :param use_preferred:
-        If set to true, uses the "preferred prefix", if available, instead
-        of the canonicalized Bioregistry prefix.
-    :returns: The canonical Bioregistry prefix, it could be looked up. This
-        will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
-        in a few cases, such as NCBITaxon.
-
-    This works for synonym prefixes, like:
-
-    >>> assert "ncbitaxon" == normalize_prefix("taxonomy")
-
-    This works for common mistaken prefixes, like:
-
-    >>> assert "pubchem.compound" == normalize_prefix("pubchem")
-
-    This works for prefixes that are often written many ways, like:
-
-    >>> assert "eccode" == normalize_prefix("ec-code")
-    >>> assert "eccode" == normalize_prefix("EC_CODE")
-
-    Get a "preferred" prefix:
-
-    >>> normalize_prefix("go", use_preferred=True)
-    'GO'
-    """
-    return manager.normalize_prefix(prefix, use_preferred=use_preferred)
-
-
 def get_version(prefix: str) -> str | None:
     """Get the version."""
-    norm_prefix = normalize_prefix(prefix)
+    norm_prefix = manager.normalize_prefix(prefix)
     if norm_prefix is None:
         return None
     return get_versions().get(norm_prefix)
@@ -1037,6 +922,27 @@ def get_converter(**kwargs: Any) -> curies.Converter:
     return manager.get_converter(**kwargs)
 
 
-def get_default_converter() -> curies.Converter:
-    """Get a converter from this manager."""
-    return manager.converter
+def add_resource(resource: Resource) -> None:
+    """Add a resource."""
+    manager.add_resource(resource)
+
+
+def get_logo(prefix: str) -> str | None:
+    """Get the logo for the resource, if it's available."""
+    return manager.get_logo(prefix)
+
+
+def get_mailing_list(prefix: str) -> str | None:
+    """Get the mailing list for the resource, if it's available."""
+    return manager.get_mailing_list(prefix)
+
+
+def get_repository_to_prefix() -> dict[str, str]:
+    """Get a mapping from GitHub repository to Bioregistry prefix."""
+    rv = {}
+    for resource in manager.registry.values():
+        repository = resource.get_repository()
+        if not repository or not repository.startswith("https://github.com/"):
+            continue
+        rv[repository.removeprefix("https://github.com/").casefold()] = resource.prefix
+    return rv

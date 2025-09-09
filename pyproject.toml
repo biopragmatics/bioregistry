@@ -3,16 +3,6 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.black]
-line-length = 100
-target-version = ["py39", "py310", "py311", "py312"]
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-include_trailing_comma = true
-reverse_relative = true
-
 # Pytest, see https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
 [tool.pytest.ini_options]
 markers = [
@@ -21,7 +11,7 @@ markers = [
 
 [project]
 name = "bioregistry"
-version = "0.12.0-dev"
+version = "0.12.39-dev"
 description = "Integrated registry of biological databases and nomenclatures"
 readme = "README.md"
 authors = [
@@ -43,10 +33,10 @@ classifiers = [
     "Framework :: tox",
     "Framework :: Sphinx",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3 :: Only",
 ]
 keywords = [
@@ -63,15 +53,15 @@ keywords = [
 # See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
 license = { file = "LICENSE" }
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "requests",
     "tqdm",
-    "pystow>=0.1.13",
+    "pystow>=0.7.7",
     "click",
     "more_click>=0.1.2",
-    "pydantic>=2.0",
-    "curies>=0.7.0"
+    "pydantic[email]>=2.0",
+    "curies>=0.7.0",
 ]
 
 [project.optional-dependencies]
@@ -80,8 +70,7 @@ tests = [
     "coverage",
     "more_itertools",
     "httpx",
-    "indra",
-    "scikit-learn"
+    "scikit-learn",
 ]
 docs = [
     "sphinx>=8",
@@ -126,22 +115,26 @@ web = [
     "pyyaml",
     "rdflib",
     "rdflib-jsonld",
-    "rdflib-endpoint",
-    "flask<2.2.4",
-    "werkzeug<2.3.0",
+    "rdflib-endpoint>=0.5.3",
+    "flask>=3.0.0",
+    "werkzeug>=3.0.0",
     "fastapi",
     "uvicorn",
-    "bootstrap-flask<=2.0.0",
+    "bootstrap-flask",
     "markdown",
     "curies[fastapi]",
     "a2wsgi",
+    "api-analytics[fastapi]",
 ]
 paper-ranking = [
-    "indra",
     "pandas",
     "scikit-learn",
     "tabulate",
-    "more_itertools",
+    "pubmed-downloader>=0.0.12",
+]
+mapping-checking = [
+    "pandas",
+    "sentence_transformers",
 ]
 
 
@@ -181,6 +174,7 @@ plugins = [
 # Doc8, see https://doc8.readthedocs.io/en/stable/readme.html#ini-file-usage
 [tool.doc8]
 max-line-length = 120
+ignore = ["D001"]
 
 # Coverage, see https://coverage.readthedocs.io/en/latest/config.html
 [tool.coverage.run]
@@ -238,7 +232,11 @@ extend-select = [
 ]
 ignore = [
     "D105", # Missing docstring in magic method
-    "E203", # Black conflicts with the following
+    "ERA001", # FIXME
+    "E501", # FIXME
+    "C901", # ehh, complexity out the wind
+    "S704", # TODO figure out why this gets thrown and how to fix
+    "S314", # unsafe xml
 ]
 
 # See https://docs.astral.sh/ruff/settings/#per-file-ignores
@@ -268,7 +266,7 @@ known-first-party = [
 docstring-code-format = true
 
 [tool.bumpversion]
-current_version = "0.12.0-dev"
+current_version = "0.12.39-dev"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:-(?P<release>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+(?P<build>[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
 serialize = [
     "{major}.{minor}.{patch}-{release}+{build}",

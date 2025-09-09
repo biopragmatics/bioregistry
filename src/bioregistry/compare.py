@@ -10,8 +10,8 @@ import random
 import sys
 import typing
 from collections import Counter, defaultdict
-from collections.abc import Collection, Mapping
-from typing import TYPE_CHECKING, Callable, TypeVar
+from collections.abc import Callable, Collection, Mapping
+from typing import TYPE_CHECKING, Any, TypeAlias, TypeVar, cast
 
 import click
 
@@ -46,6 +46,7 @@ from bioregistry.schema import Resource
 if TYPE_CHECKING:
     import matplotlib.axes
     import matplotlib.figure
+    import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +57,7 @@ BIOREGISTRY_COLOR = "silver"
 BAR_SKIP = {"re3data", "bartoc"}
 
 FigAxPair = tuple["matplotlib.figure.Figure", "matplotlib.axes.Axes"]
+FigMultiAxPair = tuple["matplotlib.figure.Figure", "np.ndarray[Any, 'matplotlib.axes.Axes']"]  # type:ignore
 
 
 class RegistryInfo(typing.NamedTuple):
@@ -118,7 +120,7 @@ def _save(
     plt.close(fig)
 
 
-def plot_attribute_pies(watermark: bool) -> FigAxPair:
+def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:  # type:ignore[type-var]
     """Plot how many entries have version information."""
     licenses_mapped = _get_licenses_mapped_counter()
     licenses_mapped_counter = Counter(licenses_mapped)
@@ -152,11 +154,11 @@ def plot_attribute_pies(watermark: bool) -> FigAxPair:
 
 def _plot_attribute_pies(
     *,
-    measurements: Collection[tuple[str, typing.Counter]],
-    watermark,
+    measurements: Collection[tuple[str, typing.Counter[str]]],
+    watermark: bool,
     ncols: int = 4,
     keep_ontology: bool = True,
-) -> FigAxPair:
+) -> FigMultiAxPair:
     import matplotlib.pyplot as plt
 
     if not keep_ontology:
@@ -166,16 +168,16 @@ def _plot_attribute_pies(
             if label not in {"OWL", "JSON", "OBO"}
         ]
 
-    nrows = int(math.ceil(len(measurements) / ncols))
+    nrows = math.ceil(len(measurements) / ncols)
     figsize = (2.75 * ncols, 2.0 * nrows)
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    fig, axes = cast(FigMultiAxPair, plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize))
     for label_counter, ax in itt.zip_longest(measurements, axes.ravel()):
         if label_counter is None:
             ax.axis("off")
             continue
         label, counter = label_counter
         if label == "License Type":
-            labels, sizes = zip(*counter.most_common())
+            labels, sizes = zip(*counter.most_common(), strict=False)
             explode = None
         else:
             labels = ("Yes", "No")
@@ -207,8 +209,10 @@ def _plot_attribute_pies(
 REMAPPED_KEY = "x"
 REMAPPED_VALUE = "y"
 
+OverlapsHint: TypeAlias = Mapping[str, Mapping[str, set[str]]]
 
-def make_overlaps(keys: list[RegistryInfo]) -> Mapping[str, Mapping[str, set[str]]]:
+
+def make_overlaps(keys: list[RegistryInfo]) -> OverlapsHint:
     """Make overlaps dictionary."""
     rv = {}
     for metaprefix, _, _, prefixes in keys:
@@ -225,14 +229,16 @@ def make_overlaps(keys: list[RegistryInfo]) -> Mapping[str, Mapping[str, set[str
     return rv
 
 
-def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
+def plot_overlap_venn_diagrams(
+    *, keys: list[RegistryInfo], overlaps: OverlapsHint, watermark: bool, ncols: int = 3
+) -> FigMultiAxPair:
     """Plot overlap with venn diagrams."""
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
-    nrows = int(math.ceil(len(keys) / ncols))
+    nrows = math.ceil(len(keys) / ncols)
     figsize = (3.25 * ncols, 2.0 * nrows)
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    fig, axes = cast(FigMultiAxPair, plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize))
 
     for key, ax in itt.zip_longest(keys, axes.ravel()):
         if key is None:
@@ -260,13 +266,15 @@ def plot_overlap_venn_diagrams(*, keys, overlaps, watermark, ncols: int = 3):
     return fig, axes
 
 
-def _plot_external_overlap(*, keys, watermark, ncols: int = 4) -> FigAxPair:
+def _plot_external_overlap(
+    *, keys: list[RegistryInfo], watermark: bool, ncols: int = 4
+) -> FigMultiAxPair:
     """Plot the overlap between each pair of resources."""
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
     pairs = list(itt.combinations(keys, r=2))
-    nrows = int(math.ceil(len(pairs) / ncols))
+    nrows = math.ceil(len(pairs) / ncols)
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for pair, ax in itt.zip_longest(pairs, axes.ravel()):
@@ -295,10 +303,10 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4) -> FigAxPair:
             ha="center",
             va="bottom",
         )
-    return fig, axes
+    return cast(FigMultiAxPair, (fig, axes))
 
 
-def get_getters() -> list[tuple[str, str, Callable]]:
+def get_getters() -> list[tuple[str, str, Callable]]:  # type:ignore
     """Get getter functions, which requires alignment dependencies."""
     # FIXME replace with class_resolver
     try:
@@ -325,7 +333,7 @@ def get_registry_infos() -> list[RegistryInfo]:
         palette = sns.color_palette("Paired", len(getters))
     return [
         RegistryInfo(metaprefix, label, color, set(func(force_download=False)))
-        for (metaprefix, label, func), color in zip(getters, palette)
+        for (metaprefix, label, func), color in zip(getters, palette, strict=False)
     ]
 
 
@@ -367,7 +375,7 @@ def compare() -> None:
             " Install bioregistry again with `pip install bioregistry[charts]`.",
             fg="red",
         )
-        raise sys.exit(1)
+        sys.exit(1)
 
     bibliometric_comparison()
 
@@ -381,24 +389,22 @@ def compare() -> None:
     watermark = True
     sns.set_style("white")
 
-    fig, _axes = plot_xrefs(registry_infos, watermark=watermark)
+    fig, _ = plot_xrefs(registry_infos, watermark=watermark)
     _save(fig, name="xrefs", png=paper, pdf=paper)
 
-    fig, _axes = plot_coverage_gains(overlaps=overlaps)
+    fig, _ = plot_coverage_gains(overlaps=overlaps)
     _save(fig, name="bioregistry_coverage_bar", png=paper, pdf=paper)
 
-    fig, axes = plot_overlap_venn_diagrams(
-        keys=registry_infos, overlaps=overlaps, watermark=watermark
-    )
+    fig, _ = plot_overlap_venn_diagrams(keys=registry_infos, overlaps=overlaps, watermark=watermark)
     _save(fig, name="bioregistry_coverage")
 
-    fig, axes = plot_coverage_overlaps(overlaps=overlaps)
+    fig, _ = plot_coverage_overlaps(overlaps=overlaps)
     _save(fig, name="bioregistry_coverage_bar_short")
 
-    fig, axes = plot_attribute_pies(watermark=watermark)
+    fig, _ = plot_attribute_pies(watermark=watermark)
     _save(fig, "has_attribute")
 
-    fig, _axes = _plot_external_overlap(keys=registry_infos, watermark=watermark)
+    fig, _ = _plot_external_overlap(keys=registry_infos, watermark=watermark)
     _save(fig, name="external_overlap")
 
     ##################################################
@@ -465,7 +471,7 @@ def _get_license_and_conflicts() -> tuple[list[str], set[str], set[str], set[str
         if obo_license and not ols_license:
             licenses.append(obo_license)
         elif not obo_license and ols_license:
-            licenses.append(typing.cast(str, ols_license))
+            licenses.append(ols_license)
         elif obo_license == ols_license:
             licenses.append(typing.cast(str, obo_license))
         else:  # different licenses!
@@ -499,7 +505,7 @@ def get_regex_complexities() -> Collection[float]:
     return sorted(rows)
 
 
-def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
+def plot_coverage_overlaps(*, overlaps: OverlapsHint) -> FigAxPair:
     """Plot and save the abridged coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -535,7 +541,7 @@ def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
     )
     ax.grid(False)
     ax.set_ylabel("")
-    ax.set_xticks([])
+    ax.set_xticks([])  # type:ignore[operator]
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
@@ -576,7 +582,7 @@ def plot_coverage_overlaps(*, overlaps) -> FigAxPair:
     return fig, ax
 
 
-def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxPair:
+def plot_coverage_gains(*, overlaps: OverlapsHint, minimum_width_for_text: int = 70) -> FigAxPair:
     """Plot and save the coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -622,7 +628,7 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
     )
     plt.legend()
     ax.set_ylabel("")
-    ax.set_xticks([])
+    ax.set_xticks([])  # type:ignore[operator]
     ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -661,14 +667,14 @@ def plot_coverage_gains(*, overlaps, minimum_width_for_text: int = 70) -> FigAxP
             verticalalignment="center",
         )
 
-    for label in ax.get_yticklabels():
+    for label in ax.get_yticklabels():  # type:ignore[operator]
         label.set_fontweight("bold")
 
     plt.tight_layout()
     return fig, ax
 
 
-def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
+def plot_xrefs(registry_infos: list[RegistryInfo], watermark: bool) -> FigAxPair:
     """Plot a histogram of how many xrefs each entry has."""
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -678,7 +684,7 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
         sum(0 < len(entry.get_external(key)) for key, *_ in registry_infos)
         for entry in read_registry().values()
     ]
-    fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    fig, ax = plt.subplots(1, 1, figsize=SINGLE_FIG)
     xrefs_counter: typing.Counter[int] = Counter(xref_counts)
 
     mappable_metaprefixes = {
@@ -714,7 +720,7 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
     # There should only be one container here
     _labels = xrefs_df["count"].to_list()
     _labels[0] = f"{_labels[0]}\nNovel"
-    for i, label in zip(ax.containers, _labels):
+    for i, label in zip(ax.containers, _labels, strict=False):  # type:ignore[attr-defined]
         ax.bar_label(i, [label])
     ax.set_xlabel(
         f"Number of the {n_mappable_metaprefixes} Mapped External Registries Capturing a Given Identifier Resource"
@@ -753,7 +759,7 @@ def plot_xrefs(registry_infos, watermark: bool) -> FigAxPair:
 
     #: the distance between the leftmost bar and the y axis line
     offset = 0.7
-    ax.set_xlim([-offset, len(ax.patches) - (1 + offset)])
+    ax.set_xlim((-offset, len(ax.patches) - (1 + offset)))
     return fig, ax
 
 
@@ -764,7 +770,9 @@ def _get_licenses_mapped_counter(threshold: int = 30) -> list[str]:
         (
             "None"
             if license_ is None
-            else license_ if licenses_counter[license_] > threshold else "Other"
+            else license_
+            if licenses_counter[license_] > threshold
+            else "Other"
         )
         for license_ in licenses
     ]

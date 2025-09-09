@@ -2,6 +2,11 @@ embedding_rewrites: []
 license_conflict: []
 prefix_rewrites: []
 wrong_patterns:
+- correct: ^IND\d+$
+  homepage: http://agricola.nal.usda.gov/
+  miriam: ^\d+$
+  name: Agricultural Online Access
+  prefix: agricola
 - correct: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
   homepage: https://arks.org
   miriam: ^(ark\:)/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
@@ -117,19 +122,19 @@ wrong_patterns:
   miriam: ^[0-9]+$
   name: Drug Central
   prefix: drugcentral
-- correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.[nB]\d{1,3})?$
+- correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.[nB]\d{1,3}|\.-\.-\.-|\.\d{1,3}\.-\.-|\.\d{1,3}\.\d{1,3}\.-)?$
   homepage: https://www.enzyme-database.org/
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
-  name: Enzyme Commission Code
-  prefix: eccode
+  name: Enzyme Nomenclature
+  prefix: ec
 - correct: ^\d{7}$
   homepage: https://www.evidenceontology.org
-  miriam: ECO:\d{7}$
+  miriam: ^ECO:\d{7}$
   name: Evidence and Conclusion Ontology
   prefix: eco
 - correct: ^\d+$
   homepage: https://www.ebi.ac.uk/pdbe/emdb
-  miriam: EMPIAR-\d{5,}
+  miriam: ^EMPIAR-\d{5,}$
   name: Electron Microscopy Public Image Archive
   prefix: empiar
 - correct: ^\d{7,8}$
@@ -157,6 +162,11 @@ wrong_patterns:
   miriam: ^FOODON:[0-9]{8}$
   name: The Food Ontology
   prefix: foodon
+- correct: ^\d+$
+  homepage: https://www.crossref.org/
+  miriam: ^\d{9,9}$
+  name: FunderRegistry
+  prefix: funderregistry
 - correct: ^\d{9}$
   homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
   miriam: ^GEO_[0-9]{9}$
@@ -183,7 +193,7 @@ wrong_patterns:
   name: Gene Ontology
   prefix: go
 - correct: ^\d{7}$
-  homepage: http://www.geneontology.org/cgi-bin/references.cgi
+  homepage: http://www.geneontology.org
   miriam: ^GO_REF:\d{7}$
   name: Gene Ontology Database references
   prefix: go.ref
@@ -212,6 +222,16 @@ wrong_patterns:
   miriam: ^((HGNC|hgnc):)?\d{1,5}$
   name: HUGO Gene Nomenclature Committee
   prefix: hgnc
+- correct: ^[A-Z][A-Z0-9_]+\.PE\d+$
+  homepage: http://hogenom.univ-lyon1.fr/
+  miriam: ^\w+$
+  name: Database of Complete Genome Homologous Genes Families
+  prefix: hogenom
+- correct: ^SEQF\d+(?:\.\d+)?$
+  homepage: https://www.homd.org/
+  miriam: ^SEQF\d+$
+  name: HOMD Sequence Metainformation
+  prefix: homd.seq
 - correct: ^\d{7}$
   homepage: http://www.human-phenotype-ontology.org/
   miriam: ^HP:\d{7}$
@@ -233,7 +253,7 @@ wrong_patterns:
   name: Immune Epitope Database References
   prefix: iedb.reference
 - correct: ^\d+(-\d+)?$
-  homepage: https://www.imexconsortium.org/
+  homepage: https://www.ebi.ac.uk/intact/
   miriam: ^IM-\d+(-?)(\d+?)$
   name: International Molecular Exchange
   prefix: imex
@@ -242,9 +262,14 @@ wrong_patterns:
   miriam: ^.+$
   name: Intelligence Task Ontology
   prefix: ito
+- correct: ^\d{6}$
+  homepage: https://mice.jax.org
+  miriam: ^\d+$
+  name: Jackson Laboratories Mouse Strain
+  prefix: jaxmice
 - correct: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   homepage: http://lincsportal.ccs.miami.edu/cells/
-  miriam: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
+  miriam: ^(LCL-\d+)|(LDC-\d+)|(ES-\d+)|(LSC-\d+)|(LPC-\d+)$
   name: LINCS Cell
   prefix: lincs.cell
 - correct: ^\d+$
@@ -252,6 +277,11 @@ wrong_patterns:
   miriam: ^LRG_\d+$
   name: Locus Reference Genomic
   prefix: lrg
+- correct: ^\w+$
+  homepage: https://w3id.org/nfdi4ing/metadata4ing/
+  miriam: '[A-Za-z_0-9]*'
+  name: Metadata4Ing
+  prefix: m4i
 - correct: ^\d+$
   homepage: https://github.com/obophenotype/mouse-anatomy-ontology
   miriam: ^MA:\d+$
@@ -263,22 +293,22 @@ wrong_patterns:
   name: Mathematical modeling ontology
   prefix: mamo
 - correct: ^\d{7}$
-  homepage: https://github.com/monarch-initiative/MAxO
-  miriam: \d{7}
-  name: Medical Action Ontology
-  prefix: maxo
-- correct: ^\d{7}$
   homepage: https://github.com/UTHealth-Ontology/MCRO
   miriam: ^MCRO:\d+$
   name: Model Card Report Ontology
   prefix: mcro
+- correct: ^(CN)?\d{2,7}$
+  homepage: https://www.ncbi.nlm.nih.gov/medgen/
+  miriam: ^[CN]*\d{4,7}$
+  name: Human Medical Genetics
+  prefix: medgen
 - correct: ^\d+\w?$
   homepage: https://mediadive.dsmz.de/media
   miriam: ^[A-Z]?[0-9]{1,5}[a-z]?$
   name: MediaDive Medium
   prefix: mediadive.medium
 - correct: ^[SCTAGMNUIX]{1,2}\d{2}\.([AB]\d{2}|\d{3})$
-  homepage: http://merops.sanger.ac.uk/index.htm
+  homepage: https://www.ebi.ac.uk/merops
   miriam: ^I\d{2}\.\d{3}$
   name: MEROPS Entry
   prefix: merops.entry
@@ -297,6 +327,11 @@ wrong_patterns:
   miriam: ^MGI:\d+$
   name: Mouse Genome Informatics
   prefix: mgi
+- correct: ^MGYA\d+$
+  homepage: https://www.ebi.ac.uk/metagenomics/
+  miriam: ^MGYA\d{8}$
+  name: MGnify Analysis
+  prefix: mgnify.analysis
 - correct: ^\d{4}$
   homepage: https://github.com/HUPO-PSI/psi-mi-CV
   miriam: ^MI:\d{4}$
@@ -329,7 +364,7 @@ wrong_patterns:
   prefix: miriam.resource
 - correct: ^\d{5}$
   homepage: http://www.psidev.info/MOD
-  miriam: ^MOD:\d{5}
+  miriam: ^MOD:\d{5}$
   name: Protein modification
   prefix: mod
 - correct: ^\d{7}$
@@ -352,6 +387,16 @@ wrong_patterns:
   miriam: ^NANDO:[0-9]+$
   name: Nanbyo Disease Ontology
   prefix: nando
+- correct: ^(\d+)|([a-zA-Z_]+)$
+  homepage: https://github.com/obophenotype/ncbitaxon
+  miriam: ^\d+$
+  name: NCBI Taxonomy
+  prefix: ncbitaxon
+- correct: ^[CRPA]\d+$
+  homepage: https://github.com/ncit-obo-org/ncit-obo-edition
+  miriam: ^C\d+$
+  name: NCI Thesaurus
+  prefix: ncit
 - correct: ^\d+$
   homepage: https://github.com/SciCrunch/NIF-Ontology
   miriam: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
@@ -374,17 +419,17 @@ wrong_patterns:
   prefix: obcs
 - correct: ^\d{7}$
   homepage: http://obi-ontology.org
-  miriam: (^OBI:\d{7}$)|(^OBI_\d{7}$)
+  miriam: ^OBI_\d{7}$
   name: Ontology for Biomedical Investigations
   prefix: obi
 - correct: ^[0-9]{12}$
   homepage: https://ontochem.com/
-  miriam: ocid:[0-9]{12}
+  miriam: ^ocid:[0-9]{12}$
   name: Ontology Concept Identifiers
   prefix: ocid
 - correct: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   homepage: https://omabrowser.org
-  miriam: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
+  miriam: ^HOG:[0-9A-Z._]+$
   name: OMA HOGs
   prefix: oma.hog
 - correct: ^\d{6}(-\d+)?$
@@ -408,7 +453,12 @@ wrong_patterns:
   name: Ontology for Parasite LifeCycle
   prefix: opl
 - correct: ^C?\d+$
-  homepage: https://www.ebi.ac.uk/ols4/ontologies/ordo
+  homepage: https://www.orpha.net
+  miriam: ^\d+$
+  name: Orphanet
+  prefix: orphanet
+- correct: ^C?\d+$
+  homepage: https://www.orpha.net
   miriam: ^Orphanet(_|:)C?\d+$
   name: Orphanet Rare Disease Ontology
   prefix: orphanet.ordo
@@ -429,7 +479,7 @@ wrong_patterns:
   prefix: pid.pathway
 - correct: ^PMC\d+(\.\d+)?$
   homepage: http://europepmc.org/
-  miriam: PMC\d+
+  miriam: ^PMC\d+$
   name: PubMed Central
   prefix: pmc
 - correct: ^\d+$
@@ -445,7 +495,7 @@ wrong_patterns:
 - correct: ^\d{7}$
   homepage: https://github.com/PRIDE-Utilities/pride-ontology
   miriam: ^\d+$
-  name: PRIDE Controlled Vocabulary
+  name: Proteomics Identification Database Ontology
   prefix: pride
 - correct: ^(c|k)\d{7}$
   homepage: http://probonto.org
@@ -464,7 +514,7 @@ wrong_patterns:
   prefix: pw
 - correct: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
   homepage: https://www.reactome.org/
-  miriam: (^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$)|(^REACT_\d+(\.\d+)?$)
+  miriam: ^(R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?)|(REACT_\d+(\.\d+)?)$
   name: Reactome
   prefix: reactome
 - correct: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
@@ -502,6 +552,11 @@ wrong_patterns:
   miriam: ^SO:\d{7}$
   name: Sequence types and features ontology
   prefix: so
+- correct: ^[0-9A-Za-z\-.\+]+$
+  homepage: https://spdx.org/licenses
+  miriam: ^[0-9A-Za-z\-.]+$
+  name: Software Package Data Exchange License
+  prefix: spdx
 - correct: ^\d{7}$
   homepage: http://stato-ontology.org/
   miriam: ^STATO:\d+$
@@ -523,7 +578,7 @@ wrong_patterns:
   name: TAIR Gene
   prefix: tair.gene
 - correct: ^\d+$
-  homepage: http://arabidopsis.org/index.jsp
+  homepage: http://arabidopsis.org/
   miriam: ^\d{7}$
   name: The Arabidopsis Information Resource
   prefix: tair.locus
@@ -539,7 +594,7 @@ wrong_patterns:
   prefix: uberon
 - correct: ^\d{7}$
   homepage: https://github.com/bio-ontology-research-group/unit-ontology
-  miriam: ^UO:\d{7}?
+  miriam: ^UO:\d{7}?$
   name: Units of measurement ontology
   prefix: uo
 - correct: ^(\d{1,2},?\d{3},?\d{3}|(PP|RE|AI|RX)\d{2},?\d{3}|(D|T|H|X)\d{3},?\d{3})$
@@ -557,7 +612,7 @@ wrong_patterns:
   miriam: ^((VGNC|vgnc):)?\d{1,9}$
   name: Vertebrate Gene Nomenclature Committee
   prefix: vgnc
-- correct: ^(Q|P|E)\d+$
+- correct: ^(Q|P|E|L)\d+$
   homepage: https://www.wikidata.org/
   miriam: ^(Q|P)\d+$
   name: Wikidata

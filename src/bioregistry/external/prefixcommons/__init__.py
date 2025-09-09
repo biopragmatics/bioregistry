@@ -6,16 +6,18 @@
       https://docs.google.com/spreadsheets/d/1cDGJcRteb9F5-jbw7Q7np0kk4hfWhdBHNYRIg3LXDrs/edit#gid=0
 """
 
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 from pystow.utils import download
 
 from bioregistry.constants import RAW_DIRECTORY
-from bioregistry.external.alignment_utils import Aligner
+from bioregistry.external.alignment_utils import Aligner, load_processed
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
@@ -93,11 +95,12 @@ SKIP_URI_FORMATS = {
 }
 
 
-def get_prefixcommons(force_download: bool = False, force_process: bool = False):
+def get_prefixcommons(
+    force_download: bool = False, force_process: bool = False
+) -> dict[str, dict[str, Any]]:
     """Get the Life Science Registry."""
     if PROCESSED_PATH.exists() and not (force_download or force_process):
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+        return load_processed(PROCESSED_PATH)
 
     download(url=URL, path=RAW_PATH, force=force_download)
     rows = {}
@@ -113,13 +116,13 @@ def get_prefixcommons(force_download: bool = False, force_process: bool = False)
     return rows
 
 
-def _process_row(line: str):
+def _process_row(line: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
     cells = line.strip().split("\t")
     prefix = cells[0]
     cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
     rv: dict[str, Any] = {
         key: value.strip()
-        for key, value in zip(COLUMNS, cells_processed)
+        for key, value in zip(COLUMNS, cells_processed, strict=False)
         if key and value and key in KEEP
     }
     for key in ["name", "description", "example", "pattern"]:
@@ -177,11 +180,11 @@ def _process_row(line: str):
     return prefix, rv
 
 
-def _get_uri_formats(rv, key) -> list[str]:
-    uri_formats = rv.pop(key, None)
+def _get_uri_formats(iv: dict[str, Any], key: str) -> list[str]:
+    uri_formats: str | None = iv.pop(key, None)
     if not uri_formats:
         return []
-    rv = []
+    rv: list[str] = []
     for uri_format in uri_formats.split(","):
         uri_format = uri_format.strip()
         if not uri_format:
@@ -277,7 +280,7 @@ class PrefixCommonsAligner(Aligner):
 
     key = "prefixcommons"
     getter = get_prefixcommons
-    curation_header = (
+    curation_header: ClassVar[Sequence[str]] = (
         "name",
         "synonyms",
         "description",
@@ -292,7 +295,7 @@ class PrefixCommonsAligner(Aligner):
         """Get skip prefixes."""
         return {**SKIP, **PROVIDERS}
 
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
+    def get_curation_row(self, external_id: str, external_entry: dict[str, Any]) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
         return [
             external_entry["name"],
