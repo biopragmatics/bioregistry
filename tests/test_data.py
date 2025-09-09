@@ -163,10 +163,11 @@ class TestRegistry(unittest.TestCase):
                             msg=f"Redundant alt prefix {alt_prefix} appears in name",
                         )
 
-        name_to_prefix = {name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1}
+        name_to_prefix = {
+            name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1
+        }
         if name_to_prefix:
-            from tabulate import tabulate
-            self.fail(msg=f"There are duplicate names:\n{tabulate(name_to_prefix.items())}")
+            self.fail(msg=f"There are duplicate names:\n{name_to_prefix}")
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
