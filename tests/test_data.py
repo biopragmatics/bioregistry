@@ -126,11 +126,13 @@ class TestRegistry(unittest.TestCase):
             # f"{x.casefold()} ontology",
         )
 
-    def test_names(self):
+    def test_names(self) -> None:
         """Test that all entries have a name."""
+        name_to_prefix = defaultdict(set)
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
                 name = entry.get_name()
+                name_to_prefix[name].add(prefix)
                 self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
                 if entry.name:
                     self.assertEqual(
@@ -160,6 +162,12 @@ class TestRegistry(unittest.TestCase):
                             name.casefold(),
                             msg=f"Redundant alt prefix {alt_prefix} appears in name",
                         )
+
+        name_to_prefix = {
+            name: prefixes for name, prefixes in name_to_prefix.items() if len(prefixes) > 1
+        }
+        if name_to_prefix:
+            self.fail(msg=f"There are duplicate names:\n{name_to_prefix}")
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
@@ -1001,7 +1009,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertTrue(
                     prefix in set(self.registry),
-                    msg=f"mismatches.json has invalid prefix: {prefix}",
+                    msg=f"curated_mappings.sssom.tsv has invalid prefix: {prefix}",
                 )
 
     def test_request_issue(self):
