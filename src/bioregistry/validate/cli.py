@@ -84,3 +84,21 @@ def validate_turtle(
         location, strict=not relax, use_preferred=use_preferred, context=context
     )
     click_write_messages(messages, tablefmt=tablefmt)
+
+
+@validate.command(name="virtuoso")
+@click.argument("url")
+@RELAX_OPTION
+@CONTEXT_OPTION
+@PREFERRED_OPTION
+@FORMAT_OPTION
+def validate_virtuoso(
+    url: str, relax: bool, use_preferred: bool, context: str | None, tablefmt: str | None
+) -> None:
+    """Validate prefixes in a Virtuoso SPARQL server."""
+    from .utils import click_write_messages, validate_virtuoso
+
+    messages = validate_virtuoso(
+        url, strict=not relax, use_preferred=use_preferred, context=context
+    )
+    click_write_messages(messages, tablefmt=tablefmt)
