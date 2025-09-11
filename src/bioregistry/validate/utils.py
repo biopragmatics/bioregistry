@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING, Any, Literal
 
 import click
 from pydantic import BaseModel
-from pystow.utils import get_soup
 from typing_extensions import NotRequired, TypedDict, Unpack
 
 if TYPE_CHECKING:
@@ -147,7 +146,7 @@ def validate_ttl(url: str, **kwargs: Unpack[ValidateKwargs]) -> list[Message]:
 def validate_virtuoso(url: str, **kwargs: Any) -> list[Message]:
     """Validate a Virtuoso SPARQL endpoint's prefix map."""
     prefix_map = get_virtuoso_prefix_map(url)
-    inputs = [(k, v, None) for k, v in prefix_map.items()]
+    inputs: list[tuple[str, str, int | None]] = [(k, v, None) for k, v in prefix_map.items()]
     return _get_all_messages(inputs, **kwargs)
 
 
@@ -295,12 +294,18 @@ def get_virtuoso_prefix_map(url: str) -> dict[str, str]:
 
     :returns: The prefix map returned by the Virtuoso service.
     """
+    from bs4 import Tag
+    from pystow.utils import get_soup
+
     if "nsdecl" not in url:
         url = url + "?nsdecl"
 
     soup = get_soup(url)
-    tbody = soup.find("tbody")
-    if tbody is None:
-        raise ValueError
-    rv = {left.text: right.text for left, right in tbody.find_all("tr")}
+    table_body_tag = soup.find("tbody")
+    if not isinstance(table_body_tag, Tag):
+        raise ValueError(
+            f"could not find table body tag, are you sure this is a Virtuoso "
+            f"SPARQL endpoint? Error from {url}"
+        )
+    rv = {left.text: right.text for left, right in table_body_tag.find_all("tr")}
     return rv
