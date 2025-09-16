@@ -1008,7 +1008,9 @@ class Resource(BaseModel):
             return None
         # if explicitly annotated, use it. Otherwise, the capitalized version
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-        return self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+        return cast(
+            str, self.obofoundry.get("preferredPrefix") or self.obofoundry["prefix"].upper()
+        )
 
     def get_wikidata_entity(self) -> str | None:
         """Get the wikidata database mapping."""
