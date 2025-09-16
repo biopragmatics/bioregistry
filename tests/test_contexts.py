@@ -48,7 +48,7 @@ class TestContexts(unittest.TestCase):
 
         self.assertNotIn("biomodels.kisao", prefix_map)
 
-        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
+        prefix_map, _pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
         self.assertIn("KISAO", prefix_map)
         self.assertIn(
             "biomodels.kisao",
