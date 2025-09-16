@@ -120,7 +120,7 @@ def _save(
     plt.close(fig)
 
 
-def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:  # type:ignore[type-var]
+def plot_attribute_pies(watermark: bool) -> FigMultiAxPair:
     """Plot how many entries have version information."""
     licenses_mapped = _get_licenses_mapped_counter()
     licenses_mapped_counter = Counter(licenses_mapped)
