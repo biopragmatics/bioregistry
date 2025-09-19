@@ -1,9 +1,9 @@
 """Download TogoID."""
 
 import json
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any, ClassVar
+from typing import Any, ClassVar, cast
 
 import requests
 import yaml
@@ -33,7 +33,10 @@ def _get_ontology() -> dict[str, str]:
 
     graph = rdflib.Graph()
     graph.parse(ONTOLOGY_URL, format="turtle")
-    rows = graph.query("SELECT ?namespace ?prefix WHERE { ?namespace dcterms:identifier ?prefix }")
+    rows = cast(
+        Iterable[tuple[str, str]],
+        graph.query("SELECT ?namespace ?prefix WHERE { ?namespace dcterms:identifier ?prefix }"),
+    )
     return {
         str(prefix): namespace.removeprefix("http://togoid.dbcls.jp/ontology#")
         for namespace, prefix in rows

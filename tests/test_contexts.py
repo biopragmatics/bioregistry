@@ -36,7 +36,7 @@ class TestContexts(unittest.TestCase):
     def test_obo_context(self):
         """Test the OBO context map."""
         p = "http://purl.obolibrary.org/obo"
-        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=False)
+        prefix_map, _pattern_map = manager.get_context_artifacts("obo", include_synonyms=False)
 
         self.assertIn("KISAO", prefix_map)
         self.assertEqual(f"{p}/KISAO_", prefix_map["KISAO"])
@@ -48,7 +48,7 @@ class TestContexts(unittest.TestCase):
 
         self.assertNotIn("biomodels.kisao", prefix_map)
 
-        prefix_map, pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
+        prefix_map, _pattern_map = manager.get_context_artifacts("obo", include_synonyms=True)
         self.assertIn("KISAO", prefix_map)
         self.assertIn(
             "biomodels.kisao",

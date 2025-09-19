@@ -135,8 +135,7 @@
     "prefix": "AGROVOC",
     "publications": [
       "https://www.fao.org/agrovoc/publications"
-    ],
-    "version": "2025-05"
+    ]
   },
   "AHOL": {
     "contact": {
@@ -212,13 +211,14 @@
     },
     "description": "The Agriculture Product Types Ontology (APTO) is an ontology of types, meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone. These subclasses are also children of :Raw_product, :Processed_product, and :By-product. Object Properties APTO defines nine object properties: :has_ingredient and :is_ingredient_of (inverse properties): Indicate that a product type is used in the manufacturing of a processed product type (e.g., :Cow_cheese :has_ingredient :Cow_milk). :derives_from and :derives_in (inverse properties, imported from the Relations Ontology (RO)): Indicate that a product type originates from another product type (e.g., :Cocoa_almond :derives_from :Cocoa). :member_of_taxon (imported from the Biological Collections Ontology (BCO)): Indicates that an organismal entity belongs to a taxon (e.g., :Pacu :member_of_taxon :Piaractus_mesopotamicus). :produced_by and :produces (inverse properties, imported from RO): Indicate that an organismal entity produces a given type of product. For example, :Assai :produced_by :Assai_palm, and :Assai_palm :member_of_taxon :Euterpe_oleracea. If only the final product is listed in commodity databases and the rest of the organism holds no commercial value, the product is linked directly to the taxon (e.g., :Pineapple :produced_by :Ananas_comosus). :residue_of: Indicates that a by-product is the residue of manufacturing another product (e.g., :Whey :residue_of :Cheese). :is_a_hybrid_of: Specific to the :Organism subclasses, indicating a hybrid of two species (e.g., :Citrus_aurantium :is_a_hybrid_of ( :Citrus_reticulata and :Citrus_maxima ))., meaning it does not contain individuals and is intended as a classification system for agricultural commodities price index databases in Brazil. This ontology contains labels and comments in both Portuguese and English. There are two main modules: :Organism and :Product_type. The :Organism class contains subclasses that represent the taxonomy of species related to the production of given product types. It imports taxonomic information from the Global Biodiversity Information Facility (GBIF) Backbone Taxonomy via API. The :Product_type class has six main subclasses organized into major groups: :Inorganic_compound :Animal_product :Plant_product :Raw_product :Processed_product :By-product The :Animal_product and :Plant_product classes include subclasses indicating the type of processing the product has undergone.",
     "example_uri": "https://w3id.org/APTO#Product_type",
-    "homepage": "https://github.com/AlmesCore/APTO/blob/main/README.md",
+    "homepage": "https://almescore.github.io/APTO/",
     "license": "CC-BY-4.0",
     "name": "Agriculture Product Types Ontology",
     "prefix": "APTO",
     "publications": [
       "https://doi.org/10.3724/2096-7004.di.2025.0020",
-      "https://doi.org/10.5281/zenodo.13499357"
+      "https://doi.org/10.5281/zenodo.13499357",
+      "https://doi.org/10.1109/ACCESS.2025.3595447"
     ],
     "repository": "https://github.com/AlmesCore/APTO/tree/main",
     "version": "1.2999999523162841797"
@@ -564,7 +564,7 @@
     "name": "Cell Ontology",
     "prefix": "CL",
     "repository": "https://github.com/obophenotype/cell-ontology",
-    "version": "2025-06-20"
+    "version": "2025-07-30"
   },
   "CLC": {
     "contact": {
@@ -577,6 +577,22 @@
     "name": "Corine Land Cover Nomenclature",
     "prefix": "CLC",
     "version": "2015"
+  },
+  "COFFEEWKG": {
+    "contact": {
+      "email": "cfigmart@unicauca.edu.co",
+      "name": "Cristhian Figueroa"
+    },
+    "description": "A knowledge graph for meteorological conditions in Colombia's coffee regions created from data extracted from FNC yearbooks available at: https://www.cenicafe.org/es/index.php/nuestras\\_publicaciones/anuarios\\_meteorologicos , The WeKG ontology is a modular ontology that re-uses and extends standard ontologies, such as GeoSPARQL ontology for spatial features, the Time ontology for temporal entities, the Sensor, Observation, Sample, and Actuator (SOSA) and Semantic Sensor Network (SSN) ontologies for sensors and observations. Individuals of weo:WeatherProperty and weo:MeteorologicalFeature classes are declared in a separate namespace (wepv) as skos:Concept. The WeKG ontology and vocabulary are generic enough to be adopted and extended by meteorological data providers to publish and integrate their sources while complying with Linked Data principles.",
+    "homepage": "https://github.com/cfigmart/coffeeWKG",
+    "license": "CC-BY-4.0",
+    "name": "CoffeeWKG",
+    "prefix": "COFFEEWKG",
+    "publications": [
+      "https://link.springer.com/chapter/10.1007/978-3-031-47112-4_30"
+    ],
+    "repository": "https://github.com/cfigmart/coffeeWKG/blob/main/meteo/CoffeeWKG/result_fnc_stations.ttl",
+    "version": "1.1.0"
   },
   "COSWOT": {
     "contact": {
@@ -1363,12 +1379,12 @@
     "name": "Experimental Factor Ontology",
     "prefix": "EFO",
     "repository": "https://github.com/EBISPOT/efo",
-    "version": "3.80.0"
+    "version": "3.81.0"
   },
   "ENVO": {
     "contact": {
       "email": "pier.buttigieg@awi.de",
-      "name": "Pier Luigi Buttigieg (ORCID: orcid.org/0000-0002-4366-3088)"
+      "name": "Pier Luigi Buttigieg"
     },
     "description": "ENVO is an ontology which represents knowledge about environments,environmental processes, ecosystems, habitats, and related entities",
     "example_uri": "http://purl.obolibrary.org/obo/ENVO_00005746",
@@ -1380,7 +1396,7 @@
       "https://doi.org/10.1186/s13326-016-0097-6"
     ],
     "repository": "https://github.com/EnvironmentOntology/envo",
-    "version": "2025-02-05"
+    "version": "2025-08-19"
   },
   "EO": {
     "contact": {
@@ -1447,9 +1463,9 @@
   "FCUO": {
     "contact": {
       "email": "catherine.roussey@inrae.fr",
-      "name": "Catherine ROUSSEY"
+      "name": "Catherine Roussey"
     },
-    "description": "This ontology specialized the skos model to create a new class Crop subclass of skos:Concept. fcuo:Crop is a defined class. Thus a reasoner like Hermit should be used to classify all the instances of skos:Concept that belongs to the scheme fcuo:thesaurus_FrenchCropUsage as an instance of Crop. FCUO contains also new objet properties and annotation properties dedicated to FCU alignement with taxonomy like TAXREF-LD., ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon., Les sources utilisées sont le registre parcellaire, le larousse agricole, wikipédia, le catalogue officiel des espèces et variétés de plantes cultivées en France du GEVES, les fiches \"les plantes fourragères pour les pairies\" du GNIS, la base Ephy, la liste des cultures à utiliser pour renseigner le descriptif des parcelles et les statistiques agricoles annuelle de l'Agreste, les tables du catalogue de l'Acta publié en 2021. Concernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes. Cette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins. auteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr, les tables du catalogue de l'Acta publié en 2021. Concernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes. Cette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins. auteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr",
+    "description": "This ontology specialized the skos model to create a new class Crop subclass of skos:Concept. fcuo:Crop is a defined class. Thus a reasoner like Hermit should be used to classify all the instances of skos:Concept that belongs to the scheme fcuo:thesaurus_FrenchCropUsage as an instance of Crop. FCUO contains also new objet properties and annotation properties dedicated to FCU alignement with taxonomy like TAXREF-LD., ontologie associée au thésaurus Usage des plantes cultivées en France et définissant des relations d'alignements entre les usgaes des plantes définies dans ce thésaurus et les taxonomies scientifiques comme NCBI taxon ou TAXREF-LD., ontology related to the thesaurus French Crop Usage. This ontology defines mapping relations between FCU thesaurus and scientific taxonomies like TAXREF-LD or NCBI taxon., Les sources utilisées sont le registre parcellaire, le larousse agricole, wikipédia, le catalogue officiel des espèces et variétés de plantes cultivées en France du GEVES, les fiches \"les plantes fourragères pour les pairies\" du GNIS, la base Ephy, la liste des cultures à utiliser pour renseigner le descriptif des parcelles et les statistiques agricoles annuelle de l'Agreste, les tables du catalogue de l'Acta publié en 2021. Concernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, Bonduelle, FranceAgriMer, Encyclopedia Universalis, AM Nagelseim, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes. Cette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins. auteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr, les tables du catalogue de l'Acta publié en 2021. \nConcernant les légumes et leur classification nous avons cherché les points communs entre plusieurs sources: Wikipedia, la ferme du Bec Hellouin. A notre qu'il n'existe pas de consensus sur la classification des legumes.\n\nCette classification est utilisée pour organiser les Bulletins de Santé du Végétal (BSV) et les fiches GECO. Cette classification n'est pas complète et aura besoin d'évoluer au cours du temps en fonction des besoins.\nauteur est catherine roussey de l'INRAE catherine.roussey@inrae.fr",
     "homepage": "http://ontology.inrae.fr/pmwiki.php/Site/FrenchCropUsage",
     "license": "CC-BY-4.0",
     "name": "French Crop Usage Ontology",
@@ -1589,7 +1605,7 @@
     "name": "FoodOn",
     "prefix": "FOODON",
     "repository": "https://github.com/FoodOntology/foodon",
-    "version": "2025-02-01"
+    "version": "2025-08-01"
   },
   "FOWL": {
     "contact": {
@@ -1764,7 +1780,7 @@
       "http://geneontology.org/page/publications"
     ],
     "repository": "https://sourceforge.net/projects/geneontology/",
-    "version": "2025-06-01"
+    "version": "2025-07-22"
   },
   "GR-TAX": {
     "contact": {
@@ -1890,7 +1906,7 @@
     "name": "Livestock Breed Ontology",
     "prefix": "LBO",
     "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
-    "version": "2025-07-24"
+    "version": "2025-09-03"
   },
   "LEXEAU": {
     "contact": {
@@ -1927,13 +1943,14 @@
       "email": "jreecy@iastate.edu",
       "name": "Jim Reecy"
     },
-    "description": "The Livestock Product Trait (LPT) Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit.",
+    "description": "The Livestock Product Trait (LPT) Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit., The Livestock Product Trait Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit.",
     "example_uri": "http://purl.obolibrary.org/obo/LPT_0000156",
     "homepage": "https://www.animalgenome.org/bioinfo/projects/lpt/",
+    "license": "CC-BY-4.0",
     "name": "Livestock Product Trait Ontology",
     "prefix": "LPT",
     "repository": "https://github.com/AnimalGenome/livestock-product-trait-ontology",
-    "version": "4.3"
+    "version": "2025-08-14"
   },
   "MEAT-T": {
     "contact": {
@@ -2029,7 +2046,7 @@
       "https://doi.org/10.1007/s00335-023-09992-1"
     ],
     "repository": "https://github.com/obophenotype/bio-attribute-ontology",
-    "version": "2025-03-28"
+    "version": "2025-08-20"
   },
   "OBOE": {
     "contact": {
@@ -2333,7 +2350,7 @@
       "email": "catherine.roussey@inrae.fr",
       "name": "Catherine Roussey"
     },
-    "description": "This RDF file contains an extension of the SKOS model to model the development stages (or phenological stages) of cultivated plants. This model defines classes representing the main stages and the secondary stages (2 and 3 digits). The general BBCH scale is represented as an instance of skos:ConceptScheme. A new scale was created, intitled, BBCH global scale, that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project., that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project. Contact Catherine Roussey (catherine.roussey@inrae.fr) for any modification in this file. This extension of SKOS model was build using 4 versions of BBCH monograph: * Growth stages of mono- and dicotyledonous plants BBCH Monograph edited by Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-074619 ISBN: 978-3-95547-071-5 * Stades phénologiques des mono-et dicotylédones cultivées BBCH Monographie rédigé par Uwe Meier Instituto Julius Kühn (JKI, siglas en alomán) Quedlinburg, 2018 DOI: 10.5073/20180906-075455 ISBN: 978-3-95547-072-2 * Estadios de las plantas mono-y dicotyledóneas BBCH Monografia Elaborado por Uwe Meier Instituto Julius Kühn (JKI, 2018 DOI: 10.5073/20180906-075743 ISBN: 978-3-95547-069-2 * Entwicklungsstadien mono- und dikotyler Pflanzen BBCH Monografie bearbeitet von Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-075119 ISBN: 978-3-95547-070-8 All versions are licensed under a Creative Commons Attribution 4.0 International License., Ce fichier RDF contient une extension du modèle SKOS pour modeliser les stades de développement (ou stades phénologiques) des plantes cultivées. Ce modèle défini des classes représentant les stades principaux et les stades secondaires (à 2 et 3 chiffres). l'échelle BBCH générale est représentée sous forme d'une instance de skos:ConceptScheme. Une nouvelle échelle a été créée, appelée échelle BBCH globale, regroupant tous les stades existant dans toutes les échelles BBCH. L'ontologie a été construite pendant le projet ANR D2KAB. Contacter Catherine Roussey (catherine.roussey@inrae.fr) pour toute modification dans ce fichier. Ce modele skos a été construit en utilisant 4 versions de la monographie BBCH toutes sous licence Creative Commons Attribution 4.0 International: * Growth stages of mono- and dicotyledonous plants BBCH Monograph edited by Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-074619 ISBN: 978-3-95547-071-5 * Stades phénologiques des mono-et dicotylédones cultivées BBCH Monographie rédigé par Uwe Meier Instituto Julius Kühn (JKI, 2018 DOI: 10.5073/20180906-075743 ISBN: 978-3-95547-069-2 * Entwicklungsstadien mono- und dikotyler Pflanzen BBCH Monografie bearbeitet von Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-075119 ISBN: 978-3-95547-070-8, that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project. Contact Catherine Roussey (catherine.roussey@inrae.fr) for any modification in this file. This extension of SKOS model was build using 4 versions of BBCH monograph. All versions are licensed under a Creative Commons Attribution 4.0 International License., regroupant tous les stades existant dans toutes les échelles BBCH. L'ontologie a été construite pendant le projet ANR D2KAB. Contacter Catherine Roussey (catherine.roussey@inrae.fr) pour toute modification dans ce fichier. Ce modele skos a été construit en utilisant 4 versions de la monographie BBCH toutes sous licence Creative Commons Attribution 4.0 International., regroupant tous les stades existant dans toutes les échelles BBCH. L'ontologie a été construite pendant le projet ANR D2KAB.\n\nContacter Catherine Roussey (catherine.roussey@inrae.fr) pour toute modification dans ce fichier.\n\nCe modele skos a été construit en utilisant 4 versions de la monographie BBCH toutes sous licence Creative Commons Attribution 4.0 International., that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project.\n\nContact Catherine Roussey (catherine.roussey@inrae.fr) for any modification in this file.\n\nThis extension of SKOS model was build using 4 versions of BBCH monograph.\nAll versions are licensed under a Creative Commons Attribution 4.0 International License.",
+    "description": "This RDF file contains an extension of the SKOS model to model the development stages (or phenological stages) of cultivated plants. This model defines classes representing the main stages and the secondary stages (2 and 3 digits). The general BBCH scale is represented as an instance of skos:ConceptScheme. A new scale was created, intitled, BBCH global scale, that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project., that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project. Contact Catherine Roussey (catherine.roussey@inrae.fr) for any modification in this file. This extension of SKOS model was build using 4 versions of BBCH monograph: * Growth stages of mono- and dicotyledonous plants BBCH Monograph edited by Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-074619 ISBN: 978-3-95547-071-5 * Stades phénologiques des mono-et dicotylédones cultivées BBCH Monographie rédigé par Uwe Meier Instituto Julius Kühn (JKI, siglas en alomán) Quedlinburg, 2018 DOI: 10.5073/20180906-075455 ISBN: 978-3-95547-072-2 * Estadios de las plantas mono-y dicotyledóneas BBCH Monografia Elaborado por Uwe Meier Instituto Julius Kühn (JKI, 2018 DOI: 10.5073/20180906-075743 ISBN: 978-3-95547-069-2 * Entwicklungsstadien mono- und dikotyler Pflanzen BBCH Monografie bearbeitet von Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-075119 ISBN: 978-3-95547-070-8 All versions are licensed under a Creative Commons Attribution 4.0 International License., Ce fichier RDF contient une extension du modèle SKOS pour modeliser les stades de développement (ou stades phénologiques) des plantes cultivées. Ce modèle défini des classes représentant les stades principaux et les stades secondaires (à 2 et 3 chiffres). l'échelle BBCH générale est représentée sous forme d'une instance de skos:ConceptScheme. Une nouvelle échelle a été créée, appelée échelle BBCH globale, regroupant tous les stades existant dans toutes les échelles BBCH. L'ontologie a été construite pendant le projet ANR D2KAB. Contacter Catherine Roussey (catherine.roussey@inrae.fr) pour toute modification dans ce fichier. Ce modele skos a été construit en utilisant 4 versions de la monographie BBCH toutes sous licence Creative Commons Attribution 4.0 International: * Growth stages of mono- and dicotyledonous plants BBCH Monograph edited by Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-074619 ISBN: 978-3-95547-071-5 * Stades phénologiques des mono-et dicotylédones cultivées BBCH Monographie rédigé par Uwe Meier Instituto Julius Kühn (JKI, 2018 DOI: 10.5073/20180906-075743 ISBN: 978-3-95547-069-2 * Entwicklungsstadien mono- und dikotyler Pflanzen BBCH Monografie bearbeitet von Uwe Meier Julius Kühn-Institut (JKI) Quedlinburg 2018 DOI: 10.5073/20180906-075119 ISBN: 978-3-95547-070-8, that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project. Contact Catherine Roussey (catherine.roussey@inrae.fr) for any modification in this file. This extension of SKOS model was build using 4 versions of BBCH monograph. All versions are licensed under a Creative Commons Attribution 4.0 International License., regroupant tous les stades existant dans toutes les échelles BBCH. L'ontologie a été construite pendant le projet ANR D2KAB. Contacter Catherine Roussey (catherine.roussey@inrae.fr) pour toute modification dans ce fichier. Ce modele skos a été construit en utilisant 4 versions de la monographie BBCH toutes sous licence Creative Commons Attribution 4.0 International., regroupant tous les stades existant dans toutes les échelles BBCH. L'ontologie a été construite pendant le projet ANR D2KAB. Contacter Catherine Roussey (catherine.roussey@inrae.fr) pour toute modification dans ce fichier. Ce modele skos a été construit en utilisant 4 versions de la monographie BBCH toutes sous licence Creative Commons Attribution 4.0 International., that gather all the stages existing in all BBCh cales. It was built during the ANR D2KAB project. Contact Catherine Roussey (catherine.roussey@inrae.fr) for any modification in this file. This extension of SKOS model was build using 4 versions of BBCH monograph. All versions are licensed under a Creative Commons Attribution 4.0 International License.",
     "example_uri": "http://ontology.inrae.fr/ppdo/ontology/SecondaryStage03",
     "homepage": "http://ontology.irstea.fr/pmwiki.php/Site/Ppdo",
     "license": "CC-BY-4.0",
@@ -2553,7 +2570,6 @@
     },
     "description": "This ontology is the socio-economic ontology developed by CGIAR and partners. Socio-economic ontology team gratefully acknowledges the Platform for big data in agriculture (https://bigdata.cgiar.org) and CGIAR Research program on Policies, Instiutions and Markets(http://pim.cgiar.org/) for their financial support to implement this ontology., None",
     "homepage": "https://github.com/AgriculturalSemantics/SEONT?tab=readme-ov-file",
-    "license": "https://creativecommons.org/licenses/unspecified",
     "name": "Socio-Economic Ontology",
     "prefix": "SEONT",
     "repository": "https://github.com/AgriculturalSemantics/SEOnt"
@@ -2641,6 +2657,15 @@
     "name": "agINFRA Soil Vocabulary",
     "prefix": "SOIL",
     "version": "V-2014"
+  },
+  "SOILBR-ONTO": {
+    "contact": {
+      "email": "ghelfer@unisc.br",
+      "name": "Gilson Augusto Helfer"
+    },
+    "description": "SoilBR: an ontology for management and classification of Brazilian soil fertility extended from AgroRDF https://ghelfer.net/ontologies/soil-ontology/agro.rdf To use the reasoner in Protégé, you need the Pellet plugin and set the Individual inferences as Object properties and Data properties assertions.",
+    "name": "SoilBR-Onto",
+    "prefix": "SOILBR-ONTO"
   },
   "SOSA": {
     "contact": {
@@ -2742,6 +2767,22 @@
     "name": "UMLS Semantic Network",
     "prefix": "STY",
     "version": "12 (2022AA)"
+  },
+  "SUMSO": {
+    "contact": {
+      "email": "ga.ubbiali@gmail.com",
+      "name": "Giorgio A. Ubbiali"
+    },
+    "description": "The Sustainable Meat Systems Ontology (SuMSO) is a domain ontology addressing meat systems sustainability. It extends Sustainability Core Ontology (SCO) and Basic Formal Ontology (BFO). Currently, SuMSO provides a representation of the core architectural features of a sustainable meat system, focusing on cow-derived meat as an initial use case. SuMSO deals with meat in a broad sense: it contemplates the liaisons with other cow-derived materials, such as leather and bones., SuMSO is a domain of ontology, representing meat systems sustainability. Currently, this resource provides the core ontological module of SuMSO that deals with the essential architectural features of a sustainable meat system. This ontological module addresses meat in a broad, genuine sense focusing on cow-derived meat as a starting use-case example. It does not address features related to fish, insects, novel meats, and plant-based meats. The SuMSO core ontological module aims to be the starting basis on which to extend SuMSO to more comprehensively represent meat systems sustainability., representing meat systems sustainability.\n\nCurrently",
+    "homepage": "https://www.w3id.org/sumso/repo",
+    "license": "CC-BY-4.0",
+    "name": "Sustainable Meat Systems Ontology",
+    "prefix": "SUMSO",
+    "publications": [
+      "https://air.unimi.it/handle/2434/1161515"
+    ],
+    "repository": "https://github.com/GioUbbiali/Sustainable-Meat-Systems-Ontology",
+    "version": "2025-06-13"
   },
   "T-SITA": {
     "contact": {
@@ -2852,7 +2893,7 @@
     "license": "http://publications.europa.eu/resource/authority/access-right/PUBLIC",
     "name": "PO2/TransformON",
     "prefix": "TRANSFORMON",
-    "version": "2.4"
+    "version": "22.0"
   },
   "TRANSMAT": {
     "contact": {
@@ -2954,6 +2995,23 @@
       "http://genome.cshlp.org/content/early/2013/10/25/gr.157495.113.abstract"
     ],
     "version": "2017-02-06"
+  },
+  "VBO": {
+    "contact": {
+      "email": "Sabrina@tislab.org",
+      "name": "Sabrina Toro"
+    },
+    "description": "VBO is used in the Online Mendelian Inheritance in Animals (OMIA) for breed annotations., None, Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names.",
+    "example_uri": "http://purl.obolibrary.org/obo/VBO_0016224",
+    "homepage": "https://monarch-initiative.github.io/vertebrate-breed-ontology/",
+    "license": "CC-BY-4.0",
+    "name": "Vertebrate Breed Ontology",
+    "prefix": "VBO",
+    "publications": [
+      "https://doi.org/10.48550/arXiv.2406.02623"
+    ],
+    "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
+    "version": "2025-02-12"
   },
   "VOCGEO": {
     "contact": {

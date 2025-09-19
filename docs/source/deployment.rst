@@ -124,6 +124,8 @@ Key                                  Description
 ``METAREGISTRY_EXAMPLE_PREFIX``      An example prefix. Defaults to ``chebi``.
 ``METAREGISTRY_EXAMPLE_IDENTIFIER``  An example local unique identifier to go with the
                                      example prefix
+``ANALYTICS_API_KEY``                A key for
+                                     https://github.com/tom-draper/api-analytics
 ==================================== =================================================
 
 Finally, after filling up a configuration JSON file and naming it something like
