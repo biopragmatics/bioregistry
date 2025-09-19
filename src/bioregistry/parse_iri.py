@@ -2,12 +2,21 @@
 
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Literal, overload
 
 import curies
+import pystow
 from curies import ReferenceTuple
+from pystow.utils import get_hashes
 
-from .constants import FailureReturnType, MaybeCURIE, NonePair, get_failure_return_type
+from .constants import (
+    BIOREGISTRY_PATH,
+    FailureReturnType,
+    MaybeCURIE,
+    NonePair,
+    get_failure_return_type,
+)
 from .resource_manager import manager
 
 __all__ = [
@@ -21,9 +30,16 @@ __all__ = [
 ]
 
 
-def get_default_converter() -> curies.Converter:
+@lru_cache(1)
+def get_default_converter(*, force: bool = False) -> curies.Converter:
     """Get a converter from this manager."""
-    return manager.converter
+    digest = get_hashes(BIOREGISTRY_PATH, ["sha512"])["sha512"].hexdigest()[:8]
+    path = pystow.join("bioregistry", "epm-cache", name=f"{digest}.json")
+    if path.is_file() and not force:
+        return curies.load_extended_prefix_map(path)
+    rv = manager.converter
+    curies.write_extended_prefix_map(rv, path)
+    return rv
 
 
 def curie_from_iri(
