@@ -593,7 +593,11 @@ class Resource(BaseModel):
     keywords: list[str] | None = Field(
         default=None, description="A list of keywords for the resource"
     )
-    domain: Domain | None = Field(default=None, examples=cast(list[str], typing.get_args(Domain)))
+    domain: Domain | None = Field(
+        default=None,
+        examples=cast(list[str], typing.get_args(Domain)),
+        description="A high-level semantic type of the entities in the semantic space.",
+    )
     references: list[str] | None = Field(
         default=None,
         description="A list of URLs to also see, such as publications describing the resource",
