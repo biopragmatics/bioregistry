@@ -53,6 +53,18 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = ...,
+    strict: Literal[False] = True,
+    on_failure_return_type: FailureReturnType = ...,
+) -> ReferenceTuple: ...
+
+
+# docstr-coverage:excused `overload`
+@overload
+def parse_iri(
+    iri: str,
+    *,
+    use_preferred: bool = ...,
+    strict: Literal[False] = False,
     on_failure_return_type: Literal[FailureReturnType.pair] = FailureReturnType.pair,
 ) -> ReferenceTuple | NonePair: ...
 
@@ -63,6 +75,7 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = ...,
+    strict: Literal[False] = ...,
     on_failure_return_type: Literal[FailureReturnType.single],
 ) -> ReferenceTuple | None: ...
 
@@ -71,6 +84,7 @@ def parse_iri(
     iri: str,
     *,
     use_preferred: bool = False,
+    strict: bool = False,
     on_failure_return_type: FailureReturnType = FailureReturnType.pair,
 ) -> ReferenceTuple | NonePair | None:
     """Parse a compact identifier from an IRI that wraps :meth:`Manager.parse_uri`.
@@ -78,13 +92,14 @@ def parse_iri(
     :param iri: A valid IRI
     :param use_preferred: If set to true, uses the "preferred prefix", if available,
         instead of the canonicalized Bioregistry prefix.
+    :param strict: If set to true, requires parsing to succeed
     :param on_failure_return_type: whether to return a single None or a pair of None's
 
     :returns: A pair of prefix/identifier, if can be parsed
 
     :raises TypeError: if an invalid on_failure_return_type is given
     """
-    rv = get_default_converter().parse_uri(iri, return_none=True)
+    rv = get_default_converter().parse_uri(iri, return_none=True, strict=strict)
     if rv is None:
         return get_failure_return_type(on_failure_return_type)
     # don't invoke the manager until it's needed
