@@ -1512,9 +1512,10 @@ class Resource(BaseModel):
     def get_example_curie(self, use_preferred: bool = False) -> str | None:
         """Get an example CURIE, if an example identifier is available.
 
-        :param use_preferred: Should the preferred prefix be used instead
-            of the Bioregistry prefix (if it exists)?
-        :return: An example CURIE for this resource
+        :param use_preferred: Should the preferred prefix be used instead of the
+            Bioregistry prefix (if it exists)?
+
+        :returns: An example CURIE for this resource
         """
         example = self.get_example()
         if example is None:
