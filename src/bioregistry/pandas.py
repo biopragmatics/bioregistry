@@ -290,7 +290,7 @@ def validate_identifiers(
         raise PrefixLocationError
     elif prefix is not None:
         return _help_validate_identifiers(df, column, prefix)
-    else:  # prefix_column is not None
+    elif prefix_column is not None:
         prefix_column = _norm_column(df, prefix_column)
         prefixes = df[prefix_column].unique()
         if 0 == len(prefixes):
@@ -319,11 +319,13 @@ def validate_identifiers(
             "pd.Series[bool]",
             _multi_column_map(
                 df,
-                [cast(str, prefix_column), column],
+                [prefix_column, column],
                 _validate_lambda,
                 use_tqdm=use_tqdm,
             ),
         )
+    else:
+        raise RuntimeError
     if target_column:
         df[target_column] = results
     return results
@@ -388,7 +390,7 @@ def identifiers_to_curies(
         df = brpd.get_goa_example()
 
         # Use a combination of column 1 (DB) and column 2 (DB Object ID) for conversion
-        df['subject_curie'] = brpd.identifiers_to_curies(df, column=1, prefix_column=0)
+        df["subject_curie"] = brpd.identifiers_to_curies(df, column=1, prefix_column=0)
     """
     # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
@@ -587,6 +589,7 @@ def pd_collapse_to_curies(
     *,
     target_column: str,
 ) -> None:
+    """Collapse a prefix and identifier column together into a CURIE column."""
     prefix_column = _norm_column(df, prefix_column)
     identifier_column = _norm_column(df, identifier_column)
     df[target_column] = [
